@@ -22,13 +22,20 @@ Model assumptions that are NOT derived here (see `theories/BEP/plan.md` section 
 coordinate stands for molecular structure; the two curvatures are equal; the reorganization energy
 `lam` is held fixed across the compared family; the transition state is the classical crossing
 point (no tunneling, no recoupling); and the empirical BEP plot is taken against `ΔG°` rather than
-`ΔH`. The model is exact only in the degenerate case `lam = 0`; the honest statement of the linear
-law is the tolerance/window form (`EPConformsOnWindow`) delivered in B1 and sharpened in B3.
+`ΔH`. The model is exact only in the degenerate case `lam = 0` (proved in `Sharp.lean` (B3):
+`epExact_iff_degenerate`); the honest statement of the linear law is the tolerance/window form
+(`EPConformsOnWindow`) delivered in B1 and sharpened in B3.
 
-Every physical premise (`lam ≠ 0`, `0 < lam`) is an explicit hypothesis of the statement that
-needs it; nothing is hidden in a definition. This file imports `Mathlib` only and is independent of
-the `PhotoLean.Marcus` and `PhotoLean.Hammond` modules. There is no unproved placeholder and no
-custom axiom anywhere in this file.
+Every physical premise (`lam ≠ 0`, `0 < lam`) is an explicit hypothesis **of the statement**, kept
+for signature fidelity with the authority `theories/BEP/probes/bep-statement-skeleton.lean`; some of
+those hypotheses are decorative rather than load-bearing — the statement itself holds without them —
+and where that is so it is stated at the declaration. Nothing is hidden in a definition either: the
+*conformance predicates* (`EPConforms`, `EPConformsOnWindow`, `EPBestOnWindow`, `EPDescriptor`)
+carry their positivity conditions (`0 < lam`, `0 < tol`, `0 < w`) **as conjuncts of the predicate by
+design** (plan §4.1), so a reader sees them in the predicate's type, and every theorem here that
+needs positivity states it explicitly in its signature as well. This file imports `Mathlib` only and
+is independent of the `PhotoLean.Marcus` and `PhotoLean.Hammond` modules; there is no unproved
+placeholder and no custom axiom anywhere in this file.
 
 Statement authority: every declaration below matches
 `theories/BEP/probes/bep-statement-skeleton.lean` word for word (plan §4.1, §4.2).
@@ -57,7 +64,9 @@ noncomputable def reverseTransfer (lam x : ℝ) : ℝ := 1 / 2 + x / (2 * lam)
 /-- Observable BEP slope: a finite difference of barrier data over the window `[x, x+h]`. -/
 noncomputable def secSlope (lam x h : ℝ) : ℝ := (eact lam x - eact lam (x + h)) / h
 
-/-- Half-width of the driving-force window on which the line law holds within `tol`. -/
+/-- Half-width of the driving-force window on which the line law holds within `tol`; that the law
+holds on `[-w, w]` exactly when `w` is at most this radius is `epConformsOnWindow_iff_radius`,
+proved in `Sharp.lean` (B3) — this file only defines the radius. -/
 noncomputable def bepRadius (lam tol : ℝ) : ℝ := 2 * Real.sqrt (lam * tol)
 
 /-- Minimax affine BEP law on a symmetric window of half-width `w`. -/
@@ -103,7 +112,8 @@ noncomputable def epZone (lam x : ℝ) : EPZone :=
   else if 0 < x then EPZone.exergonic
   else EPZone.endergonic
 
-/-- Open regime in which the transfer coefficient is strictly inside `(0,1)`. -/
+/-- Open regime in which the transfer coefficient is strictly inside `(0,1)`; the equivalence is
+`epRegime_iff_strict`, proved in `Sharp.lean` (B3). -/
 def EPRegime (lam x : ℝ) : Prop := -lam < x ∧ x < lam
 
 /-- Pointwise conformance to the BEP description. -/
@@ -122,7 +132,8 @@ constructor equality is absurd, so exactly one branch survives; in the backward 
 cascade is reduced by explicit `if_neg` / `if_pos` rewrites, each guard discharged from the
 characterization's own arithmetic. -/
 /-- Thermoneutral barrier: at `x = 0` the model barrier is the intercept `lam / 4` of the BEP
-line (needs `lam ≠ 0`; at `lam = 0` the totalised-division value is `0`). -/
+line (the proof uses `lam ≠ 0`; the statement itself holds for every `lam` — at `lam = 0` the
+totalised-division value is `0`, and so is `lam / 4`). -/
 theorem eact_at_zero {lam : ℝ} (hlam : lam ≠ 0) : eact lam 0 = lam / 4 := by
   unfold eact
   field_simp
@@ -259,7 +270,8 @@ theorem epZone_eq_atReverseLimit_iff {lam x : ℝ} (hlam : 0 < lam) :
     rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
       if_neg (by linarith : ¬ (-lam = 0)), if_neg (by linarith : ¬ (-lam = lam)), if_pos rfl]
 /-- Zone characterization, inverted forward region: `lam < x`, where the transfer coefficient
-turns negative. -/
+turns negative (that transfer fact is proved in `Sharp.lean` (B3), `not_epBounds_of_gt`; the
+equivalence below only locates the zone in the cascade). -/
 theorem epZone_eq_beyondForward_iff {lam x : ℝ} (hlam : 0 < lam) :
     epZone lam x = EPZone.beyondForward ↔ lam < x := by
   constructor
@@ -273,7 +285,8 @@ theorem epZone_eq_beyondForward_iff {lam x : ℝ} (hlam : 0 < lam) :
       if_neg (by linarith : ¬ (x = 0)), if_neg (by linarith : ¬ (x = lam)),
       if_neg (by linarith : ¬ (x = -lam)), if_pos h]
 /-- Zone characterization, inverted reverse region: `x < -lam`, where the transfer coefficient
-exceeds one. -/
+exceeds one (that transfer fact is proved in `Sharp.lean` (B3), `not_epBounds_of_lt_neg`; the
+equivalence below only locates the zone in the cascade). -/
 theorem epZone_eq_beyondReverse_iff {lam x : ℝ} (hlam : 0 < lam) :
     epZone lam x = EPZone.beyondReverse ↔ x < -lam := by
   constructor
