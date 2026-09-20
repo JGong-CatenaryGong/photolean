@@ -81,3 +81,11 @@ theorem lefflerSecant_symm {lam x : ℝ} (hlam : 0 < lam) :
   rw [lefflerSecant_eq_midpoint hlam (by linarith : x - 1 ≠ x + 1)]
   ring_nf
 
+/-- The transition state leaves the reactant side of the interval exactly in the Marcus
+inverted region. -/
+theorem tsCoord_lt_zero_iff_inverted {lam x : ℝ} (hlam : 0 < lam) :
+    tsCoord lam x < 0 ↔ Marcus.InvertedRegion lam x := by
+  unfold tsCoord Marcus.InvertedRegion
+  rw [div_lt_iff₀ (by linarith : (0 : ℝ) < 2 * lam)]
+  constructor <;> intro h <;> linarith
+
