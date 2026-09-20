@@ -107,6 +107,10 @@ theorem inst_I3_endergonic_conforms : HammondConforms 1 (-(1 / 2)) := by
 theorem inst_I4_barrierless_zone : Rat.hammondZoneQ (1 : ℚ) 1 = HZone.atReactant := by
   norm_num [Rat.hammondZoneQ]
 
+/-- I4, coordinate: the transition state sits exactly at the reactant geometry. -/
+theorem inst_I4_barrierless_coord : tsCoord 1 1 = 0 := by
+  norm_num [tsCoord]
+
 end Hammond
 
 end PhotoLean
