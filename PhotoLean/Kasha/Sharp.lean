@@ -234,6 +234,60 @@ theorem kashaWithin_zero_iff {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad 
   have hU : 0 ≤ upperYield rad ic N := upperYield_nonneg h
   rw [KashaWithin, KashaRule, zero_mul]
   exact ⟨fun hW => le_antisymm hW hU, fun hW => le_of_eq hW⟩
+/-- Plan §6.1 #8. The criterion is monotone in the internal-conversion rate `ic 1`: the two
+ladders differ only in `ic 1 ≥ ic 1'`, and `decay 0`, `rad 0`, `rad 1` agree, so the rate forms
+of row 1 are comparable. The hypotheses carry **no sign for `tol`**: for `0 ≤ tol` the comparison
+is `mul_le_mul_of_nonneg_left`, while for `tol · rad 0 < 0` the given rate form forces
+`0 ≤ rad 1 · decay 0 · (1 - tol) ≤ tol · (rad 0 · ic 1) ≤ 0`, a contradiction — the implication
+holds vacuously, which is why no tolerance premise is needed. -/
+
+theorem kashaWithin_one_mono_ic {rad ic rad' ic' : ℕ → ℝ} {tol : ℝ} (h : RateData rad ic 1)
+    (h' : RateData rad' ic' 1) (hrad : ∀ n, rad' n = rad n) (hic0 : ic' 0 = ic 0)
+    (hic : ic 1 ≤ ic' 1) : KashaWithin rad ic tol 1 → KashaWithin rad' ic' tol 1 := by
+  intro hW
+  have hd0 : 0 < decay rad ic 0 := h.decay_pos 0 (by norm_num)
+  have hd1 : 0 < decay rad ic 1 := h.decay_pos 1 le_rfl
+  have hd0' : 0 < decay rad' ic' 0 := h'.decay_pos 0 (by norm_num)
+  have hd1' : 0 < decay rad' ic' 1 := h'.decay_pos 1 le_rfl
+  have hdec0 : decay rad' ic' 0 = decay rad ic 0 := by rw [decay, decay, hrad 0, hic0]
+  have hgiven : rad 1 * decay rad ic 0 * (1 - tol) ≤ tol * (rad 0 * ic 1) :=
+    (kashaWithin_one_iff_rates hd0 hd1).mp hW
+  rw [kashaWithin_one_iff_rates hd0' hd1', hrad 1, hdec0, hrad 0]
+  rcases le_or_lt 0 (tol * rad 0) with hM | hM
+  · calc rad 1 * decay rad ic 0 * (1 - tol)
+        ≤ tol * (rad 0 * ic 1) := hgiven
+      _ ≤ tol * (rad 0 * ic' 1) := by
+          rw [show tol * (rad 0 * ic 1) = (tol * rad 0) * ic 1 by ring,
+            show tol * (rad 0 * ic' 1) = (tol * rad 0) * ic' 1 by ring]
+          exact mul_le_mul_of_nonneg_left hic hM
+  · -- `tol * rad 0 < 0`: the rate form forces `rad 1 = 0` and `ic 1 = 0`, hence `decay 1 = 0`,
+    -- contradicting `RateData`; the implication therefore holds vacuously.
+    have htneg : tol < 0 := by
+      rcases eq_or_lt_of_le (h.rad_nonneg 0) with hz | hpos
+      · rw [← hz, mul_zero] at hM
+        exact absurd hM (lt_irrefl 0)
+      · have hdiv : tol * rad 0 / rad 0 < 0 := div_neg_of_neg_of_pos hM hpos
+        rwa [mul_div_assoc, div_self (ne_of_gt hpos), mul_one] at hdiv
+    have h1t : 0 < 1 - tol := by linarith
+    have hAge : 0 ≤ rad 1 * decay rad ic 0 * (1 - tol) :=
+      mul_nonneg (mul_nonneg (h.rad_nonneg 1) (le_of_lt hd0)) (le_of_lt h1t)
+    have hMle : tol * (rad 0 * ic 1) ≤ 0 := by
+      rw [show tol * (rad 0 * ic 1) = (tol * rad 0) * ic 1 by ring]
+      exact mul_nonpos_of_nonpos_of_nonneg (le_of_lt hM) (h.ic_nonneg 1)
+    have hAeq : rad 1 * decay rad ic 0 * (1 - tol) = 0 := le_antisymm (le_trans hgiven hMle) hAge
+    have hMeq : tol * (rad 0 * ic 1) = 0 := le_antisymm hMle (le_trans hAge hgiven)
+    have hrad1 : rad 1 = 0 := by
+      have hfac : 0 < decay rad ic 0 * (1 - tol) := mul_pos hd0 h1t
+      have h' := hAeq
+      rw [mul_assoc] at h'
+      exact (mul_eq_zero.mp h').resolve_right (ne_of_gt hfac)
+    have hic1 : ic 1 = 0 := by
+      have h' := hMeq
+      rw [show tol * (rad 0 * ic 1) = (tol * rad 0) * ic 1 by ring] at h'
+      exact (mul_eq_zero.mp h').resolve_left (ne_of_lt hM)
+    exfalso
+    have hdec1 : decay rad ic 1 = 0 := by rw [decay, hrad1, hic1, add_zero]
+    exact absurd hdec1 (ne_of_gt hd1)
 
 end Kasha
 
