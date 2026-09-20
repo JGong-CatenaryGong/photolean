@@ -803,7 +803,7 @@
 
 - Goal: adversarially audit the delivered H1/H5a statements (hypothesis necessity, boundary, non-vacuity,
   classifier integrity, independence) — 99 kernel checks in `theories/hammond/probes/hammond-audit-b.lean`.
-- Result: **no false statement, no vacuous hypothesis**; 40 `#print axioms` clean. Tightness observations:
+- Result: **no false statement, no vacuous hypothesis**; 41 `#print axioms` clean. Tightness observations:
   1. `tsCoord_mem_iff`'s `0 < lam` is not sharp: for `lam = 0` the equivalence holds for every `x`; the sharp
      hypothesis is `0 ≤ lam`. (`reactionRegion_pos` is nevertheless forced: `(∃ x, ReactionRegion lam x) ↔ 0 < lam`.)
   2. The seven zone-characterization lemmas split into three classes: `early`/`late`/`atReactant` hold for arbitrary

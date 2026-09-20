@@ -149,7 +149,7 @@
 **Our independent pre-verification evidence (for cross-checking, not a substitute for the verifier)**
 | Check | Artifact | Result |
 |---|---|---|
-| Falsification audit, definition-level | `probes/hammond-audit-b.lean` (99 kernel checks + 40 `#print axioms`) | no false statement, no vacuous hypothesis; tightness observations recorded in `EXPERIENCE.md` |
+| Falsification audit, definition-level | `probes/hammond-audit-b.lean` (99 kernel checks = 62 `example` + 37 `theorem`, plus 41 `#print axioms`) | no false statement, no vacuous hypothesis; tightness observations recorded in `EXPERIENCE.md` |
 | Lead falsification audit with negative controls | `probes/hammond-lead-audit.lean` | 0 error |
 | Exact-rational instance cross-check (non-Lean) | `probes/hammond-instance-check.py` | reproduces all delivered instance rationals |
 | Statement fidelity | `probes/hammond-fidelity.py` | 102/102 word-for-word, 0 diff |

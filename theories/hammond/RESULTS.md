@@ -34,7 +34,7 @@ intermediate.
 
 **摘要**：交付 6 个 Lean 模块（H1–H5b），共 **102 条声明（17 个定义 + 85 条定理）**，全部完整证明，
 **零占位证明、零自定义公理**；所有语句在动证明之前先编译通过（语句骨架），交付签名与之**逐字一致
-102/102**，且**每定理一个提交**（87 个提交）。一句话结论：在双抛物面（Marcus 型）模型中，过渡态坐标
+102/102**，且**每定理一个提交**（85 条定理提交 + 2 条定义提交 = 87 个工人提交）。一句话结论：在双抛物面（Marcus 型）模型中，过渡态坐标
 `q‡ = (λ - x)/(2λ)`（驱动力 `x = -ΔG°`），Hammond 的结构趋势是一条精确定理 —— *越放能，过渡态越像
 反应物* —— 且**成立当且仅当 `λ > 0`**；由**势垒数据测得的** Brønsted/Leffler 系数等于所比较对中点的
 `q‡`，它落在 `(0,1)` 内恰好等价于交叉点落在两井之间，并且在 **Marcus 反转区恰好变为负** —— 那里
@@ -194,10 +194,11 @@ real theory**. `Conforms` means `HammondConforms`; every verdict below is a kern
 | I9 | MCC pair `3/5 → 12/5` | `6/5` | `3/5`, `12/5` | descending | `tsCoord (12/5) < tsCoord (3/5)` — the Hammond direction instantiated on literature parameters | 在文献参数上实例化 Hammond 方向 |
 | I10 | non-vacuity on literature parameters | `6/5` | `±1/20` | — | `ReactantLike ∧ ProductLike` both inhabited | 两类谓词都非空 |
 
-Table note: for I2/I3 the `q‡` cells are values computed from the definitions (independently
-recomputed by two verifiers); the *delivered* theorems of those rows are the zone and verdict
-statements (`inst_I2_exergonic_zone/_reactantLike/_conforms`, `inst_I3_endergonic_*`). Rows I1, I4,
-I5, I6, I7 do carry a delivered coordinate theorem (`inst_*_coord`).
+Table note: for I2/I3 the `q‡` cells are values computed from the definitions (recomputed by the
+frozen-state verifier; the batch records' independent recomputations cover I5/I6/I7 and the secant);
+the *delivered* theorems of those rows are the zone and verdict statements
+(`inst_I2_exergonic_zone/_reactantLike/_conforms`, `inst_I3_endergonic_*`). Rows I1, I4, I5, I6, I7
+do carry a delivered coordinate theorem (`inst_*_coord`).
 
 Values come from `theories/hammond/LITERATURE.md` §6 (the MCC series `λ = 1.20 eV` — the sum of the
 `λ_s = 0.75` and `λ_v = 0.45 eV` annotations legible inside Nobel 1992 Fig. 8 — and the reaction
