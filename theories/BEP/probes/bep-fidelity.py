@@ -112,13 +112,43 @@ if not os.path.exists(SKEL):
     print("   (no statement has been calibrated for this theory yet — nothing to check)")
     sys.exit(2)
 
-skel = signatures(SKEL)
+skel_all = signatures(SKEL)
+skel = skel_all
+
+# Milestone scoping (`--milestone <name>`, e.g. `--milestone K1`) — added 2026-09-20 after an
+# independent verifier found that the milestone acceptance criterion "44/44 word-for-word" was not
+# expressible: the unscoped checker counts every delivered milestone at once, so the number grows
+# while a milestone's own batch is being verified. The scope is the set of declarations the
+# authority declares inside the `/-! ## <name> ...` section. Section titles are matched by prefix,
+# so `--milestone K5b` selects the K5b block (and, if present, its `### K5b ...` sub-block, which
+# also starts with the milestone token).
+MS = _arg('--milestone', None)
+if MS:
+    src = strip_comments(open(SKEL).read())
+    names, cur = set(), None
+    # declarations of a section carry their own `theorem`/`def` line; headers are `/-! ## <token>`.
+    for line in open(SKEL).read().splitlines():
+        m = re.match(r'\s*/-! #*\s*(\S+)', line)
+        if m:
+            cur = m.group(1).rstrip('.')
+            continue
+        m = re.match(r'^(?:noncomputable\s+)?(?:theorem|def|inductive|structure)\s+([A-Za-z_][\w\']*)', line)
+        if m and cur and (cur == MS or cur.startswith(MS)):
+            names.add(m.group(1))
+    if not names:
+        print(f"!! no declarations found for milestone '{MS}' — check the section title in the authority")
+        sys.exit(2)
+    skel = {n: s for n, s in skel_all.items() if n in names}
+
 diff, same, extra, met = [], 0, [], set()
 
 for f in DELIVERED:
     got = signatures(f)
     for name, sig in got.items():
         if name not in skel:
+            # outside the milestone scope: not a difference, not an extra (report separately)
+            if MS and name in skel_all:
+                continue
             extra.append(f"{os.path.basename(f)}::{name}")
             continue
         met.add(name)
@@ -132,6 +162,7 @@ missing = sorted(set(skel) - met)
 
 print(f"theory                     : {THEORY}")
 print(f"statement authority        : {os.path.relpath(SKEL, ROOT)}")
+print(f"milestone scope            : {MS if MS else '(whole theory)'}")
 print(f"skeleton declarations      : {len(skel)}")
 print(f"delivered, word-for-word   : {same}")
 print(f"delivered, not in authority: {len(extra)} (auxiliary declarations, not a difference)")

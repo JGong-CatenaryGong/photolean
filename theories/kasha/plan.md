@@ -591,8 +591,16 @@ git log -1 --oneline                                                     # 4. co
 
 * `lake build` succeeding is **not** acceptance; the strict scan and `#print axioms` are, and the
   verifier runs them independently (the writing role never self-certifies).
-* `lakefile.toml`'s `defaultTargets` gains one line per delivered module **in the same commit as the
-  module** (the scan covers the whole source directory; an unbuilt module is an acceptance hole).
+* `lakefile.toml`'s `defaultTargets` gains one line per delivered module. **Registered deviation
+  (lead, 2026-09-20):** the line lands in a *separate, lead-owned* commit, not "in the same commit as
+  the module" as first written here, because `lakefile.toml` is lead-owned and the workers are
+  forbidden to edit it. The rule's purpose — no delivered module outside the build — is enforced by
+  the lead immediately after each module lands, and the final frozen-state run of
+  `proofs/scripts/check.sh --strict` (bare) is the check that it was.
+* Milestone acceptance uses the scoped fidelity report: `python3 theories/BEP/probes/bep-fidelity.py
+  --theory kasha --milestone <K1…K5b>` (added 2026-09-20 in response to verifier finding MEDIUM-6 —
+  the unscoped checker's headline number grows while a milestone is being verified, so it cannot serve
+  as that milestone's criterion).
 * One commit per lemma, `feat(K<n>): <lemma>`; documentation commits use `docs(...)`.
 * Closeout: a frozen-state audit of `RESULTS.md`/plan/board/literature — every number in those files
   must be a measured value from the delivered tree, and a verdict is only recorded from an audit
@@ -614,6 +622,8 @@ git log -1 --oneline                                                     # 4. co
 | the levelwise `k_IC ≥ k_rad` criterion is insufficient (K3 #13) | **theorem** (counterexample) |
 | the Marcus gap window (K4 #12–#14) | **theorem conditional on the explicit `hic` hypothesis**, whose physical identification is a literature-caveated modelling premise |
 | instance verdicts (K5b) | **kernel computations** about the stated rational data; literature rows are only as good as the numbers in `theories/kasha/LITERATURE.md` |
+| `KashaWithin` is defined for every `tol : ℝ` | exposure, not unsoundness (verifier finding LOW-7): every criterion row carries `0 < tol` explicitly, and the honesty table notes that a row without it would silently read a non-physical tolerance |
+| `kashaMargin` is `0/0`-degenerate exactly when the rule holds | exposure, not unsoundness (verifier finding LOW-7): totalized division makes the margin `0` on the branch it is named for, so the margin is only consumed under `0 < upperYield` — that premise is explicit in K3 #5 and K4 #7/#9 |
 
 ---
 
