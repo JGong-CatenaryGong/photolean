@@ -358,6 +358,33 @@ theorem inst_I11_nearOptimal_W :
   unfold NearOptimalQ apexQ
   norm_num [abs_of_nonneg]
 
+/-- I12 (literature row, OER — DERIVABLE from the stated premise): the printed OER volcano of Man et
+al. 2011 (Eq. 4.16–4.18), `max (ΔG_O - ΔG_OH, 3.20 - (ΔG_O - ΔG_OH))`, IS the two-branch model with
+`alphaA = alphaB = 1`, `betaA = 0`, `betaB = 16/5` (the printed `3.20 eV` scaling premise). Apex. Plan
+locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I12_OER_apex : apex 1 0 1 (16 / 5) = 8 / 5 := by
+  unfold apex
+  norm_num
+
+/-- I12: the pass height of the OER volcano is `8/5` eV — the literature's printed optimal descriptor
+`1.60 eV`. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I12_OER_apexBarrier : apexBarrier 1 0 1 (16 / 5) = 8 / 5 := by
+  simp only [apexBarrier, volcanoBarrier, branchUp, branchDown, apex]
+  norm_num
+
+/-- I12: the OER series conforms to the Sabatier description. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I12_OER_conforms : SabatierConforms 1 1 := by
+  unfold SabatierConforms
+  norm_num
+
+/-- I12: the OER overpotential at the apex, `8/5 - 123/100 = 37/100` V — the literature's printed
+`0.37 V` (LITERATURE.md §R2.2). Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I12_OER_overpotential :
+    apexBarrier 1 0 1 (16 / 5) - 123 / 100 = 37 / 100 := by
+  rw [inst_I12_OER_apexBarrier]
+  norm_num
+
 end Sabatier
 
 end PhotoLean
