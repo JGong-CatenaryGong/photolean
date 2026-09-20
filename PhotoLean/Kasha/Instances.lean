@@ -192,9 +192,10 @@ handle `10388/16065`), Table 3.3, printed p. 126, row TMA/chx, printing `Σk_r =
 nonradiative channel is neglected in this row — not data; it is what makes K3 #3's reduced criterion
 apply exactly, so the verdict is the pure ratio arithmetic
 `ic 1 / rad 1 = 67000/33 ≈ 2030 ≥ 99 = (1 - 1/100)/(1/100)`. The identification
-`rad 1 ≡ Σk_r(S₂)`, `ic 1 ≡ Σk_nr(S₂)` is the **declared bridge** of `LITERATURE.md` §R1.4.2, never a
-theorem of this development. This row is an arithmetic verdict **about the printed numbers**; no
-measurement is performed here, and the row is only as good as its source. -/
+`rad 1 ≡ Σk_r(S₂)`, `ic 1 ≡ Σk_nr(S₂)` is the **declared bridge** of `LITERATURE.md` §R1.4.2 — a
+modelling identification, never a result of this development. This row is an arithmetic verdict
+**about the printed numbers**; no measurement is performed here, and the row is only as good as its
+source. -/
 theorem I10_trimethylazulene_conforming :
     KashaWithinQ (twoRad 1 33) (twoIc 0 67000) (1 / 100) 1 := by
   norm_num [KashaWithinQ, upperYieldQ, fluoYieldQ, emitYieldQ, radBranchQ, icBranchQ, cascadeQ,
