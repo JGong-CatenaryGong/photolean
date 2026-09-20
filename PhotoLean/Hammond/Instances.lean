@@ -82,6 +82,11 @@ theorem inst_I2_exergonic_conforms : HammondConforms 1 (3 / 4) := by
         ← Rat.hammondZoneQ_eq_hammondZone, inst_I2_exergonic_zone]
   exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 1)).mpr (Or.inl hz)
 
+/-! ## I3 — endergonic textbook instance (`lam = 1`, `x = -1/2`) -/
+/-- I3, zone verdict: the endergonic instance is classified `late`. -/
+theorem inst_I3_endergonic_zone : Rat.hammondZoneQ (1 : ℚ) (-(1 / 2)) = HZone.late := by
+  norm_num [Rat.hammondZoneQ]
+
 end Hammond
 
 end PhotoLean
