@@ -21,13 +21,14 @@
 `Compose.lean` (K4, composition, the effective two-level reduction and the Marcus bridge),
 `RatModel.lean` (K5a, computable rational verdict layer) and `Instances.lean` (K5b, instance
 verdicts) — containing **150 declarations: 110 theorems, 37 definitions and 3
-structures/inductives** (2,358 lines), all completely proved: **zero unproved placeholders, zero
+structures/inductives** (2,360 lines), all completely proved: **zero unproved placeholders, zero
 custom axioms**. Every statement was calibrated before proof work and the delivered signatures match
 the statement authority `theories/kasha/probes/kasha-statement-skeleton.lean` **150/150 word for
 word** (`signature differences: 0`, no declaration outside the authority). Delivery discipline:
-**97 commits touch `PhotoLean/Kasha/`** — 92 `feat(...)` + 5 `docs(...)`; one commit per lemma holds
-literally for K1–K4 (28/22/15/20), while K5a (29 declarations) and K5b (20 rows) are delivered in
-grouped `feat` commits (4 each), **registered as a deviation** on the board.
+**99 commits touch `PhotoLean/Kasha/`** — 92 `feat(...)` + 7 `docs(...)`; one commit per lemma holds
+literally for K1–K4 (28/22/15/20 `feat` commits on the four modules), while K5a (29 declarations)
+and K5b (20 rows) are delivered in grouped `feat` commits (4 and 3), **registered as a deviation**
+on the board.
 
 **The one-sentence result.** In a finite excited-state ladder whose levels decay with a radiative
 rate `rad n` and a nonradiative rate `ic n`, Kasha's rule ("the emission comes from the lowest
@@ -50,10 +51,11 @@ verdict is reported as tolerance-relative.
 
 **摘要（交付概况）**：`PhotoLean/Kasha/` 下六个 Lean 模块（K1 描述层、K2 定律层、K3 精确容差条件与锐利性、
 K4 复合/有效两层归约/Marcus 桥、K5a 可计算有理判决层、K5b 实例判决层）共 **150 条声明：110 条定理、
-37 个定义、3 个结构/归纳类型**（2,354 行），全部完整证明：**零占位证明、零自定义公理**。所有语句在动证明前
+37 个定义、3 个结构/归纳类型**（2,360 行），全部完整证明：**零占位证明、零自定义公理**。所有语句在动证明前
 先标定，交付签名与语句权威 `theories/kasha/probes/kasha-statement-skeleton.lean` **逐字一致 150/150**
-（签名差异 0、权威外声明 0）。每定理一个提交：`PhotoLean/Kasha/` 共 96 个提交（92 个 `feat(...)` +
-4 个 `docs(...)`）。**一句话结论**：在有限激发态阶梯模型（每级有辐射速率 `rad n` 与非辐射速率 `ic n`）中，
+（签名差异 0、权威外声明 0）。提交纪律：`PhotoLean/Kasha/` 共 **99 个提交**（92 个 `feat(...)` + 7 个 `docs(...)`）；"每定理一个提交"在
+K1–K4 上字面成立（四个模块各 28/22/15/20 个 `feat` 提交），而 K5a（29 条声明）与 K5b（20 行）按分组 `feat`
+提交（4 与 3 个），已作为**偏差**登记在看板。**一句话结论**：在有限激发态阶梯模型（每级有辐射速率 `rad n` 与非辐射速率 `ic n`）中，
 Kasha 规则**不是模型定理**：它**等价于**所有上级辐射速率全为零；其容差形式（来自最低态之上的发射占比不超过
 `tol`）**等价于**锐利速率判据 **漏斗比 ≥ (1−tol)/tol**（1% 纯度要求即内转换/辐射比须超过 **99**）。N 级阶梯
 **精确归约**为有效分支数据下的两层模型，故判据检验的是**总体量**；直觉的逐层不等式 `k_IC ≥ k_rad` **不充分**
@@ -182,6 +184,8 @@ vacuous under `RateData` — documented in the module header rather than patched
 
 ```text
 KashaWithin tol 1  ⟺  (lam − x)²  ≤  4 · lam · (kB·T) · log K,     K = A·rad 0·tol / (rad 1·decay 0·(1−tol))
+         (premises as delivered: RateData rad ic 1, ic 1 = A·exp(−barrier/(kB·T)),
+          0 < A, 0 < lam, 0 < kB·T, 0 < rad 0, 0 < rad 1, 0 < tol < 1)
 ```
 
 with the window corollary `|lam − x| ≤ sqrt(4·lam·(kB·T)·log K)` (`kashaWindow_halfWidth`) and the
@@ -271,8 +275,8 @@ than trusting the files, re-derived the headline numbers in its own kernel probe
 independent reconstructions in a scratch tree (`git archive` + rebuild from source, which defeats
 stale oleans): the K4 effective-reduction equivalence on six of its own ladders, the N-level
 threshold and `kashaMargin` values computed independently, the Marcus bridge on three parameter
-settings including one where no gap can work, and the K5a verdicts with the `6/7` leak fraction —
-36 kernel-closed examples in total. Run 2's adversarial sweep of the K2/K4/K5a blocks *line by line*
+settings including one where no gap can work, and the K5a verdicts with the `6/7` leak fraction — **36** kernel-closed examples in runs 1–2 and
+**56 more** in run 3's own probe, which also re-derived four K3 rows from the definitions. Run 2's adversarial sweep of the K2/K4/K5a blocks *line by line*
 for the defect class this theory has already produced (a division whose denominator's sign is not in
 the premises) found **no latent false statement**; the one row that looked suspect (K2 #18, which
 needs `cascade 0 i > 0` without hypothesising it) was re-derived by the verifier as true via a
@@ -287,8 +291,15 @@ Run 3 (the closing audit) verified K3 and K5b for the first time — 35/35 theor
 allowed axiom footprint, fidelity 15/15 and 20/20, every instance verdict recomputed in the
 verifier's own kernel probe, and a clean positivity sweep — and then **failed the documentation
 plane**: eleven findings, all of them stale numbers, overstatements or missing records, none a
-mathematical defect. They are corrected in this revision, and the acceptance records for all three
-runs are now on the board. No finding ever invalidated a delivered theorem.
+mathematical defect. They were corrected, and run 4 re-audited the corrected plane: it confirmed seven of the eleven
+fixes outright and found four residual drifts — all of them in the **Chinese half** of this file
+(stale line and commit counts, the unqualified per-lemma sentence, and run 3's example count
+attributed to the wrong rounds) plus nine smaller doc issues (counts that the correcting commit
+itself invalidated, a header sentence in `Compose.lean` that still said "nothing added", a stale
+plan status header, a mis-numbered §13 item). Those are corrected in this revision too, and the
+counts stated here are the values measured **after** the last commit that touches `PhotoLean/`;
+the acceptance records for all four runs are on the board. No finding, in any run, ever invalidated
+a delivered theorem.
 
 **The process caught three false statements before delivery** (plan §3.1, the statement-correction
 log). All three were the *same* mistake in different clothes — a statement whose premises did not
@@ -312,12 +323,14 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 **证据（中文）**：每个交付模块都通过三层门（构建 / `--strict` 扫描 `clean` / `#print axioms` 仅
 `propext, Classical.choice, Quot.sound`），里程碑保真报告为 44/22/15/20/29/20 逐字一致；裸跑 `check.sh --strict`
 覆盖全部六个模块（审计者移走 `Instances.olean` 后由裸跑重建，实测覆盖无遗漏）并 PASS。只读 verifier 独立复核并
-**自行在内核重推**头条数字：三轮分别覆盖 K1 + Sprint-0 探针、K2/K4/K5a、K3/K5b 与全树，共 36 个内核闭合算例
-（有效两层归约在 6 组自选阶梯上、N 级阈值与 `kashaMargin`、三组 Marcus 参数含"任何能隙都不成立"的一组、
-全部实例判决与 6/7 泄漏分数、以及 K3 四行的独立重证）；对 K2/K3/K4/K5a/K5b 逐行做的"除数符号"逆向扫描
+**自行在内核重推**头条数字：三轮分别覆盖 K1 + Sprint-0 探针、K2/K4/K5a、K3/K5b 与全树：前两轮 **36** 个内核闭合算例，第三轮另有
+**56** 个（其自建探针）并独立重证 K3 四行（有效两层归约在 6 组自选阶梯上、N 级阈值与 `kashaMargin`、
+三组 Marcus 参数含"任何能隙都不成立"的一组、全部实例判决与 6/7 泄漏分数）；对 K2/K3/K4/K5a/K5b 逐行做的"除数符号"逆向扫描
 **未发现潜伏假语句**。三轮的发现都属证据链/文档（未入库探针、保真检查器缺里程碑粒度、看板哈希历史、
-模块头权威引用、八处规划草图与交付签名不一致、以及末轮的 11 条文档数字问题），全部连同处置记入任务板 §Acceptance records；
-**没有任何一条发现推翻已交付定理**。
+模块头权威引用、八处规划草图与交付签名不一致、以及末轮的 11 条文档数字问题），全部连同处置记入任务板 §Acceptance records。第三轮在**文档面**判 FAIL 的 11 条（陈旧计数、
+未带前提的展示式、缺失的看板记录等）已修正，第四轮复核确认 7 条已真正修复、并指出中文半篇的 4 处残留漂移
+（陈旧行数/提交数、无限定的"每定理一个提交"、第三轮算例数记到了错误轮次）与 9 条更小的文档问题，均已在本版修正；
+本文件中的计数是**最后一次触碰 `PhotoLean/` 的提交之后**实测的值。**四轮之中没有任何一条发现推翻已交付定理。**
 **流程在交付前抓住三条假语句**（plan §3.1 订正日志），三者是同一错误的三副面孔：**前提没有携带证明所需除数的符号**
 （`tol` 的符号、`decay 1` 的符号），其中 K3 那条被 ℝ 与 ℚ 两侧**独立两次**抓到。每条订正都有内核反例文件；
 另有一条与内核无关的精确有理数交叉核验通路（193 组随机阶梯、825 组有效归约对、400 组 Marcus 参数）全部通过。

@@ -342,8 +342,39 @@ Run 3 findings and their disposition (the audit's own numbering):
 | 10 | LOW | bilingual drift: `RESULTS.md` §5's English half reported runs 1–2 while the Chinese half reported run 1 | fixed |
 | 11 | LOW | the API-calibration board row still read "fix dispatched" after the fix landed | fixed (row ticked) |
 
-### Run 4 — pending — documentation re-audit after the run-3 corrections
+### Run 4 — 2026-09-20 — documentation re-audit after the run-3 corrections — verdict **C-plane FAIL (7 of 11 fixed, 4 residual + 9 smaller)**
 
-The run-3 findings are documentation-plane fixes; a focused re-audit (C-plane and the new
-acceptance records only) is scheduled before the theory is declared closed. No verdict is recorded
-here until that report exists.
+Verifier: same role, focused on the C-plane. Frozen state: `HEAD` `baa5c1e` → `b6ccf1d` (one
+docs-only plan commit mid-audit); `git status --porcelain` empty at both ends; source blobs compared
+against run 3's pins — **Compose differs in the header comment only** (the `five`→`six` fix), the
+comment-stripped code plane is byte-identical (295/295 lines), so no mathematics re-verification was
+triggered. Gates re-run on the tree: bare `check.sh --strict` `verdict: PASS`; four `axioms.sh` rows
+clean; fidelity 44/22/15/20/29/20, unscoped **150/150**, 0 differences.
+
+| # | run-3 finding | run-4 verdict |
+|---|---|---|
+| 1 | missing run-2 board record (HIGH) | **fixed** — the record exists, its numbers match the verifier's own, all cited commits exist |
+| 2 | stale line count | **still wrong** — the Chinese half kept `2,354` while the English half was corrected |
+| 3 | stale commit count | **still wrong** — measured 98 = 92 `feat` + 6 `docs`; the English half read 97 (invalidated by the correcting commit itself), the Chinese half 96 |
+| 4 | reconciliation count | **fixed** (eight = seven strengthened + one dropped, six K4) |
+| 5 | unpremised headline biconditionals | **fixed** — premise lists match the authority verbatim; the refuting witness was re-verified |
+| 6 | azulene boundary | **fixed** — `7/151 = 4.6358 %` recomputed |
+| 7 | correction-log count | **fixed** |
+| 8 | commit-granularity deviation | **still wrong** — the deviation is registered, but the Chinese half still asserted the unqualified rule |
+| 9 | plan sketch rows / typo | **fixed**; row-by-row spot-checks against the authority exact |
+| 10 | bilingual drift in §5 | **partial → still wrong** — the Chinese half reported runs 1–3 but attributed 36 examples to all three rounds (English: 36 for runs 1–2; board: 56 for run 3) |
+| 11 | API-calibration row | **fixed** |
+
+Nine further (smaller) findings: the self-invalidating commit count (N1), the untouched Chinese half
+(N2), the example-count attribution (N3), the run-2 commit-range arithmetic (N4, 23 not 19), the
+`Compose.lean` header still saying "nothing added" (N5), the stale plan status header (N6, "Sprint 1
+open … K1 dispatched"), a `§13.5` cross-reference that should be §12/§13-item-5 (N7), the Marcus
+display's missing premise list (N8), and a duplicated item number in plan §13 (N9).
+
+**All of these were corrected in the follow-up commits of this round** (the counts are re-measured
+after the last commit that touches `PhotoLean/`), and run 5 re-audited the corrections.
+
+### Run 5 — pending — re-audit of the run-4 corrections
+
+A focused re-check (C-plane only) is scheduled; no verdict is recorded here until that report
+exists.
