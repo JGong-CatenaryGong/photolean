@@ -172,6 +172,13 @@ theorem radBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic
     radBranch_add_icBranch (ne_of_gt (h.decay_pos n hn))
   have hic : 0 ≤ icBranch rad ic n := icBranch_nonneg h hn
   linarith
+/-- Plan §4.2 #6. The nonradiative branch is at most `1`: it is a probability. -/
+theorem icBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
+    icBranch rad ic n ≤ 1 := by
+  have hsum : radBranch rad ic n + icBranch rad ic n = 1 :=
+    radBranch_add_icBranch (ne_of_gt (h.decay_pos n hn))
+  have hrad : 0 ≤ radBranch rad ic n := radBranch_nonneg h hn
+  linarith
 end Kasha
 
 end PhotoLean
