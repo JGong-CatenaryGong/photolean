@@ -89,5 +89,11 @@ theorem transfer_at_lam {lam : ℝ} (hlam : 0 < lam) : transfer lam lam = 0 := b
   unfold transfer
   field_simp
 
+/-- Plan §6.1 #4: at the reverse barrierless limit `x = -lam` the transfer coefficient is `1`. -/
+theorem transfer_at_neg_lam {lam : ℝ} (hlam : 0 < lam) : transfer lam (-lam) = 1 := by
+  unfold transfer
+  field_simp
+  ring
+
 
 end PhotoLean.BEP
