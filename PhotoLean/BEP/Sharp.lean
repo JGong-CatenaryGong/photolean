@@ -95,5 +95,12 @@ theorem transfer_at_neg_lam {lam : ℝ} (hlam : 0 < lam) : transfer lam (-lam) =
   field_simp
   ring
 
+/-- Plan §6.1 #5: α > 1 — the **reverse** direction is in the inverted region. -/
+theorem not_epBounds_of_lt_neg {lam x : ℝ} (hlam : 0 < lam) (hx : x < -lam) :
+    ¬ EPBounds lam x := by
+  intro h
+  have := (epBounds_iff_region hlam).mp h
+  linarith
+
 
 end PhotoLean.BEP
