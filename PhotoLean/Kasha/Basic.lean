@@ -209,6 +209,12 @@ theorem emitYield_nonneg {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic
     0 ≤ emitYield rad ic i N := by
   unfold emitYield
   exact mul_nonneg (radBranch_nonneg h h1) (cascade_nonneg h h1)
+/-- Plan §4.2 #12. The level-resolved yield is at most the level's radiative branch (the cascade
+factor is at most `1`). -/
+theorem emitYield_le_radBranch {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N) (h1 : i ≤ N) :
+    emitYield rad ic i N ≤ radBranch rad ic i := by
+  unfold emitYield
+  exact mul_le_of_le_one_right (radBranch_nonneg h h1) (cascade_le_one h h1)
 end Kasha
 
 end PhotoLean
