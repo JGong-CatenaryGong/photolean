@@ -41,6 +41,7 @@ PhotoLean.Marcus.Instances — M5b 第一批：实例代入与区域判定（人
   proofs/scripts/axioms.sh PhotoLean.Marcus.Instances PhotoLean.Marcus.inst_I1_inverted
 -/
 import PhotoLean.Marcus.RatModel
+import PhotoLean.Marcus.Sharp
 
 namespace PhotoLean.Marcus
 
@@ -245,3 +246,93 @@ end PhotoLean.Marcus
 派发里的编号**（I3 = 文献无势垒点附近 `(1.20, 1.23)`；I4 = MCC 反转区对；I5 = MCC 正常区；
 I6 = 光合反应中心深反转区）。`plan.md` §8.2 表格的旧编号把 I3 留给「`x = lam` 速率峰」，
 把 I6/I7 留给非物理分支 —— 那几条依赖上述未交付模块，正好对应本注释的表格。 -/
+
+/-! # M5b 第二批：描述算子实例化 + 速率比较（人类需求第三部分的**最强证据**）
+
+**范围**：第一批只判「实例落在哪个区」；本批判「**该实例是否满足反转区描述**」——
+用文献的**自身参数**把主定理（M4a `Sharp.lean` 的 `inverted_descriptor_holds` /
+`descriptor_sharp`）与速率层（M3 `Rate.lean` 的 `inverted_rate_decreases` /
+`normal_rate_increases` / `rate_peak_at_lam`）实例化。依赖因此从 `RatModel` 扩到 `Sharp`
+（顶部补 `import PhotoLean.Marcus.Sharp`；`Sharp` 自身已含 `Barrier` + `Rate`）。
+
+**本批交付的判定内容**
+
+| 条目 | 判定内容 | 证据方式（内核） |
+|---|---|---|
+| `inst_I7_nonpos_lam_not_descriptor` | `lam = -1/2 ≤ 0`：描述**失效** | `descriptor_fails_of_nonpos_lam` 实例化 |
+| `inst_I7_unphysical_descriptor` | `A = lam = -1`：描述**形式成立** | `inverted_descriptor_holds_of_neg` 实例化 |
+| `inst_I7_unphysical_rate_not_pos` | 同一实例速率**不是处处为正** | `x = 0` 处 `rate = -exp(1/4) < 0`，内核算 |
+| `inst_I7_unphysical_not_admissible` | 该实例**不可采纳**（合取被否） | 上一条的直接推论 |
+| `inst_I4_mcc_descriptor_any_kT` / `inst_I4_mcc_descriptor` | MCC `lam = 1.20`：**反转区描述成立**（`kBT > 0` 任意） | `inverted_descriptor_holds` 实例化 |
+| `inst_I4_mcc_admissible` | 同一实例**可采纳**：速率处处为正 **且** 描述成立 | 主定理 `descriptor_sharp` 的 `(⟸)` 实例化 |
+| `inst_I4_mcc_rate_drop` | 反转区标志结论：`rate(2.40) < rate(1.23)`（**与 kBT 无关**） | `inverted_rate_decreases` 实例化 |
+| `inst_I4_mcc_rate_drop_x200` | 同上，文献反转区对内 `rate(2.40) < rate(2.00)` | 同上 |
+| `inst_I4_mcc_rate_drop_unit_kT` | `kB = T = 1` 的具体推论 | 上一条的实例化 |
+| `inst_I5_mcc_rate_rise` | 正常区：`rate(0.60) < rate(1.20)` | `normal_rate_increases` 实例化 |
+| `inst_I3_rate_peak` | 峰位：`rate(2.40) ≤ rate(1.20)`（`x = lam` 最优） | `rate_peak_at_lam` 实例化 |
+
+**温度的处理（承 plan §8.3）**：`kBT` 一律写成**显式前提 `0 < kBT`**；`T := 1` 只是把温度
+折进 `kBT` 的单位选择（`kB := kBT`、`T := 1` ⇒ `kB * T = kBT`）。因此「判定与温度无关」
+是**语句的一部分**，不是注释里的声称 —— `inst_I4_mcc_rate_drop` 等对**任意** `0 < kBT` 成立。
+
+**实例层文案边界（plan §8.3 的定量警示，必须遵守）**：本批结论只能读作
+「**经典 Marcus 模型**在文献参数 `(lam, x, kBT, A)` 上满足反转区描述」——
+**不得**读作对实验的断言：经典公式在反转区下降过快（`lam = 1.20`、`x: 1.23 → 2.40` 时
+预言降 5.1 个数量级，实测只降 1.46 个数量级），这正是量子振动修正（Bixon–Jortner）的动机。
+
+**实测偏差（写给 verifier）**：派发提示里的速率非正写法
+`intro h; have := h 0; norm_num [rate, barrier] at this`
+在本环境（mathlib v4.17.0）**不足以收尾**：`norm_num at this` 会把假设化为
+`Real.exp (1/4) < 0`，但**不能**用它反驳（`norm_num` 不认识 `Real.exp` 的正性），
+留下未解目标 `False`。奏效写法是先 `norm_num at h0` 归约，再
+`linarith [Real.exp_pos (1/4)]` 闭合（见 `inst_I7_unphysical_rate_not_pos` 的证明体）。
+
+**上文「待后续里程碑」表格已由本批交付**（该表 5 条全部落地：速率峰 / 反转区速率递减 /
+正常区速率递增 / `lam ≤ 0` 失效判定 / 非物理分支的速率正性反证），以本批定理为准。 -/
+
+namespace PhotoLean.Marcus
+
+/-! ## I7 — 非物理参数的判定（`lam ≤ 0` 与 `A < 0 ∧ lam < 0` 两个分支）
+
+判定内容分三层，**缺一不可**：
+1. `lam = -1/2 ≤ 0`：**描述失效**（`descriptor_fails_of_nonpos_lam`，M4a 必要性方向的推论）；
+2. `A = lam = -1`：描述**形式成立**（`inverted_descriptor_holds_of_neg`，M4a 拉伸目标）——
+   即「描述算子本身」**判不出**这个非物理实例；
+3. 但该实例的速率在 `x = 0` 处为 `-exp(1/4) < 0` ⇒ **速率正性前提不可去**；
+   合起来给出「**不可采纳**」这一判定（`inst_I7_unphysical_not_admissible`）。 -/
+
+/-- I7a 非物理参数判定：`lam = -1/2 ≤ 0` 时反转区描述**失效**
+（依据 M4a `descriptor_fails_of_nonpos_lam`：物理正性前提 `0 < A`、`0 < kB`、`0 < T` 下
+描述成立蕴含 `0 < lam`，与 `lam ≤ 0` 矛盾）。 -/
+theorem inst_I7_nonpos_lam_not_descriptor : ¬ InvertedDescriptor (1 : ℝ) (-1 / 2) 1 1 :=
+  descriptor_fails_of_nonpos_lam (A := 1) (kB := 1) (T := 1) (lam := -1 / 2)
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+
+/-- I7b 非物理分支：`A = -1 < 0` 且 `lam = -1 < 0` 时反转区描述**形式上成立** ——
+此时 `barrier` 在反转区**递减**（`barrier_antitone_of_neg`），乘负前置因子后速率仍递减。
+这一条是「『速率处处为正』前提不可去」的可检查证据（M4a 拉伸目标 `inverted_descriptor_holds_of_neg`）。 -/
+theorem inst_I7_unphysical_descriptor : InvertedDescriptor (-1) (-1) 1 1 :=
+  inverted_descriptor_holds_of_neg (A := -1) (lam := -1) (kB := 1) (T := 1)
+    (by norm_num) (by norm_num) (by norm_num)
+
+/-- I7c ……但上一条的速率**不是处处为正** ⇒ 该实例**不可采纳**
+（「速率正性」前提不可去）：取 `x = 0`，`barrier (-1) 0 = -1/4`，
+故 `rate (-1) (-1) 1 1 0 = -1 · exp(1/4) < 0`（`Real.exp` 恒正）。
+内核计算给出 `barrier` 的值与指数归约，`Real.exp_pos` 给出正性。 -/
+theorem inst_I7_unphysical_rate_not_pos : ¬ (∀ x : ℝ, 0 < rate (-1) (-1) 1 1 x) := by
+  intro h
+  have h0 := h 0
+  have hb : barrier (-1) 0 = -(1 / 4) := by norm_num [barrier]
+  rw [rate, hb] at h0
+  norm_num at h0
+  linarith [Real.exp_pos (1 / 4)]
+
+/-- I7 判定汇总：非物理分支 `(A, lam) = (-1, -1)` 的实例**不可采纳** ——
+「速率处处为正」与「反转区描述」的合取**不成立**（由 I7c 直接给出）。
+与 I7b 合读：描述算子单独**不足以**接受一个实例，这正是 M4a `descriptor_sharp`
+要把正性并入刻画的理由。 -/
+theorem inst_I7_unphysical_not_admissible :
+    ¬ ((∀ x : ℝ, 0 < rate (-1) (-1) 1 1 x) ∧ InvertedDescriptor (-1) (-1) 1 1) :=
+  fun h => inst_I7_unphysical_rate_not_pos h.1
+
+end PhotoLean.Marcus
