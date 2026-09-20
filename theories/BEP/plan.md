@@ -226,7 +226,7 @@ def EPConforms (lam x : ℝ) : Prop := 0 < lam ∧ EPBounds lam x
 def EPDescriptor (lam : ℝ) : Prop := 0 < lam ∧ ∀ x : ℝ, bepDefect lam x = x ^ 2 / (4 * lam)
 ```
 
-### 4.2 B1 theorems (13)
+### 4.2 B1 theorems (15)
 
 | # | statement | proof sketch |
 |---|---|---|
@@ -274,7 +274,7 @@ semantic content is carried by the `..._iff` lemmas, which B3 will pair with alg
 | 17 | `epDescriptor_conforms (h : EPDescriptor lam) (hx : x ≠ 0) : 0 < bepDefect lam x` | unpack `h` |
 | 18 | `epConforms_iff_bounds (hlam : 0 < lam) : EPConforms lam x ↔ EPBounds lam x` | `unfold` |
 | 19 | `exists_epDescriptor : ∃ lam : ℝ, EPDescriptor lam` | witness `lam = 1` |
-| 20–26 | non-vacuity of every regime: `exists_thermoneutral`, `exists_exergonic`, `exists_endergonic`, `exists_atForwardLimit`, `exists_atReverseLimit`, `exists_beyondForward`, `exists_beyondReverse`, `exists_unphysical`, `exists_degenerate` (`∃ lam x, epZone lam x = …`) | explicit `⟨…, …⟩` + `norm_num` |
+| 20–28 | non-vacuity of every regime: `exists_thermoneutral`, `exists_exergonic`, `exists_endergonic`, `exists_atForwardLimit`, `exists_atReverseLimit`, `exists_beyondForward`, `exists_beyondReverse`, `exists_unphysical`, `exists_degenerate` (`∃ lam x, epZone lam x = …`) | explicit `⟨…, …⟩` + `norm_num` |
 
 ---
 
@@ -284,7 +284,7 @@ semantic content is carried by the `..._iff` lemmas, which B3 will pair with alg
 
 | # | statement | proof sketch |
 |---|---|---|
-| 1 | `epBounds_iff_region (hlam : 0 < lam) : EPBounds lam x ↔ -lam ≤ x ∧ x ≤ lam` | `unfold transfer EPBounds`; `div_le_iff` / `le_div_iff` + `linarith` |
+| 1 | `epBounds_iff_region (hlam : 0 < lam) : EPBounds lam x ↔ -lam ≤ x ∧ x ≤ lam` | `unfold transfer EPBounds`; `div_le_iff` / `le_div_iff` + `linarith`. **Literature anchor (round 1c)**: Cohen & Marcus 1968 Eqs. (5a)–(5c), printed p. 4250, print exactly this regime structure — `a = ½[1 + A/λ]` for `|A| < λ`, `a = 0` for `A < -λ`, `a = 1` for `A > λ` with `A = -x` — so the *interval* is first-hand; what is **not** in the literature is reading `0 ≤ α ≤ 1` as a law of chemical families (§1.2 item 4) |
 | 2 | `epRegime_iff_strict (hlam : 0 < lam) : EPRegime lam x ↔ 0 < transfer lam x ∧ transfer lam x < 1` | as 1 |
 | 3 | `transfer_at_lam (hlam : 0 < lam) : transfer lam lam = 0` | `field_simp`, `ring` |
 | 4 | `transfer_at_neg_lam (hlam : 0 < lam) : transfer lam (-lam) = 1` | `field_simp`, `ring` |
@@ -382,13 +382,25 @@ def qAlphaObs (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (ea₁ - ea₂) / (x₂ - x
 def qLamOfPair (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (x₂ ^ 2 - x₁ ^ 2) / (2 * (x₂ - x₁) - 4 * (ea₁ - ea₂))
 /-- Window conformance, in squared form so that it is decided without square roots. -/
 def qConformsWindow (lam tol w : ℚ) : Prop := 0 < lam ∧ 0 < tol ∧ w ^ 2 ≤ 4 * lam * tol
+/-- Second divided difference of three family points: the model's curvature witness. -/
+def qSecondDividedDiff (x₁ e₁ x₂ e₂ x₃ e₃ : ℚ) : ℚ :=
+  ((e₃ - e₂) / (x₃ - x₂) - (e₂ - e₁) / (x₂ - x₁)) / (x₃ - x₁)
+/-- Three family points are consistent with the equal-curvature two-parabola model. -/
+def qModelConsistent3 (lam x₁ x₂ x₃ e₁ e₂ e₃ : ℚ) : Prop :=
+  0 < lam ∧ e₁ = qEact lam x₁ ∧ e₂ = qEact lam x₂ ∧ e₃ = qEact lam x₃
 inductive EPQVerdict where
   | degenerate | unphysical | conforming | boundary | superLinear | subLinear
 /-- Verdict on a *single* family point (the regime of its coefficient). -/
 def epQVerdict (lam x : ℚ) : EPQVerdict := …
 ```
 
-Theorems (13): `qEact_cast`, `qBepDefect_cast`, `qTransfer_cast`, `qSecSlope_cast`,
+**AUX ownership (lead decision, 2026-09-20)**: the ℝ observation twins `alphaObs` / `lamOfPair`
+(needed as the ℝ targets of the `qAlphaObs_cast` / `qLamOfPair_cast` transfer lemmas) and the ℚ
+helpers below live **in `RatModel.lean`** and nowhere else — `Basic.lean` / `Criterion.lean` /
+`Sharp.lean` / `Compose.lean` must not define them (duplicate declarations would break the build).
+They are auxiliary: not part of the §4.1/§8.1 inventory, but part of the delivered file.
+
+Theorems (15 + AUX): `qEact_cast`, `qBepDefect_cast`, `qTransfer_cast`, `qSecSlope_cast`,
 `qAlphaObs_cast`, `qLamOfPair_cast` (each `(↑(qX …) : ℝ) = X …`),
 `qSecSlope_eq_qTransfer_mid (hlam : lam ≠ 0) (hh : h ≠ 0)`,
 `qAlphaObs_eq_qTransfer_mid` (**two-point data → structural coefficient**: if the data come from the
@@ -399,7 +411,13 @@ model, the observed slope is the coefficient at the data midpoint),
 both this premise and the numerator sign were corrected by kernel counterexamples from the Sprint-0
 risk probe, §11),
 `epQVerdict_conforming_iff`, `epQVerdict_boundary_iff`, `epQVerdict_superLinear_iff`,
-`epQVerdict_subLinear_iff`, `qConformsWindow_iff_radius_sq`.
+`epQVerdict_subLinear_iff`, `qConformsWindow_iff_radius_sq`, plus the model-consistency block
+(`qSecondDividedDiff_model (hlam : lam ≠ 0) … : qSecondDividedDiff x₁ (qEact lam x₁) … = 1/(4*lam)`;
+`qModelConsistent3_curvature_pos`; `qModelConsistent3_lam_eq : … → lam = 1/(4 * qSecondDividedDiff …)`).
+The cascade `epQVerdict` resolves the plan's `…` as: `degenerate` (`λ = 0`) → `unphysical`
+(`λ < 0`) → `boundary` (`x = ±λ`, `α = 0` or `1`) → `conforming` (`0 < α < 1`) → `superLinear`
+(`1 < α`) → `subLinear` (`α < 0`); the order is exhaustive because `α = 0 ⟺ x = λ` and
+`α = 1 ⟺ x = -λ` are consumed by the `boundary` branches.
 
 ### 8.2 B5b instance verdicts (`PhotoLean/BEP/Instances.lean`; owner `prover_c`; Sprint 4)
 
@@ -419,7 +437,8 @@ statements through the §8.1 transfer lemmas). `provenance` is `model-constructe
 | I8 | degenerate family | `λ = 0`, `x = 1` | exact BEP, no content: barrier `0`, `α = 0` | `inst_I8_exact/trivial` |
 | I9 | unphysical curvature | `λ = -2`, `x = 1` | **not conforming**, defect `< 0` | `inst_I9_unphysical/defect_negative` |
 | I10 | tolerance threshold | `λ = 2`, `w = 1` | conforms at `tol = 1/8`, fails at `tol = 1/16` (`w* = 2√(λ·tol)`) | `inst_I10_conforms/fails` |
-| I11 | literature families (≥ 2 data pairs each) | from `LITERATURE.md` | verdict computed per family (conforming / boundary / violating / model-inconsistent) | `inst_I11_<family>_slope/lam/verdict` |
+| I11 | literature families from `LITERATURE.md` §R1.10 (five first-hand families: the two `Antioxidants` 2026 f-HAT/•OOH solvent columns, the two Table 2 columns, and the `Chem. Sci.` 2015 CCSD(T) 2-butanol series) | printed `(driving force, barrier)` kcal/mol pairs taken **verbatim** with the source's own loci; the Lean docstring states the unit and the source's kJ/mol conversion instead of silently converting | per family: (i) two-point `qAlphaObs` and `qLamOfPair` (both first-hand-consistent: `λ̂ > 0`), (ii) three-point `qSecondDividedDiff` | `inst_I11_<family>_alphaObs / _lamHat / _curvature_negative / _not_model_consistent` |
+| I12 | family-level consistency of the literature set (the falsification summary) | the five families | **the affine BEP description is fine (linear fits R² ≈ 0.93–0.95, `0 < α_obs < 1`) but the family curvature is negative in every family, while the model with `λ > 0` forces the second divided difference to be `1/(4λ) > 0` ⇒ no positive-λ equal-curvature two-parabola model reproduces any of them** | `inst_I12_affine_conforms_model_refuted` |
 
 Additional instance requirements:
 - **I9 is the instructive row (lead numeric audit, 2026-09-20)**: for `λ = -2, x = 1` the transfer
@@ -484,6 +503,7 @@ Sprint 5  adversarial audit (prover_b, probes/bep-audit-*.lean) + verifier batch
 | minimax lower bound (abs-triangle + `nlinarith` over three points) | pure-estimate proof, easy to get stuck in `linarith` | keep `bepBestLine_error` (attainment) + `bepLine_worst_case` (the tangent line's exact worst case) and state the lower bound for the three points `-w, 0, w` explicitly (`∃ x ∈ {-w,0,w}, w²/(8λ) ≤ …`) — same content, no `push_neg` gymnastics |
 | `if`-cascade classifier proofs (`split_ifs` nesting, 9 branches) | mechanical and error-prone; hammond's 7-branch version needed care | reduce the cascade to 7 branches by merging `atForwardLimit`/`atReverseLimit` into `boundary` if the iff lemmas resist; the *predicates* (6.1) carry the content either way |
 | `decide` on `ℚ` comparisons | needs the decidable `ℚ` order instances; `norm_num` may be needed instead | pattern is already proven in `PhotoLean/Hammond/RatModel.lean`; `api_researcher` confirms with a probe before B5a starts |
+| `Instances.lean` (plan §8.2) statement signatures were NOT covered by the Sprint-0 API round (the plan listed ids and theorem names only, no signatures) | statement-first would be violated if signatures were guessed | the instance signatures are drafted in `prover_c`'s scratch file, blessed by `api_researcher` (skeleton §8.2 block) before delivery, and every number is quoted verbatim from `theories/BEP/LITERATURE.md` §R1.10 with its unit stated in the docstring |
 | residual statement risk after the Sprint-0 probes | the probes found three false/ill-posed rows before delivery: `transfer_zero_lam`, the `qLamOfPair` numerator sign, and the missing `lam ≠ 0` premise of the two-point reconstruction | all three are corrected in this plan (§4.2 row 4, §8.1, §8.1 theorems); any further statement defect is handled the same way — fix the statement, record it here and in `API-NOTES.md`, never paper over it with a hypothesis that hides the flaw |
 | literature numbers unavailable / unverifiable | the instance layer must not fabricate data | instances I11 fall back to `model-constructed` families and the table's provenance column is filled with `not-accessed`; RESULTS then states plainly that no literature family was verified (the honest failure mode) |
 | `Marcus`/`Hammond` cross-module names drift | B4 imports both modules | names are already delivered and stable (frozen theories); `api_researcher` re-checks `Marcus.barrier`, `Marcus.InvertedRegion`, `Marcus.NormalRegion`, `Hammond.tsCoord`, `Hammond.ReactionRegion` in a probe |
@@ -525,6 +545,12 @@ the measured numbers, never the planned ones.)
 | the empirical BEP principle of real chemistry (ΔH-based, family-wise, with its exceptions) | **out of scope**: what is proved is a conditional statement *inside the model*; the literature record supplies the premises and the data, not the proof |
 | `ΔH ≈ ΔG°` within a family (constant `TΔS`), same prefactor/entropy across the family | **literature-dependent premise**, recorded in `LITERATURE.md`; not used as a Lean hypothesis because the model is stated in `ΔG°` — the caveat is in this table and in `RESULTS.md` |
 | tunneling, recrossing, diffusion control, electronic-structure detail, surface catalysis | **out of scope** (§1.4); the model realizations of these effects (barrierless limits, `α` outside `[0,1]`) are the counterexample instances |
+| **no work or steric terms** | model assumption, matching Cohen & Marcus 1968 footnote 9 ("we have excluded work and steric terms"): the driving force is taken as the reaction free energy, residual work terms are dropped |
+| **locus of the quadratic barrier law** | **Marcus 1968 Eq. (2), printed p. 891** (`ΔF* = w_r + λ(1 + ΔF⁰'/λ)²/4`). Marcus 1956 has only the barrier *derivation* Eq. (38) p. 974 and must **not** be cited for the quadratic law or for the slope (round-1c full-text check: 0 hits for `parabola`, `slope`, `alpha`, `Bronsted`, `Bell`, `Polanyi`, `Semenov`) |
+| **locus of the affine + quadratic-remainder form** | **IUPAC p. 419** prints `Δ‡G = Δ‡Gº + ½ΔrGº + (ΔrGº)²/(16Δ‡Gº)` on one line: the plan's `bepLine` + `bepDefect` split is the normative shape, not an invention |
+| **locus of complementarity** | *Chem. Sci.* **16**(37):17494 (2025) Eqs. (1)–(2) ("complementary, adding up to one") and IUPAC TR 2014 p. 247. **Brønsted 1928 must not be cited for the sum rule** (its text gives `x ∈ (0,1)` graduations, not `β_f + β_r = 1`); docstrings must distinguish the *sum* form (independent driving forces) from the *difference* form (same variable) |
+| **naming of `transfer`** | primary name: Brønsted/Leffler coefficient; "transfer coefficient" is the electrochemical synonym (Inzelt p. 36) — the identifiers stay as delivered, the docstrings and `RESULTS.md` carry the naming |
+| **the five first-hand literature families** | their affine BEP fits are good (R² ≈ 0.93–0.95) but each family's second divided difference is **negative**, while the model with `λ > 0` forces `1/(4λ) > 0`: the equal-curvature two-parabola model is **refuted as a family-level description** of those data while the affine description survives (instances I11/I12, §8.2) — a finding about the *model*, not about the molecules, and it is the concrete content of this plan's "the model is not the molecule" |
 
 ---
 
