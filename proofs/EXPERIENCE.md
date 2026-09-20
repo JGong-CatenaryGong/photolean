@@ -1712,9 +1712,10 @@
   `RateData` + `KashaZone` + 25 theorems), signatures and definition bodies word for word against
   `theories/kasha/probes/kasha-statement-skeleton.lean` (authority hash at delivery
   `801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`; the dispatch-time hash
-  `e3ddc2d0…` was superseded mid-round by the statement correction below). 29 commits on the file
-  (`1f88266` definitions → `66e2ea7` `kashaZone_eq_violating_iff`; the two classifier docs/probe
-  commits are `014ea0e` counterexample, `c204f80` API probe).
+  `e3ddc2d0…` was superseded mid-round by the statement correction below). 30 commits on the file
+  (`1f88266` definitions → `66e2ea7` `kashaZone_eq_violating_iff` → `a09a0f1` blank-line house
+  style; the two classifier docs/probe commits outside the module path are `014ea0e`
+  counterexample, `c204f80` API probe).
 - Gate verdicts (clean tree, committed): `proofs/scripts/lake build PhotoLean.Kasha.Basic` →
   `Build completed successfully.`; `proofs/scripts/check.sh --strict PhotoLean.Kasha.Basic` →
   scan `clean`, `build: OK`, `verdict: PASS`; `proofs/scripts/axioms.sh` on **all 25** theorems →
