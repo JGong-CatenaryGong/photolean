@@ -192,6 +192,23 @@ theorem qAlphaObs_eq_qTransfer_mid {lam x₁ x₂ : ℚ} (hlam : lam ≠ 0) (h :
   field_simp
   ring
 
+set_option linter.unusedVariables false in
+/-- Plan §8.1: two model-consistent data points determine λ uniquely. The premise `lam ≠ 0` is
+necessary (at `λ = 0` the totalised division makes `qEact 0 x` constant, so the data stop implying
+the solver's linear relation; kernel counterexample in `bep-api-rat.lean`). `hx` is the
+statement-authority premise of a two-point estimator and is not consumed (the denominator premise
+already carries the non-degeneracy); the linter is switched off for this declaration only. -/
+theorem qLamOfPair_reconstructs {lam x₁ ea₁ x₂ ea₂ : ℚ} (hlam : lam ≠ 0) (hx : x₁ ≠ x₂)
+    (hden : 2 * (x₂ - x₁) - 4 * (ea₁ - ea₂) ≠ 0) (h₁ : ea₁ = qEact lam x₁)
+    (h₂ : ea₂ = qEact lam x₂) : qLamOfPair x₁ ea₁ x₂ ea₂ = lam := by
+  subst h₁
+  subst h₂
+  unfold qLamOfPair
+  rw [div_eq_iff hden]
+  unfold qEact at *
+  field_simp
+  ring
+
 end Rat
 
 end BEP
