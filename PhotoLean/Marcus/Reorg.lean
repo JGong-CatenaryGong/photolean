@@ -102,4 +102,42 @@ theorem lamOuter_pos {dE a1 a2 R nSq epsS : ℝ} (hdE : 0 < dE) (ha1 : 0 < a1) (
 theorem lam_total_pos {lamIn lamOut : ℝ} (h₁ : 0 ≤ lamIn) (h₂ : 0 < lamOut) : 0 < lamIn + lamOut := by
   linarith
 
+/-!
+## 追加项（拉伸）：把几何前提 `hgeom` 从"假设"降级为"推导"
+
+`lamOuter_pos` 的前提 `hgeom : 1 / R < 1 / (2 * a1) + 1 / (2 * a2)` 在物理上就是
+"两球分离（`a1 + a2 ≤ R`）"这一几何约定的代数后果；下面把它证出来：几何侧的前提只剩
+"两球半径严格正 + 两球不重叠"，`hgeom` 不再是独立的物理近似。
+
+本引理**不依赖任何物理近似**，只用 `1/x` 在正数上的反单调性与一次通分 —— 这是本计划里
+唯一真正需要不等式技巧的几何引理。唯一前提 `0 < R`（球心间距严格正）由 `hRge` 推出，
+因此**不在签名里**（它是结论，不是假设）。
+-/
+
+/-- 几何因子正性可由"两球不重叠"推出（把 `hgeom` 从假设变为推导）：
+    `a1 + a2 ≤ R ⇒ 1/R < 1/(2*a1) + 1/(2*a2)`。--/
+theorem hgeom_of_nonoverlap {a1 a2 R : ℝ} (ha1 : 0 < a1) (ha2 : 0 < a2)
+    (hRge : a1 + a2 ≤ R) : 1 / R < 1 / (2 * a1) + 1 / (2 * a2) := by
+  -- (1) 分母正性：`0 < a1 + a2 ≤ R` 给出 `0 < a1 + a2`（`linarith` 用 `ha1`/`ha2`）。
+  have hpos : 0 < a1 + a2 := by linarith
+  -- (2) `one_div_le_one_div_of_le`（非严格版）需要的是**较小**分母的正性，
+  --     于是直接得到 `1 / R ≤ 1 / (a1 + a2)`。
+  have h1 : 1 / R ≤ 1 / (a1 + a2) := one_div_le_one_div_of_le hpos hRge
+  -- (3) 通分：`1/(2a1) + 1/(2a2) = (a1+a2)/(2a1a2)`。
+  --     `field_simp` 在这里好用，因为目标是**等式**且分母非零由 `positivity` 直接给出
+  --     （API-NOTES G-5：`field_simp` 只对等式可靠，对不等式会 `simp made no progress`）。
+  have hden : 0 < 2 * a1 * a2 := by positivity
+  have hsum : 1 / (2 * a1) + 1 / (2 * a2) = (a1 + a2) / (2 * a1 * a2) := by
+    field_simp
+    ring
+  -- (4) 两边同乘正分母 `(a1 + a2) * (2 * a1 * a2)`（`div_lt_div_iff₀`），
+  --     等价于 `2 * a1 * a2 < (a1 + a2) ^ 2`，即 `0 < a1 ^ 2 + a2 ^ 2`。
+  --     这条严格不等式由 `a1 > 0`（故 `a1 ^ 2 > 0`）与 `a2 ^ 2 ≥ 0` 得到。
+  have h2 : 1 / (a1 + a2) < 1 / (2 * a1) + 1 / (2 * a2) := by
+    rw [hsum]
+    rw [div_lt_div_iff₀ hpos hden]
+    nlinarith [sq_nonneg a2, sq_pos_of_ne_zero (ne_of_gt ha1)]
+  -- (5) 传递（`linarith` 直接合成 `≤` 与 `<`）。
+  linarith
+
 end PhotoLean.Marcus
