@@ -225,6 +225,12 @@ theorem fluoYield_eq_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData
       simp
     have hI : icBranch rad ic (N + 1) = 1 := by linarith
     rw [hrec, hR0, hI, zero_add, one_mul]
+/-- Plan §5.1 #12. The total yield is strictly below one iff a loss current flows out of the
+lowest level (`icBranch 0 > 0` together with the arrival probability `cascade 0 N`). -/
+theorem fluoYield_lt_one_iff_loss {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    fluoYield rad ic N < 1 ↔ 0 < icBranch rad ic 0 * cascade rad ic 0 N := by
+  rw [fluoYield_eq_one_sub_loss h]
+  constructor <;> intro hh <;> linarith
 end Kasha
 
 end PhotoLean
