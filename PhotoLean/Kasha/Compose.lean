@@ -128,6 +128,12 @@ theorem emitYield_compose {rad ic : ℕ → ℝ} {i M N : ℕ} (h1 : i ≤ M) (h
   rw [cascade_compose h1 h2]
   ring
 
+/-- Plan §7.2 #3. The effective data reproduce the lowest level's total decay (definitional, by
+`if`-reduction). -/
+theorem effDecay_zero (rad ic : ℕ → ℝ) (N : ℕ) :
+    decay (effRad rad ic N) (effIc rad ic N) 0 = decay rad ic 0 := by
+  simp [decay, effRad, effIc]
+
 
 end Kasha
 
