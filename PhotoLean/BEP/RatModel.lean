@@ -209,6 +209,19 @@ theorem qLamOfPair_reconstructs {lam x₁ ea₁ x₂ ea₂ : ℚ} (hlam : lam �
   field_simp
   ring
 
+set_option linter.unusedVariables false in
+/-- The ℝ-side counterpart of the reconstruction theorem (skeleton AUX, lead 2026-09-20). -/
+theorem lamOfPair_reconstructs {lam x₁ ea₁ x₂ ea₂ : ℝ} (hlam : lam ≠ 0) (hx : x₁ ≠ x₂)
+    (hden : 2 * (x₂ - x₁) - 4 * (ea₁ - ea₂) ≠ 0) (h₁ : ea₁ = eact lam x₁)
+    (h₂ : ea₂ = eact lam x₂) : lamOfPair x₁ ea₁ x₂ ea₂ = lam := by
+  subst h₁
+  subst h₂
+  unfold lamOfPair
+  rw [div_eq_iff hden]
+  unfold eact at *
+  field_simp
+  ring
+
 end Rat
 
 end BEP
