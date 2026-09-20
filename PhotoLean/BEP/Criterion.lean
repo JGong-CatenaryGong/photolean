@@ -219,4 +219,10 @@ theorem exists_beyondReverse : ∃ lam x : ℝ, epZone lam x = EPZone.beyondReve
   unfold epZone
   norm_num
 
+/-- Non-vacuity, unphysical curvature (`lam = -1`, `x = 0`). -/
+theorem exists_unphysical : ∃ lam x : ℝ, epZone lam x = EPZone.unphysical := by
+  refine ⟨-1, 0, ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
