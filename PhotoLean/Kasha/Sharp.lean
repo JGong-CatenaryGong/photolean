@@ -320,6 +320,55 @@ theorem kashaThreshold_attained {tol : ℝ} (h0 : 0 < tol) (h1 : tol < 1) :
   refine not_kashaWithin_one_of_ratio_lt hd0 hd1 ht0 hr1 ?_
   rw [hfr, div_lt_div_iff₀ h0 ht0]
   nlinarith
+/-- Plan §6.2 #13 — **the levelwise criterion is insufficient**: "internal conversion beats
+radiation at every level above the lowest" (`rad i · decay (i-1) ≤ ic i · decay i`) does not make
+the ladder Kasha-pure. Kernel-checked witness `rad ≡ 1`, `ic ≡ 1`: `RateData rad ic 2` holds, the
+levelwise bound holds with equality at both upper levels (`1 · 2 ≤ 1 · 2`), and yet
+`upperYield 2 = 3/4 > (1/2) · (7/8) = (1/2) · fluoYield 2`, so the tolerance form fails at
+`tol = 1/2`. The correct criterion is the aggregate one (K4, plan §7.2 #9). -/
+
+theorem perLevel_criterion_insufficient :
+    ∃ rad ic : ℕ → ℝ, RateData rad ic 2 ∧
+      (∀ i, 1 ≤ i → i ≤ 2 → rad i * decay rad ic (i - 1) ≤ ic i * decay rad ic i) ∧
+      ¬ KashaWithin rad ic (1 / 2) 2 := by
+  have hR1 : RateData (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 1 :=
+    ⟨fun n _ => by norm_num [decay], fun n => by norm_num, fun n => by norm_num⟩
+  have hR2 : RateData (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 2 :=
+    ⟨fun n _ => by norm_num [decay], fun n => by norm_num, fun n => by norm_num⟩
+  have hU1 : upperYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 1 = 1 / 2 := by
+    have hh := upperYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 0) hR1
+    rw [upperYield_zero] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  have hU2 : upperYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 2 = 3 / 4 := by
+    have hh := upperYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 1) hR2
+    rw [hU1] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  have hF0 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 0 = 1 / 2 := by
+    rw [fluoYield_zero]
+    norm_num [radBranch, decay]
+  have hF1 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 1 = 3 / 4 := by
+    have hh := fluoYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 0) hR1
+    rw [hF0] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  have hF2 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 2 = 7 / 8 := by
+    have hh := fluoYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 1) hR2
+    rw [hF1] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  refine ⟨fun _ : ℕ => (1 : ℝ), fun _ : ℕ => (1 : ℝ), hR2, ?_, ?_⟩
+  · intro i hi1 hi2
+    have h12 : i = 1 ∨ i = 2 := by omega
+    rcases h12 with rfl | rfl <;> norm_num [decay]
+  · intro hcon
+    rw [KashaWithin, hU2, hF2] at hcon
+    norm_num at hcon
 
 end Kasha
 
