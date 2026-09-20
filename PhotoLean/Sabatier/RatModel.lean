@@ -163,6 +163,16 @@ theorem sabatierZoneQ_eq_sabatierZone (apexD dE : ℚ) :
   unfold sabatierZoneQ sabatierZone
   norm_cast
 
+/-- The rational classifier recognizes the optimum, exactly as the real one does (`SZone` and its
+`DecidableEq` instance are shared with S1). Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem sabatierZoneQ_eq_optimal_iff (apexD dE : ℚ) :
+    sabatierZoneQ apexD dE = SZone.optimal ↔ dE = apexD := by
+  unfold sabatierZoneQ
+  split_ifs with h1 h2
+  · exact ⟨fun _ => h1, fun _ => rfl⟩
+  · exact ⟨fun h => absurd h (by decide), fun h => absurd h h1⟩
+  · exact ⟨fun h => absurd h (by decide), fun h => absurd h h1⟩
+
 end Sabatier
 
 end PhotoLean
