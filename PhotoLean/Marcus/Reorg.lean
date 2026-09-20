@@ -58,4 +58,12 @@ theorem lamInner_nonneg {kk : ℝ} (hkk : 0 ≤ kk) (dq : ℝ) : 0 ≤ lamInner 
   unfold lamInner
   positivity
 
+/-- 内层重组能严格正：力常数严格正 **且** 位移非零（`dq ≠ 0`）。
+    mathlib v4.17 签名实测：`sq_pos_of_ne_zero : a ≠ 0 → 0 < a ^ 2`（`a` 为隐式参数）。--/
+theorem lamInner_pos {kk : ℝ} (hkk : 0 < kk) {dq : ℝ} (hdq : dq ≠ 0) :
+    0 < lamInner kk dq := by
+  have hsq : 0 < dq ^ 2 := sq_pos_of_ne_zero hdq
+  unfold lamInner
+  positivity
+
 end PhotoLean.Marcus
