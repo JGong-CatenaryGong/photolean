@@ -399,6 +399,11 @@ theorem qConformsWindow_witness : qConformsWindow 1 (1 / 4) 0 := by
   refine ⟨by norm_num, by norm_num, ?_⟩
   norm_num
 
+theorem qConformsWindow_negativeControl : ¬ qConformsWindow 1 (1 / 16) 1 := by
+  unfold qConformsWindow
+  rintro ⟨-, -, h⟩
+  norm_num at h
+
 end Rat
 
 end BEP
