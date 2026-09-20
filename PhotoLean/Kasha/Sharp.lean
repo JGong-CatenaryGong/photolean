@@ -433,6 +433,14 @@ theorem leak_le_of_radBranch_le {rad ic : ℕ → ℝ} {N : ℕ} {θ : ℝ} (h :
   rw [Finset.mem_Icc] at hi
   rw [emitYield]
   exact mul_le_mul_of_nonneg_right (hθ i hi.1 hi.2) (cascade_nonneg h hi.2)
+/-- Plan §6.2 #18. The sufficient criterion: the uniform-branch bound of row #17 composed with
+the hypothesis that `θ · Σ cascade` already fits inside `tol · fluoYield`. -/
+
+theorem kashaWithin_of_uniform_branch {rad ic : ℕ → ℝ} {N : ℕ} {tol θ : ℝ} (h : RateData rad ic N)
+    (hθ : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ)
+    (hsum : θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N ≤ tol * fluoYield rad ic N) :
+    KashaWithin rad ic tol N :=
+  le_trans (leak_le_of_radBranch_le h hθ) hsum
 
 end Kasha
 
