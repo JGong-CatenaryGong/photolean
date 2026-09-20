@@ -69,26 +69,26 @@
 
 ## B2 — law layer (`PhotoLean/BEP/Criterion.lean`; owner prover_a; Sprint 2)
 
-- [ ] `eact_expansion` — Criterion.lean — prover_a — review — plan §5
-- [ ] `bepDefect_eq` — Criterion.lean — prover_a — review — plan §5 (central identity)
-- [ ] `bepLine_exact_at_thermoneutrality` — Criterion.lean — prover_a — review — plan §5
-- [ ] `bepDefect_at_thermoneutrality` — Criterion.lean — prover_a — review — plan §5
-- [ ] `transfer_eq_tsCoord` — Criterion.lean — prover_a — review — plan §5 (Leffler/Brønsted bridge)
-- [ ] `transfer_thermoneutral` — Criterion.lean — prover_a — review — plan §5
-- [ ] `reverseTransfer_thermoneutral` — Criterion.lean — prover_a — review — plan §5
-- [ ] `transfer_add_reverse` — Criterion.lean — prover_a — review — plan §5 (Bronsted complementarity)
-- [ ] `reverseTransfer_eq_transfer_neg` — Criterion.lean — prover_a — review — plan §5
-- [ ] `secSlope_eq_transfer_mid` — Criterion.lean — prover_a — review — plan §5 (mean-value identity)
-- [ ] `secSlope_midpoint_invariant` — Criterion.lean — prover_a — review — plan §5
-- [ ] `eact_neg_eq_add` — Criterion.lean — prover_a — review — plan §5 (barrier reversal)
-- [ ] `eact_antitone` — Criterion.lean — prover_a — review — plan §5
-- [ ] `bepDefect_nonneg` — Criterion.lean — prover_a — review — plan §5
-- [ ] `bepDefect_pos_iff` — Criterion.lean — prover_a — review — plan §5
-- [ ] `epDescriptor_holds` — Criterion.lean — prover_a — review — plan §5
-- [ ] `epDescriptor_conforms` — Criterion.lean — prover_a — review — plan §5
-- [ ] `epConforms_iff_bounds` — Criterion.lean — prover_a — review — plan §5
-- [ ] `exists_epDescriptor` / non-vacuity suite (`exists_thermoneutral` … `exists_degenerate`)
-      — Criterion.lean — prover_a — review — plan §5
+- [x] `eact_expansion` — Criterion.lean — prover_a — done — plan §5
+- [x] `bepDefect_eq` — Criterion.lean — prover_a — done — plan §5 (central identity)
+- [x] `bepLine_exact_at_thermoneutrality` — Criterion.lean — prover_a — done — plan §5
+- [x] `bepDefect_at_thermoneutrality` — Criterion.lean — prover_a — done — plan §5
+- [x] `transfer_eq_tsCoord` — Criterion.lean — prover_a — done — plan §5 (Leffler/Brønsted bridge)
+- [x] `transfer_thermoneutral` — Criterion.lean — prover_a — done — plan §5
+- [x] `reverseTransfer_thermoneutral` — Criterion.lean — prover_a — done — plan §5
+- [x] `transfer_add_reverse` — Criterion.lean — prover_a — done — plan §5 (Bronsted complementarity)
+- [x] `reverseTransfer_eq_transfer_neg` — Criterion.lean — prover_a — done — plan §5
+- [x] `secSlope_eq_transfer_mid` — Criterion.lean — prover_a — done — plan §5 (mean-value identity)
+- [x] `secSlope_midpoint_invariant` — Criterion.lean — prover_a — done — plan §5
+- [x] `eact_neg_eq_add` — Criterion.lean — prover_a — done — plan §5 (barrier reversal)
+- [x] `eact_antitone` — Criterion.lean — prover_a — done — plan §5
+- [x] `bepDefect_nonneg` — Criterion.lean — prover_a — done — plan §5
+- [x] `bepDefect_pos_iff` — Criterion.lean — prover_a — done — plan §5
+- [x] `epDescriptor_holds` — Criterion.lean — prover_a — done — plan §5
+- [x] `epDescriptor_conforms` — Criterion.lean — prover_a — done — plan §5
+- [x] `epConforms_iff_bounds` — Criterion.lean — prover_a — done — plan §5
+- [x] `exists_epDescriptor` / non-vacuity suite (`exists_thermoneutral` … `exists_degenerate`)
+      — Criterion.lean — prover_a — done — plan §5
 
 ## B3 — sharp conditions (`PhotoLean/BEP/Sharp.lean`; owner prover_d; Sprint 3)
 
@@ -123,18 +123,18 @@
 
 ## B4 — microscopic and cross-module layer (`PhotoLean/BEP/Compose.lean`; owner prover_b; Sprint 3)
 
-- [ ] `eact_eq_barrier` — Compose.lean — prover_b — review — plan §7
-- [ ] `rate_eq_exp_neg_eact` — Compose.lean — prover_b — review — plan §7
-- [ ] `transfer_eq_tsCoord_bridge` — Compose.lean — prover_b — review — plan §7
-- [ ] `epBounds_iff_no_inverted_direction` — Compose.lean — prover_b — review — plan §7 (Marcus bridge)
-- [ ] `epBounds_of_reactionRegion` — Compose.lean — prover_b — review — plan §7 (Hammond bridge)
-- [ ] `epBounds_of_marcus_normal` — Compose.lean — prover_b — review — plan §7
-- [ ] `epDescriptor_of_microscopic` — Compose.lean — prover_b — review — plan §7
-- [ ] `bepDefect_le_of_microscopic` — Compose.lean — prover_b — review — plan §7
-- [ ] `bepRadius_add` — Compose.lean — prover_b — review — plan §7
-- [ ] `epConformsOnWindow_of_microscopic` — Compose.lean — prover_b — review — plan §7
-- [ ] `epConformsOnWindow_shrinks_with_inner` — Compose.lean — prover_b — review — plan §7
-- [ ] `transfer_complementary_microscopic` — Compose.lean — prover_b — review — plan §7
+- [x] `eact_eq_barrier` — Compose.lean — prover_b — done — plan §7
+- [x] `rate_eq_exp_neg_eact` — Compose.lean — prover_b — done — plan §7
+- [x] `transfer_eq_tsCoord_bridge` — Compose.lean — prover_b — done — plan §7
+- [x] `epBounds_iff_no_inverted_direction` — Compose.lean — prover_b — done — plan §7 (Marcus bridge)
+- [x] `epBounds_of_reactionRegion` — Compose.lean — prover_b — done — plan §7 (Hammond bridge)
+- [x] `epBounds_of_marcus_normal` — Compose.lean — prover_b — done — plan §7
+- [x] `epDescriptor_of_microscopic` — Compose.lean — prover_b — done — plan §7
+- [x] `bepDefect_le_of_microscopic` — Compose.lean — prover_b — done — plan §7
+- [x] `bepRadius_add` — Compose.lean — prover_b — done — plan §7
+- [x] `epConformsOnWindow_of_microscopic` — Compose.lean — prover_b — done — plan §7
+- [x] `epConformsOnWindow_shrinks_with_inner` — Compose.lean — prover_b — done — plan §7
+- [x] `transfer_complementary_microscopic` — Compose.lean — prover_b — done — plan §7
 
 ## B5a — rational decision layer (`PhotoLean/BEP/RatModel.lean`; owner prover_c; Sprint 2)
 
@@ -189,7 +189,7 @@
 | B1 (independent verifier #1) | `Basic.lean` (33 declarations) | **PASS** | 33/33 `axioms.sh` clean (raw `depends on axioms: [propext, Classical.choice, Quot.sound]` lines quoted); verifier's own fidelity parser: 33/33 MATCH including the `EPZone` constructors **and** `deriving DecidableEq, Repr`; all nine zone branch boundaries + cascade exhaustiveness kernel-checked; hypothesis necessity: **5 load-bearing / 3 decorative** (kernel-proved strengthened forms for `epZone_eq_unphysical_iff`, `epZone_eq_exergonic_iff`, `epZone_eq_endergonic_iff`); non-vacuity witnesses for all nine constructors; `#print` bodies == plan §4.1; six falsification attempts all failed; 18/18 commits touch only `Basic.lean` | graded on `sha256 5a366027…`; observations: **O1 HIGH** — the statement authority was untracked and rewritten twice during the run (`f261a131…` → `28300289…`); B1's block was verified identical in both snapshots and against the committed plan §4.1, and the skeleton is now committed by the lead with its hash recorded (plan §3) so the claim is auditable; **O2/O3 MEDIUM** — two self-description wordings ("every physical premise is an hypothesis of the statement that needs it"; `eact_at_zero` "(needs `lam ≠ 0`)") are refuted by the kernel: these hypotheses are kept for signature fidelity, not needed by the statement — comment-only fix queued (token-stream check + re-gate + closeout re-check); **O4–O8 LOW** — five comments describe B2/B3 facts as if proved in this file (reworded with the same batch), the `deriving` clause change was not logged in `API-NOTES.md` (being logged), plan §4.1's `EPBounds` doc block is shorter than the delivered docstring, `bepRadius` is silently `0` for `lam*tol < 0` (unconstrained domain, documented), skeleton layout puts the AUX twins inside the B1 block |
 | B5a (independent verifier #4) | `RatModel.lean` (36 declarations) | — | — | delivered by `prover_c` (24 commits, worker gate PASS); verification in progress |
 | B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | — | — | delivered; verification in progress |
-| B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | — | — | delivered by `prover_a` / `prover_b`; worker gates PASS (40/40 `axioms.sh`, 0 fidelity differences); **verification in progress** |
+| B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | **PASS / PASS** | 40/40 `axioms.sh` clean (raw lines quoted); verifier's own parser: B2 28/28 word-for-word, B4 12/12; 40/40 proof terms screened for circularity (**only two `rfl`s, both documented as definitional**: `eact_eq_barrier`, `rate_exp`); 20 hypothesis-necessity counterexamples (load-bearing vs decorative split reported); `secSlope_eq_transfer_mid` hand-recomputed at three rational parameter sets (mean-value convention confirmed); B4 row 4 non-vacuous with same-true/same-false witnesses for both directions; a ~7 200-instance rational grid falsification of 31 statements found **0 counterexamples**; 28/28 + 12/12 commits touch only the owner's file | graded on `sha256 b3ef9225…` / `b68e948c…`; observations: **M1** skeleton untracked and rewritten mid-run (fixed: authority now committed), **M2** the skeleton's B4 AUX `secSlope_eq_lefflerSecant` was not delivered anywhere (fixed: `prover_b` is adding it, post-verification addition marked in the header), **M3** EXPERIENCE.md lacked the B2/B4 proof-round entries at verification time (fixed: committed), **M4** λ-additivity is an unregistered physical premise (registered in plan §13), **M5** positivity sits in the conformance predicates by design (registered in plan §13; wording fixed with the comment-only batch); **LOW 1–6** wording/registration items (comment-only fixes queued; junk files in the repo root removed by the lead) |
 | B3 (independent verifier #3) | `Sharp.lean` (32 = 25 + 7 AUX) | — | — | delivered by `prover_d` (32 commits, 32/32 `axioms.sh` clean, 0 fidelity differences, 3 documented order deviations); verification to be dispatched |
 | B5a (independent verifier #4) | `RatModel.lean` (11 defs + 18 thms + 5 model-consistency decls) | — | — | 18/18 delivered; the 5 new-block declarations pending the third non-degeneracy premise (resolved) |
 | B4 + B5b (independent verifier #3) | `Compose.lean` + `Instances.lean` | — | — | not yet dispatched |
