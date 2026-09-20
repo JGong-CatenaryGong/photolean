@@ -237,5 +237,31 @@ theorem epConformsOnWindow_mono {lam tol a b a' b' : ℝ} (ha : a ≤ a') (hb : 
   rintro ⟨h1, h2, h⟩
   exact ⟨h1, h2, fun x hx => h x ⟨le_trans ha hx.1, le_trans hx.2 hb⟩⟩
 
+/-- Plan §6.2 #14: mirroring the window does not change conformance — `bepDefect` is even in the
+driving force at `lam ≠ 0` (the evenness is `field_simp; ring` under that premise, which is why the
+premise is taken from the conformance hypothesis rather than from the statement). -/
+theorem epConformsOnWindow_symm {lam tol a b : ℝ} :
+    EPConformsOnWindow lam tol a b ↔ EPConformsOnWindow lam tol (-b) (-a) := by
+  unfold EPConformsOnWindow
+  constructor
+  · rintro ⟨h1, h2, h⟩
+    have heven : ∀ x : ℝ, bepDefect lam (-x) = bepDefect lam x := by
+      intro x
+      unfold bepDefect bepLine eact
+      field_simp
+      ring
+    refine ⟨h1, h2, fun x hx => ?_⟩
+    have hmem : -x ∈ Set.Icc a b := ⟨by linarith [hx.2], by linarith [hx.1]⟩
+    simpa [heven x] using h (-x) hmem
+  · rintro ⟨h1, h2, h⟩
+    have heven : ∀ x : ℝ, bepDefect lam (-x) = bepDefect lam x := by
+      intro x
+      unfold bepDefect bepLine eact
+      field_simp
+      ring
+    refine ⟨h1, h2, fun x hx => ?_⟩
+    have hmem : -x ∈ Set.Icc (-b) (-a) := ⟨by linarith [hx.2], by linarith [hx.1]⟩
+    simpa [heven x] using h (-x) hmem
+
 
 end PhotoLean.BEP
