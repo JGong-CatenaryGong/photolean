@@ -97,4 +97,14 @@ theorem reverseTransfer_eq_transfer_neg (lam x : ℝ) : reverseTransfer lam x = 
   unfold reverseTransfer transfer
   ring
 
+/-- Exact mean-value identity of the parabola: the measured
+finite-difference slope over `[x, x + h]` equals the coefficient at the window midpoint. No
+mean-value theorem is involved, and `h ≠ 0` is genuinely needed — at `h = 0` the left side is `0`
+while the right side is `transfer lam x`. -/
+theorem secSlope_eq_transfer_mid {lam : ℝ} (hlam : lam ≠ 0) {x h : ℝ} (hh : h ≠ 0) :
+    secSlope lam x h = transfer lam (x + h / 2) := by
+  unfold secSlope transfer eact
+  field_simp
+  ring
+
 end PhotoLean.BEP
