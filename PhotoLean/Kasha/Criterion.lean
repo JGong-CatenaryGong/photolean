@@ -395,6 +395,20 @@ theorem not_kasha_universal :
   intro hK
   have hrad := (kashaRule_iff_rad_zero hR).mp hK 1 (by norm_num) (by norm_num)
   norm_num at hrad
+/-- Plan §5.2 #20 — non-vacuity of the description: the ladder with `rad 0 = 1`, `rad n = 0` for
+`n ≥ 1`, `ic ≡ 1` satisfies the exact rule at excitation level `1` (K1's
+`kashaRule_of_rad_zero`). -/
+theorem kashaDescriptor_nonvacuous : ∃ rad ic : ℕ → ℝ, KashaDescriptor rad ic := by
+  have hR : RateData (fun n : ℕ => if n = 0 then (1 : ℝ) else 0) (fun _ : ℕ => 1) 1 := by
+    refine ⟨fun n hn => ?_, fun n => ?_, fun n => by norm_num⟩
+    · interval_cases n <;> norm_num [decay]
+    · split_ifs <;> norm_num
+  refine ⟨fun n : ℕ => if n = 0 then (1 : ℝ) else 0, fun _ : ℕ => 1, 1, ?_⟩
+  refine kashaRule_of_rad_zero hR ?_
+  intro i hi1 hiN
+  have hi : i = 1 := by omega
+  subst hi
+  simp
 end Kasha
 
 end PhotoLean
