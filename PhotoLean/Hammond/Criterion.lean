@@ -75,3 +75,9 @@ theorem lefflerSecant_mem_iff {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h : x₁ �
   rw [lefflerSecant_eq_midpoint hlam h]
   exact tsCoord_mem_iff hlam
 
+/-- Pointwise Brønsted coefficient via a symmetric finite difference. -/
+theorem lefflerSecant_symm {lam x : ℝ} (hlam : 0 < lam) :
+    lefflerSecant lam (x - 1) (x + 1) = tsCoord lam x := by
+  rw [lefflerSecant_eq_midpoint hlam (by linarith : x - 1 ≠ x + 1)]
+  ring_nf
+
