@@ -2246,3 +2246,77 @@
     bridge for `rad 1`/`ic 1`, (d) for the three azulene routes the mutual spread (20.6 / 40.3 /
     23.0), and (e) for I11t that `tol = 1/100` is a model choice with no printed literature threshold
     (§R1.3). None of these sentences is a theorem: the rows are arithmetic about printed numbers.
+
+## 2026-09-20 — K3 sharp conditions (`PhotoLean/Kasha/Sharp.lean`, 15 theorems) — prover_b — DONE
+
+- Goal: the §K3 block of the corrected statement authority (sha256 `4cf2b105…`, 144 declarations)
+  delivered word for word — the two-level threshold (`kashaWithin_one_iff_rates` / `_ratio` /
+  `_ic_ratio`), `funnelRatio_eq_ladderRatio_one`, the general-`N` margin form, monotonicity in
+  `tol` and in `ic 1`, exactness at `tol = 0`, the strict side, attainment, the equal-rates
+  counterexample, the necessity of the loss premise, the boundary case and the uniform-branch
+  bound. Gate evidence: 15 × (`lake build PhotoLean.Kasha.Sharp` + `check.sh --strict
+  PhotoLean.Kasha.Sharp` + `axioms.sh … <theorem>`) all EXIT 0, every theorem's footprint
+  `[propext, Classical.choice, Quot.sound]`; milestone-scoped fidelity `--milestone K3` reports
+  15/15 word-for-word, 0 differences, 0 extras. One `feat(K3): <declaration>` commit per lemma.
+- Tried and failed (six items, all transferable):
+  1. **Row #8 `kashaWithin_one_mono_ic` has no sign premise for `tol`** — the plan's sketch ("the
+     rate criterion of #1 is monotone in `ic 1`") silently assumes `0 ≤ tol`. The row is still
+     TRUE, but its proof needs the degenerate regime: for `tol · rad 0 < 0` the rate form forces
+     `rad 1 · decay 0 · (1 - tol) ≤ tol · (rad 0 · ic 1) ≤ 0` against `0 ≤ rad 1 · decay 0 · (1 - tol)`,
+     i.e. `A = 0`, hence `rad 1 = 0`; and `M = 0`, hence `ic 1 = 0`; then `decay 1 = rad 1 + ic 1 = 0`
+     contradicts `RateData`. My first attempt stopped at the three inequalities and asked
+     `linarith` for `False` — but `0 ≤ A ≤ M ≤ 0` is *consistent* (`A = M = 0`), so the extra
+     `decay 1 = 0` step is the whole content of the branch. **Lesson: a "divide by the positive
+     factor" sketch hides the regime where the row's hypotheses make the statement vacuous; check
+     the sign the cross-multiplication needs before writing tactics.**
+  2. `mul_le_mul_of_nonneg_left` unifies the *syntactic* factor: on `tol * (rad 0 * ic 1) ≤
+     tol * (rad 0 * ic' 1)` it picks `a := tol` and demands `0 ≤ tol` (false in that branch). To
+     factor out `tol * rad 0`, reassociate first: `rw [show tol * (rad 0 * ic 1) = (tol * rad 0) * ic 1
+     by ring, show tol * (rad 0 * ic' 1) = (tol * rad 0) * ic' 1 by ring]`.
+  3. `eq_or_lt_of_le (h : 0 ≤ rad 0)` yields `hz : 0 = rad 0` (not `rad 0 = 0`); `rw [hz, mul_zero]`
+     rewrote the `0` *into* `rad 0` and produced the garbage hypothesis `tol * rad 0 < rad 0`. Use
+     the reversed rewrite: `rw [← hz, mul_zero]`.
+  4. Witness computations on an `if`-chain ladder: `simp [rad, ic, decay]` can close
+     `0 < decay rad ic 1` outright (it normalizes `tol + (1 - tol)` to `1`), so appending
+     `; linarith` errors with "no goals to be solved". A `simp … ; linarith` tail must be checked
+     per row, not copied.
+  5. `rw [VavilovAt, hF2, hF1]` matches *syntactically*: the goal's left side is
+     `fluoYield … (1 + 1)`, so the helper must be stated as `(1 + 1)`, not as the defeq `2`
+     (the same numeral-shape trap as `rw [show (2 : ℕ) = 1 + 1 from rfl]` in the Sprint-0 probe).
+  6. Staged delivery (one lemma per commit) from a gitignored master: a splitter that walks back
+     from each `theorem` to the nearest `/--` docstring leaves a `set_option … in` line (separated
+     from the docstring by a blank line) at the *end of the previous block*, and the emitted prefix
+     fails with `invalid 'end', name mismatch`. Attach `set_option … in` (and the `/-! ## … -/`
+     section header) to the following declaration, and compile **every** prefix (15/15 EXIT 0)
+     before starting the commit loop.
+- What worked (recipes worth reusing in K4/K5):
+  - Two-level criterion: give the row three local `have`s (`cascade 0 1 = icBranch 1` via
+    `ext; omega` + `Finset.prod_singleton`; `upperYield 1 = radBranch 1` via `Finset.Icc_self` +
+    `Finset.sum_singleton` + `emitYield_self`; and the `range 2` split via `Finset.sum_insert`) —
+    the K1 module has none of them, and they are needed only for `N = 1`, so inlining beats a
+    helper declaration (the fidelity checker would list any top-level extra).
+  - The algebra is a pure `field_simp; try ring` double identity
+    (`e1 : (tol * (…)) * (rad 1 + ic 1) = …`, `e2 : … = … / (rad 0 + ic 0)`) followed by
+    `rw [div_le_iff₀ hd1, e1, e2, le_div_iff₀ hd0]; constructor <;> intro h <;> linarith`;
+    `field_simp` discharges the `≠ 0` side goals from the `0 < …` hypotheses.
+  - `div_div_div_cancel_right₀ h` (with `h : decay rad ic 1 ≠ 0`) cancels the two `decay 1`
+    factors in `ladderRatio 1 = funnelRatio` with **no** sign/case analysis: the junk convention
+    `x/0 = 0` makes the identity hold when `rad 1 · decay 0 = 0`.
+  - Attainment/attainment-boundary witnesses: `let rad := fun n => if n = 0 then 1 else if n = 1
+    then tol else 0`, `let ic := fun n => if n = 0 then 0 else if n = 1 then 1 - tol else 0`;
+    `simp [rad, ic, funnelRatio, decay]` computes `funnelRatio = (1-tol)/tol`, and
+    `rw [div_lt_div_iff₀ h0 ht0]; nlinarith` compares the boundaries for `tol' < tol`.
+  - Counterexample rows: compute the yields through K2's recursion
+    (`have hh := upperYield_succ (N := 1) hR2; rw [hU1] at hh; norm_num [radBranch, icBranch, decay] at hh;
+    exact hh`) instead of `norm_num` on unfolded `Finset` sums — and `norm_num … at hcon` closes the
+    false-tolerance hypothesis.
+  - Gate cycle per lemma: emit the prefix → `lake build PhotoLean.Kasha.Sharp` →
+    `axioms.sh PhotoLean.Kasha.Sharp PhotoLean.Kasha.<name>` → `check.sh --strict
+    PhotoLean.Kasha.Sharp` → `git commit -m "feat(K3): <name>" -- PhotoLean/Kasha/Sharp.lean`
+    (~6 s/lemma with a warm cache).
+- Note for the lead (not a defect of this module): `lakefile.toml` `defaultTargets` lists
+  `PhotoLean.Kasha.Basic`, `.Criterion`, `.Compose`, `.RatModel` but **not**
+  `PhotoLean.Kasha.Sharp`, so the bare `check.sh --strict` (which reports `verdict: PASS`) does not
+  build this module — the scan covers the whole directory while the build does not, which is the
+  acceptance hole the lakefile comment itself warns about. `lake build PhotoLean.Kasha.Sharp`
+  succeeds by name, and every prefix of the file compiled during the staged delivery.
