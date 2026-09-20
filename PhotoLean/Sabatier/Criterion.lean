@@ -320,6 +320,17 @@ theorem antiDescriptor_activity_iff {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 
     · have h1 : -(f dE) / (kB * T) = -(f de0) / (kB * T) := Real.exp_injective heq
       exact hD.2 dE (exp_neg_div_inj hkT' h1)
 
+/-- The activity ratio depends only on the barrier difference — the finite-difference form used by
+the instance layer and consistent with the repository's Marcus rate ratio. `kB * T ≠ 0` is the
+explicit non-degeneracy premise. Plan §5 (activity layer). -/
+theorem activity_ratio (f : ℝ → ℝ) {kB T dE₁ dE₂ : ℝ} (hkT : kB * T ≠ 0) :
+    activity f kB T dE₂ / activity f kB T dE₁ = Real.exp ((f dE₁ - f dE₂) / (kB * T)) := by
+  unfold activity
+  rw [← Real.exp_sub]
+  congr 1
+  field_simp
+  ring
+
 end Sabatier
 
 end PhotoLean
