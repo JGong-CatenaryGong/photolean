@@ -111,6 +111,17 @@ def SabatierConformsQ (alphaA alphaB : ℚ) : Prop := 0 < alphaA ∧ 0 < alphaB
 within `tol` of the rational apex. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
 def NearOptimalQ (tol apexD dE : ℚ) : Prop := |dE - apexD| ≤ tol
 
+/-! ## Cast transfer of the description layer (plan §8.1) -/
+
+/-- Cast transfer of the ascending branch: the real image of the rational branch IS the real branch
+at the real images of the parameters. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem branchUpQ_cast (alphaA betaA dE : ℚ) :
+    ((branchUpQ alphaA betaA dE : ℚ) : ℝ)
+      = branchUp (alphaA : ℝ) (betaA : ℝ) (dE : ℝ) := by
+  unfold branchUpQ branchUp
+  push_cast
+  ring
+
 end Sabatier
 
 end PhotoLean
