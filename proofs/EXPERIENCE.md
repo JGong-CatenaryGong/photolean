@@ -1621,3 +1621,48 @@
   harder to fool than a visual check. Note also that the header of `PhotoLean/Kernel.lean` forward-refers
   to `PhotoLean/Relations.lean` (the regression certificates), which does not exist yet: a deliberate
   forward reference required by the task spec, not a delivered module.
+
+## 2026-09-20 — C: relation module + relation-graph draft (owner lead) — DONE
+
+- Delivered: `PhotoLean/Relations.lean` (28 declarations: 8 `rfl` kernel certificates, 6 reused
+  equivalences, 3 one-way edges — one of them new — 4 reuse rows, 4 ledger rows, 3 new theorems),
+  `theories/RELATIONS.md` (bilingual relation-graph draft), `lakefile.toml` registration; commits
+  `f42a7d5` (inventory), `3dd1239` (new theorems), `efa74c1` (document).
+- Gates: build with zero warnings; `check.sh --strict` → `verdict: PASS`; 30/30 declarations of
+  `Kernel.lean` + `Relations.lean` at `[propext, Classical.choice, Quot.sound]`; the three fidelity
+  probes unchanged (51 / 191 / 102, 0 differences).
+- Tried and failed (recorded so a later round does not repeat it):
+  1. **Batch-harness bugs, three in a row.** `axioms.sh` prints its verdict on the *second-to-last*
+     line (`allowed: ...` is last), so judging by `tail -1` produced 25 false FAILs on correct
+     theorems. Then `grep -oP 'depends on axioms: \[.*\]'` missed long theorem names because the
+     axiom list wraps across lines. Then `grep -q "^theorem $n"` **prefix-matched**
+     (`transfer_eq_tsCoord` also matches `transfer_eq_tsCoord_bridge`) and ran the wrong module,
+     producing one more false FAIL. Working harness: build a module+name file with an anchored
+     extraction, read it line by line, and judge only by `grep -q "verdict: PASS"`. A false FAIL
+     from the harness looks exactly like a real gate failure — always re-run one suspect by hand
+     before believing a whole-table verdict.
+  2. **A scratch file outside the repository is not where it seems**: the file-writing tool reported
+     success for `/tmp/Relations.lean`, but no such file existed (and an in-repo `find`/`grep` could
+     not locate it either). Draft inside the gitignored `.lake/tmp/` and copy into `PhotoLean/` when
+     ready — that path is inside the workspace and is also what `axioms.sh` uses for its probes.
+  3. **Splitting one new file into two logical commits without any intermediate unproved state**:
+     write the full file, truncate it at the section marker, commit the compiling part, restore the
+     rest from `.lake/tmp/Relations.full.lean`, commit again. Both commits build and pass the strict
+     gate; no version of the file ever carried a placeholder.
+- What went right, worth reusing: the eight `rfl` kernel certificates closed on the **first** build —
+  that is the independent confirmation that the kernel bodies are definitionally identical to the
+  three delivered copies, and it is exactly why the certificate design (fail ⇒ stop and investigate)
+  is cheap insurance. Also cheap and effective: re-exporting each bridge with its statement written
+  out **verbatim** turns the whole inventory into a compile-time statement pin, and `axioms.sh` per
+  re-export is a few seconds each.
+- Lesson the read-only verifier forced (worth more than the code): **a kernel-checked theorem does
+  not make the prose around it true.** The verifier found one *false* parenthetical in
+  `theories/RELATIONS.md` §4 ("the truth value does not depend on `A, kB, T`"), refuted by kernel
+  counterexample (`Marcus.InvertedDescriptor (-1) (-1) 1 1` holds while
+  `¬ Marcus.InvertedDescriptor 1 (-1) 1 1`, same `lam/kB/T`) and contradicted by the same document's
+  own N2; plus a missing `0 < lam` qualifier on the reading "the trend needs no tolerance parameter"
+  (at `lam < 0` the coordinate is affine but *increasing*). Reusable pattern: mark every piece of
+  prose attached to a statement as a reading, and re-check quantifier by quantifier and parameter by
+  parameter against the statement text; four further findings were board/coverage bookkeeping
+  (no `Kernel`/`Relations` rows on the task board, the fidelity probes' glob does not cover the new
+  modules, and the commit-granularity deviation) and all are now recorded on the Marcus board.
