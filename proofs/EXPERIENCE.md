@@ -2463,3 +2463,64 @@
      and `rw [div_zero]` alone did not match.
 - Commits: `61e26d9` (scaffolding), `00c5f69` (probe+skeleton+API+literature+S1), `9aad66d`
   (plan + board). Statement corrections are logged in `theories/Sabatier/plan.md` §3.1.
+
+## 2026-09-21 — S3 sharp conditions (`PhotoLean/Sabatier/Sharp.lean`, 11 theorems) — prover_d — DONE
+
+- Goal: milestone S3 of the Sabatier theory — the exact (sharp) conditions of the volcano plot, as
+  11 declarations fixed by `theories/Sabatier/probes/sabatier-statement-skeleton.lean` §S3 (plan §6).
+  Headline: the two-branch barrier profile is a volcano at its apex iff `0 < alphaA * alphaB`
+  (`volcano_descriptor_iff`), plus the contrapositive, the instance-layer label form, label
+  invariance, the volcano plot (`volcanoActivity_peak_iff`), and the three failure modes with
+  kernel witnesses (flat / plateau / mixed-sign).
+- What worked (reusable):
+  1. **Reuse the risk probe as the proof source, keep the authority as the signature source.** All 11
+     proofs were lifted from `theories/Sabatier/probes/sabatier-risk-probe.lean` §S3 (already 0 error);
+     every signature came from the skeleton verbatim. `bep-fidelity.py --milestone S3` reports
+     `delivered, word-for-word : 11`, `signature differences : 0`, `not delivered yet : 0` on the
+     first run — no statement drift was possible.
+  2. **Make the S2 dependency private instead of importing a file under concurrent delivery.** The
+     dispatch allowed `import PhotoLean.Sabatier.Criterion` but that module did not exist yet, so the
+     five S2 rows S3 needs (`volcanoBarrier_apex_le`, `volcanoBarrier_eq_apex_iff`,
+     `volcano_descriptor_of_physical`, `antiDescriptor_activity_iff`, `exp_neg_div_inj`) were
+     re-proved in `Sharp.lean` as `private` auxiliaries named `*_aux`. This removed the cross-file
+     ordering constraint entirely (S3 built and could be verified while S2 was still being written),
+     and it keeps the milestone gate's "extra declarations" count at zero for this file.
+  3. **`private` at the top level also hides helpers from the fidelity checker.** Its declaration
+     regex is anchored on `^(noncomputable )?(theorem|def|inductive|structure)`, so a `private`
+     helper is invisible to it; a public helper would have been reported as `(extra)` (harmless, but
+     noise, and one named after an S2 row would be compared against the S2 skeleton when that
+     milestone is checked — a false drift signal). Name every helper `private` unless the authority
+     declares it.
+  4. **The per-module build target exists before the contract file is updated.**
+     `proofs/scripts/lake build PhotoLean.Sabatier.Sharp` succeeds although `lakefile.toml`
+     `defaultTargets` does not yet list the module (Lake globs the `lean_lib`). Consequence for the
+     lead: per-lemma gates work immediately, but the **bare** `check.sh --strict` still does not build
+     the module — `defaultTargets` must be extended before the frozen-tree acceptance run.
+- Tried and failed (mandatory column):
+  1. **Splitting a pair hypothesis into two explicit hypotheses breaks every call site.** The probe's
+     `volcano_descriptor_of_physical (h : SabatierConforms alphaA alphaB)` was re-stated as
+     `descriptor_of_physical_aux (hA : 0 < alphaA) (hB : 0 < alphaB)`; the probe's call
+     `(…) ⟨by linarith, by linarith⟩` then failed to elaborate with
+     `error: Sharp.lean:317:27: invalid constructor ⟨...⟩, expected type must be an inductive type /
+     Real.lt✝ 0 (-alphaB)` — the anonymous constructor was parsed as the *next argument* rather than
+     as the pair. Fix: pass `(by linarith) (by linarith)`. Lesson: when re-stating a helper, re-check
+     the *shape of its arguments at every call site*, not only the statement.
+  2. **The strict scan is substring-based and not comment-aware.** `check.sh --strict` greps
+     `sorry|admit|^…axiom` over `PhotoLean/**/*.lean`; inside block/doc comments only lines that are
+     entirely `--` comments are exempt. Prose such as "the statement admits no counterexample" would
+     be a hard FAIL. Every docstring in `Sharp.lean` was worded around the two keywords (verified
+     with the same grep before every commit; the gate reports `clean`).
+- Gate evidence at the delivered tree (all exit 0): `lake build PhotoLean.Sabatier.Sharp` ✔;
+  `check.sh --strict PhotoLean.Sabatier.Sharp` → `build: OK` / `clean` / `verdict: PASS`;
+  `axioms.sh … volcano_descriptor_iff` and `… volcanoActivity_peak_iff` → `depends on axioms:
+  [propext, Classical.choice, Quot.sound]`; all 11 S3 theorems measured individually with the same
+  footprint; fidelity as in item 1.
+- Commits (one per lemma, `feat(S3): <lemma>`): `ef17ad7` volcano_descriptor_iff, `f9bf7f2`
+  descriptor_fails_of_nonpos_product, `42cdc2c` volcano_descriptor_iff_labels, `100807a`
+  volcano_descriptor_of_neg, `65b65ad` volcanoActivity_peak_iff, `5441285` flat_witness, `5cff429`
+  not_descriptor_flat, `edb1d58` plateau_witness, `bb9e31b` not_descriptor_plateau, `1f1df58`
+  antiVolcano_monotone, `914e927` not_descriptor_mixedSign.
+- No statement was weakened and no statement of §S3 is suspected false: the four rows that carry sign
+  content (`0 < alphaA * alphaB`, and the three failure-mode families) were checked by the kernel in
+  both directions, and the two FALSE Sprint-0 rows of §3.1 (`apex_comm`, `volcanoBarrier_comm`,
+  `activity_descriptor_iff`) were NOT reintroduced.
