@@ -646,7 +646,7 @@ work terms 的简化式仅由 secondary 来源支持，但结论不受影响（�
 
 | # | 近似 | 在 Lean 中的形态 |
 |---|---|---|
-| 1 | 抛物线（谐振）势能面、单一反应坐标 | `barrier` 的定义本身（在 plan 中声明） |
+| 1 | 抛物线（谐振）势能面、**两井等曲率 `2λ`**、单一反应坐标（与 Hammond/BEP 同一模型） | `barrier` 的定义本身（在 plan 中声明；等曲率由**同一个** `lam` 同时充当反应物井与产物井的曲率参数所承载 —— 详见 `PhotoLean/Kernel.lean` 头注释与 `theories/RELATIONS.md` §1） |
 | 2 | 经典核运动（无核隧穿） | 速率取 Arrhenius 形式 `A·exp(-ΔG‡/(kBT))` |
 | 3 | Condon 近似 / 电子耦合与核坐标无关 | 前置因子 `A` 与驱动力 `x` 无关（`rate` 的定义） |
 | 4 | 温度为正、`k_B > 0` | **交付语句实际用的是乘积形式** `hkT : 0 < kB * T`（见 `Rate.lean`/`Sharp.lean`）；

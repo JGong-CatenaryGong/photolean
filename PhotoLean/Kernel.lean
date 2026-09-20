@@ -6,7 +6,10 @@ the Hammond postulate and the Bell–Evans–Polanyi principle. Each of them des
 reaction step through the same classical two-parabola model, and each of them had grown its own
 copy of the shared objects. This module carries the single definitions of that family: the
 reactant and product potential-energy surfaces, the forward barrier, the reverse barrier, the
-transition-state coordinate and the transfer (Brønsted/Leffler) coefficient.
+transition-state coordinate and the transfer (Brønsted/Leffler) coefficient. Both surfaces carry
+the **same curvature** `2 * lam` — the equal-curvature premise of the model, registered in each
+theory's plan — which is what makes the barrier and the crossing coordinate functions of the
+single driving force `x = -ΔG°`.
 
 The extraction is purely additive. Every theory keeps its own copy untouched: nothing under
 `PhotoLean/Marcus`, `PhotoLean/Hammond` or `PhotoLean/BEP` is imported here (this module is the
