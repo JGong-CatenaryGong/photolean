@@ -96,3 +96,29 @@ theorem lefflerSecant_neg_iff_inverted {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h
   rw [lefflerSecant_eq_midpoint hlam h]
   exact tsCoord_lt_zero_iff_inverted hlam
 
+/-- The instance-level verdict, characterized by the classifier: conforming means the instance is
+classified early, thermoneutral or late (the three branches strictly between the two wells). -/
+theorem conforms_iff_zone {lam x : ℝ} (hlam : 0 < lam) :
+    HammondConforms lam x ↔
+      hammondZone lam x = HZone.early ∨ hammondZone lam x = HZone.half ∨
+        hammondZone lam x = HZone.late := by
+  constructor
+  · intro h
+    have hr : ReactionRegion lam x := h.2
+    unfold ReactionRegion at hr
+    rcases lt_trichotomy x 0 with hx | hx | hx
+    · exact Or.inr (Or.inr ((hammondZone_eq_late_iff hlam).mpr ⟨hx, hr.1⟩))
+    · exact Or.inr (Or.inl ((hammondZone_eq_half_iff hlam).mpr hx))
+    · exact Or.inl ((hammondZone_eq_early_iff hlam).mpr ⟨hx, hr.2⟩)
+  · intro h
+    refine ⟨hlam, ?_⟩
+    unfold ReactionRegion
+    rcases h with h | h | h
+    · obtain ⟨hx0, hxlam⟩ := (hammondZone_eq_early_iff hlam).mp h
+      exact ⟨by linarith, hxlam⟩
+    · have hx : x = 0 := (hammondZone_eq_half_iff hlam).mp h
+      rw [hx]
+      exact ⟨by linarith, by linarith⟩
+    · obtain ⟨hx0, hnlam⟩ := (hammondZone_eq_late_iff hlam).mp h
+      exact ⟨hnlam, by linarith⟩
+
