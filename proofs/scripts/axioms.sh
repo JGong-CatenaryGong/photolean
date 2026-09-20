@@ -59,7 +59,12 @@ fi
 #   '<thm>' depends on axioms: [propext, Classical.choice, Quot.sound]
 # 取出方括号内的列表，按逗号切分并 trim。
 # English: Extract the list inside the square brackets, split it on commas and trim.
-LIST="$(printf '%s' "$OUT" | sed -n 's/.*\[\(.*\)\].*/\1/p' | head -1)"
+# 先折叠换行：`#print axioms` 的输出按 Format 宽度（~100 字符）折行，长定理名会把
+# 公理列表切成多行，按行 sed 会解析失败 → 假 FAIL（2026-09-20 prover_c 实测报障）。
+# English: Fold newlines first: `#print axioms` wraps its output at the Format width (~100 chars),
+# English: so a long theorem name splits the axiom list across lines and a line-wise sed fails to
+# English: parse it, producing a false FAIL (reported by prover_c on 2026-09-20).
+LIST="$(printf '%s' "$OUT" | tr '\n' ' ' | sed -n 's/.*\[\(.*\)\].*/\1/p' | head -1)"
 if [ -z "$LIST" ]; then
   # 无公理依赖时 Lean 输出 "does not depend on any axioms"。
   # English: When there are no axiom dependencies, Lean prints "does not depend on any axioms".
