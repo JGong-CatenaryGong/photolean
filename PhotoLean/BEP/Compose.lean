@@ -21,17 +21,23 @@ Cross-module bridges (rows 1–6 of `theories/BEP/plan.md` §7):
   `epBounds_of_marcus_normal`).
 
 Microscopic composition (rows 7–12), self-contained algebra in this module: the total reorganization
-energy of a step is the sum of an inner (bond/angle) and an outer (solvent, Pekar-type)
-contribution, `lam = lamInner + lamOuter`, and the physical reading is that **a larger total
-reorganization energy improves the linear law** — the exact violation `bepDefect` shrinks
+energy of a step is *modelled* as the sum of an inner (bond/angle) and an outer (solvent,
+"Pekar-type") contribution, `lam = lamInner + lamOuter` — a physical premise registered in plan §13,
+see the end of this paragraph — and the physical reading is that **a larger total reorganization
+energy improves the linear law** — the exact violation `bepDefect` shrinks
 (`bepDefect_le_of_microscopic`), the tolerance radius `bepRadius` widens (`bepRadius_add`) and with
 it the conformance window (`epConformsOnWindow_of_microscopic`,
 `epConformsOnWindow_shrinks_with_inner`); the composed curvature is again the curvature of a BEP
 descriptor (`epDescriptor_of_microscopic`) and the Brønsted complementarity identity is inherited by
-the composed curvature (`transfer_complementary_microscopic`). The microscopic hypothesis is
-therefore exactly `0 < lamInner` and `0 < lamOuter` (or their non-strict forms where the plan uses
-them): positivity of the two contributions is an explicit premise of every statement that needs it,
-and nothing is hidden in a definition.
+the composed curvature (`transfer_complementary_microscopic`). The microscopic hypothesis of this
+module is exactly the two positivity assumptions `0 < lamInner` and `0 < lamOuter` (or their
+non-strict forms where the plan uses them) on the *term* `lamInner + lamOuter`: positivity of the two
+contributions is an explicit premise of every statement that needs it, and nothing is hidden in a
+definition. The additivity itself — that the reorganization energy *is* this inner/outer split, with
+the two parts **independently variable** — is a physical premise of the model, registered in
+`theories/BEP/plan.md` §13 ("additivity of the reorganization energy"), not a theorem of this module:
+nothing here is proved about Pekar factors ("Pekar-type" is only a label) or about varying the two
+parts independently.
 
 Rows 9–11 quote the tolerance/monotonicity helpers of plan §6.3 (`bepRadius_mono`,
 `bepDefect_antitone_lam`, `epConformsOnWindow_iff_radius`), which live in `PhotoLean/BEP/Sharp.lean`.
