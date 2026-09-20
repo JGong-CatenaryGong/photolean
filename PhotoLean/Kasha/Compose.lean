@@ -1,0 +1,90 @@
+/-
+PhotoLean.Kasha.Compose — K4, composition and bridges of Kasha's rule.
+
+This module is the composition layer of the Kasha theory (`theories/kasha/plan.md` §7). The
+description layer `PhotoLean/Kasha/Basic.lean` (K1) defines the finite excited-state ladder, its
+branching probabilities, the cascade probability and the observables; K4 asks what happens when the
+ladder is *composed* and when the internal-conversion rate is given by the Marcus rate law of this
+repository's `PhotoLean.Marcus` theory. The three blocks below are:
+
+* **Splitting (rows 1–2).** The cascade probability multiplies across an interior level:
+  `cascade i N = cascade i M * cascade M N` for `i ≤ M ≤ N`, and the level-resolved yield inherits
+  the split. This is the associativity of the funnel and the reason the blocks below exist.
+* **Effective two-level reduction (rows 3–8).** The whole upper block of the ladder behaves as a
+  *single* level: `effRad rad ic N` / `effIc rad ic N` give the upper block the radiative total
+  `upperYield rad ic N` and the non-radiative total `cascade rad ic 0 N`, the effective ladder at
+  excitation level `1` reproduces the funnel margin exactly (`kashaMargin_effective`), and the
+  tolerance criterion of the `N`-level ladder **is** the criterion of that effective two-level model
+  (`kashaWithin_iff_effective`) — every ladder is a two-level model in disguise.
+* **N-level threshold and the Marcus bridge (rows 9–16).** The tolerance form holds iff
+  `(1 - tol)/tol ≤ ladderRatio rad ic N` (`kashaWithin_iff_ladderRatio`, the general answer to the
+  plan's question ②, with `ladderRatio` the exact `N`-level funnel ratio); and if the `S₂ → S₁`
+  internal-conversion rate is the Marcus rate `A · exp (-barrier λ x / (kB·T))`, the same criterion
+  is the explicit gap window `(λ - x)² ≤ 4 λ (kB·T) log K` (`kashaWithin_one_marcus`), with its
+  failure direction (`not_kashaWithin_of_gap_far`) and the half-width form
+  `|λ - x| ≤ √(4 λ (kB·T) log K)` (`kashaWindow_halfWidth`), where
+  `K = kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol`.
+
+Physical reading and honesty (plan §1.3 #5, §12, §13 #6). The Marcus bridge is **conditional**: the
+identification of internal conversion with the classical strong-coupling Marcus form is the explicit
+hypothesis `hic` of the rows below and a modelling premise, not a theorem of this module. The general
+energy-gap law is exponential (Jortner) and the promoting-mode / Franck–Condon factors are outside
+the model; the classical form used here is the one `PhotoLean.Marcus` models, and the literature
+caveat is carried by `theories/kasha/LITERATURE.md`. The standing physical premise bundle `RateData`
+is an explicit hypothesis of every physical row and is never hidden in a definition; where a row's
+statement carries a premise its proof does not consume, the premise is kept verbatim for statement
+fidelity and the local `set_option linter.unusedVariables false in` documents that (the repository
+convention of `PhotoLean/Kasha/Basic.lean`).
+
+Statement authority: every definition body and every theorem signature below is taken word for word
+from the K4 block of `theories/kasha/probes/kasha-statement-skeleton.lean` (sha256
+`801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`), which transcribes
+`theories/kasha/plan.md` §7.1 and §7.2: 4 definitions and 16 theorems, in the authority's order, with
+nothing added, renamed or restated. Note deliberately: the two keyword literals that
+`proofs/scripts/check.sh --strict` scans for are not spelled out anywhere in this file — that scan
+covers `PhotoLean/**/*.lean` including block comments, so writing them (even in prose) would be a
+false-positive FAIL.
+
+Plan locus: `theories/kasha/plan.md` §7 (K4); board `theories/kasha/TASKS.md` §K4. This module
+imports `PhotoLean.Kasha.Basic` and `PhotoLean.Marcus.Basic` only — the sharp layer
+(`PhotoLean/Kasha/Sharp.lean`) is deliberately *not* imported: rows 9–11 are derived from the K1
+level-1 identity `fluoYield_eq_low_add_upper` by algebra, as the plan's risk register requires. The
+recipes used below are kernel-checked before delivery in
+`theories/kasha/probes/kasha-d-api.lean` (the block split against the delivered `cascade`, the
+premise-free level-1 toolkit, the row-7 cancellation, the row-14 square/`sqrt` step),
+`theories/kasha/probes/kasha-api-logexp.lean` (the `exp`/`log` chain of row 12, rows 15–16) and
+`theories/kasha/probes/kasha-risk-probe.lean` (rows 8 and 12 in their verbatim authority form).
+
+Acceptance commands (run on a clean tree):
+
+    proofs/scripts/lake build PhotoLean.Kasha.Compose
+    proofs/scripts/check.sh --strict PhotoLean.Kasha.Compose
+    proofs/scripts/axioms.sh PhotoLean.Kasha.Compose PhotoLean.Kasha.<fully.qualified.theorem>
+
+The delivered file contains no unfinished-proof placeholder and no custom axiomatic declaration; the
+`#print axioms` gate of every theorem below lists at most `propext`, `Classical.choice`, `Quot.sound`.
+-/
+import PhotoLean.Kasha.Basic
+import PhotoLean.Marcus.Basic
+
+open scoped BigOperators
+open Classical
+
+set_option autoImplicit false
+
+namespace PhotoLean
+
+namespace Kasha
+
+/-! ## Definitions (plan §7.1) -/
+
+/-- Effective two-level radiative data of the ladder at excitation level `N`: level `0` keeps the
+lowest state's radiative rate, level `1` carries the **whole upper block's** radiative total
+(`upperYield rad ic N`), and every level above `1` is inert (plan §7.1). -/
+noncomputable def effRad (rad ic : ℕ → ℝ) (N : ℕ) : ℕ → ℝ :=
+  fun n => if n = 0 then rad 0 else if n = 1 then upperYield rad ic N else 0
+
+
+end Kasha
+
+end PhotoLean
