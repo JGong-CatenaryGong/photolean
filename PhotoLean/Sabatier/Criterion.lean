@@ -279,6 +279,20 @@ theorem activity_le_apex {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * T)
   rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff]
   exact hle
 
+/-- If the barrier profile is a volcano, the activity is maximized at the apex and only there: the
+maximizer of the activity is unique, because `exp` and the division by the positive thermal scale
+are injective. Plan §5 (activity layer). -/
+theorem activity_eq_apex_iff {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * T)
+    (h : VolcanoDescriptor f de0) (dE : ℝ) :
+    activity f kB T dE = activity f kB T de0 ↔ dE = de0 := by
+  have hkT' : kB * T ≠ 0 := hkT.ne'
+  constructor
+  · intro heq
+    have h1 : -(f dE) / (kB * T) = -(f de0) / (kB * T) := Real.exp_injective heq
+    exact h.2 dE (exp_neg_div_inj hkT' h1)
+  · intro h'
+    rw [h']
+
 end Sabatier
 
 end PhotoLean
