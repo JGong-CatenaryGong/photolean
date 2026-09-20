@@ -433,6 +433,13 @@ theorem qSecondDividedDiff_model {lam x₁ x₂ x₃ : ℚ} (hlam : lam ≠ 0) (
   field_simp
   ring
 
+theorem qModelConsistent3_curvature_pos {lam x₁ x₂ x₃ e₁ e₂ e₃ : ℚ}
+    (h : qModelConsistent3 lam x₁ x₂ x₃ e₁ e₂ e₃) (h₁₂ : x₁ ≠ x₂) (h₂₃ : x₂ ≠ x₃)
+    (h₁₃ : x₁ ≠ x₃) : 0 < qSecondDividedDiff x₁ e₁ x₂ e₂ x₃ e₃ := by
+  obtain ⟨hlam, h₁, h₂, h₃⟩ := h
+  rw [h₁, h₂, h₃, qSecondDividedDiff_model (ne_of_gt hlam) h₁₂ h₂₃ h₁₃]
+  positivity
+
 end Rat
 
 end BEP
