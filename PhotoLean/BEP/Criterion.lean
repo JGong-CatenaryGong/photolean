@@ -133,4 +133,9 @@ theorem eact_antitone {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h₁ : x₁ < x₂
   rw [div_lt_div_iff_of_pos_right h4]
   exact (sq_lt_sq₀ h0 h01).2 hlt
 
+/-- At a physical curvature the BEP line never lies above the barrier. -/
+theorem bepDefect_nonneg {lam x : ℝ} (hlam : 0 < lam) : 0 ≤ bepDefect lam x := by
+  rw [bepDefect_eq (ne_of_gt hlam)]
+  exact div_nonneg (sq_nonneg x) (by positivity)
+
 end PhotoLean.BEP
