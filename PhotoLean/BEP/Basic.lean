@@ -152,5 +152,18 @@ theorem bepLine_at_zero (lam : ℝ) : bepLine lam 0 = lam / 4 := by
 theorem secSlope_zero_h (lam x : ℝ) : secSlope lam x 0 = 0 := by
   unfold secSlope
   simp
+/-- Zone characterization, degenerate branch: `lam = 0` is exactly the degenerate regime (no
+premise: the first guard of the cascade fires). -/
+theorem epZone_eq_degenerate_iff (lam x : ℝ) :
+    epZone lam x = EPZone.degenerate ↔ lam = 0 := by
+  constructor
+  · intro h
+    unfold epZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6 h7 h8
+    exact h1
+  · intro h
+    rw [h]
+    unfold epZone
+    rw [if_pos rfl]
 
 end PhotoLean.BEP
