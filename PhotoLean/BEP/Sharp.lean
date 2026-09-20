@@ -158,5 +158,19 @@ theorem epExact_iff_degenerate (lam : ℝ) : EPExact lam ↔ lam = 0 := by
     unfold eact
     norm_num
 
+/-- Plan §6.1 #9: conformance is not automatic — on the window `[-1, 1]` at `lam = 2` the BEP line
+misses the barrier by `1/8` at `x = 1`, which exceeds the tolerance `1/16`. -/
+theorem exists_conforms_fails : ∃ lam tol w : ℝ, 0 < lam ∧ 0 < tol ∧
+    ¬ EPConformsOnWindow lam tol (-w) w := by
+  refine ⟨2, 1 / 16, 1, by norm_num, by norm_num, ?_⟩
+  intro h
+  have hx : (1 : ℝ) ∈ Set.Icc (-(1 : ℝ)) 1 := by norm_num
+  have h1 : |bepDefect 2 1| ≤ 1 / 16 := h.2.2 1 hx
+  have hval : bepDefect 2 1 = 1 / 8 := by
+    unfold bepDefect bepLine eact
+    norm_num
+  rw [hval, abs_of_nonneg (by norm_num : (0 : ℝ) ≤ 1 / 8)] at h1
+  norm_num at h1
+
 
 end PhotoLean.BEP
