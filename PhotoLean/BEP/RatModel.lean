@@ -394,6 +394,11 @@ theorem epQVerdict_subLinear_iff {lam x : ℚ} (hlam : 0 < lam) :
 
 /-! ### AUX decision witnesses (positive + negative control) -/
 
+theorem qConformsWindow_witness : qConformsWindow 1 (1 / 4) 0 := by
+  unfold qConformsWindow
+  refine ⟨by norm_num, by norm_num, ?_⟩
+  norm_num
+
 end Rat
 
 end BEP
