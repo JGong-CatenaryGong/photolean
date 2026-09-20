@@ -142,3 +142,9 @@ theorem exists_productLike {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ProductLi
 theorem exists_reactionRegion {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ReactionRegion lam x :=
   ⟨0, by unfold ReactionRegion; exact ⟨by linarith, hlam⟩⟩
 
+/-- Bridge to the Marcus barrier: the forward barrier is literally the Marcus `barrier`. -/
+theorem barrier_eq_gapReactant (lam x : ℝ) : Marcus.barrier lam x = gapReactant lam x := rfl
+
+end Hammond
+
+end PhotoLean
