@@ -322,7 +322,7 @@ semantic content is carried by the `..._iff` lemmas, which B3 will pair with alg
 | 22 | `bepDefect_zero_lam_witness : bepDefect 0 1 = 1/2 ∧ ((1:ℝ)^2/(4*0)) = 0` | `norm_num` — the defect formula needs `lam ≠ 0` |
 | 23 | `bepDefect_neg_lam_witness : bepDefect (-1) 1 = -(1/4)` | `norm_num` — positivity needs `0 < lam` |
 | 24 | `bepDefect_sign_flips (hlam : lam < 0) (hx : x ≠ 0) : bepDefect lam x < 0` | 5.2 + `div_neg_of_pos_of_neg` — the sign of the violation *is* the sign of λ |
-| 25 | `secSlope_needs_h_ne_zero : secSlope lam x 0 = 0 ∧ ¬ (0 = transfer lam (x + 0/2)) → …` | witness `lam = 1, x = 0`: `transfer 1 0 = 1/2 ≠ 0` — the mean-value identity needs `h ≠ 0` |
+| 25 | `secSlope_needs_h_ne_zero : secSlope 1 0 0 = 0 ∧ transfer 1 0 ≠ 0` | witness: dropping `h ≠ 0` breaks the mean-value identity of 5.10 (`0 ≠ 1/2`) |
 
 ---
 
@@ -409,6 +409,11 @@ statements through the §8.1 transfer lemmas). `provenance` is `model-constructe
 | I11 | literature families (≥ 2 data pairs each) | from `LITERATURE.md` | verdict computed per family (conforming / boundary / violating / model-inconsistent) | `inst_I11_<family>_slope/lam/verdict` |
 
 Additional instance requirements:
+- **I9 is the instructive row (lead numeric audit, 2026-09-20)**: for `λ = -2, x = 1` the transfer
+  coefficient is `α = 3/4`, which lies **inside** `[0,1]` — so the Evans–Polanyi bounds alone do
+  **not** detect an unphysical curvature; what detects it is the *sign* of the defect
+  (`bepDefect (-2) 1 = -1/8 < 0`, against the exact law `x²/(4λ) = -1/8` with `λ < 0`). The
+  descriptor `EPDescriptor` is strictly stronger than the bounds pair, and I9 exists to exhibit that.
 - at least **one literature family whose verdict is "conforming"** and at least **one whose verdict
   is a documented violation or model-inconsistency** — a table of confirmations only would be a
   selection artifact and must be stated as such;
