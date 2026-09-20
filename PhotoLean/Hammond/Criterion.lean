@@ -122,3 +122,11 @@ theorem conforms_iff_zone {lam x : ℝ} (hlam : 0 < lam) :
     · obtain ⟨hx0, hnlam⟩ := (hammondZone_eq_late_iff hlam).mp h
       exact ⟨hnlam, by linarith⟩
 
+/-- Non-vacuity: reactant-like transition states exist. -/
+theorem exists_reactantLike {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ReactantLike lam x := by
+  refine ⟨lam / 2, ?_⟩
+  have h2 : (0 : ℝ) < 2 * lam := by linarith
+  unfold ReactantLike tsCoord
+  rw [div_lt_iff₀ h2]
+  linarith
+
