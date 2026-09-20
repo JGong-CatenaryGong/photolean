@@ -99,4 +99,15 @@ theorem zone_eq_inverted_iff (lam x : ℝ) : zone lam x = Zone.inverted ↔ Inve
     · rw [if_neg h2]
       exact iff_of_true rfl (lt_of_le_of_ne (le_of_not_gt h) (Ne.symm h2))
 
+/-- 三分性：分类器必然落在三个区之一（直接由 `zone` 的两层 `if` 的构造给出）。 -/
+theorem zone_trichotomy (lam x : ℝ) :
+    zone lam x = Zone.normal ∨ zone lam x = Zone.barrierless ∨ zone lam x = Zone.inverted := by
+  unfold zone
+  by_cases h : x < lam
+  · rw [if_pos h]; exact Or.inl rfl
+  · rw [if_neg h]
+    by_cases h2 : x = lam
+    · rw [if_pos h2]; exact Or.inr (Or.inl rfl)
+    · rw [if_neg h2]; exact Or.inr (Or.inr rfl)
+
 end PhotoLean.Marcus
