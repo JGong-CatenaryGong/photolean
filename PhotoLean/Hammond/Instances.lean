@@ -194,6 +194,18 @@ theorem inst_I7_rc_inverted_zone : Rat.hammondZoneQ (1 / 4) (11 / 10) = HZone.be
 theorem inst_I7_rc_inverted_coord : tsCoord (1 / 4) (11 / 10) = -(17 / 10) := by
   norm_num [tsCoord]
 
+/-- I7, point-level verdict: the instance does **not** conform — outside the domain of
+applicability of the Hammond description of this model. -/
+theorem inst_I7_rc_inverted_notConforms : ¬ HammondConforms (1 / 4) (11 / 10) := by
+  intro hc
+  have hz : hammondZone (1 / 4 : ℝ) (11 / 10 : ℝ) = HZone.beyondReactant := by
+    rw [← (by norm_num : (((1 : ℚ) / 4 : ℚ) : ℝ) = (1 / 4 : ℝ)),
+        ← (by norm_num : (((11 : ℚ) / 10 : ℚ) : ℝ) = (11 / 10 : ℝ)),
+        ← Rat.hammondZoneQ_eq_hammondZone, inst_I7_rc_inverted_zone]
+  have hd := (conforms_iff_zone (by norm_num : (0 : ℝ) < 1 / 4)).mp hc
+  rw [hz] at hd
+  rcases hd with h | h | h <;> exact absurd h (by decide)
+
 end Hammond
 
 end PhotoLean
