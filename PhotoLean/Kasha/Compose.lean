@@ -119,6 +119,15 @@ theorem cascade_compose {rad ic : ℕ → ℝ} {i M N : ℕ} (h1 : i ≤ M) (h2 
       rw [Finset.prod_Icc_succ_top (by omega : a + 1 ≤ N + 1)]
     rw [hstep i (le_trans h1 hM), hstep M hM, ih, mul_assoc]
 
+/-- Plan §7.2 #2. The level-resolved yield inherits the split: emission from `i` under excitation at
+`N` is emission from `i` under excitation at `M`, attenuated by the arrival probability
+`cascade M N`. -/
+theorem emitYield_compose {rad ic : ℕ → ℝ} {i M N : ℕ} (h1 : i ≤ M) (h2 : M ≤ N) :
+    emitYield rad ic i N = cascade rad ic M N * emitYield rad ic i M := by
+  unfold emitYield
+  rw [cascade_compose h1 h2]
+  ring
+
 
 end Kasha
 
