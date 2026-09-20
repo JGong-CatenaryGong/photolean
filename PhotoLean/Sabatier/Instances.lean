@@ -218,6 +218,24 @@ theorem inst_I5_monotone (dE₁ dE₂ : ℝ) (h : dE₁ < dE₂) :
     volcanoBarrier 1 0 (-1) 1 dE₁ < volcanoBarrier 1 0 (-1) 1 dE₂ :=
   antiVolcano_monotone dE₁ dE₂ h
 
+/-! ## I6 — the tolerance rows on the I2 series (plan §8.2) -/
+
+/-- I6 (tolerance verdict on I2): the descriptor `dE = 1/2` lies within `tol = 1/2` of the apex. The
+kernel computes `|1/2 - 2/3| = 1/6 ≤ 1/2` in ℚ, so the verdict is decided by rational arithmetic.
+Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I6_nearOptimal : NearOptimalQ (1 / 2) (apexQ (1 / 2) 0 1 1) (1 / 2) := by
+  unfold NearOptimalQ apexQ
+  norm_num [abs_of_nonneg]
+
+/-- I6: its barrier excess over the pass respects the tolerance bound of S2's
+`volcanoBarrier_le_apex_add` (`1/6 ≤ 1/2` in this instance). The excess is computed here from the
+definitions: `max (1/4) (1/2) - max (1/3) (1/3) = 1/2 - 1/3 = 1/6`. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I6_penalty :
+    volcanoBarrier (1 / 2) 0 1 1 (1 / 2) - apexBarrier (1 / 2) 0 1 1 ≤ 1 / 2 := by
+  simp only [volcanoBarrier, apexBarrier, branchUp, branchDown, apex]
+  norm_num
+
 end Sabatier
 
 end PhotoLean
