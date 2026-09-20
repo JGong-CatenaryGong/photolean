@@ -254,3 +254,16 @@ theorem hammondZone_eq_atReactant_iff {lam x : ℝ} (hlam : 0 < lam) :
     unfold hammondZone
     rw [if_pos rfl]
 
+/-- Zone characterization, barrierless reverse branch. -/
+theorem hammondZone_eq_atProduct_iff {lam x : ℝ} (hlam : 0 < lam) :
+    hammondZone lam x = HZone.atProduct ↔ x = -lam := by
+  constructor
+  · intro h
+    unfold hammondZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6
+    exact h2
+  · intro h
+    rw [h]
+    unfold hammondZone
+    rw [if_neg (by linarith : ¬ (-lam = lam)), if_pos rfl]
+
