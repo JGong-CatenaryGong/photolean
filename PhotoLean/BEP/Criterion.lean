@@ -195,4 +195,10 @@ theorem exists_endergonic : ∃ lam x : ℝ, epZone lam x = EPZone.endergonic :=
   unfold epZone
   norm_num
 
+/-- Non-vacuity, forward barrierless limit (`lam = 1`, `x = 1`). -/
+theorem exists_atForwardLimit : ∃ lam x : ℝ, epZone lam x = EPZone.atForwardLimit := by
+  refine ⟨1, 1, ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
