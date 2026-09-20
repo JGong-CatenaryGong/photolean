@@ -427,4 +427,44 @@
   3. **实例层的正确姿势是"实例化"而不是"重新证明"**：新定理的证明体应当只调用已过门的上游定理
      + `norm_num` 定界；若发现自己在实例里重写实分析论证，说明抽象层没抽干净。
 
+## 2026-09-20 — M4a 锐利刻画（9 条，主定理 `descriptor_sharp`） — prover_a — DONE
+
+- 目标：证明"反转区描述成立"的**充要条件**：`(速率处处正 ∧ 描述) ⟺ 0 < A ∧ 0 < lam`（在 `0<kB`、`0<T` 前提下）。
+- 试过且失败：
+  1. `#check` / `#print` **不能紧跟文档注释** `/-- … -/` → `unexpected token '#check'; expected 'lemma'`；
+     要用 `--` 行注释或空行隔开（与 API-NOTES 记的 `set_option` 同类坑）。
+  2. `git commit -- <path>` 对**全新未跟踪文件**报 `pathspec … did not match any file(s) known to git`；
+     新文件必须先 `git add -- <path>`（显式路径，仍**不得**用 `-A`），再 `commit -- <path>`。
+  3. 隐式参数不显式写出会触发 `unused variable` 警告：`fun x₁ x₂ h₁ h₂ => rate_gt_of_barrier_lt hA hkT …` 里
+     `x₁`/`x₂` 只被合一推断使用。改成 `rate_gt_of_barrier_lt (x := x₁) (y := x₂) …` 后 0 warning。
+  4. `rate_gt_of_barrier_lt` 的 `{x y}` **方向在两支里相反**：其结论是 `rate y < rate x`。
+     反转区要 `rate x₂ < rate x₁` ⇒ 取 `x := x₁, y := x₂`；正常区要 `rate x₁ < rate x₂` ⇒ 取 `x := x₂, y := x₁`。写反内核立刻报 type mismatch。
+- 奏效（分支覆盖的"结构证据"）：
+  - 必要性按**机制**拆三条内核而不是一条引理套两种情形：
+    `sharp_lam_pos_of_eq` 的签名**不含任何正性前提**（只依赖除零约定 ⇒ 速率恒为 `A` ⇒ `A < A`），
+    因此**结构上不可能**被 `lam < 0` 支吸收；`sharp_lam_pos` 用 `rcases lt_trichotomy lam 0` 三分支组装。
+  - 用 `#print` 打印证明项确认三支都出现（`Or.casesOn` 嵌套），比只读源码强。
+- 可复用模式：
+  1. **"锐利性"的必要性要按机制拆分支**，每一支的签名要能**自证不被别支吞掉**（例如让某支不带另一支才需要的前提）。
+  2. **验证分支覆盖的最强手段是打印证明项**（`#print` + `pp.proofs`），而不是读战术脚本。
+  3. 复合引理的方向参数（`{x y}` 这类）在"单调递增/递减"两支里往往**相反** —— 每处调用都要重新对一次方向。
+
+## 2026-09-20 — M5a 追加：`barrierQ` 的 ℚ→ℝ 数值桥（补结构审计发现的"未被约束定义"） — prover_c — DONE
+
+- 目标：`barrierQ`（ℚ 侧势垒）原本**没有任何伴随定理**（结构审计与 M3+M5a verifier 各自独立发现），
+  补 `barrierQ_cast : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam:ℝ) (x:ℝ)` 让 ℚ 侧数值有资格作 ℝ 层证据。
+- 试过且失败：
+  1. `unfold barrierQ barrier; push_cast` **单独不够** → 留 `X = X` 的 `unsolved goals`，必须补 `ring`；
+     而显式 `rw [Rat.cast_div, Rat.cast_pow, Rat.cast_sub, Rat.cast_mul, Rat.cast_ofNat]` **自带 rfl 收尾**，
+     后面再写 `ring` 报 `no goals to be solved` —— **两条路线的"尾巴规则相反"**。
+  2. `apply Rat.cast_inj.mp` 报 `typeclass instance problem is stuck … CharZero ?m`
+     → 必须显式写 **`(Rat.cast_inj (α := ℝ))`**。
+  3. `↑(0:ℚ)` 与 `(0:ℝ)` **不是 defeq**（API-NOTES 已记的 cast 字面量坑再次复现）。
+- 奏效：`unfold barrierQ barrier; push_cast; ring`（一条），退化点用 `(Rat.cast_inj (α := ℝ)).mp` + `rw [barrierQ_cast]` + `simp [barrier]`。
+- 可复用模式：
+  1. **"未被任何定理约束的定义"是一种结构性坏味道** —— 它意味着该定义可以任意改动而无人察觉。
+     交付后做一次"定义 → 引用计数"审计能直接发现它（本项目的唯一一处就是 `barrierQ`）。
+  2. `push_cast` 与显式 `rw [Rat.cast_*]` 是两条**收尾规则相反**的路线：前者不给 rfl 需要 `ring`，后者自带 rfl。
+  3. 若某条更短的路线需要给文件**新增 import**（破坏"只依赖 M1"的约定），**宁可写长一点**也不破坏依赖边界。
+
 <!-- 条目从这里继续往下追加 -->
