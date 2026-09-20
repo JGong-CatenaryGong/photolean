@@ -101,5 +101,14 @@ theorem epBounds_iff_no_inverted_direction {lam x : ℝ} (hlam : 0 < lam) :
     · have : -(1 / 2) ≤ x / (2 * lam) := (le_div_iff₀ h2).mpr (by linarith)
       linarith
 
+/-- Plan §7 #5 (Hammond bridge): Hammond's conformance region `-lam < x ∧ x < lam` entails the
+Evans–Polanyi bounds — a strictly inside-the-window step has both directions in the normal region,
+so #4 applies. -/
+theorem epBounds_of_reactionRegion {lam x : ℝ} (hlam : 0 < lam)
+    (h : Hammond.ReactionRegion lam x) : EPBounds lam x := by
+  rw [epBounds_iff_no_inverted_direction hlam]
+  simp only [Marcus.InvertedRegion, Hammond.ReactionRegion, not_or, not_lt] at h ⊢
+  exact ⟨le_of_lt h.2, by linarith⟩
+
 
 end PhotoLean.BEP
