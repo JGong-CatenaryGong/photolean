@@ -114,6 +114,21 @@
 
 ---
 
+## ⏳ M5b 的 lead 预验收证据（**不等于 verifier PASS**，故 8 行仍未打勾）
+
+2026-09-20，在 verifier 判决到达前，lead 用**快路径**独立跑了一遍 M5b 的验收清单，结论如下
+（证据可复跑；但按纪律，**verifier 未 PASS 之前这 8 行不得打勾**）：
+
+| 检查 | 命令 | 结果 |
+|---|---|---|
+| 门 | `check.sh --strict PhotoLean.Marcus.{Instances,RatModel}` | 均 `verdict: PASS` |
+| 批量公理 | 单探针 `#print axioms` × 35（Instances 31 + RatModel 4） | **35/35、0 error**：34 条三公理 + 1 条仅 `propext` |
+| 脚本抽查 | `axioms.sh` × 3（含 `inst_I4_mcc_rate_drop`） | 3/3 打印名 = 请求名，无竞态 |
+| 提交规范 | `git show --name-only` × 6 | 6 个 `feat(M5b)` 提交，**每个恰 1 个文件** |
+| 定义层交叉验证 | `proofs/probes/marcus-lead-crosscheck.lean` | **9 条**：不调用任何交付实例定理，直接从定义重推同一批结论（含 `rate(2.40) < rate(1.23)` ∀`kBT>0`） |
+| 数值核对 | Python 按定义计算 | 四条实例定理逐条印证；`barrier 1.20 1.23 = 0.0001875` 与文献 `≈0.0002 eV` 吻合 |
+| 证据链阅读 | 读证明体 | `inst_I1_zoneQ` = `by decide`；`inst_I2_not_inverted` 经正常区转移引理；`inst_I4_mcc_rate_drop` 由 `inverted_rate_decreases` 实例化（非重新展开 exp 论证） |
+
 ## 验收记录（verifier 独立跑门；lead 据此打勾）
 
 | 批次 | 范围 | 判决 | 关键证据 | 备注 |
