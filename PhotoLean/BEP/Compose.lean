@@ -64,5 +64,16 @@ sides of the equation are the same term up to unfolding the two definitions, hen
 theorem rate_eq_exp_neg_eact (A lam kB T x : ℝ) :
     Marcus.rate A lam kB T x = A * Real.exp (-(eact lam x) / (kB * T)) := rfl
 
+/-- Plan §7 #3: the BEP/Brønsted/Leffler coefficient equals the Hammond transition-state coordinate
+of the same step — the cross-module form of the plan §5 bridge. This is a genuine theorem about the
+linear-response body `1/2 - x/(2*lam)` of `transfer` (rather than a definitional restatement of
+`(lam - x)/(2*lam)`); the explicit physical premise `lam ≠ 0` is what makes the transition-state
+coordinate well defined (at `lam = 0` the two totalised-division values disagree). -/
+theorem transfer_eq_tsCoord_bridge {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+    transfer lam x = Hammond.tsCoord lam x := by
+  unfold transfer Hammond.tsCoord
+  -- clearing the common denominator `2 * lam` (legitimate by `hlam`) closes the goal outright
+  field_simp
+
 
 end PhotoLean.BEP
