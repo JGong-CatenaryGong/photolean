@@ -234,6 +234,11 @@ theorem inst_I9_unphysical_zone : Rat.epQVerdict (-2 : ℚ) 1 = Rat.EPQVerdict.u
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I9 (`model-constructed`): `α(-2, 1) = 3/4`, which lies **inside** `[0,1]`. -/
+theorem inst_I9_unphysical_transfer : Rat.qTransfer (-2 : ℚ) 1 = 3 / 4 := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
