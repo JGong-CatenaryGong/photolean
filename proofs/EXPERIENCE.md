@@ -1789,3 +1789,194 @@
     false-positive FAIL. Verified with the same `grep -E` as `check.sh` before the first commit
     (the note is now part of the header, inside a block comment, deliberately without the
     literals).
+
+## 2026-09-20 — Kasha Sprint-0 risk probe (12 rows; one statement kernel-refuted) — prover_b — DONE
+
+- Goal: `theories/kasha/probes/kasha-risk-probe.lean` — the Sprint-0 risk forms K1 #13/#23,
+  K2 #4/#5/#6/#14, K3 #1/#2/#3/#13, K4 #8/#12 proved verbatim from the statement authority
+  (sha256 `80198370…`, i.e. the corrected one) *before* the milestones are dispatched; acceptance
+  = `proofs/scripts/lake env lean <file>` exit 0 with nothing but the `#print axioms` lines.
+  11 of the 12 rows are proved as stated; row K3 #2 is refuted (below).
+- Tried and failed (all four transferable):
+  1. **K3 #2 `kashaWithin_one_iff_ratio` is false as stated** — not API drift. The row carries
+     `0 < decay 0`, `0 < tol`, `0 < rad 1` but nothing bounds the sign of `decay 1 = rad 1 + ic 1`;
+     K3 #1 (the rate form) is equivalent to `KashaWithin tol 1` only after multiplying by
+     `decay 1`, and for `decay 1 < 0` the cross-multiplication flips the inequality. Kernel witness
+     (`risk_kashaWithin_one_iff_ratio_refuted`, `#print axioms` clean): `rad = (1,1,0,…)`,
+     `ic = (1,-3,0,…)`, `tol = 1/2`; then `KashaWithin (1/2) 1` holds (`upperYield 1 = -1/2`,
+     `fluoYield 1 = 1/4`) while `(1-tol)/tol = 1 ≤ funnelRatio = -3/2` fails. Process lesson: the
+     api probe's `kashaWithin_one_iff_ratio_step` (`kasha-api-order.lean:104`) is only the
+     *rate form ⟺ ratio form* arithmetic — it never joins `KashaWithin … 1` to the rate form, so it
+     cannot certify the row; a chain of green sub-steps is not a green statement.
+     Minimal correction (lead's call): add `(h1 : 0 < decay rad ic 1)`, the premise K3 #1 already has
+     — kernel-checked in the probe as `risk_kashaWithin_one_iff_ratio_with_decay_pos`.
+  2. `rw [show (2 : ℕ) = 1 + 1 from rfl]` on a goal that also contains a real literal (`3 / 4`)
+     fails with "motive is not type correct" (the abstraction crosses the literal's `OfNat`
+     evidence). Works instead: `have hh := upperYield_succ_free f g 1; rw [hU1] at hh;
+     norm_num [radBranch, icBranch, decay] at hh; exact hh` — compute through a hypothesis.
+  3. `linarith` does not close `-Real.log K ≤ -(barrier lam x) / (kB*T) ↔ barrier lam x / (kB*T) ≤
+     Real.log K`: nested division plus inner negation is not one monomial for it (measured: "failed
+     to find a contradiction" with a provable goal). Works: `rw [show -a / b = -(a / b) from by
+     ring]; exact neg_le_neg_iff`.
+  4. `field_simp` sometimes already closes the goal (`rad/m + ic/m = 1` with `m ≠ 0`), so a
+     following `ring` errors with "no goals to be solved" → tail such proofs with `try ring`.
+- Worked (recipes worth reusing in K2/K3/K4):
+  - Interval splits without hypotheses: `ext; simp only [Finset.mem_range, Finset.mem_insert,
+    Finset.mem_Icc]; omega` for `range (N+1) = insert 0 (Icc 1 N)`, then `Finset.sum_insert`;
+    `Finset.sum_Icc_succ_top` / `Finset.prod_Icc_succ_top` for the `(N+1)`-step of `upperYield` /
+    `cascade` (both exist with the exact split signature; `sum_Icc_succ_bot` and
+    `sum_Icc_eq_sum_range` do not exist).
+  - Both Markov recursions (`fluoYield_succ`, `upperYield_succ`) and the split
+    `fluoYield = emitYield 0 + upperYield` are **hypothesis-free algebraic identities**: state them
+    without `RateData` and the verbatim `RateData` forms become one-line corollaries (the linter then
+    needs `set_option linter.unusedVariables false in`, the BEP-risk-probe precedent).
+  - `cascade_add_upperYield` and `kashaRule_iff_rad_zero`: induction on `N` with the hypothesis in
+    context — Lean 4's `induction` reverts dependent hypotheses, so `ih` comes back as
+    `RateData rad ic N → …`; the step needs `radBranch + icBranch = 1` to rule out
+    `icBranch (N+1) = 0`, which is exactly where `RateData` is essential (the `first` direction).
+  - Two-level rows as pure algebra: state a `private theorem two_level_algebra` over `r0 c0 r1 c1 tol`
+    with `(hd0 : 0 < r0 + c0) (hd1 : 0 < r1 + c1)` and discharge it with `rw [div_le_iff₀ hd1,
+    e1, e2, le_div_iff₀ hd0]; constructor <;> intro h <;> linarith`; the model row is then
+    `unfold …; exact two_level_algebra h0 h1`. Same trick for `kashaWithin_iff_effective` (divide by
+    `upperYield + cascade > 0`) and for the Marcus row (divide by `tol * rad 0 * A > 0`, then
+    `Real.log_le_iff_le_exp` + `Real.log_div` + `one_div_div`).
+  - Classifier recipe (K1 #23): `unfold kashaZone KashaRule KashaWithin; split_ifs with h1 h2` and
+    close the constructor-inequality branches with `absurd hc (by intro h; cases h)`; no positivity
+    is needed for the `withinTol` row (the classifier is built literally from the two predicates).
+  - `neg_le_neg_iff` and `one_div_div` are the two rewrites that make the Marcus bridge a
+    `rw`-only chain; `Real.log_le_iff_le_exp (hx : 0 < x)` is the log inversion.
+- Reusable pattern: for every "exact criterion" row, prove the **algebraic core** as a standalone
+  private lemma whose hypotheses are exactly the positivity facts the cross-multiplication needs,
+  then check that the delivered statement's hypothesis list implies *all* of them — a missing
+  positivity premise (here the sign of `decay 1`) is invisible to `#check` and to sub-step probes,
+  but a kernel counterexample finds it in one turn. Probe files: `kasha-risk-probe.lean`,
+  `kasha-api-risk.lean` (both 0 error / 0 warning).
+
+## 2026-09-20 — K-LIT-1: Kasha literature round 1 — literature_researcher — DONE
+
+- Goal: `theories/kasha/LITERATURE.md` round 1 — the five dispatch questions (canonical statement,
+  Vavilov's rule, the quantitative rate inequality, first-hand instance data, the energy-gap/Marcus
+  rate law), every block ending in a **formalizable implication**; acceptance = the record lands with
+  checkable provenance, `UNSUPPORTED` wherever nothing first-hand exists, and the K5b row literals
+  transcribable into `Instances.lean`. Delivered as §R1.0–§R1.9 (record is English; conversation is
+  Chinese).
+- Tried and failed (all four transferable):
+  1. **Every canonical/primary locus of this theory is behind Cloudflare or a paywall from this
+     host.** 403/202: `pubs.rsc.org` (Kasha 1950), `goldbook.iupac.org` **and** `iupac.org` **and**
+     `publications.iupac.org` **and** the Roskilde repository copy of the PAC 2007 glossary,
+     `pubs.aip.org`, `pubs.acs.org`, `tandfonline.com`, `degruyter.com`. Timeout/reset:
+     `web.archive.org` + `archive.org/wayback/available` (no Wayback route at all), Google Books API
+     (`googleapis.com/books`), HathiTrust, `en.wikipedia.org`, `r.jina.ai` (text proxy — dead for
+     every URL tried). Consequence recorded, not worked around: the two **normative** statements
+     (Kasha's own sentence; the IUPAC "Kasha rule" wording) are `secondary` in the record, each with
+     the quoting source named, and are flagged so nobody "upgrades" them by accident.
+  2. **A DOI written from memory is a landmine.** The guessed DOI for Siebrand 1967-I
+     (`10.1063/1.1840684`) is *Alexander & Salem*, a different paper — the real one is
+     `10.1063/1.1840685`; the "companion paper, Mol. Phys. 18, 285 (1970)" **does not exist** (that
+     locus is Zeeck; the companion is *J. Lumin.* 1–2, 134–142 (1970)); `10.1021/acs.chemrev.7b00191`
+     is not a valid DOI for Demchenko 2017 (`…7b00110` is). **All 38 DOIs in the delivered record were
+     Crossref-re-verified in one final pass** — do this before handing a literature file over; it
+     costs one loop and it is the only thing that catches a confident hallucinated citation.
+  3. **Flattened XML / OCR is not a formula.** Europe PMC `fullTextXML` flattening and the 1995
+     thesis's OCR both render displayed equations unreliably (superscripts split, symbols dropped:
+     `k_nr = C²/√ΔE …` came out as `C2 / AE 1104.4`). The record therefore names *attributions* and
+     *validity conditions* first-hand and **explicitly refuses to transcribe** the gap-law equation it
+     could not read cleanly. An honest "OCR unreliable, human must read the PDF" beats a
+     plausible-looking formula that no one can check.
+  4. **A delegate's number is a hypothesis until re-read here.** A retrieval delegate reported
+     "τ(S₂) = 1482 ± 73 ps" and "Φ(S₂) = 0.046 / k_r = 3.5×10⁷ / k_nr = 7.2×10⁸" — both were
+     confirmed, but only after re-fetching the sources in this session (the first grep even *missed*
+     the 1482, which was my pattern's fault, not the paper's absence); the same delegate's
+     "Jortner used ħω ≈ 1500 cm⁻¹" turned out to be a *later authors'* choice and was dropped to
+     `UNSUPPORTED`. **Rule applied: every load-bearing number was re-read at its locus before entering
+     the record; delegate claims that could not be re-read kept an explicit evidence label.**
+- Worked:
+  - **Re-probe the host block list every round.** `pmc.ncbi.nlm.nih.gov` and the Europe PMC REST
+    `fullTextXML` endpoint were **reachable** here although the sibling BEP record lists PMC as
+    blocked — a block list in a record is a dated observation, not a property of the host. (OpenAlex
+    answered 429 on a shared-IP budget; Crossref/Unpaywall/Semantic Scholar carried the load.)
+  - **The discovery chain that produced kernel-decidable instance rows**: (i) a *citing paper's*
+    abstract gave the canonical sentence verbatim (PubMed `efetch`), and (ii) an OA, DSpace-hosted PhD
+    thesis gave the numbers. The two rows: azulene (Σk_r = 3.5×10⁷, Σk_nr = 7.2×10⁸ s⁻¹, Φ = 0.046,
+    ΔE(S₂–S₁) = 14 010 cm⁻¹) and 4,6,8-trimethylazulene (3.3×10⁷, 6.7×10¹⁰ s⁻¹, Φ = 0.0005,
+    ΔE = 12 290 cm⁻¹) — **same experiment, same chromophore family, opposite verdicts** (ratio 20.6 vs
+    2030 against the plan's threshold 99).
+  - **A free correctness check that must be run on every transcribed row**: recompute a printed ratio
+    from its printed parts. Here `Σk_r/(Σk_r+Σk_nr)` reproduced the printed Φ_f exactly in every row
+    (0.0464 vs 0.046; 0.00049 vs 0.0005). That is what certifies the column semantics before the
+    numbers are frozen into Lean literals.
+  - **The anti-Kasha list had to shrink by evidence**: ovalene's S₂–S₁ gap is ≈ 450 cm⁻¹ and its two
+    states reach thermal equilibrium (JPAC 2026) — the *opposite* gap regime from azulene — so
+    "ovalene is an anti-Kasha emitter" is not usable for an IC-controlled row, and a claimed exception
+    list is not a data table.
+- Reusable pattern: **for a literature round whose output must feed Lean literals, work backwards from
+  the criterion.** The plan's sharp test needs `ic 1/rad 1` (equivalently Φ), so the retrieval targets
+  *ratios and yields*, never "rates" in the abstract. Then (a) transcribe in a fixed integer unit
+  (here 10⁶ s⁻¹) so the ℚ arithmetic stays `norm_num`-sized; (b) check by hand that the plan's
+  positivity premises (`decay 0 > 0`, `decay 1 > 0`) are visibly satisfied by the literals; (c) write
+  the modelling identification (which printed rate is `rad 1`/`ic 1`, and why the other channels are
+  negligible) into the row docstring; (d) mark a family `UNSUPPORTED` rather than filling it from a
+  textbook order of magnitude. Two of the four requested instance families failed that test
+  (classical PAHs, gas-phase small molecules) and are `UNSUPPORTED` in the record — that is the
+  deliverable working, not the deliverable failing.
+
+## 2026-09-20 — Kasha Sprint 0: three FALSE statements caught before delivery, and a checker-coverage gap — lead + prover_a + prover_b + prover_c — DONE
+
+- Goal: open the fourth theory (Kasha's rule, `theories/kasha/` + `PhotoLean/Kasha/`) with the same
+  discipline as Marcus/hammond/BEP: plan → statement authority → probes → milestones. 144 calibrated
+  declarations; six modules planned (K1–K5).
+- **Result of the round**: the Sprint-0 probes refuted **three** statements of the first skeleton
+  draft, each with a kernel counterexample, before any delivered file carried them. All three are the
+  *same mistake in different clothes*: **a statement whose premises do not carry the sign of a
+  quantity the proof must divide by.**
+  1. `kashaZone_eq_violating_iff` (K1 #24): the classifier tests the vanishing leak first, so
+     `upperYield = 0` parks it in `pure`; `¬ KashaWithin` can still hold when `tol < 0`, and
+     `RateData` bounds `decay`/`rad`/`ic` — never `tol`. Witness `rad ≡ 1, ic ≡ 1, N = 0, tol = -1`.
+     Fix: add `(htol : 0 < tol)`.
+  2. `kashaWithin_one_iff_ratio` (K3 #2) and its strict twin #9: the rate-form criterion is
+     equivalent to the ratio form only after multiplying by the **positive** factor `decay 1`; with
+     `decay 1 < 0` the cross multiplication flips the inequality and `funnelRatio` can be negative
+     while the rule holds. Witness `rad = (1,1,0,…)`, `ic = (1,-3,0,…)`, `tol = 1/2`. Fix: add
+     `(h1 : 0 < decay rad ic 1)`. **Found twice, independently**: prover_b in ℝ, prover_c in ℚ
+     (`kashaWithinQ_iff_funnelRatioQ`, witness `ic = twoIc 0 (-1)`) — two implementations, same
+     defect, which is why the ℚ layer was probed separately.
+- **Why it matters for the engine**: a statement can be false while *every sub-step probe is green*.
+  api_researcher had kernel-checked "rate form ⟺ ratio form" as an arithmetic step, and prover_b's
+  post-mortem states the lesson exactly: *a chain of green sub-steps is not a green statement*. The
+  Sprint-0 risk probe must therefore prove the **verbatim delivered form**, never a decomposition of
+  it (BEP's API round recorded the same rule).
+- **Tried and failed (kept as measured paths)**:
+  - Guessing that `RateData` (positivity of `decay`, nonnegativity of the rates) is enough to make
+    division-by-sign arguments safe: it is not — it says nothing about the *tolerance* `tol` nor about
+    the *sign of an individual level's total decay* when an `ic` may be negative. Both corrections had
+    to add the missing premise explicitly.
+  - `theories/BEP/probes/bep-fidelity.py` was believed to cover "the whole authority": it matched
+    `theorem|def|inductive` only, so it reported **143 of kasha's 144** declarations — the `structure
+    RateData` was silently skipped. Fixed by adding `structure` to the pattern; re-ran the other three
+    theories to confirm their reports are unchanged (BEP 191/191, hammond 102/102, Marcus 51/51 + 31
+    aux). **A checker's coverage is itself a claim to be verified** — same family as the
+    `theories/*/` directory sweep that once silently skipped a whole theory.
+  - `git commit --amend` is a concurrency hazard: prover_c's amend raced with the lead's commit and
+    rewrote the *lead's* commit message (repaired from the reflog; the commit content was intact).
+    Rule now in `AGENTS.md`: no `--amend`/`rebase`/`reset` in a multi-agent workspace, no `git add -A`,
+    and no history rewriting to fix cosmetic message artifacts.
+  - `Finset.Icc_succ_right` does not exist in this toolchain (recorded as banned); the top split of
+    `Icc a (b+1)` is `Finset.prod_Icc_succ_top` / `sum_Icc_succ_top`. `Finset.prod_le_one'` is
+    unusable on ℝ (`failed to synthesize OrderedCommMonoid ℝ`) — use the two-hypothesis
+    `Finset.prod_le_one`. `by decide` fails on ℚ goals with `/`-literals (third independent
+    confirmation) and `native_decide` remains banned.
+  - The exponential-race derivation of the branching probability (competing exponential clocks) is
+    **expressible but not provable within budget** in mathlib v4.17.0: the statement
+    `(expMeasure a).prod (expMeasure b) {p | p.1 < p.2} = ofReal (a/(a+b))` types, but the pieces
+    (`iIndepFun` ↔ `Measure.prod` bridge, density-measure/`Ioi 0` bookkeeping, `ofReal` integrability,
+    the `s < 0` a.e. split) are ~100 lines of measure theory. The plan's K4b/K4c stays a declared
+    modelling premise; the negative result is recorded rather than papered over.
+- **Reusable recipe (second, kernel-independent evidence path)**: before the provers finished, the
+  lead committed `theories/kasha/probes/kasha-instance-check.py` — an exact-rational re-implementation
+  of the model (totalised division like Lean's `x/0 = 0`) that checks every instance row's number, the
+  three threshold forms, probability conservation and both recursions over admissible random ladders,
+  the effective two-level reduction over 825 (ladder, tolerance) pairs, the levelwise counterexample
+  (`leak fraction = 6/7`) and the Marcus-bridge algebra over 400 parameter sets. Cost: ~30 minutes;
+  benefit: the *statements* were validated before the kernel work, and the delivered numbers now have
+  two independent implementations. It cannot replace the kernel — it caught nothing the risk probe did
+  not also catch — but it localises a failure to the statement rather than to a tactic.

@@ -49,6 +49,13 @@ proofs/scripts/lake build PhotoLean.Smoke     # 单模块
 - `.toolchain/` 与 `.lake/packages/` 是**符号链接**，指向已构建的 mathlib 缓存。
 - **禁止 `lake update`** —— 会重写 manifest 并触发数小时全量重建。
 - 冷启动 `lake build` 约 10 秒是正常的（mathlib olean 已缓存）。
+- **多 agent 并发工作区禁止 `git commit --amend`、`git rebase`、`git reset`**：
+  2026-09-20 实测一次 `--amend` 与另一 agent 的提交构成 TOCTOU 竞态，改写了**别人的**
+  commit message（靠 reflog 才还原）。提交只用 `git add <显式路径> && git commit -m ...`；
+  也**禁止 `git add -A`**（2026-09-20 lead 实测吞掉工人的中间产物）。并发提交可能撞
+  `.git/index.lock`：等 2 秒重试，不要删锁文件。
+- commit message 里出现 `(cid:…)` 一类转义残渣时**不要改写历史**：加一个新提交或在
+  经验库记录即可（历史是可核查证据，不是排版对象）。
 
 ## 迭代与记忆
 
