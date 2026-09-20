@@ -92,17 +92,23 @@
 
 ## M5b — 实例与判定（`PhotoLean/Marcus/Instances.lean`；属主 prover_c）
 
+> **编号以文件为准**（与 plan §8.2 旧编号不同，交付者已在文件内写"编号说明"）：
+> I1/I2 = 纯数（反转区/正常区）；**I3 = 文献 MCC 无势垒点 (1.20, 1.23)**；
+> **I4 = 文献 MCC 反转区对 (1.20, 2.40 / 2.00)**；**I5 = 文献 MCC 正常区 (1.20, 0.60)**；
+> **I6 = 光合反应中心深反转区 (0.25, 1.10)**；I7 = 非物理参数；I8 = 文献参数的**描述算子实例化 + 速率比较**。
+
 > **⚠️ 实例层文案边界（文献定量警示）**：经典模型在反转区**下降过快**（λ=1.2 时 x: 2.0→2.4 掉约 5 个数量级，
 > 实验只掉约 2 个数量级）。实例结论只能写"该体系落在反转区，且**经典 Marcus 模型**在该 (lam,x,T,A) 上满足描述"，
 > **不得**写成对实验的断言。
 
-- [ ] I1 反转区（纯数 `lam=1, x=3`）— Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 3）
-- [ ] I2 正常区（`lam=1, x=3/4`）— Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 3）
-- [ ] I3 无势垒点（`x = lam`，速率峰）— Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 3）
-- [ ] I4 文献参数·反转区 — Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 5；待 LITERATURE 表）
-- [ ] I5 文献参数·正常区 — Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 5）
-- [ ] I6 反例 `lam ≤ 0` 判"不符合" — Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 5）
-- [ ] I7 非物理分支 `A<0 ∧ lam<0` 判"不可采纳" — Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 5）
+- [x] 转移辅助 `normalRegion_of_zoneQ_normal` / `not_invertedRegion_of_zoneQ_normal` — Marcus/Instances.lean — prover_c — review — plan §8.2；commit f3f93f5
+- [x] I1 反转区（纯数 `lam=1, x=3`）+ I2 正常区（`3/4`）判定链 — Marcus/Instances.lean — prover_c — review — plan §8.2；commit 4e14952 / f3f93f5
+- [x] I3 文献无势垒点 (1.20, 1.23)：`barrier 1.20 1.23 = 0.0001875`（与文献 `ΔG‡ ≈ 0.0002 eV` 吻合）+ 反转区判定 — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [x] I4 文献 MCC 反转区对 (1.20, 2.40) 与 (1.20, 2.00) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [x] I5 文献 MCC 正常区 (1.20, 0.60)（含"不符合反转区"否定判定）— Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [x] I6 光合反应中心深反转区 (0.25, 1.10) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [ ] I7 非物理参数判定（`lam ≤ 0` ⇒ 描述失效；`A<0 ∧ lam<0` ⇒ 描述成立但速率非正 ⇒ 不可采纳）— Marcus/Instances.lean — prover_c — todo — plan §8.2（第二批）
+- [ ] I8 文献参数的**描述算子实例化** + **速率比较**（`rate(x=2.40) < rate(x=1.23)` 等，`kBT` 作显式前提）— Marcus/Instances.lean — prover_c — todo — plan §8.2（第二批）
 
 ---
 
