@@ -297,6 +297,29 @@ theorem not_kashaWithin_one_of_ratio_lt {rad ic : ℕ → ℝ} {tol : ℝ} (h0 :
     (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1)
     (h : funnelRatio rad ic < (1 - tol) / tol) : ¬ KashaWithin rad ic tol 1 := fun hW =>
   absurd ((kashaWithin_one_iff_ratio h0 h1 htol hr).mp hW) (not_le.mpr h)
+set_option linter.unusedVariables false in
+
+/-- Plan §6.2 #10 — **attainment**: for every tolerance in `(0,1)` the threshold is met exactly
+and cannot be improved. Witness `rad 0 = 1, rad 1 = tol, ic 0 = 0, ic 1 = 1 - tol` has
+`funnelRatio = (1 - tol)/tol` and conformance holds with equality; for any smaller `tol'` the
+boundary `(1 - tol')/tol'` is strictly larger, so the strict side of row #9 applies. The premise
+`tol < 1` is kept verbatim from the statement authority; the witness conforms for every
+`tol > 0`, so the premise is not consumed. -/
+
+theorem kashaThreshold_attained {tol : ℝ} (h0 : 0 < tol) (h1 : tol < 1) :
+    ∃ rad ic : ℕ → ℝ, KashaWithin rad ic tol 1 ∧
+      (∀ tol' : ℝ, 0 < tol' → tol' < tol → ¬ KashaWithin rad ic tol' 1) := by
+  let rad : ℕ → ℝ := fun n => if n = 0 then 1 else if n = 1 then tol else 0
+  let ic : ℕ → ℝ := fun n => if n = 0 then 0 else if n = 1 then 1 - tol else 0
+  have hfr : funnelRatio rad ic = (1 - tol) / tol := by simp [rad, ic, funnelRatio, decay]
+  have hd0 : 0 < decay rad ic 0 := by simp [rad, ic, decay]
+  have hd1 : 0 < decay rad ic 1 := by simp [rad, ic, decay]
+  have hr1 : 0 < rad 1 := by simpa [rad] using h0
+  refine ⟨rad, ic, (kashaWithin_one_iff_ratio hd0 hd1 h0 hr1).mpr (le_of_eq hfr.symm), ?_⟩
+  intro tol' ht0 ht1
+  refine not_kashaWithin_one_of_ratio_lt hd0 hd1 ht0 hr1 ?_
+  rw [hfr, div_lt_div_iff₀ h0 ht0]
+  nlinarith
 
 end Kasha
 
