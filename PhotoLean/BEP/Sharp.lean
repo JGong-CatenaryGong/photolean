@@ -102,5 +102,11 @@ theorem not_epBounds_of_lt_neg {lam x : ℝ} (hlam : 0 < lam) (hx : x < -lam) :
   have := (epBounds_iff_region hlam).mp h
   linarith
 
+/-- Plan §6.1 #6: α < 0 — the **forward** direction is in the inverted region. -/
+theorem not_epBounds_of_gt {lam x : ℝ} (hlam : 0 < lam) (hx : lam < x) : ¬ EPBounds lam x := by
+  intro h
+  have := (epBounds_iff_region hlam).mp h
+  linarith
+
 
 end PhotoLean.BEP
