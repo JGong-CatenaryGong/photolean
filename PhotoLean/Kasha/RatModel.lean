@@ -246,6 +246,63 @@ theorem kashaWithinQ_iff_funnelRatioQ {rad ic : ℕ → ℚ} {tol : ℚ} (h0 : 0
     rw [div_le_iff₀ h1, h2, ← mul_div_assoc]
     nlinarith [h3]
 
+set_option linter.unusedVariables false in
+
+/-- Plan §8.1 classifier row. -/
+theorem kashaQVerdict_eq_pure_iff {rad ic : ℕ → ℚ} {tol : ℚ} {N : ℕ}
+    (h : QRateData rad ic N) :
+    kashaQVerdict rad ic tol N = KashaQVerdict.pure ↔ upperYieldQ rad ic N = 0 := by
+  constructor
+  · intro hv
+    unfold kashaQVerdict at hv
+    split_ifs at hv with h1 h2
+    exact h1
+  · intro h0
+    unfold kashaQVerdict
+    exact if_pos h0
+
+set_option linter.unusedVariables false in
+
+/-- Plan §8.1 classifier row. -/
+theorem kashaQVerdict_eq_withinTol_iff {rad ic : ℕ → ℚ} {tol : ℚ} {N : ℕ}
+    (h : QRateData rad ic N) :
+    kashaQVerdict rad ic tol N = KashaQVerdict.withinTol ↔
+      upperYieldQ rad ic N ≠ 0 ∧ KashaWithinQ rad ic tol N := by
+  unfold kashaQVerdict KashaWithinQ
+  split_ifs with h1 h2 <;>
+    first
+      | exact iff_of_true rfl ⟨h1, h2⟩
+      | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨hK, -⟩; exact hK h1)
+      | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨-, hw⟩; exact h2 hw)
+
+/-- Plan §8.1 classifier row. **Corrected 2026-09-20** together with its ℝ-side twin
+`kashaZone_eq_violating_iff`: without `0 < tol` the row is FALSE at `rad ≡ 1`, `ic ≡ 1`, `N = 0`,
+`tol = -1` (the vanishing-leak branch parks the verdict in `pure` while `¬ KashaWithinQ` holds). -/
+theorem kashaQVerdict_eq_violating_iff {rad ic : ℕ → ℚ} {tol : ℚ} {N : ℕ}
+    (h : QRateData rad ic N) (htol : 0 < tol) :
+    kashaQVerdict rad ic tol N = KashaQVerdict.violating ↔ ¬ KashaWithinQ rad ic tol N := by
+  have hfl : 0 ≤ fluoYieldQ rad ic N := by
+    unfold fluoYieldQ
+    refine Finset.sum_nonneg fun i hi => ?_
+    rw [Finset.mem_range] at hi
+    unfold emitYieldQ
+    refine mul_nonneg (div_nonneg (h.2.1 i) (le_of_lt (h.1 i (Nat.le_of_lt_succ hi)))) ?_
+    unfold cascadeQ
+    refine Finset.prod_nonneg fun j hj => ?_
+    exact div_nonneg (h.2.2 j) (le_of_lt (h.1 j (Finset.mem_Icc.mp hj).2))
+  constructor
+  · intro hv
+    unfold kashaQVerdict at hv
+    split_ifs at hv with h1 h2
+    exact h2
+  · intro hw
+    have hw' : ¬ (upperYieldQ rad ic N ≤ tol * fluoYieldQ rad ic N) := hw
+    have hne : upperYieldQ rad ic N ≠ 0 := by
+      intro h0
+      exact hw' (by rw [h0]; exact mul_nonneg (le_of_lt htol) hfl)
+    unfold kashaQVerdict
+    rw [if_neg hne, if_neg hw']
+
 end Kasha
 
 end PhotoLean
