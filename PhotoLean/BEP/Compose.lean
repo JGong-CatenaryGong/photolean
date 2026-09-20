@@ -45,6 +45,11 @@ is imported.
 Statement authority: every declaration below matches the B4 block of
 `theories/BEP/probes/bep-statement-skeleton.lean` (plan §7) word for word. There is no unproved
 placeholder and no custom axiom in this file.
+
+Post-verification addition (2026-09-20, prover_b): the B4 block's AUX declaration
+`secSlope_eq_lefflerSecant` — absent from the delivered B4 set — is added at the end of the file, so
+this file's hash differs from the snapshot the independent B4 verifier PASSed; the twelve plan §7
+rows are untouched by the addition.
 -/
 import PhotoLean.BEP.Basic
 import PhotoLean.Marcus.Basic
@@ -249,6 +254,22 @@ theorem transfer_complementary_microscopic {lamInner lamOuter x : ℝ}
     (hlam : lamInner + lamOuter ≠ 0) :
     transfer (lamInner + lamOuter) x + reverseTransfer (lamInner + lamOuter) x = 1 := by
   unfold transfer reverseTransfer
+  ring
+
+/-! ## Cross-theory dictionary link (statement-authority AUX of the B4 block, after plan §7 #12) -/
+
+/-- Statement-authority AUX (no plan §7 row): the BEP *observable* window slope is Hammond's Leffler
+secant over the same pair of driving forces. Unfolding the four bodies turns the goal into
+`(eact lam x - eact lam (x + h)) / h = -((lam - (x + h)) ^ 2 / (4 * lam) - (lam - x) ^ 2 / (4 * lam))
+/ ((x + h) - x)`, i.e. the same term up to `-(b - a) = a - b` and `(x + h) - x = h`; no
+non-degeneracy premise is needed because both sides are totalised divisions and agree at `h = 0`
+(`0 = 0`). The link is not definitional — the two bodies differ in sign convention and in the pair
+indexing — hence it is proved rather than closed by `rfl`. -/
+theorem secSlope_eq_lefflerSecant (lam x h : ℝ) :
+    secSlope lam x h = Hammond.lefflerSecant lam x (x + h) := by
+  unfold secSlope Hammond.lefflerSecant Hammond.gapReactant eact
+  -- reindex Hammond's pair `(x, x + h)` to the BEP denominator `h`, then normalise in `ℝ`
+  rw [show x + h - x = h by ring]
   ring
 
 end PhotoLean.BEP
