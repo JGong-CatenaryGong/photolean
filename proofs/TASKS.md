@@ -43,16 +43,16 @@
 
 ## M2 — 势垒代数（`PhotoLean/Marcus/Barrier.lean`；属主 prover_a；Sprint 2）
 
-- [ ] `barrier_nonneg` — Marcus/Barrier.lean — prover_a — review — plan §5；⚠️ **提交偏差**：内容已被
+- [x] `barrier_nonneg` — Marcus/Barrier.lean — prover_a — done — plan §5；⚠️ **提交偏差**：内容已被
       lead 的 `c000996`（`git add -A` 误卷）吸收，本条无独立 feat 提交；余下 8 条仍各自一提交
-- [ ] `barrier_at_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 8d9c2ff
-- [ ] `barrier_symm` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 03c740f
-- [ ] `barrier_min_at_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 169a0c7
-- [ ] `barrier_mono_of_pos` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 3dc2fcc
-- [ ] `barrier_antitone_of_pos` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 4ab7259
-- [ ] `barrier_antitone_of_neg` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 4561931
-- [ ] `barrier_zero_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit ae1276e
-- [ ] `barrier_mono_cases` — Marcus/Barrier.lean — prover_a — review — plan §5；commit f0d79ee
+- [x] `barrier_at_lam` — Marcus/Barrier.lean — prover_a — done — plan §5；commit 8d9c2ff
+- [x] `barrier_symm` — Marcus/Barrier.lean — prover_a — done — plan §5；commit 03c740f
+- [x] `barrier_min_at_lam` — Marcus/Barrier.lean — prover_a — done — plan §5；commit 169a0c7
+- [x] `barrier_mono_of_pos` — Marcus/Barrier.lean — prover_a — done — plan §5；commit 3dc2fcc
+- [x] `barrier_antitone_of_pos` — Marcus/Barrier.lean — prover_a — done — plan §5；commit 4ab7259
+- [x] `barrier_antitone_of_neg` — Marcus/Barrier.lean — prover_a — done — plan §5；commit 4561931
+- [x] `barrier_zero_lam` — Marcus/Barrier.lean — prover_a — done — plan §5；commit ae1276e
+- [x] `barrier_mono_cases` — Marcus/Barrier.lean — prover_a — done — plan §5；commit f0d79ee
 
 ## M3 — 速率层（`PhotoLean/Marcus/Rate.lean`；属主 prover_b）
 
@@ -111,6 +111,8 @@
 | 批次 | 范围 | 判决 | 关键证据 | 备注 |
 |---|---|---|---|---|
 | M1 + M4b | `Basic.lean`(12 声明) + `Reorg.lean`(6) | **PASS / PASS** | 四步门 + 8/8 `axioms.sh` 均 `[propext, Classical.choice, Quot.sound]`；18/18 语句与骨架**逐字一致**；8/8 提交各含**恰一条**定理、恰一个文件；耍花招排查 0 命中；对抗性探针内核级验证 | 1 条**注释级**缺陷待修（`Reorg.lean` 把 5 条定义域前提说成"被蕴含"，实为"未被使用" —— verifier 给了内核反例）；另：`zone_trichotomy` 本身信息量弱（对任意 `ℝ→ℝ→Zone` 函数均成立），真正钉住语义的是三条 `zone_eq_*_iff` |
+
+| M2 | `Barrier.lean`(9 条) | **PASS** | 四步门 + 9/9 `axioms.sh` 干净（另用唯一路径隔离探针独立重取）；9/9 语句与骨架逐字一致；8/8 提交各含恰一条定理、只含该文件；`c000996` 偏差**核实为真**（`barrier_nonneg` 内容确在其中，行数闭合 35+4+6+4+9+8+11+5+13 = 95 = 文件总行数）；三条对抗性内核检查全过（`barrier_antitone_of_neg` 方向/`mono_cases` 四支穷尽且 `lam=0` 支未混入/`barrier_min_at_lam` 真全局最小且前提必需） | **发现 A**：文件与 API-NOTES 共 3 处把 `h₁ : 0 ≤ x₁` 说成"可由其他前提推出" —— **错**（反例 `lam=1,x₁=-5,x₂=-4`），正确定性是"**未被使用**（unused）"；**发现 D**：`lam = 0` 分支依赖除零约定（形式约定，非物理事实）⇒ 已补进 plan §13 |
 
 **verifier 提出的诚实性提醒（已采纳）**：
 1. **`zone_trichotomy` 强度很弱** —— 它没有断言分类器与三个区的对应，也没有断言三支互斥；
