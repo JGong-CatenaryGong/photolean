@@ -2794,3 +2794,45 @@
   S1 (PASS, 12 findings F1–F12), S2–S5a (PASS, F1–F4, no HIGH), S5b + tree + docs (mathematics PASS /
   documentation FAIL, V1–V14), disposal re-audit (PASS after R1–R7). Every finding of every run is
   recorded with its disposition; none invalidated a delivered theorem.
+
+## 2026-09-21 — Relations batch 2: the five-theory graph, composition edges and look-alikes (owner lead) — DONE
+
+- Task: `AGENTS.md` iron rule 8 item ② for the two second-batch theories. `PhotoLean/Relations.lean`
+  grew from 28 to 46 declarations (§7 Kasha → Marcus conditional composition, §8 Sabatier → BEP
+  composition, §9 the Sabatier ↔ Marcus look-alike cluster, §10 the no-edge registry);
+  `theories/RELATIONS.md` gained §2.4/§2.5 and N3; README's relation bullet and the AGENTS "status"
+  section were brought in line (the registered gap paragraph is gone — the rule is now closed for
+  all five theories). Gates: build OK, `check.sh --strict` PASS, 14 `axioms.sh` probes covering every
+  row added here (the §7 certificate, the six §8 re-exports, the seven §9 rows) all at
+  `[propext, Classical.choice, Quot.sound]`; the four §7 re-exports were probed in the Kasha
+  acceptance and are pinned here by compilation. Fidelity unchanged at 51/191/102/150/132.
+- Statement-first, as the per-theory practice requires: the seven new statements were calibrated in
+  `theories/Marcus/probes/relations-b2-statement-skeleton.lean` (outside `SOURCE_DIRS`, placeholders
+  on purpose) and compiled clean before a single proof was attempted. **No candidate had to be
+  demoted to prose** — the probe turned "C5 is risky" into "C5 is two `norm_num` rows".
+- Tried and failed / worth remembering:
+  1. **`rw` with `div_mul_cancel₀` on the equality assembled by `congrArg (· * (kB*T))` did not fire**
+     ("did not find instance of the pattern") although the printed goal looked identical. Working
+     route for the uniqueness half of C2: `rw [div_eq_div_iff hne hne] at h` then
+     `mul_right_cancel₀ hne h` — cancel the denominator *inside the equation* instead of rewriting
+     the multiplied-out form.
+  2. **`unfold` alone is not enough for the two certificate rows**: after unfolding both sides the
+     goal is syntactically identical (`A * exp u = A * exp u`) yet `unfold` reports it unsolved; an
+     explicit `rfl` on the next line closes it. Seen twice (`kernel_marcusIC`,
+     `marcus_rate_eq_activity`) — cheap to remember, expensive to rediscover.
+  3. **A `∀`-quantified "independence" claim is best delivered as a restatement, not as a new
+     induction**: C5b (the Marcus optimum is fixed by the curvature alone) is exactly C2 with the
+     bound variables moved outside, so the honest accounting counts it as an assembly, not as a new
+     theorem. The same applies to C3b (height contrast), assembled from C3a. Recording this keeps
+     the RELATIONS.md accounting rule honest: 18 new declarations, 12 without new mathematics, 6
+     proved here, **4 rows of genuinely new content**.
+  4. **The no-edge registry has to state what it is a claim about.** "Kasha ↔ BEP: none" is a fact
+     about the import structure plus the modelling vocabulary, *not* a claim that no physical
+     connection exists; the first draft of §10 read as the stronger claim and was reworded to name
+     the dependency fact and the modelling reason separately. Same lesson as the review's
+     "unused ≠ implied": **the strength of a negative claim must match its evidence.**
+- One structural gain worth reusing: for a look-alike pair, the productive shape is (i) a shared
+  *functional form* certificate, (ii) the shared *predicate* instantiated, then (iii) the differences
+  as theorems. Two of the three differences needed no new analysis at all — the Sabatier one-sided
+  secant rows and `Marcus.barrier_at_lam` were already delivered; assembling them into one contrast
+  is what makes the non-relation checkable.
