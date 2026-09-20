@@ -189,5 +189,23 @@ theorem epZone_eq_thermoneutral_iff {lam x : ℝ} (hlam : 0 < lam) :
     rw [h]
     unfold epZone
     rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0), if_pos rfl]
+/- The premise `hlam : 0 < lam` is kept for signature fidelity; neither direction consumes it:
+the second guard already supplies `¬ lam < 0` and the surviving branch supplies `0 < x`, the
+upper bound `x < lam` coming from `¬ (lam < x)` plus `x ≠ lam`. -/
+set_option linter.unusedVariables false in
+/-- Zone characterization, exergonic branch: the strictly exergonic side inside the structural
+window `(-lam, lam)`. -/
+theorem epZone_eq_exergonic_iff {lam x : ℝ} (hlam : 0 < lam) :
+    epZone lam x = EPZone.exergonic ↔ 0 < x ∧ x < lam := by
+  constructor
+  · intro h
+    unfold epZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6 h7 h8
+    exact ⟨h8, lt_of_le_of_ne (not_lt.mp h6) h4⟩
+  · intro ⟨h1, h2⟩
+    unfold epZone
+    rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
+      if_neg (ne_of_gt h1), if_neg (ne_of_lt h2), if_neg (by linarith : ¬ (x = -lam)),
+      if_neg (not_lt.mpr (le_of_lt h2)), if_neg (by linarith : ¬ x < -lam), if_pos h1]
 
 end PhotoLean.BEP
