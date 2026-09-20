@@ -225,5 +225,11 @@ theorem epConformsOnWindow_iff_radius {lam tol w : ℝ} (hlam : 0 < lam) (htol :
     rw [hdef x]
     exact le_trans h2 (key.mpr h)
 
+/-- Plan §6.2 #12: the radius is attained, not an estimate — the window of half-width exactly
+`bepRadius lam tol` is still conforming. -/
+theorem epConformsOnWindow_at_radius {lam tol : ℝ} (hlam : 0 < lam) (htol : 0 < tol) :
+    EPConformsOnWindow lam tol (-(bepRadius lam tol)) (bepRadius lam tol) :=
+  (epConformsOnWindow_iff_radius hlam htol (by unfold bepRadius; positivity)).mpr le_rfl
+
 
 end PhotoLean.BEP
