@@ -228,6 +228,13 @@ direction, instantiated from H2's `tsCoord_antitone` (no new arithmetic). -/
 theorem inst_I9_mcc_structural_monotone : tsCoord (6 / 5) (12 / 5) < tsCoord (6 / 5) (3 / 5) :=
   tsCoord_antitone (by norm_num : (0 : ℝ) < 6 / 5) (by norm_num : (3 / 5 : ℝ) < 12 / 5)
 
+/-! ## I10 — non-vacuity of the instance layer on literature parameters -/
+/-- I10: on the literature parameters both resemblance verdicts are inhabited — reactant-like at
+`x = 1/20` and product-like at `x = -1/20` — via H2's `reactantLike_iff` / `productLike_iff`. -/
+theorem inst_I10_nonvacuous : ReactantLike (6 / 5) (1 / 20) ∧ ProductLike (6 / 5) (-(1 / 20)) :=
+  ⟨(reactantLike_iff (by norm_num : (0 : ℝ) < 6 / 5)).mpr (by norm_num : (0 : ℝ) < 1 / 20),
+   (productLike_iff (by norm_num : (0 : ℝ) < 6 / 5)).mpr (by norm_num : (-(1 / 20) : ℝ) < 0)⟩
+
 end Hammond
 
 end PhotoLean
