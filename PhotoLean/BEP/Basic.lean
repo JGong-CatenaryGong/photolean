@@ -131,5 +131,10 @@ set_option linter.unusedVariables false in
 theorem eact_at_lam {lam : ℝ} (hlam : lam ≠ 0) : eact lam lam = 0 := by
   unfold eact
   field_simp
+/-- Degenerate curvature: with `lam = 0` the barrier collapses to `0` at every driving force
+(the totalised-division convention `y / 0 = 0`). -/
+theorem eact_zero_lam (x : ℝ) : eact 0 x = 0 := by
+  unfold eact
+  norm_num
 
 end PhotoLean.BEP
