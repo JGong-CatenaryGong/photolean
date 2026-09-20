@@ -239,5 +239,19 @@ theorem epZone_eq_atForwardLimit_iff {lam x : ℝ} (hlam : 0 < lam) :
     unfold epZone
     rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
       if_neg (by linarith : ¬ (lam = 0)), if_pos rfl]
+/-- Zone characterization, reverse barrierless limit: `x = -lam` (the transition state sits in
+the product well). -/
+theorem epZone_eq_atReverseLimit_iff {lam x : ℝ} (hlam : 0 < lam) :
+    epZone lam x = EPZone.atReverseLimit ↔ x = -lam := by
+  constructor
+  · intro h
+    unfold epZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6 h7 h8
+    exact h5
+  · intro h
+    rw [h]
+    unfold epZone
+    rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
+      if_neg (by linarith : ¬ (-lam = 0)), if_neg (by linarith : ¬ (-lam = lam)), if_pos rfl]
 
 end PhotoLean.BEP
