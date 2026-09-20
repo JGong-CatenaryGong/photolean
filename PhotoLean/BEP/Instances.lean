@@ -505,6 +505,17 @@ theorem inst_I12_affine_conforms_model_refuted :
     norm_num
   · exact inst_I11_F5_not_model_consistent
 
+/-- Non-vacuity of the instance layer (plan §8.2, last requirement): a conforming verdict, a
+non-conforming verdict, a conforming window and a failing window all exist — the layer is not a
+table of one-sided verdicts, and the negative rows are not vacuous. -/
+theorem inst_nonvacuous :
+    (∃ lam x : ℚ, Rat.epQVerdict lam x = Rat.EPQVerdict.conforming) ∧
+      (∃ lam x : ℚ, Rat.epQVerdict lam x = Rat.EPQVerdict.subLinear) ∧
+      (∃ lam tol w : ℚ, Rat.qConformsWindow lam tol w) ∧
+      (∃ lam tol w : ℚ, ¬ Rat.qConformsWindow lam tol w) :=
+  ⟨⟨2, 0, inst_I1_thermoneutral_zone⟩, ⟨2, 3, inst_I6_inverted_zone⟩,
+    ⟨2, 1 / 4, 0, inst_I1_thermoneutral_conforms⟩, ⟨2, 1 / 16, 1, inst_I10_threshold_fails⟩⟩
+
 end BEP
 
 end PhotoLean
