@@ -743,3 +743,73 @@
   - Corollary for the verifier: "all 29 verdicts are kernel-checked" is backed by 58
     `verdict: PASS` lines (one strict-check plus one axioms line per step) and no
     `FAIL|error|warning` line in the driver log.
+
+## 2026-09-20 — Hammond Sprint 0: two FALSE statements in the first skeleton draft — lead — DONE (caught before delivery)
+
+- Goal: turn the Hammond plan into a compiled statement skeleton (statement-first gate) and a lead risk probe.
+- Tried and failed:
+  1. The lead's risk probe covered only the statements that *looked* risky (crossing uniqueness, monotonicity,
+     sharpness branches, the Leffler identity). Two statements that looked routine were false:
+     - `gapProduct_eq_crossing_energy`: the reverse barrier is measured from the **product well** (energy `dG`),
+       so the un-referenced form `gapProduct lam (-dG) = productSurface lam dG (tsCoord …)` is off by exactly `dG`.
+       Found by `prover_a` with a kernel counterexample (`example : gapProduct 1 1 ≠ productSurface 1 (-1) (tsCoord 1 1)`).
+     - `conforms_iff_structure`: the intended "verdict = early ∨ half ∨ late" disjunction of sign predicates is a
+       **tautology of trichotomy** (`a < 1/2 ∨ a = 1/2 ∨ 1/2 < a` holds for every `a`), so it characterizes nothing.
+       Found by the lead's audit pass.
+- Worked:
+  1. Fix the statements in the skeleton (and plan/board) *before* delivery, and record the correction in the
+     experience bank + the plan (documenting *why* the well-referenced form is the right one).
+  2. **Systematic audit instead of risk-based spot checks**: `theories/hammond/probes/hammond-lead-audit.lean`
+     instantiates *every* non-definitional skeleton statement at concrete rationals **and adds negative controls**
+     (`¬` forms at points where the statement must fail), so a tautology or an off-by-a-term identity cannot pass.
+  3. Recipe for classifier evaluations (also reused by the provers and by the H5a layer):
+     `unfold <classifier>; split_ifs <;> first | rfl | decide | norm_num at *`
+     (`norm_num at *` kills contradictory branch hypotheses; `decide` closes constructor-disjointness goals).
+- Reusable pattern: **statement-first does not mean "only the risky statements are checked".** A skeleton needs a
+  *falsification pass with negative controls* before any prover is dispatched; a false statement costs a blocked
+  prover plus a statement change (the expensive kind of churn), while the audit probe costs minutes.
+
+## 2026-09-20 — Engine: `axioms.sh` false FAIL on long theorem names — prover_c (reported) / lead (fixed) — DONE
+
+- Goal: run the third acceptance layer (`#print axioms`) on a 62-character fully-qualified theorem name.
+- Tried and failed:
+  1. `LIST="$(printf '%s' "$OUT" | sed -n 's/.*\[\(.*\)\].*/\1/p' | head -1)"` parses the output **line-wise**;
+     `#print axioms` wraps at the Format width (~100 chars), so a long name splits `[propext, Classical.choice,
+     Quot.sound]` across three lines → `LIST` empty → `verdict: FAIL (could not parse axiom list)` while the raw
+     output contains *exactly* the three allowed axioms. A false negative on a correct theorem.
+  2. `set_option format.width 400` (file-level and `in`) and `lean -Dformat.width=400` — all ineffective.
+- Worked: `LIST="$(printf '%s' "$OUT" | tr '\n' ' ' | sed -n 's/.*\[\(.*\)\].*/\1/p' | head -1)"` — join the lines
+  before parsing. Re-ran the previously failing theorem: `verdict: PASS (only mathlib infrastructure axioms)`.
+- Reusable pattern: **when a gate parses tool output, it must normalize the tool's formatting first** — a gate that
+  reports FAIL on correct input is as costly as one that misses a defect (here it nearly became a "blocked"
+  milestone). Keep the failure reproducible and record it in the API/gate log.
+
+## 2026-09-20 — Engine: adding a second theory to the contract (Hammond) — lead — DONE
+
+- Goal: host a second theory without breaking the Marcus data plane or the acceptance gate.
+- Worked (additive design):
+  1. `proofs/ENGINE.yml`: keep the canonical single-theory keys (`PLAN`, `TASKS`, …) untouched and add
+     `THEORIES="Marcus hammond"` plus `<LEAF>_<theory>` keys (`PLAN_hammond`, `TASKS_hammond`,
+     `LITERATURE_hammond`, `PROBES_hammond`, `RESULT_hammond`).
+  2. `proofs/scripts/check.sh`: a generic loop over `THEORIES` that checks `<LEAF>_<theory>` existence
+     (`${!var:-}` indirect expansion, skipped when the variable is unset) — so a new theory's leaves are
+     actually gated, and old projects are unaffected.
+  3. `SOURCE_DIRS` stays global: the new theory's Lean sources go to `PhotoLean/Hammond/` (the human confirmed
+     this layout explicitly) and `lakefile.toml`'s `defaultTargets` gains one line per delivered module.
+- Reusable pattern: **extend the data plane additively; never re-point the canonical keys.** A second theory must
+  not silently un-gate the first one's leaves, and a bare full-tree run must build what the scan can see.
+
+## 2026-09-20 — Hammond: submitted theory is weaker than the sharpest provable form in 4 places — prover_b (audit) — DONE (documented, not changed)
+
+- Goal: adversarially audit the delivered H1/H5a statements (hypothesis necessity, boundary, non-vacuity,
+  classifier integrity, independence) — 99 kernel checks in `theories/hammond/probes/hammond-audit-b.lean`.
+- Result: **no false statement, no vacuous hypothesis**; 40 `#print axioms` clean. Tightness observations:
+  1. `tsCoord_mem_iff`'s `0 < lam` is not sharp: for `lam = 0` the equivalence holds for every `x`; the sharp
+     hypothesis is `0 ≤ lam`. (`reactionRegion_pos` is nevertheless forced: `(∃ x, ReactionRegion lam x) ↔ 0 < lam`.)
+  2. The seven zone-characterization lemmas split into three classes: `early`/`late`/`atReactant` hold for arbitrary
+     `lam` and `x` (their `0 < lam` is redundant), `atProduct` needs only `lam ≠ 0`, and only
+     `half`/`beyondReactant`/`beyondProduct` genuinely need the sign hypothesis.
+  3. The `lam ≠ 0` hypotheses of the two crossing-energy identities and of `tsCoord_at_lam` are redundant at `lam = 0`.
+- Reusable pattern: **a redundant hypothesis is not a defect, but it must be reported as "unused / a sharp form is
+  available", never as "derivable from the others".** Keep the delivered signature stable (statement stability is
+  worth more than tightness here) and record the sharp form + the kernel counterexamples for the next revision.
