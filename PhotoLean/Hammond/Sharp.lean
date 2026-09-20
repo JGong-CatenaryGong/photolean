@@ -58,6 +58,11 @@ theorem hammond_lam_pos_of_descriptor {lam : ℝ} (h : HammondDescriptor lam) : 
     exact absurd (h x₁ x₂ hlt) hnot
   · exact hpos
 
+/-- Sharp characterization of the validity condition of the Hammond descriptor: the description
+holds exactly for positive curvature (`hammond_descriptor_holds` is H2's sufficiency). -/
+theorem hammond_sharp (lam : ℝ) : HammondDescriptor lam ↔ 0 < lam :=
+  ⟨hammond_lam_pos_of_descriptor, hammond_descriptor_holds⟩
+
 end Hammond
 
 end PhotoLean
