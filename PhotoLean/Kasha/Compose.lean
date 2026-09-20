@@ -302,6 +302,107 @@ theorem not_kashaWithin_of_ladderRatio_lt {rad ic : ℕ → ℝ} {N : ℕ} {tol 
     ¬ KashaWithin rad ic tol N :=
   fun hc => absurd ((kashaWithin_iff_ladderRatio h hu htol h0).mp hc) (not_le.mpr hlt)
 
+/-- Plan §7.2 #12 — **the Marcus bridge**: if the `S₂ → S₁` internal-conversion rate follows the
+Marcus rate law `A · exp (-barrier λ x / (kB·T))` of `PhotoLean.Marcus`, Kasha conformance at
+tolerance `tol` is **exactly** the explicit bound `(λ - x)² ≤ 4 λ (kB·T) log K` on the squared energy
+gap, with `K = kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol`. The chain is the two-level
+rate criterion (defined two-level collapses of rows 3–6, inlined here) → division by
+`tol · rad 0 · A > 0` → `1/K ≤ exp (-barrier/(kB·T))` → logarithms (`Real.log_le_iff_le_exp`) →
+multiplication by `kB·T > 0` and by `4λ > 0`. Literature caveat (plan §7.2, §13 #6): the classical
+strong-coupling Marcus form is a **modelling premise**, not the general energy-gap law (Jortner's
+exponential form, promoting modes and Franck–Condon factors are outside the model); the premise is
+the explicit hypothesis `hic` below. -/
+theorem kashaWithin_one_marcus {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (h : RateData rad ic 1)
+    (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
+    (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x) :
+    KashaWithin rad ic tol 1 ↔
+      (lam - x) ^ 2 ≤ 4 * lam * (kB * T) * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol) := by
+  have two_level_algebra : ∀ {r0 c0 r1 c1 tol : ℝ}, 0 < r0 + c0 → 0 < r1 + c1 →
+      (r1 / (r1 + c1) ≤ tol * (r0 / (r0 + c0) * (c1 / (r1 + c1)) + r1 / (r1 + c1)) ↔
+        r1 * (r0 + c0) * (1 - tol) ≤ tol * (r0 * c1)) := by
+    intro r0 c0 r1 c1 tol hd0 hd1
+    have e1 : (tol * (r0 / (r0 + c0) * (c1 / (r1 + c1)) + r1 / (r1 + c1))) * (r1 + c1)
+        = tol * (r0 / (r0 + c0) * c1 + r1) := by
+      field_simp
+      ring
+    have e2 : tol * (r0 / (r0 + c0) * c1 + r1) = tol * (r0 * c1 + r1 * (r0 + c0)) / (r0 + c0) := by
+      field_simp
+    rw [div_le_iff₀ hd1, e1, e2, le_div_iff₀ hd0]
+    constructor <;> intro hh <;> linarith
+  have log_recip_le_iff : ∀ {K y : ℝ}, 0 < K → (1 / K ≤ Real.exp y ↔ -Real.log K ≤ y) := by
+    intro K y hK
+    rw [← Real.log_le_iff_le_exp (by positivity : (0 : ℝ) < 1 / K),
+      Real.log_div one_ne_zero (ne_of_gt hK), Real.log_one]
+    ring_nf
+  have hC : cascade rad ic 0 1 = icBranch rad ic 1 := by
+    unfold cascade
+    have hset : Finset.Icc (0 + 1) 1 = ({1} : Finset ℕ) := by
+      ext j
+      simp only [Finset.mem_Icc, Finset.mem_singleton]
+      omega
+    rw [hset, Finset.prod_singleton]
+  have hU : upperYield rad ic 1 = radBranch rad ic 1 := by
+    unfold upperYield
+    rw [Finset.Icc_self, Finset.sum_singleton]
+    exact emitYield_self rad ic 1
+  have hfluo : fluoYield rad ic 1 = radBranch rad ic 0 * icBranch rad ic 1 + radBranch rad ic 1 := by
+    have hsplit : fluoYield rad ic 1 = emitYield rad ic 0 1 + upperYield rad ic 1 := by
+      unfold fluoYield upperYield
+      have hset : Finset.range (1 + 1) = insert 0 (Finset.Icc 1 1) := by
+        ext n
+        simp only [Finset.mem_range, Finset.mem_insert, Finset.mem_Icc]
+        omega
+      rw [hset, Finset.sum_insert (by simp)]
+    rw [hsplit, hU]
+    congr 1
+    unfold emitYield
+    rw [hC]
+  have hd0 : 0 < decay rad ic 0 := h.decay_pos 0 (by norm_num)
+  have hd1 : 0 < decay rad ic 1 := h.decay_pos 1 le_rfl
+  have hrate : KashaWithin rad ic tol 1 ↔
+      rad 1 * decay rad ic 0 * (1 - tol) ≤ tol * (rad 0 * ic 1) := by
+    unfold KashaWithin
+    rw [hU, hfluo]
+    unfold radBranch icBranch decay
+    exact two_level_algebra hd0 hd1
+  have hm : 0 < 1 - tol := by linarith
+  have hKpos : 0 < kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol := by
+    unfold kashaGapThreshold
+    exact div_pos (mul_pos (mul_pos hA hr0) htol0) (mul_pos (mul_pos hr1 hd0) hm)
+  have hPpos : 0 < tol * (rad 0 * A) := mul_pos htol0 (mul_pos hr0 hA)
+  have hratio : rad 1 * decay rad ic 0 * (1 - tol) / (tol * (rad 0 * A))
+      = 1 / kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol := by
+    rw [kashaGapThreshold, one_div_div]
+    ring
+  have hstep1 :
+      (rad 1 * decay rad ic 0 * (1 - tol)
+          ≤ tol * (rad 0 * (A * Real.exp (-(PhotoLean.Marcus.barrier lam x) / (kB * T)))))
+        ↔ (1 / kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol
+            ≤ Real.exp (-(PhotoLean.Marcus.barrier lam x) / (kB * T))) := by
+    rw [show tol * (rad 0 * (A * Real.exp (-(PhotoLean.Marcus.barrier lam x) / (kB * T))))
+          = Real.exp (-(PhotoLean.Marcus.barrier lam x) / (kB * T)) * (tol * (rad 0 * A)) from
+        by ring,
+      ← div_le_iff₀ hPpos, hratio]
+  rw [hrate, hic, marcusIC, hstep1, log_recip_le_iff hKpos,
+    show PhotoLean.Marcus.barrier lam x = (lam - x) ^ 2 / (4 * lam) from rfl]
+  have h4 : (0 : ℝ) < 4 * lam := by linarith
+  have h4kT : (0 : ℝ) < 4 * lam * (kB * T) := mul_pos h4 hkT
+  constructor
+  · intro hh
+    rw [neg_div] at hh
+    have h2 : (lam - x) ^ 2 / (4 * lam) / (kB * T)
+        ≤ Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol) :=
+      neg_le_neg_iff.mp hh
+    rw [div_div, div_le_iff₀ h4kT] at h2
+    linarith
+  · intro hh
+    have h2 : (lam - x) ^ 2 / (4 * lam) / (kB * T)
+        ≤ Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol) := by
+      rw [div_div, div_le_iff₀ h4kT]
+      linarith
+    rw [neg_div]
+    exact neg_le_neg_iff.mpr h2
+
 
 end Kasha
 
