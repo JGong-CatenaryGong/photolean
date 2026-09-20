@@ -79,12 +79,12 @@
 - [x] `lamInner_pos` — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit acc5e8e
 - [x] `lamOuter_pos`（Pekar 因子正性）— Marcus/Reorg.lean — prover_d — done — plan §7.2；commit fcb7589
 - [x] `lam_total_pos` — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit de63c09
-- [ ] **[拉伸]** `hgeom_of_nonoverlap`（`a1+a2 ≤ R ⇒ 几何因子正`，把 `hgeom` 从假设变成推导）— Marcus/Reorg.lean — prover_d — review — plan §7.2；commit 61759b3
+- [x] **[拉伸]** `hgeom_of_nonoverlap`（`a1+a2 ≤ R ⇒ 几何因子正`，把 `hgeom` 从假设变成推导）— Marcus/Reorg.lean — prover_d — done — plan §7.2；commit 61759b3
 
 ## M4c — 复合定理（`PhotoLean/Marcus/Compose.lean`；属主 prover_d；Sprint 5）
 
-- [ ] `descriptor_holds_of_microscopic`（import Sharp + Reorg）— Marcus/Compose.lean — prover_d — review — plan §7.2；commit c778d4e
-- [ ] `descriptor_holds_of_nonoverlap`（拉伸：几何替代 hgeom）— Marcus/Compose.lean — prover_d — review — plan §7.2；commit 6338f7f
+- [x] `descriptor_holds_of_microscopic`（import Sharp + Reorg）— Marcus/Compose.lean — prover_d — done — plan §7.2；commit c778d4e
+- [x] `descriptor_holds_of_nonoverlap`（拉伸：几何替代 hgeom）— Marcus/Compose.lean — prover_d — done — plan §7.2；commit 6338f7f
 
 ## M5a — ℚ 判定层（`PhotoLean/Marcus/RatModel.lean`；属主 prover_c；Sprint 2）
 
@@ -125,6 +125,8 @@
 | M3 + M5a | `Rate.lean`(6) + `RatModel.lean`(2 定理+2 定义) | **PASS / PASS** | 四步门 + 8/8 `axioms.sh` 干净（另用唯一路径隔离探针二次取证，含 5 个定义）；10/10 语句与骨架逐字一致（含定义体）；9/9 提交各含恰一条定理、只含属主文件；**三条对抗性内核检查**：正常区/反转区**方向**数值核对（0.852<0.939 升；0.368<0.779 降；峰=1.0）、`rate_ratio` 在 5 类边界赋值下全部成立且给出 `hA` 必要性反例（`A=0` 时等式假）、`zoneQ_eq_zone` 在 **16 组**含 `lam=0`/`lam<0` 的点上与 Python 期望三方一致 | **发现 (a)**：`plan.md §13` 第 4 行说 Lean 形态是 `0<kB ∧ 0<T`，实际交付用 `0 < kB*T`（乘积）⇒ 已改计划；**(b)** `barrierQ` 无伴随定理（相对 ℝ 理论未被约束）⇒ 已派补转移引理；**(c)** `normal_rate_increases` 的 `0 ≤ x₁` 数学多余（verifier 证了更强的无此前提版本）；**(d)** `plan.md §8.2` 表格 I2 行仍写 `by decide`（代码块已纠正）⇒ 已改；**(e)** M5b 实例若用 ℚ 侧势垒数值须先有转移引理 |
 
 | M4a | `Sharp.lean`(9 条，含主定理) | **PASS** | 门 + 9/9 `axioms.sh` 干净（打印名与请求名逐字相符）；**5/5 语句三方一致**（plan §7.1 / 骨架 / 交付，字符级比对 + 内核 `#check` 精化类型对照）；grep 0 命中（另查 `set_option/macro/elab/run_cmd/#eval/private/@[` 等"花招面"亦 0）；9/9 提交各含恰一条定理、只含 `Sharp.lean`；**对抗性**：`lam=0` 支由 4 条无前提 `example` 独立复现（`barrier 0 x = 0` ⇒ `rate ≡ A` ⇒ `A < A`），`lam<0` 支数值核对（`barrier(-1,0)=-1/4`、`barrier(-1,1)=-1` ⇒ 速率递增、与描述反向），组装用 `#print` 证明项确认 `lt_trichotomy` 三分支**都**被接上；**并用内核反例回答**："若删掉左边 `(∀x, 0<rate)` 合取项，定理即不成立"（反例 `A=lam=-1`） |
+
+| M4c + M4b 追加 | `Compose.lean`(2 条) + `Reorg.lean` 的 `hgeom_of_nonoverlap` | **PASS / PASS** | 门 + 10 条 `axioms.sh`（含 regression）干净；`descriptor_holds_of_microscopic` 与骨架/plan **逐字一致**；`descriptor_holds_of_nonoverlap` 与 microscopic 的机械差异**仅为** `(hR, hgeom)` → `hRge` 一处替换（`hgeom`/`0<R` 均不在其前提中）；`e626884` 注释改动经**位置感知解析器**确认 16 条变更行全在注释内、token 流 292=292 一致；**最强证据**：把源文件逐字节复制到 `/tmp` 从零重建，olean md5 与项目一致 ⇒ 排除 stale olean；**对抗性**：`hgeom_of_nonoverlap` 边界 + 256 组有理扫描全部成立且前提不可去（`a1=a2=1,R=1` 反例）；`descriptor_holds_of_microscopic` 用 12 条前提逐条 `norm_num` 消掉得 λ=1/3 并导出**具体速率不等式**（非空转，证明项 12/12 前提 used）；nonoverlap 版证明项**真调用** `hgeom_of_nonoverlap`（11/11 前提 used） | **记账缺口（已修）**：两个拉伸语句原先未回填骨架 ⇒ 已补（骨架 43→45 条，保真度检查现覆盖 **45/45**）；`one_div_le_one_div_of_le` 未入 API-NOTES ⇒ 已转校准者 |
 
 **M2 发现 A 的关闭**：三处（`Barrier.lean` 头注释与 doc comment、`API-NOTES.md`）均已修正为
 "**证明未使用（unused）**"，并保留内核反例作为"典型误写"警示 ——

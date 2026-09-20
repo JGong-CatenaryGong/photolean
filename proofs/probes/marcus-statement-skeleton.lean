@@ -183,11 +183,25 @@ theorem lamOuter_pos {dE a1 a2 R nSq epsS : ℝ} (hdE : 0 < dE) (ha1 : 0 < a1) (
 theorem lam_total_pos {lamIn lamOut : ℝ} (h₁ : 0 ≤ lamIn) (h₂ : 0 < lamOut) : 0 < lamIn + lamOut := by
   sorry
 
+/-- 几何因子正性**可由"两球不重叠"推出**（把 `hgeom` 从假设变成推导）。
+    [拉伸项；由 prover_d 交付，2026-09-20 回填骨架 —— verifier 在 M4c 验收中指出此记账缺口] --/
+theorem hgeom_of_nonoverlap {a1 a2 R : ℝ} (ha1 : 0 < a1) (ha2 : 0 < a2)
+    (hRge : a1 + a2 ≤ R) : 1 / R < 1 / (2 * a1) + 1 / (2 * a2) := by
+  sorry
+
 /-- 复合定理：微观正性（内层非负 + 外层段 Pekar 正性）⇒ 反转区描述成立。--/
 theorem descriptor_holds_of_microscopic {A kB T kk dq dE a1 a2 R nSq epsS : ℝ} (hA : 0 < A)
     (hkB : 0 < kB) (hT : 0 < T) (hkk : 0 ≤ kk) (hdE : 0 < dE) (ha1 : 0 < a1) (ha2 : 0 < a2)
     (hR : 0 < R) (hgeom : 1 / R < 1 / (2 * a1) + 1 / (2 * a2)) (hnSq : 0 < nSq) (hepsS : 0 < epsS)
     (hPekar : 1 / epsS < 1 / nSq) :
+    InvertedDescriptor A (lamInner kk dq + lamOuter dE a1 a2 R nSq epsS) kB T := by
+  sorry
+
+/-- [拉伸项] 同上的**几何版**：用"两球不重叠" `a1 + a2 ≤ R` 替代 `hgeom`
+    （后者由 `hgeom_of_nonoverlap` 推出）。[由 prover_d 交付，2026-09-20 回填骨架] --/
+theorem descriptor_holds_of_nonoverlap {A kB T kk dq dE a1 a2 R nSq epsS : ℝ} (hA : 0 < A)
+    (hkB : 0 < kB) (hT : 0 < T) (hkk : 0 ≤ kk) (hdE : 0 < dE) (ha1 : 0 < a1) (ha2 : 0 < a2)
+    (hRge : a1 + a2 ≤ R) (hnSq : 0 < nSq) (hepsS : 0 < epsS) (hPekar : 1 / epsS < 1 / nSq) :
     InvertedDescriptor A (lamInner kk dq + lamOuter dE a1 a2 R nSq epsS) kB T := by
   sorry
 
