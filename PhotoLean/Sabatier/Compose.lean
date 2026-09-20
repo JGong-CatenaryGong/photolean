@@ -130,6 +130,29 @@ theorem linearVolcano_le_parabolic {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < l
     (le_trans (bepLine_le_eact h1 (-dE)) (le_max_left _ _))
     (le_trans (bepLine_le_eact h2 dE) (le_max_right _ _))
 
+/-- The two Marcus-type parabolas cross at `apexPar`. In the square roots `√λ₁ =: s1`, `√λ₂ =: s2`
+the apex is `s1 * s2 * (s2 - s1) / (s1 + s2)` and both branches take the common value
+`((s1 ^ 2 + s2 ^ 2) / (2 * (s1 + s2))) ^ 2` there. (plan §7) -/
+theorem parabolicBarrier_crossing {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) :
+    parabolaUp lam1 (apexPar lam1 lam2) = parabolaDown lam2 (apexPar lam1 lam2) := by
+  unfold parabolaUp parabolaDown apexPar BEP.eact
+  set s1 := Real.sqrt lam1 with hs1
+  set s2 := Real.sqrt lam2 with hs2
+  have hs1pos : 0 < s1 := by rw [hs1]; exact Real.sqrt_pos_of_pos h1
+  have hs2pos : 0 < s2 := by rw [hs2]; exact Real.sqrt_pos_of_pos h2
+  have h1sq : lam1 = s1 ^ 2 := by rw [hs1]; exact (Real.sq_sqrt h1.le).symm
+  have h2sq : lam2 = s2 ^ 2 := by rw [hs2]; exact (Real.sq_sqrt h2.le).symm
+  rw [h1sq, h2sq]
+  rw [show s2 ^ 2 * s1 - s1 ^ 2 * s2 = s1 * s2 * (s2 - s1) by ring]
+  have hs1ne : s1 ≠ 0 := ne_of_gt hs1pos
+  have hs2ne : s2 ≠ 0 := ne_of_gt hs2pos
+  have hsum : s1 + s2 ≠ 0 := ne_of_gt (by linarith : (0 : ℝ) < s1 + s2)
+  have h4s1 : (4 : ℝ) * s1 ^ 2 ≠ 0 := ne_of_gt (by positivity)
+  have h4s2 : (4 : ℝ) * s2 ^ 2 ≠ 0 := ne_of_gt (by positivity)
+  rw [div_eq_div_iff h4s1 h4s2]
+  field_simp
+  ring
+
 end Sabatier
 
 end PhotoLean
