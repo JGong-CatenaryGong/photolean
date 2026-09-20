@@ -439,10 +439,36 @@ Sprint-0 note called the *Marcus bridge* "K4b" (it is K4c; K4b is the exponentia
 probe `kasha-api-race.lean` called the exponential-race premise "K4c" (the inverse), and two more
 plan rows (§6.1 #6 `kashaWithin_mono_tol`, §7.2 #15 `kashaGapThreshold_pos`) were still not literal,
 which made the "row by row" claim over-broad. All corrected in `92fad2f`, except the probe's
-line 22, whose single-label inversion survived that commit and was corrected in the follow-up
-commit of this round (reported by run 8).
+line 22, whose single-label inversion survived that commit and was corrected in `0e3acbe`
+(reported by run 8).
 
-### Run 8 — pending — final delta check of the run-7 fixes
+### Run 8 — 2026-09-20 — final delta check of the run-7 fixes — verdict **C-plane FAIL (one surviving single-label inversion)**
 
-A tight re-check (the F5 residual, the four label sites, the two plan rows, and the scope of the
-"row by row" claim) is scheduled; no verdict is recorded here until that report exists.
+Verifier: same role, tight delta scope. Five of the six items confirmed fixed: the source plane is
+still frozen at `372a384` (no `.lean` code-plane change), the Chinese header of `RESULTS.md` now
+states the same provenance rule as the English half, the two plan rows are literal against the
+authority, the board's run-6/run-7 records are accurate summaries, and the re-sweep found no stale
+count (2,360 lines; 99 = 92 + 7; 150 = 110 + 37 + 3; fidelity 44/22/15/20/29/20; the instance ratios
+and boundaries; 193/825/400). All gates green. **One factual defect stood**: `probes/kasha-api-race.lean`
+line 22 still called the exponential-race premise "K4c", contradicting line 7 of the same file and
+plan §7.2 (K4b = the race probe, K4c = the Marcus-bridge bookkeeping). Three cosmetic/provenance
+items were also reported: the plan's unreproducible "all 75 table rows" figure, this board's run-7
+closure not naming the follow-up commit, and an "anti-Kashi" typo. All four were corrected in
+`0e3acbe`.
+
+### Run 9 — 2026-09-20 — minimal confirmation of the run-8 fixes — verdict **C-plane PASS / contract gates PASS**
+
+Verifier: same role, four-item scope. (1) The probe's lines 7 and 22 now both read K4b and the file
+compiles exit 0 with no single-label inversion anywhere in the leaves (the paired `plan K4b/K4c`
+mentions are header/loci lines, not assertions about one premise); the API log, literature record and
+`RESULTS.md` reference the two items correctly. (2) The plan's "75 table rows" figure is replaced by
+a description of the comparison. (3) The board's run-7 closure now names `0e3acbe`, and the
+`anti-Kashi` typo is gone (repo-wide grep: 0 hits). (4) No new drift: the last commit touching
+`PhotoLean/` is still `372a384`, the worktree is clean, the commit counts are unchanged, and the
+gates re-run verbatim: `lake build` → `Build completed successfully.` (exit 0); `check.sh --strict` →
+scan `clean` / `build: OK` / `verdict: PASS` (exit 0); `axioms.sh … I11t_azulene_tolerance_dependence`
+→ `[propext, Classical.choice, Quot.sound]` / `PASS` (exit 0); unscoped fidelity →
+`delivered, word-for-word: 150`, `signature differences: 0` (exit 0).** Cosmetic remarks noted (not
+verdict-flipping): this record supersedes the "Run 8 — pending" placeholder, and run 7's closure
+could cite the hash directly (done above).**
+**The documentation plane now matches the tree: the theory is closed.**

@@ -2320,3 +2320,78 @@
   build this module — the scan covers the whole directory while the build does not, which is the
   acceptance hole the lakefile comment itself warns about. `lake build PhotoLean.Kasha.Sharp`
   succeeds by name, and every prefix of the file compiled during the staged delivery.
+
+## 2026-09-20 — Kasha's rule delivered end-to-end (`theories/kasha/`, `PhotoLean/Kasha/`, 150 declarations) — lead + prover_a/b/c/d + api_researcher + literature_researcher + verifier — DONE
+
+- Goal: the human's three-part request (describe Kasha's rule formally / prove it or find its exact
+  conditions / decide instances) as a machine-checked theory, the fourth of this repository.
+- Delivered: six modules (`Basic`, `Criterion`, `Sharp`, `Compose`, `RatModel`, `Instances`),
+  **150 declarations** (110 theorems + 37 definitions + 3 structures/inductives), 2,360 lines,
+  authority `theories/kasha/probes/kasha-statement-skeleton.lean` (sha256 `b645cbfb…`), fidelity
+  **150/150 word for word**, zero placeholder proofs, zero custom axioms; 99 commits touch the source
+  directory (92 `feat` + 7 `docs`), one commit per lemma for K1–K4 with the K5a/K5b grouping
+  registered as a deviation.
+- Headline results (all kernel-checked): Kasha's rule is **not** a theorem of the cascade model but is
+  *equivalent* to the vanishing of every upper level's radiative rate; its tolerance form is
+  equivalent to the sharp rate criterion `(1 − tol)/tol ≤ ladderRatio` — the literature's
+  `k_IC ≫ k_rad` made exact (threshold **99** at 1 % purity); the N-level ladder reduces **exactly**
+  to a two-level model in effective branching data, so the criterion is aggregate — the levelwise
+  inequality is *insufficient*, with a kernel counterexample whose leak is **6/7**; Vavilov's rule
+  (excitation-independence of the yield) is the same condition once the lowest level has a loss
+  channel; a Marcus-form internal-conversion rate turns the rule into an explicit **energy-gap
+  window**; and the azulene family separates **at one tolerance** — 4,6,8-trimethylazulene conforms
+  (measured ratio 2030) while the parent violates by three independent routes (20.6 / 40.3 / 23.0),
+  and the same data conforms at a 10 % tolerance.
+- What worked (reusable):
+  1. **Statement-first with the risk probe proving the *verbatim delivered* form.** The Sprint-0 risk
+     probe (12 rows, 11 proved, 1 refuted) is what caught the false statements before any delivered
+     file carried them; the standing lesson "a chain of green sub-steps is not a green statement"
+     held exactly (its F-row 7's premises were individually calibrated, yet the row was false).
+  2. **A correction log with kernel counterexamples** (plan §3.1): three false statements, all of the
+     same defect class — *a statement whose premises do not carry the sign of a quantity the proof
+     divides by* (`tol`, then `decay 1`, in ℝ and again in ℚ). The class deserves to be a standing
+     verifier step: the "adversarial positivity sweep" (run 2/3 did it line by line and found
+     nothing, which is exactly the evidence a delivered theory needs).
+  3. **A kernel-independent cross-check committed before the proofs finished**
+     (`theories/kasha/probes/kasha-instance-check.py`, exact rational arithmetic): every instance
+     number, the three threshold forms, probability conservation and both recursions over 193 random
+     ladders, the effective reduction over 825 (ladder, tolerance) pairs, the Marcus algebra over 400
+     parameter sets. It validated *statements* while the kernel work was still in flight.
+  4. **Milestone-scoped fidelity** (`bep-fidelity.py --milestone K1…K5b`): without it a milestone's
+     acceptance number literally cannot be expressed (the unscoped number grows while the milestone
+     is verified).
+  5. **A frozen authority hash plus a hash *history***: six modules cite the frozen state; the board
+     records the four earlier states and why each moved.
+- Tried and failed (mandatory column):
+  1. **The documentation plane fails on its own schedule.** The closeout audits passed the
+     mathematics (three batches) and failed the documentation plane repeatedly (11 findings, then 5,
+     then 4, then 2, then 1). Three root causes worth remembering: (a) **a count written by the very
+     commit that changes it** — the commit count was updated to 97 by a commit that made it 98;
+     measure after the last source-touching commit, and prefer count-free phrasing for records that
+     will grow; (b) **bilingual drift** — every fix was applied to the English half and only sometimes
+     to the Chinese half, and the audits caught it twice; the two halves are one artifact and must be
+     edited in one pass; (c) **forward-looking past-tense claims** — records asserting audits that had
+     not happened (twice), i.e. the record of a verdict must follow the report that contains it.
+  2. **A checker's coverage is a claim** (again): the fidelity checker silently skipped `structure`
+     declarations (143/144 for the first count) and had no milestone scoping; a docstring line
+     beginning with a declaration keyword inflated a raw line count (151 vs 150) — the
+     comment-stripped count is the truth.
+  3. **Concurrency hazards, all three measured this round**: a `git commit --amend` race rewrote
+     another agent's commit message (repaired from the reflog; the ban is now in `AGENTS.md`); a
+     shared-leaf append is attributed to whoever commits first (content intact, attribution off —
+     happened twice); deliverable probe files sat **untracked** for a whole round until a verifier
+     noticed the API log citing files outside HEAD.
+  4. **An unreproducible digest is worse than no digest**: run 5 quoted a code-plane sha256 whose
+     stripping convention was not recorded and which nobody could reproduce; the *comparison* it
+     supported was verified directly instead. Record the convention with the number, or record the
+     comparison.
+  5. **A probe file is evidence and edits to it must be labelled**: one cross-reference label in
+     `kasha-api-race.lean` survived a fix commit and was caught only by the next audit (the file's own
+     line 7 contradicted its line 22).
+- Verification history (recorded in `theories/kasha/TASKS.md` §Acceptance records): three mathematics
+  batches — K1 + Sprint-0 probes, K2/K4/K5a, K3/K5b + whole tree — each **PASS** (25/25, 50/50,
+  35/35 `#print axioms` rows with the single allowed footprint; the verifier re-derived the headline
+  numbers in its own probes rather than trusting the files; one batch also rebuilt from a
+  `git archive` copy to defeat stale oleans), followed by documentation re-audits until the plane
+  matched the tree. Every finding of every run is recorded with its disposition; **no finding, in any
+  run, ever invalidated a delivered theorem.**
