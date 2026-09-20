@@ -253,6 +253,9 @@ theorem upperYield_le_fluoYield {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData r
   have hsplit := fluoYield_eq_low_add_upper h
   have hlow : 0 ≤ emitYield rad ic 0 N := emitYield_nonneg h (Nat.zero_le N)
   linarith
+/-- Plan §4.2 #19. The exact rule is, by definition, the vanishing of the leak. -/
+theorem kashaRule_iff_upperYield_zero (rad ic : ℕ → ℝ) (N : ℕ) :
+    KashaRule rad ic N ↔ upperYield rad ic N = 0 := Iff.rfl
 end Kasha
 
 end PhotoLean
