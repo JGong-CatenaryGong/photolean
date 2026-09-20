@@ -105,6 +105,13 @@ theorem inst_I2_exergonic_transfer : Rat.qTransfer (2 : ℚ) (1 / 2) = 3 / 8 := 
   unfold Rat.qTransfer
   norm_num
 
+/-- I2 (`model-constructed`): `x = 1/2` lies inside the `tol = 1/4` window of `λ = 2`. -/
+theorem inst_I2_exergonic_conforms : Rat.qConformsWindow (2 : ℚ) (1 / 4) (1 / 2) := by
+  unfold Rat.qConformsWindow
+  norm_num
+
+/-! #### I3 — mildly endergonic family -/
+
 end BEP
 
 end PhotoLean
