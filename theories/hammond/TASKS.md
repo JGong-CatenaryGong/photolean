@@ -94,12 +94,12 @@
 - [x] `exists_direction_reversal_of_eq` — Sharp.lean — prover_d — done — plan §6
 - [x] `conforms_requires_pos` — Sharp.lean — prover_d — done — plan §6
 
-## H4 — microscopic conditions (`PhotoLean/Hammond/Compose.lean`; owner prover_b; Sprint 4)
+## H4 — microscopic conditions (`PhotoLean/Hammond/Compose.lean`; owner prover_a; Sprint 4)
 
-- [x] `hammond_descriptor_of_inner` — Compose.lean — prover_b — done — plan §7
-- [x] `hammond_descriptor_of_microscopic` — Compose.lean — prover_b — done — plan §7
-- [x] `hammond_descriptor_of_nonoverlap` — Compose.lean — prover_b — done — plan §7 (stretch)
-- [x] `exists_reactionRegion_of_microscopic` — Compose.lean — prover_b — done — plan §7
+- [x] `hammond_descriptor_of_inner` — Compose.lean — prover_a — done — plan §7
+- [x] `hammond_descriptor_of_microscopic` — Compose.lean — prover_a — done — plan §7
+- [x] `hammond_descriptor_of_nonoverlap` — Compose.lean — prover_a — done — plan §7 (stretch)
+- [x] `exists_reactionRegion_of_microscopic` — Compose.lean — prover_a — done — plan §7
 
 ## H5a — rational decision layer (`PhotoLean/Hammond/RatModel.lean`; owner prover_c; Sprint 2)
 
