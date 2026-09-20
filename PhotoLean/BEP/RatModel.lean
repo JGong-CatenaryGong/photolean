@@ -150,6 +150,15 @@ theorem qSecSlope_cast {lam x h : ℚ} (hh : h ≠ 0) :
   push_cast
   ring
 
+set_option linter.unusedVariables false in
+/-- The two-point observable casts to the ℝ twin of the skeleton's AUX layer; `x₂ ≠ x₁` is the
+statement-authority premise and is not consumed by the cast. -/
+theorem qAlphaObs_cast {x₁ ea₁ x₂ ea₂ : ℚ} (h : x₂ ≠ x₁) :
+    ((qAlphaObs x₁ ea₁ x₂ ea₂ : ℚ) : ℝ) = alphaObs (x₁ : ℝ) (ea₁ : ℝ) (x₂ : ℝ) (ea₂ : ℝ) := by
+  unfold qAlphaObs alphaObs
+  push_cast
+  ring
+
 end Rat
 
 end BEP
