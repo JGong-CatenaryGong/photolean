@@ -217,14 +217,14 @@
 
 ### 阶段 C — 关系模块与关系图
 
-- [x] `relations_inventory`（§1–§5：8 条 `rfl` 内核证书 + 6 条真等价 + 2 条单向 + 4 条定义复用 + 4 条清单行，共 24 条复用/证书，逐条 `axioms.sh` PASS） — `PhotoLean/Relations.lean` — lead — done — `f42a7d5`；登记 `defaultTargets`
-- [x] `hammond_trend_exact_bep_law_inexact` / `hammond_sharp_iff_marcus_sharp` / `rate_predicate_satisfiable_without_positive_curvature`（§6 非关系与强度差，本阶段新证明）+ §3 新边 `hammondDescriptor_of_epConformsOnWindow` — `PhotoLean/Relations.lean` — lead — done — `3dd1239`；4 条公理各自 PASS
+- [x] `relations_inventory`（§1–§5 共 25 条声明：8 条 `rfl` 内核证书 + 6 条真等价 + 2 条复用单向 + 1 条新边 O3 + 4 条定义复用 + 4 条清单行；前 24 条为复用/证书，逐条 `axioms.sh` PASS） — `PhotoLean/Relations.lean` — lead — done — `f42a7d5`；登记 `defaultTargets`
+- [x] `hammond_trend_exact_bep_law_inexact` / `hammond_sharp_iff_marcus_sharp` / `rate_predicate_satisfiable_without_positive_curvature`（§6 非关系与强度差，本阶段新证明；§3 的新边 O3 已随上一行交付） — `PhotoLean/Relations.lean` — lead — done — `3dd1239`；3 条公理各自 PASS
 - [x] `theories/RELATIONS.md` 双语关系图讨论稿（真等价 / 单向 / 定义复用 / 形似实异 / 量词形态 / 诚实边界）+ README 指针 — `theories/RELATIONS.md`、`README.md` — lead — done — `efa74c1`
 - [x] 两个新模块的语句权威：编译期复用钉子（每条上游语句逐字写出）+ 模块 docstring — `PhotoLean/{Kernel,Relations}.lean` — lead — done — 见 `theories/RELATIONS.md` §5(v) 与 §6.6（三个保真探针只 glob `PhotoLean/<理论>/*.lean`，**不覆盖**这两个新模块，属已知覆盖范围口径）
 
 ### 本轮验收证据（verifier 独立跑门，只读）
 
-- [x] 门：`proofs/scripts/lake build` 零警告；`proofs/scripts/check.sh --strict` 扫描 `clean`、`verdict: PASS`；三理论叶数据面 5/5 × 3
+- [x] 门：`proofs/scripts/lake build` 零警告（verifier 复核注：冻结构建之后裸 build 是缓存 no-op，零警告由 23 个模块**逐源重编译**独立重建：23/23 rc=0、0 warning）；`proofs/scripts/check.sh --strict` 扫描 `clean`、`verdict: PASS`；三理论叶数据面 5/5 × 3
 - [x] 公理：`Kernel.lean` + `Relations.lean` 全部 **30/30** 声明逐条 `axioms.sh` PASS，均恰为 `[propext, Classical.choice, Quot.sound]`
 - [x] 保真：Marcus **51/51**、BEP **191/191**、hammond **102/102**，0 差异（与本轮开始前的基线一致）
 - [x] 加性审计：`PhotoLean/{Marcus,Hammond,BEP}` 自本轮起点（`10713d1`）以来唯一改动是 Barrier.lean 的 F2（见上）

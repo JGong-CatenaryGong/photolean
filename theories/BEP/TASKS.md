@@ -293,4 +293,4 @@ module `PhotoLean/Relations.lean` and the bilingual relation-graph draft `theori
 the independent verifier evidence (build with zero warnings, strict scan clean, 30/30 declarations of the
 two new modules at `[propext, Classical.choice, Quot.sound]`, statement fidelity 51/191/102 unchanged)
 are recorded on the canonical theory board: see the section "固化轮次（2026-09-20）" at the end of
-`theories/Marcus/TASKS.md`. Nothing under `PhotoLean/<Theory>/` was modified this round.
+`theories/Marcus/TASKS.md`. Nothing under `PhotoLean/BEP/` was modified this round.

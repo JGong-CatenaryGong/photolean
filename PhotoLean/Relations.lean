@@ -216,9 +216,11 @@ theorem marcus_rat_zoneQ_inverted_iff (lam x : ℚ) :
 /-- **Exact in one theory, exactly false in the other.** In one and the same model the Hammond
 structural trend is *exactly* affine in the driving force — the transition-state coordinate is
 `1/2 - x/(2*lam)`, an affine function — so for positive curvature the "more driving force, earlier
-transition state" law holds with no tolerance parameter (`Hammond.hammond_sharp`); at `lam < 0` the
-coordinate is still affine but *increasing* (see the second theorem below), so the qualifier
-`0 < lam` is part of the reading, not of the affinity claim. In the same model the BEP line law is
+transition state" law holds with no tolerance parameter (`Hammond.hammond_sharp`); the affinity
+itself is exact for every `lam ≠ 0`, but at `lam < 0` the *direction* is reversed, whose delivered
+witness is `Hammond.exists_direction_reversal_of_neg` (and the descriptor fails there: the third
+conjunct of the theorem below). So the qualifier `0 < lam` belongs to the trend reading, not to the
+affinity claim. In the same model the BEP line law is
 *exactly* violated on every non-degenerate interval (`BEP.not_epLinearOn_of_ne_zero`, the
 second-difference engine): no affine model reproduces the barrier, the exact defect being the
 quadratic remainder `x²/(4*lam)`. This is the sharpest formal statement of the difference between

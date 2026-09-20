@@ -137,9 +137,10 @@ For every `lam ≠ 0`, *in the same model*:
 * the transition-state coordinate is **exactly** affine — there are `c, k` with
   `Kernel.tsCoord lam x = c + k·x` for all `x` (it is `1/2 − x/(2λ)`); together with the structural
   descriptor's own sharp condition `0 < lam` (`hammond_sharp`) this makes "more driving force,
-  earlier transition state" hold with **no tolerance parameter**. The qualifier matters: at `lam < 0`
-  the coordinate is still affine but *increasing* (N2 below), so affinity alone is not the trend —
-  the trend is affinity **plus** `0 < lam`;
+  earlier transition state" hold with **no tolerance parameter**. The qualifier matters: the
+  affinity is exact for every `lam ≠ 0`, but at `lam < 0` the *direction* is reversed — the
+  delivered witness is `Hammond.exists_direction_reversal_of_neg`, and the descriptor fails there
+  (N2's third conjunct) — so the trend is affinity **plus** `0 < lam`;
 * the BEP line law is **exactly violated on every non-degenerate interval** — for all `p < q`,
   `¬ BEP.EPLinearOn lam (Set.Icc p q)` (the second-difference engine
   `BEP.not_epLinearOn_of_ne_zero`; the exact defect is the quadratic remainder `x²/(4λ)`).
@@ -161,10 +162,11 @@ decreases" does — the shape difference that the positivity conjunct in `descri
 是**挂在交付语句上的读法**，定理本身以下列名为准。
 **N1**（`hammond_trend_exact_bep_law_inexact`）——对每个 `lam ≠ 0`，在**同一个**模型里，过渡态坐标
 **精确**仿射（`q‡ = 1/2 − x/(2λ)`）；再加上结构描述自身的锐利条件 `0 < lam`（`hammond_sharp`），
-"驱动力越大、过渡态越早"**无需任何容差参数**即成立。限定词不可省：`lam < 0` 时坐标仍仿射但是**递增**
-（见 N2），所以"趋势"= 仿射 **且** `0 < lam`，不是仿射本身。同一模型里 BEP 线性律在任何**非退化区间**
-上都**精确**被违反（`BEP.not_epLinearOn_of_ne_zero`，二阶差分引擎；精确缺陷是二次余项 `x²/(4λ)`）。
-这正是"BEP 读法必须带容差、Hammond 读法必须不带"的形式化分界。
+"驱动力越大、过渡态越早"**无需任何容差参数**即成立。限定词不可省：仿射性对每个 `lam ≠ 0` 都成立，
+但 `lam < 0` 时**方向**反转——已交付的见证是 `Hammond.exists_direction_reversal_of_neg`，且描述在该处
+失效（N2 第三合取项）——所以"趋势"= 仿射 **且** `0 < lam`，不是仿射本身。同一模型里 BEP 线性律在
+任何**非退化区间**上都**精确**被违反（`BEP.not_epLinearOn_of_ne_zero`，二阶差分引擎；精确缺陷是二次
+余项 `x²/(4λ)`）。这正是"BEP 读法必须带容差、Hammond 读法必须不带"的形式化分界。
 **N2**（`rate_predicate_satisfiable_without_positive_curvature`）——速率谓词在速率**处处为负**的参数区
 （`A = lam = −1`，`k_BT = 1`）仍成立（乘负前置因子不改变单调模式）；结构谓词则当且仅当曲率为正
 （`hammond_sharp`）。因此"反转区速率递减"**钉不住**物理模型，"过渡态坐标递减"钉得住——这正是
@@ -270,7 +272,7 @@ comment-stripped code byte-identical).
 处依赖除零约定 `x / 0 = 0` 的取值是模型的形式约定（上游每处均已注明），本文件没有一条关系依赖它：证书
 是定义体层面的，实质等价全部显式携带 `lam ≠ 0` / `0 < lam` 前提。③**不声称理论等价**——E1–E7 关联的是
 **同一模型上的命题**，不是"三个理论作为理论等价"，也不是"由谁推出谁"。④**正文与定理分工**——§4 明确
-是正文讨论，§2 的表格有定理支撑。⑤**复用记账**——28 = 8 证书 + 6 等价 + 3 单向 + 4 复用 + 4 别名 +
+是正文讨论，§2 的表格有定理支撑。⑤**复用记账**——28 = 8 证书 + 6 等价 + 3 单向 + 4 复用 + 4 清单行 +
 3 新定理；本任务**实际作证**的是 4 条：§2.2 的 O3 与 §6 的 3 条，其中 E7 本身是两条已交付锐利定理的
 **复合**（§2.1）；其余 24 条是证书与清单。⑥**验证记录**——交付状态由只读 verifier 独立跑门：零警告构建、
 严格扫描 `clean`、`Kernel.lean` + `Relations.lean` 全部 30 条声明公理恰为
