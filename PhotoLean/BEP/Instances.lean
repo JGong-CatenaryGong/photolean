@@ -260,6 +260,26 @@ theorem inst_I10_threshold_conforms : Rat.qConformsWindow (2 : ℚ) (1 / 8) 1 :=
   unfold Rat.qConformsWindow
   norm_num
 
+/-- I10 (`model-constructed`): one step below the threshold (`tol = 1/16`) the window fails —
+`1 = w ^ 2 > 4 * λ * tol = 1/2`. The pair exhibits that the conformance predicate is decided by
+the *squared* threshold `w ^ 2 ≤ 4 * λ * tol`, not by a strict inequality. -/
+theorem inst_I10_threshold_fails : ¬ Rat.qConformsWindow (2 : ℚ) (1 / 16) 1 := by
+  unfold Rat.qConformsWindow
+  norm_num
+
+/-! ### I11 — the first-hand literature families (`LITERATURE.md` §R1.10, kcal/mol, verbatim)
+
+The Lean literals are the sources' **printed kcal/mol** numbers; the model's driving force is
+`x = -ΔG°` (F5 prints a classical `ΔE`, so `x = -ΔE`, with the `ΔE`-vs-`ΔG` caveat of §R1.10.5).
+`_alphaObs` uses the widest printed pair of the family, `_lamHat` two adjacent printed pairs, and
+`_curvature_negative` three printed rows whose second divided difference is negative; the
+falsification row is the λ-independent consequence (curvature `1/(4λ) > 0` cannot be negative).
+
+Per family the status flag of §R1.10 is `first-hand` for every number used. The record's kJ/mol
+column is the record's own arithmetic and is never used in a statement. -/
+
+/-! #### F1 — f-HAT from phenolic antioxidants to `•OOH`, water -/
+
 end BEP
 
 end PhotoLean
