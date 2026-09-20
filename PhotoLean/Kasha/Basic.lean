@@ -231,6 +231,10 @@ theorem fluoYield_eq_low_add_upper {rad ic : ℕ → ℝ} {N : ℕ} (h : RateDat
 theorem fluoYield_zero (rad ic : ℕ → ℝ) : fluoYield rad ic 0 = radBranch rad ic 0 := by
   unfold fluoYield
   rw [Finset.sum_range_one, emitYield_self]
+/-- Plan §4.2 #15. There is no leak at excitation level `0`. -/
+theorem upperYield_zero (rad ic : ℕ → ℝ) : upperYield rad ic 0 = 0 := by
+  unfold upperYield
+  simp
 end Kasha
 
 end PhotoLean
