@@ -222,6 +222,30 @@ theorem lamOfPair_reconstructs {lam x₁ ea₁ x₂ ea₂ : ℝ} (hlam : lam ≠
   field_simp
   ring
 
+/-- Plan §8.1: the squared conformance predicate is the radius condition — the `↔` that makes the
+kernel computation binding for the real tolerance theorem. -/
+theorem qConformsWindow_iff_radius_sq {lam tol w : ℚ} (hlam : 0 < lam) (htol : 0 < tol)
+    (hw : 0 ≤ w) : qConformsWindow lam tol w ↔ ((w : ℚ) : ℝ) ≤ bepRadius (lam : ℝ) (tol : ℝ) := by
+  have hwR : (0 : ℝ) ≤ (w : ℝ) := by exact_mod_cast hw
+  have h4nonneg : (0 : ℝ) ≤ 4 * ((lam : ℝ) * (tol : ℝ)) := by positivity
+  have hsqrt4 : Real.sqrt (4 * ((lam : ℝ) * (tol : ℝ)))
+      = 2 * Real.sqrt ((lam : ℝ) * (tol : ℝ)) := by
+    rw [Real.sqrt_mul (by norm_num : (0 : ℝ) ≤ 4)]
+    norm_num
+  have hreal : (w : ℝ) ≤ 2 * Real.sqrt ((lam : ℝ) * (tol : ℝ))
+      ↔ (w : ℝ) ^ 2 ≤ 4 * (lam : ℝ) * (tol : ℝ) := by
+    rw [← hsqrt4, Real.le_sqrt hwR h4nonneg]
+    ring_nf
+  have hq : ((w : ℝ) ^ 2 ≤ 4 * (lam : ℝ) * (tol : ℝ)) ↔ w ^ 2 ≤ 4 * lam * tol := by
+    have h1 : ((w ^ 2 : ℚ) : ℝ) = (w : ℝ) ^ 2 := by push_cast; ring
+    have h2 : ((4 * lam * tol : ℚ) : ℝ) = 4 * (lam : ℝ) * (tol : ℝ) := by push_cast; ring
+    rw [← h1, ← h2, Rat.cast_le]
+  unfold qConformsWindow bepRadius
+  rw [hreal, hq]
+  exact ⟨fun h => h.2.2, fun h => ⟨hlam, htol, h⟩⟩
+
+/-! ### The verdict cascade (plan §8.1) -/
+
 end Rat
 
 end BEP
