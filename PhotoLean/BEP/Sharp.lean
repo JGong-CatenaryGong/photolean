@@ -286,5 +286,16 @@ theorem bepDefect_antitone_lam {lam₁ lam₂ x : ℝ} (h0 : 0 < lam₁) (hle : 
     (by linarith : (0 : ℝ) < 4 * lam₁)]
   exact mul_le_mul_of_nonneg_left (by linarith : 4 * lam₁ ≤ 4 * lam₂) (sq_nonneg x)
 
+/- The premise `h0 : 0 ≤ lam₁` is not consumed: `Real.sqrt_le_sqrt` is unconditional, so the
+essential premise is `0 ≤ tol` (with `tol < 0` the statement is false, e.g. `tol = -1`, `lam₁ = -2`,
+`lam₂ = -1`). Kept for signature fidelity with the linter disabled locally. -/
+set_option linter.unusedVariables false in
+/-- Plan §6.3 #16: the tolerance radius is monotone in the reorganization energy. -/
+theorem bepRadius_mono {lam₁ lam₂ tol : ℝ} (h0 : 0 ≤ lam₁) (hle : lam₁ ≤ lam₂) (htol : 0 ≤ tol) :
+    bepRadius lam₁ tol ≤ bepRadius lam₂ tol := by
+  unfold bepRadius
+  have hprod : lam₁ * tol ≤ lam₂ * tol := mul_le_mul_of_nonneg_right hle htol
+  linarith [Real.sqrt_le_sqrt hprod]
+
 
 end PhotoLean.BEP
