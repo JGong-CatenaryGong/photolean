@@ -187,6 +187,18 @@ skeleton statement must be spot-checked, not only the ones that look risky"):
    The S1 file was delivered after the corrections; the S2–S5a dispatches cite the corrected
    signatures.
 
+3. **Instance-row label inversion in S5b (corrected after the append).** The first S5b draft
+   classified the catalyst at `dE = 0` of the asymmetric series `(1/2, 0, 1, 1)` (apex `2/3`) as
+   *too weak*; the axis convention (more negative `dE` = stronger binding) makes `dE = 0 < 2/3` the
+   **too-strong** side, and the barrier there is dominated by the branch penalized by strong binding
+   (`volcanoBarrier … 0 = 1`). Caught by `theories/Sabatier/probes/sabatier-instance-check.py`, the
+   kernel-independent exact-rational cross-check, *before* the kernel met the row. Fix: the I2 rows
+   are now `inst_I2_zone_tooStrong` / `inst_I2_barrier_tooStrong` at `dE = 0` **and**
+   `inst_I2_zone_tooWeak` / `inst_I2_barrier_tooWeak` at `dE = 1` (above the apex; barrier `1/2`).
+   Class of the defect (third occurrence in this repository): *a label whose meaning depends on a
+   sign convention*. Every zone-flavoured row must state which side of the apex it is on, in the
+   convention of the theory, and a cross-check must recompute it rather than restate it.
+
 **Authority append (S5b, after the literature round landed).** The literature rows I9–I12 were
 appended to the `## S5b` section of the authority once `theories/Sabatier/LITERATURE.md` round 1
 fixed the printed numbers and their provenance (the kasha precedent: literature rows enter the

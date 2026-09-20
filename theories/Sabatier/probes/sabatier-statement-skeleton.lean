@@ -550,11 +550,19 @@ theorem inst_I2_apex : apex (1 / 2) 0 1 1 = 2 / 3 := by sorry
 /-- I2: the series conforms to the Sabatier description. -/
 theorem inst_I2_conforms : SabatierConforms (1 / 2) 1 := by sorry
 
-/-- I2: a weakly-binding catalyst (`dE = 0`) is classified too weak. -/
-theorem inst_I2_zone_tooWeak : sabatierZone (apex (1 / 2) 0 1 1) 0 = SZone.tooWeak := by sorry
+/-- I2: a catalyst at `dE = 0` lies BELOW the apex `2/3` on the descriptor axis (where more negative
+= stronger binding), so it is classified too strong. -/
+theorem inst_I2_zone_tooStrong : sabatierZone (apex (1 / 2) 0 1 1) 0 = SZone.tooStrong := by sorry
 
-/-- I2: the barrier of the weakly-binding catalyst. -/
-theorem inst_I2_barrier_tooWeak : volcanoBarrier (1 / 2) 0 1 1 0 = 1 := by sorry
+/-- I2: the barrier of that strongly-binding catalyst (`1`: the branch penalized by strong binding
+dominates). -/
+theorem inst_I2_barrier_tooStrong : volcanoBarrier (1 / 2) 0 1 1 0 = 1 := by sorry
+
+/-- I2: a catalyst at `dE = 1`, ABOVE the apex `2/3`, is classified too weak. -/
+theorem inst_I2_zone_tooWeak : sabatierZone (apex (1 / 2) 0 1 1) 1 = SZone.tooWeak := by sorry
+
+/-- I2: the barrier of that weakly-binding catalyst (`1/2`: the ascending branch dominates). -/
+theorem inst_I2_barrier_tooWeak : volcanoBarrier (1 / 2) 0 1 1 1 = 1 / 2 := by sorry
 
 /-- I3 (the same series, a strongly-binding catalyst `dE = -1/3`): the barrier. -/
 theorem inst_I3_barrier_tooStrong : volcanoBarrier (1 / 2) 0 1 1 (-(1 / 3)) = 4 / 3 := by sorry
