@@ -155,6 +155,25 @@ theorem hammondZoneQ_eq_late_iff {lam x : ℚ} (hlam : 0 < lam) :
   · exact iff_of_true rfl
       ⟨lt_of_le_of_ne (le_of_not_gt h6) h5, lt_of_le_of_ne (le_of_not_gt h3) (Ne.symm h2)⟩
 
+set_option linter.unusedVariables false in
+/-- Rational zone characterization, barrierless forward branch.
+
+The hypothesis `0 < lam` is mandated by the statement authority (uniformity with the other six
+characterizations) and is **not needed by the proof**: the statement holds for every `lam`, since
+at `lam = 0` the first branch already absorbs `x = lam = 0`. It is kept as an explicit premise
+rather than dropped, and the unused-variable linter is switched off for this declaration only. -/
+theorem hammondZoneQ_eq_atReactant_iff {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.atReactant ↔ x = lam := by
+  unfold hammondZoneQ
+  split_ifs with h1 h2 h3 h4 h5 h6
+  · exact iff_of_true rfl h1
+  · exact iff_of_false (by decide) h1
+  · exact iff_of_false (by decide) h1
+  · exact iff_of_false (by decide) h1
+  · exact iff_of_false (by decide) h1
+  · exact iff_of_false (by decide) h1
+  · exact iff_of_false (by decide) h1
+
 end Rat
 
 end Hammond
