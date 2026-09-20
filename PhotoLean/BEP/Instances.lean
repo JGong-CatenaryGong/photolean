@@ -112,6 +112,11 @@ theorem inst_I2_exergonic_conforms : Rat.qConformsWindow (2 : ℚ) (1 / 4) (1 / 
 
 /-! #### I3 — mildly endergonic family -/
 
+/-- I3 (`model-constructed`): mildly endergonic family `λ = 2`, `x = -1/2` — conforming. -/
+theorem inst_I3_endergonic_zone : Rat.epQVerdict (2 : ℚ) (-(1 / 2)) = Rat.EPQVerdict.conforming := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
