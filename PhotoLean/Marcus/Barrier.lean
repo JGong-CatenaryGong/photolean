@@ -42,4 +42,8 @@ theorem barrier_at_lam (lam : ℝ) : barrier lam lam = 0 := by
 theorem barrier_symm {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) : barrier lam x = barrier lam (2 * lam - x) := by
   unfold barrier; congr 1; ring
 
+/-- 峰值（势垒最小）：`lam > 0` 时 `x = lam` 是全局最小点（速率峰的代数内核）。 -/
+theorem barrier_min_at_lam {lam : ℝ} (hlam : 0 < lam) (x : ℝ) : barrier lam lam ≤ barrier lam x := by
+  rw [barrier_at_lam]; unfold barrier; positivity
+
 end PhotoLean.Marcus
