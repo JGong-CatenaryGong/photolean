@@ -142,6 +142,53 @@ theorem volcanoBarrier_strictAnti_of_le_apex {alphaA betaA alphaB betaB : ℝ} (
   unfold branchDown
   nlinarith [hB, h₁]
 
+/-- Quantitative tolerance form of "not too strong, not too weak": within `tol` of the apex the
+activity loss is at most `max alphaA alphaB * tol` in barrier units. The excess over the pass height
+is bounded by the steepest leg slope times the tolerance. Plan §5 (the tolerance reading of §6). -/
+theorem volcanoBarrier_le_apex_add {alphaA betaA alphaB betaB : ℝ} (hA : 0 < alphaA)
+    (hB : 0 < alphaB) {tol dE : ℝ} (h : NearOptimal tol (apex alphaA betaA alphaB betaB) dE) :
+    volcanoBarrier alphaA betaA alphaB betaB dE
+      ≤ apexBarrier alphaA betaA alphaB betaB + max alphaA alphaB * tol := by
+  have hAB : 0 < alphaA + alphaB := by linarith
+  have hne : alphaA + alphaB ≠ 0 := hAB.ne'
+  have hband : |dE - apex alphaA betaA alphaB betaB| ≤ tol := h
+  have hlo : apex alphaA betaA alphaB betaB - tol ≤ dE := by
+    have := (abs_le.mp hband).1; linarith
+  have hhi : dE ≤ apex alphaA betaA alphaB betaB + tol := by
+    have := (abs_le.mp hband).2; linarith
+  have htol : 0 ≤ tol := by
+    have h0 := abs_nonneg (dE - apex alphaA betaA alphaB betaB); linarith
+  rcases le_total dE (apex alphaA betaA alphaB betaB) with hcase | hcase
+  · rw [volcanoBarrier_eq_branchDown_of_le_apex hAB hcase]
+    have hrewrite : branchDown alphaB betaB dE
+        = apexBarrier alphaA betaA alphaB betaB
+          + alphaB * (apex alphaA betaA alphaB betaB - dE) := by
+      rw [apexBarrier_eq_branchDown hne]
+      unfold branchDown
+      ring
+    rw [hrewrite]
+    have hbound : alphaB * (apex alphaA betaA alphaB betaB - dE) ≤ max alphaA alphaB * tol := by
+      have h1 : apex alphaA betaA alphaB betaB - dE ≤ tol := by linarith
+      calc alphaB * (apex alphaA betaA alphaB betaB - dE) ≤ alphaB * tol :=
+            mul_le_mul_of_nonneg_left h1 hB.le
+        _ ≤ max alphaA alphaB * tol := mul_le_mul_of_nonneg_right (le_max_right _ _) htol
+    linarith
+  · rw [volcanoBarrier_eq_branchUp_of_apex_le hAB hcase]
+    have hrewrite : branchUp alphaA betaA dE
+        = apexBarrier alphaA betaA alphaB betaB
+          + alphaA * (dE - apex alphaA betaA alphaB betaB) := by
+      unfold apexBarrier
+      rw [volcanoBarrier_at_apex hne]
+      unfold branchUp
+      ring
+    rw [hrewrite]
+    have hbound : alphaA * (dE - apex alphaA betaA alphaB betaB) ≤ max alphaA alphaB * tol := by
+      have h1 : dE - apex alphaA betaA alphaB betaB ≤ tol := by linarith
+      calc alphaA * (dE - apex alphaA betaA alphaB betaB) ≤ alphaA * tol :=
+            mul_le_mul_of_nonneg_left h1 hA.le
+        _ ≤ max alphaA alphaB * tol := mul_le_mul_of_nonneg_right (le_max_left _ _) htol
+    linarith
+
 end Sabatier
 
 end PhotoLean
