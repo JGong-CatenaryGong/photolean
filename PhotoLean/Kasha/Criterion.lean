@@ -415,6 +415,11 @@ theorem kashaWithin_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h
   have hu : upperYield rad ic N = 0 := hK
   rw [KashaWithin, hu]
   exact mul_nonneg htol (fluoYield_nonneg h)
+/-- Plan §5.2 #22. The leak is bounded by the sum of the upper levels' radiative branches. -/
+theorem upperYield_le_sum_radBranch {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    upperYield rad ic N ≤ ∑ i ∈ Finset.Icc 1 N, radBranch rad ic i := by
+  unfold upperYield
+  exact Finset.sum_le_sum fun i hi => emitYield_le_radBranch h (Finset.mem_Icc.mp hi).2
 end Kasha
 
 end PhotoLean
