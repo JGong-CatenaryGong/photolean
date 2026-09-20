@@ -1,0 +1,145 @@
+/-
+PhotoLean.Kasha.RatModel — K5a, the computable rational verdict layer of the Kasha theory.
+
+**Why a rational copy.** Kasha's rule is delivered over ℝ in `PhotoLean/Kasha/Basic.lean` (K1)
+and its laws in `PhotoLean/Kasha/Criterion.lean` (K2). The order on ℝ goes through `Classical`
+and is not computable, so "which regime does this rate data sit in" cannot be decided by the
+kernel over ℝ; over ℚ both the order and the equality are decidable and the arithmetic is
+executable. This module is therefore the ℚ mirror of K1's definitions — the same bodies with `ℚ`
+in place of `ℝ` — plus the eight transfer lemmas that carry a rational verdict to the real theory.
+The evidence chain of the instance layer (K5b, `PhotoLean/Kasha/Instances.lean`) is: kernel
+computation of the rational verdict → these transfer lemmas → K1/K2/K3 over ℝ. Nothing below
+involves ℝ except the transfer lemmas, and nothing below is `noncomputable`: every declaration in
+this layer is a computable rational function, so `kashaQVerdict` is a genuine decision procedure.
+
+**Measured recipe** (K-PROBE-2, kernel evidence `theories/kasha/probes/kasha-rat-probe.lean`):
+the concrete instance rows are closed by
+`norm_num [<definitions>, Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top,
+Finset.sum_singleton, Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]`.
+`by decide` cannot close them: the `Decidable` instance of an equality of division-bearing `ℚ`
+terms does not reduce (`instDecidableEqRat` gets stuck on a non-reducing `.num`), and a goal
+stated through a `Prop`-valued definition gets no instance at all before the definition is
+unfolded. The alternative decision procedure that does evaluate them through the compiler is
+excluded by the axiom discipline (`Lean.ofReduceBool` is not among `ALLOWED_AXIOMS`). The generic
+rows below do not rely on the `simp` discharger for the empty-`Icc` side condition: they use
+`rw [Finset.Icc_eq_empty_iff.mpr (by omega), Finset.prod_empty]`, as calibrated in
+`theories/kasha/probes/kasha-api-cascade.lean`.
+
+**Statement authority**: the K5a section of
+`theories/kasha/probes/kasha-statement-skeleton.lean` (sha256
+`4cf2b1055f1aee41463e7f5ad9bb6913c2c82600a0c4aa064cb58210fc68c0fb`), which transcribes
+`theories/kasha/plan.md` §8.1. Every definition body, every theorem signature and every leading
+docstring below is that block word for word, including the two statement corrections of
+2026-09-20 recorded in the plan's §3.1 correction log:
+* `kashaWithinQ_iff_funnelRatioQ` carries `(h1 : 0 < decayQ rad ic 1)`. Without it the row is
+  FALSE — at `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2` every premise holds, yet
+  `decayQ rad ic 1 = 0` makes `upperYieldQ` and `fluoYieldQ` vanish (left side `0 ≤ 0`, true)
+  while `funnelRatioQ = -1` (right side `1 ≤ -1`, false). Kernel witness:
+  `probe_criterion_premises_insufficient` in `theories/kasha/probes/kasha-rat-probe.lean`.
+* `kashaQVerdict_eq_violating_iff` carries `(htol : 0 < tol)`. Without it the row is FALSE — the
+  classifier tests the vanishing leak first, so `upperYieldQ = 0` parks the verdict in `pure`
+  while `¬ KashaWithinQ` can still hold when the tolerance is negative (witness `rad ≡ 1`,
+  `ic ≡ 1`, `N = 0`, `tol = -1`; the ℝ-side twin is
+  `theories/kasha/probes/kasha-k1-counterexample.lean`).
+
+**What is NOT derived here** (plan §12, §13): the ladder model itself, the identification of the
+branching probabilities with competing exponential clocks, the reading of the time-integrated
+yields as spectroscopic observables, and the interpretation of `ic 0` as the lowest state's loss
+channel. They are modelling assumptions of K1 and are inherited by this layer, not re-proved. The
+transfer lemmas below are *conditional*: they say that if the rational predicate holds, then the
+real one does — they do not assert that either holds.
+
+Every physical premise is an explicit hypothesis of the statement that needs it (`QRateData` is
+the ℚ mirror of `RateData`); nothing is hidden in a definition. Plan locus: `theories/kasha/plan.md`
+§8.1; board `theories/kasha/TASKS.md` §K5a. Imports: `Mathlib` + `PhotoLean.Kasha.Basic` only —
+this layer is deliberately independent of K2/K3/K4.
+
+Acceptance commands (run on a clean tree):
+
+    proofs/scripts/lake build PhotoLean.Kasha.RatModel
+    proofs/scripts/check.sh --strict PhotoLean.Kasha.RatModel
+    proofs/scripts/axioms.sh PhotoLean.Kasha.RatModel PhotoLean.Kasha.<fully.qualified.theorem>
+
+The delivered file contains no unfinished-proof placeholder and no custom axiomatic declaration;
+the `#print axioms` gate of every theorem below lists at most `propext`, `Classical.choice`,
+`Quot.sound`.
+-/
+import Mathlib
+import PhotoLean.Kasha.Basic
+
+open scoped BigOperators
+
+set_option autoImplicit false
+
+namespace PhotoLean
+
+namespace Kasha
+
+/-! ## Definitions (plan §8.1) -/
+
+/-- Rational total decay rate (plan §8.1). -/
+def decayQ (rad ic : ℕ → ℚ) (n : ℕ) : ℚ := rad n + ic n
+
+/-- Rational radiative branch (plan §8.1). -/
+def radBranchQ (rad ic : ℕ → ℚ) (n : ℕ) : ℚ := rad n / decayQ rad ic n
+
+/-- Rational nonradiative branch (plan §8.1). -/
+def icBranchQ (rad ic : ℕ → ℚ) (n : ℕ) : ℚ := ic n / decayQ rad ic n
+
+/-- Rational cascade probability (plan §8.1). -/
+def cascadeQ (rad ic : ℕ → ℚ) (i N : ℕ) : ℚ := ∏ j ∈ Finset.Icc (i + 1) N, icBranchQ rad ic j
+
+/-- Rational level-resolved emission yield (plan §8.1). -/
+def emitYieldQ (rad ic : ℕ → ℚ) (i N : ℕ) : ℚ := radBranchQ rad ic i * cascadeQ rad ic i N
+
+/-- Rational total emission yield (plan §8.1). -/
+def fluoYieldQ (rad ic : ℕ → ℚ) (N : ℕ) : ℚ :=
+  ∑ i ∈ Finset.range (N + 1), emitYieldQ rad ic i N
+
+/-- Rational leak (plan §8.1). -/
+def upperYieldQ (rad ic : ℕ → ℚ) (N : ℕ) : ℚ := ∑ i ∈ Finset.Icc 1 N, emitYieldQ rad ic i N
+
+/-- Rational two-level funnel ratio (plan §8.1). -/
+def funnelRatioQ (rad ic : ℕ → ℚ) : ℚ := rad 0 * ic 1 / (rad 1 * decayQ rad ic 0)
+
+/-- Rational N-level funnel ratio (plan §8.1). -/
+def ladderRatioQ (rad ic : ℕ → ℚ) (N : ℕ) : ℚ :=
+  rad 0 * cascadeQ rad ic 0 N / (upperYieldQ rad ic N * decayQ rad ic 0)
+
+/-- Rational tolerance predicate (plan §8.1). -/
+def KashaWithinQ (rad ic : ℕ → ℚ) (tol : ℚ) (N : ℕ) : Prop :=
+  upperYieldQ rad ic N ≤ tol * fluoYieldQ rad ic N
+
+/-- Rational standing premise bundle (plan §8.1). -/
+def QRateData (rad ic : ℕ → ℚ) (N : ℕ) : Prop :=
+  (∀ n, n ≤ N → 0 < decayQ rad ic n) ∧ (∀ n, 0 ≤ rad n) ∧ (∀ n, 0 ≤ ic n)
+
+/-- Three-valued rational verdict (plan §8.1). -/
+inductive KashaQVerdict where
+  | pure
+  | withinTol
+  | violating
+
+/-- The rational verdict classifier (plan §8.1). -/
+def kashaQVerdict (rad ic : ℕ → ℚ) (tol : ℚ) (N : ℕ) : KashaQVerdict :=
+  if upperYieldQ rad ic N = 0 then KashaQVerdict.pure
+  else if upperYieldQ rad ic N ≤ tol * fluoYieldQ rad ic N then KashaQVerdict.withinTol
+  else KashaQVerdict.violating
+
+/-- Two-level radiative data `(rad 0, rad 1)` written as a ladder (plan §8.2). -/
+def twoRad (r0 r1 : ℚ) : ℕ → ℚ := fun n => if n = 0 then r0 else if n = 1 then r1 else 0
+
+/-- Two-level nonradiative data `(ic 0, ic 1)` written as a ladder (plan §8.2). -/
+def twoIc (i0 i1 : ℚ) : ℕ → ℚ := fun n => if n = 0 then i0 else if n = 1 then i1 else 0
+
+/-- Three-level radiative data (plan §8.2). -/
+def threeRad (r0 r1 r2 : ℚ) : ℕ → ℚ :=
+  fun n => if n = 0 then r0 else if n = 1 then r1 else if n = 2 then r2 else 0
+
+/-- Three-level nonradiative data (plan §8.2). -/
+def threeIc (i0 i1 i2 : ℚ) : ℕ → ℚ :=
+  fun n => if n = 0 then i0 else if n = 1 then i1 else if n = 2 then i2 else 0
+
+end Kasha
+
+end PhotoLean
