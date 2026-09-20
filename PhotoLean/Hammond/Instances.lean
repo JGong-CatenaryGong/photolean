@@ -92,6 +92,15 @@ theorem inst_I3_endergonic_zone : Rat.hammondZoneQ (1 : ℚ) (-(1 / 2)) = HZone.
 theorem inst_I3_endergonic_productLike : ProductLike 1 (-(1 / 2)) :=
   (productLike_iff (by norm_num : (0 : ℝ) < 1)).mpr (by norm_num : (-(1 / 2) : ℝ) < 0)
 
+/-- I3, point-level verdict: the instance conforms to the Hammond description (late zone,
+strictly inside the regime). -/
+theorem inst_I3_endergonic_conforms : HammondConforms 1 (-(1 / 2)) := by
+  have hz : hammondZone (1 : ℝ) (-(1 / 2) : ℝ) = HZone.late := by
+    rw [← (by norm_num : (((-(1 / 2) : ℚ)) : ℝ) = (-(1 / 2) : ℝ)),
+        ← (by norm_num : ((1 : ℚ) : ℝ) = (1 : ℝ)),
+        ← Rat.hammondZoneQ_eq_hammondZone, inst_I3_endergonic_zone]
+  exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 1)).mpr (Or.inr (Or.inr hz))
+
 end Hammond
 
 end PhotoLean
