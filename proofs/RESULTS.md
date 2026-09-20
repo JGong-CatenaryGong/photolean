@@ -32,8 +32,15 @@
 | 语句保真 | `python3 proofs/probes/marcus-fidelity.py` | **45/45 逐字一致、0 差异**（该检查器已做反向验证） |
 | 公理纪律 | `proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean` | **70/70 通过、0 error**：69 条 `[propext, Classical.choice, Quot.sound]` + 1 条 `[propext]` |
 
-**独立验收（verifier，只读角色，逐里程碑）**：M1 · M2 · M3 · M4a · M4b（含追加项）· M4c · M5a 均已 PASS
-（判决与证据见 `proofs/TASKS.md` 的"验收记录"表；M5b 的验收在进行中）。
+**独立验收（verifier，只读角色，逐里程碑）**：**全部 8 个模块组均已 PASS** ——
+M1 · M2 · M3 · **M4a（主定理）** · M4b（含追加项）· **M4c** · M5a（含数值桥）· **M5b（两路独立 verifier 同时判定）**。
+判决与逐条证据见 `proofs/TASKS.md` 的"验收记录"表；任务板 **45 行全部 done / 0 行待验收**。
+
+**已知偏离（如实登记，不掩盖）**：
+1. **`barrier_nonneg` 无独立提交** —— 内容被 lead 的一次 `git add -A` 事故吸收进 `c000996`；已登记在任务板与经验库，**未伪造补提交**。
+2. **M5b 的提交粒度** —— 31 条定理装在 6 个提交里（2/4/12/4/4/5），不满足"每 lemma 一 commit"的铁律（派发时允许"语义批次"，但与铁律冲突）。
+3. **M5b 语句未进权威骨架** —— 保真度检查（45/45）**不覆盖**这 33 条；它们由两路 verifier 与 plan §8.2/§8.3 逐条对照核过。
+4. **`barrierQ_cast` / `barrierQ_zero_lam` 不在骨架中** —— 同上，属追加的数值桥（补结构审计发现的"未被约束定义"缺口）。
 
 ---
 
