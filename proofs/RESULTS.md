@@ -217,12 +217,17 @@ proofs/scripts/axioms.sh <Module> <fully.qualified.theorem>   # #print axioms �
 
 ```bash
 cd <repo>
-proofs/scripts/lake build                       # 构建 defaultTargets 全部模块
 proofs/scripts/check.sh --strict                # 全树扫描 + 构建（应输出 verdict: PASS）
-proofs/scripts/check.sh --strict PhotoLean.Marcus.Sharp          # 关键模块
-proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.descriptor_sharp   # 主定理公理
+proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean      # ★ 一次命令体检全部定理的公理
+proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.descriptor_sharp   # 单条定理的公理
 proofs/scripts/lake env lean proofs/probes/marcus-statement-skeleton.lean           # 语句权威
 ```
+
+**全量体检结果（2026-09-20，8 个模块 / 55 条定理）**：`marcus-all-axioms.lean` 一次运行输出 **55 条
+`depends on axioms`、0 error**；其中 **54 条恰为 `[propext, Classical.choice, Quot.sound]`**，
+1 条（`inst_I1_zoneQ`）**只依赖 `[propext]`**（允许集合的子集）。**无 `sorryAx`、无自定义公理、
+无 `Lean.ofReduceBool`**（即无 `native_decide`）。该探针由脚本从源码树自动生成，含 `namespace` 解析，
+新增定理后可重新生成。
 语句权威是 `proofs/probes/marcus-statement-skeleton.lean`（全部语句在此先行编译通过）；
 `PhotoLean/Marcus/*.lean` 的签名与它**逐字一致**（各里程碑由 verifier 用脚本机械比对）。
 
