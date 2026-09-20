@@ -70,4 +70,27 @@ theorem descriptor_holds_of_microscopic {A kB T kk dq dE a1 a2 R nSq epsS : ℝ}
       (lamOuter_pos hdE ha1 ha2 hR hgeom hnSq hepsS hPekar))
     (mul_pos hkB hT)
 
+/-!
+## 拉伸：把几何前提换成"两球不重叠"
+
+`descriptor_holds_of_microscopic` 把几何因子正性 `hgeom` 当假设；下面这条把它交给 M4b 的
+`hgeom_of_nonoverlap`（`a1 + a2 ≤ R ⇒ hgeom`）。于是**几何侧不再有任何"因子正性"式的假设**：
+只剩 `0 < a1`、`0 < a2` 与两球不重叠 `a1 + a2 ≤ R`（`0 < R` 也随之降级为结论）。
+其余前提与 `descriptor_holds_of_microscopic` 逐字相同。
+-/
+
+/-- 复合定理（拉伸）：几何前提换成"两球不重叠" `a1 + a2 ≤ R` 的版本 ——
+    `hgeom` 由 `hgeom_of_nonoverlap` 推出，不再是假设。--/
+theorem descriptor_holds_of_nonoverlap {A kB T kk dq dE a1 a2 R nSq epsS : ℝ} (hA : 0 < A)
+    (hkB : 0 < kB) (hT : 0 < T) (hkk : 0 ≤ kk) (hdE : 0 < dE) (ha1 : 0 < a1) (ha2 : 0 < a2)
+    (hRge : a1 + a2 ≤ R) (hnSq : 0 < nSq) (hepsS : 0 < epsS) (hPekar : 1 / epsS < 1 / nSq) :
+    InvertedDescriptor A (lamInner kk dq + lamOuter dE a1 a2 R nSq epsS) kB T := by
+  -- 本定理签名里**没有** `0 < R`（球心间距严格正）：它由 `0 < a1 + a2 ≤ R` 推出，
+  -- 是结论而不是假设 —— 物理上"不重叠 + 半径正"已经把 `R` 限制在正半轴。
+  have hR : 0 < R := lt_of_lt_of_le (by linarith : (0 : ℝ) < a1 + a2) hRge
+  -- 唯一的实质步骤：几何因子正性由"两球不重叠"推出（M4b 的 `hgeom_of_nonoverlap`），
+  -- 之后与 `descriptor_holds_of_microscopic` 完全同构。
+  exact descriptor_holds_of_microscopic hA hkB hT hkk hdE ha1 ha2 hR
+    (hgeom_of_nonoverlap ha1 ha2 hRge) hnSq hepsS hPekar
+
 end PhotoLean.Marcus
