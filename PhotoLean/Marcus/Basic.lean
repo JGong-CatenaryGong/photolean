@@ -53,4 +53,24 @@ inductive Zone where
 noncomputable def zone (lam x : ℝ) : Zone :=
   if x < lam then Zone.normal else if x = lam then Zone.barrierless else Zone.inverted
 
+/-! ## 分类器正确性（M1 §4.2）
+
+证明骨架统一为：`unfold` 定义 → 对 `x < lam` 与 `x = lam` 两层 `by_cases`
+→ `if_pos` / `if_neg` 消去 `if` → `iff_of_true` / `iff_of_false` 收尾。
+`Zone` 三个构造子的互异由 derived `DecidableEq` 的可归约性给出（`by decide`），
+不依赖 `simp` 的构造子判据。 -/
+
+/-- 分类器判"正常区"当且仅当 `x < lam`。 -/
+theorem zone_eq_normal_iff (lam x : ℝ) : zone lam x = Zone.normal ↔ NormalRegion lam x := by
+  unfold zone NormalRegion
+  by_cases h : x < lam
+  · rw [if_pos h]
+    exact iff_of_true rfl h
+  · rw [if_neg h]
+    by_cases h2 : x = lam
+    · rw [if_pos h2]
+      exact iff_of_false (by decide) h
+    · rw [if_neg h2]
+      exact iff_of_false (by decide) h
+
 end PhotoLean.Marcus
