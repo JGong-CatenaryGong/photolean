@@ -370,5 +370,29 @@ theorem bepBestLine_error {lam w : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
         field_simp
         ring
 
+/-- Plan §6.4 #19: **the minimax optimality statement** (three-point equioscillation). For every
+affine law `c + a·x` some point of `[-w, w]` carries a residual of absolute value at least
+`w²/(8·lam)`: if all of `-w, 0, w` were strictly below that, the exact identity
+`bep_error_three_point` would give `w²/(2·lam) < 4·(w²/(8·lam)) = w²/(2·lam)`. -/
+theorem epBestOnWindow_holds {lam w : ℝ} (hlam : 0 < lam) (hw : 0 < w) :
+    EPBestOnWindow lam w := by
+  refine ⟨hlam, hw, fun c a => ?_⟩
+  by_contra h
+  push_neg at h
+  have hm : (-w) ∈ Set.Icc (-w) w := ⟨le_rfl, by linarith⟩
+  have h0 : (0 : ℝ) ∈ Set.Icc (-w) w := ⟨by linarith, le_of_lt hw⟩
+  have hp : w ∈ Set.Icc (-w) w := ⟨by linarith, le_rfl⟩
+  have key := bep_error_three_point (c := c) (a := a) (w := w) (ne_of_gt hlam)
+  have h1 := (abs_lt.mp (h (-w) hm)).1
+  have h2 := (abs_lt.mp (h (-w) hm)).2
+  have h3 := (abs_lt.mp (h w hp)).1
+  have h4 := (abs_lt.mp (h w hp)).2
+  have h5 := (abs_lt.mp (h 0 h0)).1
+  have h6 := (abs_lt.mp (h 0 h0)).2
+  have hsum : w ^ 2 / (2 * lam) = 4 * (w ^ 2 / (8 * lam)) := by
+    field_simp
+    ring
+  linarith
+
 
 end PhotoLean.BEP
