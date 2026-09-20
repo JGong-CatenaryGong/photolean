@@ -449,5 +449,15 @@ theorem secSlope_needs_h_ne_zero : secSlope 1 0 0 = 0 ∧ transfer 1 0 ≠ 0 := 
   unfold transfer
   norm_num
 
+/-! ## AUX — literal sup-norm form of the minimax block
+
+The `sSup` twin of §6.4: it makes the minimax constant the **sup-norm** of the residual, and the
+boundedness side condition of `le_csSup` is supplied by `epSupError_bddAbove` (without it `sSup` of
+an unbounded set is `0` in `ℝ`, which would silently falsify the sharpness statement). -/
+
+/-- Uniform (sup-norm) error of the affine model `c + a * x` on the window `[-w, w]`. -/
+noncomputable def epSupError (lam w c a : ℝ) : ℝ :=
+  sSup ((fun x => |eact lam x - (c + a * x)|) '' Set.Icc (-w) w)
+
 
 end PhotoLean.BEP
