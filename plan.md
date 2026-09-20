@@ -20,6 +20,13 @@
 这就是"马库斯反转区"的可执行版本：**势垒 `ΔG‡ = (λ - x)²/(4λ)` 在 `x = λ` 处最小（无势垒），
 因此速率在 `x = λ` 处取极大，两侧分别单调上升（正常区）与单调下降（反转区）。**
 
+**引用归属（文献分支核实后的更正）**：反转区的**首次提出**是
+**Marcus 1960, *Discuss. Faraday Soc.* **29**, p. 28 §(v)，标题即 "Possibility of 'inverted' chemical behaviour"**
+（原文：*"If ΔF° becomes too negative, intersection of the two surfaces becomes possible only at
+high potential energies … m² eventually increases with increasing −ΔF°, and the rate constant decreases."*
+⇒ 与 `ΔG° < -λ` ⟺ `x > λ` 一致）。**Marcus 1956 全篇无 "inverted" 字样**（已全文检索确认），
+不应把反转区的出处记在 1956。势垒公式本身的原始印刷体出处仍是 1956（Eq. (38), p. 974）。
+
 ### 1.2 人类需求 → 里程碑的对应（三部分）
 
 | 人类需求 | 里程碑 | 交付物 |
@@ -37,6 +44,10 @@
 - **不做非绝热电子耦合的推导**（`V` 的指数衰减、超交换机制）、不做电子转移的量子力学推导、
   不做溶剂连续介质静电学的第一性推导（Pekar 因子**作为显式前提**给出，不推导）。
 - **不做 Marcus 交叉关系**（`k₁₂ = √(k₁₁k₂₂K₁₂)`）、不做振动模式求和、不做自旋-轨道耦合。
+- **不做竞争反应通道**（本形式化只刻画**单一机理**下的经典马库斯速率）。这条**不是我们的发明**，
+  而是原始文献自带的免责：1960 §(v) 原文即写明 *"unless in such cases a more favourable reaction
+  mechanism is found"*。它正是 M5 实例层只能用"区域判定 + 经典描述成立"、**不能**声称预测实测速率的原因之一
+  （与 §8.3 的定量警示同源）。
 - 不引入任何**自定义 `axiom`** 或 `sorry`（判据由 `proofs/scripts/check.sh --strict` 与
   `proofs/scripts/axioms.sh` 执行）。
 - **不声称**形式化结论比经典理论更强或更普适：本项目的价值是**把隐式前提挖出来并锐利化**
@@ -451,16 +462,29 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
 | I7 | `A = -1, λ = -1, kT = 1`（非物理分支） | 描述成立但**速率非正** ⇒ 判为不可采纳 | `inverted_descriptor_holds_of_neg`（拉伸）+ 正性反证 |
 
 ```lean
--- 形态示例（I1；Sprint 0 风险探针已实测通过）
+-- 形态示例（I1；**已由 M5a 交付者实测跑通**，见 proofs/probes/marcus-prover_c-scratch.lean 的 F1–F7）
+-- ⚠️ 三处纠正（原计划写法不可编译，M5a 交付者实测）：
+--   (1) `rw [← zoneQ_eq_zone]` **方向反了** —— `←` 的改写模式是 `zone ↑?lam ↑?x`，
+--       与 `h : zoneQ 1 3 = ...` 对不上；必须**正向** `rw [zoneQ_eq_zone] at h`。
+--   (2) cast 字面量 ≠ `OfNat` 字面量（**定义层不等**）：转移后 ℝ 侧参数是 `↑(1:ℚ)`，
+--       直接 `exact (zone_eq_inverted_iff 1 3).mp h` 会 type mismatch
+--       （`↑1 < ↑3` vs `(1:ℝ) < 3`）。出路：ℝ 侧参数写成 `((·:ℚ):ℝ)` 与引理结论逐字对齐，
+--       或 `show (1:ℝ) < 3` + `exact_mod_cast` 桥接。
+--   (3) `rw [← zoneQ_inverted_iff]` **不会展开 `InvertedRegion` 这个 def**（`rw` 不走 defeq）；
+--       需先 `show` 出展开形态，而 `exact (…).mp/.mpr` 走 defeq、无此限制。
 example : Rat.zoneQ (1 : ℚ) 3 = Zone.inverted := by decide
-example : InvertedRegion (1 : ℝ) 3 := by
+example : InvertedRegion ((1 : ℚ) : ℝ) ((3 : ℚ) : ℝ) := by
   have h : Rat.zoneQ (1 : ℚ) 3 = Zone.inverted := by decide
-  rw [← Rat.zoneQ_eq_zone] at h
-  exact (zone_eq_inverted_iff 1 3).mp h
+  rw [Rat.zoneQ_eq_zone] at h              -- 正向（见纠正 (1)）
+  exact (zone_eq_inverted_iff _ _).mp h
 
 -- 形态示例（I2：含除法的有理字面量 —— **必须用 norm_num，不能用 decide**，
 --   实测见 proofs/probes/marcus-statement-skeleton.lean 的 R1 与 proofs/API-NOTES.md）
 example : Rat.zoneQ (1 : ℚ) (3 / 4) = Zone.normal := by norm_num [Rat.zoneQ]
+example : ¬ InvertedRegion ((1 : ℚ) : ℝ) (((3 : ℚ) / 4 : ℚ) : ℝ) := by
+  show ¬ (((1 : ℚ) : ℝ) < (((3 : ℚ) / 4 : ℚ) : ℝ))   -- 先 show 出展开形态（见纠正 (3)）
+  rw [← Rat.zoneQ_inverted_iff]
+  norm_num [Rat.zoneQ]
 
 -- 形态示例（I6：判定"不符合"）
 example : ¬ InvertedDescriptor 1 (-1/2) 1 1 :=
@@ -578,9 +602,15 @@ git log -1 --oneline                                          # 4. feat(<area>):
 
 ## 13. 关键参考文献与显式物理近似
 
-**参考文献**：待 `literature_researcher` 回填（`proofs/LITERATURE.md`）。预期包括
-Marcus 1956 / Marcus 1964 / Marcus & Sutin 1985（势垒公式与 λ 的内外球分解）、
-Pekar 因子来源、以及反转区实验证据（Miller–Calcaterra–Closs 系列）与参数表。
+**参考文献**（已由 `literature_researcher` 回填，逐条核实见 `proofs/LITERATURE.md`）：
+**Marcus 1960**（Discuss. Faraday Soc. 29, p.28 §(v)：**反转区的首次提出**）、
+**Marcus 1956**（Eq. (38) p.974：势垒公式；p.971：`D_op = n²` 的明文定义 ⇒ 本形式化直接用 `nSq` 是**忠实**的而非简化）、
+Marcus 1992 Nobel Lecture（Eq. (5b) p.78 印刷体势垒式；Eq. (6)/(7)）、
+Miller–Calcaterra–Closs 1984（**DOI 10.1021/ja00322a058**, JACS 106(10) 3047–3049：反转区实验证据）。
+⚠️ **未取到正文**（不得引用式号）：Marcus & Sutin 1985（Elsevier 付费）、Marcus 1964（403）——
+work terms 的简化式仅由 secondary 来源支持，但结论不受影响（我们采用 `w_r = w_p = 0`，
+该简化式已由 1992 Eq. (5b) 逐字核实）。
+⚠️ **引用归属更正**：`(4πλk_BT)^(-1/2)` **不在** Marcus 1956 中（1956 是 `k = Z·exp(-ΔF*/kT)`，`Z` = 碰撞数）。
 
 **必须显式化的物理近似（定理前提，不得藏在定义里）**：
 
