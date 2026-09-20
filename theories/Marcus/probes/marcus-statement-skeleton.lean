@@ -209,6 +209,23 @@ theorem inverted_descriptor_holds_of_neg {A lam kB T : ℝ} (hA : A < 0) (hkT : 
     (hlam : lam < 0) : InvertedDescriptor A lam kB T := by
   sorry
 
+/-- Necessity kernels for M4a: the necessity direction of `descriptor_sharp` is split by mechanism
+    into three branches (`lam < 0`, `lam = 0`, `0 < lam`).
+    [Delivered by prover_a; backfilled into the skeleton 2026-09-20 — these four were outside it before.] --/
+theorem sharp_A_pos {A lam kB T : ℝ} (hpos : ∀ x, 0 < rate A lam kB T x) : 0 < A := by
+  sorry
+
+theorem sharp_lam_pos_of_lt {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA : 0 < A)
+    (hdesc : InvertedDescriptor A lam kB T) (hlt : lam < 0) : False := by
+  sorry
+
+theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T) : False := by
+  sorry
+
+theorem sharp_lam_pos {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA : 0 < A)
+    (hdesc : InvertedDescriptor A lam kB T) : 0 < lam := by
+  sorry
+
 /-! ## M4b — 微观充分条件（对应 PhotoLean/Marcus/Reorg.lean）
 
 English: ## M4b — microscopic sufficient conditions (corresponds to PhotoLean/Marcus/Reorg.lean) -/
@@ -285,6 +302,14 @@ theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) :
   sorry
 
 theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam : ℝ) < (x : ℝ) := by
+  sorry
+
+/-- Numeric bridge and degenerate point for `barrierQ` (M5a interface) — closes the gap found by the
+    structural audit ("`barrierQ` constrained by no theorem"). [Backfilled into the skeleton 2026-09-20.] --/
+theorem barrierQ_cast (lam x : ℚ) : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam : ℝ) (x : ℝ) := by
+  sorry
+
+theorem barrierQ_zero_lam (x : ℚ) : barrierQ 0 x = 0 := by
   sorry
 
 /-! ## 风险探针（risk probes）— **不含 sorry**，Sprint 0 必须真通过

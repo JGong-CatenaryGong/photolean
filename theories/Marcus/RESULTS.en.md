@@ -18,7 +18,7 @@
 
 | Your question | Answer | Re-checkable evidence |
 |---|---|---|
-| ① How do we turn the inverted region into a formal description? | `PhotoLean/Marcus/Basic.lean`: the barrier `(lam-x)²/(4·lam)`, the rate `A·exp(-ΔG‡/(kB·T))`, the region predicates, the **descriptor predicate** `InvertedDescriptor`, and the decidable classifiers `Zone`/`zone` (§1) | `marcus-fidelity.py`: **45/45 verbatim agreement** with the authoritative statements |
+| ① How do we turn the inverted region into a formal description? | `PhotoLean/Marcus/Basic.lean`: the barrier `(lam-x)²/(4·lam)`, the rate `A·exp(-ΔG‡/(kB·T))`, the region predicates, the **descriptor predicate** `InvertedDescriptor`, and the decidable classifiers `Zone`/`zone` (§1) | `marcus-fidelity.py`: **51/51 verbatim agreement** with the authoritative statements |
 | ② Does this description hold? What are the conditions for it to hold? | **It holds, and the condition is sharp**: `(the rate is everywhere positive ∧ descriptor) ⟺ 0 < A ∧ 0 < lam` (`descriptor_sharp`). A microscopic chain is also given: `lam = lamIn + lamOut`, positivity of the Pekar factor, and the geometric factor derivable from "the two spheres do not overlap" ⇒ the descriptor holds (§2) | All 70 theorems pass `check.sh --strict`; `marcus-all-axioms.lean` is **70/70 axiom-clean** (0 unfinished proofs / 0 custom axioms) |
 | ③ Do the instances conform once substituted? | **The literature MCC system (`lam=1.20` eV) and the photosynthetic reaction center (`0.25` eV) conform under the classical model**: region decision + instantiation of the descriptor operator + **rate comparison `rate(2.40) < rate(1.23)`** (and independent of temperature); non-physical parameters are judged **non-conforming / inadmissible** (§3) | Every instance is a **named theorem**; the lead independently recomputed each of them in Python |
 | Boundary (must be reported together) | In the inverted region the classical formula **falls too fast by about 3.6 orders of magnitude** (predicted 5.1 vs measured 1.46) ⇒ the instance conclusions only claim that the "**classical model**" satisfies the descriptor; they do not claim to predict the measured rates (§3.4, §4) | The model numbers and the measured literature rates are shown side by side and can be recomputed |
@@ -31,7 +31,7 @@ Zero unfinished proofs, zero custom axioms.
 | Layer | Command | Result |
 |---|---|---|
 | Build + whole-tree scan | `proofs/scripts/check.sh --strict` | **verdict: PASS** (`clean`) |
-| Statement fidelity | `python3 theories/Marcus/probes/marcus-fidelity.py` | **45/45 verbatim agreement, 0 discrepancies** (this checker has itself been validated in the reverse direction) |
+| Statement fidelity | `python3 theories/Marcus/probes/marcus-fidelity.py` | **51/51 verbatim agreement, 0 discrepancies** (this checker has itself been validated in the reverse direction) |
 | Axiom discipline | `proofs/scripts/lake env lean theories/Marcus/probes/marcus-all-axioms.lean` | **70/70 pass, 0 error**: 69 × `[propext, Classical.choice, Quot.sound]` + 1 × `[propext]` |
 
 **Independent acceptance (verifier, a read-only role, milestone by milestone)**: **all 8 module groups have passed** —
@@ -41,8 +41,9 @@ The verdicts and the itemized evidence are in the "acceptance record" table of `
 **Known deviations (registered truthfully, nothing concealed)**:
 1. **`barrier_nonneg` has no separate commit** — its content was absorbed into `c000996` by an accident during one of the lead's `git add -A` runs; this is registered on the task board and in the experience bank, and **no make-up commit was fabricated**.
 2. **Commit granularity of M5b** — 31 theorems are packed into 6 commits (2/4/12/4/4/5), which does not satisfy the iron rule of "one commit per lemma" (dispatch allowed "semantic batches", but that conflicts with the iron rule).
-3. **The M5b statements are not in the authoritative skeleton** — the fidelity check (45/45) **does not cover** these 33 statements; they were checked item by item against plan §8.2/§8.3 by two verifiers.
-4. **`barrierQ_cast` / `barrierQ_zero_lam` are not in the skeleton** — same as above; they are added numeric bridges (filling the "unconstrained definition" gap found by the structure audit).
+3. **The 31 theorems of `Instances.lean` are not in the authoritative skeleton** — the skeleton is the authority for **theory statements**, whereas the instance-judgment theorems are the **evidence layer** with concrete parameters (plan §8.2/§8.3 specifies their shape, not each statement). The fidelity check (51/51) therefore **does not cover these 31**; they were checked item by item against the plan by two independent verifiers, and additionally cross-validated at the definition level.
+   Arithmetic: 82 delivered declarations = 12 definitions + 70 theorems; the 51 skeleton statements (12 definitions + 39 theorems) match them verbatim, and **the remaining 31 are exactly the instance theorems of `Instances.lean`** (31 + 51 = 82 — nothing missing, nothing extra).
+4. **Six statements that were outside the skeleton and have now been backfilled** — the four necessity kernels of `Sharp.lean` (`sharp_A_pos` / `sharp_lam_pos_of_lt` / `sharp_lam_pos_of_eq` / `sharp_lam_pos`, i.e. the three-branch decomposition) and the two numeric bridges of `RatModel.lean` (`barrierQ_cast` / `barrierQ_zero_lam`): they were **both outside the skeleton and unnamed by the two items above** (the source of an earlier accounting gap in this file). They were **backfilled into the skeleton on 2026-09-20** (45 → 51 statements); after backfilling they match the delivered signatures **verbatim**, so the fidelity check now covers them.
 
 ---
 
@@ -292,9 +293,9 @@ proofs/scripts/lake env lean theories/Marcus/probes/marcus-statement-skeleton.le
 
 **Statement fidelity (one command for the whole project)**: `python3 theories/Marcus/probes/marcus-fidelity.py` —
 it compares **every declaration in the delivered files that appears in the authoritative skeleton** word for word against `marcus-statement-skeleton.lean`:
-**45/45 agree, 0 discrepancies** (37 auxiliary declarations are not in the authoritative set and do not count as discrepancies).
+**51/51 agree, 0 discrepancies** (31 auxiliary declarations are not in the authoritative set — all of them in `Instances.lean`, i.e. the instance/evidence layer — and do not count as discrepancies).
 This checker has been **validated in the reverse direction** (deliberately changing the conclusion `<` of `inverted_rate_decreases` into `≤` ⇒ it was caught and printed the comparison;
-after restoring, it is back to 45/45) — a checker that cannot fail is worthless.
+after restoring, it is back to 51/51) — a checker that cannot fail is worthless.
 
 **Structure audit (whether every definition is constrained by at least one theorem)**: word-boundary reference counts for all 10 definitions —
 `barrier` (44 occurrences), `rate` (40), `InvertedRegion` (21), `zoneQ` (24), `InvertedDescriptor` (16),

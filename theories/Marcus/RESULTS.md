@@ -16,7 +16,7 @@
 
 | 你的问题 | 答复 | 可复核的证据 |
 |---|---|---|
-| ① 怎么把反转区变成形式化描述？ | `PhotoLean/Marcus/Basic.lean`：势垒 `(lam-x)²/(4·lam)`、速率 `A·exp(-ΔG‡/(kB·T))`、区域谓词、**描述谓词** `InvertedDescriptor`、可判定分类器 `Zone`/`zone`（§1） | `marcus-fidelity.py`：与语句权威 **45/45 逐字一致** |
+| ① 怎么把反转区变成形式化描述？ | `PhotoLean/Marcus/Basic.lean`：势垒 `(lam-x)²/(4·lam)`、速率 `A·exp(-ΔG‡/(kB·T))`、区域谓词、**描述谓词** `InvertedDescriptor`、可判定分类器 `Zone`/`zone`（§1） | `marcus-fidelity.py`：与语句权威 **51/51 逐字一致** |
 | ② 这个描述成立吗？成立条件是什么？ | **成立，且条件是锐利的**：`(速率处处正 ∧ 描述) ⟺ 0 < A ∧ 0 < lam`（`descriptor_sharp`）。另给出微观化链条：`lam = lamIn + lamOut`、Pekar 因子正性、几何因子可由"两球不重叠"推出 ⇒ 描述成立（§2） | 70 条定理全过 `check.sh --strict`；`marcus-all-axioms.lean` **70/70 公理干净**（0 sorry / 0 自定义公理） |
 | ③ 实例代入后符合吗？ | **文献 MCC 体系（`lam=1.20` eV）与光合反应中心（`0.25` eV）在经典模型下符合**：区域判定 + 描述算子实例化 + **速率比较 `rate(2.40) < rate(1.23)`**（且与温度无关）；非物理参数被判**不符合/不可采纳**（§3） | 每条实例都是**有名字的定理**；lead 用 Python 独立复算逐条印证 |
 | 边界（必须同时报告） | 经典公式在反转区**下降过快约 3.6 个数量级**（预言 5.1 vs 实测 1.46）⇒ 实例结论只声称"**经典模型**满足描述"，不声称预测实测速率（§3.4、§4） | 模型数值与文献实测速率并排给出，可复算 |
@@ -29,7 +29,7 @@
 | 层 | 命令 | 结果 |
 |---|---|---|
 | 构建 + 全树扫描 | `proofs/scripts/check.sh --strict` | **verdict: PASS**（`clean`） |
-| 语句保真 | `python3 theories/Marcus/probes/marcus-fidelity.py` | **45/45 逐字一致、0 差异**（该检查器已做反向验证） |
+| 语句保真 | `python3 theories/Marcus/probes/marcus-fidelity.py` | **51/51 逐字一致、0 差异**（该检查器已做反向验证） |
 | 公理纪律 | `proofs/scripts/lake env lean theories/Marcus/probes/marcus-all-axioms.lean` | **70/70 通过、0 error**：69 条 `[propext, Classical.choice, Quot.sound]` + 1 条 `[propext]` |
 
 **独立验收（verifier，只读角色，逐里程碑）**：**全部 8 个模块组均已 PASS** ——
@@ -39,8 +39,9 @@ M1 · M2 · M3 · **M4a（主定理）** · M4b（含追加项）· **M4c** · M
 **已知偏离（如实登记，不掩盖）**：
 1. **`barrier_nonneg` 无独立提交** —— 内容被 lead 的一次 `git add -A` 事故吸收进 `c000996`；已登记在任务板与经验库，**未伪造补提交**。
 2. **M5b 的提交粒度** —— 31 条定理装在 6 个提交里（2/4/12/4/4/5），不满足"每 lemma 一 commit"的铁律（派发时允许"语义批次"，但与铁律冲突）。
-3. **M5b 语句未进权威骨架** —— 保真度检查（45/45）**不覆盖**这 33 条；它们由两路 verifier 与 plan §8.2/§8.3 逐条对照核过。
-4. **`barrierQ_cast` / `barrierQ_zero_lam` 不在骨架中** —— 同上，属追加的数值桥（补结构审计发现的"未被约束定义"缺口）。
+3. **`Instances.lean` 的 31 条未进权威骨架** —— 骨架是**理论语句**的权威，而实例判定定理是带具体参数的**证据层**（plan §8.2/§8.3 只规定其形态、不逐条规定语句）。因此保真度检查（51/51）**不覆盖这 31 条**；它们由两路独立 verifier 与 plan 逐条对照核过，并另做了定义层交叉验证。
+   数量核对：交付声明 82 条 = 12 个定义 + 70 条定理；骨架 51 条（12 定义 + 39 定理）与之逐字一致，**余下 31 条恰好全部是 `Instances.lean` 的实例定理**（31 + 51 = 82，无遗漏、无多余）。
+4. **原先在骨架之外、现已回填的 6 条** —— `Sharp.lean` 的 4 条必要性内核（`sharp_A_pos` / `sharp_lam_pos_of_lt` / `sharp_lam_pos_of_eq` / `sharp_lam_pos`，即三分支拆解）与 `RatModel.lean` 的 2 条数值桥（`barrierQ_cast` / `barrierQ_zero_lam`）：它们此前**既在骨架之外、又未被上面两条点名**（是本文件早先一处记账缺口的来源）。已于 2026-09-20 **回填骨架**（45 → 51 条），回填后与交付签名**逐字一致**，故保真度检查现已覆盖。
 
 ---
 
@@ -296,9 +297,9 @@ proofs/scripts/lake env lean theories/Marcus/probes/marcus-statement-skeleton.le
 
 **语句保真度（全项目一条命令）**：`python3 theories/Marcus/probes/marcus-fidelity.py` ——
 把交付文件中**每个在权威骨架里出现过的声明**与 `marcus-statement-skeleton.lean` 逐字比对：
-**45/45 一致、0 差异**（37 条辅助声明不在权威内，不算差异）。
+**51/51 一致、0 差异**（31 条辅助声明不在权威内 —— 全部在 `Instances.lean`，即实例/证据层，不算差异）。
 该检查器已做**反向验证**（故意把 `inverted_rate_decreases` 的结论 `<` 改成 `≤` ⇒ 被抓出并打印对照；
-恢复后回到 45/45）—— 不会失败的检查器没有价值。
+恢复后回到 51/51）—— 不会失败的检查器没有价值。
 
 **结构审计（每个定义是否都被至少一条定理约束）**：对全部 10 个定义做词边界引用统计 ——
 `barrier`(44 处)、`rate`(40)、`InvertedRegion`(21)、`zoneQ`(24)、`InvertedDescriptor`(16)、
