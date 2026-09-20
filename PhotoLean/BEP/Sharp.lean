@@ -184,5 +184,46 @@ theorem bepDefect_abs_eq {lam x : ℝ} (hlam : lam ≠ 0) :
   rw [hdef, abs_div, abs_of_nonneg (sq_nonneg x), abs_mul,
     abs_of_nonneg (by norm_num : (0 : ℝ) ≤ 4)]
 
+/-- Plan §6.2 #11: **the tolerance/radius theorem** (the sharp validity condition of the BEP line).
+For `lam > 0`, `tol > 0` and `w ≥ 0` the line law holds within `tol` on the whole symmetric window
+`[-w, w]` **iff** the half-width is at most `bepRadius lam tol = 2√(lam·tol)`. The forward direction
+is tested at the endpoint `x = w`; the backward direction uses `x² ≤ w²` on the window. The
+`Real.sqrt` is eliminated through `Real.sqrt_mul` (`√(4·(lam·tol)) = 2√(lam·tol)`) and
+`Real.le_sqrt`. -/
+theorem epConformsOnWindow_iff_radius {lam tol w : ℝ} (hlam : 0 < lam) (htol : 0 < tol)
+    (hw : 0 ≤ w) : EPConformsOnWindow lam tol (-w) w ↔ w ≤ bepRadius lam tol := by
+  have h4 : (0 : ℝ) < 4 * lam := by linarith
+  have hdef : ∀ y : ℝ, |bepDefect lam y| = y ^ 2 / (4 * lam) := by
+    intro y
+    have h : bepDefect lam y = y ^ 2 / (4 * lam) := by
+      unfold bepDefect bepLine eact
+      field_simp
+      ring
+    rw [h, abs_of_nonneg (div_nonneg (sq_nonneg y) (le_of_lt h4))]
+  have h4nonneg : 0 ≤ 4 * (lam * tol) := by positivity
+  have hsqrt4 : Real.sqrt (4 * (lam * tol)) = 2 * Real.sqrt (lam * tol) := by
+    rw [Real.sqrt_mul (by norm_num : (0 : ℝ) ≤ 4)]
+    norm_num
+  have key : w ^ 2 / (4 * lam) ≤ tol ↔ w ≤ bepRadius lam tol := by
+    rw [bepRadius, ← hsqrt4, div_le_iff₀ h4, Real.le_sqrt hw h4nonneg]
+    ring_nf
+  unfold EPConformsOnWindow
+  constructor
+  · rintro ⟨-, -, h⟩
+    have hwmem : w ∈ Set.Icc (-w) w := Set.right_mem_Icc.mpr (by linarith)
+    have h1 : w ^ 2 / (4 * lam) ≤ tol := by
+      simpa [hdef w] using h w hwmem
+    exact key.mp h1
+  · intro h
+    refine ⟨hlam, htol, fun x hx => ?_⟩
+    have hxabs : |x| ≤ w := abs_le.mpr hx
+    have hxsq : x ^ 2 ≤ w ^ 2 := by
+      calc x ^ 2 = |x| ^ 2 := (sq_abs x).symm
+        _ ≤ w ^ 2 := pow_le_pow_left₀ (abs_nonneg x) hxabs 2
+    have h2 : x ^ 2 / (4 * lam) ≤ w ^ 2 / (4 * lam) :=
+      div_le_div_of_nonneg_right hxsq (le_of_lt h4)
+    rw [hdef x]
+    exact le_trans h2 (key.mpr h)
+
 
 end PhotoLean.BEP
