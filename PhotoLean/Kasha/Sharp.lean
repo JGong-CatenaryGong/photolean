@@ -194,6 +194,28 @@ theorem funnelRatio_eq_ladderRatio_one {rad ic : ℕ → ℝ} (h : decay rad ic 
   have h2 : rad 1 / decay rad ic 1 * decay rad ic 0 = rad 1 * decay rad ic 0 / decay rad ic 1 :=
     div_mul_eq_mul_div₀ (rad 1) (decay rad ic 0) (decay rad ic 1)
   rw [h1, h2, div_div_div_cancel_right₀ h]
+/-! ## The general-`N` margin form and monotonicity (plan §6.1) -/
+
+set_option linter.unusedVariables false in
+
+/-- Plan §6.1 #5 — the general-`N` criterion in margin form: dividing by the leak
+`upperYield N > 0` turns `upperYield ≤ tol · (emitYield 0 + upperYield)` into
+`1 - tol ≤ tol · kashaMargin`. The premise `0 < tol` is kept verbatim from the statement
+authority; the equivalence itself is an algebraic identity and does not consume it. -/
+
+theorem kashaWithin_iff_margin {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N)
+    (hu : 0 < upperYield rad ic N) (htol : 0 < tol) :
+    KashaWithin rad ic tol N ↔ 1 - tol ≤ tol * kashaMargin rad ic N := by
+  have hstep : (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N
+      ↔ 1 - tol ≤ tol * kashaMargin rad ic N := by
+    rw [kashaMargin, ← mul_div_assoc, le_div_iff₀ hu]
+  rw [KashaWithin, fluoYield_eq_low_add_upper h]
+  constructor
+  · intro hW
+    exact hstep.mp (by linarith)
+  · intro hW
+    have h2 : (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N := hstep.mpr hW
+    linarith
 
 end Kasha
 
