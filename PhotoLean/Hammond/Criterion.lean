@@ -49,3 +49,11 @@ theorem productLike_iff {lam x : ℝ} (hlam : 0 < lam) : ProductLike lam x ↔ x
   rw [lt_div_iff₀ h2]
   constructor <;> intro h <;> linarith
 
+/-- Energy–structure correspondence: the transition state is closer in energy to the
+reactant well exactly when it is reactant-like. -/
+theorem gap_compare_iff {lam x : ℝ} (hlam : 0 < lam) :
+    gapReactant lam x < gapProduct lam x ↔ 0 < x := by
+  have hsub : gapProduct lam x - gapReactant lam x = x :=
+    gapProduct_sub_gapReactant (ne_of_gt hlam) x
+  constructor <;> intro h <;> linarith
+
