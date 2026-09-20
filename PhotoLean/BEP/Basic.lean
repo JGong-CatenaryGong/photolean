@@ -165,5 +165,17 @@ theorem epZone_eq_degenerate_iff (lam x : ℝ) :
     rw [h]
     unfold epZone
     rw [if_pos rfl]
+/-- Zone characterization, unphysical branch: a negative curvature (the hypothesis `lam ≠ 0`
+is what lets the backward direction skip the degenerate branch, which the cascade tests first). -/
+theorem epZone_eq_unphysical_iff {lam x : ℝ} (hlam : lam ≠ 0) :
+    epZone lam x = EPZone.unphysical ↔ lam < 0 := by
+  constructor
+  · intro h
+    unfold epZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6 h7 h8
+    exact h2
+  · intro h
+    unfold epZone
+    rw [if_neg hlam, if_pos h]
 
 end PhotoLean.BEP
