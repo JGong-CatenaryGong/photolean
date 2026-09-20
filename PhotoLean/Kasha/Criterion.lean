@@ -73,6 +73,12 @@ theorem cascade_succ {rad ic : ℕ → ℝ} {i N : ℕ} (h : i ≤ N) :
     cascade rad ic i (N + 1) = icBranch rad ic (N + 1) * cascade rad ic i N := by
   unfold cascade
   rw [Finset.prod_Icc_succ_top (by omega : i + 1 ≤ N + 1), mul_comm]
+/-- Plan §5.1 #2. The level-resolved yield obeys the same one-step recursion. -/
+theorem emitYield_succ {rad ic : ℕ → ℝ} {i N : ℕ} (h : i ≤ N) :
+    emitYield rad ic i (N + 1) = icBranch rad ic (N + 1) * emitYield rad ic i N := by
+  unfold emitYield
+  rw [cascade_succ h]
+  ring
 end Kasha
 
 end PhotoLean
