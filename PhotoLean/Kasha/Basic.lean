@@ -215,6 +215,18 @@ theorem emitYield_le_radBranch {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData 
     emitYield rad ic i N ≤ radBranch rad ic i := by
   unfold emitYield
   exact mul_le_of_le_one_right (radBranch_nonneg h h1) (cascade_le_one h h1)
+set_option linter.unusedVariables false in
+/-- Plan §4.2 #13. The total yield splits into the lowest state's emission and the leak (the plan's
+`range (N+1) = {0} ∪ Icc 1 N` index identity; the `RateData` premise is part of the description
+layer's signature and is not consumed by this index identity). -/
+theorem fluoYield_eq_low_add_upper {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    fluoYield rad ic N = emitYield rad ic 0 N + upperYield rad ic N := by
+  have hrange : Finset.range (N + 1) = insert 0 (Finset.Icc 1 N) := by
+    ext i
+    simp only [Finset.mem_range, Finset.mem_insert, Finset.mem_Icc]
+    omega
+  unfold fluoYield upperYield
+  rw [hrange, Finset.sum_insert (by simp)]
 end Kasha
 
 end PhotoLean
