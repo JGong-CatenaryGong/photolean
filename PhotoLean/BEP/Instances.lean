@@ -357,6 +357,20 @@ theorem inst_I11_F2_curvature_negative :
   unfold Rat.qSecondDividedDiff
   norm_num
 
+/-- F2: falsification of the two-parabola law for the three printed PE rows. -/
+theorem inst_I11_F2_not_model_consistent :
+    ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(1.0) : ℚ) 2.2 4.6 14.0 13.3 10.0 := by
+  rintro ⟨lam, hlam, h₁, h₂, h₃⟩
+  have hpos := Rat.qModelConsistent3_curvature_pos ⟨hlam, h₁, h₂, h₃⟩
+    (by norm_num : (-(1.0) : ℚ) ≠ 2.2) (by norm_num : (2.2 : ℚ) ≠ 4.6)
+    (by norm_num : (-(1.0) : ℚ) ≠ 4.6)
+  rw [show Rat.qSecondDividedDiff (-(1.0) : ℚ) 14.0 2.2 13.3 4.6 10.0 = -(185 / 896) by
+    unfold Rat.qSecondDividedDiff
+    norm_num] at hpos
+  norm_num at hpos
+
+/-! #### F3 — the same substrates with `•OOCH₃`, water column -/
+
 end BEP
 
 end PhotoLean
