@@ -1878,3 +1878,452 @@ section); the integer-only `decide` was not needed by any row.
   `F5` prints a classical `ΔE / V‡f`, so the docstrings carry the `ΔE`-vs-`ΔG` caveat.
 * The numbers and loci are verbatim from §R1.10 (all five families `first-hand` there); nothing was
   converted, rounded or re-derived here.
+
+---
+
+## 2026-09-20 — §kasha round (Kasha's rule) — api_researcher — 5 probes, all `exit 0` / 0 error / 0 warning; the K4 #12 Marcus chain, the K4 #14 `sqrt` window and **all eight K5a cast bridges** are kernel-verified end to end; K4b/K4c (exponential race) answered with a measured feasibility verdict
+
+> Body in English (`AGENTS.md` language policy: `proofs/API-NOTES.md` is an English artifact; no
+> mirror copy). Identifiers, `#check` output, errors and warnings are quoted verbatim.
+>
+> **Statement authority — a hash in a log has to say *when*.** This §kasha section was calibrated
+> against the authority state `theories/kasha/probes/kasha-statement-skeleton.lean`
+> sha256 `801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0` (144 declarations).
+> Corrections later on 2026-09-20 moved it to `4cf2b105…` (K1 #24 `kashaZone_eq_violating_iff` and
+> its ℚ twin `kashaQVerdict_eq_violating_iff` gained `0 < tol` — prover_a's kernel counterexample
+> `rad ≡ 1`, `ic ≡ 1`, `N = 0`, `tol = -1`; K3 #2/#9; the K5a criterion row) and then to
+> `8508e1df7705daaac31288ef78e97073aaff2f1c6422c31bd2eb83b669cbf888` (151 declarations, K5b
+> literature rows appended). None of those corrections is an API/name change: no row of this API
+> round is affected, and the drift log below records only measured name facts.
+> **2026-09-20 close-out (verifier finding, fixed here): an earlier revision of this section claimed
+> `theories/kasha/probes/kasha-api-risk.lean` carried 2 deprecation warnings. Re-measured at the
+> verifier's request the file is `exit 0` with **0 warnings** (92 output lines); the stale claim
+> described the file's pre-rename/pre-cleanup revision. Corrected in §2 below.**
+
+### 1. Deliverables and compile evidence
+
+| Probe | Content (topics of task K-API-1) | Run (repo root) | Result |
+|---|---|---|---|
+| `theories/kasha/probes/kasha-api-cascade.lean` | (a) `Finset` index surgery + the cascade algebra; K1 §4.2 #7–#21, K2 §5.1 #1–#6, §5.2 #13, K3 §6.2 #17, K4 §7.2 #1 | `proofs/scripts/lake env lean theories/kasha/probes/kasha-api-cascade.lean` | **exit 0, 0 error, 0 warning**, 104 `#check` output lines |
+| `theories/kasha/probes/kasha-api-order.lean` | (b) division/order on ℝ + (d) the `Real.sqrt` window recipe; K3 §6.1 #1–#3, §6.2 #9/#10, K4 §7.2 #12/#14/#15 | same command, filename swapped | exit 0, 0 error, 0 warning, 84 lines |
+| `theories/kasha/probes/kasha-api-logexp.lean` | (c) `Real.exp`/`Real.log` + the whole K4 #12 bridge (`import PhotoLean.Marcus.Basic`) | as above | exit 0, 0 error, 0 warning, 33 lines |
+| `theories/kasha/probes/kasha-api-cast.lean` | (e) `Rat.cast_*` family + the eight K5a cast bridges; §8.1 | as above | exit 0, 0 error, 0 warning, 30 lines |
+| `theories/kasha/probes/kasha-api-race.lean` | (f) exponential-race feasibility (plan §1.2, K4b/K4c, §13 limit 5) | as above | exit 0, 0 error, 0 warning, 78 lines |
+
+Every probe is a `#check` log plus kernel-checked `example`/`theorem` bodies; each worked recipe is
+delivery-shaped (the plan's own row, not a toy analogue), so a prover's job collapses to
+transcription. Nothing in this section names an unverified name: the names in §3 are exactly the
+ones that survived `#check`, the names in §4 are exactly the ones that did not.
+
+### 2. Probe-name coordination (why (a) is not called `kasha-api-finset.lean`)
+
+* Task K-API-1 dispatched topic (a) to `theories/kasha/probes/kasha-api-finset.lean`. At dispatch
+  time that path was occupied by **prover_c's K5a scratch probe** (`/-- Scratch calibration probe
+  (owner `prover_c`) — **not a delivered artifact**`), written after the dispatch; engine rule 5
+  (one writer per file) forbids overwriting it, so topic (a) is delivered as
+  **`kasha-api-cascade.lean`**. **Resolution (2026-09-20): the lead confirmed the rename and it has
+  landed — `kasha-api-finset.lean` no longer exists, the scratch file is `kasha-rat-scratch.lean`,
+  and the `kasha-api-*` prefix now means "api_researcher's calibrated probe" without exception.**
+* Pre-existing probes not owned by this role and not touched: `theories/kasha/probes/kasha-api-k1-finset.lean`
+  (prover_a, K1) and `theories/kasha/probes/kasha-api-risk.lean` (prover_b, task K-PROBE-1). The
+  risk probe independently reports the same two non-existent interval names
+  (`Finset.sum_Icc_succ_bot`, `Finset.prod_Icc_succ_bot`). **Corrected measurement (2026-09-20, at
+  the verifier's request): `proofs/scripts/lake env lean theories/kasha/probes/kasha-api-risk.lean`
+  → `exit 0`, 92 output lines, 0 error, 0 warning.** An earlier revision of this section reported
+  2 deprecation warnings from that file; that measurement was taken at 21:05 on an intermediate
+  revision whose lines 165–166 still contained `#check @div_le_iff` and `#check @le_div_iff`. Those
+  `#check`s were **removed before the file was committed** (its lines 98–100 now use
+  `div_le_iff₀` / `le_div_iff₀`; the deprecated names survive only inside a comment at lines
+  21–22). The deprecation fact itself (§4.3) stands and was re-measured independently in a
+  temporary scratch file.
+
+### 3. Verified names — exact signatures (verbatim `#check` output, wraps joined)
+
+**(a) `Finset` index surgery** (`kasha-api-cascade.lean`)
+
+```
+@Finset.Icc_eq_cons_Ico : a ≤ b → Finset.Icc a b = Finset.cons b (Finset.Ico a b) ⋯
+@Finset.Icc_eq_cons_Ioc : a ≤ b → Finset.Icc a b = Finset.cons a (Finset.Ioc a b) ⋯
+@Finset.prod_Icc_succ_top : a ≤ b + 1 → ∀ (f : ℕ → M), ∏ k ∈ Finset.Icc a (b + 1), f k = (∏ k ∈ Finset.Icc a b, f k) * f (b + 1)
+@Finset.sum_Icc_succ_top  : a ≤ b + 1 → ∀ (f : ℕ → M), ∑ k ∈ Finset.Icc a (b + 1), f k = ∑ k ∈ Finset.Icc a b, f k + f (b + 1)
+@Finset.prod_Ico_succ_top : a ≤ b → ∀ (f : ℕ → M), ∏ k ∈ Finset.Ico a (b + 1), f k = (∏ k ∈ Finset.Ico a b, f k) * f b
+@Finset.sum_Ico_succ_top  : a ≤ b → ∀ (f : ℕ → M), ∑ k ∈ Finset.Ico a (b + 1), f k = ∑ k ∈ Finset.Ico a b, f k + f b
+@Finset.prod_eq_prod_Ico_succ_bot : a < b → ∀ f, ∏ k ∈ Finset.Ico a b, f k = f a * ∏ k ∈ Finset.Ico (a + 1) b, f k
+@Finset.sum_eq_sum_Ico_succ_bot   : a < b → ∀ f, ∑ k ∈ Finset.Ico a b, f k = f a + ∑ k ∈ Finset.Ico (a + 1) b, f k
+@Finset.prod_Ico_consecutive : (f : ℕ → M) → m ≤ n → n ≤ k → (∏ i ∈ Finset.Ico m n, f i) * ∏ i ∈ Finset.Ico n k, f i = ∏ i ∈ Finset.Ico m k, f i
+@Finset.sum_Ico_consecutive  : (f : ℕ → M) → m ≤ n → n ≤ k → ∑ i ∈ Finset.Ico m n, f i + ∑ i ∈ Finset.Ico n k, f i = ∑ i ∈ Finset.Ico m k, f i
+@Finset.prod_Ioc_consecutive / @Finset.sum_Ioc_consecutive     (the `Ioc` twins)
+@Finset.Icc_self : Finset.Icc a a = {a}
+@Finset.Icc_eq_empty : ¬a ≤ b → Finset.Icc a b = ∅
+@Finset.Icc_eq_empty_iff : Finset.Icc a b = ∅ ↔ ¬a ≤ b          -- `@[simp]`
+@Finset.prod_empty : ∏ x ∈ ∅, f x = 1     @Finset.sum_empty : ∑ x ∈ ∅, f x = 0
+@Finset.prod_singleton : ∏ x ∈ {a}, f x = f a    @Finset.sum_singleton : ∑ x ∈ {a}, f x = f a
+Finset.range_one : Finset.range 1 = {0}
+@Finset.range_succ : Finset.range n.succ = insert n (Finset.range n)
+@Finset.range_add_one : Finset.range (n + 1) = insert n (Finset.range n)
+Finset.range_eq_Ico : Finset.range = Finset.Ico 0                 -- pointfree!
+Nat.Ico_zero_eq_range : Finset.Ico 0 = Finset.range
+Nat.range_succ_eq_Icc_zero : Finset.range (n + 1) = Finset.Icc 0 n
+Nat.Ico_succ_right : Finset.Ico a b.succ = Finset.Icc a b
+Nat.Icc_eq_range' / Nat.Ico_eq_range' : the `List.range'` bodies (`rfl`-equal)
+@Finset.sum_range_eq_add_Ico : (f : ℕ → M) → 0 < n → ∑ x ∈ Finset.range n, f x = f 0 + ∑ x ∈ Finset.Ico 1 n, f x
+@Finset.prod_range_eq_mul_Ico : (f : ℕ → M) → 0 < n → ∏ x ∈ Finset.range n, f x = f 0 * ∏ x ∈ Finset.Ico 1 n, f x
+@Finset.sum_range_succ : ∑ x ∈ Finset.range (n + 1), f x = ∑ x ∈ Finset.range n, f x + f n
+@Finset.sum_range_succ' : ∑ k ∈ Finset.range (n + 1), f k = ∑ k ∈ Finset.range n, f (k + 1) + f 0
+@Finset.prod_range_succ : ∏ x ∈ Finset.range (n + 1), f x = (∏ x ∈ Finset.range n, f x) * f n
+@Finset.sum_range_zero / @Finset.sum_range_one
+@Finset.Ico_union_Ico_eq_Ico : a ≤ b → b ≤ c → Finset.Ico a b ∪ Finset.Ico b c = Finset.Ico a c
+@Finset.prod_union : Disjoint s₁ s₂ → ∏ x ∈ s₁ ∪ s₂, f x = (∏ x ∈ s₁, f x) * ∏ x ∈ s₂, f x
+@Finset.sum_union  : Disjoint s₁ s₂ → ∑ x ∈ s₁ ∪ s₂, f x = ∑ x ∈ s₁, f x + ∑ x ∈ s₂, f x
+@Finset.disjoint_left : Disjoint s t ↔ ∀ ⦃a⦄, a ∈ s → a ∉ t
+@Finset.disjoint_iff_inter_eq_empty : Disjoint s t ↔ s ∩ t = ∅
+@Finset.prod_disjUnion / @Finset.sum_disjUnion (h : Disjoint s₁ s₂)
+@Finset.prod_nonneg : (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∏ i ∈ s, f i
+@Finset.prod_le_one : (∀ i ∈ s, 0 ≤ f i) → (∀ i ∈ s, f i ≤ 1) → ∏ i ∈ s, f i ≤ 1   -- CommMonoidWithZero + PosMulMono
+@Finset.sum_nonneg : (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∑ i ∈ s, f i
+@Finset.sum_le_sum : (∀ i ∈ s, f i ≤ g i) → ∑ i ∈ s, f i ≤ ∑ i ∈ s, g i
+@Finset.sum_eq_zero_iff_of_nonneg : (∀ i ∈ s, 0 ≤ f i) → (∑ i ∈ s, f i = 0 ↔ ∀ i ∈ s, f i = 0)
+@Finset.sum_eq_zero_iff_of_nonpos : (∀ i ∈ s, f i ≤ 0) → (∑ i ∈ s, f i = 0 ↔ ∀ i ∈ s, f i = 0)
+@Finset.sum_div : (s : Finset ι) (f : ι → K) (a : K), (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a
+@Finset.sum_mul : (∑ i ∈ s, f i) * a = ∑ i ∈ s, f i * a
+@Finset.mul_sum : a * ∑ i ∈ s, f i = ∑ i ∈ s, a * f i
+@Finset.sum_congr  : s₁ = s₂ → (∀ x ∈ s₂, f x = g x) → s₁.sum f = s₂.sum g
+@Finset.prod_congr : s₁ = s₂ → (∀ x ∈ s₂, f x = g x) → s₁.prod f = s₂.prod g
+@Finset.mem_Icc : x ∈ Finset.Icc a b ↔ a ≤ x ∧ x ≤ b      @Finset.mem_range : m ∈ Finset.range n ↔ m < n
+@Finset.sum_insert / @Finset.prod_insert : a ∉ s → ∑/∏ x ∈ insert a s, f x = f a +/* ∑/∏ x ∈ s, f x
+```
+
+**(b) Division / order** (`kasha-api-order.lean`)
+
+```
+@div_le_div_iff₀ : 0 < b → 0 < d → (a / b ≤ c / d ↔ a * d ≤ c * b)
+@div_lt_div_iff₀ : 0 < b → 0 < d → (a / b < c / d ↔ a * d < c * b)
+@div_le_div_iff_of_pos_right : 0 < c → (a / c ≤ b / c ↔ a ≤ b)
+@div_le_div_iff_of_pos_left  : 0 < a → 0 < b → 0 < c → (a / b ≤ a / c ↔ c ≤ b)
+@le_div_iff₀ : 0 < c → (a ≤ b / c ↔ a * c ≤ b)
+@div_le_iff₀ : 0 < c → (b / c ≤ a ↔ b ≤ a * c)
+@lt_div_iff₀ : 0 < c → (a < b / c ↔ a * c < b)
+@div_lt_iff₀ : 0 < c → (b / c < a ↔ b < a * c)
+@div_pos : 0 < a → 0 < b → 0 < a / b
+@div_nonneg : 0 ≤ a → 0 ≤ b → 0 ≤ a / b
+@div_nonneg_iff : 0 ≤ a / b ↔ 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0
+@div_pos_iff_of_pos_right : 0 < b → (0 < a / b ↔ 0 < a)
+@div_le_div_of_nonneg_left : 0 ≤ a → 0 < c → c ≤ b → a / b ≤ a / c
+@div_le_div_of_nonneg_right : a ≤ b → 0 ≤ c → a / c ≤ b / c
+@mul_le_mul_of_nonneg_left : b ≤ c → 0 ≤ a → a * b ≤ a * c
+@mul_le_mul_of_nonneg_right : b ≤ c → 0 ≤ a → b * a ≤ c * a
+@lt_of_mul_lt_mul_right : b * a < c * a → 0 ≤ a → b < c        -- note: positivity of the CANCELLED right factor
+@le_of_mul_le_mul_right : b * a ≤ c * a → 0 < a → b ≤ c
+@one_div : 1 / a = a⁻¹
+@inv_le_inv₀ : 0 < a → 0 < b → (a⁻¹ ≤ b⁻¹ ↔ b ≤ a)      @inv_lt_inv₀ : the strict twin
+@inv_anti₀ : 0 < b → b ≤ a → a⁻¹ ≤ b⁻¹
+@inv_pos : 0 < a⁻¹ ↔ 0 < a          @inv_nonneg : 0 ≤ a⁻¹ ↔ 0 ≤ a
+@one_div_le_one_div_of_le : 0 < a → a ≤ b → 1 / b ≤ 1 / a
+@div_self : a ≠ 0 → a / a = 1       @div_le_one : 0 < b → (a / b ≤ 1 ↔ a ≤ b)
+@one_le_div : 0 < b → (1 ≤ a / b ↔ b ≤ a)          @div_lt_one : 0 < b → (a / b < 1 ↔ a < b)
+@inv_div : (a / b)⁻¹ = b / a        @one_div_one_div : 1 / (1 / a) = a
+```
+
+**(c) `Real.exp` / `Real.log`** (`kasha-api-logexp.lean`; cross-module names also verified)
+
+```
+PhotoLean.Marcus.barrier (lam x : ℝ) : ℝ        PhotoLean.Marcus.rate (A lam kB T x : ℝ) : ℝ
+Real.exp_pos : ∀ (x : ℝ), 0 < Real.exp x            Real.exp_ne_zero : ∀ x, Real.exp x ≠ 0
+@Real.exp_le_exp : Real.exp x ≤ Real.exp y ↔ x ≤ y  @Real.exp_lt_exp : Real.exp x < Real.exp y ↔ x < y
+Real.exp_add / Real.exp_sub / Real.exp_neg
+@Real.exp_le_one_iff : Real.exp x ≤ 1 ↔ x ≤ 0   @Real.exp_lt_one_iff : Real.exp x < 1 ↔ x < 0
+@Real.one_lt_exp_iff : 1 < Real.exp x ↔ 0 < x
+@Real.log_pos : 1 < x → 0 < Real.log x         @Real.log_nonneg : 1 ≤ x → 0 ≤ Real.log x
+@Real.log_nonpos : 0 ≤ x → x ≤ 1 → Real.log x ≤ 0    @Real.log_neg : 0 < x → x < 1 → Real.log x < 0
+Real.log_one : Real.log 1 = 0   Real.log_zero : Real.log 0 = 0
+Real.log_exp : Real.log (Real.exp x) = x       @Real.exp_log : 0 < x → Real.exp (Real.log x) = x
+@Real.log_le_log : 0 < x → x ≤ y → Real.log x ≤ Real.log y
+@Real.log_lt_log : 0 < x → x < y → Real.log x < Real.log y
+@Real.log_le_log_iff : 0 < x → 0 < y → (Real.log x ≤ Real.log y ↔ x ≤ y)
+@Real.log_lt_log_iff : 0 < x → 0 < y → (Real.log x < Real.log y ↔ x < y)
+@Real.le_log_iff_exp_le : 0 < y → (x ≤ Real.log y ↔ Real.exp x ≤ y)
+@Real.log_le_iff_le_exp : 0 < x → (Real.log x ≤ y ↔ x ≤ Real.exp y)     -- `.mpr` goes exp-ward
+@Real.log_div : x ≠ 0 → y ≠ 0 → Real.log (x / y) = Real.log x - Real.log y
+Real.log_inv : Real.log x⁻¹ = -Real.log x      @Real.log_mul : x ≠ 0 → y ≠ 0 → Real.log (x * y) = …
+Real.log_pow : Real.log (x ^ n) = ↑n * Real.log x
+@Real.log_le_sub_one_of_pos : 0 < x → Real.log x ≤ x - 1
+Real.exp_injective : Function.Injective Real.exp    Real.log_injOn_pos : Set.InjOn Real.log (Set.Ioi 0)
+```
+
+**(d) `Rat.cast_*` and the big-operator casts** (`kasha-api-cast.lean`)
+
+```
+@Rat.cast_add / cast_sub / cast_mul / cast_div / cast_inv : [DivisionRing α] [CharZero α] (p q : ℚ), ↑(p ±/*÷ q) = ↑p ±/*÷ ↑q
+@Rat.cast_neg / cast_pow / cast_zero / cast_one : [DivisionRing α] only (no CharZero)
+@Rat.cast_natCast : [DivisionRing α] (n : ℕ), ↑↑n = ↑n
+@Rat.cast_ofNat : [DivisionRing α] (n : ℕ) [n.AtLeastTwo], ↑(OfNat.ofNat n) = OfNat.ofNat n
+@Rat.cast_le / cast_lt / cast_pos / cast_nonneg / cast_nonpos : {p q : ℚ} {K} [LinearOrderedField K]   -- all `↔`
+@Rat.cast_ne_zero / cast_eq_zero : [DivisionRing α] [CharZero α]   -- `↔`
+@Rat.cast_inj : [DivisionRing α] [CharZero α] {p q : ℚ}, ↑p = ↑q ↔ p = q
+@Rat.cast_injective : [DivisionRing α] [CharZero α], Function.Injective Rat.cast
+@Rat.cast_sum : [DivisionRing α] [CharZero α] (s : Finset ι) (f : ι → ℚ), ↑(∑ i ∈ s, f i) = ∑ i ∈ s, ↑(f i)   -- `@[simp, norm_cast]`
+@Rat.cast_prod : [Field α] [CharZero α] (s : Finset ι) (f : ι → ℚ), ↑(∏ i ∈ s, f i) = ∏ i ∈ s, ↑(f i)        -- needs `Field`, not merely `DivisionRing`
+@Rat.cast_list_sum / cast_multiset_sum / cast_list_prod / cast_multiset_prod
+Rat.castHom : (α) → [DivisionRing α] → [CharZero α] → ℚ →+* α
+```
+
+**(e) Measure / probability (the race)** — see §7; full output in `kasha-api-race.lean`.
+
+```
+ProbabilityTheory.expMeasure : ℝ → Measure ℝ
+@ProbabilityTheory.isProbabilityMeasureExponential : 0 < r → IsProbabilityMeasure (expMeasure r)
+ProbabilityTheory.exponentialPDF : ℝ → ℝ → ℝ≥0∞
+@ProbabilityTheory.lintegral_exponentialPDF_eq_one : 0 < r → ∫⁻ x, exponentialPDF r x = 1
+@ProbabilityTheory.exponentialCDFReal_eq : 0 < r → ↑(exponentialCDFReal r) x = if 0 ≤ x then 1 - Real.exp (-(r * x)) else 0
+@ProbabilityTheory.tendsto_cdf_atTop / @ProbabilityTheory.measure_cdf
+@StieltjesFunction.measure_Ioi : Tendsto (↑f) atTop (𝓝 l) → f.measure (Set.Ioi x) = ENNReal.ofReal (l - ↑f x)
+@withDensity_apply : MeasurableSet s → (μ.withDensity f) s = ∫⁻ a in s, f a ∂μ
+@lintegral_withDensity_eq_lintegral_mul : Measurable f → Measurable g → ∫⁻ a, g a ∂μ.withDensity f = ∫⁻ a, (f * g) a ∂μ
+@Measure.prod_apply : MeasurableSet s → (μ.prod ν) s = ∫⁻ x, ν (Prod.mk x ⁻¹' s) ∂μ     [SFinite ν]
+@lintegral_prod / @lintegral_lintegral_swap    (Fubini for `ℝ≥0∞`)
+@Measure.prod / @Measure.map / @Measure.restrict / @lintegral_indicator / @measure_compl / @measure_univ
+@ProbabilityTheory.iIndepFun / @ProbabilityTheory.IndepFun / @ProbabilityTheory.iIndep
+@ofReal_integral_eq_lintegral_ofReal : Integrable f μ → 0 ≤ᶠ[ae μ] f → ENNReal.ofReal (∫ x, f x ∂μ) = ∫⁻ x, ENNReal.ofReal (f x) ∂μ
+@integral_comp_mul_left_Ioi : 0 < b → ∫ x in Set.Ioi a, g (b * x) = b⁻¹ • ∫ x in Set.Ioi (b * a), g x
+@integral_exp_neg_Ioi : ∫ x in Set.Ioi c, Real.exp (-x) = Real.exp (-c)      -- root namespace
+integral_exp_neg_Ioi_zero : ∫ x in Set.Ioi 0, Real.exp (-x) = 1
+exp_neg_integrableOn_Ioi : 0 < b → IntegrableOn (fun x => Real.exp (-b * x)) (Set.Ioi a) volume
+```
+
+### 4. Failures and drift (mandatory section)
+
+**4.1 Names that do NOT exist in mathlib v4.17.0 (verbatim errors; banned in Kasha proofs).**
+
+```
+error: unknown constant 'Finset.Icc_succ_right'          -- the Finset top-split; `Order.Icc_succ_right` (a *Set* lemma) does exist
+error: unknown constant 'Finset.Icc_insert_left'
+error: unknown constant 'Finset.prod_Icc_succ_bot'       -- the "bottom" twin of `prod_Icc_succ_top` is absent
+error: unknown constant 'Finset.sum_Icc_succ_bot'
+error: unknown constant 'Finset.prod_Icc_consecutive'
+error: unknown constant 'Finset.sum_Icc_consecutive'
+error: unknown constant 'Finset.Icc_union_Icc_eq_Icc'    -- only `Set.Icc_union_Icc_eq_Icc` and `Finset.Ico_union_Ico_eq_Ico` exist
+error: unknown constant 'Finset.Ico_zero_eq_range'       -- it is `Nat.Ico_zero_eq_range`
+error: unknown identifier 'div_le_div_iff_of_pos'        -- use `div_le_div_iff₀`
+error: unknown constant 'Real.exp_one_lt_iff'
+error: unknown constant 'Real.log_injective'             -- the `Injective` version is `ENNReal.log_injective`; for ℝ use `Real.log_injOn_pos`
+error: unknown identifier 'MeasureTheory.integral_exp_neg_mul_Ioi'
+error: unknown identifier 'MeasureTheory.integral_exp_neg_Ioi'   -- it is root-level `integral_exp_neg_Ioi`
+error: unknown constant 'Real.integral_exp_neg_Ioi'
+error: unknown identifier 'MeasureTheory.measure_lt'
+error: unknown identifier 'MeasureTheory.measure_Ioi'            -- usable: `StieltjesFunction.measure_Ioi` / `MeasureTheory.measure_Ioi_pos`
+error: unknown constant 'MeasureTheory.Measure.withDensity_apply' -- it is `MeasureTheory.withDensity_apply`
+error: unknown identifier 'IsProbabilityMeasure'                 -- it is `MeasureTheory.IsProbabilityMeasure`
+error: unknown identifier 'MeasureTheory.lintegral_exp_neg_mul_Ioi'
+error: unknown identifier 'MeasureTheory.lintegral_exp_neg'
+error: unknown identifier 'MeasureTheory.integral_exp_neg_mul'
+error: unknown identifier 'MeasureTheory.lintegral_mul_left'     -- use `lintegral_const_mul`
+```
+
+| Banned | Verified replacement (usage form that compiled) |
+|---|---|
+| `Finset.Icc_succ_right` | `Finset.prod_Icc_succ_top` / `Finset.sum_Icc_succ_top` (arithmetic), or `Finset.Icc_eq_cons_Ico h` / `Finset.Icc_eq_cons_Ioc h` (set identity) |
+| `Finset.prod_Icc_succ_bot` / `Finset.sum_Icc_succ_bot` | `prod/sum_Icc_succ_top` on `Icc (a+1) …` or `prod/sum_eq_…Ico_succ_bot` on `Ico` (K4 #1 works with `Ico`) |
+| `Finset.prod_Icc_consecutive` / `Finset.sum_Icc_consecutive` | `Ico_consecutive`/`Ioc_consecutive`, or the `ext`+`omega`+`Finset.prod_union hdisj` recipe of §5 |
+| `Finset.Icc_union_Icc_eq_Icc` | `ext x; simp only [Finset.mem_Icc, Finset.mem_union]; omega` (then `Finset.prod_union hdisj`) |
+| `Finset.Ico_zero_eq_range` | `Nat.Ico_zero_eq_range` |
+| `div_le_div_iff_of_pos` | `div_le_div_iff₀` |
+| `Real.exp_one_lt_iff` | `Real.one_lt_exp_iff` |
+| `Real.log_injective` | `Real.log_injOn_pos` (or `Real.exp_injective`) |
+| `MeasureTheory.integral_exp_neg_mul_Ioi` | `integral_comp_mul_left_Ioi` + `integral_exp_neg_Ioi_zero` (§7(f)) |
+| `MeasureTheory.measure_lt`, `MeasureTheory.measure_Ioi` | `StieltjesFunction.measure_Ioi` (tail of a Stieltjes function) or `MeasureTheory.Measure.measure_Ioi_pos` (open-positive measures) |
+| `MeasureTheory.Measure.withDensity_apply` | `MeasureTheory.withDensity_apply` |
+| bare `IsProbabilityMeasure` | `MeasureTheory.IsProbabilityMeasure` |
+
+**4.2 Name that exists but is not usable on ℝ: `Finset.prod_le_one'`.**
+
+```
+@Finset.prod_le_one' : [OrderedCommMonoid N] → (∀ i ∈ s, f i ≤ 1) → ∏ i ∈ s, f i ≤ 1
+error: failed to synthesize
+  OrderedCommMonoid ℝ
+```
+ℝ does not synthesize `OrderedCommMonoid` in this toolchain (the modern signature keeps only
+`CommMonoidWithZero` + `PosMulMono`). **Use the two-hypothesis `Finset.prod_le_one`**:
+`Finset.prod_le_one (fun j _ => icBranch_nonneg …) (fun j _ => icBranch_le_one …)`. (`Finset.prod_nonneg`
+and `Finset.sum_nonneg` are unaffected — their signatures are already the modern ones.)
+
+**4.3 Deprecated (warning only, so they must NOT appear in a 0-warning probe; measured in a
+temporary scratch file, not in any delivered probe).**
+
+```
+warning: `div_le_div_iff` has been deprecated: use `div_le_div_iff₀` instead
+warning: `div_le_div_right` has been deprecated: use `div_le_div_iff_of_pos_right` instead
+warning: `div_le_div_left` has been deprecated: use `div_le_div_iff_of_pos_left` instead
+warning: `inv_le_inv` has been deprecated: use `inv_le_inv₀` instead
+warning: `inv_le_inv_of_le` has been deprecated: use `inv_anti₀` instead
+warning: `le_div_iff` has been deprecated: use `le_div_iff₀` instead
+warning: `div_le_iff` has been deprecated: use `div_le_iff₀` instead
+warning: `lt_div_iff` has been deprecated: use `lt_div_iff₀` instead
+warning: `div_lt_iff` has been deprecated: use `div_lt_iff₀` instead
+```
+(The Marcus/BEP rounds already registered `div_le_div_iff`, `div_le_div_right`, `div_le_div_left`,
+`pow_le_pow_left`; the four **new** entries are `inv_le_inv → inv_le_inv₀`,
+`inv_le_inv_of_le → inv_anti₀`, `le_div_iff → le_div_iff₀`, `lt_div_iff → lt_div_iff₀`.)
+
+**4.4 Measured traps (kernel facts, not name facts).**
+
+* **`linarith` does not unfold definitions.** `radBranch_le_one` first failed with
+  `error: linarith failed to find a contradiction … a✝ : rad n > decay rad ic n ⊢ False`
+  because the goal still contained the *definition* `decay`. Fix: `rw [radBranch, div_le_one …, decay]`
+  **before** `linarith`.
+* **`Finset.prod_union`'s side condition is generated FIRST.** `rw [Finset.prod_union]` followed by
+  `· ring` / `· rw [Finset.disjoint_left]` mismatched (measured:
+  `unsolved goals … ⊢ Disjoint (Finset.Icc (1 + i) M) (Finset.Icc (1 + M) N)` then
+  `no goals to be solved`). Fix: prove the disjointness separately and pass it: `rw [hset, Finset.prod_union hdisj]`.
+* **`Finset.mul_sum` orientation.** In a `calc … = θ * ∑ …, …` step, the *reverse* form is the usable
+  one: `(Finset.mul_sum ..).symm`; the forward form gives
+  `type mismatch … has type ?b * ∑ … = ∑ …, ?b * …`.
+* **`← Rat.cast_le` is stuck without the field.** Measured:
+  `error: typeclass instance problem is stuck … LinearOrderedField ?m.88`. Fix: `(Rat.cast_le (K := ℝ)).symm`
+  (same family as the already registered `apply Rat.cast_inj.mp` → `CharZero ?m.82`; use
+  `(Rat.cast_inj (α := ℝ)).mp`).
+* **`rw` rewrites too deep in the sqrt window.** `rw [← Real.sq_sqrt hR]` also hits the `R` inside
+  `Real.sqrt R` (measured leftover goal `|(|x|)| ≤ √R ↔ |x| ≤ √(√R ^ 2)`). Fix: `nth_rewrite 1 [← Real.sq_sqrt hR]`
+  (the nested `conv_lhs => conv_rhs => …` syntax is rejected:
+  `error: unexpected identifier; expected '{' or conv`); the remaining `||x||` needs `abs_abs`.
+* **`set_option linter.unusedVariables false in` must NOT follow the doc comment** — measured again:
+  `error: unexpected token 'set_option'; expected 'lemma'`. Correct order: block comment →
+  `set_option … in` → doc comment + theorem (the BEP-round lesson, re-confirmed).
+* **`by decide` on a `/`-bearing ℚ comparison** (re-measured; verbatim):
+  ```
+  error: tactic 'decide' failed for proposition
+    3 / 4 < 1
+  since its 'Decidable' instance
+    (3 / 4).instDecidableLt 1
+  did not reduce to 'isTrue' or 'isFalse'.
+  After unfolding the instances 'instDecidableEqBool', 'Bool.decEq', 'Int.decLt', 'Rat.instDecidableLt' and 'Int.decNonneg✝', reduction got stuck at the 'Decidable' instance
+    match (3 / 4).blt 1, true with …
+  ```
+  Integer ℚ literals are fine (`example : (1 : ℚ) < 3 := by decide` compiles); `/`-bearing ones are
+  `norm_num` (`example : (3 / 4 : ℚ) < 1 := by norm_num` compiles). The K5a/K5b verdict layer must
+  stay `norm_num`-sized; `native_decide` is banned (`Lean.ofReduceBool` ∉ `ALLOWED_AXIOMS`).
+* **`Rat.cast_prod` needs `Field`, `Rat.cast_sum` only `DivisionRing`** — relevant when a K5a bridges
+  is instantiated at a non-field target (all K5a targets are ℝ, so both apply).
+
+### 5. Kernel-verified recipes (one per plan row shape)
+
+| Plan row | Recipe that compiled (module-local helper names omitted) |
+|---|---|
+| K1 #7 `cascade_self` | `unfold cascade; rw [Finset.Icc_eq_empty_iff.mpr (by omega : ¬ i + 1 ≤ i), Finset.prod_empty]` — or one line `simp [cascade]`. **`Icc (i+1) i` is empty, not a singleton**: the plan's sketch (`Finset.Icc_self`) is wrong for this statement |
+| K1 #14 `fluoYield_zero` | `unfold fluoYield emitYield; rw [Finset.sum_range_succ, Finset.sum_range_zero, zero_add, cascade_self rad ic 0, mul_one]` |
+| K1 #15 `upperYield_zero` | `unfold upperYield; rw [Finset.Icc_eq_empty_iff.mpr (by omega : ¬ (1:ℕ) ≤ 0), Finset.sum_empty]` |
+| K1 #3/#4 `radBranch_nonneg`/`icBranch_nonneg` | `div_nonneg (h.rad_nonneg n) (le_of_lt (h.decay_pos n hn))` |
+| K1 #5/#6 `…_le_one` | `rw [radBranch, div_le_one (h.decay_pos n hn), decay]; linarith [h.ic_nonneg n]` |
+| K1 #8/#9 `cascade_nonneg`/`cascade_le_one` | `Finset.prod_nonneg …`; for `≤ 1` the **two-hypothesis** `Finset.prod_le_one (fun j _ => icBranch_nonneg …) (fun j _ => icBranch_le_one …)` (§4.2) |
+| K1 #11/#17 `emitYield_nonneg`/`upperYield_nonneg` | `mul_nonneg` / `Finset.sum_nonneg` over `Finset.mem_Icc.mp hi |>.2` |
+| K1 #13 `fluoYield_eq_low_add_upper` | `unfold …; rw [Finset.sum_range_eq_add_Ico (f := …) (Nat.succ_pos N), Nat.Ico_succ_right]` — **no `RateData` needed** |
+| K1 #20 `specFrac_sum` | `unfold specFrac; rw [← Finset.sum_div]; exact div_self hF` |
+| K2 #1/#2/#3 `cascade_succ`, `emitYield_succ`, `emitYield_succ_self` | `unfold cascade; rw [Finset.prod_Icc_succ_top (f := …) (by omega : i + 1 ≤ N + 1)]; ring`; then `ring`-steps |
+| K2 #4 `fluoYield_succ` | `rw [Finset.sum_range_succ, Finset.sum_congr rfl hterm, Finset.mul_sum, emitYield_succ_self]; ring` where `hterm` is `emitYield_succ` on `Finset.mem_range.mp hi` — **unconditional** (no `RateData`) |
+| K2 #5 `upperYield_succ` | same with `Finset.sum_Icc_succ_top (by omega : 1 ≤ N + 1)` |
+| K2 #13 `upperYield_eq_zero_iff` | `rw [Finset.sum_eq_zero_iff_of_nonneg (fun i hi => emitYield_nonneg h (Finset.mem_Icc.mp hi).2)]` then the two `Finset.mem_Icc` directions |
+| K3 #17 `leak_le_of_radBranch_le` | `Finset.sum_le_sum` with `mul_le_mul_of_nonneg_right (hθ …) (cascade_nonneg h h2)`, then `(Finset.mul_sum ..).symm` |
+| K4 #1 `cascade_compose` | `hset : Icc (i+1) N = Icc (i+1) M ∪ Icc (M+1) N` by `ext x; simp only [Finset.mem_Icc, Finset.mem_union]; omega`; `hdisj` by `rw [Finset.disjoint_left]; intro x hx hy; simp only [Finset.mem_Icc] at hx hy; omega`; then `rw [hset, Finset.prod_union hdisj]` — closes by `rfl` |
+| K3 #1 ⟺ #2 (cross-multiplication) | `have hden : 0 < rad 1 * decay rad ic 0 := mul_pos hr h0; rw [div_le_div_iff₀ htol hden]; constructor <;> intro h <;> nlinarith [h]` |
+| K3 #3 (cancel `rad 0`) | reassociate so the cancelled factor is on the right (`linarith`), then `lt_of_mul_lt_mul_right h' hr0.le` |
+| K3 #9 (strict side) | `(div_lt_div_iff₀ hden htol).mp h` gives `rad 0 * ic 1 * tol < (1 - tol) * (rad 1 * decay rad ic 0)`; `nlinarith` against the rate form |
+| K3 #10 (strict threshold) | `rw [div_lt_div_iff₀ h0' h0]; nlinarith` — `tol < 1` is *not consumed* (linter off locally) |
+| K4 #12/#15 (reciprocal of the threshold) | `unfold kashaGapThreshold; rw [one_div, inv_div]; ring_nf` for `1/K = rad1·dec0·(1-tol)/(A·rad0·tol)`; positivity by `apply div_pos` + `positivity` + (`have h1 : 0 < 1 - tol := by linarith; positivity`) — plain `positivity` cannot see `0 < 1 - tol` from `tol < 1` |
+| K4 #14 (sqrt window) | one-line `rw` route: `nth_rewrite 1 [← Real.sq_sqrt hR]; rw [← sq_abs x, sq_le_sq, abs_abs, abs_of_nonneg (Real.sqrt_nonneg R)]`; `calc` route: `|x| = √(x²) ≤ √R` (`Real.sqrt_sq_eq_abs`) and the reverse `x² = |x|² ≤ (√R)² = R` (`sq_abs`, `pow_le_pow_left₀`, `Real.sq_sqrt`) |
+| K5a (all eight cast bridges) | see §6 |
+| K4 #12 (the Marcus chain) | see §7 |
+
+### 6. K5a — the eight cast bridges, kernel-verified (recipes for prover_c)
+
+```lean
+decayQ_cast    : unfold decayQ decay; push_cast; ring
+radBranchQ_cast: unfold radBranchQ radBranch; rw [Rat.cast_div, decayQ_cast]
+icBranchQ_cast : unfold icBranchQ icBranch; rw [Rat.cast_div, decayQ_cast]
+cascadeQ_cast  : unfold cascadeQ cascade; rw [Rat.cast_prod]; exact Finset.prod_congr rfl fun j _ => icBranchQ_cast rad ic j
+emitYieldQ_cast: unfold emitYieldQ emitYield; rw [Rat.cast_mul, radBranchQ_cast, cascadeQ_cast]
+fluoYieldQ_cast: unfold fluoYieldQ fluoYield; rw [Rat.cast_sum]; exact Finset.sum_congr rfl fun i _ => emitYieldQ_cast rad ic i N
+upperYieldQ_cast: same with `upperYieldQ`, `upperYield`
+kashaWithinQ_iff_cast: unfold KashaWithinQ KashaWithin;
+  rw [← upperYieldQ_cast, ← fluoYieldQ_cast, ← Rat.cast_mul];
+  exact (Rat.cast_le (K := ℝ)).symm
+```
+`Rat.cast_prod` / `Rat.cast_sum` are the whole reason no induction is needed for the cascade/yield
+casts. The predicate transfer needs the fourth step (`← Rat.cast_le`, field explicit) — with only the
+three rewrites the goal stays `upperYieldQ … ≤ tol * fluoYieldQ … ↔ ↑(upperYieldQ …) ≤ ↑(tol * fluoYieldQ …)`.
+
+### 7. (c) the K4 #12 Marcus chain, and (f) the exponential-race verdict
+
+**(c) The chain that worked** (`kasha-api-logexp.lean`, two kernel-checked theorems).
+
+1. `exp_neg_div_iff_log (hc : 0 < c) (hA : 0 < A) (hk : 0 < k) : c ≤ A * Real.exp (-b / k) ↔ b ≤ k * Real.log (A / c)`.
+   Forward: `div_le_iff₀ hA` → `c / A ≤ exp (-b/k)`; `(Real.log_le_iff_le_exp hcA).mpr` →
+   `Real.log (c/A) ≤ -b/k`; `(le_div_iff₀ hk).mp` → `Real.log (c/A) * k ≤ -b`;
+   `rw [Real.log_div …] at h3`; then rewrite the *goal's* `Real.log (A/c)` and `linarith`.
+   Backward: rewrite `h` with `Real.log_div`, `div_le_iff₀ hk`, `neg_div`, `(Real.log_le_iff_le_exp hcA).mp`,
+   `div_le_iff₀ hA`, `linarith`.
+   **Direction trap**: `Real.log_le_iff_le_exp`'s `.mp` goes `exp`-ward, `.mpr` goes `log`-ward; the
+   two log-div rewrites must be applied to the *hypothesis* and to the *goal* separately (a `rw` on a
+   goal that contains `log (A/c)` cannot use `Real.log_div` for `log (c/A)`).
+2. `one_div_le_exp_iff (hK : 0 < K) (hk : 0 < k) : 1 / K ≤ Real.exp (-B / k) ↔ B ≤ k * Real.log K`
+   (the bridge's actual shape, `A` absorbed) — instance of (1) with `A := 1`, `c := 1/K`, then
+   `simpa only [one_div_one_div, one_mul]`.
+3. `marcus_gap_window_step … : rad1 * dec0 * (1-tol) ≤ tol * rad0 * (A * Real.exp (-(barrier lam x)/(kB*T)))
+   ↔ (lam - x)^2 ≤ 4 * lam * (kB * T) * Real.log (kashaGapThreshold A rad0 dec0 rad1 tol)` — the
+   **entire arithmetic content of K4 #12**, proved by
+   `hkey` (divide by `tol * rad0 * A > 0` via `div_le_iff₀`, `linarith` both ways) →
+   `hquot` (`unfold kashaGapThreshold; rw [one_div, inv_div]; ring_nf`) →
+   `rw [hkey, hquot, one_div_le_exp_iff hK hkT]` (with `hK` from K4 #15) →
+   `unfold PhotoLean.Marcus.barrier; rw [div_le_iff₀ (by positivity : 0 < 4 * lam)]` →
+   `constructor <;> intro x <;> linarith [x]`.
+   Combined with K3 #1 (prover_b's row) this yields K4 #12 verbatim; K4 #13 is its `not`-form and
+   K4 #14 adds the §5 sqrt window. `positivity` cannot prove `0 < kashaGapThreshold …` (measured);
+   `apply div_pos` + `positivity` + `have h1 : 0 < 1 - tol := by linarith; positivity` does.
+
+**(f) Exponential race (plan K4b/K4c, §13 limit 5): statement yes, bounded proof NO.**
+
+* `#check`ed race proposition (kernel-elaborated, no proof):
+  `fun (a b : ℝ) (_ : 0 < a) (_ : 0 < b) => ((expMeasure a).prod (expMeasure b)) {p : ℝ × ℝ | p.1 < p.2} = ENNReal.ofReal (a / (a + b))`
+  — the type is `(a b : ℝ) → 0 < a → 0 < b → Prop`.
+* Kernel-checked partial steps in `kasha-api-race.lean`:
+  (i) `expMeasure r = volume.withDensity (exponentialPDF r)` (`rfl`) and
+  `isProbabilityMeasureExponential`, `lintegral_exponentialPDF_eq_one` restated;
+  (ii) the survival function `expMeasure r (Set.Ioi x) = ENNReal.ofReal (Real.exp (-(r * x)))` for `0 ≤ x`,
+  `0 < r` (route: `StieltjesFunction.measure_Ioi (cdf (expMeasure r)) (tendsto_cdf_atTop …) x`, then
+  `ProbabilityTheory.measure_cdf`, then `exponentialCDFReal_eq` — note the `unfold exponentialCDFReal at h`
+  that `rw [measure_cdf]` requires);
+  (iii) the Laplace integral `∫ x in Set.Ioi 0, Real.exp (-(c * x)) = 1 / c` for `0 < c`
+  (`integral_comp_mul_left_Ioi` + `integral_exp_neg_Ioi_zero`).
+* **Why the full race is not within reach for one lemma**: (1) there is no mathlib object that
+  packages "two independent exponential clocks" — `iIndepFun` is a statement about one probability
+  space `Ω`, and no lemma identifies `(expMeasure a).prod (expMeasure b)` with it; (2) the density
+  change of measure (`lintegral_withDensity_eq_lintegral_mul`) has to be combined with the restriction
+  to `Ioi 0` (indicator/`restrict` bookkeeping), (3) the `ℝ≥0∞ → ℝ` conversion
+  (`ofReal_integral_eq_lintegral_ofReal`) needs `Integrable` + `0 ≤ᵐ` side conditions, (4) the tail
+  `s ↦ expMeasure b (Ioi s)` is `1` for `s < 0`, so the integrand must be split a.e. at `0`, and (5)
+  the answer must be reassembled as `ofReal (a / (a + b))`. Order of magnitude: a dedicated sprint
+  (order 100 lines of measure theory), not a probe.
+* **Verdict**: the plan's §1.2 branching-probability identification stays a **declared modelling
+  premise**; K4b/K4c are not delivered as theorems, and the delivered statement list keeps its scope
+  limit `the exponential-race derivation of the branching probabilities is not formalized`. The API
+  side is now measured, not assumed: everything needed for *one* lemma of the race exists, but the
+  composition is a milestone of its own.
+
+### 8. API-risk list per milestone (post-calibration)
+
+| Block | Risk after this round |
+|---|---|
+| K1 `Basic.lean` | **low** — the four index identities (`cascade_self`, `fluoYield_eq_low_add_upper`, `fluoYield_zero`, `upperYield_zero`) and the `prod_le_one'` trap (§4.2) are the only non-obvious bits, all verified |
+| K2 `Criterion.lean` | **low** — `fluoYield_succ`/`upperYield_succ` verified unconditionally; `upperYield_eq_zero_iff` needs the exact `Finset.sum_eq_zero_iff_of_nonneg` signature (quoted) |
+| K3 `Sharp.lean` | **low** — cross-multiplication, cancellation, strict threshold all verified; the remaining work is the two-level unfolding (`Icc 1 1 = {1}`, `cascade 1 1 = 1`), which is the §3(a) toolkit |
+| K4 `Compose.lean` | **lowest** — `cascade_compose` verified; the Marcus bridge is *proved* here up to K3 #1; only `Real.log`'s positivity side conditions (`kashaGapThreshold_pos`, verified) need care |
+| K5a `RatModel.lean` | **low** — all eight bridges verified (`Rat.cast_prod`/`cast_sum` do the heavy lifting); the only traps are the explicit-field forms of `Rat.cast_inj`/`Rat.cast_le` |
+| K5b `Instances.lean` | unchanged, `norm_num`-only; no API work needed here (instance rows are prover_c's, not duplicated in these probes) |
+| K4b/K4c | **closed as a scope limit** (§7(f)) |
+
+### 9. Plan-sketch corrections found while calibrating (recorded, not applied to the plan)
+
+| Plan locus | Sketch says | Measured |
+|---|---|---|
+| §4.2 #7 `cascade_self` | "`Finset.Icc_self`, product of one term" | `Icc (i+1) i = ∅` — the usable pair is `Finset.Icc_eq_empty_iff` + `Finset.prod_empty` (`Finset.Icc_self` applies to `Icc a a`, which never occurs in the cascade) |
+| §4.2 #13 | "`range (N+1)` = `{0} ∪ Icc 1 N`" | the shortest verified route is `Finset.sum_range_eq_add_Ico` + `Nat.Ico_succ_right` (`Ico`-based); the `range`-equality itself is `Nat.range_succ_eq_Icc_zero` / `Finset.range_eq_Ico`, not `Finset.Ico_eq_range` (absent) |
+| §5.1 #1 | "`Finset.Icc_succ_right`, `Finset.prod_insert`" | `Finset.Icc_succ_right` does not exist; the verified route is `Finset.prod_Icc_succ_top` + `ring` |
+| §6.1 #8/§6.2 #17 | "`Finset.prod_le_one` with 3" | the *one-argument* `prod_le_one'` is unusable on ℝ (§4.2); the two-hypothesis `prod_le_one` is the working form |
