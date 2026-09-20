@@ -155,6 +155,19 @@ theorem inst_I6_mcc_inverted_zone : Rat.hammondZoneQ (6 / 5) (12 / 5) = HZone.be
 theorem inst_I6_mcc_inverted_coord : tsCoord (6 / 5) (12 / 5) = -(1 / 2) := by
   norm_num [tsCoord]
 
+/-- I6, point-level verdict: the instance does **not** conform — it lies outside the domain of
+applicability of the Hammond description of this model (the crossing point is not between the two
+wells). This is a statement inside the model, not about any molecule. -/
+theorem inst_I6_mcc_inverted_notConforms : ¬ HammondConforms (6 / 5) (12 / 5) := by
+  intro hc
+  have hz : hammondZone (6 / 5 : ℝ) (12 / 5 : ℝ) = HZone.beyondReactant := by
+    rw [← (by norm_num : (((6 : ℚ) / 5 : ℚ) : ℝ) = (6 / 5 : ℝ)),
+        ← (by norm_num : (((12 : ℚ) / 5 : ℚ) : ℝ) = (12 / 5 : ℝ)),
+        ← Rat.hammondZoneQ_eq_hammondZone, inst_I6_mcc_inverted_zone]
+  have hd := (conforms_iff_zone (by norm_num : (0 : ℝ) < 6 / 5)).mp hc
+  rw [hz] at hd
+  rcases hd with h | h | h <;> exact absurd h (by decide)
+
 end Hammond
 
 end PhotoLean
