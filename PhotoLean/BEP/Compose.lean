@@ -212,5 +212,32 @@ theorem epConformsOnWindow_of_microscopic {lamInner lamOuter tol w : ℝ} (hli :
     rw [Set.mem_Icc] at hx
     linarith [hx.1, hx.2]
 
+/-- Plan §7 #11: conformance on a window transfers from the inner curvature to the larger total
+curvature on the same window — the absolute violation `|bepDefect lam x|` is antitone in `lam`
+(plan §6.3 shape). At `x = 0` both defects vanish, so the antitone identity of #8 — whose premise
+`x ≠ 0` is a statement of the plan and not a mathematical necessity here — is not needed. -/
+theorem epConformsOnWindow_shrinks_with_inner {lamInner lamOuter tol w : ℝ} (hli : 0 < lamInner)
+    (hlo : 0 < lamOuter) (htol : 0 < tol) :
+    EPConformsOnWindow lamInner tol (-w) w → EPConformsOnWindow (lamInner + lamOuter) tol (-w) w := by
+  intro h
+  have hL : 0 < lamInner + lamOuter := by linarith
+  have key : ∀ L x : ℝ, L ≠ 0 → bepDefect L x = x ^ 2 / (4 * L) := by
+    intro L x hL0
+    unfold bepDefect eact bepLine
+    field_simp
+    ring
+  refine ⟨hL, htol, ?_⟩
+  intro x hx
+  rcases eq_or_ne x 0 with rfl | hx0
+  · -- thermoneutral driving force: both violations vanish
+    rw [key (lamInner + lamOuter) 0 (ne_of_gt hL)]
+    simpa using le_of_lt htol
+  · -- non-thermoneutral: the total violation is at most the inner one
+    have hmono : |bepDefect (lamInner + lamOuter) x| ≤ |bepDefect lamInner x| := by
+      rw [key (lamInner + lamOuter) x (ne_of_gt hL), key lamInner x (ne_of_gt hli),
+        abs_of_nonneg (by positivity), abs_of_nonneg (by positivity)]
+      exact div_le_div_of_nonneg_left (le_of_lt (sq_pos_of_ne_zero hx0)) (by linarith) (by linarith)
+    exact le_trans hmono (h.2.2 x hx)
+
 
 end PhotoLean.BEP
