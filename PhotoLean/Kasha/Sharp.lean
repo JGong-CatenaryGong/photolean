@@ -121,6 +121,17 @@ theorem kashaWithin_one_iff_rates {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < d
   unfold radBranch icBranch decay
   exact halg
 
+/-- Plan §6.1 #2 — **the funnel-ratio threshold** (two-level form), with the statement correction
+of plan §3.1: `0 < decay rad ic 1` is an explicit premise. This is row 1 divided by
+`tol · rad 1 · decay 0 > 0`. -/
+
+theorem kashaWithin_one_iff_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < decay rad ic 0)
+    (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1) :
+    KashaWithin rad ic tol 1 ↔ (1 - tol) / tol ≤ funnelRatio rad ic := by
+  have hrd : 0 < rad 1 * decay rad ic 0 := mul_pos hr h0
+  rw [kashaWithin_one_iff_rates h0 h1, funnelRatio, div_le_div_iff₀ htol hrd]
+  constructor <;> intro hh <;> linarith
+
 end Kasha
 
 end PhotoLean
