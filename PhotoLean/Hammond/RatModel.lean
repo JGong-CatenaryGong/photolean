@@ -62,6 +62,20 @@ def hammondZoneQ (lam x : ℚ) : HZone :=
   else if 0 < x then HZone.early
   else HZone.late
 
+/-! ## Transfer lemmas (plan §8.1)
+
+Each one moves a computed ℚ-side value onto the ℝ theory. The algebraic ones are
+`unfold` + `push_cast` + `ring`; `push_cast` does **not** close the goal by itself, `ring` must
+follow (the explicit `rw [Rat.cast_div, …]` route would close by `rfl` instead — the two routes
+have opposite tail rules, recorded in `proofs/API-NOTES.md`). -/
+
+/-- Transfer: the rational coordinate casts to the real one. -/
+theorem tsCoordQ_cast (lam x : ℚ) :
+    ((tsCoordQ lam x : ℚ) : ℝ) = tsCoord (lam : ℝ) (x : ℝ) := by
+  unfold tsCoordQ tsCoord
+  push_cast
+  ring
+
 end Rat
 
 end Hammond
