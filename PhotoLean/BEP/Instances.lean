@@ -175,6 +175,11 @@ theorem inst_I6_inverted_zone : Rat.epQVerdict (2 : ℚ) 3 = Rat.EPQVerdict.subL
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I6 (`model-constructed`): `α(3) = -1/4 < 0` — below the band. -/
+theorem inst_I6_inverted_transfer : Rat.qTransfer (2 : ℚ) 3 = -(1 / 4) := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
