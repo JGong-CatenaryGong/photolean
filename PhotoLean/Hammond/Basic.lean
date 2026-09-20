@@ -280,3 +280,18 @@ theorem hammondZone_eq_beyondReactant_iff {lam x : ℝ} (hlam : 0 < lam) :
     rw [if_neg (by linarith : ¬ (x = lam)), if_neg (by linarith : ¬ (x = -lam)),
       if_neg (by linarith : ¬ (x < -lam)), if_pos h]
 
+/-- Zone characterization, deep endergonic branch. -/
+theorem hammondZone_eq_beyondProduct_iff {lam x : ℝ} (hlam : 0 < lam) :
+    hammondZone lam x = HZone.beyondProduct ↔ x < -lam := by
+  constructor
+  · intro h
+    unfold hammondZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6
+    exact h3
+  · intro h
+    unfold hammondZone
+    rw [if_neg (by linarith : ¬ (x = lam)), if_neg (by linarith : ¬ (x = -lam)), if_pos h]
+
+end Hammond
+
+end PhotoLean
