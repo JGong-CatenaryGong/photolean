@@ -201,4 +201,10 @@ theorem exists_atForwardLimit : ∃ lam x : ℝ, epZone lam x = EPZone.atForward
   unfold epZone
   norm_num
 
+/-- Non-vacuity, reverse barrierless limit (`lam = 1`, `x = -1`). -/
+theorem exists_atReverseLimit : ∃ lam x : ℝ, epZone lam x = EPZone.atReverseLimit := by
+  refine ⟨1, -1, ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
