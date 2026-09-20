@@ -227,8 +227,10 @@ level's nonradiative channel is neglected in the row), and the identification `r
 | ~~I12~~ | — | — | — | — | **dropped**: no second anti-Kasha molecule with first-hand numbers (§R1.6) |
 
 **What the instance layer adds over the qualitative rule.** (i) The verdict is *tolerance-relative*
-and the kernel shows it (I11t): "azulene violates Kasha's rule" is only true at a purity requirement
-below ≈ 1/21; (ii) the family contrast is *internal to one measurement family at one tolerance*
+and the kernel shows it (I11t): with the I11 ratio 20.6, conformance begins at `tol ≥ 1/21.6 ≈ 4.6 %`
+(and at `1/(40.3+1) ≈ 2.4 %` for the 2026 route), so "azulene violates Kasha's rule" is a statement
+*about a tolerance*, not an absolute; (ii) the family contrast is *internal to one measurement family
+at one tolerance*
 (I15) — the methylated derivative conforms while the parent violates; (iii) the three independent
 azulene routes (thesis 20.6, printed quantum yield 40.3, peer-reviewed rates 23.0) agree on the
 verdict within a factor ≈ 2, i.e. solvent/method spread rather than disagreement in sign — and the
