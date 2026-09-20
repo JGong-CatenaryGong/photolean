@@ -193,6 +193,11 @@ theorem inst_I7_reverseInverted_zone : Rat.epQVerdict (2 : ℚ) (-3) = Rat.EPQVe
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I7 (`model-constructed`): `α(-3) = 5/4 > 1` — above the band. -/
+theorem inst_I7_reverseInverted_transfer : Rat.qTransfer (2 : ℚ) (-3) = 5 / 4 := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
