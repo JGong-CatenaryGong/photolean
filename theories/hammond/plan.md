@@ -37,12 +37,29 @@ This is the executable version of Hammond's postulate: "the structure of the tra
 resembles that of the species to which it is closest in energy", quantified in the model where
 that statement becomes an exact equation and its validity condition becomes a theorem.
 
-**Attribution (to be finalized against `theories/hammond/LITERATURE.md`)**: the postulate is
-**Hammond 1955**, *J. Am. Chem. Soc.* **77**, 334–338; the coefficient `α` relating rate to
-equilibrium change is **Leffler 1953**, *Science* **117**, 340–341; the two-parabola
-realization and the `α` formula are **Marcus 1956**, *J. Chem. Phys.* **24**, 966 ff.
-The `literature_researcher` owns the exact loci and the verbatim wording; this plan cites
-none of them as authority for a proof (literature fixes statements, never proofs).
+**Attribution (settled by `theories/hammond/LITERATURE.md`, the authority for loci and wording)**:
+the postulate is **Hammond 1955**, *J. Am. Chem. Soc.* **77**(2), 334–338, `10.1021/ja01607a027`,
+whose printed p. 334 says *verbatim*: "If two states … have nearly the same energy content, their
+interconversion will involve only a small reorganization of the molecular structures", with the
+operational consequence "In highly exothermic steps it will be expected that the transition states
+will resemble reactants closely and in endothermic steps the products will provide the best models
+for the transition states."
+**Correction (literature survey, §9 item 1)**: the familiar sentence "the structure of the
+transition state resembles that of the species to which it is closest in energy" is a **later
+paraphrase**, *not* Hammond's wording — "closest / close in / nearest / near in" occur **0 times**
+in the 1955 paper. This plan's wording above should be read as the modern paraphrase; the normative
+modern definition ("Hammond–Leffler principle", a *hypothesis*; `α` an approximate measure of the TS
+displacement; "many exceptions") is the IUPAC glossary (Perrin et al., *Pure Appl. Chem.* **94**,
+353–534, `10.1515/pac-2018-1010`).
+**Correction (literature survey, §9 item 2)**: the two-parabola model and the barrier formula are
+**Marcus 1956**, Eq. (38) p. 974 (`10.1063/1.1742723`) — but the **α formula** `α = 1/2 + ΔG°/(2λ)`
+and the slope ↔ TS-position identification are **not** in 1956 (its full text has 0 hits for
+"slope", "alpha", "Bronsted", "inverted"); they are **Cohen & Marcus 1968** (`10.1021/j100858a052`),
+**Marcus 1968** (`10.1021/j100849a019`) and **Marcus 1969** (`10.1021/ja01054a003`). Leffler's
+priority for the α-as-structure idea (1953, `10.1126/science.117.3039.340`) is bibliographically
+correct but its own text was **not accessible** (`not-accessed` in the record — do not cite it for
+content).
+Literature fixes statements and premises; it never substitutes for a proof.
 
 ### 1.2 Human request → milestones
 
@@ -449,7 +466,7 @@ rational literals; `x = -ΔG°`.
 | I3 | endergonic textbook | 1 | `-1/2` | `3/4` | conforms, product-like (`HZone.late`) |
 | I4 | barrierless forward | 1 | 1 | `0` | **boundary**: `¬ HammondConforms` (strict regime fails) while the family descriptor still holds |
 | I5 | literature MCC, normal region | `6/5` | `1/20` | `23/48` | conforms (`HZone.early`) |
-| I6 | literature MCC, inverted region | `6/5` | `12/5` | `-1/2` | **does not conform** (`HZone.beyondReactant`; also `Marcus.InvertedRegion`; `α = -1/8 < 0`) |
+| I6 | literature MCC, inverted region | `6/5` | `12/5` | `q‡ = -1/2` at `x = 12/5`; the **secant** over the MCC pair `3/5 → 12/5` is `-1/8` (its midpoint is `x = 3/2`) | **does not conform** (`HZone.beyondReactant`; also `Marcus.InvertedRegion`; the measured slope is negative) |
 | I7 | literature reaction centre, deep inverted | `1/4` | `11/10` | `-17/10` | **does not conform** (`HZone.beyondReactant`) |
 | I8 | non-physical curvature | `-1/2`, `0` | any | — | **rejected**: `¬ HammondDescriptor` in both branches; no `x` in the regime |
 | I9 | MCC pair, Hammond direction | `6/5` | `3/5 → 12/5` | descending | `tsCoord (12/5) < tsCoord (3/5)` (descriptor instantiated) |
@@ -553,10 +570,23 @@ compiling probe (the Hammond probe set is `theories/hammond/probes/hammond-api-*
 
 ## 13. Literature anchors and explicit modeling assumptions
 
-**Anchors** (loci and verbatim wording are owned by `theories/hammond/LITERATURE.md`):
-Hammond 1955 (the postulate), Leffler 1953 (`α` as the structural extent), Marcus 1956
-(two-parabola model, barrier formula), Marcus 1992 Nobel lecture (the inverted region and the
-Brønsted-slope picture), Miller–Calcaterra–Closs 1984 / MCC data (instance parameters).
+**Anchors** (loci and verbatim wording are owned by `theories/hammond/LITERATURE.md` §1):
+Hammond 1955 `10.1021/ja01607a027` (the postulate, verbatim p. 334; his own later verdict that the
+rules' weak point is the *similar-potential-functions* assumption, Citation Classic 1985);
+IUPAC glossary `10.1515/pac-2018-1010` (normative terms: "Hammond–Leffler principle" as a
+*hypothesis*, `α` as an approximate displacement measure, "many exceptions", the anti-Hammond /
+Thornton perpendicular effect); Marcus 1956 `10.1063/1.1742723` (two-parabola model, barrier
+Eq. (38) p. 974); Marcus 1960 `10.1039/df9602900021` (first statement of the inverted region, p. 28);
+Marcus Nobel 1992 (barrier Eq. (5b) p. 78; the Brønsted/Tafel-plot analogy p. 82; slope 1/2 p. 85;
+`λ_s`/`λ_v`/`ω` annotation p. 84; reaction-centre numbers p. 88; the atom/proton/methyl-transfer
+scope limit p. 90); Cohen & Marcus 1968 `10.1021/j100858a052` and Marcus 1968 `10.1021/j100849a019`
+(the α slope, applied to 16 experimental series), Marcus 1969 `10.1021/ja01054a003`
+(slope ↔ TS position); García-Padilla & Qiu 2025 `10.1039/d5sc04829j` (published analogue of
+"inverted region = negative Brønsted slopes" and of the model's mirror symmetry);
+Villegas-Escobar 2026 `10.1016/j.chemphys.2026.113488` (equality `α` = TS position is exact only in
+the symmetric/equal-curvature approximation); Miller–Calcaterra–Closs 1984 `10.1021/ja00322a058`
+(MCC data). **DOI correction**: Marcus & Sutin 1985 is `10.1016/0304-4173(85)90014-X`; the DOI
+`10.1016/0005-2728(85)90039-9` is a 404 at Crossref and doi.org — never cite it.
 
 **Assumptions that are NOT derived (and must be stated as such in every downstream claim)**:
 
@@ -569,6 +599,11 @@ Brønsted-slope picture), Miller–Calcaterra–Closs 1984 / MCC data (instance 
 | 5 | the `λ = 0` branch depends on Lean's `x / 0 = 0` **convention** | `tsCoord_zero_lam`, H3's `λ = 0` witness — a formal convention, not physics |
 | 6 | the inverted-region verdict is a statement *inside the model*, not about a molecule | `HammondConforms` negation + `Marcus.InvertedRegion` |
 | 7 | real systems with `x > λ` are not "anti-Hammond reactions"; the model simply leaves the domain where the structural reading applies | wording rule for `RESULTS.md` and instance doc comments |
+| 8 | **`λ` is constant across the compared pair/series** (fixed intrinsic barrier). Without this, `HammondDescriptor lam` is not the right object: the postulate is not claimed between different intrinsic reactivities (S23, S24; also Marcus 1968's "conjecture") | implicit in `HammondDescriptor lam` / `lefflerSecant lam …`; documented in the module headers |
+| 9 | **equal curvature** of the two parabolas (symmetric case). Asymmetric force constants make the thermoneutral TS position force-constant-dependent and break the exactness of `α = q‡` (S14, S15, S17; Hammond's own "similar potential functions" caveat, S2) | the shared `lam` in `reactantSurface`/`productSurface` |
+| 10 | **one scalar coordinate** stands for molecular structure; the TS never coincides with either well, and off-path (perpendicular / anti-Hammond) effects are structurally inexpressible here (S16, S4, S32) | `tsCoord` definition + §1.3 |
+| 11 | the inverted-region verdict is **model-internal**; `α < 0 ⟺ inverted region` is a **theorem of the equal-curvature model**, *not* a literature identity (LITERATURE.md §4.2: no source states it) — its statement-level support is Nobel p. 82 + Cohen & Marcus 1968 + Marcus 1968, with García-Padilla & Qiu 2025 as the modern published analogue | `lefflerSecant_neg_iff_inverted`, `inst_I6_*`; wording rule |
+| 12 | **instance scope**: no proton/atom/methyl-transfer (bond-breaking) parameter set may receive a `beyondReactant` verdict as a physical claim — the parabolic model and its inverted region are not licensed there (Nobel p. 90; Marcus 1968 Appendix II). The delivered instances I5–I7 are electron-transfer parameter sets | instance table §8.2 + `RESULTS.md` |
 
 **Wording rule (binding)**: instance verdicts say "the instance lies in/outside the Hammond
 regime of the two-parabola model"; they never say "this molecule obeys/violates Hammond's
@@ -584,6 +619,9 @@ manipulation). This is the sharpest boundary of the present theory.
 ② **Anharmonic surfaces**: the secant identity becomes an inequality (mean value theorem);
 would need calculus in mathlib (available) but the model's exactness is lost.
 ③ **Dynamical recrossing / variational TS**: needs a dynamics layer (out of mathlib's scope).
-④ **Empirical Brønsted `α` comparison**: only if `theories/hammond/LITERATURE.md` §7 finds a
-source where an experimental `α` is compared with the Marcus prediction; otherwise record as
-non-formalizable.
+④ **Empirical Brønsted `α` comparison — source found, stays outside the kernel**: Cohen & Marcus
+1968 applied the model slope to Brønsted-slope data of 16 proton- and atom-transfer series
+("consistent, but more data are needed"); modern measured-α series exist (rhenium-hydride hydride
+transfer 2022; enzymatic proton transfer 2000). Comparing an *experimental* slope with the model's
+`α` would be a **modelling claim about a real system**, not a theorem, and is therefore *not*
+formalized — it is recorded in `LITERATURE.md` §4.1(iv)/§6 as documentation only.
