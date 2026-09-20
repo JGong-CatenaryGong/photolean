@@ -193,3 +193,50 @@
   后续模块交付时 lead 继续同步补入，
   否则裸跑 `check.sh --strict` 只构建 Smoke（**扫描仍覆盖全目录**）。逐模块跑
   `check.sh --strict <Module>` 时不受影响。
+
+---
+
+## 固化轮次（2026-09-20）— 脚本/文档债 + 共享内核 + 跨理论关系模块
+
+来源：2026-09-20 审查记录（`review/REVIEW.md` §8 的 F1–F6 与建议 S1）。本轮的产物**跨三个理论**，
+登记在规范理论（Marcus）的任务板上；hammond/BEP 任务板各加一行指针。全部条目在只读 verifier
+独立跑门（`GATE: PASS`，2026-09-20，HEAD `7a82d69` 之前的 `efa74c1`）之后由 lead 打勾。
+
+### 阶段 A — 脚本与文档债（每步一个提交）
+
+- [x] F1 `check.sh` 正则补 `admit`、axiom 锚定放宽至 `private/protected axiom` — `proofs/scripts/check.sh` — lead — done — `5220136`；负控制实测三种形态命中、`axiomatic` 不误伤；严格门仍 PASS
+- [x] F2 文件级 `set_option linter.unusedVariables false` 改为逐声明 `in` 作用域 — `PhotoLean/Marcus/Barrier.lean` — lead — done — `5104150`；verifier 剥注释复核：代码逐字节相同（2038 = 2038）、9/9 签名 0 差异
+- [x] F3 定理名笔误 `lamTotal_pos` → `lam_total_pos`（中英两版） — `theories/Marcus/RESULTS{,.en}.md` — lead — done — `d6af5a4`
+- [x] F4 H4 属主列 `prover_b` → `prover_a`（偏离备注保留） — `theories/hammond/TASKS.md` — lead — done — `f283947`
+- [x] F5/F6 README「双语文档」节改写为历史镜像冻结；「现状」节补入 hammond/BEP；删去「待填」 — `README.md` — lead — done — `c1427eb`
+- [x] 审查记录入库（输入文档留档，非交付物） — `review/REVIEW.md` — lead — done — `7a82d69`
+
+### 阶段 B — 共享内核（建议 S1）
+
+- [x] `PhotoLean.Kernel` 六条唯一定义（两势能面 / 正逆势垒 / 过渡态坐标 / 转移系数）+ 2 条内部一致性定理 — `PhotoLean/Kernel.lean` — prover_a — done — `3ef20a4`；`import Mathlib` 唯一 import；`defaultTargets` 已登记；两定理公理 `[propext, Classical.choice, Quot.sound]`
+
+### 阶段 C — 关系模块与关系图
+
+- [x] `relations_inventory`（§1–§5：8 条 `rfl` 内核证书 + 6 条真等价 + 2 条单向 + 4 条定义复用 + 4 条清单行，共 24 条复用/证书，逐条 `axioms.sh` PASS） — `PhotoLean/Relations.lean` — lead — done — `f42a7d5`；登记 `defaultTargets`
+- [x] `hammond_trend_exact_bep_law_inexact` / `hammond_sharp_iff_marcus_sharp` / `rate_predicate_satisfiable_without_positive_curvature`（§6 非关系与强度差，本阶段新证明）+ §3 新边 `hammondDescriptor_of_epConformsOnWindow` — `PhotoLean/Relations.lean` — lead — done — `3dd1239`；4 条公理各自 PASS
+- [x] `theories/RELATIONS.md` 双语关系图讨论稿（真等价 / 单向 / 定义复用 / 形似实异 / 量词形态 / 诚实边界）+ README 指针 — `theories/RELATIONS.md`、`README.md` — lead — done — `efa74c1`
+- [x] 两个新模块的语句权威：编译期复用钉子（每条上游语句逐字写出）+ 模块 docstring — `PhotoLean/{Kernel,Relations}.lean` — lead — done — 见 `theories/RELATIONS.md` §5(v) 与 §6.6（三个保真探针只 glob `PhotoLean/<理论>/*.lean`，**不覆盖**这两个新模块，属已知覆盖范围口径）
+
+### 本轮验收证据（verifier 独立跑门，只读）
+
+- [x] 门：`proofs/scripts/lake build` 零警告；`proofs/scripts/check.sh --strict` 扫描 `clean`、`verdict: PASS`；三理论叶数据面 5/5 × 3
+- [x] 公理：`Kernel.lean` + `Relations.lean` 全部 **30/30** 声明逐条 `axioms.sh` PASS，均恰为 `[propext, Classical.choice, Quot.sound]`
+- [x] 保真：Marcus **51/51**、BEP **191/191**、hammond **102/102**，0 差异（与本轮开始前的基线一致）
+- [x] 加性审计：`PhotoLean/{Marcus,Hammond,BEP}` 自本轮起点（`10713d1`）以来唯一改动是 Barrier.lean 的 F2（见上）
+
+### 已知偏离与口径（如实登记）
+
+- **提交粒度**：阶段 C 的 4 条新声明装在 2 个提交里（`f42a7d5` 收集 + `3dd1239` 新定理），不满足
+  铁律 7「每 lemma 一 commit」；本轮把「一个逻辑变更一个提交」作为粒度口径（与 M5b 的记账方式一致）。
+  另：`Kernel`/`Relations` 不是 plan 里程碑编号，故 `<area>` 用了模块名——与 `COMMIT_TEMPLATE`
+  的 `<area>=里程碑号` 一致性的偏离已记录，未改写历史。
+- **保真覆盖**：新模块不在三个 `*-fidelity.py` 的 glob 范围内（脚本按理论目录取源），因此
+  「51/102/191 不变」**不能**当作新模块的语句证据；新模块的权威见上一节的第 4 行。
+- **文档同步**：本轮按 verifier 的发现订正了 `theories/RELATIONS.md` 的两处措辞（速率谓词的参数依赖、
+  N1 的 `0 < lam` 限定词）、`Relations.lean` 对应 docstring、`PhotoLean/Kernel.lean` 头注释与
+  `theories/Marcus/plan.md` §13 表第 1 行（显式登记**两井等曲率 `2λ`**）。

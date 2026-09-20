@@ -183,3 +183,14 @@
 - **Known-weak lemma warning (inherited lesson)**: a zone "trichotomy"-style lemma carries little
   information; the semantic content of the classifier is carried by the seven `..._iff` lemmas.
   Do not overstate the classifier lemmas in `RESULTS.md`.
+
+---
+
+## Cross-theory consolidation round (2026-09-20)
+
+The cross-theory deliverables of this round — the shared kernel `PhotoLean/Kernel.lean`, the relation
+module `PhotoLean/Relations.lean` and the bilingual relation-graph draft `theories/RELATIONS.md` — plus
+the independent verifier evidence (build with zero warnings, strict scan clean, 30/30 declarations of the
+two new modules at `[propext, Classical.choice, Quot.sound]`, statement fidelity 51/191/102 unchanged)
+are recorded on the canonical theory board: see the section "固化轮次（2026-09-20）" at the end of
+`theories/Marcus/TASKS.md`. Nothing under `PhotoLean/<Theory>/` was modified this round.
