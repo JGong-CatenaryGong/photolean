@@ -116,6 +116,16 @@ def epQVerdict (lam x : ℚ) : EPQVerdict :=
   else if 1 < qTransfer lam x then EPQVerdict.superLinear
   else EPQVerdict.subLinear
 
+/-! ## Model-consistency block (plan §8.1 amendment, literature round 1c, lead 2026-09-20) -/
+
+/-- Second divided difference of three family points: the model's curvature witness. -/
+def qSecondDividedDiff (x₁ e₁ x₂ e₂ x₃ e₃ : ℚ) : ℚ :=
+  ((e₃ - e₂) / (x₃ - x₂) - (e₂ - e₁) / (x₂ - x₁)) / (x₃ - x₁)
+
+/-- Three family points are consistent with the equal-curvature two-parabola model. -/
+def qModelConsistent3 (lam x₁ x₂ x₃ e₁ e₂ e₃ : ℚ) : Prop :=
+  0 < lam ∧ e₁ = qEact lam x₁ ∧ e₂ = qEact lam x₂ ∧ e₃ = qEact lam x₃
+
 /-! ## Theorems of plan §8.1 -/
 
 theorem qEact_cast (lam x : ℚ) : ((qEact lam x : ℚ) : ℝ) = eact (lam : ℝ) (x : ℝ) := by
@@ -403,6 +413,14 @@ theorem qConformsWindow_negativeControl : ¬ qConformsWindow 1 (1 / 16) 1 := by
   unfold qConformsWindow
   rintro ⟨-, -, h⟩
   norm_num at h
+
+/-! ### Model-consistency theorems (plan §8.1 amendment)
+
+The three family points must be **pairwise distinct**: beside `x₂ ≠ x₁` and `x₃ ≠ x₁` the premise
+`x₃ ≠ x₂` is required. With `x₃ = x₂` totalised division makes the first inner quotient `0`, so the
+second divided difference degenerates to the first-order slope and the identity
+`qSecondDividedDiff = 1/(4λ)` fails; the kernel counterexamples are recorded in the probe-only
+section at the end of `theories/BEP/probes/bep-prover_c-scratch.lean`. -/
 
 end Rat
 
