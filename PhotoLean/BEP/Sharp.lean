@@ -108,5 +108,21 @@ theorem not_epBounds_of_gt {lam x : ℝ} (hlam : 0 < lam) (hx : lam < x) : ¬ EP
   have := (epBounds_iff_region hlam).mp h
   linarith
 
+/-! ## AUX — the second-difference engine
+
+Delivered here rather than at the end of the file: §6.1 rows #8/#7 below consume it, and Lean has no
+forward references (order recorded in the module header). -/
+
+/-- AUX: the general second-difference identity behind `not_epLinearOn_of_ne_zero` and the
+minimax lower bound. For **any** affine model `c + a * x` the second difference of the error at
+`x₁, x₂` and their midpoint is the curvature term `(x₁-x₂)²/(8*lam)`, independent of `c` and `a`. -/
+theorem eact_second_difference {lam c a x₁ x₂ : ℝ} (hlam : lam ≠ 0) :
+    (eact lam x₁ - (c + a * x₁)) + (eact lam x₂ - (c + a * x₂)) -
+        2 * (eact lam ((x₁ + x₂) / 2) - (c + a * ((x₁ + x₂) / 2))) =
+      (x₁ - x₂) ^ 2 / (8 * lam) := by
+  unfold eact
+  field_simp
+  ring
+
 
 end PhotoLean.BEP
