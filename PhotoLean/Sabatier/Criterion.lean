@@ -331,6 +331,11 @@ theorem activity_ratio (f : ℝ → ℝ) {kB T dE₁ dE₂ : ℝ} (hkT : kB * T 
   field_simp
   ring
 
+/-- Non-vacuity: an exactly optimal catalyst exists for every claimed apex — the apex itself. The
+three Sabatier regimes are therefore never empty, so the verdict vocabulary of the instance layer is
+not vacuous. Plan §5 (non-vacuity witnesses). -/
+theorem exists_optimal (apexD : ℝ) : ∃ dE : ℝ, Optimal apexD dE := ⟨apexD, rfl⟩
+
 end Sabatier
 
 end PhotoLean
