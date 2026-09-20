@@ -10,9 +10,16 @@ Agent preset 驱动。
 
 - Lean 4.17.0 + mathlib，工具链与缓存已联通（`lake build` 冷启动 ~10s）
 - 验收门脚本可用：`proofs/scripts/check.sh --strict`、`proofs/scripts/axioms.sh`
-- 理论方向已定：**Marcus 反转区**（经典马库斯模型）。规划见 `theories/Marcus/plan.md`（M1–M5），
-  交付物在 `PhotoLean/Marcus/`（描述层 / 势垒代数 / 速率层 / 锐利成立条件 / 微观重组能 / 实例判定），
-  **面向人类提问的答复见 `theories/Marcus/RESULTS.md`**
+- **三个理论已交付**（`PhotoLean/` 共 21 个模块 = 20 个理论模块 + `Smoke`，均零占位证明、零自定义公理，
+  `#print axioms` 只含 `propext` / `Classical.choice` / `Quot.sound`）：
+  - **Marcus 反转区**（经典马库斯模型）——`PhotoLean/Marcus/`（8 模块：描述层 / 势垒代数 / 速率层 /
+    锐利成立条件 / 微观重组能 / ℚ 判定层 / 复合 / 实例判决），**82 条声明**，语句保真 **51/51**
+    （`theories/Marcus/probes/marcus-fidelity.py`）；
+  - **Hammond 假说**（过渡态坐标随驱动力递减）——`PhotoLean/Hammond/`（6 模块），**102 条声明**，
+    语句保真 **102/102**；
+  - **Bell–Evans–Polanyi 原理**（线性自由能关系的精确缺陷律）——`PhotoLean/BEP/`（6 模块），
+    **191 条声明**，语句保真 **191/191**。
+- 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
 - `PhotoLean/Smoke.lean` 是环境冒烟测试
 
 ### 复核方式
@@ -49,7 +56,7 @@ proofs/scripts/axioms.sh PhotoLean.Smoke smoke_ring   # 打印定理实际依赖
 |---|---|
 | `proofs/ENGINE.md` | **引擎契约**：叶子数据面、角色、验收门、迭代循环 |
 | `AGENTS.md` | 工作区铁律与工具链坑 |
-| `theories/Marcus/plan.md` | 理论规划（语句、证明草图、里程碑、验收标准）—— **待填** |
+| `theories/Marcus/plan.md` | 理论规划（语句、证明草图、里程碑、验收标准） |
 | `theories/Marcus/TASKS.md` | 任务板（状态唯一真源） |
 | `proofs/EXPERIENCE.md` | 经验库：成败模式，跨轮复用 |
 | `proofs/API-NOTES.md` | mathlib API 校准日志 |
@@ -58,24 +65,33 @@ proofs/scripts/axioms.sh PhotoLean.Smoke smoke_ring   # 打印定理实际依赖
 同类已完成实例（写法范本）：`[local path removed]`（RACI/AIE，
 M1–M4 + M1* 全证完，0 sorry / 0 自定义 axiom）。
 
-## 双语文档 / Bilingual documentation
+## 双语文档 / Bilingual documentation —— 历史镜像（冻结，不再扩展）
 
-本项目的中文文档保留在契约路径上（`proofs/ENGINE.yml` 读取它们），每份都有一个并列的英文版
+语言政策（`AGENTS.md`、`proofs/ENGINE.md` §1.5）是：**一个产物写一次，写英文**；
+中文只用于与人类的对话，契约声明的 `RESULT` 是唯一的双语文件（每节英文原文 + 中文对照）——
+hammond / BEP 的 `RESULTS.md` 即按此格式书写，两者从一开始就没有 `.en.md` 镜像。
+下表列出的 `.en.md` 是**政策之前**生成的**历史镜像**，**保留但冻结**：不再同步、不再新增。
 
-| 中文（权威，契约路径） | English |
+**为什么冻结**：镜像已实测漂移三次 —— `proofs/ENGINE.en.md` 缺 §1.5 语言政策与 §1.6 多理论布局两节；
+`proofs/EXPERIENCE.en.md` 落后于 `10713d1`；`proofs/API-NOTES.en.md` 落后于 `95f5744`。
+这正是"双份维护必然漂移"的反向证据，所以读镜像时**以"当前维护版本"列为准**；
+此外 Marcus 时代的产物（`plan` / `TASKS` / `LITERATURE` / `EXPERIENCE` / `API-NOTES`）实际是中文主体，
+英文在镜像里 —— 政策晚于这批文件，此处如实登记为既有例外，不再回译。
+
+| 历史镜像（冻结） | 当前维护版本（漂移时以此为准） |
 |---|---|
-| `README.md` | [`README.en.md`](README.en.md) |
-| `AGENTS.md` | [`AGENTS.en.md`](AGENTS.en.md) |
-| `theories/Marcus/plan.md` | [`theories/Marcus/plan.en.md`](theories/Marcus/plan.en.md) |
-| `proofs/ENGINE.md` | [`proofs/ENGINE.en.md`](proofs/ENGINE.en.md) |
-| `theories/Marcus/TASKS.md` | [`theories/Marcus/TASKS.en.md`](theories/Marcus/TASKS.en.md) |
-| `proofs/EXPERIENCE.md` | [`proofs/EXPERIENCE.en.md`](proofs/EXPERIENCE.en.md) |
-| `proofs/API-NOTES.md` | [`proofs/API-NOTES.en.md`](proofs/API-NOTES.en.md) |
-| `theories/Marcus/LITERATURE.md` | [`theories/Marcus/LITERATURE.en.md`](theories/Marcus/LITERATURE.en.md) |
-| `theories/Marcus/RESULTS.md` | [`theories/Marcus/RESULTS.en.md`](theories/Marcus/RESULTS.en.md) |
-| `theories/Marcus/literature/README.md` | [`theories/Marcus/literature/README.en.md`](theories/Marcus/literature/README.en.md) |
+| `README.en.md` | `README.md` |
+| `AGENTS.en.md` | `AGENTS.md`（控制面文件） |
+| `proofs/ENGINE.en.md` | `proofs/ENGINE.md`（控制面文件） |
+| `theories/Marcus/plan.en.md` | `theories/Marcus/plan.md` |
+| `theories/Marcus/TASKS.en.md` | `theories/Marcus/TASKS.md` |
+| `proofs/EXPERIENCE.en.md` | `proofs/EXPERIENCE.md` |
+| `proofs/API-NOTES.en.md` | `proofs/API-NOTES.md` |
+| `theories/Marcus/LITERATURE.en.md` | `theories/Marcus/LITERATURE.md` |
+| `theories/Marcus/RESULTS.en.md` | `theories/Marcus/RESULTS.md` |
+| `theories/Marcus/literature/README.en.md` | `theories/Marcus/literature/README.md` |
 
-数学内容入口是 `theories/Marcus/plan.en.md`（里程碑与语句），可复核性入口是 `README.en.md` 的"如何复核"一节。
+**禁止新增镜像**：新的产物（含本 README 的后续修改）只写一次、写英文。
 
 ## 许可
 
