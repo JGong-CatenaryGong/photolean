@@ -24,7 +24,9 @@
 > no-forward-looking-verdict invariant was left corrupted by the fix for run 3, the literature
 > record's line count was stale at 1584 where the file has 1587, and the `13/16` note claimed
 > "kernel-checked" with no in-repository artifact — the artifact `bep-lead-audit.lean` was added in
-> response); every run verified the mathematics independently and found no mathematical defect.**
+> response); **run 5 — FAIL (this table's record omitted the already-reported run 4, and the instance
+> checker's summary footnote still used the "widest-pair" label its own per-family line had already
+> corrected); every run verified the mathematics independently and found no mathematical defect.**
 > Each run's findings were corrected, and a verdict is only ever recorded in these leaves from an
 > audit report that already exists. The plan
 > below is kept as the plan of record; §12 has been updated from targets to measured values.
