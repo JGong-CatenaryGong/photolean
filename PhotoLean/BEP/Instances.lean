@@ -212,6 +212,12 @@ theorem inst_I8_degenerate_zone : Rat.epQVerdict (0 : ℚ) 1 = Rat.EPQVerdict.de
   unfold Rat.epQVerdict
   norm_num
 
+/-- I8 (`model-constructed`): the barrier collapses at `λ = 0` — with totalised division
+(`y / 0 = 0`) `qEact 0 x` is the constant `0`, i.e. the exact affinity holds trivially. -/
+theorem inst_I8_degenerate_exact : Rat.qEact (0 : ℚ) 1 = 0 := by
+  unfold Rat.qEact
+  norm_num
+
 end BEP
 
 end PhotoLean
