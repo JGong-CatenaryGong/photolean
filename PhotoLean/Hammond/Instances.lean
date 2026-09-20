@@ -190,6 +190,10 @@ theorem inst_I6_mcc_leffler_negative : Rat.lefflerSecantQ (6 / 5) (3 / 5) (12 / 
 theorem inst_I7_rc_inverted_zone : Rat.hammondZoneQ (1 / 4) (11 / 10) = HZone.beyondReactant := by
   norm_num [Rat.hammondZoneQ]
 
+/-- I7, coordinate: `q‡ = -17/10`, far outside the structural interval. -/
+theorem inst_I7_rc_inverted_coord : tsCoord (1 / 4) (11 / 10) = -(17 / 10) := by
+  norm_num [tsCoord]
+
 end Hammond
 
 end PhotoLean
