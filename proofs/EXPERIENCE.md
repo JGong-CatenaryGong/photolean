@@ -102,4 +102,47 @@
   - 定义里凡有除法，都要先问一句 **"分母为零时 Lean 取什么值"**：`/0 = 0` 的约定会
     悄悄制造出额外的退化分支，锐利性证明必须显式覆盖它。
 
+## 2026-09-20 — M1 描述层：`zone` 三分类的正确性（4 条定理） — prover_a — DONE
+
+- 目标：`PhotoLean/Marcus/Basic.lean` 的
+  `zone_eq_normal_iff` / `zone_eq_barrierless_iff` / `zone_eq_inverted_iff` / `zone_trichotomy`
+  （`zone lam x := if x < lam then .normal else if x = lam then .barrierless else .inverted`）。
+- 试过且失败（四条，全部实测报错，探针 `proofs/probes/marcus-prover_a-scratch.lean` 留档）：
+  1. `iff_of_false (by decide) (ne_of_lt h).symm` →
+     `application type mismatch: Ne.symm (ne_of_lt h) has type lam ≠ x but is expected to have type ¬x = lam`。
+     **`ne_of_lt h : a ≠ b` 的方向已经是证明所需的 `¬(a = b)`，多套一层 `Ne.symm` 反而把方向拧反**。
+  2. 备选 A `cases h : zone lam x <;> simp` → 能过（三支都自动收），但依赖 `simp` 对
+     `Or` 与构造子相等的归约；**不如 `by_cases` + `if_pos` 显式分支稳**（见下）。
+  3. 备选 B 单层 `by_cases h : x < lam` 后 `simp [zone, NormalRegion, h]` → 第二分支
+     `unsolved goals ⊢ ¬(if x = lam then Zone.barrierless else Zone.inverted) = Zone.normal`：
+     `simp` 先把 `a ↔ False` 归约成 `¬a`，此时内层 `if` 缺 `x = lam` 的判据，**必须再补一层 `by_cases h2`**。
+  4. 备选 C 用 `lt_trichotomy` 三分后把 `h : lam < x` 直接塞进 `simp` →
+     `unsolved goals ⊢ (if x < lam then Zone.normal else if x = lam then Zone.barrierless else Zone.inverted) = Zone.inverted`：
+     **`simp` 不能用 `h` 反向简化 `x < lam`**（`lam < x` 不是 `x < lam` 的重写规则），
+     必须显式给否命题 `not_lt.mpr (le_of_lt h)` / `ne_of_gt h`。
+- 奏效（逐条 commit：`3644a82` 定义 / `f3d2055` / `ac80776` / `c98c85d` / `1376f8e`）：
+  ```lean
+  unfold zone NormalRegion            -- 或 zone / zone InvertedRegion
+  by_cases h : x < lam
+  · rw [if_pos h]; exact iff_of_true rfl h
+  · rw [if_neg h]
+    by_cases h2 : x = lam
+    · rw [if_pos h2]; exact iff_of_false (by decide) h
+    · rw [if_neg h2]; exact iff_of_false (by decide) h
+  ```
+  `zone_trichotomy` 用同一分支树直接给 witness：`Or.inl rfl` / `Or.inr (Or.inl rfl)` / `Or.inr (Or.inr rfl)`。
+- 实测确认可用的名字（`#check` 输出见探针；供 API-NOTES 归档）：
+  `@if_pos : ∀ {c} {h : Decidable c}, c → ∀ {α} {t e}, (if c then t else e) = t`（`if_neg` 同形对偶）、
+  `@iff_of_true : ∀ {a b : Prop}, a → b → (a ↔ b)`、`@iff_of_false : ∀ {a b : Prop}, ¬a → ¬b → (a ↔ b)`、
+  `@le_of_not_gt`、`@le_of_lt`、`@ne_of_lt`、`@lt_of_le_of_ne`、`@Ne.symm`、`@lt_irrefl`、`@not_lt`。
+- 可复用模式：
+  - **`if` 分类器的 ⟺ 引理用"两层 `by_cases` + `if_pos`/`if_neg` + `iff_of_true`/`iff_of_false`"
+    是零 `simp` 依赖的最短路径**；`simp` 路线需要把两层判据**全部**喂给它，否则内层 `if` 不动；
+  - **`Zone`（deriving `DecidableEq`）的构造子互异可以直接 `by decide`** ——
+    不需要 `noConfusion` / `reduceCtorEq` 之类需要猜的名字；
+  - ⚠️ **`check.sh --strict` 的扫描包含块注释**：文件头的 `/- ... -/` 里写出
+    被扫描的两个关键字字面量会造成误报 FAIL（实测：头注释里写了一次即 `verdict: FAIL`）。
+    交付文件里讨论纪律时**改写措辞**（本次改为"零占位证明、无自定义公理声明"）。
+    这是 prover 侧必须知道的坑（脚本注释里只提到"由 verifier 人工复核"，实际 `--strict` 直接 FAIL）。
+
 <!-- 条目从这里继续往下追加 -->
