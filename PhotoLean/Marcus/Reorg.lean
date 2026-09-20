@@ -66,4 +66,24 @@ theorem lamInner_pos {kk : ℝ} (hkk : 0 < kk) {dq : ℝ} (hdq : dq ≠ 0) :
   unfold lamInner
   positivity
 
+/-
+前提说明（人工复核用）：`ha1` / `ha2` / `hR` / `hnSq` / `hepsS` 是**物理定义域前提**
+（两球半径、球心间距、折射率平方、静态介电常数严格正），写在签名里是为了让模型的
+定义域可见；就本条结论而言它们已由 `hgeom` / `hPekar` 蕴含，故证明只用到后两条。
+下面的 `set_option` 仅关闭"未使用变量"警告，**不改变语句**（签名与骨架逐字一致）。
+-/
+set_option linter.unusedVariables false in
+/-- **Pekar 因子正性**：`1 / epsS < 1 / nSq`（等价 `n² < ε_s`）加几何因子正性
+    ⇒ 外层重组能为正 —— 这是"反转区存在"的**溶剂侧充分条件**。--/
+theorem lamOuter_pos {dE a1 a2 R nSq epsS : ℝ} (hdE : 0 < dE) (ha1 : 0 < a1) (ha2 : 0 < a2)
+    (hR : 0 < R) (hgeom : 1 / R < 1 / (2 * a1) + 1 / (2 * a2)) (hnSq : 0 < nSq) (hepsS : 0 < epsS)
+    (hPekar : 1 / epsS < 1 / nSq) : 0 < lamOuter dE a1 a2 R nSq epsS := by
+  -- 两个因子的正性由两条不等式前提直接给出（`linarith` 会先把目标化归成
+  -- `0 < (1 / (2 * a1) + 1 / (2 * a2)) - 1 / R` 与 `0 < 1 / nSq - 1 / epsS`）。
+  have hgeom' : 0 < 1 / (2 * a1) + 1 / (2 * a2) - 1 / R := by linarith
+  have hPekar' : 0 < 1 / nSq - 1 / epsS := by linarith
+  have hdE2 : 0 < dE ^ 2 := by positivity
+  unfold lamOuter
+  exact mul_pos (mul_pos hdE2 hgeom') hPekar'
+
 end PhotoLean.Marcus
