@@ -166,7 +166,7 @@ Downgrading `lam > 0` from an **assumption** to a **derivation**:
 lam = lamIn + lamOut
 lamOut = dE² · (1/(2·a1) + 1/(2·a2) - 1/R) · (1/nSq - 1/epsS)      -- two-sphere continuum (Pekar form)
 ```
-- `lamInner_nonneg` / `lamInner_pos` / `lamTotal_pos`: the inner part is nonnegative (it may be zero);
+- `lamInner_nonneg` / `lamInner_pos` / `lam_total_pos`: the inner part is nonnegative (it may be zero);
 - `lamOuter_pos`: **positivity of the Pekar factor** (`1/epsS < 1/nSq` ⟺ `n² < ε_s`) **plus** positivity of the geometric factor ⇒ the outer part is positive;
 - `hgeom_of_nonoverlap`: positivity of the geometric factor can in fact **be derived from "the two spheres do not overlap"** (`a1 + a2 ≤ R` ⇒ `1/R < 1/(2a1)+1/(2a2)`),
   i.e. an assumption is turned into a **derivation**;

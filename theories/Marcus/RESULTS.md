@@ -171,7 +171,7 @@ theorem inverted_descriptor_holds_of_neg (hA : A < 0) (hkT : 0 < kB * T) (hlam :
 lam = lamIn + lamOut
 lamOut = dE² · (1/(2·a1) + 1/(2·a2) - 1/R) · (1/nSq - 1/epsS)      -- 两球连续介质（Pekar 形式）
 ```
-- `lamInner_nonneg` / `lamInner_pos` / `lamTotal_pos`：内层非负（可为零）；
+- `lamInner_nonneg` / `lamInner_pos` / `lam_total_pos`：内层非负（可为零）；
 - `lamOuter_pos`：**Pekar 因子正性**（`1/epsS < 1/nSq` ⟺ `n² < ε_s`）**加上**几何因子正性 ⇒ 外层为正；
 - `hgeom_of_nonoverlap`：几何因子正性其实**可由"两球不重叠"推出**（`a1 + a2 ≤ R` ⇒ `1/R < 1/(2a1)+1/(2a2)`），
   即把一条假设变成一条**推导**；
