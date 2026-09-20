@@ -136,6 +136,11 @@ theorem inst_I4_forwardLimit_zone : Rat.epQVerdict (2 : ℚ) 2 = Rat.EPQVerdict.
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I4 (`model-constructed`): `α(λ) = 0` — the forward barrier's minimum in the model. -/
+theorem inst_I4_forwardLimit_transfer : Rat.qTransfer (2 : ℚ) 2 = 0 := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
