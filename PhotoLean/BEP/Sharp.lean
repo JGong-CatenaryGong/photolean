@@ -404,5 +404,16 @@ theorem bepLine_worst_case {lam w : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
     ring
   exact ⟨w, ⟨by linarith, le_rfl⟩, by rw [hdef, abs_of_nonneg (by positivity)]⟩
 
+/-- Plan §6.4 #21: the best line halves the tangent line's worst case, and is *strictly* better —
+it is not the tangent line. -/
+theorem bepBestLine_halves {lam w : ℝ} (hlam : 0 < lam) (hw : 0 < w) :
+    w ^ 2 / (8 * lam) = (w ^ 2 / (4 * lam)) / 2 ∧ w ^ 2 / (8 * lam) < w ^ 2 / (4 * lam) := by
+  constructor
+  · field_simp
+    ring
+  · have hw2 : 0 < w ^ 2 := sq_pos_of_ne_zero (ne_of_gt hw)
+    rw [div_lt_div_iff₀ (by linarith : (0 : ℝ) < 8 * lam) (by linarith : (0 : ℝ) < 4 * lam)]
+    nlinarith
+
 
 end PhotoLean.BEP
