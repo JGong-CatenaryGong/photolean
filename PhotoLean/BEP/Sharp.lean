@@ -431,5 +431,16 @@ theorem bepDefect_neg_lam_witness : bepDefect (-1) 1 = -(1 / 4) := by
   unfold bepDefect bepLine eact
   norm_num
 
+/-- Plan §6.5 #24: the sign of the violation *is* the sign of `lam` — on the unphysical branch
+`lam < 0` the defect is negative at every `x ≠ 0`. -/
+theorem bepDefect_sign_flips {lam x : ℝ} (hlam : lam < 0) (hx : x ≠ 0) : bepDefect lam x < 0 := by
+  have h4 : (4 : ℝ) * lam ≠ 0 := mul_ne_zero (by norm_num) (ne_of_lt hlam)
+  have hdef : bepDefect lam x = x ^ 2 / (4 * lam) := by
+    unfold bepDefect bepLine eact
+    field_simp
+    ring
+  rw [hdef]
+  exact div_neg_of_pos_of_neg (sq_pos_iff.mpr hx) (by linarith)
+
 
 end PhotoLean.BEP
