@@ -70,4 +70,11 @@ theorem transfer_eq_tsCoord {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   unfold transfer
   field_simp
 
+/-- Thermoneutrality pins the coefficient at one half — Evans–Polanyi's
+empirical half — for every curvature, including the degenerate one (where `x / (2 * lam)` collapses
+to `0` by the totalised-division convention). -/
+theorem transfer_thermoneutral (lam : ℝ) : transfer lam 0 = 1 / 2 := by
+  unfold transfer
+  norm_num
+
 end PhotoLean.BEP
