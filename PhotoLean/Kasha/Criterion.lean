@@ -382,6 +382,19 @@ theorem kashaRule_iff_vavilovUpTo {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData
         exact h0lt
       exact (vavilovAt_iff_rad_zero hR hlt).mp (hV k hk)
     exact (kashaRule_iff_rad_zero h).mpr hrad
+/-- Plan §5.2 #19 — **the rule is not a theorem of the model**: the equal-rates ladder
+`rad ≡ ic ≡ 1` at excitation level `1` is admissible and violates the exact rule (level `1` emits
+with probability `1/2`). -/
+theorem not_kasha_universal :
+    ∃ (rad ic : ℕ → ℝ) (N : ℕ), RateData rad ic N ∧ ¬ KashaRule rad ic N := by
+  have hR : RateData (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => 1) 1 := by
+    refine ⟨fun n hn => ?_, fun n => by norm_num, fun n => by norm_num⟩
+    unfold decay
+    norm_num
+  refine ⟨fun _ => 1, fun _ => 1, 1, hR, ?_⟩
+  intro hK
+  have hrad := (kashaRule_iff_rad_zero hR).mp hK 1 (by norm_num) (by norm_num)
+  norm_num at hrad
 end Kasha
 
 end PhotoLean
