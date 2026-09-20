@@ -8,21 +8,26 @@ only at thermoneutrality (`bepLine_exact_at_thermoneutrality`, `bepDefect_at_the
 its violation is nonnegative, and strictly positive exactly away from thermoneutrality
 (`bepDefect_nonneg`, `bepDefect_pos_iff`).
 
-The slope of that line is not fitted: it is the model's transfer coefficient in linear-response
-form, and `transfer_eq_tsCoord` identifies it with the transition-state coordinate
-`(lam - x) / (2 * lam)` — the Leffler/Brønsted identification, a theorem here rather than a
-definitional restatement. Thermoneutrality puts the coefficient at Evans–Polanyi's empirical half
-(`transfer_thermoneutral`), the two directions of the step are complementary
-(`transfer_add_reverse`), the barrier difference of the two directions is the driving force
-(`eact_neg_eq_add`), the barrier is antitone up to the barrierless point (`eact_antitone`), and the
-*observable* slope over a finite window is the coefficient at the window's midpoint
+The tangent line is not fitted: `bepLine` has the fixed slope `1 / 2` in the sign convention of
+`secSlope` (barrier decrease per unit driving force), whereas the model's coefficient
+`transfer lam x = 1 / 2 - x / (2 * lam)` varies with the driving force. The two links are
+`transfer_thermoneutral` (at thermoneutrality the coefficient takes that fixed value —
+Evans–Polanyi's empirical half — for every curvature) and `transfer_eq_tsCoord` (the coefficient is
+the transition-state coordinate `(lam - x) / (2 * lam)`, the Leffler/Brønsted identification, a
+theorem here rather than a definitional restatement). The two directions of the step are
+complementary (`transfer_add_reverse`), the barrier difference of the two directions is the driving
+force (`eact_neg_eq_add`), the barrier is antitone up to the barrierless point (`eact_antitone`), and
+the *observable* slope over a finite window is the coefficient at the window's midpoint
 (`secSlope_eq_transfer_mid`, `secSlope_midpoint_invariant`) — no mean-value theorem is involved.
 
 Model assumptions that are NOT derived here (see `theories/BEP/plan.md` section 13): equal curvature
 `2 * lam` held fixed across the compared family, the classical crossing point as the transition
 state, and the driving force taken as `ΔG°` rather than `ΔH`. Every physical premise (`lam ≠ 0`,
-`0 < lam`, `h ≠ 0`, `x ≠ 0`) is an explicit hypothesis of the statement that needs it; nothing is
-hidden in a definition. There is no unproved placeholder and no custom axiom anywhere in this file.
+`0 < lam`, `h ≠ 0`, `x ≠ 0`) is an explicit hypothesis **of the statement**, kept for signature
+fidelity with the authority `theories/BEP/probes/bep-statement-skeleton.lean`; some of those
+hypotheses are decorative rather than load-bearing — the statement itself holds without them — and
+where that is so it is stated at the declaration. Nothing is hidden in a definition. There is no
+unproved placeholder and no custom axiom anywhere in this file.
 
 Statement authority: every declaration below matches
 `theories/BEP/probes/bep-statement-skeleton.lean` (B2 section = plan §5) word for word.
@@ -50,14 +55,16 @@ theorem bepDefect_eq {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   ring
 
 /-- At thermoneutrality the tangent line and the barrier agree:
-the linear law is exact there. -/
+the linear law is exact there (the premise `lam ≠ 0` is decorative: both sides are `lam / 4`, hence
+equal for every `lam`, `lam = 0` included). -/
 theorem bepLine_exact_at_thermoneutrality {lam : ℝ} (hlam : lam ≠ 0) :
     bepLine lam 0 = eact lam 0 := by
   rw [eact_at_zero hlam]
   unfold bepLine
   ring
 
-/-- The defect vanishes at thermoneutrality. -/
+/-- The defect vanishes at thermoneutrality (the premise `lam ≠ 0` is decorative: it vanishes for
+every `lam`, `lam = 0` included). -/
 theorem bepDefect_at_thermoneutrality {lam : ℝ} (hlam : lam ≠ 0) : bepDefect lam 0 = 0 := by
   rw [bepDefect_eq hlam]
   ring
@@ -84,7 +91,8 @@ theorem reverseTransfer_thermoneutral (lam : ℝ) : reverseTransfer lam 0 = 1 / 
   norm_num
 
 /-- Brønsted complementarity: the forward and reverse coefficients of the same
-step sum to one. -/
+step sum to one (the premise `lam ≠ 0` is decorative: the two `x / (2 * lam)` terms are the same
+expression up to sign and cancel for every `lam`). -/
 theorem transfer_add_reverse {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
     transfer lam x + reverseTransfer lam x = 1 := by
   unfold transfer reverseTransfer
@@ -164,8 +172,9 @@ theorem epDescriptor_conforms {lam x : ℝ} (h : EPDescriptor lam) (hx : x ≠ 0
   exact div_pos (sq_pos_of_ne_zero hx) (by positivity)
 
 /-- Pointwise conformance is the positivity of the curvature together with the
-Evans–Polanyi bounds; the positivity is not implied by the bounds (the instance layer exhibits a
-negative curvature whose coefficient still lies in `[0,1]`). -/
+Evans–Polanyi bounds; the positivity is not implied by the bounds — `Instances.lean` (B5b)
+instantiates this: a negative curvature whose coefficient still lies in `[0,1]` (its witness is
+`lam = -2`, `x = 0`). -/
 theorem epConforms_iff_bounds {lam x : ℝ} (hlam : 0 < lam) :
     EPConforms lam x ↔ EPBounds lam x := by
   unfold EPConforms
