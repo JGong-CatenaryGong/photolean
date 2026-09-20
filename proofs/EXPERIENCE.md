@@ -345,4 +345,32 @@
   （预言 5.1 个数量级 vs 实测 1.46 个数量级）⇒ 已写进 `plan.md` §8.3，
   限定实例层文案**只能**声称"经典模型满足描述"，**不能**声称预测实测速率。
 
+## 2026-09-20 — M3 速率层（6 条，两批）+ M5a 判定层 — prover_b / prover_c — DONE
+
+- 目标：把势垒的单调性推到速率上（M3），并让"实例判定"能在内核里算（M5a）。
+- 试过且失败：
+  - **`rate_ratio`**：想用 `rw [neg_div, neg_div, neg_sub_neg, sub_neg_eq_add, ← neg_sub]` 手工搬指数里的负号
+    → `tactic 'rewrite' failed, did not find instance of the pattern ?a - -?b`。
+  - **`by decide` 判 ℚ**：`zoneQ (1:ℚ) (3/4) = Zone.normal` 失败，报
+    `'Decidable' instance did not reduce to 'isTrue' or 'isFalse'` —— 卡点在 `Rat.instDecidableLt` → `Int.decNonneg`
+    的 **gcd/除法归约**上（不是 Eq 那条链）。同理 `(4:ℚ)/4 = 1`、`(0.75:ℚ) < 1` 都卡。
+  - **`rw [← Rat.zoneQ_eq_zone]` 写反**：`←` 的模式是 `zone ↑?lam ↑?x`，与假设 `h : Rat.zoneQ 1 3 = ...` 对不上。
+  - **cast 字面量 ≠ `OfNat` 字面量**：ℝ 侧写 `InvertedRegion (1:ℝ) 3` 与引理结论 `↑1 < ↑3` type mismatch。
+  - **`rw` 不展开 `def`**：`rw [← Rat.zoneQ_inverted_iff]` 在 `¬ InvertedRegion ↑1 ↑(3/4)` 上失败（语法上无 `<` 模式）。
+- 奏效：
+  - `rate_ratio` 的最短路径：`unfold rate` → `rw [mul_div_mul_left _ _ hA, ← Real.exp_sub]` → `congr 1` →
+    `field_simp` → `ring`（**先 `field_simp` 让 `ring` 收尾，别手工搬负号**）。
+  - M3 三条速率定理 = "势垒单调性 + `rate_gt_of_barrier_lt`" 两行复合；注意核心引理的方向约定
+    （`Φx < Φy ⇒ rate y < rate x`）：正常区取 `y := x₁`、反转区取 `y := x₂`；`lam < x₁` 需 `le_of_lt` 弱化为 `lam ≤ x₁`。
+  - ℚ 判定规范：**整数/无除法字面量用 `decide`；含除法或十进制一律 `norm_num [zoneQ]`**。
+  - ℝ 侧一律把参数写成 `((n : ℚ) : ℝ)`（与引理结论逐字对齐），用 `norm_num` 显式桥接十进制字面量；
+    否定形态先 `show` 出展开式再 `rw`；正反两个改写方向取决于式子里出现的是 `zoneQ`（正向）还是 `zone ↑↑`（反向）。
+- 可复用模式：
+  1. **`decide` 的可靠域是"内核能归约到底"的路径**（Nat/Int 比较）；一旦涉及 `Rat` 的 gcd/除法或十进制字面量，
+     换 `norm_num`（它给证明项，不依赖内核归约）。
+  2. **转移引理是"可计算判定"与"不可计算理论层"之间唯一的桥**；桥的两端字面量类型不同（`Rat.cast` vs `OfNat`），
+     必须用显式 `norm_num` 等式搭，不能指望 coercion 自动统一。
+  3. `rw` 是**语法模式匹配**、不走 defeq：改写前先问"式子里现在是哪个符号、规则 LHS 是什么"，
+     方向由模式决定，不由直觉决定。
+
 <!-- 条目从这里继续往下追加 -->
