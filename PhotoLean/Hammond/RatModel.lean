@@ -174,6 +174,19 @@ theorem hammondZoneQ_eq_atReactant_iff {lam x : ℚ} (hlam : 0 < lam) :
   · exact iff_of_false (by decide) h1
   · exact iff_of_false (by decide) h1
 
+/-- Rational zone characterization, barrierless reverse branch. -/
+theorem hammondZoneQ_eq_atProduct_iff {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.atProduct ↔ x = -lam := by
+  unfold hammondZoneQ
+  split_ifs with h1 h2 h3 h4 h5 h6
+  · exact iff_of_false (by decide) (by rw [h1]; linarith)
+  · exact iff_of_true rfl h2
+  · exact iff_of_false (by decide) h2
+  · exact iff_of_false (by decide) h2
+  · exact iff_of_false (by decide) h2
+  · exact iff_of_false (by decide) h2
+  · exact iff_of_false (by decide) h2
+
 end Rat
 
 end Hammond
