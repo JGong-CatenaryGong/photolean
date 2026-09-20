@@ -155,6 +155,11 @@ theorem inst_I5_reverseLimit_zone : Rat.epQVerdict (2 : ℚ) (-2) = Rat.EPQVerdi
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I5 (`model-constructed`): `α(-λ) = 1` — the reverse barrier's minimum in the model. -/
+theorem inst_I5_reverseLimit_transfer : Rat.qTransfer (2 : ℚ) (-2) = 1 := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
