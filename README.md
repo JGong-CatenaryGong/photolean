@@ -29,8 +29,10 @@ Agent preset 驱动。
     语句保真 **132/132**（`python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier`；
     2 条描述层辅助定理在权威之外，已登记）。
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
-- **跨理论关系图**（三个"原理"作为同一二次对象的三种读法）：共享内核 `PhotoLean/Kernel.lean`、
-  可检查的关系清单 `PhotoLean/Relations.lean`、双语讨论稿 `theories/RELATIONS.md`
+- **跨理论关系图**（覆盖全部五个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
+  Sabatier 经**组合边**接入，Sabatier↔Marcus 另有一组"形似实异"非关系边，其余理论对**显式登记无边**）：
+  共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（46 条声明：内核证书 /
+  真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记）、双语讨论稿 `theories/RELATIONS.md`
 - `PhotoLean/Smoke.lean` 是环境冒烟测试
 - 注：`README.en.md` 是语言政策生效前的英文镜像，按仓库政策**不再扩展**；权威内容以本文件为准
 

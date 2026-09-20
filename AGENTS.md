@@ -78,9 +78,9 @@ BEP 原理、Kasha 规则、Sabatier 原则/火山图；另加共享内核 `Phot
 `PhotoLean/Relations.lean` / `theories/RELATIONS.md`）。各理论的进度真源是各自的
 `theories/<理论>/TASKS.md`；跨理论关系边的登记状态见 `theories/RELATIONS.md`。
 
-**已知登记缺口**（第二批关闭于铁律 8 生效之前）：Kasha→Marcus（条件性组合边，
-`Kasha.kashaWithin_one_marcus`）与 Sabatier→BEP（组合边，`Sabatier.linearVolcano_le_parabolic`
-等）尚未登记进 `Relations.lean` / `RELATIONS.md`，待"Relations 第二批扩展"任务补登记。
+**关系边登记已闭环**：铁律 8 第 ② 项对两个第二批理论（Kasha、Sabatier）的补登记已于 2026-09-21
+完成——`PhotoLean/Relations.lean` §7–§10（Kasha → Marcus 条件性组合边、Sabatier → BEP 组合边、
+Sabatier ↔ Marcus 形似实异簇、无边登记），讨论稿见 `theories/RELATIONS.md` §2.4–§2.5 与 §3 N3。
 
 **开工前必须先读目标理论 `TASKS.md` 的属主列与"验收记录"表** —— 该表记录了各里程碑的
 verifier 判决、已关闭的缺陷、以及若干**已实测的坑**（并发窗口内的门判定、
