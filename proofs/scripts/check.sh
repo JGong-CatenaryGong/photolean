@@ -52,6 +52,19 @@ if [ ! -e "$PLAN" ]; then echo "   MISSING $PLAN"; LEAF_FAIL=1; fi
 # RESULT is optional until the project has something to report, but once the
 # contract declares it the file must exist — it is the human-facing deliverable.
 if [ -n "${RESULT:-}" ] && [ ! -e "$RESULT" ]; then echo "   MISSING $RESULT (declared as RESULT)"; LEAF_FAIL=1; fi
+# 追加理论（可选）：THEORIES 里的每个理论用 <LEAF>_<theory> 声明自己的叶子。
+# English: Additional theories (optional): each theory in THEORIES declares its leaves as <LEAF>_<theory>.
+for t in ${THEORIES:-}; do
+  for key in PLAN TASKS LITERATURE PROBES RESULT; do
+    var="${key}_${t}"
+    leaf="${!var:-}"
+    [ -z "$leaf" ] && continue
+    if [ ! -e "$leaf" ]; then
+      echo "   MISSING $leaf (declared as $var for theory '$t')"
+      LEAF_FAIL=1
+    fi
+  done
+done
 if [ "$LEAF_FAIL" = 1 ]; then
   echo "   (引擎按契约要求这些文件存在；补齐后重跑)"
   [ "$STRICT" = 1 ] && { echo "==> verdict: FAIL (missing leaf data plane)"; exit 1; }
