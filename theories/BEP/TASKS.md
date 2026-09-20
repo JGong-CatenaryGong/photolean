@@ -28,18 +28,21 @@
       / `RESULT_BEP`) — additive; the canonical Marcus leaves and the gate behaviour are unchanged
 - [x] Plan landed: `theories/BEP/plan.md` (B1–B5, statement inventory, sprint order, risk register,
       honesty table, non-goals)
-- [ ] **Statement skeleton compiles**: `theories/BEP/probes/bep-statement-skeleton.lean` —
-      owner `api_researcher` (in progress)
+- [x] **Statement skeleton compiles**: `theories/BEP/probes/bep-statement-skeleton.lean` —
+      owner `api_researcher`; **137 declarations**, `lake env lean` exit 0 / 0 errors (lead-verified),
+      105 placeholder declarations of which 32 are already delivered word-for-word
+- [x] Lead risk probe: `theories/BEP/probes/bep-risk-probe.lean` — owner `prover_d`; seven riskiest
+      B3/Sprint-0 forms, **six PASS** (including the `Real.sqrt` tolerance radius by two independent
+      routes and the equioscillation minimax lower bound in its original `∀ c a, ∃ x` form) and
+      **one handed statement kernel-refuted** (the two-point solver: numerator sign + missing
+      `lam ≠ 0`), which triggered three plan corrections; commits `135af1e`, `626d47a`
 - [ ] API calibration: `proofs/API-NOTES.md` BEP section + `theories/BEP/probes/bep-api-*.lean`
-      — owner `api_researcher` (in progress)
-- [ ] Literature round 1: `theories/BEP/LITERATURE.md` (primary loci, IUPAC wording, transfer
-      coefficient and complementarity, limitations, data table for B5b) — owner `literature_researcher`
-      (in progress)
+      — owner `api_researcher` (final report pending)
+- [ ] Literature round 1: `theories/BEP/LITERATURE.md` — owner `literature_researcher`; IUPAC
+      verbatim entries, complementarity, limitations and the fidelity check landed; **the B5b data
+      table is explicitly outstanding and flagged "must not be filled from memory"** (round 2 needed)
 - [x] Human confirmation of the plan (2026-09-20: layout + B1–B5 approved, full scope; instance
       provenance = literature families + model-constructed families, each row labelled)
-- [ ] Lead risk probe: `theories/BEP/probes/bep-risk-probe.lean` — the two riskiest statement forms
-      (the `Real.sqrt` tolerance radius, the equioscillation lower bound of the minimax line) proved
-      *before* B3 is dispatched — owner `prover_d` (in progress)
 ---
 
 ## B1 — description layer (`PhotoLean/BEP/Basic.lean`; owner prover_a; Sprint 1)

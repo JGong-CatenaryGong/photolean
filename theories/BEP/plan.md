@@ -66,7 +66,12 @@ not "prove the line" but:
 4. **the Evans–Polanyi bounds `0 ≤ α ≤ 1` have a sharp regime**: `α ∈ [0,1] ⟺ -λ ≤ x ≤ λ ⟺` the
    crossing point lies between the two wells `⟺` **neither direction of the step is in the Marcus
    inverted region** (§7) — a theorem that ties BEP to the already-delivered `PhotoLean/Marcus`
-   theory instead of to a molecule's presumed virtue;
+   theory instead of to a molecule's presumed virtue. **Naming caveat (literature round 1, §R1.7(iv))**:
+   the phrase "Evans–Polanyi bounds" is a *model-side naming convention*; no source read in
+   `theories/BEP/LITERATURE.md` states `0 ≤ α ≤ 1` as a law of chemical families — the literature
+   analogue is the electrochemical transfer-coefficient bound (Inzelt p. 36), and documented series
+   with a Brønsted coefficient outside `(0,1)` exist. The delivered statements are about the *model*
+   coefficient `transfer`, and `RESULTS.md` must present them that way;
 5. **a best-possible linear law exists and is not the tangent line**: on a symmetric window the
    minimax affine law is the tangent line shifted by `w²/(8λ)`, whose worst-case violation
    `w²/(8λ)` is *exactly half* the tangent line's `w²/(4λ)` (§6.4). This is the quantitative answer
@@ -197,6 +202,7 @@ def EPBestOnWindow (lam w : ℝ) : Prop :=
 inductive EPZone where
   | degenerate | unphysical | thermoneutral | exergonic | endergonic
   | atForwardLimit | atReverseLimit | beyondForward | beyondReverse
+  deriving DecidableEq, Repr
 
 /-- Regime classifier, in the style of `Hammond.hammondZone` / `Marcus.zone`. -/
 noncomputable def epZone (lam x : ℝ) : EPZone :=
@@ -511,7 +517,8 @@ the measured numbers, never the planned ones.)
 | exact defect law `bepDefect = x²/(4λ)` | **proved** (B2 §5.2), conditional on `λ ≠ 0` |
 | `α = q‡` (Leffler/Brønsted identification) | **proved** (B2 §5.5) as an algebraic identity in the model |
 | `α(0) = 1/2`, complementarity `α_f + α_r = 1`, barrier reversal | **proved** (B2) |
-| `0 ≤ α ≤ 1 ⟺ -λ ≤ x ≤ λ ⟺` no direction in the inverted region | **proved** (B3 §6.1, B4 §7.4) |
+| `0 ≤ α ≤ 1 ⟺ -λ ≤ x ≤ λ ⟺` no direction in the inverted region | **proved** (B3 §6.1, B4 §7.4) — a statement about the *model* coefficient; the literature does not state it as a law of chemical families (naming caveat, §1.2 item 4 and `LITERATURE.md` §R1.7(iv)) |
+| IUPAC's normative wording calls the BEP relation "sometimes observed within a series of closely related reactions" | **literature premise**: the formalization's tolerance/window formulation is the formal counterpart of "sometimes … within a series"; the glossary's relation is activation energy vs **enthalpy**, while the model is stated in **Gibbs** energy, hence the `ΔH ≈ ΔG°` caveat below |
 | exact affinity ⟺ `λ = 0`; no affinity on any nontrivial window for `λ ≠ 0` | **proved** (B3 §6.1) |
 | tolerance window `⟺ w ≤ 2√(λ·tol)`; best line and its `w²/(8λ)` bound | **proved** (B3 §6.2, §6.4) |
 | monotonicity in `λ` (bigger reorganization ⇒ better linearity) | **proved** (B3 §6.3, B4) |
