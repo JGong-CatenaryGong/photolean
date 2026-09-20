@@ -198,6 +198,14 @@ theorem inst_I7_reverseInverted_transfer : Rat.qTransfer (2 : ℚ) (-3) = 5 / 4 
   unfold Rat.qTransfer
   norm_num
 
+/-- I7 (`model-constructed`): the Evans–Polanyi bounds fail (the upper bound fails). -/
+theorem inst_I7_reverseInverted_notBounds :
+    ¬ (0 ≤ Rat.qTransfer (2 : ℚ) (-3) ∧ Rat.qTransfer (2 : ℚ) (-3) ≤ 1) := by
+  unfold Rat.qTransfer
+  norm_num
+
+/-! #### I8 — degenerate family (`λ = 0`) -/
+
 end BEP
 
 end PhotoLean
