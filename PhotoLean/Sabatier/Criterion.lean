@@ -243,6 +243,15 @@ theorem volcanoBarrier_secSlope_of_le_apex {alphaA betaA alphaB betaB : ℝ}
   unfold branchDown
   ring
 
+/-- Value form of the pass height, used by the instance rows: the barrier at the apex is the
+ascending branch evaluated at the apex. Plan §5. -/
+theorem apexBarrier_eq {alphaA betaA alphaB betaB : ℝ} (h : alphaA + alphaB ≠ 0) :
+    apexBarrier alphaA betaA alphaB betaB = alphaA * apex alphaA betaA alphaB betaB + betaA := by
+  unfold apexBarrier
+  rw [volcanoBarrier_at_apex h]
+  unfold branchUp
+  ring
+
 end Sabatier
 
 end PhotoLean
