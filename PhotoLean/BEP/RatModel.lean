@@ -135,6 +135,12 @@ theorem qBepDefect_cast (lam x : ℚ) :
   push_cast
   ring
 
+theorem qTransfer_cast (lam x : ℚ) :
+    ((qTransfer lam x : ℚ) : ℝ) = transfer (lam : ℝ) (x : ℝ) := by
+  unfold qTransfer transfer
+  push_cast
+  ring
+
 end Rat
 
 end BEP
