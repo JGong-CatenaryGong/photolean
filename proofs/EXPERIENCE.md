@@ -399,4 +399,32 @@
   3. 非空性取证要**主动做**：`a1=a2=1, R=3, kk=0, nSq=1, epsS=2` 让两条复合定理落地为
      `InvertedDescriptor 1 (1/3) 1 1`，证明前提集可满足（`kk = 0` 恰好演示必须走 `lamInner_nonneg` 而非 `_pos`）。
 
+## 2026-09-20 — M5b 实例判定（两批共 31 条） — prover_c — DONE
+
+- 目标：把实例代进形式化理论并**判定**是否符合反转区描述（人类需求第三部分）。
+- 试过且失败：
+  1. **lead 派发提示里的一段写法不成立（实测打脸）**：证明"速率非正"时写
+     `intro h; have := h 0; norm_num [rate, barrier] at this` —— `norm_num` 会把假设约简为
+     `h0 : Real.exp (1/4) < 0`，但**它不认识 `Real.exp` 的正性**，于是留下未解目标
+     `unsolved goals … h0 : Real.exp (1/4) < 0 ⊢ False`。
+     奏效：先把势垒值算出来再用 `Real.exp_pos` 反驳：
+     `have hb : barrier (-1) 0 = -(1/4) := by norm_num [barrier]; rw [rate, hb] at h0;
+      norm_num at h0; linarith [Real.exp_pos (1/4)]`。
+  2. 在 `Instances.lean` 追加第二批时忘了**重开命名空间**（批 1 末尾已有 `end PhotoLean.Marcus`）
+     ⇒ `InvertedDescriptor`/`rate` 全报 `unknown identifier`。
+  3. 判定证据链的三个坑（第一批已记录，这里再确认其**必要性**）：`rw [← Rat.zoneQ_eq_zone]` 方向取决于
+     式子里出现的是 `zoneQ` 还是 `zone ↑↑`；ℝ 十进制字面量与 ℚ 分数 cast **定义层不等**，必须显式
+     `norm_num` 桥接；`rw` 不展开 `InvertedRegion` 这类 `def`（先 `show`）。
+- 奏效：
+  - 13 条新定理**全部**由已过门的上游定理**实例化**得到（`descriptor_sharp` 的 (⟸) 用于"可采纳"判定、
+    `inverted_rate_decreases` 用于速率比较、`descriptor_fails_of_nonpos_lam` 用于反例判定），
+    **没有引入任何新的实分析步骤** —— 这是"实例层只是实例化"的结构性证据。
+  - `kBT` 写成定理的**全称变量**（前提 `0 < kBT`），使"判定与温度无关"成为**语句的一部分**而非注释声称。
+- 可复用模式：
+  1. **`norm_num` 不是万能的**：它能算数值，但**不认识超越函数的性质**（`Real.exp_pos` 等）。
+     涉及 `exp`/`log` 的反驳，必须显式提供正性引理（`linarith [Real.exp_pos x]`）。
+  2. **一个文件的每一段追加都要自成命名空间上下文**（`namespace … end`），并发/分段编辑时极易漏。
+  3. **实例层的正确姿势是"实例化"而不是"重新证明"**：新定理的证明体应当只调用已过门的上游定理
+     + `norm_num` 定界；若发现自己在实例里重写实分析论证，说明抽象层没抽干净。
+
 <!-- 条目从这里继续往下追加 -->

@@ -499,8 +499,17 @@ example : ¬ InvertedDescriptor 1 (-1/2) 1 1 :=
 -- 形态示例（I7：非物理分支满足描述但速率非正 ⇒ 实例被拒绝）
 example : InvertedDescriptor (-1) (-1) 1 1 :=
   inverted_descriptor_holds_of_neg (by norm_num) (by norm_num) (by norm_num)
+-- ⚠️ 下面这段**原计划写法不成立**（M5b 交付者实测打脸）：
+--   `intro h; have := h 0; norm_num [rate, barrier] at this` 会停在
+--   `h0 : Real.exp (1/4) < 0 ⊢ False` —— `norm_num` 把假设归约了但**不认识 `Real.exp` 的正性**，无法反驳。
+-- 可用写法（已过门）：
 example : ¬ (∀ x, 0 < rate (-1) (-1) 1 1 x) := by
-  intro h; have := h 0; norm_num [rate, barrier] at this
+  intro h
+  have h0 := h 0
+  have hb : barrier (-1) 0 = -(1 / 4) := by norm_num [barrier]
+  rw [rate, hb] at h0
+  norm_num at h0
+  linarith [Real.exp_pos (1 / 4)]
 ```
 
 ### 8.3 文献参数表（M5 的输入）—— 已回填（`proofs/LITERATURE.md` §实例参数候选表）
