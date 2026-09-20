@@ -506,6 +506,33 @@ theorem marcus_optimum_fixed_by_curvature {lam : ℝ} (hlam : 0 < lam) :
       Sabatier.AntiVolcanoDescriptor (Marcus.rate A lam kB T) lam :=
   fun A kB T hA hkT => marcusRate_antiVolcanoDescriptor hA hlam hkT
 
+/-! ## 10. The no-edge registry (documentation, not theorems)
+
+An absent edge is a registered fact, not an oversight: the relation graph is complete in the sense
+that *every* theory sits on it. The pairs without an edge, and why:
+
+* **Kasha ↔ BEP — no edge.** Kasha consumes exactly one object of the family, the Marcus barrier
+  inside `Kasha.marcusIC` (§7). The BEP content — the affine line, its exact quadratic defect law
+  and the tolerance/radius criterion — is stated for the *barrier profile of a family of steps*,
+  and no row of the ladder theory mentions a line law, a defect or a window. Dependency fact:
+  `PhotoLean/Kasha/*` imports `PhotoLean.Marcus.Basic` only, never `PhotoLean.BEP.*`.
+* **Kasha ↔ Hammond — no edge.** The Hammond content is the *structural* coordinate `q‡` and its
+  monotonicity; the ladder theory tracks branching probabilities, not geometries. No row connects a
+  crossing coordinate to a cascade probability. Dependency fact: `PhotoLean.Hammond.*` and
+  `PhotoLean.Kasha.*` share no module.
+* **Sabatier ↔ Hammond — no edge.** Sabatier consumes `PhotoLean.BEP.Basic` (the two branches and
+  their tangent lines) and never the structural reading. Dependency fact: `PhotoLean/Sabatier/*`
+  imports `PhotoLean.BEP.Basic` only.
+* **Sabatier ↔ Kasha — no edge.** The two second-batch theories share no module and no object: one
+  is a descriptor-axis optimisation, the other an excited-state cascade.
+* **Marcus ↔ BEP and Marcus ↔ Hammond — first batch.** Registered in §2–§5 (true equivalences, the
+  headline `epBounds_iff_no_inverted_direction`, the definitional aliases).
+* **Marcus ↔ Sabatier — §9.** The look-alike pair: one shared functional form and predicate, three
+  non-relations.
+
+Re-derive the dependency facts with
+`grep -rn '^import' PhotoLean/Kasha PhotoLean/Sabatier PhotoLean/Hammond`. -/
+
 end Relations
 
 end PhotoLean
