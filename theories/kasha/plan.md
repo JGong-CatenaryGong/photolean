@@ -205,7 +205,7 @@ starts before it compiles, and every delivered declaration matches it word for w
 check: `theories/BEP/probes/bep-fidelity.py --theory kasha`, which is theory-generic).
 
 Planned inventory — **measured from the compiled skeleton** (`sha256
-801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`, `lake env lean`, exit 0):
+4cf2b1055f1aee41463e7f5ad9bb6913c2c82600a0c4aa064cb58210fc68c0fb`, `lake env lean`, exit 0):
 
 | milestone | module | content (declarations) |
 |---|---|---|
@@ -309,6 +309,15 @@ declaration of `Basic.lean`, definitions included in §4.1.)
 |---|---|---|---|---|
 | 2026-09-20 | K1 #24 `kashaZone_eq_violating_iff` | as first handed over (no premise on `tol`) the row is **false**: the classifier tests the vanishing leak first, so `upperYield = 0` parks it in `pure`, while `¬ KashaWithin` can still hold when `tol < 0`. `RateData` bounds `decay`/`rad`/`ic`, never `tol` | added the tolerance premise `(htol : 0 < tol)` (the physical range, plan §2); no other K1 row is affected — prover_a audited all 25 and the other two classifier rows are true with no positivity premise | kernel-checked counterexample `theories/kasha/probes/kasha-k1-counterexample.lean` (witness `rad ≡ 1`, `ic ≡ 1`, `N = 0`, `tol = -1`), raised by prover_a while delivering K1 |
 | 2026-09-20 | K5a `kashaQVerdict_eq_violating_iff` | the same shape defect in ℚ (`QRateData` bounds no tolerance) | added `(htol : 0 < tol)` in the same pass | same witness, restated in ℚ (the row is delivered by K5a; the ℝ-side probe is the evidence) |
+| 2026-09-20 | K3 #2 `kashaWithin_one_iff_ratio` | as first handed over (no premise on the sign of `decay rad ic 1`) the row is **false**: the rate-form criterion of the sibling row #1 is equivalent to the ratio form only after multiplying by the *positive* factor `decay 1`; if `decay 1 < 0` the cross multiplication flips the inequality, and `funnelRatio` can be negative while the rule holds | added `(h1 : 0 < decay rad ic 1)`, matching sibling row #1 | kernel counterexample in `theories/kasha/probes/kasha-risk-probe.lean` (`risk_kashaWithin_one_iff_ratio_refuted`, witness `rad = (1,1,0,…)`, `ic = (1,-3,0,…)`, `tol = 1/2`), raised by prover_b's Sprint-0 risk probe |
+| 2026-09-20 | K3 #9 `not_kashaWithin_one_of_ratio_lt` | it is the strict side of the same (false) equivalence, so it fails on the same witness | added `(h1 : 0 < decay rad ic 1)` in the same pass | same probe file |
+| 2026-09-20 | K5a `kashaWithinQ_iff_funnelRatioQ` | the ℚ twin of K3 #2, with the same defect found **independently** | added `(h1 : 0 < decayQ rad ic 1)` | kernel counterexample in `theories/kasha/probes/kasha-rat-probe.lean` (`probe_criterion_premises_insufficient`, witness `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2`), raised by prover_c |
+
+Correction-log lesson (recorded for the engine): **three of the four corrections are the same
+mistake in different clothes** — a statement whose premises do not carry the sign of a quantity the
+proof must divide by (the tolerance `tol`, then the total decay `decay 1`). The Sprint-0 risk probe
+is what caught it before any delivered file carried the false form; `#print axioms`-clean probes are
+cheap, admitted false statements are not.
 
 ---
 
@@ -359,7 +368,7 @@ positivity premises explicitly.
 | # | statement | sketch |
 |---|---|---|
 | 1 | **`kashaWithin_one_iff_rates`** `(h0 : 0 < decay rad ic 0) (h1 : 0 < decay rad ic 1) : KashaWithin rad ic tol 1 ↔ rad 1 * decay rad ic 0 * (1 - tol) ≤ tol * (rad 0 * ic 1)` | unfold the two-level sums (`Icc 1 1 = {1}`, `cascade 1 1 = 1`, `cascade 0 1 = icBranch 1`), multiply by `decay 1 * decay 0 > 0` |
-| 2 | **`kashaWithin_one_iff_ratio`** `(h0 : 0 < decay rad ic 0) (htol : 0 < tol) (hr : 0 < rad 1) : KashaWithin rad ic tol 1 ↔ (1 - tol) / tol ≤ funnelRatio rad ic` | 1 divided by `tol · rad 1 · decay 0 > 0` |
+| 2 | **`kashaWithin_one_iff_ratio`** `(h0 : 0 < decay rad ic 0) (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1) : KashaWithin rad ic tol 1 ↔ (1 - tol) / tol ≤ funnelRatio rad ic` | 1 divided by `tol · rad 1 · decay 0 > 0` — **statement corrected 2026-09-20**, see §3.1 |
 | 3 | **`kashaWithin_one_iff_ic_ratio`** `(hic0 : ic 0 = 0) (hr0 : rad 0 ≠ 0) (htol : 0 < tol) (h1 : 0 < decay rad ic 1) (hr : 0 < rad 1) : KashaWithin rad ic tol 1 ↔ (1 - tol) / tol ≤ ic 1 / rad 1` | 2 with `decay 0 = rad 0` — the literature form `k_IC/k_rad ≥ (1-tol)/tol` (for `tol = 1/100`: `≥ 99`) |
 | 4 | `funnelRatio_eq_ladderRatio_one (h : decay rad ic 1 ≠ 0) : funnelRatio rad ic = ladderRatio rad ic 1` | unfold both |
 | 5 | `kashaWithin_iff_margin (h : RateData rad ic N) (hu : 0 < upperYield rad ic N) (htol : 0 < tol) : KashaWithin rad ic tol N ↔ 1 - tol ≤ tol * kashaMargin rad ic N` | 13 of K1, divide by `upperYield > 0` |
@@ -371,7 +380,7 @@ positivity premises explicitly.
 
 | # | statement | sketch |
 |---|---|---|
-| 9 | `not_kashaWithin_one_of_ratio_lt (h0 : 0 < decay rad ic 0) (htol : 0 < tol) (hr : 0 < rad 1) (h : funnelRatio rad ic < (1 - tol) / tol) : ¬ KashaWithin rad ic tol 1` | contrapositive of 2 |
+| 9 | `not_kashaWithin_one_of_ratio_lt (h0 : 0 < decay rad ic 0) (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1) (h : funnelRatio rad ic < (1 - tol) / tol) : ¬ KashaWithin rad ic tol 1` | contrapositive of 2 — **statement corrected 2026-09-20** in the same pass, see §3.1 |
 | 10 | **`kashaThreshold_attained`** `(h0 : 0 < tol) (h1 : tol < 1) : ∃ rad ic, KashaWithin rad ic tol 1 ∧ (∀ tol' : ℝ, 0 < tol' → tol' < tol → ¬ KashaWithin rad ic tol' 1)` | witness `rad 0 = 1, rad 1 = tol, ic 0 = 0, ic 1 = 1 - tol` (`funnelRatio = (1-tol)/tol` exactly) — **the threshold is attained and cannot be improved** |
 | 11 | `kashaWithin_one_witness : KashaWithin rad ic (1/100) 1` for `rad 0 = 1, rad 1 = 1, ic 0 = 0, ic 1 = 100` | `norm_num`-style two-level computation (funnel ratio `= 100 ≥ 99`) |
 | 12 | `kashaWithin_one_negative : ¬ KashaWithin rad ic (1/100) 1` for `rad 0 = 1, rad 1 = 1, ic 0 = 0, ic 1 = 10` | funnel ratio `= 10 < 99` |
@@ -467,7 +476,8 @@ Theorems: the cast bridges (one per definition, `Rat.cast_*` family; `ℚ`-side 
 that a verdict computed in ℚ transfers to ℝ), the three classifier equivalences
 (`kashaQVerdict_eq_pure_iff`, `_withinTol_iff`, `_violating_iff` — the third carries the corrected
 tolerance premise `0 < tol`, see §3.1), the ℚ criterion
-(`kashaWithinQ_iff_funnelRatioQ`), and two witness/negative-control rows pinning the recipe. **Trap
+(`kashaWithinQ_iff_funnelRatioQ` — carries the corrected premise `0 < decayQ rad ic 1`, §3.1), and
+two witness/negative-control rows pinning the recipe. **Trap
 recorded in the API log**: `by decide` does not close ℚ goals containing `/`-literals
 (`Rat.blt` → `Int.decNonneg` does not reduce) and `native_decide` is banned
 (`Lean.ofReduceBool` is outside `ALLOWED_AXIOMS`) — verdicts are closed by `norm_num`, exactly as in

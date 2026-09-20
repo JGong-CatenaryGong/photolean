@@ -385,9 +385,14 @@ theorem kashaWithin_one_iff_rates {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < d
     KashaWithin rad ic tol 1 ↔ rad 1 * decay rad ic 0 * (1 - tol) ≤ tol * (rad 0 * ic 1) := by
   sorry
 
-/-- Plan §6.1 #2 — **the funnel-ratio threshold** (two-level form). -/
+/-- Plan §6.1 #2 — **the funnel-ratio threshold** (two-level form). **Corrected 2026-09-20**
+(prover_b's kernel counterexample `risk_kashaWithin_one_iff_ratio_refuted`): without
+`0 < decay rad ic 1` the row is FALSE — the rate-form criterion is equivalent to the ratio form
+only after multiplying by the positive factor `decay 1`, and with `decay 1 < 0` the cross
+multiplication flips the inequality (witness `rad = (1,1,0,…)`, `ic = (1,-3,0,…)`, `tol = 1/2`).
+The premise is now explicit, matching its sibling row K3 #1. -/
 theorem kashaWithin_one_iff_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < decay rad ic 0)
-    (htol : 0 < tol) (hr : 0 < rad 1) :
+    (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1) :
     KashaWithin rad ic tol 1 ↔ (1 - tol) / tol ≤ funnelRatio rad ic := by
   sorry
 
@@ -425,10 +430,12 @@ theorem kashaWithin_one_mono_ic {rad ic rad' ic' : ℕ → ℝ} {tol : ℝ} (h :
     (hic : ic 1 ≤ ic' 1) : KashaWithin rad ic tol 1 → KashaWithin rad' ic' tol 1 := by
   sorry
 
-/-- Plan §6.2 #9 — the strict failure side of the threshold. -/
+/-- Plan §6.2 #9 — the strict failure side of the threshold. **Corrected 2026-09-20** together with
+its sibling row K3 #2: it needs the same explicit `0 < decay rad ic 1` (otherwise the ratio form is
+not equivalent to the criterion and the claim fails on the same witness). -/
 theorem not_kashaWithin_one_of_ratio_lt {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < decay rad ic 0)
-    (htol : 0 < tol) (hr : 0 < rad 1) (h : funnelRatio rad ic < (1 - tol) / tol) :
-    ¬ KashaWithin rad ic tol 1 := by
+    (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1)
+    (h : funnelRatio rad ic < (1 - tol) / tol) : ¬ KashaWithin rad ic tol 1 := by
   sorry
 
 /-- Plan §6.2 #10 — **attainment**: for every tolerance in `(0,1)` the threshold is met exactly
@@ -706,9 +713,11 @@ theorem kashaWithinQ_iff_cast {rad ic : ℕ → ℚ} {tol : ℚ} {N : ℕ} :
       KashaWithin (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) (tol : ℝ) N := by
   sorry
 
-/-- Plan §8.1 — the rational threshold. -/
+/-- Plan §8.1 — the rational threshold. **Corrected 2026-09-20** (prover_c's kernel counterexample
+`probe_criterion_premises_insufficient`, found independently of prover_b's ℝ-side witness): without
+`0 < decayQ rad ic 1` the row is FALSE at `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2`. -/
 theorem kashaWithinQ_iff_funnelRatioQ {rad ic : ℕ → ℚ} {tol : ℚ} (h0 : 0 < decayQ rad ic 0)
-    (htol : 0 < tol) (hr : 0 < rad 1) :
+    (h1 : 0 < decayQ rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1) :
     KashaWithinQ rad ic tol 1 ↔ (1 - tol) / tol ≤ funnelRatioQ rad ic := by
   sorry
 
