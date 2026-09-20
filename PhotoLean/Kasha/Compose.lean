@@ -182,6 +182,18 @@ theorem effEmitYield_zero_one {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad
   rw [hR0, hI1]
   ring
 
+/-- Plan §7.2 #7 — **the ladder's margin is a two-level margin**: the funnel margin of the effective
+two-level model is exactly the `N`-level margin `emitYield 0 N / upperYield N`, i.e. the collapse of
+the upper block is faithful for the margin too. -/
+theorem kashaMargin_effective {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
+    (hu : 0 < upperYield rad ic N) :
+    kashaMargin (effRad rad ic N) (effIc rad ic N) 1 = kashaMargin rad ic N := by
+  have hC : 0 ≤ cascade rad ic 0 N := cascade_nonneg h (Nat.zero_le N)
+  have hpos : 0 < upperYield rad ic N + cascade rad ic 0 N := by linarith
+  unfold kashaMargin
+  rw [effUpperYield_one h, effEmitYield_zero_one h]
+  exact div_div_div_cancel_right₀ (ne_of_gt hpos) _ _
+
 
 end Kasha
 
