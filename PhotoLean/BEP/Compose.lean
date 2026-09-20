@@ -119,5 +119,21 @@ theorem epBounds_of_marcus_normal {lam x : ℝ} (hlam : 0 < lam) (h : Marcus.Nor
   simp only [Marcus.InvertedRegion, Marcus.NormalRegion, not_or, not_lt] at h ⊢
   exact ⟨le_of_lt h, by linarith⟩
 
+/-! ## Microscopic composition of the reorganization energy (plan §7 rows 7–12) -/
+
+/-- Plan §7 #7: the total reorganization energy of a step is again the curvature of a BEP
+descriptor. Positivity of both contributions (`0 < lamInner`, `0 < lamOuter`) is the explicit
+microscopic premise, from which `0 < lamInner + lamOuter` follows; the exact defect law
+`bepDefect lam x = x^2/(4*lam)` is the plan §5 identity, obtained here by clearing the common
+denominator `4 * lam` and normalising. -/
+theorem epDescriptor_of_microscopic {lamInner lamOuter : ℝ} (hli : 0 < lamInner)
+    (hlo : 0 < lamOuter) : EPDescriptor (lamInner + lamOuter) := by
+  have hL : 0 < lamInner + lamOuter := by linarith
+  refine ⟨hL, ?_⟩
+  intro x
+  unfold bepDefect eact bepLine
+  field_simp
+  ring
+
 
 end PhotoLean.BEP
