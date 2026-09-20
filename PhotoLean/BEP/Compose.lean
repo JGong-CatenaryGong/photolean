@@ -75,5 +75,31 @@ theorem transfer_eq_tsCoord_bridge {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   -- clearing the common denominator `2 * lam` (legitimate by `hlam`) closes the goal outright
   field_simp
 
+/-- Plan §7 #4 (headline): the Evans–Polanyi bounds hold **exactly** when neither direction of the
+step lies in the Marcus inverted region. `EPBounds lam x` is `0 ≤ transfer lam x ∧ transfer lam x ≤
+1`, i.e. `0 ≤ 1/2 - x/(2*lam) ≤ 1`; with `0 < lam` the two halves are `x ≤ lam` and `-lam ≤ x`,
+which is precisely the negation of `lam < x ∨ lam < -x` (`Marcus.InvertedRegion lam x` is
+`lam < x`, and `Marcus.InvertedRegion lam (-x)` is the reverse direction of the same step). -/
+theorem epBounds_iff_no_inverted_direction {lam x : ℝ} (hlam : 0 < lam) :
+    EPBounds lam x ↔ ¬ (Marcus.InvertedRegion lam x ∨ Marcus.InvertedRegion lam (-x)) := by
+  have h2 : 0 < 2 * lam := by linarith
+  unfold EPBounds transfer Marcus.InvertedRegion
+  constructor
+  · rintro ⟨h1, h3⟩
+    simp only [not_or, not_lt]
+    constructor
+    · have := (div_le_iff₀ h2).mp (show x / (2 * lam) ≤ 1 / 2 by linarith)
+      linarith
+    · have := (le_div_iff₀ h2).mp (show -(1 / 2) ≤ x / (2 * lam) by linarith)
+      linarith
+  · intro h
+    simp only [not_or, not_lt] at h
+    obtain ⟨h1, h3⟩ := h
+    constructor
+    · have : x / (2 * lam) ≤ 1 / 2 := (div_le_iff₀ h2).mpr (by linarith)
+      linarith
+    · have : -(1 / 2) ≤ x / (2 * lam) := (le_div_iff₀ h2).mpr (by linarith)
+      linarith
+
 
 end PhotoLean.BEP
