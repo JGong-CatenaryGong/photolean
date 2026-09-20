@@ -23,7 +23,9 @@
 | ③ Do the instances conform once substituted? | **The literature MCC system (`lam=1.20` eV) and the photosynthetic reaction center (`0.25` eV) conform under the classical model**: region decision + instantiation of the descriptor operator + **rate comparison `rate(2.40) < rate(1.23)`** (and independent of temperature); non-physical parameters are judged **non-conforming / inadmissible** (§3) | Every instance is a **named theorem**; the lead independently recomputed each of them in Python |
 | Boundary (must be reported together) | In the inverted region the classical formula **falls too fast by about 3.6 orders of magnitude** (predicted 5.1 vs measured 1.46) ⇒ the instance conclusions only claim that the "**classical model**" satisfies the descriptor; they do not claim to predict the measured rates (§3.4, §4) | The model numbers and the measured literature rates are shown side by side and can be recomputed |
 
-**Scale**: 8 modules / **70 theorems**; **49 `feat(<area>): <lemma>` commits** (97 commits in the repository in total).
+**Scale** (**Marcus-theory scope**; snapshot at the closing commit `6ebcff3`, 2026-09-20 — the point at which every verifier verdict was recorded): 8 modules / **70 theorems** (12 declarations + 70 theorems = 82 delivered declarations); **47 per-lemma commits** in the contract template (reproduce with `git log --oneline --grep='^feat(' -- PhotoLean/Marcus | wc -l`).
+
+> **Counting convention**: this file cites **theory-scoped** numbers only (modules / theorems / commits) and does **not** quote repository-wide commit totals — this repository hosts several theories side by side under `theories/`, so a repository-wide total keeps growing as the other theories advance and would make this file age badly. For the same reason the `45/45` / `51/51`-style counts above each carry their own timestamp.
 Zero unfinished proofs, zero custom axioms.
 
 **Three-layer acceptance (one command per layer, all re-runnable)**:
@@ -297,12 +299,9 @@ it compares **every declaration in the delivered files that appears in the autho
 This checker has been **validated in the reverse direction** (deliberately changing the conclusion `<` of `inverted_rate_decreases` into `≤` ⇒ it was caught and printed the comparison;
 after restoring, it is back to 51/51) — a checker that cannot fail is worthless.
 
-**Structure audit (whether every definition is constrained by at least one theorem)**: word-boundary reference counts for all 10 definitions —
-`barrier` (44 occurrences), `rate` (40), `InvertedRegion` (21), `zoneQ` (24), `InvertedDescriptor` (16),
-`zone` (14), `lamInner` (9), `lamOuter` (8), `NormalRegion` (7), `NormalDescriptor` (1, namely its own descriptor theorem).
-**The only definition "not constrained by any theorem" is `barrierQ`** — the M3+M5a verifiers independently found the same problem (finding (b)),
-and the numeric bridge `barrierQ_cast : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam:ℝ) (x:ℝ)` was added,
-so that barrier values on the ℚ side qualify as evidence at the ℝ theory layer.
+**Structural audit (is every definition/inductive constrained by at least one theorem?)** — one run of `python3 theories/Marcus/probes/marcus-name-audit.py`: all **12** `def`s/`inductive`s currently have references, so there is **no unconstrained definition**:
+`barrier` (33), `rate` (29), `Zone` (20), `zoneQ` (18), `InvertedRegion` (17), `InvertedDescriptor` (16), `zone` (11), `lamInner` (6), `NormalRegion` (5), `lamOuter` (4), `barrierQ` (3), `NormalDescriptor` (1 — its own descriptor theorem).
+During delivery this audit caught the **only** unconstrained definition, `barrierQ` (the M3+M5a verifiers found the same problem independently, as finding (b)); adding the numeric bridge `barrierQ_cast : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam:ℝ) (x:ℝ)` together with the degenerate point `barrierQ_zero_lam` closed the gap.
 
 **Full health-check result (2026-09-20, 8 modules / 70 theorems)**: one run of `marcus-all-axioms.lean` outputs **70 lines of
 `depends on axioms`, 0 error**; of these, **69 are exactly `[propext, Classical.choice, Quot.sound]`**,

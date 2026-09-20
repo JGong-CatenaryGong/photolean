@@ -21,7 +21,10 @@
 | ③ 实例代入后符合吗？ | **文献 MCC 体系（`lam=1.20` eV）与光合反应中心（`0.25` eV）在经典模型下符合**：区域判定 + 描述算子实例化 + **速率比较 `rate(2.40) < rate(1.23)`**（且与温度无关）；非物理参数被判**不符合/不可采纳**（§3） | 每条实例都是**有名字的定理**；lead 用 Python 独立复算逐条印证 |
 | 边界（必须同时报告） | 经典公式在反转区**下降过快约 3.6 个数量级**（预言 5.1 vs 实测 1.46）⇒ 实例结论只声称"**经典模型**满足描述"，不声称预测实测速率（§3.4、§4） | 模型数值与文献实测速率并排给出，可复算 |
 
-**规模**：8 个模块 / **70 条定理**；**49 个 `feat(<area>): <lemma>` 提交**（仓库共 97 个提交）。
+**规模**（**本理论口径**；快照于 2026-09-20 收尾提交 `6ebcff3` —— 全部 verifier PASS 的时点）：
+8 个模块 / **70 条定理**（12 个声明 + 70 条定理 = 82 条交付声明）；按契约模板的 per-lemma 提交 **47 个**（复现：`git log --oneline --grep='^feat(' -- PhotoLean/Marcus | wc -l`）。
+
+> **计数口径**：本文只引用**本理论自身**的数字（模块 / 定理 / 提交），**不引用仓库总提交数** —— 本仓库是多理论工程（`theories/` 下并列多个理论），仓库级总数会随其他理论的推进持续增长，引用它会让本文件随时间失真。同理，上文各表的 `45/45` / `51/51` 等计数都标注了各自的时点。
 零 `sorry`、零自定义公理。
 
 **三层验收（一条命令各一层，全部可复跑）**：
@@ -301,12 +304,9 @@ proofs/scripts/lake env lean theories/Marcus/probes/marcus-statement-skeleton.le
 该检查器已做**反向验证**（故意把 `inverted_rate_decreases` 的结论 `<` 改成 `≤` ⇒ 被抓出并打印对照；
 恢复后回到 51/51）—— 不会失败的检查器没有价值。
 
-**结构审计（每个定义是否都被至少一条定理约束）**：对全部 10 个定义做词边界引用统计 ——
-`barrier`(44 处)、`rate`(40)、`InvertedRegion`(21)、`zoneQ`(24)、`InvertedDescriptor`(16)、
-`zone`(14)、`lamInner`(9)、`lamOuter`(8)、`NormalRegion`(7)、`NormalDescriptor`(1，即其自身的描述定理)。
-**唯一"未被任何定理约束"的定义是 `barrierQ`** —— M3+M5a verifier 独立发现同一问题（发现 (b)），
-已补上数值桥 `barrierQ_cast : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam:ℝ) (x:ℝ)`，
-使 ℚ 侧势垒数值有资格作为 ℝ 理论层的证据。
+**结构审计（每个定义/归纳类型是否都被至少一条定理约束）**：`python3 theories/Marcus/probes/marcus-name-audit.py` 一次跑完 —— 当前 **12 个** `def`/`inductive` **全部有引用**，不存在"未被约束的定义"：
+`barrier`(33 处)、`rate`(29)、`Zone`(20)、`zoneQ`(18)、`InvertedRegion`(17)、`InvertedDescriptor`(16)、`zone`(11)、`lamInner`(6)、`NormalRegion`(5)、`lamOuter`(4)、`barrierQ`(3)、`NormalDescriptor`(1，即其自身的描述定理)。
+该审计在交付中途抓到过**唯一**一处未被约束的定义 `barrierQ`（M3+M5a verifier 独立发现同一问题，见上文"发现 (b)"）；补上数值桥 `barrierQ_cast : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam:ℝ) (x:ℝ)` 与退化点 `barrierQ_zero_lam` 后缺口闭合。
 
 **全量体检结果（2026-09-20，8 个模块 / 70 条定理）**：`marcus-all-axioms.lean` 一次运行输出 **70 条
 `depends on axioms`、0 error**；其中 **69 条恰为 `[propext, Classical.choice, Quot.sound]`**，
