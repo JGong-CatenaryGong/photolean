@@ -73,6 +73,15 @@ theorem inst_I2_exergonic_zone : Rat.hammondZoneQ (1 : ℚ) (3 / 4) = HZone.earl
 theorem inst_I2_exergonic_reactantLike : ReactantLike 1 (3 / 4) :=
   (reactantLike_iff (by norm_num : (0 : ℝ) < 1)).mpr (by norm_num : (0 : ℝ) < 3 / 4)
 
+/-- I2, point-level verdict: the instance conforms to the Hammond description (early zone,
+strictly inside the regime). -/
+theorem inst_I2_exergonic_conforms : HammondConforms 1 (3 / 4) := by
+  have hz : hammondZone (1 : ℝ) (3 / 4 : ℝ) = HZone.early := by
+    rw [← (by norm_num : ((1 : ℚ) : ℝ) = (1 : ℝ)),
+        ← (by norm_num : (((3 : ℚ) / 4 : ℚ) : ℝ) = (3 / 4 : ℝ)),
+        ← Rat.hammondZoneQ_eq_hammondZone, inst_I2_exergonic_zone]
+  exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 1)).mpr (Or.inl hz)
+
 end Hammond
 
 end PhotoLean
