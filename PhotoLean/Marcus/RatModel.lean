@@ -68,6 +68,11 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
 约定，故退化点同样成立。取证见探针 `proofs/probes/marcus-prover_c2-scratch.lean`
 的 D 段（`lam = 0` / `lam = 1/2` / `lam = -3` 三条**无前提**版本）与 E 段。
 
+⚠️ **`lam = 0` 的等式的性质要说清**：`lam ≠ 0` 时这是名副其实的域恒等式经 cast 搬运；
+`lam = 0` 时两侧**各自**坍缩为 `0`（`x / 0 = 0`），等式成立但**不含任何数值内容** ——
+它**不得**被当作"势垒在 `lam = 0` 取值为 0"的物理数值证据（`barrier` 在 `lam = 0`
+本就不是势垒函数）。M5b 用 ℚ 侧数值取证时应避开除零点。
+
 **依赖边界**：本条**不**新增 `import`（M5a 按 plan §S2 只依赖 M1 的 `Basic.lean`）；
 因此 `lam = 0` 的 ℝ 侧退化值在证明内用一行 `simp [barrier]` 现算，
 而不去引用 M2 的 `barrier_zero_lam`（那会把 M5a 的依赖拉到 M2）。 -/
