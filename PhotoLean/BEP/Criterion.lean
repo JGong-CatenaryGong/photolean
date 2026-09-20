@@ -171,4 +171,10 @@ theorem epConforms_iff_bounds {lam x : ℝ} (hlam : 0 < lam) :
   unfold EPConforms
   exact ⟨fun h => h.2, fun h => ⟨hlam, h⟩⟩
 
+/-- Non-vacuity: the descriptor is inhabited (`lam = 1`). -/
+theorem exists_epDescriptor : ∃ lam : ℝ, EPDescriptor lam := by
+  exact ⟨1, epDescriptor_holds (by norm_num)⟩
+
+/-! ## Plan §5 #20–26 — non-vacuity of the nine regimes -/
+
 end PhotoLean.BEP
