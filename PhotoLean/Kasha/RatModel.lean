@@ -200,6 +200,52 @@ theorem kashaWithinQ_iff_cast {rad ic : ℕ → ℚ} {tol : ℚ} {N : ℕ} :
   rw [← upperYieldQ_cast, ← fluoYieldQ_cast, ← Rat.cast_mul]
   exact (Rat.cast_le (K := ℝ)).symm
 
+/-- Plan §8.1 — the rational threshold. **Corrected 2026-09-20** (prover_c's kernel counterexample
+`probe_criterion_premises_insufficient`, found independently of prover_b's ℝ-side witness): without
+`0 < decayQ rad ic 1` the row is FALSE at `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2`. -/
+theorem kashaWithinQ_iff_funnelRatioQ {rad ic : ℕ → ℚ} {tol : ℚ} (h0 : 0 < decayQ rad ic 0)
+    (h1 : 0 < decayQ rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1) :
+    KashaWithinQ rad ic tol 1 ↔ (1 - tol) / tol ≤ funnelRatioQ rad ic := by
+  have hp : 0 < rad 1 * decayQ rad ic 0 := mul_pos hr h0
+  have hc0 : cascadeQ rad ic 0 1 = ic 1 / decayQ rad ic 1 := by
+    unfold cascadeQ icBranchQ
+    rw [Finset.Icc_self, Finset.prod_singleton]
+  have hc1 : cascadeQ rad ic 1 1 = 1 := by
+    unfold cascadeQ
+    rw [Finset.Icc_eq_empty_iff.mpr (by omega : ¬ ((1 : ℕ) + 1 ≤ 1)), Finset.prod_empty]
+  have hfl : fluoYieldQ rad ic 1 =
+      rad 0 / decayQ rad ic 0 * (ic 1 / decayQ rad ic 1) + rad 1 / decayQ rad ic 1 := by
+    unfold fluoYieldQ emitYieldQ radBranchQ
+    rw [Finset.sum_range_succ, Finset.sum_range_one, hc0, hc1, mul_one]
+  have hup : upperYieldQ rad ic 1 = rad 1 / decayQ rad ic 1 := by
+    unfold upperYieldQ emitYieldQ radBranchQ
+    rw [Finset.Icc_self, Finset.sum_singleton, hc1, mul_one]
+  have h2 : tol * (rad 0 / decayQ rad ic 0 * (ic 1 / decayQ rad ic 1) + rad 1 / decayQ rad ic 1)
+        * decayQ rad ic 1 = tol * (rad 0 * ic 1 / decayQ rad ic 0) + tol * rad 1 := by
+    field_simp
+    ring
+  have h5 : rad 0 * ic 1 / (rad 1 * decayQ rad ic 0) * tol * (rad 1 * decayQ rad ic 0)
+      = tol * (rad 0 * ic 1) := by
+    field_simp
+    ring
+  simp only [KashaWithinQ, hfl, hup, funnelRatioQ]
+  constructor
+  · intro h
+    rw [div_le_iff₀ h1] at h
+    rw [h2, ← mul_div_assoc] at h
+    have h3 : rad 1 * (1 - tol) ≤ tol * (rad 0 * ic 1) / decayQ rad ic 0 := by nlinarith [h]
+    have h4 : rad 1 * (1 - tol) * decayQ rad ic 0 ≤ tol * (rad 0 * ic 1) :=
+      (le_div_iff₀ h0).mp h3
+    rw [div_le_iff₀ htol, ← mul_le_mul_right hp, h5]
+    nlinarith [h4]
+  · intro h
+    rw [div_le_iff₀ htol, ← mul_le_mul_right hp, h5] at h
+    have h3 : rad 1 * (1 - tol) ≤ tol * (rad 0 * ic 1) / decayQ rad ic 0 := by
+      refine (le_div_iff₀ h0).mpr ?_
+      nlinarith [h]
+    rw [div_le_iff₀ h1, h2, ← mul_div_assoc]
+    nlinarith [h3]
+
 end Kasha
 
 end PhotoLean
