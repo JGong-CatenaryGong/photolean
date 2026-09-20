@@ -159,6 +159,16 @@ theorem qAlphaObs_cast {x₁ ea₁ x₂ ea₂ : ℚ} (h : x₂ ≠ x₁) :
   push_cast
   ring
 
+set_option linter.unusedVariables false in
+/-- The two-point λ solver casts to the ℝ twin; `x₁ ≠ x₂` is the statement-authority premise and is
+not consumed by the cast. -/
+theorem qLamOfPair_cast {x₁ ea₁ x₂ ea₂ : ℚ} (h : x₁ ≠ x₂) :
+    ((qLamOfPair x₁ ea₁ x₂ ea₂ : ℚ) : ℝ) =
+      lamOfPair (x₁ : ℝ) (ea₁ : ℝ) (x₂ : ℝ) (ea₂ : ℝ) := by
+  unfold qLamOfPair lamOfPair
+  push_cast
+  ring
+
 end Rat
 
 end BEP
