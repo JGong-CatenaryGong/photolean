@@ -462,11 +462,18 @@ noncomputable def kashaGapThreshold (A rad0 dec0 rad1 tol : ℝ) : ℝ :=
 | 15 | `kashaGapThreshold_pos (hA : 0 < A) (hr0 : 0 < rad 0) (htol : 0 < tol) (hdec : 0 < decay rad ic 0) (hr1 : 0 < rad 1) (htol1 : tol < 1) : 0 < kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol` | `div_pos`, `mul_pos` |
 | 16 | `marcusIC_pos (hA : 0 < A) : 0 < marcusIC A lam kB T x` | `Real.exp_pos` |
 
-**K4b (stretch, not in the statement authority unless the probe passes)**: the exponential-race
-derivation of the branching probability (`ic n / decay n` from two competing exponential clocks) —
-the plan's §13 scope limit becomes a theorem if and only if the api probe
-(`theories/kasha/probes/kasha-api-race.lean`) finds the needed mathlib support; otherwise the row
-stays out and the limit stays documented. **No delivered statement may depend on a failed probe.**
+**K4b — closed 2026-09-20 (outcome: stays a declared premise).** The exponential-race derivation of
+the branching probability (`ic n / decay n` from two competing exponential clocks) was probed in
+`theories/kasha/probes/kasha-api-race.lean`. The outcome is a **typed statement with no bounded proof
+in budget**: `(expMeasure a).prod (expMeasure b) {p | p.1 < p.2} = ofReal (a/(a+b))` elaborates, and
+the supporting pieces (`expMeasure r (Ioi x) = ofReal (exp (-(r*x)))`, `∫ x in Ioi 0, exp (-(c*x)) = 1/c`,
+`expMeasure r = volume.withDensity (exponentialPDF r)`) are kernel-checked, but the missing bridge
+(`iIndepFun` ↔ `Measure.prod`), the density-measure and `Ioi 0` bookkeeping, the `ofReal`
+integrability conditions and the `s < 0` a.e. split amount to roughly a hundred lines of measure
+theory — a sprint of its own, out of scope here. The row therefore stays **out** of the statement
+authority, the branching probability stays a declared modelling premise (§13.5), and the negative
+result is recorded in `proofs/API-NOTES.md` §kasha (f) and in `proofs/EXPERIENCE.md`. **No delivered
+statement depends on a failed probe.**
 
 **K4c (bridge bookkeeping)**: the Marcus bridge is a *model-side* conditional statement. The
 docstring of `kashaWithin_one_marcus` must carry the literature caveat from
@@ -618,7 +625,7 @@ git log -1 --oneline                                                     # 4. co
 | claim | status |
 |---|---|
 | the ladder model, its two channels per level, and the observables | **modelling assumption** (this plan's §1.2, §13) |
-| the branching probabilities are those of competing exponential clocks | **modelling assumption** (stretch item K4c; not proved unless the probe passes) |
+| the branching probabilities are those of competing exponential clocks | **modelling assumption** (probe K4b closed 2026-09-20: the statement types but its bounded proof is out of budget — `theories/kasha/probes/kasha-api-race.lean`, API-NOTES §kasha (f)) |
 | the time-integrated yields are the observables of Kasha/Vavilov spectroscopy | **modelling assumption** (no time-resolved kinetics) |
 | `KashaRule ⟺ rad = 0` above the lowest level (K2 #14) | **theorem** |
 | `KashaRule ⟺ VavilovUpTo` with `ic 0 > 0` (K2 #18) | **theorem** (the loss premise is explicit) |
