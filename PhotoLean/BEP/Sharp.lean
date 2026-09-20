@@ -415,5 +415,15 @@ theorem bepBestLine_halves {lam w : ℝ} (hlam : 0 < lam) (hw : 0 < w) :
     rw [div_lt_div_iff₀ (by linarith : (0 : ℝ) < 8 * lam) (by linarith : (0 : ℝ) < 4 * lam)]
     nlinarith
 
+/-! ## Plan §6.5 — hypothesis necessity -/
+
+/-- Plan §6.5 #22: the defect identity `bepDefect lam x = x²/(4·lam)` needs `lam ≠ 0` — at `lam = 0`
+the actual defect at `x = 1` is `1/2` while the right-hand side `1²/(4·0)` is `0`. -/
+theorem bepDefect_zero_lam_witness : bepDefect 0 1 = 1 / 2 ∧ ((1 : ℝ) ^ 2 / (4 * 0)) = 0 := by
+  constructor
+  · unfold bepDefect bepLine eact
+    norm_num
+  · norm_num
+
 
 end PhotoLean.BEP
