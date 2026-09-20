@@ -1196,7 +1196,9 @@ def unsupported():
     print()
     print("UNSUPPORTED  family aggregates of F1/F2/F3 — mean λ̂, sd, λ̂ range, fitted")
     print("             curvature, linear fit and R² are quoted over n = 31/34/31 pairs while")
-    print("             only 8/7/5 rows are printed; not recomputable from the printed data.")
+    print("             only 8/7/4 of them carry a printed barrier; not recomputable from the")
+    print("             printed data (F1 prints 9 rows, of which 8 have a water barrier; F3")
+    print("             prints 5, of which 4 have one).")
     print("             (F5 is the exception: all n = 5 rows are printed, and its mean and range")
     print("             are recomputed and audited in section [5].)")
 
