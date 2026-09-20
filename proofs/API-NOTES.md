@@ -980,3 +980,452 @@ one_div_le_one_div_of_le ha h   -- a ≤ b ⇒ 1/b ≤ 1/a（**取倒数翻转�
 **命名（硬约束）**：Lean 4 里 `λ` 是保留 token，**不可作标识符**。统一用
 `lam` / `lamIn` / `lamOut` / `nSq` / `epsS` / `dE` / `dq` / `a1` / `a2`（见
 `marcus-statement-skeleton.lean` 文件头）。
+
+---
+
+## 2026-09-20 — Hammond 里程碑 API 校准 (Hammond milestone API calibration) — api_researcher — 全部就绪：6 个探针 0 error / 0 warning；最高风险项（ℚ↔ℝ 七分支分类器转移）已给出可编译的两行配方
+
+> 本节正文用英文（`AGENTS.md` 语言政策把 `proofs/API-NOTES.md` 列为 English 产物；
+> 现存 `.en.md` 镜像不再扩展，故不写第二份）。标识符、`#check` 输出与报错原文照抄。
+
+**Probe inventory — every one compiled with `proofs/scripts/lake env lean <path>`, all 0 error / 0 warning:**
+
+| Probe | Scope | Run (from the repo root) |
+|---|---|---|
+| `theories/hammond/probes/hammond-api-sign-div.lean` | A: division/order signs, the `tsCoord` threshold table, negative denominator | `proofs/scripts/lake env lean theories/hammond/probes/hammond-api-sign-div.lean` |
+| `theories/hammond/probes/hammond-api-field-identities.lean` | B: the five core identities + the skeleton's remaining algebraic identities (`gapProduct_eq_crossing_energy`, `gapProduct_eq_gapReactant_neg`, `tsCoord_zero`, `tsCoord_at_lam`, `lefflerSecant_symm`, sign of the secant) | same command with the file name swapped |
+| `theories/hammond/probes/hammond-api-cast-classifier.lean` | C: the ℚ→ℝ transfer of the seven-branch classifier (highest risk) + `tsCoordQ_cast` | as above |
+| `theories/hammond/probes/hammond-api-zone-char.lean` | D: all seven zone characterizations; G: non-vacuity witnesses; structural-regime lemmas | as above |
+| `theories/hammond/probes/hammond-api-rat-compute.lean` | E: `decide` vs `norm_num` domains; ℚ-side zone characterizations; cross-link to `Marcus.Rat.zoneQ` | as above |
+| `theories/hammond/probes/hammond-api-crossmodule.lean` | F: cross-module names + the definitional bridge `barrier = gapReactant` | as above |
+
+---
+
+### A. Division/order — sign of a quotient with a positive denominator
+
+`#check` output (verbatim; instance-binder index suffixes joined when a signature wraps):
+
+```
+@div_pos_iff_of_pos_right : ∀ {α : Type u_1} [LinearOrderedSemifield α] {a b : α}, 0 < b → (0 < a / b ↔ 0 < a)
+@div_pos_iff_of_pos_left : ∀ {α : Type u_1} [LinearOrderedSemifield α] {a b : α}, 0 < a → (0 < a / b ↔ 0 < b)
+@div_lt_one : ∀ {α : Type u_1} [LinearOrderedSemifield α] {a b : α}, 0 < b → (a / b < 1 ↔ a < b)
+@one_lt_div : ∀ {α : Type u_1} [LinearOrderedSemifield α] {a b : α}, 0 < b → (1 < a / b ↔ b < a)
+@div_le_one : ∀ {α : Type u_1} [LinearOrderedSemifield α] {a b : α}, 0 < b → (a / b ≤ 1 ↔ a ≤ b)
+@one_le_div : ∀ {α : Type u_1} [LinearOrderedSemifield α] {a b : α}, 0 < b → (1 ≤ a / b ↔ b ≤ a)
+@div_lt_iff₀ : ∀ {G₀ : Type u_1} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀] [PosMulReflectLT G₀]
+  {a b c : G₀} [MulPosStrictMono G₀], 0 < c → (b / c < a ↔ b < a * c)
+@lt_div_iff₀ : ∀ {G₀ : Type u_1} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀] [PosMulReflectLT G₀]
+  {a b c : G₀} [MulPosStrictMono G₀], 0 < c → (a < b / c ↔ a * c < b)
+@div_le_iff₀ : ∀ {G₀ : Type u_1} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀] [PosMulReflectLT G₀]
+  {a b c : G₀} [MulPosMono G₀], 0 < c → (b / c ≤ a ↔ b ≤ a * c)
+@le_div_iff₀ : ∀ {G₀ : Type u_1} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀] [PosMulReflectLT G₀]
+  {a b c : G₀} [MulPosMono G₀], 0 < c → (a ≤ b / c ↔ a * c ≤ b)
+@div_lt_div_iff_of_pos_right : ∀ {G₀ : Type u_1} [GroupWithZero G₀] [LinearOrder G₀] [ZeroLEOneClass G₀]
+  {a b c : G₀} [PosMulStrictMono G₀] [MulPosStrictMono G₀], 0 < c → (a / c < b / c ↔ a < b)
+@div_le_div_iff_of_pos_right : ∀ {G₀ : Type u_1} [GroupWithZero G₀] [LinearOrder G₀] [ZeroLEOneClass G₀]
+  {a b c : G₀} [PosMulStrictMono G₀] [MulPosStrictMono G₀], 0 < c → (a / c ≤ b / c ↔ a ≤ b)
+@div_lt_div_right_of_neg : ∀ {α : Type u_1} [LinearOrderedField α] {a b c : α}, c < 0 → (a / c < b / c ↔ b < a)
+@div_le_div_right_of_neg : ∀ {α : Type u_1} [LinearOrderedField α] {a b c : α}, c < 0 → (a / c ≤ b / c ↔ b ≤ a)
+@div_lt_iff_of_neg : ∀ {α : Type u_1} [LinearOrderedField α] {a b c : α}, c < 0 → (b / c < a ↔ a * c < b)
+@lt_div_iff_of_neg : ∀ {α : Type u_1} [LinearOrderedField α] {a b c : α}, c < 0 → (a < b / c ↔ b < a * c)
+@div_eq_iff : ∀ {G₀ : Type u_1} [GroupWithZero G₀] {a b c : G₀}, b ≠ 0 → (a / b = c ↔ a = c * b)
+@eq_div_iff : ∀ {G₀ : Type u_1} [GroupWithZero G₀] {a b c : G₀}, b ≠ 0 → (c = a / b ↔ c * b = a)
+@div_neg_iff : ∀ {α : Type u_1} [LinearOrderedField α] {a b : α}, a / b < 0 ↔ 0 < a ∧ b < 0 ∨ a < 0 ∧ 0 < b
+@div_nonpos_iff : ∀ {α : Type u_1} [LinearOrderedField α] {a b : α}, a / b ≤ 0 ↔ 0 ≤ a ∧ b ≤ 0 ∨ a ≤ 0 ∧ 0 ≤ b
+@div_neg_of_neg_of_pos : ∀ {α : Type u_1} [LinearOrderedField α] {a b : α}, a < 0 → 0 < b → a / b < 0
+@sub_ne_zero : ∀ {G : Type u_1} [AddGroup G] {a b : G}, a - b ≠ 0 ↔ a ≠ b
+@zero_div : ∀ {G₀ : Type u_1} [GroupWithZero G₀] (a : G₀), 0 / a = 0
+@two_ne_zero : ∀ {α : Type u_1} [Zero α] [OfNat α 2] [NeZero 2], 2 ≠ 0
+```
+
+Verdicts: **all of the above exist, none is deprecated (`#check` emits no deprecation warning),
+and all the `_iff₀` / `_of_pos_right` names are `↔` (usable with `rw`)**.
+
+| Name | Verdict |
+|---|---|
+| `div_pos_iff_of_pos_right` | exists; `@[simp]`, `0 < b → (0 < a / b ↔ 0 < a)` |
+| `div_pos_iff_of_pos_left` | exists; mirror form (`0 < a → (0 < a / b ↔ 0 < b)`) |
+| `div_lt_one` / `one_lt_div` / `div_le_one` / `one_le_div` | exist; all `0 < b → (a / b ⋚ 1 ↔ a ⋚ b)` / `(1 ⋚ a / b ↔ b ⋚ a)` |
+| `div_lt_iff₀` / `lt_div_iff₀` / `div_le_iff₀` / `le_div_iff₀` | exist (current names; the old `div_lt_iff` / `lt_div_iff` are deprecated — see the Ban list) |
+| `div_lt_div_iff_of_pos_right` / `div_le_div_iff_of_pos_right` | exist; same-denominator comparison |
+| `div_lt_div_right_of_neg` / `div_le_div_right_of_neg` | exist; `LinearOrderedField` only, right side is the *reversed* order `b < a` |
+| `div_lt_iff_of_neg` / `lt_div_iff_of_neg` | exist; `LinearOrderedField` only |
+| `div_eq_iff` / `eq_div_iff` | exist; note `div_eq_iff` matches `a / b = c`, `eq_div_iff` matches `c = a / b` |
+| `div_neg_iff` / `div_nonpos_iff` | exist but are **general disjunctions** (`a / b < 0 ↔ 0 < a ∧ b < 0 ∨ a < 0 ∧ 0 < b`) — usable, but the `_iff₀` route is shorter |
+| `div_neg_iff_of_pos_right` | **DOES NOT EXIST** (lead's finding, re-confirmed) |
+| `div_neg_iff_of_pos_left`, `div_nonpos_iff_of_pos_right`, `div_le_iff_of_pos_right`, `div_lt_zero_iff`, `div_le_zero_iff` | **DO NOT EXIST** (measured this round) |
+
+Measured errors for the non-existent names (scratch probe, verbatim):
+
+```
+error: unknown identifier 'div_neg_iff_of_pos_right'
+error: unknown identifier 'div_neg_iff_of_pos_left'
+error: unknown identifier 'div_nonpos_iff_of_pos_right'
+error: unknown identifier 'div_le_iff_of_pos_right'
+error: unknown identifier 'div_lt_zero_iff'
+error: unknown identifier 'div_le_zero_iff'
+```
+
+**The gap closed — three verified routes for `(lam - x) / (2 * lam) < 0 ↔ lam < x` under `0 < lam`**
+(`h2 : 0 < 2 * lam := by linarith` in each; all three compile in `hammond-api-sign-div.lean`):
+
+1. **Shortest (recommended)** — `div_lt_iff₀` + `linarith`:
+   ```lean
+   unfold tsCoord
+   have h2 : (0 : ℝ) < 2 * lam := by linarith
+   rw [div_lt_iff₀ h2, zero_mul]
+   constructor <;> intro h <;> linarith
+   ```
+   (the `zero_mul` step is optional; without it `linarith` still closes the goal)
+2. **General disjunction** — `rw [div_neg_iff]` then kill the impossible branch:
+   `rintro (⟨h, hc⟩ | ⟨h, hc⟩) <;> linarith`, and the `(⟸)` direction is
+   `Or.inr ⟨by linarith, h2⟩`.
+3. **Two divisions** — rewrite `0` as `0 / (2 * lam)` and use `div_lt_div_iff_of_pos_right`:
+   ```lean
+   rw [show (0 : ℝ) = 0 / (2 * lam) by rw [zero_div]]
+   rw [div_lt_div_iff_of_pos_right h2]
+   constructor <;> intro h <;> linarith
+   ```
+   ⚠️ `div_lt_div_right_of_neg` does **not** apply here (it needs a *negative* denominator), and
+   `sub_neg` / `lt_iff_not_le` are not needed at all.
+
+**The `≤ 0` version** is the same with `div_le_iff₀` (or `div_nonpos_iff`):
+`(lam - x) / (2 * lam) ≤ 0 ↔ lam ≤ x` — verified, also `zero_mul` optional.
+
+**Full `tsCoord` threshold table** (all verified in the probe, `hlam : 0 < lam` unless noted):
+
+| Goal | Recipe |
+|---|---|
+| `0 < tsCoord lam x ↔ x < lam` | `rw [div_pos_iff_of_pos_right h2]` |
+| `tsCoord lam x < 0 ↔ lam < x` | `rw [div_lt_iff₀ h2, zero_mul]` |
+| `tsCoord lam x < 1 ↔ -lam < x` | `rw [div_lt_one h2]` |
+| `1 < tsCoord lam x ↔ x < -lam` | `rw [one_lt_div h2]` |
+| `tsCoord lam x < 1/2 ↔ 0 < x` (**ReactantLike**) | `rw [div_lt_iff₀ h2]` |
+| `1/2 < tsCoord lam x ↔ x < 0` (**ProductLike**) | `rw [lt_div_iff₀ h2]` |
+| `tsCoord lam x ≤ 1/2 ↔ 0 ≤ x` | `rw [div_le_iff₀ h2]` |
+| `1/2 ≤ tsCoord lam x ↔ x ≤ 0` | `rw [le_div_iff₀ h2]` |
+| `tsCoord lam x = 1/2 ↔ x = 0` | `rw [div_eq_iff (mul_ne_zero two_ne_zero (ne_of_gt hlam))]` |
+| `tsCoord lam x₂ < tsCoord lam x₁ ↔ x₁ < x₂` | `rw [div_lt_div_iff_of_pos_right h2]` |
+| `tsCoord lam x₂ ≤ tsCoord lam x₁ ↔ x₁ ≤ x₂` | `rw [div_le_div_iff_of_pos_right h2]` |
+| `0 < tsCoord lam x ∧ tsCoord lam x < 1 ↔ -lam < x ∧ x < lam` | `rw [div_pos_iff_of_pos_right h2, div_lt_one h2]` |
+| with `lam < 0`: `tsCoord lam x < 0 ↔ x < lam` | `rw [div_lt_iff_of_neg (by linarith : (2:ℝ) * lam < 0)]` |
+| with `lam < 0`: `tsCoord lam x₁ < tsCoord lam x₂ ↔ x₁ < x₂` | `rw [div_lt_div_right_of_neg (by linarith : (2:ℝ) * lam < 0)]` |
+
+⚠️ `eq_div_iff` **only matches `?c = ?a / ?b`**: rewriting `tsCoord lam x = 1 / 2` with it fails
+(measured): `error: tactic 'rewrite' failed, did not find instance of the pattern in the target
+expression ?m = ?m / (2 * lam)` — because the supplied nonzero proof fixes the implicit
+denominator to `2 * lam`. Use `div_eq_iff` for that orientation.
+
+---
+
+### B. Field normalization on the five core identities
+
+Verdict: **there is no "definitional field identity" among them** — bare `ring` and bare
+`ring_nf` (no hypotheses) fail on all five, because `ring`/`ring_nf` never read the context.
+The working pattern is `unfold … ; field_simp ; ring`, and `field_simp` **discharges the
+`≠ 0` side conditions from the context itself** (`hlam`, and a `≠ 0` hypothesis for
+`x₂ - x₁`), so no explicit `have h4 : (4 * lam : ℝ) ≠ 0 := …` is required.
+
+| # | Identity (planned hypotheses) | Shortest verified recipe | Hypotheses consumed | `ring`/`ring_nf` alone? |
+|---|---|---|---|---|
+| B1 | `reactantSurface lam q = productSurface lam dG q ↔ q = tsCoord lam (-dG)` (`lam ≠ 0`) | `have h2 : (2*lam) ≠ 0 := mul_ne_zero two_ne_zero hlam; unfold …; rw [eq_div_iff h2]; constructor <;> intro h <;> nlinarith [h]` | `hlam` (via `h2`); **`nlinarith`, not `linarith`** (needs `(q-1)^2` expanded) | ✗; statement is false at `lam = 0` |
+| B2 | `gapReactant lam (-dG) = reactantSurface lam (tsCoord lam (-dG))` (`lam ≠ 0`) | `unfold …; field_simp; ring` | `hlam` (both denominators) — no `have` needed | ✗ (`field_simp; ring` fails with no hypothesis; `ring_nf` too) |
+| B3 | `lefflerSecant lam x₁ x₂ = tsCoord lam ((x₁+x₂)/2)` (`0 < lam`, `x₁ ≠ x₂`) | `have hx : x₂ - x₁ ≠ 0 := sub_ne_zero.mpr h12.symm; unfold …; field_simp; ring` | `hlam` **and** `h12` — but `h12` must be **restated as `x₂ - x₁ ≠ 0`** (`field_simp` cannot derive it from `x₁ ≠ x₂`); alternative one-liner: `field_simp [sub_ne_zero.mpr h12.symm]; ring` | ✗ |
+| B4 | `tsCoord lam (-x) = 1 - tsCoord lam x` (`lam ≠ 0`) | `unfold …; field_simp; ring` | `hlam` | ✗; false at `lam = 0` |
+| B5 | `gapProduct lam x - gapReactant lam x = x` (`lam ≠ 0`) | `unfold …; field_simp; ring` (alternative: insert `rw [div_sub_div_same]` first) | `hlam` | ✗; false at `lam = 0` |
+
+Extra identities from `theories/hammond/probes/hammond-statement-skeleton.lean`, all verified:
+
+| Identity | Recipe | Note |
+|---|---|---|
+| `gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG)) - dG` (`lam ≠ 0`) | `unfold …; field_simp; ring` | same shape as B2 |
+| `gapProduct lam x = gapReactant lam (-x)` (**no hypothesis**) | `unfold …; ring` | genuine ring identity |
+| `tsCoord lam 0 = 1/2` (`lam ≠ 0`) | `unfold …; field_simp; ring` | |
+| `tsCoord lam lam = 0` (**no hypothesis**) | `unfold tsCoord; rw [sub_self, zero_div]` | ⚠️ keeping the skeleton's `hlam : lam ≠ 0` here triggers `warning: unused variable 'hlam'` |
+| `lefflerSecant lam (x-1) (x+1) = tsCoord lam x` (`0 < lam`) | `unfold …; field_simp; ring` | `field_simp` also discharges `(x+1)-(x-1) = 2 ≠ 0` |
+| `lefflerSecant lam x₁ x₂ < 0 ↔ lam < (x₁+x₂)/2` (`0 < lam`, `x₁ ≠ x₂`) | `rw [lefflerSecant_eq_tsCoord hlam h]` then the A-route `rw [div_lt_iff₀ h2, zero_mul]` | composition pattern for `lefflerSecant_neg_iff_inverted` |
+
+Measured failure details worth not retrying:
+
+* B3 with `h12 : x₁ ≠ x₂` but without the restatement: `field_simp; ring` leaves
+  `⊢ lam * x₁ ^ 2 * (-(lam * x₁ * 4) + lam * x₂ * 4)⁻¹ * 4 + … = lam * 2 + (-x₁ - x₂)`
+  (the `lam` denominators *were* cleared; `x₂ - x₁` was not).
+* B2 with no hypothesis: `field_simp` cannot discharge `lam ≠ 0` and leaves `lam⁻¹` terms.
+* `unfold …; ring` / `ring_nf` with no hypothesis, e.g. B4: leftover goal
+  `⊢ lam * lam⁻¹ * (1 / 2) + x * lam⁻¹ * (1 / 2) = 1 + lam * lam⁻¹ * (-1 / 2) + x * lam⁻¹ * (1 / 2)`.
+
+---
+
+### C. `if`-chain classifier transfer — SOLVED: `norm_cast` (this was the milestone's highest risk)
+
+```lean
+theorem hammondZoneQ_eq_hammondZone (lam x : ℚ) :
+    hammondZoneQ lam x = hammondZone (lam : ℝ) (x : ℝ) := by
+  unfold hammondZoneQ hammondZone
+  norm_cast
+```
+
+**Two tactic lines, no hypotheses, closes all seven branches** (`hammond-api-cast-classifier.lean`).
+`norm_cast` rewrites every ℝ-side test back into its ℚ-side twin — `↑x = ↑lam` → `x = lam`,
+`↑x = -↑lam` → `x = -lam` (through `Rat.cast_neg`), `↑x < -↑lam`, `↑lam < ↑x`, `↑x = 0` →
+`x = 0` (`Rat.cast_eq_zero`), and `0 < ↑x` (including the numeral `0`) — after which the two
+`if`-chains are syntactically identical. Two equivalent formulations also compile:
+`simp only [hammondZoneQ, hammondZone]; norm_cast`, and the downstream
+`hammondZoneQ lam x = z ↔ hammondZone (lam : ℝ) (x : ℝ) = z` by `rw [hammondZoneQ_eq_hammondZone]`.
+
+`#check` of the cast family used (verbatim):
+
+```
+@Rat.cast_lt : ∀ {p q : ℚ} {K : Type u_1} [LinearOrderedField K], ↑p < ↑q ↔ p < q
+@Rat.cast_le : ∀ {p q : ℚ} {K : Type u_1} [LinearOrderedField K], ↑p ≤ ↑q ↔ p ≤ q
+@Rat.cast_eq_zero : ∀ {α : Type u_1} [DivisionRing α] [CharZero α] {p : ℚ}, ↑p = 0 ↔ p = 0
+@Rat.cast_neg : ∀ {α : Type u_1} [DivisionRing α] (q : ℚ), ↑(-q) = -↑q
+@Rat.cast_inv : ∀ {α : Type u_1} [DivisionRing α] [CharZero α] (p : ℚ), ↑p⁻¹ = (↑p)⁻¹
+@Rat.cast_div : ∀ {α : Type u_1} [DivisionRing α] [CharZero α] (p q : ℚ), ↑(p / q) = ↑p / ↑q
+@Rat.cast_ofNat : ∀ {α : Type u_1} [DivisionRing α] (n : ℕ) [n.AtLeastTwo], ↑(OfNat.ofNat n) = OfNat.ofNat n
+@Rat.cast_zero : ∀ {α : Type u_1} [DivisionRing α], ↑0 = 0
+@Rat.cast_inj : ∀ {α : Type u_1} [DivisionRing α] [CharZero α] {p q : ℚ}, ↑p = ↑q ↔ p = q
+```
+
+Verdict: all exist; `cast_lt` / `cast_le` / `cast_inj` / `cast_eq_zero` are `↔`. ⚠️ `Rat.cast_lt`
+has an **implicit `K`**: `rw [← Rat.cast_lt]` alone fails with
+`error: typeclass instance problem is stuck, it is often due to metavariables / LinearOrderedField ?m.99703`
+— write `← (Rat.cast_lt (K := ℝ))` (same trap as `Rat.cast_inj`, which needs `(α := ℝ)`).
+
+Measured dead ends (do not retry; recorded in the probe):
+
+* `unfold …; push_cast; rfl` → `error: tactic 'rfl' failed, the left-hand side … is not definitionally equal to the right-hand side …` (`push_cast` has no compound cast to push; it is a no-op here).
+* `simp only [hammondZoneQ, hammondZone, Rat.cast_lt, Rat.cast_inj, Rat.cast_eq_zero, ← Rat.cast_neg, ← Rat.cast_zero]` → `error: tactic 'simp' failed, nested error: maximum recursion depth has been reached` (the backward `← Rat.cast_neg` loops).
+* `split_ifs with h1 … h6 <;> simp_all [Rat.cast_lt, …]` → many unsolved `⊢ False`.
+* The `by_cases` transcription of the Marcus 3-branch `zoneQ_eq_zone` (`simp [h, h']` with casted counterparts) does not scale to 7 branches: it stops at nested `if`s such as
+  `⊢ (if -lam = lam then HZone.atReactant else HZone.atProduct) = if -↑lam = ↑lam then HZone.atReactant else HZone.atProduct`.
+* The numeric bridge `((tsCoordQ lam x : ℚ) : ℝ) = tsCoord (lam : ℝ) (x : ℝ)` is **not** closed by `push_cast` alone: `unfold tsCoordQ tsCoord; push_cast; ring` does compile, but `… ; push_cast` leaves a goal (same "tail rule" as the Marcus `barrierQ_cast`: `push_cast` needs a trailing `ring`).
+
+---
+
+### D. Zone-characterization recipe (one instance requested; all seven delivered)
+
+For `hammondZone_eq_early_iff {lam x : ℝ} (hlam : 0 < lam) :
+hammondZone lam x = HZone.early ↔ 0 < x ∧ x < lam` — **shortest working proof (7 lines)**:
+
+```lean
+  unfold hammondZone
+  split_ifs with h1 h2 h3 h4 h5 h6 <;>
+    first
+      | exact iff_of_true rfl ⟨h6, lt_of_le_of_ne (le_of_not_gt h4) h1⟩
+      | exact iff_of_false (by decide) (by rintro ⟨hx, hy⟩; linarith)
+```
+
+The uniform, mechanical version (28 lines, same file) writes the seven leaves out explicitly;
+the `first` alternative above needs `h1 / h4 / h6`, which exist exactly in the `early` leaf.
+`by decide` discharges the constructor inequality from the derived `DecidableEq`.
+
+Why it works: `split_ifs with h1 … h6` produces exactly the seven chain leaves and hands each
+one the accumulated (negated) branch tests; the `early` leaf then has `h6 : 0 < x` and needs
+`x < lam`, i.e. `h4 : ¬ lam < x` plus `h1 : ¬ x = lam` through `lt_of_le_of_ne (le_of_not_gt h4) h1`.
+
+All seven, verified `0 < lam` (`hammond-api-zone-char.lean`):
+
+| Zone | Characterization | Extra note |
+|---|---|---|
+| `atReactant` | `x = lam` | **no hypothesis needed** (true at `lam = 0` as well) — the skeleton's `hlam` is unused and warns |
+| `atProduct` | `x = -lam` | needs `0 < lam` (leaves 1–2 closed by `by rw [h1]; linarith`) |
+| `beyondProduct` | `x < -lam` | needs `0 < lam` |
+| `beyondReactant` | `lam < x` | needs `0 < lam` |
+| `half` | `x = 0` | ⚠️ last leaf: use `h5` directly; `by rintro rfl; linarith` fails there because it becomes the *propositional* absurdity `¬ (0 : ℝ) < 0` (`error: linarith failed to find a contradiction`) |
+| `early` | `0 < x ∧ x < lam` | as above |
+| `late` | `-lam < x ∧ x < 0` | last leaf: `⟨lt_of_le_of_ne (le_of_not_gt h3) (Ne.symm h2), lt_of_le_of_ne (le_of_not_gt h6) h5⟩` |
+
+Measured dead ends: `unfold; split_ifs <;> simp_all <;> linarith` fails (`linarith` cannot
+digest the `False ↔ …` shape `simp_all` leaves); `… <;> omega` fails
+(`omega` supports neither `ℝ` nor `ℚ`: `error: omega could not prove the goal: No usable
+constraints found …`); `simp [hammondZone]` leaves the whole chain untouched. `decide` cannot
+help on the ℝ side (no computable `Decidable` for `ℝ`); on the ℚ side it cannot help either
+because the characterization has free variables (see E for the closed-goal case).
+
+The same recipe transfers verbatim to ℚ (`zoneQ_early_iff`, `zoneQ_late_iff`,
+`zoneQ_atReactant_iff`, `zoneQ_beyondReactant_iff`, `zoneQ_half_iff` in
+`hammond-api-rat-compute.lean`). ⚠️ The skeleton states the ℚ `late` lemma as
+`x < 0 ∧ -lam < x` — the **opposite conjunct order** from the ℝ-side lemma; the
+`rintro ⟨hx, -⟩` / `rintro ⟨-, hx⟩` patterns must be swapped in the corresponding leaves.
+
+Structural-regime lemmas (verified): `tsCoord_mem_iff` via
+`rw [div_pos_iff_of_pos_right h2, div_lt_one h2]`; `reactionRegion_pos`,
+`not_reactionRegion_of_nonpos` and `tsCoord_lt_zero_iff_inverted` are one `unfold … at h;
+linarith` / the A-route respectively.
+
+---
+
+### E. ℚ-side computation — `decide` vs `norm_num` (refinement of the Marcus-round rule)
+
+| Goal | `decide` | Working recipe |
+|---|---|---|
+| `hammondZoneQ 1 0 = HZone.half` | ✅ | `by decide` |
+| `hammondZoneQ 1 1 = HZone.atReactant` | ✅ | `by decide` |
+| `hammondZoneQ 1 3 = HZone.beyondReactant` | ✅ | `by decide` |
+| `hammondZoneQ 0 0 = HZone.atReactant` | ✅ | `by decide` |
+| `hammondZoneQ 1 (3/4) = HZone.early` | ❌ | `by norm_num [hammondZoneQ]` |
+| `hammondZoneQ 1 (-1/2) = HZone.late` | ❌ | `by norm_num [hammondZoneQ]` |
+| `hammondZoneQ (6/5) (12/5) = HZone.beyondReactant` | ❌ | `by norm_num [hammondZoneQ]` |
+| `tsCoordQ 1 0 = 1/2` | ❌ | `by norm_num [tsCoordQ]` |
+| `tsCoordQ (6/5) (1/20) = 23/48` | ❌ | `by norm_num [tsCoordQ]` |
+| `lefflerSecantQ (6/5) (3/5) (12/5) = -1/8` | ❌ | `by norm_num [lefflerSecantQ, gapReactantQ]` |
+
+Rule: **`decide` needs the whole evaluated expression to stay division-free** — it is not only
+about the literals: `tsCoordQ 1 0 = 1/2` fails although both arguments are integers, because
+`tsCoordQ` itself divides. Measured `decide` error:
+
+```
+error: tactic 'decide' failed for proposition
+  hammondZoneQ 1 (3 / 4) = HZone.early
+since its 'Decidable' instance
+  instDecidableEqHZone (hammondZoneQ 1 (3 / 4)) HZone.early
+did not reduce to 'isTrue' or 'isFalse'.
+```
+
+⚠️ `norm_num` must be given **every** definition in the expression: `norm_num [lefflerSecantQ]`
+fails with `error: unsolved goals ⊢ (gapReactantQ (6 / 5) (3 / 5) - gapReactantQ (6 / 5) (12 / 5)) / (9 / 5) = -(1 / 8)`.
+
+⚠️ **`native_decide` is banned**: it does evaluate the division cases, but measured
+`#print axioms native_decide_probe` → `[propext, Lean.ofReduceBool]`, and `Lean.ofReduceBool`
+∉ `ALLOWED_AXIOMS` ⇒ `proofs/scripts/axioms.sh` would FAIL on any delivered theorem using it.
+Use `norm_num`.
+
+Cross-link to the Marcus decision layer (verified in `hammond-api-rat-compute.lean`):
+
+```lean
+theorem zoneQ_beyondReactant_iff_marcusInverted {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.beyondReactant ↔
+      PhotoLean.Marcus.Rat.zoneQ lam x = PhotoLean.Marcus.Zone.inverted := by
+  rw [zoneQ_beyondReactant_iff hlam, ← (Rat.cast_lt (K := ℝ)),
+    PhotoLean.Marcus.Rat.zoneQ_inverted_iff]
+```
+
+---
+
+### F. Cross-module names (Marcus → Hammond) — all exist; the bridge is `rfl`
+
+`#check` output (verbatim, `@`-form; `def`s print their type, so argument names are from the sources):
+
+```
+Marcus.barrier : ℝ → ℝ → ℝ                                     -- PhotoLean/Marcus/Basic.lean:50
+Marcus.InvertedRegion : ℝ → ℝ → Prop                           -- Basic.lean:60  (`def … := lam < x`)
+Marcus.Zone : Type                                             -- Basic.lean:84  (inductive, 3 ctors)
+Marcus.zone : ℝ → ℝ → Marcus.Zone                              -- Basic.lean:93
+Marcus.rate : ℝ → ℝ → ℝ → ℝ → ℝ → ℝ                            -- Basic.lean:55
+Marcus.Rat.zoneQ : ℚ → ℚ → Marcus.Zone                         -- RatModel.lean:54
+Marcus.Rat.barrierQ : ℚ → ℚ → ℚ                                -- RatModel.lean:60
+Marcus.lamInner : ℝ → ℝ → ℝ                                    -- Reorg.lean:98
+Marcus.lamOuter : ℝ → ℝ → ℝ → ℝ → ℝ → ℝ → ℝ                    -- Reorg.lean:102
+@Marcus.lamInner_pos : ∀ {kk : ℝ}, 0 < kk → ∀ {dq : ℝ}, dq ≠ 0 → 0 < Marcus.lamInner kk dq
+@Marcus.lam_total_pos : ∀ {lamIn lamOut : ℝ}, 0 ≤ lamIn → 0 < lamOut → 0 < lamIn + lamOut
+@Marcus.hgeom_of_nonoverlap : ∀ {a1 a2 R : ℝ}, 0 < a1 → 0 < a2 → a1 + a2 ≤ R →
+  1 / R < 1 / (2 * a1) + 1 / (2 * a2)
+@Marcus.descriptor_sharp : ∀ {kB T : ℝ}, 0 < kB → 0 < T → ∀ (A lam : ℝ),
+  (∀ (x : ℝ), 0 < Marcus.rate A lam kB T x) ∧ Marcus.InvertedDescriptor A lam kB T ↔ 0 < A ∧ 0 < lam
+Marcus.Rat.zoneQ_eq_zone : ∀ (lam x : ℚ), Marcus.Rat.zoneQ lam x = Marcus.zone ↑lam ↑x
+Marcus.Rat.barrierQ_cast : ∀ (lam x : ℚ), ↑(Marcus.Rat.barrierQ lam x) = Marcus.barrier ↑lam ↑x
+Marcus.Rat.zoneQ_inverted_iff : ∀ (lam x : ℚ), Marcus.Rat.zoneQ lam x = Marcus.Zone.inverted ↔ ↑lam < ↑x
+```
+
+Verdict: **exists for all 13 requested names** (fully-qualified, no drift), with two import notes:
+
+* `PhotoLean.Marcus.descriptor_sharp` lives in `PhotoLean/Marcus/Sharp.lean`, which the four
+  modules in the task list do **not** import — the Hammond module citing it must
+  `import PhotoLean.Marcus.Sharp` (`Basic`/`Rate`/`RatModel`/`Reorg` cover the other 12).
+* The ℚ bridges `zoneQ_eq_zone`, `barrierQ_cast`, `zoneQ_inverted_iff` are reusable templates
+  for the Hammond ℚ layer (C and E above).
+
+**The `rfl` bridge** (verified, `hammond-api-crossmodule.lean`):
+
+```lean
+example (lam x : ℝ) : PhotoLean.Marcus.barrier lam x = (lam - x) ^ 2 / (4 * lam) := rfl
+theorem gapReactant_eq_barrier (lam x : ℝ) : gapReactant lam x = PhotoLean.Marcus.barrier lam x := rfl
+theorem barrier_eq_gapReactant (lam x : ℝ) : PhotoLean.Marcus.barrier lam x = gapReactant lam x := rfl
+```
+
+⇒ the planned `barrier_eq_gapReactant` is a **`rfl`**, not a `ring`/`field_simp` job: the two
+definitions have literally the same body. Likewise `InvertedRegion lam x` **is** `lam < x` by
+`rfl`, and `rate A lam kB T x` **is** `A * Real.exp (-(barrier lam x) / (kB * T))` by `rfl`.
+
+### G. Non-vacuity witnesses (all verified)
+
+| Witness | Proof |
+|---|---|
+| `∃ x : ℝ, tsCoord lam x < 1/2` (`0 < lam`) | `refine ⟨lam / 2, ?_⟩; unfold tsCoord; rw [div_lt_iff₀ (by linarith : (0:ℝ) < 2*lam)]; linarith` |
+| `∃ x : ℝ, 1/2 < tsCoord lam x` (`0 < lam`) | witness `-lam / 2`, `rw [lt_div_iff₀ …]` |
+| `∃ x : ℝ, ReactionRegion lam x` / `∃ x, -lam < x ∧ x < lam` (`0 < lam`) | witness `0`; `⟨0, by constructor <;> linarith⟩` |
+| `∃ x₁ x₂, x₁ < x₂ ∧ tsCoord lam x₂ < tsCoord lam x₁` (`0 < lam`) | `⟨0, 1, by norm_num, hammondDescriptor_of_pos hlam 0 1 (by norm_num)⟩` |
+| `∃ x₁ x₂, x₁ < x₂ ∧ ¬ (tsCoord 0 x₂ < tsCoord 0 x₁)` | `⟨0, 1, by norm_num, ?_⟩; rw [tsCoord_zero_lam, tsCoord_zero_lam]; norm_num` |
+| `¬ HammondDescriptor 0` | `intro h; have := h 0 1 (by norm_num); rw [tsCoord_zero_lam, tsCoord_zero_lam] at this; norm_num at this` |
+
+with `tsCoord_zero_lam (x : ℝ) : tsCoord 0 x = 0 := by unfold tsCoord; norm_num` (the
+division-by-zero convention, as in the Marcus `barrier_zero_lam`).
+
+---
+
+### 可靠域 (reliable domain): which tactic closes which goal shape
+
+| Goal shape | Tactic that closes it | Measured counter-domain |
+|---|---|---|
+| `a / c ⋚ b` / `a ⋚ b / c` with `0 < c` (or `c < 0`) | `rw [div_lt_iff₀ hc]` / `div_le_iff₀` / `lt_div_iff₀` / `le_div_iff₀` (negatively: `div_lt_iff_of_neg`, `lt_div_iff_of_neg`), then `linarith` | — |
+| `a / c ⋚ b / c` (same denominator) | `rw [div_lt_div_iff_of_pos_right hc]` / `div_le_div_iff_of_pos_right`, or `_of_neg` for `c < 0`, then `linarith` | the `_of_neg` versions need `LinearOrderedField`, not just a semifield |
+| quotient sign with a positive denominator | `div_lt_iff₀` / `div_le_iff₀` + `linarith` (routes 1–3 in A) | `div_neg_iff_of_pos_right` & friends do not exist |
+| rational-function **identity** (all five B items) | `unfold …; field_simp; ring` (context supplies the `≠ 0` conditions) | `field_simp` on **inequalities**: `error: simp made no progress` (Marcus round D-4); `ring`/`ring_nf` alone: never consume hypotheses |
+| `p / q = c` vs `c = p / q` | `div_eq_iff hb` (left) / `eq_div_iff hb` (right) — orientation is exact-match | `eq_div_iff` cannot rewrite `x = 1/2` style goals |
+| seven-branch `if`-chain over ℚ vs ℝ | `unfold` + **`norm_cast`** | `push_cast` (+`rfl`), `simp only [← Rat.cast_neg, …]`, `split_ifs`+`simp_all` — all fail |
+| `hammondZone lam x = HZone.Z ↔ <arithmetic>` | `unfold; split_ifs with h1 … h6` + `iff_of_true rfl …` / `iff_of_false (by decide) …` + `linarith` | `simp_all`+`linarith`, `omega`, `simp [hammondZone]` — all fail |
+| closed ℚ goal, no division evaluated | `by decide` | any division (literal or inside the def) breaks it |
+| closed ℚ goal with rational literals / defs | `by norm_num [def₁, def₂, …]` (all defs!) | `decide` (see above); `native_decide` (axiom `Lean.ofReduceBool`) |
+| `Prop` with a casted counterpart | `Rat.cast_lt.mpr` / `Rat.cast_inj.mp` / `exact_mod_cast`; the cast family needs its field explicit: `Rat.cast_lt (K := ℝ)`, `Rat.cast_inj (α := ℝ)` | bare `rw [← Rat.cast_lt]` → stuck metavariable |
+| definitional bridges between modules | `rfl` (`barrier = gapReactant`, `InvertedRegion = (· < ·)`, `rate = A * exp …`) | `ring` is unnecessary here but harmless |
+| `∃`-witness with a division | pick the witness, `unfold`, `rw [div_lt_iff₀ …]`, `linarith` | — |
+
+### 禁止使用清单 / warning traps (Hammond round additions)
+
+1. **Non-existent** (measured `unknown identifier`): `div_neg_iff_of_pos_right`,
+   `div_neg_iff_of_pos_left`, `div_nonpos_iff_of_pos_right`, `div_le_iff_of_pos_right`,
+   `div_lt_zero_iff`, `div_le_zero_iff`.
+2. **`native_decide` is forbidden** by the axiom discipline (`Lean.ofReduceBool`).
+3. **Unused-hypothesis trap** (measured, this round): `linter.unusedVariables` fires
+   `warning: unused variable 'hlam'` when the proof never touches the hypothesis — even though
+   the hypothesis is part of the statement. Facts:
+   * hypotheses consumed only by `field_simp` / `linarith` / `positivity` do **not** warn
+     (measured on B2/B3/B4/B5 and on `{lam : ℝ} (hlam : 0 < lam) : lam ≠ 0 := by linarith`);
+   * in the current statement skeleton the hypothesis is **redundant** for
+     **`hammondZone_eq_atReactant_iff`** (`↔ x = lam`, true for every `lam`, including `lam = 0`)
+     and **`tsCoord_at_lam`** (`tsCoord lam lam = 0` via `rw [sub_self, zero_div]`); the ℚ mirror
+     `hammondZoneQ_eq_atReactant_iff` is unconditional as well — keeping `hlam` there produces a
+     warning, dropping it does not change the mathematics;
+   * the linter can also be silenced per-file with `set_option linter.unusedVariables false`.
+4. **`eq_div_iff` vs `div_eq_iff`** orientation (see A), and **`Rat.cast_lt` / `Rat.cast_inj`
+   need their field argument** when rewritten/applied (see C).
+5. `omega` is useless for both ℝ and ℚ goals (`Nat`/`Int` only) — this round's measurements
+   extend the Marcus-round G-group table.
+
+### Alignment check with `theories/hammond/probes/hammond-statement-skeleton.lean`
+
+Recipes verified for the planned statements (statement text unchanged): `crossing_iff` (B1);
+`gapReactant_eq_crossing_energy` (B2); `gapProduct_eq_crossing_energy` (B-extra);
+`gapProduct_sub_gapReactant` (B5); `gapProduct_eq_gapReactant_neg` (`ring`);
+`tsCoord_neg` (B4); `tsCoord_zero`; `tsCoord_zero_lam`; `tsCoord_at_lam` (no hypothesis needed);
+`tsCoord_mem_iff`; `reactionRegion_pos`; `not_reactionRegion_of_nonpos`;
+`hammondZone_eq_{early,half,late,atReactant,atProduct,beyondReactant,beyondProduct}_iff` (D);
+`tsCoord_antitone` (`div_lt_div_iff_of_pos_right`); `reactantLike_iff` / `productLike_iff` (A);
+`lefflerSecant_eq_midpoint` (B3); `lefflerSecant_symm`; the secant's sign via
+`lefflerSecant_eq_midpoint` + the A-route (feeds `lefflerSecant_neg_iff_inverted`);
+`tsCoord_lt_zero_iff_inverted` (A-route + `unfold Marcus.InvertedRegion`);
+`exists_reactantLike` / `exists_productLike` / `exists_reactionRegion` (G);
+`exists_direction_reversal_of_eq` (G); `barrier_eq_gapReactant` (**`rfl`**, F);
+`tsCoordQ_cast`, `gapReactantQ_cast`, `lefflerSecantQ_cast`, `hammondZoneQ_eq_hammondZone`,
+`hammondZoneQ_eq_{early,half,late,atReactant,beyondReactant}_iff` and
+`hammondZoneQ_beyondReactant_iff_inverted` (C/E);
+`hammond_descriptor_of_pos` (`div_lt_div_iff_of_pos_right` + `linarith`).
+
+API-wise nothing further is needed for the remaining statements; they are arithmetical assembly:
+`hammond_lam_pos_of_descriptor` / `hammond_sharp` / `hammond_fails_of_nonpos` (use
+`tsCoord_zero_lam` for `lam = 0` and the `lam < 0` monotonicity route `div_lt_div_right_of_neg`),
+`conforms_iff_zone` (assemble the seven D-lemmas plus `lt_trichotomy x 0`),
+`gap_compare_iff` (B5 + `linarith`), `hammondZoneQ_eq_{atProduct,beyondProduct}_iff`,
+`hammond_descriptor_of_inner` / `_of_microscopic` / `_of_nonoverlap` (Marcus `lamInner` /
+`lamOuter` / `lam_total_pos` / `hgeom_of_nonoverlap`, F).
