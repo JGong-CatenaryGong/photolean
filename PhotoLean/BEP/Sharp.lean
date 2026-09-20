@@ -84,5 +84,10 @@ theorem epRegime_iff_strict {lam x : ℝ} (hlam : 0 < lam) :
   rw [hts, hlow, hhigh]
   constructor <;> rintro ⟨h₁, h₂⟩ <;> exact ⟨by linarith, by linarith⟩
 
+/-- Plan §6.1 #3: at the forward barrierless limit `x = lam` the transfer coefficient vanishes. -/
+theorem transfer_at_lam {lam : ℝ} (hlam : 0 < lam) : transfer lam lam = 0 := by
+  unfold transfer
+  field_simp
+
 
 end PhotoLean.BEP
