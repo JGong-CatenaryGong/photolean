@@ -130,6 +130,14 @@ theorem branchDownQ_cast (alphaB betaB dE : ℚ) :
   push_cast
   ring
 
+/-- Cast transfer of the effective barrier: the cast commutes with the `max` that defines it. Plan
+locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem volcanoBarrierQ_cast (alphaA betaA alphaB betaB dE : ℚ) :
+    ((volcanoBarrierQ alphaA betaA alphaB betaB dE : ℚ) : ℝ)
+      = volcanoBarrier (alphaA : ℝ) (betaA : ℝ) (alphaB : ℝ) (betaB : ℝ) (dE : ℝ) := by
+  unfold volcanoBarrierQ volcanoBarrier
+  rw [Rat.cast_max, branchUpQ_cast, branchDownQ_cast]
+
 end Sabatier
 
 end PhotoLean
