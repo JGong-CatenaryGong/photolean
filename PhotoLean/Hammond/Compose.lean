@@ -42,3 +42,13 @@ theorem hammond_descriptor_of_microscopic {kk dq dE a1 a2 R nSq epsS : ℝ} (hkk
     (Marcus.lam_total_pos (Marcus.lamInner_nonneg hkk dq)
       (Marcus.lamOuter_pos hdE ha1 ha2 hR hgeom hnSq hepsS hPekar))
 
+/-- Stretch: the geometric premise is derivable from non-overlapping spheres. -/
+theorem hammond_descriptor_of_nonoverlap {kk dq dE a1 a2 R nSq epsS : ℝ} (hkk : 0 ≤ kk)
+    (hdE : 0 < dE) (ha1 : 0 < a1) (ha2 : 0 < a2) (hRge : a1 + a2 ≤ R) (hnSq : 0 < nSq)
+    (hepsS : 0 < epsS) (hPekar : 1 / epsS < 1 / nSq) :
+    HammondDescriptor (Marcus.lamInner kk dq + Marcus.lamOuter dE a1 a2 R nSq epsS) :=
+  hammond_descriptor_holds
+    (Marcus.lam_total_pos (Marcus.lamInner_nonneg hkk dq)
+      (Marcus.lamOuter_pos hdE ha1 ha2 (by linarith)
+        (Marcus.hgeom_of_nonoverlap ha1 ha2 hRge) hnSq hepsS hPekar))
+
