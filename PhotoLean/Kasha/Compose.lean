@@ -403,6 +403,16 @@ theorem kashaWithin_one_marcus {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (
     rw [neg_div]
     exact neg_le_neg_iff.mpr h2
 
+/-- Plan §7.2 #13 — the anti-Kasha direction of the bridge: a gap **outside** the window (the
+inverted region or an activation-controlled step) violates the tolerance. -/
+theorem not_kashaWithin_of_gap_far {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (h : RateData rad ic 1)
+    (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
+    (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x)
+    (hfar : 4 * lam * (kB * T) * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol) < (lam - x) ^ 2) :
+    ¬ KashaWithin rad ic tol 1 :=
+  fun hc =>
+    absurd ((kashaWithin_one_marcus h htol0 htol1 hA hlam hkT hr0 hr1 hic).mp hc) (not_le.mpr hfar)
+
 
 end Kasha
 
