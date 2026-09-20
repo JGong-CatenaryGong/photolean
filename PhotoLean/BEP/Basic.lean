@@ -122,5 +122,14 @@ theorem eact_at_zero {lam : ℝ} (hlam : lam ≠ 0) : eact lam 0 = lam / 4 := by
   unfold eact
   field_simp
   ring
+/- The premise `hlam : lam ≠ 0` is kept because it belongs to the description layer and keeps
+signature fidelity with the statement skeleton; this proof does not consume it — `field_simp`
+normalises `lam - lam` to `0` first, so the goal is closed by the division convention alone.
+The unused-variable linter is disabled locally rather than dropping the physical premise. -/
+set_option linter.unusedVariables false in
+/-- Barrierless forward limit: at `x = lam` the barrier vanishes. -/
+theorem eact_at_lam {lam : ℝ} (hlam : lam ≠ 0) : eact lam lam = 0 := by
+  unfold eact
+  field_simp
 
 end PhotoLean.BEP
