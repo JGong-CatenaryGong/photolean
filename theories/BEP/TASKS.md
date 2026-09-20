@@ -50,108 +50,118 @@
 - [ ] definitions `eact` / `bepLine` / `bepDefect` / `transfer` / `reverseTransfer` / `secSlope`
       / `bepRadius` / `bepBestLine` / `EPBounds` / `EPLinearOn` / `EPExact` / `EPConformsOnWindow`
       / `EPBestOnWindow` / `EPZone` / `epZone` / `EPRegime` / `EPConforms` / `EPDescriptor`
-      — Basic.lean — prover_a — todo — plan §4.1
-- [ ] `eact_at_zero` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `eact_at_lam` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `eact_zero_lam` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `transfer_zero_lam` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `bepLine_at_zero` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `secSlope_zero_h` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_degenerate_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_unphysical_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_thermoneutral_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_exergonic_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_endergonic_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_atForwardLimit_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_atReverseLimit_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_beyondForward_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `epZone_eq_beyondReverse_iff` — Basic.lean — prover_a — todo — plan §4.2
+      — Basic.lean — prover_a — review — plan §4.1
+- [ ] `eact_at_zero` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `eact_at_lam` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `eact_zero_lam` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `transfer_zero_lam` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `bepLine_at_zero` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `secSlope_zero_h` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_degenerate_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_unphysical_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_thermoneutral_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_exergonic_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_endergonic_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_atForwardLimit_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_atReverseLimit_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_beyondForward_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `epZone_eq_beyondReverse_iff` — Basic.lean — prover_a — review — plan §4.2
 
 ## B2 — law layer (`PhotoLean/BEP/Criterion.lean`; owner prover_a; Sprint 2)
 
-- [ ] `eact_expansion` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `bepDefect_eq` — Criterion.lean — prover_a — todo — plan §5 (central identity)
-- [ ] `bepLine_exact_at_thermoneutrality` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `bepDefect_at_thermoneutrality` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `transfer_eq_tsCoord` — Criterion.lean — prover_a — todo — plan §5 (Leffler/Brønsted bridge)
-- [ ] `transfer_thermoneutral` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `reverseTransfer_thermoneutral` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `transfer_add_reverse` — Criterion.lean — prover_a — todo — plan §5 (Bronsted complementarity)
-- [ ] `reverseTransfer_eq_transfer_neg` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `secSlope_eq_transfer_mid` — Criterion.lean — prover_a — todo — plan §5 (mean-value identity)
-- [ ] `secSlope_midpoint_invariant` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `eact_neg_eq_add` — Criterion.lean — prover_a — todo — plan §5 (barrier reversal)
-- [ ] `eact_antitone` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `bepDefect_nonneg` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `bepDefect_pos_iff` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `epDescriptor_holds` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `epDescriptor_conforms` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `epConforms_iff_bounds` — Criterion.lean — prover_a — todo — plan §5
+- [ ] `eact_expansion` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `bepDefect_eq` — Criterion.lean — prover_a — proving — plan §5 (central identity)
+- [ ] `bepLine_exact_at_thermoneutrality` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `bepDefect_at_thermoneutrality` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `transfer_eq_tsCoord` — Criterion.lean — prover_a — proving — plan §5 (Leffler/Brønsted bridge)
+- [ ] `transfer_thermoneutral` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `reverseTransfer_thermoneutral` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `transfer_add_reverse` — Criterion.lean — prover_a — proving — plan §5 (Bronsted complementarity)
+- [ ] `reverseTransfer_eq_transfer_neg` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `secSlope_eq_transfer_mid` — Criterion.lean — prover_a — proving — plan §5 (mean-value identity)
+- [ ] `secSlope_midpoint_invariant` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `eact_neg_eq_add` — Criterion.lean — prover_a — proving — plan §5 (barrier reversal)
+- [ ] `eact_antitone` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `bepDefect_nonneg` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `bepDefect_pos_iff` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `epDescriptor_holds` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `epDescriptor_conforms` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `epConforms_iff_bounds` — Criterion.lean — prover_a — proving — plan §5
 - [ ] `exists_epDescriptor` / non-vacuity suite (`exists_thermoneutral` … `exists_degenerate`)
-      — Criterion.lean — prover_a — todo — plan §5
+      — Criterion.lean — prover_a — proving — plan §5
 
 ## B3 — sharp conditions (`PhotoLean/BEP/Sharp.lean`; owner prover_d; Sprint 3)
 
-- [ ] `epBounds_iff_region` — Sharp.lean — prover_d — todo — plan §6.1 (critical path)
-- [ ] `epRegime_iff_strict` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `transfer_at_lam` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `transfer_at_neg_lam` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `not_epBounds_of_lt_neg` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `not_epBounds_of_gt` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `epExact_iff_degenerate` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `not_epLinearOn_of_ne_zero` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `exists_conforms_fails` — Sharp.lean — prover_d — todo — plan §6.1
-- [ ] `bepDefect_abs_eq` — Sharp.lean — prover_d — todo — plan §6.2
-- [ ] `epConformsOnWindow_iff_radius` — Sharp.lean — prover_d — todo — plan §6.2 (risk: `Real.sqrt`)
-- [ ] `epConformsOnWindow_at_radius` — Sharp.lean — prover_d — todo — plan §6.2
-- [ ] `epConformsOnWindow_mono` — Sharp.lean — prover_d — todo — plan §6.2
-- [ ] `epConformsOnWindow_symm` — Sharp.lean — prover_d — todo — plan §6.2
-- [ ] `bepDefect_antitone_lam` — Sharp.lean — prover_d — todo — plan §6.3
-- [ ] `bepRadius_mono` — Sharp.lean — prover_d — todo — plan §6.3
-- [ ] `epConformsOnWindow_mono_lam` — Sharp.lean — prover_d — todo — plan §6.3
-- [ ] `bepBestLine_error` — Sharp.lean — prover_d — todo — plan §6.4
-- [ ] `epBestOnWindow_holds` — Sharp.lean — prover_d — todo — plan §6.4 (risk: equioscillation)
-- [ ] `bepLine_worst_case` — Sharp.lean — prover_d — todo — plan §6.4
-- [ ] `bepBestLine_halves` — Sharp.lean — prover_d — todo — plan §6.4
-- [ ] `bepDefect_zero_lam_witness` — Sharp.lean — prover_d — todo — plan §6.5
-- [ ] `bepDefect_neg_lam_witness` — Sharp.lean — prover_d — todo — plan §6.5
-- [ ] `bepDefect_sign_flips` — Sharp.lean — prover_d — todo — plan §6.5
-- [ ] `secSlope_needs_h_ne_zero` — Sharp.lean — prover_d — todo — plan §6.5
+- [ ] `epBounds_iff_region` — Sharp.lean — prover_d — proving — plan §6.1 (critical path)
+- [ ] `epRegime_iff_strict` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `transfer_at_lam` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `transfer_at_neg_lam` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `not_epBounds_of_lt_neg` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `not_epBounds_of_gt` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `epExact_iff_degenerate` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `not_epLinearOn_of_ne_zero` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `exists_conforms_fails` — Sharp.lean — prover_d — proving — plan §6.1
+- [ ] `bepDefect_abs_eq` — Sharp.lean — prover_d — proving — plan §6.2
+- [ ] `epConformsOnWindow_iff_radius` — Sharp.lean — prover_d — proving — plan §6.2 (risk: `Real.sqrt`)
+- [ ] `epConformsOnWindow_at_radius` — Sharp.lean — prover_d — proving — plan §6.2
+- [ ] `epConformsOnWindow_mono` — Sharp.lean — prover_d — proving — plan §6.2
+- [ ] `epConformsOnWindow_symm` — Sharp.lean — prover_d — proving — plan §6.2
+- [ ] `bepDefect_antitone_lam` — Sharp.lean — prover_d — proving — plan §6.3
+- [ ] `bepRadius_mono` — Sharp.lean — prover_d — proving — plan §6.3
+- [ ] `epConformsOnWindow_mono_lam` — Sharp.lean — prover_d — proving — plan §6.3
+- [ ] `bepBestLine_error` — Sharp.lean — prover_d — proving — plan §6.4
+- [ ] `epBestOnWindow_holds` — Sharp.lean — prover_d — proving — plan §6.4 (risk: equioscillation)
+- [ ] `bepLine_worst_case` — Sharp.lean — prover_d — proving — plan §6.4
+- [ ] `bepBestLine_halves` — Sharp.lean — prover_d — proving — plan §6.4
+- [ ] `bepDefect_zero_lam_witness` — Sharp.lean — prover_d — proving — plan §6.5
+- [ ] `bepDefect_neg_lam_witness` — Sharp.lean — prover_d — proving — plan §6.5
+- [ ] `bepDefect_sign_flips` — Sharp.lean — prover_d — proving — plan §6.5
+- [ ] `secSlope_needs_h_ne_zero` — Sharp.lean — prover_d — proving — plan §6.5
+- [ ] AUX minimax block (8 declarations: `epSupError`, `sSup_eq_of_le_of_mem`, `bep_error_three_point`,
+      `eact_second_difference`, `epSupError_bddAbove`, `epSupError_bestLine`, `epSupError_sharp`) —
+      Sharp.lean — prover_d — proving — plan §6.4 + skeleton AUX section
 
 ## B4 — microscopic and cross-module layer (`PhotoLean/BEP/Compose.lean`; owner prover_b; Sprint 3)
 
-- [ ] `eact_eq_barrier` — Compose.lean — prover_b — todo — plan §7
-- [ ] `rate_eq_exp_neg_eact` — Compose.lean — prover_b — todo — plan §7
-- [ ] `transfer_eq_tsCoord_bridge` — Compose.lean — prover_b — todo — plan §7
-- [ ] `epBounds_iff_no_inverted_direction` — Compose.lean — prover_b — todo — plan §7 (Marcus bridge)
-- [ ] `epBounds_of_reactionRegion` — Compose.lean — prover_b — todo — plan §7 (Hammond bridge)
-- [ ] `epBounds_of_marcus_normal` — Compose.lean — prover_b — todo — plan §7
-- [ ] `epDescriptor_of_microscopic` — Compose.lean — prover_b — todo — plan §7
-- [ ] `bepDefect_le_of_microscopic` — Compose.lean — prover_b — todo — plan §7
-- [ ] `bepRadius_add` — Compose.lean — prover_b — todo — plan §7
-- [ ] `epConformsOnWindow_of_microscopic` — Compose.lean — prover_b — todo — plan §7
-- [ ] `epConformsOnWindow_shrinks_with_inner` — Compose.lean — prover_b — todo — plan §7
-- [ ] `transfer_complementary_microscopic` — Compose.lean — prover_b — todo — plan §7
+- [ ] `eact_eq_barrier` — Compose.lean — prover_b — proving — plan §7
+- [ ] `rate_eq_exp_neg_eact` — Compose.lean — prover_b — proving — plan §7
+- [ ] `transfer_eq_tsCoord_bridge` — Compose.lean — prover_b — proving — plan §7
+- [ ] `epBounds_iff_no_inverted_direction` — Compose.lean — prover_b — proving — plan §7 (Marcus bridge)
+- [ ] `epBounds_of_reactionRegion` — Compose.lean — prover_b — proving — plan §7 (Hammond bridge)
+- [ ] `epBounds_of_marcus_normal` — Compose.lean — prover_b — proving — plan §7
+- [ ] `epDescriptor_of_microscopic` — Compose.lean — prover_b — proving — plan §7
+- [ ] `bepDefect_le_of_microscopic` — Compose.lean — prover_b — proving — plan §7
+- [ ] `bepRadius_add` — Compose.lean — prover_b — proving — plan §7
+- [ ] `epConformsOnWindow_of_microscopic` — Compose.lean — prover_b — proving — plan §7
+- [ ] `epConformsOnWindow_shrinks_with_inner` — Compose.lean — prover_b — proving — plan §7
+- [ ] `transfer_complementary_microscopic` — Compose.lean — prover_b — proving — plan §7
 
 ## B5a — rational decision layer (`PhotoLean/BEP/RatModel.lean`; owner prover_c; Sprint 2)
 
 - [ ] definitions `qEact` / `qBepLine` / `qBepDefect` / `qTransfer` / `qReverseTransfer` / `qSecSlope`
       / `qAlphaObs` / `qLamOfPair` / `qConformsWindow` / `EPQVerdict` / `epQVerdict`
-      — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qEact_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qBepDefect_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qTransfer_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qSecSlope_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qAlphaObs_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qLamOfPair_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qSecSlope_eq_qTransfer_mid` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qAlphaObs_eq_qTransfer_mid` — RatModel.lean — prover_c — todo — plan §8.1 (data → structure)
-- [ ] `qLamOfPair_reconstructs` — RatModel.lean — prover_c — todo — plan §8.1 (λ̂ from two points)
-- [ ] `epQVerdict_conforming_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `epQVerdict_boundary_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `epQVerdict_superLinear_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `epQVerdict_subLinear_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `qConformsWindow_iff_radius_sq` — RatModel.lean — prover_c — todo — plan §8.1
+      — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qEact_cast` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qBepDefect_cast` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qTransfer_cast` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qSecSlope_cast` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qAlphaObs_cast` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qLamOfPair_cast` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qSecSlope_eq_qTransfer_mid` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qAlphaObs_eq_qTransfer_mid` — RatModel.lean — prover_c — proving — plan §8.1 (data → structure)
+- [ ] `qLamOfPair_reconstructs` — RatModel.lean — prover_c — proving — plan §8.1 (λ̂ from two points)
+- [ ] `epQVerdict_conforming_iff` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `epQVerdict_boundary_iff` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `epQVerdict_superLinear_iff` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `epQVerdict_subLinear_iff` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qConformsWindow_iff_radius_sq` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qSecondDividedDiff` / `qModelConsistent3` definitions — RatModel.lean — prover_c — proving —
+      plan §8.1 (added 2026-09-20 from literature round 1c)
+- [ ] `qSecondDividedDiff_model` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qModelConsistent3_curvature_pos` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] `qModelConsistent3_lam_eq` — RatModel.lean — prover_c — proving — plan §8.1
+- [ ] AUX ℝ observation twins `alphaObs` / `lamOfPair` — RatModel.lean — prover_c — proving —
+      lead decision: they live here and nowhere else
 
 ## B5b — instance verdicts (`PhotoLean/BEP/Instances.lean`; owner prover_c; Sprint 4)
 
@@ -165,7 +175,9 @@
 - [ ] I8 degenerate family (`λ=0`) — Instances.lean — prover_c — todo — plan §8.2
 - [ ] I9 unphysical curvature (`λ=-2`) — Instances.lean — prover_c — todo — plan §8.2
 - [ ] I10 tolerance threshold (`λ=2, w=1`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I11 literature families from `LITERATURE.md` — Instances.lean — prover_c — todo — plan §8.2
+- [ ] I11 five first-hand literature families (`LITERATURE.md` §R1.10): per family `alphaObs`,
+      `lamHat`, `curvature_negative`, `not_model_consistent` — Instances.lean — prover_c — todo — plan §8.2
+- [ ] I12 affine-conforms / model-refuted summary — Instances.lean — prover_c — todo — plan §8.2
 - [ ] `inst_nonvacuous` — Instances.lean — prover_c — todo — plan §8.2
 
 ---
@@ -174,12 +186,20 @@
 
 | Batch | Scope | Verdict | Key evidence | Notes |
 |---|---|---|---|---|
-| B1 + B5a (independent verifier #1) | `Basic.lean` + `RatModel.lean` | — | — | not yet dispatched |
+| B1 + B5a (independent verifier #1) | `Basic.lean` + `RatModel.lean` | — | — | B1 delivered by `prover_a` (33 declarations, worker gate PASS, 0 fidelity differences) and awaiting this batch; `RatModel.lean` still in delivery |
 | B2 + B3 (independent verifier #2) | `Criterion.lean` + `Sharp.lean` | — | — | not yet dispatched |
 | B4 + B5b (independent verifier #3) | `Compose.lean` + `Instances.lean` | — | — | not yet dispatched |
 | Frozen-state closeout | whole tree | — | — | not yet dispatched |
 
 ## Notes and conflict log
+
+- **Plan addition from literature round 1c (2026-09-20, lead)**: the five first-hand families in
+  `LITERATURE.md` §R1.10 have good affine BEP fits but a **negative** second divided difference in
+  every family, while the model with `λ > 0` forces `1/(4λ) > 0`. Plan §8.1 gained
+  `qSecondDividedDiff` / `qModelConsistent3` / `qSecondDividedDiff_model` /
+  `qModelConsistent3_curvature_pos` / `qModelConsistent3_lam_eq`, and §8.2 gained the I11/I12 rows
+  that turn this into a theorem: the affine description survives, the equal-curvature two-parabola
+  model is refuted as a family-level description of those data.
 
 - **Statement corrections from the Sprint-0 probes (2026-09-20, three kernel counterexamples)**:
   (a) plan §4.2 row 4 `transfer_zero_lam` — the linear-response body gives `transfer 0 x = 1/2`, not
