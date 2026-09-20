@@ -211,6 +211,87 @@ theorem nearOptimalQ_iff (tol apexD dE : ℚ) :
   rw [← Rat.cast_sub, ← Rat.cast_abs]
   exact (Rat.cast_le (K := ℝ)).symm
 
+/-! ## The rational volcano laws (plan §8.1) — auxiliary ℚ algebra for the S2 argument
+
+The two law rows below replay the ℝ argument of S2 in ℚ. The ℚ algebra they share with S1/S2 is
+stated here as `private` scaffolding: `branch_gapQ` (the affine branch gap), `apexQ_mul_ne` (the
+division cancels against the total slope), `apexQ_crossing` (the apex is a crossing point) and the two
+branch-identification lemmas (which branch dominates on each side of the apex). -/
+
+/-- Auxiliary: the gap of the two rational branches is affine in the descriptor, with slope
+`alphaA + alphaB` and value `-(betaB - betaA)` at `dE = 0`; it is the sign core of the rational apex
+geometry (ℚ analogue of S1's `branch_gap`). Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+private theorem branch_gapQ (alphaA betaA alphaB betaB dE : ℚ) :
+    branchUpQ alphaA betaA dE - branchDownQ alphaB betaB dE
+      = (alphaA + alphaB) * dE - (betaB - betaA) := by
+  unfold branchUpQ branchDownQ
+  ring
+
+/-- Auxiliary: multiplying the rational apex by the total slope cancels the division (ℚ analogue of
+S1's `apex_mul_ne`). Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+private theorem apexQ_mul_ne {alphaA betaA alphaB betaB : ℚ} (h : alphaA + alphaB ≠ 0) :
+    (alphaA + alphaB) * apexQ alphaA betaA alphaB betaB = betaB - betaA := by
+  rw [apexQ, mul_div_cancel₀ _ h]
+
+/-- Auxiliary: on the weak-binding side the rational descending branch is dominated by the rational
+ascending one (ℚ analogue of S1's `branchDown_le_branchUp_of_apex_le`). Plan locus:
+`theories/Sabatier/plan.md` §8.1. -/
+private theorem branchDownQ_le_branchUpQ_of_apexQ_le {alphaA betaA alphaB betaB : ℚ}
+    (hAB : 0 < alphaA + alphaB) {dE : ℚ} (h : apexQ alphaA betaA alphaB betaB ≤ dE) :
+    branchDownQ alphaB betaB dE ≤ branchUpQ alphaA betaA dE := by
+  have hgap := branch_gapQ alphaA betaA alphaB betaB dE
+  have hmul : (alphaA + alphaB) * apexQ alphaA betaA alphaB betaB ≤ (alphaA + alphaB) * dE :=
+    mul_le_mul_of_nonneg_left h hAB.le
+  rw [apexQ_mul_ne hAB.ne'] at hmul
+  linarith
+
+/-- Auxiliary: on the strong-binding side the rational ascending branch is dominated by the rational
+descending one (ℚ analogue of S1's `branchUp_le_branchDown_of_le_apex`). Plan locus:
+`theories/Sabatier/plan.md` §8.1. -/
+private theorem branchUpQ_le_branchDownQ_of_le_apexQ {alphaA betaA alphaB betaB : ℚ}
+    (hAB : 0 < alphaA + alphaB) {dE : ℚ} (h : dE ≤ apexQ alphaA betaA alphaB betaB) :
+    branchUpQ alphaA betaA dE ≤ branchDownQ alphaB betaB dE := by
+  have hgap := branch_gapQ alphaA betaA alphaB betaB dE
+  have hmul : (alphaA + alphaB) * dE ≤ (alphaA + alphaB) * apexQ alphaA betaA alphaB betaB :=
+    mul_le_mul_of_nonneg_left h hAB.le
+  rw [apexQ_mul_ne hAB.ne'] at hmul
+  linarith
+
+/-- Auxiliary: the rational apex is a crossing point of the two rational branches, whenever the apex
+formula is defined (ℚ analogue of S1's `apex_crossing`). Plan locus:
+`theories/Sabatier/plan.md` §8.1. -/
+private theorem apexQ_crossing {alphaA betaA alphaB betaB : ℚ} (h : alphaA + alphaB ≠ 0) :
+    branchUpQ alphaA betaA (apexQ alphaA betaA alphaB betaB)
+      = branchDownQ alphaB betaB (apexQ alphaA betaA alphaB betaB) := by
+  unfold branchUpQ branchDownQ apexQ
+  field_simp
+  ring
+
+/-- Auxiliary: on the weak-binding side (`apexQ ≤ dE`) the rational effective barrier IS the rational
+ascending branch. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+private theorem volcanoBarrierQ_eq_branchUpQ_of_apexQ_le {alphaA betaA alphaB betaB : ℚ}
+    (hAB : 0 < alphaA + alphaB) {dE : ℚ} (h : apexQ alphaA betaA alphaB betaB ≤ dE) :
+    volcanoBarrierQ alphaA betaA alphaB betaB dE = branchUpQ alphaA betaA dE := by
+  unfold volcanoBarrierQ
+  exact max_eq_left (branchDownQ_le_branchUpQ_of_apexQ_le hAB h)
+
+/-- Auxiliary: on the strong-binding side (`dE ≤ apexQ`) the rational effective barrier IS the
+rational descending branch. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+private theorem volcanoBarrierQ_eq_branchDownQ_of_le_apexQ {alphaA betaA alphaB betaB : ℚ}
+    (hAB : 0 < alphaA + alphaB) {dE : ℚ} (h : dE ≤ apexQ alphaA betaA alphaB betaB) :
+    volcanoBarrierQ alphaA betaA alphaB betaB dE = branchDownQ alphaB betaB dE := by
+  unfold volcanoBarrierQ
+  exact max_eq_right (branchUpQ_le_branchDownQ_of_le_apexQ hAB h)
+
+/-- Auxiliary: at the rational apex the two rational branches are equal, so the rational effective
+barrier equals either of them. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+private theorem volcanoBarrierQ_at_apexQ {alphaA betaA alphaB betaB : ℚ}
+    (h : alphaA + alphaB ≠ 0) :
+    volcanoBarrierQ alphaA betaA alphaB betaB (apexQ alphaA betaA alphaB betaB)
+      = branchUpQ alphaA betaA (apexQ alphaA betaA alphaB betaB) := by
+  unfold volcanoBarrierQ
+  rw [apexQ_crossing h, max_self]
+
 end Sabatier
 
 end PhotoLean
