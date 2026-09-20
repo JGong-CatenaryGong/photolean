@@ -34,4 +34,21 @@ def zoneQ (lam x : ℚ) : Zone :=
 /-- ℚ 上的马库斯势垒：`(lam - x)^2 / (4 lam)`（与 ℝ 版 `barrier` 同式，供数值判定用）。--/
 def barrierQ (lam x : ℚ) : ℚ := (lam - x) ^ 2 / (4 * lam)
 
+/-! ## 转移引理（plan §2.3 / §8.1）
+分类器在两层的 `if` 结构上完全相同，唯一要做的是把 ℚ 的比较/相等搬到 ℝ：
+`Rat.cast_lt` / `Rat.cast_inj`（**隐式** `K`，故必须给出目标类型，否则实例求解卡住）。 -/
+
+/-- 转移引理：ℚ 上的判定与 ℝ 上的分类一致。--/
+theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) := by
+  unfold zoneQ zone
+  by_cases h : x < lam
+  · have h' : (x : ℝ) < (lam : ℝ) := Rat.cast_lt.mpr h
+    simp [h, h']
+  · have h' : ¬ (x : ℝ) < (lam : ℝ) := fun hc => h (Rat.cast_lt.mp hc)
+    by_cases h2 : x = lam
+    · have h2' : (x : ℝ) = (lam : ℝ) := by exact_mod_cast h2
+      simp [h, h2, h', h2']
+    · have h2' : ¬ (x : ℝ) = (lam : ℝ) := fun hc => h2 (Rat.cast_inj.mp hc)
+      simp [h, h2, h', h2']
+
 end PhotoLean.Marcus.Rat
