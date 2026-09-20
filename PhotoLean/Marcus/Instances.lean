@@ -64,4 +64,49 @@ theorem inst_I1_inverted : InvertedRegion (1 : ℝ) 3 := by
   rw [hl, hx]
   exact h
 
+/-! ## 判定证据链 2 的辅助引理（ℚ 判定值 ⇒ ℝ 判定）
+
+M5a 的 `Rat.zoneQ_inverted_iff` 已经覆盖反转区方向；这里补上**正常区**方向的两条，
+使得 I2 / I5 的「不符合反转区」判定同样由 ℚ 层的判定值（内核算出）推出，而不是靠数值巧合。
+`rw [← Rat.zoneQ_eq_zone]` 在这里方向正确：目标形如 `zone ↑lam ↑x = _`，`←` 的模式
+`zone ↑?lam ↑?x` 能对上。 -/
+
+/-- 转移引理（正常区）：ℚ 层判 `normal` ⇒ ℝ 层 `NormalRegion`（即 `x < lam`）。 -/
+theorem normalRegion_of_zoneQ_normal {lam x : ℚ} (h : Rat.zoneQ lam x = Zone.normal) :
+    NormalRegion (lam : ℝ) (x : ℝ) := by
+  have h1 : zone (lam : ℝ) (x : ℝ) = Zone.normal := by
+    rw [← Rat.zoneQ_eq_zone]
+    exact h
+  exact (zone_eq_normal_iff (lam : ℝ) (x : ℝ)).mp h1
+
+/-- 转移引理（排除反转区）：ℚ 层判 `normal` ⇒ ℝ 层**不**在反转区。
+
+证明只用 M5a 的接口：若 ℝ 侧真的落在反转区，`Rat.zoneQ_inverted_iff` 会迫使
+ℚ 层判定为 `inverted`，与已算出的 `normal` 矛盾（`Zone` 的构造子互异由 `by decide` 给出）。 -/
+theorem not_invertedRegion_of_zoneQ_normal {lam x : ℚ} (h : Rat.zoneQ lam x = Zone.normal) :
+    ¬ InvertedRegion (lam : ℝ) (x : ℝ) := by
+  intro hinv
+  have hq : Rat.zoneQ lam x = Zone.inverted := (Rat.zoneQ_inverted_iff lam x).mpr hinv
+  rw [h] at hq
+  exact absurd hq (by decide)
+
+/-! ## I2 — 纯数实例：`lam = 1, x = 3/4`（正常区）
+
+证据链 1：`x = 3/4` 是**含除法**的有理字面量，`by decide` 会卡在 `Rat` 的 gcd 归约上，
+故走 `by norm_num [Rat.zoneQ]`（`proofs/API-NOTES.md` F-2 的实测结论）。
+证据链 2：ℚ 层的 `normal` 判定经 `not_invertedRegion_of_zoneQ_normal` 搬到 ℝ 层，
+得到「该实例**不符合**反转区描述的前提」这一否定判定。 -/
+
+/-- I2 判定（内核计算）：`lam = 1, x = 3/4` 落在正常区。 -/
+theorem inst_I2_zoneQ : Rat.zoneQ (1 : ℚ) (3 / 4) = Zone.normal := by norm_num [Rat.zoneQ]
+
+/-- I2 判定结论：`lam = 1, x = 3/4` **不符合**反转区描述的前提。 -/
+theorem inst_I2_not_inverted : ¬ InvertedRegion (1 : ℝ) (3 / 4) := by
+  intro hinv
+  have hl : (1 : ℝ) = (((1 : ℚ)) : ℝ) := by norm_num
+  have hx : (3 / 4 : ℝ) = (((3 : ℚ) / 4 : ℚ) : ℝ) := by norm_num
+  unfold InvertedRegion at hinv
+  rw [hl, hx] at hinv
+  exact not_invertedRegion_of_zoneQ_normal inst_I2_zoneQ hinv
+
 end PhotoLean.Marcus
