@@ -40,5 +40,10 @@ proofs/scripts/lake build PhotoLean.Smoke     # 单模块
 
 ## 当前状态
 
-`plan.md` 尚未确定理论方向（Sprint 0 最后一项）。开工前先与人类确认形式化目标，
-不要自行发明里程碑。
+理论方向已定：**Marcus 反转区**（经典马库斯模型，`plan.md` M1–M5，人类确认于 2026-09-20）。
+交付物：`PhotoLean/Marcus/{Basic,Barrier,Rate,Sharp,Reorg,Compose,RatModel,Instances}.lean`；
+面向人类提问的答复：`proofs/RESULTS.md`；进度真源：`proofs/TASKS.md`。
+
+**开工前必须先读 `proofs/TASKS.md` 的属主列与"验收记录"表** —— 该表记录了各里程碑的
+verifier 判决、已关闭的缺陷、以及若干**已实测的坑**（并发窗口内的门判定、
+`git add -A` 的并发事故、"未使用"≠"可推出" 等）。不要自行发明里程碑或改动已验收的语句。

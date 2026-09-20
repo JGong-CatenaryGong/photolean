@@ -10,7 +10,20 @@ Agent preset 驱动。
 
 - Lean 4.17.0 + mathlib，工具链与缓存已联通（`lake build` 冷启动 ~10s）
 - 验收门脚本可用：`proofs/scripts/check.sh --strict`、`proofs/scripts/axioms.sh`
-- `plan.md` **等待理论方向**（Sprint 0 最后一项）；`PhotoLean/Smoke.lean` 是环境冒烟测试
+- 理论方向已定：**Marcus 反转区**（经典马库斯模型）。规划见 `plan.md`（M1–M5），
+  交付物在 `PhotoLean/Marcus/`（描述层 / 势垒代数 / 速率层 / 锐利成立条件 / 微观重组能 / 实例判定），
+  **面向人类提问的答复见 `proofs/RESULTS.md`**
+- `PhotoLean/Smoke.lean` 是环境冒烟测试
+
+### 复核方式
+
+```bash
+proofs/scripts/check.sh --strict                                   # 全树扫描 + 构建（应 verdict: PASS）
+proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.descriptor_sharp   # 主定理公理检查
+proofs/scripts/lake env lean proofs/probes/marcus-statement-skeleton.lean           # 语句权威（含抱歉占位，仅编译）
+```
+**`lake build` 返回 0 不是验收**：零占位证明与自定义公理都会返回 0，必须三层齐备
+（构建 + 扫描 + `#print axioms`），且由不写证明的角色独立执行。
 
 ## 快速开始
 
