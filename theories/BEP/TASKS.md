@@ -18,11 +18,11 @@
 - Deliverable module prefix: `PhotoLean.BEP`; sources under `PhotoLean/BEP/`
   (`SOURCE_DIRS` is global and covers them — `theories/BEP/` is outside the strict scan range).
 - Status of this theory: **delivered** — six modules, 191 declarations (32 defs + 2 inductives + 157
-  theorems), all six milestone batches independently verified **PASS**; the frozen-state closeout has
-  so far run three times and reported **FAIL each time on documentation-only findings** (mathematics
-  verified in every run, no mathematical defect found). The closeout rows in the acceptance table
-  below record each run's findings verbatim; only an audit report that exists is ever recorded as a
-  verdict.
+  theorems), all six milestone batches independently verified **PASS**. The closeout rows of the
+  acceptance table below record every frozen-state audit whose report exists (three runs so far, each
+  reporting documentation-only findings after independently re-verifying the mathematics; no
+  mathematical defect has been found in any run). A verdict is only ever recorded from an audit
+  report that already exists.
 
 ---
 

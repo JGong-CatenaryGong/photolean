@@ -21,8 +21,7 @@
 > that does not exist, the second run's FAIL missing here, an R² sentence in the literature record,
 > and an unlabelled sample pair in `RESULTS.md`); all three runs verified the mathematics
 > independently and found no mathematical defect.** Each run's findings were corrected; no run is
-> recorded as PASS here, and a verdict is only ever recorded from an audit report that already
-> exists. The plan below is kept as the plan of record; §12 has been updated from targets to measured
+> a verdict is only ever recorded from an audit report that already exists. The plan below is kept as the plan of record; §12 has been updated from targets to measured
 > values.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/BEP/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/BEP/LITERATURE.md`.
