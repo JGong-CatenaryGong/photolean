@@ -444,6 +444,22 @@ theorem inst_I11_F5_curvature_negative :
   unfold Rat.qSecondDividedDiff
   norm_num
 
+/-- F5: falsification of the two-parabola law for the three printed 2-butanol rows (classical
+`ΔE`/`V‡f` data). -/
+theorem inst_I11_F5_not_model_consistent :
+    ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(14.56) : ℚ) (-(15.8)) (-(19.82)) 17.47 20.32 21.72 := by
+  rintro ⟨lam, hlam, h₁, h₂, h₃⟩
+  have hpos := Rat.qModelConsistent3_curvature_pos ⟨hlam, h₁, h₂, h₃⟩
+    (by norm_num : (-(14.56) : ℚ) ≠ -(15.8)) (by norm_num : (-(15.8) : ℚ) ≠ -(19.82))
+    (by norm_num : (-(14.56) : ℚ) ≠ -(19.82))
+  rw [show Rat.qSecondDividedDiff (-(14.56) : ℚ) 17.47 (-(15.8)) 20.32 (-(19.82)) 21.72 =
+      -(1215125 / 3277506) by
+    unfold Rat.qSecondDividedDiff
+    norm_num] at hpos
+  norm_num at hpos
+
+/-! ### I12 — the summary, and non-vacuity of the instance layer -/
+
 end BEP
 
 end PhotoLean
