@@ -400,6 +400,20 @@ theorem inst_I11_F3_curvature_negative :
   unfold Rat.qSecondDividedDiff
   norm_num
 
+/-- F3: falsification of the two-parabola law for the three printed Table 2 water rows. -/
+theorem inst_I11_F3_not_model_consistent :
+    ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(0.8) : ℚ) 7.1 9.9 15.6 11.0 7.3 := by
+  rintro ⟨lam, hlam, h₁, h₂, h₃⟩
+  have hpos := Rat.qModelConsistent3_curvature_pos ⟨hlam, h₁, h₂, h₃⟩
+    (by norm_num : (-(0.8) : ℚ) ≠ 7.1) (by norm_num : (7.1 : ℚ) ≠ 9.9)
+    (by norm_num : (-(0.8) : ℚ) ≠ 9.9)
+  rw [show Rat.qSecondDividedDiff (-(0.8) : ℚ) 15.6 7.1 11.0 9.9 7.3 = -(8175 / 118342) by
+    unfold Rat.qSecondDividedDiff
+    norm_num] at hpos
+  norm_num at hpos
+
+/-! #### F5 — site-resolved C–H abstraction from 2-butanol (classical `ΔE`) -/
+
 end BEP
 
 end PhotoLean
