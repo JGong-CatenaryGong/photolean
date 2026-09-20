@@ -141,6 +141,10 @@ and never silently used.
 
 ## 3. Layout and contract (must be reported to the human)
 
+- **Statement authority (frozen, committed)**: `theories/BEP/probes/bep-statement-skeleton.lean`,
+  191 declarations, `sha256 c9aa2cb1f82b8bcc8ca74f389af57d0e1c6c568200b4eb0acfe0d7cac880a476`;
+  `lake env lean` exit 0 with 157 `declaration uses 'sorry'` placeholders and 0 other warnings.
+  Delivered artifacts are graded against this byte sequence.
 - Theory artifacts live under `theories/BEP/` as requested: `plan.md` (this file), `TASKS.md`,
   `LITERATURE.md`, `probes/`, `RESULTS.md` (bilingual).
 - Lean sources live under `PhotoLean/BEP/` because the contract's `SOURCE_DIRS="PhotoLean"` is the
@@ -460,10 +464,25 @@ statements through the §8.1 transfer lemmas). `provenance` is `model-constructe
 | I8 | degenerate family | `λ = 0`, `x = 1` | exact affinity holds **trivially** (`eact 0 x = 0` is affine with slope 0) but the BEP *line* law does not (`bepDefect 0 x = x/2`); barrier `0`, `α = 1/2` (under the linear-response body — `α = 0` was a leftover of the discarded TS-coordinate body) | `inst_I8_degenerate_*` |
 | I9 | unphysical curvature | `λ = -2`, `x = 1` | **not conforming**, defect `< 0` | `inst_I9_unphysical/defect_negative` |
 | I10 | tolerance threshold | `λ = 2`, `w = 1` | conforms at `tol = 1/8`, fails at `tol = 1/16` (`w* = 2√(λ·tol)`) | `inst_I10_conforms/fails` |
-| I11 | literature families from `LITERATURE.md` §R1.10 (five first-hand families: the two `Antioxidants` 2026 f-HAT/•OOH solvent columns, the two Table 2 columns, and the `Chem. Sci.` 2015 CCSD(T) 2-butanol series) | printed `(driving force, barrier)` kcal/mol pairs taken **verbatim** with the source's own loci; the Lean docstring states the unit and the source's kJ/mol conversion instead of silently converting | per family: (i) two-point `qAlphaObs` and `qLamOfPair` (both first-hand-consistent: `λ̂ > 0`), (ii) three-point `qSecondDividedDiff` | `inst_I11_<family>_alphaObs / _lamHat / _curvature_negative / _not_model_consistent` |
+| I11 | literature families from `LITERATURE.md` §R1.10 — **four** of the five first-hand families have per-point data and are formalized (the two `Antioxidants` 2026 f-HAT/•OOH solvent columns, the Table 2 *water* column, and the `Chem. Sci.` 2015 CCSD(T) 2-butanol series); the fifth (Table 2 *PE*) is aggregate-only and is **not** formalized (see the F4 row below) | printed `(driving force, barrier)` kcal/mol pairs taken **verbatim** with the source's own loci; the Lean docstring states the unit and the source's kJ/mol conversion instead of silently converting | per family: (i) two-point `qAlphaObs` and `qLamOfPair` (both first-hand-consistent: `λ̂ > 0`), (ii) three-point `qSecondDividedDiff` | `inst_I11_<family>_alphaObs / _lamHat / _curvature_negative / _not_model_consistent` |
 | I12 | family-level consistency of the literature set (the falsification summary) | the five families | **the affine BEP description is fine (linear fits R² ≈ 0.93–0.95, `0 < α_obs < 1`) but the family curvature is negative in every family, while the model with `λ > 0` forces the second divided difference to be `1/(4λ) > 0` ⇒ no positive-λ equal-curvature two-parabola model reproduces any of them** | `inst_I12_affine_conforms_model_refuted` |
 
 Additional instance requirements:
+- **The literature block is a table of refutations, and that is the honest outcome.** Plan §8.2
+  originally asked for "at least one literature family whose verdict is conforming"; with
+  `LITERATURE.md` §R1.10 as printed, **no** family survives as an equal-curvature two-parabola
+  family (all four formalized triples have a negative second divided difference). What survives is
+  the *affine* description at the point level (`0 < α_obs < 1`, the two-point slopes inside the
+  bounds), and the model-constructed I1–I3 supply the conforming two-parabola rows. `RESULTS.md`
+  states this split explicitly; the plan does not pretend the unmet requirement was met.
+- **F4 (Table 2 *PE* column) has no instance row**: §R1.10.4 prints only family aggregates for it,
+  so no per-point `(x, Ea)` pair exists and no Lean literal may be invented for it. The gap is
+  registered in `API-NOTES.md`, in the delivered file's header and in this table.
+- **The pair/triple selection is disclosed** (verifier B5b observation 3): the delivered `_lamHat`
+  rows use *adjacent printed pairs* and the refutation rows use *three printed rows*; the model
+  solver is pair-dependent on real data (`qLamOfPair` is negative on the widest pairs of the same
+  families), and that pair-dependence is itself evidence of model inconsistency — no delivered
+  verdict depends on `λ̂`.
 - **I9 is the instructive row (lead numeric audit, 2026-09-20)**: for `λ = -2, x = 1` the transfer
   coefficient is `α = 3/4`, which lies **inside** `[0,1]` — so the Evans–Polanyi bounds alone do
   **not** detect an unphysical curvature; what detects it is the *sign* of the defect
@@ -593,7 +612,7 @@ are the delivered values.
 | **additivity of the reorganization energy** | model assumption behind B4 rows 7–12: `λ = λ_inner + λ_outer` with each part **independent** and the decomposition read as the inner/outer split of Marcus theory; "Pekar-type" is only a label — no Pekar factor is formalized. The theorems are about the *term* `lamInner + lamOuter`; the reading "a larger total reorganization improves the linear law" additionally assumes the two contributions can be varied independently, which is a physical premise, not a theorem |
 | **positivity lives in the conformance predicates by design** | `EPConforms`, `EPConformsOnWindow`, `EPDescriptor`, `EPBestOnWindow` carry `0 < lam` (and `0 < tol`, `0 < w`) **as conjuncts of the predicate** — that is plan §4.1's frozen design, so a reader sees the condition in the predicate's type and every theorem states the positivity it needs as an explicit premise too (engine rule 3 is satisfied by construction; this row exists so no reader mistakes the conjunct for a hidden hypothesis) |
 | **naming of `transfer`** | primary name: Brønsted/Leffler coefficient; "transfer coefficient" is the electrochemical synonym (Inzelt p. 36) — the identifiers stay as delivered, the docstrings and `RESULTS.md` carry the naming |
-| **the five first-hand literature families** | their affine BEP fits are good (R² ≈ 0.93–0.95) but each family's second divided difference is **negative**, while the model with `λ > 0` forces `1/(4λ) > 0`: the equal-curvature two-parabola model is **refuted as a family-level description** of those data while the affine description survives (instances I11/I12, §8.2) — a finding about the *model*, not about the molecules, and it is the concrete content of this plan's "the model is not the molecule" |
+| **the first-hand literature families (five; four with per-point data)** | their affine BEP fits are good (R² ≈ 0.93–0.95) but each family's second divided difference is **negative**, while the model with `λ > 0` forces `1/(4λ) > 0`: the equal-curvature two-parabola model is **refuted as a family-level description** of those data while the affine description survives (instances I11/I12, §8.2) — a finding about the *model*, not about the molecules, and it is the concrete content of this plan's "the model is not the molecule" |
 
 ---
 
