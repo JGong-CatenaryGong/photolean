@@ -347,6 +347,16 @@ theorem inst_I11_F2_lamHat : Rat.qLamOfPair (-(1.0) : ℚ) 14.0 2.2 13.3 = 16 / 
   unfold Rat.qLamOfPair
   norm_num
 
+/-- F2 (`first-hand`, kcal/mol verbatim): second divided difference of the three printed rows
+`16(2)` (`ΔG° = +1.0`, `ΔG‡ = 14.0`), `13` (`-2.2`, `13.3`), `2` (`-4.6`, `10.0`); model abscissae
+`-1.0`, `2.2`, `4.6`. Negative, as in F1 — but F2 is inconsistent for a *different* reason than the
+water column (its linear fit is R² = 0.548, not 0.93+), which is why §R1.10.3 requires the family to
+be indexed by solvent as well as by the reacting pair. -/
+theorem inst_I11_F2_curvature_negative :
+    Rat.qSecondDividedDiff (-(1.0) : ℚ) 14.0 2.2 13.3 4.6 10.0 = -(185 / 896) := by
+  unfold Rat.qSecondDividedDiff
+  norm_num
+
 end BEP
 
 end PhotoLean
