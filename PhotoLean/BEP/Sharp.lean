@@ -231,5 +231,11 @@ theorem epConformsOnWindow_at_radius {lam tol : ℝ} (hlam : 0 < lam) (htol : 0 
     EPConformsOnWindow lam tol (-(bepRadius lam tol)) (bepRadius lam tol) :=
   (epConformsOnWindow_iff_radius hlam htol (by unfold bepRadius; positivity)).mpr le_rfl
 
+/-- Plan §6.2 #13: shrinking the window preserves conformance (with the same tolerance and `lam`). -/
+theorem epConformsOnWindow_mono {lam tol a b a' b' : ℝ} (ha : a ≤ a') (hb : b' ≤ b) :
+    EPConformsOnWindow lam tol a b → EPConformsOnWindow lam tol a' b' := by
+  rintro ⟨h1, h2, h⟩
+  exact ⟨h1, h2, fun x hx => h x ⟨le_trans ha hx.1, le_trans hx.2 hb⟩⟩
+
 
 end PhotoLean.BEP
