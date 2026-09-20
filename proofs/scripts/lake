@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 # Lean/Lake 启动器 — 让 `lake` 在任何 PATH 下都能解析到本仓库固定的工具链。
+# English: Lean/Lake launcher — makes `lake` resolve to this repository's pinned toolchain under any PATH.
 #
 # 为什么需要：工具链解包在 .toolchain/（不是 elan 管理），不在 PATH 上。
+# English: Why this is needed: the toolchain is unpacked in .toolchain/ (not managed by elan) and is not on PATH.
 # Agent、CI 与人类都通过本脚本调用 lake，避免"command not found"导致
+# English: Agents, CI, and humans all invoke lake through this script, avoiding "command not found" leading to
 # 误判为项目损坏。用法与 lake 完全一致：proofs/scripts/lake build
+# English: a mistaken diagnosis that the project is broken. Usage is exactly the same as lake: proofs/scripts/lake build
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 exec "$ROOT/.toolchain/lean-4.17.0-linux/bin/lake" "$@"

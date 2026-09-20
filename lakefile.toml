@@ -1,13 +1,19 @@
 # PhotoLean — 光化学/光物理唯象理论的 Lean 4 形式化工程。
+# English: PhotoLean — a Lean 4 formalization project for phenomenological photochemistry/photophysics theory.
 # Lake 5.0.0 (Lean 4.17.0) TOML 格式。
+# English: Lake 5.0.0 (Lean 4.17.0) TOML format.
 #
 # 关键约束：mathlib 的 rev 必须与 lean-toolchain 的版本一致，
+# English: Key constraint: the mathlib rev must match the version of lean-toolchain,
 # 否则 olean 缓存不匹配、全量重建（数小时）。见 proofs/ENGINE.md §工具链。
+# English: otherwise the olean cache mismatches and a full rebuild (hours) is triggered. See proofs/ENGINE.md §Toolchain.
 
 name = "PhotoLean"
 version = "0.1.0"
 # 裸跑 `proofs/scripts/check.sh --strict` 会构建这里的全部模块 ——
+# English: Running `proofs/scripts/check.sh --strict` bare builds every module listed here —
 # 交付一个新模块就补一行（否则扫描覆盖全目录、构建却不覆盖，是个验收漏洞）。
+# English: add one line whenever a new module is delivered (otherwise the scan covers the whole directory while the build does not — an acceptance hole).
 defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus.Reorg",
                   "PhotoLean.Marcus.Barrier", "PhotoLean.Marcus.Rate", "PhotoLean.Marcus.RatModel",
                   "PhotoLean.Marcus.Sharp", "PhotoLean.Marcus.Compose",
