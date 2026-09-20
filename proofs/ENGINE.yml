@@ -91,7 +91,7 @@ COMMIT_TEMPLATE="feat(<area>): <lemma>"
 # English: check.sh performs the leaf-existence check for every theory listed in THEORIES (a missing leaf = FAIL).
 # SOURCE_DIRS 保持全局：任何交付源码都必须落在扫描范围内，否则验收门覆盖不到。
 # English: SOURCE_DIRS stays global: every delivered source must lie inside the scan range, otherwise the gate cannot see it.
-THEORIES="Marcus hammond"
+THEORIES="Marcus hammond BEP"
 PLAN_Marcus="theories/Marcus/plan.md"
 TASKS_Marcus="theories/Marcus/TASKS.md"
 LITERATURE_Marcus="theories/Marcus/LITERATURE.md"
@@ -102,3 +102,8 @@ TASKS_hammond="theories/hammond/TASKS.md"
 LITERATURE_hammond="theories/hammond/LITERATURE.md"
 PROBES_hammond="theories/hammond/probes"
 RESULT_hammond="theories/hammond/RESULTS.md"
+PLAN_BEP="theories/BEP/plan.md"
+TASKS_BEP="theories/BEP/TASKS.md"
+LITERATURE_BEP="theories/BEP/LITERATURE.md"
+PROBES_BEP="theories/BEP/probes"
+RESULT_BEP="theories/BEP/RESULTS.md"
