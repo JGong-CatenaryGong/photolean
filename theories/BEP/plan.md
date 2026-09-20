@@ -26,7 +26,9 @@
 > "kernel-checked" with no in-repository artifact — the artifact `bep-lead-audit.lean` was added in
 > response); **run 5 — FAIL (this table's record omitted the already-reported run 4, and the instance
 > checker's summary footnote still used the "widest-pair" label its own per-family line had already
-> corrected); every run verified the mathematics independently and found no mathematical defect.**
+> corrected); **run 6 — PASS, zero findings**, graded at the hash set recorded in
+> `theories/BEP/RESULTS.md` §5 and in the board's acceptance table; every run verified the
+> mathematics independently, no mathematical defect was found in any run.**
 > Each run's findings were corrected, and a verdict is only ever recorded in these leaves from an
 > audit report that already exists. The plan
 > below is kept as the plan of record; §12 has been updated from targets to measured values.
