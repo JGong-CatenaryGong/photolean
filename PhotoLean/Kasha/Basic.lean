@@ -165,6 +165,13 @@ theorem icBranch_nonneg {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic 
     0 ≤ icBranch rad ic n := by
   unfold icBranch
   exact div_nonneg (h.ic_nonneg n) (le_of_lt (h.decay_pos n hn))
+/-- Plan §4.2 #5. The radiative branch is at most `1`: it is a probability. -/
+theorem radBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
+    radBranch rad ic n ≤ 1 := by
+  have hsum : radBranch rad ic n + icBranch rad ic n = 1 :=
+    radBranch_add_icBranch (ne_of_gt (h.decay_pos n hn))
+  have hic : 0 ≤ icBranch rad ic n := icBranch_nonneg h hn
+  linarith
 end Kasha
 
 end PhotoLean
