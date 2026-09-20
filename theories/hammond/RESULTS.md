@@ -16,7 +16,8 @@
 
 **Delivered.** Six Lean modules under `PhotoLean/Hammond/` — `Basic.lean` (H1),
 `Criterion.lean` (H2), `Sharp.lean` (H3), `Compose.lean` (H4), `RatModel.lean` (H5a),
-`Instances.lean` (H5b) — containing **102 declarations: 17 definitions and 85 theorems**, all with
+`Instances.lean` (H5b) — containing **102 declarations: 17 definition-level declarations (16 `def`s
+and the `HZone` inductive) and 85 theorems**, all with
 complete proofs: **zero unproved placeholders, zero custom axioms**. Every statement was compiled
 *before* any proof work (the statement skeleton, see §2.3), delivered signatures match it
 **102/102 word for word**, and every theorem is delivered as **one commit per lemma** —
@@ -32,7 +33,7 @@ where the structural-resemblance reading leaves its domain of applicability — 
 molecule "violates Hammond", but because the crossing point is no longer a structural
 intermediate.
 
-**摘要**：交付 6 个 Lean 模块（H1–H5b），共 **102 条声明（17 个定义 + 85 条定理）**，全部完整证明，
+**摘要**：交付 6 个 Lean 模块（H1–H5b），共 **102 条声明（17 条定义级声明：16 个 `def` 与 1 个 `HZone` 归纳类型 + 85 条定理）**，全部完整证明，
 **零占位证明、零自定义公理**；所有语句在动证明之前先编译通过（语句骨架），交付签名与之**逐字一致
 102/102**，且**每定理一个提交**（85 条定理提交 + 2 条定义提交 = 87 个工人提交）。一句话结论：在双抛物面（Marcus 型）模型中，过渡态坐标
 `q‡ = (λ - x)/(2λ)`（驱动力 `x = -ΔG°`），Hammond 的结构趋势是一条精确定理 —— *越放能，过渡态越像
