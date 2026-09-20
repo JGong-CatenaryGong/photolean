@@ -47,25 +47,25 @@
 
 ## B1 — description layer (`PhotoLean/BEP/Basic.lean`; owner prover_a; Sprint 1)
 
-- [ ] definitions `eact` / `bepLine` / `bepDefect` / `transfer` / `reverseTransfer` / `secSlope`
+- [x] definitions `eact` / `bepLine` / `bepDefect` / `transfer` / `reverseTransfer` / `secSlope`
       / `bepRadius` / `bepBestLine` / `EPBounds` / `EPLinearOn` / `EPExact` / `EPConformsOnWindow`
       / `EPBestOnWindow` / `EPZone` / `epZone` / `EPRegime` / `EPConforms` / `EPDescriptor`
-      — Basic.lean — prover_a — review — plan §4.1
-- [ ] `eact_at_zero` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `eact_at_lam` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `eact_zero_lam` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `transfer_zero_lam` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `bepLine_at_zero` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `secSlope_zero_h` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_degenerate_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_unphysical_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_thermoneutral_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_exergonic_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_endergonic_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_atForwardLimit_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_atReverseLimit_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_beyondForward_iff` — Basic.lean — prover_a — review — plan §4.2
-- [ ] `epZone_eq_beyondReverse_iff` — Basic.lean — prover_a — review — plan §4.2
+      — Basic.lean — prover_a — done — plan §4.1
+- [x] `eact_at_zero` — Basic.lean — prover_a — done — plan §4.2
+- [x] `eact_at_lam` — Basic.lean — prover_a — done — plan §4.2
+- [x] `eact_zero_lam` — Basic.lean — prover_a — done — plan §4.2
+- [x] `transfer_zero_lam` — Basic.lean — prover_a — done — plan §4.2
+- [x] `bepLine_at_zero` — Basic.lean — prover_a — done — plan §4.2
+- [x] `secSlope_zero_h` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_degenerate_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_unphysical_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_thermoneutral_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_exergonic_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_endergonic_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_atForwardLimit_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_atReverseLimit_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_beyondForward_iff` — Basic.lean — prover_a — done — plan §4.2
+- [x] `epZone_eq_beyondReverse_iff` — Basic.lean — prover_a — done — plan §4.2
 
 ## B2 — law layer (`PhotoLean/BEP/Criterion.lean`; owner prover_a; Sprint 2)
 
@@ -92,34 +92,34 @@
 
 ## B3 — sharp conditions (`PhotoLean/BEP/Sharp.lean`; owner prover_d; Sprint 3)
 
-- [ ] `epBounds_iff_region` — Sharp.lean — prover_d — proving — plan §6.1 (critical path)
-- [ ] `epRegime_iff_strict` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `transfer_at_lam` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `transfer_at_neg_lam` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `not_epBounds_of_lt_neg` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `not_epBounds_of_gt` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `epExact_iff_degenerate` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `not_epLinearOn_of_ne_zero` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `exists_conforms_fails` — Sharp.lean — prover_d — proving — plan §6.1
-- [ ] `bepDefect_abs_eq` — Sharp.lean — prover_d — proving — plan §6.2
-- [ ] `epConformsOnWindow_iff_radius` — Sharp.lean — prover_d — proving — plan §6.2 (risk: `Real.sqrt`)
-- [ ] `epConformsOnWindow_at_radius` — Sharp.lean — prover_d — proving — plan §6.2
-- [ ] `epConformsOnWindow_mono` — Sharp.lean — prover_d — proving — plan §6.2
-- [ ] `epConformsOnWindow_symm` — Sharp.lean — prover_d — proving — plan §6.2
-- [ ] `bepDefect_antitone_lam` — Sharp.lean — prover_d — proving — plan §6.3
-- [ ] `bepRadius_mono` — Sharp.lean — prover_d — proving — plan §6.3
-- [ ] `epConformsOnWindow_mono_lam` — Sharp.lean — prover_d — proving — plan §6.3
-- [ ] `bepBestLine_error` — Sharp.lean — prover_d — proving — plan §6.4
-- [ ] `epBestOnWindow_holds` — Sharp.lean — prover_d — proving — plan §6.4 (risk: equioscillation)
-- [ ] `bepLine_worst_case` — Sharp.lean — prover_d — proving — plan §6.4
-- [ ] `bepBestLine_halves` — Sharp.lean — prover_d — proving — plan §6.4
-- [ ] `bepDefect_zero_lam_witness` — Sharp.lean — prover_d — proving — plan §6.5
-- [ ] `bepDefect_neg_lam_witness` — Sharp.lean — prover_d — proving — plan §6.5
-- [ ] `bepDefect_sign_flips` — Sharp.lean — prover_d — proving — plan §6.5
-- [ ] `secSlope_needs_h_ne_zero` — Sharp.lean — prover_d — proving — plan §6.5
+- [ ] `epBounds_iff_region` — Sharp.lean — prover_d — review — plan §6.1 (critical path)
+- [ ] `epRegime_iff_strict` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `transfer_at_lam` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `transfer_at_neg_lam` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `not_epBounds_of_lt_neg` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `not_epBounds_of_gt` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `epExact_iff_degenerate` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `not_epLinearOn_of_ne_zero` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `exists_conforms_fails` — Sharp.lean — prover_d — review — plan §6.1
+- [ ] `bepDefect_abs_eq` — Sharp.lean — prover_d — review — plan §6.2
+- [ ] `epConformsOnWindow_iff_radius` — Sharp.lean — prover_d — review — plan §6.2 (risk: `Real.sqrt`)
+- [ ] `epConformsOnWindow_at_radius` — Sharp.lean — prover_d — review — plan §6.2
+- [ ] `epConformsOnWindow_mono` — Sharp.lean — prover_d — review — plan §6.2
+- [ ] `epConformsOnWindow_symm` — Sharp.lean — prover_d — review — plan §6.2
+- [ ] `bepDefect_antitone_lam` — Sharp.lean — prover_d — review — plan §6.3
+- [ ] `bepRadius_mono` — Sharp.lean — prover_d — review — plan §6.3
+- [ ] `epConformsOnWindow_mono_lam` — Sharp.lean — prover_d — review — plan §6.3
+- [ ] `bepBestLine_error` — Sharp.lean — prover_d — review — plan §6.4
+- [ ] `epBestOnWindow_holds` — Sharp.lean — prover_d — review — plan §6.4 (risk: equioscillation)
+- [ ] `bepLine_worst_case` — Sharp.lean — prover_d — review — plan §6.4
+- [ ] `bepBestLine_halves` — Sharp.lean — prover_d — review — plan §6.4
+- [ ] `bepDefect_zero_lam_witness` — Sharp.lean — prover_d — review — plan §6.5
+- [ ] `bepDefect_neg_lam_witness` — Sharp.lean — prover_d — review — plan §6.5
+- [ ] `bepDefect_sign_flips` — Sharp.lean — prover_d — review — plan §6.5
+- [ ] `secSlope_needs_h_ne_zero` — Sharp.lean — prover_d — review — plan §6.5
 - [ ] AUX minimax block (8 declarations: `epSupError`, `sSup_eq_of_le_of_mem`, `bep_error_three_point`,
       `eact_second_difference`, `epSupError_bddAbove`, `epSupError_bestLine`, `epSupError_sharp`) —
-      Sharp.lean — prover_d — proving — plan §6.4 + skeleton AUX section
+      Sharp.lean — prover_d — review — plan §6.4 + skeleton AUX section
 
 ## B4 — microscopic and cross-module layer (`PhotoLean/BEP/Compose.lean`; owner prover_b; Sprint 3)
 
@@ -186,14 +186,22 @@
 
 | Batch | Scope | Verdict | Key evidence | Notes |
 |---|---|---|---|---|
-| B1 + B5a (independent verifier #1) | `Basic.lean` + `RatModel.lean` | — | — | B1 delivered by `prover_a` (33 declarations, worker gate PASS, 0 fidelity differences) and awaiting this batch; `RatModel.lean` still in delivery |
+| B1 (independent verifier #1) | `Basic.lean` (33 declarations) | **PASS** | 33/33 `axioms.sh` clean (raw `depends on axioms: [propext, Classical.choice, Quot.sound]` lines quoted); verifier's own fidelity parser: 33/33 MATCH including the `EPZone` constructors **and** `deriving DecidableEq, Repr`; all nine zone branch boundaries + cascade exhaustiveness kernel-checked; hypothesis necessity: **5 load-bearing / 3 decorative** (kernel-proved strengthened forms for `epZone_eq_unphysical_iff`, `epZone_eq_exergonic_iff`, `epZone_eq_endergonic_iff`); non-vacuity witnesses for all nine constructors; `#print` bodies == plan §4.1; six falsification attempts all failed; 18/18 commits touch only `Basic.lean` | graded on `sha256 5a366027…`; observations: **O1 HIGH** — the statement authority was untracked and rewritten twice during the run (`f261a131…` → `28300289…`); B1's block was verified identical in both snapshots and against the committed plan §4.1, and the skeleton is now committed by the lead with its hash recorded (plan §3) so the claim is auditable; **O2/O3 MEDIUM** — two self-description wordings ("every physical premise is an hypothesis of the statement that needs it"; `eact_at_zero` "(needs `lam ≠ 0`)") are refuted by the kernel: these hypotheses are kept for signature fidelity, not needed by the statement — comment-only fix queued (token-stream check + re-gate + closeout re-check); **O4–O8 LOW** — five comments describe B2/B3 facts as if proved in this file (reworded with the same batch), the `deriving` clause change was not logged in `API-NOTES.md` (being logged), plan §4.1's `EPBounds` doc block is shorter than the delivered docstring, `bepRadius` is silently `0` for `lam*tol < 0` (unconstrained domain, documented), skeleton layout puts the AUX twins inside the B1 block |
+| B5a (independent verifier #4) | `RatModel.lean` (36 declarations) | — | — | delivered by `prover_c` (24 commits, worker gate PASS); verification in progress |
+| B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | — | — | delivered; verification in progress |
 | B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | — | — | delivered by `prover_a` / `prover_b`; worker gates PASS (40/40 `axioms.sh`, 0 fidelity differences); **verification in progress** |
-| B3 (independent verifier #3) | `Sharp.lean` (25 + 8 AUX) | — | — | in delivery by `prover_d`; not yet dispatched |
+| B3 (independent verifier #3) | `Sharp.lean` (32 = 25 + 7 AUX) | — | — | delivered by `prover_d` (32 commits, 32/32 `axioms.sh` clean, 0 fidelity differences, 3 documented order deviations); verification to be dispatched |
 | B5a (independent verifier #4) | `RatModel.lean` (11 defs + 18 thms + 5 model-consistency decls) | — | — | 18/18 delivered; the 5 new-block declarations pending the third non-degeneracy premise (resolved) |
 | B4 + B5b (independent verifier #3) | `Compose.lean` + `Instances.lean` | — | — | not yet dispatched |
 | Frozen-state closeout | whole tree | — | — | not yet dispatched |
 
 ## Notes and conflict log
+
+- **Statement authority is now under version control (verifier O1, lead action 2026-09-20)**: the
+  whole `theories/BEP/probes/` directory (skeleton, API probes, risk probe, fidelity and
+  instance-cross-check scripts, prover scratch calibrations) is committed; the skeleton's hash is
+  recorded in `theories/BEP/plan.md` §3. A future "matched the frozen authority" claim is
+  therefore auditable, which it was not while the file was untracked.
 
 - **Plan addition from literature round 1c (2026-09-20, lead)**: the five first-hand families in
   `LITERATURE.md` §R1.10 have good affine BEP fits but a **negative** second divided difference in
