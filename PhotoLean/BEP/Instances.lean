@@ -295,6 +295,15 @@ theorem inst_I11_F1_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
+/-- F1 (`first-hand`, same source/locus/status as above; kcal/mol verbatim): the model's two-point
+solver at the adjacent printed pair `16(2)`/`16(1)` — `16(2)` `ΔG° = -0.3`, `ΔG‡ = 15.6`;
+`16(1)` `ΔG° = -0.9`, `ΔG‡ = 15.7` (model abscissae `0.3`, `0.9`). The value `9/20` is the model's
+own `λ̂`, **not** the record's per-pair `λ̂ = (x + 2Ea) ± 2√(Ea² + x·Ea)` (irrational, and a
+different estimator). -/
+theorem inst_I11_F1_lamHat : Rat.qLamOfPair (0.3 : ℚ) 15.6 0.9 15.7 = 9 / 20 := by
+  unfold Rat.qLamOfPair
+  norm_num
+
 end BEP
 
 end PhotoLean
