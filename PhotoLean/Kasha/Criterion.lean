@@ -202,6 +202,29 @@ theorem fluoYield_lt_succ_of_rad_pos {rad ic : ℕ → ℝ} {N : ℕ} (h : RateD
     unfold radBranch
     exact div_pos hr (h.decay_pos (N + 1) (le_refl _))
   nlinarith [hrec, hsum, mul_pos hR (sub_pos.mpr h1)]
+/-- Plan §5.1 #11. The total yield is unchanged by exciting the next level iff that level cannot
+emit (given that the lower ladder already loses something). -/
+theorem fluoYield_eq_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N + 1))
+    (h1 : fluoYield rad ic N < 1) :
+    fluoYield rad ic (N + 1) = fluoYield rad ic N ↔ rad (N + 1) = 0 := by
+  have hrec := fluoYield_succ h
+  have hsum : radBranch rad ic (N + 1) + icBranch rad ic (N + 1) = 1 :=
+    radBranch_add_icBranch (ne_of_gt (h.decay_pos (N + 1) (le_refl _)))
+  have hne : (1 : ℝ) - fluoYield rad ic N ≠ 0 := by linarith
+  constructor
+  · intro heq
+    have hfac : radBranch rad ic (N + 1) * (1 - fluoYield rad ic N) = 0 := by
+      nlinarith [hrec, hsum, heq]
+    have hR0 : radBranch rad ic (N + 1) = 0 := (mul_eq_zero.mp hfac).resolve_right hne
+    unfold radBranch at hR0
+    exact (div_eq_zero_iff.mp hR0).resolve_right (ne_of_gt (h.decay_pos (N + 1) (le_refl _)))
+  · intro hr0
+    have hR0 : radBranch rad ic (N + 1) = 0 := by
+      unfold radBranch
+      rw [hr0]
+      simp
+    have hI : icBranch rad ic (N + 1) = 1 := by linarith
+    rw [hrec, hR0, hI, zero_add, one_mul]
 end Kasha
 
 end PhotoLean
