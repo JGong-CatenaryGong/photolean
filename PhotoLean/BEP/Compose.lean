@@ -239,5 +239,16 @@ theorem epConformsOnWindow_shrinks_with_inner {lamInner lamOuter tol w : ℝ} (h
       exact div_le_div_of_nonneg_left (le_of_lt (sq_pos_of_ne_zero hx0)) (by linarith) (by linarith)
     exact le_trans hmono (h.2.2 x hx)
 
+set_option linter.unusedVariables false in
+/-- Plan §7 #12: Brønsted complementarity survives microscopic composition — at the total
+reorganization energy the forward and reverse coefficients still add up to one. The hypothesis
+`lamInner + lamOuter ≠ 0` is kept for signature fidelity (plan §5 #8 carries it); the identity is
+the algebraic one `(1/2 - x/(2L)) + (1/2 + x/(2L)) = 1` in the field `ℝ` and holds by `ring`
+without it. -/
+theorem transfer_complementary_microscopic {lamInner lamOuter x : ℝ}
+    (hlam : lamInner + lamOuter ≠ 0) :
+    transfer (lamInner + lamOuter) x + reverseTransfer (lamInner + lamOuter) x = 1 := by
+  unfold transfer reverseTransfer
+  ring
 
 end PhotoLean.BEP
