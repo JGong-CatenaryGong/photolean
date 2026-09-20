@@ -252,6 +252,16 @@ theorem apexBarrier_eq {alphaA betaA alphaB betaB : ℝ} (h : alphaA + alphaB �
   unfold branchUp
   ring
 
+/-- Main positive statement: in the physical orientation the two-branch barrier profile IS a volcano
+with apex `apex` — the Sabatier description holds at the family level. `VolcanoDescriptor` demands
+both the global-minimality and the uniqueness half, which are the two preceding theorems. Plan §5. -/
+theorem volcano_descriptor_of_physical {alphaA betaA alphaB betaB : ℝ}
+    (h : SabatierConforms alphaA alphaB) :
+    VolcanoDescriptor (fun dE => volcanoBarrier alphaA betaA alphaB betaB dE)
+      (apex alphaA betaA alphaB betaB) := by
+  refine ⟨fun dE => volcanoBarrier_apex_le h.1 h.2 dE, fun dE hd => ?_⟩
+  exact (volcanoBarrier_eq_apex_iff h.1 h.2 dE).mp hd
+
 end Sabatier
 
 end PhotoLean
