@@ -270,6 +270,15 @@ theorem parabolic_descriptor {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) :
   ⟨fun dE => parabolicBarrier_apex_le h1 h2 dE,
     fun dE hd => (parabolicBarrier_eq_apex_iff h1 h2 dE).mp hd⟩
 
+set_option linter.unusedVariables false in
+/-- A symmetric two-parabola cycle has its apex at the thermoneutral descriptor value `dE = 0`: the
+numerator `lam * √lam - lam * √lam` vanishes identically. The positivity hypothesis belongs to the
+physical reading of the statement (a symmetric cycle is a physical cycle) and is not consumed by the
+proof; it is kept for signature fidelity with the authority. (plan §7) -/
+theorem apexPar_self {lam : ℝ} (h : 0 < lam) : apexPar lam lam = 0 := by
+  unfold apexPar
+  rw [sub_self, zero_div]
+
 end Sabatier
 
 end PhotoLean
