@@ -225,4 +225,10 @@ theorem exists_unphysical : ∃ lam x : ℝ, epZone lam x = EPZone.unphysical :=
   unfold epZone
   norm_num
 
+/-- Non-vacuity, degenerate curvature (`lam = 0`). -/
+theorem exists_degenerate : ∃ lam x : ℝ, epZone lam x = EPZone.degenerate := by
+  refine ⟨0, 0, ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
