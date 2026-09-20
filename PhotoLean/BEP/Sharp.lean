@@ -442,5 +442,12 @@ theorem bepDefect_sign_flips {lam x : ℝ} (hlam : lam < 0) (hx : x ≠ 0) : bep
   rw [hdef]
   exact div_neg_of_pos_of_neg (sq_pos_iff.mpr hx) (by linarith)
 
+/-- Plan §6.5 #25: the mean-value identity `secSlope lam x h = transfer lam (x + h/2)` (B2) needs
+`h ≠ 0` — at `h = 0` the secant is `0` while the transfer coefficient is `1/2`. -/
+theorem secSlope_needs_h_ne_zero : secSlope 1 0 0 = 0 ∧ transfer 1 0 ≠ 0 := by
+  refine ⟨secSlope_zero_h 1 0, ?_⟩
+  unfold transfer
+  norm_num
+
 
 end PhotoLean.BEP
