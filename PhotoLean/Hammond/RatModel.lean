@@ -200,6 +200,19 @@ theorem hammondZoneQ_eq_beyondReactant_iff {lam x : ℚ} (hlam : 0 < lam) :
   · exact iff_of_false (by decide) h4
   · exact iff_of_false (by decide) h4
 
+/-- Rational zone characterization, deep endergonic branch. -/
+theorem hammondZoneQ_eq_beyondProduct_iff {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.beyondProduct ↔ x < -lam := by
+  unfold hammondZoneQ
+  split_ifs with h1 h2 h3 h4 h5 h6
+  · exact iff_of_false (by decide) (by rw [h1]; linarith)
+  · exact iff_of_false (by decide) (by rw [h2]; linarith)
+  · exact iff_of_true rfl h3
+  · exact iff_of_false (by decide) h3
+  · exact iff_of_false (by decide) h3
+  · exact iff_of_false (by decide) h3
+  · exact iff_of_false (by decide) h3
+
 end Rat
 
 end Hammond
