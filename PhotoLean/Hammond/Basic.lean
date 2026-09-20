@@ -177,3 +177,8 @@ theorem tsCoord_mem_iff {lam x : ℝ} (hlam : 0 < lam) :
   · intro ⟨ha, hb⟩; exact ⟨by linarith, by linarith⟩
   · intro ⟨ha, hb⟩; exact ⟨by linarith, by linarith⟩
 
+/-- The Hammond regime forces a positive curvature: the geometric prerequisite is not free. -/
+theorem reactionRegion_pos {lam x : ℝ} (h : ReactionRegion lam x) : 0 < lam := by
+  unfold ReactionRegion at h
+  linarith [h.1, h.2]
+
