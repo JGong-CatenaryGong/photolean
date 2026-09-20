@@ -108,3 +108,14 @@ theorem gapReactant_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
   field_simp
   ring
 
+/-- The reverse barrier is the product-surface energy at the crossing point **measured from the
+product well** (whose energy is `dG`): the well-referenced form is the correct one, since the
+product well is not the zero of energy. -/
+theorem gapProduct_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
+    gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG)) - dG := by
+  have h4 : (4 * lam : ℝ) ≠ 0 := mul_ne_zero (by norm_num) hlam
+  have h2 : (2 * lam : ℝ) ≠ 0 := mul_ne_zero (by norm_num) hlam
+  unfold gapProduct productSurface tsCoord
+  field_simp
+  ring
+
