@@ -142,6 +142,22 @@ theorem effDecay_one (rad ic : ℕ → ℝ) (N : ℕ) :
       = upperYield rad ic N + cascade rad ic 0 N := by
   simp [decay, effRad, effIc]
 
+set_option linter.unusedVariables false in
+/-- Plan §7.2 #5. The effective two-level leak is the ladder's leak, normalized by the upper block's
+total `upperYield N + cascade 0 N`. The `RateData` premise is part of the row's authority signature
+and is **not consumed** by the `if`-reduction (the linter is off locally, the `Basic.lean`
+convention). -/
+theorem effUpperYield_one {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    upperYield (effRad rad ic N) (effIc rad ic N) 1
+      = upperYield rad ic N / (upperYield rad ic N + cascade rad ic 0 N) := by
+  have hU : upperYield (effRad rad ic N) (effIc rad ic N) 1
+      = radBranch (effRad rad ic N) (effIc rad ic N) 1 := by
+    unfold upperYield
+    rw [Finset.Icc_self, Finset.sum_singleton]
+    exact emitYield_self _ _ 1
+  rw [hU, radBranch, effDecay_one]
+  simp [effRad]
+
 
 end Kasha
 
