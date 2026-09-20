@@ -213,4 +213,10 @@ theorem exists_beyondForward : ∃ lam x : ℝ, epZone lam x = EPZone.beyondForw
   unfold epZone
   norm_num
 
+/-- Non-vacuity, inverted reverse region (`lam = 1`, `x = -2`). -/
+theorem exists_beyondReverse : ∃ lam x : ℝ, epZone lam x = EPZone.beyondReverse := by
+  refine ⟨1, -2, ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
