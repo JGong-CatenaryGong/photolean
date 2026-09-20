@@ -97,4 +97,15 @@ theorem normal_rate_increases {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam) (
     rate A lam kB T x₁ < rate A lam kB T x₂ :=
   rate_gt_of_barrier_lt hA hkT (barrier_antitone_of_pos hlam h₁ h₂ h₃)
 
+/-- 反转区：驱动力越大速率越小 —— **马库斯反转区**（`lam < x₁ < x₂`，`lam > 0`）。
+
+证明：M2 的 `barrier_mono_of_pos` 给出 `Φ x₁ < Φ x₂`（把 `h₁ : lam < x₁`
+弱化为它需要的 `lam ≤ x₁`），把 `x₂` 当更大势垒喂给核心引理（`y := x₂`），
+即得 `rate x₂ < rate x₁`。物理含义：这是"马库斯反转"的核心 ——
+驱动力超过重组能后，继续增大驱动力反而使势垒升高、反应变慢。 -/
+theorem inverted_rate_decreases {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
+    {x₁ x₂ : ℝ} (h₁ : lam < x₁) (h₂ : x₁ < x₂) :
+    rate A lam kB T x₂ < rate A lam kB T x₁ :=
+  rate_gt_of_barrier_lt hA hkT (barrier_mono_of_pos hlam (le_of_lt h₁) h₂)
+
 end PhotoLean.Marcus
