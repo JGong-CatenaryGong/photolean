@@ -202,6 +202,15 @@ theorem sabatierConformsQ_iff (alphaA alphaB : ℚ) :
   unfold SabatierConformsQ SabatierConforms
   norm_cast
 
+/-- The rational tolerance band is the rational mirror of the real one: the cast commutes with the
+absolute value, so the `tol`-band of the rational apex is the `tol`-band of the real apex seen from
+ℚ. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem nearOptimalQ_iff (tol apexD dE : ℚ) :
+    NearOptimalQ tol apexD dE ↔ NearOptimal (tol : ℝ) (apexD : ℝ) (dE : ℝ) := by
+  unfold NearOptimalQ NearOptimal
+  rw [← Rat.cast_sub, ← Rat.cast_abs]
+  exact (Rat.cast_le (K := ℝ)).symm
+
 end Sabatier
 
 end PhotoLean
