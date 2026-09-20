@@ -118,6 +118,18 @@ theorem volcanoBarrier_eq_apex_iff {alphaA betaA alphaB betaB : ℝ} (hA : 0 < a
   · intro h
     rw [h]
 
+/-- Weak-binding side: the effective barrier strictly increases with `dE`. On the half-line
+`apex ≤ dE₁ < dE₂` the profile is the ascending branch and hence strictly increasing. Plan §5. -/
+theorem volcanoBarrier_strictMono_of_apex_le {alphaA betaA alphaB betaB : ℝ} (hA : 0 < alphaA)
+    (hB : 0 < alphaB) {dE₁ dE₂ : ℝ} (h₁ : apex alphaA betaA alphaB betaB ≤ dE₁)
+    (h₂ : dE₁ < dE₂) :
+    volcanoBarrier alphaA betaA alphaB betaB dE₁ < volcanoBarrier alphaA betaA alphaB betaB dE₂ := by
+  have hAB : 0 < alphaA + alphaB := by linarith
+  rw [volcanoBarrier_eq_branchUp_of_apex_le hAB h₁,
+    volcanoBarrier_eq_branchUp_of_apex_le hAB (le_trans h₁ h₂.le)]
+  unfold branchUp
+  nlinarith [hA, h₂]
+
 end Sabatier
 
 end PhotoLean
