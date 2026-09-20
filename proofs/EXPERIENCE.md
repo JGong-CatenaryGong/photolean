@@ -1980,3 +1980,76 @@
   benefit: the *statements* were validated before the kernel work, and the delivered numbers now have
   two independent implementations. It cannot replace the kernel — it caught nothing the risk probe did
   not also catch — but it localises a failure to the statement rather than to a tactic.
+
+## 2026-09-20 — K2 law layer (PhotoLean/Kasha/Criterion.lean, 22 theorems) — prover_a — DONE
+
+- Goal: the §K2 block of the statement authority (`theories/kasha/probes/kasha-statement-skeleton.lean`,
+  sha256 `801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`; plan §5) — 22 theorems,
+  no definitions, no extra declarations, delivered word for word. The module imports
+  `PhotoLean.Kasha.Basic` and reuses its 25 theorems; nothing of K1 is re-proved or re-defined.
+  22 commits on the file (`b956d80` `cascade_succ` … `upperYield_le_sum_radBranch`), one per theorem.
+- Gate verdicts (clean tree, committed): `proofs/scripts/lake build PhotoLean.Kasha.Criterion` →
+  `Build completed successfully.`; `proofs/scripts/check.sh --strict PhotoLean.Kasha.Criterion` →
+  scan `clean`, `build: OK`, `verdict: PASS`; `proofs/scripts/axioms.sh` on **all 22** theorems →
+  22 × `verdict: PASS (only mathlib infrastructure axioms)`, 0 FAIL, every row exactly
+  `[propext, Classical.choice, Quot.sound]`; forced re-elaboration of the delivered file
+  (`lake env lean`) → 0 errors, **0 warnings**; fidelity 22/22 delivered, 0 signature differences.
+- Statement corrections: **none** — all 22 rows are true as handed over. Audited before proving;
+  the only row whose plan sketch carries a premise the skeleton dropped is §5.1 #12
+  (`fluoYield_lt_one_iff_loss`, sketch had `0 < N`): the statement without it is true at `N = 0`
+  as well, and the proof closes with `fluoYield_eq_one_sub_loss` + `linarith`.
+- Tried and failed (six items, all tactical and all transferable):
+  1. `linarith` cannot get `radBranch (N+1) = 0` out of the Markov recursion + nonnegativity: from
+     `0 = R + I*U` with `0 ≤ R`, `0 ≤ I`, `0 ≤ U` it still needs `0 ≤ I*U`, i.e. a product of two
+     inequalities — the monomial `I*U` is an atom to `linarith`, and the failure is
+     `linarith failed to find a contradiction` with a negated goal `a✝ : 0 < radBranch …`.
+     `nlinarith` closes it (K2 #14's step).
+  2. **`Nat.succ N` versus `N + 1` is a real syntactic hazard inside `induction`.** `induction N`
+     phrases the successor goal with `Nat.succ N`, while every K1/K2 lemma states `N + 1`; the two
+     are definitionally equal, but `linarith`/`rw` treat `radBranch rad ic (Nat.succ N)` and
+     `radBranch rad ic (N + 1)` as different atoms. Symptom: a *linear* step fails with
+     `linarith failed to find a contradiction`. Fix that works: annotate the `have` with the local
+     (succ) spelling — `have hrec : upperYield rad ic (Nat.succ N) = … := upperYield_succ h`.
+  3. `rw` does not unfold a predicate-def on the goal: `rw [fluoYield_succ hR, …]` on
+     `⊢ VavilovAt rad ic i` fails with `did not find instance of the pattern
+     \`fluoYield rad ic (i + 1)\``; insert `show fluoYield rad ic (i + 1) = fluoYield rad ic i`
+     first (the same defeq-guard trap as K1's `if_neg`, in `rw`-on-the-goal form).
+  4. Same trap one level down: `rw [fluoYield_zero, div_lt_one …]` fails because after the first
+     rewrite the goal is `radBranch rad ic 0 < 1`, not the unfolded quotient — `unfold radBranch`
+     must sit *between* the two rewrites.
+  5. `Nat.le_of_lt_succ` and `Nat.le_of_succ_le` are easy to swap: for `hk : k + 1 ≤ N` the
+     converting lemma is `Nat.le_of_succ_le` (`Nat.le_of_lt_succ` expects `k < N.succ`, i.e. it
+     converts `k < N + 1` into `k ≤ N`). The error is a plain `application type mismatch`.
+  6. Two rows (#4 `fluoYield_succ`, #5 `upperYield_succ`) carry a decorative `RateData` premise —
+     the Markov recursions are pure index algebra — so both need
+     `set_option linter.unusedVariables false in` before the docstring (house pattern).
+- What worked (reusable for K3/K4, which import K1's `Basic.lean`; K3 re-proves the two-level
+  criterion locally):
+  - The Markov recursions are cleanest as **`calc` chains, one rewrite per step**:
+    `Finset.sum_range_succ` / `Finset.sum_Icc_succ_top` for the top split, then
+    `Finset.sum_congr rfl (fun x hx => emitYield_succ …)` to push the recursion into the summands,
+    then `Finset.mul_sum` to pull the constant branch out. A bare `rw [fluoYield]` is *not* usable
+    as the first step: it unfolds every occurrence, including the `fluoYield rad ic N` on the
+    right, which derails the subsequent `Finset.sum_range_succ` (`range (N+1)` matches too).
+  - Induction over the ladder: prove `key : ∀ N, RateData rad ic N → <claim>` by `intro N; induction N`
+    and keep the hypothesis *inside* the motive; that avoids dependent-hypothesis reverts and makes
+    the successor case readable. #6 `cascade_add_upperYield` then needs only
+    `cascade_succ` + `upperYield_succ` + `radBranch_add_icBranch` + one `ring` (factor
+    `icBranch (N+1)` out of the two summands).
+  - #14 `kashaRule_iff_rad_zero` is the same induction: the new top level must be nonradiative
+    (`nlinarith`), and it cannot be the level that stops the cascade, because a level with
+    `rad = 0` still has `decay = ic > 0`, hence `icBranch = 1` and the cascade survives; the lower
+    ladder then satisfies the rule by the induction hypothesis. This is what the plan's sketch
+    glosses as "`radBranch i ≠ 0` and `cascade i N ≠ 0`" — note `cascade i N ≠ 0` is **false** in
+    general (an upper level with `ic j = 0` kills the cascade), so the induction is genuinely
+    needed, not decorative.
+  - #18 `kashaRule_iff_vavilovUpTo`: the loss premise `0 < ic 0` enters at exactly one place —
+    `fluoYield rad ic 0 < 1` (`fluoYield_zero` + `div_lt_one` + `linarith`), which propagates along
+    Vavilov's equalities as `hchain : ∀ i ≤ N, fluoYield rad ic i = fluoYield rad ic 0`; the
+    backward direction then feeds `vavilovAt_iff_rad_zero` level by level into
+    `kashaRule_iff_rad_zero`. Without the premise the chain is unavailable (the lossless ladder has
+    `fluoYield ≡ 1`).
+  - Existence rows: build the `RateData` witness as a `have` **before** the existential `refine`
+    (`have hR : RateData … := by refine ⟨…⟩`), otherwise the second component cannot cite it;
+    the `interval_cases n <;> norm_num [decay]` / `split_ifs <;> norm_num` pair evaluates the
+    piecewise witness at the two levels and at an unconstrained `n` respectively.
