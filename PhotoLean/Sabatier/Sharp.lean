@@ -398,6 +398,12 @@ theorem volcanoActivity_peak_iff {alphaA betaA alphaB betaB kB T : ℝ} (hkT : 0
       ↔ 0 < alphaA * alphaB := by
   rw [antiDescriptor_activity_aux hkT, volcano_descriptor_iff]
 
+/-- Degenerate witness (plan §6): two slope-zero branches give a constant barrier, so the claimed
+apex is not even a strict minimizer — every descriptor value ties with it. -/
+theorem flat_witness (dE : ℝ) :
+    volcanoBarrier 0 0 0 0 dE = volcanoBarrier 0 0 0 0 (apex 0 0 0 0) := by
+  simp [volcanoBarrier, branchUp, branchDown, apex]
+
 end Sabatier
 
 end PhotoLean
