@@ -310,13 +310,29 @@ theorem kashaZone_eq_withinTol_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} 
       | exact iff_of_true rfl ⟨h1, h2⟩
       | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨hK, -⟩; exact hK h1)
       | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨-, hw⟩; exact h2 hw)
-/-! Plan §4.2 #24 (`kashaZone_eq_violating_iff`) is withheld: as stated in the statement authority
-it is FALSE — with `rad ≡ 1`, `ic ≡ 1`, `N = 0`, `tol = -1` the data satisfy `RateData`, the
-classifier returns `pure` because the leak vanishes, while `¬ KashaWithin` holds because
-`0 ≤ -1 * fluoYield 0` fails; the kernel-checked counterexample is
-`theories/kasha/probes/kasha-k1-counterexample.lean`. The row is not restated here (statement
-changes go through the authority, not through the delivered file); it lands once
-`theories/kasha/probes/kasha-statement-skeleton.lean` carries the corrected form. -/
+/-- Plan §4.2 #24. Classifier characterization, `violating` branch: the leak is nonzero and lies
+outside the tolerance. **Corrected 2026-09-20** (plan §3.1): as first handed over the row carried
+no premise on `tol` and was FALSE — the classifier tests the vanishing leak first, so
+`upperYield = 0` parks it in `pure`, while `¬ KashaWithin` can still hold there whenever
+`tol < 0`; the kernel counterexample is
+`theories/kasha/probes/kasha-k1-counterexample.lean`. Under the physical range `0 < tol` the
+characterization holds: `upperYield = 0` then forces `KashaWithin` (because
+`0 ≤ tol * fluoYield` under `RateData`), so `¬ KashaWithin` makes the first guard fail. -/
+theorem kashaZone_eq_violating_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N)
+    (htol : 0 < tol) :
+    kashaZone rad ic tol N = KashaZone.violating ↔ ¬ KashaWithin rad ic tol N := by
+  constructor
+  · intro hz
+    unfold kashaZone at hz
+    split_ifs at hz with h1 h2
+    exact h2
+  · intro hw
+    have hw' : ¬ (upperYield rad ic N ≤ tol * fluoYield rad ic N) := hw
+    have hne : upperYield rad ic N ≠ 0 := by
+      intro h0
+      exact hw' (by rw [h0]; exact mul_nonneg (le_of_lt htol) (fluoYield_nonneg h))
+    unfold kashaZone
+    rw [if_neg hne, if_neg hw']
 set_option linter.unusedVariables false in
 /-- Plan §4.2 #25. If every level above the lowest is nonradiative, the leak vanishes: the exact
 rule holds (the idealization behind Kasha's rule; the `RateData` premise is part of the
