@@ -57,4 +57,9 @@ theorem bepLine_exact_at_thermoneutrality {lam : ℝ} (hlam : lam ≠ 0) :
   unfold bepLine
   ring
 
+/-- The defect vanishes at thermoneutrality. -/
+theorem bepDefect_at_thermoneutrality {lam : ℝ} (hlam : lam ≠ 0) : bepDefect lam 0 = 0 := by
+  rw [bepDefect_eq hlam]
+  ring
+
 end PhotoLean.BEP
