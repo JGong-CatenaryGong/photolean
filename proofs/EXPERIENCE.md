@@ -1705,3 +1705,86 @@
   removed as well (2038 = 2038 chars, 1566 = 1566 without whitespace; the whole comment-stripped text
   differs only by those three named lines), and every re-gate of the three
   fidelity probes returned 51 / 191 / 102 with 0 differences.
+
+## 2026-09-20 — K1 description layer (PhotoLean/Kasha/Basic.lean) — prover_a — DONE
+
+- Goal: K1 of the Kasha theory — the whole description layer, 44 declarations (17 definitions +
+  `RateData` + `KashaZone` + 25 theorems), signatures and definition bodies word for word against
+  `theories/kasha/probes/kasha-statement-skeleton.lean` (authority hash at delivery
+  `801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`; the dispatch-time hash
+  `e3ddc2d0…` was superseded mid-round by the statement correction below). 29 commits on the file
+  (`1f88266` definitions → `66e2ea7` `kashaZone_eq_violating_iff`; the two classifier docs/probe
+  commits are `014ea0e` counterexample, `c204f80` API probe).
+- Gate verdicts (clean tree, committed): `proofs/scripts/lake build PhotoLean.Kasha.Basic` →
+  `Build completed successfully.`; `proofs/scripts/check.sh --strict PhotoLean.Kasha.Basic` →
+  scan `clean`, `build: OK`, `verdict: PASS`; `proofs/scripts/axioms.sh` on **all 25** theorems →
+  25 × `verdict: PASS (only mathlib infrastructure axioms)`, 0 FAIL, every row exactly
+  `[propext, Classical.choice, Quot.sound]`; `bep-fidelity.py --theory kasha` → 44 word-for-word,
+  0 signature differences, 0 declarations outside the authority.
+- Tried and failed (seven items; the first is the round's headline):
+  1. **Skeleton row §4.2 #24 `kashaZone_eq_violating_iff` was FALSE as handed over**, and the
+     falsity is structural, not tactical: the classifier tests the vanishing leak *first*, so
+     `upperYield = 0` parks it in `pure`, while `¬ KashaWithin` can still hold there when
+     `tol < 0` — and `h : RateData rad ic N` bounds `decay`/`rad`/`ic`, never `tol`. Kernel
+     counterexample `theories/kasha/probes/kasha-k1-counterexample.lean` (witness `rad ≡ 1`,
+     `ic ≡ 1`, `N = 0`, `tol = -1`: `RateData` holds, `kashaZone = pure`, `KashaWithin` is
+     `0 ≤ -1 * (1/2)`, false). Reported to the lead before any proof attempt on that row; the
+     authority added `(htol : 0 < tol)` (plan §3.1 correction log) and the row then went through
+     in one pass. **The ℚ twin K5a `kashaQVerdict_eq_violating_iff` carried the same defect** and
+     was corrected in the same pass. Lesson: a three-way classifier's characterizations are
+     *branch* statements — the `violating` branch needs *both* earlier guards negated, and a
+     one-sided right-hand side silently imports a sign premise that `RateData` does not carry.
+  2. `if_neg`/`if_pos` rewrite the **syntactic** guard, not the definitionally equal one. In
+     `kashaZone_eq_violating_iff` the guard is `upperYield rad ic N ≤ tol * fluoYield rad ic N`
+     while the hypothesis arrived as `hw : ¬ KashaWithin rad ic tol N`; `rw [if_neg hw]` failed
+     with `did not find instance of the pattern in the target expression
+     \`if KashaWithin rad ic tol N then …\`` — and the same defeq trap hit `rw [h0]` inside a goal
+     displayed as `KashaWithin`. Working fix: materialize the unfolded form first,
+     `have hw' : ¬ (upperYield rad ic N ≤ tol * fluoYield rad ic N) := hw`, then rewrite with `hw'`.
+  3. `simp` does **not** prove `1 + 1 = 2` at a concrete `ℝ` after unfolding a witness: the
+     leftover goal is literally `⊢ 1 + 1 = 2`; `norm_num` closes it (measured while drafting the
+     counterexample probe).
+  4. `split_ifs … <;> first | exact h1 | <fallback>` reports `this tactic is never executed` /
+     `tactic does nothing`, because `split_ifs` already discharges the branches whose generated
+     equality is `Ctor₁ = Ctor₂` for distinct constructors: exactly one goal survives, so the
+     plain `split_ifs at hz with h1 h2` plus a single `exact h1` / `exact h2` is shorter and
+     warning-free (the `first |` alternative is only needed when the leaves really are several —
+     cf. the Hammond seven-branch recipe).
+  5. `Finset.Icc_succ_right` **does not exist** in this toolchain (Lean 4.17.0 + mathlib v4.17.0);
+     the K2 recursion must split `Icc a (b+1)` with `Finset.prod_Icc_succ_top` /
+     `Finset.sum_Icc_succ_top` (both verified). Calibration: `kasha-api-k1-finset.lean`.
+  6. Decorative premises trip `linter.unusedVariables`: `h : RateData` in #13/#20/#22/#23/#25 and
+     `h1 : i ≤ N` in #8/#9 belong to the authority's signature and are *not* consumed by those
+     proofs. House pattern: keep the premise and put `set_option linter.unusedVariables false in`
+     immediately *before* the docstring (after it, the option does not parse).
+  7. Re-emitting a **prefix** of the module is unsafe once the authority changes mid-round: the
+     last driver step would have re-emitted "segments 1..28" from the old master and deleted the
+     already-committed `kashaRule_of_rad_zero` (it sits after the corrected row). Fix: after an
+     authority change emit the *full* file and let the git diff be the change; and never read the
+     delivered file back as input (the self-swallowing driver of the BEP round).
+- What worked (reusable for K2, which imports this module):
+  - Draft the whole module in a **gitignored master copy** (`.lake/tmp/k1-master.lean`, split by
+    `-- @@@` markers) and emit the delivered file from it, running
+    build + `check.sh --strict` + `axioms.sh` + `git commit -m … -- <path>` per segment. No
+    placeholder ever enters the scanned tree, and the history stays one-lemma-per-commit without
+    any interactive editing of the delivered file.
+  - K1 index toolkit, every name `#check`-verified: `Finset.Icc_eq_empty` (`cascade_self`),
+    `Finset.range (N+1) = insert 0 (Icc 1 N)` by `ext; simp only [Finset.mem_range,
+    Finset.mem_insert, Finset.mem_Icc]; omega` + `Finset.sum_insert` (`fluoYield_eq_low_add_upper`),
+    `Finset.sum_range_one` (`fluoYield_zero`), `Finset.sum_div` used **backwards** (`specFrac_sum`),
+    `Finset.prod_nonneg` / `Finset.prod_le_one` (`cascade_nonneg`, `cascade_le_one`),
+    `Finset.sum_nonneg`, `Finset.sum_eq_zero` (`kashaRule_of_rad_zero`, after `rw [hzero …]` +
+    `simp`), `div_nonneg`, `← add_div` + `div_self` (`radBranch_add_icBranch`),
+    `mul_le_of_le_one_right` (`emitYield_le_radBranch`), `div_le_iff₀`
+    (`kashaWithin_iff_specFrac`), and `lt_of_le_of_ne … (Ne.symm hF)` to turn `0 ≤ F` + `F ≠ 0`
+    into `0 < F`.
+  - Classifier recipe, three independent uses, 0 warnings: forward
+    `unfold kashaZone at hz; split_ifs at hz with h1 h2` + one bullet; backward
+    `unfold kashaZone; exact if_pos hr` (#22), `rw [if_neg …, if_pos …]` (#23), or
+    `rw [if_neg hne, if_neg hw']` (#24, with `hne` derived from `0 < tol` and `RateData` via
+    `mul_nonneg (le_of_lt htol) (fluoYield_nonneg h)`).
+  - The module header must not spell the two literal keywords the strict scan looks for: the scan
+    covers `PhotoLean/**/*.lean` including block comments, so even prose about them is a
+    false-positive FAIL. Verified with the same `grep -E` as `check.sh` before the first commit
+    (the note is now part of the header, inside a block comment, deliberately without the
+    literals).
