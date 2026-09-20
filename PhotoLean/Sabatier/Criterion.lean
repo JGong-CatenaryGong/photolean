@@ -293,6 +293,33 @@ theorem activity_eq_apex_iff {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * 
   · intro h'
     rw [h']
 
+/-- **The volcano plot.** The barrier profile is a volcano (unique minimizer at `de0`) iff the
+activity has its unique global maximum at `de0` — the activity is a strictly decreasing function of
+the barrier. This is the form the volcano plot is drawn in, and it is what makes a volcano in the
+barrier the same statement as a peak in the activity. Plan §5 (activity layer). -/
+theorem antiDescriptor_activity_iff {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * T) :
+    AntiVolcanoDescriptor (activity f kB T) de0 ↔ VolcanoDescriptor f de0 := by
+  have hkT' : kB * T ≠ 0 := hkT.ne'
+  constructor
+  · intro hA
+    refine ⟨fun dE => ?_, fun dE heq => ?_⟩
+    · have h := hA.1 dE
+      unfold activity at h
+      rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff] at h
+      exact h
+    · have h1 : activity f kB T dE = activity f kB T de0 := by
+        unfold activity
+        rw [heq]
+      exact hA.2 dE h1
+  · intro hD
+    refine ⟨fun dE => ?_, fun dE heq => ?_⟩
+    · have h := hD.1 dE
+      unfold activity
+      rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff]
+      exact h
+    · have h1 : -(f dE) / (kB * T) = -(f de0) / (kB * T) := Real.exp_injective heq
+      exact hD.2 dE (exp_neg_div_inj hkT' h1)
+
 end Sabatier
 
 end PhotoLean
