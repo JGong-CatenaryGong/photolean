@@ -165,5 +165,52 @@ theorem bepRadius_add {lamInner lamOuter tol : ℝ} (hli : 0 ≤ lamInner) (hlo 
   have hsqrt := Real.sqrt_le_sqrt hmul
   linarith
 
+/-- Plan §7 #10: microscopic conformance — for positive inner and outer reorganization energies,
+every symmetric window whose half-width is at most the tolerance radius `2√(lam*tol)` of the *total*
+curvature conforms to the BEP line within `tol`. The half-width is deliberately not assumed
+nonnegative: for `w < 0` the window `[-w, w]` is empty and the statement holds vacuously, and for
+`0 ≤ w` this is the radius criterion of plan §6.2, established here by squaring (`Real.sq_sqrt` +
+`sq_le_sq`) instead of through the not-yet-available `epConformsOnWindow_iff_radius`. -/
+theorem epConformsOnWindow_of_microscopic {lamInner lamOuter tol w : ℝ} (hli : 0 < lamInner)
+    (hlo : 0 < lamOuter) (htol : 0 < tol) (hw : w ≤ bepRadius (lamInner + lamOuter) tol) :
+    EPConformsOnWindow (lamInner + lamOuter) tol (-w) w := by
+  have hL : 0 < lamInner + lamOuter := by linarith
+  have h4 : (0 : ℝ) < 4 * (lamInner + lamOuter) := by linarith
+  have hprod : 0 ≤ (lamInner + lamOuter) * tol := mul_nonneg (le_of_lt hL) (le_of_lt htol)
+  have htwo : 0 ≤ 2 * Real.sqrt ((lamInner + lamOuter) * tol) := by positivity
+  have hsq : (2 * Real.sqrt ((lamInner + lamOuter) * tol)) ^ 2
+      = 4 * ((lamInner + lamOuter) * tol) := by
+    rw [mul_pow, Real.sq_sqrt hprod]
+    norm_num
+  have key : ∀ L x : ℝ, L ≠ 0 → bepDefect L x = x ^ 2 / (4 * L) := by
+    intro L x hL0
+    unfold bepDefect eact bepLine
+    field_simp
+    ring
+  refine ⟨hL, htol, ?_⟩
+  intro x hx
+  rcases le_or_lt 0 w with hw0 | hwn
+  · -- nonnegative half-width: the radius bound is the squared bound `w^2/(4*L) ≤ tol`
+    have hrad : w ^ 2 / (4 * (lamInner + lamOuter)) ≤ tol := by
+      rw [bepRadius] at hw
+      rw [div_le_iff₀ h4]
+      calc w ^ 2 ≤ (2 * Real.sqrt ((lamInner + lamOuter) * tol)) ^ 2 := by
+            rw [sq_le_sq, abs_of_nonneg hw0, abs_of_nonneg htwo]
+            exact hw
+        _ = tol * (4 * (lamInner + lamOuter)) := by rw [hsq]; ring
+    have hx2 : x ^ 2 ≤ w ^ 2 := by
+      rw [Set.mem_Icc] at hx
+      have habs : |x| ≤ w := abs_le.mpr hx
+      rw [sq_le_sq, abs_of_nonneg hw0]
+      exact habs
+    rw [key (lamInner + lamOuter) x (ne_of_gt hL), abs_of_nonneg (by positivity)]
+    rw [div_le_iff₀ h4]
+    rw [div_le_iff₀ h4] at hrad
+    linarith
+  · -- negative half-width: `[-w, w]` is empty
+    exfalso
+    rw [Set.mem_Icc] at hx
+    linarith [hx.1, hx.2]
+
 
 end PhotoLean.BEP
