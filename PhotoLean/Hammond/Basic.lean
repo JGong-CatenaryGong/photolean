@@ -3,7 +3,11 @@ PhotoLean.Hammond.Basic — H1, the description layer of the Hammond theory.
 
 The two-parabola (Marcus-type) model of an elementary reaction step: a reactant well at `q = 0`,
 a product well at `q = 1`, harmonic surfaces of equal curvature `2 * lam`, and the classical
-crossing point as the transition state. This module makes "transition-state structure",
+crossing point as the transition state. Model assumptions that are NOT derived here (see
+`theories/hammond/plan.md` section 13): one scalar coordinate stands for molecular structure;
+the two curvatures are equal; the reorganization energy `lam` is held fixed across the compared
+pair/series (plan section 13 row 8); and the transition state is the classical crossing point
+(no tunneling, no recoupling). This module makes "transition-state structure",
 "resembles", "Hammond regime" and "Hammond description" Lean objects, and grounds `tsCoord`
 in the surface geometry (`crossing_iff`, `gapReactant_eq_crossing_energy`).
 

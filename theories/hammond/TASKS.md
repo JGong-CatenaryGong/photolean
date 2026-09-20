@@ -11,7 +11,7 @@
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/hammond/plan.md`.
 - **Statement authority**: `theories/hammond/probes/hammond-statement-skeleton.lean`
-  (compiled: 0 error → all signatures elaborate).
+  (compiled: 0 error; **102 declarations** = 17 definitions + 85 theorems).
 - Theory direction: **Hammond's postulate in the two-parabola (Marcus-type) model**, human
   request of 2026-09-20 (three parts: formal description / proof and conditions / instance verdicts).
 - Deliverable module prefix: `PhotoLean.Hammond`; sources under `PhotoLean/Hammond/`

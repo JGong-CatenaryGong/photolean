@@ -1429,3 +1429,37 @@ API-wise nothing further is needed for the remaining statements; they are arithm
 `gap_compare_iff` (B5 + `linarith`), `hammondZoneQ_eq_{atProduct,beyondProduct}_iff`,
 `hammond_descriptor_of_inner` / `_of_microscopic` / `_of_nonoverlap` (Marcus `lamInner` /
 `lamOuter` / `lam_total_pos` / `hgeom_of_nonoverlap`, F).
+
+---
+
+## 2026-09-20 — 语句订正留痕：Hammond 骨架的两条**假语句**（H1 / H2）— lead — DONE
+
+> 规则回顾：语句改动只允许两类原因 —— **API 漂移** 或 **数学缺陷**；两类都必须在 API 日志留痕。
+> 这两条属于后者（骨架初稿为假），在**任何交付之前**修正，并由 prover + verifier 双方用内核反例交叉确认。
+
+### (1) `gapProduct_eq_crossing_energy`（H1，`PhotoLean/Hammond/Basic.lean`）
+
+- **原因**：逆反应的势垒是**相对产物井**（能量 `dG`）度量的；原式未做井参考，RHS 恰多出 `dG`。
+- **内核反例**（`prover_a` 发现；verifier 独立复核）：
+  `example : gapProduct 1 1 ≠ productSurface 1 (-1) (tsCoord 1 1) := by norm_num [gapProduct, productSurface, tsCoord]`
+- **订正后（交付形态）**：
+  `theorem gapProduct_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
+      gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG)) - dG`
+- **正向内核核对**（`lam = 3`, `dG = 1`）：`1/3 = 4/3 - 1` 成立；旧式 `1/3 ≠ 4/3` 被推翻。
+
+### (2) `conforms_iff_structure` → `conforms_iff_zone`（H2，`PhotoLean/Hammond/Criterion.lean`）
+
+- **原因**：原式把判决刻化成三个**符号谓词**的析取（`ReactantLike ∨ tsCoord = 1/2 ∨ ProductLike`），
+  而这是 **`<` 三分律的恒真式**（对任意 `a`：`a < 1/2 ∨ a = 1/2 ∨ 1/2 < a`），**不刻画任何东西**（lead 审计发现）。
+- **内核反例**（verifier 独立复核）：旧 RHS 恒真；旧语句在 `(lam, x) = (1, 2)` 处左真右假。
+- **订正后（交付形态）**：改用**分类器**刻化，并在 `0 < lam` 下陈述：
+  `theorem conforms_iff_zone {lam x : ℝ} (hlam : 0 < lam) :
+      HammondConforms lam x ↔ hammondZone lam x = HZone.early ∨ hammondZone lam x = HZone.half
+        ∨ hammondZone lam x = HZone.late`
+  （非空转证据：`(1, 1/2)` 两侧真、`(6/5, 12/5)` 左假右假 —— verifier 已给。）
+
+### 方法论后果（已写入 `proofs/EXPERIENCE.md`）
+
+`statement-first` 不等于"只检查看起来有风险的语句"。骨架定稿前必须做一次**带反向对照的系统审计**
+（`theories/hammond/probes/hammond-lead-audit.lean`：每条非平凡语句在具体有理点上实例化，
+并在"必须为假"的点上验证其为假），否则一条假语句会以"prover 报障 + 语句变更"的昂贵方式暴露。
