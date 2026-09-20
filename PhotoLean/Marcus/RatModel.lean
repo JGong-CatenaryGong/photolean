@@ -51,4 +51,11 @@ theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) :
     · have h2' : ¬ (x : ℝ) = (lam : ℝ) := fun hc => h2 (Rat.cast_inj.mp hc)
       simp [h, h2, h', h2']
 
+/-- 反转区判定：把 ℚ 上的可计算判定接到 ℝ 侧的 `InvertedRegion` 上。
+证明是 M1 的 `zone_eq_inverted_iff` 与转移引理的直接拼接（`InvertedRegion` 是 `def`，
+故两侧命题在定义层就是同一个）。--/
+theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam : ℝ) < (x : ℝ) := by
+  rw [zoneQ_eq_zone, zone_eq_inverted_iff]
+  exact Iff.rfl
+
 end PhotoLean.Marcus.Rat
