@@ -74,4 +74,9 @@ theorem barrier_antitone_of_neg {lam : ℝ} (hlam : lam < 0) {x₁ x₂ : ℝ}
   unfold barrier
   exact (div_lt_div_right_of_neg h4).mpr hsq
 
+/-- `lam = 0` 的退化：除零约定 `x / 0 = 0` 使势垒恒为零 ——
+M4a 锐利性"`lam > 0` 不可去"的另一必要分支（此时速率恒为 `A`）。 -/
+theorem barrier_zero_lam (x : ℝ) : barrier 0 x = 0 := by
+  simp [barrier]
+
 end PhotoLean.Marcus
