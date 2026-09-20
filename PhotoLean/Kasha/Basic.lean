@@ -145,6 +145,10 @@ noncomputable def kashaZone (rad ic : ℕ → ℝ) (tol : ℝ) (N : ℕ) : Kasha
   if upperYield rad ic N = 0 then KashaZone.pure
   else if upperYield rad ic N ≤ tol * fluoYield rad ic N then KashaZone.withinTol
   else KashaZone.violating
+/-! ## Theorems (plan §4.2) -/
+
+/-- Plan §4.2 #1. The total decay rate is the sum of the two channels (definitional). -/
+theorem decay_eq_rad_add_ic (rad ic : ℕ → ℝ) (n : ℕ) : decay rad ic n = rad n + ic n := rfl
 end Kasha
 
 end PhotoLean
