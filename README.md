@@ -20,6 +20,8 @@ Agent preset 驱动。
   - **Bell–Evans–Polanyi 原理**（线性自由能关系的精确缺陷律）——`PhotoLean/BEP/`（6 模块），
     **191 条声明**，语句保真 **191/191**。
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
+- **跨理论关系图**（三个"原理"作为同一二次对象的三种读法）：共享内核 `PhotoLean/Kernel.lean`、
+  可检查的关系清单 `PhotoLean/Relations.lean`、双语讨论稿 `theories/RELATIONS.md`
 - `PhotoLean/Smoke.lean` 是环境冒烟测试
 
 ### 复核方式
