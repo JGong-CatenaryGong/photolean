@@ -369,6 +369,41 @@ theorem perLevel_criterion_insufficient :
   · intro hcon
     rw [KashaWithin, hU2, hF2] at hcon
     norm_num at hcon
+/-- Plan §6.2 #14 — **the loss premise of the Kasha–Vavilov equivalence is necessary**: in the
+loss-free ladder `rad ≡ 1`, `ic ≡ 0` no current is lost to the ground state, so the total yield is
+exactly `1` at every excitation level — `VavilovAt` holds at `N = 1` trivially, while
+`upperYield 1 = radBranch 1 = 1 ≠ 0`, so the exact rule fails. (The two yield values are computed
+through the K2 recursion `fluoYield_succ`.) -/
+
+theorem vavilov_premise_necessary :
+    ∃ (rad ic : ℕ → ℝ) (N : ℕ), RateData rad ic N ∧ rad (N + 1) ≠ 0 ∧
+      VavilovAt rad ic N ∧ ¬ KashaRule rad ic N := by
+  have hR1 : RateData (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (0 : ℝ)) 1 :=
+    ⟨fun n _ => by norm_num [decay], fun n => by norm_num, fun n => by norm_num⟩
+  have hR2 : RateData (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (0 : ℝ)) 2 :=
+    ⟨fun n _ => by norm_num [decay], fun n => by norm_num, fun n => by norm_num⟩
+  have hF0 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (0 : ℝ)) 0 = 1 := by
+    rw [fluoYield_zero]
+    norm_num [radBranch, decay]
+  have hF1 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (0 : ℝ)) 1 = 1 := by
+    have hh := fluoYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (0 : ℝ))
+      (N := 0) hR1
+    rw [hF0] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  have hF2 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (0 : ℝ)) (1 + 1) = 1 := by
+    have hh := fluoYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (0 : ℝ))
+      (N := 1) hR2
+    rw [hF1] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  refine ⟨fun _ : ℕ => (1 : ℝ), fun _ : ℕ => (0 : ℝ), 1, hR1, ?_, ?_, ?_⟩
+  · norm_num
+  · rw [VavilovAt, hF2, hF1]
+  · rw [KashaRule]
+    intro hzero
+    rw [upperYield, Finset.Icc_self, Finset.sum_singleton, emitYield_self] at hzero
+    norm_num [radBranch, decay] at hzero
 
 end Kasha
 
