@@ -154,4 +154,13 @@ lam` holds for each `0 < lam`. -/
 theorem epDescriptor_holds {lam : ℝ} (hlam : 0 < lam) : EPDescriptor lam := by
   exact ⟨hlam, fun x => bepDefect_eq (ne_of_gt hlam) x⟩
 
+/-- The descriptor forces a strictly positive violation at every
+non-thermoneutral driving force (its positivity premise is what excludes the degenerate curvature,
+where the exact law `x ^ 2 / (4 * lam)` is false). -/
+theorem epDescriptor_conforms {lam x : ℝ} (h : EPDescriptor lam) (hx : x ≠ 0) :
+    0 < bepDefect lam x := by
+  obtain ⟨hpos, hdef⟩ := h
+  rw [hdef x]
+  exact div_pos (sq_pos_of_ne_zero hx) (by positivity)
+
 end PhotoLean.BEP
