@@ -23,7 +23,9 @@
 **English.** Six Lean modules under `PhotoLean/Sabatier/` — `Basic.lean` (S1, the description layer),
 `Criterion.lean` (S2, the laws), `Sharp.lean` (S3, the exact conditions and their sharpness),
 `Compose.lean` (S4, the two-parabola / cross-theory form), `RatModel.lean` (S5a, the computable
-rational decision layer) and `Instances.lean` (S5b, the instance verdicts) — **2 134 lines** (`wc -l`, at revision `b57c8d1`)
+rational decision layer) and `Instances.lean` (S5b, the instance verdicts) — **2 133 lines** (`wc -l PhotoLean/Sabatier/*.lean`;
+measured after the last source-touching commit, `03a0069`; the closeout commits that follow touch no
+source file, so the number is stable at this file's revision)
 containing **134 public declarations: 107 theorems and 27 definitions/inductives** (26 `def` + 1
 `inductive`), plus 36 private helper lemmas. The statement authority
 `theories/Sabatier/probes/sabatier-statement-skeleton.lean` carries **132** of them (105 theorems +
@@ -33,11 +35,13 @@ differences 0** (`python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier`
 30/19/11/13/21/38 for S1/S2/S3/S4/S5a/S5b). **All 107 theorems are kernel-complete: zero unproved
 placeholders, zero custom axioms** (the strict scan is clean; one-shot `#print axioms` over all 107
 theorems gives the contract's footprint `[propext, Classical.choice, Quot.sound]` for 106 of them and
-the subset `[propext]` for one, `sabatierZoneQ_eq_optimal_iff`). **70 commits touch
-`PhotoLean/Sabatier/`** at revision `b57c8d1` (measure with `git log --oneline -- PhotoLean/Sabatier/ |
-wc -l`), message `feat(S<k>): <lemma>` — one lemma (or one instance row group) per commit for
-S2/S3/S4/S5a/S5b; S1 was delivered as one grouped per-module commit and S5b as twelve row-group
-commits, both registered as deviations on the board.
+the subset `[propext]` for one, `sabatierZoneQ_eq_optimal_iff`). **71 commits touch
+`PhotoLean/Sabatier/`** (measured at `03a0069`; re-measure with
+`git log --oneline -- PhotoLean/Sabatier/ | wc -l`), message `feat(S<k>): <lemma>` — one lemma (or
+one instance row group) per commit for S2/S3/S4/S5a/S5b; S1 was delivered as one grouped per-module
+commit and S5b as twelve row-group commits, both registered as deviations on the board. Counts in
+this file are pinned to the revision named beside them: a count that is not pinned goes stale
+silently (verifier run 3, V2–V4).
 
 **The one-sentence result.** In a two-branch Brønsted–Evans–Polanyi model `Ea(dE) = max (alphaA·dE +
 betaA) (betaB − alphaB·dE)` of a two-step catalytic cycle, the **Sabatier description** — the
@@ -52,14 +56,14 @@ of "not too strong, not too weak" is quantitative: within `tol` of the apex the 
 pass height by at most `max(alphaA, alphaB)·tol`.
 
 **中文（摘要）**：`PhotoLean/Sabatier/` 下六个 Lean 模块（S1 描述层、S2 定律层、S3 精确条件与其紧性、
-S4 两抛物线/跨理论形式、S5a 可计算有理判定层、S5b 实例判定层），共 **2 134 行**（`wc -l`，revision `b57c8d1`），**134 条公开声明
+S4 两抛物线/跨理论形式、S5a 可计算有理判定层、S5b 实例判定层），共 **2 133 行**（`wc -l PhotoLean/Sabatier/*.lean`；在最后一个触及源码的提交 `03a0069` 之后实测；其后各收尾提交不触及源码，故该数字在本文件所在 revision 稳定），**134 条公开声明
 （107 定理 + 27 定义/归纳类型，即 26 个 `def` 与 1 个 `inductive`）**，另有 36 条 private 辅助引理。
 语句权威 `sabatier-statement-skeleton.lean` 覆盖其中 **132** 条（105 定理 + 27 定义/归纳类型）；
 余下 2 条是描述层的辅助定理（`branchDown_le_branchUp_of_apex_le`、`branchUp_le_branchDown_of_le_apex`）。
 **逐字一致 132/132，签名差异 0**（按里程碑 S1/S2/S3/S4/S5a/S5b 分别为 30/19/11/13/21/38）。
 **107 条定理全部内核证毕：零未完成占位、零自定义公理**（严格扫描 clean；对全部 107 条一次性
 `#print axioms`，106 条为契约足迹 `[propext, Classical.choice, Quot.sound]`，1 条
-`sabatierZoneQ_eq_optimal_iff` 为其子集 `[propext]`）。在 revision `b57c8d1` 上**70 个提交触及 `PhotoLean/Sabatier/`**（用 `git log --oneline --
+`sabatierZoneQ_eq_optimal_iff` 为其子集 `[propext]`）。在 `03a0069` 上**71 个提交触及 `PhotoLean/Sabatier/`**（用 `git log --oneline --
 PhotoLean/Sabatier/ | wc -l` 复测），格式 `feat(S<k>): <lemma>` —— S2/S3/S4/S5a/S5b 每条引理（或每个实例行组）
 一个提交；S1 是一个整模块合并提交、S5b 是 12 个行组提交，两处合并都已登记在任务板上。
 
