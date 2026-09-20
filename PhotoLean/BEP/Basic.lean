@@ -107,4 +107,20 @@ def EPConforms (lam x : ℝ) : Prop := 0 < lam ∧ EPBounds lam x
 /-- The exact defect law of the model (the descriptor of the BEP description). -/
 def EPDescriptor (lam : ℝ) : Prop := 0 < lam ∧ ∀ x : ℝ, bepDefect lam x = x ^ 2 / (4 * lam)
 
+/-! ## Theorems (plan §4.2)
+
+The six evaluation lemmas fix the values of the description at the three distinguished driving
+forces (`x = 0`, `x = lam`, `x = 0` with `lam = 0`); the nine zone characterizations turn the
+`if`-cascade of `epZone` into a usable case analysis. In the forward direction the cascade is
+split inside the hypothesis (`split_ifs at h`), which discharges every branch whose generated
+constructor equality is absurd, so exactly one branch survives; in the backward direction the
+cascade is reduced by explicit `if_neg` / `if_pos` rewrites, each guard discharged from the
+characterization's own arithmetic. -/
+/-- Thermoneutral barrier: at `x = 0` the model barrier is the intercept `lam / 4` of the BEP
+line (needs `lam ≠ 0`; at `lam = 0` the totalised-division value is `0`). -/
+theorem eact_at_zero {lam : ℝ} (hlam : lam ≠ 0) : eact lam 0 = lam / 4 := by
+  unfold eact
+  field_simp
+  ring
+
 end PhotoLean.BEP
