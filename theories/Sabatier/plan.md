@@ -187,6 +187,16 @@ skeleton statement must be spot-checked, not only the ones that look risky"):
    The S1 file was delivered after the corrections; the S2–S5a dispatches cite the corrected
    signatures.
 
+**Authority append (S5b, after the literature round landed).** The literature rows I9–I12 were
+appended to the `## S5b` section of the authority once `theories/Sabatier/LITERATURE.md` round 1
+fixed the printed numbers and their provenance (the kasha precedent: literature rows enter the
+authority after the literature exists). The append adds 12 theorems and changes no existing row; the
+S5a section that `prover_c` was implementing at that moment is untouched. The numbers and their axes:
+I9–I11 are HER rows on the `ΔG_H*` axis with the symmetric reference volcano (Pt `-0.09`, Au `+0.45`,
+W `-0.43` eV; Nørskov et al. 2005 Table I with Eq. [8], `[arith]`), I12 is the *derivable* OER row
+(`max (ΔG_O - ΔG_OH, 3.20 - (ΔG_O - ΔG_OH))`, Man et al. 2011 Eq. 4.16–4.18 → apex `16/10 = 8/5` eV,
+overpotential `37/100` V).
+
 Two statements were also *added* to S1 as delivered auxiliaries during the same pass
 (`branchDown_le_branchUp_of_apex_le`, `branchUp_le_branchDown_of_le_apex`), because the branch
 identification lemmas need the non-strict comparison; they are auxiliary declarations, not authority
