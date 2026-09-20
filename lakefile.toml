@@ -9,7 +9,8 @@ version = "0.1.0"
 # 裸跑 `proofs/scripts/check.sh --strict` 会构建这里的全部模块 ——
 # 交付一个新模块就补一行（否则扫描覆盖全目录、构建却不覆盖，是个验收漏洞）。
 defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus.Reorg",
-                  "PhotoLean.Marcus.Barrier", "PhotoLean.Marcus.Rate", "PhotoLean.Marcus.RatModel"]
+                  "PhotoLean.Marcus.Barrier", "PhotoLean.Marcus.Rate", "PhotoLean.Marcus.RatModel",
+                  "PhotoLean.Marcus.Sharp"]
 
 [[require]]
 name = "mathlib"

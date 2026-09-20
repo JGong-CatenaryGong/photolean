@@ -58,18 +58,18 @@
 
 - [ ] `rate_pos` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 2；只依赖 M1）；commit 8840fdf
 - [ ] `rate_gt_of_barrier_lt` — Marcus/Rate.lean — prover_b — review — plan §6（**核心引理**；Sprint 2）；commit 464edbf
-- [ ] `normal_rate_increases` — Marcus/Rate.lean — prover_b — todo — plan §6（Sprint 3；依赖 M2）
-- [ ] `inverted_rate_decreases` — Marcus/Rate.lean — prover_b — todo — plan §6（Sprint 3；依赖 M2）
-- [ ] `rate_peak_at_lam` — Marcus/Rate.lean — prover_b — todo — plan §6（Sprint 3；依赖 M2）
+- [ ] `normal_rate_increases` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 3；依赖 M2）；commit 671bee1
+- [ ] `inverted_rate_decreases` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 3；依赖 M2）；commit 8cfde00
+- [ ] `rate_peak_at_lam` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 3；依赖 M2）；commit c4a70fd
 - [ ] `rate_ratio`（拉伸目标，不阻塞）— Marcus/Rate.lean — prover_b — review — plan §6；commit 60fe95f
 
 ## M4a — 锐利刻画（`PhotoLean/Marcus/Sharp.lean`；属主 prover_a；Sprint 4）
 
-- [ ] `inverted_descriptor_holds` — Marcus/Sharp.lean — prover_a — todo — plan §7.1
-- [ ] `normal_descriptor_holds` — Marcus/Sharp.lean — prover_a — todo — plan §7.1
-- [ ] `descriptor_fails_of_nonpos_lam` — Marcus/Sharp.lean — prover_a — todo — plan §7.1
-- [ ] `descriptor_sharp`（**关键路径**；verifier 重点复核必要性两支）— Marcus/Sharp.lean — prover_a — todo — plan §7.1
-- [ ] `inverted_descriptor_holds_of_neg`（拉伸；证明"速率正性"前提不可去）— Marcus/Sharp.lean — prover_a — todo — plan §7.1
+- [ ] `inverted_descriptor_holds` — Marcus/Sharp.lean — prover_a — review — plan §7.1；commit e15e9d5
+- [ ] `normal_descriptor_holds` — Marcus/Sharp.lean — prover_a — review — plan §7.1；commit ccab8fe
+- [ ] `descriptor_fails_of_nonpos_lam` — Marcus/Sharp.lean — prover_a — review — plan §7.1；commit a520b0a
+- [ ] `descriptor_sharp`（**关键路径**；verifier 重点复核必要性两支）— Marcus/Sharp.lean — prover_a — review — plan §7.1；commit bfcbb6c
+- [ ] `inverted_descriptor_holds_of_neg`（拉伸；证明"速率正性"前提不可去）— Marcus/Sharp.lean — prover_a — review — plan §7.1；commit 67c42f5
 
 ## M4b — 微观重组能正性（`PhotoLean/Marcus/Reorg.lean`；属主 prover_d；Sprint 1，**零依赖**）
 
