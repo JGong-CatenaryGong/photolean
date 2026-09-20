@@ -177,6 +177,21 @@ theorem qSecSlope_eq_qTransfer_mid {lam : ℚ} (hlam : lam ≠ 0) {x h : ℚ} (h
   field_simp
   ring
 
+/-- Plan §8.1: two-point data → structural coefficient (the observed slope is the coefficient at
+the data midpoint). -/
+theorem qAlphaObs_eq_qTransfer_mid {lam x₁ x₂ : ℚ} (hlam : lam ≠ 0) (h : x₁ ≠ x₂) :
+    qAlphaObs x₁ (qEact lam x₁) x₂ (qEact lam x₂) = qTransfer lam ((x₁ + x₂) / 2) := by
+  have hd : x₂ - x₁ ≠ 0 := sub_ne_zero.mpr (Ne.symm h)
+  have hkey : qEact lam x₁ - qEact lam x₂
+      = (x₂ - x₁) * (2 * lam - x₁ - x₂) / (4 * lam) := by
+    unfold qEact
+    field_simp
+    ring
+  unfold qAlphaObs qTransfer
+  rw [hkey]
+  field_simp
+  ring
+
 end Rat
 
 end BEP
