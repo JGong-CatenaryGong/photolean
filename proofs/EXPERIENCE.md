@@ -813,3 +813,65 @@
 - Reusable pattern: **a redundant hypothesis is not a defect, but it must be reported as "unused / a sharp form is
   available", never as "derivable from the others".** Keep the delivered signature stable (statement stability is
   worth more than tightness here) and record the sharp form + the kernel counterexamples for the next revision.
+
+## 2026-09-20 — BEP Sprint-0 risk probe: `Real.sqrt` tolerance radius + equioscillation minimax (7 handed forms; one of them FALSE) — prover_d — DONE
+
+- 目标：before B3 (`PhotoLean/BEP/Sharp.lean`) is dispatched, prove the riskiest statement forms of
+  `theories/BEP/plan.md` §6 in a standalone probe (`theories/BEP/probes/bep-risk-probe.lean`,
+  18 declarations, no `sorry`, no custom `axiom`, 8.6 s wall for the whole file) so that the §11
+  fallbacks are chosen on kernel evidence. Handed forms: defect expansion (1), secant/midpoint
+  identity (2), tolerance radius `w ≤ 2√(λ·tol)` (3), best-line error (4), minimax lower bound (5),
+  halving (6), two-point λ solver (7).
+- 试过且失败：
+  1. **Handed form 7 is false, not merely hard.** `lam = (x₁²-x₂²)/(2(x₂-x₁) - 4(y₁-y₂))` pairs a
+     numerator and a denominator of opposite sign, so the right-hand side equals `-λ`. Kernel
+     counterexample with every handed hypothesis satisfiable (`risk_pair_solver_literal_refuted`):
+     `λ=2, x₁=0, x₂=1, y₁=1/2, y₂=1/8` → denominator `= 1/2 ≠ 0`, `x₁ ≠ x₂`, RHS `= -2 ≠ 2 = λ`.
+     The same defect is in plan §8.1 line 372 (`qLamOfPair`) and would have reached B5a's
+     `qLamOfPair_reconstructs`. Corrected forms (`risk_pair_solver`, `risk_pair_solver_alt`) are proved.
+  2. **The handed form also lacks `lam ≠ 0`**, which `x₁ ≠ x₂` + nonvanishing denominator do *not*
+     imply (at `λ=0` the barrier map `(λ-x)²/(4λ)` degenerates to the constant `0`, while
+     `2(x₂-x₁) ≠ 0`): kernel witness `risk_pair_solver_needs_lam_ne_zero` (`λ=0, x₁=0, x₂=1`, RHS `1/2`).
+     Further, for model data the denominator equals `(x₂²-x₁²)/λ` (`risk_pair_denominator_eq`), so it
+     also vanishes at `x₁ = -x₂`: the nondegeneracy premise is a genuinely separate hypothesis.
+  3. Auto-bound variables default to `ℕ` when the statement does not force `ℝ`:
+     `theorem … (hw : 0 ≤ w) (hx : x ∈ Set.Icc (-w) w) : x^2 ≤ w^2` silently elaborated over `ℕ`
+     (Nat division!) and the call from an `ℝ` context failed with a metavariable type mismatch; the
+     same trap made `risk_best_line_halves` elaborate as `lam w : ℕ`. Fix: annotate **every** binder
+     (`(lam w : ℝ)`), even when a later hypothesis looks like it pins the type.
+  4. `field_simp` does not always discharge its own denominator side goals; carrying explicit
+     `(4:ℝ)*lam ≠ 0` / `(8:ℝ)*lam ≠ 0` (or `by positivity` when a `0 <` hypothesis is present) makes
+     `field_simp; ring` work every time in this file.
+  5. Guessed-but-unresolved names (verbatim `unknown constant` from the API sweep):
+     `Real.sqrt_lt_iff_lt_sq`, `Real.sq_le_sq` (the real name is the root-level `sq_le_sq`),
+     `Set.mem_Icc_iff`. Deprecated (warning, not error) in mathlib v4.17:
+     `div_le_div_iff` → use `div_le_div_iff₀`, `div_le_div_right` → `div_le_div_iff_of_pos_right`,
+     `div_le_div_left` → `div_le_div_iff_of_pos_left`.
+- 奏效：
+  1. Form 3 (radius) — **two independent green routes**: (a) `div_le_iff₀ h4` to `w^2 ≤ tol*(4*lam)`,
+     rewrite with `Real.sq_sqrt` to `(2*Real.sqrt (lam*tol))^2`, then `sq_le_sq` + `abs_of_nonneg`;
+     (b) canonical `rw [bepRadius, ← Real.sqrt_mul (by norm_num : (0:ℝ) ≤ 4), div_le_iff₀ …, Real.le_sqrt hw h4nonneg]; ring_nf`
+     (with `norm_num` closing `√4 = 2`). The `∀`-direction is tested at `x = w`
+     (`Set.right_mem_Icc.mpr`); the window direction uses `abs_le.mpr` + `sq_le_sq` +
+     `div_le_div_of_nonneg_right` + `le_trans`.
+  2. Form 5 (equioscillation) delivered in the **requested `∃ x ∈ Set.Icc (-w) w` form** — the
+     pre-registered disjunction fallback was not needed. Recipe: `set A/B/C`, second difference
+     `A + C - 2*B = w^2/(2*lam)` by `field_simp; ring`, helper
+     `A + B - 2*C ≤ |A| + |B| + 2*|C|` from `le_abs_self` + `abs_add` + `abs_neg` + `abs_mul`, then
+     `by_contra h; rw [not_or] at h` (twice) + `rw [not_le] at h1 h2 h3` — **`push_neg` not needed** —
+     and one `linarith` against `w^2/(8λ) + w^2/(8λ) + 2*(w^2/(8λ)) = w^2/(2λ)` (`field_simp; ring`).
+  3. Form 7 corrected: `field_simp; ring` for `4λ(y₁-y₂) = 2λ(x₂-x₁) + (x₁²-x₂²)`, `nlinarith [hdiff]`
+     for `λ*(…)`, then `rw [eq_div_iff hden]`. The sign defect is exactly one overall sign, so both
+     conventions are provable (`risk_pair_solver`, `risk_pair_solver_alt`).
+  4. Evidence practice: `#print axioms` *inside* the probe (18 lines, all
+     `[propext, Classical.choice, Quot.sound]`, no `sorryAx`) — the file prints its own kernel
+     footprint, which is the no-`sorry` evidence for a file that lives outside `SOURCE_DIRS` and is
+     therefore invisible to `check.sh --strict`.
+- 可复用模式：**probe the statement, not only the proof.** A Sprint-0 probe that asks only "can I prove
+  this?" misses the failure mode "the statement is false as written (sign/convention) or is missing a
+  non-derivable premise"; put a *refutation* theorem (`∃ …, hypotheses hold ∧ conclusion fails`) next to
+  every corrected form and a hypothesis-necessity witness next to every added premise. For `Real.sqrt`
+  radius goals the recipe is `div_le_iff₀` + `Real.sq_sqrt` (+ `sq_le_sq`, `abs_of_nonneg`), with
+  `Real.le_sqrt` + `Real.sqrt_mul` as an equally short canonical alternative; for equioscillation /
+  minimax lower bounds it is `set` the residuals, prove the exact second difference, bound it with
+  `le_abs_self` + `abs_add`, kill the negated disjunction with `not_or`/`not_le`, finish with `linarith`.
