@@ -213,6 +213,14 @@ theorem hammondZoneQ_eq_beyondProduct_iff {lam x : ℚ} (hlam : 0 < lam) :
   · exact iff_of_false (by decide) h3
   · exact iff_of_false (by decide) h3
 
+/-- Cross-link to the Marcus inverted region on the rational side: the two classifiers single out
+the same instances. Both sides mean `lam < x` over ℚ. Proof: the ℚ-side characterization above,
+composed with the delivered bridge `Marcus.Rat.zoneQ_inverted_iff`
+(`… ↔ (lam : ℝ) < (x : ℝ)`) and `Rat.cast_lt`, which returns the comparison to ℚ. -/
+theorem hammondZoneQ_beyondReactant_iff_inverted {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.beyondReactant ↔ Marcus.Rat.zoneQ lam x = Marcus.Zone.inverted := by
+  rw [hammondZoneQ_eq_beyondReactant_iff hlam, Marcus.Rat.zoneQ_inverted_iff, Rat.cast_lt]
+
 end Rat
 
 end Hammond
