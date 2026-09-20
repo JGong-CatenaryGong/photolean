@@ -30,3 +30,8 @@ theorem tsCoord_antitone {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ} (h : x�
   rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 2 * lam)]
   linarith
 
+/-- The Hammond descriptor holds whenever the curvature is positive. -/
+theorem hammond_descriptor_holds {lam : ℝ} (hlam : 0 < lam) : HammondDescriptor lam := by
+  intro x₁ x₂ h
+  exact tsCoord_antitone hlam h
+
