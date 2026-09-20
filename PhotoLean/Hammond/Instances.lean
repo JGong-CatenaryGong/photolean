@@ -180,6 +180,11 @@ theorem inst_I6_mcc_inverted_region : Marcus.InvertedRegion (6 / 5) (12 / 5) := 
   unfold Marcus.InvertedRegion
   norm_num at hlt ⊢
 
+/-- I6, barrier-data verdict: the Brønsted coefficient measured from the barrier values alone is
+`-1/8 < 0` — the observable counterpart of the verdict above. -/
+theorem inst_I6_mcc_leffler_negative : Rat.lefflerSecantQ (6 / 5) (3 / 5) (12 / 5) = -(1 / 8) := by
+  norm_num [Rat.lefflerSecantQ, Rat.gapReactantQ]
+
 end Hammond
 
 end PhotoLean
