@@ -409,6 +409,12 @@ theorem kashaDescriptor_nonvacuous : ∃ rad ic : ℕ → ℝ, KashaDescriptor r
   have hi : i = 1 := by omega
   subst hi
   simp
+/-- Plan §5.2 #21. The exact rule implies its tolerance form (for nonnegative tolerance). -/
+theorem kashaWithin_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N)
+    (htol : 0 ≤ tol) (hK : KashaRule rad ic N) : KashaWithin rad ic tol N := by
+  have hu : upperYield rad ic N = 0 := hK
+  rw [KashaWithin, hu]
+  exact mul_nonneg htol (fluoYield_nonneg h)
 end Kasha
 
 end PhotoLean
