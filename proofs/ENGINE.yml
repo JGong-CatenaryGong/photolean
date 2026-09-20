@@ -38,18 +38,36 @@ FORBID_CUSTOM_AXIOM=1
 
 # ── 叶子数据面（每项都是相对仓库根的路径，必须存在）────────────────────────
 # English: ── Leaf data plane (each entry is a path relative to the repository root, and must exist) ──
-PLAN="plan.md"                          # 理论规划：里程碑、语句、证明草图、sprint 顺序
+PLAN="theories/Marcus/plan.md"                          # 理论规划：里程碑、语句、证明草图、sprint 顺序
                                         # English: Theory plan: milestones, statements, proof sketches, sprint order
-TASKS="proofs/TASKS.md"                 # 任务板：状态唯一真源
+TASKS="theories/Marcus/TASKS.md"                 # 任务板：状态唯一真源
                                         # English: Task board: the single source of truth for status
 EXPERIENCE="proofs/EXPERIENCE.md"       # 经验库（Hyra 式）：跨轮积累的成败模式
                                         # English: Experience bank (Hyra-style): success/failure patterns accumulated across rounds
 API_NOTES="proofs/API-NOTES.md"         # mathlib API 校准日志
                                         # English: mathlib API calibration log
-LITERATURE="proofs/LITERATURE.md"       # 文献调研记录：源、结论、对本理论的可形式化含义
+LITERATURE="theories/Marcus/LITERATURE.md"       # 文献调研记录：源、结论、对本理论的可形式化含义
                                         # English: Literature survey record: sources, conclusions, formalizable implications for this theory
-PROBES="proofs/probes"                  # #check 探针目录
+PROBES="theories/Marcus/probes"                  # #check 探针目录
                                         # English: #check probe directory
+# 引擎与理论分离：`proofs/` 只放引擎本身（契约、脚本、跨理论的经验库与 API 校准），
+# 每个理论的叶子（规划/任务板/文献/探针/结果）放在 `theories/<理论名>/` 下。
+# 新增一个理论 = 新建 `theories/<理论名>/` 与 `PhotoLean/<理论名>/`，并把上面的叶子路径指向它。
+# （跨理论共享的两个叶子保持引擎级：EXPERIENCE 经验库、API-NOTES mathlib 校准。）
+                                        # English: #check probe directory
+
+# ── 面向人类的最终交付物（唯一的双语文件）──────────────────────────────────
+# English: ── Final human-facing deliverable (the ONLY bilingual file) ──
+# 语言政策：仓库内一切证明过程产物（上列各叶子）、代码注释与 commit message 写英文；
+# 与人类的对话用中文；只有本文件是双语的 —— 每节英文原文后紧跟中文对照。
+# English: Language policy: every in-repo proof-process artifact (the leaves above),
+# English: code comments and commit messages are written in English; conversation with
+# English: the human is in Chinese; ONLY this file is bilingual — each section carries
+# English: the English original immediately followed by its Chinese rendering.
+# 禁止维护 .en.md / -en.md / .zh.md 一类翻译镜像：一个产物写一次，写英文。
+# English: Never maintain translated mirror copies such as .en.md / -en.md / .zh.md:
+# English: an artifact is written once, in English.
+RESULT="theories/Marcus/RESULTS.md"
 
 # ── 验证器命令（引擎调用这些，不内联任何判据）──────────────────────────────
 # English: ── Verifier commands (the engine calls these; no criteria are inlined) ──
@@ -59,6 +77,6 @@ BUILD_CMD="lake build"
 
 # ── 提交规范 ────────────────────────────────────────────────────────────────
 # English: ── Commit conventions ──
-# 每 lemma 一个 commit；<area> 对应 plan.md 的里程碑编号（如 M1）。
-# English: One commit per lemma; <area> corresponds to the milestone number in plan.md (e.g. M1).
+# 每 lemma 一个 commit；<area> 对应 theories/Marcus/plan.md 的里程碑编号（如 M1）。
+# English: One commit per lemma; <area> corresponds to the milestone number in theories/Marcus/plan.md (e.g. M1).
 COMMIT_TEMPLATE="feat(<area>): <lemma>"

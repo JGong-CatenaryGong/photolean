@@ -1,7 +1,7 @@
 /-
 PhotoLean.Marcus.Sharp — M4a 锐利刻画（Marcus 反转区，**本项目主定理的落点**）。
 
-**语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M4a 段
+**语句权威**：`theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M4a 段
 （Sprint 0 已编译通过）。本文件 5 条定理的签名与它**逐字一致**；
 证明体全部经内核检查（零占位证明、无自定义公理声明）。
 
@@ -41,7 +41,7 @@ English: PhotoLean.Marcus.Sharp — M4a sharp characterization (the Marcus inver
 region, **the place where this project's main theorem lands**).
 
 **Statement authority**: the M4a section of
-`proofs/probes/marcus-statement-skeleton.lean` (already compiled in Sprint 0). The
+`theories/Marcus/probes/marcus-statement-skeleton.lean` (already compiled in Sprint 0). The
 signatures of the 5 theorems in this file are **verbatim identical** to it; all proof
 bodies have been checked by the kernel (zero placeholder proofs, no custom axiom
 declarations).

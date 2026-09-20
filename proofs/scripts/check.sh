@@ -49,6 +49,9 @@ for leaf in "$TASKS" "$EXPERIENCE" "$API_NOTES" "$LITERATURE"; do
   fi
 done
 if [ ! -e "$PLAN" ]; then echo "   MISSING $PLAN"; LEAF_FAIL=1; fi
+# RESULT is optional until the project has something to report, but once the
+# contract declares it the file must exist — it is the human-facing deliverable.
+if [ -n "${RESULT:-}" ] && [ ! -e "$RESULT" ]; then echo "   MISSING $RESULT (declared as RESULT)"; LEAF_FAIL=1; fi
 if [ "$LEAF_FAIL" = 1 ]; then
   echo "   (引擎按契约要求这些文件存在；补齐后重跑)"
   [ "$STRICT" = 1 ] && { echo "==> verdict: FAIL (missing leaf data plane)"; exit 1; }

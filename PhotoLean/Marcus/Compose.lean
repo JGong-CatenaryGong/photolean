@@ -1,5 +1,5 @@
 /-
-PhotoLean.Marcus.Compose — M4c：复合定理（plan.md §7.2；属主 prover_d）。
+PhotoLean.Marcus.Compose — M4c：复合定理（theories/Marcus/plan.md §7.2；属主 prover_d）。
 
 把 M4a 主定理（`PhotoLean.Marcus.inverted_descriptor_holds`）的前提 `0 < lam` 从"假设"
 降级为"由微观参数推出" —— 这才是"找到成立条件"的完整形态：
@@ -39,15 +39,15 @@ PhotoLean.Marcus.Compose — M4c：复合定理（plan.md §7.2；属主 prover_
 注意 `dq` **不需要**非零：这里走的是"内层只要求非负"的宽口径（`lamInner_nonneg`），
 比 `lamInner_pos`（要求 `kk > 0` **且** `dq ≠ 0`）更宽 —— 因为外层已单独提供严格正性。
 
-**语句权威**：`plan.md` §7.2 的 M4b/M4c 段 + `proofs/probes/marcus-statement-skeleton.lean`
-（本文件两条定理的签名与之逐字一致；`hgeom_of_nonoverlap` 只出现在 `plan.md` §7.2 末尾，
-骨架文件的 M4b 段**已回填它**（2026-09-20 补记；`proofs/TASKS.md` 验收记录有载），签名同样逐字一致）。
+**语句权威**：`theories/Marcus/plan.md` §7.2 的 M4b/M4c 段 + `theories/Marcus/probes/marcus-statement-skeleton.lean`
+（本文件两条定理的签名与之逐字一致；`hgeom_of_nonoverlap` 只出现在 `theories/Marcus/plan.md` §7.2 末尾，
+骨架文件的 M4b 段**已回填它**（2026-09-20 补记；`theories/Marcus/TASKS.md` 验收记录有载），签名同样逐字一致）。
 
 **验收**：`proofs/scripts/check.sh --strict PhotoLean.Marcus.Compose` **与**
 `proofs/scripts/axioms.sh PhotoLean.Marcus.Compose <带命名空间的定理名>` 缺一不可
 —— 单独构建通过不构成验收。
 
-English: PhotoLean.Marcus.Compose — M4c: composition theorems (plan.md §7.2; owner prover_d).
+English: PhotoLean.Marcus.Compose — M4c: composition theorems (theories/Marcus/plan.md §7.2; owner prover_d).
 
 Downgrades the hypothesis `0 < lam` of the M4a main theorem
 (`PhotoLean.Marcus.inverted_descriptor_holds`) from "assumed" to "derived from the
@@ -98,11 +98,11 @@ requires the inner part to be nonnegative (`lamInner_nonneg`), which is wider th
 `lamInner_pos` (which requires `kk > 0` **and** `dq ≠ 0`) — because the outer part already
 supplies strict positivity on its own.
 
-**Statement authority**: the M4b/M4c part of plan.md §7.2 plus
-`proofs/probes/marcus-statement-skeleton.lean` (the signatures of the two theorems in this
-file agree with it verbatim; `hgeom_of_nonoverlap` appears only at the end of plan.md §7.2,
+**Statement authority**: the M4b/M4c part of theories/Marcus/plan.md §7.2 plus
+`theories/Marcus/probes/marcus-statement-skeleton.lean` (the signatures of the two theorems in this
+file agree with it verbatim; `hgeom_of_nonoverlap` appears only at the end of theories/Marcus/plan.md §7.2,
 and the M4b section of the skeleton file **has already been backfilled with it**
-(backfilled 2026-09-20; recorded in the acceptance table of `proofs/TASKS.md`) — there too
+(backfilled 2026-09-20; recorded in the acceptance table of `theories/Marcus/TASKS.md`) — there too
 the signature agrees verbatim).
 
 **Acceptance**: `proofs/scripts/check.sh --strict PhotoLean.Marcus.Compose` **and**

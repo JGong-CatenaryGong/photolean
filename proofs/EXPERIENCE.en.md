@@ -70,7 +70,7 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
   1. All Lean-side identifiers are ASCII: `lam` / `lamIn` / `lamOut` / `nSq` / `epsS` / `dE` / `dq` /
      `a1` / `a2` (physical notation is kept only in the documentation);
   2. rational decisions involving division switch to `norm_num [zoneQ]`; purely integer arguments keep `decide`;
-  3. the skeleton lives in `proofs/probes/marcus-statement-skeleton.lean` (**not in `SOURCE_DIRS`**) →
+  3. the skeleton lives in `theories/Marcus/probes/marcus-statement-skeleton.lean` (**not in `SOURCE_DIRS`**) →
      31 unfinished-proof warnings, **0 errors**; the four risk probes at the end (`decide`, `Real.exp_lt_exp.mpr`,
      `positivity`, `nlinarith` + `div_lt_div_of_pos_right`) **all genuinely pass**, i.e. the key goal shape of M2
      already has a usable kernel.
@@ -91,7 +91,7 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
   `lam < 0` makes `barrier lam ·` **decreasing** inside the inverted region, so `exp(-Φ/(kBT))` is increasing and,
   multiplied by the negative `A`, becomes **strictly decreasing** —— the descriptor holds, but the rate is **negative** (unphysical).
   (The other unphysical branch: for `lam = 0` the Lean division-by-zero convention gives `barrier 0 x = 0`, the rate is constantly `A`, and strictness fails.)
-- Worked (the corrected statement written into `plan.md` §7.1): fold "the rate is positive everywhere" into the characterization:
+- Worked (the corrected statement written into `theories/Marcus/plan.md` §7.1): fold "the rate is positive everywhere" into the characterization:
   `((∀ x, 0 < rate A lam kB T x) ∧ InvertedDescriptor A lam kB T) ⟺ 0 < A ∧ 0 < lam`
   (under the physical premises `0 < kB`, `0 < T`); necessity splits into the two branches `lam = 0` and `lam < 0`,
   and both branches need only ready-made lemmas from M2.
@@ -107,7 +107,7 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
 
 - Goal: `zone_eq_normal_iff` / `zone_eq_barrierless_iff` / `zone_eq_inverted_iff` / `zone_trichotomy` of
   `PhotoLean/Marcus/Basic.lean` (`zone lam x := if x < lam then .normal else if x = lam then .barrierless else .inverted`).
-- Tried and failed (four items, all measured errors, archived in the probe `proofs/probes/marcus-prover_a-scratch.lean`):
+- Tried and failed (four items, all measured errors, archived in the probe `theories/Marcus/probes/marcus-prover_a-scratch.lean`):
   1. `iff_of_false (by decide) (ne_of_lt h).symm` →
      `application type mismatch: Ne.symm (ne_of_lt h) has type lam ≠ x but is expected to have type ¬x = lam`.
      **The direction of `ne_of_lt h : a ≠ b` is already the `¬(a = b)` the proof needs; wrapping an extra layer of `Ne.symm` around it flips the direction the wrong way.**
@@ -148,10 +148,10 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
 ## 2026-09-20 — M4b microscopic reorganization-energy positivity (`Marcus/Reorg.lean`, zero-dependency side branch) — prover_d — DONE
 
 - Goal: the 2 definitions + 4 theorems of `PhotoLean/Marcus/Reorg.lean` (which only does `import Mathlib`);
-  the signatures must be **verbatim identical** to the M4b section of `proofs/probes/marcus-statement-skeleton.lean`
+  the signatures must be **verbatim identical** to the M4b section of `theories/Marcus/probes/marcus-statement-skeleton.lean`
   (verified by extracting the statements on both sides with a script and diffing them: 6/6 VERBATIM MATCH).
 - Tried and failed (3 items, all transferable):
-  1. **The proof hint in `plan.md` §7.2 is wrong at the API level**: copying the hint and writing `sq_pos_of_ne_zero dq hdq`
+  1. **The proof hint in `theories/Marcus/plan.md` §7.2 is wrong at the API level**: copying the hint and writing `sq_pos_of_ne_zero dq hdq`
      → `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`.
      The signature measured on v4.17 is `∀ {R} [LinearOrderedSemiring R] [ExistsAddOfLE R] {a : R}, a ≠ 0 → 0 < a ^ 2`
      —— **`a` is an implicit argument**, and the correct form is `sq_pos_of_ne_zero hdq`.
@@ -189,16 +189,16 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
 
 ## 2026-09-20 — ⚠️ the lead's concurrent-commit incident: `git add -A` swallowed the workers' intermediate artifacts — lead — FAIL→fixed
 
-- Goal: commit the back-filled literature parameters of `plan.md` §8.3 together with the task-board status update.
+- Goal: commit the back-filled literature parameters of `theories/Marcus/plan.md` §8.3 together with the task-board status update.
 - Tried and failed: the commit used `git add -A` (to save effort). Three workers were concurrently writing their own work files at that moment,
   and so:
-  - `e53d562` (which was supposed to be "task board + lakefile") got mixed with a 453-line draft of `proofs/LITERATURE.md`,
+  - `e53d562` (which was supposed to be "task board + lakefile") got mixed with a 453-line draft of `theories/Marcus/LITERATURE.md`,
     two probes from `api_researcher`, `prover_b`'s scratch probe, and the **deletion of `marcus-lemma-skeletons.lean`**;
   - `c000996` (which was supposed to be "plan document update") got mixed with **WIP on `PhotoLean/Marcus/Barrier.lean`** and two scratch probes.
   Consequence: **`barrier_nonneg` (the first theorem of M2) lost its own per-lemma commit** —— its content landed in a
   commit titled `docs(plan): ...`, and the audit trail was polluted.
 - Worked (remediation):
-  1. **the rule was written into the task board**: the lead uses only `git add <explicit path>` (`plan.md`/`proofs/TASKS.md`/`proofs/EXPERIENCE.md`/`lakefile.toml`),
+  1. **the rule was written into the task board**: the lead uses only `git add <explicit path>` (`theories/Marcus/plan.md`/`theories/Marcus/TASKS.md`/`proofs/EXPERIENCE.md`/`lakefile.toml`),
      and **never `git add -A`/`git add .`**; the corresponding rule for workers is "add only your own owned files";
   2. the deviation is **recorded truthfully in the task board** on the `barrier_nonneg` row (no faking a "remediation commit" to back-fill the audit trail —— that would be worse than the deviation itself);
   3. the affected workers were notified: do not retry the already-absorbed commit, keep committing the remainder lemma by lemma.
@@ -232,7 +232,7 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
 ## 2026-09-20 — M2 barrier algebra (9 theorems, including the direction reversal of the two μ/λ branches) — prover_a — DONE
 
 - Goal: the 9 theorems of `PhotoLean/Marcus/Barrier.lean` (which only does `import PhotoLean.Marcus.Basic` and **creates no new definitions**),
-  whose signatures must be **verbatim identical** to the M2 section of `proofs/probes/marcus-statement-skeleton.lean`:
+  whose signatures must be **verbatim identical** to the M2 section of `theories/Marcus/probes/marcus-statement-skeleton.lean`:
   `barrier_nonneg` / `barrier_at_lam` / `barrier_symm` / `barrier_min_at_lam` / `barrier_mono_of_pos` /
   `barrier_antitone_of_pos` / `barrier_antitone_of_neg` / `barrier_zero_lam` / `barrier_mono_cases`
   (the last three are the "direction reversal" and the degenerate branch: for `lam < 0` the barrier **decreases** inside the inverted region, and for `lam = 0` it is identically zero).
@@ -284,7 +284,7 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
     `have h4 : (0:ℝ) < 4*lam := by positivity` → `have hsq : … := by nlinarith` → `exact div_lt_div_of_pos_right hsq h4`;
     `barrier_nonneg` / `barrier_min_at_lam` use `unfold barrier; positivity` (the latter first does `rw [barrier_at_lam]`);
     `barrier_at_lam` / `barrier_zero_lam` are directly `simp [barrier]`.
-  - Names confirmed by measurement (v4.17.0; the raw `#check` output is archived in the probe `proofs/probes/marcus-prover_a2-scratch.lean`):
+  - Names confirmed by measurement (v4.17.0; the raw `#check` output is archived in the probe `theories/Marcus/probes/marcus-prover_a2-scratch.lean`):
     `@div_lt_div_of_pos_right : a < b → 0 < c → a / c < b / c`;
     `@div_lt_div_right_of_neg : c < 0 → (a / c < b / c ↔ b < a)`;
     `@div_lt_div_iff_of_pos_right : 0 < c → (a / c < b / c ↔ a < b)`;
@@ -335,14 +335,14 @@ Each entry gets one `##` heading with four fixed parts: `Goal` / `Tried and fail
     counterexample `λ=-3/2, τ=-1, A=1` (`λτ>0, A>0` ⇒ the descriptor holds and the rate is positive everywhere, yet neither `0<λ` nor `0<τ` holds).
 - Worked: the literature branch used an **exhaustive numerical re-check** (λ, τ, A each ranging over −2…2, all combinations, 0 counterexamples) to determine the true equivalence:
   `desc ⟺ 0 < A·λ/τ` (equivalently `0 < A·λ·τ`); `(∀x, 0<rate) ∧ desc ⟺ 0 < A ∧ 0 < λ·τ`.
-  And `descriptor_sharp` of `plan.md` §7.1 **happens to dodge every trap**: it puts `0<kB`, `0<T` in the **premises**
+  And `descriptor_sharp` of `theories/Marcus/plan.md` §7.1 **happens to dodge every trap**: it puts `0<kB`, `0<T` in the **premises**
   (⇒ `0<τ`), so the `⟺` degenerates to `0<A ∧ 0<lam` —— **the plan's formulation needs no modification**, and has been delivered by M4a and has passed the gate.
 - Reusable pattern (summarized by the literature branch itself, worth generalizing):
   **"the right-hand side of a sharp characterization's `⟺` must correspond one-to-one with the conjuncts on the left."**
   The information content of `desc` is only `sign(A·λ/τ)` (**a single product**), and recovering the **individual signs** of three parameters from it is impossible;
   to recover them one must **fold the extra information, such as "the rate is positive", into the left-hand side**. **Count the information on the left first, then write the right.**
 - By-product (honesty): using per-compound data, the literature computed that in the inverted region the classical formula **falls off too fast by about 3.6 orders of magnitude**
-  (predicting 5.1 orders of magnitude vs 1.46 measured) ⇒ this has been written into `plan.md` §8.3, restricting the instance-layer prose
+  (predicting 5.1 orders of magnitude vs 1.46 measured) ⇒ this has been written into `theories/Marcus/plan.md` §8.3, restricting the instance-layer prose
   to claim **only** that "the classical model satisfies the descriptor", and **not** that it predicts the measured rate.
 
 ## 2026-09-20 — M3 rate layer (6 theorems, two batches) + M5a decision layer — prover_b / prover_c — DONE

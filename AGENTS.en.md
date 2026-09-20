@@ -18,7 +18,7 @@ driven by the "project-agnostic formalization engine" (a DSH Agent preset). **Re
    hiding them inside definitions is forbidden.
 4. **Never guess API names**: when unsure, consult `proofs/API-NOTES.md`; if it isn't there, hand it to `api_researcher`
    to confirm with a `#check` probe.
-5. **Exclusive file ownership**: at any one time a file has exactly one owner (see `proofs/TASKS.md`).
+5. **Exclusive file ownership**: at any one time a file has exactly one owner (see `theories/Marcus/TASKS.md`).
 6. **Independent acceptance**: the person who writes a proof cannot judge it PASS themselves. The verifier is read-only, runs the gate independently, and returns evidence.
 7. **Ticking the box happens only after the verifier passes**, and is performed by the lead.
 
@@ -38,14 +38,14 @@ proofs/scripts/lake build PhotoLean.Smoke     # single module
 - A batch of independent lemmas → `workflow` fan-out; a single stuck one → `ralph`; a long milestone → the goal tools.
 - **Every round must write back to `proofs/EXPERIENCE.md`**, including a "tried and failed" section.
   An entry that records only successes counts as invalid.
-- Literature-survey results go into `proofs/LITERATURE.md`, and must include the "formalizable implication".
+- Literature-survey results go into `theories/Marcus/LITERATURE.md`, and must include the "formalizable implication".
 
 ## Current Status
 
-The theoretical direction is settled: the **Marcus inverted region** (classical Marcus model, `plan.md` M1–M5, confirmed by a human on 2026-09-20).
+The theoretical direction is settled: the **Marcus inverted region** (classical Marcus model, `theories/Marcus/plan.md` M1–M5, confirmed by a human on 2026-09-20).
 Deliverables: `PhotoLean/Marcus/{Basic,Barrier,Rate,Sharp,Reorg,Compose,RatModel,Instances}.lean`;
-answers to questions asked by humans: `proofs/RESULTS.md`; single source of truth for progress: `proofs/TASKS.md`.
+answers to questions asked by humans: `theories/Marcus/RESULTS.md`; single source of truth for progress: `theories/Marcus/TASKS.md`.
 
-**Before starting work you must read the owner column and the "Acceptance Record" table in `proofs/TASKS.md`** — that table records the
+**Before starting work you must read the owner column and the "Acceptance Record" table in `theories/Marcus/TASKS.md`** — that table records the
 verifier verdict for each milestone, the defects already closed, and several **pits that have actually been hit in practice** (gate decisions inside a
 concurrency window, the `git add -A` concurrency incident, "unused" ≠ "derivable", etc.). Do not invent milestones on your own, and do not change statements that have already been accepted.

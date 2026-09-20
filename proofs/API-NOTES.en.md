@@ -6,7 +6,7 @@ Rules:
 
 - When a prover meets an uncertain lemma name it **must not guess**; it hands the question to `api_researcher`.
 - Every record has the format `## <date> — <topic> — <calibrator> — <conclusion>` (with the `#check` output, source location or link attached).
-- `#check` probes live in `proofs/probes/` and are run with `proofs/scripts/lake env lean proofs/probes/<name>.lean`;
+- `#check` probes live in `theories/Marcus/probes/` and are run with `proofs/scripts/lake env lean theories/Marcus/probes/<name>.lean`;
   probe files may be committed (they are documentation too).
 - Calibration covers only the "name/signature" layer; statement/proof changes are made by the corresponding prover and leave a trace here.
 - **mathlib version: v4.17.0** (rev in `lakefile.toml`). Name drift is judged against this baseline.
@@ -15,15 +15,15 @@ Rules:
 
 | Probe | Coverage | Run |
 |---|---|---|
-| `proofs/probes/marcus-exp-api.lean` | Group A (exp layer) + Group D (multiplication/order) | `proofs/scripts/lake env lean proofs/probes/marcus-exp-api.lean` |
-| `proofs/probes/marcus-order-api.lean` | Group B (division/order) + Group C (squares/powers) + Group E (monotonicity wrappers) | the same command with the file name swapped |
-| `proofs/probes/marcus-tactic-api.lean` | Group F (ℚ/cast) + Group G (tactic usability, measured) | as above |
-| `proofs/probes/marcus-ident-rat-api.lean` | identifier ban list + reliable domain of `decide` on ℚ + independent re-check of the lead's risk probes | as above |
-| `proofs/probes/marcus-proof-skeletons.lean` | **proof bodies of all M1–M5a theorems** (36 theorems, free of unfinished proofs) | as above |
-| `proofs/probes/marcus-api-closeout.lean` | **closeout appendix re-check**: the `≤`-versions of the lemmas / the `rate_ratio` chain / the `decide` domain / three corrections to plan §8.2 | as above |
-| `proofs/probes/marcus-api-cast-normnum.lean` | **closeout appendix re-check (batch 2)**: the `Rat.cast_*` family / `norm_num` boundaries / reciprocals and cross-multiplication / `field_simp` failure paths | as above |
+| `theories/Marcus/probes/marcus-exp-api.lean` | Group A (exp layer) + Group D (multiplication/order) | `proofs/scripts/lake env lean theories/Marcus/probes/marcus-exp-api.lean` |
+| `theories/Marcus/probes/marcus-order-api.lean` | Group B (division/order) + Group C (squares/powers) + Group E (monotonicity wrappers) | the same command with the file name swapped |
+| `theories/Marcus/probes/marcus-tactic-api.lean` | Group F (ℚ/cast) + Group G (tactic usability, measured) | as above |
+| `theories/Marcus/probes/marcus-ident-rat-api.lean` | identifier ban list + reliable domain of `decide` on ℚ + independent re-check of the lead's risk probes | as above |
+| `theories/Marcus/probes/marcus-proof-skeletons.lean` | **proof bodies of all M1–M5a theorems** (36 theorems, free of unfinished proofs) | as above |
+| `theories/Marcus/probes/marcus-api-closeout.lean` | **closeout appendix re-check**: the `≤`-versions of the lemmas / the `rate_ratio` chain / the `decide` domain / three corrections to plan §8.2 | as above |
+| `theories/Marcus/probes/marcus-api-cast-normnum.lean` | **closeout appendix re-check (batch 2)**: the `Rat.cast_*` family / `norm_num` boundaries / reciprocals and cross-multiplication / `field_simp` failure paths | as above |
 
-> `proofs/probes/marcus-statement-skeleton.lean` is the **statement authority** (owned by the lead, containing placeholder proofs);
+> `theories/Marcus/probes/marcus-statement-skeleton.lean` is the **statement authority** (owned by the lead, containing placeholder proofs);
 > `marcus-proof-skeletons.lean` is its **compilable completed version**, with signatures matching literally verbatim and only the proof bodies filled in.
 
 ---
@@ -207,7 +207,7 @@ The 30 found **legal** by measurement (usable as binder names, `example (ε : �
 
 ## 2026-09-20 — Group A: exp layer (M3 critical path) — api_researcher — all exist; key point: `Real.exp_lt_exp` is itself an iff
 
-**Probe**: `proofs/probes/marcus-exp-api.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-exp-api.lean` (0 error / 0 warning)
 
 `#check` raw output (pasted in full):
 
@@ -251,7 +251,7 @@ For a readable step-by-step version (the same proof expanded) see `L4_stepwise` 
 
 ## 2026-09-20 — Group B: division/order (M3 critical path) — api_researcher — all exist (2 drifted)
 
-**Probe**: `proofs/probes/marcus-order-api.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-order-api.lean` (0 error / 0 warning)
 
 `#check` raw output:
 
@@ -297,7 +297,7 @@ and `div_lt_div_iff_of_pos_right` (**the same denominator**) are **two different
 
 ## 2026-09-20 — Group C: monotonicity of squares/powers — api_researcher — the least-effort route to `0 ≤ a < b ⇒ a² < b²` is `sq_lt_sq₀` (or bare nlinarith)
 
-**Probe**: `proofs/probes/marcus-order-api.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-order-api.lean` (0 error / 0 warning)
 
 `#check` raw output:
 
@@ -343,7 +343,7 @@ by nlinarith                              -- measured: bare nlinarith goes throu
 
 Correct: `sq_pos_of_ne_zero hdq`. Writing `sq_pos_of_ne_zero dq hdq` reports
 `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`.
-⚠️ **`plan.md` §7.2 originally wrote it with two explicit arguments, which is wrong** — this entry is the official correction.
+⚠️ **`theories/Marcus/plan.md` §7.2 originally wrote it with two explicit arguments, which is wrong** — this entry is the official correction.
 
 **C-3**: the conclusion of `mul_self_lt_mul_self` is `a * a < b * b` (`*`, not `^`); a direct `exact` against
 `a^2 < b^2` gives a `type mismatch`; one needs `simpa only [pow_two] using mul_self_lt_mul_self ha hab`.
@@ -353,7 +353,7 @@ the argument order is `(hab : a < b) (ha : 0 ≤ a)` followed by `{n : ℕ}`, an
 
 ## 2026-09-20 — Group D: multiplication/order — api_researcher — all exist; `pos_of_mul_pos_left/right` are extremely easy to swap
 
-**Probe**: `proofs/probes/marcus-exp-api.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-exp-api.lean` (0 error / 0 warning)
 
 `#check` raw output:
 
@@ -392,7 +392,7 @@ Both are at `Mathlib/Algebra/Order/GroupWithZero/Unbundled.lean:448,451`.
 
 ## 2026-09-20 — Group E: monotonicity wrappers — api_researcher — only `lt_iff_lt` and the two ready-made `StrictMonoOn` are practical
 
-**Probe**: `proofs/probes/marcus-order-api.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-order-api.lean` (0 error / 0 warning)
 
 `#check` raw output:
 
@@ -445,7 +445,7 @@ theorem barrier_strictAntiOn_Iic {lam : ℝ} (hlam : 0 < lam) :
 
 ## 2026-09-20 — Group F: ℚ layer and ℚ→ℝ transfer — api_researcher — the cast lemmas are all iffs; `decide` is reliable only for integer literals
 
-**Probe**: `proofs/probes/marcus-tactic-api.lean` + `proofs/probes/marcus-ident-rat-api.lean` (both 0 error)
+**Probe**: `theories/Marcus/probes/marcus-tactic-api.lean` + `theories/Marcus/probes/marcus-ident-rat-api.lean` (both 0 error)
 
 `#check` raw output:
 
@@ -503,7 +503,7 @@ theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) :
 
 ## 2026-09-20 — Group G: tactic usability, measured — api_researcher — all three goal shapes pass; `gcongr`/`field_simp` are conditional
 
-**Probe**: `proofs/probes/marcus-tactic-api.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-tactic-api.lean` (0 error / 0 warning)
 
 **G-1 (the shape specified by the task, 1)**: `positivity` closing step — **passes**, and the shortest form is one line:
 
@@ -597,7 +597,7 @@ that simp cannot derive, so one must supply `ne_of_lt h` or
 
 ## 2026-09-20 — monotonicity of the two barrier branches and monotonicity of rate (critical M2/M3 goal shapes) — api_researcher — three shortest measured skeletons
 
-**Probe**: `proofs/probes/marcus-proof-skeletons.lean` (35 theorems, 0 error / 0 warning / no unfinished proofs)
+**Probe**: `theories/Marcus/probes/marcus-proof-skeletons.lean` (35 theorems, 0 error / 0 warning / no unfinished proofs)
 
 **(1) Right branch (`0 < lam`, lemma 2 / `barrier_mono_of_pos`) — 3 lines**:
 
@@ -700,7 +700,7 @@ then `Real.exp_lt_exp.mp` gives the contradiction `1 < 1/4`).
 
 ## 2026-09-20 — Closeout appendix: the `≤`-version lemmas + the `rate_ratio` chain — api_researcher — all 6 new names exist, signatures filed
 
-**Probe**: `proofs/probes/marcus-api-closeout.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-api-closeout.lean` (0 error / 0 warning)
 
 What was re-checked: a batch of new names reported by the M2/M3/M4a/M5a deliverers in their respective `#check`s. **Each was re-run independently, not copied.**
 
@@ -760,7 +760,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
 
 ## 2026-09-20 — Closeout appendix: additions to the Group B ban list — api_researcher — `div_lt_div_of_neg_right` does not exist; `a` in `sq_pos_of_ne_zero` is implicit
 
-**Probe**: `proofs/probes/marcus-api-closeout.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-api-closeout.lean` (0 error / 0 warning)
 
 - `div_lt_div_of_neg_right` — **re-checked and confirmed nonexistent** (`unknown identifier`).
   The only tool available under a negative divisor is `div_lt_div_right_of_neg (hc : c < 0) : a / c < b / c ↔ b < a`
@@ -769,11 +769,11 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
   a ≠ 0 → 0 < a ^ 2` — **`a` is an implicit argument**; the correct form is `sq_pos_of_ne_zero hdq`;
   writing `sq_pos_of_ne_zero dq hdq` reports
   `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`.
-  ⚠️ This entry also **corrects the old hint in `plan.md` §7.2** (the old hint wrote two explicit arguments; the lead has already fixed it).
+  ⚠️ This entry also **corrects the old hint in `theories/Marcus/plan.md` §7.2** (the old hint wrote two explicit arguments; the lead has already fixed it).
 
 ## 2026-09-20 — Closeout appendix: Group C tool facts (`decide` domain / three corrections to plan §8.2) — api_researcher — 4 items re-checked, 1 characterized by measurement
 
-**Probe**: `proofs/probes/marcus-api-closeout.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-api-closeout.lean` (0 error / 0 warning)
 
 **C-1 the reliable domain of `by decide` on ℚ** (consistent with the re-check):
 
@@ -782,7 +782,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
   `'Decidable' instance … did not reduce to 'isTrue' or 'isFalse'` (both `0.5` and `3/4` reproduce it).
 - ⇒ **Standard**: integer arguments use `decide`; those containing division/decimals use `norm_num [zoneQ]`.
 
-**C-2 corrections to three old examples in `plan.md` §8.2** (I built a minimal reproduction for each of the three and **measured each one**):
+**C-2 corrections to three old examples in `theories/Marcus/plan.md` §8.2** (I built a minimal reproduction for each of the three and **measured each one**):
 
 1. **The direction of `rw [← zoneQ_eq_zone]` is case-dependent; it is not that one side is wrong** (characterized here from my measurements, which is more accurate than "the direction is reversed"):
    the rewrite pattern of `←` is `zone ↑?lam ↑?x`, and the forward pattern is `zoneQ ?lam ?x`.
@@ -816,7 +816,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
 
 ## 2026-09-20 — Closeout appendix batch 2: the Group F `Rat.cast_*` family (M5a `barrierQ_cast`) — api_researcher — all 10 names exist; two pitfalls of "opposite tail rules"
 
-**Probe**: `proofs/probes/marcus-api-cast-normnum.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-api-cast-normnum.lean` (0 error / 0 warning)
 
 `#check` raw output (`@` form, to expose the implicit arguments):
 
@@ -851,7 +851,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
 
 ## 2026-09-20 — Closeout appendix batch 2: the reliable-domain boundary of `norm_num` — api_researcher — it does not know the positivity of `Real.exp`
 
-**Probe**: `proofs/probes/marcus-api-cast-normnum.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-api-cast-normnum.lean` (0 error / 0 warning)
 
 **Re-check confirmed** (a measured deviation on M5b `inst_I7_unphysical_rate_not_pos`): the phrasing in the dispatch prompt,
 `intro h; have := h 0; norm_num [rate, barrier] at this`, **is not enough to close the goal** —
@@ -879,7 +879,7 @@ The backup tool on the same chain, `mul_neg_of_neg_of_pos (ha : a < 0) (hb : 0 <
 
 ## 2026-09-20 — Closeout appendix batch 2: Group D reciprocals / cross-multiplication / `field_simp` failure paths — api_researcher — 3 names exist, direction pitfalls pinned down
 
-**Probe**: `proofs/probes/marcus-api-cast-normnum.lean` (0 error / 0 warning)
+**Probe**: `theories/Marcus/probes/marcus-api-cast-normnum.lean` (0 error / 0 warning)
 
 `#check` raw output:
 
@@ -895,7 +895,7 @@ div_lt_iff₀.{u_2} {G₀} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneCl
 
 **D-3 (direction pitfall)**: the conclusion of `one_div_le_one_div_of_le ha h` is **`1 / b ≤ 1 / a`** —
 taking reciprocals of `a ≤ b` **flips the direction**. This log had not recorded the name before (it had only appeared in a
-`#check` in `proofs/probes/marcus-prover_d2-scratch.lean:38`, and is used by `hgeom_of_nonoverlap` in
+`#check` in `theories/Marcus/probes/marcus-prover_d2-scratch.lean:38`, and is used by `hgeom_of_nonoverlap` in
 `PhotoLean/Marcus/Reorg.lean`); it is filed now.
 
 **D-4 (the three-step method for inequalities with several denominators)**:
@@ -916,7 +916,7 @@ the 5 signatures of `Sharp.lean` were cross-compared in three places (`plan §7.
   — ⚠️ **the signature contains no positivity hypothesis at all** (no `hkB` / `hT` / `hA`).
   Mechanism: Lean's division-by-zero convention `x / 0 = 0` makes `barrier 0 x = 0`, so the rate is constantly `A`;
   the descriptor demands `rate … 2 < rate … 1`, i.e. `A < A`, and `lt_irrefl` closes it.
-  For a compilable proof body see `sharp_lam_pos_of_eq` in `proofs/probes/marcus-proof-skeletons.lean`.
+  For a compilable proof body see `sharp_lam_pos_of_eq` in `theories/Marcus/probes/marcus-proof-skeletons.lean`.
 - Other degenerate-point lemmas on the same chain: `barrier_at_lam` (`ring`, no hypotheses), `barrier_zero_lam` (`ring`, no hypotheses),
   `barrier_symm` (`ring_nf`, `lam ≠ 0` unused by the proof).
 

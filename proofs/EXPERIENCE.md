@@ -69,7 +69,7 @@
   1. Lean 侧标识符全部 ASCII：`lam` / `lamIn` / `lamOut` / `nSq` / `epsS` / `dE` / `dq` /
      `a1` / `a2`（物理记号只留在文档里）；
   2. 含除法的有理判定改用 `norm_num [zoneQ]`；纯整数参数保留 `decide`；
-  3. 骨架放 `proofs/probes/marcus-statement-skeleton.lean`（**不在 `SOURCE_DIRS`**）→
+  3. 骨架放 `theories/Marcus/probes/marcus-statement-skeleton.lean`（**不在 `SOURCE_DIRS`**）→
      31 处 sorry warning、**0 error**；末尾 4 个风险探针（`decide`、`Real.exp_lt_exp.mpr`、
      `positivity`、`nlinarith` + `div_lt_div_of_pos_right`）**全部真通过**，即 M2 的
      关键目标形态已有一条可用内核。
@@ -90,7 +90,7 @@
   `lam < 0` 使 `barrier lam ·` 在反转区内**递减**，于是 `exp(-Φ/(kBT))` 递增、
   再乘负的 `A` 得**严格递减** —— 描述成立，但速率是**负的**（非物理）。
   （另一条非物理分支：`lam = 0` 时 Lean 的除零约定使 `barrier 0 x = 0`，速率恒为 `A`，严格性失败。）
-- 奏效（写进 `plan.md` §7.1 的修正语句）：把"速率处处为正"并入刻画：
+- 奏效（写进 `theories/Marcus/plan.md` §7.1 的修正语句）：把"速率处处为正"并入刻画：
   `((∀ x, 0 < rate A lam kB T x) ∧ InvertedDescriptor A lam kB T) ⟺ 0 < A ∧ 0 < lam`
   （在物理前提 `0 < kB`、`0 < T` 下）；必要性分 `lam = 0` 与 `lam < 0` 两支，
   两支都只需 M2 的现成引理。
@@ -107,7 +107,7 @@
 - 目标：`PhotoLean/Marcus/Basic.lean` 的
   `zone_eq_normal_iff` / `zone_eq_barrierless_iff` / `zone_eq_inverted_iff` / `zone_trichotomy`
   （`zone lam x := if x < lam then .normal else if x = lam then .barrierless else .inverted`）。
-- 试过且失败（四条，全部实测报错，探针 `proofs/probes/marcus-prover_a-scratch.lean` 留档）：
+- 试过且失败（四条，全部实测报错，探针 `theories/Marcus/probes/marcus-prover_a-scratch.lean` 留档）：
   1. `iff_of_false (by decide) (ne_of_lt h).symm` →
      `application type mismatch: Ne.symm (ne_of_lt h) has type lam ≠ x but is expected to have type ¬x = lam`。
      **`ne_of_lt h : a ≠ b` 的方向已经是证明所需的 `¬(a = b)`，多套一层 `Ne.symm` 反而把方向拧反**。
@@ -148,10 +148,10 @@
 ## 2026-09-20 — M4b 微观重组能正性（`Marcus/Reorg.lean`，零依赖支线） — prover_d — DONE
 
 - 目标：`PhotoLean/Marcus/Reorg.lean`（只 `import Mathlib`）的 2 个定义 + 4 条定理；
-  签名必须与 `proofs/probes/marcus-statement-skeleton.lean` 的 M4b 段**逐字一致**
+  签名必须与 `theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M4b 段**逐字一致**
   （已用脚本抽取两侧语句做 diff 验证：6/6 VERBATIM MATCH）。
 - 试过且失败（3 条，全部可迁移）：
-  1. **`plan.md` §7.2 的证明提示在 API 层是错的**：照抄提示写 `sq_pos_of_ne_zero dq hdq`
+  1. **`theories/Marcus/plan.md` §7.2 的证明提示在 API 层是错的**：照抄提示写 `sq_pos_of_ne_zero dq hdq`
      → `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`。
      v4.17 实测签名为 `∀ {R} [LinearOrderedSemiring R] [ExistsAddOfLE R] {a : R}, a ≠ 0 → 0 < a ^ 2`
      —— **`a` 是隐式参数**，正确写法 `sq_pos_of_ne_zero hdq`。
@@ -189,16 +189,16 @@
 
 ## 2026-09-20 — ⚠️ lead 的并发提交事故：`git add -A` 吞掉工人的中间产物 — lead — FAIL→已修正
 
-- 目标：把 `plan.md` §8.3 的文献参数回填与任务板状态更新提交。
+- 目标：把 `theories/Marcus/plan.md` §8.3 的文献参数回填与任务板状态更新提交。
 - 试过且失败：提交时用了 `git add -A`（图省事）。当时有三个工人在并发写自己的工作文件，
   于是：
-  - `e53d562`（本应是"任务板 + lakefile"）里混进了 `proofs/LITERATURE.md` 的 453 行初稿、
+  - `e53d562`（本应是"任务板 + lakefile"）里混进了 `theories/Marcus/LITERATURE.md` 的 453 行初稿、
     `api_researcher` 的两个探针、`prover_b` 的 scratch 探针，以及 **`marcus-lemma-skeletons.lean` 的删除**；
   - `c000996`（本应是"plan 文档更新"）里混进了 **`PhotoLean/Marcus/Barrier.lean` 的 WIP** 与两个 scratch 探针。
   后果：**`barrier_nonneg`（M2 第一条）失去了自己的 per-lemma 提交** —— 内容落在一个
   标题为 `docs(plan): ...` 的提交里，审计轨迹被污染。
 - 奏效（修正）：
-  1. **规则写进任务板**：lead 只用 `git add <显式路径>`（`plan.md`/`proofs/TASKS.md`/`proofs/EXPERIENCE.md`/`lakefile.toml`），
+  1. **规则写进任务板**：lead 只用 `git add <显式路径>`（`theories/Marcus/plan.md`/`theories/Marcus/TASKS.md`/`proofs/EXPERIENCE.md`/`lakefile.toml`），
      **永不 `git add -A`/`git add .`**；工人的对应规则是"只 add 自己的属主文件"；
   2. 把偏差**如实记在任务板** `barrier_nonneg` 行（不伪造一个"补提交"来回填审计轨迹 —— 那比偏差本身更糟）；
   3. 通知受影响工人：不要重试已被吸收的提交，继续按 lemma 提交余下部分。
@@ -232,7 +232,7 @@
 ## 2026-09-20 — M2 势垒代数（9 条，含 μ/λ 两支方向反转） — prover_a — DONE
 
 - 目标：`PhotoLean/Marcus/Barrier.lean`（只 `import PhotoLean.Marcus.Basic`，**不新建任何定义**）的 9 条定理，
-  签名须与 `proofs/probes/marcus-statement-skeleton.lean` 的 M2 段**逐字一致**：
+  签名须与 `theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M2 段**逐字一致**：
   `barrier_nonneg` / `barrier_at_lam` / `barrier_symm` / `barrier_min_at_lam` / `barrier_mono_of_pos` /
   `barrier_antitone_of_pos` / `barrier_antitone_of_neg` / `barrier_zero_lam` / `barrier_mono_cases`
   （后三者是"方向反转"与退化支：`lam < 0` 时反转区内势垒**递减**、`lam = 0` 时恒零）。
@@ -284,7 +284,7 @@
     `have h4 : (0:ℝ) < 4*lam := by positivity` → `have hsq : … := by nlinarith` → `exact div_lt_div_of_pos_right hsq h4`；
     `barrier_nonneg` / `barrier_min_at_lam` 用 `unfold barrier; positivity`（后者先 `rw [barrier_at_lam]`）；
     `barrier_at_lam` / `barrier_zero_lam` 直接 `simp [barrier]`。
-  - 实测确认的名字（v4.17.0，探针 `proofs/probes/marcus-prover_a2-scratch.lean` 留 `#check` 原文）：
+  - 实测确认的名字（v4.17.0，探针 `theories/Marcus/probes/marcus-prover_a2-scratch.lean` 留 `#check` 原文）：
     `@div_lt_div_of_pos_right : a < b → 0 < c → a / c < b / c`；
     `@div_lt_div_right_of_neg : c < 0 → (a / c < b / c ↔ b < a)`；
     `@div_lt_div_iff_of_pos_right : 0 < c → (a / c < b / c ↔ a < b)`；
@@ -335,14 +335,14 @@
     反例 `λ=-3/2, τ=-1, A=1`（`λτ>0, A>0` ⇒ 描述成立且速率处处正，但 `0<λ`、`0<τ` 都不成立）。
 - 奏效：文献分支用**穷举数值复核**（λ,τ,A 各取 −2…2 全组合，0 反例）定出真正的等价式：
   `desc ⟺ 0 < A·λ/τ`（等价 `0 < A·λ·τ`）；`(∀x, 0<rate) ∧ desc ⟺ 0 < A ∧ 0 < λ·τ`。
-  而 `plan.md` §7.1 的 `descriptor_sharp` **恰好规避了全部陷阱**：它把 `0<kB`、`0<T` 放**前提**
+  而 `theories/Marcus/plan.md` §7.1 的 `descriptor_sharp` **恰好规避了全部陷阱**：它把 `0<kB`、`0<T` 放**前提**
   （⇒ `0<τ`），于是 `⟺` 退化为 `0<A ∧ 0<lam` —— **计划写法无需修改**，已由 M4a 交付并过门。
 - 可复用模式（文献分支自己总结的，值得推广）：
   **"锐利刻画的 `⟺` 右边必须与左边的合取项一一对应。"**
   `desc` 的信息量只有 `sign(A·λ/τ)`（**一个乘积**），想从它反推三个参数**各自的符号**是不可能的；
   要反推就必须把"速率正性"这类额外信息**并入左边**。**先数左边的信息量，再写右边。**
 - 副产品（诚实性）：文献用逐化合物数据算出经典公式在反转区**下降过快约 3.6 个数量级**
-  （预言 5.1 个数量级 vs 实测 1.46 个数量级）⇒ 已写进 `plan.md` §8.3，
+  （预言 5.1 个数量级 vs 实测 1.46 个数量级）⇒ 已写进 `theories/Marcus/plan.md` §8.3，
   限定实例层文案**只能**声称"经典模型满足描述"，**不能**声称预测实测速率。
 
 ## 2026-09-20 — M3 速率层（6 条，两批）+ M5a 判定层 — prover_b / prover_c — DONE

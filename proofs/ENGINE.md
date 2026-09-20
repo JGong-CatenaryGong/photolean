@@ -33,15 +33,39 @@
 
 | 文件 | 作用 | 写入者（唯一真源） |
 |---|---|---|
-| `plan.md` | 理论规划：里程碑、语句、证明草图、sprint 顺序、验收标准 | 人类 + lead |
-| `proofs/TASKS.md` | 任务板：状态唯一真源 | **仅 lead** 打勾 |
+| `theories/Marcus/plan.md` | 理论规划：里程碑、语句、证明草图、sprint 顺序、验收标准 | 人类 + lead |
+| `theories/Marcus/TASKS.md` | 任务板：状态唯一真源 | **仅 lead** 打勾 |
 | `proofs/EXPERIENCE.md` | 经验库：成败模式，跨轮复用 | 所有角色回写 |
 | `proofs/API-NOTES.md` | mathlib API 校准日志（名字漂移的唯一真源） | api_researcher |
-| `proofs/LITERATURE.md` | 文献调研记录：源、结论、**可形式化含义** | literature_researcher |
-| `proofs/probes/` | `#check` 探针，可提交 | api_researcher |
+| `theories/Marcus/LITERATURE.md` | 文献调研记录：源、结论、**可形式化含义** | literature_researcher |
+| `theories/Marcus/probes/` | `#check` 探针，可提交 | api_researcher |
+| `theories/Marcus/RESULTS.md` | **唯一的双语文件**：面向人类提问的答复，每节英文原文 + 中文对照 | lead |
 
 **规则：任何角色都不得绕过 TASKS.md 声称任务完成。**
 工人报告 DONE ≠ 任务 DONE；只有 verifier PASS 后由 lead 打勾。
+
+## 1.5 语言政策（Language Policy）
+
+产物一个语言，对话另一个语言。原因很实际：模型在英文下写 Lean 注释与
+markdown 更稳、检索 mathlib 文档更顺；而人类读者需要用中文参与判断。
+两者不该互相污染，**更不该靠维护翻译副本来同时满足** —— 镜像文件是双份成本，
+且必然漂移（违反"单一真源"）。
+
+| 对象 | 语言 |
+|---|---|
+| 上表一切**证明过程产物**的 markdown | **English** |
+| Lean 代码注释 / docstring、commit message、分支名、任务板行 | **English** |
+| 与人类的对话：答复、提问、计划、状态汇报、判决摘要 | **中文** |
+| `theories/Marcus/RESULTS.md` | **双语**（唯一例外：每节英文原文 + 中文对照） |
+| Lean 标识符、定理名、mathlib 名、命令原始输出 | **原样**，不翻译 |
+
+**禁止镜像副本**（`.en.md` / `-en.md` / `.zh.md`）：一个产物写一次、写英文。
+
+**控制面例外**：`AGENTS.md`、`proofs/ENGINE.md`、`proofs/ENGINE.yml` 是工作区
+规则与契约本身（人类维护、agent 读取），保持中文。
+
+这条政策同时编码在 preset 的 lead persona、全部 7 个角色 persona 与
+`formalization-engine` skill 中 —— 换 preset 版本不会丢，因为工作区自己也声明了。
 
 ## 2. 角色名册（项目无关）
 
@@ -55,7 +79,7 @@ persona 只描述"怎么做"，不写死"哪个文件"。
 | `verifier` | `verifier` | **只读** | 独立跑证据门，返回 PASS/FAIL |
 | `literature_researcher` | `literature_researcher` | 读写 `LITERATURE.md` | 文献调研，产出"可形式化含义" |
 
-`prover_a..d` 是**池**而非硬绑定：具体区域划分由 `plan.md` 的里程碑与
+`prover_a..d` 是**池**而非硬绑定：具体区域划分由 `theories/Marcus/plan.md` 的里程碑与
 `TASKS.md` 的属主列决定。一个项目只有两个区域就只用 a、b。
 
 ## 3. 验收门（脚本化，引擎不内联判据）
@@ -107,7 +131,7 @@ git log -1 --oneline                         # 4. 提交信息符合 feat(<area>
 3. **可形式化含义**：哪些假设能被显式化为 Lean 前提、哪些是物理近似、哪些
    在当前 mathlib 下不可表达（这一栏是**唯一**对形式化有用的部分）。
 
-原始论文 PDF 与 LaTeX 源放 `proofs/literature/`，禁止把整篇 PDF 内容灌进上下文。
+原始论文 PDF 与 LaTeX 源放 `theories/Marcus/literature/`，禁止把整篇 PDF 内容灌进上下文。
 
 ## 6. 工具链环境（本机特有，务必遵守）
 

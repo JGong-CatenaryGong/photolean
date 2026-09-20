@@ -3,7 +3,7 @@ PhotoLean.Marcus.Instances — M5b 第一批：实例代入与区域判定（人
 
 需求原文：「用一些实例代入这个形式化理论，判断该实例是否会符合马库斯反转区的描述」。
 本文件把每个实例的 `(lam, x)` 代进 M1 的描述层，给出**有名字的判定定理**：
-判定结论不是文档里的声称，而是由内核检查的证明项给出（`plan.md` §11 的 M5 附加要求）。
+判定结论不是文档里的声称，而是由内核检查的证明项给出（`theories/Marcus/plan.md` §11 的 M5 附加要求）。
 
 **判定证据链（两层，缺一不可）**
 
@@ -19,10 +19,10 @@ PhotoLean.Marcus.Instances — M5b 第一批：实例代入与区域判定（人
      ℝ 十进制字面量与 ℚ 分数字面量之间的桥接是**显式**的 `norm_num` 等式
      （如 `(1.20 : ℝ) = ((120 : ℚ) / 100 : ℚ)`），不是隐含的 coercion 猜想。
 
-**参数来源**：`plan.md` §8.3 与 `proofs/LITERATURE.md` §实例参数候选表（只用「已核实」条目）。
+**参数来源**：`theories/Marcus/plan.md` §8.3 与 `theories/Marcus/LITERATURE.md` §实例参数候选表（只用「已核实」条目）。
 约定 `x := -ΔG°`（放能取正）；**区域判定只用 `(lam, x)`**，与 `A`、`kB`、`T` 无关
-（`plan.md` §8.3：`T = 298.15 K` 只是建模取值，不声称它是某实验的真实温度）。
-所有物理参数都**显式写在语句里**，不折进定义（`plan.md` §2.4 的证明纪律）。
+（`theories/Marcus/plan.md` §8.3：`T = 298.15 K` 只是建模取值，不声称它是某实验的真实温度）。
+所有物理参数都**显式写在语句里**，不折进定义（`theories/Marcus/plan.md` §2.4 的证明纪律）。
 
 **本批范围**：只含**区域判定** I1–I6（Sprint 3 的 I1–I3 区域部分 + Sprint 5 的文献参数部分），
 不依赖 `Rate` / `Sharp`。依赖速率比较与描述算子的条目登记在文末，留待后续里程碑追加。
@@ -48,7 +48,7 @@ formalized theory, and decide whether the instance matches the description of th
 inverted region.'
 This file substitutes each instance's `(lam, x)` into the M1 description layer and produces
 **named decision theorems**: the decision is not a claim written in a document, but a proof term
-checked by the kernel (the extra M5 requirement of `plan.md` §11).
+checked by the kernel (the extra M5 requirement of `theories/Marcus/plan.md` §11).
 
 **The decision evidence chain (two layers, both indispensable)**
 
@@ -66,13 +66,13 @@ checked by the kernel (the extra M5 requirement of `plan.md` §11).
      fractional literals is an **explicit** `norm_num` equation
      (e.g. `(1.20 : ℝ) = ((120 : ℚ) / 100 : ℚ)`), not an implicit coercion conjecture.
 
-**Where the parameters come from**: `plan.md` §8.3 and the candidate-instance-parameter table in
-`proofs/LITERATURE.md` (only entries with verification status 'verified').
+**Where the parameters come from**: `theories/Marcus/plan.md` §8.3 and the candidate-instance-parameter table in
+`theories/Marcus/LITERATURE.md` (only entries with verification status 'verified').
 Convention: `x := -ΔG°` (exergonic values are taken positive); **region decisions use
-`(lam, x)` only** and are independent of `A`, `kB`, `T` (`plan.md` §8.3: `T = 298.15 K` is
+`(lam, x)` only** and are independent of `A`, `kB`, `T` (`theories/Marcus/plan.md` §8.3: `T = 298.15 K` is
 merely a modelling value, and no claim is made that it is the true temperature of any
 experiment). All physical parameters are written **explicitly in the statements** and are not
-folded into definitions (the proof discipline of `plan.md` §2.4).
+folded into definitions (the proof discipline of `theories/Marcus/plan.md` §2.4).
 
 **Scope of this batch**: only the **region decisions** I1–I6 (the region part of Sprint 3's
 I1–I3 plus the literature-parameter part of Sprint 5), independent of `Rate` / `Sharp`.
@@ -223,7 +223,7 @@ theorem inst_I2_not_inverted : ¬ InvertedRegion (1 : ℝ) (3 / 4) := by
 
 /-! ## I3 — 文献参数·无势垒点附近：MCC 系列 `lam = 1.20, x = 1.23`
 
-来源：`plan.md` §8.3 与 `proofs/LITERATURE.md` §实例参数候选表（核实状态 `已核实`）——
+来源：`theories/Marcus/plan.md` §8.3 与 `theories/Marcus/LITERATURE.md` §实例参数候选表（核实状态 `已核实`）——
 Miller–Calcaterra–Closs 联苯–androstane–受体自由基负离子（流体溶液，间距 10 Å）：
 `lam = lam_s(0.75) + lam_v(0.45) = 1.20` eV，最优（近无势垒）驱动力 `x ≈ 1.23` eV，
 文献给出 `ΔG‡ ≈ 0.0002` eV。
@@ -235,7 +235,7 @@ Miller–Calcaterra–Closs 联苯–androstane–受体自由基负离子（流
 English: ## I3 — Literature parameters, near the barrierless point: the MCC series
 `lam = 1.20, x = 1.23`
 
-Source: `plan.md` §8.3 and the candidate-instance-parameter table in `proofs/LITERATURE.md`
+Source: `theories/Marcus/plan.md` §8.3 and the candidate-instance-parameter table in `theories/Marcus/LITERATURE.md`
 (verification status 'verified') — Miller–Calcaterra–Closs biphenyl–androstane–acceptor radical
 anion (fluid solution, separation 10 Å): `lam = lam_s(0.75) + lam_v(0.45) = 1.20` eV, optimal
 (near-barrierless) driving force `x ≈ 1.23` eV, with the literature reporting `ΔG‡ ≈ 0.0002` eV.
@@ -281,7 +281,7 @@ theorem inst_I3_inverted : InvertedRegion (1.20 : ℝ) 1.23 := by
 二者都满足 `x > lam = 1.20` ⇒ **反转区**。这正是「马库斯反转区」的实验落点：
 **在经典模型内**，驱动力超过重组能后速率随放能性增大而下降
 （速率下降的机器检查版本见本文件后半的 `inst_I4_mcc_rate_drop`；
-按 `plan.md` §8.3 的定量警示，**不得**读作对实验速率的断言）。
+按 `theories/Marcus/plan.md` §8.3 的定量警示，**不得**读作对实验速率的断言）。
 
 English: ## I4 — Literature parameters, inverted region: the MCC series `lam = 1.20`,
 `x = 2.40` and `x = 2.00`
@@ -291,7 +291,7 @@ series' upper bound, 2.00 is an interpolated scale value); both satisfy `x > lam
 ⇒ **inverted region**. This is precisely the experimental locus of the 'Marcus inverted region':
 **within the classical model**, once the driving force exceeds the reorganization energy the rate
 decreases as exergonicity grows (the machine-checked version of the rate drop is
-`inst_I4_mcc_rate_drop` later in this file; per the quantitative warning of `plan.md` §8.3 it
+`inst_I4_mcc_rate_drop` later in this file; per the quantitative warning of `theories/Marcus/plan.md` §8.3 it
 **must not** be read as an assertion about experimental rates).
 -/
 
@@ -388,7 +388,7 @@ theorem inst_I5_mcc_not_inverted : ¬ InvertedRegion (1.20 : ℝ) 0.60 := by
 
 /-! ## I6 — 文献参数·深反转区：光合反应中心 `lam = 0.25, x = 1.10`
 
-来源：`plan.md` §8.3 与 `proofs/LITERATURE.md` §实例参数候选表（`已核实`）——
+来源：`theories/Marcus/plan.md` §8.3 与 `theories/Marcus/LITERATURE.md` §实例参数候选表（`已核实`）——
 光合反应中心 BPh⁻ → BChl₂⁺ 回传（hole–electron recombination）：
 `lam = 0.25` eV，`x = 1.10` eV（Marcus Nobel Lecture 1992 p.88 正文）。
 `x = 1.10 ≫ 0.25 = lam` ⇒ **深反转区**：这是本实例集里 `x / lam` 最大的一条
@@ -397,7 +397,7 @@ theorem inst_I5_mcc_not_inverted : ¬ InvertedRegion (1.20 : ℝ) 0.60 := by
 English: ## I6 — Literature parameters, deep inverted region: the photosynthetic reaction
 centre `lam = 0.25, x = 1.10`
 
-Source: `plan.md` §8.3 and the candidate-instance-parameter table in `proofs/LITERATURE.md`
+Source: `theories/Marcus/plan.md` §8.3 and the candidate-instance-parameter table in `theories/Marcus/LITERATURE.md`
 ('verified') — photosynthetic reaction centre BPh⁻ → BChl₂⁺ back-transfer (hole–electron
 recombination): `lam = 0.25` eV, `x = 1.10` eV (Marcus Nobel Lecture 1992 p.88, main text).
 `x = 1.10 ≫ 0.25 = lam` ⇒ **deep inverted region**: this is the entry with the largest `x / lam`
@@ -431,23 +431,23 @@ end PhotoLean.Marcus
 /-! ## 待后续里程碑：速率比较与描述算子条目（**不在本批**）
 
 本批只交付**区域判定**（人类需求里「判断该实例是否符合反转区描述」的前半）。
-以下条目的语句已由 `proofs/probes/marcus-statement-skeleton.lean` 与 `plan.md` §7–§8 定稿，
+以下条目的语句已由 `theories/Marcus/probes/marcus-statement-skeleton.lean` 与 `theories/Marcus/plan.md` §7–§8 定稿，
 但证明依赖**尚未交付**的模块（`Marcus/Rate.lean` 的速率定理、`Marcus/Sharp.lean`
 的锐利刻画 / 描述算子结论），故本批**不写入**；待 lead 在 Sprint 5 派发后追加：
 
 | 条目 | 形状 | 依赖的定理 |
 |---|---|---|
-| 速率峰（`plan.md` §8.2 的 I3 / 本批 I3 的速率部分） | `x = lam` 处速率取最大（`A = kB·T = 1`） | `rate_peak_at_lam` |
+| 速率峰（`theories/Marcus/plan.md` §8.2 的 I3 / 本批 I3 的速率部分） | `x = lam` 处速率取最大（`A = kB·T = 1`） | `rate_peak_at_lam` |
 | 反转区速率递减（本批 I4 / I6 的速率部分） | `rate … 2.40 < rate … 2.00`（同 `A, kB, T`） | `inverted_rate_decreases` |
 | 正常区速率递增（本批 I5 的速率部分） | `rate … 0.60 < rate … 1.20`（同 `A, kB, T`） | `normal_rate_increases` |
-| 非物理反例 `lam ≤ 0`（`plan.md` §8.2 的 I6） | 描述算子不成立 ⇒ 判「不符合」 | `descriptor_fails_of_nonpos_lam` |
-| 非物理分支 `A < 0 ∧ lam < 0`（`plan.md` §8.2 的 I7） | 描述算子成立但速率非正 ⇒ 判「不可采纳」 | `inverted_descriptor_holds_of_neg` + 速率正性 |
+| 非物理反例 `lam ≤ 0`（`theories/Marcus/plan.md` §8.2 的 I6） | 描述算子不成立 ⇒ 判「不符合」 | `descriptor_fails_of_nonpos_lam` |
+| 非物理分支 `A < 0 ∧ lam < 0`（`theories/Marcus/plan.md` §8.2 的 I7） | 描述算子成立但速率非正 ⇒ 判「不可采纳」 | `inverted_descriptor_holds_of_neg` + 速率正性 |
 
 这些条目一旦交付，将把本文件的「区域判定」升级为「速率单调性 / 描述算子判定」。
 
 **编号说明（写给 verifier）**：本文件的 `inst_I3_*`–`inst_I6_*` 采用 **lead 在 M5b 第一批
 派发里的编号**（I3 = 文献无势垒点附近 `(1.20, 1.23)`；I4 = MCC 反转区对；I5 = MCC 正常区；
-I6 = 光合反应中心深反转区）。`plan.md` §8.2 表格的旧编号把 I3 留给「`x = lam` 速率峰」，
+I6 = 光合反应中心深反转区）。`theories/Marcus/plan.md` §8.2 表格的旧编号把 I3 留给「`x = lam` 速率峰」，
 把 I6/I7 留给非物理分支 —— 那几条依赖上述未交付模块，正好对应本注释的表格。
 
 English: ## For later milestones: rate comparisons and descriptor-operator entries
@@ -456,7 +456,7 @@ English: ## For later milestones: rate comparisons and descriptor-operator entri
 This batch delivers only the **region decisions** (the first half of the human requirement,
 'decide whether the instance matches the inverted-region description').
 The statements of the following entries were finalized by
-`proofs/probes/marcus-statement-skeleton.lean` and `plan.md` §7–§8, but their proofs depend on
+`theories/Marcus/probes/marcus-statement-skeleton.lean` and `theories/Marcus/plan.md` §7–§8, but their proofs depend on
 modules **not yet delivered** (the rate theorems of `Marcus/Rate.lean`, the sharp
 characterization / descriptor-operator conclusions of `Marcus/Sharp.lean`), so they are
 **not written** into this batch; they are to be appended once the lead dispatches them in
@@ -464,11 +464,11 @@ Sprint 5:
 
 | Entry | Shape | Depended-on theorem |
 |---|---|---|
-| rate peak (I3 of `plan.md` §8.2 / the rate part of I3 in this batch) | the rate is maximal at `x = lam` (`A = kB·T = 1`) | `rate_peak_at_lam` |
+| rate peak (I3 of `theories/Marcus/plan.md` §8.2 / the rate part of I3 in this batch) | the rate is maximal at `x = lam` (`A = kB·T = 1`) | `rate_peak_at_lam` |
 | rate decreasing in the inverted region (the rate part of I4 / I6 in this batch) | `rate … 2.40 < rate … 2.00` (same `A, kB, T`) | `inverted_rate_decreases` |
 | rate increasing in the normal region (the rate part of I5 in this batch) | `rate … 0.60 < rate … 1.20` (same `A, kB, T`) | `normal_rate_increases` |
-| non-physical counterexample `lam ≤ 0` (I6 of `plan.md` §8.2) | the descriptor operator fails ⇒ decide 'does not match' | `descriptor_fails_of_nonpos_lam` |
-| non-physical branch `A < 0 ∧ lam < 0` (I7 of `plan.md` §8.2) | the descriptor operator holds but the rate is not positive ⇒ decide 'not acceptable' | `inverted_descriptor_holds_of_neg` + rate positivity |
+| non-physical counterexample `lam ≤ 0` (I6 of `theories/Marcus/plan.md` §8.2) | the descriptor operator fails ⇒ decide 'does not match' | `descriptor_fails_of_nonpos_lam` |
+| non-physical branch `A < 0 ∧ lam < 0` (I7 of `theories/Marcus/plan.md` §8.2) | the descriptor operator holds but the rate is not positive ⇒ decide 'not acceptable' | `inverted_descriptor_holds_of_neg` + rate positivity |
 
 Once delivered, these entries will upgrade this file's 'region decisions' into 'rate monotonicity
 / descriptor-operator decisions'.
@@ -477,7 +477,7 @@ Once delivered, these entries will upgrade this file's 'region decisions' into '
 **numbering used by the lead in the M5b batch-1 dispatch** (I3 = near the literature's
 barrierless point `(1.20, 1.23)`; I4 = the MCC inverted-region pair; I5 = the MCC normal region;
 I6 = the deep inverted region of the photosynthetic reaction centre). The old numbering in the
-`plan.md` §8.2 table reserves I3 for the '`x = lam` rate peak' and I6/I7 for the non-physical
+`theories/Marcus/plan.md` §8.2 table reserves I3 for the '`x = lam` rate peak' and I6/I7 for the non-physical
 branches — those entries depend on the not-yet-delivered modules named above and correspond
 exactly to the table in this comment.
 -/
@@ -668,8 +668,8 @@ theorem inst_I7_unphysical_not_admissible :
 
 /-! ## I4 — 文献参数 MCC 系列的**描述算子实例化**（人类需求第三部分的核心判定）
 
-`lam = 1.20`（MCC 系列参数来源与第一批 I4 相同：`plan.md` §8.3 /
-`proofs/LITERATURE.md` §实例参数候选表，核实状态「已核实」）。三条按强度递进：
+`lam = 1.20`（MCC 系列参数来源与第一批 I4 相同：`theories/Marcus/plan.md` §8.3 /
+`theories/Marcus/LITERATURE.md` §实例参数候选表，核实状态「已核实」）。三条按强度递进：
 
 1. `inst_I4_mcc_descriptor_any_kT`：对**任意** `kBT > 0`，反转区描述成立（`A = 1`）——
    主定理 `inverted_descriptor_holds` 在文献参数上的实例化，同时是「判定与温度无关」的
@@ -686,7 +686,7 @@ English: ## I4 — **Descriptor-operator instantiation** for the literature MCC-
 parameters (the core decision of part three of the human requirement)
 
 `lam = 1.20` (the parameter source of the MCC series is the same as for I4 in the first batch:
-`plan.md` §8.3 / the candidate-instance-parameter table in `proofs/LITERATURE.md`, verification
+`theories/Marcus/plan.md` §8.3 / the candidate-instance-parameter table in `theories/Marcus/LITERATURE.md`, verification
 status 'verified'). The three entries progress in strength:
 
 1. `inst_I4_mcc_descriptor_any_kT`: for **arbitrary** `kBT > 0` the inverted-region description

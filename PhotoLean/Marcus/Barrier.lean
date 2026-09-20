@@ -1,7 +1,7 @@
 /-
 PhotoLean.Marcus.Barrier — M2 势垒代数（Marcus 反转区）。
 
-**语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M2 段
+**语句权威**：`theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M2 段
 （Sprint 0 已编译通过）。本文件 9 条定理签名与它**逐字一致**；
 证明体全部经内核检查（零占位证明、无自定义公理声明）。
 
@@ -24,7 +24,7 @@ PhotoLean.Marcus.Barrier — M2 势垒代数（Marcus 反转区）。
 
 English: PhotoLean.Marcus.Barrier — M2 barrier algebra (Marcus inverted region).
 
-**Statement authority**: the M2 section of `proofs/probes/marcus-statement-skeleton.lean`
+**Statement authority**: the M2 section of `theories/Marcus/probes/marcus-statement-skeleton.lean`
 (compiled in Sprint 0). The 9 theorem signatures in this file are **verbatim identical**
 to it; every proof body has been checked by the kernel (zero placeholder proofs, no
 custom axiom declarations).

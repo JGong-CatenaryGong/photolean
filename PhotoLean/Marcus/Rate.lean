@@ -1,7 +1,7 @@
 /-
 PhotoLean.Marcus.Rate — M3 速率层（Marcus 反转区）。
 
-**语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M3 段
+**语句权威**：`theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M3 段
 （Sprint 0 已编译通过）。本文件现有 **6 条**定理（Sprint 2 三条 `rate_pos` /
 `rate_gt_of_barrier_lt` / `rate_ratio` + Sprint 3 三条 `normal_rate_increases` /
 `inverted_rate_decreases` / `rate_peak_at_lam`），签名与它**逐字一致**
@@ -35,7 +35,7 @@ PhotoLean.Marcus.Rate — M3 速率层（Marcus 反转区）。
 English: PhotoLean.Marcus.Rate — the M3 rate layer (Marcus inverted region).
 
 English: **Statement authority**: the M3 section of
-`proofs/probes/marcus-statement-skeleton.lean` (already compiled in Sprint 0).
+`theories/Marcus/probes/marcus-statement-skeleton.lean` (already compiled in Sprint 0).
 This file currently contains **6** theorems (the three Sprint 2 ones `rate_pos` /
 `rate_gt_of_barrier_lt` / `rate_ratio` plus the three Sprint 3 ones
 `normal_rate_increases` / `inverted_rate_decreases` / `rate_peak_at_lam`), and

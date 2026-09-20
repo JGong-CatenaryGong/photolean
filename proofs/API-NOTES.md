@@ -4,7 +4,7 @@
 
 - prover 遇到不确定的 lemma 名时**不得猜测**，把问题交给 `api_researcher`。
 - 每条记录格式：`## <日期> — <主题> — <校准人> — <结论>`（附 `#check` 输出、源码位置或链接）。
-- `#check` 探针统一放 `proofs/probes/`，用 `proofs/scripts/lake env lean proofs/probes/<name>.lean` 运行；
+- `#check` 探针统一放 `theories/Marcus/probes/`，用 `proofs/scripts/lake env lean theories/Marcus/probes/<name>.lean` 运行；
   探针文件可提交（它们也是文档）。
 - 校准只针对"名字/签名"层；语句/证明改动由对应 prover 执行并在此留痕。
 - **mathlib 版本：v4.17.0**（rev 见 `lakefile.toml`）。名字漂移以此为基准。
@@ -13,15 +13,15 @@
 
 | 探针 | 覆盖 | 运行 |
 |---|---|---|
-| `proofs/probes/marcus-exp-api.lean` | A 组（exp 层）+ D 组（乘法/序） | `proofs/scripts/lake env lean proofs/probes/marcus-exp-api.lean` |
-| `proofs/probes/marcus-order-api.lean` | B 组（除法/序）+ C 组（平方/幂）+ E 组（单调性包装） | 同上换文件名 |
-| `proofs/probes/marcus-tactic-api.lean` | F 组（ℚ/cast）+ G 组（战术可用性实测） | 同上 |
-| `proofs/probes/marcus-ident-rat-api.lean` | 标识符禁止清单 + `decide` 对 ℚ 的可靠域 + lead 风险探针独立复核 | 同上 |
-| `proofs/probes/marcus-proof-skeletons.lean` | **M1–M5a 全部定理的证明体**（36 个 theorem，无 sorry） | 同上 |
-| `proofs/probes/marcus-api-closeout.lean` | **收尾追加复核**：`≤` 版引理 / `rate_ratio` 链 / `decide` 域 / plan §8.2 三处纠正 | 同上 |
-| `proofs/probes/marcus-api-cast-normnum.lean` | **收尾追加复核（第 2 批）**：`Rat.cast_*` 家族 / `norm_num` 边界 / 倒数与交叉相乘 / `field_simp` 失败路径 | 同上 |
+| `theories/Marcus/probes/marcus-exp-api.lean` | A 组（exp 层）+ D 组（乘法/序） | `proofs/scripts/lake env lean theories/Marcus/probes/marcus-exp-api.lean` |
+| `theories/Marcus/probes/marcus-order-api.lean` | B 组（除法/序）+ C 组（平方/幂）+ E 组（单调性包装） | 同上换文件名 |
+| `theories/Marcus/probes/marcus-tactic-api.lean` | F 组（ℚ/cast）+ G 组（战术可用性实测） | 同上 |
+| `theories/Marcus/probes/marcus-ident-rat-api.lean` | 标识符禁止清单 + `decide` 对 ℚ 的可靠域 + lead 风险探针独立复核 | 同上 |
+| `theories/Marcus/probes/marcus-proof-skeletons.lean` | **M1–M5a 全部定理的证明体**（36 个 theorem，无 sorry） | 同上 |
+| `theories/Marcus/probes/marcus-api-closeout.lean` | **收尾追加复核**：`≤` 版引理 / `rate_ratio` 链 / `decide` 域 / plan §8.2 三处纠正 | 同上 |
+| `theories/Marcus/probes/marcus-api-cast-normnum.lean` | **收尾追加复核（第 2 批）**：`Rat.cast_*` 家族 / `norm_num` 边界 / 倒数与交叉相乘 / `field_simp` 失败路径 | 同上 |
 
-> `proofs/probes/marcus-statement-skeleton.lean` 是**语句权威**（lead 所有，含 sorry 占位）；
+> `theories/Marcus/probes/marcus-statement-skeleton.lean` 是**语句权威**（lead 所有，含 sorry 占位）；
 > `marcus-proof-skeletons.lean` 是它的**可编译完成版**，签名逐字一致、只补证明体。
 
 ---
@@ -205,7 +205,7 @@ Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected 
 
 ## 2026-09-20 — A 组：exp 层（M3 关键路径）— api_researcher — 全部存在；关键点：`Real.exp_lt_exp` 本身就是 iff
 
-**探针**：`proofs/probes/marcus-exp-api.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-exp-api.lean`（0 error / 0 warning）
 
 `#check` 原始输出（完整粘贴）：
 
@@ -249,7 +249,7 @@ theorem rate_gt_of_barrier_lt {A lam kB T : ℝ} (hA : 0 < A) (hkT : 0 < kB * T)
 
 ## 2026-09-20 — B 组：除法/序（M3 关键路径）— api_researcher — 全部存在（2 个已漂移）
 
-**探针**：`proofs/probes/marcus-order-api.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-order-api.lean`（0 error / 0 warning）
 
 `#check` 原始输出：
 
@@ -295,7 +295,7 @@ div_lt_div_iff₀ {G₀} [CommGroupWithZero G₀] ... (hb : 0 < b) (hd : 0 < d) 
 
 ## 2026-09-20 — C 组：平方/幂单调 — api_researcher — `0 ≤ a < b ⇒ a² < b²` 最省事的是 `sq_lt_sq₀`（或裸 nlinarith）
 
-**探针**：`proofs/probes/marcus-order-api.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-order-api.lean`（0 error / 0 warning）
 
 `#check` 原始输出：
 
@@ -341,7 +341,7 @@ by nlinarith                              -- 实测裸 nlinarith 就能过，无
 
 正确：`sq_pos_of_ne_zero hdq`。写成 `sq_pos_of_ne_zero dq hdq` 会报
 `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`。
-⚠️ **`plan.md` §7.2 原先写成显式两参，是错的** —— 本条为正式纠正。
+⚠️ **`theories/Marcus/plan.md` §7.2 原先写成显式两参，是错的** —— 本条为正式纠正。
 
 **C-3**：`mul_self_lt_mul_self` 的结论是 `a * a < b * b`（`*` 不是 `^`），直接 `exact` 到
 `a^2 < b^2` 会 `type mismatch`；需要 `simpa only [pow_two] using mul_self_lt_mul_self ha hab`。
@@ -351,7 +351,7 @@ by nlinarith                              -- 实测裸 nlinarith 就能过，无
 
 ## 2026-09-20 — D 组：乘法/序 — api_researcher — 全部存在；`pos_of_mul_pos_left/right` 极易写反
 
-**探针**：`proofs/probes/marcus-exp-api.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-exp-api.lean`（0 error / 0 warning）
 
 `#check` 原始输出：
 
@@ -390,7 +390,7 @@ example {A u : ℝ} (h : 0 < A * Real.exp u) : 0 < A :=
 
 ## 2026-09-20 — E 组：单调性包装 — api_researcher — 实用的只有 `lt_iff_lt` 与两个现成 `StrictMonoOn`
 
-**探针**：`proofs/probes/marcus-order-api.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-order-api.lean`（0 error / 0 warning）
 
 `#check` 原始输出：
 
@@ -443,7 +443,7 @@ theorem barrier_strictAntiOn_Iic {lam : ℝ} (hlam : 0 < lam) :
 
 ## 2026-09-20 — F 组：ℚ 层与 ℚ→ℝ 转移 — api_researcher — cast 引理全是 iff；`decide` 只对整数字面量可靠
 
-**探针**：`proofs/probes/marcus-tactic-api.lean` + `proofs/probes/marcus-ident-rat-api.lean`（均 0 error）
+**探针**：`theories/Marcus/probes/marcus-tactic-api.lean` + `theories/Marcus/probes/marcus-ident-rat-api.lean`（均 0 error）
 
 `#check` 原始输出：
 
@@ -501,7 +501,7 @@ theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) :
 
 ## 2026-09-20 — G 组：战术可用性实测 — api_researcher — 三类目标形态全过；`gcongr`/`field_simp` 有条件
 
-**探针**：`proofs/probes/marcus-tactic-api.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-tactic-api.lean`（0 error / 0 warning）
 
 **G-1（题目指定形态 1）**：`positivity` 收尾 —— **通过**，最短就是一行：
 
@@ -595,7 +595,7 @@ example {a b : ℝ} (h : a < b) : a ^ 2 + b ^ 2 > 0 := by nlinarith [sq_nonneg a
 
 ## 2026-09-20 — barrier 两支单调与 rate 单调（M2/M3 关键目标形态）— api_researcher — 三条实测最短骨架
 
-**探针**：`proofs/probes/marcus-proof-skeletons.lean`（35 theorem，0 error / 0 warning / 无 sorry）
+**探针**：`theories/Marcus/probes/marcus-proof-skeletons.lean`（35 theorem，0 error / 0 warning / 无 sorry）
 
 **（1）右支（`0 < lam`，引理 2 / `barrier_mono_of_pos`）—— 3 行**：
 
@@ -698,7 +698,7 @@ theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T)
 
 ## 2026-09-20 — 收尾追加：`≤` 版引理 + `rate_ratio` 链 — api_researcher — 6 个新名字全部存在，签名已归档
 
-**探针**：`proofs/probes/marcus-api-closeout.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-api-closeout.lean`（0 error / 0 warning）
 
 复核对象：M2/M3/M4a/M5a 交付者在各自 `#check` 中报出的一批新名字。**逐条独立重跑，非照抄。**
 
@@ -758,7 +758,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
 
 ## 2026-09-20 — 收尾追加：B 组禁止清单增补 — api_researcher — `div_lt_div_of_neg_right` 不存在；`sq_pos_of_ne_zero` 的 `a` 是隐式
 
-**探针**：`proofs/probes/marcus-api-closeout.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-api-closeout.lean`（0 error / 0 warning）
 
 - `div_lt_div_of_neg_right` —— **复核确认不存在**（`unknown identifier`）。
   负除数下唯一可用的是 `div_lt_div_right_of_neg (hc : c < 0) : a / c < b / c ↔ b < a`
@@ -767,11 +767,11 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
   a ≠ 0 → 0 < a ^ 2` —— **`a` 是隐式参数**，正确写法 `sq_pos_of_ne_zero hdq`；
   写成 `sq_pos_of_ne_zero dq hdq` 报
   `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`。
-  ⚠️ 本条同时**订正 `plan.md` §7.2 的旧提示**（旧提示写成显式两参，已由 lead 修改）。
+  ⚠️ 本条同时**订正 `theories/Marcus/plan.md` §7.2 的旧提示**（旧提示写成显式两参，已由 lead 修改）。
 
 ## 2026-09-20 — 收尾追加：C 组工具事实（`decide` 域 / plan §8.2 三处纠正）— api_researcher — 4 条复核，1 条按实测定性
 
-**探针**：`proofs/probes/marcus-api-closeout.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-api-closeout.lean`（0 error / 0 warning）
 
 **C-1 `by decide` 对 ℚ 的可靠域**（复核一致）：
 
@@ -780,7 +780,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
   `'Decidable' instance … did not reduce to 'isTrue' or 'isFalse'`（`0.5` 与 `3/4` 均复现）。
 - ⇒ **规范**：整数参数用 `decide`；含除法/十进制用 `norm_num [zoneQ]`。
 
-**C-2 `plan.md` §8.2 三处旧示例纠正**（三条我都构造了最小复现，**逐条实测**）：
+**C-2 `theories/Marcus/plan.md` §8.2 三处旧示例纠正**（三条我都构造了最小复现，**逐条实测**）：
 
 1. **`rw [← zoneQ_eq_zone]` 的方向是分情形的，不是一边错**（此处按我的实测定性，比"方向反了"更准确）：
    `←` 的重写模式是 `zone ↑?lam ↑?x`，正向模式是 `zoneQ ?lam ?x`。
@@ -814,7 +814,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
 
 ## 2026-09-20 — 收尾追加第 2 批：F 组 `Rat.cast_*` 家族（M5a `barrierQ_cast`）— api_researcher — 10 个名字全部存在；两条"尾巴规则相反"的坑
 
-**探针**：`proofs/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
 
 `#check` 原始输出（`@` 形式以暴露隐式参数）：
 
@@ -849,7 +849,7 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
 
 ## 2026-09-20 — 收尾追加第 2 批：`norm_num` 的可靠域边界 — api_researcher — 它不认识 `Real.exp` 的正性
 
-**探针**：`proofs/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
 
 **复核确认**（M5b `inst_I7_unphysical_rate_not_pos` 的实测偏差）：派发提示里的写法
 `intro h; have := h 0; norm_num [rate, barrier] at this` **不足以收尾** ——
@@ -877,7 +877,7 @@ theorem inst_I7_unphysical_rate_not_pos : ¬ (∀ x : ℝ, 0 < rate (-1) (-1) 1 
 
 ## 2026-09-20 — 收尾追加第 2 批：D 组倒数 / 交叉相乘 / `field_simp` 失败路径 — api_researcher — 3 个名字存在，方向坑已钉住
 
-**探针**：`proofs/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
+**探针**：`theories/Marcus/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
 
 `#check` 原始输出：
 
@@ -893,7 +893,7 @@ div_lt_iff₀.{u_2} {G₀} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneCl
 
 **D-3（方向坑）**：`one_div_le_one_div_of_le ha h` 的结论是 **`1 / b ≤ 1 / a`** ——
 `a ≤ b` 取倒数后**翻转方向**。本日志此前未收录该名字（它只在
-`proofs/probes/marcus-prover_d2-scratch.lean:38` 的 `#check` 里出现过，
+`theories/Marcus/probes/marcus-prover_d2-scratch.lean:38` 的 `#check` 里出现过，
 是 `PhotoLean/Marcus/Reorg.lean` 的 `hgeom_of_nonoverlap` 所用），现补录。
 
 **D-4（多分母不等式三步法）**：
@@ -914,7 +914,7 @@ div_lt_iff₀.{u_2} {G₀} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneCl
   —— ⚠️ **签名里不含任何正性前提**（无 `hkB` / `hT` / `hA`）。
   机制：Lean 除零约定 `x / 0 = 0` 使 `barrier 0 x = 0`，故速率恒为 `A`，
   描述要求 `rate … 2 < rate … 1` 即 `A < A`，`lt_irrefl` 收尾。
-  可编译证明体见 `proofs/probes/marcus-proof-skeletons.lean` 的 `sharp_lam_pos_of_eq`。
+  可编译证明体见 `theories/Marcus/probes/marcus-proof-skeletons.lean` 的 `sharp_lam_pos_of_eq`。
 - 同链其它退化点引理：`barrier_at_lam`（`ring`，无前提）、`barrier_zero_lam`（`ring`，无前提）、
   `barrier_symm`（`ring_nf`，`lam ≠ 0` 未被证明使用）。
 

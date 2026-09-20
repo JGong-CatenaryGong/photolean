@@ -1,7 +1,7 @@
 /-
 PhotoLean.Marcus.Basic — M1 描述层（Marcus 反转区）。
 
-**语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M1 段
+**语句权威**：`theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M1 段
 （Sprint 0 已编译通过）。本文件的 8 个定义与 4 条定理签名与它**逐字一致**；
 定理体已全部补齐（零占位证明、无自定义公理声明）。
 
@@ -18,7 +18,7 @@ PhotoLean.Marcus.Basic — M1 描述层（Marcus 反转区）。
 
 English: PhotoLean.Marcus.Basic — the M1 description layer (the Marcus inverted region).
 
-**Statement authority**: the M1 section of `proofs/probes/marcus-statement-skeleton.lean`
+**Statement authority**: the M1 section of `theories/Marcus/probes/marcus-statement-skeleton.lean`
 (compiled successfully in Sprint 0). The 8 definitions and 4 theorem signatures in this
 file are **verbatim identical** to it; all theorem bodies are complete (zero placeholder
 proofs, no custom axiomatic declarations).

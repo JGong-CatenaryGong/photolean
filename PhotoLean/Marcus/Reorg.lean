@@ -1,5 +1,5 @@
 /-
-PhotoLean.Marcus.Reorg — M4b：微观重组能正性（Marcus 反转区；plan.md §7.2）。
+PhotoLean.Marcus.Reorg — M4b：微观重组能正性（Marcus 反转区；theories/Marcus/plan.md §7.2）。
 
 **本模块零依赖**：只 `import Mathlib`，不 import 任何项目内模块 —— 因此它与关键路径
 （Basic → Barrier → Rate → Sharp → Compose）**可完全并行**。复合定理
@@ -34,7 +34,7 @@ PhotoLean.Marcus.Reorg — M4b：微观重组能正性（Marcus 反转区；plan
 **Lean 侧命名一律 ASCII**（`kk` / `dE` / `dq` / `nSq` / `epsS` / `a1` / `a2`）：
 Lean 4 中 `λ` 是 lambda 关键字、下标 `a₁` 不是合法标识符字符 —— 希腊字母只留在注释里。
 
-**语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M4b 段；本文件的定义与
+**语句权威**：`theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M4b 段；本文件的定义与
 定理签名与之逐字一致。
 
 **验收**：`proofs/scripts/check.sh --strict PhotoLean.Marcus.Reorg`（构建 + 扫描）**与**
@@ -42,7 +42,7 @@ Lean 4 中 `λ` 是 lambda 关键字、下标 `a₁` 不是合法标识符字符
 —— 单独构建通过不构成验收。
 
 English: PhotoLean.Marcus.Reorg — M4b: positivity of the microscopic reorganization energy
-(Marcus inverted region; plan.md §7.2).
+(Marcus inverted region; theories/Marcus/plan.md §7.2).
 
 **Zero dependencies**: this module only does `import Mathlib` and imports no in-project module —
 hence it is **fully parallelizable** with the critical path (Basic → Barrier → Rate → Sharp → Compose).
@@ -81,7 +81,7 @@ The composition theorem (`descriptor_holds_of_microscopic`) belongs to M4c and l
 in Lean 4, `λ` is the lambda keyword and the subscript `a₁` is not a legal identifier character —
 Greek letters are kept in comments only.
 
-**Statement authority**: the M4b section of `proofs/probes/marcus-statement-skeleton.lean`; the
+**Statement authority**: the M4b section of `theories/Marcus/probes/marcus-statement-skeleton.lean`; the
 definitions and theorem signatures in this file match it word for word.
 
 **Acceptance**: `proofs/scripts/check.sh --strict PhotoLean.Marcus.Reorg` (build + scan) **and**
@@ -123,7 +123,7 @@ theorem lamInner_pos {kk : ℝ} (hkk : 0 < kk) {dq : ℝ} (hdq : dq ≠ 0) :
 /-
 前提说明（人工复核用）：`ha1` / `ha2` / `hR` / `hnSq` / `hepsS` 是**物理定义域前提**
 （保证 `lamOuter` 的参数落在物理有意义的两球连续介质几何里：两球半径严格正、球心间距
-严格正、折射率平方严格正、静态介电常数严格正）。按 `plan.md` §7.2 的要求，物理前提
+严格正、折射率平方严格正、静态介电常数严格正）。按 `theories/Marcus/plan.md` §7.2 的要求，物理前提
 必须在定理签名里可见、不得折叠进定义，故它们**保留在签名中**。
 
 就本定理的结论而言，证明**未使用**（unused）这五条：`hdE` / `hgeom` / `hPekar`
@@ -140,7 +140,7 @@ English: Note on the premises (for human review): `ha1` / `ha2` / `hR` / `hnSq` 
 **physical domain premises** (they keep the arguments of `lamOuter` inside the physically meaningful
 two-sphere continuum geometry: both sphere radii strictly positive, center-to-center distance
 strictly positive, squared refractive index strictly positive, static dielectric constant strictly
-positive). As `plan.md` §7.2 requires, physical premises must be visible in the theorem signature
+positive). As `theories/Marcus/plan.md` §7.2 requires, physical premises must be visible in the theorem signature
 and must not be folded into definitions, so they are **kept in the signature**.
 
 For the conclusion of this theorem, the proof **does not use** (unused) these five: the three

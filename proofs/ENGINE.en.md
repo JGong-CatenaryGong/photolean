@@ -33,12 +33,12 @@ Changing project = changing repository + rewriting these files.
 
 | File | Role | Writer (single source of truth) |
 |---|---|---|
-| `plan.md` | Theory plan: milestones, statements, proof sketches, sprint order, acceptance criteria | human + lead |
-| `proofs/TASKS.md` | Task board: single source of truth for status | **lead only** ticks the boxes |
+| `theories/Marcus/plan.md` | Theory plan: milestones, statements, proof sketches, sprint order, acceptance criteria | human + lead |
+| `theories/Marcus/TASKS.md` | Task board: single source of truth for status | **lead only** ticks the boxes |
 | `proofs/EXPERIENCE.md` | Experience bank: success and failure patterns, reused across rounds | all roles write back |
 | `proofs/API-NOTES.md` | mathlib API calibration log (single source of truth for name drift) | api_researcher |
-| `proofs/LITERATURE.md` | Literature survey log: sources, conclusions, **formalizable implications** | literature_researcher |
-| `proofs/probes/` | `#check` probes, committable | api_researcher |
+| `theories/Marcus/LITERATURE.md` | Literature survey log: sources, conclusions, **formalizable implications** | literature_researcher |
+| `theories/Marcus/probes/` | `#check` probes, committable | api_researcher |
 
 **Rule: no role may claim that a task is complete while bypassing TASKS.md.**
 A worker reporting DONE ≠ the task being DONE; the box is ticked by the lead only after the verifier PASSes it.
@@ -55,7 +55,7 @@ A persona describes only "how to do it", and never hard-codes "which file".
 | `verifier` | `verifier` | **read-only** | run the evidence gate independently; return PASS/FAIL |
 | `literature_researcher` | `literature_researcher` | read/write `LITERATURE.md` | literature survey; produce "formalizable implications" |
 
-`prover_a..d` is a **pool**, not a hard binding: the concrete area split is determined by the milestones in `plan.md` and the owner column in `TASKS.md`. If a project has only two areas, only a and b are used.
+`prover_a..d` is a **pool**, not a hard binding: the concrete area split is determined by the milestones in `theories/Marcus/plan.md` and the owner column in `TASKS.md`. If a project has only two areas, only a and b are used.
 
 ## 3. Acceptance Gate (scripted; the engine inlines no criteria)
 
@@ -105,7 +105,7 @@ The output of `literature_researcher` must land in `LITERATURE.md`, and every en
 2. **Conclusion**: what the reference claims about the theory;
 3. **Formalizable implication**: which assumptions can be made explicit as Lean hypotheses, which are physical approximations, and which are not expressible under the current mathlib (this column is the **only** part that is useful to the formalization).
 
-Original paper PDFs and LaTeX sources go in `proofs/literature/`; dumping the full content of a PDF into the context is forbidden.
+Original paper PDFs and LaTeX sources go in `theories/Marcus/literature/`; dumping the full content of a PDF into the context is forbidden.
 
 ## 6. Toolchain Environment (machine-specific, must be observed)
 

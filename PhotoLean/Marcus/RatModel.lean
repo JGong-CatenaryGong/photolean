@@ -1,7 +1,7 @@
 /-
 PhotoLean.Marcus.RatModel — M5a：ℚ 上的判定层（可分派的分类器）。
 
-**语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M5a 段（Sprint 0 已编译通过）。
+**语句权威**：`theories/Marcus/probes/marcus-statement-skeleton.lean` 的 M5a 段（Sprint 0 已编译通过）。
 本文件的 2 个定义与 4 条定理中，**前 2 条定理**（`zoneQ_eq_zone` / `zoneQ_inverted_iff`）的签名与它**逐字一致**；
 后 2 条（`barrierQ_cast` / `barrierQ_zero_lam`）是**后续追加的数值桥**
 （补结构审计发现的"`barrierQ` 未被任何定理约束"缺口；权威骨架中暂无对应条目，属已知记账缺口）。
@@ -11,7 +11,7 @@ PhotoLean.Marcus.RatModel — M5a：ℚ 上的判定层（可分派的分类器�
 内核计算（`by decide` / `norm_num`）→ 转移引理 `zoneQ_eq_zone` → ℝ 侧 `zone_eq_inverted_iff`。
 转移引理就是"ℚ 上的判定对 ℝ 理论有约束力"的依据（plan §2.3）。
 
-**实测边界**（prover_c 探针 `proofs/probes/marcus-prover_c-scratch.lean`）：
+**实测边界**（prover_c 探针 `theories/Marcus/probes/marcus-prover_c-scratch.lean`）：
 `by decide` 只对**整数**字面量可算（如 `zoneQ 1 3`）；对**含除法**的有理字面量
 （如 `zoneQ 1 (3/4)`）会卡在 `Rat` 的 gcd/除法归约上，必须改用 `norm_num [zoneQ]`。
 
@@ -27,11 +27,11 @@ English:
 
 PhotoLean.Marcus.RatModel — M5a: the decision layer over ℚ (a dispatchable classifier).
 
-**Statement authority**: the M5a section of `proofs/probes/marcus-statement-skeleton.lean` (compiled in Sprint 0). Of the 2 definitions and 4 theorems in this file, the **first 2 theorems** (`zoneQ_eq_zone` / `zoneQ_inverted_iff`) have signatures **verbatim identical** to that skeleton; the latter 2 (`barrierQ_cast` / `barrierQ_zero_lam`) are a **numerical bridge appended later** (filling the gap found by the structure audit, "`barrierQ` is not constrained by any theorem"; the authoritative skeleton has no corresponding entry yet — a known bookkeeping gap).
+**Statement authority**: the M5a section of `theories/Marcus/probes/marcus-statement-skeleton.lean` (compiled in Sprint 0). Of the 2 definitions and 4 theorems in this file, the **first 2 theorems** (`zoneQ_eq_zone` / `zoneQ_inverted_iff`) have signatures **verbatim identical** to that skeleton; the latter 2 (`barrierQ_cast` / `barrierQ_zero_lam`) are a **numerical bridge appended later** (filling the gap found by the structure audit, "`barrierQ` is not constrained by any theorem"; the authoritative skeleton has no corresponding entry yet — a known bookkeeping gap).
 
 **Why a ℚ copy**: the order on `ℝ` goes through `Classical` and is **not computable**, so "which zone a given instance belongs to" cannot be computed by the kernel over ℝ. Over ℚ both the order and the equality of `Rat` are decidable, hence the evidence chain of the decision layer is: kernel computation (`by decide` / `norm_num`) → transfer lemma `zoneQ_eq_zone` → the ℝ-side `zone_eq_inverted_iff`. The transfer lemma is precisely the basis for "a decision over ℚ is binding on the ℝ theory" (plan §2.3).
 
-**Measured boundary** (prover_c's probe `proofs/probes/marcus-prover_c-scratch.lean`): `by decide` computes only **integer** literals (e.g. `zoneQ 1 3`); for rational literals **involving division** (e.g. `zoneQ 1 (3/4)`) it gets stuck on `Rat`'s gcd/division reduction, and one must switch to `norm_num [zoneQ]`.
+**Measured boundary** (prover_c's probe `theories/Marcus/probes/marcus-prover_c-scratch.lean`): `by decide` computes only **integer** literals (e.g. `zoneQ 1 3`); for rational literals **involving division** (e.g. `zoneQ 1 (3/4)`) it gets stuck on `Rat`'s gcd/division reduction, and one must switch to `norm_num [zoneQ]`.
 
 **Naming convention (hard toolchain constraint)**: in Lean 4 `λ` is the lambda keyword and cannot be used as an identifier, so physical notation is uniformly written in ASCII: reorganization energy `lam`, driving force `x`.
 
@@ -97,7 +97,7 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
 下面补上**数值的桥**：ℚ 侧势垒经 cast 与 ℝ 侧 `barrier` 一致。
 
 **不需要任何前提**（含 `lam = 0` 的除零情形）：两侧的除法都走 Lean 的 `x / 0 = 0`
-约定，故退化点同样成立。取证见探针 `proofs/probes/marcus-prover_c2-scratch.lean`
+约定，故退化点同样成立。取证见探针 `theories/Marcus/probes/marcus-prover_c2-scratch.lean`
 的 D 段（`lam = 0` / `lam = 1/2` / `lam = -3` 三条**无前提**版本）与 E 段。
 
 ⚠️ **`lam = 0` 的等式的性质要说清**：`lam ≠ 0` 时这是名副其实的域恒等式经 cast 搬运；
@@ -113,7 +113,7 @@ English: ## M5a addendum: the numerical transfer lemma (filling verifier finding
 
 The classifier has a bridge (`zoneQ_eq_zone`), but the ℚ-side barrier `barrierQ` previously had **no accompanying theorem at all** — relative to the ℝ theory it was an unconstrained definition, and M5b would lack justification if it used the ℚ-side barrier for numerical evidence. Below we add the **numerical bridge**: the ℚ-side barrier agrees with the ℝ-side `barrier` after casting.
 
-**No hypotheses are needed** (including the division-by-zero case `lam = 0`): the division on both sides follows Lean's `x / 0 = 0` convention, so the degenerate point holds as well. Evidence: probe `proofs/probes/marcus-prover_c2-scratch.lean`, section D (three **hypothesis-free** versions: `lam = 0` / `lam = 1/2` / `lam = -3`) and section E.
+**No hypotheses are needed** (including the division-by-zero case `lam = 0`): the division on both sides follows Lean's `x / 0 = 0` convention, so the degenerate point holds as well. Evidence: probe `theories/Marcus/probes/marcus-prover_c2-scratch.lean`, section D (three **hypothesis-free** versions: `lam = 0` / `lam = 1/2` / `lam = -3`) and section E.
 
 ⚠️ **The nature of the `lam = 0` equality must be spelled out**: for `lam ≠ 0` this is a genuine field identity transported through the cast; for `lam = 0` both sides **each** collapse to `0` (`x / 0 = 0`), the equality holds but carries **no numerical content whatsoever** — it **must not** be taken as physical numerical evidence that "the barrier takes the value 0 at `lam = 0`" (`barrier` at `lam = 0` is not a barrier function to begin with). When using ℚ-side numerical evidence in M5b one should avoid the division-by-zero point.
 
