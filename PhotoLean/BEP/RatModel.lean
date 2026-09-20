@@ -118,6 +118,11 @@ def epQVerdict (lam x : ℚ) : EPQVerdict :=
 
 /-! ## Theorems of plan §8.1 -/
 
+theorem qEact_cast (lam x : ℚ) : ((qEact lam x : ℚ) : ℝ) = eact (lam : ℝ) (x : ℝ) := by
+  unfold qEact eact
+  push_cast
+  ring
+
 end Rat
 
 end BEP
