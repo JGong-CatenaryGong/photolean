@@ -1,0 +1,85 @@
+/-
+PhotoLean.BEP.Instances — B5b: the instance / verdict layer of the BEP theory.
+
+**Statement authority**: the B5b block of `theories/BEP/probes/bep-statement-skeleton.lean`
+(plan §8.2, rows I1–I12). All 48 declarations below match that block word for word (checked
+mechanically by `theories/BEP/probes/bep-fidelity.py`), and every declaration of that block is
+delivered here.
+
+**What this file is.** Each row instantiates the equal-curvature two-parabola model at concrete
+numbers and lets the kernel decide the verdict, on top of the computable decision layer
+`PhotoLean/BEP/RatModel.lean` (plan §8.1):
+
+* I1–I8 are `model-constructed` families at `λ = 2`, plus the degenerate `λ = 0` and the
+  unphysical `λ = -2` rows. The verdict is a kernel computation in ℚ by `norm_num`;
+  `by decide` cannot close these goals (comparisons containing `/`-literals do not reduce) and
+  `native_decide` is forbidden (`Lean.ofReduceBool` is not in `ALLOWED_AXIOMS`).
+* I9 exhibits the instructive gap: the Evans–Polanyi bounds are **blind** to an unphysical
+  curvature (`λ = -2`, `α = 3/4 ∈ [0,1]`); the *sign* of the defect (`bepDefect (-2) 1 = -1/8`)
+  is what detects it.
+* I10 is the tolerance threshold (`λ = 2`, `w = 1`): conformance at `tol = 1/8`, failure at
+  `tol = 1/16` — exactly the squared form `w ^ 2 ≤ 4 * λ * tol` that `qConformsWindow` states.
+* I11 quotes four first-hand literature families of `theories/BEP/LITERATURE.md` §R1.10 with the
+  sources' own printed numbers and refutes the model for their three-row triples.
+* I12 is the summary: the affine (BEP) description conforms, the equal-curvature two-parabola model
+  is refuted — for each of the four families that §R1.10 prints per-point.
+* `inst_nonvacuous` records that the layer is not a table of one-sided verdicts.
+
+**Provenance and units (binding on the I11 rows).** Every Lean literal is the source's printed
+**kcal/mol** number, transcribed verbatim from §R1.10; the kJ/mol column of that record is the
+record's own arithmetic (`1 kcal/mol = 4.184 kJ/mol`) and is **not** what any statement uses. The
+model is unit-agnostic, so the unit statement in the docstring is what makes the numbers checkable
+against the source. Each family docstring states whether the source prints a Gibbs energy (`ΔG°`
+with barrier `ΔG‡`, families F1/F2/F3) or a **classical** energy (`ΔE` with forward barrier `V‡f`,
+family F5) and carries the corresponding `ΔH`/`ΔE`/`ΔG°` caveat of §R1.10.1 / §R1.10.5. The
+model's driving force is `x = -ΔG°` (F5: `x = -ΔE`), applied explicitly at every row.
+
+**Every I11/I12 verdict is a statement about the model family *instantiated by those numbers*,
+never about the experiment** (plan §8.2): what is proved is "no positive-λ equal-curvature
+two-parabola law reproduces these three printed rows"; "the chemistry violates BEP" is not proved.
+
+**F4 is deliberately absent.** §R1.10.4 prints only family aggregates for the Table 2 "PE" column
+(mean `λ̂`, `λ̂` range, fitted curvature, linear fit, R²) and **no per-row `(driving force, barrier)`
+pairs**, so none of the four I11 rows can be stated for it without inventing data. The gap is
+recorded in `proofs/API-NOTES.md` (BEP follow-up §3) and in the skeleton's B5b section header; the
+lead owns any arbitration.
+
+**Recipes** (measured: `theories/BEP/probes/bep-api-instances.lean`): verdict rows
+`unfold Rat.epQVerdict Rat.qTransfer; norm_num`; value rows `unfold <def>; norm_num`; window rows
+`unfold Rat.qConformsWindow; norm_num`; falsification rows = `Rat.qModelConsistent3_curvature_pos`
+at the three `by norm_num` distinctness facts + the computed negative divided difference +
+`norm_num at hpos`. Decimal ℚ literals (`(15.6 : ℚ)`, `(7.62 : ℚ)`) are first-class for `norm_num`.
+
+Every physical premise of the statements below (`0 < lam`, `0 < tol`, distinct abscissae, …) is an
+explicit hypothesis of the theorem that consumes it; nothing is hidden in a definition. There is no
+unproved placeholder and no custom axiom in this file. Imports: `PhotoLean.BEP.RatModel` + Mathlib.
+
+Acceptance (contract `proofs/ENGINE.yml`, plan §10):
+  proofs/scripts/lake build PhotoLean.BEP.Instances
+  proofs/scripts/check.sh --strict PhotoLean.BEP.Instances
+  proofs/scripts/axioms.sh PhotoLean.BEP.Instances PhotoLean.BEP.<theorem>
+-/
+
+import Mathlib
+import PhotoLean.BEP.RatModel
+
+namespace PhotoLean
+
+namespace BEP
+
+/-! ### I1–I10 — model-constructed families (plan §8.2)
+
+Every family below is `model-constructed`: `λ` and `x` are chosen numbers, not data. The verdict is
+the kernel's evaluation of the delivered cascade `Rat.epQVerdict` (§8.1) at those numbers. -/
+
+/-! #### I1 — thermoneutral family -/
+
+/-- I1 (`model-constructed`): thermoneutral family `λ = 2`, `x = 0` — the cascade lands in the open
+conforming regime. -/
+theorem inst_I1_thermoneutral_zone : Rat.epQVerdict (2 : ℚ) 0 = Rat.EPQVerdict.conforming := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
+end BEP
+
+end PhotoLean
