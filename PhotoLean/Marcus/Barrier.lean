@@ -32,4 +32,8 @@ namespace PhotoLean.Marcus
 theorem barrier_nonneg {lam : ℝ} (hlam : 0 < lam) (x : ℝ) : 0 ≤ barrier lam x := by
   unfold barrier; positivity
 
+/-- 无势垒点：`x = lam` 处势垒为零（**无需前提**，含 `lam = 0` 的退化情形）。 -/
+theorem barrier_at_lam (lam : ℝ) : barrier lam lam = 0 := by
+  simp [barrier]
+
 end PhotoLean.Marcus
