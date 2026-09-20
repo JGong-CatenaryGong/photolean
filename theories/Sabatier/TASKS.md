@@ -24,6 +24,11 @@
 
 ## Sprint 0 — environment, statements, plan (closed)
 
+> Note: the eight rows below are **process rows** (environment, probe, contract, plan) — verified by
+> the lead where they are reproducible (skeleton and probe compile, API probes compile, plan/board
+> exist, `defaultTargets` parsed) and covered by verifier run 1's scope cell; several are not
+> per-row checkable by a verifier (e.g. "human confirmation").
+
 - [x] Theory directory `theories/Sabatier/` created with the five required items; contract
       `proofs/ENGINE.yml` extended (`THEORIES="Marcus hammond BEP kasha Sabatier"` + `PLAN_Sabatier` /
       `TASKS_Sabatier` / `LITERATURE_Sabatier` / `PROBES_Sabatier` / `RESULT_Sabatier`)
@@ -38,8 +43,9 @@
 - [x] API calibration (`api_researcher`) → `proofs/API-NOTES.md` § "Sabatier theory (2026-09-21)" +
       `theories/Sabatier/probes/sabatier-api-{max-abs,monotone,explog-sqrt,cast-ite}.lean`
       (4 probes, all exit 0 / 0 error / 0 warning)
-- [x] Literature survey (`literature_researcher`) → `theories/Sabatier/LITERATURE.md` (30 sources,
-      each with the formalizable-implication column) + `theories/Sabatier/literature/INSTANCE-DATA.md`
+- [x] Literature survey (`literature_researcher`) → `theories/Sabatier/LITERATURE.md` (30 sources;
+      most sections carry a `Formalizable implication.` block, the rest an `**Impact:**` note — the
+      record is checkable per source either way) + `theories/Sabatier/literature/INSTANCE-DATA.md`
       (printed tables, with the clean negatives: no IUPAC entry, `0 < alphaA*alphaB` absent from the
       literature, the `max`-form is not a kinetic law, three DOI corrections)
 - [x] Plan landed: `theories/Sabatier/plan.md` §1–§14 (model, conventions, correction log, milestones,
@@ -126,8 +132,10 @@
 - [ ] tolerance / penalty rows I6 — Instances.lean — prover_c — review — plan §8.2
 - [ ] two-parabola cross-check row I7 (`apexPar 1 4 = 2/3`, crossing, pass height, linear-below) — Instances.lean — prover_c — review — plan §8.2
 - [ ] non-vacuity row I8 — Instances.lean — prover_c — review — plan §8.2
-- [ ] literature rows I9–I11 (HER `ΔG_H*` per metal: near-optimal / too weak / too strong; axis stated
-      in the docstring, numbers from LITERATURE.md §R4) — Instances.lean — prover_c — review — plan §8.2
+- [ ] literature rows I9–I11 (HER `ΔG_H*` per metal: near-optimal / too weak / too strong; the axis
+      is stated in the docstring and the values are DERIVED from the printed `ΔE_H` by the source's
+      Eq. [8], record-marked `[arith]`, LITERATURE.md §R2.1) — Instances.lean — prover_c — review —
+      plan §8.2
 - [ ] derivable literature row I12 (OER apex `1.60 eV = 3.20/2` on stated premises) — Instances.lean — prover_c — review — plan §8.2
 
 ---
@@ -136,8 +144,11 @@
 
 | Batch | Scope | Verdict | Key evidence | Notes |
 |---|---|---|---|---|
-| Run 1 (independent verifier; batch: S1) | `PhotoLean/Sabatier/Basic.lean` (15 defs/inductives + 17 theorems) + the S1-relevant Sprint-0 artifacts (statement skeleton, risk probe, 4 API probes), verified on the working tree AND on a clean `git archive` copy of `00c5f69` | **PASS** | build OK / scan `clean` / 17/17 `#print axioms` = `[propext, Classical.choice, Quot.sound]`; verifier's own semantic probe: 82 `example` + 25 `#eval` grid rows + 14 hypothesis-necessity counterexamples, 0 error; own coverage audit of the fidelity checker (32/32 public declarations of `Basic.lean` captured; the two `private theorem`s are its only blind spot); bare-tree `check.sh --strict` PASS; clean-archive rebuild PASS (6308-job fresh build); artifact sha256 `a9f282bf…` byte-identical to commit `00c5f69` | findings F1–F12, **no HIGH**: F1 the plan cited kernel evidence the probe did not contain → three witnesses appended to the probe (`apex_naive_swap_values`, `apex_naive_swap_ne`, `activity_zero_kT_witness`); F2 stale authority counts → corrected to 132; F3 the statement corrections were not logged in the API log → logged; F4 this row; F5 "no deviations" wording → corrected; F6 the fidelity checker cannot see `private` declarations → the dead private helper deleted and the blind spot documented (the shared checker is used by four closed theories, so its regex is deliberately left unchanged); F7/F8/F9 `Basic.lean` docstring wording, including one literally false unconditional equivalence → qualified with `0 < kB*T`, declaration plane verified token-identical after comment stripping; F10/F11/F12 wording and API-log staleness notes |
-
+| Run 1 (independent verifier; batch: S1) | `PhotoLean/Sabatier/Basic.lean` (15 defs/inductives + 17 theorems) + the S1-relevant Sprint-0 artifacts (statement skeleton, risk probe, 4 API probes), verified on the working tree AND on a clean `git archive` copy of `00c5f69` | **PASS** | build OK / scan `clean` / 17/17 `#print axioms` = `[propext, Classical.choice, Quot.sound]`; verifier's own semantic probe (REPORTED by the verifier; the probe file was not committed — treat
+these counts as testimony, `EXPERIENCE.md`'s "an unreproducible digest" rule: 82 `example` +
+25 `#eval` grid rows + 14 hypothesis-necessity counterexamples, 0 error); own coverage audit of the fidelity checker (32/32 public declarations of `Basic.lean` captured; the two `private theorem`s are its only blind spot); bare-tree `check.sh --strict` PASS; clean-archive rebuild PASS (6308-job fresh build); artifact sha256 `a9f282bf…` byte-identical to commit `00c5f69` | findings F1–F12, **no HIGH**: F1 the plan cited kernel evidence the probe did not contain → three witnesses appended to the probe (`apex_naive_swap_values`, `apex_naive_swap_ne`, `activity_zero_kT_witness`); F2 stale authority counts → corrected to 132; F3 the statement corrections were not logged in the API log → logged; F4 this row; F5 "no deviations" wording → corrected; F6 the fidelity checker cannot see `private` declarations → the dead private helper deleted and the blind spot documented (the shared checker is used by four closed theories, so its regex is deliberately left unchanged); F7/F8/F9 `Basic.lean` docstring wording, including one literally false unconditional equivalence → qualified with `0 < kB*T`, declaration plane verified token-identical after comment stripping; F10/F11/F12 wording and API-log staleness notes |
+| Run 2 (independent verifier; batch: S2/S3/S4/S5a) | `Criterion.lean` (19) + `Sharp.lean` (11) + `Compose.lean` (13) + `RatModel.lean` (21), verified on the working tree and on a clean `git archive` copy of `1796bf4` | **PASS** | build OK ×4 / `check.sh --strict` `verdict: PASS` ×4 / **64/64** authority rows `#print axioms` in `ALLOWED_AXIOMS` (58 × `[propext, Classical.choice, Quot.sound]` + 6 × `[propext]`); fidelity 19/19, 11/11, 13/13, 21/21, `signature differences: 0`; verifier's own adversarial probe: 52 kernel `example`s + a **425 250-point** rational brute force of `volcano_descriptor_iff` with **0 counterexamples** + hypothesis-necessity witnesses for every load-bearing premise + proof-term anti-circularity dumps (no self-reference) + ℚ↔ℝ cross-evaluation + gate-sensitivity controls (`sorryAx`/custom `axiom` are actually caught); clean-archive rebuild PASS | findings F1–F4 (one MEDIUM, three LOW), **no HIGH**: F1 `Compose.lean` `apexPar` docstring called the apex "the lower of the two crossings" (false on the descriptor axis; it is the one inside `-lam1 < dE < lam2`) → fixed; F2 `Criterion.lean` `antiDescriptor_activity_iff` docstring did not restate `0 < kB*T` → fixed; F3 `Compose.lean` header omitted the ∓`dE` driving-force identification → added; F4 four non-load-bearing hypotheses (retained; authority frozen) recorded as information |
+| Run 3 (independent verifier; batch: S5b + frozen whole tree + documentation plane) | `Instances.lean` (38 rows), the whole tree at `1796bf4`, the documentation plane | **mathematics PASS / documentation FAIL** | S5b: build OK / `check.sh --strict` PASS / **38/38** axiom rows clean / fidelity 38/38 `signature differences: 0`; the verifier's own exact-rational script + kernel `#eval` probe reproduced **every** asserted number (48 checks, 0 mismatches), including the corrected I2 rows; whole tree: bare gate PASS, `defaultTargets` 35/35 coverage, one-shot axioms over **107 theorems + 27 definitions** all within the allowed set, `git status` clean, artifact hashes pinned; clean-archive rebuild (6342 jobs) PASS | **documentation findings V1–V14** (delivered declarations all valid): V1 false arithmetic in two `Instances.lean` docstrings → corrected; V2/V3/V4 three unreproducible counts in `RESULTS.md` (lines/commits/private helpers) → re-measured at the frozen revision; V5 a `LITERATURE.md` citation pointer → corrected; V6 stale plan status → refreshed; V7 a forward-looking claim about the acceptance records → rewritten; V8 two Chinese experience-bank entries (language policy) → translated in place; V9 the `ΔG_H*` values were labelled "transcribed" while the record derives them from the printed `ΔE_H` by Eq. [8] → labels aligned; V10–V13 wording/testimony notes → applied; V14 the strict scan did not match `constant` declarations → `check.sh` extended (additive; no line-start occurrence in `SOURCE_DIRS`, bare gate re-run PASS) |
 **Our own pre-verification evidence (for cross-checking, not a substitute for the verifier)**
 | Check | Artifact | Result |
 |---|---|---|
@@ -163,7 +174,8 @@
   (`00c5f69`, the module plus the Sprint-0 artifacts) — recorded here as a deviation from the
   contract's `COMMIT_TEMPLATE`, since the `<lemma>` slot holds a batch description. S2, S3, S4, S5a
   and S5b commit one lemma (or one row group) per commit; S5b's twelve row-group commits are the
-  registered grouping for the instance layer.
+  registered grouping for the instance layer. Commit counts are quoted **revision-pinned** (70 at
+  `b57c8d1`); a count that is not pinned to a revision goes stale silently (verifier run 3, V3).
 - **Known-weak statements**: the four non-vacuity `exists_*` rows carry little information (they are
   witness exhibitors); do not overstate them in `RESULTS.md` (the same warning the Hammond board
   carries for its trichotomy lemma).

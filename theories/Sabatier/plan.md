@@ -5,11 +5,14 @@
 > *machine-checked* theory inside a two-branch Brønsted–Evans–Polanyi (BEP) model of a two-step
 > catalytic cycle.
 > Target system: Lean 4.17.0 + mathlib (`MODULE_PREFIX=PhotoLean`, contract `proofs/ENGINE.yml`).
-> Status: Sprint 0 CLOSED 2026-09-21 (contract entry, statement authority, risk probe, API
-> calibration, literature round 1, plan); S1 delivered (`PhotoLean/Sabatier/Basic.lean`,
-> 30/30 declarations word-for-word against the authority, gate PASS); S2/S3/S4/S5a dispatched in
-> parallel. Milestone status is tracked on the board `theories/Sabatier/TASKS.md` — that file is the
-> single source of truth, this file is the plan of record.
+> Status: **all six modules delivered and verified** (2026-09-21). Sprint 0 closed (contract entry,
+> statement authority, risk probe, API calibration, literature round 1, plan); S1 30/30, S2 19/19,
+> S3 11/11, S4 13/13, S5a 21/21, S5b 38/38 word-for-word against the authority, 107/107 theorems
+> kernel-complete, whole-tree gate PASS. Verifier runs: run 1 (S1) PASS, run 2 (S2/S3/S4/S5a) PASS,
+> run 3 (S5b + frozen tree + documentation plane) mathematics PASS with documentation findings
+> V1–V14, all disposed and re-checked in run 4. Milestone status is tracked on the board
+> `theories/Sabatier/TASKS.md` — that file is the single source of truth, this file is the plan of
+> record.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/Sabatier/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/Sabatier/LITERATURE.md` with the long tables in
 > `theories/Sabatier/literature/INSTANCE-DATA.md`.
@@ -119,8 +122,8 @@ excluded) do not state it as a kinetic law (§12).
 
 Axis convention (the literature's `ΔG_H* = ΔE_H + 0.24 eV`, Nørskov 2005 Eq. [8]): the descriptor is
 the **free** binding energy `ΔG_H*`, so that the ideal HER catalyst sits at `dE = 0` in the
-literature's own reading (LITERATURE.md §R4 note 4: on the raw `ΔE_H` axis the apex would be at
-`dE = -0.24`). Sign convention: more negative `dE` = stronger binding.
+literature's own reading (LITERATURE.md §R2.1, and §R1.2.3 for the axis note: on the raw `ΔE_H` axis the apex would be at
+`dE = -0.24`; §R4 carries the delegated-parcel state, not the axis note). Sign convention: more negative `dE` = stronger binding.
 
 | symbol | Lean | meaning |
 |---|---|---|
@@ -374,7 +377,7 @@ an independent `verifier` PASS recorded on the board. A worker's report is not a
 | apex at the thermoneutral descriptor value `dE = 0` | **PROVED, conditionally**: `apex_eq_zero_iff` shows it is *equivalent* to `betaA = betaB` (balanced offsets); the literature reports apex shifts away from the ideal value, so this is a symmetry statement, not a law |
 | two-parabola model is a volcano with the closed-form apex | **PROVED** (`parabolic_descriptor`, `apexPar`) |
 | the linear BEP volcano is a lower bound on the parabolic one | **PROVED** (`linearVolcano_le_parabolic`) |
-| the literature's `α ∈ (0,1)` / `ΔG_H*` values | **TRANSCRIBED** (printed loci in LITERATURE.md; transcribing a decimal value is arithmetic on a source, not a theorem); the instance rows state which kind of row they are |
+| the literature's `α ∈ (0,1)` / `ΔG_H*` values | **DERIVED, not transcribed**: every `ΔG_H*` row is the source's printed `ΔE_H` plus `0.24 eV` by the source's own Eq. [8] (the literature record's `[arith]` column, `LITERATURE.md` §R2.1 note "No source prints a `ΔG_H*` column at all"); the arithmetic is on a source, not a theorem, and the instance rows state which kind of row they are |
 | the OER apex `1.60 eV = 3.20/2` | **DERIVABLE** from the stated premises (two separate printed loci, LITERATURE.md §R4) — discharged by the kernel in the instance layer |
 | the `*CO ≈ -0.5 eV` value of the CO₂RR family | **ASSUMED NUMBER** (secondary source, fitted value) — if used, it enters as an explicit numerical premise, never as a theorem |
 | measured activity, coverages, microkinetics, multiple descriptors, scaling relations | **OUT OF SCOPE** (§1.4) |

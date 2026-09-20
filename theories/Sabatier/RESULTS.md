@@ -23,7 +23,7 @@
 **English.** Six Lean modules under `PhotoLean/Sabatier/` — `Basic.lean` (S1, the description layer),
 `Criterion.lean` (S2, the laws), `Sharp.lean` (S3, the exact conditions and their sharpness),
 `Compose.lean` (S4, the two-parabola / cross-theory form), `RatModel.lean` (S5a, the computable
-rational decision layer) and `Instances.lean` (S5b, the instance verdicts) — **2 134 lines**
+rational decision layer) and `Instances.lean` (S5b, the instance verdicts) — **2 134 lines** (`wc -l`, at revision `b57c8d1`)
 containing **134 public declarations: 107 theorems and 27 definitions/inductives** (26 `def` + 1
 `inductive`), plus 37 private helper lemmas. The statement authority
 `theories/Sabatier/probes/sabatier-statement-skeleton.lean` carries **132** of them (105 theorems +
@@ -33,8 +33,11 @@ differences 0** (`python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier`
 30/19/11/13/21/38 for S1/S2/S3/S4/S5a/S5b). **All 107 theorems are kernel-complete: zero unproved
 placeholders, zero custom axioms** (the strict scan is clean; one-shot `#print axioms` over all 107
 theorems gives the contract's footprint `[propext, Classical.choice, Quot.sound]` for 106 of them and
-the subset `[propext]` for one, `sabatierZoneQ_eq_optimal_iff`). **68 commits touch
-`PhotoLean/Sabatier/`**, one per lemma, message `feat(S<k>): <lemma>`.
+the subset `[propext]` for one, `sabatierZoneQ_eq_optimal_iff`). **70 commits touch
+`PhotoLean/Sabatier/`** at revision `b57c8d1` (measure with `git log --oneline -- PhotoLean/Sabatier/ |
+wc -l`), message `feat(S<k>): <lemma>` — one lemma (or one instance row group) per commit for
+S2/S3/S4/S5a/S5b; S1 was delivered as one grouped per-module commit and S5b as twelve row-group
+commits, both registered as deviations on the board.
 
 **The one-sentence result.** In a two-branch Brønsted–Evans–Polanyi model `Ea(dE) = max (alphaA·dE +
 betaA) (betaB − alphaB·dE)` of a two-step catalytic cycle, the **Sabatier description** — the
@@ -49,15 +52,16 @@ of "not too strong, not too weak" is quantitative: within `tol` of the apex the 
 pass height by at most `max(alphaA, alphaB)·tol`.
 
 **中文（摘要）**：`PhotoLean/Sabatier/` 下六个 Lean 模块（S1 描述层、S2 定律层、S3 精确条件与其紧性、
-S4 两抛物线/跨理论形式、S5a 可计算有理判定层、S5b 实例判定层），共 **2 134 行**，**134 条公开声明
-（107 定理 + 27 定义/归纳类型，即 26 个 `def` 与 1 个 `inductive`）**，另有 37 条 private 辅助引理。
+S4 两抛物线/跨理论形式、S5a 可计算有理判定层、S5b 实例判定层），共 **2 134 行**（`wc -l`，revision `b57c8d1`），**134 条公开声明
+（107 定理 + 27 定义/归纳类型，即 26 个 `def` 与 1 个 `inductive`）**，另有 36 条 private 辅助引理。
 语句权威 `sabatier-statement-skeleton.lean` 覆盖其中 **132** 条（105 定理 + 27 定义/归纳类型）；
 余下 2 条是描述层的辅助定理（`branchDown_le_branchUp_of_apex_le`、`branchUp_le_branchDown_of_le_apex`）。
 **逐字一致 132/132，签名差异 0**（按里程碑 S1/S2/S3/S4/S5a/S5b 分别为 30/19/11/13/21/38）。
 **107 条定理全部内核证毕：零未完成占位、零自定义公理**（严格扫描 clean；对全部 107 条一次性
 `#print axioms`，106 条为契约足迹 `[propext, Classical.choice, Quot.sound]`，1 条
-`sabatierZoneQ_eq_optimal_iff` 为其子集 `[propext]`）。**68 个提交触及 `PhotoLean/Sabatier/`**，
-每条引理一个提交，格式 `feat(S<k>): <lemma>`。
+`sabatierZoneQ_eq_optimal_iff` 为其子集 `[propext]`）。在 revision `b57c8d1` 上**70 个提交触及 `PhotoLean/Sabatier/`**（用 `git log --oneline --
+PhotoLean/Sabatier/ | wc -l` 复测），格式 `feat(S<k>): <lemma>` —— S2/S3/S4/S5a/S5b 每条引理（或每个实例行组）
+一个提交；S1 是一个整模块合并提交、S5b 是 12 个行组提交，两处合并都已登记在任务板上。
 
 **一句话结论**：在两步催化循环的双支 Brønsted–Evans–Polanyi 模型
 `Ea(dE) = max (alphaA·dE + betaA) (betaB − alphaB·dE)` 中，**萨巴蒂尔描述**（有效势垒在顶点
@@ -269,8 +273,17 @@ Man et al. 2011 Eq. 4.16–4.18）；W 行携带文献自身的告诫（W/Mo/Nb 
 zero placeholders and zero custom axioms. *Fidelity*: 132/132 authority rows word for word.
 *Pre-verification evidence* (ours, for cross-checking, not a substitute for the verifier): the
 Sprint-0 risk probe (`probes/sabatier-risk-probe.lean`, 0 error), the four API probes (0 error each),
-the exact-rational instance cross-check, and the milestone fidelity numbers. *Independent verification*:
-the runs and their verdicts are recorded in `theories/Sabatier/TASKS.md` § "Acceptance records".
+the exact-rational instance cross-check, and the milestone fidelity numbers. *Independent verification*: verifier run 1
+(S1 + the Sprint-0 artifacts) **PASS** with 12 findings, none HIGH; verifier run 2
+(S2/S3/S4/S5a) **PASS** (64/64 axiom rows, a 425 250-point brute force of the sharp condition with
+0 counterexamples, proof-term anti-circularity checks, clean-archive rebuild); verifier run 3
+(S5b + the frozen whole tree + the documentation plane) — **the mathematics PASS** (38/38 axiom rows,
+an independent exact-rational recomputation of all 38 instance numbers, whole-tree gate PASS) and the
+**documentation plane FAIL** on findings V1–V14, which were then disposed (false docstring
+arithmetic corrected, three counts re-measured, provenance labels aligned with the literature
+record, the two Chinese experience entries translated, and the acceptance gate's scan extended to
+`constant`) and re-checked in verifier run 4. The run verdicts are recorded in
+`theories/Sabatier/TASKS.md` § "Acceptance records".
 
 *What the process caught (three corrections, all logged in `plan.md` §3.1).* (1) Two authority rows of
 the first skeleton draft were **false** and the Sprint-0 risk probe produced kernel counterexamples:
@@ -307,9 +320,10 @@ I2 行已修正，且两侧现在都已交付。三处错误形态没有任何�
 *proved*; the essentials: `Ea = max(branches)`, the BEP linearity in the descriptor, and the
 Arrhenius activity form are **modelling premises** (declared, never hidden in a definition); the
 volcano shape and its sharp condition, the tolerance bound, the leg slopes, the two-parabola volcano
-and the tangent-line bridge are **theorems**; the literature's `ΔG_H*` values are **transcribed
-numbers** (premises of the instance rows), and the literature record's clean negatives are part of the
-result: **no source states the sharp condition `0 < alphaA·alphaB`** (it is this theory's own
+and the tangent-line bridge are **theorems**; the literature's `ΔG_H*` values are **derived
+numbers** — the printed `ΔE_H` plus `0.24 eV` by the source's own Eq. [8], the literature record's
+`[arith]` column — and enter the instance rows as premises. The literature record's clean negatives
+are part of the result: **no source states the sharp condition `0 < alphaA·alphaB`** (it is this theory's own
 exactification), **no IUPAC entry for the Sabatier principle exists**, and the `max` form is *not* a
 kinetic law of the sources. Scope limits (plan §13): one descriptor, two branches, no coverages/
 microkinetics/scaling relations, no claim about any measured rate. Registered deviations: the
@@ -320,8 +334,8 @@ contract's `SOURCE_DIRS` is global; the same layout as the four earlier theories
 
 **中文（限制、非目标与已登记偏差）**：`plan.md` §12 的诚实表逐条列出哪些是*假设*、哪些是*已证明*。要点：
 `Ea = max(两支)`、描述符上的 BEP 线性、以及 Arrhenius 活性形式都是**建模前提**（显式声明，不藏在定义里）；
-火山形状与紧条件、容差上界、两腿斜率、两抛物线火山与切线桥都是**定理**；文献的 `ΔG_H*` 数值是**转录数字**
-（实例行的前提）。文献记录的三个干净否定本身也是结果：**没有任何来源陈述过紧条件 `0 < alphaA·alphaB`**
+火山形状与紧条件、容差上界、两腿斜率、两抛物线火山与切线桥都是**定理**；文献的 `ΔG_H*` 数值是**推导数字**
+（来源印刷的 `ΔE_H` 加 `0.24 eV`，用来源自己的 Eq. [8]，即文献记录的 `[arith]` 列），作为实例行的前提进入。文献记录的三个干净否定本身也是结果：**没有任何来源陈述过紧条件 `0 < alphaA·alphaB`**
 （它是本理论自己的精确化）、**IUPAC 没有萨巴蒂尔原则词条**、`max` 形式**不是**来源的动力学定律。
 范围限制见 plan §13：单一描述符、两支路、不含覆盖度/微观动力学/标度关系，也不对任何实测速率作断言。
 已登记偏差：S5b 文献行对权威的追加（plan §3.1）、以及 S4 顶点只给出含 `sqrt` 的形式；
