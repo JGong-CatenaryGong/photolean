@@ -79,6 +79,10 @@ theorem emitYield_succ {rad ic : ℕ → ℝ} {i N : ℕ} (h : i ≤ N) :
   unfold emitYield
   rw [cascade_succ h]
   ring
+/-- Plan §5.1 #3. At its own excitation level a level emits with its radiative branch. -/
+theorem emitYield_succ_self (rad ic : ℕ → ℝ) (N : ℕ) :
+    emitYield rad ic (N + 1) (N + 1) = radBranch rad ic (N + 1) :=
+  emitYield_self rad ic (N + 1)
 end Kasha
 
 end PhotoLean
