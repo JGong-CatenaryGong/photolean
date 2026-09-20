@@ -5,10 +5,12 @@ PhotoLean.Marcus.Rate — M3 速率层（Marcus 反转区）。
 （Sprint 0 已编译通过）。本文件 3 条定理的签名与它**逐字一致**；
 定理体已全部补齐（零占位证明、无自定义公理声明）。
 
-**依赖**：只 import `PhotoLean.Marcus.Basic`（M1 已过独立验收），复用其中的
-`barrier` / `rate`，不重新定义。本批三条定理**不需要势垒代数**，故刻意
-不 import `PhotoLean.Marcus.Barrier`（`normal_rate_increases` /
-`inverted_rate_decreases` / `rate_peak_at_lam` 属于 Sprint 3，届时再加）。
+**依赖**：`PhotoLean.Marcus.Basic`（M1 已过独立验收，提供 `barrier` / `rate`，
+不重新定义）与 `PhotoLean.Marcus.Barrier`（M2 势垒代数，已过独立验收）。
+第一批三条定理（`rate_pos` / `rate_gt_of_barrier_lt` / `rate_ratio`）只需 M1；
+本批（Sprint 3）三条速率单调性定理复用 M2 的 `barrier_mono_of_pos` /
+`barrier_antitone_of_pos` / `barrier_min_at_lam`，故追加 import `Barrier` ——
+两条组合定理是"势垒代数 → 速率层"的纯复合，不引入新的实分析风险。
 
 **风险隔离**：`rate_gt_of_barrier_lt` 是全项目**唯一**使用 `Real.exp` 单调性的
 地方，其余全是代数 —— 因此 M3 的全部实分析风险集中在这一条。
@@ -24,6 +26,7 @@ PhotoLean.Marcus.Rate — M3 速率层（Marcus 反转区）。
   proofs/scripts/axioms.sh PhotoLean.Marcus.Rate PhotoLean.Marcus.<theorem>
 -/
 import PhotoLean.Marcus.Basic
+import PhotoLean.Marcus.Barrier
 
 namespace PhotoLean.Marcus
 
@@ -75,5 +78,23 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
   congr 1
   field_simp
   ring
+
+/-! ## 速率单调性与峰位（M3 §6，Sprint 3；依赖 M2 势垒代数）
+
+三条定理都是"势垒单调性 + 核心引理"的两行复合，无新的实分析风险。
+注意 `rate_gt_of_barrier_lt` 的方向：`h : Φx < Φy ⇒ rate y < rate x`，
+因此"正常区 Φ 递减 ⇒ 速率递增"这一支要把 `x₂` 当作**更小的势垒**喂进去
+（即取核心引理的 `y := x₁`），"反转区 Φ 递增 ⇒ 速率递减"则取 `y := x₂`。 -/
+
+/-- 正常区：驱动力越大速率越大（`0 ≤ x₁ < x₂ ≤ lam`，`lam > 0`）。
+
+证明：M2 的 `barrier_antitone_of_pos` 给出 `Φ x₂ < Φ x₁`，
+把 `x₂` 当更小势垒喂给核心引理 `rate_gt_of_barrier_lt`（`y := x₁`），
+即得 `rate x₁ < rate x₂`。物理含义：正常区里驱动力越接近重组能，
+势垒越低、反应越快。 -/
+theorem normal_rate_increases {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
+    {x₁ x₂ : ℝ} (h₁ : 0 ≤ x₁) (h₂ : x₁ < x₂) (h₃ : x₂ ≤ lam) :
+    rate A lam kB T x₁ < rate A lam kB T x₂ :=
+  rate_gt_of_barrier_lt hA hkT (barrier_antitone_of_pos hlam h₁ h₂ h₃)
 
 end PhotoLean.Marcus
