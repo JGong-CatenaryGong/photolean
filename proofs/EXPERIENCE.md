@@ -2395,3 +2395,71 @@
   `git archive` copy to defeat stale oleans), followed by documentation re-audits until the plane
   matched the tree. Every finding of every run is recorded with its disposition; **no finding, in any
   run, ever invalidated a delivered theorem.**
+
+
+## 2026-09-21 — Sabatier theory (volcano plot) Sprint 0: contract, statement authority, risk probe, S1 delivered — lead + api_researcher + literature_researcher — DONE
+
+- Goal: the human's three-part request (formalize the Sabatier principle / volcano plot; prove it and
+  find its exact conditions; decide instances) as a machine-checked theory under `theories/Sabatier/`
+  (Leu sources in `PhotoLean/Sabatier/`), the fifth theory of this repository.
+- Sprint-0 deliverables (all committed): contract entry (`THEORIES` + the five `*_Sabatier` leaves),
+  `theories/Sabatier/probes/sabatier-statement-skeleton.lean` (15 defs/inductives + 91 theorems,
+  0 error), `theories/Sabatier/probes/sabatier-risk-probe.lean` (0 error), four API probes +
+  `proofs/API-NOTES.md` § Sabatier, `theories/Sabatier/LITERATURE.md` (30 sources) +
+  `literature/INSTANCE-DATA.md`, `theories/Sabatier/plan.md` §1–§14, the board, and the S1 module
+  `PhotoLean/Sabatier/Basic.lean` (30/30 word-for-word against the authority, `check.sh --strict`
+  PASS, `#print axioms` = `[propext, Classical.choice, Quot.sound]`).
+- Headline model result: with `Ea(dE) = max (alphaA*dE + betaA) (betaB - alphaB*dE)` and the apex the
+  crossing point `(betaB-betaA)/(alphaA+alphaB)`, the barrier is a volcano at its apex (unique global
+  minimizer) **iff `0 < alphaA * alphaB`** — the two branches penalize opposite ends of the descriptor
+  axis. In the physical orientation (`0 < alphaA ∧ 0 < alphaB`) the description holds unconditionally;
+  `alphaA = 0` gives a half-line plateau, opposite-slope signs a strictly monotone barrier; both with
+  kernel witnesses. Activity = `exp(-Ea/(kB*T))` has its unique maximum at the apex under the same
+  condition (`AntiVolcanoDescriptor`).
+- What worked (reusable):
+  1. **The risk probe caught two FALSE authority rows before anything cited them.** (a) The
+     "label-swap commutes" identities (`apex_comm`, `volcanoBarrier_comm`) are false because the
+     second branch enters with slope `-alphaB`, so the naive parameter swap NEGATES the apex
+     (`apex 1 0 1 2 = 1` vs `apex 1 2 1 0 = -1`); the correct identity is the relabelling
+     `(alphaA,betaA,alphaB,betaB) ↦ (-alphaB,betaB,-alphaA,betaA)`. (b) `activity_descriptor_iff` is
+     false: `exp(-Ea/(kB*T))` is strictly DECREASING in the barrier, so the barrier's unique minimum
+     is the activity's unique MAXIMUM — the fix is the dual predicate `AntiVolcanoDescriptor` and the
+     volcano-plot headline `volcanoActivity_peak_iff`. Standing lesson (third occurrence in this
+     repository): **a monotone reparametrization flips min into max — check the direction of every
+     `descriptor`-shaped statement**; and **a sign convention hidden in a definition body (the
+     `-alphaB` of `branchDown`) invalidates "obvious" commutativity identities**.
+  2. **Generate the delivered file from the risk probe, keyed by the skeleton signatures.** The S1
+     module was produced programmatically: signatures taken word-for-word from the authority,
+     proof bodies taken from the (already compiling) probe. Result: 30/30 fidelity with zero
+     re-derivation of proofs, and the delivered file and the probe cannot drift apart.
+  3. **Literature as a gate on the STATEMENT, not just colour.** The survey produced three hard
+     negatives that reshaped the plan: no IUPAC entry for the Sabatier principle exists (so no
+     "normative wording" may be cited); the sharp condition `0 < alphaA*alphaB` appears nowhere in
+     the literature (so it is presented as this theory's exactification, with the opposite-sign-branch
+     premise cited instead); and the effective-barrier-as-`max` identification is NOT a kinetic law
+     of the sources (energetic span is a TDTS−TDI difference, the strong-binding leg of Nørskov 2005
+     is a Langmuir coverage factor, and Man's `max` acts on step free energies with barriers
+     explicitly excluded) — so it is a declared premise. Three dispatched DOIs were also wrong.
+  4. **Contract discipline**: a new theory directory is silently skipped by the variable pass of
+     `check.sh` until it is listed in `THEORIES` (the directory sweep catches the leaves, but the
+     variable pass is the only one that can check explicitly declared paths) — register on creation.
+- Tried and failed (mandatory column):
+  1. The two false statements above (kept in the plan's §3.1 correction log with counterexamples).
+  2. **Comment-blind regex code generation**: a docstring containing the word "theorem" made the
+     declaration splitter cut mid-docstring (`theorem of it. -/` in the generated file). Lemmas in
+     docstrings are ordinary prose; any Lean parser must strip comments first (the same defect class
+     as the fidelity checker's earlier `structure` blind spot).
+  3. **Line-wise re-indentation of extracted proof bodies**: adding two spaces to every line except
+     the first made `unfold a b` swallow the following tactic as an identifier argument
+     (`unknown identifier 'ring'`) — Lean tactic sequences are layout-sensitive in exactly this
+     direction; re-indent uniformly or not at all.
+  4. `max_eq_left le_rfl` fails to unify against a goal that is only definitionally `max a a = a`
+     (the expected side goal `-0 ≤ 0` versus `le_rfl : ?m ≤ ?m`): use `max_self` / `by norm_num`.
+  5. `field_simp; ring` where `field_simp` already closes the goal produces "no goals to be solved":
+     in the probe the same goal shape sometimes needs `ring`, sometimes not — prefer the robust
+     `rw [apex, mul_div_cancel₀ _ h]`-style step over `field_simp` when a division can be cancelled
+     explicitly.
+  6. `simp [apex]` on `(x)/(0+0)` needed the denominator normalized first (`div_zero` after `0+0 → 0`),
+     and `rw [div_zero]` alone did not match.
+- Commits: `61e26d9` (scaffolding), `00c5f69` (probe+skeleton+API+literature+S1), `9aad66d`
+  (plan + board). Statement corrections are logged in `theories/Sabatier/plan.md` §3.1.
