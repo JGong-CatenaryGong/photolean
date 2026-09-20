@@ -875,3 +875,149 @@
   `Real.le_sqrt` + `Real.sqrt_mul` as an equally short canonical alternative; for equioscillation /
   minimax lower bounds it is `set` the residuals, prove the exact second difference, bound it with
   `le_abs_self` + `abs_add`, kill the negated disjunction with `not_or`/`not_le`, finish with `linarith`.
+
+## 2026-09-20 — BEP B1+B2: description layer + law layer (`Basic.lean` 33 declarations, `Criterion.lean` 28) — prover_a — DONE
+
+- 目标：deliver the BEP description layer (definitions `eact` / `bepLine` / `bepDefect` / `transfer` /
+  `reverseTransfer` / `secSlope` / `bepRadius` / `bepBestLine` / `EPBounds` / `EPLinearOn` / `EPExact` /
+  `EPConformsOnWindow` / `EPBestOnWindow` / `EPZone` / `epZone` / `EPRegime` / `EPConforms` /
+  `EPDescriptor` plus the 15 `epZone_eq_*_iff` rows; plan §4.1–§4.2, commits `793fd28`…`b2e3fd2`) and the
+  law layer (`eact_expansion`, `bepDefect_eq`, the two thermoneutrality rows, `transfer_eq_tsCoord`,
+  `transfer_thermoneutral`, `reverseTransfer_thermoneutral`, `transfer_add_reverse`,
+  `reverseTransfer_eq_transfer_neg`, `secSlope_eq_transfer_mid`, `secSlope_midpoint_invariant`,
+  `eact_neg_eq_add`, `eact_antitone`, `bepDefect_nonneg`, `bepDefect_pos_iff`, `epDescriptor_holds`,
+  `epDescriptor_conforms`, `epConforms_iff_bounds`, the non-vacuity suite; plan §5, commits
+  `07cfb54`…`4a23c9f`), every signature word for word with
+  `theories/BEP/probes/bep-statement-skeleton.lean`.
+- 试过且失败（七条，全部实测；前三条是语句层面的，后四条是战术/工具层面的）：
+  1. **plan §4.2 row 4 `transfer_zero_lam` is FALSE as handed over.** The delivered body is the
+     linear-response coefficient `transfer lam x = 1/2 - x/(2*lam)`, and Lean's division is totalised, so
+     at `lam = 0` the second term is `x/0 = 0` and `transfer 0 x = 1/2`, **not** `0` — the `0` belonged to
+     the discarded transition-state-coordinate body. Kernel counterexample produced before any proof work;
+     the row was corrected to the linear-response value in plan §4.2, pushed to `api_researcher`, and the
+     same body change silently made the plan §8.2 I8 cell "`α = 0`" false (it is `1/2`). Lesson: a
+     statement-first probe is worth exactly the counterexamples it produces.
+  2. **`nlinarith` cannot close `eact_antitone` from the plan's sketch.** Goal after `unfold eact`:
+     `(lam - x₂)^2 / (4*lam) < (lam - x₁)^2 / (4*lam)` under `0 < lam`, `x₁ < x₂ ≤ lam`; `nlinarith` has no
+     handle on the division's positivity side condition and returns either a wrong-direction square
+     comparison or a nonlinear blow-up. **What works** (delivered body): `have h4 : (0:ℝ) < 4*lam := by
+     linarith`, `rw [div_lt_div_iff_of_pos_right h4]`, then `exact (sq_lt_sq₀ h0 h01).2 hlt` with
+     `h0 : 0 ≤ lam - x₂`, `h01 : 0 ≤ lam - x₁`, `hlt : lam - x₂ < lam - x₁` all by `linarith`. Note
+     `sq_lt_sq₀` (the `0 ≤`-hypothesis form) rather than `sq_lt_sq`: no `abs` appears, so no
+     `abs_of_nonneg` glue is needed.
+  3. **`decide` is unusable on the ℝ-side classifier goals, and `native_decide` is banned by the
+     contract.** `epZone lam x = EPZone.exergonic ↔ 0 < x ∧ x < lam` is a `Prop` over `ℝ`; `decide` cannot
+     reduce it because `Real.decidableEq` / the `Real` order instances block kernel reduction (measured as
+     a "failed to reduce" error, not a timeout). The working route for the whole `epZone` family is
+     `unfold epZone; norm_num` (plus `split_ifs`/`by_cases` where a guard must be *used*, and `linarith`
+     only where the arithmetic is genuinely symbolic); the ℚ twins in B5a close the same way.
+  4. **`field_simp` sometimes closes the goal by itself, and a following `ring` is then a hard error**
+     ("no goals to be solved"), not a harmless no-op — so `…; field_simp; ring` is *not* a safe universal
+     idiom in this toolchain. Recipe used: write `field_simp` alone, check what remains, add `ring` only
+     where something remains (never a bare `try ring`, which would swallow real failures).
+  5. **`if`-cascade guard-level trap.** Rewriting an equation (`x = 0`) into an already-unfolded cascade
+     hits the *guards* as well as the branches, and `split_ifs` assigns case names in the cascade's own
+     order (here `degenerate` is consumed first, before any `x` is inspected) — so a "natural" rewrite
+     order can produce side goals in which the guard hypothesis is the wrong one. Discipline that worked:
+     `unfold` the definition first, then `split_ifs`/`by_cases` and discharge each guard with the
+     hypothesis that actually replaces it, never a blind `rw` into the cascade.
+  6. **Delivery-driver self-swallowing.** The driver that assembled the delivered module out of the
+     skeleton's blocks matched its own output file in its input glob, so a second run read the
+     already-assembled file (re-emitting headers and, in one direction, growing). Fix: exclude the
+     destination path from the source set and always extract from the statement authority only. A variant
+     of the same driver appended the namespace's `end` while the extracted block already carried it →
+     `unexpected token 'end'`; emit `end` exactly once, with the skeleton's own tail as the reference.
+  7. **`set_option linter.unusedVariables false in` placement rule.** The option must sit immediately
+     before the declaration it modifies; inside a namespace/section it applies to the *next* declaration
+     only and must be repeated for each one, and adding a docstring between the option and the declaration
+     is fine while putting the option after the docstring is not. A misplaced option either fails to parse
+     or silently fails to cover the theorem it was meant for.
+- 奏效：`PhotoLean/BEP/Basic.lean` (33 declarations) and `PhotoLean/BEP/Criterion.lean` (28) delivered,
+  0 fidelity differences against the skeleton (`theories/BEP/probes/bep-fidelity.py`), worker gate PASS
+  (`lake build` per module + `proofs/scripts/check.sh --strict` + `proofs/scripts/axioms.sh` on every
+  declaration: only `propext`, `Classical.choice`, `Quot.sound`, no `sorryAx`); both files carry their
+  physical assumptions (`lam ≠ 0`, `0 < lam`, `h ≠ 0`, `x ≠ 0`) as explicit hypotheses and none in a
+  definition. Handed to the independent verifier as one batch with `RatModel.lean`.
+- 可复用模式：**prove the statement's premises before the statement's conclusion.** Two of the seven
+  failures were kernel counterexamples to the *handed-over text* (a totalised-division body change and a
+  stale cell downstream of it) — both were caught by rewriting the body into a probe first. On the tactic
+  side the reusable pair is: "reduce `div`-comparisons with `div_lt_div_iff_of_pos_right` and finish on a
+  nonnegative square lemma (`sq_lt_sq₀`), and never assume `field_simp; ring` is a safe compound motif —
+  `field_simp` may already be done, and a leftover `ring` is an error."
+
+## 2026-09-20 — BEP B4: microscopic + cross-module layer (`PhotoLean/BEP/Compose.lean`, 12 declarations) — prover_b — DONE
+
+- 目标：deliver plan §7: rows 1–6 bridge the BEP description layer to the two delivered two-parabola
+  modules (`Marcus.Basic`, `Hammond.Basic`), rows 7–12 compose the reorganization energy out of an inner
+  and an outer part (`lam = lamInner + lamOuter`) and show that a larger total reorganization energy
+  shrinks the violation and widens the conforming window. Statements word for word with the B4 block of
+  `theories/BEP/probes/bep-statement-skeleton.lean`; commits `6dcb691`…`b3569c3`.
+- 试过且失败：
+  1. **The two definitional bridges are `rfl`, and tactics are wasted on them.** `Marcus.barrier` and the
+     BEP `eact` are *definitionally equal* (identical bodies, independently stated), so
+     `eact_eq_barrier : eact lam x = Marcus.barrier lam x` is `:= rfl`; the same `rfl` settles
+     `rate_eq_exp_neg_eact` (the delivered Marcus rate descriptor written through the BEP barrier). Any
+     `unfold`/`ring` attempt on these two goals is dead work; and a trailing tactic on an `rfl`-closed goal
+     is a hard error.
+  2. **Rows 9–11 could not quote the plan §6.3 helpers because `Sharp.lean` did not exist yet** (B3 was
+     still being proved by another owner, and importing it would have introduced a cross-milestone
+     dependency). The three rows were therefore **derived locally from `PhotoLean.BEP.Basic`** while keeping
+     the plan's hypothesis shape (including the hypotheses the proofs do not consume, e.g.
+     `hli : 0 ≤ lamInner` in `bepRadius_add`): `Real.sqrt_le_sqrt` + `mul_le_mul_of_nonneg_right` for the
+     radius monotonicity, and the radius/window criterion by **squaring** (`Real.sq_sqrt` + `sq_le_sq` +
+     `abs_of_nonneg`) instead of through the not-yet-available `epConformsOnWindow_iff_radius`.
+  3. **`field_simp` refinement.** `field_simp` does not invent the nonvanishing side conditions of the
+     defect identity, so unfolding `bepDefect eact bepLine` separately at each use site leaves side goals it
+     cannot discharge. Refinement that made rows 10–11 close: prove **one local `key` lemma**
+     `∀ L x : ℝ, L ≠ 0 → bepDefect L x = x^2/(4*L)` by `intro L x hL0; unfold bepDefect eact bepLine;
+     field_simp; ring`, then reuse it everywhere with `ne_of_gt` supplying `L ≠ 0`; the remaining
+     `div_le_div_of_nonneg_left` / `sq_le_sq` steps then see a clean `x^2/(4*L)` form.
+- 奏效：all 12 rows delivered; `Compose.lean` imports only `BEP.Basic` + `Marcus.Basic` +
+  `Hammond.Basic` (no `Sharp`, no `Marcus.Compose`, no Pekar machinery), the microscopic hypotheses
+  `0 < lamInner` / `0 < lamOuter` are explicit premises of every statement that needs them, gate PASS
+  (12/12 `#print axioms` clean, 0 fidelity differences), handed to the verifier together with B2.
+- 可复用模式：**check definitional equality before reaching for a tactic** (a cross-module bridge between
+  two independently stated modules is often literally `rfl`), and when a dependency milestone has not
+  landed, derive the two or three helper rows locally from the earliest module instead of importing a file
+  that does not exist — then hoist any repeated `field_simp` identity into one local lemma whose
+  nonvanishing hypothesis is explicit.
+
+## 2026-09-20 — BEP B5b instance cross-check script (`theories/BEP/probes/bep-instance-check.py`, non-Lean) — prover_a — DONE
+
+- 目标：give the verifier an evidence chain for the future `PhotoLean/BEP/Instances.lean` that does **not**
+  go through the delivered Lean theorems: recompute in exact rational arithmetic (`fractions.Fraction`
+  only) every number the instance layer will assert — `alphaObs`, `lamOfPair`, the second divided
+  difference, the six-branch `epQVerdict` verdict, the I1–I10 model-constructed rows and the §R1.10
+  literature families — from `theories/BEP/LITERATURE.md` §R1.10, and exit 1 with a per-number diff if a
+  Lean-side literal in plan §8.2 or the skeleton's B5b block disagrees. 276 Lean-side values checked;
+  result `CROSS-CHECK: OK`, exit 0.
+- 试过且失败（脚本自身的三个实测缺陷，全部只有靠"算出来的数不对"才发现）：
+  1. **A helper mirroring Lean's totalised division leaked floats.** `qdiv(a, b) = F(0) if b == 0 else
+     a / b` looked exact, but with the *int* literals of `qTransfer` (`qdiv(1, 2)`) Python does **float**
+     division, so `qTransfer 3 2` returned `0.16666666666666669` and every downstream comparison was
+     silently inexact (it happened to pass for 1/2, 3/8, 3/4 and failed for 1/6, which is what exposed it).
+     Fix: coerce both arguments (`a, b = F(a), F(b)`) inside the helper — with an exact-rational mirror,
+     "the value looks right" is not evidence, `==` against a `Fraction` is.
+  2. **`str(Fraction)` is `4/5`, not `0.8`**, so a token-level read-back of the record's prose
+     ("does the value printed there equal mine?") was vacuously true/false for every non-terminating
+     decimal. Fix: render with an explicit decimal formatter before searching the record.
+  3. The first version read the record only through my own transcription. Now the script **re-reads
+     §R1.10** (section [1b], 133 cells: every `(ΔG°, ΔG‡, kJ/mol, λ̂)` cell of F1/F2/F5, the aggregate rows
+     of F3/F4, F3's prose rows, the family means/ranges) and a mismatch is a hard failure, so a stale
+     transcription can never silently invalidate the cross-check. Verified by mutating a copy of the
+     record: the run then exits 1 naming the exact cell.
+- 奏效：`python3 theories/BEP/probes/bep-instance-check.py` → exit 0, `CROSS-CHECK: OK`, 276 checked values,
+  a final paste-ready table (`family | alphaObs | lamOfPair | sdd-sign | verdict | provenance flag`) and
+  explicit `UNSUPPORTED` lines for F4 (aggregate-only) and for the six §R1.10.7 families (no pair data);
+  the script also refuses to invent per-point rows and states per number whether it is `kcal/mol`,
+  dimensionless or `1/(kcal/mol)`.
+- 可复用模式：**an independent check must also check its own input.** Two classes of finding came out of
+  this that no proof gate would see: (i) transcription/drift (fixed by re-reading the source file, 133
+  cells, hard-fail on mismatch), and (ii) source-arithmetic defects — §R1.10.5's printed per-row `λ̂`
+  column is wrong for two of five rows (R4 prints 41.6 where the model quadratic's larger root is
+  ≈34.640112; R5 prints 32.5 where it is ≈36.468035), while that family's summary (mean 37.5, range
+  32.5–44.0) matches the correct roots, so the defect is confined to those two cells. Also recorded:
+  §R1.10's "curvature" is used with the quadratic-coefficient convention (`λ = 1/(4·curvature)`, matching
+  the Lean `qSecondDividedDiff = 1/(4λ)`) although §R1.10.1's prose writes `d²Ea/dx² = 1/(2λ)` — a factor-2
+  labelling question that does not change the verdict (negative curvature ⇒ no positive λ), and the
+  literature-side findings were reported to the lead rather than "fixed" in the record.
