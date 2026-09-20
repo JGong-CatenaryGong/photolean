@@ -9,8 +9,8 @@ is attained with equality and cannot be improved), and the two registered negati
 (the levelwise `k_IC ≥ k_rad` criterion is insufficient; the loss premise of the Kasha–Vavilov
 equivalence is necessary).
 
-Contents (statement authority: `theories/kasha/probes/kasha-statement-skeleton.lean`, §K3 block;
-sha256 `4cf2b1055f1aee41463e7f5ad9bb6913c2c82600a0c4aa064cb58210fc68c0fb`, 144 declarations):
+Contents (statement authority: `theories/kasha/probes/kasha-statement-skeleton.lean`, §K3 block of
+the **frozen** authority; sha256 `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations):
 
 * §6.1 #1–#3 — the two-level criterion: the exact rate form, the **funnel-ratio threshold**
   `(1 - tol)/tol ≤ funnelRatio`, and the literature form `k_IC/k_rad ≥ (1 - tol)/tol` (for
@@ -45,8 +45,8 @@ file — the scan covers `PhotoLean/**/*.lean` including block comments, so writ
 prose) would be a false-positive FAIL.
 
 Statement authority: every theorem signature below is taken word for word from the §K3 block of
-`theories/kasha/probes/kasha-statement-skeleton.lean` (sha256
-`4cf2b1055f1aee41463e7f5ad9bb6913c2c82600a0c4aa064cb58210fc68c0fb`), which transcribes
+`theories/kasha/probes/kasha-statement-skeleton.lean` (frozen state, sha256
+`b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`), which transcribes
 `theories/kasha/plan.md` §6. The module imports `PhotoLean.Kasha.Basic` (K1: definitions, the
 standing premise bundle, the index identities) and `PhotoLean.Kasha.Criterion` (K2: the cascade
 recursions `upperYield_succ` / `fluoYield_succ` used by the two counterexample rows); nothing of

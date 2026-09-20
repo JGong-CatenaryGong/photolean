@@ -32,8 +32,9 @@ of `ic 0` as the lowest state's loss channel. They are modelling assumptions, re
 in the plan's honesty table and scope limits; no theorem below depends on one of them silently.
 
 Statement authority: every definition body and every theorem signature below is taken word for
-word from `theories/kasha/probes/kasha-statement-skeleton.lean` (its §K1 block; sha256
-`801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`), which in turn transcribes
+word from `theories/kasha/probes/kasha-statement-skeleton.lean` (its §K1 block of the **frozen**
+authority, sha256
+`b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations), which in turn transcribes
 `theories/kasha/plan.md` §4.1 and §4.2 — including the single statement correction of that block,
 recorded in the plan's §3.1 statement-correction log: row §4.2 #24 carries the tolerance premise
 `0 < tol`, because without it the row is false (kernel counterexample

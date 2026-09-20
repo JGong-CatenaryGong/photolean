@@ -37,7 +37,8 @@ that evaluates these goals through the compiler is excluded by the axiom discipl
 (`Lean.ofReduceBool` is not among `ALLOWED_AXIOMS`), and `by decide` does not reduce them (measured).
 
 **Statement authority**: the K5b section of `theories/kasha/probes/kasha-statement-skeleton.lean`
-(sha256 `8508e1df7705daaac31288ef78e97073aaff2f1c6422c31bd2eb83b669cbf888`), which transcribes
+(frozen state, sha256
+`b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations), which transcribes
 `theories/kasha/plan.md` §8.2 — including the literature rows appended 2026-09-20. Every statement
 below is that block word for word; the literature docstrings extend the authority's text with the
 provenance sentences required by the dispatch, and the numbers are the authority's literals

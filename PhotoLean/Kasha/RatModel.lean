@@ -26,8 +26,8 @@ rows below do not rely on the `simp` discharger for the empty-`Icc` side conditi
 `theories/kasha/probes/kasha-api-cascade.lean`.
 
 **Statement authority**: the K5a section of
-`theories/kasha/probes/kasha-statement-skeleton.lean` (sha256
-`4cf2b1055f1aee41463e7f5ad9bb6913c2c82600a0c4aa064cb58210fc68c0fb`), which transcribes
+`theories/kasha/probes/kasha-statement-skeleton.lean` (frozen state, sha256
+`b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations), which transcribes
 `theories/kasha/plan.md` §8.1. Every definition body, every theorem signature and every leading
 docstring below is that block word for word, including the two statement corrections of
 2026-09-20 recorded in the plan's §3.1 correction log:

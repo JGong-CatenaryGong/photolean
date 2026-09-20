@@ -38,8 +38,9 @@ and adds no premise that is not in the statement authority. Every positivity tha
 either in `RateData` or an explicit hypothesis of the row (engine rule 3).
 
 Statement authority: every theorem signature below is taken word for word from
-`theories/kasha/probes/kasha-statement-skeleton.lean` (its §K2 block; sha256
-`801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`), which transcribes
+`theories/kasha/probes/kasha-statement-skeleton.lean` (its §K2 block of the **frozen** authority,
+sha256
+`b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations), which transcribes
 `theories/kasha/plan.md` §5. This module imports `PhotoLean.Kasha.Basic` and reuses its 25
 theorems; nothing of K1 is re-proved or re-defined here. Note deliberately: the two keyword
 literals that `proofs/scripts/check.sh --strict` scans for are not spelled out anywhere in this

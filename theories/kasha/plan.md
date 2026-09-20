@@ -331,6 +331,8 @@ declaration of `Basic.lean`, definitions included in §4.1.)
 | 2026-09-20 | K3 #9 `not_kashaWithin_one_of_ratio_lt` | it is the strict side of the same (false) equivalence, so it fails on the same witness | added `(h1 : 0 < decay rad ic 1)` in the same pass | same probe file |
 | 2026-09-20 | K5a `kashaWithinQ_iff_funnelRatioQ` | the ℚ twin of K3 #2, with the same defect found **independently** | added `(h1 : 0 < decayQ rad ic 1)` | kernel counterexample in `theories/kasha/probes/kasha-rat-probe.lean` (`probe_criterion_premises_insufficient`, witness `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2`), raised by prover_c |
 
+| 2026-09-20 | plan §5.1 #12, §5.2 #21, §7.2 #8/#9/#11/#12/#13/#14 | **plan-sketch ↔ authority reconciliation** (found by verifier run 2, finding 2): seven rows of the plan's sketches differ from the delivered signatures — six by *strengthening* a premise (`htol : 0 ≤ tol` in K2 #21; `hpos` in K4 #8; `h0 : 0 < decay rad ic 0` in K4 #9/#11; `hr0 : 0 < rad 0` in K4 #12/#13/#14, which is genuinely needed for the `Real.log` step) and one by *dropping* an unneeded premise (`hN : 0 < N` in K2 #12, true at `N = 0` too). None of the seven is a mathematical defect: the authority is the source of truth and was proved as delivered | the plan's tables are corrected in place to the delivered signatures, so plan and authority agree row by row; the `Compose.lean` header's claim of "nothing added" is replaced by a pointer to this entry | verifier run 2 report (batch K2/K4/K5a), reproduced in the board's acceptance record |
+
 Correction-log lesson (recorded for the engine): **three of the four corrections are the same
 mistake in different clothes** — a statement whose premises do not carry the sign of a quantity the
 proof must divide by (the tolerance `tol`, then the total decay `decay 1`). The Sprint-0 risk probe
@@ -359,7 +361,7 @@ Vavilov's rule (§5.2).
 | 9 | `fluoYield_mono_succ (h : RateData rad ic (N+1)) : fluoYield rad ic N ≤ fluoYield rad ic (N+1)` | 4: difference `= radBranch (N+1)·(1 - fluoYield N)` |
 | 10 | `fluoYield_lt_succ_of_rad_pos (h : RateData rad ic (N+1)) (hr : 0 < rad (N+1)) (h1 : fluoYield rad ic N < 1) : fluoYield rad ic N < fluoYield rad ic (N+1)` | 4, 9 with strictness |
 | 11 | `fluoYield_eq_iff_rad_zero (h : RateData rad ic (N+1)) (h1 : fluoYield rad ic N < 1) : fluoYield rad ic (N+1) = fluoYield rad ic N ↔ rad (N+1) = 0` | 4: difference `= radBranch (N+1)·(1 - fluoYield N)` |
-| 12 | `fluoYield_lt_one_iff_loss (h : RateData rad ic N) (hN : 0 < N) : fluoYield rad ic N < 1 ↔ 0 < icBranch rad ic 0 * cascade rad ic 0 N` | 7 |
+| 12 | `fluoYield_lt_one_iff_loss (h : RateData rad ic N) : fluoYield rad ic N < 1 ↔ 0 < icBranch rad ic 0 * cascade rad ic 0 N` | 7 — the delivered row **drops** the draft's `(hN : 0 < N)`, which the identity does not need (it is true at `N = 0` as well); reconciled in §3.1 |
 
 ### 5.2 The exact rule and the Kasha–Vavilov equivalence
 
@@ -373,7 +375,7 @@ Vavilov's rule (§5.2).
 | 18 | **`kashaRule_iff_vavilovUpTo`** `(h : RateData rad ic N) (hloss : 0 < ic 0) : KashaRule rad ic N ↔ VavilovUpTo rad ic N` | 14, 17, 12 — the **Kasha–Vavilov equivalence**; `hloss` makes every `fluoYield i < 1` |
 | 19 | `not_kasha_universal : ∃ rad ic N, RateData rad ic N ∧ ¬ KashaRule rad ic N` | witness `rad 0 = 1, rad 1 = 1, ic 0 = 1, ic 1 = 1`, `N = 1` — **the rule is not a theorem of the model** |
 | 20 | `kashaDescriptor_nonvacuous : ∃ rad ic, KashaDescriptor rad ic` | witness `rad 0 = 1`, `rad n = 0` (`n ≥ 1`), `ic n = 1` |
-| 21 | `kashaWithin_of_kashaRule (h : KashaRule rad ic N) : KashaWithin rad ic tol N` | 18, `0 ≤ tol·fluoYield` |
+| 21 | `kashaWithin_of_kashaRule (h : RateData rad ic N) (htol : 0 ≤ tol) (hK : KashaRule rad ic N) : KashaWithin rad ic tol N` | 18, `0 ≤ tol·fluoYield`; the delivered row carries the two premises the draft left implicit (reconciled in §3.1) |
 | 22 | `upperYield_le_sum_radBranch (h : RateData rad ic N) : upperYield rad ic N ≤ ∑ i ∈ Finset.Icc 1 N, radBranch rad ic i` | 12 |
 
 ---## 6. K3 — sharp conditions (`PhotoLean/Kasha/Sharp.lean`)
@@ -447,13 +449,13 @@ noncomputable def kashaGapThreshold (A rad0 dec0 rad1 tol : ℝ) : ℝ :=
 | 5 | `effUpperYield_one (h : RateData rad ic N) : upperYield (effRad rad ic N) (effIc rad ic N) 1 = upperYield rad ic N / (upperYield rad ic N + cascade rad ic 0 N)` | `Icc 1 1`, `cascade_self` |
 | 6 | `effEmitYield_zero_one (h) : emitYield (effRad …) (effIc …) 0 1 = emitYield rad ic 0 N / (upperYield rad ic N + cascade rad ic 0 N)` | unfold with 3, 4 |
 | 7 | **`kashaMargin_effective`** `(h : RateData rad ic N) (hu : 0 < upperYield rad ic N) : kashaMargin (effRad rad ic N) (effIc rad ic N) 1 = kashaMargin rad ic N` | 5, 6 — **the ladder's margin is a two-level margin** |
-| 8 | **`kashaWithin_iff_effective`** `(h : RateData rad ic N) : KashaWithin rad ic tol N ↔ KashaWithin (effRad rad ic N) (effIc rad ic N) tol 1` | `fluoYield = low + upper`, multiply by `1/(u+C) > 0` — **every ladder is a two-level model in disguise** |
-| 9 | **`kashaWithin_iff_ladderRatio`** `(h : RateData rad ic N) (hu : 0 < upperYield rad ic N) (htol : 0 < tol) : KashaWithin rad ic tol N ↔ (1 - tol) / tol ≤ ladderRatio rad ic N` | 7, 8, K3 #2 — **the N-level threshold**, the general answer to ② |
+| 8 | **`kashaWithin_iff_effective`** `(h : RateData rad ic N) (hpos : 0 < upperYield rad ic N + cascade rad ic 0 N) : KashaWithin rad ic tol N ↔ KashaWithin (effRad rad ic N) (effIc rad ic N) tol 1` | `fluoYield = low + upper`, multiply by `1/(u+C) > 0` — **every ladder is a two-level model in disguise** |
+| 9 | **`kashaWithin_iff_ladderRatio`** `(h : RateData rad ic N) (hu : 0 < upperYield rad ic N) (htol : 0 < tol) (h0 : 0 < decay rad ic 0) : KashaWithin rad ic tol N ↔ (1 - tol) / tol ≤ ladderRatio rad ic N` | 7, 8, K3 #2 — **the N-level threshold**, the general answer to ② |
 | 10 | `ladderRatio_one (h : decay rad ic 1 ≠ 0) : ladderRatio rad ic 1 = funnelRatio rad ic` | unfold |
-| 11 | `not_kashaWithin_of_ladderRatio_lt (h) (h : ladderRatio rad ic N < (1-tol)/tol) : ¬ KashaWithin rad ic tol N` | 9 |
-| 12 | **`kashaWithin_one_marcus`** `(h : RateData rad ic 1) (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x) : KashaWithin rad ic tol 1 ↔ (lam - x)^2 ≤ 4 * lam * (kB * T) * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol)` | K3 #1 + `Real.exp`/`Real.log` monotonicity, then multiply by `4·lam > 0`; the gap `x` is the `S₂–S₁` energy gap, `barrier` is `PhotoLean.Marcus.barrier` |
-| 13 | **`not_kashaWithin_of_gap_far`** `(…) (h : 4 * lam * (kB * T) * Real.log (kashaGapThreshold …) < (lam - x)^2) : ¬ KashaWithin rad ic tol 1` | 12 (the anti-Kasha direction: the gap is outside the window) |
-| 14 | `kashaWindow_halfWidth` `(…) (h0 : 0 ≤ 4 * lam * (kB * T) * Real.log (kashaGapThreshold …)) : KashaWithin rad ic tol 1 ↔ \|lam - x\| ≤ Real.sqrt (4 * lam * (kB * T) * Real.log (kashaGapThreshold …))` | 12 + the `sqrt` recipe of `theories/BEP/probes/bep-api-abs-sqrt.lean` (the API-notes recipe; the absolute-value route is the one that worked there) |
+| 11 | `not_kashaWithin_of_ladderRatio_lt (h : RateData rad ic N) (hu : 0 < upperYield rad ic N) (htol : 0 < tol) (h0 : 0 < decay rad ic 0) (hlt : ladderRatio rad ic N < (1 - tol)/tol) : ¬ KashaWithin rad ic tol N` | 9 |
+| 12 | **`kashaWithin_one_marcus`** `(h : RateData rad ic 1) (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T) (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x) : KashaWithin rad ic tol 1 ↔ (lam - x)^2 ≤ 4 * lam * (kB * T) * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol)` | K3 #1 + `Real.exp`/`Real.log` monotonicity, then multiply by `4·lam > 0`; the gap `x` is the `S₂–S₁` energy gap, `barrier` is `PhotoLean.Marcus.barrier` |
+| 13 | **`not_kashaWithin_of_gap_far`** `(h : RateData rad ic 1) (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T) (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x) (hfar : …) : ¬ KashaWithin rad ic tol 1` | 12 (the anti-Kasha direction: the gap is outside the window) |
+| 14 | `kashaWindow_halfWidth` `(h : RateData rad ic 1) (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T) (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : …) (h0 : 0 ≤ 4 * lam * (kB * T) * Real.log (kashaGapThreshold …)) : KashaWithin rad ic tol 1 ↔ \|lam - x\| ≤ Real.sqrt (4 * lam * (kB * T) * Real.log (kashaGapThreshold …))` | 12 + the `sqrt` recipe of `theories/BEP/probes/bep-api-abs-sqrt.lean` (the API-notes recipe; the absolute-value route is the one that worked there) |
 | 15 | `kashaGapThreshold_pos (hA : 0 < A) (hr0 : 0 < rad 0) (htol : 0 < tol) (hdec : 0 < decay rad ic 0) (hr1 : 0 < rad 1) (htol1 : tol < 1) : 0 < kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol` | `div_pos`, `mul_pos` |
 | 16 | `marcusIC_pos (hA : 0 < A) : 0 < marcusIC A lam kB T x` | `Real.exp_pos` |
 
