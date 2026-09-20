@@ -138,3 +138,7 @@ theorem exists_productLike {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ProductLi
   rw [lt_div_iff₀ h2]
   linarith
 
+/-- Non-vacuity: the Hammond regime is non-empty. -/
+theorem exists_reactionRegion {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ReactionRegion lam x :=
+  ⟨0, by unfold ReactionRegion; exact ⟨by linarith, hlam⟩⟩
+
