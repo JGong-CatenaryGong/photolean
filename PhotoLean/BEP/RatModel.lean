@@ -282,6 +282,29 @@ theorem epQVerdict_conforming_iff {lam x : ℚ} (hlam : 0 < lam) :
     · rw [if_neg h5]
       exact iff_of_false (by decide) (fun h => h4 h)
 
+theorem epQVerdict_boundary_iff {lam x : ℚ} (hlam : 0 < lam) :
+    epQVerdict lam x = EPQVerdict.boundary ↔ x = lam ∨ x = -lam := by
+  have hlam' : lam ≠ 0 := ne_of_gt hlam
+  unfold epQVerdict
+  rw [if_neg hlam', if_neg (by linarith : ¬ lam < 0)]
+  by_cases h2 : x = lam
+  · rw [if_pos h2]
+    exact iff_of_true rfl (Or.inl h2)
+  rw [if_neg h2]
+  by_cases h3 : x = -lam
+  · rw [if_pos h3]
+    exact iff_of_true rfl (Or.inr h3)
+  rw [if_neg h3]
+  by_cases h4 : 0 < qTransfer lam x ∧ qTransfer lam x < 1
+  · rw [if_pos h4]
+    exact iff_of_false (by decide) (by rintro (h | h); exact h2 h; exact h3 h)
+  · rw [if_neg h4]
+    by_cases h5 : 1 < qTransfer lam x
+    · rw [if_pos h5]
+      exact iff_of_false (by decide) (by rintro (h | h); exact h2 h; exact h3 h)
+    · rw [if_neg h5]
+      exact iff_of_false (by decide) (by rintro (h | h); exact h2 h; exact h3 h)
+
 end Rat
 
 end BEP
