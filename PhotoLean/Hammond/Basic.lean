@@ -99,3 +99,12 @@ theorem crossing_iff {lam dG q : ℝ} (hlam : lam ≠ 0) :
     field_simp
     ring
 
+/-- The forward barrier is the reactant-surface energy at the crossing point. -/
+theorem gapReactant_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
+    gapReactant lam (-dG) = reactantSurface lam (tsCoord lam (-dG)) := by
+  have h4 : (4 * lam : ℝ) ≠ 0 := mul_ne_zero (by norm_num) hlam
+  have h2 : (2 * lam : ℝ) ≠ 0 := mul_ne_zero (by norm_num) hlam
+  unfold gapReactant reactantSurface tsCoord
+  field_simp
+  ring
+
