@@ -134,6 +134,10 @@ theorem inst_I4_family_descriptor : HammondDescriptor 1 :=
 theorem inst_I5_mcc_normal_zone : Rat.hammondZoneQ (6 / 5) (1 / 20) = HZone.early := by
   norm_num [Rat.hammondZoneQ]
 
+/-- I5, coordinate: `q‡ = 23/48`, i.e. the transition state is closer to the reactant well. -/
+theorem inst_I5_mcc_normal_coord : tsCoord (6 / 5) (1 / 20) = 23 / 48 := by
+  norm_num [tsCoord]
+
 end Hammond
 
 end PhotoLean
