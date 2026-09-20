@@ -2598,3 +2598,59 @@
   tested `λ`; the `λ₁ = 1, λ₂ = 4` row reproduces the authority's `I7` numbers
   (`apex = 2/3`, parabolic pass `= 25/36`, linear value `= 2/3`).
 - No statement was weakened; no §S4 row is suspected false.
+
+---
+
+## 2026-09-21 — S5a the ℚ decision layer (`PhotoLean/Sabatier/RatModel.lean`) — prover_c — DONE
+
+- 目标：8 个 ℚ 镜像定义 + 11 条 cast 转移 + 2 条 ℚ 侧火山律
+  （`volcanoBarrierQ_apex_le`、`volcanoBarrierQ_eq_apex_iff`，都是 `0 < alphaA`、`0 < alphaB` 前提下的
+  全局/唯一极小），语句逐字取自 skeleton §S5a。
+- 试过且失败：
+  1. **两条 ℚ 律走 cast 转移路线**（两侧 `volcanoBarrierQ_cast`/`apexQ_cast` 后
+     `(Rat.cast_le (K := ℝ)).mp` 拉回）：放弃 —— 会把 S5a 绑到当时还没落地的 S2
+     `Criterion.lean`；直接 ℚ 重放（`branch_gapQ`/`apexQ_mul_ne`/`apexQ_crossing` + 私有分支识别引理）
+     完全不需要 ℝ。
+  2. `norm_num` 已把 `max a b = a` 化归成边条件 `b ≤ a`，此时再 `rw [max_eq_left]` 报
+     `did not find instance of the pattern ?m… ⊔ ?m…`；直接把边条件 `linarith` 收尾即可。
+  3. 逐 lemma 提交的脚本：中间态写成"header + 本条"而非**累积前缀** → `unknown identifier 'branchUpQ'`；
+     最后一个 block 自带文件尾 `end Sabatier / end PhotoLean` 又追加一次 footer →
+     `invalid 'end', insufficient scopes`（文件尾要从末块剥掉再统一追加）。
+- 奏效：`unfold Xq X; push_cast; ring`（分支/顶点）；`unfold volcanoBarrierQ volcanoBarrier;
+  rw [Rat.cast_max, branchUpQ_cast, branchDownQ_cast]`；`unfold sabatierZoneQ sabatierZone; norm_cast`
+  （分类器，无需 `split_ifs`）；`rw [← Rat.cast_sub, ← Rat.cast_abs]; exact (Rat.cast_le (K := ℝ)).symm`
+  （`nearOptimalQ_iff`）；两条律直接 ℚ 重放，唯一性两个分支各消费一个正性前提
+  （`mul_left_cancel₀ hB.ne'` / `hA.ne'`）。commit `7504736` … `ec02b09`（15 个）。
+- 可复用模式：**当 ℚ 侧结论与 ℝ 侧完全同形时，先试"直接 ℚ 重放"再考虑 cast 转移** —— ℝ 版本里
+  `max_le`/`field_simp`/`linarith` 的战术在 ℚ 上逐字可用，而 cast 路线会引入对未交付模块的依赖；
+  cast 只留给"ℚ 对象 vs ℝ 对象"的桥接行。
+
+## 2026-09-21 — S5b the instance / verdict layer (`PhotoLean/Sabatier/Instances.lean`) — prover_c — DONE
+
+- 目标：38 条实例行（I1–I12：顶点、pass 高度、有效势垒、三区分类、容差判定、两条负控、双抛物线核对、
+  文献行 Pt/Au/W/OER），全部来自 skeleton §S5b（含 lead 修正后的 I2 行）。
+- 试过且失败：
+  1. `unfold volcanoBarrier apexBarrier branchUp branchDown apex` 是**单趟 delta**：被 `apexBarrier`
+     展开后新引入的 `volcanoBarrier` 不会被同一次 `unfold` 处理，`norm_num` 后残留
+     `⊢ 0 ≤ volcanoBarrier (1 / 2) 0 1 1 (2 / 3)`；改成幂等的 `simp only [<全部定义>]; norm_num`。
+  2. `rw [abs_of_nonneg (by norm_num)]` 在 abs 参数还是元变量时报 `unsolved goals ⊢ False`；
+     而单用 `norm_num` 只把参数化成数字、不化简 `|1/6| ≤ 1/2`。一条
+     `norm_num [abs_of_nonneg]` 同时收掉三条正号行和那条取反行。
+  3. **上游语句缺陷（lead 已修，不是我的失败路径但是本轮最贵的坑）**：I2 在 `dE = 0` 处原写
+     `tooWeak`。`(1/2, 0, 1, 1)` 的顶点是 `2/3`，`0 < 2/3` 在描述符轴上是**结合更强**的一侧
+     （约定：越负 = 结合越强），故应为 `tooStrong`；原行不可证。教训：写 zone 判定行时必须先算顶点、
+     再用"轴方向 = 结合强弱方向"核对符号，不能凭"0 是中性"直觉。
+- 奏效：
+  - **实例即定理时直接引用**：`descriptor_fails_of_nonpos_product (by norm_num)`（I4 势垒非火山）、
+    `antiVolcano_monotone dE₁ dE₂ h`（I5 单调）、`parabolicBarrier_crossing (by norm_num) (by norm_num)`
+    （I7 交点）—— 参数完全一致时，引用 S3/S4 已交付定理比重新计算更短也更"接理论"。
+  - 具体数值行：`simp only [volcanoBarrier, branchUp, branchDown, apex]; norm_num`（势垒/pass 高度）；
+    zone 行：`rw [sabatierZone_eq_<zone>_iff]; unfold apex; norm_num`（不需要 `split_ifs`）；
+    容差行：`unfold NearOptimalQ apexQ; norm_num [abs_of_nonneg]`；`√4 = 2` 先
+    `have h4 : Real.sqrt 4 = 2 := by rw [show (4:ℝ) = 2^2 by norm_num, Real.sqrt_sq (by norm_num)]`
+    再 `rw [h4, Real.sqrt_one]`。
+  - commit 按行组 12 个（`41d4881` … `27627fb`）；末状态与验证态字节一致。
+- 可复用模式：**具体实例行 = 定义展开后交给 `norm_num`；结构判定行 = 引用已交付定理**。这条分工让
+  实例层既短又不重复理论层的工作。另：`Instances.lean` 必须 `import PhotoLean.Sabatier.Compose`
+  （I7 行就写在 `apexPar`/`parabolicBarrier` 上）—— 派发时给的 import 清单少了这一项；
+  I8 的 `∃ dE, Optimal apexD dE` 用 `⟨apexD, rfl⟩` 收尾，从而**不必**引入 S2 `Criterion.lean`。
