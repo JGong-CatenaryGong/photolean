@@ -135,5 +135,21 @@ theorem epDescriptor_of_microscopic {lamInner lamOuter : ℝ} (hli : 0 < lamInne
   field_simp
   ring
 
+/-- Plan §7 #8: adding outer reorganization energy shrinks the exact violation of the BEP line —
+`bepDefect` is antitone in `lam` away from thermoneutrality (`x ≠ 0`). Derived here directly from
+the defect identity `x^2/(4*lam)` and `div_le_div_of_nonneg_left`, because the plan §6.3 helper
+`bepDefect_antitone_lam` (`PhotoLean/BEP/Sharp.lean`) is not part of this milestone. -/
+theorem bepDefect_le_of_microscopic {lamInner lamOuter x : ℝ} (hli : 0 < lamInner)
+    (hlo : 0 < lamOuter) (hx : x ≠ 0) :
+    bepDefect (lamInner + lamOuter) x ≤ bepDefect lamInner x := by
+  have hL : 0 < lamInner + lamOuter := by linarith
+  have key : ∀ L : ℝ, L ≠ 0 → bepDefect L x = x ^ 2 / (4 * L) := by
+    intro L hL0
+    unfold bepDefect eact bepLine
+    field_simp
+    ring
+  rw [key (lamInner + lamOuter) (ne_of_gt hL), key lamInner (ne_of_gt hli)]
+  exact div_le_div_of_nonneg_left (le_of_lt (sq_pos_of_ne_zero hx)) (by linarith) (by linarith)
+
 
 end PhotoLean.BEP
