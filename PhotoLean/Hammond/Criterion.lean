@@ -68,3 +68,10 @@ theorem lefflerSecant_eq_midpoint {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h : x�
   field_simp
   ring
 
+/-- The Brønsted coefficient lies strictly between 0 and 1 exactly in the Hammond regime. -/
+theorem lefflerSecant_mem_iff {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h : x₁ ≠ x₂) :
+    0 < lefflerSecant lam x₁ x₂ ∧ lefflerSecant lam x₁ x₂ < 1 ↔
+      ReactionRegion lam ((x₁ + x₂) / 2) := by
+  rw [lefflerSecant_eq_midpoint hlam h]
+  exact tsCoord_mem_iff hlam
+
