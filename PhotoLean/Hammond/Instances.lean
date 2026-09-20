@@ -212,6 +212,11 @@ theorem inst_I7_rc_inverted_notConforms : ¬ HammondConforms (1 / 4) (11 / 10) :
 theorem inst_I8_nonphysical_fails_neg : ¬ HammondDescriptor (-(1 / 2)) :=
   hammond_fails_of_nonpos (by norm_num : (-(1 / 2) : ℝ) ≤ 0)
 
+/-- I8 (zero curvature): the descriptor fails as well — the degenerate branch exists only through
+the division convention `x / 0 = 0` (plan §13, assumption 5). -/
+theorem inst_I8_nonphysical_fails_zero : ¬ HammondDescriptor 0 :=
+  hammond_fails_of_nonpos (by norm_num : (0 : ℝ) ≤ 0)
+
 end Hammond
 
 end PhotoLean
