@@ -43,9 +43,9 @@
 
 - [ ] `barrier_nonneg` — Marcus/Barrier.lean — prover_a — review — plan §5；⚠️ **提交偏差**：内容已被
       lead 的 `c000996`（`git add -A` 误卷）吸收，本条无独立 feat 提交；余下 8 条仍各自一提交
-- [ ] `barrier_at_lam` — Marcus/Barrier.lean — prover_a — todo — plan §5
-- [ ] `barrier_symm` — Marcus/Barrier.lean — prover_a — todo — plan §5
-- [ ] `barrier_min_at_lam` — Marcus/Barrier.lean — prover_a — todo — plan §5
+- [ ] `barrier_at_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 8d9c2ff
+- [ ] `barrier_symm` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 03c740f
+- [ ] `barrier_min_at_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 169a0c7
 - [ ] `barrier_mono_of_pos` — Marcus/Barrier.lean — prover_a — todo — plan §5
 - [ ] `barrier_antitone_of_pos` — Marcus/Barrier.lean — prover_a — todo — plan §5
 - [ ] `barrier_antitone_of_neg` — Marcus/Barrier.lean — prover_a — todo — plan §5
@@ -54,12 +54,12 @@
 
 ## M3 — 速率层（`PhotoLean/Marcus/Rate.lean`；属主 prover_b）
 
-- [ ] `rate_pos` — Marcus/Rate.lean — prover_b — todo — plan §6（Sprint 2；只依赖 M1）
-- [ ] `rate_gt_of_barrier_lt` — Marcus/Rate.lean — prover_b — todo — plan §6（**核心引理**；Sprint 2）
+- [ ] `rate_pos` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 2；只依赖 M1）；commit 8840fdf
+- [ ] `rate_gt_of_barrier_lt` — Marcus/Rate.lean — prover_b — review — plan §6（**核心引理**；Sprint 2）；commit 464edbf
 - [ ] `normal_rate_increases` — Marcus/Rate.lean — prover_b — todo — plan §6（Sprint 3；依赖 M2）
 - [ ] `inverted_rate_decreases` — Marcus/Rate.lean — prover_b — todo — plan §6（Sprint 3；依赖 M2）
 - [ ] `rate_peak_at_lam` — Marcus/Rate.lean — prover_b — todo — plan §6（Sprint 3；依赖 M2）
-- [ ] `rate_ratio`（拉伸目标，不阻塞）— Marcus/Rate.lean — prover_b — todo — plan §6
+- [ ] `rate_ratio`（拉伸目标，不阻塞）— Marcus/Rate.lean — prover_b — review — plan §6；commit 60fe95f
 
 ## M4a — 锐利刻画（`PhotoLean/Marcus/Sharp.lean`；属主 prover_a；Sprint 4）
 
@@ -83,9 +83,9 @@
 
 ## M5a — ℚ 判定层（`PhotoLean/Marcus/RatModel.lean`；属主 prover_c；Sprint 2）
 
-- [ ] `zoneQ` / `barrierQ` — Marcus/RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `zoneQ_eq_zone`（转移引理）— Marcus/RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `zoneQ_inverted_iff` — Marcus/RatModel.lean — prover_c — todo — plan §8.1
+- [ ] `zoneQ` / `barrierQ` — Marcus/RatModel.lean — prover_c — review — plan §8.1；commit 77e45c8
+- [ ] `zoneQ_eq_zone`（转移引理）— Marcus/RatModel.lean — prover_c — review — plan §8.1；commit d43f806
+- [ ] `zoneQ_inverted_iff` — Marcus/RatModel.lean — prover_c — review — plan §8.1；commit 166ab4e
 
 ## M5b — 实例与判定（`PhotoLean/Marcus/Instances.lean`；属主 prover_c）
 
@@ -101,6 +101,11 @@
 
 ## 备注与冲突记录
 
+- **🔧 基础设施 BUG 已修（2026-09-20，prover_b 报障）**：`proofs/scripts/axioms.sh` 原先用**固定探针路径**
+  `.lake/tmp/AxiomsProbe.lean`，并发跑验收门时互相覆盖 → 出现"问 A 答 B"的**假证据**
+  （prover_b 实测：问 `rate_pos` 却打印 `Rat.zoneQ_eq_zone` 的公理）。已改为
+  `AxiomsProbe.$$.$RANDOM.lean` + `trap ... EXIT` 清理；**并发隔离已实测**
+  （4 个不同定理同时跑，各自打印自己的名字且均 PASS）。判定标准未变，仅消除竞态。
 - **⚠️ lead 流程失误与修正（2026-09-20，必须记住）**：我在做 `docs(plan)`/`chore(board)` 提交时用了
   `git add -A`，把当时**未提交的中间产物**（`Barrier.lean` 的 WIP、`RatModel.lean`、若干探针、
   `LITERATURE.md` 初稿）卷进了我的提交（`e53d562`、`c000996`）。**规则从此刻起**：lead 只允许

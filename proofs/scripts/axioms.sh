@@ -25,8 +25,11 @@ CONF="proofs/ENGINE.yml"
 [ -f "$CONF" ] && . "./$CONF"
 ALLOWED_AXIOMS="${ALLOWED_AXIOMS:-propext Classical.choice Quot.sound}"
 
-PROBE=".lake/tmp/AxiomsProbe.lean"
+# 探针文件名必须**每次唯一**：并发调用（多个 prover/verifier 同时跑验收门）若共用一个固定名，
+# 会互相覆盖，产生"问 A 答 B"的假证据（2026-09-20 prover_b 实测报障，已记入 EXPERIENCE.md）。
+PROBE=".lake/tmp/AxiomsProbe.$$.$RANDOM.lean"
 mkdir -p .lake/tmp
+trap 'rm -f "$PROBE"' EXIT
 {
   echo "import $MODULE"
   echo "#print axioms $THM"

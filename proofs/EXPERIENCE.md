@@ -208,4 +208,25 @@
   而记录它能让"规则"变成可核查的任务板条目。
 - 未受影响（重要）：交付定理 M1 四条、M4b 五条各自都有正确的 `feat(M1)/feat(M4b)` per-lemma 提交。
 
+## 2026-09-20 — 验收门自身的竞态 bug：固定探针路径导致"问 A 答 B" — prover_b 报障 / lead 修 — FIXED
+
+- 目标：让 `axioms.sh` 在多工人并发验收时给出**可信的证据**。
+- 试过且失败（**门本身的问题，不是证明的问题**）：原实现把探针写在固定路径
+  `.lake/tmp/AxiomsProbe.lean`。prover_b 串行循环三条定理时实测到：
+  ```
+  问 PhotoLean.Marcus.rate_pos          → 打印 'PhotoLean.Marcus.Rat.zoneQ_eq_zone' depends ...
+  问 PhotoLean.Marcus.rate_ratio        → 打印 'PhotoLean.Marcus.barrier_at_lam' depends ...
+  ```
+  即同刻运行的另一个 prover 覆盖了探针文件。**危害不是假 PASS（打印的公理集仍来自某个真定理），
+  而是张冠李戴的假证据**：verifier 会拿 A 的公理报告去证明 B 干净 —— 审计轨迹被污染，比直接报错更危险。
+- 奏效：把探针路径改为**每次唯一**（`AxiomsProbe.$$.$RANDOM.lean`）+ `trap 'rm -f' EXIT` 清理；
+  并发隔离实测：4 个不同定理同时跑，每条各自打印自己的名字、全部
+  `verdict: PASS (only mathlib infrastructure axioms)`。**判定标准未变，只消除竞态。**
+- 可复用模式：
+  1. **验收门自己也要被验证**（本项目 Sprint 0 已验证过一次"门能拦作弊"），
+     但那次的验证是**串行**的；**并发**是另一类失效模式（竞态），必须在多人并行时单独验一次；
+  2. 任何"写临时文件再读回"的脚本，临时文件名**必须含 PID 或随机段**；固定临时名 = 定时炸弹；
+  3. 报障者（prover_b）除了报 bug 还给了**隔离复核**（自己起唯一路径的探针重跑一遍并保留输出）——
+     这是"证据被污染时的正确应对"：不是放弃，而是换一条不可能被污染的路径重取证据。
+
 <!-- 条目从这里继续往下追加 -->
