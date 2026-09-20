@@ -424,6 +424,17 @@ theorem plateau_witness (dE : ℝ) (h : 0 ≤ dE) :
     sub_zero, div_one, neg_zero]
   rw [hmax, max_self]
 
+/-- A plateau is not a volcano (plan §6): the minimizer is not unique, so there is no pointed apex
+— the insensitive branch leaves a whole half-line at the pass height. -/
+theorem not_descriptor_plateau :
+    ¬ VolcanoDescriptor (fun dE => volcanoBarrier 0 0 1 0 dE) (apex 0 0 1 0) := by
+  intro hD
+  have hw : volcanoBarrier 0 0 1 0 1 = volcanoBarrier 0 0 1 0 (apex 0 0 1 0) := by
+    simp [volcanoBarrier, branchUp, branchDown, apex]
+  have hne : (1:ℝ) ≠ apex 0 0 1 0 := by
+    simp [apex]
+  exact hne (hD.2 1 hw)
+
 end Sabatier
 
 end PhotoLean
