@@ -72,7 +72,6 @@ set_option autoImplicit false
 namespace PhotoLean
 
 namespace Kasha
-
 /-! ## The two-level threshold (plan §6.1) -/
 
 /-- Plan §6.1 #1 — the exact two-level criterion in rate form. Both cross-multiplications are by
@@ -120,7 +119,6 @@ theorem kashaWithin_one_iff_rates {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < d
   rw [KashaWithin, hfluo, hupper]
   unfold radBranch icBranch decay
   exact halg
-
 /-- Plan §6.1 #2 — **the funnel-ratio threshold** (two-level form), with the statement correction
 of plan §3.1: `0 < decay rad ic 1` is an explicit premise. This is row 1 divided by
 `tol · rad 1 · decay 0 > 0`. -/
@@ -131,7 +129,6 @@ theorem kashaWithin_one_iff_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < d
   have hrd : 0 < rad 1 * decay rad ic 0 := mul_pos hr h0
   rw [kashaWithin_one_iff_rates h0 h1, funnelRatio, div_le_div_iff₀ htol hrd]
   constructor <;> intro hh <;> linarith
-
 /-- Plan §6.1 #3 — the literature form: with no other loss at the lowest level, the rule needs
 `ic 1 / rad 1 ≥ (1 - tol) / tol` (for `tol = 1/100`: `99`). The premise is `rad 0 ≠ 0` rather
 than `0 < rad 0`, and that is exactly what the proof consumes: `decay 0 = rad 0` makes
@@ -172,6 +169,31 @@ theorem kashaWithin_one_iff_ic_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (hic0 : 
   rw [div_le_iff₀ h1, div_le_div_iff₀ htol hr]
   unfold decay
   constructor <;> intro hh <;> linarith
+/-- Plan §6.1 #4. The two-level funnel ratio is the ladder ratio at `N = 1`: the ratio's
+`cascade 0 1 / upperYield 1` block is `(ic 1/decay 1)/(rad 1/decay 1)`, and the two `decay 1`
+factors cancel (`div_div_div_cancel_right₀`; the junk-value convention `x/0 = 0` keeps the
+identity valid when `rad 1 = 0`). -/
+
+theorem funnelRatio_eq_ladderRatio_one {rad ic : ℕ → ℝ} (h : decay rad ic 1 ≠ 0) :
+    funnelRatio rad ic = ladderRatio rad ic 1 := by
+  have hcase : cascade rad ic 0 1 = icBranch rad ic 1 := by
+    unfold cascade
+    rw [show Finset.Icc (0 + 1) 1 = ({1} : Finset ℕ) by
+      ext j
+      simp only [Finset.mem_Icc, Finset.mem_singleton]
+      omega, Finset.prod_singleton]
+  have hupper : upperYield rad ic 1 = radBranch rad ic 1 := by
+    unfold upperYield
+    rw [Finset.Icc_self, Finset.sum_singleton]
+    exact emitYield_self rad ic 1
+  unfold funnelRatio ladderRatio
+  rw [hcase, hupper]
+  unfold radBranch icBranch
+  have h1 : rad 0 * (ic 1 / decay rad ic 1) = rad 0 * ic 1 / decay rad ic 1 :=
+    (mul_div_assoc (rad 0) (ic 1) (decay rad ic 1)).symm
+  have h2 : rad 1 / decay rad ic 1 * decay rad ic 0 = rad 1 * decay rad ic 0 / decay rad ic 1 :=
+    div_mul_eq_mul_div₀ (rad 1) (decay rad ic 0) (decay rad ic 1)
+  rw [h1, h2, div_div_div_cancel_right₀ h]
 
 end Kasha
 
