@@ -125,15 +125,17 @@ for d in $SOURCE_DIRS; do
 done
 HITS=""
 if [ ${#SRC_ARGS[@]} -gt 0 ]; then
-  # 匹配：任意位置的 sorry，或行首的 axiom 声明。
-  # English: Matching: an unproved placeholder anywhere, or an axiom declaration at the start of a line.
-  # 行内 `--` 注释不参与扫描 —— 否则无法在文档/注释里讨论这两个关键字。
-  # English: Inline `--` comments are not scanned — otherwise these two keywords could not be discussed in docs or comments.
+  # 匹配：任意位置的 sorry 或 admit 战术（Lean 4 中两者等价，都引入 sorryAx），
+  # English: Matching: an unproved placeholder or the `admit` tactic anywhere (in Lean 4 both are equivalent and introduce sorryAx),
+  # 或行首的 axiom 声明，含 `private axiom` / `protected axiom` 变体（锚定放宽）。
+  # English: or an axiom declaration at the start of a line, including the `private axiom` / `protected axiom` variants (relaxed anchor).
+  # 行内 `--` 注释不参与扫描 —— 否则无法在文档/注释里讨论这些关键字。
+  # English: Inline `--` comments are not scanned — otherwise these keywords could not be discussed in docs or comments.
   # 已知取舍：块注释 `/- ... -/` 内的关键字仍会被命中，由 verifier 人工复核
   # English: Known trade-off: keywords inside block comments `/- ... -/` are still hit, and are reviewed manually by the verifier
   # （误报比漏报安全：宁可让人确认一次，不可放过真的 sorry）。
   # English: (a false positive is safer than a miss: better to have a human confirm once than to let a genuine hit through).
-  HITS="$(grep -rn --include='*.lean' -E 'sorry|^[[:space:]]*axiom([[:space:]]|$)' "${SRC_ARGS[@]}" 2>/dev/null \
+  HITS="$(grep -rn --include='*.lean' -E 'sorry|admit|^[[:space:]]*(private[[:space:]]+|protected[[:space:]]+)?axiom([[:space:]]|$)' "${SRC_ARGS[@]}" 2>/dev/null \
     | grep -vE ':[0-9]+:[[:space:]]*--' || true)"
 fi
 if [ -n "$HITS" ]; then
