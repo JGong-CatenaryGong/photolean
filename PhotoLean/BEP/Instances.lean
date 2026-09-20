@@ -25,6 +25,26 @@ numbers and lets the kernel decide the verdict, on top of the computable decisio
   is refuted — for each of the four families that §R1.10 prints per-point.
 * `inst_nonvacuous` records that the layer is not a table of one-sided verdicts.
 
+**Selection disclosure (independent verifier, MEDIUM-3).** The `_alphaObs` rows, the `_lamHat` rows
+and the falsification rows of §I11 below do not use the same printed rows, and the choice matters:
+
+* `_alphaObs` uses the two rows its family heading names (F1 `16(2)`/`8`, F2 `16(2)`/`10`,
+  F3 `16(1)`/`7`, F5 `R2`/`R5`); `_lamHat` uses an **adjacent** printed pair in the record's table
+  order (F1 `16(2)`/`16(1)`, F2 `16(2)`/`13`, F3 `16(1)`/`19(2)`, F5 `R2`/`R3`); every
+  `_curvature_negative` / `_not_model_consistent` row uses **three** printed rows.
+* the model's two-point solver `qLamOfPair` is **pair-dependent** on this real data, and not only in
+  size: at the `_lamHat` pairs it takes the positive values `9/20`, `16/15`, `22/5`, `7958/675` (the
+  four `_lamHat` theorems below), while at other documented pairs of the **same** families it is
+  negative — F1 `-2079/25` at `16(2)`/`8`, F2 `-53/60` at `13`/`19(2)`, F3 `-749/108` at `19(2)`/`1`,
+  F5 `-19667/1620` at `R3`/`R4` (all kernel-computed with `norm_num`; reproducible from §R1.10's
+  printed rows). The pair-dependence — including the sign change between two pairs of one family — is
+  itself evidence that the printed rows are not the data of any single equal-curvature two-parabola
+  law.
+* **No delivered verdict depends on `λ̂`.** The `_lamHat` rows are value rows; every falsification
+  (I11 `_not_model_consistent`, I12) uses the λ-**in**dependent sign of the second divided difference,
+  which the model forces to be `1/(4λ) > 0` for `λ > 0`. Changing the pair convention would move the
+  `_lamHat` values and leave every verdict as it stands.
+
 **Provenance and units (binding on the I11 rows).** Every Lean literal is the source's printed
 **kcal/mol** number, transcribed verbatim from §R1.10; the kJ/mol column of that record is the
 record's own arithmetic (`1 kcal/mol = 4.184 kJ/mol`) and is **not** what any statement uses. The
@@ -271,9 +291,11 @@ theorem inst_I10_threshold_fails : ¬ Rat.qConformsWindow (2 : ℚ) (1 / 16) 1 :
 
 The Lean literals are the sources' **printed kcal/mol** numbers; the model's driving force is
 `x = -ΔG°` (F5 prints a classical `ΔE`, so `x = -ΔE`, with the `ΔE`-vs-`ΔG` caveat of §R1.10.5).
-`_alphaObs` uses the widest printed pair of the family, `_lamHat` two adjacent printed pairs, and
-`_curvature_negative` three printed rows whose second divided difference is negative; the
-falsification row is the λ-independent consequence (curvature `1/(4λ) > 0` cannot be negative).
+`_alphaObs` uses the two rows its family heading names (for F1/F2/F3 the first and the last
+documented row with a printed barrier), `_lamHat` an **adjacent** printed pair in the record's table
+order, and `_curvature_negative` **three** printed rows whose second divided difference is negative;
+the falsification row is the λ-independent consequence (curvature `1/(4λ) > 0` cannot be negative).
+Which pair is used matters — see the header's selection disclosure.
 
 Per family the status flag of §R1.10 is `first-hand` for every number used. The record's kJ/mol
 column is the record's own arithmetic and is never used in a statement. -/
