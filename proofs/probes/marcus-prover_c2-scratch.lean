@@ -86,7 +86,36 @@ theorem barrierQ_zero_lam_via_cast (x : ℚ) : barrierQ 0 x = 0 := by
 theorem barrierQ_zero_lam_direct (x : ℚ) : barrierQ 0 x = 0 := by
   simp [barrierQ]
 
-/-! ## F — 对照：若将来有人试图用 `rw [Rat.cast_lt]` 类**非 cast 消除**引理走这条路会怎样，
-此处不改写 —— 只记录本探针 0 error / 0 warning 即可。 -/
+/-! ## F — 交付定理的 `#check`（签名逐字取证）+ 数值交叉核对
+
+`G1` 段的 `#check` 是**交付版**（`PhotoLean/Marcus/RatModel.lean` 末尾的追加），
+不是本探针的副本 —— 用于证明交付签名与任务书逐字一致。
+`G2` 段把交付定理实例化到四个点（含 `lam = 0` 退化点与 `lam < 0`），
+两侧都用 `norm_num` 独立算出同一个数：这是"**无前提**"的数值取证。 -/
+
+/-! ### G1 — 交付签名 -/
+
+#check PhotoLean.Marcus.Rat.barrierQ_cast
+#check PhotoLean.Marcus.Rat.barrierQ_zero_lam
+
+/-! ### G2 — 数值交叉核对（左列 ℚ 侧值，右列经交付定理搬到 ℝ 的值） -/
+
+/-- `lam = 1, x = 3`：`(1-3)²/(4·1) = 1`。--/
+example : ((barrierQ 1 3 : ℚ) : ℝ) = 1 := by rw [PhotoLean.Marcus.Rat.barrierQ_cast]; norm_num [barrier]
+
+/-- `lam = 1/2, x = 1/4`：`(1/4)²/2 = 1/32`（分数参数，非整数字面量）。--/
+example : ((barrierQ (1 / 2) (1 / 4) : ℚ) : ℝ) = 1 / 32 := by
+  rw [PhotoLean.Marcus.Rat.barrierQ_cast]; norm_num [barrier]
+
+/-- `lam = -3, x = 0`：`9/(-12) = -3/4`（**负重组能**，`lam ≠ 0`，非退化）。--/
+example : ((barrierQ (-3) 0 : ℚ) : ℝ) = -3 / 4 := by
+  rw [PhotoLean.Marcus.Rat.barrierQ_cast]; norm_num [barrier]
+
+/-- `lam = 0` 退化点：两侧**各自**坍缩为 0（`x/0 = 0`）—— 等式成立但不含数值内容。--/
+example : ((barrierQ 0 (7 / 3) : ℚ) : ℝ) = 0 := by
+  rw [PhotoLean.Marcus.Rat.barrierQ_cast]; norm_num [barrier]
+
+/-- ℚ 侧同点独立计算（不经桥），用于与上面第 4 条对拍。--/
+example : barrierQ 0 (7 / 3) = 0 := PhotoLean.Marcus.Rat.barrierQ_zero_lam (7 / 3)
 
 end PhotoLean.Marcus.Rat.ProbeC2
