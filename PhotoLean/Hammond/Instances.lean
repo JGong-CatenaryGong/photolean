@@ -129,6 +129,11 @@ insensitive to the boundary verdict above. -/
 theorem inst_I4_family_descriptor : HammondDescriptor 1 :=
   hammond_descriptor_holds (by norm_num : (0 : ℝ) < 1)
 
+/-! ## I5 — literature MCC normal-region instance (`lam = 6/5`, `x = 1/20`) -/
+/-- I5, zone verdict: the MCC normal-region instance is classified `early`. -/
+theorem inst_I5_mcc_normal_zone : Rat.hammondZoneQ (6 / 5) (1 / 20) = HZone.early := by
+  norm_num [Rat.hammondZoneQ]
+
 end Hammond
 
 end PhotoLean
