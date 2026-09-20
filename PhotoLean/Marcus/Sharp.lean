@@ -152,4 +152,21 @@ theorem descriptor_fails_of_nonpos_lam {A kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T
     (hA : 0 < A) {lam : ℝ} (hlam : lam ≤ 0) : ¬ InvertedDescriptor A lam kB T :=
   fun hdesc => absurd (sharp_lam_pos hkB hT hA hdesc) (not_lt.mpr hlam)
 
+/-! ## 非物理分支（拉伸目标，M4a §7.1） -/
+
+/-- **[拉伸] 非物理分支确实满足描述** —— "速率正性"前提不可去的可检查证据：
+`A < 0 ∧ lam < 0 ∧ 0 < k_B·T` 时，反转区内 `barrier` **递减**
+（`barrier_antitone_of_neg`）⇒ `exp(-Φ/k_BT)` **递增** ⇒ 乘**负**前置因子 `A`
+后速率**递减**，于是 `InvertedDescriptor` 成立，但速率处处**非正**（物理上不可采纳）。
+与 `descriptor_sharp` 合起来说明：`(∀ x, 0 < rate … x)` 这一合取项不可删。 -/
+theorem inverted_descriptor_holds_of_neg {A lam kB T : ℝ} (hA : A < 0) (hkT : 0 < kB * T)
+    (hlam : lam < 0) : InvertedDescriptor A lam kB T := by
+  intro x₁ x₂ h₁ h₂
+  have hb : barrier lam x₂ < barrier lam x₁ := barrier_antitone_of_neg hlam h₁ h₂
+  have hu : -(barrier lam x₁) / (kB * T) < -(barrier lam x₂) / (kB * T) :=
+    div_lt_div_of_pos_right (by linarith) hkT
+  have hexp := Real.exp_lt_exp.mpr hu
+  unfold rate
+  exact mul_lt_mul_of_neg_left hexp hA
+
 end PhotoLean.Marcus
