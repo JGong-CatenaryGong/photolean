@@ -187,6 +187,12 @@ theorem inst_I6_inverted_notBounds :
   unfold Rat.qTransfer
   norm_num
 
+/-- I7 (`model-constructed`): strongly endergonic, reverse inverted region `λ = 2`, `x = -3`; the
+cascade lands above the band. -/
+theorem inst_I7_reverseInverted_zone : Rat.epQVerdict (2 : ℚ) (-3) = Rat.EPQVerdict.superLinear := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
