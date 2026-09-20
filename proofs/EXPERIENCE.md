@@ -2654,3 +2654,33 @@
   实例层既短又不重复理论层的工作。另：`Instances.lean` 必须 `import PhotoLean.Sabatier.Compose`
   （I7 行就写在 `apexPar`/`parabolicBarrier` 上）—— 派发时给的 import 清单少了这一项；
   I8 的 `∃ dE, Optimal apexD dE` 用 `⟨apexD, rfl⟩` 收尾，从而**不必**引入 S2 `Criterion.lean`。
+
+
+## 2026-09-21 — Sabatier S2 (`PhotoLean/Sabatier/Criterion.lean`, 19 declarations) — prover_b — DONE
+
+- Target: the law layer of the volcano theory (plan §5): apex = unique global minimizer, both leg
+  monotonicities, the tolerance bound, the apex-centred form, the leg secant slopes = `alphaA` /
+  `-alphaB`, the Arrhenius/activity layer, and non-vacuity of the three Sabatier regimes.
+- Tried and FAILED:
+  - **Staging one lemma per commit before checking the whole module**: the authority's declaration
+    order is a *documentation* order, not a proof order — the probe-style proof of
+    `volcanoBarrier_le_apex_add` (authority row 5) calls `apexBarrier_eq` (authority row 9),
+    a forward reference: `error: unknown identifier 'apexBarrier_eq'`. Fixed by inlining the same
+    computation; the delivered public statement is unchanged. **Check the dependency order of the
+    authority before staging per-lemma commits.**
+  - `max_add_add_left` / `max_add_add_right` / `add_max_*` do NOT exist in mathlib v4.17.0
+    (`grep -rn "max_add\|add_max" Mathlib/Order Mathlib/Algebra/Order` → nothing). The identity
+    `max (P + x) (P + y) = P + max x y` must be built by hand (`rcases le_total x y` +
+    `max_eq_left`/`max_eq_right` + `linarith`; delivered as the private helper `max_add_add_same`).
+  - `field_simp; ring` on secant goals is deterministic only when the `≠ 0` side condition is already
+    a hypothesis; the robust route is `have hne : dE₂ - dE₁ ≠ 0 := by linarith`, then
+    `rw [div_eq_iff hne]`, then `unfold branchUp; ring` (no `field_simp`).
+  - `by norm_num` does not see through a `noncomputable def` in a *hypothesis* position:
+    `apex (1/2) 0 1 1 ≤ 1` needs `by unfold apex; norm_num` — a real trap for the instance rows.
+- Worked: 16 of the 19 proof bodies were reused verbatim from `sabatier-risk-probe.lean` with an
+  identical `#print axioms` footprint; one commit per lemma is mechanically deliverable by splitting
+  the verified file at its top-level declarations (walking up to each doc comment) and staging
+  prefixes with `.lake/tmp/` as scratch space.
+- Gate evidence: build OK (0 warning); `check.sh --strict` → `clean` + `verdict: PASS`; fidelity
+  19/19 word-for-word, 0 differences; all 19 theorems `#print axioms` =
+  `[propext, Classical.choice, Quot.sound]`.
