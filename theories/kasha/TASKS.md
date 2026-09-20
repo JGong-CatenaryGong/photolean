@@ -35,6 +35,21 @@
       register, honesty table, scope limits)
 - [x] **Statement skeleton compiles**: `theories/kasha/probes/kasha-statement-skeleton.lean` —
       144 declarations with placeholder theorem bodies, `lake env lean` exit 0, sha256 `e3ddc2d01317ec6bc46957cae7763034a23df691bffc480a08c9a23d9fe6412b`
+- [x] **Fidelity-checker coverage gap found and fixed** (lead, 2026-09-20): the theory-generic
+      checker `theories/BEP/probes/bep-fidelity.py` matched only `theorem|def|inductive` and
+      silently skipped `structure` declarations, so it reported **143** of kasha's 144 declarations.
+      The regular expression now includes `structure` (kasha 144/144); the other three theories were
+      re-run and report exactly as before (BEP 191/191, hammond 102/102, Marcus 51/51 + 31 aux),
+      because none of them declares a top-level `structure`. This is the engine lesson "a checker's
+      coverage must itself be verified" — the same family as the `theories/*/` directory sweep that
+      caught silently-skipped theories.
+- [x] Non-Lean cross-check: `theories/kasha/probes/kasha-instance-check.py` (exact rational
+      arithmetic, a second implementation) — every instance row's number, the three threshold forms,
+      probability conservation and the two recursions over 193 admissible random ladders, the
+      effective two-level reduction over 825 (ladder, tolerance) pairs, the levelwise counterexample
+      (`leak fraction = 6/7`), and the Marcus-bridge algebra over 400 parameter sets: **all pass**
+      (`exit 0`). Committed before the provers finished, i.e. as pre-registered kernel-independent
+      evidence rather than a post-hoc retelling.
 - [ ] API calibration: `proofs/API-NOTES.md` §kasha + `theories/kasha/probes/kasha-api-*.lean` —
       owner `api_researcher` (dispatched)
 - [ ] Sprint-0 risk probe: `theories/kasha/probes/kasha-risk-probe.lean` — the riskiest statement

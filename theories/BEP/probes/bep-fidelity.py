@@ -87,11 +87,19 @@ def strip_comments(src):
 
 def signatures(path):
     """name -> normalized signature (comments stripped, whitespace collapsed, up to the
-    first `:=`), including `noncomputable def`, plain `def`, `inductive` and `theorem`."""
+    first `:=`), including `noncomputable def`, plain `def`, `inductive`, `structure` and
+    `theorem`.
+
+    `structure` was added when the kasha theory introduced `RateData` (a Prop-valued bundle
+    holding the standing physical premises): before that the checker silently skipped every
+    `structure` declaration, i.e. it covered 143 of that theory's 144 declarations. Coverage of
+    a checker has to be verified, not assumed — the same lesson as the directory sweep of
+    `check.sh`. The other theories declare no top-level `structure`, so their reports are
+    unchanged (re-run 2026-09-20: Marcus / hammond / BEP identical, kasha 144/144)."""
     src = strip_comments(open(path).read())
     out = {}
     for m in re.finditer(
-            r'^(?:noncomputable\s+)?(?:theorem|def|inductive)\s+([A-Za-z_][\w\']*)(.*?)(?=:=\s*by|:=\s*$|:=|\n\n)',
+            r'^(?:noncomputable\s+)?(?:theorem|def|inductive|structure)\s+([A-Za-z_][\w\']*)(.*?)(?=:=\s*by|:=\s*$|:=|\n\n)',
             src, re.M | re.S):
         name = m.group(1)
         sig = re.sub(r'\s+', ' ', (m.group(2) or '')).strip()
