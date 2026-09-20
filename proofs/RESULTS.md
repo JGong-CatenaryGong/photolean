@@ -240,6 +240,12 @@ proofs/scripts/axioms.sh <Module> <fully.qualified.theorem>   # #print axioms �
 
 `barrier 1.20 1.23 = 0.0001875` 与文献的 `ΔG‡ ≈ 0.0002 eV` 吻合（最优/无势垒点）。
 
+**定义层交叉验证（`proofs/probes/marcus-lead-crosscheck.lean`，不调用任何交付的实例定理）**：
+同一批结论被**独立重推** —— 直接用 `Real.exp_lt_exp` + 势垒数值（`norm_num [barrier]`）证得
+`rate(2.40) < rate(1.23)`（对任意 `kBT > 0`）与 `rate(0.60) < rate(1.20)`，
+以及 `barrier 1.20 1.23 = 0.0001875`、`barrier 1.20 2.40 = 0.3`、`barrier 1.20 2.00 = 2/15`、`barrier 1.20 0.60 = 0.075`。
+这样实例层的结论就不依赖"调用链"，而是**两条独立路径都指向同一结论**。
+
 **定量对照（`k_BT = 0.02551` eV @ 296 K）**：经典模型预言 `k(2.40)/k(1.23) = 7.87×10⁻⁶`
 （**降 5.1 个数量级**）；文献实测 `7×10⁷ / 2×10⁹ = 3.50×10⁻²`（**降 1.46 个数量级**）。
 ⇒ 经典公式**下降过快约 3.6 个数量级**（lead 独立复算，与 `literature_researcher` 的结果一致）。
