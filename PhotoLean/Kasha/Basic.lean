@@ -241,6 +241,11 @@ theorem fluoYield_nonneg {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N
   unfold fluoYield
   exact Finset.sum_nonneg fun i hi =>
     emitYield_nonneg h (Nat.le_of_lt_succ (Finset.mem_range.mp hi))
+/-- Plan §4.2 #17. The leak is nonnegative under `RateData`. -/
+theorem upperYield_nonneg {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    0 ≤ upperYield rad ic N := by
+  unfold upperYield
+  exact Finset.sum_nonneg fun i hi => emitYield_nonneg h (Finset.mem_Icc.mp hi).2
 end Kasha
 
 end PhotoLean
