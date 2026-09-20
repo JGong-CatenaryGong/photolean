@@ -56,12 +56,12 @@
 
 ## M3 — 速率层（`PhotoLean/Marcus/Rate.lean`；属主 prover_b）
 
-- [ ] `rate_pos` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 2；只依赖 M1）；commit 8840fdf
-- [ ] `rate_gt_of_barrier_lt` — Marcus/Rate.lean — prover_b — review — plan §6（**核心引理**；Sprint 2）；commit 464edbf
-- [ ] `normal_rate_increases` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 3；依赖 M2）；commit 671bee1
-- [ ] `inverted_rate_decreases` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 3；依赖 M2）；commit 8cfde00
-- [ ] `rate_peak_at_lam` — Marcus/Rate.lean — prover_b — review — plan §6（Sprint 3；依赖 M2）；commit c4a70fd
-- [ ] `rate_ratio`（拉伸目标，不阻塞）— Marcus/Rate.lean — prover_b — review — plan §6；commit 60fe95f
+- [x] `rate_pos` — Marcus/Rate.lean — prover_b — done — plan §6（Sprint 2；只依赖 M1）；commit 8840fdf
+- [x] `rate_gt_of_barrier_lt` — Marcus/Rate.lean — prover_b — done — plan §6（**核心引理**；Sprint 2）；commit 464edbf
+- [x] `normal_rate_increases` — Marcus/Rate.lean — prover_b — done — plan §6（Sprint 3；依赖 M2）；commit 671bee1
+- [x] `inverted_rate_decreases` — Marcus/Rate.lean — prover_b — done — plan §6（Sprint 3；依赖 M2）；commit 8cfde00
+- [x] `rate_peak_at_lam` — Marcus/Rate.lean — prover_b — done — plan §6（Sprint 3；依赖 M2）；commit c4a70fd
+- [x] `rate_ratio`（拉伸目标，不阻塞）— Marcus/Rate.lean — prover_b — done — plan §6；commit 60fe95f
 
 ## M4a — 锐利刻画（`PhotoLean/Marcus/Sharp.lean`；属主 prover_a；Sprint 4）
 
@@ -87,9 +87,9 @@
 
 ## M5a — ℚ 判定层（`PhotoLean/Marcus/RatModel.lean`；属主 prover_c；Sprint 2）
 
-- [ ] `zoneQ` / `barrierQ` — Marcus/RatModel.lean — prover_c — review — plan §8.1；commit 77e45c8
-- [ ] `zoneQ_eq_zone`（转移引理）— Marcus/RatModel.lean — prover_c — review — plan §8.1；commit d43f806
-- [ ] `zoneQ_inverted_iff` — Marcus/RatModel.lean — prover_c — review — plan §8.1；commit 166ab4e
+- [x] `zoneQ` / `barrierQ` — Marcus/RatModel.lean — prover_c — done — plan §8.1；commit 77e45c8
+- [x] `zoneQ_eq_zone`（转移引理）— Marcus/RatModel.lean — prover_c — done — plan §8.1；commit d43f806
+- [x] `zoneQ_inverted_iff` — Marcus/RatModel.lean — prover_c — done — plan §8.1；commit 166ab4e
 
 ## M5b — 实例与判定（`PhotoLean/Marcus/Instances.lean`；属主 prover_c）
 
@@ -120,6 +120,8 @@
 | M1 + M4b | `Basic.lean`(12 声明) + `Reorg.lean`(6) | **PASS / PASS** | 四步门 + 8/8 `axioms.sh` 均 `[propext, Classical.choice, Quot.sound]`；18/18 语句与骨架**逐字一致**；8/8 提交各含**恰一条**定理、恰一个文件；耍花招排查 0 命中；对抗性探针内核级验证 | 1 条**注释级**缺陷待修（`Reorg.lean` 把 5 条定义域前提说成"被蕴含"，实为"未被使用" —— verifier 给了内核反例）；另：`zone_trichotomy` 本身信息量弱（对任意 `ℝ→ℝ→Zone` 函数均成立），真正钉住语义的是三条 `zone_eq_*_iff` |
 
 | M2 | `Barrier.lean`(9 条) | **PASS** | 四步门 + 9/9 `axioms.sh` 干净（另用唯一路径隔离探针独立重取）；9/9 语句与骨架逐字一致；8/8 提交各含恰一条定理、只含该文件；`c000996` 偏差**核实为真**（`barrier_nonneg` 内容确在其中，行数闭合 35+4+6+4+9+8+11+5+13 = 95 = 文件总行数）；三条对抗性内核检查全过（`barrier_antitone_of_neg` 方向/`mono_cases` 四支穷尽且 `lam=0` 支未混入/`barrier_min_at_lam` 真全局最小且前提必需） | **发现 A**：文件与 API-NOTES 共 3 处把 `h₁ : 0 ≤ x₁` 说成"可由其他前提推出" —— **错**（反例 `lam=1,x₁=-5,x₂=-4`），正确定性是"**未被使用**（unused）"；**发现 D**：`lam = 0` 分支依赖除零约定（形式约定，非物理事实）⇒ 已补进 plan §13 |
+
+| M3 + M5a | `Rate.lean`(6) + `RatModel.lean`(2 定理+2 定义) | **PASS / PASS** | 四步门 + 8/8 `axioms.sh` 干净（另用唯一路径隔离探针二次取证，含 5 个定义）；10/10 语句与骨架逐字一致（含定义体）；9/9 提交各含恰一条定理、只含属主文件；**三条对抗性内核检查**：正常区/反转区**方向**数值核对（0.852<0.939 升；0.368<0.779 降；峰=1.0）、`rate_ratio` 在 5 类边界赋值下全部成立且给出 `hA` 必要性反例（`A=0` 时等式假）、`zoneQ_eq_zone` 在 **16 组**含 `lam=0`/`lam<0` 的点上与 Python 期望三方一致 | **发现 (a)**：`plan.md §13` 第 4 行说 Lean 形态是 `0<kB ∧ 0<T`，实际交付用 `0 < kB*T`（乘积）⇒ 已改计划；**(b)** `barrierQ` 无伴随定理（相对 ℝ 理论未被约束）⇒ 已派补转移引理；**(c)** `normal_rate_increases` 的 `0 ≤ x₁` 数学多余（verifier 证了更强的无此前提版本）；**(d)** `plan.md §8.2` 表格 I2 行仍写 `by decide`（代码块已纠正）⇒ 已改；**(e)** M5b 实例若用 ℚ 侧势垒数值须先有转移引理 |
 
 **M2 发现 A 的关闭**：三处（`Barrier.lean` 头注释与 doc comment、`API-NOTES.md`）均已修正为
 "**证明未使用（unused）**"，并保留内核反例作为"典型误写"警示 ——

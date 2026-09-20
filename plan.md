@@ -474,6 +474,8 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
 --       直接 `exact (zone_eq_inverted_iff 1 3).mp h` 会 type mismatch
 --       （`↑1 < ↑3` vs `(1:ℝ) < 3`）。出路：ℝ 侧参数写成 `((·:ℚ):ℝ)` 与引理结论逐字对齐，
 --       或 `show (1:ℝ) < 3` + `exact_mod_cast` 桥接。
+--   ⚠️ 表中 I2 行若仍写"`by decide` 得 `zoneQ = .normal`"是**过期表述**（M3/M5a verifier 发现 (d)）：
+--      含除法的有理字面量必须用 `norm_num [zoneQ]`，`decide` 只对整数参数可算。
 --   (3) `rw [← zoneQ_inverted_iff]` **不会展开 `InvertedRegion` 这个 def**（`rw` 不走 defeq）；
 --       需先 `show` 出展开形态，而 `exact (…).mp/.mpr` 走 defeq、无此限制。
 example : Rat.zoneQ (1 : ℚ) 3 = Zone.inverted := by decide
@@ -638,7 +640,9 @@ work terms 的简化式仅由 secondary 来源支持，但结论不受影响（�
 | 1 | 抛物线（谐振）势能面、单一反应坐标 | `barrier` 的定义本身（在 plan 中声明） |
 | 2 | 经典核运动（无核隧穿） | 速率取 Arrhenius 形式 `A·exp(-ΔG‡/(kBT))` |
 | 3 | Condon 近似 / 电子耦合与核坐标无关 | 前置因子 `A` 与驱动力 `x` 无关（`rate` 的定义） |
-| 4 | 温度为正、`k_B > 0` | 定理前提 `0 < kB`、`0 < T` |
+| 4 | 温度为正、`k_B > 0` | **交付语句实际用的是乘积形式** `hkT : 0 < kB * T`（见 `Rate.lean`/`Sharp.lean`）；
+物理读法 `0 < kB ∧ 0 < T` **更强**，故用乘积是**更弱**的前提 ⇒ 结论更强。
+⚠️ 这也意味着 `kB < 0 ∧ T < 0` 的非物理赋值**形式上**也能满足该前提（锐利刻画里 `⟺` 只对 `A`、`lam` 陈述，见 §7.1 的表述精度说明） |
 | 5 | 速率常数为正（前置因子正） | 定理前提 `0 < A`（**M4a 证明它不可去**） |
 | 6 | 重组能为正 | 定理前提 `0 < λ`，在 M4b 中由 `λ_in + λ_out` 与 Pekar 因子正性**推出** |
 | 7 | 外层重组能的两球连续介质模型 | `lamOuter` 的定义 + 前提 `0 < nSq`、`0 < εs`、`1/εs < 1/nSq`、`hgeom` |
