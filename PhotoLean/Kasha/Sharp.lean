@@ -404,6 +404,21 @@ theorem vavilov_premise_necessary :
     intro hzero
     rw [upperYield, Finset.Icc_self, Finset.sum_singleton, emitYield_self] at hzero
     norm_num [radBranch, decay] at hzero
+set_option linter.unusedVariables false in
+
+/-- Plan §6.2 #16 — the boundary of the threshold is attained with equality: the witness of
+row #10 conforms at `tol` because `funnelRatio` sits exactly on `(1 - tol)/tol`. As in row #10,
+the premise `tol < 1` is kept verbatim from the statement authority and is not consumed. -/
+
+theorem kashaWithin_one_sharp_boundary {tol : ℝ} (h0 : 0 < tol) (h1 : tol < 1) :
+    ∃ rad ic : ℕ → ℝ, funnelRatio rad ic = (1 - tol) / tol ∧ KashaWithin rad ic tol 1 := by
+  let rad : ℕ → ℝ := fun n => if n = 0 then 1 else if n = 1 then tol else 0
+  let ic : ℕ → ℝ := fun n => if n = 0 then 0 else if n = 1 then 1 - tol else 0
+  have hfr : funnelRatio rad ic = (1 - tol) / tol := by simp [rad, ic, funnelRatio, decay]
+  have hd0 : 0 < decay rad ic 0 := by simp [rad, ic, decay]
+  have hd1 : 0 < decay rad ic 1 := by simp [rad, ic, decay]
+  have hr1 : 0 < rad 1 := by simpa [rad] using h0
+  exact ⟨rad, ic, hfr, (kashaWithin_one_iff_ratio hd0 hd1 h0 hr1).mpr (le_of_eq hfr.symm)⟩
 
 end Kasha
 
