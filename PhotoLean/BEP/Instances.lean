@@ -280,6 +280,21 @@ column is the record's own arithmetic and is never used in a statement. -/
 
 /-! #### F1 — f-HAT from phenolic antioxidants to `•OOH`, water -/
 
+/-- F1 — source: *Antioxidants* **15**(7), 840–860 (2026), DOI `10.3390/antiox15070868`
+(OA, `PMC13405240`), "Computational Study of the Peroxyl Radical Scavenging Ability of Phenolic
+Antioxidants"; locus: **Table 1**, "Water" columns, 298.15 K; status **`first-hand`**; reaction
+family: f-HAT from a phenolic O–H to `•OOH`. Units: the rows below are the source's **printed
+kcal/mol** values; the `ΔG°`/`ΔG‡` pair is a **Gibbs energy and its barrier** (the source prints
+`ΔG°, ΔG‡`, not `ΔH`), so the model convention `x = -ΔG°` applies directly and no `ΔH ≈ ΔG°`
+substitution is made here. The record's kJ/mol column is the record's own arithmetic (not used).
+
+Rows used (kcal/mol, verbatim): `16(2)` `ΔG° = -0.3`, `ΔG‡ = 15.6`; `8` `ΔG° = -12.9`,
+`ΔG‡ = 8.8`. Model abscissae `x = -ΔG°`: `0.3`, `12.9`. -/
+theorem inst_I11_F1_alphaObs :
+    Rat.qAlphaObs (0.3 : ℚ) 15.6 12.9 8.8 = 34 / 63 := by
+  unfold Rat.qAlphaObs
+  norm_num
+
 end BEP
 
 end PhotoLean
