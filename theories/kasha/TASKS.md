@@ -405,3 +405,42 @@ not happened), the Chinese half of `RESULTS.md` §5 attributing the positivity s
 milestones instead of run 2's three, the window corollary's omission of its extra premise `h0`, and
 the status of the 36/56 example counts (they are the verifier's own reported probe counts; its probes
 live outside the repository, so the counts are cited as reported, not as tree-measurable).
+
+### Run 6 — 2026-09-20 — full documentation-plane sweep — verdict **C-plane FAIL (six run-5 items all fixed; five new drifts)**
+
+Verifier: same role. Baseline: the comment-stripped code plane of `PhotoLean/**/*.lean` is unchanged
+since `baa5c1e` (only `Compose.lean`'s header comment moved); gates re-run on the tree: `lake build`
+OK, `--strict` `verdict: PASS`, two `axioms.sh` rows clean, unscoped fidelity 150/150 with 0
+differences. All six run-5 items were confirmed fixed (board status header; `plan.md`'s
+`§13.5`/`K4c` cross-references in §1.2; the board's past-tense run-5 claim; the Chinese half's sweep
+scope; the window corollary's `h0`; the example-count provenance). Five new drifts were found and
+corrected in `7cc7059`: **F1** `plan.md` §1.5 still called the exponential-race probe "K4c" and
+phrased it as a live stretch item while probe K4b is closed; **F2** the plan's "row by row" claim was
+false for five rows (§4.2 #20 `specFrac_sum`, #21 `kashaWithin_iff_specFrac`, §6.2 #14
+`vavilov_premise_necessary`, #17 `leak_le_of_radBranch_le`, #18 `kashaWithin_of_uniform_branch`);
+**F3** run counts ("four verifier runs", "all four runs", "四轮") that re-stale as records
+accumulate; **F4** the K5b `feat`-commit count read 4 on the board and 3 in `RESULTS.md` (a
+scope-convention difference); **F5** `RESULTS.md`'s header claimed every number is tree-measured,
+contradicted by its own note about the verifier's reported probe counts. Also reported: run 5's
+digest `21f46569…` is not reproducible under any of ~3,300 stripping conventions tried (the claim it
+supports was verified directly instead) — recorded here as the reason this board cites the
+*comparison*, not that digest.
+
+### Run 7 — 2026-09-20 — delta check of the run-6 fixes — verdict **C-plane FAIL (F1–F4 fixed; F5 residual + cross-reference labels)**
+
+Verifier: same role, delta scope. Source plane unchanged (`372a384` is the last commit touching
+`PhotoLean/`); gates re-run: `lake build` OK, `--strict` `verdict: PASS`, two `axioms.sh` rows clean,
+fidelity 150/150 with 0 differences. **F1–F4 confirmed fixed** (the five corrected plan rows are
+literal substrings of the authority's declarations; five further rows spot-checked also match; the
+file-scoped commit convention is identical in both files; no run-count sentence remains that will
+stale). **Still wrong**: F5 — the *Chinese* header of `RESULTS.md` still said every number is
+tree-measured; plus cross-reference labels — `LITERATURE.md` (§R1.1, §R1.7 twice) and the board's
+Sprint-0 note called the *Marcus bridge* "K4b" (it is K4c; K4b is the exponential-race probe), the
+probe `kasha-api-race.lean` called the exponential-race premise "K4c" (the inverse), and two more
+plan rows (§6.1 #6 `kashaWithin_mono_tol`, §7.2 #15 `kashaGapThreshold_pos`) were still not literal,
+which made the "row by row" claim over-broad. All corrected in `92fad2f`.
+
+### Run 8 — pending — final delta check of the run-7 fixes
+
+A tight re-check (the F5 residual, the four label sites, the two plan rows, and the scope of the
+"row by row" claim) is scheduled; no verdict is recorded here until that report exists.
