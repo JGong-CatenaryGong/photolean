@@ -126,4 +126,24 @@ theorem sharp_lam_pos {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA : 0 < A
   · subst h; exact (sharp_lam_pos_of_eq hdesc).elim
   · exact h
 
+/-! ## 锐利刻画与失效形态（M4a §7.1） -/
+
+/-- **锐利刻画（本项目主定理的成立条件）**：在物理正性前提 `0 < k_B`、`0 < T` 下，
+"速率处处为正 **且** 反转区描述成立" **⟺** `0 < A ∧ 0 < lam`。
+
+- `(⟸)`：`rate_pos`（M3）+ `inverted_descriptor_holds`（本文件）；
+- `(⟹)`：`sharp_A_pos` 得 `0 < A`，再 `sharp_lam_pos` 得 `0 < lam`
+  （后者内部覆盖 `lam < 0` 与 `lam = 0` 两支）。
+
+**为什么"速率处处为正"不可去**：见文件头与 `inverted_descriptor_holds_of_neg` ——
+非物理分支 `A < 0 ∧ lam < 0` 同样满足 `InvertedDescriptor`。 -/
+theorem descriptor_sharp {kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (A lam : ℝ) :
+    ((∀ x : ℝ, 0 < rate A lam kB T x) ∧ InvertedDescriptor A lam kB T) ↔ 0 < A ∧ 0 < lam := by
+  constructor
+  · rintro ⟨hpos, hdesc⟩
+    have hA := sharp_A_pos hpos
+    exact ⟨hA, sharp_lam_pos hkB hT hA hdesc⟩
+  · rintro ⟨hA, hlam⟩
+    exact ⟨fun x => rate_pos hA x, inverted_descriptor_holds hA hlam (mul_pos hkB hT)⟩
+
 end PhotoLean.Marcus
