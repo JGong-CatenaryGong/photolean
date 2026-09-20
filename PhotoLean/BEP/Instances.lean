@@ -314,6 +314,22 @@ theorem inst_I11_F1_curvature_negative :
   unfold Rat.qSecondDividedDiff
   norm_num
 
+/-- F1: **no** positive-λ equal-curvature two-parabola law reproduces the three printed rows
+`16(1)`, `14(1)`, `12` of the water column — a λ-independent falsification. Statement about the
+model family instantiated by those numbers, not about the experiment. -/
+theorem inst_I11_F1_not_model_consistent :
+    ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (0.9 : ℚ) 2.3 4.9 15.7 15.7 13.9 := by
+  rintro ⟨lam, hlam, h₁, h₂, h₃⟩
+  have hpos := Rat.qModelConsistent3_curvature_pos ⟨hlam, h₁, h₂, h₃⟩
+    (by norm_num : (0.9 : ℚ) ≠ 2.3) (by norm_num : (2.3 : ℚ) ≠ 4.9)
+    (by norm_num : (0.9 : ℚ) ≠ 4.9)
+  rw [show Rat.qSecondDividedDiff (0.9 : ℚ) 15.7 2.3 15.7 4.9 13.9 = -(9 / 52) by
+    unfold Rat.qSecondDividedDiff
+    norm_num] at hpos
+  norm_num at hpos
+
+/-! #### F2 — the same reaction in pentyl ethanoate (PE) -/
+
 end BEP
 
 end PhotoLean
