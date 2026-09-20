@@ -46,4 +46,13 @@ theorem barrier_symm {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) : barrier lam x = 
 theorem barrier_min_at_lam {lam : ℝ} (hlam : 0 < lam) (x : ℝ) : barrier lam lam ≤ barrier lam x := by
   rw [barrier_at_lam]; unfold barrier; positivity
 
+/-- `lam > 0`、反转区（`lam ≤ x₁ < x₂`）：势垒严格递增 —— 反转区的代数内核。
+证明内核：`(lam - x₁)² < (lam - x₂)²`（`nlinarith`，由 `x₁ < x₂` 且两者 ≥ `lam`），
+再以正分母 `4 * lam` 除（`div_lt_div_of_pos_right`）。 -/
+theorem barrier_mono_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
+    (h₁ : lam ≤ x₁) (h₂ : x₁ < x₂) : barrier lam x₁ < barrier lam x₂ := by
+  have h4 : (0 : ℝ) < 4 * lam := by positivity
+  have hsq : (lam - x₁) ^ 2 < (lam - x₂) ^ 2 := by nlinarith
+  exact div_lt_div_of_pos_right hsq h4
+
 end PhotoLean.Marcus
