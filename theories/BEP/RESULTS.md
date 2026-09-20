@@ -36,11 +36,16 @@ forward and reverse coefficients are complementary (`α + α_r = 1`), the bounds
 `λ ≠ 0`), so BEP conformance must be stated with a tolerance — whose sharp validity radius is
 `2√(λ·tol)`, and for which the **best possible affine law on a symmetric window** is the tangent
 line shifted by `w²/(8λ)`, with worst-case violation `w²/(8λ)`, **exactly half** the tangent
-line's. Plugging in instances: all five **first-hand literature families** conform to the *affine*
-BEP description (their two-point slopes lie in `(0,1)` and their points are `conforming`) while
-**all five are refuted as equal-curvature two-parabola families** (their second divided difference
-is negative, whereas the model with `λ > 0` forces `1/(4λ) > 0`) — the affine law survives, the
-model behind it does not, and the formalization states exactly that distinction.
+line's. Plugging in instances: **four** of the five **first-hand literature families** have per-point data
+and are formalized (the fifth is aggregate-only and is deliberately left `UNSUPPORTED` rather than
+guessed); all four conform to the *affine* BEP description on their printed rows (two-point slopes
+inside `(0,1)`, every point `conforming`) while **all four are refuted as equal-curvature
+two-parabola families** (their second divided difference is negative, whereas the model with
+`λ > 0` forces `1/(4λ) > 0`) — the affine law survives, the model behind it does not, and the
+formalization states exactly that distinction. The plan's original wish for "at least one
+conforming literature family" is therefore **not met and is not pretended to be met**: the
+literature block is a table of refutations, and the conforming two-parabola rows are the
+model-constructed `I1`–`I3`.
 
 **摘要（交付概况）**：`PhotoLean/BEP/` 下六个 Lean 模块（B1 描述层、B2 定律层、B3 精确条件层、
 B4 微观与跨模块层、B5a 可计算有理判决层、B5b 实例判决层）共 **191 条声明：32 个定义、2 个归纳类型、
@@ -52,10 +57,12 @@ B4 微观与跨模块层、B5a 可计算有理判决层、B5b 实例判决层）
 且只在热中性点等于 `1/2`；正逆系数互补（`α + α_r = 1`）；界 `0 ≤ α ≤ 1` 成立**当且仅当** `-λ ≤ x ≤ λ`，
 **当且仅当**该步的正逆两个方向都**不在** Marcus 反转区；**精确仿射只在退化模型 `λ = 0` 成立**（`λ ≠ 0`
 时在任何非平凡窗口上都不成立），所以"符合 BEP"必须带容差表述 —— 其精确有效半径是 `2√(λ·tol)`，而在
-对称窗口上**最优仿射律**是切线整体上移 `w²/(8λ)`，最坏违反恰为切线的**一半**。代入实例：五个**一手文献族**
-全部符合**仿射** BEP 描述（两点斜率落在 `(0,1)`、逐点判决为 `conforming`），但**五个都作为等曲率双抛物族被
-证伪**（它们的二阶差商为负，而 `λ > 0` 的模型强制 `1/(4λ) > 0`）—— 仿射律存活、其背后的模型不成立，
-形式化恰好把这两件事分开陈述。
+对称窗口上**最优仿射律**是切线整体上移 `w²/(8λ)`，最坏违反恰为切线的**一半**。代入实例：五个**一手文献族**中
+有逐点数据、被形式化的是**四个**（第五个只有族汇总，标为 `UNSUPPORTED` 而**不猜数**）；这四族在印刷行上
+全部符合**仿射** BEP 描述（两点斜率落在 `(0,1)`、逐点判决为 `conforming`），但**四族都作为等曲率双抛物族
+被证伪**（它们的二阶差商为负，而 `λ > 0` 的模型强制 `1/(4λ) > 0`）—— 仿射律存活、其背后的模型不成立，
+形式化恰好把这两件事分开陈述。因此计划原先"至少有一个文献族判定为 conforming"的愿望**未满足、也不假装
+满足**：文献块是一张证伪表，而 conforming 的双抛物行来自模型构造的 `I1`–`I3`。
 
 ---
 
@@ -180,6 +187,16 @@ are labelled per row.
 | F4 | •OOCH₃ oxidant, PE (*ibid.*, Table 2) | **UNSUPPORTED** — the record prints family aggregates only, no per-point pairs; no Lean row was invented for it | literature, `first-hand` but aggregate-only |
 | I12 | summary over the literature set | **affine BEP conforms, the two-parabola model is refuted**: `¬ ∃ λ : ℚ, qModelConsistent3 …` for the chosen triples | literature + model |
 
+**Reading the two verdict kinds separately.** Point-level *conformance* and family-level *model
+consistency* are different questions, and the table answers both: the literature families are
+`conforming` at the point level (their two-point slopes lie in `[0,1]`) while their triples are
+**not** consistent with any positive-`λ` equal-curvature two-parabola model. The delivered
+`_lamHat` rows use adjacent printed pairs and the refutation rows use three printed rows; the model
+solver is pair-dependent on real data (it is negative on the widest pairs of the same families),
+which is itself evidence of the inconsistency — no verdict depends on `λ̂`. A ±half-unit
+perturbation of every printed number flips **no** verdict (verifier B5b), so the rows are not
+knife-edge.
+
 All rational literals are checked by the kernel (`norm_num`; `by decide` is unusable on ℚ
 comparisons containing `/` and `native_decide` is banned because `Lean.ofReduceBool` is not in
 `ALLOWED_AXIOMS`). The instance values were independently recomputed by the non-Lean checker
@@ -214,9 +231,9 @@ Records so far:
 | #1 | `Basic.lean` (33) | **PASS** | graded on `sha256 5a366027…`; 33/33 `axioms.sh` clean (`depends on axioms: [propext, Classical.choice, Quot.sound]` quoted in full); verifier's own parser 33/33 word-for-word including `EPZone`'s nine constructors and the `deriving` clause; all nine classifier branch boundaries plus cascade exhaustiveness kernel-checked; hypothesis necessity split **5 load-bearing / 3 decorative** (the decorative ones were *proved* in strengthened form); non-vacuity witnesses for all nine zones; `#print` bodies identical to plan §4.1; **six falsification attempts all failed** |
 | #2 | `Criterion.lean` (28) + `Compose.lean` (12) | **PASS / PASS** | graded on `sha256 b3ef9225…` / `b68e948c…`; 40/40 `axioms.sh` clean; verifier's own parser 28/28 and 12/12; 40/40 proof terms screened for circularity (**only two `rfl`s, both documented as definitional**); 20 hypothesis-necessity counterexamples; the mean-value identity hand-recomputed at three rational parameter sets; the headline bridge `epBounds_iff_no_inverted_direction` non-vacuous with same-true/same-false witnesses for both directions; a ≈7 200-instance rational-grid falsification of 31 statements found **0 counterexamples** |
 | #4 | `RatModel.lean` (37) | **PASS** | graded on `sha256 75040761…` (skeleton `c9aa2cb1…`); 37/37 word-for-word, 0 extras; 22/22 `axioms.sh` clean; **all three kernel-counterexample-driven corrections reproduced independently** (the verifier proved the negations of the premise-dropped forms); eight cast lemmas `#print`-checked as genuine ℝ transfers **and used**; unconstrained-definition audit: **zero** in the settled state; 24/24 commits touch only the owner's file |
-| #3 | `Sharp.lean` (32) | independent run recorded below | — |
-| #5 | `Instances.lean` (48) | independent run recorded below | — |
-| closeout | frozen tree | recorded below | — |
+| #3 | `Sharp.lean` (32) | **PASS** | graded on `sha256 b9b3b568…`; 32/32 `axioms.sh` clean; verifier's own parser: set equality 32/32 with the `epSupError` body compared too; the minimax lower bound **is** the original `∀ c a, ∃ x ∈ Set.Icc (-w) w` form (`#print` of `EPBestOnWindow` shows the pre-registered disjunctive fallback was not used) and is non-vacuous; the radius theorem checked in both directions (strict-interior case, failing-window case, attained radius); `a < b` load-bearing (a single point *is* trivially affine); 11 hypothesis-necessity counterexamples; the four sharpness witnesses use the totalised-division values and `secSlope_needs_h_ne_zero` really kills the mean-value identity; every load-bearing proof is a real derivation (no `rfl`), `Sharp.lean` imports only `Basic.lean`; edge-value falsification (w=0, tol=0, x=±λ, w<0, tol<0, lam<0, empty window) left every statement standing |
+| #5 | `Instances.lean` (48) | **PASS** | graded on `sha256 99161212…` (unchanged start→end); 48/48 `axioms.sh` clean; 48/48 word-for-word, order identical; **all verdicts independently recomputed** (I1–I10 coefficients, cascade and threshold; the 12 I11 literals recomputed from §R1.10's printed kcal/mol rows); refutation derivations non-circular; `#print` shows real `norm_num` terms and a real existential refutation; `inst_nonvacuous` exhibits two distinct verdicts; F4 absent with no invented numbers; a ±half-unit perturbation grid flips no verdict; 48/48 commits touch only the owner's file |
+| closeout | frozen tree | recorded at the end of this section | — |
 
 Cross-checks that do not replace the kernel: the statement-fidelity checker
 `theories/BEP/probes/bep-fidelity.py` (191/191 word-for-word, 0 differences, 0 declarations outside
