@@ -297,5 +297,36 @@ theorem bepRadius_mono {lam₁ lam₂ tol : ℝ} (h0 : 0 ≤ lam₁) (hle : lam�
   have hprod : lam₁ * tol ≤ lam₂ * tol := mul_le_mul_of_nonneg_right hle htol
   linarith [Real.sqrt_le_sqrt hprod]
 
+/-- Plan §6.3 #17: conformance on a fixed window is preserved when the reorganization energy grows
+(the plan leaves the hypotheses as `(…)`; resolved by the statement authority as positivity of
+`lam₁` plus `lam₁ ≤ lam₂`, which is what the proof of #15/#16 consumes). -/
+theorem epConformsOnWindow_mono_lam {lam₁ lam₂ tol a b : ℝ} (h0 : 0 < lam₁) (hle : lam₁ ≤ lam₂) :
+    EPConformsOnWindow lam₁ tol a b → EPConformsOnWindow lam₂ tol a b := by
+  intro h
+  have h₂ : 0 < lam₂ := lt_of_lt_of_le h0 hle
+  have h4₂ : (0 : ℝ) < 4 * lam₂ := by linarith
+  have e₁ : ∀ y : ℝ, bepDefect lam₁ y = y ^ 2 / (4 * lam₁) := by
+    intro y
+    unfold bepDefect bepLine eact
+    field_simp
+    ring
+  have e₂ : ∀ y : ℝ, bepDefect lam₂ y = y ^ 2 / (4 * lam₂) := by
+    intro y
+    unfold bepDefect bepLine eact
+    field_simp
+    ring
+  refine ⟨h₂, h.2.1, fun x hx => ?_⟩
+  have hb : |bepDefect lam₁ x| ≤ tol := h.2.2 x hx
+  rcases eq_or_ne x 0 with hx0 | hxne
+  · subst hx0
+    rw [e₂ 0, zero_pow (by norm_num : (2 : ℕ) ≠ 0), zero_div, abs_zero]
+    exact le_of_lt h.2.1
+  · have hmono : x ^ 2 / (4 * lam₂) ≤ x ^ 2 / (4 * lam₁) := by
+      have h' : bepDefect lam₂ x ≤ bepDefect lam₁ x := bepDefect_antitone_lam h0 hle hxne
+      rwa [e₂ x, e₁ x] at h'
+    rw [e₂ x, abs_of_nonneg (div_nonneg (sq_nonneg x) (le_of_lt h4₂))]
+    rw [e₁ x, abs_of_nonneg (div_nonneg (sq_nonneg x) (by linarith : (0 : ℝ) ≤ 4 * lam₁))] at hb
+    linarith
+
 
 end PhotoLean.BEP
