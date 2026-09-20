@@ -288,7 +288,7 @@ the tree was **not frozen** during this run (`HEAD` moved 5×: `0b87f93 → 849b
 ### Run 2 — 2026-09-20 — K2/K4/K5a batch — verdict **PASS**
 
 Verifier: independent read-only role. The tree again moved during the run (`0fd0a6a → 446cdad`,
-+19 commits), so every artifact is pinned by blob hash (`Criterion.lean` `9c7a8c37…`, `Compose.lean`
+23 commits: 16 `feat` + 7 `docs`), so every artifact is pinned by blob hash (`Criterion.lean` `9c7a8c37…`, `Compose.lean`
 `b86f63c5…`, `RatModel.lean` `a3dd1856…`, authority `ee5fa48f` = sha256 `b645cbfb…`), and the
 verifier additionally **rebuilt the three modules from a `git archive` copy with its own lake**
 (defeating stale oleans).

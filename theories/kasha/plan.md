@@ -5,9 +5,12 @@
 > theory of this repository (after `Marcus`, `hammond` and `BEP`).
 > Target system: Lean 4.17.0 + mathlib v4.17.0 (`MODULE_PREFIX=PhotoLean`, contract
 > `proofs/ENGINE.yml`).
-> Status: **Sprint 0 — plan landed, statements being calibrated.** This file is the plan of record;
-> every delivered signature must match the statement authority
-> `theories/kasha/probes/kasha-statement-skeleton.lean` word for word.
+> Status: **delivered (2026-09-20) — K1–K5, six modules, 150 declarations, all verified.** The
+> authority `theories/kasha/probes/kasha-statement-skeleton.lean` (sha256
+> `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations) is the
+> **frozen** state every delivered signature matches word for word; §3.1 records the three statement
+> corrections (with kernel counterexamples) and the plan-sketch reconciliation; §12 carries measured
+> values, not targets.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/kasha/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/kasha/LITERATURE.md`.
 > Human request (2026-09-20): ① turn Kasha's rule into a formal description; ② prove the theory or
@@ -665,7 +668,7 @@ git log -1 --oneline                                                     # 4. co
    (§R1.4, §R1.8) — so `ic n` stays an unstructured scalar per level. A statement of the form "the IC
    rate decreases with the gap" must not be added, and the Marcus bridge (K4) is *per channel*: its
    `lam`, `A` are parameters of the `S₂ → S₁` channel it models, not of the molecule.
-7. Instances are arithmetic verdicts about printed numbers, not fits; `UNSUPPORTED` marks are
+8. Instances are arithmetic verdicts about printed numbers, not fits; `UNSUPPORTED` marks are
    reported rather than filled with guesses.
 
 ---

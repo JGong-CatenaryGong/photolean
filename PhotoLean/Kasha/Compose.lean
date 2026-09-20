@@ -38,10 +38,12 @@ convention of `PhotoLean/Kasha/Basic.lean`).
 
 Statement authority: every definition body and every theorem signature below is taken word for word
 from the K4 block of `theories/kasha/probes/kasha-statement-skeleton.lean` (frozen state, sha256
-`b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations), whose premises follow `theories/kasha/plan.md` §7.1 and §7.2 with
-six strengthening additions reconciled in plan §3.1: 4 definitions and 16 theorems, in the
-authority's order, with
-nothing added, renamed or restated. Note deliberately: the two keyword literals that
+`b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations): 4
+definitions and 16 theorems in the authority's order — nothing renamed, nothing restated and nothing
+reordered. Six of the sixteen theorem **premises are strengthened** relative to the plan's sketches
+(`hpos` in #8; `h0 : 0 < decay rad ic 0` in #9 and #11; `hr0 : 0 < rad 0` in #12, #13 and #14, the
+last three genuinely needed for the `Real.log` step); the reconciliation is logged in plan §3.1, and
+no signature differs from the authority. Note deliberately: the two keyword literals that
 `proofs/scripts/check.sh --strict` scans for are not spelled out anywhere in this file — that scan
 covers `PhotoLean/**/*.lean` including block comments, so writing them (even in prose) would be a
 false-positive FAIL.
