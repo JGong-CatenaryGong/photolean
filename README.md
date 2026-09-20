@@ -58,6 +58,25 @@ proofs/scripts/axioms.sh PhotoLean.Smoke smoke_ring   # 打印定理实际依赖
 同类已完成实例（写法范本）：`[local path removed]`（RACI/AIE，
 M1–M4 + M1* 全证完，0 sorry / 0 自定义 axiom）。
 
+## 双语文档 / Bilingual documentation
+
+本项目的中文文档保留在契约路径上（`proofs/ENGINE.yml` 读取它们），每份都有一个并列的英文版
+
+| 中文（权威，契约路径） | English |
+|---|---|
+| `README.md` | [`README.en.md`](README.en.md) |
+| `AGENTS.md` | [`AGENTS.en.md`](AGENTS.en.md) |
+| `plan.md` | [`plan.en.md`](plan.en.md) |
+| `proofs/ENGINE.md` | [`proofs/ENGINE.en.md`](proofs/ENGINE.en.md) |
+| `proofs/TASKS.md` | [`proofs/TASKS.en.md`](proofs/TASKS.en.md) |
+| `proofs/EXPERIENCE.md` | [`proofs/EXPERIENCE.en.md`](proofs/EXPERIENCE.en.md) |
+| `proofs/API-NOTES.md` | [`proofs/API-NOTES.en.md`](proofs/API-NOTES.en.md) |
+| `proofs/LITERATURE.md` | [`proofs/LITERATURE.en.md`](proofs/LITERATURE.en.md) |
+| `proofs/RESULTS.md` | [`proofs/RESULTS.en.md`](proofs/RESULTS.en.md) |
+| `proofs/literature/README.md` | [`proofs/literature/README.en.md`](proofs/literature/README.en.md) |
+
+数学内容入口是 `plan.en.md`（里程碑与语句），可复核性入口是 `README.en.md` 的"如何复核"一节。
+
 ## 许可
 
 Apache-2.0

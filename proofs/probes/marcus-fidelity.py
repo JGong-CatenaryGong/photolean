@@ -7,9 +7,37 @@ import re, sys, glob, os
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SKEL = os.path.join(ROOT, 'proofs/probes/marcus-statement-skeleton.lean')
 
+def strip_comments(src):
+    """去掉 Lean 注释（支持嵌套块注释 /- -/ 与行注释 --），避免注释里的文字
+    （例如英文翻译里以 'theorem' 开头的行）被误当成声明 —— 2026-09-20 修。"""
+    out = []
+    i, n, depth = 0, len(src), 0
+    while i < n:
+        if depth == 0 and src.startswith('--', i):
+            j = src.find('\n', i)
+            if j == -1:
+                break
+            i = j
+            continue
+        if src.startswith('/-', i):
+            depth += 1
+            i += 2
+            continue
+        if depth > 0 and src.startswith('-/', i):
+            depth -= 1
+            i += 2
+            continue
+        if depth > 0:
+            i += 1
+            continue
+        out.append(src[i])
+        i += 1
+    return ''.join(out)
+
+
 def signatures(path, only_named=None):
-    """抽取 name -> 规范化签名（去空白，到第一个 := 之前）。"""
-    src = open(path).read()
+    """抽取 name -> 规范化签名（**先剥注释**，去空白，到第一个 := 之前）。"""
+    src = strip_comments(open(path).read())
     out = {}
     for m in re.finditer(r'^(?:noncomputable\s+)?(?:theorem|def|inductive)\s+([A-Za-z_][\w\']*)(.*?)(?=:=\s*by|:=\s*$|:=|\n\n)',
                          src, re.M | re.S):

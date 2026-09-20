@@ -16,7 +16,7 @@
 
 | 你的问题 | 答复 | 可复核的证据 |
 |---|---|---|
-| ① 怎么把反转区变成形式化描述？ | `PhotoLean/Marcus/Basic.lean`：势垒 `(lam-x)²/(4·lam)`、速率 `A·exp(-ΔG‡/(kB·T))`、区域谓词、**描述谓词** `InvertedDescriptor`、可判定分类器 `Zone`/`zone`（§1） | `marcus-fidelity.py`：与语句权威 **43/43 逐字一致** |
+| ① 怎么把反转区变成形式化描述？ | `PhotoLean/Marcus/Basic.lean`：势垒 `(lam-x)²/(4·lam)`、速率 `A·exp(-ΔG‡/(kB·T))`、区域谓词、**描述谓词** `InvertedDescriptor`、可判定分类器 `Zone`/`zone`（§1） | `marcus-fidelity.py`：与语句权威 **45/45 逐字一致** |
 | ② 这个描述成立吗？成立条件是什么？ | **成立，且条件是锐利的**：`(速率处处正 ∧ 描述) ⟺ 0 < A ∧ 0 < lam`（`descriptor_sharp`）。另给出微观化链条：`lam = lamIn + lamOut`、Pekar 因子正性、几何因子可由"两球不重叠"推出 ⇒ 描述成立（§2） | 70 条定理全过 `check.sh --strict`；`marcus-all-axioms.lean` **70/70 公理干净**（0 sorry / 0 自定义公理） |
 | ③ 实例代入后符合吗？ | **文献 MCC 体系（`lam=1.20` eV）与光合反应中心（`0.25` eV）在经典模型下符合**：区域判定 + 描述算子实例化 + **速率比较 `rate(2.40) < rate(1.23)`**（且与温度无关）；非物理参数被判**不符合/不可采纳**（§3） | 每条实例都是**有名字的定理**；lead 用 Python 独立复算逐条印证 |
 | 边界（必须同时报告） | 经典公式在反转区**下降过快约 3.6 个数量级**（预言 5.1 vs 实测 1.46）⇒ 实例结论只声称"**经典模型**满足描述"，不声称预测实测速率（§3.4、§4） | 模型数值与文献实测速率并排给出，可复算 |
@@ -296,9 +296,9 @@ proofs/scripts/lake env lean proofs/probes/marcus-statement-skeleton.lean       
 
 **语句保真度（全项目一条命令）**：`python3 proofs/probes/marcus-fidelity.py` ——
 把交付文件中**每个在权威骨架里出现过的声明**与 `marcus-statement-skeleton.lean` 逐字比对：
-**43/43 一致、0 差异**（39 条辅助声明不在权威内，不算差异）。
+**45/45 一致、0 差异**（37 条辅助声明不在权威内，不算差异）。
 该检查器已做**反向验证**（故意把 `inverted_rate_decreases` 的结论 `<` 改成 `≤` ⇒ 被抓出并打印对照；
-恢复后回到 43/43）—— 不会失败的检查器没有价值。
+恢复后回到 45/45）—— 不会失败的检查器没有价值。
 
 **结构审计（每个定义是否都被至少一条定理约束）**：对全部 10 个定义做词边界引用统计 ——
 `barrier`(44 处)、`rate`(40)、`InvertedRegion`(21)、`zoneQ`(24)、`InvertedDescriptor`(16)、
@@ -307,8 +307,8 @@ proofs/scripts/lake env lean proofs/probes/marcus-statement-skeleton.lean       
 已补上数值桥 `barrierQ_cast : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam:ℝ) (x:ℝ)`，
 使 ℚ 侧势垒数值有资格作为 ℝ 理论层的证据。
 
-**全量体检结果（2026-09-20，8 个模块 / 55 条定理）**：`marcus-all-axioms.lean` 一次运行输出 **55 条
-`depends on axioms`、0 error**；其中 **54 条恰为 `[propext, Classical.choice, Quot.sound]`**，
+**全量体检结果（2026-09-20，8 个模块 / 70 条定理）**：`marcus-all-axioms.lean` 一次运行输出 **70 条
+`depends on axioms`、0 error**；其中 **69 条恰为 `[propext, Classical.choice, Quot.sound]`**，
 1 条（`inst_I1_zoneQ`）**只依赖 `[propext]`**（允许集合的子集）。**无 `sorryAx`、无自定义公理、
 无 `Lean.ofReduceBool`**（即无 `native_decide`）。该探针由脚本从源码树自动生成，含 `namespace` 解析，
 新增定理后可重新生成。

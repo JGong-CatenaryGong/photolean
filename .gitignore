@@ -14,6 +14,7 @@ __pycache__/
 # 文献原文（大文件；只提交 LITERATURE.md 的结论，不提交 PDF）
 proofs/literature/*
 !proofs/literature/README.md
+!proofs/literature/README.en.md
 
 # 编辑器
 .vscode/
