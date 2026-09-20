@@ -55,4 +55,12 @@ theorem barrier_mono_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
   have hsq : (lam - x₁) ^ 2 < (lam - x₂) ^ 2 := by nlinarith
   exact div_lt_div_of_pos_right hsq h4
 
+/-- `lam > 0`、正常区（`0 ≤ x₁ < x₂ ≤ lam`）：势垒严格递减。
+`h₁ : 0 ≤ x₁` 是**显式物理前提**（驱动力非负），数学上可由 `h₃` 推出，证明中不使用。 -/
+theorem barrier_antitone_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
+    (h₁ : 0 ≤ x₁) (h₂ : x₁ < x₂) (h₃ : x₂ ≤ lam) : barrier lam x₂ < barrier lam x₁ := by
+  have h4 : (0 : ℝ) < 4 * lam := by positivity
+  have hsq : (lam - x₂) ^ 2 < (lam - x₁) ^ 2 := by nlinarith
+  exact div_lt_div_of_pos_right hsq h4
+
 end PhotoLean.Marcus
