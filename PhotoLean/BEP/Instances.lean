@@ -341,6 +341,12 @@ theorem inst_I11_F2_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
+/-- F2 (`first-hand`, kcal/mol verbatim): the model's two-point solver at the adjacent printed pair
+`16(2)` (`ΔG° = +1.0`, `ΔG‡ = 14.0`) and `13` (`-2.2`, `13.3`); model abscissae `-1.0`, `2.2`. -/
+theorem inst_I11_F2_lamHat : Rat.qLamOfPair (-(1.0) : ℚ) 14.0 2.2 13.3 = 16 / 15 := by
+  unfold Rat.qLamOfPair
+  norm_num
+
 end BEP
 
 end PhotoLean
