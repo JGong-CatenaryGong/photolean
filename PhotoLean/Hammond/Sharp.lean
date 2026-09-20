@@ -36,6 +36,15 @@ theorem exists_direction_reversal_of_neg {lam : ℝ} (hlam : lam < 0) :
   rw [div_lt_div_right_of_neg (by linarith : (2 : ℝ) * lam < 0)]
   linarith
 
+/-- Explicit direction-reversal witness for zero curvature (degenerate division): with
+`lam = 0` the coordinate is constant (`tsCoord_zero_lam`), so the pair `x₁ = 0 < x₂ = 1`
+fails the strict decrease required by the descriptor. -/
+theorem exists_direction_reversal_of_eq :
+    ∃ x₁ x₂ : ℝ, x₁ < x₂ ∧ ¬ (tsCoord 0 x₂ < tsCoord 0 x₁) := by
+  refine ⟨0, 1, by norm_num, ?_⟩
+  rw [tsCoord_zero_lam, tsCoord_zero_lam]
+  norm_num
+
 end Hammond
 
 end PhotoLean
