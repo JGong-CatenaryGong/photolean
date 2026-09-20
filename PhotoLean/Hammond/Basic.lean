@@ -226,3 +226,17 @@ theorem hammondZone_eq_half_iff {lam x : ℝ} (hlam : 0 < lam) :
       if_neg (by linarith : ¬ ((0 : ℝ) < -lam)), if_neg (by linarith : ¬ (lam < (0 : ℝ))),
       if_pos rfl]
 
+set_option linter.unusedVariables false in
+/-- Zone characterization, late branch. -/
+theorem hammondZone_eq_late_iff {lam x : ℝ} (hlam : 0 < lam) :
+    hammondZone lam x = HZone.late ↔ x < 0 ∧ -lam < x := by
+  constructor
+  · intro h
+    unfold hammondZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6
+    exact ⟨lt_of_le_of_ne (not_lt.mp h6) h5, lt_of_le_of_ne (not_lt.mp h3) (Ne.symm h2)⟩
+  · intro ⟨h1, h2⟩
+    unfold hammondZone
+    rw [if_neg (by linarith), if_neg (by linarith), if_neg (by linarith), if_neg (by linarith),
+      if_neg (by linarith), if_neg (by linarith)]
+
