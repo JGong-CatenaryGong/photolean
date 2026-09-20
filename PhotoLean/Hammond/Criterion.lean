@@ -130,3 +130,11 @@ theorem exists_reactantLike {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, Reactant
   rw [div_lt_iff₀ h2]
   linarith
 
+/-- Non-vacuity: product-like transition states exist. -/
+theorem exists_productLike {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ProductLike lam x := by
+  refine ⟨-(lam / 2), ?_⟩
+  have h2 : (0 : ℝ) < 2 * lam := by linarith
+  unfold ProductLike tsCoord
+  rw [lt_div_iff₀ h2]
+  linarith
+
