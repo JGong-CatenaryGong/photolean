@@ -2053,3 +2053,60 @@
     (`have hR : RateData … := by refine ⟨…⟩`), otherwise the second component cannot cite it;
     the `interval_cases n <;> norm_num [decay]` / `split_ifs <;> norm_num` pair evaluates the
     piecewise witness at the two levels and at an unconstrained `n` respectively.
+
+## 2026-09-20 — K5a computable rational verdict layer (PhotoLean/Kasha/RatModel.lean) — prover_c — DONE
+
+- Goal: K5a of the Kasha theory — 29 declarations (16 definitions + `KashaQVerdict` + 12 theorems),
+  word for word against the authority `theories/kasha/probes/kasha-statement-skeleton.lean` (hash at
+  delivery `4cf2b1055f1aee41463e7f5ad9bb6913c2c82600a0c4aa064cb58210fc68c0fb`) and plan §8.1,
+  including the two statement corrections of the round (`kashaWithinQ_iff_funnelRatioQ` gained
+  `0 < decayQ rad ic 1`; `kashaQVerdict_eq_violating_iff` gained `0 < tol`). 4 commits
+  (`b465a3f` definitions → `798d557` cast bridges → `669635e` criterion → `25e54b6` classifiers).
+- Gate verdicts (clean tree, committed): `proofs/scripts/lake build PhotoLean.Kasha.RatModel` →
+  `Build completed successfully.`; `check.sh --strict PhotoLean.Kasha.RatModel` → scan `clean`,
+  `build: OK`, `verdict: PASS`; `axioms.sh` on **all 12** theorems → 12 ×
+  `verdict: PASS (only mathlib infrastructure axioms)`, 0 FAIL, every row exactly
+  `[propext, Classical.choice, Quot.sound]`; `bep-fidelity.py --theory kasha` → the 29 K5a
+  declarations word-for-word, **0 signature differences, 0 declarations outside the authority**
+  (144-declaration authority: 128 delivered after this round, 16 pending K2/K3/K4/K5b).
+- Tried and failed:
+  1. **The block-comment nesting trap, hit in the module header itself**: writing the section name
+     of the authority as a literal comment opener inside the module docstring opens a nested comment
+     that the file never closes — build error `unterminated comment`. Describe an opener in prose
+     ("the K5a section of …"), never quote it. Same family as the K1 header trap: the placeholder
+     keyword is matched inside block comments too.
+  2. `set_option linter.unusedVariables false in` must sit **immediately before the docstring**, not
+     after it (inherited from K1; the two decorative-premise classifier rows need it).
+  3. A rewrite of `if_neg` on the *folded* predicate `KashaWithinQ` does not fire: the guard is the
+     unfolded inequality `upperYieldQ … ≤ tol * fluoYieldQ …`, so the hypothesis must be
+     materialized first (`have hw' : ¬ (upperYieldQ … ≤ tol * fluoYieldQ …) := hw`) — the same
+     defeq trap K1 recorded as item 2 of its own round.
+  4. A premise bundle of type `QRateData` does **not** make a row computable: the `violating`
+     classifier needs `0 ≤ fluoYieldQ rad ic N`, and the ℚ layer ships no such lemma (K1's
+     `fluoYield_nonneg` is the ℝ-side one). It is built locally from the bundle (`div_nonneg`,
+     `mul_nonneg`, `Finset.prod_nonneg`, `Finset.sum_nonneg` over the two index ranges) instead of
+     adding a declaration, so the module keeps exactly the authority's 29.
+- What worked (reusable):
+  - All eight cast bridges are two-to-four lines, exactly as `proofs/API-NOTES.md` §kasha §6
+    calibrated: `Rat.cast_prod` / `Rat.cast_sum` move the cast through the finite product and the
+    finite sum (no induction anywhere), and the predicate bridge ends with
+    `(Rat.cast_le (K := ℝ)).symm` — the target field must be given explicitly. `Rat.cast_prod` needs
+    `Field` (ℝ is one), `Rat.cast_sum` only `DivisionRing`.
+  - The generic two-level criterion reuses the K-PROBE-2 recipe: materialize the four finset
+    evaluations as local `have`s (`Finset.Icc_self` + `Finset.prod_singleton` for
+    `cascadeQ rad ic 0 1`; the empty bound `Finset.Icc (1+1) 1` via
+    `Finset.Icc_eq_empty_iff.mpr (by omega)` + `Finset.prod_empty`, never via the `simp`
+    discharger), then `div_le_iff₀` / `le_div_iff₀`, `field_simp` + `ring`, and `nlinarith` in both
+    directions.
+  - `lake build <Module>` resolves a module that is **not** yet listed in `lakefile.toml`'s
+    `defaultTargets`, as long as the file lies under the `PhotoLean` library root (measured: the K5a
+    module built and all its gates ran before the lead added the line); only the bare
+    `check.sh --strict` (build everything) is governed by that list.
+  - The three classifier rows follow K1's `Basic.lean` shape: forward direction
+    `unfold kashaQVerdict at hv; split_ifs at hv with h1 h2; exact h2` — the case split itself
+    discharges the constructor-mismatch branches; backward direction `rw [if_neg hne, if_neg hw']`;
+    the `withinTol` row is the three-way `first |` cascade from K1.
+  - K5b readiness: the concrete instance rows are already measured end to end in
+    `theories/kasha/probes/kasha-rat-probe.lean` (12 rows, exit 0), including the rows whose cascade
+    carries the genuinely non-singleton bound `Finset.Icc 1 2` (those need
+    `Finset.prod_Icc_succ_top`; a singleton-only recipe does not close them).
