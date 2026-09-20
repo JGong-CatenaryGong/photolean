@@ -2110,3 +2110,89 @@
     `theories/kasha/probes/kasha-rat-probe.lean` (12 rows, exit 0), including the rows whose cascade
     carries the genuinely non-singleton bound `Finset.Icc 1 2` (those need
     `Finset.prod_Icc_succ_top`; a singleton-only recipe does not close them).
+
+## 2026-09-20 — K4 composition and Marcus bridge (PhotoLean/Kasha/Compose.lean) — prover_d — DONE
+
+- Goal: the §K4 block of the statement authority (`theories/kasha/probes/kasha-statement-skeleton.lean`,
+  sha256 `801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`; plan §7) — 4 definitions
+  + 16 theorems, delivered word for word, in the authority's order, with nothing added: 20
+  declarations, 458 lines, 20 commits (`28d9cdc` `effRad` … `f34dc9e` `marcusIC_pos`), one per
+  declaration. The module imports `PhotoLean.Kasha.Basic` and `PhotoLean.Marcus.Basic` only — the
+  sharp layer (`Sharp.lean`) is deliberately **not** imported, so rows 9–11 are K1's
+  `fluoYield_eq_low_add_upper` plus algebra (the plan §7.2 note), not a K3 re-export.
+- Gate verdicts (clean tree, committed): `proofs/scripts/lake build PhotoLean.Kasha.Compose` →
+  `Build completed successfully.`; `proofs/scripts/check.sh --strict PhotoLean.Kasha.Compose` → scan
+  `clean`, `build: OK`, `verdict: PASS`; `proofs/scripts/axioms.sh` on **all 20** declarations →
+  20 × `verdict: PASS (only mathlib infrastructure axioms)`, 0 FAIL, every row exactly
+  `[propext, Classical.choice, Quot.sound]`; the whole K4 block re-elaborated standalone
+  (`lake env lean` on the staging copy) → 0 errors, **0 warnings**; fidelity: K4 20/20 word-for-word,
+  0 signature differences, 0 extras (and `theories/BEP/probes/bep-fidelity.py --theory kasha` reports
+  the whole theory at that moment: 128 delivered / 0 differences / 0 extras). 60 gate invocations,
+  148 s total wall. Note for the lead: `lakefile.toml`'s `defaultTargets` still lacks
+  `PhotoLean.Kasha.Compose` (the lead's line to add; the strict scan covers the directory either way).
+- Statement corrections: **none** — all 20 rows are true as handed over. Row 14
+  (`kashaWindow_halfWidth`, the §10 register's "riskiest row of the milestone") landed with the
+  already-calibrated square/`sqrt` recipe; no row had to be withheld and no premise had to be added.
+- Tried and failed (measured this round; items 1–3 are the ones most likely to bite K5):
+  1. `div_div_div_cancel_right` does **not** apply over ℝ — `failed to synthesize Group ℝ` (`0` has no
+     inverse). The usable name is `div_div_div_cancel_right₀ (h : c ≠ 0) (a b) : a / c / (b / c) = a / b`;
+     `div_div_div_cancel_left₀` does not exist. This is the row-7 cancellation
+     `(e₀ / (u+C)) / (u / (u+C)) = e₀ / u`.
+  2. `field_simp` on the row-9 identity `ladderRatio rad ic N = emitYield rad ic 0 N / upperYield rad ic N`
+     leaves the side goal `⊢ True ∨ rad 0 * cascade rad ic 0 N = 0`, which `ring` cannot touch (a
+     `mul_eq_mul_right_iff`-shaped leftover, not a math goal). Route that works:
+     `rw [div_eq_div_iff (mul_ne_zero (ne_of_gt hu) (ne_of_gt h0)) (ne_of_gt hu)]` first, then
+     `field_simp; ring`. The `field_simp` discharger again consumed only the explicit `≠`-facts.
+  3. `field_simp; ring` is **not** a safe compound at any of the four engine sites:
+     `field_simp` alone closes `e2` of both `effective_algebra` engines and `e2` of the row-12
+     `two_level_algebra` (a following `ring` is a hard `no goals to be solved` error), while `e1` of
+     `two_level_algebra` *needs* the `ring`. Each site had to be measured separately (the BEP finding
+     reproduced, now with the exact per-site verdict).
+  4. `rw [radBranch]` / `rw [icBranch]` did not unfold every occurrence: in row 6 the occurrence that
+     `unfold emitYield` raises on the right-hand side stayed folded, so `ring` saw an opaque
+     `radBranch rad ic 0` atom and could not finish. Working order:
+     `unfold emitYield radBranch`, then `rw [hC]`, then `unfold icBranch`, then the two `decay`
+     rewrites — and `unfold icBranch` must come *after* `rw [hC]`, otherwise it fails with
+     `tactic 'unfold' failed to unfold` (the constant does not occur yet).
+  5. `simp only [effRad, effIc]` does not decide the `if`-chains' `1 = 0` guard (it left
+     `if 1 = 0 then …`), so index values must come from full `simp`:
+     `have hR0 : effRad rad ic N 0 = rad 0 := by simp [effRad]` (likewise `effIc rad ic N 1`), then `rw`.
+  6. Parsing trap with a distant error message: `have h : ∀ {x : ℝ}, 0 < x → (A ↔ B)` written
+     **without** the parentheses parses as `(0 < x → A) ↔ B` (`↔` binds looser than `→`), which
+     surfaces as `tactic 'introN' failed, insufficient number of binders` at the `intro` and
+     `function expected at h` at the use site. Parenthesize the conclusion of every `have`-engine.
+  7. In row 12 the `log_recip_le_iff` hypothesis is `-log K ≤ -(A)/(kB*T)` (the negation sits outside
+     the division because `-A/B` parses as `(-A)/B`) while the goal carries `A/(kB*T)`; `linarith`
+     fails on the two different atoms. Fix: `rw [neg_div] at hh` (and `rw [neg_div]` on the goal for
+     the reverse direction), then `neg_le_neg_iff.mp` / `.mpr`.
+- What worked (reusable):
+  - Row 1 (`cascade_compose`) needed **no** `Icc`-union lemma — the §10 register's "most likely
+    friction point" did not materialize: `induction N, h2 using Nat.le_induction` with
+    `Finset.prod_Icc_succ_top` peeling the top index, finished by `mul_assoc`. `Nat.le_induction`'s
+    motive carries the bound as an argument (`P : (n : ℕ) → m ≤ n → Prop`), so the cases are
+    `base` / `succ N hM ih`.
+  - The **premise-free level-1 toolkit** is what rows 5–9 and 12 need, because the effective data
+    `effRad`/`effIc` carries no `RateData` instance and the K1 `RateData`-carrying rows therefore
+    cannot be used on it: `cascade f g 0 1 = icBranch f g 1` (an `ext`+`omega` set identity then
+    `Finset.prod_singleton`), `upperYield f g 1 = radBranch f g 1` (`Finset.Icc_self` +
+    `Finset.sum_singleton` + `emitYield_self`), `emitYield f g 0 1 = radBranch f g 0 * icBranch f g 1`,
+    and `fluoYield f g 1 = emitYield f g 0 1 + upperYield f g 1` (the `range (1+1) = insert 0 (Icc 1 1)`
+    split). All four are kernel-checked against the delivered `Basic.lean` in
+    `theories/kasha/probes/kasha-d-api.lean` (0 error / 0 warning).
+  - The two algebra engines of rows 8/9 (`effective_algebra`) and 12 (`two_level_algebra`) can live as
+    `have`-engines with implicit binders inside the proofs: no auxiliary top-level declaration is
+    needed, so the fidelity report stays at 0 extras (the helper-free route preferred in B3).
+  - Row 12's chain: two-level rate criterion → `div_le_iff₀` by `tol · rad 0 · A` → `one_div_div` +
+    `ring` to `1/K` → `Real.log_le_iff_le_exp` + `Real.log_div` + `Real.log_one` → `div_le_iff₀` by
+    `kB·T` → `div_le_iff₀` by `4λ`; the api probe's `marcus_gap_window_step`
+    (`theories/kasha/probes/kasha-api-logexp.lean`) is the same arithmetic and was the reference.
+  - Row 14: `w^2 ≤ R ↔ |w| ≤ √R` for `0 ≤ R` by `Real.sqrt_sq_eq_abs` + `Real.sqrt_le_sqrt` forward
+    and `pow_le_pow_left₀` + `sq_abs` + `Real.sq_sqrt` backward (the BEP recipe, second use).
+  - Delivery mechanics (B3 precedent, keep using it): all 20 proofs were developed in
+    `.lake/tmp/k4-full.lean` — outside `SOURCE_DIRS`, so partial prefixes are invisible to the strict
+    scan — and the K4 block was diffed against the authority with the official checker's own
+    `signatures()` **before** the first commit; a Python driver then emitted
+    `header + blocks[0..k] + footer`, ran build + strict scan + `#print axioms`, and committed with
+    `git add -- <path>` / `git commit -m <subject> -- <path>`. Every intermediate committed state
+    compiles and is placeholder-free; 20 commits, ≈7 s per declaration, 0 `index.lock` retries
+    (other provers' K1/K2 commits interleaved cleanly thanks to the explicit path).
