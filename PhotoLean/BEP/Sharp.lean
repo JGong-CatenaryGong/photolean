@@ -499,5 +499,32 @@ theorem epSupError_bddAbove {lam w c a : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
   rw [abs_le]
   constructor <;> rw [he] <;> linarith
 
+/-- AUX: the sup-norm error of `bepBestLine` (as the affine model `lam/4 + w²/(8·lam) - x/2`, i.e.
+`c = lam/4 + w²/(8·lam)`, `a = -1/2`) is exactly `w²/(8·lam)`: `sSup_eq_of_le_of_mem` with the
+pointwise bound `bepBestLine_error` and attainment at `x = 0`. -/
+theorem epSupError_bestLine {lam w : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
+    epSupError lam w (lam / 4 + w ^ 2 / (8 * lam)) (-(1 / 2)) = w ^ 2 / (8 * lam) := by
+  have herr : (0 : ℝ) ≤ w ^ 2 / (8 * lam) := by positivity
+  have hg : ∀ x ∈ Set.Icc (-w) w,
+      |eact lam x - (lam / 4 + w ^ 2 / (8 * lam) + -(1 / 2) * x)| ≤ w ^ 2 / (8 * lam) := by
+    intro x hx
+    have h := bepBestLine_error hlam hw x hx
+    convert h using 2
+    unfold bepBestLine
+    ring
+  have hval : |eact lam 0 - (lam / 4 + w ^ 2 / (8 * lam) + -(1 / 2) * 0)| = w ^ 2 / (8 * lam) := by
+    have h0 : eact lam 0 - (lam / 4 + w ^ 2 / (8 * lam) + -(1 / 2) * 0) = -(w ^ 2 / (8 * lam)) := by
+      unfold eact
+      field_simp
+      ring
+    rw [h0, abs_neg, abs_of_nonneg herr]
+  have hmem1 : w ^ 2 / (8 * lam)
+      ∈ (fun x => |eact lam x - (lam / 4 + w ^ 2 / (8 * lam) + -(1 / 2) * x)|) '' Set.Icc (-w) w :=
+    ⟨0, ⟨by linarith, hw⟩, hval⟩
+  unfold epSupError
+  refine sSup_eq_of_le_of_mem ⟨_, hmem1⟩ (epSupError_bddAbove hlam hw) ?_ hmem1
+  rintro y ⟨x, hx, rfl⟩
+  exact hg x hx
+
 
 end PhotoLean.BEP
