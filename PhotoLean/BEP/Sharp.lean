@@ -69,5 +69,20 @@ theorem epBounds_iff_region {lam x : ℝ} (hlam : 0 < lam) :
   rw [hts, hlow, hhigh]
   constructor <;> rintro ⟨h₁, h₂⟩ <;> exact ⟨by linarith, by linarith⟩
 
+/-- Plan §6.1 #2: the same computation with strict inequalities — the open region `EPRegime` is
+exactly where the transfer coefficient is strictly inside `(0,1)`. -/
+theorem epRegime_iff_strict {lam x : ℝ} (hlam : 0 < lam) :
+    EPRegime lam x ↔ 0 < transfer lam x ∧ transfer lam x < 1 := by
+  have h2 : (0 : ℝ) < 2 * lam := by linarith
+  have hts : transfer lam x = (lam - x) / (2 * lam) := by
+    unfold transfer
+    field_simp
+  have hlow : (0 : ℝ) < (lam - x) / (2 * lam) ↔ 0 < lam - x :=
+    div_pos_iff_of_pos_right h2
+  have hhigh : (lam - x) / (2 * lam) < 1 ↔ lam - x < 2 * lam := div_lt_one h2
+  unfold EPRegime
+  rw [hts, hlow, hhigh]
+  constructor <;> rintro ⟨h₁, h₂⟩ <;> exact ⟨by linarith, by linarith⟩
+
 
 end PhotoLean.BEP
