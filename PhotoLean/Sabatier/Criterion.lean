@@ -341,6 +341,11 @@ above it). Plan §5 (non-vacuity witnesses). -/
 theorem exists_tooWeak (apexD : ℝ) : ∃ dE : ℝ, TooWeak apexD dE :=
   ⟨apexD + 1, by unfold TooWeak; linarith⟩
 
+/-- Non-vacuity: a too-strongly-binding catalyst exists for every claimed apex (any descriptor
+strictly below it). Plan §5 (non-vacuity witnesses). -/
+theorem exists_tooStrong (apexD : ℝ) : ∃ dE : ℝ, TooStrong apexD dE :=
+  ⟨apexD - 1, by unfold TooStrong; linarith⟩
+
 end Sabatier
 
 end PhotoLean
