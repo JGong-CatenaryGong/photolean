@@ -179,6 +179,17 @@ theorem fluoYield_le_one {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N
   have hnn : 0 ≤ icBranch rad ic 0 * cascade rad ic 0 N :=
     mul_nonneg (icBranch_nonneg h (Nat.zero_le N)) (cascade_nonneg h (Nat.zero_le N))
   linarith
+/-- Plan §5.1 #9. The total yield is monotone in the excitation level. -/
+theorem fluoYield_mono_succ {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N + 1)) :
+    fluoYield rad ic N ≤ fluoYield rad ic (N + 1) := by
+  have hN : RateData rad ic N :=
+    ⟨fun n hn => h.decay_pos n (Nat.le_succ_of_le hn), h.rad_nonneg, h.ic_nonneg⟩
+  have hrec := fluoYield_succ h
+  have hsum : radBranch rad ic (N + 1) + icBranch rad ic (N + 1) = 1 :=
+    radBranch_add_icBranch (ne_of_gt (h.decay_pos (N + 1) (le_refl _)))
+  have hR : 0 ≤ radBranch rad ic (N + 1) := radBranch_nonneg h (le_refl _)
+  have hF : fluoYield rad ic N ≤ 1 := fluoYield_le_one hN
+  nlinarith [hrec, hsum, hR, hF]
 end Kasha
 
 end PhotoLean
