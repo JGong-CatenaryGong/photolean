@@ -69,7 +69,7 @@
 - [x] `normal_descriptor_holds` — Marcus/Sharp.lean — prover_a — done — plan §7.1；commit ccab8fe
 - [x] `descriptor_fails_of_nonpos_lam` — Marcus/Sharp.lean — prover_a — done — plan §7.1；commit a520b0a
 - [x] `descriptor_sharp`（**关键路径**；verifier 重点复核必要性两支）— Marcus/Sharp.lean — prover_a — done — plan §7.1；commit bfcbb6c
-- [x] `inverted_descriptor_holds_of_neg`（拉伸；证明"速率正性"前提不可去）
+- [x] `inverted_descriptor_holds_of_neg`（拉伸；证明"速率正性"前提不可去）— Marcus/Sharp.lean — prover_a — done — plan §7.1；commit 67c42f5
 - [x] 必要性内部内核（4 条，不在骨架中）`sharp_A_pos` / `sharp_lam_pos_of_lt` / `sharp_lam_pos_of_eq` / `sharp_lam_pos` — Marcus/Sharp.lean — prover_a — done — plan §7.1；commit f28288b / 692763d / da9aa17 / df5b9f3（随 M4a 验收一并 PASS）— Marcus/Sharp.lean — prover_a — done — plan §7.1；commit 67c42f5
 
 ## M4b — 微观重组能正性（`PhotoLean/Marcus/Reorg.lean`；属主 prover_d；Sprint 1，**零依赖**）
