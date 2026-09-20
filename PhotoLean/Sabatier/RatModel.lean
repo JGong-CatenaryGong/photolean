@@ -154,6 +154,15 @@ theorem apexBarrierQ_cast (alphaA betaA alphaB betaB : ℚ) :
   unfold apexBarrierQ apexBarrier
   rw [volcanoBarrierQ_cast, apexQ_cast]
 
+/-! ## Cast transfer of the classifier and of the predicates (plan §8.1) -/
+
+/-- The rational classifier is the rational mirror of the real classifier: the two `if`-cascades
+agree once the apex and the descriptor are cast. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem sabatierZoneQ_eq_sabatierZone (apexD dE : ℚ) :
+    sabatierZoneQ apexD dE = sabatierZone (apexD : ℝ) (dE : ℝ) := by
+  unfold sabatierZoneQ sabatierZone
+  norm_cast
+
 end Sabatier
 
 end PhotoLean
