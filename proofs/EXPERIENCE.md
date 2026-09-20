@@ -1463,3 +1463,97 @@
      prints only family aggregates for Table 2 "PE", and the skeleton contains **no** `inst_I11_F4_*`
      declaration (checked: 0 matches), so there is no skeleton/authority mismatch to arbitrate and no
      number was invented.
+
+## 2026-09-20 — BEP B3 sharp conditions (`PhotoLean/BEP/Sharp.lean`, 32 declarations: radius + monotonicity + minimax + necessity) — prover_d — DONE
+
+- 目标：deliver the whole B3 block of the statement authority (plan §6.1–§6.5, 25 rows, plus the AUX
+  section "literal sup-norm form of the minimax block", 7 rows = **32** declarations; the dispatch
+  brief's "33" was an off-by-one and the measured count is 32), reusing the recipes already
+  kernel-verified in the Sprint-0 risk probe (`bep-risk-probe.lean`), `bep-api-abs-sqrt.lean`,
+  `bep-api-algebra.lean` and `bep-api-minimax.lean`. One commit per declaration, per-lemma
+  `lake build` + `check.sh --strict` + `axioms.sh`; the module imports `Basic.lean` only, so B3 has
+  exactly one upstream file. Verifier: PASS (`32/32` axiom footprints clean, set equality 32/32, the
+  minimax bound confirmed in the authority's original `∀ c a, ∃ x ∈ Set.Icc (-w) w` form, the §11
+  disjunctive fallback unused, 11 hypothesis-necessity counterexamples, anti-circularity clean).
+- 试过且失败 (measured this round):
+  1. **`field_simp` does not turn an inequality hypothesis into a denominator fact.** In
+     `bepDefect_sign_flips` (`hlam : lam < 0`) the sequence `unfold …; field_simp; ring` left the goal
+     `-(lam*2) - lam*x*lam⁻¹*4 + lam^2*lam⁻¹*2 + x*4 + x^2*lam⁻¹*2 = x^2*lam⁻¹*2` — unsolved, with
+     `lam⁻¹` still present. With `hlam : lam ≠ 0` the same sequence closes (verified in the API probes),
+     so what matters is the *shape* of the hypothesis: `field_simp`'s discharger consumes `≠`-facts, not
+     `lam < 0`. Fix: `have h4 : (4 : ℝ) * lam ≠ 0 := mul_ne_zero (by norm_num) (ne_of_lt hlam)` before
+     `field_simp`. Generic rule: carry an explicit `≠ 0` (or `0 <`) fact for every denominator that the
+     context only bounds by an inequality.
+  2. **`exact` after a rewrite can change the goal's shape.** `rw [e₂ 0, zero_pow …, zero_div, abs_zero]`
+     turns the goal into `0 ≤ tol`, while `h.2.1 : 0 < tol` no longer matches: `type mismatch
+     0 < tol vs 0 ≤ tol`. Fix: `exact le_of_lt h.2.1`.
+  3. **`-0` and `0` are not definitionally equal for `Set.Icc` membership.** After substituting `w = 0`,
+     `⟨0, ⟨le_rfl, le_rfl⟩, rfl⟩` failed on `Set.Icc (-0) 0` (`le_rfl : ?m ≤ ?m` against `-0 ≤ 0`).
+     Fix: `⟨0, ⟨by norm_num, le_rfl⟩, rfl⟩`.
+  4. **The unused-variable linter fires on decorative premises, and the fix is an option, not a
+     deletion.** `epSupError_bddAbove`'s `hw` produced `warning: unused variable 'hw'` (the API probe's
+     copy carried `set_option linter.unusedVariables false in`, which I had not copied). The repo
+     convention (`Basic.lean`) is to keep the physical premise for signature fidelity and disable the
+     linter locally; four premises of this file end up in that class and are listed in the module header.
+- Worked (reusable):
+  - The delivered file was produced **block-by-block from an already-compiling staging copy**:
+    `.lake/tmp/b3-full.lean` (header + 32 blocks separated by `-- @@BLOCK feat(B3): <name>` markers) was
+    compiled standalone with `proofs/scripts/lake env lean .lake/tmp/b3-full.lean` (0 error / 0 warning
+    — the statement-first gate for the batch), its signatures were diffed against the skeleton with the
+    official checker's own `signatures()` (32/32 equal, 0 extras, 0 differences) *before* the first
+    commit, and a Python driver then emitted "header + blocks[0..k] + footer" into
+    `PhotoLean/BEP/Sharp.lean`, ran the three gates and committed with `git add -- <file>` +
+    `git commit -m <subject> -- <file>` (pathspec-limited, so concurrent edits of other provers were
+    never swept in). 32/32 `verdict: PASS` on both scripted gates, ≈5 s per declaration.
+  - Route for the radius theorem (the only `Real.sqrt` statement): `rw [bepRadius, ← hsqrt4,
+    div_le_iff₀ h4, Real.le_sqrt hw h4nonneg]; ring_nf` with `hsqrt4 : Real.sqrt (4*(lam*tol)) =
+    2 * Real.sqrt (lam*tol)` from `Real.sqrt_mul (by norm_num : (0:ℝ) ≤ 4)` + `norm_num`; the `∀`-side
+    is tested at the endpoint `x = w` via `Set.right_mem_Icc.mpr`, the window side uses `abs_le.mpr` +
+    `sq_abs`/`pow_le_pow_left₀` + `div_le_div_of_nonneg_right` + `le_trans`.
+  - Route for the minimax lower bound: `by_contra h; push_neg at h`, one `abs_lt.mp` per sampled error
+    (`-w`, `0`, `w`), then a single `linarith` against `bep_error_three_point` plus
+    `w^2/(2*lam) = 4*(w^2/(8*lam))` (`field_simp; ring`). The risk probe's `set A/B/C` + triangle-helper
+    route needs one extra top-level helper declaration, which the fidelity report would list as an
+    "extra", so the helper-free route was preferred and the pre-registered disjunction fallback stayed
+    unused.
+  - `sSup` block: `le_antisymm (csSup_le hne hle) (le_csSup hbdd hmem)`; `epSupError_sharp` splits on
+    `eq_or_lt_of_le hw` because `EPBestOnWindow` carries the strict `0 < w` — the `w = 0` branch is just
+    `abs_nonneg` + `le_csSup`.
+  - B2's `bepDefect lam x = x^2/(4*lam)` was re-derived locally (`have … := by unfold …; field_simp;
+    ring`) instead of importing `Criterion.lean`: one upstream file, immune to a co-worker's mid-edit
+    state, and the dependency is visible in the proof rather than in the import list.
+  - The comment-only follow-up round (verifier MEDIUM-1/LOW-1) kept the comment-stripped text
+    byte-identical: sha256 `815e9a3614a7af9d3bd2bec92b2e9a66873e5d99ae871ef42f79e4f8ce2f60ab` (15618 bytes
+    on both sides, stripper = the official checker's `strip_comments`); raw file sha256 before
+    `b9b3b568f0d0b37c2df22a1721e4d9cd8e29e6234f5f68300e887c8ada1c81cf`, after
+    `a874ce82e85db1c496590d6bf80541d74e40296fde740a6765e7c462d3bbc068` (commit `bff7cfa`);
+    `check.sh --strict PhotoLean.BEP.Sharp` → `verdict: PASS`.
+- 可复用模式：
+  1. **Stage the whole milestone outside `SOURCE_DIRS`, then deliver it one declaration at a time.** The
+     staging copy carries the statement-first evidence (it compiles) and the fidelity evidence
+     (signatures diffed before any commit), while the driver buys the contract's per-lemma gate + commit
+     discipline for the cost of one background run. `PhotoLean/` then never contains an unproved
+     placeholder at any commit, so no co-worker's `check.sh --strict` can be broken by our intermediate
+     state — the failure mode a naive "write the file with placeholders, fill them in later" delivery
+     would introduce in a multi-prover tree.
+  2. **A milestone's declaration order is a proof-order problem, not a fidelity problem.** The checker is
+     name-keyed, so the three forced reorderings (no forward references: AUX `eact_second_difference`
+     before §6.1 #8/#7, `not_epLinearOn_of_ne_zero` (#8) before `epExact_iff_degenerate` (#7), AUX
+     `bep_error_three_point` before §6.4 #19) cost 0 differences; record them in the file header instead
+     of duplicating an argument to preserve the authority's order.
+  3. **Comment-only rounds need a token-stream hash gate with two negative controls.** Strip comments
+     from `git show HEAD:<file>` and from the edited file with the *same* stripper the official fidelity
+     checker uses, print the stripped byte counts and both hashes, then additionally check that a
+     mutated code token changes the hash and that a comment-content rewrite with the same line count
+     does not. Without the controls an empty or erroring pipeline reports "identical" (prover_a's
+     recorded false PASS). My first "comment addition" control was itself wrong — it appended a blank
+     line, which *is* a change in the stripped text — which is exactly why the control is worth running:
+     it caught a mis-designed control rather than a real regression.
+  4. **Disclose decorative premises per statement, and scope witness claims to what they cover.** The
+     verifier strengthened `epConformsOnWindow_iff_radius` to a form without `hw : 0 ≤ w` (for `w < 0`
+     the window is empty and `0 ≤ bepRadius lam tol` keeps the right-hand side true), so the header now
+     lists four premises the *statement* does not need while saying explicitly which ones the *proof*
+     still consumes; likewise the §6.5 bullet now names the four witness rows and states that the sharp
+     statements' remaining premises (`0 < tol`, `a < b`, `0 < w`) have no witness row in the authority
+     (the verifier's counterexamples live outside the file). A "one witness per premise" claim that is
+     not per-premise is a documentation defect the verifier will find.
