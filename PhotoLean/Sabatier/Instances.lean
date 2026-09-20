@@ -277,6 +277,13 @@ theorem inst_I7_linear_below :
   simp only [volcanoBarrier, branchUp, branchDown]
   norm_num
 
+/-! ## I8 — non-vacuity of the verdict layer (plan §8.2) -/
+
+/-- I8 (non-vacuity of the verdict layer): the I2 series has an exactly optimal catalyst — the apex
+itself. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I8_exists_optimal : ∃ dE : ℝ, Optimal (apex (1 / 2) 0 1 1) dE :=
+  ⟨apex (1 / 2) 0 1 1, rfl⟩
+
 end Sabatier
 
 end PhotoLean
