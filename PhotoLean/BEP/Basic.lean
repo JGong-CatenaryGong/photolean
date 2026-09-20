@@ -136,5 +136,12 @@ theorem eact_at_lam {lam : ℝ} (hlam : lam ≠ 0) : eact lam lam = 0 := by
 theorem eact_zero_lam (x : ℝ) : eact 0 x = 0 := by
   unfold eact
   norm_num
+/-- Degenerate curvature: the linear-response coefficient degenerates to its thermoneutral value
+`1 / 2`, because `x / (2 * 0) = 0` by the totalised-division convention. (The value is `1 / 2`,
+not `0`: the discarded transition-state-coordinate body `(lam - x) / (2 * lam)` is what vanishes
+at `lam = 0`; plan §4.2 row 4, corrected 2026-09-20.) -/
+theorem transfer_zero_lam (x : ℝ) : transfer 0 x = 1 / 2 := by
+  unfold transfer
+  norm_num
 
 end PhotoLean.BEP
