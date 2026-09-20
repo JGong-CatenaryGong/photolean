@@ -169,6 +169,12 @@ theorem inst_I5_reverseLimit_boundary :
 
 /-! #### I6–I7 — the two inverted regions -/
 
+/-- I6 (`model-constructed`): strongly exergonic, forward inverted region `λ = 2`, `x = 3`; the
+cascade lands below the Evans–Polanyi band. -/
+theorem inst_I6_inverted_zone : Rat.epQVerdict (2 : ℚ) 3 = Rat.EPQVerdict.subLinear := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
