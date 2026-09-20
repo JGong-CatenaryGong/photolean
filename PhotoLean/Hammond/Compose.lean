@@ -52,3 +52,17 @@ theorem hammond_descriptor_of_nonoverlap {kk dq dE a1 a2 R nSq epsS : ℝ} (hkk 
       (Marcus.lamOuter_pos hdE ha1 ha2 (by linarith)
         (Marcus.hgeom_of_nonoverlap ha1 ha2 hRge) hnSq hepsS hPekar))
 
+/-- Non-vacuity from microscopic premises: the Hammond regime is non-empty for physical
+parameters. -/
+theorem exists_reactionRegion_of_microscopic {kk dq dE a1 a2 R nSq epsS : ℝ} (hkk : 0 < kk)
+    (hdq : dq ≠ 0) (hdE : 0 < dE) (ha1 : 0 < a1) (ha2 : 0 < a2) (hR : 0 < R)
+    (hgeom : 1 / R < 1 / (2 * a1) + 1 / (2 * a2)) (hnSq : 0 < nSq) (hepsS : 0 < epsS)
+    (hPekar : 1 / epsS < 1 / nSq) :
+    ∃ x : ℝ, ReactionRegion (Marcus.lamInner kk dq + Marcus.lamOuter dE a1 a2 R nSq epsS) x :=
+  exists_reactionRegion
+    (Marcus.lam_total_pos (le_of_lt (Marcus.lamInner_pos hkk hdq))
+      (Marcus.lamOuter_pos hdE ha1 ha2 hR hgeom hnSq hepsS hPekar))
+
+end Hammond
+
+end PhotoLean
