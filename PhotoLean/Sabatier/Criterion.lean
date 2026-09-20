@@ -215,6 +215,20 @@ theorem volcanoBarrier_apex_form {alphaA betaA alphaB betaB : ℝ} (h : alphaA +
   unfold volcanoBarrier
   rw [hup, hdown, max_add_add_same]
 
+/-- Observable slope of the weak-binding volcano leg: its finite differences are the BEP slope
+`alphaA` — the literature's "the volcano legs have slopes ±α", made exact. Needs only that the
+descriptor interval start at or above the apex and that the total slope be positive. Plan §5. -/
+theorem volcanoBarrier_secSlope_of_apex_le {alphaA betaA alphaB betaB : ℝ}
+    (hAB : 0 < alphaA + alphaB) {dE₁ dE₂ : ℝ} (h₁ : apex alphaA betaA alphaB betaB ≤ dE₁)
+    (h₂ : dE₁ < dE₂) :
+    (volcanoBarrier alphaA betaA alphaB betaB dE₂ - volcanoBarrier alphaA betaA alphaB betaB dE₁)
+        / (dE₂ - dE₁) = alphaA := by
+  have hne : dE₂ - dE₁ ≠ 0 := by linarith
+  rw [volcanoBarrier_eq_branchUp_of_apex_le hAB h₁,
+    volcanoBarrier_eq_branchUp_of_apex_le hAB (le_trans h₁ h₂.le), div_eq_iff hne]
+  unfold branchUp
+  ring
+
 end Sabatier
 
 end PhotoLean
