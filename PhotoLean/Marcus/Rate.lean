@@ -108,4 +108,21 @@ theorem inverted_rate_decreases {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam)
     rate A lam kB T x₂ < rate A lam kB T x₁ :=
   rate_gt_of_barrier_lt hA hkT (barrier_mono_of_pos hlam (le_of_lt h₁) h₂)
 
+/-- 峰值：`x = lam` 处速率**最大**（最快反应的驱动力恰等于重组能）。
+
+这是本批唯一用到**非严格** `exp` 单调性（`Real.exp_le_exp`，同样是 `↔`）的定理，
+结构比前两条多一层：M2 的 `barrier_min_at_lam` 给出 `Φ lam ≤ Φ x`
+→ 取负并按 `kB*T ≥ 0` 除（`div_le_div_of_nonneg_right`，用 `le_of_lt hkT`）
+→ `Real.exp_le_exp.mpr` → 乘前置因子 `A ≥ 0`（`mul_le_mul_of_nonneg_left`）。
+物理含义：`x = lam` 是势垒为零的无势垒点，故它同时是正常区（递增）与
+反转区（递减）两支的公共端点，峰位与 M1 分类器的 `Zone.barrierless` 一致。 -/
+theorem rate_peak_at_lam {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
+    (x : ℝ) : rate A lam kB T x ≤ rate A lam kB T lam := by
+  have hb : barrier lam lam ≤ barrier lam x := barrier_min_at_lam hlam x
+  have hu : -(barrier lam x) / (kB * T) ≤ -(barrier lam lam) / (kB * T) :=
+    div_le_div_of_nonneg_right (by linarith) (le_of_lt hkT)
+  have hexp := Real.exp_le_exp.mpr hu
+  unfold rate
+  exact mul_le_mul_of_nonneg_left hexp (le_of_lt hA)
+
 end PhotoLean.Marcus
