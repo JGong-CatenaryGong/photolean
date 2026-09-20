@@ -185,6 +185,11 @@ theorem inst_I6_mcc_inverted_region : Marcus.InvertedRegion (6 / 5) (12 / 5) := 
 theorem inst_I6_mcc_leffler_negative : Rat.lefflerSecantQ (6 / 5) (3 / 5) (12 / 5) = -(1 / 8) := by
   norm_num [Rat.lefflerSecantQ, Rat.gapReactantQ]
 
+/-! ## I7 — literature reaction-centre deep-inverted instance (`lam = 1/4`, `x = 11/10`) -/
+/-- I7, zone verdict: the reaction-centre instance is classified `beyondReactant`. -/
+theorem inst_I7_rc_inverted_zone : Rat.hammondZoneQ (1 / 4) (11 / 10) = HZone.beyondReactant := by
+  norm_num [Rat.hammondZoneQ]
+
 end Hammond
 
 end PhotoLean
