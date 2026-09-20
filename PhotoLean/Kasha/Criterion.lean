@@ -83,6 +83,27 @@ theorem emitYield_succ {rad ic : ℕ → ℝ} {i N : ℕ} (h : i ≤ N) :
 theorem emitYield_succ_self (rad ic : ℕ → ℝ) (N : ℕ) :
     emitYield rad ic (N + 1) (N + 1) = radBranch rad ic (N + 1) :=
   emitYield_self rad ic (N + 1)
+set_option linter.unusedVariables false in
+/-- Plan §5.1 #4 — the Markov recursion of the total yield. The `RateData` premise belongs to the
+signature (authority fidelity); the recursion itself is index algebra and consumes no positivity. -/
+theorem fluoYield_succ {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N + 1)) :
+    fluoYield rad ic (N + 1) =
+      radBranch rad ic (N + 1) + icBranch rad ic (N + 1) * fluoYield rad ic N := by
+  calc fluoYield rad ic (N + 1)
+      = (∑ x ∈ Finset.range (N + 1), emitYield rad ic x (N + 1))
+          + emitYield rad ic (N + 1) (N + 1) := by
+        rw [fluoYield, Finset.sum_range_succ]
+    _ = (∑ x ∈ Finset.range (N + 1), icBranch rad ic (N + 1) * emitYield rad ic x N)
+          + emitYield rad ic (N + 1) (N + 1) := by
+        rw [Finset.sum_congr rfl
+          (fun x hx => emitYield_succ (Nat.le_of_lt_succ (Finset.mem_range.mp hx)))]
+    _ = icBranch rad ic (N + 1) * (∑ x ∈ Finset.range (N + 1), emitYield rad ic x N)
+          + emitYield rad ic (N + 1) (N + 1) := by
+        rw [Finset.mul_sum]
+    _ = icBranch rad ic (N + 1) * fluoYield rad ic N + radBranch rad ic (N + 1) := by
+        rw [fluoYield, emitYield_succ_self]
+    _ = radBranch rad ic (N + 1) + icBranch rad ic (N + 1) * fluoYield rad ic N := by
+        rw [add_comm]
 end Kasha
 
 end PhotoLean
