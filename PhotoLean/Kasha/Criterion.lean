@@ -231,6 +231,18 @@ theorem fluoYield_lt_one_iff_loss {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData
     fluoYield rad ic N < 1 ↔ 0 < icBranch rad ic 0 * cascade rad ic 0 N := by
   rw [fluoYield_eq_one_sub_loss h]
   constructor <;> intro hh <;> linarith
+/-! ## The exact rule and Vavilov's rule (plan §5.2) -/
+
+/-- Plan §5.2 #13. The leak vanishes iff no level above the lowest emits at all. -/
+theorem upperYield_eq_zero_iff {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    upperYield rad ic N = 0 ↔ ∀ i, 1 ≤ i → i ≤ N → emitYield rad ic i N = 0 := by
+  rw [upperYield, Finset.sum_eq_zero_iff_of_nonneg
+    (fun i hi => emitYield_nonneg h (Finset.mem_Icc.mp hi).2)]
+  constructor
+  · intro hh i hi1 hiN
+    exact hh i (Finset.mem_Icc.mpr ⟨hi1, hiN⟩)
+  · intro hh i hi
+    exact hh i (Finset.mem_Icc.mp hi).1 (Finset.mem_Icc.mp hi).2
 end Kasha
 
 end PhotoLean
