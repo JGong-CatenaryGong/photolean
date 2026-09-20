@@ -318,6 +318,28 @@ theorem inst_I9_barrier_Pt :
   simp only [volcanoBarrier, branchUp, branchDown]
   norm_num
 
+/-- I10 (literature row, HER): the reported `ΔG_H*` of Au is `+0.45` eV (same provenance) — too weak,
+and outside the 10 % band. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I10_zone_Au :
+    sabatierZone (apex (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (45 / 100) = SZone.tooWeak := by
+  rw [sabatierZone_eq_tooWeak_iff]
+  unfold apex
+  norm_num
+
+/-- I10: Au is outside the 10 % tolerance band (`45/100 > 1/10`). Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I10_notNearOptimal_Au :
+    ¬ NearOptimalQ (1 / 10) (apexQ (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (45 / 100) := by
+  unfold NearOptimalQ apexQ
+  norm_num [abs_of_nonneg]
+
+/-- I10: the barrier of Au on the reference volcano (`29/40`). The ascending branch dominates:
+`max (29/40) (11/40) = 29/40`. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I10_barrier_Au :
+    volcanoBarrier (1 / 2) (1 / 2) (1 / 2) (1 / 2) (45 / 100) = 29 / 40 := by
+  simp only [volcanoBarrier, branchUp, branchDown]
+  norm_num
+
 end Sabatier
 
 end PhotoLean
