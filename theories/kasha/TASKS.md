@@ -23,7 +23,7 @@
   `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17` (150 declarations).
 - Literature rows: **in the skeleton** (I10, I11, I11-alt, I11-alt2, I11t, I15 — appended 2026-09-20,
   literals transcribed from `theories/kasha/LITERATURE.md` §R1.6, never guessed); sketched row I12 is
-  **absent by decision** (the literature round found no second anti-Kashi molecule with first-hand
+  **absent by decision** (the literature round found no second anti-Kasha molecule with first-hand
   numbers, §R1.6).
 
 ---
@@ -438,7 +438,9 @@ tree-measured; plus cross-reference labels — `LITERATURE.md` (§R1.1, §R1.7 t
 Sprint-0 note called the *Marcus bridge* "K4b" (it is K4c; K4b is the exponential-race probe), the
 probe `kasha-api-race.lean` called the exponential-race premise "K4c" (the inverse), and two more
 plan rows (§6.1 #6 `kashaWithin_mono_tol`, §7.2 #15 `kashaGapThreshold_pos`) were still not literal,
-which made the "row by row" claim over-broad. All corrected in `92fad2f`.
+which made the "row by row" claim over-broad. All corrected in `92fad2f`, except the probe's
+line 22, whose single-label inversion survived that commit and was corrected in the follow-up
+commit of this round (reported by run 8).
 
 ### Run 8 — pending — final delta check of the run-7 fixes
 

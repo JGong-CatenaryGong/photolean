@@ -19,7 +19,7 @@ Findings (details in `proofs/API-NOTES.md` §kasha, prose section (f)):
   (the usable one is `StieltjesFunction.measure_Ioi`);
 * a full proof of the race is **not** a one-lemma job (product law for the pair, density change of
   measure on `Ioi 0`, `ℝ≥0∞ → ℝ` conversion, a.e. split at `0`); the race statement is therefore
-  `#check`ed here as a proposition, not proved, and K4c stays a declared modelling premise.
+  `#check`ed here as a proposition, not proved, and K4b stays a declared modelling premise.
 
 Plan loci served: §1.2 (the model's branching probabilities), §13 scope limit 5, plan K4b/K4c.
 
