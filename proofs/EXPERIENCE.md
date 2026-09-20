@@ -229,4 +229,84 @@
   3. 报障者（prover_b）除了报 bug 还给了**隔离复核**（自己起唯一路径的探针重跑一遍并保留输出）——
      这是"证据被污染时的正确应对"：不是放弃，而是换一条不可能被污染的路径重取证据。
 
+## 2026-09-20 — M2 势垒代数（9 条，含 μ/λ 两支方向反转） — prover_a — DONE
+
+- 目标：`PhotoLean/Marcus/Barrier.lean`（只 `import PhotoLean.Marcus.Basic`，**不新建任何定义**）的 9 条定理，
+  签名须与 `proofs/probes/marcus-statement-skeleton.lean` 的 M2 段**逐字一致**：
+  `barrier_nonneg` / `barrier_at_lam` / `barrier_symm` / `barrier_min_at_lam` / `barrier_mono_of_pos` /
+  `barrier_antitone_of_pos` / `barrier_antitone_of_neg` / `barrier_zero_lam` / `barrier_mono_cases`
+  （后三者是"方向反转"与退化支：`lam < 0` 时反转区内势垒**递减**、`lam = 0` 时恒零）。
+- 试过且失败（4 条，前 3 条可迁移）：
+  1. **`nlinarith` 不能直接吃除法目标**。在 `(lam-x₁)^2/(4*lam) < (lam-x₂)^2/(4*lam)` 这种形态上直接
+     `nlinarith` 收不了（它既不替你清分母，也不引入分母正性）→ 必须先把分母的**符号**建成显式 `have`，
+     把目标降维到"分母无关"的纯平方比较：
+     `have h4 : (0:ℝ) < 4*lam := by positivity`、
+     `have hsq : (lam-x₁)^2 < (lam-x₂)^2 := by nlinarith`、再 `div_lt_div_of_pos_right hsq h4`。
+     **负分母支更危险**：`lam < 0` 时不能用 `div_lt_div_of_pos_right`；而
+     `div_lt_div_of_neg_right` **不存在**（`#check` 直接 unknown）。可用的是
+     `div_lt_div_right_of_neg : c < 0 → (a / c < b / c ↔ b < a)` —— 它是 **iff，且 RHS 顺序反转**
+     （右边是 `b < a`），第一次极易写反方向。正确收尾：
+     `have h4 : 4 * lam < 0 := by linarith` → `unfold barrier` → `exact (div_lt_div_right_of_neg h4).mpr hsq`，
+     其中 `hsq : (lam - x₁)^2 < (lam - x₂)^2`（注意与直觉的左右顺序相反）。
+  2. **探针设计坑：探针不能引用"它正要验证的交付文件"里的定理**。我在只
+     `import PhotoLean.Marcus.Basic` 的探针里写 `rw [barrier_at_lam]` →
+     `error: unknown identifier 'barrier_at_lam'`（该定理属于 M2 待建文件，Basic 里没有）。
+     正确做法：探针里先声明**局部**同名引理（`theorem scratch_at_lam (lam : ℝ) : barrier lam lam = 0 := by simp [barrier]`）
+     再复用它。**探针能验证的只是"战术内核"，不是"交付文件的定理存在性"** —— 后者的证据只能来自
+     真交付文件上的 `check.sh --strict` / `axioms.sh`。
+  3. **流程失败（并发 git）**：`git add -A` 会把并发写者的 WIP 卷进提交（lead 的 `c000996` 事故：把当时
+     只写了 1 条定理的 `Barrier.lean` 吞进一个 `docs(plan): ...` 提交）→ `barrier_nonneg` 失去自己的
+     per-lemma 审计轨迹（按 lead 指示**不补空提交、不改动该条**，偏差如实记在任务板）。
+     工人侧正确姿势是 **pathspec 限定提交**：
+     `git commit -q -m "feat(M2): <lemma>" -- PhotoLean/Marcus/Barrier.lean`
+     —— 只取该路径的工作树内容，**不会**把别人已经 `git add` 进 index 的内容并进提交
+     （比 `git add <file>` + `git commit` 更抗污染：后者在 index 里有他人已 stage 内容时会一起提交）。
+     提交后用 `git show --name-only <hash>` 自查"这个 commit 只碰了我的属主文件"。
+  4. 初版担心"前提写了但用不到"的 linter warning 会污染验收输出（`barrier_symm` 的 `hlam : lam ≠ 0`、
+     `barrier_antitone_of_pos` 的 `h₁ : 0 ≤ x₁` 证明里**真的都没用到**）；一度想改签名去掉，被纪律否决。
+- 奏效：
+  - 文件结构：`import PhotoLean.Marcus.Basic` → 顶层 `set_option linter.unusedVariables false`
+    （**无 `in`，作用于整个文件**；`... in` 形式只作用于紧随其后的一个声明）→ `namespace PhotoLean.Marcus` → 9 条。
+  - 两条骨架（lead 风险探针未覆盖，本次补齐）：
+    ```lean
+    theorem barrier_symm {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+        barrier lam x = barrier lam (2 * lam - x) := by
+      unfold barrier; congr 1; ring     -- congr 1 把目标降到 (lam-x)^2 = (lam-(2*lam-x))^2
+
+    theorem barrier_mono_cases (lam : ℝ) : (…四元合取…) :=
+      ⟨fun h x₁ x₂ h₁ h₂ => barrier_mono_of_pos h h₁ h₂,
+       fun h x₁ x₂ h₁ h₂ h₃ => barrier_antitone_of_pos h h₁ h₂ h₃,
+       fun h x₁ x₂ h₁ h₂ => barrier_antitone_of_neg h h₁ h₂,
+       fun h x => by subst h; exact barrier_zero_lam x⟩   -- lam=0 支：subst 后目标即 barrier 0 x = 0
+    ```
+  - 其余条目统一内核（关键：**不需要 `unfold barrier`** —— `exact` 默认透明度即可把 `barrier lam x`
+    与 `(lam-x)^2/(4*lam)` 判等）：
+    `have h4 : (0:ℝ) < 4*lam := by positivity` → `have hsq : … := by nlinarith` → `exact div_lt_div_of_pos_right hsq h4`；
+    `barrier_nonneg` / `barrier_min_at_lam` 用 `unfold barrier; positivity`（后者先 `rw [barrier_at_lam]`）；
+    `barrier_at_lam` / `barrier_zero_lam` 直接 `simp [barrier]`。
+  - 实测确认的名字（v4.17.0，探针 `proofs/probes/marcus-prover_a2-scratch.lean` 留 `#check` 原文）：
+    `@div_lt_div_of_pos_right : a < b → 0 < c → a / c < b / c`；
+    `@div_lt_div_right_of_neg : c < 0 → (a / c < b / c ↔ b < a)`；
+    `@div_lt_div_iff_of_pos_right : 0 < c → (a / c < b / c ↔ a < b)`；
+    `@div_le_div_iff_of_pos_right : 0 < c → (a / c ≤ b / c ↔ a ≤ b)`；`@sq_nonneg`、`@mul_self_lt_mul_self`。
+  - 两层机器证据：脚本抽签名比对 skeleton → **mismatches: 0**（9/9 逐字一致）；
+    `check.sh --strict PhotoLean.Marcus.Barrier` → 扫描 `clean` + `verdict: PASS`；
+    `axioms.sh` 逐条 → `[propext, Classical.choice, Quot.sound]` + `verdict: PASS (only mathlib infrastructure axioms)` ×9。
+  - 每 lemma 一个 commit（pathspec 限定）：`8d9c2ff` / `03c740f` / `169a0c7` / `3dc2fcc` / `4ab7259` /
+    `4561931` / `ae1276e` / `f0d79ee`。
+- 可复用模式：
+  1. **含除法的有序比较三步走**：① 建分母符号的 `have`；② 把目标降维成分母无关的比较（`nlinarith` 擅长）；
+     ③ 用 `div_lt_div_*` 类引理合回去。口诀：**正分母保号（`div_lt_div_of_pos_right`）；
+     负分母是 iff 且 RHS 反转（`div_lt_div_right_of_neg`）；负分母没有 `_of_neg_right` 版**。
+  2. **`nlinarith` 的可靠域是"清完分母之后"的子目标**：把它放进 `have hsq`，别直接对准带 `/` 的 goal。
+  3. **物理定义域前提即使数学冗余也保留**（statement-first；前提本身是文档）：
+     在文件头块注释里写明"哪条是定义域、哪条被证明真正使用"，用**顶层**
+     `set_option linter.unusedVariables false` 消噪。本次两条冗余前提：`hlam : lam ≠ 0` 与 `h₁ : 0 ≤ x₁`；
+     我另验了**去掉 `hlam` 的 `barrier_symm` 语句仍可编译通过**（除零约定使 `lam = 0` 时两端同为 0）——
+     "前提冗余"的实测证据比猜测更有价值。
+  4. **探针只证战术、不证定理存在**：探针里若需要待建文件的引理，就写局部同名副本；
+     交付定理的证据永远来自 `check.sh --strict` + `axioms.sh`（三层：构建 ≠ 验收）。
+  5. **共享仓库的提交边界 = 文件属主**：`git commit -m "..." -- <自己的文件>`（pathspec 限定），
+     提交后 `git show --name-only` 自查；任何一次 `git add -A` 都可能把别人的 WIP 变成"你的提交内容"。
+
 <!-- 条目从这里继续往下追加 -->
