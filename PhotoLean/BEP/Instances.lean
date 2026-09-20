@@ -94,6 +94,11 @@ theorem inst_I1_thermoneutral_conforms : Rat.qConformsWindow (2 : ℚ) (1 / 4) 0
 
 /-! #### I2 — mildly exergonic family -/
 
+/-- I2 (`model-constructed`): mildly exergonic family `λ = 2`, `x = 1/2` — conforming. -/
+theorem inst_I2_exergonic_zone : Rat.epQVerdict (2 : ℚ) (1 / 2) = Rat.EPQVerdict.conforming := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
