@@ -189,3 +189,25 @@ theorem not_reactionRegion_of_nonpos {lam x : ℝ} (hlam : lam ≤ 0) :
   unfold ReactionRegion at h
   linarith [h.1, h.2]
 
+/-! ### Zone characterizations
+
+The classifier is the six-deep `if`-chain of `hammondZone`. In the forward direction
+`split_ifs at h` splits the chain inside the hypothesis and discharges every branch whose
+generated constructor equality is absurd, so exactly one goal survives: the branch that really
+produces the constructor, carrying its six guards. In the backward direction the chain is
+reduced by explicit `if_neg` / `if_pos` rewrites, which close the goal by reflexivity. -/
+
+set_option linter.unusedVariables false in
+/-- Zone characterization, early branch. -/
+theorem hammondZone_eq_early_iff {lam x : ℝ} (hlam : 0 < lam) :
+    hammondZone lam x = HZone.early ↔ 0 < x ∧ x < lam := by
+  constructor
+  · intro h
+    unfold hammondZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6
+    exact ⟨h6, lt_of_le_of_ne (not_lt.mp h4) h1⟩
+  · intro ⟨h1, h2⟩
+    unfold hammondZone
+    rw [if_neg (ne_of_lt h2), if_neg (by linarith), if_neg (by linarith),
+      if_neg (not_lt.mpr (le_of_lt h2)), if_neg (ne_of_gt h1), if_pos h1]
+
