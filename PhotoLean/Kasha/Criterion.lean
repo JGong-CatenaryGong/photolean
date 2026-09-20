@@ -172,6 +172,13 @@ theorem fluoYield_eq_one_sub_loss {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData
   unfold emitYield
   rw [hic]
   ring
+/-- Plan §5.1 #8. The total yield is at most one. -/
+theorem fluoYield_le_one {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    fluoYield rad ic N ≤ 1 := by
+  have h7 := fluoYield_eq_one_sub_loss h
+  have hnn : 0 ≤ icBranch rad ic 0 * cascade rad ic 0 N :=
+    mul_nonneg (icBranch_nonneg h (Nat.zero_le N)) (cascade_nonneg h (Nat.zero_le N))
+  linarith
 end Kasha
 
 end PhotoLean
