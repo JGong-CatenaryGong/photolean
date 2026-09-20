@@ -189,4 +189,10 @@ theorem exists_exergonic : ∃ lam x : ℝ, epZone lam x = EPZone.exergonic := b
   unfold epZone
   norm_num
 
+/-- Non-vacuity, endergonic regime (`lam = 1`, `x = -1/2`). -/
+theorem exists_endergonic : ∃ lam x : ℝ, epZone lam x = EPZone.endergonic := by
+  refine ⟨1, -(1 / 2), ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
