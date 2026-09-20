@@ -1,0 +1,21 @@
+# 构建产物与共享缓存（不入库）
+.lake/
+build/
+.toolchain/
+lean_packages/
+
+# Python / 计算环境
+.cache/
+.conda-pkgs/
+.conda-envs/
+.lean-env/
+__pycache__/
+
+# 文献原文（大文件；只提交 LITERATURE.md 的结论，不提交 PDF）
+proofs/literature/*
+!proofs/literature/README.md
+
+# 编辑器
+.vscode/
+.idea/
+*.swp

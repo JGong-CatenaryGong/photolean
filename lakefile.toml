@@ -1,0 +1,17 @@
+# PhotoLean — 光化学/光物理唯象理论的 Lean 4 形式化工程。
+# Lake 5.0.0 (Lean 4.17.0) TOML 格式。
+#
+# 关键约束：mathlib 的 rev 必须与 lean-toolchain 的版本一致，
+# 否则 olean 缓存不匹配、全量重建（数小时）。见 proofs/ENGINE.md §工具链。
+
+name = "PhotoLean"
+version = "0.1.0"
+defaultTargets = ["PhotoLean.Smoke"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.17.0"
+
+[[lean_lib]]
+name = "PhotoLean"

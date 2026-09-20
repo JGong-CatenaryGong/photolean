@@ -1,0 +1,42 @@
+# PhotoLean 项目契约 — 形式化引擎的叶子数据面（leaf data plane）
+#
+# 这是"项目无关形式化引擎"与本项目之间的唯一接口。引擎（Agent preset）
+# 只按本文件的声明工作；换一个唯象理论 = 换一个仓库 + 重写本文件，
+# 而不是改 preset。
+#
+# 本文件是 shell 可 source 的 KEY=VALUE 格式（无嵌套、无 YAML 依赖），
+# 因此 proofs/scripts/*.sh 与 Agent 读到的信息永远一致 —— 单一真源。
+#
+# 校验：proofs/scripts/check.sh 会检查本文件声明的必需叶子是否存在。
+
+# ── 身份 ────────────────────────────────────────────────────────────────────
+PROJECT_NAME="PhotoLean"
+PROJECT_DOMAIN="光化学与光物理唯象理论（光致发光、非辐射衰减、构象与几何约束效应）"
+
+# ── 形式化目标 ──────────────────────────────────────────────────────────────
+# Lean 库名前缀；SOURCE_DIRS 内所有 *.lean 都会纳入 sorry/axiom 扫描。
+MODULE_PREFIX="PhotoLean"
+SOURCE_DIRS="PhotoLean"
+
+# ── 纪律（硬约束，引擎的验收门读这里）────────────────────────────────────────
+# 交付定理允许出现的公理：仅 mathlib 基础设施。sorryAx 与自定义 axiom 一律 FAIL。
+ALLOWED_AXIOMS="propext Classical.choice Quot.sound"
+FORBID_SORRY=1
+FORBID_CUSTOM_AXIOM=1
+
+# ── 叶子数据面（每项都是相对仓库根的路径，必须存在）────────────────────────
+PLAN="plan.md"                          # 理论规划：里程碑、语句、证明草图、sprint 顺序
+TASKS="proofs/TASKS.md"                 # 任务板：状态唯一真源
+EXPERIENCE="proofs/EXPERIENCE.md"       # 经验库（Hyra 式）：跨轮积累的成败模式
+API_NOTES="proofs/API-NOTES.md"         # mathlib API 校准日志
+LITERATURE="proofs/LITERATURE.md"       # 文献调研记录：源、结论、对本理论的可形式化含义
+PROBES="proofs/probes"                  # #check 探针目录
+
+# ── 验证器命令（引擎调用这些，不内联任何判据）──────────────────────────────
+CHECK_CMD="proofs/scripts/check.sh --strict"
+AXIOMS_CMD="proofs/scripts/axioms.sh"
+BUILD_CMD="lake build"
+
+# ── 提交规范 ────────────────────────────────────────────────────────────────
+# 每 lemma 一个 commit；<area> 对应 plan.md 的里程碑编号（如 M1）。
+COMMIT_TEMPLATE="feat(<area>): <lemma>"
