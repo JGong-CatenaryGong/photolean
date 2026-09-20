@@ -10,17 +10,19 @@
 > policy and the freeze of the historical `.en.md` mirrors are recorded in `README.md`.
 >
 > **Provenance.** The bridge inventory of the 2026-09-20 review record (`review/REVIEW.md` §3.1,
-> 13 rows / 16 theorems in the delivered modules) is an input document of this task; it is not part
-> of the committed tree. This file is the frozen output: the inventory collected into one module,
-> extended with the non-relations of §4, and written up here.
+> 13 rows / 16 theorems in the delivered modules) is the input document of this task; it is
+> preserved in the repository as an input record (committed alongside this consolidation, not as a
+> delivered artifact of the three theories). This file is the frozen output: the inventory
+> collected into one module, extended with the non-relations of §3, and written up here.
 >
 > **中文（状态与来源）**：本文件是三个已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
 > 原理）**关系图**的讨论稿。可机器检查的对应物是 `PhotoLean/Relations.lean`（28 条声明）与共享内核
 > `PhotoLean/Kernel.lean`（6 定义 + 2 定理）；下文凡点名 Lean 定理之处，均有可编译声明支撑，且其
-> `#print axioms` 输出恰为 `[propext, Classical.choice, Quot.sound]`。这是各理论 `RESULTS.md` 之外
-> 唯一的双语文档（语言政策例外见 `README.md`）。2026-09-20 审查记录（`review/REVIEW.md` §3.1，
-> 13 行 / 16 条定理）是本次任务的输入文档，不在提交树内；本文件是冻结后的产出：清单收敛到一个模块、
-> 补上 §4 的"非关系"，并在本文中给出完整讨论。
+> `#print axioms` 输出恰为 `[propext, Classical.choice, Quot.sound]`。本文按各理论 `RESULTS.md` 的
+> 双语排版书写（英文原文后紧跟中文对照）；语言政策与历史 `.en.md` 镜像的冻结见 `README.md`。
+> 2026-09-20 审查记录（`review/REVIEW.md` §3.1，13 行 / 16 条定理）是本次任务的输入文档，已作为
+> **输入记录**随本次固化一并提交（它不是三个理论的交付物）；本文件是冻结后的产出：清单收敛到一个
+> 模块、补上 §3 的"非关系"，并在本文中给出完整讨论。
 
 ---
 
@@ -60,7 +62,7 @@ Hammond 读**结构**（过渡态坐标随驱动力严格递减），BEP 读**�
 ### 2.1 True equivalences (`↔`) / 真等价
 
 **English.** Six delivered equivalences are re-exported verbatim in §2 of `PhotoLean/Relations.lean`
-(none re-proved), and one further equivalence is derived in §6 of that module:
+(none re-proved), and one further equivalence is *composed* in §6 of that module:
 
 | # | statement (module) | reading |
 |---|---|---|
@@ -70,12 +72,13 @@ Hammond 读**结构**（过渡态坐标随驱动力严格递减），BEP 读**�
 | E4 | `tsCoord_lt_zero_iff_inverted` (Hammond ↔ Marcus) | the transition state leaves the reactant side exactly in the inverted region |
 | E5 | `lefflerSecant_neg_iff_inverted` (Hammond ↔ Marcus) | a negative Brønsted coefficient is exactly the inverted region, seen from barrier data |
 | E6 | `hammondZoneQ_beyondReactant_iff_inverted` (Hammond ↔ Marcus, over `ℚ`) | the two computable classifiers single out the same instances |
-| E7 | `hammond_sharp_iff_marcus_sharp` (**derived in this task**) | `HammondDescriptor lam ↔ (rate-positivity ∧ Marcus.InvertedDescriptor)`: under `0 < A, 0 < k_B, 0 < T` the two sharp conditions coincide, i.e. both descriptions characterize exactly the positive-curvature model |
+| E7 | `hammond_sharp_iff_marcus_sharp` (**composed in this task**) | `HammondDescriptor lam ↔ (rate-positivity ∧ Marcus.InvertedDescriptor)`: under `0 < A, 0 < k_B, 0 < T` the two sharp conditions coincide, i.e. both descriptions characterize exactly the positive-curvature model. Honest accounting: the statement is a **composition** of the two delivered sharp characterizations (`Hammond.hammond_sharp`, `Marcus.descriptor_sharp`) — no new mathematics beyond the composition |
 
-**中文（真等价）**：上表 7 条真 `↔`。E1–E6 是 §2 中逐字复用（未重新证明）；E7 是本次派生：
+**中文（真等价）**：上表 7 条真 `↔`。E1–E6 是 §2 中逐字复用（未重新证明）；E7 是本次**复合**：
 在 `0 < A`、`0 < k_B`、`0 < T` 下，`HammondDescriptor lam ↔ (速率处处正 ∧ Marcus.InvertedDescriptor)`——
 两个锐利条件（`hammond_sharp`、`descriptor_sharp`）刻画的是**同一个**正曲率模型，因此两条"描述"作为
-对曲率的假设是**同外延**的。注意 E1 刻意非定义性：BEP 把 `transfer` 写成线性响应体，使同一性必须**证明**
+对曲率的假设是**同外延**的。记账上如实说明：E7 的数学内容就是这两条已交付锐利刻画的**复合**，复合之外
+没有新数学。注意 E1 刻意非定义性：BEP 把 `transfer` 写成线性响应体，使同一性必须**证明**
 而不能靠 `rfl` 展开——这是反"伪造等价"的设计，不是巧合。
 
 ### 2.2 One-way entailments (`→`) / 单向蕴含
@@ -125,22 +128,26 @@ certificate.
 
 **English.** The relation graph is not complete without the edges that **do not exist**. Two of them
 are pinned as theorems (new in this task); the rest belong to §4 (prose, because they are not
-theorem-shaped).
+theorem-shaped). One qualifier, stated up front: the two blocks below are *readings* attached to the
+delivered statements — the theorems themselves are exactly the ones cited.
 
 **N1 — exact in one reading, exactly false in the other** (`hammond_trend_exact_bep_law_inexact`).
 For every `lam ≠ 0`, *in the same model*:
 
-* the Hammond trend is **exactly** affine — there are `c, k` with `Kernel.tsCoord lam x = c + k·x`
-  for all `x` (the coordinate is `1/2 − x/(2λ)`, a linear function, so "more driving force, earlier
-  transition state" needs no tolerance parameter);
+* the transition-state coordinate is **exactly** affine — there are `c, k` with
+  `Kernel.tsCoord lam x = c + k·x` for all `x` (it is `1/2 − x/(2λ)`); together with the structural
+  descriptor's own sharp condition `0 < lam` (`hammond_sharp`) this makes "more driving force,
+  earlier transition state" hold with **no tolerance parameter**. The qualifier matters: at `lam < 0`
+  the coordinate is still affine but *increasing* (N2 below), so affinity alone is not the trend —
+  the trend is affinity **plus** `0 < lam`;
 * the BEP line law is **exactly violated on every non-degenerate interval** — for all `p < q`,
   `¬ BEP.EPLinearOn lam (Set.Icc p q)` (the second-difference engine
   `BEP.not_epLinearOn_of_ne_zero`; the exact defect is the quadratic remainder `x²/(4λ)`).
 
 This is the sharpest statement of why the BEP reading *must* be stated with a tolerance
 (`bepDefect` law, sharp radius `2√(λ·tol)`, `epExact_iff_degenerate`) while the Hammond reading must
-not: one description is a fact of the linear object `q‡ = q‡(x)`, the other is a claim about a
-quadratic that is false everywhere off the degenerate model.
+not: one description is exact on the linear object `q‡ = q‡(x)` (at positive curvature), the other
+is a claim about a quadratic that is false everywhere off the degenerate model.
 
 **N2 — the two `∀∀` predicates are not equally strong**
 (`rate_predicate_satisfiable_without_positive_curvature`). The rate predicate is satisfied in a
@@ -150,11 +157,14 @@ contrast, holds exactly for positive curvature (`hammond_sharp`). So "the rate d
 inverted region" does **not** pin the physical model, while "the transition-state coordinate
 decreases" does — the shape difference that the positivity conjunct in `descriptor_sharp` repairs.
 
-**中文（非关系）**：关系图必须包含**不存在**的边。两条被钉成定理（本任务新增）：
-**N1**（`hammond_trend_exact_bep_law_inexact`）——对每个 `lam ≠ 0`，在**同一个**模型里，Hammond 趋势
-**精确**仿射（`q‡ = 1/2 − x/(2λ)`，无需任何容差参数），而 BEP 线性律在**任何非退化区间**上都**精确**
-被违反（`BEP.not_epLinearOn_of_ne_zero`，二阶差分引擎；精确缺陷是二次余项 `x²/(4λ)`）。这正是
-"BEP 读法必须带容差、Hammond 读法必须不带"的形式化分界。
+**中文（非关系）**：关系图必须包含**不存在**的边。两条被钉成定理（本任务新增）；先声明口径：以下解读
+是**挂在交付语句上的读法**，定理本身以下列名为准。
+**N1**（`hammond_trend_exact_bep_law_inexact`）——对每个 `lam ≠ 0`，在**同一个**模型里，过渡态坐标
+**精确**仿射（`q‡ = 1/2 − x/(2λ)`）；再加上结构描述自身的锐利条件 `0 < lam`（`hammond_sharp`），
+"驱动力越大、过渡态越早"**无需任何容差参数**即成立。限定词不可省：`lam < 0` 时坐标仍仿射但是**递增**
+（见 N2），所以"趋势"= 仿射 **且** `0 < lam`，不是仿射本身。同一模型里 BEP 线性律在任何**非退化区间**
+上都**精确**被违反（`BEP.not_epLinearOn_of_ne_zero`，二阶差分引擎；精确缺陷是二次余项 `x²/(4λ)`）。
+这正是"BEP 读法必须带容差、Hammond 读法必须不带"的形式化分界。
 **N2**（`rate_predicate_satisfiable_without_positive_curvature`）——速率谓词在速率**处处为负**的参数区
 （`A = lam = −1`，`k_BT = 1`）仍成立（乘负前置因子不改变单调模式）；结构谓词则当且仅当曲率为正
 （`hammond_sharp`）。因此"反转区速率递减"**钉不住**物理模型，"过渡态坐标递减"钉得住——这正是
@@ -170,7 +180,7 @@ itself a theorem — it is a modelling observation, recorded here rather than dr
 | predicate | shape | free parameters | what it can and cannot say |
 |---|---|---|---|
 | `HammondDescriptor lam` | two points, unrestricted | none beyond `lam` | exact monotonicity of a function; sharp condition `0 < lam` |
-| `Marcus.InvertedDescriptor A lam kB T` | two points, restricted to the ray `lam < x₁` | `A, kB, T` (the truth value does not depend on them) | formal monotonicity of a composed function; needs the separate positivity conjunct to pin the model (N2) |
+| `Marcus.InvertedDescriptor A lam kB T` | two points, restricted to the ray `lam < x₁` | `A, kB, T` (the sign of `A` and of `kB·T` genuinely changes the truth value — see N2) | formal monotonicity of a composed function; needs the separate positivity conjunct to pin the model (N2) |
 | `BEP.EPConformsOnWindow lam tol a b` | continuum-uniform error bound on `Icc a b` | `tol`, window `a b` (two metrical parameters) | a quantitative approximation claim; monotone under window enlargement (`epConformsOnWindow_mono`) and in `lam` (`epConformsOnWindow_mono_lam`); sharp radius `epConformsOnWindow_iff_radius` |
 
 Three honest corollaries of the table:
@@ -188,9 +198,9 @@ Three honest corollaries of the table:
 
 **中文（量词形态）**：三条谓词的逻辑形态不同，这一差异**本身不是定理**，而是建模观察，如实记在此处
 而非硬凑成定理：`HammondDescriptor` 是**无参、全域的两点单调性**；`Marcus.InvertedDescriptor` 是**带
-(A,kB,T) 参数、限定在射线 `lam < x₁` 上的两点单调性**（真值其实不随参数变）；`BEP.EPConformsOnWindow`
-是**窗口上的连续统一致误差界**，带两个度量参数（容差与窗口），对窗口扩大与 `lam` 单调
-（`epConformsOnWindow_mono`、`epConformsOnWindow_mono_lam`），其精确半径为 `2√(λ·tol)`。
+(A,kB,T) 参数、限定在射线 `lam < x₁` 上的两点单调性**（`A` 与 `kB·T` 的**符号**确实会改变真值，见 N2）；
+`BEP.EPConformsOnWindow` 是**窗口上的连续统一致误差界**，带两个度量参数（容差与窗口），对窗口扩大与
+`lam` 单调（`epConformsOnWindow_mono`、`epConformsOnWindow_mono_lam`），其精确半径为 `2√(λ·tol)`。
 三条推论：①窗口谓词**不是两点性质**——任何有限采样都既不能证实也不能证伪它，这正是 BEP 必须先有缺陷律
 与半径才谈得上"锐利"的原因；②三者**不是同一陈述的不同强度**——真正呈定理形态的是 §2 钉住的蕴含格
 （E1–E7、O1–O3），其余（"容差窗口与单调性陈述是不同种类的断言"）是建模语言的选择；③窗口谓词通往结构
@@ -207,21 +217,27 @@ mechanically decidable instead of conventional — a future theory that reuses t
 different meaning must fail to close its own certificate, and the check is one line rather than an
 audit.
 (ii) The two *substantive* identities (E1, E2) were already proved rather than definitional, and
-E3–E6 give the cross-theory content; E7 makes the co-extensiveness of the two sharp conditions
-explicit. (iii) The non-relations N1–N2 are now theorems: the relation graph states where the three
-readings come apart, not only where they agree. (iv) The re-exports of §1, §2, §4, §5 of
-`Relations.lean` add **no mathematics** — by the accounting rule of the review, they must not be
-counted as new results; their value is the compile-time pin (a statement drift anywhere upstream
-makes the module fail to compile) and the single readable inventory.
+E3–E6 give the cross-theory content; E7 states the co-extensiveness of the two sharp conditions
+(composition of two delivered theorems, counted as such). (iii) The non-relations N1–N2 are now
+theorems: the relation graph states where the three readings come apart, not only where they agree.
+(iv) The re-exports of §1, §2, §4, §5 of `Relations.lean` add **no mathematics** — by the
+accounting rule of the review, they must not be counted as new results; their value is the
+compile-time pin (a statement drift anywhere upstream makes the module fail to compile) and the
+single readable inventory. (v) **Coverage note (honest)**: the three per-theory fidelity probes
+glob only `PhotoLean/<Theory>/*.lean`, so they do **not** cover `Kernel.lean` or `Relations.lean`;
+the statement authority of the two new modules is the compile-time re-export pin above (every
+statement written out verbatim) plus the module docstrings, not a skeleton probe.
 
 **中文（增量）**：①共享签名 `Σ = {lam, x}` 由**类型与内核级证书**固定，而不再靠命名纪律：三个理论的
 势垒/坐标同一性是"一份定义上的 `rfl` 证书"，因此"同一物理量两个名字"从约定变为**可机械判定**——未来的
 第四个理论若复用 `lam` 名字却赋不同含义，将无法闭合自己的证书（这正是 S1 建议的"从纪律升级为类型"，
 现在检查成本是一行而非一次审计）。②两条**实质**同一性（E1、E2）本来就被刻意做成"可证明而非定义性"，
-E3–E6 给出跨理论内容，E7 把两个锐利条件的同外延性显式化。③"非关系" N1–N2 成为定理：关系图不仅登记
-三者在哪里一致，也登记它们在哪里分道扬镳。④`Relations.lean` 中 §1、§2、§4、§5 的复用条目**不含新数学**
-——按审查的记账规则，它们不得计为新结果；其价值在编译期钉死（上游任何语句漂移都会使模块编译失败）
-与"一处可读的清单"。
+E3–E6 给出跨理论内容，E7 把两个锐利条件的同外延性写成命题（是两条已交付定理的**复合**，按复合记账）。
+③"非关系" N1–N2 成为定理：关系图不仅登记三者在哪里一致，也登记它们在哪里分道扬镳。④`Relations.lean`
+中 §1、§2、§4、§5 的复用条目**不含新数学**——按审查的记账规则，它们不得计为新结果；其价值在编译期
+钉死（上游任何语句漂移都会使模块编译失败）与"一处可读的清单"。⑤**覆盖范围备注（诚实）**：三个逐理论
+保真探针各自只 glob `PhotoLean/<理论>/*.lean`，**不覆盖** `Kernel.lean` 与 `Relations.lean`；这两个新
+模块的语句权威是上述**编译期复用钉子**（每条语句逐字写出）与模块 docstring，而不是骨架探针。
 
 ---
 
@@ -239,8 +255,14 @@ explicitly. 3. **No theory-equivalence claim.** E1–E7 relate *statements about
 not a claim that the three theories are equivalent as theories, nor that any of them is derivable
 from another. 4. **Prose vs theorem.** §4 is explicitly prose; §2's tables are theorem-backed. 5.
 **Re-export accounting.** The count 28 = 8 certificates + 6 equivalences + 3 entailments + 4 reuse
-rows + 4 ledger rows + 3 new theorems; only the last three are new proofs (plus O3 in §2.2), the
-other 24 are certificates/ledger rows.
+rows + 4 ledger rows + 3 new theorems; the declarations *proved* in this task are four — O3 in §2.2
+and the three of §6 — and among those, E7 is itself a composition of two delivered sharp theorems
+(§2.1). The other 24 are certificates and ledger rows. 6. **Verification record.** The delivered
+state was independently gated by a read-only verifier: build with zero warnings, strict scan
+`clean`, all 30 declarations of `Kernel.lean` + `Relations.lean` at
+`[propext, Classical.choice, Quot.sound]`, and the additivity audit (the only change inside the
+three theory directories is the scoping of one linter option in `PhotoLean/Marcus/Barrier.lean`,
+comment-stripped code byte-identical).
 
 **中文（诚实边界）**：①**单一模型、等曲率**——以上全部是等曲率双抛物模型**内部**的陈述（该模型前提登记
 在各理论 plan 中）；BEP 的实例层实测把四个一手文献族**证伪**为等曲率双抛物族（尽管其仿射斜率符合），
@@ -249,7 +271,11 @@ other 24 are certificates/ledger rows.
 是定义体层面的，实质等价全部显式携带 `lam ≠ 0` / `0 < lam` 前提。③**不声称理论等价**——E1–E7 关联的是
 **同一模型上的命题**，不是"三个理论作为理论等价"，也不是"由谁推出谁"。④**正文与定理分工**——§4 明确
 是正文讨论，§2 的表格有定理支撑。⑤**复用记账**——28 = 8 证书 + 6 等价 + 3 单向 + 4 复用 + 4 别名 +
-3 新定理；真正的**新证明**只有最后三条（以及 §2.2 的 O3），其余 24 条是证书/清单，不计为新数学。
+3 新定理；本任务**实际作证**的是 4 条：§2.2 的 O3 与 §6 的 3 条，其中 E7 本身是两条已交付锐利定理的
+**复合**（§2.1）；其余 24 条是证书与清单。⑥**验证记录**——交付状态由只读 verifier 独立跑门：零警告构建、
+严格扫描 `clean`、`Kernel.lean` + `Relations.lean` 全部 30 条声明公理恰为
+`[propext, Classical.choice, Quot.sound]`，加性审计通过（三个理论目录内唯一改动是
+`PhotoLean/Marcus/Barrier.lean` 一个 linter 选项的作用域收窄，剥注释后代码逐字节相同）。
 
 ---
 
