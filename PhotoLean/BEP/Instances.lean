@@ -80,6 +80,12 @@ theorem inst_I1_thermoneutral_zone : Rat.epQVerdict (2 : ℚ) 0 = Rat.EPQVerdict
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I1 (`model-constructed`): `α(0) = 1/2` at `λ = 2` (the thermoneutral value of the
+linear-response coefficient). -/
+theorem inst_I1_thermoneutral_transfer : Rat.qTransfer (2 : ℚ) 0 = 1 / 2 := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
