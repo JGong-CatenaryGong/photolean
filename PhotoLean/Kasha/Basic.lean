@@ -227,6 +227,10 @@ theorem fluoYield_eq_low_add_upper {rad ic : ℕ → ℝ} {N : ℕ} (h : RateDat
     omega
   unfold fluoYield upperYield
   rw [hrange, Finset.sum_insert (by simp)]
+/-- Plan §4.2 #14. At excitation level `0` the total yield is the lowest state's branch. -/
+theorem fluoYield_zero (rad ic : ℕ → ℝ) : fluoYield rad ic 0 = radBranch rad ic 0 := by
+  unfold fluoYield
+  rw [Finset.sum_range_one, emitYield_self]
 end Kasha
 
 end PhotoLean
