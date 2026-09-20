@@ -279,6 +279,20 @@ theorem kashaWithin_iff_specFrac {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h
     rw [← div_self hF, ← sub_div]
   rw [hkey]
   exact (div_le_iff₀ hFpos).symm
+set_option linter.unusedVariables false in
+/-- Plan §4.2 #22. Classifier characterization, `pure` branch: the first guard of the cascade is
+exactly the exact rule (the `RateData` premise is decorative here — the characterization needs no
+positivity). -/
+theorem kashaZone_eq_pure_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N) :
+    kashaZone rad ic tol N = KashaZone.pure ↔ KashaRule rad ic N := by
+  constructor
+  · intro hz
+    unfold kashaZone at hz
+    split_ifs at hz with h1 h2
+    exact h1
+  · intro hr
+    unfold kashaZone
+    exact if_pos hr
 end Kasha
 
 end PhotoLean
