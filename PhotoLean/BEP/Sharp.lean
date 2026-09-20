@@ -124,5 +124,23 @@ theorem eact_second_difference {lam c a x₁ x₂ : ℝ} (hlam : lam ≠ 0) :
   field_simp
   ring
 
+/-- Plan §6.1 #8: no affine law reproduces the barrier on a non-degenerate interval. Corollary of
+`eact_second_difference`: the three points `a < (a+b)/2 < b` would force `(a-b)²/(8*lam) = 0`. -/
+theorem not_epLinearOn_of_ne_zero {lam a b : ℝ} (hlam : lam ≠ 0) (hab : a < b) :
+    ¬ EPLinearOn lam (Set.Icc a b) := by
+  rintro ⟨c, k, hlin⟩
+  have ha : a ∈ Set.Icc a b := ⟨le_rfl, le_of_lt hab⟩
+  have hb : b ∈ Set.Icc a b := ⟨le_of_lt hab, le_rfl⟩
+  have hm : (a + b) / 2 ∈ Set.Icc a b := ⟨by linarith, by linarith⟩
+  have key := eact_second_difference (c := c) (a := k) (x₁ := a) (x₂ := b) hlam
+  rw [hlin a ha, hlin b hb, hlin ((a + b) / 2) hm] at key
+  have hne : (a - b) ^ 2 / (8 * lam) ≠ 0 := by
+    refine div_ne_zero (pow_ne_zero 2 (sub_ne_zero.mpr (ne_of_lt hab))) ?_
+    exact mul_ne_zero (by norm_num) hlam
+  have hzero : (a - b) ^ 2 / (8 * lam) = 0 := by
+    rw [← key]
+    ring
+  exact hne hzero
+
 
 end PhotoLean.BEP
