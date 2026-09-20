@@ -435,6 +435,12 @@ theorem not_descriptor_plateau :
     simp [apex]
   exact hne (hD.2 1 hw)
 
+/-- Mixed-sign witness (plan §6): two branches of opposite slope give a monotone barrier — the
+activity has no interior maximum, the volcano has disappeared. -/
+theorem antiVolcano_monotone (dE₁ dE₂ : ℝ) (h : dE₁ < dE₂) :
+    volcanoBarrier 1 0 (-1) 1 dE₁ < volcanoBarrier 1 0 (-1) 1 dE₂ :=
+  barrier_strictMono_of_slopes_up (1:ℝ) (0:ℝ) (-1:ℝ) (1:ℝ) (by norm_num) (by norm_num) dE₁ dE₂ h
+
 end Sabatier
 
 end PhotoLean
