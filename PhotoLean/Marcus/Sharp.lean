@@ -64,4 +64,22 @@ theorem normal_descriptor_holds {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam)
   fun x₁ x₂ h₀ h₁ h₂ =>
     rate_gt_of_barrier_lt (x := x₂) (y := x₁) hA hkT (barrier_antitone_of_pos hlam h₀ h₁ h₂)
 
+/-! ## 必要性方向的内部内核（M4a §7.1）
+
+`descriptor_sharp` 的 `(⟹)` 要证 `0 < A` 与 `0 < lam`。
+
+- `0 < A`：取 `x = lam`，由 `0 < A · exp u` 与 `exp u > 0` 反推（**必须**用
+  `pos_of_mul_pos_left` 取**左**因子；`pos_of_mul_pos_left` 的前提是"右因子非负"，
+  写 `_right` 会 `application type mismatch` —— 见 `proofs/API-NOTES.md` 记录 D-2）。
+- `0 < lam`：对 `lt_trichotomy lam 0` 三分。`lam < 0` 支与 `lam = 0` 支分别导出
+  与描述矛盾的严格不等式，故只能落在 `0 < lam`。**两支的数学机制不同**
+  （前者靠 `barrier_antitone_of_neg` 的方向反转，后者靠除零约定 `x / 0 = 0`），
+  因此分别成条、不可相互替代。 -/
+
+/-- 速率处处正 ⇒ `A > 0`。 -/
+theorem sharp_A_pos {A lam kB T : ℝ} (hpos : ∀ x, 0 < rate A lam kB T x) : 0 < A := by
+  have h := hpos lam
+  unfold rate at h
+  exact pos_of_mul_pos_left h (le_of_lt (Real.exp_pos _))
+
 end PhotoLean.Marcus
