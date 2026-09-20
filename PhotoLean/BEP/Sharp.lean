@@ -328,5 +328,18 @@ theorem epConformsOnWindow_mono_lam {lam₁ lam₂ tol a b : ℝ} (h0 : 0 < lam�
     rw [e₁ x, abs_of_nonneg (div_nonneg (sq_nonneg x) (by linarith : (0 : ℝ) ≤ 4 * lam₁))] at hb
     linarith
 
+/-! ## AUX — the symmetric three-point identity
+
+Delivered here rather than in the AUX section at the end of the file: §6.4 #19 below consumes it. -/
+
+/-- AUX: the symmetric three-point identity quoted by plan §6.4 #19, with
+`f y = eact lam y - (c + a * y)`: `f(-w) + f(w) - 2·f(0) = w²/(2·lam)` — the affine part cancels. -/
+theorem bep_error_three_point {lam c a w : ℝ} (hlam : lam ≠ 0) :
+    (eact lam (-w) - (c + a * (-w))) + (eact lam w - (c + a * w)) -
+        2 * (eact lam 0 - (c + a * 0)) = w ^ 2 / (2 * lam) := by
+  unfold eact
+  field_simp
+  ring
+
 
 end PhotoLean.BEP
