@@ -316,6 +316,11 @@ theorem not_kashaRule_of_rad_pos {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateDat
     (h1 : 1 ≤ i) (h2 : i ≤ N) (hr : 0 < rad i) : ¬ KashaRule rad ic N := by
   intro hK
   exact absurd ((kashaRule_iff_rad_zero h).mp hK i h1 h2) (ne_of_gt hr)
+/-- Plan §5.2 #16. Vavilov's rule at one step is the nonradiativity of the newly excited level
+(same content as §5.1 #11, read as the `VavilovAt` predicate). -/
+theorem vavilovAt_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N + 1))
+    (h1 : fluoYield rad ic N < 1) : VavilovAt rad ic N ↔ rad (N + 1) = 0 :=
+  fluoYield_eq_iff_rad_zero h h1
 end Kasha
 
 end PhotoLean
