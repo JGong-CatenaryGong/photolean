@@ -59,6 +59,10 @@ theorem inst_I1_thermoneutral_conforms : HammondConforms 1 0 := by
         ← Rat.hammondZoneQ_eq_hammondZone, inst_I1_thermoneutral_zone]
   exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 1)).mpr (Or.inr (Or.inl hz))
 
+/-- I1, coordinate: thermoneutrality puts the transition state exactly halfway. -/
+theorem inst_I1_thermoneutral_coord : tsCoord 1 0 = 1 / 2 := by
+  norm_num [tsCoord]
+
 end Hammond
 
 end PhotoLean
