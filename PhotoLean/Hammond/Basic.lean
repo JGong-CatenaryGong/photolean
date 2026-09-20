@@ -119,3 +119,11 @@ theorem gapProduct_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
   field_simp
   ring
 
+/-- The two barriers differ exactly by the driving force (reverse-barrier identity). -/
+theorem gapProduct_sub_gapReactant {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+    gapProduct lam x - gapReactant lam x = x := by
+  have h4 : (4 * lam : ℝ) ≠ 0 := mul_ne_zero (by norm_num) hlam
+  unfold gapProduct gapReactant
+  field_simp
+  ring
+
