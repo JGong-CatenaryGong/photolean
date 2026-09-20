@@ -670,5 +670,6 @@ git log -1 --oneline                                                     # 4. co
 | statement authority + probes | `theories/kasha/probes/` |
 | bilingual deliverable | `theories/kasha/RESULTS.md` |
 | Lean sources | `PhotoLean/Kasha/{Basic,Criterion,Sharp,Compose,RatModel,Instances}.lean` |
+| source artifacts | `theories/kasha/literature/` (README + the Birks 1976 NIST text; size policy in the README) |
 | API calibration (shared) | `proofs/API-NOTES.md` §kasha |
 | experience bank (shared) | `proofs/EXPERIENCE.md` |

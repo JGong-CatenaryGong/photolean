@@ -327,6 +327,12 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 7. **Not formalized** (documented, not silently skipped): the time-resolved master equation, the
    Franck–Condon factors behind the internal-conversion rate, spin–orbit coupling, and the energy-gap
    law's exponential form.
+8. **Position in the repository.** This theory is deliberately outside the two-parabola relation graph
+   of `theories/RELATIONS.md` and `PhotoLean/Relations.lean`: its model is a ladder of electronic
+   levels, not a pair of potential-energy parabolas, so it shares no kernel definition with
+   `PhotoLean.Kernel`. Its single, *conditional* bridge to that family is the Marcus-form
+   internal-conversion rate of §3.5 (`kashaWithin_one_marcus`), which imports
+   `PhotoLean.Marcus.Basic`'s `barrier` — a dependency of one hypothesis, not an identity.
 
 **限制（中文）**：模型为选择而非推导（有限阶梯、每通道单一标量速率、时间积分产额；不建模振动/电子结构、
 温度、溶剂、分子间过程）；分支概率来自竞争指数钟是**声明式前提**（表述可行、完整有界证明未建，记为负结果）；
@@ -334,6 +340,10 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 见 plan §13 与文献 §R1.7；文献行是**关于印刷数字的算术判决**，识别桥梁是建模假设，I12 因缺一手数字而删除；
 已登记偏差：`lakefile.toml` 目标行由 lead 单独提交（工人不得改该文件）、`KashaWithin` 对任意实数 `tol` 有定义
 （仅暴露性，所有判据行都带 `0 < tol`）；未形式化的部分（含时主方程、Franck–Condon 因子、自旋轨道耦合、指数型能隙律）明确列出。
+**在仓库中的位置**：本理论刻意**不在** `theories/RELATIONS.md` / `PhotoLean/Relations.lean` 的双抛物关系图内 ——
+其模型是电子能级阶梯而非一对势能抛物线，与 `PhotoLean.Kernel` 不共享定义；它与该族**唯一**的联系是 §3.5 的
+Marcus 型内转换速率（`kashaWithin_one_marcus` 导入 `PhotoLean.Marcus.Basic` 的 `barrier`），那是**一条假设**的依赖，
+不是同一性。
 
 ---
 
