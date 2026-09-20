@@ -1,6 +1,4 @@
-/- marcus-all-axioms.lean — 由 proofs/probes/marcus-fidelity.py 同款脚本自动生成（lead 维护）。
-运行：proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean
--/
+/- 自动生成（lead）：全量 #print axioms。运行 proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean -/
 
 import PhotoLean.Marcus.Barrier
 import PhotoLean.Marcus.Basic
