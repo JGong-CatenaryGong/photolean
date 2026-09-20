@@ -226,6 +226,14 @@ theorem kashaWithin_mono_tol {rad ic : ℕ → ℝ} {N : ℕ} {tol tol' : ℝ} (
   rw [KashaWithin] at hW ⊢
   calc upperYield rad ic N ≤ tol * fluoYield rad ic N := hW
     _ ≤ tol' * fluoYield rad ic N := mul_le_mul_of_nonneg_right hle hF
+/-- Plan §6.1 #7 — exactness: at `tol = 0` the tolerance form IS the exact rule. With
+`0 ≤ upperYield N` (K1) the inequality `upperYield ≤ 0` is an equality. -/
+
+theorem kashaWithin_zero_iff {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    KashaWithin rad ic 0 N ↔ KashaRule rad ic N := by
+  have hU : 0 ≤ upperYield rad ic N := upperYield_nonneg h
+  rw [KashaWithin, KashaRule, zero_mul]
+  exact ⟨fun hW => le_antisymm hW hU, fun hW => le_of_eq hW⟩
 
 end Kasha
 
