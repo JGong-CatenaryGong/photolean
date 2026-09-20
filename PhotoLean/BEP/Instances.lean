@@ -228,6 +228,12 @@ theorem inst_I8_degenerate_transfer : Rat.qTransfer (0 : ℚ) 1 = 1 / 2 := by
 
 /-! #### I9 — unphysical curvature (`λ = -2`): the bounds are blind -/
 
+/-- I9 (`model-constructed`): unphysical curvature `λ = -2`, `x = 1` — the cascade's second guard
+returns `unphysical`. -/
+theorem inst_I9_unphysical_zone : Rat.epQVerdict (-2 : ℚ) 1 = Rat.EPQVerdict.unphysical := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
