@@ -316,6 +316,16 @@ theorem volcano_descriptor_iff (alphaA betaA alphaB betaB : ℝ) :
         (descriptor_of_physical_aux (alphaA := -alphaB) (betaA := betaB) (alphaB := -alphaA)
           (betaB := betaA) (by linarith) (by linarith))
 
+/-- Contrapositive form of the sharp condition (plan §6): a nonpositive slope product — zero
+included — rules the volcano out, so the physical orientation cannot be relaxed to weak
+inequalities. -/
+theorem descriptor_fails_of_nonpos_product {alphaA betaA alphaB betaB : ℝ}
+    (h : alphaA * alphaB ≤ 0) :
+    ¬ VolcanoDescriptor (fun dE => volcanoBarrier alphaA betaA alphaB betaB dE)
+        (apex alphaA betaA alphaB betaB) := by
+  intro hD
+  exact absurd ((volcano_descriptor_iff alphaA betaA alphaB betaB).mp hD) (not_lt.mpr h)
+
 end Sabatier
 
 end PhotoLean
