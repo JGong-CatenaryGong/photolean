@@ -134,6 +134,14 @@ theorem effDecay_zero (rad ic : ℕ → ℝ) (N : ℕ) :
     decay (effRad rad ic N) (effIc rad ic N) 0 = decay rad ic 0 := by
   simp [decay, effRad, effIc]
 
+/-- Plan §7.2 #4. The effective upper level's total decay is the ladder's **upper-block total**:
+the radiative leak `upperYield rad ic N` plus the arrival probability `cascade rad ic 0 N` — the two
+channels of the collapsed block. -/
+theorem effDecay_one (rad ic : ℕ → ℝ) (N : ℕ) :
+    decay (effRad rad ic N) (effIc rad ic N) 1
+      = upperYield rad ic N + cascade rad ic 0 N := by
+  simp [decay, effRad, effIc]
+
 
 end Kasha
 
