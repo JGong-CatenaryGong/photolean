@@ -385,6 +385,13 @@ theorem inst_I11_F3_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
+/-- F3 (`first-hand`, kcal/mol verbatim, Table 2 "Water"): the model's two-point solver at the
+adjacent printed pair `16(1)` (`ΔG° = +0.8`, `ΔG‡ = 15.6`) and `19(2)` (`+3.6`, `17.7`); model
+abscissae `-0.8`, `-3.6`. -/
+theorem inst_I11_F3_lamHat : Rat.qLamOfPair (-(0.8) : ℚ) 15.6 (-(3.6)) 17.7 = 22 / 5 := by
+  unfold Rat.qLamOfPair
+  norm_num
+
 end BEP
 
 end PhotoLean
