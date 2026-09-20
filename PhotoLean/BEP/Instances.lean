@@ -206,6 +206,12 @@ theorem inst_I7_reverseInverted_notBounds :
 
 /-! #### I8 — degenerate family (`λ = 0`) -/
 
+/-- I8 (`model-constructed`): degenerate family `λ = 0`, `x = 1` — the first guard of the cascade
+returns `degenerate` (no physical reorganization energy). -/
+theorem inst_I8_degenerate_zone : Rat.epQVerdict (0 : ℚ) 1 = Rat.EPQVerdict.degenerate := by
+  unfold Rat.epQVerdict
+  norm_num
+
 end BEP
 
 end PhotoLean
