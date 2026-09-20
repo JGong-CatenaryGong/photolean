@@ -326,6 +326,23 @@ theorem descriptor_fails_of_nonpos_product {alphaA betaA alphaB betaB : ℝ}
   intro hD
   exact absurd ((volcano_descriptor_iff alphaA betaA alphaB betaB).mp hD) (not_lt.mpr h)
 
+/-- The sharp condition in the instance layer's vocabulary (plan §6): the volcano holds iff the
+series conforms to the physical orientation, up to the interchange of the two branch labels. -/
+theorem volcano_descriptor_iff_labels {alphaA betaA alphaB betaB : ℝ} :
+    VolcanoDescriptor (fun dE => volcanoBarrier alphaA betaA alphaB betaB dE)
+        (apex alphaA betaA alphaB betaB)
+      ↔ (SabatierConforms alphaA alphaB ∨ SabatierConforms (-alphaB) (-alphaA)) := by
+  rw [volcano_descriptor_iff]
+  constructor
+  · intro h
+    rcases mul_pos_iff.mp h with ⟨hA, hB⟩ | ⟨hA, hB⟩
+    · exact Or.inl ⟨hA, hB⟩
+    · exact Or.inr ⟨by linarith, by linarith⟩
+  · intro h
+    rcases h with ⟨hA, hB⟩ | ⟨hA, hB⟩
+    · exact mul_pos hA hB
+    · exact mul_pos_of_neg_of_neg (by linarith : alphaA < 0) (by linarith : alphaB < 0)
+
 end Sabatier
 
 end PhotoLean
