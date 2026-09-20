@@ -132,6 +132,47 @@ theorem kashaWithin_one_iff_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < d
   rw [kashaWithin_one_iff_rates h0 h1, funnelRatio, div_le_div_iff₀ htol hrd]
   constructor <;> intro hh <;> linarith
 
+/-- Plan §6.1 #3 — the literature form: with no other loss at the lowest level, the rule needs
+`ic 1 / rad 1 ≥ (1 - tol) / tol` (for `tol = 1/100`: `99`). The premise is `rad 0 ≠ 0` rather
+than `0 < rad 0`, and that is exactly what the proof consumes: `decay 0 = rad 0` makes
+`radBranch 0 = 1` and the two-level total yield is exactly `1` whatever the sign of `rad 0`. -/
+
+theorem kashaWithin_one_iff_ic_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (hic0 : ic 0 = 0)
+    (hr0 : rad 0 ≠ 0) (htol : 0 < tol) (h1 : 0 < decay rad ic 1) (hr : 0 < rad 1) :
+    KashaWithin rad ic tol 1 ↔ (1 - tol) / tol ≤ ic 1 / rad 1 := by
+  have hd0 : decay rad ic 0 = rad 0 := by rw [decay, hic0, add_zero]
+  have hrb0 : radBranch rad ic 0 = 1 := by
+    unfold radBranch
+    rw [hd0]
+    exact div_self hr0
+  have hcase : cascade rad ic 0 1 = icBranch rad ic 1 := by
+    unfold cascade
+    rw [show Finset.Icc (0 + 1) 1 = ({1} : Finset ℕ) by
+      ext j
+      simp only [Finset.mem_Icc, Finset.mem_singleton]
+      omega, Finset.prod_singleton]
+  have hupper : upperYield rad ic 1 = radBranch rad ic 1 := by
+    unfold upperYield
+    rw [Finset.Icc_self, Finset.sum_singleton]
+    exact emitYield_self rad ic 1
+  have hemit : emitYield rad ic 0 1 = radBranch rad ic 0 * icBranch rad ic 1 := by
+    unfold emitYield
+    rw [hcase]
+  have hsplit : fluoYield rad ic 1 = emitYield rad ic 0 1 + upperYield rad ic 1 := by
+    unfold fluoYield upperYield
+    rw [show Finset.range (1 + 1) = insert 0 (Finset.Icc 1 1) by
+      ext i
+      simp only [Finset.mem_range, Finset.mem_insert, Finset.mem_Icc]
+      omega, Finset.sum_insert (by simp)]
+  have hfluo : fluoYield rad ic 1 = 1 := by
+    rw [hsplit, hemit, hupper, hrb0, one_mul, add_comm]
+    exact radBranch_add_icBranch (ne_of_gt h1)
+  rw [KashaWithin, hupper, hfluo, mul_one]
+  unfold radBranch
+  rw [div_le_iff₀ h1, div_le_div_iff₀ htol hr]
+  unfold decay
+  constructor <;> intro hh <;> linarith
+
 end Kasha
 
 end PhotoLean
