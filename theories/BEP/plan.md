@@ -227,7 +227,7 @@ def EPDescriptor (lam : ℝ) : Prop := 0 < lam ∧ ∀ x : ℝ, bepDefect lam x 
 | 1 | `eact_at_zero (hlam : lam ≠ 0) : eact lam 0 = lam / 4` | `unfold`, `div_eq_iff`, `ring` |
 | 2 | `eact_at_lam (hlam : lam ≠ 0) : eact lam lam = 0` | `unfold`, `ring_nf` |
 | 3 | `eact_zero_lam (x : ℝ) : eact 0 x = 0` | `unfold`, `div_zero`, `zero_mul` |
-| 4 | `transfer_zero_lam (x : ℝ) : transfer 0 x = 0` | `unfold`, `div_zero` |
+| 4 | `transfer_zero_lam (x : ℝ) : transfer 0 x = 1 / 2` | `unfold transfer`, `div_zero`, `sub_zero` — **corrected 2026-09-20** (kernel counterexample by `prover_a`): the linear-response body gives `x/(2*0) = 0`, hence `1/2`, not `0`; the old `= 0` row belonged to the discarded TS-coordinate body |
 | 5 | `bepLine_at_zero : bepLine lam 0 = lam / 4` | `unfold`, `ring` |
 | 6 | `secSlope_zero_h : secSlope lam x 0 = 0` | `div_zero` |
 | 7 | `epZone_eq_degenerate_iff : epZone lam x = .degenerate ↔ lam = 0` | `unfold epZone`, `split_ifs` + `simp` |
@@ -368,8 +368,12 @@ def qReverseTransfer (lam x : ℚ) : ℚ := 1 / 2 + x / (2 * lam)
 def qSecSlope (lam x h : ℚ) : ℚ := (qEact lam x - qEact lam (x + h)) / h
 /-- Two-point observable BEP slope from data `(x₁,Ea₁)`, `(x₂,Ea₂)`. -/
 def qAlphaObs (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (ea₁ - ea₂) / (x₂ - x₁)
-/-- Two-point reorganization-energy solver (the model's λ from two data points). -/
-def qLamOfPair (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (x₁ ^ 2 - x₂ ^ 2) / (2 * (x₂ - x₁) - 4 * (ea₁ - ea₂))
+/-- Two-point reorganization-energy solver (the model's λ from two data points).
+    Numerator `x₂² - x₁²` and the premise `lam ≠ 0` are **required**: the literal form
+    `(x₁² - x₂²)/…` returns `-λ` (kernel counterexample, risk probe 2026-09-20), and `lam = 0`
+    is a genuine exception (totalised division makes `eact 0 x` constant `0`, so the barrier
+    equations stop implying the solver's linear relation). -/
+def qLamOfPair (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (x₂ ^ 2 - x₁ ^ 2) / (2 * (x₂ - x₁) - 4 * (ea₁ - ea₂))
 /-- Window conformance, in squared form so that it is decided without square roots. -/
 def qConformsWindow (lam tol w : ℚ) : Prop := 0 < lam ∧ 0 < tol ∧ w ^ 2 ≤ 4 * lam * tol
 inductive EPQVerdict where
@@ -383,8 +387,11 @@ Theorems (13): `qEact_cast`, `qBepDefect_cast`, `qTransfer_cast`, `qSecSlope_cas
 `qSecSlope_eq_qTransfer_mid (hlam : lam ≠ 0) (hh : h ≠ 0)`,
 `qAlphaObs_eq_qTransfer_mid` (**two-point data → structural coefficient**: if the data come from the
 model, the observed slope is the coefficient at the data midpoint),
-`qLamOfPair_reconstructs` (**two model-consistent data points determine λ uniquely**, with the
-nondegeneracy premise on the denominator),
+`qLamOfPair_reconstructs (hlam : lam ≠ 0) (hx : x₁ ≠ x₂) (hden : 2*(x₂ - x₁) - 4*(ea₁ - ea₂) ≠ 0)
+(h₁ : ea₁ = qEact lam x₁) (h₂ : ea₂ = qEact lam x₂) : qLamOfPair x₁ ea₁ x₂ ea₂ = lam`
+(**two model-consistent data points determine λ uniquely**; the `lam ≠ 0` premise is necessary —
+both this premise and the numerator sign were corrected by kernel counterexamples from the Sprint-0
+risk probe, §11),
 `epQVerdict_conforming_iff`, `epQVerdict_boundary_iff`, `epQVerdict_superLinear_iff`,
 `epQVerdict_subLinear_iff`, `qConformsWindow_iff_radius_sq`.
 
@@ -471,6 +478,7 @@ Sprint 5  adversarial audit (prover_b, probes/bep-audit-*.lean) + verifier batch
 | minimax lower bound (abs-triangle + `nlinarith` over three points) | pure-estimate proof, easy to get stuck in `linarith` | keep `bepBestLine_error` (attainment) + `bepLine_worst_case` (the tangent line's exact worst case) and state the lower bound for the three points `-w, 0, w` explicitly (`∃ x ∈ {-w,0,w}, w²/(8λ) ≤ …`) — same content, no `push_neg` gymnastics |
 | `if`-cascade classifier proofs (`split_ifs` nesting, 9 branches) | mechanical and error-prone; hammond's 7-branch version needed care | reduce the cascade to 7 branches by merging `atForwardLimit`/`atReverseLimit` into `boundary` if the iff lemmas resist; the *predicates* (6.1) carry the content either way |
 | `decide` on `ℚ` comparisons | needs the decidable `ℚ` order instances; `norm_num` may be needed instead | pattern is already proven in `PhotoLean/Hammond/RatModel.lean`; `api_researcher` confirms with a probe before B5a starts |
+| residual statement risk after the Sprint-0 probes | the probes found three false/ill-posed rows before delivery: `transfer_zero_lam`, the `qLamOfPair` numerator sign, and the missing `lam ≠ 0` premise of the two-point reconstruction | all three are corrected in this plan (§4.2 row 4, §8.1, §8.1 theorems); any further statement defect is handled the same way — fix the statement, record it here and in `API-NOTES.md`, never paper over it with a hypothesis that hides the flaw |
 | literature numbers unavailable / unverifiable | the instance layer must not fabricate data | instances I11 fall back to `model-constructed` families and the table's provenance column is filled with `not-accessed`; RESULTS then states plainly that no literature family was verified (the honest failure mode) |
 | `Marcus`/`Hammond` cross-module names drift | B4 imports both modules | names are already delivered and stable (frozen theories); `api_researcher` re-checks `Marcus.barrier`, `Marcus.InvertedRegion`, `Marcus.NormalRegion`, `Hammond.tsCoord`, `Hammond.ReactionRegion` in a probe |
 | unequal-curvature generalization attempted | it is the physically more faithful model | **out of scope** (§1.4); recorded as §14 next station |

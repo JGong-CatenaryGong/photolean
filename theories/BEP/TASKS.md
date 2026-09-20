@@ -178,6 +178,18 @@
 
 ## Notes and conflict log
 
+- **Statement corrections from the Sprint-0 probes (2026-09-20, three kernel counterexamples)**:
+  (a) plan §4.2 row 4 `transfer_zero_lam` — the linear-response body gives `transfer 0 x = 1/2`, not
+  `0` (found by `prover_a`; the old row belonged to the discarded TS-coordinate body); (b) the
+  two-point solver `qLamOfPair` had the numerator sign flipped — with denominator
+  `2*(x₂-x₁) - 4*(ea₁-ea₂)` the numerator must be `x₂² - x₁²`, not `x₁² - x₂²` (found by `prover_d`
+  via the literal form returning `-λ`); (c) the same solver's reconstruction theorem needs the
+  explicit premise `lam ≠ 0` (`λ = 0` with totalised division is a genuine counterexample). All three
+  statements were fixed in `theories/BEP/plan.md` (§4.2, §8.1, §11) **before** the affected
+  milestones were dispatched, and the corrections were pushed to `api_researcher` so the statement
+  authority carries the corrected signatures. Lesson (recorded for the experience bank): a
+  statement-first probe is worth exactly the counterexamples it produces — two of these three
+  statements would have failed *after* proof work had started.
 - **Layout decision (must be reported to the human)**: theory artifacts live under `theories/BEP/`
   as requested; the Lean sources live under `PhotoLean/BEP/` because the contract's `SOURCE_DIRS`
   (the acceptance gate's scan/build range) is global, so a source outside it would be invisible to
