@@ -103,18 +103,23 @@
 > 实验只掉约 2 个数量级）。实例结论只能写"该体系落在反转区，且**经典 Marcus 模型**在该 (lam,x,T,A) 上满足描述"，
 > **不得**写成对实验的断言。
 
-- [ ] 转移辅助 `normalRegion_of_zoneQ_normal` / `not_invertedRegion_of_zoneQ_normal` — Marcus/Instances.lean — prover_c — review — plan §8.2；commit f3f93f5
-- [ ] I1 反转区（纯数 `lam=1, x=3`）+ I2 正常区（`3/4`）判定链 — Marcus/Instances.lean — prover_c — review — plan §8.2；commit 4e14952 / f3f93f5
-- [ ] I3 文献无势垒点 (1.20, 1.23)：`barrier 1.20 1.23 = 0.0001875`（与文献 `ΔG‡ ≈ 0.0002 eV` 吻合）+ 反转区判定 — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [ ] I4 文献 MCC 反转区对 (1.20, 2.40) 与 (1.20, 2.00) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [ ] I5 文献 MCC 正常区 (1.20, 0.60)（含"不符合反转区"否定判定）— Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [ ] I6 光合反应中心深反转区 (0.25, 1.10) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [ ] I7 非物理参数判定（`lam ≤ 0` ⇒ 描述失效；`A<0 ∧ lam<0` ⇒ 描述成立但速率非正 ⇒ 不可采纳）— Marcus/Instances.lean — prover_c — review — plan §8.2；commit cb72b16
-- [ ] I8 文献参数的**描述算子实例化** + **速率比较**（`rate(x=2.40) < rate(x=1.23)` 等，`kBT` 作显式前提）— Marcus/Instances.lean — prover_c — review — plan §8.2；commit a83bfe7 / 8f8f041
+- [x] 转移辅助 `normalRegion_of_zoneQ_normal` / `not_invertedRegion_of_zoneQ_normal` — Marcus/Instances.lean — prover_c — done — plan §8.2；commit f3f93f5
+- [x] I1 反转区（纯数 `lam=1, x=3`）+ I2 正常区（`3/4`）判定链 — Marcus/Instances.lean — prover_c — done — plan §8.2；commit 4e14952 / f3f93f5
+- [x] I3 文献无势垒点 (1.20, 1.23)：`barrier 1.20 1.23 = 0.0001875`（与文献 `ΔG‡ ≈ 0.0002 eV` 吻合）+ 反转区判定 — Marcus/Instances.lean — prover_c — done — plan §8.3；commit 6df4cf9
+- [x] I4 文献 MCC 反转区对 (1.20, 2.40) 与 (1.20, 2.00) — Marcus/Instances.lean — prover_c — done — plan §8.3；commit 6df4cf9
+- [x] I5 文献 MCC 正常区 (1.20, 0.60)（含"不符合反转区"否定判定）— Marcus/Instances.lean — prover_c — done — plan §8.3；commit 6df4cf9
+- [x] I6 光合反应中心深反转区 (0.25, 1.10) — Marcus/Instances.lean — prover_c — done — plan §8.3；commit 6df4cf9
+- [x] I7 非物理参数判定（`lam ≤ 0` ⇒ 描述失效；`A<0 ∧ lam<0` ⇒ 描述成立但速率非正 ⇒ 不可采纳）— Marcus/Instances.lean — prover_c — done — plan §8.2；commit cb72b16
+- [x] I8 文献参数的**描述算子实例化** + **速率比较**（`rate(x=2.40) < rate(x=1.23)` 等，`kBT` 作显式前提）— Marcus/Instances.lean — prover_c — done — plan §8.2；commit a83bfe7 / 8f8f041
 
 ---
 
-## ⏳ M5b 的 lead 预验收证据（**不等于 verifier PASS**，故 8 行仍未打勾）
+## M5b 的 lead 预验收证据（已被 verifier 判决取代，保留作交叉核对）
+
+> **2026-09-20 更新**：M5b 已由**两路独立 verifier 判决 PASS**（见下），8 行已打勾。
+> 下表保留作"lead 快路径证据 vs verifier 独立证据"的交叉核对记录。
+
+## ⏳ M5b 的 lead 预验收证据（原始记录）
 
 2026-09-20，在 verifier 判决到达前，lead 用**快路径**独立跑了一遍 M5b 的验收清单，结论如下
 （证据可复跑；但按纪律，**verifier 未 PASS 之前这 8 行不得打勾**）：
@@ -143,7 +148,9 @@
 
 | M4c + M4b 追加 | `Compose.lean`(2 条) + `Reorg.lean` 的 `hgeom_of_nonoverlap` | **PASS / PASS** | 门 + 10 条 `axioms.sh`（含 regression）干净；`descriptor_holds_of_microscopic` 与骨架/plan **逐字一致**；`descriptor_holds_of_nonoverlap` 与 microscopic 的机械差异**仅为** `(hR, hgeom)` → `hRge` 一处替换（`hgeom`/`0<R` 均不在其前提中）；`e626884` 注释改动经**位置感知解析器**确认 16 条变更行全在注释内、token 流 292=292 一致；**最强证据**：把源文件逐字节复制到 `/tmp` 从零重建，olean md5 与项目一致 ⇒ 排除 stale olean；**对抗性**：`hgeom_of_nonoverlap` 边界 + 256 组有理扫描全部成立且前提不可去（`a1=a2=1,R=1` 反例）；`descriptor_holds_of_microscopic` 用 12 条前提逐条 `norm_num` 消掉得 λ=1/3 并导出**具体速率不等式**（非空转，证明项 12/12 前提 used）；nonoverlap 版证明项**真调用** `hgeom_of_nonoverlap`（11/11 前提 used） | **记账缺口（已修）**：两个拉伸语句原先未回填骨架 ⇒ 已补（骨架 43→45 条，保真度检查现覆盖 **45/45**）；`one_div_le_one_div_of_le` 未入 API-NOTES ⇒ 已转校准者 |
 
-**M2 发现 A 的关闭**：三处（`Barrier.lean` 头注释与 doc comment、`API-NOTES.md`）均已修正为
+| M5b + M5a 追加 | `Instances.lean`(31 条) + `RatModel.lean` 新增 2 条 | **PASS / PASS**（**两路独立 verifier** 同时判定） | 门 2/2 PASS（全树扫描 clean）；**批量公理 33/33**（32 条三公理 + 1 条仅 `propext`，0 error）+ 官方脚本抽查 3/3（打印名=请求名）；grep 花招面 0 命中；6 个 `feat(M5b)` 各含恰 1 文件；**判定性内核复核**：`#print` 证明项确认 `inst_I1_zoneQ` = `of_decide_eq_true`、`inst_I2_not_inverted` 真经正常区转移引理、`inst_I4_mcc_rate_drop` **项内 `Real.exp` 出现 0 次**（真实例化）；`kBT` 用 1 与 10 两赋值实例化皆过 ⇒ 全称性成立；非物理分支独立重算（速率 −1.284 → −2.718 严格递减）；**文案边界核查**：31 条无一条断言实测速率/降幅 | **发现（不阻断）**：① **合同纪律偏离**：M5b 的 31 条装在 6 个提交里（2/4/12/4/4/5），不满足 铁律 7"每 lemma 一 commit"（派发时允许"语义批次"，但与铁律冲突 ⇒ 记为已知偏离）；② `RatModel.lean` 头注释"2 定义与 2 定理"过期（现 4 条）→ 已修；③ `Instances.lean` 一处注释缺"经典模型"限定词 → 已修；④ **M5b 语句未进权威骨架** ⇒ 保真度检查（45/45）**不覆盖**这 33 条（已知覆盖缺口）；⑤ `one_div_le_one_div_of_le` 等已补入 API-NOTES |
+
+**M2 发现 A 的关闭****M2 发现 A 的关闭**：三处（`Barrier.lean` 头注释与 doc comment、`API-NOTES.md`）均已修正为
 "**证明未使用（unused）**"，并保留内核反例作为"典型误写"警示 ——
 `Barrier.lean` 见 `8ca59d7`（纯注释，机械证据：剥离注释后代码逐字节相同）；
 `API-NOTES.md` 见 `a0796fc`（新增"未使用 ≠ 可推出"的专项订正记录）。

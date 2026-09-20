@@ -2,7 +2,9 @@
 PhotoLean.Marcus.RatModel — M5a：ℚ 上的判定层（可分派的分类器）。
 
 **语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M5a 段（Sprint 0 已编译通过）。
-本文件的 2 个定义与 2 条定理的签名与它**逐字一致**。
+本文件的 2 个定义与 4 条定理中，**前 2 条定理**（`zoneQ_eq_zone` / `zoneQ_inverted_iff`）的签名与它**逐字一致**；
+后 2 条（`barrierQ_cast` / `barrierQ_zero_lam`）是**后续追加的数值桥**
+（补结构审计发现的"`barrierQ` 未被任何定理约束"缺口；权威骨架中暂无对应条目，属已知记账缺口）。
 
 **为什么要 ℚ 副本**：`ℝ` 上的序经 `Classical`，**不可计算**，因此"某实例属于哪个区"
 在 ℝ 上无法由内核算出。`ℚ` 上 `Rat` 的序与相等都可判定，于是判定层的证据链是：
