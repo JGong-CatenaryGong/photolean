@@ -18,8 +18,8 @@
 - Deliverable module prefix: `PhotoLean.Kasha`; sources under `PhotoLean/Kasha/`
   (`SOURCE_DIRS` is global and covers them — `theories/kasha/` is outside the strict scan range).
 - Status of this theory: **delivered and verified** — six modules, 150 declarations, every row on
-  this board ticked; four verifier runs for the mathematics (K1+probes, K2/K4/K5a, K3/K5b+whole tree,
-  and the documentation re-audits); the authority is frozen at
+  this board ticked; the verifier's runs are recorded below (three for the mathematics — K1+probes,
+  K2/K4/K5a, K3/K5b+whole tree — followed by the documentation re-audits); the authority is frozen at
   `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17` (150 declarations).
 - Literature rows: **in the skeleton** (I10, I11, I11-alt, I11-alt2, I11t, I15 — appended 2026-09-20,
   literals transcribed from `theories/kasha/LITERATURE.md` §R1.6, never guessed); sketched row I12 is
@@ -78,7 +78,8 @@
       mapped to §2/§3/§4 of `RESULTS.md`)
 - **Registered deviation (commit granularity)**: one commit per lemma holds literally for K1 (28
   `feat` commits), K2 (22), K3 (15) and K4 (20); K5a (29 declarations, 4 `feat` commits) and K5b (20
-  rows, 4 `feat` commits under the K5b area) batch their declarations into `feat(K5a|K5b)` commits.
+  rows, 3 `feat` commits touching `Instances.lean`, plus one authority-append commit touching no
+  source file) batch their declarations into `feat(K5a|K5b)` commits.
   Recorded here because plan §11 states the rule without qualification, and because the closing audit
   found the delivered tree contradicting the unqualified sentence.
 

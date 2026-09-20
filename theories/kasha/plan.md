@@ -177,8 +177,9 @@ makes the formalization non-trivial:
   instance layer, with provenance.
 * **No time-resolved kinetics.** The plan does not formalize the master equation's solution
   `p_n(t)`: the yields are the time-integrated quantities of the cascade. The exponential-race
-  derivation of the branching probabilities is a stretch item (K4c) *if* the installed mathlib
-  supports it, otherwise a declared premise.
+  derivation of the branching probabilities is a **declared premise**: probe K4b (§7.2) tested
+  whether the installed mathlib can prove it and is closed — the statement types, the bounded proof
+  is out of budget (the honesty table §12 row 2, §13 item 5).
 * **No temperature or solvent dependence** of the rate constants; they are parameters.
 * **No attempt to fit literature data inside Lean.** The instance layer decides arithmetic verdicts
   about *literature-derived numbers* (provenance in `theories/kasha/LITERATURE.md`); rows with no
@@ -313,8 +314,8 @@ specialization.
 | 17 | `upperYield_nonneg (h : RateData rad ic N) : 0 ≤ upperYield rad ic N` | 11 |
 | 18 | `upperYield_le_fluoYield (h : RateData rad ic N) : upperYield rad ic N ≤ fluoYield rad ic N` | 13, 11 |
 | 19 | `kashaRule_iff_upperYield_zero (rad ic N) : KashaRule rad ic N ↔ upperYield rad ic N = 0` | definitional |
-| 20 | `specFrac_sum (h : fluoYield rad ic N ≠ 0) : ∑ i ∈ Finset.range (N+1), specFrac rad ic i N = 1` | `Finset.sum_div`, `Finset.sum_range_succ` |
-| 21 | `kashaWithin_iff_specFrac (h : fluoYield rad ic N ≠ 0) : KashaWithin rad ic tol N ↔ 1 - specFrac rad ic 0 N ≤ tol` | 20, 13 |
+| 20 | `specFrac_sum (h : RateData rad ic N) (hF : fluoYield rad ic N ≠ 0) : ∑ i ∈ Finset.range (N+1), specFrac rad ic i N = 1` | `Finset.sum_div`, `Finset.sum_range_succ` |
+| 21 | `kashaWithin_iff_specFrac (h : RateData rad ic N) (hF : fluoYield rad ic N ≠ 0) : KashaWithin rad ic tol N ↔ 1 - specFrac rad ic 0 N ≤ tol` | 20, 13 |
 | 22 | `kashaZone_eq_pure_iff (h : RateData rad ic N) : kashaZone rad ic tol N = KashaZone.pure ↔ KashaRule rad ic N` | `split_ifs` |
 | 23 | `kashaZone_eq_withinTol_iff (h : RateData rad ic N) : kashaZone rad ic tol N = KashaZone.withinTol ↔ ¬ KashaRule rad ic N ∧ KashaWithin rad ic tol N` | `split_ifs` |
 | 24 | `kashaZone_eq_violating_iff (h : RateData rad ic N) (htol : 0 < tol) : kashaZone rad ic tol N = KashaZone.violating ↔ ¬ KashaWithin rad ic tol N` | `split_ifs` — **statement corrected 2026-09-20**, see the correction log in §3.1 |
@@ -334,7 +335,7 @@ declaration of `Basic.lean`, definitions included in §4.1.)
 | 2026-09-20 | K3 #9 `not_kashaWithin_one_of_ratio_lt` | it is the strict side of the same (false) equivalence, so it fails on the same witness | added `(h1 : 0 < decay rad ic 1)` in the same pass | same probe file |
 | 2026-09-20 | K5a `kashaWithinQ_iff_funnelRatioQ` | the ℚ twin of K3 #2, with the same defect found **independently** | added `(h1 : 0 < decayQ rad ic 1)` | kernel counterexample in `theories/kasha/probes/kasha-rat-probe.lean` (`probe_criterion_premises_insufficient`, witness `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2`), raised by prover_c |
 
-| 2026-09-20 | plan §5.1 #12, §5.2 #21, §7.2 #8/#9/#11/#12/#13/#14 | **plan-sketch ↔ authority reconciliation** (found by verifier run 2, finding 2): **eight** rows of the plan's sketches differ from the delivered signatures — **seven strengthened**, **one weakened by dropping an unneeded premise** (`hN : 0 < N` in K2 #12, true at `N = 0` too). The seven additions: `htol : 0 ≤ tol` (K2 #21), `hpos` (K4 #8), `h0 : 0 < decay rad ic 0` (K4 #9, #11), `hr0 : 0 < rad 0` (K4 #12, #13, #14 — genuinely needed for the `Real.log` step); six of the eight rows are K4 rows. None of the seven is a mathematical defect: the authority is the source of truth and was proved as delivered | the plan's tables are corrected in place to the delivered signatures, so plan and authority agree row by row; the `Compose.lean` header's claim of "nothing added" is replaced by a pointer to this entry | verifier run 2 report (batch K2/K4/K5a), reproduced in the board's acceptance record |
+| 2026-09-20 | plan §5.1 #12, §5.2 #21, §7.2 #8/#9/#11/#12/#13/#14 | **plan-sketch ↔ authority reconciliation** (found by verifier run 2, finding 2): **eight** rows of the plan's sketches differ from the delivered signatures — **seven strengthened**, **one weakened by dropping an unneeded premise** (`hN : 0 < N` in K2 #12, true at `N = 0` too). The seven additions: `htol : 0 ≤ tol` (K2 #21), `hpos` (K4 #8), `h0 : 0 < decay rad ic 0` (K4 #9, #11), `hr0 : 0 < rad 0` (K4 #12, #13, #14 — genuinely needed for the `Real.log` step); six of the eight rows are K4 rows. None of the seven is a mathematical defect: the authority is the source of truth and was proved as delivered | the plan's tables are corrected in place to the delivered signatures, and a **second pass** (found by verifier run 6) brought five more rows into literal agreement — §4.2 #20 `specFrac_sum` and #21 `kashaWithin_iff_specFrac` now carry the delivered `(h : RateData rad ic N)`, §6.2 #14 `vavilov_premise_necessary` carries its delivered fourth conjunct `¬ KashaRule rad ic N`, #17 `leak_le_of_radBranch_le` carries `(h : RateData rad ic N)` in place of the sketch's `hN : 0 < N`, and #18 `kashaWithin_of_uniform_branch` carries the delivered binder names `h`/`hθ`/`hsum` — so plan and authority agree row by row; the `Compose.lean` header's claim of "nothing added" is replaced by a pointer to this entry | verifier run 2 report (batch K2/K4/K5a), reproduced in the board's acceptance record |
 
 Correction-log lesson (recorded for the engine): **three of the five correction rows — i.e. three of
 the three distinct defects — are the same
@@ -411,11 +412,11 @@ positivity premises explicitly.
 | 11 | ~~`kashaWithin_one_witness`~~ — **not in the authority**: its content landed in K5b as row I1 (same constants); the sketch row is kept here as the plan's provenance and marked as carried by I1 | `norm_num`-style two-level computation (funnel ratio `= 100 ≥ 99`) |
 | 12 | ~~`kashaWithin_one_negative`~~ — **not in the authority**: its content landed in K5b as row I2 (same constants), and I3b carries the below-threshold variant | funnel ratio `= 10 < 99` |
 | 13 | **`perLevel_criterion_insufficient`** `: ∃ rad ic, RateData rad ic 2 ∧ (∀ i, 1 ≤ i → i ≤ 2 → rad i * decay rad ic (i-1) ≤ ic i * decay rad ic i) ∧ ¬ KashaWithin rad ic (1/2) 2` | witness `rad = fun n => 1`, `ic = fun n => 1` — **the levelwise "k_IC ≥ k_rad" criterion is false**; the general criterion is the aggregate one of K4 |
-| 14 | `vavilov_premise_necessary : ∃ rad ic N, RateData rad ic N ∧ rad (N+1) ≠ 0 ∧ VavilovAt rad ic N` | witness `rad = fun n => 1`, `ic = fun n => 0` — with no loss channel `fluoYield ≡ 1` and Vavilov holds trivially while Kasha fails |
+| 14 | `vavilov_premise_necessary : ∃ (rad ic : ℕ → ℝ) (N : ℕ), RateData rad ic N ∧ rad (N+1) ≠ 0 ∧ VavilovAt rad ic N ∧ ¬ KashaRule rad ic N` | witness `rad = fun n => 1`, `ic = fun n => 0` — with no loss channel `fluoYield ≡ 1` and Vavilov holds trivially while Kasha fails |
 | 15 | ~~`exact_rule_only_at_zero_rad`~~ — **dropped from the sketch**: it is a re-export of K2 #14 in the sharp layer's narrative and the authority does not carry it (no duplicate statements across modules) | K2 #14 is where the content lives |
 | 16 | `kashaWithin_one_sharp_boundary (h0 : 0 < tol) (h1 : tol < 1) : ∃ rad ic, funnelRatio rad ic = (1 - tol) / tol ∧ KashaWithin rad ic tol 1` | the boundary case of 2 is attained (equality ⇒ conformance) |
-| 17 | `upperYield_le_sum_radBranch` — K2 #22 re-export in the sharp layer's bound block? **no**: the plan keeps a bound of the *relative* leak instead: `leak_le_of_radBranch_le (h : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ) (hN : 0 < N) : upperYield rad ic N ≤ θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N` | 12 of K1 |
-| 18 | `kashaWithin_of_uniform_branch (h : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ) (hθ : θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N ≤ tol * fluoYield rad ic N) : KashaWithin rad ic tol N` | 17 |
+| 17 | `leak_le_of_radBranch_le (h : RateData rad ic N) (hθ : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ) : upperYield rad ic N ≤ θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N` | 12 of K1 |
+| 18 | `kashaWithin_of_uniform_branch (h : RateData rad ic N) (hθ : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ) (hsum : θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N ≤ tol * fluoYield rad ic N) : KashaWithin rad ic tol N` | 17 |
 
 ### 6.3 The documented finding of this milestone
 

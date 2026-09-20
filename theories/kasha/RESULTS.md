@@ -5,7 +5,10 @@
 > `proofs/ENGINE.md` §1.5). The human request had three parts — (①) turn Kasha's rule into a formal
 > description, (②) prove the description / find the exact conditions under which it holds, (③) plug
 > instances in and decide whether each one conforms — answered in §2, §3 and §4 below. Every number
-> in this file is a measured value from the delivered tree, never a plan target.
+> in this file is either a value measured from the delivered tree, or a value explicitly labelled as
+> *reported* (the verifier's own probe counts) or as arithmetic on the sources' printed numbers (the
+> instance ratios); no number is a plan target. 本文件中的每个数字，或为交付树实测值，或明确标注为*报告值*
+> （verifier 自建探针的计数）或*对文献印刷数字的算术*（实例比值）；没有任何数字是计划目标。
 >
 > 本文件是 Kasha 理论的唯一双语交付物：每节英文原文后紧跟中文对照（契约 `proofs/ENGINE.yml`、
 > 语言政策见 `proofs/ENGINE.md` §1.5）。人类需求分三部分 —— ①把 Kasha 规则转化为形式化描述、
@@ -27,8 +30,9 @@ the statement authority `theories/kasha/probes/kasha-statement-skeleton.lean` **
 word** (`signature differences: 0`, no declaration outside the authority). Delivery discipline:
 **99 commits touch `PhotoLean/Kasha/`** — 92 `feat(...)` + 7 `docs(...)`; one commit per lemma holds
 literally for K1–K4 (28/22/15/20 `feat` commits on the four modules), while K5a (29 declarations)
-and K5b (20 rows) are delivered in grouped `feat` commits (4 and 3), **registered as a deviation**
-on the board.
+and K5b (20 rows) are delivered in grouped `feat` commits — **file-scoped**: 4 touch
+`RatModel.lean`, 3 touch `Instances.lean` (one further `feat(K5b)` commit appends the statement
+authority and touches no source file) — **registered as a deviation** on the board.
 
 **The one-sentence result.** In a finite excited-state ladder whose levels decay with a radiative
 rate `rad n` and a nonradiative rate `ic n`, Kasha's rule ("the emission comes from the lowest
@@ -301,8 +305,11 @@ attributed to the wrong rounds) plus nine smaller doc issues (counts that the co
 itself invalidated, a header sentence in `Compose.lean` that still said "nothing added", a stale
 plan status header, a mis-numbered §13 item). Those are corrected in this revision too, and the
 counts stated here are the values measured **after** the last commit that touches `PhotoLean/`;
-the acceptance records for all four runs are on the board. No finding, in any run, ever invalidated
-a delivered theorem.
+the acceptance records of every verification run are on the board — including the further
+documentation-plane re-audits, each of which found fewer and smaller drifts (stale counts that the
+correcting commit itself invalidated, a half-corrected bilingual pair, cross-references to loci that
+had moved) until the plane matched the tree. No finding, in any run, ever invalidated a delivered
+theorem.
 
 **The process caught three false statements before delivery** (plan §3.1, the statement-correction
 log). All three were the *same* mistake in different clothes — a statement whose premises did not
@@ -333,7 +340,7 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 模块头权威引用、八处规划草图与交付签名不一致、以及末轮的 11 条文档数字问题），全部连同处置记入任务板 §Acceptance records。第三轮在**文档面**判 FAIL 的 11 条（陈旧计数、
 未带前提的展示式、缺失的看板记录等）已修正，第四轮复核确认 7 条已真正修复、并指出中文半篇的 4 处残留漂移
 （陈旧行数/提交数、无限定的"每定理一个提交"、第三轮算例数记到了错误轮次）与 9 条更小的文档问题，均已在本版修正；
-本文件中的计数是**最后一次触碰 `PhotoLean/` 的提交之后**实测的值。**四轮之中没有任何一条发现推翻已交付定理。**
+本文件中的计数是**最后一次触碰 `PhotoLean/` 的提交之后**实测的值。**至今没有任何一条发现推翻已交付定理。**
 **流程在交付前抓住三条假语句**（plan §3.1 订正日志），三者是同一错误的三副面孔：**前提没有携带证明所需除数的符号**
 （`tol` 的符号、`decay 1` 的符号），其中 K3 那条被 ℝ 与 ℚ 两侧**独立两次**抓到。每条订正都有内核反例文件；
 另有一条与内核无关的精确有理数交叉核验通路（193 组随机阶梯、825 组有效归约对、400 组 Marcus 参数）全部通过。
