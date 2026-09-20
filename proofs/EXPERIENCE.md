@@ -1666,3 +1666,40 @@
   parameter against the statement text; four further findings were board/coverage bookkeeping
   (no `Kernel`/`Relations` rows on the task board, the fidelity probes' glob does not cover the new
   modules, and the commit-granularity deviation) and all are now recorded on the Marcus board.
+
+## 2026-09-20 — D: final frozen-state acceptance (owner lead) — DONE
+
+- Frozen state `e916783` re-gated end to end: `lake build` OK, `check.sh --strict` → `verdict: PASS`
+  (three per-theory leaf planes 5/5), 30/30 declarations of `Kernel.lean` + `Relations.lean` at
+  `[propext, Classical.choice, Quot.sound]`, fidelity 51 / 191 / 102 with 0 differences, working tree
+  clean, 15 commits since the pre-task HEAD `10713d1`.
+- Tried and failed / worth remembering:
+  1. **A bare `lake build` on an unchanged tree is a cached no-op, so "zero warnings" from it is
+     vacuous evidence.** The final verifier caught this (the build log was 43 bytes) and rebuilt the
+     claim independently by re-elaborating all 23 modules from source with `lake env lean`
+     (23/23 rc=0, 0 warnings). Whenever "no warnings" is part of the acceptance evidence, force
+     re-elaboration (touch the files, or compile each module to a scratch olean) instead of reading
+     the tail of a cached build.
+  2. Three more false-FAIL traps in the batch axiom harness, beyond the ones recorded in the
+     previous entry: word-splitting a module/name file with `for x in $(...)` iterates over *words*
+     and silently swaps module and theorem name (30 bogus FAILs); an unanchored `grep "^theorem $n"`
+     matches `transfer_eq_tsCoord` against `transfer_eq_tsCoord_bridge` and runs the wrong module;
+     and `axioms.sh` writes its verdict on the second-to-last line. The working pattern is: build an
+     anchored module + fully-qualified-name list in a file, iterate with `while read -r m n`, and
+     judge only by `grep -q "verdict: PASS"`.
+  3. Documenting a *commit* in a board row is a claim about history: my own board row attributed the
+     new edge O3 to the second commit while it had actually shipped in the first — caught while
+     cross-checking the release notes, fixed in `bd9cd27`. Verifying a commit's membership is
+     `git show --stat <hash>`, nothing else.
+- Findings the read-only verifier raised in this round (all doc-level, all closed in `bd9cd27`):
+  a cross-reference in `Relations.lean`/`RELATIONS.md` pointed at a theorem that does not state the
+  fact being cited (fixed by citing the delivered witness `Hammond.exists_direction_reversal_of_neg`
+  instead); one Chinese rendering used a different term for "ledger rows" than the rest of the file;
+  the two pointer paragraphs in the hammond/BEP boards used `<Theory>` where the statement was only
+  true for each board's own theory; and the board's commit attribution noted above. Pattern: after a
+  theorem is named in prose, check that the *named* statement is the one that carries the claim —
+  and after a round of fixes, expect one round of "the fix is itself a claim" findings.
+- What held: the additivity property survived the whole task — from `10713d1` to HEAD the only change
+  inside `PhotoLean/{Marcus,Hammond,BEP}` is the F2 linter scoping, with comment-stripped code of
+  `Barrier.lean` byte-identical both before and after (2038 = 2038), and every re-gate of the three
+  fidelity probes returned 51 / 191 / 102 with 0 differences.
