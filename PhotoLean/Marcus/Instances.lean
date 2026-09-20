@@ -109,4 +109,139 @@ theorem inst_I2_not_inverted : ¬ InvertedRegion (1 : ℝ) (3 / 4) := by
   rw [hl, hx] at hinv
   exact not_invertedRegion_of_zoneQ_normal inst_I2_zoneQ hinv
 
+/-! ## I3 — 文献参数·无势垒点附近：MCC 系列 `lam = 1.20, x = 1.23`
+
+来源：`plan.md` §8.3 与 `proofs/LITERATURE.md` §实例参数候选表（核实状态 `已核实`）——
+Miller–Calcaterra–Closs 联苯–androstane–受体自由基负离子（流体溶液，间距 10 Å）：
+`lam = lam_s(0.75) + lam_v(0.45) = 1.20` eV，最优（近无势垒）驱动力 `x ≈ 1.23` eV，
+文献给出 `ΔG‡ ≈ 0.0002` eV。
+势垒值由 M1 的 `barrier` 定义**直接算出**：`(1.20 - 1.23)^2 / (4 · 1.20) = 0.0001875` eV
+（0.1875 meV，与文献的 0.2 meV 量级一致）。该数值是定理，不是注释里的声称。
+区域判定：`1.20 < 1.23`，形式判定为**反转区** —— 与文献「近无势垒」并不矛盾：
+势垒虽小但严格为正，反应仍在反转区一侧。 -/
+
+/-- I3 判定（内核计算）：文献最优点的势垒值 `barrier 1.20 1.23 = 0.0001875` eV。 -/
+theorem inst_I3_barrier_value : barrier (1.20 : ℝ) 1.23 = 0.0001875 := by norm_num [barrier]
+
+/-- I3 判定（内核计算）：ℚ 层把 `(1.20, 1.23)` 判为反转区。 -/
+theorem inst_I3_zoneQ : Rat.zoneQ ((120 : ℚ) / 100) ((123 : ℚ) / 100) = Zone.inverted := by
+  norm_num [Rat.zoneQ]
+
+/-- I3 判定结论：`lam = 1.20, x = 1.23` 落在反转区。 -/
+theorem inst_I3_inverted : InvertedRegion (1.20 : ℝ) 1.23 := by
+  have h : (((120 : ℚ) / 100 : ℚ) : ℝ) < (((123 : ℚ) / 100 : ℚ) : ℝ) :=
+    (Rat.zoneQ_inverted_iff _ _).mp inst_I3_zoneQ
+  have hl : (1.20 : ℝ) = (((120 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  have hx : (1.23 : ℝ) = (((123 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  unfold InvertedRegion
+  rw [hl, hx]
+  exact h
+
+/-! ## I4 — 文献参数·反转区：MCC 系列 `lam = 1.20`，`x = 2.40` 与 `x = 2.00`
+
+来源同上（`已核实`）：MCC 实验系列的两个放能性取值（2.40 为系列上界，2.00 为内插刻度值），
+二者都满足 `x > lam = 1.20` ⇒ **反转区**。这正是「马库斯反转区」的实验落点：
+驱动力超过重组能后速率随放能性增大而下降（速率下降本身是 Sprint 5 的条目，见文末）。 -/
+
+/-- I4 判定（内核计算）：ℚ 层把 `(1.20, 2.40)` 判为反转区。 -/
+theorem inst_I4_mcc_x240_zoneQ : Rat.zoneQ ((120 : ℚ) / 100) ((240 : ℚ) / 100) = Zone.inverted := by
+  norm_num [Rat.zoneQ]
+
+/-- I4 判定结论：`lam = 1.20, x = 2.40` 落在反转区。 -/
+theorem inst_I4_mcc_x240 : InvertedRegion (1.20 : ℝ) 2.40 := by
+  have h : (((120 : ℚ) / 100 : ℚ) : ℝ) < (((240 : ℚ) / 100 : ℚ) : ℝ) :=
+    (Rat.zoneQ_inverted_iff _ _).mp inst_I4_mcc_x240_zoneQ
+  have hl : (1.20 : ℝ) = (((120 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  have hx : (2.40 : ℝ) = (((240 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  unfold InvertedRegion
+  rw [hl, hx]
+  exact h
+
+/-- I4 判定（内核计算）：ℚ 层把 `(1.20, 2.00)` 判为反转区。 -/
+theorem inst_I4_mcc_x200_zoneQ : Rat.zoneQ ((120 : ℚ) / 100) ((200 : ℚ) / 100) = Zone.inverted := by
+  norm_num [Rat.zoneQ]
+
+/-- I4 判定结论：`lam = 1.20, x = 2.00` 落在反转区。 -/
+theorem inst_I4_mcc_x200 : InvertedRegion (1.20 : ℝ) 2.00 := by
+  have h : (((120 : ℚ) / 100 : ℚ) : ℝ) < (((200 : ℚ) / 100 : ℚ) : ℝ) :=
+    (Rat.zoneQ_inverted_iff _ _).mp inst_I4_mcc_x200_zoneQ
+  have hl : (1.20 : ℝ) = (((120 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  have hx : (2.00 : ℝ) = (((200 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  unfold InvertedRegion
+  rw [hl, hx]
+  exact h
+
+/-! ## I5 — 文献参数·正常区：MCC 系列 `lam = 1.20, x = 0.60`
+
+来源同上（`已核实`）：左支单调升段取值 `x = 0.60 < lam = 1.20` ⇒ **正常区**。
+判定结论给出两件事：`NormalRegion 1.20 0.60` 成立，且 `InvertedRegion 1.20 0.60` **不**成立
+（后者即「该实例不符合马库斯反转区的描述」这一人类需求中的否定判定）。 -/
+
+/-- I5 判定（内核计算）：ℚ 层把 `(1.20, 0.60)` 判为正常区。 -/
+theorem inst_I5_mcc_x060_zoneQ : Rat.zoneQ ((120 : ℚ) / 100) ((60 : ℚ) / 100) = Zone.normal := by
+  norm_num [Rat.zoneQ]
+
+/-- I5 判定结论：`lam = 1.20, x = 0.60` 落在正常区。 -/
+theorem inst_I5_mcc_x060 : NormalRegion (1.20 : ℝ) 0.60 := by
+  have h : (((60 : ℚ) / 100 : ℚ) : ℝ) < (((120 : ℚ) / 100 : ℚ) : ℝ) :=
+    normalRegion_of_zoneQ_normal inst_I5_mcc_x060_zoneQ
+  have hl : (1.20 : ℝ) = (((120 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  have hx : (0.60 : ℝ) = (((60 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  unfold NormalRegion
+  rw [hl, hx]
+  exact h
+
+/-- I5 判定结论（否定形态）：`lam = 1.20, x = 0.60` **不符合**反转区描述的前提。 -/
+theorem inst_I5_mcc_not_inverted : ¬ InvertedRegion (1.20 : ℝ) 0.60 := by
+  intro hinv
+  have hl : (1.20 : ℝ) = (((120 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  have hx : (0.60 : ℝ) = (((60 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  unfold InvertedRegion at hinv
+  rw [hl, hx] at hinv
+  exact not_invertedRegion_of_zoneQ_normal inst_I5_mcc_x060_zoneQ hinv
+
+/-! ## I6 — 文献参数·深反转区：光合反应中心 `lam = 0.25, x = 1.10`
+
+来源：`plan.md` §8.3 与 `proofs/LITERATURE.md` §实例参数候选表（`已核实`）——
+光合反应中心 BPh⁻ → BChl₂⁺ 回传（hole–electron recombination）：
+`lam = 0.25` eV，`x = 1.10` eV（Marcus Nobel Lecture 1992 p.88 正文）。
+`x = 1.10 ≫ 0.25 = lam` ⇒ **深反转区**：这是本实例集里 `x / lam` 最大的一条
+（`1.10 / 0.25 = 4.4`），即马库斯反转区最极端的实验落点。 -/
+
+/-- I6 判定（内核计算）：ℚ 层把 `(0.25, 1.10)` 判为反转区。 -/
+theorem inst_I6_rc_x110_zoneQ : Rat.zoneQ ((25 : ℚ) / 100) ((110 : ℚ) / 100) = Zone.inverted := by
+  norm_num [Rat.zoneQ]
+
+/-- I6 判定结论：`lam = 0.25, x = 1.10` 落在（深）反转区。 -/
+theorem inst_I6_rc_x110 : InvertedRegion (0.25 : ℝ) 1.10 := by
+  have h : (((25 : ℚ) / 100 : ℚ) : ℝ) < (((110 : ℚ) / 100 : ℚ) : ℝ) :=
+    (Rat.zoneQ_inverted_iff _ _).mp inst_I6_rc_x110_zoneQ
+  have hl : (0.25 : ℝ) = (((25 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  have hx : (1.10 : ℝ) = (((110 : ℚ) / 100 : ℚ) : ℝ) := by norm_num
+  unfold InvertedRegion
+  rw [hl, hx]
+  exact h
+
 end PhotoLean.Marcus
+
+/-! ## 待后续里程碑：速率比较与描述算子条目（**不在本批**）
+
+本批只交付**区域判定**（人类需求里「判断该实例是否符合反转区描述」的前半）。
+以下条目的语句已由 `proofs/probes/marcus-statement-skeleton.lean` 与 `plan.md` §7–§8 定稿，
+但证明依赖**尚未交付**的模块（`Marcus/Rate.lean` 的速率定理、`Marcus/Sharp.lean`
+的锐利刻画 / 描述算子结论），故本批**不写入**；待 lead 在 Sprint 5 派发后追加：
+
+| 条目 | 形状 | 依赖的定理 |
+|---|---|---|
+| 速率峰（`plan.md` §8.2 的 I3 / 本批 I3 的速率部分） | `x = lam` 处速率取最大（`A = kB·T = 1`） | `rate_peak_at_lam` |
+| 反转区速率递减（本批 I4 / I6 的速率部分） | `rate … 2.40 < rate … 2.00`（同 `A, kB, T`） | `inverted_rate_decreases` |
+| 正常区速率递增（本批 I5 的速率部分） | `rate … 0.60 < rate … 1.20`（同 `A, kB, T`） | `normal_rate_increases` |
+| 非物理反例 `lam ≤ 0`（`plan.md` §8.2 的 I6） | 描述算子不成立 ⇒ 判「不符合」 | `descriptor_fails_of_nonpos_lam` |
+| 非物理分支 `A < 0 ∧ lam < 0`（`plan.md` §8.2 的 I7） | 描述算子成立但速率非正 ⇒ 判「不可采纳」 | `inverted_descriptor_holds_of_neg` + 速率正性 |
+
+这些条目一旦交付，将把本文件的「区域判定」升级为「速率单调性 / 描述算子判定」。
+
+**编号说明（写给 verifier）**：本文件的 `inst_I3_*`–`inst_I6_*` 采用 **lead 在 M5b 第一批
+派发里的编号**（I3 = 文献无势垒点附近 `(1.20, 1.23)`；I4 = MCC 反转区对；I5 = MCC 正常区；
+I6 = 光合反应中心深反转区）。`plan.md` §8.2 表格的旧编号把 I3 留给「`x = lam` 速率峰」，
+把 I6/I7 留给非物理分支 —— 那几条依赖上述未交付模块，正好对应本注释的表格。 -/
