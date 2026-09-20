@@ -89,3 +89,10 @@ theorem tsCoord_lt_zero_iff_inverted {lam x : ℝ} (hlam : 0 < lam) :
   rw [div_lt_iff₀ (by linarith : (0 : ℝ) < 2 * lam)]
   constructor <;> intro h <;> linarith
 
+/-- A negative Brønsted coefficient is exactly the Marcus inverted region, seen from the
+barrier data. -/
+theorem lefflerSecant_neg_iff_inverted {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h : x₁ ≠ x₂) :
+    lefflerSecant lam x₁ x₂ < 0 ↔ Marcus.InvertedRegion lam ((x₁ + x₂) / 2) := by
+  rw [lefflerSecant_eq_midpoint hlam h]
+  exact tsCoord_lt_zero_iff_inverted hlam
+
