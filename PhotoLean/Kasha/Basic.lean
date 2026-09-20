@@ -68,6 +68,7 @@ set_option autoImplicit false
 namespace PhotoLean
 
 namespace Kasha
+
 /-! ## Definitions (plan §4.1) -/
 
 /-- Total decay rate of level `n`: the sum of its radiative and its nonradiative channel. -/
@@ -112,6 +113,7 @@ noncomputable def funnelRatio (rad ic : ℕ → ℝ) : ℝ := rad 0 * ic 1 / (ra
 /-- The N-level funnel ratio: the quantity the general threshold tests (plan §6.1 #5, §7.2 #9). -/
 noncomputable def ladderRatio (rad ic : ℕ → ℝ) (N : ℕ) : ℝ :=
   rad 0 * cascade rad ic 0 N / (upperYield rad ic N * decay rad ic 0)
+
 /-- The exact Kasha rule: no emission from above the lowest excited state (plan §4.1). -/
 def KashaRule (rad ic : ℕ → ℝ) (N : ℕ) : Prop := upperYield rad ic N = 0
 
@@ -130,6 +132,7 @@ def VavilovUpTo (rad ic : ℕ → ℝ) (N : ℕ) : Prop := ∀ i, i < N → Vavi
 /-- The Kasha description is realized by this ladder data: some excitation level satisfies the exact
 rule (non-vacuity, plan §4.1). -/
 def KashaDescriptor (rad ic : ℕ → ℝ) : Prop := ∃ N, KashaRule rad ic N
+
 /-- The standing physical premise bundle: positive total decay rates up to the excitation level,
 nonnegative radiative and nonradiative rates (plan §2, §4.1). -/
 structure RateData (rad ic : ℕ → ℝ) (N : ℕ) : Prop where
@@ -149,26 +152,31 @@ noncomputable def kashaZone (rad ic : ℕ → ℝ) (tol : ℝ) (N : ℕ) : Kasha
   if upperYield rad ic N = 0 then KashaZone.pure
   else if upperYield rad ic N ≤ tol * fluoYield rad ic N then KashaZone.withinTol
   else KashaZone.violating
+
 /-! ## Theorems (plan §4.2) -/
 
 /-- Plan §4.2 #1. The total decay rate is the sum of the two channels (definitional). -/
 theorem decay_eq_rad_add_ic (rad ic : ℕ → ℝ) (n : ℕ) : decay rad ic n = rad n + ic n := rfl
+
 /-- Plan §4.2 #2. The two branch probabilities of a level with nonzero total decay sum to `1`. -/
 theorem radBranch_add_icBranch {rad ic : ℕ → ℝ} {n : ℕ} (h : decay rad ic n ≠ 0) :
     radBranch rad ic n + icBranch rad ic n = 1 := by
   unfold radBranch icBranch
   rw [← add_div]
   exact div_self h
+
 /-- Plan §4.2 #3. The radiative branch is nonnegative under `RateData`. -/
 theorem radBranch_nonneg {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
     0 ≤ radBranch rad ic n := by
   unfold radBranch
   exact div_nonneg (h.rad_nonneg n) (le_of_lt (h.decay_pos n hn))
+
 /-- Plan §4.2 #4. The nonradiative branch is nonnegative under `RateData`. -/
 theorem icBranch_nonneg {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
     0 ≤ icBranch rad ic n := by
   unfold icBranch
   exact div_nonneg (h.ic_nonneg n) (le_of_lt (h.decay_pos n hn))
+
 /-- Plan §4.2 #5. The radiative branch is at most `1`: it is a probability. -/
 theorem radBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
     radBranch rad ic n ≤ 1 := by
@@ -176,6 +184,7 @@ theorem radBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic
     radBranch_add_icBranch (ne_of_gt (h.decay_pos n hn))
   have hic : 0 ≤ icBranch rad ic n := icBranch_nonneg h hn
   linarith
+
 /-- Plan §4.2 #6. The nonradiative branch is at most `1`: it is a probability. -/
 theorem icBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
     icBranch rad ic n ≤ 1 := by
@@ -183,19 +192,24 @@ theorem icBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic 
     radBranch_add_icBranch (ne_of_gt (h.decay_pos n hn))
   have hrad : 0 ≤ radBranch rad ic n := radBranch_nonneg h hn
   linarith
+
 /-- Plan §4.2 #7. The cascade probability from a level to itself is `1` (the empty product). -/
 theorem cascade_self (rad ic : ℕ → ℝ) (i : ℕ) : cascade rad ic i i = 1 := by
   unfold cascade
   rw [Finset.Icc_eq_empty (by omega)]
   simp
+
 set_option linter.unusedVariables false in
+
 /-- Plan §4.2 #8. The cascade probability is nonnegative under `RateData` (the premise `i ≤ N` is
 part of the signature; the product's own membership hypothesis supplies `j ≤ N`). -/
 theorem cascade_nonneg {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N) (h1 : i ≤ N) :
     0 ≤ cascade rad ic i N := by
   unfold cascade
   exact Finset.prod_nonneg fun j hj => icBranch_nonneg h (Finset.mem_Icc.mp hj).2
+
 set_option linter.unusedVariables false in
+
 /-- Plan §4.2 #9. The cascade probability is at most `1`: it is a probability (the premise `i ≤ N`
 is part of the signature; the product's own membership hypothesis supplies `j ≤ N`). -/
 theorem cascade_le_one {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N) (h1 : i ≤ N) :
@@ -203,23 +217,28 @@ theorem cascade_le_one {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N
   unfold cascade
   exact Finset.prod_le_one (fun j hj => icBranch_nonneg h (Finset.mem_Icc.mp hj).2)
     (fun j hj => icBranch_le_one h (Finset.mem_Icc.mp hj).2)
+
 /-- Plan §4.2 #10. The excitation-at-`i` yield of level `i` is its radiative branch (nothing has
 been lost on the way). -/
 theorem emitYield_self (rad ic : ℕ → ℝ) (i : ℕ) : emitYield rad ic i i = radBranch rad ic i := by
   unfold emitYield
   rw [cascade_self, mul_one]
+
 /-- Plan §4.2 #11. The level-resolved yield is nonnegative under `RateData`. -/
 theorem emitYield_nonneg {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N) (h1 : i ≤ N) :
     0 ≤ emitYield rad ic i N := by
   unfold emitYield
   exact mul_nonneg (radBranch_nonneg h h1) (cascade_nonneg h h1)
+
 /-- Plan §4.2 #12. The level-resolved yield is at most the level's radiative branch (the cascade
 factor is at most `1`). -/
 theorem emitYield_le_radBranch {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N) (h1 : i ≤ N) :
     emitYield rad ic i N ≤ radBranch rad ic i := by
   unfold emitYield
   exact mul_le_of_le_one_right (radBranch_nonneg h h1) (cascade_le_one h h1)
+
 set_option linter.unusedVariables false in
+
 /-- Plan §4.2 #13. The total yield splits into the lowest state's emission and the leak (the plan's
 `range (N+1) = {0} ∪ Icc 1 N` index identity; the `RateData` premise is part of the description
 layer's signature and is not consumed by this index identity). -/
@@ -231,25 +250,30 @@ theorem fluoYield_eq_low_add_upper {rad ic : ℕ → ℝ} {N : ℕ} (h : RateDat
     omega
   unfold fluoYield upperYield
   rw [hrange, Finset.sum_insert (by simp)]
+
 /-- Plan §4.2 #14. At excitation level `0` the total yield is the lowest state's branch. -/
 theorem fluoYield_zero (rad ic : ℕ → ℝ) : fluoYield rad ic 0 = radBranch rad ic 0 := by
   unfold fluoYield
   rw [Finset.sum_range_one, emitYield_self]
+
 /-- Plan §4.2 #15. There is no leak at excitation level `0`. -/
 theorem upperYield_zero (rad ic : ℕ → ℝ) : upperYield rad ic 0 = 0 := by
   unfold upperYield
   simp
+
 /-- Plan §4.2 #16. The total yield is nonnegative under `RateData`. -/
 theorem fluoYield_nonneg {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
     0 ≤ fluoYield rad ic N := by
   unfold fluoYield
   exact Finset.sum_nonneg fun i hi =>
     emitYield_nonneg h (Nat.le_of_lt_succ (Finset.mem_range.mp hi))
+
 /-- Plan §4.2 #17. The leak is nonnegative under `RateData`. -/
 theorem upperYield_nonneg {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
     0 ≤ upperYield rad ic N := by
   unfold upperYield
   exact Finset.sum_nonneg fun i hi => emitYield_nonneg h (Finset.mem_Icc.mp hi).2
+
 /-- Plan §4.2 #18. The leak is at most the total yield (the lowest state's emission is
 nonnegative). -/
 theorem upperYield_le_fluoYield {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
@@ -257,10 +281,13 @@ theorem upperYield_le_fluoYield {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData r
   have hsplit := fluoYield_eq_low_add_upper h
   have hlow : 0 ≤ emitYield rad ic 0 N := emitYield_nonneg h (Nat.zero_le N)
   linarith
+
 /-- Plan §4.2 #19. The exact rule is, by definition, the vanishing of the leak. -/
 theorem kashaRule_iff_upperYield_zero (rad ic : ℕ → ℝ) (N : ℕ) :
     KashaRule rad ic N ↔ upperYield rad ic N = 0 := Iff.rfl
+
 set_option linter.unusedVariables false in
+
 /-- Plan §4.2 #20. The normalized spectrum sums to `1` whenever the total yield does not vanish
 (the `RateData` premise is decorative here: the identity only needs the nonzero denominator). -/
 theorem specFrac_sum {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
@@ -268,6 +295,7 @@ theorem specFrac_sum {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
     ∑ i ∈ Finset.range (N + 1), specFrac rad ic i N = 1 := by
   unfold specFrac
   rw [← Finset.sum_div, ← fluoYield, div_self hF]
+
 /-- Plan §4.2 #21. The tolerance form is the statement that the lowest state carries all but `tol`
 of the spectrum; dividing by the (positive, under `RateData`) total yield turns it into the
 normalized form. -/
@@ -283,7 +311,9 @@ theorem kashaWithin_iff_specFrac {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h
     rw [← div_self hF, ← sub_div]
   rw [hkey]
   exact (div_le_iff₀ hFpos).symm
+
 set_option linter.unusedVariables false in
+
 /-- Plan §4.2 #22. Classifier characterization, `pure` branch: the first guard of the cascade is
 exactly the exact rule (the `RateData` premise is decorative here — the characterization needs no
 positivity). -/
@@ -297,7 +327,9 @@ theorem kashaZone_eq_pure_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : 
   · intro hr
     unfold kashaZone
     exact if_pos hr
+
 set_option linter.unusedVariables false in
+
 /-- Plan §4.2 #23. Classifier characterization, `withinTol` branch: the leak is nonzero and inside
 the tolerance (the `RateData` premise is decorative here — the characterization needs no
 positivity). -/
@@ -310,6 +342,7 @@ theorem kashaZone_eq_withinTol_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} 
       | exact iff_of_true rfl ⟨h1, h2⟩
       | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨hK, -⟩; exact hK h1)
       | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨-, hw⟩; exact h2 hw)
+
 /-- Plan §4.2 #24. Classifier characterization, `violating` branch: the leak is nonzero and lies
 outside the tolerance. **Corrected 2026-09-20** (plan §3.1): as first handed over the row carried
 no premise on `tol` and was FALSE — the classifier tests the vanishing leak first, so
@@ -333,7 +366,9 @@ theorem kashaZone_eq_violating_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} 
       exact hw' (by rw [h0]; exact mul_nonneg (le_of_lt htol) (fluoYield_nonneg h))
     unfold kashaZone
     rw [if_neg hne, if_neg hw']
+
 set_option linter.unusedVariables false in
+
 /-- Plan §4.2 #25. If every level above the lowest is nonradiative, the leak vanishes: the exact
 rule holds (the idealization behind Kasha's rule; the `RateData` premise is part of the
 description layer's signature — the proof consumes `hzero` only). -/
