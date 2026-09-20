@@ -197,6 +197,33 @@ Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected 
 | `field_simp` | **等式**（+ 显式非零前提） | **不等式**（`simp made no progress`） | `div_lt_div_iff₀` 交叉相乘 → `nlinarith` |
 | `push_cast` | 把 cast 逐运算推进 | **不自带收尾**（留 `X = X`） | 补 `ring`（`rw` 链则相反，见 F-4） |
 
+### Sabatier group (2026-09-21) — all seven items closed in the same round
+
+- [x] (a) `max` on ℝ — all 15 names of the dispatch exist (`max_idem` is the *instance*
+      `Std.IdempotentOp max`: use `max_idem.idempotent a`, or `max_self a`); the four goal shapes
+      (`max a b ≤ c`, `c ≤ max a b`, `max a b = …`, `max a b = a ↔ b ≤ a`) have kernel-checked
+      recipes. See `## Sabatier theory (2026-09-21)` §2.
+- [x] (b) `StrictMonoOn` / `StrictAntiOn` / `MonotoneOn` / `AntitoneOn` — definitions and the
+      `intro`-terminating toolkit verified; `strictMonoOn_const` and `strictMonoOn_iff_forall_lt`
+      do **not** exist; the house pattern is plain `∀`-statements (0 `Set`-predicates under
+      `PhotoLean/`). See §3.
+- [x] (c) `abs` — 7 of the 8 names exist, `abs_le_iff` does **not**; the four routes for
+      `|x - y| ≤ t → x ≤ y + t` are kernel-checked. See §4.
+- [x] (d) `Real.exp` / `Real.log` — all names exist; `Real.exp_le_exp_iff` / `Real.exp_lt_exp_iff`
+      do **not** (on ℝ, `Real.exp_le_exp` *is* the `iff`); the dimensionless→energy recipe
+      (`Real.exp_le_exp` → `div_le_div_iff_of_pos_right` → `neg_le_neg_iff`) is kernel-checked.
+      See §5.
+- [x] (e) `Real.sqrt` — all names exist (including `Real.sqrt_pos_of_pos`) with the exact
+      hypotheses recorded; the `Real.sqrt_le_sqrt_iff` (`0 ≤ y`, right argument) vs
+      `Real.sqrt_lt_sqrt_iff` (`0 ≤ x`, left argument) asymmetry is the trap. See §6.
+- [x] (f) ℚ → ℝ cast — the `Rat.cast_*` family plus `Rat.cast_def` and **`Rat.cast_max`** (there is
+      no usable `map_max`); the `..._cast` transfer shapes of `PhotoLean/Hammond/RatModel.lean` and
+      `PhotoLean/Kasha/RatModel.lean` are reproduced and kernel-checked on a miniature volcano
+      model. See §7.
+- [x] (g) `if` / `ite` — `if_pos`, `if_neg`, `ite_eq_iff`, `dif_pos`, `apply_ite` (and their twins)
+      all exist; the 5–7 branch `split_ifs with h1 … h_n` shape and its negated-hypothesis naming
+      convention are recorded. See §8.
+
 ---
 
 ## 校准记录
@@ -2327,3 +2354,602 @@ three rewrites the goal stays `upperYieldQ … ≤ tol * fluoYieldQ … ↔ ↑(
 | §4.2 #13 | "`range (N+1)` = `{0} ∪ Icc 1 N`" | the shortest verified route is `Finset.sum_range_eq_add_Ico` + `Nat.Ico_succ_right` (`Ico`-based); the `range`-equality itself is `Nat.range_succ_eq_Icc_zero` / `Finset.range_eq_Ico`, not `Finset.Ico_eq_range` (absent) |
 | §5.1 #1 | "`Finset.Icc_succ_right`, `Finset.prod_insert`" | `Finset.Icc_succ_right` does not exist; the verified route is `Finset.prod_Icc_succ_top` + `ring` |
 | §6.1 #8/§6.2 #17 | "`Finset.prod_le_one` with 3" | the *one-argument* `prod_le_one'` is unusable on ℝ (§4.2); the two-hypothesis `prod_le_one` is the working form |
+
+---
+
+## Sabatier theory (2026-09-21) — api_researcher — 4 probes, all `exit 0` / 0 error / 0 warning; the ℚ→ℝ cast transfer, the exp-monotonicity recipe and the max-form minimization are kernel-verified end to end
+
+> Body in English (`AGENTS.md` language policy: `proofs/API-NOTES.md` is an English artifact; no
+> mirror copy). Identifiers, `#check` output, errors and warnings are quoted verbatim.
+>
+> **Authority state.** Measured at repository `HEAD = 61e26d9` ("docs(S0): theories/Sabatier
+> scaffolding …"). `theories/Sabatier/plan.md` was still the Sprint-0 scaffold at calibration time
+> (milestones S1–S5 only, no statement rows), so this round calibrates the **API surface named in
+> the dispatch** — `max`, half-line monotonicity, `abs`, `Real.exp`/`Real.log`, `Real.sqrt`, the
+> ℚ→ℝ cast layer and the `if`/`ite` classifier layer — and, for every item, records a *compiling*
+> usage form rather than a name. Nothing under `PhotoLean/` was written or modified by this role
+> (read-only there); the only files touched are this section and the four probes below.
+>
+> **Contract note for the lead (checklist item, not an API fact).** The Sabatier probe directory is
+> `theories/Sabatier/probes/` (`ENGINE.yml` declares `PROBES` for the canonical theory and
+> `<LEAF>_<theory>` for others; `Sabatier` is not yet listed in `THEORIES`, and
+> `lakefile.toml`'s `defaultTargets` has no `PhotoLean.Sabatier.*` entry yet — per `ENGINE.md` §1.1
+> both must be added when the theory's Lean modules land, otherwise the gate's build pass silently
+> skips them).
+
+### 1. Deliverables and compile evidence
+
+| Probe | Topics (dispatch letters) | Run (repo root) | Result |
+|---|---|---|---|
+| `theories/Sabatier/probes/sabatier-api-max-abs.lean` | (a) `max` on ℝ, (c) `abs` | `proofs/scripts/lake env lean theories/Sabatier/probes/sabatier-api-max-abs.lean` | **exit 0, 0 error, 0 warning**, 50 output lines |
+| `theories/Sabatier/probes/sabatier-api-monotone.lean` | (b) `StrictMonoOn`/`StrictAntiOn`/`MonotoneOn`/`AntitoneOn` + the house pattern | same command, filename swapped | **exit 0, 0 error, 0 warning**, 94 output lines |
+| `theories/Sabatier/probes/sabatier-api-explog-sqrt.lean` | (d) `Real.exp`/`Real.log`, (e) `Real.sqrt` | as above | **exit 0, 0 error, 0 warning**, 42 output lines |
+| `theories/Sabatier/probes/sabatier-api-cast-ite.lean` | (f) ℚ→ℝ cast, (g) `if`/`ite` classifier | as above | **exit 0, 0 error, 0 warning**, 47 output lines |
+
+Each probe is a `#check` log plus kernel-checked `example`/`theorem` bodies. The `NOT FOUND` names
+are **not** `#check`ed in the delivered probes (so that they stay at 0 error); they were measured in
+a scratch probe and their verbatim error lines are quoted in §9. Every name that appears in the
+probes' `#check` blocks is confirmed present; no name in this section is a guess.
+
+Two probes import delivered PhotoLean modules (`PhotoLean.Marcus.Basic`, `PhotoLean.Hammond.Basic`)
+to kernel-verify the house-pattern bridges of §3 on the *real* definitions rather than on toys.
+
+### 2. (a) `max` on ℝ — confirmed signatures (verbatim `#check @`, wraps joined)
+
+```
+@le_max_left  : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a ≤ a ⊔ b
+@le_max_right : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), b ≤ a ⊔ b
+@max_le       : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ≤ c → b ≤ c → a ⊔ b ≤ c
+@max_le_iff   : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ⊔ b ≤ c ↔ a ≤ c ∧ b ≤ c
+@le_max_iff   : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ≤ b ⊔ c ↔ a ≤ b ∨ a ≤ c
+@lt_max_iff   : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a < b ⊔ c ↔ a < b ∨ a < c
+@max_lt_iff   : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ⊔ b < c ↔ a < c ∧ b < c
+@max_eq_left  : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, b ≤ a → a ⊔ b = a
+@max_eq_right : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ≤ b → a ⊔ b = b
+@max_eq_left_iff  : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ⊔ b = a ↔ b ≤ a
+@max_eq_right_iff : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ⊔ b = b ↔ a ≤ b
+@max_comm     : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a ⊔ b = b ⊔ a
+@max_assoc    : ∀ {α : Type u_1} [inst : LinearOrder α] (a b c : α), a ⊔ b ⊔ c = a ⊔ (b ⊔ c)
+@max_left_comm: ∀ {α : Type u_1} [inst : LinearOrder α] (a b c : α), a ⊔ (b ⊔ c) = b ⊔ (a ⊔ c)
+@max_self     : ∀ {α : Type u_1} [inst : LinearOrder α] (a : α), a ⊔ a = a
+@max_idem     : ∀ {α : Type u_1} [inst : LinearOrder α], Std.IdempotentOp max
+@max_eq_iff   : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ⊔ b = c ↔ a = c ∧ b ≤ a ∨ b = c ∧ a ≤ b
+@max_le_max   : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c d : α}, a ≤ c → b ≤ d → a ⊔ b ≤ c ⊔ d
+@max_le_max_left  : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α} (c : α), a ≤ b → c ⊔ a ≤ c ⊔ b
+@max_le_max_right : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α} (c : α), a ≤ b → a ⊔ c ≤ b ⊔ c
+@min_le_max   : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ⊓ b ≤ a ⊔ b
+@max_cases    : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a ⊔ b = a ∧ b ≤ a ∨ a ⊔ b = b ∧ a < b
+@max_choice   : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a ⊔ b = a ∨ a ⊔ b = b
+@max_def      : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a ⊔ b = if a ≤ b then b else a
+@le_max_of_le_left  : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ≤ b → a ≤ b ⊔ c
+@le_max_of_le_right : ∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ≤ c → a ≤ b ⊔ c
+```
+
+All **fifteen** names of the dispatch's (a) list exist (the block above adds eleven more that
+the recipes need), with two recorded readings:
+
+* **`#check` prints `⊔`/`⊓`, not `max`/`min`** — for a `LinearOrder`, `max` *is* `⊔` and `min` *is*
+  `⊓`, so `a ⊔ b` in every signature above is `max a b` at the use site. (Consequence: a lemma
+  whose statement is written with `max` still unifies, but a *search* for `max`-named lemmas finds
+  the `sup`-named ones too.)
+* **`max_idem` is an instance, not an equation** (name drift, measured): it is defined at
+  `Mathlib/Order/MinMax.lean:157` as `instance max_idem : Std.IdempotentOp (α := α) max`, so
+  `#check @max_idem` prints `∀ {α} [LinearOrder α], Std.IdempotentOp max` and the pointwise
+  equation must be *projected*: `max_idem.idempotent a`. Writing `max_idem a` gives
+  `error: function expected at max_idem … term has type Std.IdempotentOp max`. The pointwise lemma
+  `max_self` is the simpler route; both are kernel-checked in the probe.
+
+**Canonical tactic recipes (all kernel-checked in `sabatier-api-max-abs.lean`).**
+
+| Goal shape | Recipe that compiled |
+|---|---|
+| `max a b ≤ c` | `exact max_le ha hb`, or `(max_le_iff.mp h).1/.2` to *consume* one |
+| `c ≤ max a b` | `le_max_iff.mpr (Or.inl h)` / `le_max_of_le_right h`; projections `le_max_left a b`, `le_max_right a b` |
+| `max a b = a` | `exact max_eq_left h` with `h : b ≤ a`; `rw [max_eq_left h]` |
+| `max a b = b` | `exact max_eq_right h` with `h : a ≤ b` |
+| `max a b = a ↔ b ≤ a` | `exact max_eq_left_iff` (or `simp only [max_eq_left_iff]`) — **this is the answer to the dispatch's last sub-question** |
+| `max a b = c` | `exact max_eq_iff` for the full characterization; else the case split `rcases le_total a b with h \| h; · exact Or.inr (max_eq_right h); · exact Or.inl (max_eq_left h)`, or the packaged `max_choice a b` / `max_cases a b` / `max_def a b` + `split_ifs` |
+| consume `max a b = c` | `rw [← h]` then `le_max_left`/`le_max_right` — **the rewrite is backwards** (see §10.1) |
+
+### 3. (b) monotonicity on a half-line
+
+**(i) The house pattern is plain `∀`, not `Set`-predicates — measured, not asserted.** `grep -rn
+'StrictMonoOn\|MonotoneOn\|StrictAntiOn\|AntitoneOn\|Set.Iic\|Set.Ici' PhotoLean/` returns **0
+occurrences**. What the delivered sources do instead:
+
+| File:line | Declaration | Shape |
+|---|---|---|
+| `PhotoLean/Marcus/Basic.lean:71` | `InvertedDescriptor A lam kB T` | `∀ x₁ x₂ : ℝ, lam < x₁ → x₁ < x₂ → rate … x₂ < rate … x₁` |
+| `PhotoLean/Marcus/Basic.lean:78` | `NormalDescriptor A lam kB T` | `∀ x₁ x₂ : ℝ, 0 ≤ x₁ → x₁ < x₂ → x₂ ≤ lam → rate … x₁ < rate … x₂` |
+| `PhotoLean/Marcus/Basic.lean:60/65` | `InvertedRegion` / `NormalRegion` | `def … : Prop := lam < x` / `x < lam` (region membership as a plain `Prop`) |
+| `PhotoLean/Marcus/Barrier.lean:106/127/143` | `barrier_mono_of_pos` / `barrier_antitone_of_pos` / `barrier_antitone_of_neg` | `{lam} (hlam : 0 < lam) {x₁ x₂} (h₁ : lam ≤ x₁) (h₂ : x₁ < x₂) : barrier lam x₁ < barrier lam x₂` |
+| `PhotoLean/Hammond/Basic.lean:66` | `HammondDescriptor lam` | `∀ x₁ x₂ : ℝ, x₁ < x₂ → tsCoord lam x₂ < tsCoord lam x₁` |
+| `PhotoLean/Hammond/Criterion.lean:27/34` | `tsCoord_antitone` / `hammond_descriptor_holds` | `unfold tsCoord; rw [div_lt_div_iff_of_pos_right …]; linarith`, then `intro x₁ x₂ h; exact tsCoord_antitone hlam h` |
+| `PhotoLean/Hammond/Sharp.lean:32/42/51` | `exists_direction_reversal_of_neg` / `…_of_eq` / `hammond_lam_pos_of_descriptor` | explicit two-point counter-witnesses, consumed per branch of `lt_trichotomy lam 0` |
+| `PhotoLean/Marcus/Sharp.lean:188–247` | `sharp_lam_pos_of_lt` / `…_of_eq` / `sharp_lam_pos` | the same triangle: `barrier` monotonicity ⇒ `exp` monotonicity ⇒ contradiction, with `lt_trichotomy lam 0` |
+
+**Verdict for the Sabatier layer:** write the descriptor/region statements in the house `∀`-form
+(pair + explicit region hypotheses + explicit physical premises) unless the statement authority says
+otherwise; keep region membership as a `Prop`-valued `def`. The `Set`-predicate layer is fully
+interderivable with it, and the probes kernel-verify the bridges on the *delivered* definitions, so
+a prover may switch to `StrictMonoOn` mid-proof without changing the statement:
+
+```
+Marcus.NormalDescriptor A lam kB T   ↔ StrictMonoOn (fun x => rate A lam kB T x) (Set.Icc 0 lam)
+Marcus.InvertedDescriptor A lam kB T ↔ StrictAntiOn (fun x => rate A lam kB T x) (Set.Ioi lam)
+Hammond.HammondDescriptor lam        ↔ StrictAntiOn (fun x => Hammond.tsCoord lam x) Set.univ
+```
+
+**Trap (statement fact, measured):** the second row uses **`Set.Ioi`**, not `Set.Ici`.
+`InvertedDescriptor` demands the *strict* side condition `lam < x₁`, membership in `Set.Ici lam` only
+gives `lam ≤ x₁`, and the two do not match: the proof fails with
+`application type mismatch … has type lam ≤ x : Prop but is expected to have type lam < x : Prop`.
+The corresponding `↔` with `Set.Ici` is simply false at `x₁ = lam`.
+
+**(ii) The four definitions (verbatim `#print`, wraps joined).**
+
+```
+def StrictMonoOn  … := fun f s => ∀ ⦃a⦄, a ∈ s → ∀ ⦃b⦄, b ∈ s → a < b → f a < f b
+def StrictAntiOn  … := fun f s => ∀ ⦃a⦄, a ∈ s → ∀ ⦃b⦄, b ∈ s → a < b → f b < f a
+def MonotoneOn    … := fun f s => ∀ ⦃a⦄, a ∈ s → ∀ ⦃b⦄, b ∈ s → a ≤ b → f a ≤ f b
+def AntitoneOn    … := fun f s => ∀ ⦃a⦄, a ∈ s → ∀ ⦃b⦄, b ∈ s → a ≤ b → f b ≤ f a
+```
+
+Because the elements are **strict implicit** (`⦃a⦄`) and the membership proofs are explicit, a bare
+`intro x hx y hy hxy` in a `StrictMonoOn` goal introduces exactly `x, hx, y, hy, hxy`, and
+`hf hx hy hxy` is the whole *use* site.
+
+**(iii) The lemmas that make an `intro`-style proof terminate (all `#check`ed).**
+
+```
+@monotoneOn_iff_forall_lt : MonotoneOn f s ↔ ∀ ⦃a⦄, a ∈ s → ∀ ⦃b⦄, b ∈ s → a < b → f a ≤ f b
+@antitoneOn_iff_forall_lt : AntitoneOn f s ↔ ∀ ⦃a⦄, a ∈ s → ∀ ⦃b⦄, b ∈ s → a < b → f b ≤ f a
+@StrictMonoOn.monotoneOn : StrictMonoOn f s → MonotoneOn f s
+@StrictAntiOn.antitoneOn : StrictAntiOn f s → AntitoneOn f s
+@StrictMonoOn.le_iff_le : StrictMonoOn f s → a ∈ s → b ∈ s → (f a ≤ f b ↔ a ≤ b)
+@StrictMonoOn.lt_iff_lt : StrictMonoOn f s → a ∈ s → b ∈ s → (f a < f b ↔ a < b)
+@StrictMonoOn.eq_iff_eq : StrictMonoOn f s → a ∈ s → b ∈ s → (f a = f b ↔ a = b)
+@StrictMonoOn.injOn    : StrictMonoOn f s → Set.InjOn f s
+@Set.strictMonoOn_iff_strictMono : StrictMonoOn f s ↔ StrictMono fun a : s => f a
+@strictMonoOn_univ : StrictMonoOn f Set.univ ↔ StrictMono f
+@strictMonoOn_id   : ∀ {s : Set α}, StrictMonoOn id s
+@Set.strictMonoOn_singleton : ∀ (f : α → β) {a}, StrictMonoOn f {a}
+@strictMonoOn_insert_iff : StrictMonoOn f (insert a s) ↔ (∀ b ∈ s, b < a → f b < f a) ∧ (∀ b ∈ s, a < b → f a < f b) ∧ StrictMonoOn f s
+@Set.monotoneOn_iff_monotone : MonotoneOn f s ↔ Monotone fun a : s => f a
+@monotoneOn_id : ∀ {s : Set α}, MonotoneOn id s
+@monotoneOn_const : ∀ {c : β} {s : Set α}, MonotoneOn (fun _ : α => c) s
+@antitoneOn_const : ∀ {c : β} {s : Set α}, AntitoneOn (fun _ : α => c) s
+@Set.monotoneOn_singleton : ∀ (f : α → β) {a}, MonotoneOn f {a}
+@strictMono_restrict : StrictMono (s.restrict f) ↔ StrictMonoOn f s
+@StrictMonoOn.restrict : StrictMonoOn f s → StrictMono (s.restrict f)
+@MonotoneOn.mono  : MonotoneOn f s  → s₂ ⊆ s → MonotoneOn f s₂      @AntitoneOn.mono  : the twin
+@StrictMonoOn.mono: StrictMonoOn f s → s₂ ⊆ s → StrictMonoOn f s₂   @StrictAntiOn.mono: the twin
+@MonotoneOn.monotone : MonotoneOn f s → Monotone (f ∘ Subtype.val)  @StrictMonoOn.strictMono : the strict twin
+@StrictMonoOn.comp : StrictMonoOn g t → StrictMonoOn f s → Set.MapsTo f s t → StrictMonoOn (g ∘ f) s
+@StrictAntiOn.comp : StrictAntiOn g t → StrictAntiOn f s → Set.MapsTo f s t → StrictMonoOn (g ∘ f) s
+@StrictMonoOn.comp_strictAntiOn : StrictMonoOn g t → StrictAntiOn f s → Set.MapsTo f s t → StrictAntiOn (g ∘ f) s
+@StrictAntiOn.comp_strictMonoOn : StrictAntiOn g t → StrictMonoOn f s → Set.MapsTo f s t → StrictAntiOn (g ∘ f) s
+@StrictMonoOn.Iic_union_Ici : StrictMonoOn f (Set.Iic a) → StrictMonoOn f (Set.Ici a) → StrictMono f
+@StrictMonoOn.union : StrictMonoOn f s → StrictMonoOn f t → IsGreatest s c → IsLeast t c → StrictMonoOn f (s ∪ t)
+@Set.mem_Iic : x ∈ Set.Iic b ↔ x ≤ b        @Set.mem_Ici : x ∈ Set.Ici a ↔ a ≤ x
+@Set.mem_Iio : x ∈ Set.Iio b ↔ x < b        @Set.mem_Ioi : x ∈ Set.Ioi a ↔ a < x
+@Set.mem_Icc : x ∈ Set.Icc a b ↔ a ≤ x ∧ x ≤ b
+@Set.mapsTo   → @Set.MapsTo : (α → β) → Set α → Set β → Prop
+```
+
+* **`strictMonoOn_iff_…`**: the dispatch asked for it — the name that exists is
+  `Set.strictMonoOn_iff_strictMono : StrictMonoOn f s ↔ StrictMono fun a : s => f a` (it lives in
+  *namespace `Set`* in `Mathlib/Data/Set/Basic.lean:1480`, which is why a bare
+  `strictMonoOn_iff_strictMono` is `unknown identifier`). `strictMonoOn_iff_forall_lt` does **not**
+  exist (§9) and is not needed: `StrictMonoOn` is already `∀`-shaped (see the `#print` output).
+  The `MonotoneOn`/`AntitoneOn` analogues are `monotoneOn_iff_forall_lt`,
+  `antitoneOn_iff_forall_lt` (root namespace) and `Set.monotoneOn_iff_monotone`.
+* **`strictMonoOn_const` does not exist** and must not be invented — a constant function is *not*
+  strictly monotone on a nontrivial set. The existing names are `monotoneOn_const` /
+  `antitoneOn_const` (both hypothesis-free), verified in the probe.
+* **`MonotoneOn.mono` does exist** (and so do the other three `.mono` lemmas): they live in
+  `Mathlib/Data/Set/Monotone.lean:60–70` and are declared as `_root_.MonotoneOn.mono`, i.e. they
+  attach to the *root* name. A first grep that looked only for `(theorem|lemma) MonotoneOn.mono`
+  missed them — the `_root_.` prefix is part of the declaration line, not of the name.
+* **Membership needs no rewrite**: `x ∈ Set.Iic b` and `x ≤ b` are definitionally equal, so
+  `exact hx` works in both directions; `Set.mem_Iic.mp/.mpr` are the named forms when a `rw`/`simp`
+  step wants a lemma.
+
+**(iv) Measured trap in the `intro`-style route.** After `intro`, the goal still contains the
+beta-redex `(fun x => 2 * x) x`, and `linarith` treats it as an *opaque atom* — it fails with
+`linarith failed to find a contradiction … a✝ : (fun x => 2 * x) x ≥ (fun x => 2 * x) y ⊢ False`.
+Run `dsimp only` (or `show`) first; the probe's recipe is `intro x _ y _ hxy; dsimp only; linarith`.
+
+### 4. (c) `abs` — confirmed signatures
+
+```
+@abs_le : ∀ {α} [LinearOrderedAddCommGroup α] {a b : α}, |a| ≤ b ↔ -b ≤ a ∧ a ≤ b
+@abs_lt : ∀ {α} [AddGroup α] [LinearOrder α] [AddLeftMono α] [AddRightMono α] {a b : α}, |a| < b ↔ -b < a ∧ a < b
+@abs_le' : ∀ {α} [Lattice α] [AddGroup α] {a b : α}, |a| ≤ b ↔ a ≤ b ∧ -a ≤ b      -- the `to_additive` primitive of `abs_le`
+@abs_sub_comm : ∀ {α} [Lattice α] [AddGroup α] (a b : α), |a - b| = |b - a|
+@abs_of_nonneg : ∀ {α} [Lattice α] [AddGroup α] [AddLeftMono α] {a : α}, 0 ≤ a → |a| = a
+@abs_of_nonpos : ∀ {α} [Lattice α] [AddGroup α] [AddLeftMono α] {a : α}, a ≤ 0 → |a| = -a
+@abs_of_pos : 0 < a → |a| = a          @abs_of_neg : a < 0 → |a| = -a
+@neg_le_of_abs_le : ∀ {α} [LinearOrderedAddCommGroup α] {a b : α}, |a| ≤ b → -b ≤ a
+@le_of_abs_le     : ∀ {α} [LinearOrderedAddCommGroup α] {a b : α}, |a| ≤ b → a ≤ b
+@abs_sub_le_iff : ∀ {α} [LinearOrderedAddCommGroup α] {a b c : α}, |a - b| ≤ c ↔ a - b ≤ c ∧ b - a ≤ c
+@abs_sub_le : ∀ {α} [LinearOrderedAddCommGroup α] (a b c : α), |a - c| ≤ |a - b| + |b - c|
+@abs_nonneg : ∀ {α} [Lattice α] [AddGroup α] [AddLeftMono α] [AddRightMono α] (a : α), 0 ≤ |a|
+@abs_nonpos_iff : |a| ≤ 0 ↔ a = 0      @abs_pos : 0 < |a| ↔ a ≠ 0
+@abs_eq_max_neg : |a| = a ⊔ -a         -- `abs` *is* a `max`, useful when a volcano bound is written with `max`
+```
+
+**Seven of the dispatch's eight names exist; `abs_le_iff` does not** (§9) — the two usable forms
+are `abs_le` (`-b ≤ a ∧ a ≤ b`) and the
+primitive `abs_le'` (`a ≤ b ∧ -a ≤ b`, generated by `to_additive` from `mabs_le'`). They differ only
+in the order of the conjunction and in which side carries the negation.
+
+**The recipe the dispatch asked for** — `|x - y| ≤ t → x ≤ y + t` with `t x y : ℝ`. Four
+kernel-checked routes, shortest first:
+
+```lean
+example {x y t : ℝ} (h : |x - y| ≤ t) : x ≤ y + t :=        -- one step, no tactic
+  sub_le_iff_le_add'.mp (le_of_abs_le h)
+
+example {x y t : ℝ} (h : |x - y| ≤ t) : x ≤ y + t := by     -- the house style
+  have h' : x - y ≤ t := le_of_abs_le h
+  linarith
+
+example {x y t : ℝ} (h : |x - y| ≤ t) : x ≤ y + t := by linarith [le_of_abs_le h]
+
+example {x y t : ℝ} (h : |x - y| ≤ t) : x ≤ y + t := by     -- via the `abs_sub` specialisation
+  have h' : x - y ≤ t := (abs_sub_le_iff.mp h).1
+  linarith
+```
+
+Symmetric bound `y ≤ x + t`: `linarith [(abs_sub_le_iff.mp h).2]`. To mirror the argument order use
+`rwa [abs_sub_comm] at h`. To get the two-sided window in one step:
+`rw [abs_sub_le_iff] at h` gives `x - y ≤ t ∧ y - x ≤ t`.
+
+### 5. (d) `Real.exp` / `Real.log`
+
+```
+Real.exp_pos : ∀ (x : ℝ), 0 < Real.exp x          Real.exp_ne_zero : ∀ (x : ℝ), Real.exp x ≠ 0
+Real.exp_nonneg : ∀ (x : ℝ), 0 ≤ Real.exp x       Real.exp_zero  : Real.exp 0 = 1
+@Real.exp_le_exp : ∀ {x y : ℝ}, Real.exp x ≤ Real.exp y ↔ x ≤ y      -- **already the `iff`**
+@Real.exp_lt_exp : ∀ {x y : ℝ}, Real.exp x < Real.exp y ↔ x < y      -- **already the `iff`**
+Real.exp_monotone   : Monotone Real.exp
+Real.exp_strictMono : StrictMono Real.exp
+Real.exp_injective  : Function.Injective Real.exp
+@Real.exp_le_one_iff : Real.exp x ≤ 1 ↔ x ≤ 0    @Real.exp_lt_one_iff : Real.exp x < 1 ↔ x < 0
+@Real.one_lt_exp_iff : 1 < Real.exp x ↔ 0 < x
+Real.exp_add : Real.exp (x + y) = Real.exp x * Real.exp y
+Real.exp_sub : Real.exp (x - y) = Real.exp x / Real.exp y     Real.exp_neg : Real.exp (-x) = (Real.exp x)⁻¹
+Real.log_exp : ∀ (x : ℝ), Real.log (Real.exp x) = x           @Real.exp_log : 0 < x → Real.exp (Real.log x) = x
+@Real.log_le_log : 0 < x → x ≤ y → Real.log x ≤ Real.log y
+@Real.log_lt_log : 0 < x → x < y → Real.log x < Real.log y
+@Real.log_le_log_iff : 0 < x → 0 < y → (Real.log x ≤ Real.log y ↔ x ≤ y)
+@Real.log_lt_log_iff : 0 < x → 0 < y → (Real.log x < Real.log y ↔ x < y)
+@Real.log_pos : 1 < x → 0 < Real.log x            @Real.log_nonneg : 1 ≤ x → 0 ≤ Real.log x
+@Real.log_nonpos : 0 ≤ x → x ≤ 1 → Real.log x ≤ 0
+@Real.log_le_sub_one_of_pos : 0 < x → Real.log x ≤ x - 1
+@Real.log_le_iff_le_exp : 0 < x → (Real.log x ≤ y ↔ x ≤ Real.exp y)      -- `.mpr` goes exp-ward
+@Real.le_log_iff_exp_le : 0 < y → (x ≤ Real.log y ↔ Real.exp x ≤ y)      -- `.mpr` goes log-ward
+Real.log_injOn_pos : Set.InjOn Real.log (Set.Ioi 0)
+```
+
+**`Real.exp_le_exp_iff` / `Real.exp_lt_exp_iff` do not exist on ℝ** (§9) — on ℝ the names
+`Real.exp_le_exp` / `Real.exp_lt_exp` *are* the `iff`s. (`EReal.exp_le_exp_iff` exists for `EReal`
+and is a different statement; do not import it into an ℝ proof.)
+
+#### The key recipe: dimensionless comparison → energy comparison (kernel-verified)
+
+Goal: from `Real.exp (-(a) / (kB * T)) ≤ Real.exp (-(b) / (kB * T))` with `0 < kB`, `0 < T`, get
+`b ≤ a`. Three cancelling steps: drop `exp` via `Real.exp_le_exp`, cancel the **positive**
+denominator via `div_le_div_iff_of_pos_right`, flip the negations via `neg_le_neg_iff`:
+
+```lean
+theorem exp_neg_div_le_iff_of_pos {a b k : ℝ} (hk : 0 < k) :
+    Real.exp (-a / k) ≤ Real.exp (-b / k) ↔ b ≤ a := by
+  rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hk, neg_le_neg_iff]
+
+-- the physical hypothesis shape (0 < kB, 0 < T) reduces to it by `mul_pos`:
+theorem exp_neg_div_le_iff {a b kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) :
+    Real.exp (-a / (kB * T)) ≤ Real.exp (-b / (kB * T)) ↔ b ≤ a :=
+  exp_neg_div_le_iff_of_pos (mul_pos hkB hT)
+```
+
+Both are **kernel-checked** in `sabatier-api-explog-sqrt.lean`, together with the two one-directional
+halves (`exp_neg_div_mono` for `b ≤ a ⇒ …`, `le_of_exp_neg_div_le` for the necessity side) and the
+`linarith` variant that survives when the two sides are not syntactically `-(·)/k`. The house
+alternative when `kB * T` has already been combined into a hypothesis `hkT : 0 < kB * T` is the same
+three rewrites with `hkT`:
+
+```lean
+example {a b kB T : ℝ} (hkT : 0 < kB * T)
+    (h : Real.exp (-a / (kB * T)) ≤ Real.exp (-b / (kB * T))) : b ≤ a := by
+  rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff] at h
+  exact h
+```
+
+**Why not `div_le_div_iff_of_pos_right` alone?** Because a bare `div_le_div_iff_of_pos_right` cannot
+remove the `(−)`; and `neg_le_neg_iff` (`-a ≤ -b ↔ b ≤ a`) is the *only* step that reverses the
+order — `linarith` after the two rewrites also works and is the fallback when the shapes drift.
+
+#### The `rate`-shaped version (the cross-theory row)
+
+`PhotoLean.Marcus.rate A lam kB T x = A * Real.exp (-(barrier lam x) / (kB * T))`. The delivered
+`PhotoLean.Marcus.Rate.rate_gt_of_barrier_lt` covers `barrier <` ⟹ `rate >`. The volcano needs the
+**reverse** reading; the probe proves both directions (new, kernel-checked):
+
+```lean
+theorem barrier_le_of_rate_le {A lam kB T x₁ x₂ : ℝ} (hA : 0 < A) (hkB : 0 < kB) (hT : 0 < T)
+    (h : Marcus.rate A lam kB T x₁ ≤ Marcus.rate A lam kB T x₂) : Marcus.barrier lam x₂ ≤ Marcus.barrier lam x₁ := by
+  have hkT : 0 < kB * T := mul_pos hkB hT
+  unfold Marcus.rate at h
+  rw [mul_le_mul_left hA, Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff] at h
+  exact h
+-- strict twin: same with `lt`, `mul_lt_mul_left`, `Real.exp_lt_exp`, `neg_lt_neg_iff`
+```
+
+Note the argument order of the conclusion: the rate inequality `rate x₁ ≤ rate x₂` yields
+`barrier x₂ ≤ barrier x₁` — the rate is **antitone** in the barrier, so the inequalities flip.
+
+#### The `log` counterpart
+
+```lean
+theorem log_threshold {c A b k : ℝ} (hA : 0 < A) (hc : 0 < c) :
+    c ≤ A * Real.exp (-b / k) ↔ Real.log (c / A) ≤ -b / k := by
+  rw [Real.log_le_iff_le_exp (div_pos hc hA), mul_comm A, ← div_le_iff₀ hA]
+theorem log_threshold_energy {c A k b : ℝ} (hA : 0 < A) (hk : 0 < k) (hc : 0 < c) :
+    c ≤ A * Real.exp (-b / k) ↔ Real.log (c / A) * k ≤ -b := by
+  rw [← le_div_iff₀ hk, mul_comm A, ← div_le_iff₀ hA, Real.log_le_iff_le_exp (div_pos hc hA)]
+```
+
+Direction rule (re-confirmed): `Real.log_le_iff_le_exp`'s `.mpr` goes **exp-ward** (`x ≤ Real.exp y`),
+`Real.le_log_iff_exp_le`'s `.mpr` goes **log-ward** (`Real.exp x ≤ y`). The division lemmas needed:
+`div_le_iff₀`, `le_div_iff₀`, `div_pos`.
+
+### 6. (e) `Real.sqrt` — exact hypotheses in v4.17.0
+
+```
+@Real.sq_sqrt : ∀ {x : ℝ}, 0 ≤ x → √x ^ 2 = x
+Real.sqrt_sq_eq_abs : ∀ (x : ℝ), √(x ^ 2) = |x|
+@Real.sqrt_mul_self : ∀ {x : ℝ}, 0 ≤ x → √(x * x) = x
+@Real.sqrt_mul : ∀ {x : ℝ}, 0 ≤ x → ∀ (y : ℝ), √(x * y) = √x * √y
+@Real.sqrt_div : ∀ {x : ℝ}, 0 ≤ x → ∀ (y : ℝ), √(x / y) = √x / √y
+@Real.sqrt_pos : ∀ {x : ℝ}, 0 < √x ↔ 0 < x
+@Real.sqrt_pos_of_pos : ∀ {x : ℝ}, 0 < x → 0 < √x          -- **exists** (the dispatch asked)
+Real.sqrt_nonneg : ∀ (x : ℝ), 0 ≤ √x
+@Real.sqrt_lt_sqrt : ∀ {x y : ℝ}, 0 ≤ x → x < y → √x < √y
+@Real.sqrt_lt_sqrt_iff : ∀ {x y : ℝ}, 0 ≤ x → (√x < √y ↔ x < y)
+@Real.sqrt_le_sqrt : ∀ {x y : ℝ}, x ≤ y → √x ≤ √y
+@Real.sqrt_le_sqrt_iff : ∀ {x y : ℝ}, 0 ≤ y → (√x ≤ √y ↔ x ≤ y)
+@Real.sqrt_inj : ∀ {x y : ℝ}, 0 ≤ x → 0 ≤ y → (√x = √y ↔ x = y)
+@Real.sqrt_eq_zero_of_nonpos : ∀ {x : ℝ}, x ≤ 0 → √x = 0
+```
+
+**Hypothesis table (the trap the dispatch anticipated — the four order lemmas are *not* symmetric):**
+
+| Name | hypothesis | on which argument |
+|---|---|---|
+| `Real.sqrt_le_sqrt` | `x ≤ y` | — (hypothesis-free) |
+| `Real.sqrt_le_sqrt_iff` | `0 ≤ y` | **right** argument |
+| `Real.sqrt_lt_sqrt` | `0 ≤ x` and `x < y` | **left** argument |
+| `Real.sqrt_lt_sqrt_iff` | `0 ≤ x` | **left** argument |
+| `Real.sqrt_inj` | `0 ≤ x` and `0 ≤ y` | both |
+
+Passing the wrong one is a unification failure, never a silently different statement. Note also that
+the `#check` output prints `√` with **no space**: `√x ^ 2 = x` parses as `(√x) ^ 2 = x`.
+
+**Apex recipes (kernel-checked).**
+
+```lean
+example {lam : ℝ} (hlam : 0 < lam) : 0 < Real.sqrt lam := Real.sqrt_pos_of_pos hlam
+example {lam : ℝ} (hlam : 0 ≤ lam) : (Real.sqrt lam) ^ 2 = lam := Real.sq_sqrt hlam
+example {lam x : ℝ} (hlam : 0 ≤ lam) (h : x = Real.sqrt lam) : x ^ 2 = lam := by rw [h, Real.sq_sqrt hlam]
+example {lam₁ lam₂ : ℝ} (h₁ : 0 ≤ lam₁) (h : lam₁ < lam₂) : Real.sqrt lam₁ < Real.sqrt lam₂ :=
+  Real.sqrt_lt_sqrt h₁ h
+```
+
+The `√`-window (a squared comparison against an apex) needs the `nth_rewrite` discipline recorded in
+§kasha §4.4, and works in both orientations:
+
+```lean
+example {R x : ℝ} (hR : 0 ≤ R) : x ^ 2 ≤ R ↔ |x| ≤ Real.sqrt R := by
+  nth_rewrite 1 [← Real.sq_sqrt hR]
+  rw [sq_le_sq, abs_of_nonneg (Real.sqrt_nonneg R)]
+
+example {R x : ℝ} (hR : 0 ≤ R) : |x| ≤ Real.sqrt R ↔ x ^ 2 ≤ R := by
+  constructor
+  · intro h
+    have h' : (|x|) ^ 2 ≤ (Real.sqrt R) ^ 2 := by
+      rw [sq_le_sq, abs_abs, abs_of_nonneg (Real.sqrt_nonneg R)]; exact h
+    rwa [sq_abs, Real.sq_sqrt hR] at h'
+  · intro h
+    have h' : (|x|) ^ 2 ≤ (Real.sqrt R) ^ 2 := by rwa [sq_abs, Real.sq_sqrt hR]
+    rwa [sq_le_sq, abs_abs, abs_of_nonneg (Real.sqrt_nonneg R)] at h'
+```
+
+### 7. (f) ℚ → ℝ cast, and the `..._cast` transfer shape
+
+```
+@Rat.cast_add / cast_sub / cast_mul / cast_div / cast_inv : [DivisionRing α] [CharZero α] (p q : ℚ), ↑(p ± * / q) = ↑p ± * / ↑q
+@Rat.cast_neg / cast_zero / cast_one : [DivisionRing α] only
+@Rat.cast_ofNat  : [DivisionRing α] (n : ℕ) [n.AtLeastTwo], ↑(OfNat.ofNat n) = OfNat.ofNat n
+@Rat.cast_natCast: [DivisionRing α] (n : ℕ), ↑↑n = ↑n      @Rat.cast_intCast : ↑↑n = ↑n
+@Rat.cast_le : ∀ {p q : ℚ} {K} [LinearOrderedField K], ↑p ≤ ↑q ↔ p ≤ q
+@Rat.cast_lt : ∀ {p q : ℚ} {K} [LinearOrderedField K], ↑p < ↑q ↔ p < q
+@Rat.cast_inj : [DivisionRing α] [CharZero α] {p q : ℚ}, ↑p = ↑q ↔ p = q
+@Rat.cast_injective : [DivisionRing α] [CharZero α], Function.Injective Rat.cast
+@Rat.cast_def : ∀ {K} [DivisionRing K] (q : ℚ), ↑q = ↑q.num / ↑q.den
+@Rat.cast_max : ∀ {K} [LinearOrderedField K] (p q : ℚ), ↑(p ⊔ q) = ↑p ⊔ ↑q      -- `@[simp, norm_cast]`
+@Rat.cast_min : ∀ {K} [LinearOrderedField K] (p q : ℚ), ↑(p ⊓ q) = ↑p ⊓ ↑q      -- `@[simp, norm_cast]`
+@Rat.cast_abs : ∀ {K} [LinearOrderedField K] (q : ℚ), ↑|q| = |↑q|
+@Rat.cast_pos : 0 < ↑q ↔ 0 < q    @Rat.cast_nonneg : 0 ≤ ↑q ↔ 0 ≤ q    @Rat.cast_nonpos : ↑q ≤ 0 ↔ q ≤ 0
+@Rat.cast_lt_zero : ↑q < 0 ↔ q < 0    @Rat.cast_ne_zero : ↑p ≠ 0 ↔ p ≠ 0    @Rat.cast_eq_zero : ↑p = 0 ↔ p = 0
+@Rat.cast_sum : [DivisionRing α] [CharZero α] (s : Finset ι) (f : ι → ℚ), ↑(∑ i ∈ s, f i) = ∑ i ∈ s, ↑(f i)
+@Rat.cast_prod : [Field α] [CharZero α] (s : Finset ι) (f : ι → ℚ), ↑(∏ i ∈ s, f i) = ∏ i ∈ s, ↑(f i)
+@Rat.cast_mono : [LinearOrderedField K], Monotone Rat.cast
+@Rat.cast_strictMono : [LinearOrderedField K], StrictMono Rat.cast
+Rat.castHom (α) [DivisionRing α] [CharZero α] : ℚ →+* α
+```
+
+Note the unchanged traps already registered in §kasha: `Rat.cast_prod` needs `Field` while
+`Rat.cast_sum` only needs `DivisionRing`; and the *field must be explicit* when the instance is not
+determined by the goal: `(Rat.cast_le (K := ℝ))`.
+
+**Recipe for `((p : ℚ) : ℝ) < ((q : ℚ) : ℝ) ↔ p < q`** (kernel-checked, all four orientations):
+
+```lean
+example {p q : ℚ} : ((p : ℚ) : ℝ) < ((q : ℚ) : ℝ) ↔ p < q := Rat.cast_lt                 -- the `iff` itself
+example {p q : ℚ} : p < q ↔ ((p : ℚ) : ℝ) < ((q : ℚ) : ℝ) := (Rat.cast_lt (K := ℝ)).symm  -- reversed goal
+example {p q : ℚ} (h : ((p : ℚ) : ℝ) < ((q : ℚ) : ℝ)) : p < q := (Rat.cast_lt (K := ℝ)).mp h
+example {p q : ℚ} (h : p < q) : ((p : ℚ) : ℝ) < ((q : ℚ) : ℝ) := by exact_mod_cast h
+-- and `by norm_cast` closes the goal-side `↔` in one step
+```
+
+**Cast commuting with `max`.** The dispatch's guesses `map_max` / `Rat.cast_max` resolve as:
+`map_max` is **not** usable (`error: unknown identifier 'map_max'`, §9); the current name is
+**`Rat.cast_max`**, and all three routes are kernel-checked:
+
+```lean
+example (p q : ℚ) : ((max p q : ℚ) : ℝ) = max (p : ℝ) (q : ℝ) := Rat.cast_max p q
+example (p q : ℚ) : ((max p q : ℚ) : ℝ) = max (p : ℝ) (q : ℝ) := by push_cast; rfl
+example (p q : ℚ) : ((max p q : ℚ) : ℝ) = max (p : ℝ) (q : ℝ) := by norm_cast
+```
+
+**The `..._cast` transfer shape used by the delivered rational models.** Read from
+`PhotoLean/Hammond/RatModel.lean` (H5a, lines 65–110) and `PhotoLean/Kasha/RatModel.lean` (K5a; §6
+of the §kasha section above):
+
+| Transfer kind | Recipe | Delivered example |
+|---|---|---|
+| algebraic body (`…/…`, `^2`, `*`) | `unfold Xq X; push_cast; ring` | `tsCoordQ_cast`, `gapReactantQ_cast` (Hammond), `volcanoQ_cast` (probe) |
+| algebraic body, explicit rewrites | `unfold Xq X; rw [Rat.cast_div, Rat.cast_pow, …]` — **closes by itself**, no trailing `rfl` | `volcanoQ_cast'` (probe, §10.9) |
+| predicate / comparison | push the cast through the body, then `Rat.cast_le` / `Rat.cast_lt` (explicit field) or its `.symm` | `kashaWithinQ_iff_cast`, `volcanoWithinQ_iff_cast` (probe) |
+| classifier (`if`-cascade) | `unfold zoneQ zone; norm_cast` — no hypotheses, no case bash | `hammondZoneQ_eq_hammondZone`, `volcanoZoneQ_eq_volcanoZone` (probe) |
+| big operators | `Rat.cast_sum` / `Rat.cast_prod` remove the need for induction over the index set | `cascadeQ_cast`, `fluoYieldQ_cast` (Kasha) |
+
+`push_cast` alone does **not** close an algebraic transfer — `ring` must follow (the two routes have
+opposite tail rules; see §10.9).
+
+### 8. (g) the `if` / `ite` classifier layer
+
+```
+@if_pos : ∀ {c : Prop} {h : Decidable c}, c → ∀ {α : Sort u_1} {t e : α}, (if c then t else e) = t
+@if_neg : ∀ {c : Prop} {h : Decidable c}, ¬c → ∀ {α : Sort u_1} {t e : α}, (if c then t else e) = e
+@ite_eq_iff  : (if P then a else b) = c ↔ P ∧ a = c ∨ ¬P ∧ b = c
+@ite_eq_iff' : (if P then a else b) = c ↔ (P → a = c) ∧ (¬P → b = c)
+@dif_pos : ∀ {c : Prop} {h : Decidable c} (hc : c) {α} {t : c → α} {e : ¬c → α}, dite c t e = t hc
+@dif_neg : ∀ {c : Prop} {h : Decidable c} (hnc : ¬c) {α} {t : c → α} {e : ¬c → α}, dite c t e = e hnc
+@apply_ite : (f : α → β) (P : Prop) [Decidable P] (x y : α), f (if P then x else y) = if P then f x else f y
+@apply_dite : (f : α → β) (P : Prop) [Decidable P] (x : P → α) (y : ¬P → α), f (dite P x y) = if h : P then f (x h) else f (y h)
+@ite_cond_eq_true  : c = True  → (if c then a else b) = a
+@ite_cond_eq_false : c = False → (if c then a else b) = b
+```
+
+All ten names quoted above exist (the five the dispatch named — `if_pos`, `if_neg`, `ite_eq_iff`,
+`dif_pos`, `apply_ite` — plus `ite_eq_iff'`, `dif_neg`, `apply_dite`, `ite_cond_eq_true`,
+`ite_cond_eq_false`). **`split_ifs at h` is the tool for a hypothesis**, `if_pos`/`if_neg` for
+a goal.
+
+**The classifier shape as delivered** (`PhotoLean/Hammond/Basic.lean:82` `hammondZone` = 7 branches;
+`PhotoLean/BEP/Basic.lean:104` `epZone` = 9 branches) and reproduced self-containedly as a 6-branch
+`volcanoZone` in `sabatier-api-cast-ite.lean`:
+
+* **Backward direction** (predicate → classifier value): `unfold zone; rw [if_neg g₁, if_neg g₂,
+  …, if_pos gₖ]`, each guard discharged inline by `linarith` / `by rintro rfl; …`. BEP's own form is
+  `rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0), if_pos rfl]`.
+* **Forward direction** (classifier value → predicate): `unfold zone at h; split_ifs at h with h1 … h8`
+  followed by the branch arithmetic (BEP `epZone_eq_…_iff`).
+* **The characterization lemma shape** (`zone x = Z ↔ predicate`): `unfold zone`, then
+  `split_ifs with h1 … h_n`. A cascade with `n` guards yields **`n+1` goals** in guard order
+  (`hammondZone`: 6 guards → 7 goals, matching its 7 branches; `epZone`: 8 guards → 9 goals,
+  again matching its 9 branches). **Naming convention (measured, and it is the subtle part):**
+  in branch `i`, the hypotheses `h1 … h_{i-1}` are the **negated** earlier guards and `h_i` is the
+  **positive** one; the final branch has `h1 … h_n` **all negated**. That is exactly why
+  `hammondZoneQ_eq_late_iff`'s last branch can write
+  `⟨lt_of_le_of_ne (le_of_not_gt h6) h5, lt_of_le_of_ne (le_of_not_gt h3) (Ne.symm h2)⟩`.
+  Each goal is closed by `iff_of_true rfl …` / `iff_of_false (by decide) …` (the `by decide` is on the
+  *inductive-constructor* inequality, not on ℚ arithmetic — see §kasha §4.4).
+* **A fully worked 5-branch example** (6 branches in the cascade) with the branch bookkeeping and the
+  `weak`-branch arithmetic is `volcanoZoneQ_eq_weak_iff` in `sabatier-api-cast-ite.lean`; the
+  `strong` branch (which needs no case arithmetic) is `volcanoZoneQ_eq_strong_iff`.
+* **Verdict rows**: `rw [← zoneQ_eq_zone]; unfold zoneQ; norm_num` reduces the whole concrete
+  `if`-cascade — the `Rat.epQVerdict` recipe of §BEP §3. **Trap:** the rewrite only matches the
+  ℚ-literal form; `volcanoZone (2 : ℝ) (3 : ℝ)` does not match `volcanoZone ↑2 ↑3` (§10.10).
+
+### 9. NOT FOUND in mathlib v4.17.0 (verbatim errors; banned in Sabatier proofs)
+
+```
+error: unknown identifier 'strictMonoOn_const'          -- a constant is not strictly monotone; use `monotoneOn_const`
+error: unknown identifier 'strictMonoOn_iff_forall_lt'  -- `StrictMonoOn` is already `∀`-shaped; `Set.strictMonoOn_iff_strictMono` exists
+error: unknown constant 'Real.exp_le_exp_iff'           -- on ℝ this is `Real.exp_le_exp` itself
+error: unknown constant 'Real.exp_lt_exp_iff'           -- on ℝ this is `Real.exp_lt_exp` itself
+error: unknown identifier 'abs_le_iff'                  -- use `abs_le` (or the primitive `abs_le'`)
+error: unknown identifier 'map_max'                     -- use `Rat.cast_max` / `Rat.cast_min`, or `max_def` + case split
+error: unknown constant 'Real.exp_log_iff'              -- use `Real.exp_log` (→) and `Real.log_exp` (←)
+error: unknown identifier 'strictMonoOn_iff_strictMono' -- it is `Set.strictMonoOn_iff_strictMono`
+error: unknown identifier 'strictMonoOn_singleton'      -- it is `Set.strictMonoOn_singleton`
+error: unknown identifier 'monotoneOn_iff_monotone'     -- it is `Set.monotoneOn_iff_monotone`
+error: unknown identifier 'monotoneOn_singleton'        -- it is `Set.monotoneOn_singleton`
+```
+
+| Banned | Verified replacement (usage form that compiled) |
+|---|---|
+| `strictMonoOn_const` | `monotoneOn_const` / `antitoneOn_const` (a constant *is* monotone on every set) |
+| `strictMonoOn_iff_forall_lt` | nothing needed; `Set.strictMonoOn_iff_strictMono`, `strictMonoOn_univ`, `strictMonoOn_insert_iff` are the existing `iff`s |
+| bare `strictMonoOn_iff_strictMono`, `strictMonoOn_singleton`, `monotoneOn_iff_monotone`, `monotoneOn_singleton` | the **namespace-qualified** forms `Set.…` (they live in `namespace Set`, `Mathlib/Data/Set/Basic.lean` / `Subsingleton.lean`) |
+| `Real.exp_le_exp_iff` | `Real.exp_le_exp` (`Real.exp x ≤ Real.exp y ↔ x ≤ y`) |
+| `Real.exp_lt_exp_iff` | `Real.exp_lt_exp` |
+| `Real.exp_log_iff` | `Real.exp_log` (`0 < x → Real.exp (Real.log x) = x`) |
+| `abs_le_iff` | `abs_le` (`-b ≤ a ∧ a ≤ b`) or `abs_le'` (`a ≤ b ∧ -a ≤ b`) |
+| `map_max` | `Rat.cast_max` (`↑(max p q) = max ↑p ↑q`), or `max_def` + `rcases le_total`/`max_cases` |
+| `max_idem` used as a function | `max_idem.idempotent a` (it is the instance `Std.IdempotentOp max`), or `max_self a` |
+
+### 10. Measured traps (kernel facts, not name facts)
+
+1. **`rw` on `max a b = c` must go backwards.** With `h : max a b = c` and goal `a ≤ c`,
+   `rw [h]` fails: `error: tactic 'rewrite' failed, did not find instance of the pattern in the
+   target expression / a ⊔ b`. Use `rw [← h]` then `le_max_left`/`le_max_right`.
+2. **`intro` leaves a beta-redex for `linarith`.** `intro x _ y _ hxy; linarith` on a
+   `StrictMonoOn (fun x => 2 * x) …` goal fails (`linarith failed to find a contradiction … a✝ :
+   (fun x => 2 * x) x ≥ (fun x => 2 * x) y ⊢ False`); insert `dsimp only` (or `show`).
+3. **`StrictAntiOn` on a half-line needs `Set.Ioi`, not `Set.Ici`, for a *strict* descriptor**
+   (measured `application type mismatch … lam ≤ x : Prop … expected lam < x : Prop`; the `↔` with
+   `Set.Ici` is false at the endpoint). See §3.
+4. **`Real.sqrt_le_sqrt_iff` carries `0 ≤ y` (right argument) but `Real.sqrt_lt_sqrt_iff` carries
+   `0 ≤ x` (left argument).** Full table in §6.
+5. **The unused-hypothesis linter fires on hypotheses, not only on variables.**
+   `warning: unused variable 'hlam'` for a statement-mandated premise the proof does not consume
+   (same situation as `hammondZoneQ_eq_atReactant_iff`). The house response is
+   `set_option linter.unusedVariables false in` **before** the doc comment
+   (`set_option … in` → doc comment → declaration — the ordering rule re-confirmed in §kasha §4.4).
+6. **`rw [← Rat.cast_lt] at h` does not cross the cast on a *hypothesis*.** With
+   `h : ↑p < ↑q : Prop` (ℝ) the pattern is a *ℚ* comparison, so rewriting fails syntactically:
+   `error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+   ?m.94 < ?m.95`. Use `.mp` with the explicit field (`(Rat.cast_lt (K := ℝ)).mp h`) or
+   `exact_mod_cast h`.
+7. **`push_cast` does not cross ℚ→ℝ in the goal `↑p < ↑q`.** From `h : p < q` the goal
+   `↑p < ↑q` is left untouched (the casts are already at the leaves), so `push_cast; exact h` fails
+   with `type mismatch … h has type p < q … expected ↑p < ↑q`. Use `exact_mod_cast h`, `norm_cast`,
+   or `(Rat.cast_lt (K := ℝ)).mpr h`.
+8. **`norm_cast` closes a classifier transfer but is not a case analysis.** `unfold zoneQ zone;
+   norm_cast` transfers a 6/7/9-branch `if`-cascade with **no hypotheses and no `split_ifs`** — this
+   is the single reason no `by_cases` transcription is needed for the ℚ-side classifier.
+9. **The two algebraic cast routes have opposite tails.** `unfold …; push_cast; ring` **needs** the
+   `ring`; `unfold …; rw [Rat.cast_div, Rat.cast_pow, …]` closes **by itself**, so appending `rfl`
+   gives `error: no goals to be solved`.
+10. **Rewriting with a classifier transfer does not match ℝ literals.** On
+    `volcanoZone (2 : ℝ) (3 : ℝ) = VZone.strong`, `rw [← volcanoZoneQ_eq_volcanoZone (2 : ℚ)
+    (3 : ℚ)]` fails: `did not find instance of the pattern in the target expression / volcanoZone ↑2 ↑3`
+    (the ℝ literal is `OfNat.ofNat 2`, not `↑(2 : ℚ)`). Prove the ℚ-literal form in a `have` and
+    close the numeral gap with `simpa`.
+11. **A `√`-window rewrite must be `nth_rewrite 1 [← Real.sq_sqrt hR]`** — a plain `rw` rewrites too
+    deep into the `R` inside `Real.sqrt R` (§kasha §4.4, re-confirmed in §6).
+
+### 11. API-risk list per Sabatier milestone (post-calibration)
+
+| Milestone (plan §2) | Risk after this round |
+|---|---|
+| S1 `PhotoLean/Sabatier/Basic.lean` (description layer: `max`-form activity, region predicates, classifier) | **low** — every `max`/`abs` name of §2/§4 is confirmed; the `if`-cascade shape of §8 is kernel-checked on a 6-branch volcano classifier |
+| S2 `Criterion.lean` ("prove it": the volcano shape, monotone flanks) | **low** — the half-line recipes of §3 and the exp recipe of §5 are kernel-checked; the house `∀`- vs `Set`-predicate question is settled (§3) |
+| S3 `Sharp.lean` (exact conditions, apex uniqueness) | **low/medium** — the `√` apex algebra of §6 is verified in both orientations, but case analysis must respect the `Set.Ioi` fact (§3) and the `lt_trichotomy`-with-explicit-witness house pattern (`PhotoLean/Marcus/Sharp.lean:188–247`, `PhotoLean/Hammond/Sharp.lean:32–59`) |
+| S4 `Compose.lean` (microscopic / cross-theory form) | **low** — `rate`/`barrier` are the delivered `PhotoLean.Marcus` objects; both directions of the barrier↔rate comparison are now kernel-checked (§5), the reverse one being new |
+| S5 `RatModel.lean` / `Instances.lean` (verdicts) | **low** — all transfer recipes of §7 are verified, including a full 6-branch classifier transfer and a `norm_num` verdict row; the only traps are the literal-match issue (§10.10) and `by decide` on `/`-bearing ℚ literals (banned since §kasha §4.4) |
