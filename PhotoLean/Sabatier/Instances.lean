@@ -174,6 +174,37 @@ theorem inst_I3_zone_tooStrong : sabatierZone (apex (1 / 2) 0 1 1) (-(1 / 3)) = 
   unfold apex
   norm_num
 
+/-! ## I4/I5 — the two negative controls `(0, 1, 1, 1)` and `(1, 0, -1, 1)` (plan §8.2)
+
+These two rows are not arithmetic about a concrete descriptor: they assert that the *series* fails
+the Sabatier description. Both are discharged by the delivered S3 theorems — the sharp condition
+`descriptor_fails_of_nonpos_product` (a nonpositive slope product rules the volcano out) and the
+monotone witness `antiVolcano_monotone` (opposite-sign slopes leave no interior optimum). -/
+
+/-- I4 (zero-slope branch series `alphaA = 0`, `betaA = 1`, `alphaB = 1`, `betaB = 1`): the series
+does NOT conform to the Sabatier description — there is no pointed apex. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I4_notConforms : ¬ SabatierConforms 0 1 := by
+  unfold SabatierConforms
+  norm_num
+
+/-- I4: the barrier profile of the zero-slope series is not a volcano. Discharged from the delivered
+S3 sharp condition with the slope product `0 * 1 = 0 ≤ 0`. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I4_notDescriptor :
+    ¬ VolcanoDescriptor (fun dE => volcanoBarrier 0 1 1 1 dE) (apex 0 1 1 1) :=
+  descriptor_fails_of_nonpos_product (by norm_num)
+
+/-- I4: the barrier of that series is minimal on a whole half-line (a plateau, not a pass). With
+`alphaA = 0` the descending branch is `1 - dE`, which stays below the constant ascending branch `1`
+for every `dE ≥ 0`; both sides of the row are therefore `1` on that half-line. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I4_plateau (dE : ℝ) (h : 0 ≤ dE) :
+    volcanoBarrier 0 1 1 1 dE = volcanoBarrier 0 1 1 1 (apex 0 1 1 1) := by
+  simp only [volcanoBarrier, branchUp, branchDown, apex]
+  norm_num
+  linarith
+
 end Sabatier
 
 end PhotoLean
