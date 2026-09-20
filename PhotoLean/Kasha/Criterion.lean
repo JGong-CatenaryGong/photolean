@@ -104,6 +104,26 @@ theorem fluoYield_succ {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N 
         rw [fluoYield, emitYield_succ_self]
     _ = radBranch rad ic (N + 1) + icBranch rad ic (N + 1) * fluoYield rad ic N := by
         rw [add_comm]
+set_option linter.unusedVariables false in
+/-- Plan §5.1 #5 — the Markov recursion of the leak. As in #4, the `RateData` premise is part of
+the signature and the recursion itself needs no positivity. -/
+theorem upperYield_succ {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N + 1)) :
+    upperYield rad ic (N + 1) =
+      radBranch rad ic (N + 1) + icBranch rad ic (N + 1) * upperYield rad ic N := by
+  calc upperYield rad ic (N + 1)
+      = (∑ x ∈ Finset.Icc 1 N, emitYield rad ic x (N + 1))
+          + emitYield rad ic (N + 1) (N + 1) := by
+        rw [upperYield, Finset.sum_Icc_succ_top (by omega : 1 ≤ N + 1)]
+    _ = (∑ x ∈ Finset.Icc 1 N, icBranch rad ic (N + 1) * emitYield rad ic x N)
+          + emitYield rad ic (N + 1) (N + 1) := by
+        rw [Finset.sum_congr rfl (fun x hx => emitYield_succ (Finset.mem_Icc.mp hx).2)]
+    _ = icBranch rad ic (N + 1) * (∑ x ∈ Finset.Icc 1 N, emitYield rad ic x N)
+          + emitYield rad ic (N + 1) (N + 1) := by
+        rw [Finset.mul_sum]
+    _ = icBranch rad ic (N + 1) * upperYield rad ic N + radBranch rad ic (N + 1) := by
+        rw [upperYield, emitYield_succ_self]
+    _ = radBranch rad ic (N + 1) + icBranch rad ic (N + 1) * upperYield rad ic N := by
+        rw [add_comm]
 end Kasha
 
 end PhotoLean
