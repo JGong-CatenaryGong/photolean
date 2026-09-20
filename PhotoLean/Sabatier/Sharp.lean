@@ -354,6 +354,50 @@ theorem volcano_descriptor_of_neg {alphaA betaA alphaB betaB : ℝ} (hA : alphaA
     (descriptor_of_physical_aux (alphaA := -alphaB) (betaA := betaB) (alphaB := -alphaA)
       (betaB := betaA) (by linarith) (by linarith))
 
+/-- Auxiliary (plan §6, activity layer): the Arrhenius exponent map is injective in the barrier
+value as long as the thermal energy is nonzero — cancel the common denominator. -/
+private theorem exp_neg_div_inj {a b kB T : ℝ} (hkT : kB * T ≠ 0)
+    (h : -(a) / (kB * T) = -(b) / (kB * T)) : a = b := by
+  have h3 : -(a) / (kB * T) * (kB * T) = -(b) / (kB * T) * (kB * T) := by rw [h]
+  rw [div_mul_cancel₀ _ hkT, div_mul_cancel₀ _ hkT] at h3
+  linarith
+
+/-- Auxiliary (plan §6, activity layer; S2 row re-proved here to keep S3 on `Basic` only): the
+activity is a strictly decreasing function of the barrier, so the unique maximum of the activity is
+the unique minimum of the barrier. -/
+private theorem antiDescriptor_activity_aux {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * T) :
+    AntiVolcanoDescriptor (activity f kB T) de0 ↔ VolcanoDescriptor f de0 := by
+  have hkT' : kB * T ≠ 0 := hkT.ne'
+  constructor
+  · intro hA
+    refine ⟨fun dE => ?_, fun dE heq => ?_⟩
+    · have h := hA.1 dE
+      unfold activity at h
+      rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff] at h
+      exact h
+    · have h1 : activity f kB T dE = activity f kB T de0 := by
+        unfold activity
+        rw [heq]
+      exact hA.2 dE h1
+  · intro hD
+    refine ⟨fun dE => ?_, fun dE heq => ?_⟩
+    · have h := hD.1 dE
+      unfold activity
+      rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff]
+      exact h
+    · have h1 : -(f dE) / (kB * T) = -(f de0) / (kB * T) := Real.exp_injective heq
+      exact hD.2 dE (exp_neg_div_inj hkT' h1)
+
+/-- **The volcano plot** of the two-branch model (plan §6). The activity has its unique global
+maximum at the apex iff the two BEP slopes have the same nonzero sign — the plotted peak is sharp
+under exactly the sharp condition of the barrier pass. The thermal energy `kB * T` is an explicit
+positivity hypothesis. -/
+theorem volcanoActivity_peak_iff {alphaA betaA alphaB betaB kB T : ℝ} (hkT : 0 < kB * T) :
+    AntiVolcanoDescriptor (activity (fun dE => volcanoBarrier alphaA betaA alphaB betaB dE) kB T)
+        (apex alphaA betaA alphaB betaB)
+      ↔ 0 < alphaA * alphaB := by
+  rw [antiDescriptor_activity_aux hkT, volcano_descriptor_iff]
+
 end Sabatier
 
 end PhotoLean
