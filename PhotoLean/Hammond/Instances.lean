@@ -101,6 +101,12 @@ theorem inst_I3_endergonic_conforms : HammondConforms 1 (-(1 / 2)) := by
         ← Rat.hammondZoneQ_eq_hammondZone, inst_I3_endergonic_zone]
   exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 1)).mpr (Or.inr (Or.inr hz))
 
+/-! ## I4 — barrierless forward instance (`lam = 1`, `x = 1`): boundary of the regime -/
+/-- I4, zone verdict: the barrierless instance sits on the reactant boundary
+(`atReactant`). -/
+theorem inst_I4_barrierless_zone : Rat.hammondZoneQ (1 : ℚ) 1 = HZone.atReactant := by
+  norm_num [Rat.hammondZoneQ]
+
 end Hammond
 
 end PhotoLean
