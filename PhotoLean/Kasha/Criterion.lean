@@ -335,6 +335,53 @@ theorem vavilovUpTo_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData 
     have hR : RateData rad ic (i + 1) :=
       ⟨fun n hn => h.decay_pos n (le_trans hn (Nat.succ_le_of_lt hi)), h.rad_nonneg, h.ic_nonneg⟩
     exact (vavilovAt_iff_rad_zero hR (h1 i hi)).mpr (hr i hi)
+/-- Plan §5.2 #18 — **the Kasha–Vavilov equivalence**: with a loss channel at the lowest level
+(`0 < ic 0`), the spectral rule and the excitation-independence of the total yield are the same
+condition. The loss premise is what makes every lower ladder lose something
+(`fluoYield i < 1`), i.e. it is exactly what rules out the degenerate lossless model in which
+Vavilov's rule holds vacuously. -/
+theorem kashaRule_iff_vavilovUpTo {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
+    (hloss : 0 < ic 0) : KashaRule rad ic N ↔ VavilovUpTo rad ic N := by
+  have h0lt : fluoYield rad ic 0 < 1 := by
+    rw [fluoYield_zero]
+    unfold radBranch
+    rw [div_lt_one (h.decay_pos 0 (Nat.zero_le N))]
+    unfold decay
+    linarith
+  constructor
+  · intro hK
+    have hrad : ∀ j, 1 ≤ j → j ≤ N → rad j = 0 := (kashaRule_iff_rad_zero h).mp hK
+    intro i hi
+    have hR : RateData rad ic (i + 1) :=
+      ⟨fun n hn => h.decay_pos n (le_trans hn (Nat.succ_le_of_lt hi)), h.rad_nonneg, h.ic_nonneg⟩
+    have hR0 : radBranch rad ic (i + 1) = 0 := by
+      unfold radBranch
+      rw [hrad (i + 1) (Nat.succ_pos i) (Nat.succ_le_of_lt hi), zero_div]
+    have hI : icBranch rad ic (i + 1) = 1 := by
+      have hsum := radBranch_add_icBranch (rad := rad) (ic := ic) (n := i + 1)
+        (ne_of_gt (hR.decay_pos (i + 1) (le_refl _)))
+      linarith
+    show fluoYield rad ic (i + 1) = fluoYield rad ic i
+    rw [fluoYield_succ hR, hR0, zero_add, hI, one_mul]
+  · intro hV
+    have hchain : ∀ i, i ≤ N → fluoYield rad ic i = fluoYield rad ic 0 := by
+      intro i
+      induction i with
+      | zero => intro _; rfl
+      | succ k ih =>
+          intro hk
+          exact (hV k (Nat.lt_of_succ_le hk)).trans (ih (Nat.le_of_succ_le hk))
+    have hrad : ∀ j, 1 ≤ j → j ≤ N → rad j = 0 := by
+      intro j hj1 hjN
+      obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : j ≠ 0)
+      have hk : k < N := by omega
+      have hR : RateData rad ic (k + 1) :=
+        ⟨fun n hn => h.decay_pos n (le_trans hn (Nat.succ_le_of_lt hk)), h.rad_nonneg, h.ic_nonneg⟩
+      have hlt : fluoYield rad ic k < 1 := by
+        rw [hchain k (le_of_lt hk)]
+        exact h0lt
+      exact (vavilovAt_iff_rad_zero hR hlt).mp (hV k hk)
+    exact (kashaRule_iff_rad_zero h).mpr hrad
 end Kasha
 
 end PhotoLean
