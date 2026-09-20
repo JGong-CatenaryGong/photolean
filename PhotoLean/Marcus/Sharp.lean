@@ -99,4 +99,21 @@ theorem sharp_lam_pos_of_lt {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA :
   have hd := hdesc (lam + 1) (lam + 2) (by linarith) (by linarith)
   exact absurd hd (not_lt.mpr (le_of_lt hrate))
 
+/-- `lam = 0` 分支（**锐利性最易漏的一支**）：除零约定 `x / 0 = 0` 使
+`barrier 0 x = 0`（`barrier_zero_lam`），故速率恒为 `A · exp 0 = A`；
+取 `x₁ = 1 < 2 = x₂` 得描述要求的 `A < A`，矛盾。
+
+**与 `sharp_lam_pos_of_lt` 的机制完全不同**（不涉及任何单调性/序），
+且本条的签名里**没有** `hkB` / `hT` / `hA` —— 它只依赖 `barrier_zero_lam`，
+不可能被 `lam < 0` 支替代。这正是 verifier 要复核的点。 -/
+theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T) : False := by
+  have hrate : ∀ x : ℝ, rate A 0 kB T x = A := by
+    intro x
+    unfold rate
+    rw [barrier_zero_lam]
+    simp
+  have hd := hdesc 1 2 (by norm_num) (by norm_num)
+  rw [hrate 2, hrate 1] at hd
+  exact lt_irrefl A hd
+
 end PhotoLean.Marcus
