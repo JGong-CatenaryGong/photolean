@@ -45,8 +45,9 @@ remaining hypotheses (plan §5; measurements in proofs/API-NOTES.md)**:
   `lam = 1, x₁ = -5, x₂ = -4` satisfies `0 < lam`, `x₁ < x₂`, `x₂ ≤ lam`, while `0 ≤ x₁`
   is false. It is kept as an explicit physical hypothesis (nonnegative driving force,
   the physical domain of the normal region).
-Hence the unused-variable linter is switched off at the top (warnings do not affect
-acceptance).
+Hence the unused-variable linter is switched off **per declaration** (scoped `set_option ... in`
+immediately before each of the two affected theorems, matching the repository-wide style);
+warnings do not affect acceptance.
 
 Acceptance (contract `proofs/ENGINE.yml`):
   proofs/scripts/lake build PhotoLean.Marcus.Barrier
@@ -54,8 +55,6 @@ Acceptance (contract `proofs/ENGINE.yml`):
   proofs/scripts/axioms.sh PhotoLean.Marcus.Barrier PhotoLean.Marcus.<theorem>
 -/
 import PhotoLean.Marcus.Basic
-
-set_option linter.unusedVariables false
 
 namespace PhotoLean.Marcus
 
@@ -77,6 +76,7 @@ including the degenerate case `lam = 0`). -/
 theorem barrier_at_lam (lam : ℝ) : barrier lam lam = 0 := by
   simp [barrier]
 
+set_option linter.unusedVariables false in
 /-- 抛物线对称性：以 `x = lam` 为轴（`(lam - x)² = (lam - (2lam - x))²`）。
 `hlam : lam ≠ 0` 是**显式物理前提**（重组能非零）；实测证明中不需要它 ——
 除零约定 `x / 0 = 0` 使 `lam = 0` 时两端同为 `0`。
@@ -109,6 +109,7 @@ theorem barrier_mono_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
   have hsq : (lam - x₁) ^ 2 < (lam - x₂) ^ 2 := by nlinarith
   exact div_lt_div_of_pos_right hsq h4
 
+set_option linter.unusedVariables false in
 /-- `lam > 0`、正常区（`0 ≤ x₁ < x₂ ≤ lam`）：势垒严格递减。
 `h₁ : 0 ≤ x₁` 是**显式物理前提**（驱动力非负），但**证明未使用**它（unused；`hlam`、`h₂`、`h₃`
 已足以推出结论）。注意它**并非**由 `h₂`、`h₃` 蕴含 —— **内核已验证的反例**（同文件头）：
