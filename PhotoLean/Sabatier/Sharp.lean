@@ -343,6 +343,17 @@ theorem volcano_descriptor_iff_labels {alphaA betaA alphaB betaB : ℝ} :
     · exact mul_pos hA hB
     · exact mul_pos_of_neg_of_neg (by linarith : alphaA < 0) (by linarith : alphaB < 0)
 
+/-- The volcano shape is label-invariant (plan §6): a series whose two branches are both
+"descending" (both BEP slopes negative) is still a volcano, read with the two branches
+interchanged — the relabelled series is in the physical orientation and has the very same profile. -/
+theorem volcano_descriptor_of_neg {alphaA betaA alphaB betaB : ℝ} (hA : alphaA < 0)
+    (hB : alphaB < 0) :
+    VolcanoDescriptor (fun dE => volcanoBarrier alphaA betaA alphaB betaB dE)
+      (apex alphaA betaA alphaB betaB) :=
+  descriptor_relabel.mpr
+    (descriptor_of_physical_aux (alphaA := -alphaB) (betaA := betaB) (alphaB := -alphaA)
+      (betaB := betaA) (by linarith) (by linarith))
+
 end Sabatier
 
 end PhotoLean
