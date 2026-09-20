@@ -412,8 +412,14 @@ both this premise and the numerator sign were corrected by kernel counterexample
 risk probe, §11),
 `epQVerdict_conforming_iff`, `epQVerdict_boundary_iff`, `epQVerdict_superLinear_iff`,
 `epQVerdict_subLinear_iff`, `qConformsWindow_iff_radius_sq`, plus the model-consistency block
-(`qSecondDividedDiff_model (hlam : lam ≠ 0) … : qSecondDividedDiff x₁ (qEact lam x₁) … = 1/(4*lam)`;
+(`qSecondDividedDiff_model {lam x₁ x₂ x₃} (hlam : lam ≠ 0) (h₁₂ : x₁ ≠ x₂) (h₂₃ : x₂ ≠ x₃)
+(h₁₃ : x₁ ≠ x₃) : qSecondDividedDiff x₁ (qEact lam x₁) x₂ (qEact lam x₂) x₃ (qEact lam x₃) = 1/(4*lam)`;
 `qModelConsistent3_curvature_pos`; `qModelConsistent3_lam_eq : … → lam = 1/(4 * qSecondDividedDiff …)`).
+**All three pairwise distinctness premises are necessary** — the third one was found missing in the
+first draft by a kernel counterexample (`prover_c`, 2026-09-20: `λ = 1, x₁ = 0, x₂ = x₃ = 2` makes
+the inner quotient `0/0` totalise to `0`, so the second divided difference degenerates to a slope and
+the identity becomes `0 = 1/4`); the skeleton's premise list (`h₁₂`, `h₂₃`, `h₁₃`) is the delivered
+form.
 The cascade `epQVerdict` resolves the plan's `…` as: `degenerate` (`λ = 0`) → `unphysical`
 (`λ < 0`) → `boundary` (`x = ±λ`, `α = 0` or `1`) → `conforming` (`0 < α < 1`) → `superLinear`
 (`1 < α`) → `subLinear` (`α < 0`); the order is exhaustive because `α = 0 ⟺ x = λ` and
@@ -434,7 +440,7 @@ statements through the §8.1 transfer lemmas). `provenance` is `model-constructe
 | I5 | reverse barrierless limit | `λ = 2`, `x = -2` | boundary, `α = 1` | `inst_I5_zone/transfer/boundary` |
 | I6 | strongly exergonic (forward inverted region) | `λ = 2`, `x = 3` | **not conforming**, `α = -1/4 < 0` | `inst_I6_zone/transfer/notBounds` |
 | I7 | strongly endergonic (reverse inverted region) | `λ = 2`, `x = -3` | **not conforming**, `α = 5/4 > 1` | `inst_I7_zone/transfer/notBounds` |
-| I8 | degenerate family | `λ = 0`, `x = 1` | exact BEP, no content: barrier `0`, `α = 0` | `inst_I8_exact/trivial` |
+| I8 | degenerate family | `λ = 0`, `x = 1` | exact affinity holds **trivially** (`eact 0 x = 0` is affine with slope 0) but the BEP *line* law does not (`bepDefect 0 x = x/2`); barrier `0`, `α = 1/2` (under the linear-response body — `α = 0` was a leftover of the discarded TS-coordinate body) | `inst_I8_degenerate_*` |
 | I9 | unphysical curvature | `λ = -2`, `x = 1` | **not conforming**, defect `< 0` | `inst_I9_unphysical/defect_negative` |
 | I10 | tolerance threshold | `λ = 2`, `w = 1` | conforms at `tol = 1/8`, fails at `tol = 1/16` (`w* = 2√(λ·tol)`) | `inst_I10_conforms/fails` |
 | I11 | literature families from `LITERATURE.md` §R1.10 (five first-hand families: the two `Antioxidants` 2026 f-HAT/•OOH solvent columns, the two Table 2 columns, and the `Chem. Sci.` 2015 CCSD(T) 2-butanol series) | printed `(driving force, barrier)` kcal/mol pairs taken **verbatim** with the source's own loci; the Lean docstring states the unit and the source's kJ/mol conversion instead of silently converting | per family: (i) two-point `qAlphaObs` and `qLamOfPair` (both first-hand-consistent: `λ̂ > 0`), (ii) three-point `qSecondDividedDiff` | `inst_I11_<family>_alphaObs / _lamHat / _curvature_negative / _not_model_consistent` |
@@ -549,6 +555,12 @@ the measured numbers, never the planned ones.)
 | **locus of the quadratic barrier law** | **Marcus 1968 Eq. (2), printed p. 891** (`ΔF* = w_r + λ(1 + ΔF⁰'/λ)²/4`). Marcus 1956 has only the barrier *derivation* Eq. (38) p. 974 and must **not** be cited for the quadratic law or for the slope (round-1c full-text check: 0 hits for `parabola`, `slope`, `alpha`, `Bronsted`, `Bell`, `Polanyi`, `Semenov`) |
 | **locus of the affine + quadratic-remainder form** | **IUPAC p. 419** prints `Δ‡G = Δ‡Gº + ½ΔrGº + (ΔrGº)²/(16Δ‡Gº)` on one line: the plan's `bepLine` + `bepDefect` split is the normative shape, not an invention |
 | **locus of complementarity** | *Chem. Sci.* **16**(37):17494 (2025) Eqs. (1)–(2) ("complementary, adding up to one") and IUPAC TR 2014 p. 247. **Brønsted 1928 must not be cited for the sum rule** (its text gives `x ∈ (0,1)` graduations, not `β_f + β_r = 1`); docstrings must distinguish the *sum* form (independent driving forces) from the *difference* form (same variable) |
+| **family = exactly one varying parameter** | literature premise: Pogorelyi & Vishnyakova 1984 p. 1160 — all systems with `α > 1` contained a *fixed* base, and if the base is varied for the same nitroalkane the coefficient returns to `0 < α < 1`; substitutent series and base series are different objects, so a verdict on one does not transfer to the other |
+| **`α` is a partial function** | literature premise: Mayr & Ofial 2023 pp. 7–8 — for identity reactions `δΔG_r° = 0` gives `α = δΔG‡/δΔG_r°` undefined (`= ∞`); every "read the coefficient from a family" statement therefore needs a non-degeneracy premise, exactly as `secSlope`/`qAlphaObs` carry `h ≠ 0` / `x₁ ≠ x₂` |
+| **`0 ≤ α ≤ 1` has first-hand counterexamples** | Pogorelyi & Vishnyakova 1984 p. 1160 prints `α = -0.7`, `β = 1.7` and `α = 1.67, 1.61, 1.42, 1.56` (nitroalkanes); Mayr & Ofial 2023 pp. 7–8 report `α ≈ 1.5` for nitroalkanes and state `α` "is not limited to the range `0 < α < 1`"; Cohen & Marcus 1968 eqs. (5b)–(5c) place `α = 0`/`α = 1` *outside* `|A| < λ`. The formalized bounds are therefore a theorem about the model coefficient, never a claim about chemistry |
+| **empirical slopes are interval quantities** | literature premise (delegated, not re-verified): Gathmann 2024 diss. p. 134 reports BEP-slope confidence intervals from ±0.02 to ±1.0 — so a printed family slope should be read as an interval; the instance layer's point values are arithmetic about printed numbers, not estimates of a population slope |
+| **`α(0) = 1/2` is a thermoneutral statement only** | Ooka, Huang & Exner 2021 p. 10: "β = 0.5 is a frequent assumption, although there is no physical basis for why β should be 0.5 or why it should be independent of the material"; Marcus's Nobel lecture p. 85 prints the same half slope *with the qualifier* "when [ΔG°] is small". The formalized `transfer_thermoneutral : transfer lam 0 = 1/2` is exactly at `x = 0` and says nothing about other driving forces |
+| **third locus of the barrier law (modern, OA, first-hand)** | Ooka, Huang & Exner, *Front. Energy Res.* 9:654460 (2021), printed p. 7 eq. (2): `ΔG‡_RI = (λ + ΔG_RI)²/(4λ)` — the same shape as `eact lam x` with `x = -ΔG°`, quoting it alongside Marcus 1968 eq. (2) p. 891 and IUPAC p. 419 |
 | **naming of `transfer`** | primary name: Brønsted/Leffler coefficient; "transfer coefficient" is the electrochemical synonym (Inzelt p. 36) — the identifiers stay as delivered, the docstrings and `RESULTS.md` carry the naming |
 | **the five first-hand literature families** | their affine BEP fits are good (R² ≈ 0.93–0.95) but each family's second divided difference is **negative**, while the model with `λ > 0` forces `1/(4λ) > 0`: the equal-curvature two-parabola model is **refuted as a family-level description** of those data while the affine description survives (instances I11/I12, §8.2) — a finding about the *model*, not about the molecules, and it is the concrete content of this plan's "the model is not the molecule" |
 

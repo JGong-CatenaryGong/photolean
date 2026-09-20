@@ -69,26 +69,26 @@
 
 ## B2 — law layer (`PhotoLean/BEP/Criterion.lean`; owner prover_a; Sprint 2)
 
-- [ ] `eact_expansion` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `bepDefect_eq` — Criterion.lean — prover_a — proving — plan §5 (central identity)
-- [ ] `bepLine_exact_at_thermoneutrality` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `bepDefect_at_thermoneutrality` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `transfer_eq_tsCoord` — Criterion.lean — prover_a — proving — plan §5 (Leffler/Brønsted bridge)
-- [ ] `transfer_thermoneutral` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `reverseTransfer_thermoneutral` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `transfer_add_reverse` — Criterion.lean — prover_a — proving — plan §5 (Bronsted complementarity)
-- [ ] `reverseTransfer_eq_transfer_neg` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `secSlope_eq_transfer_mid` — Criterion.lean — prover_a — proving — plan §5 (mean-value identity)
-- [ ] `secSlope_midpoint_invariant` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `eact_neg_eq_add` — Criterion.lean — prover_a — proving — plan §5 (barrier reversal)
-- [ ] `eact_antitone` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `bepDefect_nonneg` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `bepDefect_pos_iff` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `epDescriptor_holds` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `epDescriptor_conforms` — Criterion.lean — prover_a — proving — plan §5
-- [ ] `epConforms_iff_bounds` — Criterion.lean — prover_a — proving — plan §5
+- [ ] `eact_expansion` — Criterion.lean — prover_a — review — plan §5
+- [ ] `bepDefect_eq` — Criterion.lean — prover_a — review — plan §5 (central identity)
+- [ ] `bepLine_exact_at_thermoneutrality` — Criterion.lean — prover_a — review — plan §5
+- [ ] `bepDefect_at_thermoneutrality` — Criterion.lean — prover_a — review — plan §5
+- [ ] `transfer_eq_tsCoord` — Criterion.lean — prover_a — review — plan §5 (Leffler/Brønsted bridge)
+- [ ] `transfer_thermoneutral` — Criterion.lean — prover_a — review — plan §5
+- [ ] `reverseTransfer_thermoneutral` — Criterion.lean — prover_a — review — plan §5
+- [ ] `transfer_add_reverse` — Criterion.lean — prover_a — review — plan §5 (Bronsted complementarity)
+- [ ] `reverseTransfer_eq_transfer_neg` — Criterion.lean — prover_a — review — plan §5
+- [ ] `secSlope_eq_transfer_mid` — Criterion.lean — prover_a — review — plan §5 (mean-value identity)
+- [ ] `secSlope_midpoint_invariant` — Criterion.lean — prover_a — review — plan §5
+- [ ] `eact_neg_eq_add` — Criterion.lean — prover_a — review — plan §5 (barrier reversal)
+- [ ] `eact_antitone` — Criterion.lean — prover_a — review — plan §5
+- [ ] `bepDefect_nonneg` — Criterion.lean — prover_a — review — plan §5
+- [ ] `bepDefect_pos_iff` — Criterion.lean — prover_a — review — plan §5
+- [ ] `epDescriptor_holds` — Criterion.lean — prover_a — review — plan §5
+- [ ] `epDescriptor_conforms` — Criterion.lean — prover_a — review — plan §5
+- [ ] `epConforms_iff_bounds` — Criterion.lean — prover_a — review — plan §5
 - [ ] `exists_epDescriptor` / non-vacuity suite (`exists_thermoneutral` … `exists_degenerate`)
-      — Criterion.lean — prover_a — proving — plan §5
+      — Criterion.lean — prover_a — review — plan §5
 
 ## B3 — sharp conditions (`PhotoLean/BEP/Sharp.lean`; owner prover_d; Sprint 3)
 
@@ -123,38 +123,38 @@
 
 ## B4 — microscopic and cross-module layer (`PhotoLean/BEP/Compose.lean`; owner prover_b; Sprint 3)
 
-- [ ] `eact_eq_barrier` — Compose.lean — prover_b — proving — plan §7
-- [ ] `rate_eq_exp_neg_eact` — Compose.lean — prover_b — proving — plan §7
-- [ ] `transfer_eq_tsCoord_bridge` — Compose.lean — prover_b — proving — plan §7
-- [ ] `epBounds_iff_no_inverted_direction` — Compose.lean — prover_b — proving — plan §7 (Marcus bridge)
-- [ ] `epBounds_of_reactionRegion` — Compose.lean — prover_b — proving — plan §7 (Hammond bridge)
-- [ ] `epBounds_of_marcus_normal` — Compose.lean — prover_b — proving — plan §7
-- [ ] `epDescriptor_of_microscopic` — Compose.lean — prover_b — proving — plan §7
-- [ ] `bepDefect_le_of_microscopic` — Compose.lean — prover_b — proving — plan §7
-- [ ] `bepRadius_add` — Compose.lean — prover_b — proving — plan §7
-- [ ] `epConformsOnWindow_of_microscopic` — Compose.lean — prover_b — proving — plan §7
-- [ ] `epConformsOnWindow_shrinks_with_inner` — Compose.lean — prover_b — proving — plan §7
-- [ ] `transfer_complementary_microscopic` — Compose.lean — prover_b — proving — plan §7
+- [ ] `eact_eq_barrier` — Compose.lean — prover_b — review — plan §7
+- [ ] `rate_eq_exp_neg_eact` — Compose.lean — prover_b — review — plan §7
+- [ ] `transfer_eq_tsCoord_bridge` — Compose.lean — prover_b — review — plan §7
+- [ ] `epBounds_iff_no_inverted_direction` — Compose.lean — prover_b — review — plan §7 (Marcus bridge)
+- [ ] `epBounds_of_reactionRegion` — Compose.lean — prover_b — review — plan §7 (Hammond bridge)
+- [ ] `epBounds_of_marcus_normal` — Compose.lean — prover_b — review — plan §7
+- [ ] `epDescriptor_of_microscopic` — Compose.lean — prover_b — review — plan §7
+- [ ] `bepDefect_le_of_microscopic` — Compose.lean — prover_b — review — plan §7
+- [ ] `bepRadius_add` — Compose.lean — prover_b — review — plan §7
+- [ ] `epConformsOnWindow_of_microscopic` — Compose.lean — prover_b — review — plan §7
+- [ ] `epConformsOnWindow_shrinks_with_inner` — Compose.lean — prover_b — review — plan §7
+- [ ] `transfer_complementary_microscopic` — Compose.lean — prover_b — review — plan §7
 
 ## B5a — rational decision layer (`PhotoLean/BEP/RatModel.lean`; owner prover_c; Sprint 2)
 
 - [ ] definitions `qEact` / `qBepLine` / `qBepDefect` / `qTransfer` / `qReverseTransfer` / `qSecSlope`
       / `qAlphaObs` / `qLamOfPair` / `qConformsWindow` / `EPQVerdict` / `epQVerdict`
-      — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qEact_cast` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qBepDefect_cast` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qTransfer_cast` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qSecSlope_cast` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qAlphaObs_cast` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qLamOfPair_cast` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qSecSlope_eq_qTransfer_mid` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qAlphaObs_eq_qTransfer_mid` — RatModel.lean — prover_c — proving — plan §8.1 (data → structure)
-- [ ] `qLamOfPair_reconstructs` — RatModel.lean — prover_c — proving — plan §8.1 (λ̂ from two points)
-- [ ] `epQVerdict_conforming_iff` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `epQVerdict_boundary_iff` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `epQVerdict_superLinear_iff` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `epQVerdict_subLinear_iff` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qConformsWindow_iff_radius_sq` — RatModel.lean — prover_c — proving — plan §8.1
+      — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qEact_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qBepDefect_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qTransfer_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qSecSlope_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qAlphaObs_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qLamOfPair_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qSecSlope_eq_qTransfer_mid` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qAlphaObs_eq_qTransfer_mid` — RatModel.lean — prover_c — review — plan §8.1 (data → structure)
+- [ ] `qLamOfPair_reconstructs` — RatModel.lean — prover_c — review — plan §8.1 (λ̂ from two points)
+- [ ] `epQVerdict_conforming_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `epQVerdict_boundary_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `epQVerdict_superLinear_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `epQVerdict_subLinear_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `qConformsWindow_iff_radius_sq` — RatModel.lean — prover_c — review — plan §8.1
 - [ ] `qSecondDividedDiff` / `qModelConsistent3` definitions — RatModel.lean — prover_c — proving —
       plan §8.1 (added 2026-09-20 from literature round 1c)
 - [ ] `qSecondDividedDiff_model` — RatModel.lean — prover_c — proving — plan §8.1
@@ -187,7 +187,9 @@
 | Batch | Scope | Verdict | Key evidence | Notes |
 |---|---|---|---|---|
 | B1 + B5a (independent verifier #1) | `Basic.lean` + `RatModel.lean` | — | — | B1 delivered by `prover_a` (33 declarations, worker gate PASS, 0 fidelity differences) and awaiting this batch; `RatModel.lean` still in delivery |
-| B2 + B3 (independent verifier #2) | `Criterion.lean` + `Sharp.lean` | — | — | not yet dispatched |
+| B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | — | — | delivered by `prover_a` / `prover_b`; worker gates PASS (40/40 `axioms.sh`, 0 fidelity differences); **verification in progress** |
+| B3 (independent verifier #3) | `Sharp.lean` (25 + 8 AUX) | — | — | in delivery by `prover_d`; not yet dispatched |
+| B5a (independent verifier #4) | `RatModel.lean` (11 defs + 18 thms + 5 model-consistency decls) | — | — | 18/18 delivered; the 5 new-block declarations pending the third non-degeneracy premise (resolved) |
 | B4 + B5b (independent verifier #3) | `Compose.lean` + `Instances.lean` | — | — | not yet dispatched |
 | Frozen-state closeout | whole tree | — | — | not yet dispatched |
 
