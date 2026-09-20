@@ -330,6 +330,17 @@ theorem inst_I11_F1_not_model_consistent :
 
 /-! #### F2 — the same reaction in pentyl ethanoate (PE) -/
 
+/-- F2 — same source / status as F1 (*Antioxidants* **15**(7) 840–860 (2026), DOI
+`10.3390/antiox15070868`, OA `PMC13405240`); locus: **Table 1**, "PE" (pentyl ethanoate) columns;
+status **`first-hand`**. Units: the source's **printed kcal/mol** `ΔG°` and `ΔG‡` (a Gibbs energy
+and its barrier); model convention `x = -ΔG°`. The kJ/mol column of the record is the record's own
+arithmetic (not used). Rows used (verbatim): `16(2)` `ΔG° = +1.0`, `ΔG‡ = 14.0`; `10`
+`ΔG° = -14.3`, `ΔG‡ = 5.1` (model abscissae `-1.0`, `14.3`). -/
+theorem inst_I11_F2_alphaObs :
+    Rat.qAlphaObs (-(1.0) : ℚ) 14.0 14.3 5.1 = 89 / 153 := by
+  unfold Rat.qAlphaObs
+  norm_num
+
 end BEP
 
 end PhotoLean
