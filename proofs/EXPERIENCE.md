@@ -641,3 +641,105 @@
   - Submission driver reused unchanged from H1/H2 (emit → build → strict scan → `axioms.sh` → commit -- path);
     logs at `/tmp/h4-gate-log.txt`. Reusing one driver for three milestones cost nothing and kept the evidence
     format identical across H1/H2/H4.
+
+## 2026-09-20 — H3 sharp conditions (6 theorems, `Hammond/Sharp.lean`) — prover_d — DONE
+
+- Goal: `0 < lam` as the **exact** validity condition of `HammondDescriptor` (`hammond_sharp`), with
+  explicit two-point counter-witnesses for `lam < 0` and `lam = 0` instead of a negated quantifier.
+  6 theorems, one `feat(H3)` commit each; `check.sh --strict` PASS and `axioms.sh` PASS for all six.
+- Tried and failed (3 items):
+  1. **Forward reference to the witnesses in the skeleton's declaration order is impossible** — the
+     authority lists `hammond_lam_pos_of_descriptor` first and the two witnesses after it, and Lean has
+     no forward references. Delivering in proof order (witnesses first, necessity kernel consuming them)
+     is the fix sanctioned by the plan; the fidelity script is dict-based and order-insensitive, so the
+     reordering produced **0 signature differences**. Record the deviation in the file header.
+  2. `subst hzero` in the `lam = 0` branch rewrites the **goal** `0 < lam` to `0 < 0`, so
+     `exact hnot (h x₁ x₂ hlt)` (type `False`) fails: `type mismatch: False` vs `0 < 0 : Prop`. Fix:
+     `exact absurd (h x₁ x₂ hlt) hnot`. **Lesson: after `subst`, the contradiction proof has type
+     `False` while the goal is the rewritten proposition — use `absurd`/`False.elim`.**
+  3. Two **self-inflicted diagnosis errors** while collecting the "witnesses are genuine" evidence
+     (worth recording because both looked like workspace faults):
+     a. A probe containing `example : tsCoord (-3) 0 < tsCoord (-3) 1 := …` failed with
+        `function expected at tsCoord`, `term has type ?m.4` and `unknown identifier
+        'hammond_fails_of_nonpos'` **because the probe never opened `namespace PhotoLean.Hammond`**:
+        an unqualified name that is not in scope is auto-bound as an implicit variable inside an
+        `example`, so the error message points at the use, not at the missing namespace. Wrapping the
+        probe in the two namespaces (or fully qualifying every name) makes the identical file compile
+        with 0 error. **Lesson: in a probe file, `term has type ?m.N` on a known identifier means
+        "not in scope", not "import broken".**
+     b. Chasing (a) I concluded that a concurrent build was deleting the oleans, because
+        `ls .lake/build/lib/lean/PhotoLean/Hammond/` returned `No such file or directory` while other
+        runs still worked. The real cause: in this project Lake writes
+        `.lake/build/lib/PhotoLean/Hammond/` (there is **no** `lean/` path component) — the wrong path
+        gives ENOENT forever, which mimics a churning build tree exactly. Verify the build-dir layout
+        once with `find .lake/build -name '*.olean'` instead of assuming the upstream Lake layout.
+        **Lesson: a path-shaped error is evidence about your path guess before it is evidence about
+        the workspace; and in a multi-prover workspace, reproduce an isolated failure once more before
+        reporting it as interference.**
+- Worked (reusable recipes):
+  - `exists_direction_reversal_of_neg`: `refine ⟨0, 1, by norm_num, ?_⟩; unfold tsCoord;
+    rw [div_lt_div_right_of_neg (by linarith : (2 : ℝ) * lam < 0)]; linarith`. Note this rewrite's RHS is
+    `b < a` (numerator order flips) — the exact reverse of H2's `tsCoord_antitone` route.
+  - `exists_direction_reversal_of_eq`: `refine ⟨0, 1, by norm_num, ?_⟩;
+    rw [tsCoord_zero_lam, tsCoord_zero_lam]; norm_num` — two `rw`s instantiate the two different `x`s.
+  - `hammond_lam_pos_of_descriptor`: `rcases lt_trichotomy lam 0 with hneg | hzero | hpos`; the negative
+    branch contradicts the descriptor at the witness pair (`linarith`), the zero branch by `absurd`, the
+    third branch is the conclusion itself. `set_option pp.proofs true in #print` shows both witness
+    lemmas, `lt_trichotomy`, `absurd` and `Or.casesOn` ×2 in the proof term (2 nested `casesOn` = the
+    3 branches), i.e. the witness → necessity dependency is kernel-enforced, not a code-reading claim.
+  - `hammond_sharp`: one line, `⟨hammond_lam_pos_of_descriptor, hammond_descriptor_holds⟩` (H2's
+    sufficiency) — no new arithmetic. `hammond_fails_of_nonpos`:
+    `linarith [hammond_lam_pos_of_descriptor h]`. `conforms_requires_pos`: `h.1`. No linter suppression
+    needed: every premise of the six signatures is used.
+- Reusable pattern: **make the necessity direction consume the witness theorems rather than inlining the
+  same two points twice** — the counterexamples then cannot drift from the branch that uses them, and
+  "the witnesses are genuine" becomes a proof dependency. Corollary: when the statement authority fixes a
+  declaration order that is not the proof order, deliver in proof order, verify fidelity (order-insensitive),
+  and record the deviation in the file header and the hand-off report.
+
+## 2026-09-20 — H5b 实例判定层（`Hammond/Instances.lean`：29 条，I1–I10） — prover_c — DONE
+
+(This entry is in English per the language policy; earlier entries predate it.)
+
+- Goal: the 29 instance verdicts of the skeleton's H5b section, one commit per theorem, with the
+  plan §13 wording rule ("outside the domain of applicability of the model's description", never
+  "the molecule violates Hammond"). Delivered: 29/29 signatures verbatim, 29 commits, all gates
+  green on the first run of the incremental driver.
+- Tried and FAILED (3 items, all in the literal-bridge plumbing):
+  1. **Writing the ℚ-side literal bridge in a different surface syntax than the statement
+     authority.** The instance literal is `-(1 / 2)`; I bridged with
+     `(((-(1 : ℚ) / 2 : ℚ)) : ℝ) = (-(1 / 2) : ℝ)`. `-(1:ℚ)/2` parses as `(-1)/2`, while the
+     skeleton's `-(1/2)` parses as `-(1/2)` — *equal but not syntactically equal*, so the final
+     `rw [inst_I3_endergonic_zone]` failed with
+     `did not find instance of the pattern … Rat.hammondZoneQ 1 (-1 / 2) = HZone.late`.
+     Fix: write the ℚ literal with the skeleton's own surface syntax
+     (`((-(1 / 2) : ℚ) : ℝ) = (-(1 / 2) : ℝ)`).
+  2. **Ordering two literal bridges wrongly.** In `hammondZone (1) (-(1/2))` the bridge for `1`
+     ran first, which also rewrote the `1` inside `-(1/2)`, so the second bridge's pattern no
+     longer matched: `did not find instance … ⊢ hammondZone (↑1) (-(↑1 / 2)) = HZone.late`.
+     Fix: rewrite the compound literal first, the atomic one second.
+  3. `rw [Rat.hammondZoneQ_eq_early_iff]` without the hypothesis: the hypothesis is an unassigned
+     metavariable → `unsolved goals ⊢ 0 < ?m`. It must be given explicitly, e.g.
+     `rw [Rat.hammondZoneQ_eq_early_iff (by norm_num : (0 : ℚ) < 6 / 5)]`.
+- Worked (reusable recipes):
+  - **The binding chain, per verdict**: build the ℝ-side classifier value from the ℚ computation
+    by `rw [← (bridge_c), ← (bridge_d), ← Rat.hammondZoneQ_eq_hammondZone, inst_…_zone]`, then
+    `(conforms_iff_zone h).mpr (Or.inl hz)` for a positive verdict, or
+    `intro hc; have hd := (conforms_iff_zone h).mp hc; rw [hz] at hd;
+    rcases hd with h | h | h <;> exact absurd h (by decide)` for a negative one. The literal
+    bridges are `by norm_num : (((c : ℚ)) : ℝ) = (c : ℝ)`.
+  - **Marcus cross-link on a real instance**: `Rat.hammondZoneQ_beyondReactant_iff_inverted` (H5a)
+    → `Marcus.Rat.zoneQ … = Marcus.Zone.inverted` → `Marcus.Rat.zoneQ_inverted_iff` → `lam < x`;
+    close with `unfold Marcus.InvertedRegion; norm_num at hlt ⊢`.
+  - Pure instantiations (no arithmetic): `hammond_fails_of_nonpos (by norm_num : … ≤ 0)` (I8),
+    `tsCoord_antitone` (I9), `hammond_descriptor_holds` (I4), `reactantLike_iff` / `productLike_iff`
+    (I2/I3/I10), `not_reactionRegion_of_nonpos` (I8).
+  - **Master-copy + emitter delivery**: keep the whole file (with `-- @DECL: <name>` markers) in the
+    scratch probe, and have the driver emit "header + first k declarations + footer" (stripping
+    `-- @` dev lines) into a temp file, `cp` it over the delivered path, run
+    build + `check.sh --strict` + `axioms.sh` + `git commit -- <path>` — 29 commits in ~3 minutes,
+    full log at `/tmp/h5b-gate-log.txt`. The emitter **reads the master and writes a temp file**
+    (never the path it reads), which avoids prover_a's self-truncating-emitter bug.
+  - Corollary for the verifier: "all 29 verdicts are kernel-checked" is backed by 58
+    `verdict: PASS` lines (one strict-check plus one axioms line per step) and no
+    `FAIL|error|warning` line in the driver log.

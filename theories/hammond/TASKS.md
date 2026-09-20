@@ -45,93 +45,93 @@
 
 - [ ] definitions `reactantSurface` / `productSurface` / `tsCoord` / `gapReactant` / `gapProduct`
       / `lefflerSecant` / `ReactionRegion` / `ReactantLike` / `ProductLike` / `HammondConforms`
-      / `HammondDescriptor` / `HZone` / `hammondZone` — Basic.lean — prover_a — todo — plan §2.2
-- [ ] `crossing_iff` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `gapReactant_eq_crossing_energy` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `gapProduct_eq_crossing_energy` — Basic.lean — prover_a — todo — plan §4.2 (corrected: well-referenced form `... - dG`)
-- [ ] `gapProduct_sub_gapReactant` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `gapProduct_eq_gapReactant_neg` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `tsCoord_neg` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `tsCoord_zero` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `tsCoord_zero_lam` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `tsCoord_at_lam` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `tsCoord_mem_iff` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `reactionRegion_pos` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `not_reactionRegion_of_nonpos` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `hammondZone_eq_early_iff` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `hammondZone_eq_half_iff` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `hammondZone_eq_late_iff` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `hammondZone_eq_atReactant_iff` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `hammondZone_eq_atProduct_iff` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `hammondZone_eq_beyondReactant_iff` — Basic.lean — prover_a — todo — plan §4.3
-- [ ] `hammondZone_eq_beyondProduct_iff` — Basic.lean — prover_a — todo — plan §4.3
+      / `HammondDescriptor` / `HZone` / `hammondZone` — Basic.lean — prover_a — review — plan §2.2
+- [ ] `crossing_iff` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `gapReactant_eq_crossing_energy` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `gapProduct_eq_crossing_energy` — Basic.lean — prover_a — review — plan §4.2 (corrected: well-referenced form `... - dG`)
+- [ ] `gapProduct_sub_gapReactant` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `gapProduct_eq_gapReactant_neg` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `tsCoord_neg` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `tsCoord_zero` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `tsCoord_zero_lam` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `tsCoord_at_lam` — Basic.lean — prover_a — review — plan §4.2
+- [ ] `tsCoord_mem_iff` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `reactionRegion_pos` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `not_reactionRegion_of_nonpos` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `hammondZone_eq_early_iff` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `hammondZone_eq_half_iff` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `hammondZone_eq_late_iff` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `hammondZone_eq_atReactant_iff` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `hammondZone_eq_atProduct_iff` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `hammondZone_eq_beyondReactant_iff` — Basic.lean — prover_a — review — plan §4.3
+- [ ] `hammondZone_eq_beyondProduct_iff` — Basic.lean — prover_a — review — plan §4.3
 
 ## H2 — Hammond criterion (`PhotoLean/Hammond/Criterion.lean`; owner prover_a; Sprint 2)
 
-- [ ] `tsCoord_antitone` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `hammond_descriptor_holds` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `reactantLike_iff` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `productLike_iff` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `gap_compare_iff` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `lefflerSecant_eq_midpoint` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `lefflerSecant_symm` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `lefflerSecant_mem_iff` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `tsCoord_lt_zero_iff_inverted` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `lefflerSecant_neg_iff_inverted` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `conforms_iff_zone` — Criterion.lean — prover_a — todo — plan §5 (corrected: the three-predicate disjunction was a trichotomy tautology)
-- [ ] `exists_reactantLike` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `exists_productLike` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `exists_reactionRegion` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `barrier_eq_gapReactant` — Criterion.lean — prover_a — todo — plan §5
+- [ ] `tsCoord_antitone` — Criterion.lean — prover_a — review — plan §5
+- [ ] `hammond_descriptor_holds` — Criterion.lean — prover_a — review — plan §5
+- [ ] `reactantLike_iff` — Criterion.lean — prover_a — review — plan §5
+- [ ] `productLike_iff` — Criterion.lean — prover_a — review — plan §5
+- [ ] `gap_compare_iff` — Criterion.lean — prover_a — review — plan §5
+- [ ] `lefflerSecant_eq_midpoint` — Criterion.lean — prover_a — review — plan §5
+- [ ] `lefflerSecant_symm` — Criterion.lean — prover_a — review — plan §5
+- [ ] `lefflerSecant_mem_iff` — Criterion.lean — prover_a — review — plan §5
+- [ ] `tsCoord_lt_zero_iff_inverted` — Criterion.lean — prover_a — review — plan §5
+- [ ] `lefflerSecant_neg_iff_inverted` — Criterion.lean — prover_a — review — plan §5
+- [ ] `conforms_iff_zone` — Criterion.lean — prover_a — review — plan §5 (corrected: the three-predicate disjunction was a trichotomy tautology)
+- [ ] `exists_reactantLike` — Criterion.lean — prover_a — review — plan §5
+- [ ] `exists_productLike` — Criterion.lean — prover_a — review — plan §5
+- [ ] `exists_reactionRegion` — Criterion.lean — prover_a — review — plan §5
+- [ ] `barrier_eq_gapReactant` — Criterion.lean — prover_a — review — plan §5
 
 ## H3 — sharp conditions (`PhotoLean/Hammond/Sharp.lean`; owner prover_d; Sprint 3)
 
-- [ ] `hammond_lam_pos_of_descriptor` — Sharp.lean — prover_d — todo — plan §6
-- [ ] `hammond_sharp` — Sharp.lean — prover_d — todo — plan §6 (critical path)
-- [ ] `hammond_fails_of_nonpos` — Sharp.lean — prover_d — todo — plan §6
-- [ ] `exists_direction_reversal_of_neg` — Sharp.lean — prover_d — todo — plan §6
-- [ ] `exists_direction_reversal_of_eq` — Sharp.lean — prover_d — todo — plan §6
-- [ ] `conforms_requires_pos` — Sharp.lean — prover_d — todo — plan §6
+- [ ] `hammond_lam_pos_of_descriptor` — Sharp.lean — prover_d — review — plan §6
+- [ ] `hammond_sharp` — Sharp.lean — prover_d — review — plan §6 (critical path)
+- [ ] `hammond_fails_of_nonpos` — Sharp.lean — prover_d — review — plan §6
+- [ ] `exists_direction_reversal_of_neg` — Sharp.lean — prover_d — review — plan §6
+- [ ] `exists_direction_reversal_of_eq` — Sharp.lean — prover_d — review — plan §6
+- [ ] `conforms_requires_pos` — Sharp.lean — prover_d — review — plan §6
 
 ## H4 — microscopic conditions (`PhotoLean/Hammond/Compose.lean`; owner prover_b; Sprint 4)
 
-- [ ] `hammond_descriptor_of_inner` — Compose.lean — prover_b — todo — plan §7
-- [ ] `hammond_descriptor_of_microscopic` — Compose.lean — prover_b — todo — plan §7
-- [ ] `hammond_descriptor_of_nonoverlap` — Compose.lean — prover_b — todo — plan §7 (stretch)
-- [ ] `exists_reactionRegion_of_microscopic` — Compose.lean — prover_b — todo — plan §7
+- [ ] `hammond_descriptor_of_inner` — Compose.lean — prover_b — review — plan §7
+- [ ] `hammond_descriptor_of_microscopic` — Compose.lean — prover_b — review — plan §7
+- [ ] `hammond_descriptor_of_nonoverlap` — Compose.lean — prover_b — review — plan §7 (stretch)
+- [ ] `exists_reactionRegion_of_microscopic` — Compose.lean — prover_b — review — plan §7
 
 ## H5a — rational decision layer (`PhotoLean/Hammond/RatModel.lean`; owner prover_c; Sprint 2)
 
 - [ ] `tsCoordQ` / `gapReactantQ` / `lefflerSecantQ` / `hammondZoneQ` definitions —
-      RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `tsCoordQ_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `gapReactantQ_cast` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `lefflerSecantQ_cast` — RatModel.lean — prover_c — todo — plan §8.1
+      RatModel.lean — prover_c — review — plan §8.1
+- [ ] `tsCoordQ_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `gapReactantQ_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `lefflerSecantQ_cast` — RatModel.lean — prover_c — review — plan §8.1
 - [ ] `hammondZoneQ_eq_hammondZone` (7-branch transfer; highest-risk item) — RatModel.lean —
-      prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_eq_early_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_eq_half_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_eq_late_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_eq_atReactant_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_eq_atProduct_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_eq_beyondReactant_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_eq_beyondProduct_iff` — RatModel.lean — prover_c — todo — plan §8.1
-- [ ] `hammondZoneQ_beyondReactant_iff_inverted` — RatModel.lean — prover_c — todo — plan §8.1
+      prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_eq_early_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_eq_half_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_eq_late_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_eq_atReactant_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_eq_atProduct_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_eq_beyondReactant_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_eq_beyondProduct_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `hammondZoneQ_beyondReactant_iff_inverted` — RatModel.lean — prover_c — review — plan §8.1
 
 ## H5b — instance verdicts (`PhotoLean/Hammond/Instances.lean`; owner prover_c; Sprint 3)
 
-- [ ] I1 `inst_I1_thermoneutral_zone` / `_conforms` / `_coord` — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I2 `inst_I2_exergonic_zone` / `_reactantLike` / `_conforms` — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I3 `inst_I3_endergonic_zone` / `_productLike` / `_conforms` — Instances.lean — prover_c — todo — plan §8.2
+- [ ] I1 `inst_I1_thermoneutral_zone` / `_conforms` / `_coord` — Instances.lean — prover_c — review — plan §8.2
+- [ ] I2 `inst_I2_exergonic_zone` / `_reactantLike` / `_conforms` — Instances.lean — prover_c — review — plan §8.2
+- [ ] I3 `inst_I3_endergonic_zone` / `_productLike` / `_conforms` — Instances.lean — prover_c — review — plan §8.2
 - [ ] I4 `inst_I4_barrierless_zone` / `_coord` / `_notConforms` / `_family_descriptor` —
-      Instances.lean — prover_c — todo — plan §8.2
-- [ ] I5 `inst_I5_mcc_normal_zone` / `_coord` / `_conforms` — Instances.lean — prover_c — todo — plan §8.2
+      Instances.lean — prover_c — review — plan §8.2
+- [ ] I5 `inst_I5_mcc_normal_zone` / `_coord` / `_conforms` — Instances.lean — prover_c — review — plan §8.2
 - [ ] I6 `inst_I6_mcc_inverted_zone` / `_coord` / `_notConforms` / `_region` / `_leffler_negative` —
-      Instances.lean — prover_c — todo — plan §8.2
-- [ ] I7 `inst_I7_rc_inverted_zone` / `_coord` / `_notConforms` — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I8 `inst_I8_nonphysical_fails_neg` / `_fails_zero` / `_no_region` — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I9 `inst_I9_mcc_structural_monotone` — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I10 `inst_I10_nonvacuous` — Instances.lean — prover_c — todo — plan §8.2
+      Instances.lean — prover_c — review — plan §8.2
+- [ ] I7 `inst_I7_rc_inverted_zone` / `_coord` / `_notConforms` — Instances.lean — prover_c — review — plan §8.2
+- [ ] I8 `inst_I8_nonphysical_fails_neg` / `_fails_zero` / `_no_region` — Instances.lean — prover_c — review — plan §8.2
+- [ ] I9 `inst_I9_mcc_structural_monotone` — Instances.lean — prover_c — review — plan §8.2
+- [ ] I10 `inst_I10_nonvacuous` — Instances.lean — prover_c — review — plan §8.2
 
 ---
 
