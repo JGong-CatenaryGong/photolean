@@ -261,6 +261,15 @@ theorem parabolicBarrier_eq_apex_iff {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 <
   · intro h
     rw [h]
 
+/-- The two-parabola model is a volcano whenever both curvatures are physical — no BEP
+linearization is needed for the Sabatier description. This is the microscopic form of S2's
+`volcano_descriptor_of_physical`: the only premises are the two reorganization energies' positivity.
+(plan §7) -/
+theorem parabolic_descriptor {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) :
+    VolcanoDescriptor (fun dE => parabolicBarrier lam1 lam2 dE) (apexPar lam1 lam2) :=
+  ⟨fun dE => parabolicBarrier_apex_le h1 h2 dE,
+    fun dE hd => (parabolicBarrier_eq_apex_iff h1 h2 dE).mp hd⟩
+
 end Sabatier
 
 end PhotoLean
