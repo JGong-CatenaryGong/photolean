@@ -107,4 +107,10 @@ theorem secSlope_eq_transfer_mid {lam : ℝ} (hlam : lam ≠ 0) {x h : ℝ} (hh 
   field_simp
   ring
 
+/-- The observable slope depends only on the midpoint of the observed
+window: two windows with the same midpoint give the same finite difference. -/
+theorem secSlope_midpoint_invariant {lam x y h k : ℝ} (hlam : lam ≠ 0) (hh : h ≠ 0) (hk : k ≠ 0)
+    (hmid : x + h / 2 = y + k / 2) : secSlope lam x h = secSlope lam y k := by
+  rw [secSlope_eq_transfer_mid hlam hh, secSlope_eq_transfer_mid hlam hk, hmid]
+
 end PhotoLean.BEP
