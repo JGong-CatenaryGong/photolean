@@ -117,6 +117,12 @@ theorem inst_I3_endergonic_zone : Rat.epQVerdict (2 : ℚ) (-(1 / 2)) = Rat.EPQV
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I3 (`model-constructed`): `α(-1/2) = 5/8 > 1/2` — the complementarity mirror of I2
+(`α_f + α_r = 1` at the same `|x|`). -/
+theorem inst_I3_endergonic_transfer : Rat.qTransfer (2 : ℚ) (-(1 / 2)) = 5 / 8 := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
