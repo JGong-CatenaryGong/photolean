@@ -255,13 +255,23 @@ word for word**. A bare `proofs/scripts/check.sh --strict` covers all six module
 literature-authored `Kernel`/`Relations` modules and returns PASS.
 
 **Independent verification.** The read-only `verifier` role ran the acceptance gate itself and, rather
-than trusting the files, re-derived the headline numbers in its own kernel probes: `upperYield = 3/4`,
-`fluoYield = 7/8`, leak `6/7 > 1/2` for the equal-rates ladder, the levelwise-satisfied-yet-violating
-statement, and the K5a verdict rows. Its run 1 (K1 + all Sprint-0 probes) reported **PASS on the
-mathematics** with eight evidence-chain findings, all of which are recorded with their disposition in
-`theories/kasha/TASKS.md` §"Acceptance records"; three of them were fixed in the tooling or the
-records (the untracked API probes were committed, the fidelity checker gained `--milestone` scoping,
-the board's hash history was restored), and the remaining ones are registered as deviations (§6).
+than trusting the files, re-derived the headline numbers in its own kernel probes. Its run 1
+(K1 + all Sprint-0 probes) and run 2 (K2/K4/K5a) both reported **PASS on the mathematics**, with
+independent reconstructions in a scratch tree (`git archive` + rebuild from source, which defeats
+stale oleans): the K4 effective-reduction equivalence on six of its own ladders, the N-level
+threshold and `kashaMargin` values computed independently, the Marcus bridge on three parameter
+settings including one where no gap can work, and the K5a verdicts with the `6/7` leak fraction —
+36 kernel-closed examples in total. Run 2's adversarial sweep of the K2/K4/K5a blocks *line by line*
+for the defect class this theory has already produced (a division whose denominator's sign is not in
+the premises) found **no latent false statement**; the one row that looked suspect (K2 #18, which
+needs `cascade 0 i > 0` without hypothesising it) was re-derived by the verifier as true via a
+minimal-index argument. The findings of both runs are evidence-chain and documentation matters, all
+recorded with their disposition in `theories/kasha/TASKS.md` §"Acceptance records": the untracked API
+probes were committed, the fidelity checker gained `--milestone` scoping after a milestone's
+acceptance number proved inexpressible without it, the board's hash history was restored (a Sprint-0
+row must not cite a hash that only exists *after* the corrections), the delivered module headers now
+name the frozen authority state, and seven plan sketches were reconciled with the delivered
+signatures. None of the findings invalidated a delivered theorem.
 
 **The process caught three false statements before delivery** (plan §3.1, the statement-correction
 log). All three were the *same* mistake in different clothes — a statement whose premises did not
