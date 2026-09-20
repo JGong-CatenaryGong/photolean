@@ -174,8 +174,9 @@ theorem bepRadius_add {lamInner lamOuter tol : ℝ} (hli : 0 ≤ lamInner) (hlo 
 every symmetric window whose half-width is at most the tolerance radius `2√(lam*tol)` of the *total*
 curvature conforms to the BEP line within `tol`. The half-width is deliberately not assumed
 nonnegative: for `w < 0` the window `[-w, w]` is empty and the statement holds vacuously, and for
-`0 ≤ w` this is the radius criterion of plan §6.2, established here by squaring (`Real.sq_sqrt` +
-`sq_le_sq`) instead of through the not-yet-available `epConformsOnWindow_iff_radius`. -/
+`0 ≤ w` this is the (⇐) direction of the radius criterion of plan §6.2 (`Sharp.lean` proves the
+equivalence), established here by squaring (`Real.sq_sqrt` + `sq_le_sq`) instead of through the
+not-yet-available `epConformsOnWindow_iff_radius`. -/
 theorem epConformsOnWindow_of_microscopic {lamInner lamOuter tol w : ℝ} (hli : 0 < lamInner)
     (hlo : 0 < lamOuter) (htol : 0 < tol) (hw : w ≤ bepRadius (lamInner + lamOuter) tol) :
     EPConformsOnWindow (lamInner + lamOuter) tol (-w) w := by
