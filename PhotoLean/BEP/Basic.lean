@@ -267,5 +267,19 @@ theorem epZone_eq_beyondForward_iff {lam x : ℝ} (hlam : 0 < lam) :
     rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
       if_neg (by linarith : ¬ (x = 0)), if_neg (by linarith : ¬ (x = lam)),
       if_neg (by linarith : ¬ (x = -lam)), if_pos h]
+/-- Zone characterization, inverted reverse region: `x < -lam`, where the transfer coefficient
+exceeds one. -/
+theorem epZone_eq_beyondReverse_iff {lam x : ℝ} (hlam : 0 < lam) :
+    epZone lam x = EPZone.beyondReverse ↔ x < -lam := by
+  constructor
+  · intro h
+    unfold epZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6 h7 h8
+    exact h7
+  · intro h
+    unfold epZone
+    rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
+      if_neg (by linarith : ¬ (x = 0)), if_neg (by linarith : ¬ (x = lam)),
+      if_neg (by linarith : ¬ (x = -lam)), if_neg (by linarith : ¬ lam < x), if_pos h]
 
 end PhotoLean.BEP
