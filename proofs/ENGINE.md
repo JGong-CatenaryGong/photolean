@@ -44,6 +44,24 @@
 **规则：任何角色都不得绕过 TASKS.md 声称任务完成。**
 工人报告 DONE ≠ 任务 DONE；只有 verifier PASS 后由 lead 打勾。
 
+### 1.1 多理论扩展（2026-09-20 起）
+
+一个仓库可以承载多个理论：上表的 `PLAN` / `TASKS` / `LITERATURE` / `PROBES` / `RESULT`
+是**规范理论**（当前为 Marcus）的叶子；追加理论在 `ENGINE.yml` 里用
+`<LEAF>_<theory>`（如 `PLAN_hammond`）声明，并把理论名登记进 `THEORIES`。
+`check.sh` 会按 `THEORIES` 逐项做叶子存在性检查；`SOURCE_DIRS` 保持**全局** ——
+任何交付源码都必须落在扫描范围内，否则验收门看不见它。
+
+第二个理论（Hammond 假说）的布局即此扩展的样例：
+
+| 对象 | 路径 |
+|---|---|
+| 理论过程产物 | `theories/hammond/{plan.md,TASKS.md,LITERATURE.md,RESULTS.md,probes/}` |
+| Lean 源码 | `PhotoLean/Hammond/*.lean`（命名空间 `PhotoLean.Hammond`，含子命名空间 `.Rat`） |
+
+**注意**：新增理论时 `lakefile.toml` 的 `defaultTargets` 必须同步补入新模块 ——
+否则裸跑 `check.sh --strict` 只构建旧目标，而扫描覆盖全目录（验收漏洞）。
+
 ## 1.5 语言政策（Language Policy）
 
 产物一个语言，对话另一个语言。原因很实际：模型在英文下写 Lean 注释与

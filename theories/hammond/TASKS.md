@@ -48,7 +48,7 @@
       / `HammondDescriptor` / `HZone` / `hammondZone` — Basic.lean — prover_a — todo — plan §2.2
 - [ ] `crossing_iff` — Basic.lean — prover_a — todo — plan §4.2
 - [ ] `gapReactant_eq_crossing_energy` — Basic.lean — prover_a — todo — plan §4.2
-- [ ] `gapProduct_eq_crossing_energy` — Basic.lean — prover_a — todo — plan §4.2
+- [ ] `gapProduct_eq_crossing_energy` — Basic.lean — prover_a — todo — plan §4.2 (corrected: well-referenced form `... - dG`)
 - [ ] `gapProduct_sub_gapReactant` — Basic.lean — prover_a — todo — plan §4.2
 - [ ] `gapProduct_eq_gapReactant_neg` — Basic.lean — prover_a — todo — plan §4.2
 - [ ] `tsCoord_neg` — Basic.lean — prover_a — todo — plan §4.2
@@ -78,7 +78,7 @@
 - [ ] `lefflerSecant_mem_iff` — Criterion.lean — prover_a — todo — plan §5
 - [ ] `tsCoord_lt_zero_iff_inverted` — Criterion.lean — prover_a — todo — plan §5
 - [ ] `lefflerSecant_neg_iff_inverted` — Criterion.lean — prover_a — todo — plan §5
-- [ ] `conforms_iff_structure` — Criterion.lean — prover_a — todo — plan §5
+- [ ] `conforms_iff_zone` — Criterion.lean — prover_a — todo — plan §5 (corrected: the three-predicate disjunction was a trichotomy tautology)
 - [ ] `exists_reactantLike` — Criterion.lean — prover_a — todo — plan §5
 - [ ] `exists_productLike` — Criterion.lean — prover_a — todo — plan §5
 - [ ] `exists_reactionRegion` — Criterion.lean — prover_a — todo — plan §5

@@ -90,9 +90,11 @@ theorem gapReactant_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
     gapReactant lam (-dG) = reactantSurface lam (tsCoord lam (-dG)) := by
   sorry
 
-/-- The reverse barrier is the product-surface energy at the crossing point. -/
+/-- The reverse barrier is the product-surface energy at the crossing point **measured from the
+product well** (whose energy is `dG`): the well-referenced form is the correct one, since the
+product well is not the zero of energy. -/
 theorem gapProduct_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
-    gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG)) := by
+    gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG)) - dG := by
   sorry
 
 /-- The two barriers differ exactly by the driving force (reverse-barrier identity). -/
@@ -230,9 +232,12 @@ theorem lefflerSecant_neg_iff_inverted {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h
     lefflerSecant lam x₁ x₂ < 0 ↔ Marcus.InvertedRegion lam ((x₁ + x₂) / 2) := by
   sorry
 
-/-- The instance-level verdict, characterized structurally. -/
-theorem conforms_iff_structure {lam x : ℝ} (hlam : 0 < lam) :
-    HammondConforms lam x ↔ ReactantLike lam x ∨ tsCoord lam x = 1 / 2 ∨ ProductLike lam x := by
+/-- The instance-level verdict, characterized by the classifier: conforming means the instance is
+classified early, thermoneutral or late (the three branches strictly between the two wells). -/
+theorem conforms_iff_zone {lam x : ℝ} (hlam : 0 < lam) :
+    HammondConforms lam x ↔
+      hammondZone lam x = HZone.early ∨ hammondZone lam x = HZone.half ∨
+        hammondZone lam x = HZone.late := by
   sorry
 
 /-- Non-vacuity: reactant-like transition states exist. -/

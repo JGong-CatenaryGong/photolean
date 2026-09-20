@@ -139,6 +139,17 @@ both direction-reversal witnesses, `tsCoord_mem_iff`, `bronsted_pos_iff`, `brons
 `leffler_finite_difference`, `gap_compare_iff`, `tsCoord_neg`, `tsCoord_zero`,
 `tsCoordQ_cast` and the ℚ classifier computations.
 
+**Sprint 1 correction (two statements of the first skeleton draft were false; caught before
+delivery, recorded in `proofs/EXPERIENCE.md` and in the API log)**:
+(i) `gapProduct_eq_crossing_energy` must be well-referenced — the reverse barrier is the crossing
+energy *measured from the product well* (`… - dG`); the un-referenced form is off by `dG`
+(found by `prover_a` with a kernel counterexample);
+(ii) the intended "verdict characterization by the three resemblance predicates" is a *tautology*
+of trichotomy (it holds for every `(lam, x)`, so it characterizes nothing) — the verdict is
+characterized by the **classifier** (`conforms_iff_zone`), which is the form the instance layer uses.
+**Lesson for the remaining milestones: every skeleton statement must be spot-checked, not only the
+ones that look risky.**
+
 ### 2.3 Why these formulation choices (and what each one buys)
 
 1. **Descriptor as a predicate, not a curve-invariant claim.** `HammondDescriptor` is a
@@ -236,7 +247,7 @@ theorem crossing_iff {lam dG q : ℝ} (hlam : lam ≠ 0) :
 theorem gapReactant_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
     gapReactant lam (-dG) = reactantSurface lam (tsCoord lam (-dG))
 theorem gapProduct_eq_crossing_energy {lam dG : ℝ} (hlam : lam ≠ 0) :
-    gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG))
+    gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG)) - dG   -- measured from the product well
 theorem gapProduct_sub_gapReactant {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
     gapProduct lam x - gapReactant lam x = x
 theorem gapProduct_eq_gapReactant_neg (lam x : ℝ) : gapProduct lam x = gapReactant lam (-x)
@@ -314,8 +325,10 @@ theorem lefflerSecant_neg_iff_inverted {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h
     lefflerSecant lam x₁ x₂ < 0 ↔ Marcus.InvertedRegion lam ((x₁ + x₂) / 2)
 
 /-- Verdict characterization + non-vacuity (the predicates are inhabited). -/
-theorem conforms_iff_structure {lam x : ℝ} (hlam : 0 < lam) :
-    HammondConforms lam x ↔ ReactantLike lam x ∨ tsCoord lam x = 1 / 2 ∨ ProductLike lam x
+theorem conforms_iff_zone {lam x : ℝ} (hlam : 0 < lam) :
+    HammondConforms lam x ↔
+      hammondZone lam x = HZone.early ∨ hammondZone lam x = HZone.half ∨
+        hammondZone lam x = HZone.late
 theorem exists_reactantLike   {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ReactantLike lam x
 theorem exists_productLike    {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ProductLike lam x
 theorem exists_reactionRegion {lam : ℝ} (hlam : 0 < lam) : ∃ x : ℝ, ReactionRegion lam x
