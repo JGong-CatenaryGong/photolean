@@ -149,6 +149,12 @@ noncomputable def kashaZone (rad ic : ℕ → ℝ) (tol : ℝ) (N : ℕ) : Kasha
 
 /-- Plan §4.2 #1. The total decay rate is the sum of the two channels (definitional). -/
 theorem decay_eq_rad_add_ic (rad ic : ℕ → ℝ) (n : ℕ) : decay rad ic n = rad n + ic n := rfl
+/-- Plan §4.2 #2. The two branch probabilities of a level with nonzero total decay sum to `1`. -/
+theorem radBranch_add_icBranch {rad ic : ℕ → ℝ} {n : ℕ} (h : decay rad ic n ≠ 0) :
+    radBranch rad ic n + icBranch rad ic n = 1 := by
+  unfold radBranch icBranch
+  rw [← add_div]
+  exact div_self h
 end Kasha
 
 end PhotoLean
