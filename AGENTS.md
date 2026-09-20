@@ -19,6 +19,13 @@
 5. **文件所有权独占**：同一文件同一时间只有一个属主（见 `theories/Marcus/TASKS.md`）。
 6. **验收独立**：写证明的人不能自判 PASS。verifier 只读、独立跑门、返回证据。
 7. **打勾只在 verifier PASS 之后**，由 lead 执行。
+8. **理论关闭清单**：任务板全勾 + verifier PASS **不等于理论关闭**。lead 在关闭一个理论前
+   必须完成两件登记，缺一不可：
+   ① **更新 `README.md` 现状节**（理论条目、模块构成、声明数、保真数）——这一接缝已三次
+   漏更（模块数 21→23、理论数三→四→五），靠记忆必漏；
+   ② **登记关系边**：在 `PhotoLean/Relations.lean` 与 `theories/RELATIONS.md` 登记本理论与
+   既有理论的关系边（真等价 / 单向蕴含 / 定义复用 / 组合 / 非关系）；**无边时也必须显式
+   登记"无边"** —— 关系图的完整性靠"每个理论都在图上"，不靠记忆。
 
 ## 语言政策（Language policy）
 
@@ -66,10 +73,15 @@ proofs/scripts/lake build PhotoLean.Smoke     # 单模块
 
 ## 当前状态
 
-理论方向已定：**Marcus 反转区**（经典马库斯模型，`theories/Marcus/plan.md` M1–M5，人类确认于 2026-09-20）。
-交付物：`PhotoLean/Marcus/{Basic,Barrier,Rate,Sharp,Reorg,Compose,RatModel,Instances}.lean`；
-面向人类提问的答复：`theories/Marcus/RESULTS.md`；进度真源：`theories/Marcus/TASKS.md`。
+**已交付状态的单一真源是 `README.md` 现状节**（五个理论：Marcus 反转区、Hammond 假说、
+BEP 原理、Kasha 规则、Sabatier 原则/火山图；另加共享内核 `PhotoLean/Kernel.lean` 与关系图
+`PhotoLean/Relations.lean` / `theories/RELATIONS.md`）。各理论的进度真源是各自的
+`theories/<理论>/TASKS.md`；跨理论关系边的登记状态见 `theories/RELATIONS.md`。
 
-**开工前必须先读 `theories/Marcus/TASKS.md` 的属主列与"验收记录"表** —— 该表记录了各里程碑的
+**已知登记缺口**（第二批关闭于铁律 8 生效之前）：Kasha→Marcus（条件性组合边，
+`Kasha.kashaWithin_one_marcus`）与 Sabatier→BEP（组合边，`Sabatier.linearVolcano_le_parabolic`
+等）尚未登记进 `Relations.lean` / `RELATIONS.md`，待"Relations 第二批扩展"任务补登记。
+
+**开工前必须先读目标理论 `TASKS.md` 的属主列与"验收记录"表** —— 该表记录了各里程碑的
 verifier 判决、已关闭的缺陷、以及若干**已实测的坑**（并发窗口内的门判定、
 `git add -A` 的并发事故、"未使用"≠"可推出" 等）。不要自行发明里程碑或改动已验收的语句。

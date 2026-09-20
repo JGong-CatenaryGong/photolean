@@ -10,7 +10,7 @@ Agent preset 驱动。
 
 - Lean 4.17.0 + mathlib，工具链与缓存已联通（`lake build` 冷启动 ~10s）
 - 验收门脚本可用：`proofs/scripts/check.sh --strict`、`proofs/scripts/axioms.sh`
-- **四个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
+- **五个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
   `propext` / `Classical.choice` / `Quot.sound`）：
   - **Marcus 反转区**（经典马库斯模型）——`PhotoLean/Marcus/`（8 模块：描述层 / 势垒代数 / 速率层 /
     锐利成立条件 / 微观重组能 / ℚ 判定层 / 复合 / 实例判决），**82 条声明**，语句保真 **51/51**
@@ -22,7 +22,12 @@ Agent preset 驱动。
   - **Kasha 规则**（发光只来自该多重度的最低激发态）——`PhotoLean/Kasha/`（6 模块：描述层 / 定律层 /
     锐利容差条件 / 复合与 Marcus 桥 / ℚ 判定层 / 实例判决），**150 条声明**，语句保真 **150/150**
     （`python3 theories/BEP/probes/bep-fidelity.py --theory kasha --milestone <K1…K5b>`；该检查器
-    亦服务其余三个理论，并支持按里程碑分级）。
+    亦服务其余理论，并支持按里程碑分级）；
+  - **Sabatier 原则 / 火山图**（有效势垒在顶点取唯一全局最小 ⟺ 两支 BEP 斜率同号非零）——
+    `PhotoLean/Sabatier/`（6 模块：描述层 / 定律层 / 锐利条件 / 双抛物面跨理论形式 / ℚ 判定层 /
+    实例判决），**134 条公开声明**（107 定理 + 27 定义/归纳类型；另有 36 条 private 辅助引理），
+    语句保真 **132/132**（`python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier`；
+    2 条描述层辅助定理在权威之外，已登记）。
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
 - **跨理论关系图**（三个"原理"作为同一二次对象的三种读法）：共享内核 `PhotoLean/Kernel.lean`、
   可检查的关系清单 `PhotoLean/Relations.lean`、双语讨论稿 `theories/RELATIONS.md`
