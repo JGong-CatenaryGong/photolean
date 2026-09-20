@@ -211,6 +211,58 @@ theorem marcus_rat_zoneQ_inverted_iff (lam x : ℚ) :
     Marcus.Rat.zoneQ lam x = Marcus.Zone.inverted ↔ (lam : ℝ) < (x : ℝ) :=
   Marcus.Rat.zoneQ_inverted_iff lam x
 
+/-! ## 6. Non-relations and shape differences (new theorems of this module) -/
+
+/-- **Exact in one theory, exactly false in the other.** In one and the same model the Hammond
+structural trend is *exactly* affine in the driving force — the transition-state coordinate is
+`1/2 - x/(2*lam)`, an affine function, so the "more driving force, earlier transition state" law
+holds with no tolerance parameter — while the BEP line law is *exactly* violated on every
+non-degenerate interval (`BEP.not_epLinearOn_of_ne_zero`, the second-difference engine): no affine
+model reproduces the barrier, the exact defect being the quadratic remainder `x²/(4*lam)`. This is
+the sharpest formal statement of the difference between the structural reading and the
+linear-free-energy reading of the same two-parabola object. -/
+theorem hammond_trend_exact_bep_law_inexact {lam : ℝ} (hlam : lam ≠ 0) :
+    (∃ c k : ℝ, ∀ x : ℝ, Kernel.tsCoord lam x = c + k * x) ∧
+      (∀ p q : ℝ, p < q → ¬ BEP.EPLinearOn lam (Set.Icc p q)) := by
+  constructor
+  · refine ⟨1 / 2, -(1 / (2 * lam)), fun x => ?_⟩
+    have h2 : (2 * lam : ℝ) ≠ 0 := mul_ne_zero (by norm_num) hlam
+    unfold Kernel.tsCoord
+    field_simp
+    ring
+  · intro p q hpq
+    exact BEP.not_epLinearOn_of_ne_zero hlam hpq
+
+/-- **The two sharp conditions coincide.** Under the physical positivity premises on the Marcus
+rate parameters, the Hammond structural descriptor holds exactly when the Marcus rate descriptor
+holds with an everywhere-positive rate; both sides characterize precisely the positive-curvature
+model (`Hammond.hammond_sharp`, `Marcus.descriptor_sharp`). The two descriptions are therefore
+*co-extensive* as hypotheses on the curvature, even though neither is a restatement of the other —
+this is the derived content behind the `rfl`-level barrier certificates. -/
+theorem hammond_sharp_iff_marcus_sharp {A kB T : ℝ} (hA : 0 < A) (hkB : 0 < kB) (hT : 0 < T)
+    (lam : ℝ) :
+    Hammond.HammondDescriptor lam ↔
+      ((∀ x : ℝ, 0 < Marcus.rate A lam kB T x) ∧ Marcus.InvertedDescriptor A lam kB T) := by
+  rw [Hammond.hammond_sharp, Marcus.descriptor_sharp hkB hT A lam]
+  exact ⟨fun h => ⟨hA, h⟩, fun h => h.2⟩
+
+/-- **The two `∀∀` predicates are not equally strong.** The rate predicate alone is satisfiable in
+a parameter region where the rate is everywhere *negative* (`A < 0`, `lam < 0`: the formal
+monotone pattern survives multiplying by a negative prefactor), whereas the structural predicate
+holds exactly for positive curvature. So "the rate decreases across the inverted region" does not
+pin the physical model, while "the transition-state coordinate decreases" does — the shape
+difference that the positivity conjunct of the Marcus sharpness theorem repairs. -/
+theorem rate_predicate_satisfiable_without_positive_curvature :
+    (∀ x : ℝ, Marcus.rate (-1) (-1) 1 1 x < 0) ∧
+      Marcus.InvertedDescriptor (-1) (-1) 1 1 ∧ ¬ Hammond.HammondDescriptor (-1) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro x
+    unfold Marcus.rate
+    exact mul_neg_of_neg_of_pos (by norm_num) (Real.exp_pos _)
+  · exact Marcus.inverted_descriptor_holds_of_neg (A := -1) (lam := -1) (kB := 1) (T := 1)
+      (by norm_num) (by norm_num) (by norm_num)
+  · exact Hammond.hammond_fails_of_nonpos (by norm_num : (-1 : ℝ) ≤ 0)
+
 end Relations
 
 end PhotoLean
