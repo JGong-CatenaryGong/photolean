@@ -413,6 +413,30 @@ theorem not_kashaWithin_of_gap_far {rad ic : ℕ → ℝ} {A lam kB T x tol : �
   fun hc =>
     absurd ((kashaWithin_one_marcus h htol0 htol1 hA hlam hkT hr0 hr1 hic).mp hc) (not_le.mpr hfar)
 
+/-- Plan §7.2 #14 — the same criterion as a window around the reorganization energy: conformance is
+`|λ - x| ≤ √K'` with `K' = 4 λ (kB·T) log K`, under the window's own nonnegativity `0 ≤ K'`. The
+square/`sqrt` step is the BEP-notes recipe (`Real.sqrt_sq_eq_abs`, `Real.sqrt_le_sqrt`,
+`pow_le_pow_left₀`, `sq_abs`, `Real.sq_sqrt`). -/
+theorem kashaWindow_halfWidth {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (h : RateData rad ic 1)
+    (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
+    (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x)
+    (h0 : 0 ≤ 4 * lam * (kB * T) * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol)) :
+    KashaWithin rad ic tol 1 ↔
+      |lam - x| ≤ Real.sqrt (4 * lam * (kB * T) * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol)) := by
+  rw [kashaWithin_one_marcus h htol0 htol1 hA hlam hkT hr0 hr1 hic]
+  constructor
+  · intro hh
+    calc |lam - x| = Real.sqrt ((lam - x) ^ 2) := (Real.sqrt_sq_eq_abs (lam - x)).symm
+      _ ≤ Real.sqrt (4 * lam * (kB * T)
+            * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol)) :=
+          Real.sqrt_le_sqrt hh
+  · intro hh
+    have hsq : |lam - x| ^ 2
+        ≤ (Real.sqrt (4 * lam * (kB * T)
+            * Real.log (kashaGapThreshold A (rad 0) (decay rad ic 0) (rad 1) tol))) ^ 2 :=
+      pow_le_pow_left₀ (abs_nonneg _) hh 2
+    rwa [sq_abs, Real.sq_sqrt h0] at hsq
+
 
 end Kasha
 
