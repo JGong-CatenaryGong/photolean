@@ -126,6 +126,25 @@ def VavilovUpTo (rad ic : ℕ → ℝ) (N : ℕ) : Prop := ∀ i, i < N → Vavi
 /-- The Kasha description is realized by this ladder data: some excitation level satisfies the exact
 rule (non-vacuity, plan §4.1). -/
 def KashaDescriptor (rad ic : ℕ → ℝ) : Prop := ∃ N, KashaRule rad ic N
+/-- The standing physical premise bundle: positive total decay rates up to the excitation level,
+nonnegative radiative and nonradiative rates (plan §2, §4.1). -/
+structure RateData (rad ic : ℕ → ℝ) (N : ℕ) : Prop where
+  decay_pos : ∀ n, n ≤ N → 0 < decay rad ic n
+  rad_nonneg : ∀ n, 0 ≤ rad n
+  ic_nonneg : ∀ n, 0 ≤ ic n
+
+/-- Decidable regime classifier of a ladder at tolerance `tol` and excitation level `N` (plan §4.1). -/
+inductive KashaZone where
+  | pure
+  | withinTol
+  | violating
+
+/-- The classifier: `pure` for the exact rule, `withinTol` inside the tolerance, `violating`
+outside it (plan §4.1). -/
+noncomputable def kashaZone (rad ic : ℕ → ℝ) (tol : ℝ) (N : ℕ) : KashaZone :=
+  if upperYield rad ic N = 0 then KashaZone.pure
+  else if upperYield rad ic N ≤ tol * fluoYield rad ic N then KashaZone.withinTol
+  else KashaZone.violating
 end Kasha
 
 end PhotoLean
