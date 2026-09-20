@@ -83,6 +83,20 @@ theorem gapReactantQ_cast (lam x : ℚ) :
   push_cast
   ring
 
+set_option linter.unusedVariables false in
+/-- Transfer: the rational Leffler secant casts to the real one.
+
+The hypothesis `x₁ ≠ x₂` is the explicit mathematical premise of a secant and is mandated by the
+statement authority; it is **not used by the proof**, because `Rat.cast_div` commutes the cast with
+division unconditionally (at `x₁ = x₂` the `x / 0 = 0` convention collapses both sides). It is kept
+as an explicit premise rather than dropped, and the unused-variable linter is switched off for this
+declaration only. -/
+theorem lefflerSecantQ_cast {lam x₁ x₂ : ℚ} (h : x₁ ≠ x₂) :
+    ((lefflerSecantQ lam x₁ x₂ : ℚ) : ℝ) = lefflerSecant (lam : ℝ) (x₁ : ℝ) (x₂ : ℝ) := by
+  unfold lefflerSecantQ lefflerSecant
+  push_cast
+  rw [gapReactantQ_cast, gapReactantQ_cast]
+
 end Rat
 
 end Hammond
