@@ -262,6 +262,12 @@ theorem volcano_descriptor_of_physical {alphaA betaA alphaB betaB : ℝ}
   refine ⟨fun dE => volcanoBarrier_apex_le h.1 h.2 dE, fun dE hd => ?_⟩
   exact (volcanoBarrier_eq_apex_iff h.1 h.2 dE).mp hd
 
+/-- The activity of any barrier profile is positive: `exp` never vanishes, for every temperature
+scale (the statement needs no hypothesis, so the non-physical `kB * T = 0` branch is covered too).
+Plan §5 (activity layer). -/
+theorem activity_pos (f : ℝ → ℝ) (kB T dE : ℝ) : 0 < activity f kB T dE :=
+  Real.exp_pos _
+
 end Sabatier
 
 end PhotoLean
