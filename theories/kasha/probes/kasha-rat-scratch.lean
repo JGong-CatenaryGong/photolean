@@ -45,6 +45,10 @@ elaboration each, same machine and same recipe): skeleton `if`-ladder 0.51 s (fl
 the spread is ±10 % and `norm_num`'s rational arithmetic dominates. No change to the statement
 authority is warranted. The three formulations are kept live below under
 `/-! ### data-formulation rows -/`; uncomment the `trace.profiler` option to re-measure.
+
+The last section (§ "ℝ-side cross-check") is a kernel check that the ℝ twin of the ℚ criterion row,
+K3 #2 `kashaWithin_one_iff_ratio`, has the same premise defect as
+`kashaWithinQ_iff_funnelRatioQ` (evidence: `r_criterion_premises_insufficient`).
 -/
 import Mathlib
 
@@ -136,6 +140,53 @@ theorem data_fin : fluoYieldQ (finRad ![1, 1, 1]) (finIc ![1, 1, 1]) 2 = 7 / 8 :
   norm_num [fluoYieldQ, emitYieldQ, radBranchQ, icBranchQ, cascadeQ, decayQ, finRad, finIc,
     Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top, Finset.sum_singleton,
     Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
+
+/-! ### ℝ-side cross-check: K3 #2 `kashaWithin_one_iff_ratio` has the same defect
+
+The ℝ twin of the ℚ criterion row carries the *same* premise list (`0 < decay rad ic 0`,
+`0 < tol`, `0 < rad 1`), so the same degenerate configuration falsifies it: with `rad 1 = 1`,
+`ic 1 = -1`, `rad 0 = 1`, `ic 0 = 0` and `tol = 1/2`, the totalised division gives
+`decay rad ic 1 = 0`, `upperYield rad ic 1 = fluoYield rad ic 1 = 0` (left side `0 ≤ 0`, true) while
+`funnelRatio rad ic = -1` and `(1 - tol)/tol = 1` (right side false). The mirror definitions below
+are **not** the authority (K1's `PhotoLean/Kasha/Basic.lean` is) — they exist only to kernel-check
+the claim here, with distinct names. -/
+
+noncomputable def decayR (rad ic : ℕ → ℝ) (n : ℕ) : ℝ := rad n + ic n
+
+noncomputable def radBranchR (rad ic : ℕ → ℝ) (n : ℕ) : ℝ := rad n / decayR rad ic n
+
+noncomputable def icBranchR (rad ic : ℕ → ℝ) (n : ℕ) : ℝ := ic n / decayR rad ic n
+
+noncomputable def cascadeR (rad ic : ℕ → ℝ) (i N : ℕ) : ℝ := ∏ j ∈ Finset.Icc (i + 1) N, icBranchR rad ic j
+
+noncomputable def emitYieldR (rad ic : ℕ → ℝ) (i N : ℕ) : ℝ := radBranchR rad ic i * cascadeR rad ic i N
+
+noncomputable def fluoYieldR (rad ic : ℕ → ℝ) (N : ℕ) : ℝ := ∑ i ∈ Finset.range (N + 1), emitYieldR rad ic i N
+
+noncomputable def upperYieldR (rad ic : ℕ → ℝ) (N : ℕ) : ℝ := ∑ i ∈ Finset.Icc 1 N, emitYieldR rad ic i N
+
+noncomputable def funnelRatioR (rad ic : ℕ → ℝ) : ℝ := rad 0 * ic 1 / (rad 1 * decayR rad ic 0)
+
+def KashaWithinR (rad ic : ℕ → ℝ) (tol : ℝ) (N : ℕ) : Prop :=
+  upperYieldR rad ic N ≤ tol * fluoYieldR rad ic N
+
+def twoRadR (r0 r1 : ℝ) : ℕ → ℝ := fun n => if n = 0 then r0 else if n = 1 then r1 else 0
+
+def twoIcR (i0 i1 : ℝ) : ℕ → ℝ := fun n => if n = 0 then i0 else if n = 1 then i1 else 0
+
+/-- Kernel evidence that K3 #2's premise list is insufficient (mirror of the ℚ evidence). -/
+theorem r_criterion_premises_insufficient :
+    (0 < decayR (twoRadR 1 1) (twoIcR 0 (-1)) 0) ∧ (0 < (1 / 2 : ℝ)) ∧
+      (0 < twoRadR 1 1 1) ∧ KashaWithinR (twoRadR 1 1) (twoIcR 0 (-1)) (1 / 2) 1 ∧
+      ¬ ((1 - (1 / 2)) / (1 / 2) ≤ funnelRatioR (twoRadR 1 1) (twoIcR 0 (-1))) := by
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+  · norm_num [decayR, twoRadR, twoIcR]
+  · norm_num
+  · norm_num [twoRadR]
+  · norm_num [KashaWithinR, upperYieldR, fluoYieldR, emitYieldR, radBranchR, icBranchR, cascadeR,
+      decayR, twoRadR, twoIcR, Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top,
+      Finset.sum_singleton, Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
+  · norm_num [funnelRatioR, decayR, twoRadR, twoIcR]
 
 end Scratch
 
