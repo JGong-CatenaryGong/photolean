@@ -416,11 +416,22 @@ theorem qConformsWindow_negativeControl : ¬ qConformsWindow 1 (1 / 16) 1 := by
 
 /-! ### Model-consistency theorems (plan §8.1 amendment)
 
-The three family points must be **pairwise distinct**: beside `x₂ ≠ x₁` and `x₃ ≠ x₁` the premise
-`x₃ ≠ x₂` is required. With `x₃ = x₂` totalised division makes the first inner quotient `0`, so the
-second divided difference degenerates to the first-order slope and the identity
-`qSecondDividedDiff = 1/(4λ)` fails; the kernel counterexamples are recorded in the probe-only
-section at the end of `theories/BEP/probes/bep-prover_c-scratch.lean`. -/
+The three abscissae must be **pairwise distinct** (`h₁₂`, `h₂₃`, `h₁₃`): at `x₂ = x₃` the totalised
+division makes the first inner quotient `0`, the second divided difference degenerates to the
+first-order slope and the identity `qSecondDividedDiff = 1/(4λ)` fails. The kernel counterexamples of
+the un-premised forms are recorded in the probe-only section at the end of
+`theories/BEP/probes/bep-prover_c-scratch.lean`. -/
+
+theorem qSecondDividedDiff_model {lam x₁ x₂ x₃ : ℚ} (hlam : lam ≠ 0) (h₁₂ : x₁ ≠ x₂)
+    (h₂₃ : x₂ ≠ x₃) (h₁₃ : x₁ ≠ x₃) :
+    qSecondDividedDiff x₁ (qEact lam x₁) x₂ (qEact lam x₂) x₃ (qEact lam x₃) = 1 / (4 * lam) := by
+  have hd12 : x₂ - x₁ ≠ 0 := sub_ne_zero.mpr (Ne.symm h₁₂)
+  have hd23 : x₃ - x₂ ≠ 0 := sub_ne_zero.mpr (Ne.symm h₂₃)
+  have hd13 : x₃ - x₁ ≠ 0 := sub_ne_zero.mpr (Ne.symm h₁₃)
+  have h4 : (4 : ℚ) * lam ≠ 0 := mul_ne_zero (by norm_num) hlam
+  unfold qSecondDividedDiff qEact
+  field_simp
+  ring
 
 end Rat
 
