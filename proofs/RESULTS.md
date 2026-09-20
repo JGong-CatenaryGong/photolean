@@ -239,6 +239,12 @@ proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.descriptor_shar
 proofs/scripts/lake env lean proofs/probes/marcus-statement-skeleton.lean           # 语句权威
 ```
 
+**语句保真度（全项目一条命令）**：`python3 proofs/probes/marcus-fidelity.py` ——
+把交付文件中**每个在权威骨架里出现过的声明**与 `marcus-statement-skeleton.lean` 逐字比对：
+**43/43 一致、0 差异**（39 条辅助声明不在权威内，不算差异）。
+该检查器已做**反向验证**（故意把 `inverted_rate_decreases` 的结论 `<` 改成 `≤` ⇒ 被抓出并打印对照；
+恢复后回到 43/43）—— 不会失败的检查器没有价值。
+
 **结构审计（每个定义是否都被至少一条定理约束）**：对全部 10 个定义做词边界引用统计 ——
 `barrier`(44 处)、`rate`(40)、`InvertedRegion`(21)、`zoneQ`(24)、`InvertedDescriptor`(16)、
 `zone`(14)、`lamInner`(9)、`lamOuter`(8)、`NormalRegion`(7)、`NormalDescriptor`(1，即其自身的描述定理)。
