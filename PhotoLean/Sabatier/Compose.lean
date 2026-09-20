@@ -118,6 +118,18 @@ theorem bepLine_le_eact {lam : ℝ} (hlam : 0 < lam) (x : ℝ) :
   have hnonneg : 0 ≤ x ^ 2 / (4 * lam) := by positivity
   linarith
 
+/-- The BEP-linear volcano is a pointwise LOWER BOUND on the two-parabola volcano: the linear model
+optimistically underestimates the barrier away from the apex. Both inequalities are instances of
+`bepLine_le_eact`, taken at the driving forces `-dE` (ascending step) and `dE` (reverse step).
+(plan §7) -/
+theorem linearVolcano_le_parabolic {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) (dE : ℝ) :
+    volcanoBarrier (1 / 2) (lam1 / 4) (1 / 2) (lam2 / 4) dE ≤ parabolicBarrier lam1 lam2 dE := by
+  rw [linearVolcano_eq_bepTangent]
+  unfold parabolicBarrier parabolaUp parabolaDown
+  exact max_le
+    (le_trans (bepLine_le_eact h1 (-dE)) (le_max_left _ _))
+    (le_trans (bepLine_le_eact h2 dE) (le_max_right _ _))
+
 end Sabatier
 
 end PhotoLean
