@@ -138,6 +138,14 @@ theorem inst_I5_mcc_normal_zone : Rat.hammondZoneQ (6 / 5) (1 / 20) = HZone.earl
 theorem inst_I5_mcc_normal_coord : tsCoord (6 / 5) (1 / 20) = 23 / 48 := by
   norm_num [tsCoord]
 
+/-- I5, point-level verdict: the instance conforms to the Hammond description of the model. -/
+theorem inst_I5_mcc_normal_conforms : HammondConforms (6 / 5) (1 / 20) := by
+  have hz : hammondZone (6 / 5 : ℝ) (1 / 20 : ℝ) = HZone.early := by
+    rw [← (by norm_num : (((6 : ℚ) / 5 : ℚ) : ℝ) = (6 / 5 : ℝ)),
+        ← (by norm_num : (((1 : ℚ) / 20 : ℚ) : ℝ) = (1 / 20 : ℝ)),
+        ← Rat.hammondZoneQ_eq_hammondZone, inst_I5_mcc_normal_zone]
+  exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 6 / 5)).mpr (Or.inl hz)
+
 end Hammond
 
 end PhotoLean
