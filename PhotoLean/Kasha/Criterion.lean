@@ -310,6 +310,12 @@ theorem kashaRule_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData ra
           show upperYield rad ic (Nat.succ N) = 0
           rw [upperYield_succ h, hR0, zero_add, hU0, mul_zero]
   exact key N h
+/-- Plan §5.2 #15. A single radiatively emitting level above the lowest already violates the exact
+rule. -/
+theorem not_kashaRule_of_rad_pos {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N)
+    (h1 : 1 ≤ i) (h2 : i ≤ N) (hr : 0 < rad i) : ¬ KashaRule rad ic N := by
+  intro hK
+  exact absurd ((kashaRule_iff_rad_zero h).mp hK i h1 h2) (ne_of_gt hr)
 end Kasha
 
 end PhotoLean
