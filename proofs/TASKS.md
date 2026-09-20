@@ -33,11 +33,11 @@
 ## M1 — 描述层（`PhotoLean/Marcus/Basic.lean`；属主 prover_a；Sprint 1）
 
 - [ ] 定义 `barrier` / `rate` / `InvertedRegion` / `NormalRegion` / `InvertedDescriptor`
-      / `NormalDescriptor` / `Zone` / `zone` — Marcus/Basic.lean — prover_a — todo — plan §2.2
-- [ ] `zone_eq_normal_iff` — Marcus/Basic.lean — prover_a — todo — plan §4.2
-- [ ] `zone_eq_barrierless_iff` — Marcus/Basic.lean — prover_a — todo — plan §4.2
-- [ ] `zone_eq_inverted_iff` — Marcus/Basic.lean — prover_a — todo — plan §4.2
-- [ ] `zone_trichotomy` — Marcus/Basic.lean — prover_a — todo — plan §4.2
+      / `NormalDescriptor` / `Zone` / `zone` — Marcus/Basic.lean — prover_a — review — plan §2.2；commit 3644a82
+- [ ] `zone_eq_normal_iff` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit f3d2055
+- [ ] `zone_eq_barrierless_iff` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit ac80776
+- [ ] `zone_eq_inverted_iff` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit c98c85d
+- [ ] `zone_trichotomy` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit 1376f8e
 
 ## M2 — 势垒代数（`PhotoLean/Marcus/Barrier.lean`；属主 prover_a；Sprint 2）
 
@@ -70,11 +70,11 @@
 
 ## M4b — 微观重组能正性（`PhotoLean/Marcus/Reorg.lean`；属主 prover_d；Sprint 1，**零依赖**）
 
-- [ ] `lamInner` / `lamOuter` 定义 — Marcus/Reorg.lean — prover_d — todo — plan §7.2
-- [ ] `lamInner_nonneg` — Marcus/Reorg.lean — prover_d — todo — plan §7.2
-- [ ] `lamInner_pos` — Marcus/Reorg.lean — prover_d — todo — plan §7.2
-- [ ] `lamOuter_pos`（Pekar 因子正性）— Marcus/Reorg.lean — prover_d — todo — plan §7.2
-- [ ] `lam_total_pos` — Marcus/Reorg.lean — prover_d — todo — plan §7.2
+- [ ] `lamInner` / `lamOuter` 定义 — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit 2d4e296
+- [ ] `lamInner_nonneg` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit 723034d
+- [ ] `lamInner_pos` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit acc5e8e
+- [ ] `lamOuter_pos`（Pekar 因子正性）— Marcus/Reorg.lean — prover_d — review — plan §7.2；commit fcb7589
+- [ ] `lam_total_pos` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit de63c09
 
 ## M4c — 复合定理（`PhotoLean/Marcus/Compose.lean`；属主 prover_d；Sprint 5）
 
@@ -100,12 +100,16 @@
 
 ## 备注与冲突记录
 
+- **块注释扫描坑（M1 交付者实测，2026-09-20）**：`check.sh --strict` 的 sorry/axiom 扫描
+  **包含块注释 `/- ... -/`**（只跳过行首 `--` 的行注释），因此在**文件头文档注释里写出被扫描的
+  关键字字面量**会造成假 FAIL。全队约定：交付文件的文档注释里改用「零占位证明」等措辞。
 - **Sprint 0 实测发现**（已写入 `plan.md` §2.4 与 `proofs/EXPERIENCE.md`）：
   1. Lean 4 里 `λ` 是关键字，**不能作标识符** → Lean 侧一律 ASCII
      （`lam` / `lamIn` / `lamOut` / `nSq` / `epsS` / `dE` / `dq` / `a1` / `a2`）；
   2. `by decide` 对 ℚ 上**整数**字面量可算，对**含除法**的有理字面量卡在 `Rat` 的
      gcd/除法归约上 → 判定证据改用 `norm_num [zoneQ]`；
   3. 语句骨架必须放在 `SOURCE_DIRS` 之外（`proofs/probes/`），否则触发 sorry 扫描。
-- **验收门漏洞提示**：`defaultTargets` 目前只含 `PhotoLean.Smoke`；交付新模块时 lead 必须同步补入，
+- **验收门漏洞提示**：`defaultTargets` 已随交付补入 `PhotoLean.Marcus.Basic` 与 `PhotoLean.Marcus.Reorg`；
+  后续模块交付时 lead 继续同步补入，
   否则裸跑 `check.sh --strict` 只构建 Smoke（**扫描仍覆盖全目录**）。逐模块跑
   `check.sh --strict <Module>` 时不受影响。

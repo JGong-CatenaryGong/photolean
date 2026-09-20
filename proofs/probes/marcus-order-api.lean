@@ -46,6 +46,10 @@ set_option linter.unusedVariables false
 -- 负分母（0 < lam 的镜像情形，与上面不同名！）
 #check div_lt_iff_of_neg           -- (hc : c < 0) : b / c < a ↔ b < a * c
 #check lt_div_iff_of_neg           -- (hc : c < 0) : a < b / c ↔ b < a * c
+#check div_lt_div_right_of_neg     -- (hc : c < 0) : a / c < b / c ↔ b < a  ← **右边方向反直觉！**
+-- ⚠️ 不存在（**禁止使用**）：div_lt_div_iff_of_neg_right, div_lt_div_of_neg_right,
+--    div_lt_div_iff_of_neg_left, div_lt_div_of_neg_left
+example {a b c : ℝ} (hc : c < 0) : a / c < b / c ↔ b < a := div_lt_div_right_of_neg hc
 -- 非废弃的 iff 版本（替换 div_lt_iff / lt_div_iff）
 #check div_lt_iff₀                 -- (hc : 0 < c) : b / c < a ↔ b < a * c
 #check lt_div_iff₀                 -- (hc : 0 < c) : a < b / c ↔ a * c < b

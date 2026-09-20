@@ -51,7 +51,7 @@ example {x y : ℝ} (h : x < y) : Real.exp x < Real.exp y := Real.exp_lt_exp.2 h
 example (x : ℝ) : 0 < 1 / Real.exp x := one_div_pos.mpr (Real.exp_pos x)
 example (x : ℝ) : 0 < 1 / Real.exp x := by positivity
 example {c u v : ℝ} (hc : 0 < c) (h : u < v) : u / c < v / c := div_lt_div_of_pos_right h hc
-example {u v c : ℝ} (h : u < v) (hc : Real.exp c ≠ 0) : u / Real.exp c < v / Real.exp c :=
+example {u v c : ℝ} (h : u < v) : u / Real.exp c < v / Real.exp c :=
   div_lt_div_of_pos_right h (Real.exp_pos c)
 
 /-! ## D 组：乘法 / 序 -/
@@ -64,8 +64,23 @@ example {u v c : ℝ} (h : u < v) (hc : Real.exp c ≠ 0) : u / Real.exp c < v /
 
 -- D-1: lemma 4 的尾段 — 乘正数保序
 example {A u v : ℝ} (hA : 0 < A) (h : u < v) : A * u < A * v := mul_lt_mul_of_pos_left h hA
--- D-2: 不用现成引理也可以（linarith 不行，见 API-NOTES 记录）
+-- D-2: 不用现成引理也可以（裸 `linarith` 不行，见 API-NOTES 记录）
 example {A u v : ℝ} (hA : 0 < A) (h : u < v) : A * u < A * v := by nlinarith
+
+-- D-3: ⚠️ 从正积里提取因子 — **left/right 极易写反**
+--      `rate A lam kB T x = A * Real.exp (…)`，正的因子 A 在**左**，exp 在**右**。
+--      要从 `0 < A * exp u` 得 `0 < A`，必须用 `pos_of_mul_pos_left`（靠右因子的非负性）。
+--      实测：用 `pos_of_mul_pos_right` 会报 application type mismatch（它的结论是 `0 < b`）。
+#check pos_of_mul_pos_left   -- (h : 0 < a * b) (hb : 0 ≤ b) : 0 < a   ← 取左因子
+#check pos_of_mul_pos_right  -- (h : 0 < a * b) (ha : 0 ≤ a) : 0 < b   ← 取右因子
+example {A u : ℝ} (hA : 0 < A) : 0 < A * Real.exp u := mul_pos hA (Real.exp_pos u)
+example {A u : ℝ} (h : 0 < A * Real.exp u) : 0 < A :=
+  pos_of_mul_pos_left h (Real.exp_pos u).le
+
+-- D-4: 乘负数翻转序（M4a 拉伸目标 `inverted_descriptor_holds_of_neg` 用，A < 0）
+--      ⚠️ 实测签名（与直觉的参数顺序不同）：`(h : b < a) (hc : c < 0) : c * a < c * b`
+#check mul_lt_mul_of_neg_left  -- (h : b < a) (hc : c < 0) : c * a < c * b
+example {A u v : ℝ} (hA : A < 0) (h : u < v) : A * v < A * u := mul_lt_mul_of_neg_left h hA
 
 /-! ## 核心：lemma 4（rate 单调性）实测骨架
 

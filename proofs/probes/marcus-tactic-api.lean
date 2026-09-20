@@ -139,7 +139,10 @@ example {a b : ℝ} (ha : 0 ≤ a) (hab : a < b) : a ^ 2 < b ^ 2 := by nlinarith
 --     `example {a b : ℝ} (h : a < b) : a ^ 2 + b ^ 2 > 0 := by nlinarith [sq_nonneg a, sq_nonneg b, h]`
 --   必须把"至少一个非零"显式做出来喂给它：
 example {a b : ℝ} (h : a < b) : a ^ 2 + b ^ 2 > 0 := by
-  have hne : a ≠ 0 ∨ b ≠ 0 := by rintro (h0 | h0) <;> linarith
+  have hne : a ≠ 0 ∨ b ≠ 0 := by
+    rcases eq_or_ne a 0 with h0 | h0
+    · right; rintro rfl; linarith
+    · exact Or.inl h0
   rcases hne with h0 | h0
   · nlinarith [sq_pos_of_ne_zero h0, sq_nonneg b]
   · nlinarith [sq_pos_of_ne_zero h0, sq_nonneg a]
