@@ -146,6 +146,14 @@ theorem apexQ_cast (alphaA betaA alphaB betaB : ℚ) :
   push_cast
   ring
 
+/-- Cast transfer of the pass height, obtained by composing the two transfers above. Plan locus:
+`theories/Sabatier/plan.md` §8.1. -/
+theorem apexBarrierQ_cast (alphaA betaA alphaB betaB : ℚ) :
+    ((apexBarrierQ alphaA betaA alphaB betaB : ℚ) : ℝ)
+      = apexBarrier (alphaA : ℝ) (betaA : ℝ) (alphaB : ℝ) (betaB : ℝ) := by
+  unfold apexBarrierQ apexBarrier
+  rw [volcanoBarrierQ_cast, apexQ_cast]
+
 end Sabatier
 
 end PhotoLean
