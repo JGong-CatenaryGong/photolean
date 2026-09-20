@@ -1403,3 +1403,63 @@
      `bepLine_exact_at_thermoneutrality`, `bepDefect_at_thermoneutrality`, each closed by
      `rcases eq_or_ne` + `field_simp; ring`): a reworded claim is a new claim and the verifier checks it
      like any theorem.
+
+## 2026-09-20 — B5b instance/verdict layer (`PhotoLean/BEP/Instances.lean`, 48 declarations) + the `qReverseTransfer_cast` bridge — prover_c — DONE
+
+- Goal: deliver the whole B5b block of the statement authority (plan §8.2, rows I1–I12: I1–I8 three rows
+  each, I9 four, I10 two, I11 four rows × four literature families, I12, `inst_nonvacuous`) with one
+  commit per lemma, plus the missing `qReverseTransfer_cast` bridge in `RatModel.lean` (the delivery
+  review's finding that `qReverseTransfer` was the only ℚ definition with no theorem constraining it).
+- Delivered: 49 commits (1 bridge + 48 instances); **96 `verdict: PASS` lines** in the driver log
+  (one `check.sh --strict` plus one `axioms.sh` per step) with **0** `FAIL|error|warning` lines; the
+  official fidelity checker reports `delivered, word-for-word 191`, `not delivered yet 0`,
+  `signature differences 0` (the whole BEP skeleton, not just this block).
+- 试过且失败 (measured this round):
+  1. **The file tool's `/tmp` is a different mount from the bash tool's `/tmp`.** The master copy was
+     written to `/tmp/b5b-master.lean` with the file tool and then did not exist for the shell:
+     `proofs/scripts/lake env lean /tmp/b5b-master.lean` → `file '/tmp/b5b-master.lean' not found`, while
+     `ls /tmp` showed only what bash itself had created. Same defect prover_a hit in the B1/B2 wording
+     round. The working scratch area is **`.lake/tmp/`**: gitignored, outside `SOURCE_DIRS`, and
+     `lake env lean` resolves the imports of a file there.
+  2. **Splicing a lemma into an existing file at the first matching line orphans the neighbour's
+     docstring.** Inserting `qReverseTransfer_cast` before `theorem qSecSlope_cast` put the new block
+     *between* the `set_option linter.unusedVariables false in` and the docstring that belongs to
+     `qSecSlope_cast` (the option line + docstring + declaration are one unit, and a docstring after
+     `set_option … in` still attaches to the next declaration, so the region silently re-associated).
+     Fix: splice the whole unit at a statement boundary and re-read the region before building.
+  3. `by decide` / `native_decide` stay unusable for this layer (re-confirmed, already known from B5a):
+     every verdict goal contains a `/`-literal, and `native_decide` would add `Lean.ofReduceBool` to
+     `#print axioms`. **No `norm_num`-closed row needed a fallback tactic** — the recipes measured by the
+     API round closed all 48 rows on the first attempt, so this round produced no new tactic failures.
+- Worked (reusable):
+  - **Master copy + prefix emitter driven from `.lake/tmp`.** Keep the full intended file (with
+    `-- @DECL: <name>` markers) in `.lake/tmp/b5b-master.lean`; a small Python driver emits
+    "header + first k declarations + footer" into the delivered path, strips the markers, and runs
+    build + `check.sh --strict` + `axioms.sh` + `git commit -- <path>` per step (≈6–7 s per step,
+    48 steps). Compile the master standalone (`lake env lean .lake/tmp/b5b-master.lean`, 0 error /
+    0 warning) **before** the first delivery: that is the statement-first gate for the whole batch.
+  - **Fidelity before delivery, not after.** Re-run the `bep-fidelity.py` signature regex against the
+    master: 48/48 signatures equal, 0 extras, 0 diffs on the first run — "word for word" becomes a
+    measurement instead of a promise, and a typo in a literal is caught before any commit.
+  - **Make the strict gate concurrency-tolerant, not narrower.** `check.sh --strict` scans all of
+    `SOURCE_DIRS`, so a co-worker's transient placeholder makes *our* gate FAIL. The driver retries the
+    check while the hits are outside our own file and fails immediately when our file is named
+    (0 retries were needed, but one step took 52 s under concurrent build load — the transient
+    whole-tree FAIL documented earlier is real, not a defect signal).
+  - **Provenance re-read + independent recomputation.** Every I11 literal is the source's printed
+    **kcal/mol** value re-read from `LITERATURE.md` §R1.10 (F1/F2: Table 1 water / PE; F3: Table 2 water
+    *representative* rows; F5: Table 1 `CCSD(T)-F12a/jun-cc-pVTZ`), and every statement was recomputed
+    independently in exact rationals before writing it: F1 `34/63`, `9/20`, `-9/52`; F2 `89/153`,
+    `16/15`, `-185/896`; F3 `83/107`, `22/5`, `-8175/118342`; F5 `467/610`, `7958/675`,
+    `-1215125/3277506` — all four families agree with the skeleton's printed rationals. The record's
+    kJ/mol column is the record's arithmetic and is deliberately never used in a statement.
+- Deliberately NOT delivered, with the reason:
+  1. the optional `_lamHat_pair_dependent` rows — they are **not in the 48-declaration statement
+     authority**, and the λ-independent refutation is already carried by the four
+     `_not_model_consistent` rows plus I12; the computed evidence is recorded here instead: the model's
+     two-point solver at two printed pairs of the same family gives F1 `9/20` vs `8/5`, F2 `16/15` vs
+     `-53/60`, F3 `22/5` vs `-749/108`, F5 `7958/675` vs `-19667/1620`.
+  2. any F4 row (`_alphaObs` / `_lamHat` / `_curvature_negative` / `_not_model_consistent`): §R1.10.4
+     prints only family aggregates for Table 2 "PE", and the skeleton contains **no** `inst_I11_F4_*`
+     declaration (checked: 0 matches), so there is no skeleton/authority mismatch to arbitrate and no
+     number was invented.
