@@ -146,6 +146,11 @@ theorem inst_I5_mcc_normal_conforms : HammondConforms (6 / 5) (1 / 20) := by
         ← Rat.hammondZoneQ_eq_hammondZone, inst_I5_mcc_normal_zone]
   exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 6 / 5)).mpr (Or.inl hz)
 
+/-! ## I6 — literature MCC inverted-region instance (`lam = 6/5`, `x = 12/5`) -/
+/-- I6, zone verdict: the MCC inverted-region instance is classified `beyondReactant`. -/
+theorem inst_I6_mcc_inverted_zone : Rat.hammondZoneQ (6 / 5) (12 / 5) = HZone.beyondReactant := by
+  norm_num [Rat.hammondZoneQ]
+
 end Hammond
 
 end PhotoLean
