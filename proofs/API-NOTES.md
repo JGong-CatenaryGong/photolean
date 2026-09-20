@@ -1866,7 +1866,12 @@ section); the integer-only `decide` was not needed by any row.
   record's family-level regression (R², fitted curvature) — a regression is not a ℚ identity and is
   not formalised. The λ-independent falsification (`¬ ∃ lam, qModelConsistent3 …`) is exactly the
   logical content of the chosen triple.
-* `_alphaObs` uses the family's widest printed `x`-pair (the closest analogue of a fitted slope);
+* `_alphaObs` uses the family's **leading documented pair as named in the family heading** (the closest
+  analogue of a fitted slope); *(lead correction 2026-09-20: this line previously said "widest printed
+  x-pair", which is loose — by maximal |Δx| over all printed rows the widest pairs of F1/F2/F3 are
+  `19(2)`/`8`, `19(2)`/`10`, `19(2)`/`7`, and `F5`'s is `R2`/`R5`; the delivered `_alphaObs` rows use
+  the pairs named in `Instances.lean`'s family headings, and the documents' separate statement about
+  the "abscissa-widest pairs" is a different, explicitly labelled computation)*
   the values lie strictly inside `(0,1)`, matching the record's "the BEP side works" reading.
 * Units: every Lean literal is the source's **kcal/mol** number (the sources' own first-hand value);
   the record's kJ/mol column is its own arithmetic and is deliberately never used in a statement.

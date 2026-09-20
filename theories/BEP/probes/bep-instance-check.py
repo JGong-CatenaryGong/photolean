@@ -930,7 +930,7 @@ def check_literature_families():
               % (fam.fid, fam.label, r["spec"]["loci"], fam.locus, fam.status))
         print("  unit: all numbers below are the source's printed %s values." % UNIT)
         ap1, ap2, x1, e1, x2, e2 = r["alpha_pair"]
-        print("  alphaObs over the widest printed pair (%s → %s)   [dimensionless: "
+        print("  alphaObs over the family's leading documented pair (%s → %s)   [dimensionless: "
               "%s ÷ %s]:" % (ap1, ap2, UNIT, UNIT))
         print("      (ea₁ - ea₂)/(x₂ - x₁) = (%s - %s)/(%s - %s) = %s"
               % (fmt(e1), fmt(e2), fmt(x2), fmt(x1), fmt(r["obs"])))

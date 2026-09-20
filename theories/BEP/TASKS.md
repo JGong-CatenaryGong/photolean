@@ -48,7 +48,7 @@
       `Real.sqrt_lt_iff_lt_sq`, `Set.mem_Icc_iff`, bare `le_sqrt'`, four deprecated division lemmas,
       `by decide` unusable on `/`-bearing ℚ goals, `native_decide` banned for `Lean.ofReduceBool`)
 - [x] Literature rounds 1–1j: `theories/BEP/LITERATURE.md` — owner `literature_researcher`;
-      **1584 lines**, §R1–§R1.19, five `first-hand` families with per-point data (the fifth column is
+      **1587 lines** (measured at the fourth closeout audit), §R1–§R1.19, five `first-hand` families with per-point data (the fifth column is
       aggregate-only and marked `UNSUPPORTED`), the attribution correction (the quadratic law is
       **Marcus 1968 Eq. (2) p. 891**, not 1956), Cohen & Marcus 1968 eqs. (5a)–(5c) as the printed
       regime structure, the naming caveats, and four classical sources kept `not-accessed`
@@ -153,7 +153,7 @@
 ## B5a — rational decision layer (`PhotoLean/BEP/RatModel.lean`; owner prover_c; Sprint 2)
 
 - [x] definitions `qEact` / `qBepLine` / `qBepDefect` / `qTransfer` / `qReverseTransfer` / `qSecSlope`
-      / `qAlphaObs` / `qLamOfPair` / `qConformsWindow` / `EPQVerdict` / `epQVerdict`
+      / `qAlphaObs` / `qLamOfPair` / `qConformsWindow` / `Rat.EPQVerdict` / `Rat.epQVerdict`
       — RatModel.lean — prover_c — done — plan §8.1
 - [x] `qEact_cast` — RatModel.lean — prover_c — done — plan §8.1
 - [x] `qBepDefect_cast` — RatModel.lean — prover_c — done — plan §8.1

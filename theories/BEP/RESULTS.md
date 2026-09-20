@@ -107,7 +107,7 @@ EPZone (9 constructors) + epZone : ℝ → ℝ → EPZone        decidable regim
 **The computable decision layer** (`RatModel.lean`, B5a) mirrors every quantity in `ℚ`
 (`qEact`, `qBepLine`, `qBepDefect`, `qTransfer`, `qReverseTransfer`, `qSecSlope`, `qAlphaObs`,
 `qLamOfPair`, `qConformsWindow` — the last in *squared* form so that no square root is needed —
-plus the six-branch verdict `EPQVerdict`/`epQVerdict` and the model-consistency witnesses
+plus the six-branch verdict `Rat.EPQVerdict`/`Rat.epQVerdict` and the model-consistency witnesses
 `qSecondDividedDiff`/`qModelConsistent3`), with `cast` lemmas proving each ℚ quantity is the ℝ one.
 **可计算判决层**（`RatModel.lean`，B5a）把每个量在 `ℚ` 上重写（`qConformsWindow` 用**平方形式**以避免开方），
 并给出六分支判决 `epQVerdict` 与模型一致性见证 `qSecondDividedDiff`/`qModelConsistent3`，每个量都有
@@ -179,7 +179,7 @@ are labelled per row.
 | I6 | forward inverted `λ=2, x=3` | **not conforming**, `α = -1/4 < 0` | model-constructed |
 | I7 | reverse inverted `λ=2, x=-3` | **not conforming**, `α = 5/4 > 1` | model-constructed |
 | I8 | degenerate `λ=0, x=1` | exact affinity *trivially* (barrier ≡ 0) but the **line law fails** (`bepDefect 0 x = x/2`); `α = 1/2` | model-constructed |
-| I9 | unphysical curvature `λ=-2, x=1` | **not conforming**, defect `< 0` — note `α = 3/4 ∈ [0,1]` (the value `13/16` is the *two-point observable slope* `qAlphaObs` at the pair `x₁ = 1, x₂ = 3/2` of this model, a different quantity — kernel-checked, and no delivered theorem equates it with the coefficient), i.e. **the bounds alone do not detect it; the defect law does** | model-constructed |
+| I9 | unphysical curvature `λ=-2, x=1` | **not conforming**, defect `< 0` — note `α = 3/4 ∈ [0,1]` (the value `13/16` is the *two-point observable slope* `qAlphaObs` at the pair `x₁ = 1, x₂ = 3/2` of this model, a different quantity — kernel-checked in the in-repository probe `theories/BEP/probes/bep-lead-audit.lean`; no delivered theorem equates it with the coefficient), i.e. **the bounds alone do not detect it; the defect law does** | model-constructed |
 | I10 | tolerance threshold `λ=2, w=1` | conforms at `tol = 1/8` (= `w²/(4λ)`), **fails** at `tol = 1/16`; threshold `w* = 2√(λ·tol) = 1` | model-constructed |
 | I11 F1 | f-HAT of phenols, water/•OOH (*Antioxidants* 15(7):840, Table 1) | 8 printed points all `conforming` at the family `λ̂`; **family curvature negative** ⇒ `¬ ∃ λ>0` consistent with the three chosen points; two-point `λ̂ = 9/20`, `α_obs = 34/63` | literature, `first-hand` |
 | I11 F2 | same family, PE solvent (*ibid.*) | 7 points `conforming`; **negative curvature** ⇒ model-refuted; `λ̂ = 16/15`, `α_obs = 89/153` | literature, `first-hand` |
@@ -354,7 +354,7 @@ proofs/scripts/lake env lean theories/BEP/probes/bep-statement-skeleton.lean
 ## 8. Provenance and literature
 
 **English.** The statement set, the regime structure and every instance number rest on
-`theories/BEP/LITERATURE.md` (1584 lines, sections §R1–§R1.19), which records each source with a
+`theories/BEP/LITERATURE.md` (1587 lines, sections §R1–§R1.19 — the count measured at the fourth closeout audit), which records each source with a
 checkable locus, a `first-hand` / `not-accessed` status, and a *formalizable implication*. Landmark
 anchors: the normative wording of the principle and the affine+quadratic shape (IUPAC glossary and
 its printed `Δ‡G = Δ‡Gº + ½Δ_rGº + (Δ_rGº)²/(16Δ‡Gº)`); the quadratic barrier law at **Marcus 1968
@@ -371,7 +371,7 @@ chemical families; Brønsted 1928 does not state `β_f + β_r = 1`; two popular 
 activation entropy as a *necessary* condition; the diffusion-control `Ea` formula) have zero
 first-hand support and are marked declaration-only or uncited.
 
-**中文。** 语句集、区域结构与每个实例数字都依赖 `theories/BEP/LITERATURE.md`（1584 行，§R1–§R1.19），
+**中文。** 语句集、区域结构与每个实例数字都依赖 `theories/BEP/LITERATURE.md`（1587 行，§R1–§R1.19，行数为第四次 closeout 审计实测），
 其中每条源都带可核查位点、`first-hand`/`not-accessed` 状态与**可形式化含义**。里程碑锚点：原理的规范措辞
 与"仿射 + 二次余项"形状（IUPAC 术语表及其印刷式）；二次势垒律的正确出处是 **Marcus 1968 Eq. (2), p. 891**
 （记录更正了常见的"归给 Marcus 1956"误引：1956 全文对相关术语 0 命中）；区域结构
