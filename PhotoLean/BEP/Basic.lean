@@ -147,5 +147,10 @@ theorem transfer_zero_lam (x : ℝ) : transfer 0 x = 1 / 2 := by
 theorem bepLine_at_zero (lam : ℝ) : bepLine lam 0 = lam / 4 := by
   unfold bepLine
   ring
+/-- A zero-width observation window carries no slope information: the finite difference over
+`[x, x]` is `0` (the mean-value identity of B2 needs `h ≠ 0`). -/
+theorem secSlope_zero_h (lam x : ℝ) : secSlope lam x 0 = 0 := by
+  unfold secSlope
+  simp
 
 end PhotoLean.BEP
