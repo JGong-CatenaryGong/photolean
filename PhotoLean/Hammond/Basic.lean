@@ -240,3 +240,17 @@ theorem hammondZone_eq_late_iff {lam x : ℝ} (hlam : 0 < lam) :
     rw [if_neg (by linarith), if_neg (by linarith), if_neg (by linarith), if_neg (by linarith),
       if_neg (by linarith), if_neg (by linarith)]
 
+set_option linter.unusedVariables false in
+/-- Zone characterization, barrierless forward branch. -/
+theorem hammondZone_eq_atReactant_iff {lam x : ℝ} (hlam : 0 < lam) :
+    hammondZone lam x = HZone.atReactant ↔ x = lam := by
+  constructor
+  · intro h
+    unfold hammondZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6
+    exact h1
+  · intro h
+    rw [h]
+    unfold hammondZone
+    rw [if_pos rfl]
+
