@@ -2684,3 +2684,38 @@
 - Gate evidence: build OK (0 warning); `check.sh --strict` → `clean` + `verdict: PASS`; fidelity
   19/19 word-for-word, 0 differences; all 19 theorems `#print axioms` =
   `[propext, Classical.choice, Quot.sound]`.
+
+
+## 2026-09-21 — Sabatier verifier run 1 (S1 batch) — verifier (independent) + lead — PASS with 12 findings, none HIGH
+
+- Scope: `PhotoLean/Sabatier/Basic.lean` + the S1-relevant Sprint-0 artifacts, verified on the working
+  tree and on a clean `git archive` copy of the delivery commit.
+- Verdict: **PASS**. Evidence: build OK / scan `clean` / 17/17 `#print axioms` =
+  `[propext, Classical.choice, Quot.sound]`; the verifier's own semantic probe (82 `example`,
+  25 `#eval` grid rows, 14 hypothesis-necessity counterexamples, 0 error) found **no decorative
+  hypothesis** and no false statement; independent coverage audit of the fidelity checker
+  (32/32 public declarations captured); clean-archive rebuild PASS; artifact sha256 byte-identical to
+  the delivery commit.
+- What the run taught (reusable):
+  1. **A citation in a plan is a claim and must be checkable.** plan §3.1 cited the risk probe as the
+     kernel evidence for the *deleted* false rows, but the probe only carried the *corrected* forms
+     (the falsity had been established by hand). Fix: three witnesses appended to the probe
+     (`apex_naive_swap_values`, `apex_naive_swap_ne`, `activity_zero_kT_witness`). **Whenever a
+     document says "kernel evidence: <file>", that file must contain the statement being evidenced.**
+  2. **Counts written by an earlier sprint go stale silently.** The board and plan quoted "15
+     definitions/inductives + 91 theorems" long after the authority had grown to 132 declarations.
+     Prefer count-free phrasing, or re-measure at every authority change (the kasha lesson, again).
+  3. **A checker's blind spot is a claim about the checker.** The fidelity checker's regex does not
+     capture `private` declarations; the verifier proved this by enumerating the file itself and found
+     a dead private helper. The helper was deleted; the shared checker is used by four closed theories,
+     so its regex is deliberately left unchanged and the blind spot is documented instead.
+  4. **A docstring can be false while every theorem is true.** One `Basic.lean` docstring asserted the
+     barrier↔activity equivalence unconditionally; at `kB*T = 0` the activity is the constant `1` (no
+     unique maximizer), which the verifier turned into a kernel counterexample. The sentence is fixed;
+     the delivered theorem always carried the premise. Docstrings are read as claims — audit them.
+  5. **The `dsimp only` lesson reappeared in the lead's own probe**: `nlinarith` failed on a goal
+     containing a beta-redex `(fun dE => dE^2) 0` until `dsimp only` was applied — exactly the recipe
+     the API calibration had recorded. Good evidence that the API log pays for itself.
+- Disposition: F1–F12 all folded into commits on the same day (probe witnesses, plan/board counts,
+  API-log annotation, docstring qualifications, dead-code removal, acceptance-record row); the S1 rows
+  were ticked only after this PASS.

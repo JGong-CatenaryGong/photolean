@@ -722,6 +722,38 @@ theorem bepLine_le_eact {lam : ℝ} (hlam : 0 < lam) (x : ℝ) :
   have hnonneg : 0 ≤ x ^ 2 / (4 * lam) := by positivity
   linarith
 
+
+/-! ## Sprint-0 witnesses for the deleted false rows (plan §3.1, F1 of verifier run 1) -/
+
+/-- Kernel witness for the deleted `apex_comm`: the naive label swap
+(`(alphaA,betaA,alphaB,betaB) ↦ (alphaB,betaB,alphaA,betaA)`) does NOT preserve the apex — it
+negates it, because the second branch enters with slope `-alphaB`. -/
+theorem apex_naive_swap_values : apex 1 0 1 2 = 1 ∧ apex 1 2 1 0 = -1 := by
+  constructor <;> (unfold apex; norm_num)
+
+/-- The two values differ, so no "commutativity" of the naive swap can hold. -/
+theorem apex_naive_swap_ne : apex 1 0 1 2 ≠ apex 1 2 1 0 := by
+  unfold apex
+  norm_num
+
+/-- Kernel witness for the scope of `antiDescriptor_activity_iff` (the corrected replacement of the
+false `activity_descriptor_iff`): at `kB * T = 0` the activity is the constant `1`, which has no
+unique maximizer, while `fun dE => dE^2` is a volcano at `0` — hence the `0 < kB * T` premise of the
+delivered statement is necessary. -/
+theorem activity_zero_kT_witness :
+    VolcanoDescriptor (fun dE => dE ^ 2) 0
+      ∧ ¬ AntiVolcanoDescriptor (activity (fun dE => dE ^ 2) 0 0) 0 := by
+  constructor
+  · constructor
+    · intro dE; dsimp only; nlinarith [sq_nonneg dE]
+    · intro dE h; dsimp only at h; nlinarith [sq_nonneg dE, h]
+  · intro h
+    have h1 := h.2 1
+    have h2 : activity (fun dE => dE ^ 2) 0 0 1 = activity (fun dE => dE ^ 2) 0 0 0 := by
+      unfold activity
+      norm_num
+    exact absurd (h1 h2) (by norm_num)
+
 end Sabatier
 
 end PhotoLean

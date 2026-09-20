@@ -11,7 +11,8 @@
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/Sabatier/plan.md`.
 - **Statement authority**: `theories/Sabatier/probes/sabatier-statement-skeleton.lean`
-  (15 definitions/inductives + 91 theorems; fidelity check `python3 theories/BEP/probes/bep-fidelity.py
+  (**132 declarations: 105 theorems + 26 definitions + 1 inductive**; of which the `## S1` section is
+  30 = 15 definitions/inductives + 15 theorems, delivered; fidelity check `python3 theories/BEP/probes/bep-fidelity.py
   --theory Sabatier [--milestone S<k>]`).
 - **Sprint-0 kernel evidence**: `theories/Sabatier/probes/sabatier-risk-probe.lean` (0 error).
 - Theory direction: **the Sabatier principle / volcano plot**, human request of 2026-09-21
@@ -27,7 +28,7 @@
       `proofs/ENGINE.yml` extended (`THEORIES="Marcus hammond BEP kasha Sabatier"` + `PLAN_Sabatier` /
       `TASKS_Sabatier` / `LITERATURE_Sabatier` / `PROBES_Sabatier` / `RESULT_Sabatier`)
 - [x] **Statement skeleton compiles**: `theories/Sabatier/probes/sabatier-statement-skeleton.lean`
-      (15 definitions/inductives + 91 theorems; 0 error, placeholder-only bodies)
+      (132 declarations: 105 theorems + 26 definitions + 1 inductive; 0 error, placeholder-only bodies)
 - [x] **Lead risk probe**: `theories/Sabatier/probes/sabatier-risk-probe.lean` — 0 error; proves the
       critical-path statement forms *before* planning (the sharp `iff`, the min/uniqueness pair, both
       legs, the tolerance bound, the activity layer, the three failure witnesses, the ℚ-free S4
@@ -49,85 +50,85 @@
 
 ## S1 — description layer (`PhotoLean/Sabatier/Basic.lean`; owner lead; Sprint 0)
 
-- [ ] definitions `branchUp` / `branchDown` / `volcanoBarrier` / `apex` / `apexBarrier` /
+- [x] definitions `branchUp` / `branchDown` / `volcanoBarrier` / `apex` / `apexBarrier` /
       `VolcanoDescriptor` / `AntiVolcanoDescriptor` / `activity` / `SabatierConforms` / `TooStrong` /
-      `Optimal` / `TooWeak` / `NearOptimal` / `SZone` / `sabatierZone` — Basic.lean — lead — review —
+      `Optimal` / `TooWeak` / `NearOptimal` / `SZone` / `sabatierZone` — Basic.lean — lead — done — (verifier run 1 PASS) —
       plan §4.1
-- [ ] `branch_gap` — Basic.lean — lead — review — plan §4.2
-- [ ] `apex_crossing` — Basic.lean — lead — review — plan §4.2
-- [ ] `apex_unique_crossing` — Basic.lean — lead — review — plan §4.2
-- [ ] `apex_eq_zero_iff` — Basic.lean — lead — review — plan §4.2
-- [ ] `apex_relabel` — Basic.lean — lead — review — plan §4.2 (replaces the FALSE `apex_comm`, §3.1)
-- [ ] `volcanoBarrier_relabel` — Basic.lean — lead — review — plan §4.2 (replaces the FALSE
+- [x] `branch_gap` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `apex_crossing` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `apex_unique_crossing` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `apex_eq_zero_iff` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `apex_relabel` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2 (replaces the FALSE `apex_comm`, §3.1)
+- [x] `volcanoBarrier_relabel` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2 (replaces the FALSE
       `volcanoBarrier_comm`, §3.1)
-- [ ] `volcanoBarrier_at_apex` — Basic.lean — lead — review — plan §4.2
-- [ ] `branchUp_lt_branchDown_of_lt_apex` — Basic.lean — lead — review — plan §4.2
-- [ ] `branchDown_lt_branchUp_of_apex_lt` — Basic.lean — lead — review — plan §4.2
-- [ ] `volcanoBarrier_eq_branchUp_of_apex_le` — Basic.lean — lead — review — plan §4.2
-- [ ] `volcanoBarrier_eq_branchDown_of_le_apex` — Basic.lean — lead — review — plan §4.2
-- [ ] `sabatierZone_eq_optimal_iff` — Basic.lean — lead — review — plan §4.3
-- [ ] `sabatierZone_eq_tooStrong_iff` — Basic.lean — lead — review — plan §4.3
-- [ ] `sabatierZone_eq_tooWeak_iff` — Basic.lean — lead — review — plan §4.3
-- [ ] `nearOptimal_iff_band` — Basic.lean — lead — review — plan §4.3
-- [ ] auxiliary declarations `branchDown_le_branchUp_of_apex_le` / `branchUp_le_branchDown_of_le_apex`
-      — Basic.lean — lead — review — implemented auxiliaries (not authority rows; reported by the
+- [x] `volcanoBarrier_at_apex` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `branchUp_lt_branchDown_of_lt_apex` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `branchDown_lt_branchUp_of_apex_lt` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `volcanoBarrier_eq_branchUp_of_apex_le` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `volcanoBarrier_eq_branchDown_of_le_apex` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.2
+- [x] `sabatierZone_eq_optimal_iff` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.3
+- [x] `sabatierZone_eq_tooStrong_iff` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.3
+- [x] `sabatierZone_eq_tooWeak_iff` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.3
+- [x] `nearOptimal_iff_band` — Basic.lean — lead — done — (verifier run 1 PASS) — plan §4.3
+- [x] auxiliary declarations `branchDown_le_branchUp_of_apex_le` / `branchUp_le_branchDown_of_le_apex`
+      — Basic.lean — lead — done — (verifier run 1 PASS) — implemented auxiliaries (not authority rows; reported by the
       fidelity checker as "not in authority")
 
 ## S2 — law layer (`PhotoLean/Sabatier/Criterion.lean`; owner prover_b; Sprint 1)
 
-- [ ] `volcanoBarrier_apex_le` / `volcanoBarrier_eq_apex_iff` — Criterion.lean — prover_b — proving — plan §5
-- [ ] `volcanoBarrier_strictMono_of_apex_le` / `volcanoBarrier_strictAnti_of_le_apex` — Criterion.lean — prover_b — proving — plan §5
-- [ ] `volcanoBarrier_le_apex_add` — Criterion.lean — prover_b — proving — plan §5 (tolerance bound)
-- [ ] `volcanoBarrier_apex_form` — Criterion.lean — prover_b — proving — plan §5
-- [ ] `volcanoBarrier_secSlope_of_apex_le` / `volcanoBarrier_secSlope_of_le_apex` — Criterion.lean — prover_b — proving — plan §5
-- [ ] `apexBarrier_eq` — Criterion.lean — prover_b — proving — plan §5
-- [ ] `volcano_descriptor_of_physical` — Criterion.lean — prover_b — proving — plan §5 (main positive statement)
-- [ ] `activity_pos` / `activity_le_apex` / `activity_eq_apex_iff` / `antiDescriptor_activity_iff` / `activity_ratio` — Criterion.lean — prover_b — proving — plan §5
-- [ ] `exists_optimal` / `exists_tooWeak` / `exists_tooStrong` / `exists_nearOptimal` — Criterion.lean — prover_b — proving — plan §5 (non-vacuity)
+- [ ] `volcanoBarrier_apex_le` / `volcanoBarrier_eq_apex_iff` — Criterion.lean — prover_b — review — plan §5
+- [ ] `volcanoBarrier_strictMono_of_apex_le` / `volcanoBarrier_strictAnti_of_le_apex` — Criterion.lean — prover_b — review — plan §5
+- [ ] `volcanoBarrier_le_apex_add` — Criterion.lean — prover_b — review — plan §5 (tolerance bound)
+- [ ] `volcanoBarrier_apex_form` — Criterion.lean — prover_b — review — plan §5
+- [ ] `volcanoBarrier_secSlope_of_apex_le` / `volcanoBarrier_secSlope_of_le_apex` — Criterion.lean — prover_b — review — plan §5
+- [ ] `apexBarrier_eq` — Criterion.lean — prover_b — review — plan §5
+- [ ] `volcano_descriptor_of_physical` — Criterion.lean — prover_b — review — plan §5 (main positive statement)
+- [ ] `activity_pos` / `activity_le_apex` / `activity_eq_apex_iff` / `antiDescriptor_activity_iff` / `activity_ratio` — Criterion.lean — prover_b — review — plan §5
+- [ ] `exists_optimal` / `exists_tooWeak` / `exists_tooStrong` / `exists_nearOptimal` — Criterion.lean — prover_b — review — plan §5 (non-vacuity)
 
 ## S3 — sharp conditions (`PhotoLean/Sabatier/Sharp.lean`; owner prover_d; Sprint 1)
 
-- [ ] `volcano_descriptor_iff` — Sharp.lean — prover_d — proving — plan §6 (**headline**: `⟺ 0 < alphaA * alphaB`)
-- [ ] `descriptor_fails_of_nonpos_product` — Sharp.lean — prover_d — proving — plan §6
-- [ ] `volcano_descriptor_iff_labels` — Sharp.lean — prover_d — proving — plan §6
-- [ ] `volcano_descriptor_of_neg` — Sharp.lean — prover_d — proving — plan §6 (label invariance)
-- [ ] `volcanoActivity_peak_iff` — Sharp.lean — prover_d — proving — plan §6 (the volcano plot)
-- [ ] `flat_witness` / `not_descriptor_flat` — Sharp.lean — prover_d — proving — plan §6
-- [ ] `plateau_witness` / `not_descriptor_plateau` — Sharp.lean — prover_d — proving — plan §6
-- [ ] `antiVolcano_monotone` / `not_descriptor_mixedSign` — Sharp.lean — prover_d — proving — plan §6
+- [ ] `volcano_descriptor_iff` — Sharp.lean — prover_d — review — plan §6 (**headline**: `⟺ 0 < alphaA * alphaB`)
+- [ ] `descriptor_fails_of_nonpos_product` — Sharp.lean — prover_d — review — plan §6
+- [ ] `volcano_descriptor_iff_labels` — Sharp.lean — prover_d — review — plan §6
+- [ ] `volcano_descriptor_of_neg` — Sharp.lean — prover_d — review — plan §6 (label invariance)
+- [ ] `volcanoActivity_peak_iff` — Sharp.lean — prover_d — review — plan §6 (the volcano plot)
+- [ ] `flat_witness` / `not_descriptor_flat` — Sharp.lean — prover_d — review — plan §6
+- [ ] `plateau_witness` / `not_descriptor_plateau` — Sharp.lean — prover_d — review — plan §6
+- [ ] `antiVolcano_monotone` / `not_descriptor_mixedSign` — Sharp.lean — prover_d — review — plan §6
 
 ## S4 — cross-theory form (`PhotoLean/Sabatier/Compose.lean`; owner prover_a; Sprint 1)
 
-- [ ] definitions `parabolaUp` / `parabolaDown` / `parabolicBarrier` / `apexPar` — Compose.lean — prover_a — proving — plan §7
-- [ ] `linearVolcano_eq_bepTangent` — Compose.lean — prover_a — proving — plan §7
-- [ ] `bepLine_le_eact` — Compose.lean — prover_a — proving — plan §7
-- [ ] `linearVolcano_le_parabolic` — Compose.lean — prover_a — proving — plan §7 (lower-bound bridge)
-- [ ] `parabolicBarrier_crossing` — Compose.lean — prover_a — proving — plan §7 (sqrt algebra, main S4 risk)
-- [ ] `parabolicBarrier_apex_le` / `parabolicBarrier_eq_apex_iff` / `parabolic_descriptor` — Compose.lean — prover_a — proving — plan §7
-- [ ] `apexPar_self` — Compose.lean — prover_a — proving — plan §7
-- [ ] `linearVolcano_apex_exact` — Compose.lean — prover_a — proving — plan §7
+- [ ] definitions `parabolaUp` / `parabolaDown` / `parabolicBarrier` / `apexPar` — Compose.lean — prover_a — review — plan §7
+- [ ] `linearVolcano_eq_bepTangent` — Compose.lean — prover_a — review — plan §7
+- [ ] `bepLine_le_eact` — Compose.lean — prover_a — review — plan §7
+- [ ] `linearVolcano_le_parabolic` — Compose.lean — prover_a — review — plan §7 (lower-bound bridge)
+- [ ] `parabolicBarrier_crossing` — Compose.lean — prover_a — review — plan §7 (sqrt algebra, main S4 risk)
+- [ ] `parabolicBarrier_apex_le` / `parabolicBarrier_eq_apex_iff` / `parabolic_descriptor` — Compose.lean — prover_a — review — plan §7
+- [ ] `apexPar_self` — Compose.lean — prover_a — review — plan §7
+- [ ] `linearVolcano_apex_exact` — Compose.lean — prover_a — review — plan §7
 
 ## S5a — rational decision layer (`PhotoLean/Sabatier/RatModel.lean`; owner prover_c; Sprint 1)
 
 - [ ] definitions `branchUpQ` / `branchDownQ` / `volcanoBarrierQ` / `apexQ` / `apexBarrierQ` /
-      `sabatierZoneQ` / `SabatierConformsQ` / `NearOptimalQ` — RatModel.lean — prover_c — proving — plan §8.1
+      `sabatierZoneQ` / `SabatierConformsQ` / `NearOptimalQ` — RatModel.lean — prover_c — review — plan §8.1
 - [ ] cast transfers `branchUpQ_cast` / `branchDownQ_cast` / `volcanoBarrierQ_cast` / `apexQ_cast` /
-      `apexBarrierQ_cast` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `sabatierZoneQ_eq_sabatierZone` — RatModel.lean — prover_c — proving — plan §8.1 (classifier transfer)
-- [ ] `sabatierZoneQ_eq_optimal_iff` / `…_tooStrong_iff` / `…_tooWeak_iff` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `sabatierConformsQ_iff` / `nearOptimalQ_iff` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `volcanoBarrierQ_apex_le` / `volcanoBarrierQ_eq_apex_iff` — RatModel.lean — prover_c — proving — plan §8.1
+      `apexBarrierQ_cast` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `sabatierZoneQ_eq_sabatierZone` — RatModel.lean — prover_c — review — plan §8.1 (classifier transfer)
+- [ ] `sabatierZoneQ_eq_optimal_iff` / `…_tooStrong_iff` / `…_tooWeak_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `sabatierConformsQ_iff` / `nearOptimalQ_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [ ] `volcanoBarrierQ_apex_le` / `volcanoBarrierQ_eq_apex_iff` — RatModel.lean — prover_c — review — plan §8.1
 
 ## S5b — instance verdicts (`PhotoLean/Sabatier/Instances.lean`; owner prover_c; Sprint 2)
 
-- [ ] model rows I1–I3 (symmetric cycle, asymmetric series on both sides of its apex) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] non-conforming rows I4–I5 (zero-slope plateau, mixed-sign anti-volcano) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] tolerance / penalty rows I6 — Instances.lean — prover_c — todo — plan §8.2
-- [ ] two-parabola cross-check row I7 (`apexPar 1 4 = 2/3`, crossing, pass height, linear-below) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] non-vacuity row I8 — Instances.lean — prover_c — todo — plan §8.2
+- [ ] model rows I1–I3 (symmetric cycle, asymmetric series on both sides of its apex) — Instances.lean — prover_c — review — plan §8.2
+- [ ] non-conforming rows I4–I5 (zero-slope plateau, mixed-sign anti-volcano) — Instances.lean — prover_c — review — plan §8.2
+- [ ] tolerance / penalty rows I6 — Instances.lean — prover_c — review — plan §8.2
+- [ ] two-parabola cross-check row I7 (`apexPar 1 4 = 2/3`, crossing, pass height, linear-below) — Instances.lean — prover_c — review — plan §8.2
+- [ ] non-vacuity row I8 — Instances.lean — prover_c — review — plan §8.2
 - [ ] literature rows I9–I11 (HER `ΔG_H*` per metal: near-optimal / too weak / too strong; axis stated
-      in the docstring, numbers from LITERATURE.md §R4) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] derivable literature row I12 (OER apex `1.60 eV = 3.20/2` on stated premises) — Instances.lean — prover_c — todo — plan §8.2
+      in the docstring, numbers from LITERATURE.md §R4) — Instances.lean — prover_c — review — plan §8.2
+- [ ] derivable literature row I12 (OER apex `1.60 eV = 3.20/2` on stated premises) — Instances.lean — prover_c — review — plan §8.2
 
 ---
 
@@ -135,7 +136,7 @@
 
 | Batch | Scope | Verdict | Key evidence | Notes |
 |---|---|---|---|---|
-| — | — | — | (the first independent run is dispatched after Sprint 1 lands) | — |
+| Run 1 (independent verifier; batch: S1) | `PhotoLean/Sabatier/Basic.lean` (15 defs/inductives + 17 theorems) + the S1-relevant Sprint-0 artifacts (statement skeleton, risk probe, 4 API probes), verified on the working tree AND on a clean `git archive` copy of `00c5f69` | **PASS** | build OK / scan `clean` / 17/17 `#print axioms` = `[propext, Classical.choice, Quot.sound]`; verifier's own semantic probe: 82 `example` + 25 `#eval` grid rows + 14 hypothesis-necessity counterexamples, 0 error; own coverage audit of the fidelity checker (32/32 public declarations of `Basic.lean` captured; the two `private theorem`s are its only blind spot); bare-tree `check.sh --strict` PASS; clean-archive rebuild PASS (6308-job fresh build); artifact sha256 `a9f282bf…` byte-identical to commit `00c5f69` | findings F1–F12, **no HIGH**: F1 the plan cited kernel evidence the probe did not contain → three witnesses appended to the probe (`apex_naive_swap_values`, `apex_naive_swap_ne`, `activity_zero_kT_witness`); F2 stale authority counts → corrected to 132; F3 the statement corrections were not logged in the API log → logged; F4 this row; F5 "no deviations" wording → corrected; F6 the fidelity checker cannot see `private` declarations → the dead private helper deleted and the blind spot documented (the shared checker is used by four closed theories, so its regex is deliberately left unchanged); F7/F8/F9 `Basic.lean` docstring wording, including one literally false unconditional equivalence → qualified with `0 < kB*T`, declaration plane verified token-identical after comment stripping; F10/F11/F12 wording and API-log staleness notes |
 
 **Our own pre-verification evidence (for cross-checking, not a substitute for the verifier)**
 | Check | Artifact | Result |
@@ -158,8 +159,11 @@
 - **Statement corrections (lead, Sprint 0)**: see `plan.md` §3.1 — two false authority rows
   (`apex_comm`/`volcanoBarrier_comm`, `activity_descriptor_iff`) were caught by the risk probe and
   replaced by kernel-correct forms before any delivered file cited them.
-- **Deviations from "one commit per lemma"**: none so far in S1 (delivered as one `feat(S0)` commit
-  for the module plus the S0 artifacts). If a milestone groups commits, the grouping is recorded here.
+- **Deviations from "one commit per lemma"**: S1 was delivered as ONE grouped per-module commit
+  (`00c5f69`, the module plus the Sprint-0 artifacts) — recorded here as a deviation from the
+  contract's `COMMIT_TEMPLATE`, since the `<lemma>` slot holds a batch description. S2, S3, S4, S5a
+  and S5b commit one lemma (or one row group) per commit; S5b's twelve row-group commits are the
+  registered grouping for the instance layer.
 - **Known-weak statements**: the four non-vacuity `exists_*` rows carry little information (they are
   witness exhibitors); do not overstate them in `RESULTS.md` (the same warning the Hammond board
   carries for its trichotomy lemma).

@@ -226,6 +226,30 @@ Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected 
 
 ---
 
+### Post-delivery notes (2026-09-21, lead; verifier run 1 findings F3/F12 + worker-reported drift)
+
+- **Statement corrections are NOT API drift, and they are logged twice**: the S1 authority rows
+  `apex_comm` / `volcanoBarrier_comm` were deleted (the naive label swap `(alphaA,betaA,alphaB,betaB) ↦
+  (alphaB,betaB,alphaA,betaA)` NEGATES the apex, because the second branch enters with slope
+  `-alphaB`) and `activity_descriptor_iff` was replaced by `antiDescriptor_activity_iff` /
+  `volcanoActivity_peak_iff` (the activity is strictly DECREASING in the barrier, so the barrier's
+  unique minimum is the activity's unique MAXIMUM — the dual predicate is required). Full log:
+  `theories/Sabatier/plan.md` §3.1; kernel witnesses: `apex_naive_swap_values`, `apex_naive_swap_ne`,
+  `activity_zero_kT_witness` in `theories/Sabatier/probes/sabatier-risk-probe.lean`. A third
+  correction (the I2 instance rows' descriptor-sign convention) is logged there too, with the
+  rational cross-check as its evidence.
+- **Resolved (F12)**: the earlier note in this section that `Sabatier` was missing from
+  `THEORIES` / `lakefile.toml` is closed — `proofs/ENGINE.yml` lists `Sabatier` with all five
+  `*_Sabatier` leaf variables, and all six `PhotoLean.Sabatier.*` modules are in
+  `lakefile.toml` `defaultTargets` (build coverage = scan coverage; verified by the bare
+  `check.sh --strict`).
+- **Additional name drift measured by the workers (v4.17.0)**: `lt_div_iff` / `div_lt_iff` are
+  deprecated in this revision — use `lt_div_iff₀` / `div_lt_iff₀`; `max_add_add_left` /
+  `max_add_add_right` / `add_max_*` do **not** exist, so `max (P + x) (P + y) = P + max x y` must be
+  built by hand (`rcases le_total x y` + `max_eq_left`/`max_eq_right`); `by norm_num` does not see
+  through a `noncomputable def` in a *hypothesis* position (use `unfold …; norm_num`); a beta-redex
+  left by a `fun`-abstraction defeats `linarith` until `dsimp only` is applied first.
+
 ## 校准记录
 
 <!-- 格式：## <日期> — <主题> — api_researcher — <结论> -->

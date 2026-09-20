@@ -18,7 +18,7 @@ explicit hypothesis of the statements; nothing is hidden in a definition.
 
 There is no unproved placeholder and no custom axiom anywhere in this file.
 
-Statement authority: every declaration below matches
+Statement authority: every authority declaration below matches
 `theories/Sabatier/probes/sabatier-statement-skeleton.lean` §S1 word for word (plan §3). Sprint-0
 kernel evidence for the statement forms: `theories/Sabatier/probes/sabatier-risk-probe.lean`.
 -/
@@ -54,7 +54,8 @@ the model, not a definitional copy of the optimum. -/
 noncomputable def apex (alphaA betaA alphaB betaB : ℝ) : ℝ :=
   (betaB - betaA) / (alphaA + alphaB)
 
-/-- The effective barrier at the apex — the height of the volcano's pass. -/
+/-- The effective barrier at the apex (the height of the volcano's pass in the physical
+orientation; that the apex is a MINIMIZER is the S2/S3 content, not this definition). -/
 noncomputable def apexBarrier (alphaA betaA alphaB betaB : ℝ) : ℝ :=
   volcanoBarrier alphaA betaA alphaB betaB (apex alphaA betaA alphaB betaB)
 
@@ -65,8 +66,10 @@ def VolcanoDescriptor (f : ℝ → ℝ) (de0 : ℝ) : Prop :=
 
 /-- The dual (anti-volcano) description: `de0` is the *unique* global maximizer of `f`. It is the
 form in which the volcano plot of the ACTIVITY is stated: a volcano in the barrier is a peak in the
-activity, so `VolcanoDescriptor f de0` is equivalent to `AntiVolcanoDescriptor (activity f kB T) de0`
-(`antiDescriptor_activity_iff`, S2). -/
+activity, so — for `0 < kB*T` — `VolcanoDescriptor f de0` is equivalent to
+`AntiVolcanoDescriptor (activity f kB T) de0` (`antiDescriptor_activity_iff`, S2, which carries the
+`0 < kB*T` premise; at `kB*T = 0` the activity is the constant `1` and has no unique maximizer, a
+counterexample kernel-checked in `theories/Sabatier/probes/sabatier-risk-probe.lean`). -/
 def AntiVolcanoDescriptor (f : ℝ → ℝ) (de0 : ℝ) : Prop :=
   (∀ dE : ℝ, f dE ≤ f de0) ∧ (∀ dE : ℝ, f dE = f de0 → dE = de0)
 
@@ -106,11 +109,6 @@ noncomputable def sabatierZone (apexD dE : ℝ) : SZone :=
   if dE = apexD then SZone.optimal
   else if dE < apexD then SZone.tooStrong
   else SZone.tooWeak
-
-/-- Auxiliary monotonicity form: `max` of two strictly smaller numbers is strictly smaller. -/
-private theorem max_lt_max_aux {a b c d : ℝ} (h1 : a < c) (h2 : b < d) : max a b < max c d := by
-  rw [max_lt_iff]
-  exact ⟨lt_of_lt_of_le h1 (le_max_left c d), lt_of_lt_of_le h2 (le_max_right c d)⟩
 
 /-- Auxiliary: multiplying the apex by the total slope cancels the division. -/
 private theorem apex_mul_ne {alphaA betaA alphaB betaB : ℝ} (h : alphaA + alphaB ≠ 0) :

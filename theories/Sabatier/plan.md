@@ -151,7 +151,7 @@ not delivered — the S1 lesson from the Hammond run).
 ## 3. Statement authority and inventory
 
 `theories/Sabatier/probes/sabatier-statement-skeleton.lean` (0 error, placeholder-only bodies) is
-the authority: it declares **15 definitions/inductives + 91 theorems**. Sections: `## S1`
+the authority: it declares **132 declarations — 105 theorems + 26 definitions + 1 inductive**. Sections: `## S1`
 (description layer, 30 declarations — delivered), `## S2` (law layer), `## S3` (sharp conditions),
 `## S4` (cross-theory form), `## S5a` (rational layer), `## S5b` (instances). Milestone-scoped
 fidelity is checked with the theory-generic checker:
@@ -175,8 +175,10 @@ skeleton statement must be spot-checked, not only the ones that look risky"):
    so the naive swap *negates* the apex (`apex 1 0 1 2 = 1` versus `apex 1 2 1 0 = -1`). The correct
    identity (`apex_relabel`, `volcanoBarrier_relabel`, now in S1) passes the parameters through the
    relabelling `(alphaA,betaA,alphaB,betaB) ↦ (-alphaB,betaB,-alphaA,betaA)`, which really is the
-   same two branches with the two ends of the descriptor axis interchanged. Kernel evidence:
-   `theories/Sabatier/probes/sabatier-risk-probe.lean`.
+   same two branches with the two ends of the descriptor axis interchanged. Kernel witnesses:
+   `apex_naive_swap_values` / `apex_naive_swap_ne` in
+   `theories/Sabatier/probes/sabatier-risk-probe.lean` (appended after verifier run 1 pointed out
+   that the Sprint-0 probe had carried only the *corrected* forms, not the witnesses).
 2. **`activity_descriptor_iff` (replaced).** Stated as: the barrier profile is a volcano iff the
    activity is a volcano (same `VolcanoDescriptor`). FALSE: `activity = exp(-barrier/(kB*T))` is
    strictly *decreasing* in the barrier, so the barrier's unique *minimum* is the activity's unique
@@ -185,7 +187,9 @@ skeleton statement must be spot-checked, not only the ones that look risky"):
    Auxiliary renames in the same pass: `activity_apex_le → activity_le_apex` (the inequality's
    direction is now in the name), `volcanoActivity_descriptor_iff → volcanoActivity_peak_iff`.
    The S1 file was delivered after the corrections; the S2–S5a dispatches cite the corrected
-   signatures.
+   signatures. Kernel witness for the scope of the corrected row: `activity_zero_kT_witness` in the
+   same probe shows that at `kB*T = 0` the activity is the constant `1`, so the `0 < kB*T` premise is
+   necessary and the docstring that asserted the equivalence unconditionally was corrected.
 
 3. **Instance-row label inversion in S5b (corrected after the append).** The first S5b draft
    classified the catalyst at `dE = 0` of the asymmetric series `(1/2, 0, 1, 1)` (apex `2/3`) as
