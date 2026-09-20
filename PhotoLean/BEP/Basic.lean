@@ -225,5 +225,19 @@ theorem epZone_eq_endergonic_iff {lam x : ℝ} (hlam : 0 < lam) :
       if_neg (ne_of_lt h2), if_neg (by linarith : ¬ (x = lam)),
       if_neg (by linarith : ¬ (x = -lam)), if_neg (by linarith : ¬ lam < x),
       if_neg (by linarith : ¬ x < -lam), if_neg (not_lt.mpr (le_of_lt h2))]
+/-- Zone characterization, forward barrierless limit: `x = lam` (the transition state sits in
+the reactant well). -/
+theorem epZone_eq_atForwardLimit_iff {lam x : ℝ} (hlam : 0 < lam) :
+    epZone lam x = EPZone.atForwardLimit ↔ x = lam := by
+  constructor
+  · intro h
+    unfold epZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6 h7 h8
+    exact h4
+  · intro h
+    rw [h]
+    unfold epZone
+    rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
+      if_neg (by linarith : ¬ (lam = 0)), if_pos rfl]
 
 end PhotoLean.BEP
