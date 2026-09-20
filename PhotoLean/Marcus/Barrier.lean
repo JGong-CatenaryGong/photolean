@@ -63,4 +63,15 @@ theorem barrier_antitone_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
   have hsq : (lam - x₂) ^ 2 < (lam - x₁) ^ 2 := by nlinarith
   exact div_lt_div_of_pos_right hsq h4
 
+/-- `lam < 0`：反转区内方向**反转**（势垒递减）—— M4a 锐利性的必要分支。
+平方项仍随 `x` 严格递增，但分母 `4 * lam` 为负使不等号翻转：
+用 `div_lt_div_right_of_neg : c < 0 → (a / c < b / c ↔ b < a)`（**iff，右侧顺序反转**；
+`div_lt_div_of_neg_right` 在 mathlib v4.17.0 中不存在）。 -/
+theorem barrier_antitone_of_neg {lam : ℝ} (hlam : lam < 0) {x₁ x₂ : ℝ}
+    (h₁ : lam < x₁) (h₂ : x₁ < x₂) : barrier lam x₂ < barrier lam x₁ := by
+  have h4 : 4 * lam < 0 := by linarith
+  have hsq : (lam - x₁) ^ 2 < (lam - x₂) ^ 2 := by nlinarith
+  unfold barrier
+  exact (div_lt_div_right_of_neg h4).mpr hsq
+
 end PhotoLean.Marcus
