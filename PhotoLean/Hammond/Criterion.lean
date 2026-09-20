@@ -42,3 +42,10 @@ theorem reactantLike_iff {lam x : ℝ} (hlam : 0 < lam) : ReactantLike lam x ↔
   rw [div_lt_iff₀ h2]
   constructor <;> intro h <;> linarith
 
+/-- Endergonic reactions have product-like transition states. -/
+theorem productLike_iff {lam x : ℝ} (hlam : 0 < lam) : ProductLike lam x ↔ x < 0 := by
+  have h2 : (0 : ℝ) < 2 * lam := by linarith
+  unfold ProductLike tsCoord
+  rw [lt_div_iff₀ h2]
+  constructor <;> intro h <;> linarith
+
