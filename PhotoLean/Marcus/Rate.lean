@@ -2,8 +2,11 @@
 PhotoLean.Marcus.Rate — M3 速率层（Marcus 反转区）。
 
 **语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M3 段
-（Sprint 0 已编译通过）。本文件 3 条定理的签名与它**逐字一致**；
-定理体已全部补齐（零占位证明、无自定义公理声明）。
+（Sprint 0 已编译通过）。本文件现有 **6 条**定理（Sprint 2 三条 `rate_pos` /
+`rate_gt_of_barrier_lt` / `rate_ratio` + Sprint 3 三条 `normal_rate_increases` /
+`inverted_rate_decreases` / `rate_peak_at_lam`），签名与它**逐字一致**
+（已用脚本逐条比对骨架与源码的定理头）；定理体已全部补齐
+（零占位证明、无自定义公理声明）。
 
 **依赖**：`PhotoLean.Marcus.Basic`（M1 已过独立验收，提供 `barrier` / `rate`，
 不重新定义）与 `PhotoLean.Marcus.Barrier`（M2 势垒代数，已过独立验收）。
@@ -12,10 +15,13 @@ PhotoLean.Marcus.Rate — M3 速率层（Marcus 反转区）。
 `barrier_antitone_of_pos` / `barrier_min_at_lam`，故追加 import `Barrier` ——
 两条组合定理是"势垒代数 → 速率层"的纯复合，不引入新的实分析风险。
 
-**风险隔离**：`rate_gt_of_barrier_lt` 是全项目**唯一**使用 `Real.exp` 单调性的
-地方，其余全是代数 —— 因此 M3 的全部实分析风险集中在这一条。
-已实测的 mathlib 事实（mathlib v4.17.0）：`Real.exp_lt_exp` 本身就是 `↔`
-（`Real.exp a < Real.exp b ↔ a < b`），**不存在** `Real.exp_lt_exp_iff`。
+**风险隔离**：全项目**仅两处**使用 `Real.exp` 单调性，都在本文件 ——
+`rate_gt_of_barrier_lt`（严格版 `Real.exp_lt_exp`）与 `rate_peak_at_lam`
+（非严格版 `Real.exp_le_exp`）；其余全是代数，故 M3 的实分析风险收敛在这两点，
+且都已有编译通过的战术骨架。
+已实测的 mathlib 事实（mathlib v4.17.0）：`Real.exp_lt_exp` / `Real.exp_le_exp`
+本身就是 `↔`（`Real.exp a < Real.exp b ↔ a < b`，非严格版同理），
+**不存在** `Real.exp_lt_exp_iff` / `Real.exp_le_exp_iff`。
 
 **注**：本文件头刻意不写出被 `check.sh --strict` 扫描的关键字字面量
 （块注释同样在扫描范围内，写了会造成误报 FAIL）。
