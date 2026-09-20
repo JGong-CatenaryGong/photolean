@@ -151,6 +151,10 @@ theorem inst_I5_mcc_normal_conforms : HammondConforms (6 / 5) (1 / 20) := by
 theorem inst_I6_mcc_inverted_zone : Rat.hammondZoneQ (6 / 5) (12 / 5) = HZone.beyondReactant := by
   norm_num [Rat.hammondZoneQ]
 
+/-- I6, coordinate: `q‡ = -1/2`, i.e. the crossing point lies outside the structural interval. -/
+theorem inst_I6_mcc_inverted_coord : tsCoord (6 / 5) (12 / 5) = -(1 / 2) := by
+  norm_num [tsCoord]
+
 end Hammond
 
 end PhotoLean
