@@ -40,4 +40,13 @@ theorem eact_expansion {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   field_simp
   ring
 
+/-- The exact defect law of the model: the violation of the linear free-energy law is
+the pure square `x ^ 2 / (4 * lam)`. It is the reason BEP can only be a first-order law — and the
+quantity every later sharpness statement is stated with. -/
+theorem bepDefect_eq {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+    bepDefect lam x = x ^ 2 / (4 * lam) := by
+  unfold bepDefect bepLine eact
+  field_simp
+  ring
+
 end PhotoLean.BEP
