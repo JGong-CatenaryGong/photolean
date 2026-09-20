@@ -79,4 +79,17 @@ M4a 锐利性"`lam > 0` 不可去"的另一必要分支（此时速率恒为 `A`
 theorem barrier_zero_lam (x : ℝ) : barrier 0 x = 0 := by
   simp [barrier]
 
+/-- 结构定理：`lam > 0`（反转区增 / 正常区减）、`lam < 0`（反转区减）、`lam = 0`（恒零）
+四种情形**穷尽** —— 直接由前四条组装，`lam = 0` 支用 `subst` 把 `barrier 0` 归约到
+`barrier_zero_lam`。 -/
+theorem barrier_mono_cases (lam : ℝ) :
+    (0 < lam → ∀ x₁ x₂ : ℝ, lam ≤ x₁ → x₁ < x₂ → barrier lam x₁ < barrier lam x₂) ∧
+    (0 < lam → ∀ x₁ x₂ : ℝ, 0 ≤ x₁ → x₁ < x₂ → x₂ ≤ lam → barrier lam x₂ < barrier lam x₁) ∧
+    (lam < 0 → ∀ x₁ x₂ : ℝ, lam < x₁ → x₁ < x₂ → barrier lam x₂ < barrier lam x₁) ∧
+    (lam = 0 → ∀ x : ℝ, barrier lam x = 0) :=
+  ⟨fun h x₁ x₂ h₁ h₂ => barrier_mono_of_pos h h₁ h₂,
+   fun h x₁ x₂ h₁ h₂ h₃ => barrier_antitone_of_pos h h₁ h₂ h₃,
+   fun h x₁ x₂ h₁ h₂ => barrier_antitone_of_neg h h₁ h₂,
+   fun h x => by subst h; exact barrier_zero_lam x⟩
+
 end PhotoLean.Marcus
