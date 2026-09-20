@@ -172,5 +172,17 @@ theorem exists_conforms_fails : ∃ lam tol w : ℝ, 0 < lam ∧ 0 < tol ∧
   rw [hval, abs_of_nonneg (by norm_num : (0 : ℝ) ≤ 1 / 8)] at h1
   norm_num at h1
 
+/-! ## Plan §6.2 — the tolerance/radius theorem -/
+
+/-- Plan §6.2 #10: the absolute defect with the sign of `lam` kept explicit. -/
+theorem bepDefect_abs_eq {lam x : ℝ} (hlam : lam ≠ 0) :
+    |bepDefect lam x| = x ^ 2 / (4 * |lam|) := by
+  have hdef : bepDefect lam x = x ^ 2 / (4 * lam) := by
+    unfold bepDefect bepLine eact
+    field_simp
+    ring
+  rw [hdef, abs_div, abs_of_nonneg (sq_nonneg x), abs_mul,
+    abs_of_nonneg (by norm_num : (0 : ℝ) ≤ 4)]
+
 
 end PhotoLean.BEP
