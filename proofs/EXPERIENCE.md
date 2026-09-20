@@ -2524,3 +2524,77 @@
   content (`0 < alphaA * alphaB`, and the three failure-mode families) were checked by the kernel in
   both directions, and the two FALSE Sprint-0 rows of §3.1 (`apex_comm`, `volcanoBarrier_comm`,
   `activity_descriptor_iff`) were NOT reintroduced.
+
+## 2026-09-21 — S4 microscopic / cross-theory volcano (`PhotoLean/Sabatier/Compose.lean`, 13 declarations) — prover_a — DONE
+
+- 目标 (goal): build the Sabatier volcano from the repository's own two-parabola model and relate it
+  to the S1 linear BEP volcano: tangent identity / pointwise lower bound / apex crossing / unique
+  minimizer / symmetric-cycle exactness (`theories/Sabatier/plan.md` §7, authority
+  `theories/Sabatier/probes/sabatier-statement-skeleton.lean` §S4).
+- Tried and failed (mandatory column — what actually went wrong or would have gone wrong):
+  1. **`lt_div_iff` / `div_lt_iff` are deprecated in this mathlib rev** (`Lean 4.17.0`,
+     `Mathlib/Algebra/Order/Field/Basic.lean:32,38`): the first build printed
+     `warning: …:174:8: 'lt_div_iff' has been deprecated: use 'lt_div_iff₀' instead` (and the same for
+     `div_lt_iff`). The old names still work, so a warning-only build hides the drift; the fix is the
+     subscripted names. Lesson: read the warnings of the *first* build, do not just check exit 0.
+  2. **`rw [lam1 = s1 ^ 2]` before `set s1 := Real.sqrt lam1` rewrites inside `Real.sqrt`.** A rewrite
+     of `lam1` first turns the apex numerator's `Real.sqrt lam1` into `Real.sqrt (s1 ^ 2)`, which no
+     longer matches the substituted form. The working order is: `unfold` the definitions of the goal
+     first, *then* `set s1 := Real.sqrt lam1 with hs1` / `set s2 := …` (so every `Real.sqrt lam1`
+     occurrence is replaced by `s1`), *then* `rw [h1sq, h2sq]` with `lam1 = s1 ^ 2` obtained from
+     `(Real.sq_sqrt h1.le).symm`. (`set` does not look through opaque definition applications — the
+     `unfold` has to come first.)
+  3. **Two parabolas of unequal curvature cross TWICE**, so "the crossing point is the minimizer" is
+     not a one-line consequence of the crossing equation: with `s1 = √λ₁`, `s2 = √λ₂` the second
+     crossing sits at `-s1 s2 (s1 + s2) / (s2 - s1)` (for `λ₁ ≠ λ₂`) and is a local *maximum* of the
+     upper envelope. What selects the physical one is the bracket `-λ₁ < apexPar λ₁ λ₂ < λ₂`
+     (= `-s1^2 < s1 s2 (s2-s1)/(s1+s2) < s2^2`): it puts `parabolaUp` on its increasing side and
+     `parabolaDown` on its decreasing side. Trying to derive global minimality from `max`-algebra of
+     two crossings instead of from those two bracket inequalities is the dead path.
+  4. **The pointwise-lower-bound instance only matches the *unfolded* form.** `bepLine_le_eact h1
+     (-dE)` has type `BEP.bepLine lam1 (-dE) ≤ BEP.eact lam1 (-dE)`; the goal after
+     `unfold parabolicBarrier parabolaUp parabolaDown` is exactly `max (BEP.eact lam1 (-dE)) (…)`
+     because `parabolaUp` was defined as `eact lam1 (-dE)` and not as the algebraically equal
+     `(lam1 + dE)^2 / (4 * lam1)`. A definition written in the expanded form would have needed an
+     extra `show`/`rw` at every call site.
+- 奏效 (what worked):
+  - `parabolicBarrier_crossing`: `unfold parabolaUp parabolaDown apexPar BEP.eact` → `set s1/s2` →
+    `rw [h1sq, h2sq]` → `rw [show s2^2 * s1 - s1^2 * s2 = s1 * s2 * (s2 - s1) by ring]` →
+    `rw [div_eq_div_iff h4s1 h4s2]` (explicit `4 * s_i ^ 2 ≠ 0` from `positivity`) → `field_simp` →
+    `ring`.
+  - `parabolicBarrier_apex_le` / `parabolicBarrier_eq_apex_iff`: the two bracket inequalities
+    (`apexPar_bounds`), plus one monotonicity lemma per branch on its own side
+    (`(lam + d) ^ 2 / (4 * lam)` is monotone once `0 ≤ lam + d`), plus the evaluation
+    `parabolicBarrier … (apexPar …) = parabolaUp … (apexPar …)` from the crossing + `max_self`.
+  - The whole file compiled with 0 errors on the first attempt and 0 warnings after the two renames;
+    the only non-obvious tactic choice was `nlinarith [hs1pos, hs2pos, sq_nonneg s1, sq_nonneg s2]`
+    after clearing the division with `lt_div_iff₀` / `div_lt_iff₀`.
+  - `apexPar_self` has a decorative hypothesis `(h : 0 < lam)` kept for signature fidelity:
+    `set_option linter.unusedVariables false in` goes BEFORE the doc comment (same idiom as
+    `BEP/Basic.lean:eact_at_lam`).
+  - One-commit-per-lemma over an already-complete file: a throwaway script (in `/tmp`, never in the
+    repo) truncated the final file at declaration boundaries into the 10 compiling intermediate
+    states, built each one, committed, and finally restored the byte-identical full file.
+- 可复用模式 (reusable pattern): **for a `√λ`-parametrised geometry, substitute `s1 = √λ₁`, `s2 = √λ₂`
+  once (after `unfold`), rewrite `λ_i = s_i^2` with `(Real.sq_sqrt h.le).symm`, and from then on work
+  in pure algebra; keep the two bracket inequalities `-λ₁ < apex < λ₂` as the *only* bridge back to
+  `Real.sqrt`.** Also: `div_eq_div_iff` + explicit nonzero denominators beats hoping `field_simp`'s
+  discharger reconstructs `4 * s1 ^ 2 ≠ 0` on its own.
+- Gate evidence at the delivered tree (all exit 0): `lake build PhotoLean.Sabatier.Compose` →
+  `Build completed successfully.`; `check.sh --strict PhotoLean.Sabatier.Compose` → `clean` /
+  `build: OK` / `verdict: PASS`; `axioms.sh … parabolic_descriptor` and
+  `axioms.sh … linearVolcano_le_parabolic` → `depends on axioms: [propext, Classical.choice,
+  Quot.sound]`; the other 7 theorems measured individually with a single temporary probe, same
+  footprint; `bep-fidelity.py --theory Sabatier --milestone S4` → `delivered, word-for-word: 13`,
+  `not delivered yet: 0`, `signature differences: 0`.
+- Commits (one per lemma, `feat(S4): <lemma>`): `3a93eed` definitions (parabolaUp, parabolaDown,
+  parabolicBarrier, apexPar), `35b8218` linearVolcano_eq_bepTangent, `4684e20` bepLine_le_eact,
+  `a8b4243` linearVolcano_le_parabolic, `de30c68` parabolicBarrier_crossing, `45a4b80`
+  parabolicBarrier_apex_le, `e3276e3` parabolicBarrier_eq_apex_iff, `e4843f6` parabolic_descriptor,
+  `1a06e03` apexPar_self, `8d333f5` linearVolcano_apex_exact.
+- Independent numeric cross-check (not a kernel gate, a statement sanity check): 20000 random
+  `(λ₁, λ₂, dE)` triples — crossing, global minimality at the apex, pointwise linear ≤ parabolic and
+  uniqueness of the minimizer all hold (0 counterexamples); `λ₁ = λ₂` gives `apexPar = 0` for every
+  tested `λ`; the `λ₁ = 1, λ₂ = 4` row reproduces the authority's `I7` numbers
+  (`apex = 2/3`, parabolic pass `= 25/36`, linear value `= 2/3`).
+- No statement was weakened; no §S4 row is suspected false.
