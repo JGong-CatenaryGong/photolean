@@ -194,6 +194,44 @@ theorem kashaMargin_effective {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad
   rw [effUpperYield_one h, effEmitYield_zero_one h]
   exact div_div_div_cancel_right₀ (ne_of_gt hpos) _ _
 
+/-- Plan §7.2 #8 — **every ladder is a two-level model in disguise**: the tolerance criterion of the
+`N`-level ladder is the tolerance criterion of its effective two-level data. Both sides are the same
+inequality `(1 - tol) · upperYield N ≤ tol · emitYield 0 N`: the left by K1's
+`fluoYield_eq_low_add_upper`, the right by the two normalizations of rows 5–6 and the monotone
+multiplication by `upperYield N + cascade 0 N > 0`. -/
+theorem kashaWithin_iff_effective {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N)
+    (hpos : 0 < upperYield rad ic N + cascade rad ic 0 N) :
+    KashaWithin rad ic tol N ↔ KashaWithin (effRad rad ic N) (effIc rad ic N) tol 1 := by
+  have effective_algebra : ∀ {U C e0 tol : ℝ}, 0 < U + C →
+      (U / (U + C) ≤ tol * (e0 / (U + C) + U / (U + C)) ↔ (1 - tol) * U ≤ tol * e0) := by
+    intro U C e0 tol hUC
+    have e2 : tol * (e0 / (U + C) + U / (U + C)) = tol * (e0 + U) / (U + C) := by
+      field_simp
+    have e3 : tol * (e0 + U) / (U + C) * (U + C) = tol * (e0 + U) := by
+      field_simp
+    rw [e2, div_le_iff₀ hUC, e3]
+    constructor <;> intro hh <;> linarith
+  have hsplit : fluoYield (effRad rad ic N) (effIc rad ic N) 1
+      = emitYield (effRad rad ic N) (effIc rad ic N) 0 1
+        + upperYield (effRad rad ic N) (effIc rad ic N) 1 := by
+    unfold fluoYield upperYield
+    have hset : Finset.range (1 + 1) = insert 0 (Finset.Icc 1 1) := by
+      ext n
+      simp only [Finset.mem_range, Finset.mem_insert, Finset.mem_Icc]
+      omega
+    rw [hset, Finset.sum_insert (by simp)]
+  have hL : KashaWithin rad ic tol N ↔
+      (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N := by
+    unfold KashaWithin
+    rw [fluoYield_eq_low_add_upper h]
+    constructor <;> intro hh <;> linarith
+  have hR : KashaWithin (effRad rad ic N) (effIc rad ic N) tol 1 ↔
+      (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N := by
+    unfold KashaWithin
+    rw [hsplit, effUpperYield_one h, effEmitYield_zero_one h]
+    exact effective_algebra hpos
+  exact hL.trans hR.symm
+
 
 end Kasha
 
