@@ -295,28 +295,34 @@ theorem inst_I11_F1_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
-/-- F1 (`first-hand`, same source/locus/status as above; kcal/mol verbatim): the model's two-point
-solver at the adjacent printed pair `16(2)`/`16(1)` — `16(2)` `ΔG° = -0.3`, `ΔG‡ = 15.6`;
+/-- F1 (`first-hand`; **provenance: the F1 family heading above** — *Antioxidants* **15**(7) 840–860
+(2026), DOI `10.3390/antiox15070868`, Table 1 "Water" columns, 298.15 K, printed kcal/mol
+`ΔG°`/`ΔG‡`; the record's kJ/mol column is unused here). **Role of this row**: the model's two-point
+solver at the **adjacent** printed pair `16(2)`/`16(1)` — `16(2)` `ΔG° = -0.3`, `ΔG‡ = 15.6`;
 `16(1)` `ΔG° = -0.9`, `ΔG‡ = 15.7` (model abscissae `0.3`, `0.9`). The value `9/20` is the model's
 own `λ̂`, **not** the record's per-pair `λ̂ = (x + 2Ea) ± 2√(Ea² + x·Ea)` (irrational, and a
-different estimator). -/
+different estimator). No verdict below depends on this value (header, selection disclosure). -/
 theorem inst_I11_F1_lamHat : Rat.qLamOfPair (0.3 : ℚ) 15.6 0.9 15.7 = 9 / 20 := by
   unfold Rat.qLamOfPair
   norm_num
 
-/-- F1 (`first-hand`, kcal/mol verbatim): the second divided difference of the three printed rows
-`16(1)` (`ΔG° = -0.9`, `ΔG‡ = 15.7`), `14(1)` (`-2.3`, `15.7`) and `12` (`-4.9`, `13.9`) at the
-model abscissae `0.9`, `2.3`, `4.9`. It is **negative** — for every `λ > 0` the model forces
-`1/(4λ) > 0`. This is a statement about these three printed rows, not about the record's
-family-level regression (a regression is not a ℚ identity). -/
+/-- F1 (`first-hand`; **provenance: the F1 family heading above** — *Antioxidants* **15**(7) 840–860
+(2026), Table 1 "Water" columns, printed kcal/mol). **Role of this row**: the curvature witness at
+**three** printed rows `16(1)` (`ΔG° = -0.9`, `ΔG‡ = 15.7`), `14(1)` (`-2.3`, `15.7`) and `12`
+(`-4.9`, `13.9`), model abscissae `0.9`, `2.3`, `4.9`. The second divided difference is **negative**
+— for every `λ > 0` the model forces `1/(4λ) > 0`. This is a statement about these three printed
+rows, not about the record's family-level regression (a regression is not a ℚ identity). -/
 theorem inst_I11_F1_curvature_negative :
     Rat.qSecondDividedDiff (0.9 : ℚ) 15.7 2.3 15.7 4.9 13.9 = -(9 / 52) := by
   unfold Rat.qSecondDividedDiff
   norm_num
 
-/-- F1: **no** positive-λ equal-curvature two-parabola law reproduces the three printed rows
-`16(1)`, `14(1)`, `12` of the water column — a λ-independent falsification. Statement about the
-model family instantiated by those numbers, not about the experiment. -/
+/-- F1 (`first-hand`; **provenance: the F1 family heading above** — *Antioxidants* **15**(7) 840–860
+(2026), Table 1 "Water" columns, printed kcal/mol). **Role of this row**: the λ-independent
+falsification — **no** positive-λ equal-curvature two-parabola law reproduces the three printed rows
+`16(1)`, `14(1)`, `12` of the water column; it is the quantified consequence of the negative
+curvature of the row above, whose sign does not involve `λ̂`. Statement about the model family
+instantiated by those numbers, not about the experiment. -/
 theorem inst_I11_F1_not_model_consistent :
     ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (0.9 : ℚ) 2.3 4.9 15.7 15.7 13.9 := by
   rintro ⟨lam, hlam, h₁, h₂, h₃⟩
@@ -341,23 +347,30 @@ theorem inst_I11_F2_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
-/-- F2 (`first-hand`, kcal/mol verbatim): the model's two-point solver at the adjacent printed pair
-`16(2)` (`ΔG° = +1.0`, `ΔG‡ = 14.0`) and `13` (`-2.2`, `13.3`); model abscissae `-1.0`, `2.2`. -/
+/-- F2 (`first-hand`; **provenance: the F2 family heading above** — same paper, *Antioxidants*
+**15**(7) 840–860 (2026), Table 1 "PE" (pentyl ethanoate) columns, printed kcal/mol `ΔG°`/`ΔG‡`).
+**Role of this row**: the model's two-point solver at the **adjacent** printed pair `16(2)`
+(`ΔG° = +1.0`, `ΔG‡ = 14.0`) and `13` (`-2.2`, `13.3`) in the record's table order; model abscissae
+`-1.0`, `2.2`. Pair-dependent (header, selection disclosure); no verdict depends on this value. -/
 theorem inst_I11_F2_lamHat : Rat.qLamOfPair (-(1.0) : ℚ) 14.0 2.2 13.3 = 16 / 15 := by
   unfold Rat.qLamOfPair
   norm_num
 
-/-- F2 (`first-hand`, kcal/mol verbatim): second divided difference of the three printed rows
-`16(2)` (`ΔG° = +1.0`, `ΔG‡ = 14.0`), `13` (`-2.2`, `13.3`), `2` (`-4.6`, `10.0`); model abscissae
-`-1.0`, `2.2`, `4.6`. Negative, as in F1 — but F2 is inconsistent for a *different* reason than the
-water column (its linear fit is R² = 0.548, not 0.93+), which is why §R1.10.3 requires the family to
-be indexed by solvent as well as by the reacting pair. -/
+/-- F2 (`first-hand`; **provenance: the F2 family heading above** — same paper, Table 1 "PE" columns,
+printed kcal/mol). **Role of this row**: the curvature witness at **three** printed rows `16(2)`
+(`ΔG° = +1.0`, `ΔG‡ = 14.0`), `13` (`-2.2`, `13.3`), `2` (`-4.6`, `10.0`), model abscissae `-1.0`,
+`2.2`, `4.6`. Negative, as in F1 — but F2 is inconsistent for a *different* reason than the water
+column: its free linear fit is **R² = 0.548** (`LITERATURE.md` §R1.10.3, quoted with its locus),
+against R² = 0.934 for the F1 water column (§R1.10.2); hence §R1.10.3 requires the family to be
+indexed by solvent as well as by the reacting pair. -/
 theorem inst_I11_F2_curvature_negative :
     Rat.qSecondDividedDiff (-(1.0) : ℚ) 14.0 2.2 13.3 4.6 10.0 = -(185 / 896) := by
   unfold Rat.qSecondDividedDiff
   norm_num
 
-/-- F2: falsification of the two-parabola law for the three printed PE rows. -/
+/-- F2 (`first-hand`; **provenance: the F2 family heading above** — same paper, Table 1 "PE" columns,
+printed kcal/mol). **Role of this row**: the λ-independent falsification of the two-parabola law for
+the three printed PE rows `16(2)`, `13`, `2` (negative model curvature against `1/(4λ) > 0`). -/
 theorem inst_I11_F2_not_model_consistent :
     ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(1.0) : ℚ) 2.2 4.6 14.0 13.3 10.0 := by
   rintro ⟨lam, hlam, h₁, h₂, h₃⟩
@@ -385,22 +398,27 @@ theorem inst_I11_F3_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
-/-- F3 (`first-hand`, kcal/mol verbatim, Table 2 "Water"): the model's two-point solver at the
-adjacent printed pair `16(1)` (`ΔG° = +0.8`, `ΔG‡ = 15.6`) and `19(2)` (`+3.6`, `17.7`); model
-abscissae `-0.8`, `-3.6`. -/
+/-- F3 (`first-hand`; **provenance: the F3 family heading above** — same paper, *Antioxidants*
+**15**(7), Table 2 "Water" columns (`•OOCH₃`), printed kcal/mol `ΔG°`/`ΔG‡`, representative rows).
+**Role of this row**: the model's two-point solver at the **adjacent** printed pair `16(1)`
+(`ΔG° = +0.8`, `ΔG‡ = 15.6`) and `19(2)` (`+3.6`, `17.7`) in the record's listing; model abscissae
+`-0.8`, `-3.6`. Pair-dependent (header, selection disclosure). -/
 theorem inst_I11_F3_lamHat : Rat.qLamOfPair (-(0.8) : ℚ) 15.6 (-(3.6)) 17.7 = 22 / 5 := by
   unfold Rat.qLamOfPair
   norm_num
 
-/-- F3 (`first-hand`, kcal/mol verbatim, Table 2 "Water"): second divided difference of the printed
-representative rows `16(1)` (`ΔG° = +0.8`, `ΔG‡ = 15.6`), `1` (`-7.1`, `11.0`), `7` (`-9.9`, `7.3`);
-model abscissae `-0.8`, `7.1`, `9.9`. Negative. -/
+/-- F3 (`first-hand`; **provenance: the F3 family heading above** — same paper, Table 2 "Water"
+columns, printed kcal/mol, representative rows). **Role of this row**: the curvature witness at
+**three** printed rows `16(1)` (`ΔG° = +0.8`, `ΔG‡ = 15.6`), `1` (`-7.1`, `11.0`), `7` (`-9.9`,
+`7.3`), model abscissae `-0.8`, `7.1`, `9.9`. Negative, against the model's `1/(4λ) > 0`. -/
 theorem inst_I11_F3_curvature_negative :
     Rat.qSecondDividedDiff (-(0.8) : ℚ) 15.6 7.1 11.0 9.9 7.3 = -(8175 / 118342) := by
   unfold Rat.qSecondDividedDiff
   norm_num
 
-/-- F3: falsification of the two-parabola law for the three printed Table 2 water rows. -/
+/-- F3 (`first-hand`; **provenance: the F3 family heading above** — same paper, Table 2 "Water"
+columns, printed kcal/mol). **Role of this row**: the λ-independent falsification of the
+two-parabola law for the three printed Table 2 water rows `16(1)`, `1`, `7`. -/
 theorem inst_I11_F3_not_model_consistent :
     ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(0.8) : ℚ) 7.1 9.9 15.6 11.0 7.3 := by
   rintro ⟨lam, hlam, h₁, h₂, h₃⟩
@@ -427,25 +445,32 @@ theorem inst_I11_F5_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
-/-- F5 (`first-hand`, kcal/mol verbatim, `CCSD(T)-F12a/jun-cc-pVTZ`): the model's two-point solver
-at the adjacent printed pairs `R2` (`ΔE = 7.62`, `V‡f = 12.38`) and `R3` (`13.14`, `17.57`); model
-abscissae `-7.62`, `-13.14`. Classical energies, so this is `λ̂` in the `ΔE` convention. -/
+/-- F5 (`first-hand`; **provenance: the F5 family heading above** — *Chem. Sci.* **6**(10) 5866–5881
+(2015), DOI `10.1039/c5sc01848j`, Table 1 row `CCSD(T)-F12a/jun-cc-pVTZ`, printed kcal/mol classical
+`ΔE`/`V‡f`). **Role of this row**: the model's two-point solver at the **adjacent** printed pair `R2`
+(`ΔE = 7.62`, `V‡f = 12.38`) and `R3` (`13.14`, `17.57`); model abscissae `-7.62`, `-13.14`.
+Classical energies, so this is `λ̂` in the `ΔE` convention; pair-dependent (header, selection
+disclosure). -/
 theorem inst_I11_F5_lamHat :
     Rat.qLamOfPair (-(7.62) : ℚ) 12.38 (-(13.14)) 17.57 = 7958 / 675 := by
   unfold Rat.qLamOfPair
   norm_num
 
-/-- F5 (`first-hand`, kcal/mol verbatim): second divided difference of the printed rows `R4`
-(`ΔE = 14.56`, `V‡f = 17.47`), `R1` (`15.80`, `20.32`), `R5` (`19.82`, `21.72`); model abscissae
-`-14.56`, `-15.8`, `-19.82`. Negative (classical energies; the `ΔE`-vs-`ΔG` caveat stands). -/
+/-- F5 (`first-hand`; **provenance: the F5 family heading above** — *Chem. Sci.* **6**(10),
+Table 1 `CCSD(T)-F12a/jun-cc-pVTZ`, classical kcal/mol). **Role of this row**: the curvature witness
+at **three** printed rows `R4` (`ΔE = 14.56`, `V‡f = 17.47`), `R1` (`15.80`, `20.32`), `R5`
+(`19.82`, `21.72`), model abscissae `-14.56`, `-15.8`, `-19.82`. Negative (classical energies; the
+`ΔE`-vs-`ΔG` caveat of §R1.10.5 stands). -/
 theorem inst_I11_F5_curvature_negative :
     Rat.qSecondDividedDiff (-(14.56) : ℚ) 17.47 (-(15.8)) 20.32 (-(19.82)) 21.72 =
       -(1215125 / 3277506) := by
   unfold Rat.qSecondDividedDiff
   norm_num
 
-/-- F5: falsification of the two-parabola law for the three printed 2-butanol rows (classical
-`ΔE`/`V‡f` data). -/
+/-- F5 (`first-hand`; **provenance: the F5 family heading above** — *Chem. Sci.* **6**(10) 5866–5881
+(2015), Table 1 `CCSD(T)-F12a/jun-cc-pVTZ`, classical kcal/mol). **Role of this row**: the
+λ-independent falsification of the two-parabola law for the three printed 2-butanol rows `R4`, `R1`,
+`R5` (classical `ΔE`/`V‡f` data, `ΔE`-vs-`ΔG` caveat of §R1.10.5). -/
 theorem inst_I11_F5_not_model_consistent :
     ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(14.56) : ℚ) (-(15.8)) (-(19.82)) 17.47 20.32 21.72 := by
   rintro ⟨lam, hlam, h₁, h₂, h₃⟩
