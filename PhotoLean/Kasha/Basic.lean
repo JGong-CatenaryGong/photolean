@@ -160,6 +160,11 @@ theorem radBranch_nonneg {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic
     0 ≤ radBranch rad ic n := by
   unfold radBranch
   exact div_nonneg (h.rad_nonneg n) (le_of_lt (h.decay_pos n hn))
+/-- Plan §4.2 #4. The nonradiative branch is nonnegative under `RateData`. -/
+theorem icBranch_nonneg {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
+    0 ≤ icBranch rad ic n := by
+  unfold icBranch
+  exact div_nonneg (h.ic_nonneg n) (le_of_lt (h.decay_pos n hn))
 end Kasha
 
 end PhotoLean
