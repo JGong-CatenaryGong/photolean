@@ -36,4 +36,22 @@ namespace PhotoLean.Marcus
 theorem rate_pos {A lam kB T : ℝ} (hA : 0 < A) (x : ℝ) : 0 < rate A lam kB T x := by
   unfold rate; positivity
 
+/-! ## 核心转移引理（M3 §6） -/
+
+/-- **核心转移引理**：势垒更小 ⇒ 速率更大。整个项目唯一的 exp 单调性使用点。
+
+证明：`h : Φx < Φy` → 取负 `-(Φy)/(kBT) < -(Φx)/(kBT)`（`linarith` +
+`div_lt_div_of_pos_right` 用 `hkT`）→ `Real.exp_lt_exp.mpr` 吃掉 exp
+→ `mul_lt_mul_of_pos_left _ hA` 乘回前置因子 `A > 0`。
+
+物理含义：这是"势垒越低速率越大"这条唯象直觉在速率层的唯一入口；
+后续所有速率单调性定理（M3 剩余三条、M4a 描述子）都由它 + 势垒代数复合得到。 -/
+theorem rate_gt_of_barrier_lt {A lam kB T : ℝ} (hA : 0 < A) (hkT : 0 < kB * T) {x y : ℝ}
+    (h : barrier lam x < barrier lam y) : rate A lam kB T y < rate A lam kB T x := by
+  have hu : -(barrier lam y) / (kB * T) < -(barrier lam x) / (kB * T) :=
+    div_lt_div_of_pos_right (by linarith) hkT
+  have hexp := Real.exp_lt_exp.mpr hu
+  unfold rate
+  exact mul_lt_mul_of_pos_left hexp hA
+
 end PhotoLean.Marcus
