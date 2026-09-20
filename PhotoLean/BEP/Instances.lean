@@ -10,10 +10,11 @@ delivered here.
 numbers and lets the kernel decide the verdict, on top of the computable decision layer
 `PhotoLean/BEP/RatModel.lean` (plan §8.1):
 
-* I1–I8 are `model-constructed` families at `λ = 2`, plus the degenerate `λ = 0` and the
-  unphysical `λ = -2` rows. The verdict is a kernel computation in ℚ by `norm_num`;
-  `by decide` cannot close these goals (comparisons containing `/`-literals do not reduce) and
-  `native_decide` is forbidden (`Lean.ofReduceBool` is not in `ALLOWED_AXIOMS`).
+* I1–I7 are `model-constructed` families at `λ = 2`; I8 is the degenerate `λ = 0` row, I9 the
+  unphysical `λ = -2` row and I10 the tolerance threshold at `λ = 2`, `w = 1`. The verdict is a
+  kernel computation in ℚ by `norm_num`; `by decide` cannot close these goals (comparisons
+  containing `/`-literals do not reduce) and `native_decide` is forbidden (`Lean.ofReduceBool` is
+  not in `ALLOWED_AXIOMS`).
 * I9 exhibits the instructive gap: the Evans–Polanyi bounds are **blind** to an unphysical
   curvature (`λ = -2`, `α = 3/4 ∈ [0,1]`); the *sign* of the defect (`bepDefect (-2) 1 = -1/8`)
   is what detects it.
@@ -21,8 +22,12 @@ numbers and lets the kernel decide the verdict, on top of the computable decisio
   `tol = 1/16` — exactly the squared form `w ^ 2 ≤ 4 * λ * tol` that `qConformsWindow` states.
 * I11 quotes four first-hand literature families of `theories/BEP/LITERATURE.md` §R1.10 with the
   sources' own printed numbers and refutes the model for their three-row triples.
-* I12 is the summary: the affine (BEP) description conforms, the equal-curvature two-parabola model
-  is refuted — for each of the four families that §R1.10 prints per-point.
+* I12 is the summary, and its scope is exactly the **chosen** rows: for each of the four families
+  that §R1.10 prints per-point, the two-point slope of the rows named in that family's heading lies
+  strictly inside `(0,1)` — a claim about those printed rows, **not** about the family's fit quality
+  (the family-level linear fits and their R² values are reported, by locus, in `LITERATURE.md`
+  §R1.10.2–§R1.10.4; §R1.10.5 reports none for F5) — while the equal-curvature two-parabola model
+  is refuted by the three-row curvature.
 * `inst_nonvacuous` records that the layer is not a table of one-sided verdicts.
 
 **Selection disclosure (independent verifier, MEDIUM-3).** The `_alphaObs` rows, the `_lamHat` rows
@@ -266,8 +271,11 @@ theorem inst_I9_unphysical_defect_negative : Rat.qBepDefect (-2 : ℚ) 1 = -(1 /
   unfold Rat.qBepDefect Rat.qBepLine Rat.qEact
   norm_num
 
-/-- I9 (`model-constructed`): the Evans–Polanyi bounds hold at the unphysical point — this is why
-the descriptor `EPDescriptor` is strictly stronger than the bounds pair (plan §8.2). -/
+/-- I9 (`model-constructed`): the Evans–Polanyi bounds hold at the unphysical point. This is the
+witness `λ = -2, x = 1` behind the plan's explanatory remark (plan §8.2) that the descriptor
+`EPDescriptor` detects what the bounds pair misses; that remark is prose here, **not** a theorem of
+this file — no statement below compares `EPDescriptor` with the bounds pair for all `lam`. What the
+four I9 rows establish is the coincidence, at this point, of `0 ≤ α ≤ 1` with a negative defect. -/
 theorem inst_I9_unphysical_bounds_blind :
     0 ≤ Rat.qTransfer (-2 : ℚ) 1 ∧ Rat.qTransfer (-2 : ℚ) 1 ≤ 1 := by
   unfold Rat.qTransfer
@@ -508,16 +516,19 @@ theorem inst_I11_F5_not_model_consistent :
 
 /-! ### I12 — the summary, and non-vacuity of the instance layer -/
 
-/-- I12 (plan §8.2): for each of the four families with per-row data, the affine (BEP) side is a
-decent description — the observed two-point slope lies strictly inside `(0,1)` — while the family's
-second divided difference is negative, so **no** positive-λ equal-curvature two-parabola law
-reproduces those printed rows. This is the falsification shape the plan asks for
-(`¬ ∃ lam : ℚ, qModelConsistent3 lam …`) applied per family.
+/-- I12 (plan §8.2): for each of the four families with per-row data, the two-point slope of the
+**chosen** rows lies strictly inside `(0,1)`, while the family's three-row second divided difference
+is negative, so **no** positive-λ equal-curvature two-parabola law reproduces those printed rows.
+The first conjunct is a claim about the pair named in the family heading — it is *not* a claim about
+the family's fit quality (the family-level linear fits and R² values are reported, by locus, in
+`LITERATURE.md` §R1.10.2–§R1.10.4; §R1.10.5 reports none for F5). The second is the falsification
+shape the plan asks for (`¬ ∃ lam : ℚ, qModelConsistent3 lam …`) applied per family.
 
 Provenance of the four conjuncts (all `first-hand`, kcal/mol, verbatim; the sources print `ΔG°`
 for F1/F2/F3 and a classical `ΔE` for F5): F1 = *Antioxidants* **15**(7) 840–860 (2026), Table 1
 "Water"; F2 = same paper, Table 1 "PE"; F3 = same paper, Table 2 "Water"; F5 = *Chem. Sci.*
-**6**(10) 5866–5881 (2015), Table 1 `CCSD(T)-F12a/jun-cc-pVTZ`. -/
+**6**(10) 5866–5881 (2015), Table 1 `CCSD(T)-F12a/jun-cc-pVTZ`. Each family's source, locus, status
+and unit are restated in its family heading above. -/
 theorem inst_I12_affine_conforms_model_refuted :
     (0 < Rat.qAlphaObs (0.3 : ℚ) 15.6 12.9 8.8 ∧
         Rat.qAlphaObs (0.3 : ℚ) 15.6 12.9 8.8 < 1 ∧
