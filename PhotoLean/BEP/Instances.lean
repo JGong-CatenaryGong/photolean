@@ -160,6 +160,15 @@ theorem inst_I5_reverseLimit_transfer : Rat.qTransfer (2 : ℚ) (-2) = 1 := by
   unfold Rat.qTransfer
   norm_num
 
+/-- I5 (`model-constructed`): the reverse limit also sits on the edge of the band (the open regime
+fails at `α = 1`). -/
+theorem inst_I5_reverseLimit_boundary :
+    ¬ (0 < Rat.qTransfer (2 : ℚ) (-2) ∧ Rat.qTransfer (2 : ℚ) (-2) < 1) := by
+  unfold Rat.qTransfer
+  norm_num
+
+/-! #### I6–I7 — the two inverted regions -/
+
 end BEP
 
 end PhotoLean
