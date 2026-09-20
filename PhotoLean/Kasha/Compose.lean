@@ -95,6 +95,13 @@ energy gap `x`, reorganization energy `lam`, pre-exponential `A` (plan §7.1). -
 noncomputable def marcusIC (A lam kB T x : ℝ) : ℝ :=
   A * Real.exp (-(PhotoLean.Marcus.barrier lam x) / (kB * T))
 
+/-- The gap threshold of the Marcus bridge: the multiplicative constant `K` whose logarithm is the
+half-width of the Kasha window (plan §7.1). -/
+noncomputable def kashaGapThreshold (A rad0 dec0 rad1 tol : ℝ) : ℝ :=
+  A * rad0 * tol / (rad1 * dec0 * (1 - tol))
+
+/-! ## Theorems (plan §7.2) -/
+
 
 end Kasha
 
