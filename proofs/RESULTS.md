@@ -21,7 +21,19 @@
 | ③ 实例代入后符合吗？ | **文献 MCC 体系（`lam=1.20` eV）与光合反应中心（`0.25` eV）在经典模型下符合**：区域判定 + 描述算子实例化 + **速率比较 `rate(2.40) < rate(1.23)`**（且与温度无关）；非物理参数被判**不符合/不可采纳**（§3） | 每条实例都是**有名字的定理**；lead 用 Python 独立复算逐条印证 |
 | 边界（必须同时报告） | 经典公式在反转区**下降过快约 3.6 个数量级**（预言 5.1 vs 实测 1.46）⇒ 实例结论只声称"**经典模型**满足描述"，不声称预测实测速率（§3.4、§4） | 模型数值与文献实测速率并排给出，可复算 |
 
-**规模**：8 个模块 / **70 条定理**；**50+ 个 `feat(<area>): <lemma>` 提交**；零 `sorry`、零自定义公理。
+**规模**：8 个模块 / **70 条定理**；**49 个 `feat(<area>): <lemma>` 提交**（仓库共 97 个提交）。
+零 `sorry`、零自定义公理。
+
+**三层验收（一条命令各一层，全部可复跑）**：
+
+| 层 | 命令 | 结果 |
+|---|---|---|
+| 构建 + 全树扫描 | `proofs/scripts/check.sh --strict` | **verdict: PASS**（`clean`） |
+| 语句保真 | `python3 proofs/probes/marcus-fidelity.py` | **45/45 逐字一致、0 差异**（该检查器已做反向验证） |
+| 公理纪律 | `proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean` | **70/70 通过、0 error**：69 条 `[propext, Classical.choice, Quot.sound]` + 1 条 `[propext]` |
+
+**独立验收（verifier，只读角色，逐里程碑）**：M1 · M2 · M3 · M4a · M4b（含追加项）· M4c · M5a 均已 PASS
+（判决与证据见 `proofs/TASKS.md` 的"验收记录"表；M5b 的验收在进行中）。
 
 ---
 
