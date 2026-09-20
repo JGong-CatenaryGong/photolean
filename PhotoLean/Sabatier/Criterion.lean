@@ -95,6 +95,29 @@ theorem volcanoBarrier_apex_le {alphaA betaA alphaB betaB : ℝ} (hA : 0 < alpha
     unfold branchUp
     nlinarith [hA, h]
 
+/-- The apex is the *unique* global minimizer: the volcano has a pointed pass, not a plateau. The
+barrier profile takes the height of the pass at `dE` if and only if `dE` is the apex. Plan §5. -/
+theorem volcanoBarrier_eq_apex_iff {alphaA betaA alphaB betaB : ℝ} (hA : 0 < alphaA)
+    (hB : 0 < alphaB) (dE : ℝ) :
+    volcanoBarrier alphaA betaA alphaB betaB dE
+        = volcanoBarrier alphaA betaA alphaB betaB (apex alphaA betaA alphaB betaB)
+      ↔ dE = apex alphaA betaA alphaB betaB := by
+  have hAB : 0 < alphaA + alphaB := by linarith
+  have hne : alphaA + alphaB ≠ 0 := hAB.ne'
+  constructor
+  · intro heq
+    rcases lt_trichotomy dE (apex alphaA betaA alphaB betaB) with h | h | h
+    · rw [volcanoBarrier_eq_branchDown_of_le_apex hAB h.le, volcanoBarrier_at_apex hne,
+        apex_crossing hne] at heq
+      unfold branchDown at heq
+      nlinarith [hB, h]
+    · exact h
+    · rw [volcanoBarrier_eq_branchUp_of_apex_le hAB h.le, volcanoBarrier_at_apex hne] at heq
+      unfold branchUp at heq
+      nlinarith [hA, h]
+  · intro h
+    rw [h]
+
 end Sabatier
 
 end PhotoLean
