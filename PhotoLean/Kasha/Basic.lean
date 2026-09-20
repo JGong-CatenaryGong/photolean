@@ -306,6 +306,25 @@ theorem kashaZone_eq_withinTol_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} 
       | exact iff_of_true rfl ⟨h1, h2⟩
       | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨hK, -⟩; exact hK h1)
       | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨-, hw⟩; exact h2 hw)
+/-! Plan §4.2 #24 (`kashaZone_eq_violating_iff`) is withheld: as stated in the statement authority
+it is FALSE — with `rad ≡ 1`, `ic ≡ 1`, `N = 0`, `tol = -1` the data satisfy `RateData`, the
+classifier returns `pure` because the leak vanishes, while `¬ KashaWithin` holds because
+`0 ≤ -1 * fluoYield 0` fails; the kernel-checked counterexample is
+`theories/kasha/probes/kasha-k1-counterexample.lean`. The row is not restated here (statement
+changes go through the authority, not through the delivered file); it lands once
+`theories/kasha/probes/kasha-statement-skeleton.lean` carries the corrected form. -/
+set_option linter.unusedVariables false in
+/-- Plan §4.2 #25. If every level above the lowest is nonradiative, the leak vanishes: the exact
+rule holds (the idealization behind Kasha's rule; the `RateData` premise is part of the
+description layer's signature — the proof consumes `hzero` only). -/
+theorem kashaRule_of_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
+    (hzero : ∀ i, 1 ≤ i → i ≤ N → rad i = 0) : KashaRule rad ic N := by
+  unfold KashaRule upperYield
+  refine Finset.sum_eq_zero fun i hi => ?_
+  obtain ⟨hi1, hiN⟩ := Finset.mem_Icc.mp hi
+  unfold emitYield radBranch
+  rw [hzero i hi1 hiN]
+  simp
 end Kasha
 
 end PhotoLean
