@@ -373,4 +373,30 @@
   3. `rw` 是**语法模式匹配**、不走 defeq：改写前先问"式子里现在是哪个符号、规则 LHS 是什么"，
      方向由模式决定，不由直觉决定。
 
+## 2026-09-20 — M4c 复合定理 + M4b 几何引理（`hgeom` 从假设变推导） — prover_d — DONE
+
+- 目标：把"微观正性 ⇒ 反转区描述成立"合成一条定理（M4c），并把外层重组能的**几何因子正性**
+  从"假设"降级为"由两球不重叠推出"（`a1 + a2 ≤ R ⇒ 1/R < 1/(2a1) + 1/(2a2)`）。
+- 试过且失败：
+  - 对三分母目标直接 `nlinarith` / `gcongr` ✗（未通分前看不到分母符号）；对**不等式**用 `field_simp` ✗
+    （`simp made no progress` —— 它只对**等式**可靠）。
+  - Lean 4 **混用位置参数与具名参数**（`f a b (h := …) c`）会**静默少绑一个参数**，
+    报 `type mismatch … but is expected to have type …`（实为部分应用），极难一眼看出。
+  - `#check` 复合定理必须 `import PhotoLean.Marcus.Compose`；只 import `Sharp`+`Reorg` 会报
+    `unknown identifier`（**定义所在模块 ≠ 文件里 import 的模块**）。
+  - `git commit -- <path>` 对**全新未跟踪**文件报 `pathspec … did not match any file(s) known to git`
+    ⇒ 新文件必须先 `git add -- <path>`（限定路径，仍不得用 `-A`）。
+- 奏效骨架（`hgeom_of_nonoverlap`）：
+  `have hpos : 0 < a1 + a2 := by linarith` → `one_div_le_one_div_of_le hpos hRge` →
+  `field_simp; ring` 得**通分等式** `1/(2a1)+1/(2a2) = (a1+a2)/(2a1a2)` →
+  `div_lt_div_iff₀ hpos hden` 交叉相乘 → `nlinarith`。
+  核心等价式：`2a1a2 < (a1+a2)² ⟺ 0 < a1² + a2²`。
+  复合定理本体是一行组合：`inverted_descriptor_holds hA (lam_total_pos (lamInner_nonneg hkk dq) (lamOuter_pos …)) (mul_pos hkB hT)`。
+- 可复用模式：
+  1. **"先通分（对等式用 `field_simp`）→ 再交叉相乘（`div_lt_div_iff₀`）→ 最后 `nlinarith`"**
+     是处理多分母不等式的通用三步；直接对不等式用 `field_simp` 一定失败。
+  2. **参数的绑定方式要统一**（全位置或全具名）—— 混用会静默产生部分应用，报错信息毫无指向性。
+  3. 非空性取证要**主动做**：`a1=a2=1, R=3, kk=0, nSq=1, epsS=2` 让两条复合定理落地为
+     `InvertedDescriptor 1 (1/3) 1 1`，证明前提集可满足（`kk = 0` 恰好演示必须走 `lamInner_nonneg` 而非 `_pos`）。
+
 <!-- 条目从这里继续往下追加 -->
