@@ -2196,3 +2196,53 @@
     `git add -- <path>` / `git commit -m <subject> -- <path>`. Every intermediate committed state
     compiles and is placeholder-free; 20 commits, ≈7 s per declaration, 0 `index.lock` retries
     (other provers' K1/K2 commits interleaved cleanly thanks to the explicit path).
+
+## 2026-09-20 — K5b instance / verdict layer (PhotoLean/Kasha/Instances.lean) — prover_c — DONE
+
+- Goal: K5b of the Kasha theory — the 20 rows of the authority's K5b sections (I1–I9, I13, I14
+  model-constructed; I10, I11, I11-alt, I11-alt2, I11t, I15 literature), word for word against
+  `theories/kasha/probes/kasha-statement-skeleton.lean` (hash at delivery
+  `8508e1df7705daaac31288ef78e97073aaff2f1c6422c31bd2eb83b669cbf888`, 151 declaration lines). 4
+  commits on the file (`8b6d6da` I1–I9 → `80d7a2a` I13/I14 → `db67024` the six literature rows →
+  `2dd6886` docstring reflow).
+- Gate verdicts (clean tree, committed): `proofs/scripts/lake build PhotoLean.Kasha.Instances` →
+  `Build completed successfully.`; `check.sh --strict PhotoLean.Kasha.Instances` → scan `clean`,
+  `build: OK`, `verdict: PASS`; `axioms.sh` on **all 20** rows → 20 ×
+  `verdict: PASS (only mathlib infrastructure axioms)`, 0 FAIL, every row exactly
+  `[propext, Classical.choice, Quot.sound]`; `bep-fidelity.py --theory kasha` →
+  `delivered, word-for-word: 150`, `signature differences: 0`, `not in authority: 0`,
+  `not delivered yet: 0` — the whole 151-declaration authority is delivered after this round.
+- Tried and failed:
+  1. A commit message containing double quotes breaks the shell `git commit -m` invocation: the words
+     after the quote were parsed as pathspecs (`error: pathspec 'printed' did not match …`), so the
+     commit did not happen while the file stayed staged. Fix: write the message to a file under
+     `.git/` and use `git commit -F <file>`; never rely on shell quoting for provenance-bearing
+     messages.
+  2. A prose line inside the I10 docstring began with the word that opens a theorem declaration. Lean
+     parses it as comment text and the build was green, but a `grep -c '^theorem '` census counted 21
+     rows instead of 20 — a false positive caused by prose, not by the kernel. Reflowed; keep
+     declaration-keyword tokens off line starts inside docstrings.
+  3. The reduced-criterion route for the literature rows does **not** compose with the instance
+     statements as written: `kashaWithinQ_iff_funnelRatioQ` is stated with `funnelRatioQ` from the
+     module, while the rows are `KashaWithinQ (twoRad 1 r) (twoIc 0 i) (1/100) 1`; bridging them would
+     need an extra lemma (`funnelRatioQ (twoRad 1 r) (twoIc 0 i) = i / r`), i.e. a declaration outside
+     the authority's row list. The direct `norm_num` evaluation is shorter *and* keeps the file at
+     exactly the authority's 20 rows.
+- What worked (reusable):
+  - The K-PROBE-2 recipe closes all 20 rows unmodified, including the six literature rows: one
+    `norm_num` call per row with the row's definitions plus `Finset.sum_range_succ`,
+    `Finset.sum_range_one`, `Finset.sum_Icc_succ_top`, `Finset.sum_singleton`,
+    `Finset.prod_Icc_succ_top`, `Finset.Icc_self`, `Finset.prod_singleton`. `Finset.prod_Icc_succ_top`
+    is load-bearing only for the `N = 2` cascades (`Finset.Icc 1 2`); the ℝ-side rows I8/I8b close with
+    the same list over the ℝ definitions of `Basic.lean`.
+  - Conjunction and existential rows (I13, I14, I11t, I15) are `constructor` plus the same per-branch
+    `norm_num` calls; the existentials take the two-level ladders as explicit witnesses.
+  - A literature row that is a re-instantiation of an existing ladder (I11t = I11 at a second
+    tolerance, I15 = I10 ∧ I11) needs no new mathematics and no new premise: the kernel computation
+    *is* the content, which is what makes the tolerance choice auditable rather than rhetorical.
+  - Provenance discipline that survived a docstring audit: every literature row states, in its own
+    docstring, (a) the source locus with the source's printed unit and the transcription into
+    `10⁶ s⁻¹`, (b) the `rad 0 = 1`, `ic 0 = 0` declared modelling reduction, (c) the §R1.4.2 declared
+    bridge for `rad 1`/`ic 1`, (d) for the three azulene routes the mutual spread (20.6 / 40.3 /
+    23.0), and (e) for I11t that `tol = 1/100` is a model choice with no printed literature threshold
+    (§R1.3). None of these sentences is a theorem: the rows are arithmetic about printed numbers.
