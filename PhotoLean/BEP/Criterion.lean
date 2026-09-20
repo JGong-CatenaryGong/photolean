@@ -138,4 +138,15 @@ theorem bepDefect_nonneg {lam x : ℝ} (hlam : 0 < lam) : 0 ≤ bepDefect lam x 
   rw [bepDefect_eq (ne_of_gt hlam)]
   exact div_nonneg (sq_nonneg x) (by positivity)
 
+/-- At a physical curvature the violation of the line law is strict exactly away
+from thermoneutrality. -/
+theorem bepDefect_pos_iff {lam x : ℝ} (hlam : 0 < lam) : 0 < bepDefect lam x ↔ x ≠ 0 := by
+  constructor
+  · intro h hx
+    rw [hx, bepDefect_at_thermoneutrality (ne_of_gt hlam)] at h
+    exact lt_irrefl 0 h
+  · intro hx
+    rw [bepDefect_eq (ne_of_gt hlam)]
+    exact div_pos (sq_pos_of_ne_zero hx) (by positivity)
+
 end PhotoLean.BEP
