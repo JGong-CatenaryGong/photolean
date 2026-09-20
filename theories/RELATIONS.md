@@ -1,28 +1,37 @@
-# theories/RELATIONS.md — three principles, one quadratic object
+# theories/RELATIONS.md — five theories, one graph: composition, look-alikes and no-edges
 
-> **Status.** This is the discussion draft of the relation graph of the three delivered theories
-> (Marcus inverted region, Hammond postulate, Bell–Evans–Polanyi principle). Its machine-checked
-> companion is `PhotoLean/Relations.lean` (28 declarations) over the shared kernel
-> `PhotoLean/Kernel.lean` (6 definitions + 2 theorems); every claim below that names a Lean
-> theorem is backed by a declaration that compiles and whose `#print axioms` output is
+> **Status.** This is the discussion draft of the relation graph of the **five** delivered theories
+> (Marcus inverted region, Hammond postulate, Bell–Evans–Polanyi principle, Kasha's rule, Sabatier
+> principle / volcano plot). Its machine-checked companion is `PhotoLean/Relations.lean`
+> (**46 declarations**, measured at the second-batch extension, 2026-09-21, commit `eb5e178`) over
+> the shared kernel `PhotoLean/Kernel.lean` (6 definitions + 2 theorems); every claim below that
+> names a Lean theorem is backed by a declaration that compiles and whose `#print axioms` output is
 > `[propext, Classical.choice, Quot.sound]`. It is written in the bilingual style of the
 > `RESULTS.md` deliverables (English original followed by its Chinese rendering); the language
 > policy and the freeze of the historical `.en.md` mirrors are recorded in `README.md`.
 >
-> **Provenance.** The bridge inventory of the 2026-09-20 review record (`review/REVIEW.md` §3.1,
-> 13 rows / 16 theorems in the delivered modules) is the input document of this task; it is
-> preserved in the repository as an input record (committed alongside this consolidation, not as a
-> delivered artifact of the three theories). This file is the frozen output: the inventory
-> collected into one module, extended with the non-relations of §3, and written up here.
+> **Provenance.** Two tasks built this file. The first (2026-09-20) took the bridge inventory of the
+> review record (`review/REVIEW.md` §3.1, 13 rows / 16 theorems) as its input and collected the
+> edges of the three two-parabola theories. The second (2026-09-21) executed `AGENTS.md` iron
+> rule 8 item ② for the two newer theories: the Kasha → Marcus conditional composition (§2.4), the
+> Sabatier → BEP composition (§2.4), the Sabatier ↔ Marcus look-alike cluster (§3, N3) and the
+> no-edge registry (§2.5). The statement forms of the new rows were calibrated first in
+> `theories/Marcus/probes/relations-b2-statement-skeleton.lean`; no candidate had to be demoted to
+> prose, and the one failed proof path (a rewrite pattern in the uniqueness half of C2) is recorded
+> in `proofs/EXPERIENCE.md`.
 >
-> **中文（状态与来源）**：本文件是三个已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
-> 原理）**关系图**的讨论稿。可机器检查的对应物是 `PhotoLean/Relations.lean`（28 条声明）与共享内核
+> **中文（状态与来源）**：本文件是**五个**已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
+> 原理、Kasha 规则、Sabatier 原则/火山图）**关系图**的讨论稿。可机器检查的对应物是
+> `PhotoLean/Relations.lean`（**46 条声明**，实测于第二批扩展、2026-09-21、提交 `eb5e178`）与共享内核
 > `PhotoLean/Kernel.lean`（6 定义 + 2 定理）；下文凡点名 Lean 定理之处，均有可编译声明支撑，且其
 > `#print axioms` 输出恰为 `[propext, Classical.choice, Quot.sound]`。本文按各理论 `RESULTS.md` 的
 > 双语排版书写（英文原文后紧跟中文对照）；语言政策与历史 `.en.md` 镜像的冻结见 `README.md`。
-> 2026-09-20 审查记录（`review/REVIEW.md` §3.1，13 行 / 16 条定理）是本次任务的输入文档，已作为
-> **输入记录**随本次固化一并提交（它不是三个理论的交付物）；本文件是冻结后的产出：清单收敛到一个
-> 模块、补上 §3 的"非关系"，并在本文中给出完整讨论。
+> **来源**：本文件由两次任务建成。第一次（2026-09-20）以审查记录 `review/REVIEW.md` §3.1（13 行 /
+> 16 条定理）为输入，收集三个双抛物面理论的关系边；第二次（2026-09-21）执行 `AGENTS.md` 铁律 8 第 ② 项，
+> 为两个较新的理论登记关系边 —— Kasha → Marcus 条件性组合（§2.4）、Sabatier → BEP 组合（§2.4）、
+> Sabatier ↔ Marcus 形似实异簇（§3 N3）与**无边登记**（§2.5）。新增语句的形态先在
+> `theories/Marcus/probes/relations-b2-statement-skeleton.lean` 中完成标定；本次**没有任何候选被降级**为
+> 正文，唯一失败的证明路径（C2 唯一性半边的一处 `rw` 模式）记录在 `proofs/EXPERIENCE.md`。
 
 ---
 
@@ -54,6 +63,21 @@ The three theories are three **readings** of this single quadratic object:
 `PhotoLean/Kernel.lean` 只 `import Mathlib`，位于依赖图底部，不 import 任何理论模块。
 三个理论是同一二次对象的三种**读法**：Marcus 读**速率**（`k = A·exp(−Ea/k_BT)` 在反转区随驱动力递减），
 Hammond 读**结构**（过渡态坐标随驱动力严格递减），BEP 读**活化能的仿射性**（容差窗口内的线性自由能关系）。
+
+**English.** The two newer theories are **not** readings of that quadratic object, and the graph
+says so: Kasha's rule is a statement about a finite rate cascade (no potential-energy surface
+appears in it), and the Sabatier volcano is an optimisation over a descriptor axis whose branches
+are the repository's BEP *lines*, not parabolas. They join the graph by **composition** (§2.4) —
+the Kasha edge consumes the kernel barrier through a declared modelling premise, the Sabatier edge
+consumes `BEP.eact` — and by the one **shared functional form** that the Marcus rate and the
+Sabatier activity turn out to have (§3, N3/C1). Nothing else of the two is claimed to be a
+re-reading of the kernel.
+
+**中文**：两个较新的理论**不是**这个二次对象的读法，关系图如实登记这一点：Kasha 规则是关于有限速率级联的
+命题（其中不出现任何势能面），Sabatier 火山是描述符轴上的优化问题（其两条支路用的是本仓库的 BEP
+**直线**而非抛物线）。它们通过**组合**进入关系图（§2.4：Kasha 边经一个声明的建模前提消费内核势垒，
+Sabatier 边消费 `BEP.eact`），并通过 Marcus 速率与 Sabatier 活性恰好共有的**同一函数形式**
+（§3 N3/C1）与图相连；除此之外，不声称二者是内核的重新读法。
 
 ---
 
@@ -122,6 +146,64 @@ certificate.
 数学发现），运行角色是**回归报警器**：哪一条不再 `rfl`，就说明内核与某个已交付定义漂移了——
 此时的动作是**停下来排查**，绝不是改交付模块去把证书凑回来。
 
+### 2.4 Composition edges (`→`, conditional) / 组合边（单向、条件性）
+
+**English.** Two edges of the second batch are **compositions** rather than comparisons: a newer
+theory consumes an older one as a component. Both are re-exported verbatim into `Relations.lean`
+§7–§8 (the statements live in `Kasha/Compose.lean` and `Sabatier/Compose.lean`).
+
+| # | statement | reading |
+|---|---|---|
+| K1 | `kashaWithin_one_marcus` (Kasha → Marcus, **conditional**) | under the declared modelling premise `hic` — the `S₂ → S₁` internal-conversion rate *is* the Marcus rate `Kasha.marcusIC` — conformance to Kasha's rule at tolerance `tol` is **exactly** the gap window `(λ − x)² ≤ 4λ·k_BT·log K` |
+| K2 | `not_kashaWithin_of_gap_far` (Kasha → Marcus, one-way) | outside the window the tolerance fails: a gap deep in the Marcus inverted region, or an activation-controlled one, leaks emission from above the lowest state — the model-side face of the anti-Kasha family |
+| K3 | `kashaWindow_halfWidth` (Kasha → Marcus) | the same criterion as a half-width bound `\|λ − x\| ≤ √K′` around the reorganization energy |
+| K4 | `kernel_marcusIC` (**certificate proved here**) | the Kasha internal-conversion rate is the kernel barrier inside the Marcus rate law; Kasha states its rate against `Marcus.Basic` and does not import the kernel, so this row is what puts it on the shared kernel of §1 |
+| S1 | `linearVolcano_eq_bepTangent` (Sabatier → BEP) | the literature's linear volcano *is* the maximum of the two tangent lines of the two-parabola branches |
+| S2 | `bepLine_le_eact`, `linearVolcano_le_parabolic` (Sabatier → BEP) | each tangent lies below its parabola, so the linear volcano **underestimates** the barrier pointwise — the BEP defect law `x²/(4λ) ≥ 0` read geometrically |
+| S3 | `parabolic_descriptor` (Sabatier → BEP) | the Sabatier description holds in the two-parabola model with **no linearization** |
+| S4 | `apexPar_self`, `linearVolcano_apex_exact` (Sabatier → BEP) | a symmetric cycle's apex is thermoneutral, and there the linear and the parabolic volcano agree exactly |
+
+**Conditionality is part of the edge.** `hic` is a premise of the Kasha theory, not a theorem of
+this module: the edge is registered with the premise attached, and the Kasha plan's honesty table
+is its home.
+
+**中文（组合边）**：第二批的两条边是**组合**而非比较——较新的理论把较老的理论当作组件消费，
+两者都已逐字 re-export 进 `Relations.lean` §7–§8（语句本体在 `Kasha/Compose.lean` 与
+`Sabatier/Compose.lean`）。**K1**（条件性）：在"`S₂ → S₁` 内转换速率**就是** Marcus 速率
+`Kasha.marcusIC`"这一**声明的建模前提** `hic` 下，Kasha 规则在容差 `tol` 下的符合性**恰好等价于**
+能隙窗口 `(λ − x)² ≤ 4λ·k_BT·log K`；**K2** 是窗口外的单向失败方向（深反转区或活化控制侧泄漏上级发射，
+即反 Kasha 族的模型侧面孔）；**K3** 是同一判据的半宽形式；**K4** 是本次**新证的内核证书**，把 Kasha
+的内转换速率钉到共享内核的势垒上（Kasha 自身只 import `Marcus.Basic`）。**S1–S4** 是 Sabatier → BEP：
+文献的线性火山**就是**双抛物面两支切线之最大；切线在抛物线之下 ⇒ 线性模型**逐点低估**势垒（BEP 缺陷律的
+几何读法）；双抛物面模型**无需线性化**本身就是火山；对称循环顶点落在热中性处且两种模型在该点精确相合。
+**条件性属于边本身**：`hic` 是 Kasha 理论的前提而非本模块的定理，边连同前提一起登记，其归属是 Kasha
+规划的诚实表。
+
+### 2.5 The no-edge registry / 无边登记
+
+**English.** An absent edge is a registered fact, not an oversight: the graph is complete in the
+sense that **every** theory sits on it. The registry lives at the end of `Relations.lean` (§10),
+each pair with its dependency fact and its modelling reason.
+
+| pair | edge | why |
+|---|---|---|
+| Marcus ↔ BEP, Marcus ↔ Hammond | yes, first batch | §2.1–§2.3 |
+| Marcus ↔ Sabatier | yes, second batch | the look-alike cluster, §3 N3 |
+| Kasha → Marcus | yes, second batch | conditional composition, §2.4 |
+| Sabatier → BEP | yes, second batch | composition, §2.4 |
+| Kasha ↔ BEP | **none** | Kasha consumes only the barrier inside `marcusIC`; no row of the ladder theory mentions a line law, a defect or a tolerance window |
+| Kasha ↔ Hammond | **none** | branching probabilities vs. the structural coordinate; no row connects them |
+| Sabatier ↔ Hammond | **none** | Sabatier imports `BEP.Basic` only |
+| Sabatier ↔ Kasha | **none** | no shared module and no shared object |
+
+**中文（无边登记）**：不存在的边是**被登记的事实**而非疏漏——关系图的完整性取"**每个理论都在图上**"之义。
+登记表位于 `Relations.lean` 末尾（§10），逐对给出依赖图事实与建模理由。有边者为：Marcus ↔ BEP、
+Marcus ↔ Hammond（第一批，§2.1–§2.3）、Marcus ↔ Sabatier（第二批，形似实异簇 §3 N3）、Kasha → Marcus
+（条件性组合，§2.4）、Sabatier → BEP（组合，§2.4）；**无边**者为：Kasha ↔ BEP（Kasha 只消费
+`marcusIC` 里的势垒，阶梯理论没有任何一行提到直线律、缺陷或容差窗口）、Kasha ↔ Hammond（分支概率与结构
+坐标之间没有已证联系）、Sabatier ↔ Hammond（Sabatier 只 import `BEP.Basic`）、Sabatier ↔ Kasha
+（不共享模块、不共享对象）。
+
 ---
 
 ## 3. Look-alike but different: the non-relations / 形似实异：非关系
@@ -171,6 +253,37 @@ decreases" does — the shape difference that the positivity conjunct in `descri
 （`A = lam = −1`，`k_BT = 1`）仍成立（乘负前置因子不改变单调模式）；结构谓词则当且仅当曲率为正
 （`hammond_sharp`）。因此"反转区速率递减"**钉不住**物理模型，"过渡态坐标递减"钉得住——这正是
 `descriptor_sharp` 里那条正性合取项所修补的强度差。
+
+**N3 — the Sabatier volcano and the Marcus rate: one predicate, two optima** (second batch). The
+two theories share more than a shape. `marcus_rate_eq_activity` (C1) shows the Marcus rate **is**
+the Sabatier activity functional applied to the kernel barrier, scaled by `A`; and
+`marcusRate_antiVolcanoDescriptor` (C2) shows the Marcus rate satisfies the very same predicate
+`Sabatier.AntiVolcanoDescriptor`, with `lam` as its unique global maximizer. What the pair does
+**not** share is the optimum, and three facets pin the difference — each a theorem, none a caveat:
+
+* **the height at the optimum** (C3): the Marcus optimum is the *barrierless* point
+  (`Kernel.barrier lam lam = 0`, identically in `lam`), while the Sabatier reference pass sits at
+  `1/2` (`apexBarrier_reference_nonzero`) — a volcano pass is not a barrierless point;
+* **the secant at the optimum** (C4): the one-sided secant of the Marcus barrier at the optimum is
+  exactly `h/(4λ)`, so it vanishes with the step, whereas the volcano legs have step-independent
+  secant slopes `α_A` and `−α_B` (`volcanoBarrier_secSlope_of_apex_le` and its counterpart below
+  the apex) — a smooth optimum against a kink, both stated without calculus;
+* **the parameter dependence of the optimal position** (C5): the Marcus optimum is fixed by the
+  curvature alone (`marcus_optimum_fixed_by_curvature`: the same `λ` is optimal for every
+  admissible `A` and `k_BT`), while the Sabatier apex moves when only the offsets change with the
+  slopes held fixed (`sabatier_apex_moves_with_offsets`).
+
+**中文（N3：同一个谓词，两个最优）**：两个理论共享的不只是外形。C1（`marcus_rate_eq_activity`）证明
+Marcus 速率**就是** Sabatier 活性泛函作用于内核势垒再乘 `A`；C2（`marcusRate_antiVolcanoDescriptor`）
+证明 Marcus 速率满足**同一个**谓词 `Sabatier.AntiVolcanoDescriptor`，且 `lam` 是其唯一全局最大点。
+二者**不**共享的是最优点本身，三个面把差异钉死，每一面都是定理而非附注：**高度**（C3）——Marcus 最优点是
+**无势垒点**（`Kernel.barrier lam lam = 0`，对 `lam` 恒成立），而 Sabatier 参考火山口在 `1/2`
+（`apexBarrier_reference_nonzero`）：火山口不是无势垒点；**割线**（C4）——Marcus 势垒在最优点的单侧割线
+恰为 `h/(4λ)`，随步长消失，而火山两侧腿的割线斜率与步长无关（`α_A` 与 `−α_B`）：平滑最优对折角最优，
+两侧都不涉及微分；**参数依赖**（C5）——Marcus 最优位置仅由曲率决定（`marcus_optimum_fixed_by_curvature`：
+同一个 `λ` 对一切可采纳的 `A`、`k_BT` 都最优），而 Sabatier 顶点在斜率不变、只改偏移量时就会移动
+（`sabatier_apex_moves_with_offsets`）。与 §2.5 的无边登记合读，这是 N1/N2 同一教训的第二批形态：
+**共享谓词不等于共享机制**，而且差异是定理，不是免责声明。
 
 ---
 
@@ -241,43 +354,85 @@ E3–E6 给出跨理论内容，E7 把两个锐利条件的同外延性写成命
 保真探针各自只 glob `PhotoLean/<理论>/*.lean`，**不覆盖** `Kernel.lean` 与 `Relations.lean`；这两个新
 模块的语句权威是上述**编译期复用钉子**（每条语句逐字写出）与模块 docstring，而不是骨架探针。
 
+**English (second batch, 2026-09-21).** (vi) Two **composition** edges are now on the graph
+(§2.4): the Kasha → Marcus edge is the first edge in this repository whose premise is a *modelling
+identification* rather than a mathematical hypothesis, and it is registered with the premise
+attached; the Sabatier → BEP edge carries the geometric reading of the BEP defect law (each tangent
+lies below its parabola, so the linear volcano underestimates the barrier pointwise). (vii) The
+look-alike cluster N3 is the second-batch form of the accounting rule: one shared predicate
+(`Sabatier.AntiVolcanoDescriptor`) instantiated at the Marcus rate, plus three differences stated
+as theorems. (viii) The **no-edge registry** (§2.5) makes the graph complete in the "every theory
+sits on it" sense — the checkable form of `AGENTS.md` iron rule 8 item ②. (ix) **Accounting of the
+second batch**: `Relations.lean` grew from 28 to 46 declarations; of the 18 new rows, 10 are
+verbatim re-exports (K1–K3, S1–S4) and 2 are certificates (`kernel_marcusIC`, C1) — twelve rows
+that add no mathematics — while 6 are proved here (C2, C3a, C3b, C4, C5a, C5b), of which C3b and
+C5b are assemblies of C3a and C2 respectively. The batch's genuinely new mathematical content is
+therefore four rows: the uniqueness half of C2, C3a, C4 and C5a.
+
+**中文（第二批增量，2026-09-21）**：⑥关系图新增两条**组合边**（§2.4）：Kasha → Marcus 是本仓库第一条
+以**建模同一性**（而非数学假设）为前提的边，登记时把该前提一并带上；Sabatier → BEP 携带 BEP 缺陷律的
+几何读法（切线在抛物线之下 ⇒ 线性火山逐点低估势垒）。⑦形似实异簇 N3 是记账规则的第二批形态：一个共享
+谓词（`Sabatier.AntiVolcanoDescriptor`）在 Marcus 速率上的实例化，加上三条以定理形式陈述的差异。
+⑧**无边登记**（§2.5）使关系图在"每个理论都在图上"的意义下完整——这正是 `AGENTS.md` 铁律 8 第 ② 项的
+可检查形态。⑨**第二批记账**：`Relations.lean` 由 28 条增至 46 条；18 条新增中 10 条是逐字 re-export
+（K1–K3、S1–S4）、2 条是证书（`kernel_marcusIC`、C1），共 12 条不含新数学；6 条在本模块证明
+（C2、C3a、C3b、C4、C5a、C5b），其中 C3b 与 C5b 分别是 C3a 与 C2 的组装。故本批**真正的新数学内容是
+四行**：C2 的唯一性半边、C3a、C4、C5a。
+
 ---
 
 ## 6. Honest boundaries / 诚实边界
 
-**English.** 1. **One model, equal curvature.** Everything above is a statement *inside* the
-equal-curvature two-parabola model (registered as a model premise in the three plans). The BEP
-instance layer delivered by that theory actually **refutes** four first-hand literature families as
-equal-curvature two-parabola families while their affine slopes conform — i.e. the relation graph
-is a graph of *this* substrate, and it was empirically bounded by that theory's own instance work.
+**English.** 1. **Scope of the substrate.** Everything about the two-parabola family (the Marcus
+rate, the Hammond trend, the BEP line law and the compositions of §2.4) is a statement *inside* the
+equal-curvature two-parabola model; the newer theories carry their own declared premises (Kasha: the
+finite ladder, the exponential-race branching, the time-integrated yields; Sabatier: the
+descriptor-axis optimisation with `Ea = max` of two branches). The BEP instance layer actually
+**refutes** four first-hand literature families as equal-curvature two-parabola families while
+their affine slopes conform — the graph is a graph of *declared* models, and it was empirically
+bounded by that theory's own instance work.
 2. **Degenerate curvature.** `lam = 0` values carried by `x / 0 = 0` are a formal convention of the
 model (documented upstream at every occurrence); no relation above depends on it: the certificates
 are body-level, and the substantive equivalences carry their `lam ≠ 0` / `0 < lam` premises
-explicitly. 3. **No theory-equivalence claim.** E1–E7 relate *statements about one model*; they are
-not a claim that the three theories are equivalent as theories, nor that any of them is derivable
-from another. 4. **Prose vs theorem.** §4 is explicitly prose; §2's tables are theorem-backed. 5.
-**Re-export accounting.** The count 28 = 8 certificates + 6 equivalences + 3 entailments + 4 reuse
-rows + 4 ledger rows + 3 new theorems; the declarations *proved* in this task are four — O3 in §2.2
-and the three of §6 — and among those, E7 is itself a composition of two delivered sharp theorems
-(§2.1). The other 24 are certificates and ledger rows. 6. **Verification record.** The delivered
-state was independently gated by a read-only verifier: build with zero warnings, strict scan
-`clean`, all 30 declarations of `Kernel.lean` + `Relations.lean` at
+explicitly. 3. **No theory-equivalence claim.** The edges relate *statements about named models*;
+they are not a claim that the five theories are equivalent as theories, nor that any one of them is
+derivable from another. The composition edges (§2.4) are one-way in that sense too: they use an
+older theory as a component, under a stated premise. 4. **Prose vs theorem.** §4 is explicitly
+prose; the other sections are theorem-backed. 5. **Accounting.** First batch: 28 = 8 certificates +
+6 equivalences + 3 entailments + 4 reuse rows + 4 ledger rows + 3 new theorems, with four
+declarations proved in that task (O3 in §2.2 and the three of §3/§6). Second batch:
+46 = 28 + 18, of which 10 verbatim re-exports and 2 certificates add no mathematics and 6 are
+proved here — four rows of genuinely new content, as §5 (ix) records. 6. **Verification record
+(first batch).** The delivered state was independently gated by a read-only verifier: build with
+zero warnings, strict scan `clean`, all 30 declarations of `Kernel.lean` + `Relations.lean` at
 `[propext, Classical.choice, Quot.sound]`, and the additivity audit (the only change inside the
 three theory directories is the scoping of one linter option in `PhotoLean/Marcus/Barrier.lean`;
 comment-stripped code byte-identical once those three scoped option lines are removed as well).
+7. **The Kasha edge is conditional.** `hic` is a modelling identification, not a theorem: the edge
+states what follows *if* the `S₂ → S₁` internal conversion is a Marcus process. Nothing here claims
+that it is one. 8. **What an absent edge means.** §2.5 registers the absence of an edge as a fact
+about the *graph* — the import structure plus the modelling vocabulary — not as a claim that no
+physical connection between the two phenomena could exist. The reason is recorded per pair so that
+it can be re-examined.
 
-**中文（诚实边界）**：①**单一模型、等曲率**——以上全部是等曲率双抛物模型**内部**的陈述（该模型前提登记
-在各理论 plan 中）；BEP 的实例层实测把四个一手文献族**证伪**为等曲率双抛物族（尽管其仿射斜率符合），
-即关系图是这个**基质**上的图，且其边界由该理论自己的实例工作经验性地划定。②**退化曲率**——`lam = 0`
-处依赖除零约定 `x / 0 = 0` 的取值是模型的形式约定（上游每处均已注明），本文件没有一条关系依赖它：证书
-是定义体层面的，实质等价全部显式携带 `lam ≠ 0` / `0 < lam` 前提。③**不声称理论等价**——E1–E7 关联的是
-**同一模型上的命题**，不是"三个理论作为理论等价"，也不是"由谁推出谁"。④**正文与定理分工**——§4 明确
-是正文讨论，§2 的表格有定理支撑。⑤**复用记账**——28 = 8 证书 + 6 等价 + 3 单向 + 4 复用 + 4 清单行 +
-3 新定理；本任务**实际作证**的是 4 条：§2.2 的 O3 与 §6 的 3 条，其中 E7 本身是两条已交付锐利定理的
-**复合**（§2.1）；其余 24 条是证书与清单。⑥**验证记录**——交付状态由只读 verifier 独立跑门：零警告构建、
-严格扫描 `clean`、`Kernel.lean` + `Relations.lean` 全部 30 条声明公理恰为
+**中文（诚实边界）**：①**基质的范围**——凡属双抛物面家族的内容（Marcus 速率、Hammond 趋势、BEP 线性律
+与 §2.4 的组合）都是等曲率双抛物模型**内部**的陈述；两个较新的理论各自携带自己的声明前提（Kasha：有限
+阶梯、指数竞争分支、时间积分产额；Sabatier：描述符轴上的优化、`Ea = max` 两支）。BEP 的实例层实测把四个
+一手文献族**证伪**为等曲率双抛物族（尽管其仿射斜率符合）——关系图是**声明的模型**之图，其边界由该理论
+自己的实例工作经验性地划定。②**退化曲率**——`lam = 0` 处依赖除零约定 `x / 0 = 0` 的取值是模型的形式
+约定（上游每处均已注明），本文件没有一条关系依赖它：证书是定义体层面的，实质等价全部显式携带
+`lam ≠ 0` / `0 < lam` 前提。③**不声称理论等价**——各条边关联的是**具名模型上的命题**，不是"五个理论
+作为理论等价"，也不是"由谁推出谁"；§2.4 的组合边在此意义上同样是单向的：它们把较老的理论当作组件使用，
+且前提写明。④**正文与定理分工**——§4 明确是正文讨论，其余各节的表格有定理支撑。⑤**记账**——第一批：
+28 = 8 证书 + 6 等价 + 3 单向 + 4 复用 + 4 清单行 + 3 新定理，该任务**实际作证** 4 条（§2.2 的 O3 与
+§3/§6 的三条）；第二批：46 = 28 + 18，其中 10 条逐字 re-export 与 2 条证书不含新数学、6 条在本模块证明
+——真正的新内容四行，见 §5 第 (ix) 条。⑥**验证记录（第一批）**——交付状态由只读 verifier 独立跑门：
+零警告构建、严格扫描 `clean`、`Kernel.lean` + `Relations.lean` 全部 30 条声明公理恰为
 `[propext, Classical.choice, Quot.sound]`，加性审计通过（三个理论目录内唯一改动是
 `PhotoLean/Marcus/Barrier.lean` 一个 linter 选项的作用域收窄；剥注释并剔除那三行作用域行后，代码逐字节相同）。
+⑦**Kasha 边是条件性的**——`hic` 是建模同一性而非定理：该边陈述的是"**若** `S₂ → S₁` 内转换是 Marcus
+过程，则如何"，不声称它确实是。⑧**"无边"的含义**——§2.5 登记的是关于**关系图**（依赖结构 + 建模词汇）
+的事实，不是"两种现象之间不可能存在物理联系"的断言；理由逐对写明，以便复查。
 
 ---
 
@@ -286,16 +441,31 @@ comment-stripped code byte-identical once those three scoped option lines are re
 ```bash
 proofs/scripts/lake build
 proofs/scripts/check.sh --strict
+# first batch — the non-relations
 proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.hammond_trend_exact_bep_law_inexact
 proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.hammond_sharp_iff_marcus_sharp
 proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.rate_predicate_satisfiable_without_positive_curvature
-python3 theories/{Marcus,BEP,hammond}/probes/*-fidelity.py   # 51 / 191 / 102 word-for-word, 0 differences
+# second batch — the composition edges and the look-alike cluster
+proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.kernel_marcusIC
+proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.kashaWithin_one_marcus
+proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcus_rate_eq_activity
+proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcusRate_antiVolcanoDescriptor
+proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcus_secant_at_optimum
+# statement calibration probe (placeholders on purpose; exit 0 with warnings)
+proofs/scripts/lake env lean theories/Marcus/probes/relations-b2-statement-skeleton.lean
+# fidelity: 51 / 191 / 102 / 150 / 132 word-for-word, 0 differences
+python3 theories/Marcus/probes/marcus-fidelity.py
+python3 theories/BEP/probes/bep-fidelity.py
+python3 theories/hammond/probes/hammond-fidelity.py
+python3 theories/BEP/probes/bep-fidelity.py --theory kasha
+python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier
 ```
 
-**English.** Each of the three `axioms.sh` calls must print
-`verdict: PASS (only mathlib infrastructure axioms)`; the three fidelity probes must report 0
-signature differences (51, 191, 102). The whole inventory is in
-`PhotoLean/Relations.lean` §1–§6.
+**English.** Each `axioms.sh` call must print
+`verdict: PASS (only mathlib infrastructure axioms)`; the five fidelity probes must report 0
+signature differences (51, 191, 102, 150, 132); the calibration probe compiles with placeholders
+and no errors. The whole inventory is in `PhotoLean/Relations.lean` §1–§10.
 
-**中文**：上述三条 `axioms.sh` 必须各自打印 `verdict: PASS (only mathlib infrastructure axioms)`；
-三个保真探针必须报告 0 差异（51 / 191 / 102）。完整清单见 `PhotoLean/Relations.lean` §1–§6。
+**中文**：上述每条 `axioms.sh` 必须打印 `verdict: PASS (only mathlib infrastructure axioms)`；
+五个保真探针必须报告 0 签名差异（51 / 191 / 102 / 150 / 132）；标定探针以占位编译通过、无 error。
+完整清单见 `PhotoLean/Relations.lean` §1–§10。
