@@ -63,6 +63,11 @@ theorem inst_I1_thermoneutral_conforms : HammondConforms 1 0 := by
 theorem inst_I1_thermoneutral_coord : tsCoord 1 0 = 1 / 2 := by
   norm_num [tsCoord]
 
+/-! ## I2 — mildly exergonic textbook instance (`lam = 1`, `x = 3/4`) -/
+/-- I2, zone verdict: the mildly exergonic instance is classified `early`. -/
+theorem inst_I2_exergonic_zone : Rat.hammondZoneQ (1 : ℚ) (3 / 4) = HZone.early := by
+  norm_num [Rat.hammondZoneQ]
+
 end Hammond
 
 end PhotoLean
