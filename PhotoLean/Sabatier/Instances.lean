@@ -236,6 +236,47 @@ theorem inst_I6_penalty :
   simp only [volcanoBarrier, apexBarrier, branchUp, branchDown, apex]
   norm_num
 
+/-! ## I7 — the two-parabola cross-check `lam1 = 1`, `lam2 = 4` (plan §8.2)
+
+The I7 rows test the S4 claim that the linear BEP volcano is the tangent form of the repository's
+two-parabola model. The crossing row is the delivered S4 theorem `parabolicBarrier_crossing`; the
+three arithmetic rows are computed by the kernel from S4's definitions, with `√4 = 2` and `√1 = 1`
+supplied explicitly. -/
+
+/-- I7 (two-parabola cross-check `lam1 = 1`, `lam2 = 4`): the apex of the parabolic volcano. The
+kernel computes `(4·1 - 1·2)/(1 + 2) = 2/3` using `√1 = 1` and `√4 = 2`. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I7_apexPar : apexPar 1 4 = 2 / 3 := by
+  have h4 : Real.sqrt 4 = 2 := by
+    rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.sqrt_sq (by norm_num)]
+  unfold apexPar
+  rw [h4, Real.sqrt_one]
+  norm_num
+
+/-- I7: the two parabolic branches cross exactly at the apex — the S4 theorem
+`parabolicBarrier_crossing` at `lam1 = 1`, `lam2 = 4`. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I7_crossing :
+    parabolaUp 1 (apexPar 1 4) = parabolaDown 4 (apexPar 1 4) :=
+  parabolicBarrier_crossing (by norm_num) (by norm_num)
+
+/-- I7: the pass height of the parabolic volcano (`25/36`), equal for both branches: at `dE = 2/3`
+the ascending parabola gives `(1 + 2/3)^2 / 4 = 25/36` and the descending one
+`(4 - 2/3)^2 / 16 = 25/36`. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I7_apexBarrier : parabolicBarrier 1 4 (apexPar 1 4) = 25 / 36 := by
+  rw [inst_I7_apexPar]
+  simp only [parabolicBarrier, parabolaUp, parabolaDown, BEP.eact]
+  norm_num
+
+/-- I7: the linear BEP volcano underestimates the parabolic barrier at the apex (`2/3 < 25/36`): the
+linear volcano at `(1/2, 1/4, 1/2, 1)` has effective barrier `max (7/12) (2/3) = 7/12 = 21/36`, while
+the parabolic one has `25/36`. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I7_linear_below :
+    volcanoBarrier (1 / 2) (1 / 4) (1 / 2) 1 (apexPar 1 4) < parabolicBarrier 1 4 (apexPar 1 4) := by
+  rw [inst_I7_apexBarrier, inst_I7_apexPar]
+  simp only [volcanoBarrier, branchUp, branchDown]
+  norm_num
+
 end Sabatier
 
 end PhotoLean
