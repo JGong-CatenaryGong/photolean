@@ -199,6 +199,11 @@ theorem cascade_le_one {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N
   unfold cascade
   exact Finset.prod_le_one (fun j hj => icBranch_nonneg h (Finset.mem_Icc.mp hj).2)
     (fun j hj => icBranch_le_one h (Finset.mem_Icc.mp hj).2)
+/-- Plan §4.2 #10. The excitation-at-`i` yield of level `i` is its radiative branch (nothing has
+been lost on the way). -/
+theorem emitYield_self (rad ic : ℕ → ℝ) (i : ℕ) : emitYield rad ic i i = radBranch rad ic i := by
+  unfold emitYield
+  rw [cascade_self, mul_one]
 end Kasha
 
 end PhotoLean
