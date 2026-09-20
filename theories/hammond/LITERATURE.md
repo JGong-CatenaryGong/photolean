@@ -98,7 +98,7 @@ structural-resemblance reading leaves its domain; **(e)** kernel-checked verdict
 | S7 | Marcus, *Discuss. Faraday Soc.* **29**, 21–31 (1960) | `10.1039/df9602900021` | The **first** statement of the inverted region: item "(v) Possibility of 'inverted' chemical behaviour" | `verified` (local PDF `Marcus1960_Faraday_inverted_region.pdf`, printed p. 28; quote in §4.1). **Full-text grep: no `slope`, no `Brønsted`, no `α`** |
 | S8 | Marcus, Nobel Lecture 1992, "Electron Transfer Reactions in Chemistry: Theory and Experiment", *Chemistry 1992* (Nobel Foundation), printed pp. 71–89 | local PDF `theories/Marcus/literature/Marcus1992_nobel_lecture.pdf` | Printed loci for: barrier Eq. (5b) (p. 78), `λ = λ_o + λ_i` Eq. (6) (p. 78), inverted region + the **Brønsted/Tafel-plot** analogy (p. 82), slope 1/2 (p. 85), Fig. 8 annotation `λ_s = 0.75`/`λ_v = 0.45` eV/`ω = 1500 cm⁻¹` (p. 84), reaction-centre numbers `0.25 eV`/`~1.1 eV` (p. 88), atom/proton/methyl-transfer scope limit (p. 90) | `verified` (text layer + rendered Fig. 8 PNG read here). **"Hammond" 0 hits, "Leffler" 0 hits** |
 | S9 | Cohen & Marcus, *J. Phys. Chem.* **72**(12), 4249–4256 (1968), "On the slope of free energy plots in chemical kinetics" | `10.1021/j100858a052` | **The α formula as an observable slope**, applied to experiment: instantaneous slope of the `ΔF*` vs `ΔF°′` plot `= (1/2)[1 + ΔF°′/(4ΔF_0*)]`, applied to Brønsted-slope data of **16 proton- and atom-transfer series**, "experimental results are consistent with this equation, but more data are needed" | `verified (abstract-level)` (CaltechAUTHORS record `adpqk-tcp81`, abstract reproduced) |
-| S10 | Marcus, *J. Phys. Chem.* **72**(3), 891–899 (1968), "Theoretical relations among rate constants, barriers, and Broensted slopes of chemical reactions" | `10.1021/j100849a019` | "local Brønsted slope `α` … `α = (1 + Δ/λ)/2`"; barrier with work term `ΔF* = w^r + λ(1 + ΔF°′/λ)²/4`; the "degree-of-reaction parameter" `n`, `n*`; `λ` constant across a series "as a conjecture"; Appendix II: the two-parabola picture is a **projection** of a many-dimensional surface, and for bond-breaking atom/proton transfers the **inverted effect is removed** | `verified (abstract-level)` for the abstract (CaltechAUTHORS `xnks4-y0h56`) + `verified (delegated read)` for the Appendix II/III and symbol-list quotes (§3.2, §4.4, §5.2) |
+| S10 | Marcus, *J. Phys. Chem.* **72**(3), 891–899 (1968), "Theoretical relations among rate constants, barriers, and Broensted slopes of chemical reactions" | `10.1021/j100849a019` | **eq. (32), p. 896** (section "Meaning of the Brønsted Slope", pp. 895–896): `α = ½(1 + ΔF°'/λ)` **"when `|ΔF°'| ≲ λ`"**, with `α` described as the **"product-like character"** of the coordinates — the primary source of the plan's α identity **and of its `|x| < λ` range**; barrier with work term `ΔF* = w^r + λ(1 + ΔF°′/λ)²/4`; the "degree-of-reaction parameter" `n`, `n*`; `λ` constant across a series "as a conjecture"; Appendix II: the two-parabola picture is a **projection** of a many-dimensional surface, and for bond-breaking atom/proton transfers the **inverted effect is removed** | `verified (abstract-level)` for the abstract (CaltechAUTHORS `xnks4-y0h56`) + `verified (delegated read)` for eq. (32), the Appendix II/III quotes and the symbol list (§3.2, §4.4, §5.2); first-hand re-extraction requested (§9 item 16) |
 | S11 | Marcus, *J. Am. Chem. Soc.* **91**(26), 7224–7225 (1969), "Unusual slopes of free energy plots in kinetics" | `10.1021/ja01054a003` | Primary-adjacent identification **slope of the barrier-vs-driving-force plot ↔ position of the TS along the reaction coordinate**, and application to experimental "unusual Brønsted coefficients" | `verified (abstract-level)` (CaltechAUTHORS `wew6q-35t88`) |
 | S12 | Marcus & Sutin, *Biochim. Biophys. Acta (BBA) — Reviews on Bioenergetics* **811**(3), 265–322 (1985), "Electron transfers in chemistry and biology" | **`10.1016/0304-4173(85)90014-X`** | The standard review-level statement of the unified theory (work terms, cross-relation, inverted region) | `not-accessed` (paywalled). **⚠ The DOI `10.1016/0005-2728(85)90039-9` returns 404 at Crossref and at doi.org — do not use it** |
 | S13 | Sutin, "Theory of Electron Transfer Reactions: Insights and Hindsights", *Prog. Inorg. Chem.* **30**, 441–498 (1983) | `10.1002/9780470166314.ch9` | Review-level treatment of the inverted region; identified for citation only | `not-accessed` |
@@ -122,6 +122,22 @@ structural-resemblance reading leaves its domain; **(e)** kernel-checked verdict
 | S31 | Kresge, "The Nitroalkane Anomaly", *Can. J. Chem.* **52**(10), 1897–1903 (1974); Agmon, "Is there a nitroalkane anomaly?", *J. Am. Chem. Soc.* **102**(7), 2164–2167 (1980) | `10.1139/v74-270`, `10.1021/ja00527a003` | The classic case of a Brønsted slope **outside** `(0,1)` — the mirror branch `x < -λ` of the model | bibliographic records `verified`; content `not-accessed` (403) → `recalled-needs-check` for any α value |
 | S32 | Thornton, *J. Am. Chem. Soc.* **89**(12), 2915–2927 (1967); Steffa & Thornton, *J. Am. Chem. Soc.* **89**(24), 6149–6156 (1967) | `10.1021/ja00988a020`, `10.1021/ja01000a026` | Priority for the "perpendicular (anti-Hammond) effect" | bibliographic records `verified`; content `not-accessed` (the substance is carried by S4) |
 | S33 | Agmon, "Quantitative Hammond postulate", *J. Chem. Soc., Faraday Trans. 2* **74**, 388 (1978) | `10.1039/f29787400388` | Title-level: the classical "quantitative Hammond" tradition | `order-of-magnitude` (content `not-accessed`, RSC blocked) |
+| S34 | Marcus, Nobel Lecture 1992, printed **pp. 79 and 81** (local PDF; journal version *Rev. Mod. Phys.* **65**, 599–610 (1993)) | `10.1103/RevModPhys.65.599` | **Marcus's own statement of the model's approximations**: work terms "omitted from Eq. (5) **for notational brevity**"; "I introduced a '**symmetrization**' approximation for the vibrational part of the potential energy surface"; "With this **linear approximation** the free energies `G_r` and `G_p` became **simple quadratic functions** of the reaction coordinate"; "there are **many local minima** corresponding to locally stable arrangements of the solvent molecules" | `verified` (text layer of the local PDF, pp. 79/81 re-grepped in this survey) |
+| S35 | Mayr & Ofial, "When Does Hammond's Postulate Predict Stabilities of Carbocations?", *Isr. J. Chem.* **63**, e202300054 (2023) | `10.1002/ijch.202300054` (OA) | A literature **range-of-validity criterion** for the postulate (whether the *reverse* step is diffusion- or activation-controlled); and the explicit observation that measured Brønsted exponents are **not** confined to `(0,1)`: "Bordwell's observation that deprotonations of nitroalkanes have **α values around 1.5** … therefore **cannot be an indicator of the position of the transition state**" | `verified (delegated read)`; DOI re-checked here |
+| S36 | Qiu & Schreiner, "The Intrinsic Barrier Width and Its Role in Chemical Reactivity", *ACS Cent. Sci.* **9**, 2129–2137 (2023) | `10.1021/acscentsci.3c00926` (OA, PMC10683502) | The equal-force-constant assumption named in print: reactant and product states are "assumed to have the same nuclear vibrational force constants (**an assumption that is silently made also for the BEP principle and the Hammond postulate**)" | `verified (delegated read)`; DOI re-checked here |
+| S37 | Kurz, "'Anti-Hammond' transition-state structural variation in the context of Marcus' rate theory", *J. Org. Chem.* **48**, 5117–5120 (1983) | `10.1021/jo00173a066` | The canonical **anti-Hammond** treatment *inside* Marcus's rate theory — the branch a one-coordinate model cannot represent | bibliographic record `verified`; content `not-accessed` |
+| S38 | Konda et al., "Molecular Catch Bonds and the Anti-Hammond Effect in Polymer Mechanochemistry", *J. Am. Chem. Soc.* **135**, 12722–12729 (2013) | `10.1021/ja4051108` | A **measured** anti-Hammond effect: "the **increased structural dissimilarity** between the reactant and transition state **upon lowering of the reaction barrier**" — the opposite correlation to `gap_compare_iff` in a real system | `verified (delegated read)` (abstract); DOI re-checked here |
+| S39 | Jencks, "A primer for the Bema Hapothle…", *Chem. Rev.* **85**, 511–527 (1985); More O'Ferrall, *J. Chem. Soc. B*, 274–277 (1970) | `10.1021/cr00070a001`, `10.1039/j29700000274` | The Bema Hapothle / two-dimensional diagram tradition (parallel = Hammond, perpendicular = anti-Hammond) | bibliographic records `verified`; content `not-accessed` |
+| S40 | Siders & Marcus, "Quantum effects for electron-transfer reactions in the 'inverted region'", *J. Am. Chem. Soc.* **103**, 748–752 (1981) | `10.1021/ja00394a004` | In the inverted region "the quantum value decays **less rapidly** than the classical"; "the classical theory does not include vibrational tunneling" | `verified (delegated read)`; DOI re-checked here |
+| S41 | Barbara, Meyer & Ratner, "Contemporary Issues in Electron Transfer Research", *J. Phys. Chem.* **100**, 13148–13168 (1996) | `10.1021/jp9605663` | Review-level statements that the classical form has "an **excessively rapid falloff** in `k_ET` with `ΔG0`" because "**it is assumed that the barrier must be crossed**"; and that the reaction coordinate "**reduces the system, effectively, to the crossing of two parabolas**" | `verified (delegated read)` (page numbers ±1, mirror OCR); DOI re-checked here |
+| S42 | Marenich, Ho, Coote, Cramer & Truhlar, *Phys. Chem. Chem. Phys.* **16**, 15068–15106 (2014) | `10.1039/c4cp01572j` | Independent restatement of the assumption: "the Marcus theory assumption that the surfaces must be quadratic with respect to a reaction coordinate `q` … **with similar curvatures**" | `verified (delegated read)`; DOI re-checked here |
+| S43 | Donahue, "Revisiting the Hammond Postulate…", *J. Phys. Chem. A* **105**, 1489–1497 (2001) | `10.1021/jp001004t` | Reactant/product ionic states regulate barrier heights, **locations** and TS frequencies — a case where the barrier location is controlled by something other than the single driving force | bibliographic record `verified`; content `not-accessed` |
+| S44 | Newton & Sutin, *Annu. Rev. Phys. Chem.* **35**, 437–480 (1984); Sumi & Marcus, *J. Chem. Phys.* **84**, 4894–4914 (1986) | `10.1146/annurev.pc.35.100184.002253`, `10.1063/1.449978` | Standard review of condensed-phase ET and the dynamical (multiexponential) treatment of ET rates | bibliographic records `verified`; content `not-accessed` |
+| S45 | Kim, "Thornton rule for homolytic reactions", *Pure Appl. Chem.* **67**, 791–795 (1995); Buncel & Wilson, "The reactivity selectivity principle: Should it ever be used?", *J. Chem. Educ.* **64**, 475 (1987); Kalu, Ubochi & Onyido, *RSC Adv.* **11**, 8833–8845 (2021) | `10.1351/pac199567050791`, `10.1021/ed064p475`, `10.1039/d0ra10759j` | Further pointers (Thornton-type rules beyond the ionic case; the reactivity–selectivity principle and its criticism; a perpendicular-component study) | bibliographic records `verified`; content `not-accessed` — **no content claim is made** |
+| S46 | Farcasiu, "The use and misuse of the Hammond Postulate", *J. Chem. Educ.* **52**(2), 76–77 (1975) | `10.1021/ed052p76` | A dedicated critique of the postulate's *use*: "We consider application of the Hammond postulate to have **heuristic value only** …" and "This viewpoint should **not** be considered generally valid" (p. 77) | `verified (delegated read)` (OCR copy); DOI re-checked here |
+| S47 | Fersht, "Relationship of Leffler (Brønsted) α values and protein folding Φ values to position of transition-state structures on reaction coordinates", *PNAS* **101**(40), 14338–14342 (2004) | `10.1073/pnas.0406091101` | "The value of α is often taken as the position of the transition state …, But, **this is an oversimplification and there are documented anomalies**" (abstract) | `verified (delegated read)` (abstract); DOI re-checked here |
+| S48 | Arteca & Mezey, "Validity of the Hammond postulate and constraints on general one-dimensional reaction barriers", *J. Comput. Chem.* **9**(7), 728–744 (1988); Bulat & Toro-Labbé, *J. Phys. Chem. A* **107**, 3987–3994 (2003); Haddon, Tian & Jiang, *J. Org. Chem.* **81**, 3648–3653 (2016); López, Dejaegere & Karplus, *J. Am. Chem. Soc.* **123**, 11755–11763 (2001); Würthwein, Lang, Schappele & Mayr, *J. Am. Chem. Soc.* **124**(15), 4084–4092 (2002) | `10.1002/jcc.540090704`, `10.1021/jp022025l`, `10.1021/acs.joc.6b00298`, `10.1021/ja010683y`, `10.1021/ja0121540` | Pointers on **which 1-D barrier shapes admit a Hammond reading** (Arteca & Mezey — a natural next station), extensions of the postulate, a Leffler-vs-Hammond comparison for Sₙ2, and rate–equilibrium relations in hydride transfer | bibliographic records `verified` (all five DOIs re-checked here); content `not-accessed` — **no content claim is made** (the Würthwein et al. α-location sentence circulating in search snippets stays `recalled-needs-check`) |
+| S49 | IUPAC Gold Book entry "Hammond principle" (H02734), *Compendium of Chemical Terminology* (2014 online; older PAC text) | `10.1351/goldbook.H02734` | The older official formulation, calling it a "**hypothesis**" and noting that many "express the idea in Leffler's form, but **attribute it to Hammond**" | `verified (delegated read)` (archived official text; `goldbook.iupac.org` itself returned 403 here) — **cite S4 (open 2021 PAC text, read first-hand) as primary** |
 
 ### 1.2 Formalizable implications at a glance
 
@@ -268,11 +284,24 @@ Leffler proposed a similar idea two years before Hammond's paper was published."
 
 ### 3.2 The α formula (the decisive loci)
 
-1. **Marcus 1968** (S10), abstract, `verified (abstract-level)`:
+1. **Marcus 1968 (S10), section "Meaning of the Brønsted Slope", pp. 895–896; the decisive locus is
+   eq. (32) on p. 896** — `verified (delegated read)` (the delegate re-extracted the journal scan and
+   reproduced the strings; a first-hand re-extraction is requested, see §9 item 16):
+   > "Since α is `dΔF*/dΔF0'`, eq 2 yields **α = ½(1 + ΔF°'/λ)  (32)  when |ΔF°'| ≲ λ**."
+   and the structural reading of that slope, p. 896:
+   > "`n*` and, thereby, α represents the products' contribution to this function … `n*` and hence α
+   > would characterize the **product-like character** of both types of coordinates."
+   **This is the primary source of the plan's central identity**: with `x = -ΔG°` and zero work terms,
+   `α = ½ + ΔF°′/(2λ) = (λ - x)/(2λ) = tsCoord lam x`. Note the printed **validity clause
+   `|ΔF°'| ≲ λ`**, which is exactly `ReactionRegion (-λ < x ∧ x < λ)` (see §8.2 item 11).
+   The same page's "Summary of Findings" adds two bounds: application to atom/proton transfers
+   "probably limited to `|ΔF°'/4ΔF0*| < 1`", and eq. (4) "will break down when some appreciable
+   fraction of the total [free-energy change is not of that form]".
+2. **Marcus 1968 (S10), abstract** (`verified (abstract-level)`, CaltechAUTHORS `xnks4-y0h56`) —
+   corroborates the same formula in review-abstract form:
    > "(3) a calculation of the local Brønsted slope α from the intercept of the ΔF* vs. ΔF^0' plot,
    > **α = (1 + Δ/λ)/2**"
-   with the abstract's `Δ` standing for `ΔF°′` (**our reading**, flagged in §0.4). With `x = -ΔG°`
-   this is `α = (λ - x)/(2λ)` — **identical to `tsCoord`**.
+   with the abstract's `Δ` standing for `ΔF°′` (**our reading**, flagged in §0.4).
 2. **Cohen & Marcus 1968** (S9), abstract, `verified (abstract-level)`:
    > "the instantaneous slope of a `ΔF*` vs. `ΔF^0'` plot is calculated to be
    > `(1/2)[1 + (ΔF^0'/4 ΔF_0*)]`. Thus far the experimental results are consistent with this equation,
@@ -295,6 +324,9 @@ Leffler proposed a similar idea two years before Hammond's paper was published."
   and `E_r` correctly.
 - **Sign**: never write `ΔG° > λ` for the inverted region (that is the *normal* region); three correct
   forms: `ΔG° < -λ`, `-ΔG° > λ`, or `|ΔG°| > λ` given `ΔG° ≤ 0` (sibling record; S8 p. 82).
+- **Unequal curvature**: Marcus's own symbol list defines "`ε` — Intrinsic asymmetry defined by
+  eq 13" (S10, p. 899); **no** closed-form unequal-force-constant barrier or Brønsted-slope
+  expression was retrieved (§5.2, clean negative) — do not promise one in the plan's next stations.
 - **`α` in other fields**: the electrode transfer coefficient and the tunneling `α` of
   `arXiv:2511.01909` are different objects; the project's `α` is the Leffler/Brønsted slope of a
   reaction series (`lefflerSecant`, a finite difference of barrier data).
@@ -366,7 +398,10 @@ mirror symmetry `tsCoord lam (-x) = 1 - tsCoord lam x` (plan H1 `tsCoord_neg`) s
 
 **(iv) Experiments do compare measured α with the model slope (primary).** S9 (16 series,
 "consistent … but more data are needed"), S27 (measured Brønsted α for hydride transfer, analysed with
-Marcus), S28 (proton transfer, Brønsted plots "of high curvature" fitted by Marcus).
+Marcus), S28 (proton transfer, Brønsted plots "of high curvature" fitted by Marcus). **This answers
+the optional Q7 affirmatively**: such comparisons exist, they are quantitative in S9, and they are
+recorded here — but they remain *documented comparisons outside the kernel* (the plan's claim set is
+unaffected). The counterweight is S35: measured `α` values are **not** confined to `(0,1)`.
 
 ### 4.2 What the literature does NOT state — clean negatives (required deliverables)
 
@@ -457,6 +492,16 @@ Marcus), S28 (proton transfer, Brønsted plots "of high curvature" fitted by Mar
 | computational test: no general verification of the HLP; path regions often not centred at the TS; curvature-based quantification over ~150 reactions (19 `XHn + H2` at CCSD(T)/cc-pV5Z) | S18 | `verified` | shows the postulate is *tested*, not assumed, in the computational literature |
 | organic exceptions are catalogued under "exceptions/paradoxes" | S24 | `verified` | pointer for RESULTS.md's honesty section |
 | Pross 1995, pp. 177–182 (the source IUPAC attaches to the "many exceptions" note) | S4's ref. [287] | `not-accessed` | cite via S4 only |
+| the postulate's own outcome set includes "**or neither**": "a simple postulate by which one can decide whether reactants or products **or neither** are good structural models…" | S2, opening summary (p. 16) | `verified` | the plan's `HZone` trichotomy (reactant-like / half / product-like) has **no "neither" verdict**; the literature's own framing does (one sentence in plan §13, no signature change) |
+| range of validity of the postulate = where the **reverse reaction is barrierless**: applicable "if the reverse reactions are diffusion controlled, but not if the reverse reactions are activation controlled" | S35, abstract + final discussion | `verified (delegated read)` | potential literature support for reading the `x = ±λ` boundaries as "the reverse step stops being barrierless" — record it as a **mapping assumption**, not a theorem |
+| measured Brønsted exponents are observed **outside** `(0,1)`: nitroalkane deprotonations have `α ≈ 1.5`, "and therefore **cannot be an indicator of the position of the transition state**" | S35 (reporting Bordwell's observation); the classic series is S31 | `verified (delegated read)` | **claim (c) must stay model-internal**: `0 < α < 1 ⟺ -λ < x < λ` may not be presented as a test on measured `α` |
+| a **measured anti-Hammond** effect: "increased structural dissimilarity … upon lowering of the reaction barrier" | S38, abstract | `verified (delegated read)` | documents a real system whose correlation is the **opposite** of `gap_compare_iff`'s direction; supports "outside the model's domain" wording rather than "violation" |
+| "anti-Hammond" **inside Marcus's rate theory** | S37 | bibliographic record `verified`; content `not-accessed` | the branch a one-coordinate model cannot represent (§7 rank 2) |
+| Bema Hapothle / More O'Ferrall–Jencks diagrams | S39 | bibliographic records `verified`; content `not-accessed` | pointer for the perpendicular channel (the substance is carried by S4) |
+| "We consider application of the Hammond postulate to have **heuristic value only** …" and "This viewpoint should **not** be considered generally valid" | S46, p. 77 | `verified (delegated read)` | a dedicated critique of the postulate's *use*, complementing S4's "many exceptions" |
+| "The value of α is often taken as the position of the transition state …, But, **this is an oversimplification and there are documented anomalies**" | S47, abstract | `verified (delegated read)` | third independent source that `α` = TS position is not a general fact |
+| the Brønsted slope is derived from the quadratic relation and the atom/proton-transfer derivation is flagged by its own authors as "**A rather approximate derivation**" | S9, abstract/Introduction p. 4249 | `verified (abstract-level)`; body `verified (delegated read)` | the "approximate" caveat in Marcus's own hand |
+| validity of the postulate for **general one-dimensional reaction barriers** is itself a research question (title) | S48 (Arteca & Mezey 1988) | bibliographic record `verified`; content `not-accessed` | natural next station: which 1-D barrier shapes admit a Hammond reading (plan §14) |
 
 ### 5.2 Two-parabola-level (equal curvature, single coordinate, harmonicity)
 
@@ -470,6 +515,13 @@ Marcus), S28 (proton transfer, Brønsted plots "of high curvature" fitted by Mar
 | Brønsted-slope deviations in general base catalysis (differential charge development, asymmetry) | S26 | `verified (delegated read)` / biblio `verified` | ditto |
 | the correlation `α`–structure requires **`λ` constant across the series** | S23, S24, S10 | `verified` | new explicit premise (§8.2) |
 | recrossing / transmission coefficient / non-statistical dynamics / explicit TST failure | S30 | content `not-accessed` (pointers) | the dynamics limitation (§7 rank 5) |
+| **Marcus's own words**: work terms "omitted from Eq. (5) **for notational brevity**"; a "**symmetrization**" approximation for the vibrational part of the surface; "With this **linear approximation** the free energies `G_r` and `G_p` became **simple quadratic functions** of the reaction coordinate"; "there are **many local minima** corresponding to locally stable arrangements of the solvent molecules" | S8/S34, printed **pp. 79 and 81** | `verified` | **the primary-source warrant** for the equal-curvature + harmonic + single-coordinate assumptions, from Marcus himself; supports plan §13 rows 1–3 |
+| equal force constants are "silently made also for the BEP principle and the Hammond postulate" | S36 | `verified (delegated read)` | second independent warrant for the equal-curvature premise |
+| "In the general case, the TS coordinate of the thermoneutral reaction … **differs from the coordinate of the intersection point of the terms**" | S16, §III p. 1121 (free PDF; sentence re-grepped in this survey) | `verified` | the "TS = the crossing point" assumption (plan §13 row 3) is exactly that — valid in the symmetric/equal-force-constant case only |
+| "the surfaces must be quadratic with respect to a reaction coordinate `q` … **with similar curvatures**" | S42 | `verified (delegated read)` | restatement of the same premise |
+| "**excessively rapid falloff** in `k_ET` with `ΔG0`" because "it is assumed that the **barrier must be crossed**"; the coordinate "reduces the system, effectively, to the crossing of two parabolas" | S41 | `verified (delegated read)` | the citation for "the classical model overstates the inverted-region drop" (plan §8.3's MCC arithmetic) and for the projection caveat |
+| quantum treatment in the inverted region decays **less rapidly** than the classical one; the classical theory omits vibrational tunneling | S40 | `verified (delegated read)` | quantum-correction pointer for plan §1.3 / §14 |
+| **clean negative**: no retrieved source contains a closed-form **unequal-force-constant** barrier or Brønsted-slope formula; the nearest handles are Marcus's "`ε` — Intrinsic asymmetry defined by eq 13" (S10 symbol list, p. 899) and the symmetrization/average-force-constant approximations | this survey | `verified` (negative) | plan §14 ① has abstract-level support only (S15): do not promise a formula for the asymmetric case |
 
 ### 5.3 Photochemistry (the "no photochemical Hammond postulate" result)
 
@@ -518,9 +570,9 @@ so every row is expressible in the ℚ decision layer (H5a) exactly.
 | P5 | MCC series, right branch of Fig. 8 (read-off) | 1.20 | **2.00** | `-1/3` | `beyondReactant` | **does not conform** | Nobel 1992 Fig. 8 axis | `verified (sibling record)` (figure read-off) |
 | P6 | photosynthetic reaction centre, first step BChl₂* → BPh | ~**0.25** | ~**0.25** | `0` | `atReactant` | **boundary**: `x = λ`; `α = 0 ∉ (0,1)`; strict regime fails | Nobel 1992 **printed p. 88**: first transfer "only about 0.25 eV out of an overall excitation energy of BChl₂* of 1.38 eV"; "small λ (~0.25 eV)" | `verified` (local PDF text layer) |
 | P7 | photosynthetic reaction centre, back transfer BPh⁻ → BChl₂⁺ (hole–electron recombination) | ~0.25 | ~**1.10** | `-17/10 = -1.7` | `beyondReactant` | **does not conform**; deeply inverted (`x ≫ λ`); `α < -1` | Nobel 1992 **printed p. 88**: "a very highly exothermic process (~1.1 eV)"; "small λ (~0.25 eV) … inverted region effect" | `verified` (local PDF text layer) |
-| P8 | enzymatic proton transfer (silverman) — **no `x`** | `λ ≈ 4 × (1–2 kcal/mol) ≈ 0.17–0.35` (**our arithmetic** from "intrinsic barrier … 1 to 2 kcal/mol") | not reported | — | — | **not usable as a verdict** (no driving force) | S28, abstract | `verified (abstract-level)` for the intrinsic barrier; λ conversion is our arithmetic with a flag |
+| P8 | enzymatic proton transfer (S28) — **no `x`** | `λ ≈ 4 × (1–2 kcal/mol) ≈ 0.17–0.35` (**our arithmetic** from "intrinsic barrier … 1 to 2 kcal/mol") | not reported | — | — | **not usable as a verdict** (no driving force) | S28, abstract | `verified (abstract-level)` for the intrinsic barrier; λ conversion is our arithmetic with a flag |
 | P9 | rhenium hydride hydride-transfer series | not reported (abstract) | not reported | — | — | **not usable as a verdict**; documents that measured `α` values exist and decrease with driving force | S27, abstract | `verified (abstract-level)` |
-| P10 | nitroalkane anomaly (classic `α` outside `(0,1)`) | not verified | not verified | — | — | **not usable**: mirrors the `x < -λ` branch, but no verified pair | S31 | biblio `verified`; content `not-accessed` |
+| P10 | nitroalkane deprotonation (the classic `α` outside `(0,1)`: **reported `α ≈ 1.5`**) | not verified | not verified (`α ≈ 1.5` ⟹ `x = -2λ` — **our arithmetic**) | `1.5` if the reported `α` is taken at face value | `beyondProduct` (the **mirror** branch) | **not usable as an instance** (no verified `(λ, x)` pair), but it *is* literature evidence that the mirror branch `x < -λ` occurs | S35 (reporting Bordwell's values), S31 | `α ≈ 1.5`: `verified (delegated read)`; `λ`: `not-accessed` |
 
 ### 6.2 Provenance notes (binding for the instance layer)
 
@@ -548,6 +600,13 @@ so every row is expressible in the ℚ decision layer (H5a) exactly.
 6. `T` and the prefactor `A` do **not** enter any structural verdict (as in the sibling record):
    only `(λ, x)` do. Keep `0 < kB*T`, `0 < A` as explicit premises where rates are mentioned at all —
    in this theory they are not.
+7. **Mirror branch, observed but not instantiable**: the most-cited `α` outside `(0,1)` in the
+   literature is the nitroalkane series with `α ≈ 1.5` (S35, reporting Bordwell's values). In the model
+   `α = 1.5` corresponds to `x = -2λ`, i.e. `HZone.beyondProduct` with `q‡ = 1.5 > 1` — the exact
+   mirror image of the MCC inverted-region rows. No verified `λ` accompanies it, so it stays out of the
+   kernel; if a `beyondProduct` instance is wanted, the honest route is to **construct** it from the
+   model (e.g. `lam = 1`, `x = -2` gives `q‡ = 3/2`) and label it "model-constructed", never as a
+   fitted experimental pair.
 
 ### 6.3 Bottom line for the plan's instance table (plan §8.2)
 
@@ -558,12 +617,12 @@ so every row is expressible in the ℚ decision layer (H5a) exactly.
 - The plan's I5 (`6/5, 1/20`), I6 (`6/5, 12/5`) and I7 (`1/4, 11/10`) reproduce **P1, P3, P7**
   exactly; plan I9's pair (`6/5`, `3/5 → 12/5`) reproduces the monotonicity instantiated at
   **P4 → P3**.
-- **Arithmetic check of plan §8.2 as written**: for I6 (`lam = 6/5`, `x = 12/5`) the model gives
-  `q‡ = α = (6/5 - 12/5)/(12/5) = -1/2`; the plan's row states `q‡ = -1/2` (correct) but also
-  "`α = -1/8 < 0`" (**inconsistent with its own `lefflerSecant_eq_midpoint`**, which forces
-  `α = q‡` at the secant midpoint). Either the `1/8` is a typo for `1/2` or a different `x`-pair was
-  intended. This is a plan-level correction (§9 item 5); it does not change any verdict, since the
-  zone (`beyondReactant`) and the sign (`α < 0`) are unaffected.
+- **Arithmetic check of plan §8.2 (current revision)**: I6 (`lam = 6/5`, `x = 12/5`) has the point
+  value `q‡ = (6/5 - 12/5)/(12/5) = -1/2`, while the row's `α = -1/8` is the **secant over the pair
+  `3/5 → 12/5`**, whose midpoint is `x = 3/2`: `α = (6/5 - 3/2)/(12/5) = -1/8`, consistent with
+  `lefflerSecant_eq_midpoint`. Checked and **consistent**. (An earlier revision of the row printed
+  `α = -1/8` beside the point value `-1/2` without that distinction; the ambiguity is gone in the
+  current plan revision — see §9 item 5.)
 
 ---
 
@@ -576,11 +635,11 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
 | rank | item | impact on the planned claims | what would be needed |
 |---|---|---|---|
 | **1** | **"Molecular structure" itself** (bond lengths, angles, which bond breaks, charge distribution) — the literal content of Hammond's "small reorganization of the molecular structures" | **high for the *reading*, zero for the theorems**: the formalized `q‡` is a coordinate, not a structure. The gap must be bridged by an explicit modeling assumption (plan §13 row 1) | a chemistry/geometry layer (molecular graphs, internal coordinates, force fields); mathlib has no such thing and building it is a separate project |
-| **2** | **Many-dimensional PES, MERP, perpendicular/anti-Hammond (Thornton) effects** | **high**: the model's three resemblance predicates cover only the parallel branch, so "resemblance" in the model is *a priori* blind to the anti-Hammond/Thornton channel (S4, S10) | multivariable Morse/saddle theory, path geometry, normal-mode decomposition; mathlib lacks an applied Morse-theory layer |
-| **3** | **Equal curvature / equal force constants** | **decisive**: this is the premise that makes claims (b), (c) exact (S15, S14, S17). It is a *model assumption*, not a theorem; the plan must say so | unequal-curvature generalization is a next station (plan §14 ①); needs `Real.sqrt`/implicit-function work in mathlib (available but out of scope here) |
+| **2** | **Many-dimensional PES, MERP, perpendicular/anti-Hammond (Thornton) effects** | **high**: the model's three resemblance predicates cover only the parallel branch, so "resemblance" in the model is *a priori* blind to the anti-Hammond/Thornton channel (S4, S10, and the literature that treats it explicitly: S37, S38, S39) | multivariable Morse/saddle theory, path geometry, normal-mode decomposition; mathlib lacks an applied Morse-theory layer |
+| **3** | **Equal curvature / equal force constants** | **decisive**: this is the premise that makes claims (b), (c) exact (S15, S14, S17) — and it is the assumption **Hammond himself** flags as the postulate's weak point (S2) and that Marcus calls a "symmetrization" approximation (S34, S36, S16 §III). It is a *model assumption*, not a theorem; the plan must say so | unequal-curvature generalization is a next station (plan §14 ①); needs `Real.sqrt`/implicit-function work in mathlib (available but out of scope here) |
 | **4** | **Entropy / free energy vs potential energy** (Hammond's own footnote: translational and solvation entropies "essentially uncontrolled") | **medium**: our `ΔG°` is a free-energy-like scalar; the postulate is stated for potential energy. The identification is an assumption | statistical mechanics / partition functions; mathlib has none |
-| **5** | **Dynamics: recrossing, variational TS, transmission coefficient, non-statistical dynamics** | **low for (a)–(e)**, but it bounds the *interpretation* of "the TS is the crossing point" (S24/S30 pointers) | reactive-flux theory, Hamiltonian dynamics, trajectory ensembles; far beyond mathlib |
-| **6** | **Quantum nuclear effects (tunneling), heavy-atom tunneling** | **low**: the structural claims are T-independent; tunneling affects rates only | path integrals / instanton calculus; not available |
+| **5** | **Dynamics: recrossing, variational TS, transmission coefficient, non-statistical dynamics** | **low for (a)–(e)**, but it bounds the *interpretation* of "the TS is the crossing point" (S24/S30 pointers; S41 "it is assumed that the barrier must be crossed"; S44) | reactive-flux theory, Hamiltonian dynamics, trajectory ensembles; far beyond mathlib |
+| **6** | **Quantum nuclear effects (tunneling), heavy-atom tunneling** | **low**: the structural claims are T-independent; tunneling affects rates only, where it is documented that "the quantum value decays less rapidly than the classical" in the inverted region (S40) | path integrals / instanton calculus; not available |
 | **7** | **Conical intersections, seam dimensions, excited-state surfaces, surface hopping** | **low for the present claims, but essential for the project's photochemical framing**: no "photochemical Hammond postulate" exists (S19), and the photochemical bottleneck is a seam (S20) | multivalued PES / vector-bundle-style geometry, nonadiabatic dynamics; entirely out of mathlib's scope |
 | **8** | **Rate constants, prefactors, TST, and the barrier→rate map** | **zero** (this theory proves structural statements only; rate theorems live in `PhotoLean.Marcus.Rate`) | transition-state theory + partition functions; deliberately out of scope (plan §1.3) |
 | **9** | **Work terms `w_r, w_p` and activity/dielectric corrections** | **low**: absorbed into `ΔG°` (S10's own eq. (2) shows what is dropped) | electrostatics/PDE layer; mathlib lacks it (sibling record item 2) |
@@ -615,6 +674,10 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
   genuine formalization contribution; outside equal curvature they need not agree (S15, S17).
 - **Assumption to declare**: the identification "q‡ < 1/2 ⟺ *structurally* closer to the reactant"
   (i.e. that the scalar distance along `q` measures resemblance).
+- **Literature boundary**: a *measured* **anti-Hammond** effect is documented (S38: "increased
+  structural dissimilarity between the reactant and transition state upon lowering of the reaction
+  barrier"), so (b) is a property **of the model**, not a universal regularity; and S35 warns that
+  measured `α` values fall outside `(0,1)`.
 - **Impact**: plan §2.3 already treats the descriptor as a `Prop`; §13 should name the chosen reading of
   "closer" and note the equivalence result. No statement change.
 
@@ -626,6 +689,10 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
   is normative (S4) but explicitly **approximate** with "**many exceptions**"; the equality is exact
   only in the equal-curvature model (S15). The plan's "exact" wording is therefore correct *only*
   qualified by "in this model" — plan §2.3 item 3 already says this; keep it and add the citation.
+- **Literature warning**: measured Brønsted exponents are **not** confined to `(0,1)` (nitroalkane
+  `α ≈ 1.5`, S35) and the `α`-as-TS-position reading is "**approximate**" with "**many exceptions**"
+  (S4); the equivalence `0 < α < 1 ⟺ -λ < x < λ` must therefore be presented as an *internal
+  characterization of the model's own coefficient*, never as a test on experimental `α`.
 - **Impact**: statement unchanged; **documentation must add** the equal-curvature and fixed-`λ`
   premises, and RESULTS.md must not slide from "exact in the equal-curvature model" to "Hammond
   proved".
@@ -670,6 +737,20 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
    the authority of the IUPAC glossary).
 7. Hammond's own footnote: the postulate concerns **potential** energy and leaves translational/
    solvation entropy uncontrolled — S1 (p. 334, footnote 1); our `ΔG°` is free-energy-like.
+8. **"Neither" is a possible outcome** of the postulate as Hammond states it ("whether reactants or
+   products **or neither** are good structural models", S2): the plan's `HZone` trichotomy has no such
+   verdict, so document that the classification is a *model* trichotomy, not the postulate's full
+   outcome space.
+9. The `x = ±λ` boundaries may be *read* as "the reverse step stops being barrierless" (S35); this
+   reading is a **mapping assumption** between the model's boundaries and the literature's
+   range-of-validity criterion — not a theorem of the model.
+10. The classical inverted-region falloff is documented to be **too steep** (S41) and quantum
+    treatments decay less rapidly (S40); the plan's structural claims are unaffected, but no
+    rate-level statement of this theory may be compared with experiment without those corrections.
+11. **The model's `|x| < λ` range is documented in the primary source**: Marcus's eq. (32) is stated
+    "when `|ΔF°'| ≲ λ`", i.e. exactly `ReactionRegion (-λ < x ∧ x < λ)`. So H1's regime boundary is
+    **not an artefact of our algebra** — but it is still a range *of the model*, so it upgrades the
+    documentation, not the physical claim (S10 eq. (32), p. 896).
 
 ### 8.3 Wording rules that follow
 
@@ -682,10 +763,23 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
   the inverted-region slope picture.
 - Do not attribute the sentence "the TS resembles the species to which it is closest in energy" to
   Hammond 1955 (§2.2).
+- Never present `0 < α < 1` as a criterion that real Brønsted `α` values satisfy: `α ≈ 1.5` is
+  reported for nitroalkane deprotonations (S35) and the authoritative glossary records "many
+  exceptions" to the `α`-as-position reading (S4).
 
 ---
 
 ## 9. Corrections and conflicts (relative to `plan.md` and to the brief)
+
+**Status against the plan revision of 2026-09-20 14:02** (re-checked after each plan update):
+items **1, 2, 3, 6, 7, 9, 10** are already reflected in `plan.md` (its §1.1 "Correction" notes, its
+§13 anchor block, rows 8–13 of its assumption table, and its §14 ④); item **5** is resolved (below).
+Still open: item **4** (informational), items **8 and 11** (record-internal notes), item **12**
+("or neither" — no counterpart in the plan), item **13** (no closed-form unequal-curvature formula),
+items **14–15** (status and scope lists), **item 16** — the primary locus **eq. (32), p. 896**, with
+its validity clause `|ΔF°'| ≲ λ`, is *not yet named anywhere in the plan*, although the plan already
+cites the same author's 1968 papers for the α formula — and **item 17** (the Farcasiu / Fersht /
+Arteca set on "heuristic only" and on barrier-shape validity).
 
 1. **"closest in energy" is not Hammond 1955's wording** (§2.2). Plan §1.1 quotes it as the postulate.
    Fix: quote the p. 334 sentence, or label the paraphrase as such and cite S4 for the canonical
@@ -701,11 +795,11 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
 4. **Marcus 1968 DOI (from my own dispatch brief, recorded for traceability)**:
    `10.1021/j100849a035` is a *different* paper (Bundschuh & Li, *J. Phys. Chem.* 72(3), 1001–1005);
    the correct DOI is **`10.1021/j100849a019`** (Crossref-verified).
-5. **Plan §8.2, instance I6 arithmetic**: the row gives `q‡ = -1/2` (correct) and `α = -1/8 < 0`
-   (inconsistent — `lefflerSecant_eq_midpoint` forces `α = q‡ = -1/2` at the midpoint of the pair
-   used). Verdict and zone are unaffected (`beyondReactant`, `α < 0`); the number should be corrected
-   to `-1/2` or the intended `x`-pair stated. This is our arithmetic on the plan's own definitions,
-   not a literature claim.
+5. **Plan §8.2, instance I6 — RESOLVED in the current plan revision (checked 2026-09-20 13:58)**:
+   the row now distinguishes the point value `q‡ = -1/2` at `x = 12/5` from the **secant** over the
+   pair `3/5 → 12/5` (midpoint `x = 3/2`), which is `-1/8`; both numbers are correct and consistent
+   with `lefflerSecant_eq_midpoint` (§6.3). An earlier revision printed them side by side without that
+   distinction. This was our arithmetic on the plan's own definitions, not a literature claim.
 6. **The `α < 0 ⟺` inverted-region identification is not in the literature** (§4.2). The plan's H2
    statements `tsCoord_lt_zero_iff_inverted` and `lefflerSecant_neg_iff_inverted` are therefore
    **model theorems**; §13/RESULTS must say so, with S8 p. 82, S9, S10 (statement level) and S14
@@ -716,12 +810,49 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
 8. **`not-accessed` items that must not be cited as authority until read**: S3 (Leffler 1953 — the
    plan's attribution of the α idea to Leffler 1953 is bibliographically correct and is corroborated by
    S4/S19, but its own text was not retrieved); S5, S12, S13, S30 (content), S31 (content), S32
-   (content), S33 (content), and the printed eqs (34)/(35) of S10.
+   (content), S33 (content), S37, S39, S42 (content), S43, S44, S45, S48 (all content). **The α formula
+   is not among them**: its locus is **eq. (32), p. 896** of S10 — this corrects an earlier note in
+   this survey that pointed at the printed eqs (34)/(35) (those are cross-relation corollaries).
 9. **Resolved open item of plan §14 ④ (`Empirical Brønsted α comparison`)**: a source **does** exist —
    S9 (Cohen & Marcus 1968: the model slope applied to Brønsted-slope data of 16 proton- and
    atom-transfer series, "consistent … but more data are needed"), with S27 and S28 as modern
    experimental series. The plan's fallback ("otherwise record as non-formalizable") need not be used;
    the comparison belongs in this record (§4.1 (iv)) and stays outside the kernel.
+10. **`α ≈ 1.5` exists in the literature** (S35, reporting Bordwell's nitroalkane values): a direct
+    caution that plan §8.2's regime characterization `0 < α < 1` is **model-internal**. The mirror
+    reading is in §6.2 item 7 (`α = 1.5 ⟹ x = -2λ`, `beyondProduct`).
+11. **Marcus's own caveat is citable, and it is stronger than a generic critique**: work terms are
+    omitted "for notational brevity", the vibrational part is handled by a "symmetrization"
+    approximation, and the quadratic surfaces follow from a "linear approximation" (S8/S34, printed
+    pp. 79/81, `verified` in this survey). Plan §13's rows 1–3 should cite this locus.
+12. **"or neither"** (S2, opening summary) is absent from the plan's `HZone` classification — a
+    documentation gap, not a statement error.
+13. **No closed-form unequal-curvature formula was found** (clean negative, §5.2): plan §14 ① should
+    say that the affine `α` fails with **abstract-level** support (S15) and that no explicit formula was
+    retrieved; it should not promise one.
+14. **Additional `not-accessed` items** that must not be cited as authority until read: S37, S39, S42
+    (content), S43, S44, S45; and in the "read only by delegate" class, S35, S36, S38, S40, S41, S17,
+    S20, S21, S22, S25, S26, S15 (page numbers for S41 are ±1 because the mirror text is OCR).
+15. **Photochemistry is not mentioned anywhere in plan §13 today**, although the project is
+    named PhotoLean: S19 establishes that **no** photochemical Hammond postulate exists as a law, so
+    the absence is a scope statement that should be made explicit rather than left implicit.
+16. **The primary locus of the α formula — and of the model's `|x| < λ` range — is Marcus 1968
+    eq. (32), p. 896** (section "Meaning of the Brønsted Slope", pp. 895–896): "α = ½(1 + ΔF°'/λ) (32)
+    **when |ΔF°'| ≲ λ**", with α described as the "**product-like character**" of the coordinates.
+    Consequences for the plan (currently **not** reflected): (i) cite eq. (32) instead of / in addition
+    to the 1968 abstract for `lefflerSecant_eq_midpoint`; (ii) state that `ReactionRegion` is the
+    **documented range** of the primary source's slope reading (upgrading its documentation status
+    while keeping it model-internal); (iii) record the same page's two bounds — atom/proton transfers
+    "probably limited to |ΔF°'/4ΔF₀*| < 1", and eq. (4) "will break down when some appreciable fraction
+    of the total [free-energy change is not of that form]". Status of this locus in the record:
+    `verified (delegated read)` — the delegate re-extracted the journal scan; a first-hand
+    re-extraction has been requested and, until it lands, the locus must be quoted with that label.
+17. **Add the "heuristic only" and validity set to plan §13**: S46 (Farcasiu 1975: "heuristic value
+    only … should not be considered generally valid"), S47 (Fersht 2004: "this is an oversimplification
+    and there are documented anomalies"), S49 (Gold Book: "hypothesis"), and S48's Arteca & Mezey 1988
+    (validity of the postulate for **general one-dimensional reaction barriers** — the natural home is
+    a new next station in §14: which 1-D barrier shapes admit a Hammond reading, i.e. the exact
+    generalization of the plan's `λ_R = λ_P` restriction).
 
 ---
 
@@ -741,4 +872,13 @@ Lean 4.17.0 + mathlib". **Claims (a)–(e) depend on none of them** — that is 
   1968, 1969, 1973, 2009 bodies are not; S9/S10/S11 abstracts came from CaltechAUTHORS instead),
   `science.org` 403 (S3), `goldbook.iupac.org` 403 (the Gold Book entry could not be read — S4's 2021
   PAC manuscript, same organization and open, was used instead), `cdnsciencepub.com` 403 (S31),
-  `archive.org`/`osti.gov` timeouts, Elsevier/RSC paywalls (S12, S13, S33).
+  `archive.org`/`osti.gov` timeouts, Elsevier/RSC paywalls (S12, S13, S33; likewise S37, S39, S42–S45).
+
+**Second pass (supplement)**: the items marked `verified (delegated read)` in §1.1/§5 came from a
+second round of delegated retrieval whose loci are recorded per item; their bibliographic records were
+re-checked here against Crossref (`api.crossref.org/works/<DOI>`) and every DOI quoted is
+Crossref-verified. The load-bearing quotes of that round were **re-verified first-hand** before being
+used here: Marcus's approximation sentences (S8/S34, pp. 79/81), Denisov's `TS ≠ crossing point`
+sentence (S16 §III), the Fig. 8 annotation (image read), the IUPAC entries (S4), and the OA quotes of
+S14, S19, S23, S24. Items that remain delegate-read only are flagged as such and must not be quoted as
+if they had been re-read here.

@@ -57,8 +57,11 @@ theorem gap_compare_iff {lam x : ℝ} (hlam : 0 < lam) :
     gapProduct_sub_gapReactant (ne_of_gt hlam) x
   constructor <;> intro h <;> linarith
 
-/-- Leffler's relation, exact: the measured Brønsted slope equals the transition-state
-coordinate at the midpoint (no mean value theorem: the barrier is a quadratic). -/
+/-- Leffler's relation, exact: the Brønsted coefficient computed from the model's barrier data
+(the secant of `gapReactant` against the driving force) equals the transition-state coordinate at the
+midpoint (no mean value theorem: the barrier is a quadratic). It is a *model* identity about barrier
+data — never a claim about an experimentally measured Brønsted slope (plan section 13, row 13);
+it is the finite-difference form of Marcus 1968, p. 896, eq. (32). -/
 theorem lefflerSecant_eq_midpoint {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h : x₁ ≠ x₂) :
     lefflerSecant lam x₁ x₂ = tsCoord lam ((x₁ + x₂) / 2) := by
   have h4 : (4 * lam : ℝ) ≠ 0 := by positivity

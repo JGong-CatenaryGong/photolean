@@ -180,8 +180,10 @@ theorem inst_I6_mcc_inverted_region : Marcus.InvertedRegion (6 / 5) (12 / 5) := 
   unfold Marcus.InvertedRegion
   norm_num at hlt ⊢
 
-/-- I6, barrier-data verdict: the Brønsted coefficient measured from the barrier values alone is
-`-1/8 < 0` — the observable counterpart of the verdict above. -/
+/-- I6, barrier-data verdict: the Brønsted coefficient computed from the model's barrier values alone
+is `-1/8 < 0` — the barrier-data counterpart, inside the model, of the verdict above. (It is not a
+statement about an experimentally measured slope; for the pair `3/5 -> 12/5` the secant's midpoint is
+`x = 3/2`, where the model's own coordinate is `-1/8`.) -/
 theorem inst_I6_mcc_leffler_negative : Rat.lefflerSecantQ (6 / 5) (3 / 5) (12 / 5) = -(1 / 8) := by
   norm_num [Rat.lefflerSecantQ, Rat.gapReactantQ]
 
@@ -229,8 +231,10 @@ theorem inst_I9_mcc_structural_monotone : tsCoord (6 / 5) (12 / 5) < tsCoord (6 
   tsCoord_antitone (by norm_num : (0 : ℝ) < 6 / 5) (by norm_num : (3 / 5 : ℝ) < 12 / 5)
 
 /-! ## I10 — non-vacuity of the instance layer on literature parameters -/
-/-- I10: on the literature parameters both resemblance verdicts are inhabited — reactant-like at
-`x = 1/20` and product-like at `x = -1/20` — via H2's `reactantLike_iff` / `productLike_iff`. -/
+/-- I10: on the literature parameters both resemblance verdicts are inhabited — reactant-like at the
+recorded pair `x = 1/20`, and product-like at its sign-mirror `x = -1/20` (the mirror is a
+model-constructed companion of the recorded pair, not a second recorded value; cf. the literature
+record section 6.2 item 7) — via H2's `reactantLike_iff` / `productLike_iff`. -/
 theorem inst_I10_nonvacuous : ReactantLike (6 / 5) (1 / 20) ∧ ProductLike (6 / 5) (-(1 / 20)) :=
   ⟨(reactantLike_iff (by norm_num : (0 : ℝ) < 6 / 5)).mpr (by norm_num : (0 : ℝ) < 1 / 20),
    (productLike_iff (by norm_num : (0 : ℝ) < 6 / 5)).mpr (by norm_num : (-(1 / 20) : ℝ) < 0)⟩

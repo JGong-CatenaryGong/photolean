@@ -184,6 +184,11 @@ ones that look risky.**
    coordinate at the midpoint. That is the non-trivial content of Leffler's relation, and in
    this model it is **exact** (the barrier is a quadratic, so the midpoint is the exact
    secant point — no mean value theorem, no analysis).
+3b. **The regime boundary is not our invention.** Marcus 1968's eq. (32) carries the explicit
+applicability condition `|ΔF°'| ≲ λ`, which is exactly `ReactionRegion lam x` (`-λ < x < λ`); the same
+paper describes the coordinate as the "product-like character" of the TS. The H2 statements are
+therefore the *model's* theorems, with a documented primary locus for both the identity and its
+range — still not a claim about a molecule (plan §13 rows 11/12).
 4. **Both sign conventions are stated and bridged.** `x = -ΔG°` (Marcus convention, used for
    everything) and `dG = ΔG°` (used in the surface definitions); the crossing theorem
    `crossing_iff` is stated in `dG` and the coordinate in `x`, so sign errors cannot hide.
@@ -581,7 +586,10 @@ Marcus Nobel 1992 (barrier Eq. (5b) p. 78; the Brønsted/Tafel-plot analogy p. 8
 `λ_s`/`λ_v`/`ω` annotation p. 84; reaction-centre numbers p. 88; the atom/proton/methyl-transfer
 scope limit p. 90); Cohen & Marcus 1968 `10.1021/j100858a052` and Marcus 1968 `10.1021/j100849a019`
 (the α slope, applied to 16 experimental series), Marcus 1969 `10.1021/ja01054a003`
-(slope ↔ TS position); García-Padilla & Qiu 2025 `10.1039/d5sc04829j` (published analogue of
+(slope ↔ TS position), **Marcus 1968 §"Meaning of the Brønsted Slope", p. 896, eq. (32)**
+(`α = ½(1 + ΔF°'/λ)` when `|ΔF°'| ≲ λ`) — the primary locus of the central identity, of which
+`lefflerSecant_eq_midpoint` is the finite-difference form, and whose stated applicability condition
+`|ΔF°'| ≲ λ` **is** `ReactionRegion`; García-Padilla & Qiu 2025 `10.1039/d5sc04829j` (published analogue of
 "inverted region = negative Brønsted slopes" and of the model's mirror symmetry);
 Villegas-Escobar 2026 `10.1016/j.chemphys.2026.113488` (equality `α` = TS position is exact only in
 the symmetric/equal-curvature approximation); Miller–Calcaterra–Closs 1984 `10.1021/ja00322a058`
