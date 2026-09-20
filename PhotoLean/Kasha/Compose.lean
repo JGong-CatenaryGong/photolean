@@ -90,6 +90,11 @@ lowest state's loss rate, level `1` carries the upper block's arrival probabilit
 noncomputable def effIc (rad ic : ℕ → ℝ) (N : ℕ) : ℕ → ℝ :=
   fun n => if n = 0 then ic 0 else if n = 1 then cascade rad ic 0 N else 0
 
+/-- The internal-conversion rate in the Marcus form of `PhotoLean.Marcus`: driving force equal to the
+energy gap `x`, reorganization energy `lam`, pre-exponential `A` (plan §7.1). -/
+noncomputable def marcusIC (A lam kB T x : ℝ) : ℝ :=
+  A * Real.exp (-(PhotoLean.Marcus.barrier lam x) / (kB * T))
+
 
 end Kasha
 
