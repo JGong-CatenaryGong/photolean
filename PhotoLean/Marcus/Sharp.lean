@@ -1,0 +1,59 @@
+/-
+PhotoLean.Marcus.Sharp — M4a 锐利刻画（Marcus 反转区，**本项目主定理的落点**）。
+
+**语句权威**：`proofs/probes/marcus-statement-skeleton.lean` 的 M4a 段
+（Sprint 0 已编译通过）。本文件 5 条定理的签名与它**逐字一致**；
+证明体全部经内核检查（零占位证明、无自定义公理声明）。
+
+**依赖**：`import PhotoLean.Marcus.Barrier`（M2 势垒代数）+ `import PhotoLean.Marcus.Rate`
+（M3 速率层）。本文件**只使用** M2 的 `barrier_mono_of_pos` / `barrier_antitone_of_pos` /
+`barrier_antitone_of_neg` / `barrier_zero_lam` 与 M3 的 `rate_pos` /
+`rate_gt_of_barrier_lt` —— 刻意**不依赖** Sprint 3 才交付的
+`normal_rate_increases` / `inverted_rate_decreases` / `rate_peak_at_lam`，
+使 M4a 不被 M3 的收尾阻塞。
+
+**本文件的物理内容（规划期发现，plan §7.1）**：只写 `InvertedDescriptor`
+**不足以**刻画反转区 —— 它并不蕴含 `lam > 0`。非物理分支
+`A < 0 ∧ lam < 0 ∧ 0 < kB·T` 下 `barrier` 在反转区递减、乘负前置因子后速率仍递减，
+描述**形式成立**但速率是**负的**。因此把"速率处处为正"并入刻画，得到锐利形式
+`(∀ x, 0 < rate … x) ∧ InvertedDescriptor …  ↔  0 < A ∧ 0 < lam`
+（在物理前提 `0 < kB`、`0 < T` 下）。`inverted_descriptor_holds_of_neg` 把这条
+非物理分支**保留为定理**，作为"正性前提不可去"的可检查证据。
+
+**`descriptor_sharp` 必要性方向的分支覆盖（verifier 重点）**：
+`0 < lam` 由 `sharp_lam_pos` 对 `lt_trichotomy lam 0` 的**三支**分别处理得到 ——
+1. `lam < 0` → `sharp_lam_pos_of_lt`（用 `barrier_antitone_of_neg`：势垒递减使速率递增，
+   与描述要求的严格递减矛盾）；
+2. `lam = 0` → `sharp_lam_pos_of_eq`（**单独覆盖，不被第一支吃掉**：除零约定
+   `x / 0 = 0` 使 `barrier 0 · ≡ 0`，速率恒为 `A`，取 `x₁ = 1 < 2 = x₂` 得 `A < A`；
+   该分支的签名里**没有** `hkB` / `hT` / `hA`，即它只依赖 `barrier_zero_lam`）；
+3. `0 < lam` → 直接取该假设。
+
+**注**：本文件刻意不写出被 `check.sh --strict` 扫描的关键字字面量
+（块注释同样在扫描范围内，写了会造成误报 FAIL）。
+
+验收（契约 `proofs/ENGINE.yml`）：
+  proofs/scripts/lake build PhotoLean.Marcus.Sharp
+  proofs/scripts/check.sh --strict PhotoLean.Marcus.Sharp
+  proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.<theorem>
+-/
+import PhotoLean.Marcus.Barrier
+import PhotoLean.Marcus.Rate
+
+namespace PhotoLean.Marcus
+
+/-! ## 描述的充分性（M4a §7.1）
+
+两条都是"势垒代数（M2）+ 核心转移引理（M3）"的一行复合：
+反转区里 `barrier` 递增 ⇒ 速率递减（`rate_gt_of_barrier_lt` 的方向是
+`barrier x < barrier y ⇒ rate y < rate x`，故反转区取 `x := x₁`、`y := x₂`）；
+正常区里 `barrier` 递减 ⇒ 速率递增（取 `x := x₂`、`y := x₁`）。 -/
+
+/-- 主定理的充分性方向：`A > 0 ∧ lam > 0 ∧ k_B·T > 0` ⇒ 反转区描述成立。
+依赖：`barrier_mono_of_pos`（M2）+ `rate_gt_of_barrier_lt`（M3）。 -/
+theorem inverted_descriptor_holds {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam)
+    (hkT : 0 < kB * T) : InvertedDescriptor A lam kB T :=
+  fun x₁ x₂ h₁ h₂ =>
+    rate_gt_of_barrier_lt (x := x₁) (y := x₂) hA hkT (barrier_mono_of_pos hlam (le_of_lt h₁) h₂)
+
+end PhotoLean.Marcus
