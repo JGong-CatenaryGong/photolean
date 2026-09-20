@@ -77,4 +77,10 @@ theorem transfer_thermoneutral (lam : ℝ) : transfer lam 0 = 1 / 2 := by
   unfold transfer
   norm_num
 
+/-- The reverse-direction coefficient is also one half at
+thermoneutrality. -/
+theorem reverseTransfer_thermoneutral (lam : ℝ) : reverseTransfer lam 0 = 1 / 2 := by
+  unfold reverseTransfer
+  norm_num
+
 end PhotoLean.BEP
