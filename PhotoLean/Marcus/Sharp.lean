@@ -146,4 +146,10 @@ theorem descriptor_sharp {kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (A lam : ℝ) 
   · rintro ⟨hA, hlam⟩
     exact ⟨fun x => rate_pos hA x, inverted_descriptor_holds hA hlam (mul_pos hkB hT)⟩
 
+/-- 必要性的"失效"形态：`lam ≤ 0` 时描述必然失效（在物理正性前提 `0 < k_B`、`0 < T`
+与速率正性前提 `0 < A` 下）—— 即 `descriptor_sharp` 必要性方向的直接推论。 -/
+theorem descriptor_fails_of_nonpos_lam {A kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T)
+    (hA : 0 < A) {lam : ℝ} (hlam : lam ≤ 0) : ¬ InvertedDescriptor A lam kB T :=
+  fun hdesc => absurd (sharp_lam_pos hkB hT hA hdesc) (not_lt.mpr hlam)
+
 end PhotoLean.Marcus
