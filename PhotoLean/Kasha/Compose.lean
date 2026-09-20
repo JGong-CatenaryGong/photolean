@@ -274,6 +274,26 @@ theorem kashaWithin_iff_ladderRatio {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ}
     constructor <;> intro hh <;> linarith
   exact (kashaWithin_iff_effective h hpos).trans (hcrit.trans hratio)
 
+/-- Plan §7.2 #10. The `N`-level funnel ratio at `N = 1` is the two-level funnel ratio
+`k_IC/k_rad` of K1 — the specialization that makes row 9 the general form of the sharp criterion. -/
+theorem ladderRatio_one {rad ic : ℕ → ℝ} (h : decay rad ic 1 ≠ 0) :
+    ladderRatio rad ic 1 = funnelRatio rad ic := by
+  have hC : cascade rad ic 0 1 = icBranch rad ic 1 := by
+    unfold cascade
+    have hset : Finset.Icc (0 + 1) 1 = ({1} : Finset ℕ) := by
+      ext j
+      simp only [Finset.mem_Icc, Finset.mem_singleton]
+      omega
+    rw [hset, Finset.prod_singleton]
+  have hU : upperYield rad ic 1 = radBranch rad ic 1 := by
+    unfold upperYield
+    rw [Finset.Icc_self, Finset.sum_singleton]
+    exact emitYield_self rad ic 1
+  unfold ladderRatio funnelRatio
+  rw [hC, hU]
+  unfold radBranch icBranch
+  rw [← mul_div_assoc, div_mul_eq_mul_div, div_div_div_cancel_right₀ h]
+
 
 end Kasha
 
