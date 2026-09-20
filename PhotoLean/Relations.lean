@@ -504,7 +504,8 @@ descriptor `lam` is optimal for every admissible pre-exponential factor and ther
 theorem marcus_optimum_fixed_by_curvature {lam : ℝ} (hlam : 0 < lam) :
     ∀ (A kB T : ℝ), 0 < A → 0 < kB * T →
       Sabatier.AntiVolcanoDescriptor (Marcus.rate A lam kB T) lam :=
-  fun A kB T hA hkT => marcusRate_antiVolcanoDescriptor hA hlam hkT
+  fun A kB T hA hkT =>
+    marcusRate_antiVolcanoDescriptor (A := A) (lam := lam) (kB := kB) (T := T) hA hlam hkT
 
 /-! ## 10. The no-edge registry (documentation, not theorems)
 
