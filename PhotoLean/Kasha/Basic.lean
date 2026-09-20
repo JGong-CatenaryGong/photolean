@@ -256,6 +256,14 @@ theorem upperYield_le_fluoYield {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData r
 /-- Plan §4.2 #19. The exact rule is, by definition, the vanishing of the leak. -/
 theorem kashaRule_iff_upperYield_zero (rad ic : ℕ → ℝ) (N : ℕ) :
     KashaRule rad ic N ↔ upperYield rad ic N = 0 := Iff.rfl
+set_option linter.unusedVariables false in
+/-- Plan §4.2 #20. The normalized spectrum sums to `1` whenever the total yield does not vanish
+(the `RateData` premise is decorative here: the identity only needs the nonzero denominator). -/
+theorem specFrac_sum {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
+    (hF : fluoYield rad ic N ≠ 0) :
+    ∑ i ∈ Finset.range (N + 1), specFrac rad ic i N = 1 := by
+  unfold specFrac
+  rw [← Finset.sum_div, ← fluoYield, div_self hF]
 end Kasha
 
 end PhotoLean
