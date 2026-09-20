@@ -460,6 +460,51 @@ theorem inst_I11_F5_not_model_consistent :
 
 /-! ### I12 — the summary, and non-vacuity of the instance layer -/
 
+/-- I12 (plan §8.2): for each of the four families with per-row data, the affine (BEP) side is a
+decent description — the observed two-point slope lies strictly inside `(0,1)` — while the family's
+second divided difference is negative, so **no** positive-λ equal-curvature two-parabola law
+reproduces those printed rows. This is the falsification shape the plan asks for
+(`¬ ∃ lam : ℚ, qModelConsistent3 lam …`) applied per family.
+
+Provenance of the four conjuncts (all `first-hand`, kcal/mol, verbatim; the sources print `ΔG°`
+for F1/F2/F3 and a classical `ΔE` for F5): F1 = *Antioxidants* **15**(7) 840–860 (2026), Table 1
+"Water"; F2 = same paper, Table 1 "PE"; F3 = same paper, Table 2 "Water"; F5 = *Chem. Sci.*
+**6**(10) 5866–5881 (2015), Table 1 `CCSD(T)-F12a/jun-cc-pVTZ`. -/
+theorem inst_I12_affine_conforms_model_refuted :
+    (0 < Rat.qAlphaObs (0.3 : ℚ) 15.6 12.9 8.8 ∧
+        Rat.qAlphaObs (0.3 : ℚ) 15.6 12.9 8.8 < 1 ∧
+        ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (0.9 : ℚ) 2.3 4.9 15.7 15.7 13.9) ∧
+      (0 < Rat.qAlphaObs (-(1.0) : ℚ) 14.0 14.3 5.1 ∧
+        Rat.qAlphaObs (-(1.0) : ℚ) 14.0 14.3 5.1 < 1 ∧
+        ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(1.0) : ℚ) 2.2 4.6 14.0 13.3 10.0) ∧
+      (0 < Rat.qAlphaObs (-(0.8) : ℚ) 15.6 9.9 7.3 ∧
+        Rat.qAlphaObs (-(0.8) : ℚ) 15.6 9.9 7.3 < 1 ∧
+        ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(0.8) : ℚ) 7.1 9.9 15.6 11.0 7.3) ∧
+      (0 < Rat.qAlphaObs (-(7.62) : ℚ) 12.38 (-(19.82)) 21.72 ∧
+        Rat.qAlphaObs (-(7.62) : ℚ) 12.38 (-(19.82)) 21.72 < 1 ∧
+        ¬ ∃ lam : ℚ, Rat.qModelConsistent3 lam (-(14.56) : ℚ) (-(15.8)) (-(19.82)) 17.47 20.32 21.72) := by
+  refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+  · unfold Rat.qAlphaObs
+    norm_num
+  · unfold Rat.qAlphaObs
+    norm_num
+  · exact inst_I11_F1_not_model_consistent
+  · unfold Rat.qAlphaObs
+    norm_num
+  · unfold Rat.qAlphaObs
+    norm_num
+  · exact inst_I11_F2_not_model_consistent
+  · unfold Rat.qAlphaObs
+    norm_num
+  · unfold Rat.qAlphaObs
+    norm_num
+  · exact inst_I11_F3_not_model_consistent
+  · unfold Rat.qAlphaObs
+    norm_num
+  · unfold Rat.qAlphaObs
+    norm_num
+  · exact inst_I11_F5_not_model_consistent
+
 end BEP
 
 end PhotoLean
