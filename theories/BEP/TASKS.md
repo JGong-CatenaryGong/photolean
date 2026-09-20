@@ -92,34 +92,34 @@
 
 ## B3 — sharp conditions (`PhotoLean/BEP/Sharp.lean`; owner prover_d; Sprint 3)
 
-- [ ] `epBounds_iff_region` — Sharp.lean — prover_d — review — plan §6.1 (critical path)
-- [ ] `epRegime_iff_strict` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `transfer_at_lam` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `transfer_at_neg_lam` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `not_epBounds_of_lt_neg` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `not_epBounds_of_gt` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `epExact_iff_degenerate` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `not_epLinearOn_of_ne_zero` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `exists_conforms_fails` — Sharp.lean — prover_d — review — plan §6.1
-- [ ] `bepDefect_abs_eq` — Sharp.lean — prover_d — review — plan §6.2
-- [ ] `epConformsOnWindow_iff_radius` — Sharp.lean — prover_d — review — plan §6.2 (risk: `Real.sqrt`)
-- [ ] `epConformsOnWindow_at_radius` — Sharp.lean — prover_d — review — plan §6.2
-- [ ] `epConformsOnWindow_mono` — Sharp.lean — prover_d — review — plan §6.2
-- [ ] `epConformsOnWindow_symm` — Sharp.lean — prover_d — review — plan §6.2
-- [ ] `bepDefect_antitone_lam` — Sharp.lean — prover_d — review — plan §6.3
-- [ ] `bepRadius_mono` — Sharp.lean — prover_d — review — plan §6.3
-- [ ] `epConformsOnWindow_mono_lam` — Sharp.lean — prover_d — review — plan §6.3
-- [ ] `bepBestLine_error` — Sharp.lean — prover_d — review — plan §6.4
-- [ ] `epBestOnWindow_holds` — Sharp.lean — prover_d — review — plan §6.4 (risk: equioscillation)
-- [ ] `bepLine_worst_case` — Sharp.lean — prover_d — review — plan §6.4
-- [ ] `bepBestLine_halves` — Sharp.lean — prover_d — review — plan §6.4
-- [ ] `bepDefect_zero_lam_witness` — Sharp.lean — prover_d — review — plan §6.5
-- [ ] `bepDefect_neg_lam_witness` — Sharp.lean — prover_d — review — plan §6.5
-- [ ] `bepDefect_sign_flips` — Sharp.lean — prover_d — review — plan §6.5
-- [ ] `secSlope_needs_h_ne_zero` — Sharp.lean — prover_d — review — plan §6.5
-- [ ] AUX minimax block (8 declarations: `epSupError`, `sSup_eq_of_le_of_mem`, `bep_error_three_point`,
+- [x] `epBounds_iff_region` — Sharp.lean — prover_d — done — plan §6.1 (critical path)
+- [x] `epRegime_iff_strict` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `transfer_at_lam` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `transfer_at_neg_lam` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `not_epBounds_of_lt_neg` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `not_epBounds_of_gt` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `epExact_iff_degenerate` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `not_epLinearOn_of_ne_zero` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `exists_conforms_fails` — Sharp.lean — prover_d — done — plan §6.1
+- [x] `bepDefect_abs_eq` — Sharp.lean — prover_d — done — plan §6.2
+- [x] `epConformsOnWindow_iff_radius` — Sharp.lean — prover_d — done — plan §6.2 (risk: `Real.sqrt`)
+- [x] `epConformsOnWindow_at_radius` — Sharp.lean — prover_d — done — plan §6.2
+- [x] `epConformsOnWindow_mono` — Sharp.lean — prover_d — done — plan §6.2
+- [x] `epConformsOnWindow_symm` — Sharp.lean — prover_d — done — plan §6.2
+- [x] `bepDefect_antitone_lam` — Sharp.lean — prover_d — done — plan §6.3
+- [x] `bepRadius_mono` — Sharp.lean — prover_d — done — plan §6.3
+- [x] `epConformsOnWindow_mono_lam` — Sharp.lean — prover_d — done — plan §6.3
+- [x] `bepBestLine_error` — Sharp.lean — prover_d — done — plan §6.4
+- [x] `epBestOnWindow_holds` — Sharp.lean — prover_d — done — plan §6.4 (risk: equioscillation)
+- [x] `bepLine_worst_case` — Sharp.lean — prover_d — done — plan §6.4
+- [x] `bepBestLine_halves` — Sharp.lean — prover_d — done — plan §6.4
+- [x] `bepDefect_zero_lam_witness` — Sharp.lean — prover_d — done — plan §6.5
+- [x] `bepDefect_neg_lam_witness` — Sharp.lean — prover_d — done — plan §6.5
+- [x] `bepDefect_sign_flips` — Sharp.lean — prover_d — done — plan §6.5
+- [x] `secSlope_needs_h_ne_zero` — Sharp.lean — prover_d — done — plan §6.5
+- [x] AUX minimax block (7 declarations: `epSupError`, `sSup_eq_of_le_of_mem`, `bep_error_three_point`,
       `eact_second_difference`, `epSupError_bddAbove`, `epSupError_bestLine`, `epSupError_sharp`) —
-      Sharp.lean — prover_d — review — plan §6.4 + skeleton AUX section
+      Sharp.lean — prover_d — done — plan §6.4 + skeleton AUX section
 
 ## B4 — microscopic and cross-module layer (`PhotoLean/BEP/Compose.lean`; owner prover_b; Sprint 3)
 
@@ -168,20 +168,21 @@
 
 ## B5b — instance verdicts (`PhotoLean/BEP/Instances.lean`; owner prover_c; Sprint 4)
 
-- [ ] I1 thermoneutral family (`λ=2, x=0`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I2 mildly exergonic (`λ=2, x=1/2`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I3 mildly endergonic (`λ=2, x=-1/2`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I4 forward barrierless limit (`λ=2, x=2`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I5 reverse barrierless limit (`λ=2, x=-2`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I6 forward inverted regime (`λ=2, x=3`, α<0) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I7 reverse inverted regime (`λ=2, x=-3`, α>1) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I8 degenerate family (`λ=0`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I9 unphysical curvature (`λ=-2`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I10 tolerance threshold (`λ=2, w=1`) — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I11 five first-hand literature families (`LITERATURE.md` §R1.10): per family `alphaObs`,
-      `lamHat`, `curvature_negative`, `not_model_consistent` — Instances.lean — prover_c — todo — plan §8.2
-- [ ] I12 affine-conforms / model-refuted summary — Instances.lean — prover_c — todo — plan §8.2
-- [ ] `inst_nonvacuous` — Instances.lean — prover_c — todo — plan §8.2
+- [x] I1 thermoneutral family (`λ=2, x=0`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I2 mildly exergonic (`λ=2, x=1/2`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I3 mildly endergonic (`λ=2, x=-1/2`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I4 forward barrierless limit (`λ=2, x=2`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I5 reverse barrierless limit (`λ=2, x=-2`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I6 forward inverted regime (`λ=2, x=3`, α<0) — Instances.lean — prover_c — done — plan §8.2
+- [x] I7 reverse inverted regime (`λ=2, x=-3`, α>1) — Instances.lean — prover_c — done — plan §8.2
+- [x] I8 degenerate family (`λ=0`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I9 unphysical curvature (`λ=-2`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I10 tolerance threshold (`λ=2, w=1`) — Instances.lean — prover_c — done — plan §8.2
+- [x] I11 four first-hand literature families with per-point data (`LITERATURE.md` §R1.10): per family
+      `alphaObs`, `lamHat`, `curvature_negative`, `not_model_consistent` — Instances.lean — prover_c — done —
+      plan §8.2 (the fifth family is aggregate-only and deliberately unformalized)
+- [x] I12 affine-conforms / model-refuted summary — Instances.lean — prover_c — done — plan §8.2
+- [x] `inst_nonvacuous` — Instances.lean — prover_c — done — plan §8.2
 
 ---
 
@@ -193,7 +194,8 @@
 | B5a (independent verifier #4) | `RatModel.lean` (37 = 14 defs + 1 inductive + 22 theorems) | **PASS** | judged on `sha256 75040761…` (skeleton `c9aa2cb1…`); independent fidelity parser 37/37 word-for-word, 0 extras; 22/22 `axioms.sh` clean; the three kernel-counterexample-driven corrections *reproduced* by the verifier (it proved the negations of the premise-dropped forms: `¬` for the `hlam`-free reconstruction, `¬` for the `h₂₃`-free and `h₁₂`-free model-consistency statements); all eight cast lemmas `#print`-checked as genuine ℝ transfers and *used* (not decorative); model-consistency block instantiated with concrete rationals; `qConformsWindow_iff_radius_sq` both directions + negative control (`tol = 1/16`); unconstrained-definition audit: **zero** in the settled state (`qReverseTransfer` was the only one at delivery, fixed by `qReverseTransfer_cast`); 24/24 commits touch only the owner's file | observations: **HIGH** — the acceptance anchor must be the hash pair, not a branch name (the window moved under the verifier); **HIGH→closed** — plan→skeleton→delivery were briefly out of sync on `qReverseTransfer_cast`; **MEDIUM** — five premises are decorative (`hh`/`h` on three cast lemmas, `hx` on the two reconstructions) and must not be described as physical guards in `RESULTS.md`; **MEDIUM** — the B5a round's own experience entry is missing (being added); **LOW** — file header says "two corrections" where three are carried; board counts updated to the measured `14 defs + 1 inductive + 22 theorems`; the factor-2 naming difference between `qModelConsistent3_curvature_pos` and `LITERATURE.md` §R1.10.1's `d²Ea/dx² = 1/(2λ)` is now labelled in the record |
 | B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | — | — | delivered; verification in progress |
 | B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | **PASS / PASS** | 40/40 `axioms.sh` clean (raw lines quoted); verifier's own parser: B2 28/28 word-for-word, B4 12/12; 40/40 proof terms screened for circularity (**only two `rfl`s, both documented as definitional**: `eact_eq_barrier`, `rate_exp`); 20 hypothesis-necessity counterexamples (load-bearing vs decorative split reported); `secSlope_eq_transfer_mid` hand-recomputed at three rational parameter sets (mean-value convention confirmed); B4 row 4 non-vacuous with same-true/same-false witnesses for both directions; a ~7 200-instance rational grid falsification of 31 statements found **0 counterexamples**; 28/28 + 12/12 commits touch only the owner's file | graded on `sha256 b3ef9225…` / `b68e948c…`; observations: **M1** skeleton untracked and rewritten mid-run (fixed: authority now committed), **M2** the skeleton's B4 AUX `secSlope_eq_lefflerSecant` was not delivered anywhere (fixed: `prover_b` is adding it, post-verification addition marked in the header), **M3** EXPERIENCE.md lacked the B2/B4 proof-round entries at verification time (fixed: committed), **M4** λ-additivity is an unregistered physical premise (registered in plan §13), **M5** positivity sits in the conformance predicates by design (registered in plan §13; wording fixed with the comment-only batch); **LOW 1–6** wording/registration items (comment-only fixes queued; junk files in the repo root removed by the lead) |
-| B3 (independent verifier #3) | `Sharp.lean` (32 = 25 + 7 AUX) | — | — | delivered by `prover_d` (32 commits, 32/32 `axioms.sh` clean, 0 fidelity differences, 3 documented order deviations); verification to be dispatched |
+| B3 (independent verifier #3) | `Sharp.lean` (32 = 25 + 7 AUX) | **PASS** | graded on `sha256 b9b3b568…` (skeleton `c9aa2cb1…`, `Basic.lean` `19133be2…`); 32/32 `axioms.sh` clean; verifier's own parser: set equality 32/32, 0 mismatches, plus the `epSupError` *body* compared; the minimax lower bound **is** the original `∀ c a, ∃ x ∈ Set.Icc (-w) w` form — `#print` of `EPBestOnWindow` confirms the pre-registered disjunctive fallback was not used — and is non-vacuous at two affine functions; the radius theorem checked in both directions with a strict-interior case, a failing-window case and the attained radius; `a < b` shown load-bearing (a single point *is* trivially affine); 11 hypothesis-necessity counterexamples; the four sharpness witnesses are the totalised-division values and `secSlope_needs_h_ne_zero` genuinely kills the B2 mean-value identity; anti-circularity: every load-bearing proof is a real derivation (no `rfl`), `Sharp.lean` imports only `Basic.lean` and re-derives the B2 identity locally (duplication, not circularity); edge-value falsification (w=0, tol=0, x=±λ, w<0, tol<0, lam<0, empty window) left every statement standing | observations: **HIGH-1** the acceptance window moved under the verifier (a concurrent comment-only `Basic.lean` commit; token streams proven identical and all gates re-run) — the anchor is the hash triple recorded here; **MEDIUM-1** one further decorative premise (`hw : 0 ≤ w` of `epConformsOnWindow_iff_radius`, kernel-strengthened by the verifier) to be disclosed in the file header — comment-only fix queued; **MEDIUM-2** plan §3 now carries the authority hash (it was claimed but missing); **LOW-1…5** the §6.5 header claim is wider than the four delivered witnesses, the board "(8 declarations)" typo corrected to 7, the B3 experience entry is being written, and the model assumptions are restated as *model* premises (not theorem premises) in `RESULTS.md` |
+| B5b (independent verifier #5) | `Instances.lean` (48) | **PASS** | graded on `sha256 99161212…` (unchanged start→end; `RatModel.lean` `75040761…` = the B5a anchor); 48/48 `axioms.sh` clean; verifier's own parser: 48/48 word-for-word, order identical, 0 missing/extras; **all verdicts independently recomputed**: I1–I10 coefficients, the six-branch cascade and the I10 threshold (`tol = 1/8` conforms at the boundary, `1/16` fails, `w* = 1`); the 12 I11 literals recomputed from §R1.10's printed kcal/mol rows (four negative curvatures); the refutation rows' derivation checked non-circular; `#print` shows real `norm_num` terms and a real existential refutation; `inst_nonvacuous` exhibits two distinct verdicts; F4 absent with no invented numbers; a ±half-unit perturbation grid over every printed value flips **no** verdict (no knife-edge rows); 48/48 commits touch only the owner's file | observations: **MEDIUM-1** 12 of the 16 I11 docstrings do not repeat source/locus/status per theorem (they are contiguous under fully-provenanced family headings) — comment-only fix queued; **MEDIUM-2** the plan's "at least one conforming literature family" cannot be met with §R1.10 as printed (all four formalized families are model-refuted) — plan and `RESULTS.md` now state the affine-vs-model split instead of pretending the requirement was met; **MEDIUM-3** the pair/triple selection and the pair-dependence of `λ̂` are disclosed in plan §8.2 and are being added to the file; **LOW-4…8** I1–I9 header shorthand, one stale docstring claim about the plan's I8 cell (the plan is correct), the I9 strictness remark kept as prose, plan prose reconciled to "five families, four formalized" |
 | B5a (independent verifier #4) | `RatModel.lean` (11 defs + 18 thms + 5 model-consistency decls) | — | — | 18/18 delivered; the 5 new-block declarations pending the third non-degeneracy premise (resolved) |
 | B4 + B5b (independent verifier #3) | `Compose.lean` + `Instances.lean` | — | — | not yet dispatched |
 | Frozen-state closeout | whole tree | — | — | not yet dispatched |
