@@ -239,6 +239,12 @@ theorem inst_I9_unphysical_transfer : Rat.qTransfer (-2 : ℚ) 1 = 3 / 4 := by
   unfold Rat.qTransfer
   norm_num
 
+/-- I9 (`model-constructed`): the sign of the exact defect detects what the bounds miss —
+`qBepDefect (-2) 1 = -1/8 < 0`, against the exact law `x ^ 2 / (4 * λ) = -1/8` with `λ < 0`. -/
+theorem inst_I9_unphysical_defect_negative : Rat.qBepDefect (-2 : ℚ) 1 = -(1 / 8) := by
+  unfold Rat.qBepDefect Rat.qBepLine Rat.qEact
+  norm_num
+
 end BEP
 
 end PhotoLean
