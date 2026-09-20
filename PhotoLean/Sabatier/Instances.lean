@@ -161,6 +161,19 @@ theorem inst_I2_barrier_tooWeak : volcanoBarrier (1 / 2) 0 1 1 1 = 1 / 2 := by
   simp only [volcanoBarrier, branchUp, branchDown]
   norm_num
 
+/-- I3 (the same series, a strongly-binding catalyst `dE = -1/3`): the barrier. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I3_barrier_tooStrong : volcanoBarrier (1 / 2) 0 1 1 (-(1 / 3)) = 4 / 3 := by
+  simp only [volcanoBarrier, branchUp, branchDown]
+  norm_num
+
+/-- I3: the strongly-binding catalyst is classified too strong. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I3_zone_tooStrong : sabatierZone (apex (1 / 2) 0 1 1) (-(1 / 3)) = SZone.tooStrong := by
+  rw [sabatierZone_eq_tooStrong_iff]
+  unfold apex
+  norm_num
+
 end Sabatier
 
 end PhotoLean
