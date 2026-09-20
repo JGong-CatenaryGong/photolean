@@ -371,6 +371,20 @@ theorem inst_I11_F2_not_model_consistent :
 
 /-! #### F3 — the same substrates with `•OOCH₃`, water column -/
 
+/-- F3 — source: same paper as F1/F2 (*Antioxidants* **15**(7) 840–860 (2026), DOI
+`10.3390/antiox15070868`, OA `PMC13405240`); locus: **Table 2**, "Water" columns (`•OOCH₃` as the
+abstracting radical, i.e. a second radical and a separate family); status **`first-hand`**. Units:
+printed **kcal/mol** `ΔG°`, `ΔG‡` (Gibbs energy and barrier); model convention `x = -ΔG°`.
+
+**Locus honesty**: §R1.10.4 gives, for the Table 2 water column, the family aggregates plus a list
+of *representative* rows rather than the full per-row table; the statement below uses exactly those
+printed representative rows, taken verbatim: `16(1)` `ΔG° = +0.8`, `ΔG‡ = 15.6`; `7` `ΔG° = -9.9`,
+`ΔG‡ = 7.3` (model abscissae `-0.8`, `9.9`). -/
+theorem inst_I11_F3_alphaObs :
+    Rat.qAlphaObs (-(0.8) : ℚ) 15.6 9.9 7.3 = 83 / 107 := by
+  unfold Rat.qAlphaObs
+  norm_num
+
 end BEP
 
 end PhotoLean
