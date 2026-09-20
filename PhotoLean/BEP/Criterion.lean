@@ -91,4 +91,10 @@ theorem transfer_add_reverse {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   field_simp
   ring
 
+/-- The reverse direction of driving force `x` is the forward
+direction of `-x` (no hypothesis: the two sides are the same term up to `ring`). -/
+theorem reverseTransfer_eq_transfer_neg (lam x : ℝ) : reverseTransfer lam x = transfer lam (-x) := by
+  unfold reverseTransfer transfer
+  ring
+
 end PhotoLean.BEP
