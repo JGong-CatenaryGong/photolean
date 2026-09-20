@@ -174,7 +174,7 @@
   `prover_b`, because H4 depends only on H2 (not H3) and `prover_a` was free while `prover_b` ran the
   adversarial audit. File ownership was respected (one owner per file at all times); the plan's
   dependency graph is unchanged.
-- **Literature rounds**: `LITERATURE.md` reached 884 lines / 49 sources over four rounds. Round 4
+- **Literature rounds**: `LITERATURE.md` now stands at 924 lines / 49 sources (four rounds). Round 4
   located the **primary locus of the central identity**: Marcus 1968, p. 896, eq. (32)
   (`α = ½(1 + ΔF°'/λ)` when `|ΔF°'| ≲ λ`) — the finite-difference form of `lefflerSecant_eq_midpoint`,
   whose stated applicability range is exactly `ReactionRegion`. The record also keeps clean negatives

@@ -235,7 +235,7 @@ Hammond's postulate, and no instance theorem asserts anything about measured rat
 | Frozen-state pass (after the comment-only edits) | read-only reviewer on the frozen revision | see `theories/hammond/TASKS.md` notes |
 
 **证据**：六模块编译 0 warning；`check.sh --strict` 全通过（含裸跑全树）；**85/85** 定理 `#print axioms`
-只含允许的三条基础设施公理；保真 **102/102** 逐字一致；**87** 个工人提交、每定理一个且只动属主文件；
+只含允许的三条基础设施公理；保真 **102/102** 逐字一致；**85 条定理提交 + 2 条定义提交 = 87 个工人提交**，每定理一个且只动属主文件；
 lead 的独立数值对拍、prover_b 的 99 条对抗性审计、verifier 的三批只读独立验收（批次 1 已判
 **H1 PASS / H5a PASS**，批次 2/3 的判决记入任务板验收表）。
 

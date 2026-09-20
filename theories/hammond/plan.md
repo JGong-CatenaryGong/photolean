@@ -3,7 +3,10 @@
 > Project: turn **Hammond's postulate** into a *machine-checked* theorem set inside the
 > two-parabola (Marcus-type) model of an elementary reaction step.
 > Target system: Lean 4.17.0 + mathlib (`MODULE_PREFIX=PhotoLean`, see `proofs/ENGINE.yml`).
-> Status: plan drafted, awaiting human confirmation; implementation not started.
+> Status: human-confirmed 2026-09-20 (layout + H1–H5); H1–H5b **delivered** — 102 declarations,
+> 85/85 axiom-clean, 102/102 statement fidelity, all board rows ticked after independent verifier
+> PASS (see `theories/hammond/TASKS.md` and `theories/hammond/RESULTS.md`). This file is kept as the
+> plan of record; the delivered statements are the ones listed below.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/hammond/TASKS.md`;
 > experience bank `proofs/EXPERIENCE.md`; literature `theories/hammond/LITERATURE.md`.
 > **Statement authority**: `theories/hammond/probes/hammond-statement-skeleton.lean`
