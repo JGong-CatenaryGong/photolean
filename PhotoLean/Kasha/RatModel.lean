@@ -140,6 +140,66 @@ def threeRad (r0 r1 r2 : ℚ) : ℕ → ℚ :=
 def threeIc (i0 i1 i2 : ℚ) : ℕ → ℚ :=
   fun n => if n = 0 then i0 else if n = 1 then i1 else if n = 2 then i2 else 0
 
+/-- Plan §8.1 cast bridge. -/
+theorem decayQ_cast (rad ic : ℕ → ℚ) (n : ℕ) :
+    ((decayQ rad ic n : ℚ) : ℝ) = decay (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) n := by
+  unfold decayQ decay
+  push_cast
+  ring
+
+/-- Plan §8.1 cast bridge. -/
+theorem radBranchQ_cast (rad ic : ℕ → ℚ) (n : ℕ) :
+    ((radBranchQ rad ic n : ℚ) : ℝ)
+      = radBranch (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) n := by
+  unfold radBranchQ radBranch
+  rw [Rat.cast_div, decayQ_cast]
+
+/-- Plan §8.1 cast bridge. -/
+theorem icBranchQ_cast (rad ic : ℕ → ℚ) (n : ℕ) :
+    ((icBranchQ rad ic n : ℚ) : ℝ)
+      = icBranch (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) n := by
+  unfold icBranchQ icBranch
+  rw [Rat.cast_div, decayQ_cast]
+
+/-- Plan §8.1 cast bridge. -/
+theorem cascadeQ_cast (rad ic : ℕ → ℚ) (i N : ℕ) :
+    ((cascadeQ rad ic i N : ℚ) : ℝ)
+      = cascade (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) i N := by
+  unfold cascadeQ cascade
+  rw [Rat.cast_prod]
+  exact Finset.prod_congr rfl fun j _ => icBranchQ_cast rad ic j
+
+/-- Plan §8.1 cast bridge. -/
+theorem emitYieldQ_cast (rad ic : ℕ → ℚ) (i N : ℕ) :
+    ((emitYieldQ rad ic i N : ℚ) : ℝ)
+      = emitYield (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) i N := by
+  unfold emitYieldQ emitYield
+  rw [Rat.cast_mul, radBranchQ_cast, cascadeQ_cast]
+
+/-- Plan §8.1 cast bridge. -/
+theorem fluoYieldQ_cast (rad ic : ℕ → ℚ) (N : ℕ) :
+    ((fluoYieldQ rad ic N : ℚ) : ℝ)
+      = fluoYield (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) N := by
+  unfold fluoYieldQ fluoYield
+  rw [Rat.cast_sum]
+  exact Finset.sum_congr rfl fun i _ => emitYieldQ_cast rad ic i N
+
+/-- Plan §8.1 cast bridge. -/
+theorem upperYieldQ_cast (rad ic : ℕ → ℚ) (N : ℕ) :
+    ((upperYieldQ rad ic N : ℚ) : ℝ)
+      = upperYield (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) N := by
+  unfold upperYieldQ upperYield
+  rw [Rat.cast_sum]
+  exact Finset.sum_congr rfl fun i _ => emitYieldQ_cast rad ic i N
+
+/-- Plan §8.1 cast bridge: the rational criterion transfers to the real one. -/
+theorem kashaWithinQ_iff_cast {rad ic : ℕ → ℚ} {tol : ℚ} {N : ℕ} :
+    KashaWithinQ rad ic tol N ↔
+      KashaWithin (fun k => (rad k : ℝ)) (fun k => (ic k : ℝ)) (tol : ℝ) N := by
+  unfold KashaWithinQ KashaWithin
+  rw [← upperYieldQ_cast, ← fluoYieldQ_cast, ← Rat.cast_mul]
+  exact (Rat.cast_le (K := ℝ)).symm
+
 end Kasha
 
 end PhotoLean
