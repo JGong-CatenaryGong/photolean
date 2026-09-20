@@ -288,6 +288,15 @@ theorem kashaWithin_one_mono_ic {rad ic rad' ic' : ℕ → ℝ} {tol : ℝ} (h :
     exfalso
     have hdec1 : decay rad ic 1 = 0 := by rw [decay, hrad1, hic1, add_zero]
     exact absurd hdec1 (ne_of_gt hd1)
+/-! ## The strict side, attainment, and the boundary (plan §6.2) -/
+
+/-- Plan §6.2 #9 — the strict failure side of the threshold, the contrapositive of row #2 (with
+the same statement correction: `0 < decay rad ic 1`). -/
+
+theorem not_kashaWithin_one_of_ratio_lt {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < decay rad ic 0)
+    (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1)
+    (h : funnelRatio rad ic < (1 - tol) / tol) : ¬ KashaWithin rad ic tol 1 := fun hW =>
+  absurd ((kashaWithin_one_iff_ratio h0 h1 htol hr).mp hW) (not_le.mpr h)
 
 end Kasha
 
