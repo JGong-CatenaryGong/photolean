@@ -560,13 +560,14 @@ internal-conversion rate for any of these molecules. What was found instead:
 | S₁ radiative rates, other PAHs | anthracene **3.3–3.7 × 10⁷**, phenanthrene **3.2 × 10⁷**, tetracene 6.3–7.7 × 10⁷, dibenzothiophene 1.4–2.9 × 10⁷, fluorobenzene 0.27–1.8 × 10⁷ s⁻¹ | same thesis table, printed p. 69 | `secondary (via that table)` |
 | **S₂→S₁ internal conversion, pyrene** | time constant "about **150–300 fs**" (⇒ k_IC ≈ 3–7 × 10¹² s⁻¹, **this record's inversion**) | quoted inside Wega & Vauthey, *J. Phys. Chem. A* **130**, 2148–2157 (2026) (OA, `PMC12990110`); the primary measurement is F. V. R. Neuwahl, P. Foggi, *Laser Chem.* **19**(1–4), 375–379 (1999), DOI `10.1155/1999/37692` | **`secondary (via Wega & Vauthey 2026)`**; primary `not-accessed` (Hindawi/Wiley 403, Wayback down) |
 | the classical PAHs' relation to the rules | "**Major deviations from Vavilov's law** have … been observed for solutions of **benzene**, …, **naphthalene** …" and "weak **S₂→S₀ fluorescence has been observed in benzene, …, naphthalene, pyrene, …**" | Birks 1976, **printed p. 392** (§R1.1.3, §R1.2.3) | `first-hand` |
-| qualitative mechanism | S₂→S₁ IC "typically … in the range of picoseconds" outcompetes higher-state fluorescence | Veys 2023 thesis, **printed p. 3** | `first-hand` (typical-range statement) |
+| ⭐ **upper-singlet lifetime, perylene** | "**A long 0.9 ps lifetime** of the upper excited singlet state in perylene is resolved by femtosecond pump–probe measurements under ultraviolet (4.96 eV) excitation and further validated by theoretical simulations of transient absorption kinetics" ⇒ total upper-state decay ≈ 1.1 × 10¹² s⁻¹ (**this record's inversion**) | W. Ni, G. G. Gurzadyan, L. Sun, M. F. Gelin, "Toward efficient photochemistry from upper excited electronic states: Detection of long S₂ lifetime of perylene", *J. Chem. Phys.* **155**, art. 191102 (2021), DOI `10.1063/5.0069398` — **abstract read first-hand here through the Crossref record** | **`abstract-only, first-hand`** (the body is closed; no repository copy). ⚠️ A **0.9 ps** upper-state lifetime in a classical PAH is precisely the "long-lived S₂" regime the plan's K4 window is about — yet the datum still **cannot close a row**, because `rad 1` (the S₂ radiative rate) or Φ(S₂) is not printed, so `ic 1/rad 1` remains unknown |
+| qualitative mechanism | S₂→S₁ IC "typically … in the range of picoseconds" outcompete higher-state fluorescence | Veys 2023 thesis, **printed p. 3** | `first-hand` (typical-range statement) |
 
-⚠️ **The decisive point is the last two rows, not the missing numbers**: the literature that states
-the rules also states that these very molecules **weakly violate them** (weak S₂ emission observed;
-Vavilov-law deviations). A classical PAH is therefore **not** a "Kasha-conforming" instance in the
-exact sense — it conforms only *within a tolerance*, which is precisely the plan's §1.3 structural
-point and must be said in `RESULTS.md` if these molecules are mentioned at all.
+⚠️ **The decisive point is the "relation to the rules" row, not the missing numbers**: the literature
+that states the rules also states that these very molecules **weakly violate them** (weak S₂ emission
+observed; Vavilov-law deviations). A classical PAH is therefore **not** a "Kasha-conforming" instance
+in the exact sense — it conforms only *within a tolerance*, which is precisely the plan's §1.3
+structural point and must be said in `RESULTS.md` if these molecules are mentioned at all.
 
 **Formalizable implication of §R1.5.**
 - **I10 can be delivered, but not with a classical PAH**: use **4,6,8-trimethylazulene** (§R1.5.1)
