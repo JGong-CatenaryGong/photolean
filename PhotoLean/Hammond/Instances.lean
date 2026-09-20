@@ -222,6 +222,12 @@ of H1's `not_reactionRegion_of_nonpos`. -/
 theorem inst_I8_nonphysical_no_region : ¬ ReactionRegion (-(1 / 2)) 1 :=
   not_reactionRegion_of_nonpos (by norm_num : (-(1 / 2) : ℝ) ≤ 0)
 
+/-! ## I9 — the Hammond direction on the literature MCC pair -/
+/-- I9: going from `x = 3/5` to `x = 12/5` lowers the transition-state coordinate — the Hammond
+direction, instantiated from H2's `tsCoord_antitone` (no new arithmetic). -/
+theorem inst_I9_mcc_structural_monotone : tsCoord (6 / 5) (12 / 5) < tsCoord (6 / 5) (3 / 5) :=
+  tsCoord_antitone (by norm_num : (0 : ℝ) < 6 / 5) (by norm_num : (3 / 5 : ℝ) < 12 / 5)
+
 end Hammond
 
 end PhotoLean
