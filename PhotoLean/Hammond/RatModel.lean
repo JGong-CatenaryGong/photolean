@@ -97,6 +97,18 @@ theorem lefflerSecantQ_cast {lam x₁ x₂ : ℚ} (h : x₁ ≠ x₂) :
   push_cast
   rw [gapReactantQ_cast, gapReactantQ_cast]
 
+/-- Transfer: the rational classifier agrees with the real one — this is what makes an
+instance verdict binding for the real theory.
+
+Both sides are the *same* seven-branch `if`-chain, so the only work is moving the six ℝ-side
+tests (`↑x = ↑lam`, `↑x = -↑lam`, `↑x < -↑lam`, `↑lam < ↑x`, `↑x = 0`, `0 < ↑x`) back to ℚ:
+`unfold` the two definitions and run `norm_cast`, which handles the literal `0` and normalises
+`-↑lam` through `Rat.cast_neg`. No hypotheses: the degenerate `lam = 0` branch transfers too. -/
+theorem hammondZoneQ_eq_hammondZone (lam x : ℚ) :
+    hammondZoneQ lam x = hammondZone (lam : ℝ) (x : ℝ) := by
+  unfold hammondZoneQ hammondZone
+  norm_cast
+
 end Rat
 
 end Hammond
