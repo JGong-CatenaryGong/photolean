@@ -284,6 +284,40 @@ itself. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
 theorem inst_I8_exists_optimal : ∃ dE : ℝ, Optimal (apex (1 / 2) 0 1 1) dE :=
   ⟨apex (1 / 2) 0 1 1, rfl⟩
 
+/-! ## I9–I12 — the literature rows (plan §8.2)
+
+The printed numbers of this block are PREMISES: they are read from the sources recorded in
+`theories/Sabatier/LITERATURE.md` (Nørskov et al. 2005 Table I with Eq. [8] for the HER descriptors;
+Man et al. 2011 Eq. 4.16–4.18 for the OER scaling and overpotential). What the kernel checks is the
+verdict and the model arithmetic at those descriptors, on the symmetric reference volcano of I1 (apex
+`dE = 0`, the literature's own reading that `ΔG_H* = 0` separates the two legs). -/
+
+/-- I9 (literature row, HER — the number is a premise, the verdict is kernel-checked): the reported
+`ΔG_H*` of Pt is `-0.09` eV (Nørskov et al. 2005, Table I with Eq. [8] `ΔG_H* = ΔE_H + 0.24 eV`;
+`[arith]` in `theories/Sabatier/LITERATURE.md` §R2.1; the axis convention is plan §2). Read against
+the symmetric reference volcano (apex at `dE = 0`, the literature's own reading "ΔG_H* = 0 separates
+the two legs"), Pt binds too strongly. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I9_zone_Pt :
+    sabatierZone (apex (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(9 / 100)) = SZone.tooStrong := by
+  rw [sabatierZone_eq_tooStrong_iff]
+  unfold apex
+  norm_num
+
+/-- I9: Pt is within the 10 %-of-1 tolerance band of the apex (`9/100 ≤ 1/10`). Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I9_nearOptimal_Pt :
+    NearOptimalQ (1 / 10) (apexQ (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(9 / 100)) := by
+  unfold NearOptimalQ apexQ
+  norm_num [abs_of_nonneg]
+
+/-- I9: the barrier of Pt on the reference volcano (`109/200` — the pass height `1/2` plus `9/200`,
+i.e. half of the descriptor's distance from the apex). Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I9_barrier_Pt :
+    volcanoBarrier (1 / 2) (1 / 2) (1 / 2) (1 / 2) (-(9 / 100)) = 109 / 200 := by
+  simp only [volcanoBarrier, branchUp, branchDown]
+  norm_num
+
 end Sabatier
 
 end PhotoLean
