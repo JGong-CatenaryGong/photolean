@@ -2733,3 +2733,64 @@
 - Disposition: F1–F12 all folded into commits on the same day (probe witnesses, plan/board counts,
   API-log annotation, docstring qualifications, dead-code removal, acceptance-record row); the S1 rows
   were ticked only after this PASS.
+
+
+## 2026-09-21 — Sabatier verification history (runs 2/3/4): the mathematics passed three times, the documentation plane failed twice — verifier + lead — CLOSED
+
+- Scope: run 2 = milestones S2/S3/S4/S5a (64 authority rows); run 3 = S5b (38 rows) + the frozen whole
+  tree + the documentation plane; run 4 = targeted re-audit of the run-3 findings' disposal.
+- Mathematics verdicts (all independently reproduced by the verifiers, not trusted from reports):
+  run 2 **PASS** (64/64 axiom rows in `ALLOWED_AXIOMS`; a 425 250-point exact-rational brute force of
+  `volcano_descriptor_iff` with **0 counterexamples**; hypothesis-necessity witnesses for every
+  load-bearing premise; proof-term anti-circularity dumps; clean-archive rebuild PASS), run 3
+  **mathematics PASS** (38/38 axiom rows; an independently written exact-rational script plus a kernel
+  `#eval` probe reproduced every one of the 38 instance numbers; bare whole-tree gate PASS;
+  `defaultTargets` 35/35 coverage; one-shot axioms over 107 theorems + 27 definitions inside the
+  allowed set), run 4 confirmed the declaration planes were token-identical to the revision whose
+  mathematics had passed. **No delivered declaration was ever invalidated.**
+- What worked (reusable):
+  1. **Independent brute force of the headline `iff`**: 2 025 rational parameter tuples × 210
+     descriptor values, both directions, zero counterexamples — the cheapest possible evidence that a
+     sharpness claim is not subtly off in a sign region the authors never tested.
+  2. **Anti-circularity by proof-term dump**: `#print … with pp.proofs true` on the five headline
+     rows showed real computations (`Decidable.byContradiction`, `let_fun`, `field_simp`-style terms)
+     and zero self-references — the check that a "sharpness theorem" is not a definitional restatement.
+  3. **Gate-sensitivity controls**: a scratch `sorry` really does surface `[sorryAx]` and a custom
+     `axiom` really does propagate into a footprint, so the gate is not blind; conversely the gate's
+     one real blind spot (`constant` declarations) was found by inspecting the *scan regex*, i.e. the
+     gate was audited like a statement.
+  4. **Comment-only edits proven, not asserted**: after every documentation fix the declaration plane
+     was re-derived with an independent comment-stripper (chunk-wise, at two revisions) — the kasha
+     "token stream identical" discipline, now mechanical.
+- Tried and FAILED (mandatory column):
+  1. **The documentation plane failed again — third theory in a row.** The mathematics passed at every
+     round; the plane failed on: two *false arithmetic identities* inside blueprint docstrings
+     (`max (1/4) (1/4) = 1/2`, `max (7/12) (2/3) = 7/12 = 21/36` — the theorems were right, the
+     comments were wrong); **three counts measured at an older revision** (lines 2 134 vs 2 126,
+     commits 68 vs 70, private helpers 37 vs 36 — every one of them was correct when first written and
+     stale afterwards); a citation pointing at a section that does not contain the claim; a stale
+     status header; and an **anticipatory verdict** ("the runs and their verdicts are recorded") for
+     runs that did not exist yet — the identical defect that failed the kasha closeout twice.
+     Standing rule: **never write a count without pinning it to a revision, and never write a verdict
+     before the run reports.**
+  2. **Disposing of findings introduced new findings** (run 4's R1–R7): the bilingual half-drift
+     reappeared (the English half of `RESULTS.md` kept "37" after the Chinese half was fixed — the
+     kasha lesson "the two halves are one artifact and must be edited in one pass" held again); one
+     replacement section number was wrong (§R1.2.3 instead of §R1.2.2); a "transcribed" leftover
+     survived three grep passes because the searches were run per-file instead of over the whole
+     theory directory; and the anticipatory-verdict sentence was reintroduced *by the fix for it*.
+     Standing rule: dispose of a finding with a **pattern grep over the whole theory**, then re-read
+     every edited sentence in both halves.
+  3. **A gate extension created its own false positive**: adding `(axiom|constant)` to
+     `proofs/scripts/check.sh` immediately tripped on a prose line inside a block comment
+     (`Sharp.lean`), which had to be reworded. The scan's anchor keeps it to line-initial tokens, but
+     the episode is the third instance of the engine's oldest lesson: **the coverage of a checker is a
+     claim that must be re-measured after every change to the checker.**
+  4. **The instance-layer sign convention** (S5b): the first authority draft classified the catalyst
+     at `dE = 0` of the apex-`2/3` series as *too weak*; on the "more negative = stronger binding"
+     axis it is on the *too-strong* side, and the row was unprovable. Caught by the kernel-independent
+     rational cross-check before any delivered file carried it; logged in `plan.md` §3.1.
+- Verification history (recorded in `theories/Sabatier/TASKS.md` § "Acceptance records"): four runs —
+  S1 (PASS, 12 findings F1–F12), S2–S5a (PASS, F1–F4, no HIGH), S5b + tree + docs (mathematics PASS /
+  documentation FAIL, V1–V14), disposal re-audit (PASS after R1–R7). Every finding of every run is
+  recorded with its disposition; none invalidated a delivered theorem.

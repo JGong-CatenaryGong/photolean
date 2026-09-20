@@ -10,7 +10,8 @@
 > S3 11/11, S4 13/13, S5a 21/21, S5b 38/38 word-for-word against the authority, 107/107 theorems
 > kernel-complete, whole-tree gate PASS. Verifier runs: run 1 (S1) PASS, run 2 (S2/S3/S4/S5a) PASS,
 > run 3 (S5b + frozen tree + documentation plane) mathematics PASS with documentation findings
-> V1–V14, all disposed and re-checked in run 4. Milestone status is tracked on the board
+> V1–V14, disposed and confirmed by run 4's targeted re-audit (residual items R1–R7 then disposed;
+> no delivered declaration was ever invalidated). Milestone status is tracked on the board
 > `theories/Sabatier/TASKS.md` — that file is the single source of truth, this file is the plan of
 > record.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/Sabatier/TASKS.md`; experience bank
@@ -111,7 +112,8 @@ excluded) do not state it as a kinetic law (§12).
   beyond the Arrhenius proxy `exp(-Ea/(kB*T))`, no prefactor dependence, no scaling relations
   between several descriptors, no d-band model.
 - **No claim about measured rates.** Literature descriptors enter as *printed numbers with
-  provenance*, transcribed as rationals; the instances decide statements about those numbers, not
+  provenance*, carried into the statements as exact rationals (the `ΔG_H*` rows by the source's own
+  Eq. [8] from its printed `ΔE_H`; the record's `[arith]` column); the instances decide statements about those numbers, not
   about the experiments (§8.2, §12).
 - **No `sorry`, no custom `axiom`** in delivered files (enforced by `proofs/scripts/check.sh
   --strict` and `axioms.sh`).
@@ -122,7 +124,7 @@ excluded) do not state it as a kinetic law (§12).
 
 Axis convention (the literature's `ΔG_H* = ΔE_H + 0.24 eV`, Nørskov 2005 Eq. [8]): the descriptor is
 the **free** binding energy `ΔG_H*`, so that the ideal HER catalyst sits at `dE = 0` in the
-literature's own reading (LITERATURE.md §R2.1, and §R1.2.3 for the axis note: on the raw `ΔE_H` axis the apex would be at
+literature's own reading (LITERATURE.md §R2.1, and §R1.2.2 for the axis note: on the raw `ΔE_H` axis the apex would be at
 `dE = -0.24`; §R4 carries the delegated-parcel state, not the axis note). Sign convention: more negative `dE` = stronger binding.
 
 | symbol | Lean | meaning |
@@ -308,8 +310,9 @@ Two kinds of rows, kept apart on purpose (§12):
   the OER apex `1.60 eV = 3.20/2` (three printed loci, LITERATURE.md §R4), the two-parabola
   cross-check `apexPar 1 4 = 2/3`, the symmetric-cycle rows, the tolerance verdict on the asymmetric
   series (`NearOptimal`, plus the penalty bound instance);
-- **literature rows** — numbers transcribed from a printed source with provenance (HER `ΔG_H*` per
-  metal on the `ΔG_H* = ΔE_H + 0.24 eV` axis: Pt `-0.09`, Ir `+0.03`, Pd `-0.14`, Rh `-0.10`,
+- **literature rows** — numbers DERIVED from a printed source: its printed `ΔE_H` plus `0.24 eV` by
+  the source's own Eq. [8] (the record's `[arith]` column, `LITERATURE.md` §R2.1 — not a transcribed
+  `ΔG_H*`, since no source prints that column) (HER, per metal on that axis: Pt `-0.09`, Ir `+0.03`, Pd `-0.14`, Rh `-0.10`,
   Ni/Co `-0.27`, Mo `-0.37`, W `-0.43`, Cu `+0.19`, Ag `+0.51`, Au `+0.45`, Nb `-0.56` eV; Nørskov
   et al. 2005 Table I with Eq. [8], arithmetic marked `[arith]` in the literature record). These are
   rows where the *number* is a premise and the *verdict* is kernel-checked.
@@ -340,7 +343,7 @@ same commit as the module (a module that is not in the default targets is an acc
 | `Real.sqrt` algebra in `apexPar` (S4) | open | risk sketch in the dispatch (substitute `λ = s²`, both parabolas equal `((s1²+s2²)/(2(s1+s2)))²`); `√` API calibrated (`sqrt_pos_of_pos`, `sq_sqrt`, `sqrt_mul`) |
 | the ℚ→ℝ transfers do not commute with `max`/`/` | closed by calibration | `Rat.cast_max`, `Rat.cast_lt`, `unfold …Q …; push_cast; ring`, `unfold zoneQ zone; norm_cast` — kernel-verified recipes in `proofs/API-NOTES.md` |
 | the tolerance bound silently assumes `0 ≤ tol` | controlled | `NearOptimal` is a closed band; the bound is proven with the sign of `tol` derived from the hypothesis, not assumed; `exists_nearOptimal` carries `0 ≤ tol` explicitly |
-| literature numbers transcribed as theorems | guarded | the two-tier instance design (§8.2, §12); each number carries its printed locus in the docstring |
+| literature numbers presented as theorems | guarded | the two-tier instance design (§8.2, §12); each number carries its printed locus in the docstring |
 | concurrent writers on one file | n/a | one owner per file (§9); commits touch exactly one source path |
 
 ## 11. Acceptance criteria and gate commands
@@ -397,7 +400,7 @@ an independent `verifier` PASS recorded on the board. A worker's report is not a
 6. The two-parabola composition (S4) identifies the two steps' reaction energies with the descriptor
    and its negative; a general two-step cycle with a non-zero overall driving force is not treated.
 7. No claim is made about any *measured* rate or any *specific* real catalyst beyond the transcribed
-   numbers and the model's verdict on them.
+   source numbers (and the Eq. [8] conversion where stated) and the model's verdict on them.
 
 ## 14. Leaves
 

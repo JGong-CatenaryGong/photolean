@@ -136,8 +136,11 @@ if [ ${#SRC_ARGS[@]} -gt 0 ]; then
   # （误报比漏报安全：宁可让人确认一次，不可放过真的 sorry）。
   # English: (a false positive is safer than a miss: better to have a human confirm once than to let a genuine hit through).
   # `constant` is matched alongside `axiom`: in Lean 4 `constant` declares an axiom (same trust
-  # surface), and the original alternation let it through (verifier run 3, finding V14; measured
-  # 2026-09-21: no line-start occurrence in `PhotoLean/`, so the extension adds no false positive).
+  # surface), and the original alternation let it through (verifier run 3, finding V14). Measured
+  # 2026-09-21: the extension first produced exactly one false positive — a prose line beginning
+  # with the word (Sharp.lean, in a block comment) — which was reworded in the same commit; the
+  # anchor keeps matching line-start declarations only, so future prose must avoid a line-initial
+  # `constant` just as it must avoid a line-initial `axiom`.
   HITS="$(grep -rn --include='*.lean' -E 'sorry|admit|^[[:space:]]*(private[[:space:]]+|protected[[:space:]]+)?(axiom|constant)([[:space:]]|$)' "${SRC_ARGS[@]}" 2>/dev/null \
     | grep -vE ':[0-9]+:[[:space:]]*--' || true)"
 fi

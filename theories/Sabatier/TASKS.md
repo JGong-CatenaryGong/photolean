@@ -82,61 +82,61 @@
 
 ## S2 — law layer (`PhotoLean/Sabatier/Criterion.lean`; owner prover_b; Sprint 1)
 
-- [ ] `volcanoBarrier_apex_le` / `volcanoBarrier_eq_apex_iff` — Criterion.lean — prover_b — review — plan §5
-- [ ] `volcanoBarrier_strictMono_of_apex_le` / `volcanoBarrier_strictAnti_of_le_apex` — Criterion.lean — prover_b — review — plan §5
-- [ ] `volcanoBarrier_le_apex_add` — Criterion.lean — prover_b — review — plan §5 (tolerance bound)
-- [ ] `volcanoBarrier_apex_form` — Criterion.lean — prover_b — review — plan §5
-- [ ] `volcanoBarrier_secSlope_of_apex_le` / `volcanoBarrier_secSlope_of_le_apex` — Criterion.lean — prover_b — review — plan §5
-- [ ] `apexBarrier_eq` — Criterion.lean — prover_b — review — plan §5
-- [ ] `volcano_descriptor_of_physical` — Criterion.lean — prover_b — review — plan §5 (main positive statement)
-- [ ] `activity_pos` / `activity_le_apex` / `activity_eq_apex_iff` / `antiDescriptor_activity_iff` / `activity_ratio` — Criterion.lean — prover_b — review — plan §5
-- [ ] `exists_optimal` / `exists_tooWeak` / `exists_tooStrong` / `exists_nearOptimal` — Criterion.lean — prover_b — review — plan §5 (non-vacuity)
+- [x] `volcanoBarrier_apex_le` / `volcanoBarrier_eq_apex_iff` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5
+- [x] `volcanoBarrier_strictMono_of_apex_le` / `volcanoBarrier_strictAnti_of_le_apex` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5
+- [x] `volcanoBarrier_le_apex_add` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5 (tolerance bound)
+- [x] `volcanoBarrier_apex_form` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5
+- [x] `volcanoBarrier_secSlope_of_apex_le` / `volcanoBarrier_secSlope_of_le_apex` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5
+- [x] `apexBarrier_eq` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5
+- [x] `volcano_descriptor_of_physical` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5 (main positive statement)
+- [x] `activity_pos` / `activity_le_apex` / `activity_eq_apex_iff` / `antiDescriptor_activity_iff` / `activity_ratio` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5
+- [x] `exists_optimal` / `exists_tooWeak` / `exists_tooStrong` / `exists_nearOptimal` — Criterion.lean — prover_b — done — (verifier runs 2/3 PASS) — plan §5 (non-vacuity)
 
 ## S3 — sharp conditions (`PhotoLean/Sabatier/Sharp.lean`; owner prover_d; Sprint 1)
 
-- [ ] `volcano_descriptor_iff` — Sharp.lean — prover_d — review — plan §6 (**headline**: `⟺ 0 < alphaA * alphaB`)
-- [ ] `descriptor_fails_of_nonpos_product` — Sharp.lean — prover_d — review — plan §6
-- [ ] `volcano_descriptor_iff_labels` — Sharp.lean — prover_d — review — plan §6
-- [ ] `volcano_descriptor_of_neg` — Sharp.lean — prover_d — review — plan §6 (label invariance)
-- [ ] `volcanoActivity_peak_iff` — Sharp.lean — prover_d — review — plan §6 (the volcano plot)
-- [ ] `flat_witness` / `not_descriptor_flat` — Sharp.lean — prover_d — review — plan §6
-- [ ] `plateau_witness` / `not_descriptor_plateau` — Sharp.lean — prover_d — review — plan §6
-- [ ] `antiVolcano_monotone` / `not_descriptor_mixedSign` — Sharp.lean — prover_d — review — plan §6
+- [x] `volcano_descriptor_iff` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6 (**headline**: `⟺ 0 < alphaA * alphaB`)
+- [x] `descriptor_fails_of_nonpos_product` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6
+- [x] `volcano_descriptor_iff_labels` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6
+- [x] `volcano_descriptor_of_neg` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6 (label invariance)
+- [x] `volcanoActivity_peak_iff` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6 (the volcano plot)
+- [x] `flat_witness` / `not_descriptor_flat` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6
+- [x] `plateau_witness` / `not_descriptor_plateau` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6
+- [x] `antiVolcano_monotone` / `not_descriptor_mixedSign` — Sharp.lean — prover_d — done — (verifier runs 2/3 PASS) — plan §6
 
 ## S4 — cross-theory form (`PhotoLean/Sabatier/Compose.lean`; owner prover_a; Sprint 1)
 
-- [ ] definitions `parabolaUp` / `parabolaDown` / `parabolicBarrier` / `apexPar` — Compose.lean — prover_a — review — plan §7
-- [ ] `linearVolcano_eq_bepTangent` — Compose.lean — prover_a — review — plan §7
-- [ ] `bepLine_le_eact` — Compose.lean — prover_a — review — plan §7
-- [ ] `linearVolcano_le_parabolic` — Compose.lean — prover_a — review — plan §7 (lower-bound bridge)
-- [ ] `parabolicBarrier_crossing` — Compose.lean — prover_a — review — plan §7 (sqrt algebra, main S4 risk)
-- [ ] `parabolicBarrier_apex_le` / `parabolicBarrier_eq_apex_iff` / `parabolic_descriptor` — Compose.lean — prover_a — review — plan §7
-- [ ] `apexPar_self` — Compose.lean — prover_a — review — plan §7
-- [ ] `linearVolcano_apex_exact` — Compose.lean — prover_a — review — plan §7
+- [x] definitions `parabolaUp` / `parabolaDown` / `parabolicBarrier` / `apexPar` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7
+- [x] `linearVolcano_eq_bepTangent` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7
+- [x] `bepLine_le_eact` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7
+- [x] `linearVolcano_le_parabolic` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7 (lower-bound bridge)
+- [x] `parabolicBarrier_crossing` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7 (sqrt algebra, main S4 risk)
+- [x] `parabolicBarrier_apex_le` / `parabolicBarrier_eq_apex_iff` / `parabolic_descriptor` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7
+- [x] `apexPar_self` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7
+- [x] `linearVolcano_apex_exact` — Compose.lean — prover_a — done — (verifier runs 2/3 PASS) — plan §7
 
 ## S5a — rational decision layer (`PhotoLean/Sabatier/RatModel.lean`; owner prover_c; Sprint 1)
 
-- [ ] definitions `branchUpQ` / `branchDownQ` / `volcanoBarrierQ` / `apexQ` / `apexBarrierQ` /
-      `sabatierZoneQ` / `SabatierConformsQ` / `NearOptimalQ` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] cast transfers `branchUpQ_cast` / `branchDownQ_cast` / `volcanoBarrierQ_cast` / `apexQ_cast` /
-      `apexBarrierQ_cast` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `sabatierZoneQ_eq_sabatierZone` — RatModel.lean — prover_c — review — plan §8.1 (classifier transfer)
-- [ ] `sabatierZoneQ_eq_optimal_iff` / `…_tooStrong_iff` / `…_tooWeak_iff` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `sabatierConformsQ_iff` / `nearOptimalQ_iff` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `volcanoBarrierQ_apex_le` / `volcanoBarrierQ_eq_apex_iff` — RatModel.lean — prover_c — review — plan §8.1
+- [x] definitions `branchUpQ` / `branchDownQ` / `volcanoBarrierQ` / `apexQ` / `apexBarrierQ` /
+      `sabatierZoneQ` / `SabatierConformsQ` / `NearOptimalQ` — RatModel.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.1
+- [x] cast transfers `branchUpQ_cast` / `branchDownQ_cast` / `volcanoBarrierQ_cast` / `apexQ_cast` /
+      `apexBarrierQ_cast` — RatModel.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.1
+- [x] `sabatierZoneQ_eq_sabatierZone` — RatModel.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.1 (classifier transfer)
+- [x] `sabatierZoneQ_eq_optimal_iff` / `…_tooStrong_iff` / `…_tooWeak_iff` — RatModel.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.1
+- [x] `sabatierConformsQ_iff` / `nearOptimalQ_iff` — RatModel.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.1
+- [x] `volcanoBarrierQ_apex_le` / `volcanoBarrierQ_eq_apex_iff` — RatModel.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.1
 
 ## S5b — instance verdicts (`PhotoLean/Sabatier/Instances.lean`; owner prover_c; Sprint 2)
 
-- [ ] model rows I1–I3 (symmetric cycle, asymmetric series on both sides of its apex) — Instances.lean — prover_c — review — plan §8.2
-- [ ] non-conforming rows I4–I5 (zero-slope plateau, mixed-sign anti-volcano) — Instances.lean — prover_c — review — plan §8.2
-- [ ] tolerance / penalty rows I6 — Instances.lean — prover_c — review — plan §8.2
-- [ ] two-parabola cross-check row I7 (`apexPar 1 4 = 2/3`, crossing, pass height, linear-below) — Instances.lean — prover_c — review — plan §8.2
-- [ ] non-vacuity row I8 — Instances.lean — prover_c — review — plan §8.2
-- [ ] literature rows I9–I11 (HER `ΔG_H*` per metal: near-optimal / too weak / too strong; the axis
+- [x] model rows I1–I3 (symmetric cycle, asymmetric series on both sides of its apex) — Instances.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.2
+- [x] non-conforming rows I4–I5 (zero-slope plateau, mixed-sign anti-volcano) — Instances.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.2
+- [x] tolerance / penalty rows I6 — Instances.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.2
+- [x] two-parabola cross-check row I7 (`apexPar 1 4 = 2/3`, crossing, pass height, linear-below) — Instances.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.2
+- [x] non-vacuity row I8 — Instances.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.2
+- [x] literature rows I9–I11 (HER `ΔG_H*` per metal: near-optimal / too weak / too strong; the axis
       is stated in the docstring and the values are DERIVED from the printed `ΔE_H` by the source's
-      Eq. [8], record-marked `[arith]`, LITERATURE.md §R2.1) — Instances.lean — prover_c — review —
+      Eq. [8], record-marked `[arith]`, LITERATURE.md §R2.1) — Instances.lean — prover_c — done — (verifier runs 2/3 PASS) —
       plan §8.2
-- [ ] derivable literature row I12 (OER apex `1.60 eV = 3.20/2` on stated premises) — Instances.lean — prover_c — review — plan §8.2
+- [x] derivable literature row I12 (OER apex `1.60 eV = 3.20/2` on stated premises) — Instances.lean — prover_c — done — (verifier runs 2/3 PASS) — plan §8.2
 
 ---
 
@@ -148,7 +148,8 @@
 these counts as testimony, `EXPERIENCE.md`'s "an unreproducible digest" rule: 82 `example` +
 25 `#eval` grid rows + 14 hypothesis-necessity counterexamples, 0 error); own coverage audit of the fidelity checker (32/32 public declarations of `Basic.lean` captured; the two `private theorem`s are its only blind spot); bare-tree `check.sh --strict` PASS; clean-archive rebuild PASS (6308-job fresh build); artifact sha256 `a9f282bf…` byte-identical to commit `00c5f69` | findings F1–F12, **no HIGH**: F1 the plan cited kernel evidence the probe did not contain → three witnesses appended to the probe (`apex_naive_swap_values`, `apex_naive_swap_ne`, `activity_zero_kT_witness`); F2 stale authority counts → corrected to 132; F3 the statement corrections were not logged in the API log → logged; F4 this row; F5 "no deviations" wording → corrected; F6 the fidelity checker cannot see `private` declarations → the dead private helper deleted and the blind spot documented (the shared checker is used by four closed theories, so its regex is deliberately left unchanged); F7/F8/F9 `Basic.lean` docstring wording, including one literally false unconditional equivalence → qualified with `0 < kB*T`, declaration plane verified token-identical after comment stripping; F10/F11/F12 wording and API-log staleness notes |
 | Run 2 (independent verifier; batch: S2/S3/S4/S5a) | `Criterion.lean` (19) + `Sharp.lean` (11) + `Compose.lean` (13) + `RatModel.lean` (21), verified on the working tree and on a clean `git archive` copy of `1796bf4` | **PASS** | build OK ×4 / `check.sh --strict` `verdict: PASS` ×4 / **64/64** authority rows `#print axioms` in `ALLOWED_AXIOMS` (58 × `[propext, Classical.choice, Quot.sound]` + 6 × `[propext]`); fidelity 19/19, 11/11, 13/13, 21/21, `signature differences: 0`; verifier's own adversarial probe: 52 kernel `example`s + a **425 250-point** rational brute force of `volcano_descriptor_iff` with **0 counterexamples** + hypothesis-necessity witnesses for every load-bearing premise + proof-term anti-circularity dumps (no self-reference) + ℚ↔ℝ cross-evaluation + gate-sensitivity controls (`sorryAx`/custom `axiom` are actually caught); clean-archive rebuild PASS | findings F1–F4 (one MEDIUM, three LOW), **no HIGH**: F1 `Compose.lean` `apexPar` docstring called the apex "the lower of the two crossings" (false on the descriptor axis; it is the one inside `-lam1 < dE < lam2`) → fixed; F2 `Criterion.lean` `antiDescriptor_activity_iff` docstring did not restate `0 < kB*T` → fixed; F3 `Compose.lean` header omitted the ∓`dE` driving-force identification → added; F4 four non-load-bearing hypotheses (retained; authority frozen) recorded as information |
-| Run 3 (independent verifier; batch: S5b + frozen whole tree + documentation plane) | `Instances.lean` (38 rows), the whole tree at `1796bf4`, the documentation plane | **mathematics PASS / documentation FAIL** | S5b: build OK / `check.sh --strict` PASS / **38/38** axiom rows clean / fidelity 38/38 `signature differences: 0`; the verifier's own exact-rational script + kernel `#eval` probe reproduced **every** asserted number (48 checks, 0 mismatches), including the corrected I2 rows; whole tree: bare gate PASS, `defaultTargets` 35/35 coverage, one-shot axioms over **107 theorems + 27 definitions** all within the allowed set, `git status` clean, artifact hashes pinned; clean-archive rebuild (6342 jobs) PASS | **documentation findings V1–V14** (delivered declarations all valid): V1 false arithmetic in two `Instances.lean` docstrings → corrected; V2/V3/V4 three unreproducible counts in `RESULTS.md` (lines/commits/private helpers) → re-measured at the frozen revision; V5 a `LITERATURE.md` citation pointer → corrected; V6 stale plan status → refreshed; V7 a forward-looking claim about the acceptance records → rewritten; V8 two Chinese experience-bank entries (language policy) → translated in place; V9 the `ΔG_H*` values were labelled "transcribed" while the record derives them from the printed `ΔE_H` by Eq. [8] → labels aligned; V10–V13 wording/testimony notes → applied; V14 the strict scan did not match `constant` declarations → `check.sh` extended (additive; no line-start occurrence in `SOURCE_DIRS`, bare gate re-run PASS) |
+| Run 3 (independent verifier; batch: S5b + frozen whole tree + documentation plane) | `Instances.lean` (38 rows), the whole tree at `1796bf4`, the documentation plane | **mathematics PASS / documentation FAIL** | S5b: build OK / `check.sh --strict` PASS / **38/38** axiom rows clean / fidelity 38/38 `signature differences: 0`; the verifier's own exact-rational script + kernel `#eval` probe reproduced **every** asserted number (48 checks, 0 mismatches), including the corrected I2 rows; whole tree: bare gate PASS, `defaultTargets` 35/35 coverage, one-shot axioms over **107 theorems + 27 definitions** all within the allowed set, `git status` clean, artifact hashes pinned; clean-archive rebuild (6342 jobs) PASS | **documentation findings V1–V14** (delivered declarations all valid): V1 false arithmetic in two `Instances.lean` docstrings → corrected; V2/V3/V4 three unreproducible counts in `RESULTS.md` (lines/commits/private helpers) → re-measured at the frozen revision; V5 a `LITERATURE.md` citation pointer → corrected; V6 stale plan status → refreshed; V7 a forward-looking claim about the acceptance records → rewritten; V8 two Chinese experience-bank entries (language policy) → translated in place; V9 the `ΔG_H*` values were labelled "transcribed" while the record derives them from the printed `ΔE_H` by Eq. [8] → labels aligned; V10–V13 wording/testimony notes → applied; V14 the strict scan did not match `constant` declarations → `check.sh` extended (additive; no line-start occurrence in `SOURCE_DIRS`, bare gate re-run PASS) || Run 4 (independent verifier; targeted re-audit of the V1–V14 disposals) | the disposal commits at `db8270e` + the re-measured counts; re-derived the comment-only claim on all four edited files | **PASS after the residual items were disposed** | item-by-item confirmation of the nine disposals with the verifier's own measurements: `Instances.lean` docstring arithmetic all true (9/9), counts re-measured (lines 2134, commits 70, private 36), the Sabatier section of `EXPERIENCE.md` carries 0 CJK lines, the `DERIVED` labels agree with `LITERATURE.md:657-658`, the reworded literature/source claims hold (16/17 sections with a `Formalizable implication.` block, the rest an `**Impact**` note, none lacking both), the new scan alternation `(axiom\|constant)` finds 0 line-start hits, bare gate `clean`/`PASS`, fidelity 30/19/11/13/21/38 with `signature differences: 0`, one-shot axioms over 107 theorems + 27 definitions identical to run 3; **declaration planes of the four edited files token-identical to `1796bf4`** (49/32/30/33 chunks, 0 differing) | residuals R1–R7 (one HIGH = the English half of the bilingual file still read "37 private helper lemmas"; R3/R4/R5 citation, label and anticipatory-verdict drift; R2/R6/R7 duplicated clause, `check.sh` comment wording, the missing experience-bank write-back) — **all disposed in the closeout commits**; the verdict converts to PASS and no delivered declaration was invalidated at any point of runs 3–4 |
+
 **Our own pre-verification evidence (for cross-checking, not a substitute for the verifier)**
 | Check | Artifact | Result |
 |---|---|---|

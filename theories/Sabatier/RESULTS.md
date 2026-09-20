@@ -25,7 +25,7 @@
 `Compose.lean` (S4, the two-parabola / cross-theory form), `RatModel.lean` (S5a, the computable
 rational decision layer) and `Instances.lean` (S5b, the instance verdicts) — **2 134 lines** (`wc -l`, at revision `b57c8d1`)
 containing **134 public declarations: 107 theorems and 27 definitions/inductives** (26 `def` + 1
-`inductive`), plus 37 private helper lemmas. The statement authority
+`inductive`), plus 36 private helper lemmas. The statement authority
 `theories/Sabatier/probes/sabatier-statement-skeleton.lean` carries **132** of them (105 theorems +
 27 definitions/inductives); the remaining 2 are auxiliary theorems of the description layer
 (`branchDown_le_branchUp_of_apex_le`, `branchUp_le_branchDown_of_le_apex`). **Fidelity: 132/132 authority rows word for word, signature
@@ -282,7 +282,9 @@ an independent exact-rational recomputation of all 38 instance numbers, whole-tr
 **documentation plane FAIL** on findings V1–V14, which were then disposed (false docstring
 arithmetic corrected, three counts re-measured, provenance labels aligned with the literature
 record, the two Chinese experience entries translated, and the acceptance gate's scan extended to
-`constant`) and re-checked in verifier run 4. The run verdicts are recorded in
+`constant`). Verifier run 4 (the targeted re-audit of those disposals) confirmed them, reported the
+residual documentation items R1–R7 and found **no invalidated declaration**; R1–R7 were then disposed
+in the closeout commits. The run verdicts are recorded in
 `theories/Sabatier/TASKS.md` § "Acceptance records".
 
 *What the process caught (three corrections, all logged in `plan.md` §3.1).* (1) Two authority rows of

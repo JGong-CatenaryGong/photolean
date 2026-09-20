@@ -297,7 +297,6 @@ MODEL series, not a fitted one: its leg slope `1/2` is a modelling choice with n
 /-- I9 (literature row, HER — the number is a premise, the verdict is kernel-checked): the `ΔG_H*`
 of Pt is `-0.09` eV, DERIVED from the source's printed `ΔE_H = -0.33` eV by the source's own
 Eq. [8] `ΔG_H* = ΔE_H + 0.24 eV` (Nørskov et al. 2005, Table I; the record marks such values
-`[arith]` in `theories/Sabatier/LITERATURE.md` §R2.1;
 `[arith]` in `theories/Sabatier/LITERATURE.md` §R2.1; the axis convention is plan §2). Read against
 the symmetric reference volcano (apex at `dE = 0`, the literature's own reading "ΔG_H* = 0 separates
 the two legs"), Pt binds too strongly. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
