@@ -35,3 +35,10 @@ theorem hammond_descriptor_holds {lam : ℝ} (hlam : 0 < lam) : HammondDescripto
   intro x₁ x₂ h
   exact tsCoord_antitone hlam h
 
+/-- Exergonic reactions have reactant-like transition states. -/
+theorem reactantLike_iff {lam x : ℝ} (hlam : 0 < lam) : ReactantLike lam x ↔ 0 < x := by
+  have h2 : (0 : ℝ) < 2 * lam := by linarith
+  unfold ReactantLike tsCoord
+  rw [div_lt_iff₀ h2]
+  constructor <;> intro h <;> linarith
+
