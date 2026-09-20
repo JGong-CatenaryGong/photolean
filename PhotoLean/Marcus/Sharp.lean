@@ -56,4 +56,12 @@ theorem inverted_descriptor_holds {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < la
   fun x₁ x₂ h₁ h₂ =>
     rate_gt_of_barrier_lt (x := x₁) (y := x₂) hA hkT (barrier_mono_of_pos hlam (le_of_lt h₁) h₂)
 
+/-- 正常区描述成立：`A > 0 ∧ lam > 0 ∧ k_B·T > 0` ⇒ 正常区内速率随驱动力严格递增。
+依赖：`barrier_antitone_of_pos`（M2）+ `rate_gt_of_barrier_lt`（M3）。
+`h₀ : 0 ≤ x₁` 是**显式物理前提**（驱动力非负），数学上可由 `h₂ : x₂ ≤ lam` 推出。 -/
+theorem normal_descriptor_holds {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam)
+    (hkT : 0 < kB * T) : NormalDescriptor A lam kB T :=
+  fun x₁ x₂ h₀ h₁ h₂ =>
+    rate_gt_of_barrier_lt (x := x₂) (y := x₁) hA hkT (barrier_antitone_of_pos hlam h₀ h₁ h₂)
+
 end PhotoLean.Marcus
