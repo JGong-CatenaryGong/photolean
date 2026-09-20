@@ -340,6 +340,24 @@ theorem inst_I10_barrier_Au :
   simp only [volcanoBarrier, branchUp, branchDown]
   norm_num
 
+/-- I11 (literature row, HER): the reported `ΔG_H*` of W is `-0.43` eV (Table I, bcc(110); the source
+itself warns that the measured value for W/Mo/Nb is probably not representative of the metallic
+state — the caveat travels with the number). Too strong; inside a `1/2` band, which is the
+tolerance sensitivity the verdict layer exists to expose. Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I11_zone_W :
+    sabatierZone (apex (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(43 / 100)) = SZone.tooStrong := by
+  rw [sabatierZone_eq_tooStrong_iff]
+  unfold apex
+  norm_num
+
+/-- I11: W is inside the `1/2` tolerance band (`43/100 ≤ 1/2`). Plan locus:
+`theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I11_nearOptimal_W :
+    NearOptimalQ (1 / 2) (apexQ (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(43 / 100)) := by
+  unfold NearOptimalQ apexQ
+  norm_num [abs_of_nonneg]
+
 end Sabatier
 
 end PhotoLean
