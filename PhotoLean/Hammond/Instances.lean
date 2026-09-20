@@ -168,6 +168,18 @@ theorem inst_I6_mcc_inverted_notConforms : ¬ HammondConforms (6 / 5) (12 / 5) :
   rw [hz] at hd
   rcases hd with h | h | h <;> exact absurd h (by decide)
 
+/-- I6, Marcus cross-link: the same instance is exactly the Marcus inverted region. The proof goes
+through the ℚ classifiers: H5a's `hammondZoneQ_beyondReactant_iff_inverted` turns the zone verdict
+into `Marcus.Rat.zoneQ … = inverted`, and `Marcus.Rat.zoneQ_inverted_iff` turns that into the
+ℝ inequality `lam < x` (which is `Marcus.InvertedRegion` by definition). -/
+theorem inst_I6_mcc_inverted_region : Marcus.InvertedRegion (6 / 5) (12 / 5) := by
+  have hm : Marcus.Rat.zoneQ (6 / 5) (12 / 5) = Marcus.Zone.inverted :=
+    (Rat.hammondZoneQ_beyondReactant_iff_inverted (by norm_num : (0 : ℚ) < 6 / 5)).mp
+      inst_I6_mcc_inverted_zone
+  have hlt := (Marcus.Rat.zoneQ_inverted_iff (6 / 5) (12 / 5)).mp hm
+  unfold Marcus.InvertedRegion
+  norm_num at hlt ⊢
+
 end Hammond
 
 end PhotoLean
