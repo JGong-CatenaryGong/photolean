@@ -58,4 +58,25 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
   rw [zoneQ_eq_zone, zone_eq_inverted_iff]
   exact Iff.rfl
 
+/-! ## M5a 追加：数值转移引理（补 verifier 在 M3+M5a 验收中的发现 (b)）
+
+分类器有桥（`zoneQ_eq_zone`），但 ℚ 侧势垒 `barrierQ` 此前**没有任何伴随定理** ——
+相对 ℝ 理论它是一个未被约束的定义，M5b 若用 ℚ 侧势垒数值取证就会缺乏依据。
+下面补上**数值的桥**：ℚ 侧势垒经 cast 与 ℝ 侧 `barrier` 一致。
+
+**不需要任何前提**（含 `lam = 0` 的除零情形）：两侧的除法都走 Lean 的 `x / 0 = 0`
+约定，故退化点同样成立。取证见探针 `proofs/probes/marcus-prover_c2-scratch.lean`
+的 D 段（`lam = 0` / `lam = 1/2` / `lam = -3` 三条**无前提**版本）。
+
+**依赖边界**：本条**不**新增 `import`（M5a 按 plan §S2 只依赖 M1 的 `Basic.lean`）；
+因此 `lam = 0` 的 ℝ 侧退化值在证明内用一行 `simp [barrier]` 现算，
+而不去引用 M2 的 `barrier_zero_lam`（那会把 M5a 的依赖拉到 M2）。 -/
+
+/-- ℚ 侧势垒与 ℝ 侧势垒经 cast 一致 —— 让 `barrierQ` 与 ℝ 理论层挂上钩
+    （`zoneQ_eq_zone` 是分类器的桥；这是数值的桥）。--/
+theorem barrierQ_cast (lam x : ℚ) : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam : ℝ) (x : ℝ) := by
+  unfold barrierQ barrier
+  push_cast
+  ring
+
 end PhotoLean.Marcus.Rat
