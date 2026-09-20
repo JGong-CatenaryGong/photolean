@@ -217,6 +217,11 @@ the division convention `x / 0 = 0` (plan §13, assumption 5). -/
 theorem inst_I8_nonphysical_fails_zero : ¬ HammondDescriptor 0 :=
   hammond_fails_of_nonpos (by norm_num : (0 : ℝ) ≤ 0)
 
+/-- I8, point-level: with negative curvature no driving force satisfies the regime — an instance
+of H1's `not_reactionRegion_of_nonpos`. -/
+theorem inst_I8_nonphysical_no_region : ¬ ReactionRegion (-(1 / 2)) 1 :=
+  not_reactionRegion_of_nonpos (by norm_num : (-(1 / 2) : ℝ) ≤ 0)
+
 end Hammond
 
 end PhotoLean
