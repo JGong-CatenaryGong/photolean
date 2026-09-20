@@ -54,4 +54,26 @@ theorem rate_gt_of_barrier_lt {A lam kB T : ℝ} (hA : 0 < A) (hkT : 0 < kB * T)
   unfold rate
   exact mul_lt_mul_of_pos_left hexp hA
 
+/-! ## 定量形式（M3 §6，拉伸目标） -/
+
+/-- 定量形式：反转区抑制因子的指数形式。
+
+`rate y / rate x = exp ((Φx - Φy)/(kBT))` —— 即速率比只依赖势垒差，
+与前置因子 `A` 无关（`A ≠ 0` 正是为了约掉它）。
+
+证明：`unfold rate` → `mul_div_mul_left _ _ hA` 约掉 `A`
+→ `← Real.exp_sub` 合并两个 exp → `congr 1` 归结为纯代数
+→ `field_simp`（用 `hkT : kB*T ≠ 0` 清分母）+ `ring`。
+
+注：本条的假设是 `A ≠ 0` 与 `kB*T ≠ 0`（比 `rate_pos` / 核心引理的
+`0 < A` / `0 < kB*T` 弱），与 statement skeleton 逐字一致。 -/
+theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y : ℝ) :
+    rate A lam kB T y / rate A lam kB T x
+      = Real.exp ((barrier lam x - barrier lam y) / (kB * T)) := by
+  unfold rate
+  rw [mul_div_mul_left _ _ hA, ← Real.exp_sub]
+  congr 1
+  field_simp
+  ring
+
 end PhotoLean.Marcus
