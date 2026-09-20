@@ -66,7 +66,7 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
 
 **不需要任何前提**（含 `lam = 0` 的除零情形）：两侧的除法都走 Lean 的 `x / 0 = 0`
 约定，故退化点同样成立。取证见探针 `proofs/probes/marcus-prover_c2-scratch.lean`
-的 D 段（`lam = 0` / `lam = 1/2` / `lam = -3` 三条**无前提**版本）。
+的 D 段（`lam = 0` / `lam = 1/2` / `lam = -3` 三条**无前提**版本）与 E 段。
 
 **依赖边界**：本条**不**新增 `import`（M5a 按 plan §S2 只依赖 M1 的 `Basic.lean`）；
 因此 `lam = 0` 的 ℝ 侧退化值在证明内用一行 `simp [barrier]` 现算，
@@ -78,5 +78,12 @@ theorem barrierQ_cast (lam x : ℚ) : ((barrierQ lam x : ℚ) : ℝ) = barrier (
   unfold barrierQ barrier
   push_cast
   ring
+
+/-- 退化情形的显式变体：`lam = 0` 时 ℚ 侧势垒恒为 0（`x / 0 = 0` 约定）。
+经上面的数值桥退到 ℝ 侧再收，不另起一套计算。--/
+theorem barrierQ_zero_lam (x : ℚ) : barrierQ 0 x = 0 := by
+  apply (Rat.cast_inj (α := ℝ)).mp
+  rw [barrierQ_cast]
+  simp [barrier]
 
 end PhotoLean.Marcus.Rat
