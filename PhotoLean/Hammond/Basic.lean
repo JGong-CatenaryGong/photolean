@@ -127,3 +127,9 @@ theorem gapProduct_sub_gapReactant {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   field_simp
   ring
 
+/-- Reverse-reaction symmetry: the reverse of driving force `x` is the forward reaction
+of driving force `-x`. -/
+theorem gapProduct_eq_gapReactant_neg (lam x : ℝ) : gapProduct lam x = gapReactant lam (-x) := by
+  unfold gapProduct gapReactant
+  ring
+
