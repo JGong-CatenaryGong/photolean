@@ -23,7 +23,8 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.Hammond.Sharp", "PhotoLean.Hammond.Instances",
                   "PhotoLean.BEP.Basic", "PhotoLean.BEP.Criterion",
                   "PhotoLean.BEP.Compose", "PhotoLean.BEP.RatModel",
-                  "PhotoLean.BEP.Sharp", "PhotoLean.BEP.Instances"]
+                  "PhotoLean.BEP.Sharp", "PhotoLean.BEP.Instances",
+                  "PhotoLean.Kernel"]
 
 [[require]]
 name = "mathlib"
