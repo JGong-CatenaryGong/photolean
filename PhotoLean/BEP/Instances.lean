@@ -150,6 +150,11 @@ theorem inst_I4_forwardLimit_boundary :
 
 /-! #### I5 — reverse barrierless limit -/
 
+/-- I5 (`model-constructed`): reverse barrierless limit `λ = 2`, `x = -2` — boundary. -/
+theorem inst_I5_reverseLimit_zone : Rat.epQVerdict (2 : ℚ) (-2) = Rat.EPQVerdict.boundary := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
