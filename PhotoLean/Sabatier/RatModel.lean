@@ -315,6 +315,33 @@ theorem volcanoBarrierQ_apex_le {alphaA betaA alphaB betaB : ℚ} (hA : 0 < alph
     have hmul := mul_le_mul_of_nonneg_left h hA.le
     linarith
 
+/-- The rational apex is the *unique* global minimizer of the rational effective barrier: the rational
+volcano has a pointed pass, not a plateau. This is the computable counterpart of the S2 row
+`volcanoBarrier_eq_apex_iff`. Both hypotheses are consumed: the weak-binding case divides by `alphaA`,
+the strong-binding case by `alphaB`. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem volcanoBarrierQ_eq_apex_iff {alphaA betaA alphaB betaB : ℚ} (hA : 0 < alphaA)
+    (hB : 0 < alphaB) (dE : ℚ) :
+    volcanoBarrierQ alphaA betaA alphaB betaB dE
+        = volcanoBarrierQ alphaA betaA alphaB betaB (apexQ alphaA betaA alphaB betaB)
+      ↔ dE = apexQ alphaA betaA alphaB betaB := by
+  have hAB : 0 < alphaA + alphaB := by linarith
+  have hxA : volcanoBarrierQ alphaA betaA alphaB betaB (apexQ alphaA betaA alphaB betaB)
+      = branchUpQ alphaA betaA (apexQ alphaA betaA alphaB betaB) :=
+    volcanoBarrierQ_at_apexQ hAB.ne'
+  constructor
+  · intro hb
+    rcases le_total dE (apexQ alphaA betaA alphaB betaB) with h | h
+    · rw [volcanoBarrierQ_eq_branchDownQ_of_le_apexQ hAB h, hxA, apexQ_crossing hAB.ne'] at hb
+      unfold branchDownQ at hb
+      have hmul : alphaB * dE = alphaB * apexQ alphaA betaA alphaB betaB := by linarith
+      exact mul_left_cancel₀ hB.ne' hmul
+    · rw [volcanoBarrierQ_eq_branchUpQ_of_apexQ_le hAB h, hxA] at hb
+      unfold branchUpQ at hb
+      have hmul : alphaA * dE = alphaA * apexQ alphaA betaA alphaB betaB := by linarith
+      exact mul_left_cancel₀ hA.ne' hmul
+  · intro h
+    rw [h]
+
 end Sabatier
 
 end PhotoLean
