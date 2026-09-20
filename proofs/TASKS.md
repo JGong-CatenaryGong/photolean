@@ -65,11 +65,12 @@
 
 ## M4a — 锐利刻画（`PhotoLean/Marcus/Sharp.lean`；属主 prover_a；Sprint 4）
 
-- [ ] `inverted_descriptor_holds` — Marcus/Sharp.lean — prover_a — review — plan §7.1；commit e15e9d5
-- [ ] `normal_descriptor_holds` — Marcus/Sharp.lean — prover_a — review — plan §7.1；commit ccab8fe
-- [ ] `descriptor_fails_of_nonpos_lam` — Marcus/Sharp.lean — prover_a — review — plan §7.1；commit a520b0a
-- [ ] `descriptor_sharp`（**关键路径**；verifier 重点复核必要性两支）— Marcus/Sharp.lean — prover_a — review — plan §7.1；commit bfcbb6c
-- [ ] `inverted_descriptor_holds_of_neg`（拉伸；证明"速率正性"前提不可去）— Marcus/Sharp.lean — prover_a — review — plan §7.1；commit 67c42f5
+- [x] `inverted_descriptor_holds` — Marcus/Sharp.lean — prover_a — done — plan §7.1；commit e15e9d5
+- [x] `normal_descriptor_holds` — Marcus/Sharp.lean — prover_a — done — plan §7.1；commit ccab8fe
+- [x] `descriptor_fails_of_nonpos_lam` — Marcus/Sharp.lean — prover_a — done — plan §7.1；commit a520b0a
+- [x] `descriptor_sharp`（**关键路径**；verifier 重点复核必要性两支）— Marcus/Sharp.lean — prover_a — done — plan §7.1；commit bfcbb6c
+- [x] `inverted_descriptor_holds_of_neg`（拉伸；证明"速率正性"前提不可去）
+- [x] 必要性内部内核（4 条，不在骨架中）`sharp_A_pos` / `sharp_lam_pos_of_lt` / `sharp_lam_pos_of_eq` / `sharp_lam_pos` — Marcus/Sharp.lean — prover_a — done — plan §7.1；commit f28288b / 692763d / da9aa17 / df5b9f3（随 M4a 验收一并 PASS）— Marcus/Sharp.lean — prover_a — done — plan §7.1；commit 67c42f5
 
 ## M4b — 微观重组能正性（`PhotoLean/Marcus/Reorg.lean`；属主 prover_d；Sprint 1，**零依赖**）
 
@@ -122,6 +123,8 @@
 | M2 | `Barrier.lean`(9 条) | **PASS** | 四步门 + 9/9 `axioms.sh` 干净（另用唯一路径隔离探针独立重取）；9/9 语句与骨架逐字一致；8/8 提交各含恰一条定理、只含该文件；`c000996` 偏差**核实为真**（`barrier_nonneg` 内容确在其中，行数闭合 35+4+6+4+9+8+11+5+13 = 95 = 文件总行数）；三条对抗性内核检查全过（`barrier_antitone_of_neg` 方向/`mono_cases` 四支穷尽且 `lam=0` 支未混入/`barrier_min_at_lam` 真全局最小且前提必需） | **发现 A**：文件与 API-NOTES 共 3 处把 `h₁ : 0 ≤ x₁` 说成"可由其他前提推出" —— **错**（反例 `lam=1,x₁=-5,x₂=-4`），正确定性是"**未被使用**（unused）"；**发现 D**：`lam = 0` 分支依赖除零约定（形式约定，非物理事实）⇒ 已补进 plan §13 |
 
 | M3 + M5a | `Rate.lean`(6) + `RatModel.lean`(2 定理+2 定义) | **PASS / PASS** | 四步门 + 8/8 `axioms.sh` 干净（另用唯一路径隔离探针二次取证，含 5 个定义）；10/10 语句与骨架逐字一致（含定义体）；9/9 提交各含恰一条定理、只含属主文件；**三条对抗性内核检查**：正常区/反转区**方向**数值核对（0.852<0.939 升；0.368<0.779 降；峰=1.0）、`rate_ratio` 在 5 类边界赋值下全部成立且给出 `hA` 必要性反例（`A=0` 时等式假）、`zoneQ_eq_zone` 在 **16 组**含 `lam=0`/`lam<0` 的点上与 Python 期望三方一致 | **发现 (a)**：`plan.md §13` 第 4 行说 Lean 形态是 `0<kB ∧ 0<T`，实际交付用 `0 < kB*T`（乘积）⇒ 已改计划；**(b)** `barrierQ` 无伴随定理（相对 ℝ 理论未被约束）⇒ 已派补转移引理；**(c)** `normal_rate_increases` 的 `0 ≤ x₁` 数学多余（verifier 证了更强的无此前提版本）；**(d)** `plan.md §8.2` 表格 I2 行仍写 `by decide`（代码块已纠正）⇒ 已改；**(e)** M5b 实例若用 ℚ 侧势垒数值须先有转移引理 |
+
+| M4a | `Sharp.lean`(9 条，含主定理) | **PASS** | 门 + 9/9 `axioms.sh` 干净（打印名与请求名逐字相符）；**5/5 语句三方一致**（plan §7.1 / 骨架 / 交付，字符级比对 + 内核 `#check` 精化类型对照）；grep 0 命中（另查 `set_option/macro/elab/run_cmd/#eval/private/@[` 等"花招面"亦 0）；9/9 提交各含恰一条定理、只含 `Sharp.lean`；**对抗性**：`lam=0` 支由 4 条无前提 `example` 独立复现（`barrier 0 x = 0` ⇒ `rate ≡ A` ⇒ `A < A`），`lam<0` 支数值核对（`barrier(-1,0)=-1/4`、`barrier(-1,1)=-1` ⇒ 速率递增、与描述反向），组装用 `#print` 证明项确认 `lt_trichotomy` 三分支**都**被接上；**并用内核反例回答**："若删掉左边 `(∀x, 0<rate)` 合取项，定理即不成立"（反例 `A=lam=-1`） |
 
 **M2 发现 A 的关闭**：三处（`Barrier.lean` 头注释与 doc comment、`API-NOTES.md`）均已修正为
 "**证明未使用（unused）**"，并保留内核反例作为"典型误写"警示 ——
