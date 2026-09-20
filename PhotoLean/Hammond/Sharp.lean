@@ -63,6 +63,11 @@ holds exactly for positive curvature (`hammond_descriptor_holds` is H2's suffici
 theorem hammond_sharp (lam : ℝ) : HammondDescriptor lam ↔ 0 < lam :=
   ⟨hammond_lam_pos_of_descriptor, hammond_descriptor_holds⟩
 
+/-- Failure form: non-positive curvature kills the descriptor. -/
+theorem hammond_fails_of_nonpos {lam : ℝ} (hlam : lam ≤ 0) : ¬ HammondDescriptor lam := by
+  intro h
+  linarith [hammond_lam_pos_of_descriptor h]
+
 end Hammond
 
 end PhotoLean
