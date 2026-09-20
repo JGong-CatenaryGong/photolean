@@ -2527,7 +2527,7 @@
 
 ## 2026-09-21 — S4 microscopic / cross-theory volcano (`PhotoLean/Sabatier/Compose.lean`, 13 declarations) — prover_a — DONE
 
-- 目标 (goal): build the Sabatier volcano from the repository's own two-parabola model and relate it
+- Goal: build the Sabatier volcano from the repository's own two-parabola model and relate it
   to the S1 linear BEP volcano: tangent identity / pointwise lower bound / apex crossing / unique
   minimizer / symmetric-cycle exactness (`theories/Sabatier/plan.md` §7, authority
   `theories/Sabatier/probes/sabatier-statement-skeleton.lean` §S4).
@@ -2557,7 +2557,7 @@
      because `parabolaUp` was defined as `eact lam1 (-dE)` and not as the algebraically equal
      `(lam1 + dE)^2 / (4 * lam1)`. A definition written in the expanded form would have needed an
      extra `show`/`rw` at every call site.
-- 奏效 (what worked):
+- What worked:
   - `parabolicBarrier_crossing`: `unfold parabolaUp parabolaDown apexPar BEP.eact` → `set s1/s2` →
     `rw [h1sq, h2sq]` → `rw [show s2^2 * s1 - s1^2 * s2 = s1 * s2 * (s2 - s1) by ring]` →
     `rw [div_eq_div_iff h4s1 h4s2]` (explicit `4 * s_i ^ 2 ≠ 0` from `positivity`) → `field_simp` →
@@ -2575,7 +2575,7 @@
   - One-commit-per-lemma over an already-complete file: a throwaway script (in `/tmp`, never in the
     repo) truncated the final file at declaration boundaries into the 10 compiling intermediate
     states, built each one, committed, and finally restored the byte-identical full file.
-- 可复用模式 (reusable pattern): **for a `√λ`-parametrised geometry, substitute `s1 = √λ₁`, `s2 = √λ₂`
+- Reusable pattern: **for a `√λ`-parametrised geometry, substitute `s1 = √λ₁`, `s2 = √λ₂`
   once (after `unfold`), rewrite `λ_i = s_i^2` with `(Real.sq_sqrt h.le).symm`, and from then on work
   in pure algebra; keep the two bracket inequalities `-λ₁ < apex < λ₂` as the *only* bridge back to
   `Real.sqrt`.** Also: `div_eq_div_iff` + explicit nonzero denominators beats hoping `field_simp`'s
@@ -2601,60 +2601,74 @@
 
 ---
 
-## 2026-09-21 — S5a the ℚ decision layer (`PhotoLean/Sabatier/RatModel.lean`) — prover_c — DONE
+## 2026-09-21 — S5a the rational decision layer (`PhotoLean/Sabatier/RatModel.lean`) — prover_c — DONE
 
-- 目标：8 个 ℚ 镜像定义 + 11 条 cast 转移 + 2 条 ℚ 侧火山律
-  （`volcanoBarrierQ_apex_le`、`volcanoBarrierQ_eq_apex_iff`，都是 `0 < alphaA`、`0 < alphaB` 前提下的
-  全局/唯一极小），语句逐字取自 skeleton §S5a。
-- 试过且失败：
-  1. **两条 ℚ 律走 cast 转移路线**（两侧 `volcanoBarrierQ_cast`/`apexQ_cast` 后
-     `(Rat.cast_le (K := ℝ)).mp` 拉回）：放弃 —— 会把 S5a 绑到当时还没落地的 S2
-     `Criterion.lean`；直接 ℚ 重放（`branch_gapQ`/`apexQ_mul_ne`/`apexQ_crossing` + 私有分支识别引理）
-     完全不需要 ℝ。
-  2. `norm_num` 已把 `max a b = a` 化归成边条件 `b ≤ a`，此时再 `rw [max_eq_left]` 报
-     `did not find instance of the pattern ?m… ⊔ ?m…`；直接把边条件 `linarith` 收尾即可。
-  3. 逐 lemma 提交的脚本：中间态写成"header + 本条"而非**累积前缀** → `unknown identifier 'branchUpQ'`；
-     最后一个 block 自带文件尾 `end Sabatier / end PhotoLean` 又追加一次 footer →
-     `invalid 'end', insufficient scopes`（文件尾要从末块剥掉再统一追加）。
-- 奏效：`unfold Xq X; push_cast; ring`（分支/顶点）；`unfold volcanoBarrierQ volcanoBarrier;
-  rw [Rat.cast_max, branchUpQ_cast, branchDownQ_cast]`；`unfold sabatierZoneQ sabatierZone; norm_cast`
-  （分类器，无需 `split_ifs`）；`rw [← Rat.cast_sub, ← Rat.cast_abs]; exact (Rat.cast_le (K := ℝ)).symm`
-  （`nearOptimalQ_iff`）；两条律直接 ℚ 重放，唯一性两个分支各消费一个正性前提
-  （`mul_left_cancel₀ hB.ne'` / `hA.ne'`）。commit `7504736` … `ec02b09`（15 个）。
-- 可复用模式：**当 ℚ 侧结论与 ℝ 侧完全同形时，先试"直接 ℚ 重放"再考虑 cast 转移** —— ℝ 版本里
-  `max_le`/`field_simp`/`linarith` 的战术在 ℚ 上逐字可用，而 cast 路线会引入对未交付模块的依赖；
-  cast 只留给"ℚ 对象 vs ℝ 对象"的桥接行。
+- Target: 8 ℚ mirror definitions + 11 cast-transfer rows + the two ℚ-side volcano laws
+  (`volcanoBarrierQ_apex_le`, `volcanoBarrierQ_eq_apex_iff`, both global/uniqueness minimality under
+  `0 < alphaA`, `0 < alphaB`); statements taken word for word from the authority §S5a.
+- Tried and FAILED:
+  1. **Routing the two ℚ laws through cast transfers** (cast both sides with
+     `volcanoBarrierQ_cast`/`apexQ_cast`, then pull back with `(Rat.cast_le (K := ℝ)).mp`): abandoned —
+     it would have tied S5a to `Criterion.lean`, which had not landed yet; a direct ℚ replay
+     (`branch_gapQ`/`apexQ_mul_ne`/`apexQ_crossing` + private branch-identification lemmas) needs no ℝ
+     at all.
+  2. `norm_num` had already reduced `max a b = a` to the side condition `b ≤ a`, so a following
+     `rw [max_eq_left]` reported `did not find instance of the pattern ?m… ⊔ ?m…`; closing the side
+     condition with `linarith` is the right step.
+  3. The per-lemma commit script: intermediate states were written as "header + this lemma" instead of
+     a **cumulative prefix** → `unknown identifier 'branchUpQ'`; and the last block carried the file's
+     own `end Sabatier / end PhotoLean` footer, which the script appended again →
+     `invalid 'end', insufficient scopes` (strip the footer from the last block, append it once).
+- Worked: `unfold Xq X; push_cast; ring` (branches/apex); `unfold volcanoBarrierQ volcanoBarrier;
+  rw [Rat.cast_max, branchUpQ_cast, branchDownQ_cast]`; `unfold sabatierZoneQ sabatierZone; norm_cast`
+  (classifier, no `split_ifs` needed); `rw [← Rat.cast_sub, ← Rat.cast_abs];
+  exact (Rat.cast_le (K := ℝ)).symm` (`nearOptimalQ_iff`); the two laws by direct ℚ replay, each
+  uniqueness branch consuming one positivity premise (`mul_left_cancel₀ hB.ne'` / `hA.ne'`).
+  Commits `7504736` … `ec02b09` (15).
+- Reusable pattern: **when the ℚ-side statement is exactly the ℝ-side statement, try a direct ℚ replay
+  before a cast transfer** — `max_le`/`field_simp`/`linarith` work verbatim over ℚ, while the cast
+  route imports a dependency on modules that may not be delivered yet; keep casts for the genuine
+  "ℚ object vs ℝ object" bridge rows.
 
 ## 2026-09-21 — S5b the instance / verdict layer (`PhotoLean/Sabatier/Instances.lean`) — prover_c — DONE
 
-- 目标：38 条实例行（I1–I12：顶点、pass 高度、有效势垒、三区分类、容差判定、两条负控、双抛物线核对、
-  文献行 Pt/Au/W/OER），全部来自 skeleton §S5b（含 lead 修正后的 I2 行）。
-- 试过且失败：
-  1. `unfold volcanoBarrier apexBarrier branchUp branchDown apex` 是**单趟 delta**：被 `apexBarrier`
-     展开后新引入的 `volcanoBarrier` 不会被同一次 `unfold` 处理，`norm_num` 后残留
-     `⊢ 0 ≤ volcanoBarrier (1 / 2) 0 1 1 (2 / 3)`；改成幂等的 `simp only [<全部定义>]; norm_num`。
-  2. `rw [abs_of_nonneg (by norm_num)]` 在 abs 参数还是元变量时报 `unsolved goals ⊢ False`；
-     而单用 `norm_num` 只把参数化成数字、不化简 `|1/6| ≤ 1/2`。一条
-     `norm_num [abs_of_nonneg]` 同时收掉三条正号行和那条取反行。
-  3. **上游语句缺陷（lead 已修，不是我的失败路径但是本轮最贵的坑）**：I2 在 `dE = 0` 处原写
-     `tooWeak`。`(1/2, 0, 1, 1)` 的顶点是 `2/3`，`0 < 2/3` 在描述符轴上是**结合更强**的一侧
-     （约定：越负 = 结合越强），故应为 `tooStrong`；原行不可证。教训：写 zone 判定行时必须先算顶点、
-     再用"轴方向 = 结合强弱方向"核对符号，不能凭"0 是中性"直觉。
-- 奏效：
-  - **实例即定理时直接引用**：`descriptor_fails_of_nonpos_product (by norm_num)`（I4 势垒非火山）、
-    `antiVolcano_monotone dE₁ dE₂ h`（I5 单调）、`parabolicBarrier_crossing (by norm_num) (by norm_num)`
-    （I7 交点）—— 参数完全一致时，引用 S3/S4 已交付定理比重新计算更短也更"接理论"。
-  - 具体数值行：`simp only [volcanoBarrier, branchUp, branchDown, apex]; norm_num`（势垒/pass 高度）；
-    zone 行：`rw [sabatierZone_eq_<zone>_iff]; unfold apex; norm_num`（不需要 `split_ifs`）；
-    容差行：`unfold NearOptimalQ apexQ; norm_num [abs_of_nonneg]`；`√4 = 2` 先
-    `have h4 : Real.sqrt 4 = 2 := by rw [show (4:ℝ) = 2^2 by norm_num, Real.sqrt_sq (by norm_num)]`
-    再 `rw [h4, Real.sqrt_one]`。
-  - commit 按行组 12 个（`41d4881` … `27627fb`）；末状态与验证态字节一致。
-- 可复用模式：**具体实例行 = 定义展开后交给 `norm_num`；结构判定行 = 引用已交付定理**。这条分工让
-  实例层既短又不重复理论层的工作。另：`Instances.lean` 必须 `import PhotoLean.Sabatier.Compose`
-  （I7 行就写在 `apexPar`/`parabolicBarrier` 上）—— 派发时给的 import 清单少了这一项；
-  I8 的 `∃ dE, Optimal apexD dE` 用 `⟨apexD, rfl⟩` 收尾，从而**不必**引入 S2 `Criterion.lean`。
-
+- Target: 38 instance rows (I1–I12: apexes, pass heights, effective barriers, three-way zone
+  classification, tolerance verdicts, two negative controls, the two-parabola cross-check, and the
+  literature rows Pt/Au/W/OER), all from the authority §S5b (including the lead's corrected I2 rows).
+- Tried and FAILED:
+  1. `unfold volcanoBarrier apexBarrier branchUp branchDown apex` is a **single delta pass**: the
+     `volcanoBarrier` introduced by unfolding `apexBarrier` is not handled by the same `unfold`, so
+     after `norm_num` the goal retained `⊢ 0 ≤ volcanoBarrier (1 / 2) 0 1 1 (2 / 3)`; use the
+     idempotent `simp only [<all definitions>]; norm_num` instead.
+  2. `rw [abs_of_nonneg (by norm_num)]` reports `unsolved goals ⊢ False` while the `abs` argument is
+     still a metavariable, and plain `norm_num` only evaluates the argument without simplifying
+     `|1/6| ≤ 1/2`; a single `norm_num [abs_of_nonneg]` closes all three positive rows and the one
+     negated row at once.
+  3. **Upstream statement defect (fixed by the lead; the most expensive trap of the round)**: the I2
+     row originally claimed `tooWeak` at `dE = 0`. The apex of `(1/2, 0, 1, 1)` is `2/3`, and
+     `0 < 2/3` is on the MORE-strongly-binding side of the descriptor axis (convention: more negative
+     = stronger binding), so the row must be `tooStrong`; the original row was unprovable. Lesson:
+     before writing any zone row, compute the apex and check the sign against the axis direction of
+     the binding strength — never trust the intuition that "0 is neutral".
+- Worked:
+  - **When the instance IS a delivered theorem, cite it**: `descriptor_fails_of_nonpos_product
+    (by norm_num)` (I4, not a volcano), `antiVolcano_monotone dE₁ dE₂ h` (I5, monotone),
+    `parabolicBarrier_crossing (by norm_num) (by norm_num)` (I7, crossing) — with identical
+    parameters, citing the delivered S3/S4 theorems is shorter and keeps the instance layer tied to
+    the theory.
+  - Numeric rows: `simp only [volcanoBarrier, branchUp, branchDown, apex]; norm_num` (barriers and
+    pass heights); zone rows: `rw [sabatierZone_eq_<zone>_iff]; unfold apex; norm_num` (no
+    `split_ifs`); tolerance rows: `unfold NearOptimalQ apexQ; norm_num [abs_of_nonneg]`; for
+    `√4 = 2` first `have h4 : Real.sqrt 4 = 2 := by rw [show (4:ℝ) = 2^2 by norm_num,
+    Real.sqrt_sq (by norm_num)]`, then `rw [h4, Real.sqrt_one]`.
+  - 12 commits, grouped by instance row group (`41d4881` … `27627fb`); the end state is byte-identical
+    to the verified state.
+- Reusable pattern: **a concrete instance row = unfold the definitions and hand the goal to
+  `norm_num`; a structural verdict row = cite the delivered theorem.** That split keeps the instance
+  layer short and stops it from re-deriving the theory layer. Also: `Instances.lean` must
+  `import PhotoLean.Sabatier.Compose` (the I7 rows are stated about `apexPar`/`parabolicBarrier`) —
+  the dispatch's import list was missing it; and `∃ dE, Optimal apexD dE` closes with
+  `⟨apexD, rfl⟩`, so the module does **not** need S2's `Criterion.lean`.
 
 ## 2026-09-21 — Sabatier S2 (`PhotoLean/Sabatier/Criterion.lean`, 19 declarations) — prover_b — DONE
 

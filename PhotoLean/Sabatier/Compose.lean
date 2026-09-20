@@ -35,7 +35,8 @@ is the MAXIMUM of the two branch barriers (the modelling premise of S1, inherite
 follow the equal-curvature two-parabola model of `PhotoLean.BEP` with reorganization energies
 `lam1`, `lam2` held fixed across the compared family; the transition state is the classical crossing
 point (no tunnelling, no recoupling); the comparison "linear volcano versus parabolic volcano" is
-taken at the same descriptor and the same reorganization energies. Every physical premise
+taken at the same descriptor and the same reorganization energies; and the two steps' driving forces
+are identified with `-dE` and `+dE` (a thermoneutral cycle, zero overall driving force — plan §13.6). Every physical premise
 (`0 < lam`, `0 < lam1`, `0 < lam2`) is an explicit hypothesis of the statements; nothing is hidden
 in a definition.
 
@@ -75,9 +76,10 @@ noncomputable def parabolicBarrier (lam1 lam2 dE : ℝ) : ℝ :=
   max (parabolaUp lam1 dE) (parabolaDown lam2 dE)
 
 /-- Apex of the two-parabola volcano: the descriptor value where the two Marcus-type parabolas cross,
-`√(λ₁λ₂)(√λ₂ - √λ₁)/(√λ₁ + √λ₂)`. It is the lower (physically relevant) of the two crossings that
-two parabolas of unequal curvature have in general; the uniqueness proved below refers to the
-minimizer of the maximum, not to the crossing count. (plan §7) -/
+`√(λ₁λ₂)(√λ₂ - √λ₁)/(√λ₁ + √λ₂)`. For unequal curvatures two parabolas cross twice in general; this
+is the crossing inside the physical window `-lam1 < dE < lam2` (the one of lower BARRIER HEIGHT — the
+other crossing lies outside the window and is not a candidate for the optimum). The uniqueness proved
+below refers to the minimizer of the maximum, not to the crossing count. (plan §7) -/
 noncomputable def apexPar (lam1 lam2 : ℝ) : ℝ :=
   (lam2 * Real.sqrt lam1 - lam1 * Real.sqrt lam2) / (Real.sqrt lam1 + Real.sqrt lam2)
 

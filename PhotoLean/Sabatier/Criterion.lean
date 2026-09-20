@@ -293,9 +293,9 @@ theorem activity_eq_apex_iff {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * 
   · intro h'
     rw [h']
 
-/-- **The volcano plot.** The barrier profile is a volcano (unique minimizer at `de0`) iff the
-activity has its unique global maximum at `de0` — the activity is a strictly decreasing function of
-the barrier. This is the form the volcano plot is drawn in, and it is what makes a volcano in the
+/-- **The volcano plot.** For `0 < kB*T` (the premise of this statement), the barrier profile is a
+volcano (unique minimizer at `de0`) iff the activity has its unique global maximum at `de0` — the
+activity is a strictly decreasing function of the barrier. This is the form the volcano plot is drawn in, and it is what makes a volcano in the
 barrier the same statement as a peak in the activity. Plan §5 (activity layer). -/
 theorem antiDescriptor_activity_iff {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * T) :
     AntiVolcanoDescriptor (activity f kB T) de0 ↔ VolcanoDescriptor f de0 := by

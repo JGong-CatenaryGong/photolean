@@ -13,7 +13,7 @@ orientation and its relabelled mirror, and the label-swap identities of the apex
 (`descriptor_relabel`, `volcano_descriptor_of_neg`).
 
 The degenerate and mixed-sign rows exhibit the failure modes explicitly: two zero slopes give a
-constant profile whose claimed minimizer is not unique (`flat_witness`, `not_descriptor_flat`); one
+profile that is constant, whose claimed minimizer is not unique (`flat_witness`, `not_descriptor_flat`); one
 zero slope turns the apex into a half-line plateau (`plateau_witness`, `not_descriptor_plateau`); two
 slopes of opposite sign give a barrier that is strictly increasing in the descriptor, so the volcano
 has no interior optimum at all (`antiVolcano_monotone`, `not_descriptor_mixedSign`).

@@ -93,7 +93,7 @@ theorem inst_I1_conforms : SabatierConforms (1 / 2) (1 / 2) := by
   norm_num
 
 /-- I1 (symmetric cycle): the pass height. At the apex the two branches cross, so the effective
-barrier is `max (1/4) (1/4) = 1/2`. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+barrier is `max (1/2) (1/2) = 1/2`. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
 theorem inst_I1_apexBarrier : apexBarrier (1 / 2) (1 / 2) (1 / 2) (1 / 2) = 1 / 2 := by
   simp only [apexBarrier, volcanoBarrier, branchUp, branchDown, apex]
   norm_num
@@ -269,7 +269,7 @@ theorem inst_I7_apexBarrier : parabolicBarrier 1 4 (apexPar 1 4) = 25 / 36 := by
   norm_num
 
 /-- I7: the linear BEP volcano underestimates the parabolic barrier at the apex (`2/3 < 25/36`): the
-linear volcano at `(1/2, 1/4, 1/2, 1)` has effective barrier `max (7/12) (2/3) = 7/12 = 21/36`, while
+linear volcano at `(1/2, 1/4, 1/2, 1)` has effective barrier `max (7/12) (2/3) = 2/3 = 24/36`, while
 the parabolic one has `25/36`. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
 theorem inst_I7_linear_below :
     volcanoBarrier (1 / 2) (1 / 4) (1 / 2) 1 (apexPar 1 4) < parabolicBarrier 1 4 (apexPar 1 4) := by
@@ -289,11 +289,15 @@ theorem inst_I8_exists_optimal : ∃ dE : ℝ, Optimal (apex (1 / 2) 0 1 1) dE :
 The printed numbers of this block are PREMISES: they are read from the sources recorded in
 `theories/Sabatier/LITERATURE.md` (Nørskov et al. 2005 Table I with Eq. [8] for the HER descriptors;
 Man et al. 2011 Eq. 4.16–4.18 for the OER scaling and overpotential). What the kernel checks is the
-verdict and the model arithmetic at those descriptors, on the symmetric reference volcano of I1 (apex
+verdict and the model arithmetic at those descriptors, on the symmetric reference volcano of I1 — a
+MODEL series, not a fitted one: its leg slope `1/2` is a modelling choice with no literature locus
+(only the descriptor VALUES are literature inputs) — (apex
 `dE = 0`, the literature's own reading that `ΔG_H* = 0` separates the two legs). -/
 
-/-- I9 (literature row, HER — the number is a premise, the verdict is kernel-checked): the reported
-`ΔG_H*` of Pt is `-0.09` eV (Nørskov et al. 2005, Table I with Eq. [8] `ΔG_H* = ΔE_H + 0.24 eV`;
+/-- I9 (literature row, HER — the number is a premise, the verdict is kernel-checked): the `ΔG_H*`
+of Pt is `-0.09` eV, DERIVED from the source's printed `ΔE_H = -0.33` eV by the source's own
+Eq. [8] `ΔG_H* = ΔE_H + 0.24 eV` (Nørskov et al. 2005, Table I; the record marks such values
+`[arith]` in `theories/Sabatier/LITERATURE.md` §R2.1;
 `[arith]` in `theories/Sabatier/LITERATURE.md` §R2.1; the axis convention is plan §2). Read against
 the symmetric reference volcano (apex at `dE = 0`, the literature's own reading "ΔG_H* = 0 separates
 the two legs"), Pt binds too strongly. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
@@ -318,7 +322,8 @@ theorem inst_I9_barrier_Pt :
   simp only [volcanoBarrier, branchUp, branchDown]
   norm_num
 
-/-- I10 (literature row, HER): the reported `ΔG_H*` of Au is `+0.45` eV (same provenance) — too weak,
+/-- I10 (literature row, HER): the `ΔG_H*` of Au is `+0.45` eV, derived from the printed
+`ΔE_H = 0.21` eV by the same Eq. [8] (`[arith]` in the record) — too weak,
 and outside the 10 % band. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
 theorem inst_I10_zone_Au :
     sabatierZone (apex (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (45 / 100) = SZone.tooWeak := by
@@ -340,7 +345,8 @@ theorem inst_I10_barrier_Au :
   simp only [volcanoBarrier, branchUp, branchDown]
   norm_num
 
-/-- I11 (literature row, HER): the reported `ΔG_H*` of W is `-0.43` eV (Table I, bcc(110); the source
+/-- I11 (literature row, HER): the `ΔG_H*` of W is `-0.43` eV, derived from the printed
+`ΔE_H = -0.67` eV (bcc(110)) by Eq. [8]; the source
 itself warns that the measured value for W/Mo/Nb is probably not representative of the metallic
 state — the caveat travels with the number). Too strong; inside a `1/2` band, which is the
 tolerance sensitivity the verdict layer exists to expose. Plan locus:
