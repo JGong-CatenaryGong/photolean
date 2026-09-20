@@ -141,6 +141,15 @@ theorem inst_I4_forwardLimit_transfer : Rat.qTransfer (2 : ℚ) 2 = 0 := by
   unfold Rat.qTransfer
   norm_num
 
+/-- I4 (`model-constructed`): the limit sits on the edge of the Evans–Polanyi band — the *open*
+regime `0 < α < 1` fails there, so conformance in the open sense is not a closed condition. -/
+theorem inst_I4_forwardLimit_boundary :
+    ¬ (0 < Rat.qTransfer (2 : ℚ) 2 ∧ Rat.qTransfer (2 : ℚ) 2 < 1) := by
+  unfold Rat.qTransfer
+  norm_num
+
+/-! #### I5 — reverse barrierless limit -/
+
 end BEP
 
 end PhotoLean
