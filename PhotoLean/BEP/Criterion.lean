@@ -120,4 +120,17 @@ theorem eact_neg_eq_add {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) : eact lam (-x)
   field_simp
   ring
 
+/-- Antitonicity on the normal-region side: up to the barrierless point `x = lam`,
+more driving force means a lower barrier — the sign content behind the BEP slope inside the
+structural window. -/
+theorem eact_antitone {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h₁ : x₁ < x₂) (h₂ : x₂ ≤ lam) :
+    eact lam x₂ < eact lam x₁ := by
+  have h4 : (0 : ℝ) < 4 * lam := by linarith
+  have h0 : 0 ≤ lam - x₂ := by linarith
+  have h01 : 0 ≤ lam - x₁ := by linarith
+  have hlt : lam - x₂ < lam - x₁ := by linarith
+  unfold eact
+  rw [div_lt_div_iff_of_pos_right h4]
+  exact (sq_lt_sq₀ h0 h01).2 hlt
+
 end PhotoLean.BEP
