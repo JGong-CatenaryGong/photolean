@@ -86,4 +86,17 @@ theorem zone_eq_barrierless_iff (lam x : ℝ) : zone lam x = Zone.barrierless �
     · rw [if_neg h2]
       exact iff_of_false (by decide) h2
 
+/-- 分类器判"反转区"当且仅当 `lam < x`（`InvertedRegion`）。 -/
+theorem zone_eq_inverted_iff (lam x : ℝ) : zone lam x = Zone.inverted ↔ InvertedRegion lam x := by
+  unfold zone InvertedRegion
+  by_cases h : x < lam
+  · rw [if_pos h]
+    exact iff_of_false (by decide) (not_lt.mpr (le_of_lt h))
+  · rw [if_neg h]
+    by_cases h2 : x = lam
+    · rw [if_pos h2]
+      exact iff_of_false (by decide) (by rw [h2]; exact lt_irrefl lam)
+    · rw [if_neg h2]
+      exact iff_of_true rfl (lt_of_le_of_ne (le_of_not_gt h) (Ne.symm h2))
+
 end PhotoLean.Marcus
