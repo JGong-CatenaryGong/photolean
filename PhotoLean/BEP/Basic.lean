@@ -63,7 +63,11 @@ noncomputable def bepRadius (lam tol : ℝ) : ℝ := 2 * Real.sqrt (lam * tol)
 /-- Minimax affine BEP law on a symmetric window of half-width `w`. -/
 noncomputable def bepBestLine (lam w x : ℝ) : ℝ := lam / 4 + w ^ 2 / (8 * lam) - x / 2
 
-/-- Evans–Polanyi bounds on the transfer coefficient. -/
+/-- Evans–Polanyi bounds on the transfer coefficient. The bound is imposed on the **model**
+coefficient `transfer lam x = 1 / 2 - x / (2 * lam)`; the literature analogue of `0 ≤ α ≤ 1` is the
+electrochemical transfer-coefficient bound, and `theories/BEP/LITERATURE.md` §R1.7(iv) records that
+no source read states it as a law of chemical families (documented series with a Brønsted
+coefficient outside `(0,1)` exist). -/
 def EPBounds (lam x : ℝ) : Prop := 0 ≤ transfer lam x ∧ transfer lam x ≤ 1
 
 /-- `eact` agrees with some affine function of the driving force on the set `s`. -/
