@@ -232,6 +232,48 @@ theorem kashaWithin_iff_effective {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (
     exact effective_algebra hpos
   exact hL.trans hR.symm
 
+/-- Plan §7.2 #9 — **the `N`-level threshold**: the general answer to "when does Kasha's rule hold"
+at tolerance `tol`. It is the effective reduction of row 8 followed by pure algebra — no sharp-layer
+(K3) statement is used, which is why this module depends on `Basic.lean` only. -/
+theorem kashaWithin_iff_ladderRatio {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N)
+    (hu : 0 < upperYield rad ic N) (htol : 0 < tol) (h0 : 0 < decay rad ic 0) :
+    KashaWithin rad ic tol N ↔ (1 - tol) / tol ≤ ladderRatio rad ic N := by
+  have effective_algebra : ∀ {U C e0 tol : ℝ}, 0 < U + C →
+      (U / (U + C) ≤ tol * (e0 / (U + C) + U / (U + C)) ↔ (1 - tol) * U ≤ tol * e0) := by
+    intro U C e0 tol hUC
+    have e2 : tol * (e0 / (U + C) + U / (U + C)) = tol * (e0 + U) / (U + C) := by
+      field_simp
+    have e3 : tol * (e0 + U) / (U + C) * (U + C) = tol * (e0 + U) := by
+      field_simp
+    rw [e2, div_le_iff₀ hUC, e3]
+    constructor <;> intro hh <;> linarith
+  have hC : 0 ≤ cascade rad ic 0 N := cascade_nonneg h (Nat.zero_le N)
+  have hpos : 0 < upperYield rad ic N + cascade rad ic 0 N := by linarith
+  have hsplit : fluoYield (effRad rad ic N) (effIc rad ic N) 1
+      = emitYield (effRad rad ic N) (effIc rad ic N) 0 1
+        + upperYield (effRad rad ic N) (effIc rad ic N) 1 := by
+    unfold fluoYield upperYield
+    have hset : Finset.range (1 + 1) = insert 0 (Finset.Icc 1 1) := by
+      ext n
+      simp only [Finset.mem_range, Finset.mem_insert, Finset.mem_Icc]
+      omega
+    rw [hset, Finset.sum_insert (by simp)]
+  have hcrit : KashaWithin (effRad rad ic N) (effIc rad ic N) tol 1 ↔
+      (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N := by
+    unfold KashaWithin
+    rw [hsplit, effUpperYield_one h, effEmitYield_zero_one h]
+    exact effective_algebra hpos
+  have hnum : ladderRatio rad ic N = emitYield rad ic 0 N / upperYield rad ic N := by
+    unfold ladderRatio emitYield radBranch
+    rw [div_eq_div_iff (mul_ne_zero (ne_of_gt hu) (ne_of_gt h0)) (ne_of_gt hu)]
+    field_simp
+    ring
+  have hratio : (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N ↔
+      (1 - tol) / tol ≤ ladderRatio rad ic N := by
+    rw [hnum, div_le_div_iff₀ htol hu]
+    constructor <;> intro hh <;> linarith
+  exact (kashaWithin_iff_effective h hpos).trans (hcrit.trans hratio)
+
 
 end Kasha
 
