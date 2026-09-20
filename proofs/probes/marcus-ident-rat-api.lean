@@ -20,6 +20,8 @@
 
 import Mathlib
 
+set_option linter.unusedVariables false
+
 /-! ## ⑴ 标识符禁止清单（实测，2026-09-20）
 
   Lean 4 的**保留 token** 不能作标识符，报错统一为

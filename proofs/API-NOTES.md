@@ -9,22 +9,837 @@
 - 校准只针对"名字/签名"层；语句/证明改动由对应 prover 执行并在此留痕。
 - **mathlib 版本：v4.17.0**（rev 见 `lakefile.toml`）。名字漂移以此为基准。
 
+**本轮（2026-09-20，Marcus 反转区）探针清单 —— 全部 0 error / 0 warning：**
+
+| 探针 | 覆盖 | 运行 |
+|---|---|---|
+| `proofs/probes/marcus-exp-api.lean` | A 组（exp 层）+ D 组（乘法/序） | `proofs/scripts/lake env lean proofs/probes/marcus-exp-api.lean` |
+| `proofs/probes/marcus-order-api.lean` | B 组（除法/序）+ C 组（平方/幂）+ E 组（单调性包装） | 同上换文件名 |
+| `proofs/probes/marcus-tactic-api.lean` | F 组（ℚ/cast）+ G 组（战术可用性实测） | 同上 |
+| `proofs/probes/marcus-ident-rat-api.lean` | 标识符禁止清单 + `decide` 对 ℚ 的可靠域 + lead 风险探针独立复核 | 同上 |
+| `proofs/probes/marcus-proof-skeletons.lean` | **M1–M5a 全部定理的证明体**（36 个 theorem，无 sorry） | 同上 |
+| `proofs/probes/marcus-api-closeout.lean` | **收尾追加复核**：`≤` 版引理 / `rate_ratio` 链 / `decide` 域 / plan §8.2 三处纠正 | 同上 |
+
+> `proofs/probes/marcus-statement-skeleton.lean` 是**语句权威**（lead 所有，含 sorry 占位）；
+> `marcus-proof-skeletons.lean` 是它的**可编译完成版**，签名逐字一致、只补证明体。
+
+---
+
+## 禁止使用清单（不存在 / 已漂移 / 签名不符）
+
+**A. 不存在（`unknown constant` / `unknown identifier`）—— 禁止出现在证明里：**
+
+| 禁止名 | 实测报错 | 替代 |
+|---|---|---|
+| `Real.exp_lt_exp_iff` | `unknown constant` | **`Real.exp_lt_exp`**（它本身就是 `↔`！） |
+| `Real.exp_le_exp_iff` | `unknown constant` | **`Real.exp_le_exp`**（本身是 `↔`） |
+| `sq_lt_sq_iff` | `unknown identifier` | `sq_lt_sq₀` / `sq_lt_sq` / 裸 `nlinarith` |
+| `strictMonoOn_iff` | `unknown identifier` | `Set.strictMonoOn_iff_strictMono`（语义不同，见 E 组）；或直接写 `intro a ha b hb hab` |
+| `Rat.cast_pos_iff` | `unknown constant` | **`Rat.cast_pos`**（本身是 `↔`） |
+| `Rat.cast_lt_cast` | `unknown constant` | `Rat.cast_lt` |
+| `div_lt_div_iff_of_neg_right` | `unknown identifier` | `div_lt_div_right_of_neg`（**iff，右边是 `b < a`**） |
+| `div_lt_div_of_neg_right` | `unknown identifier` | `div_lt_div_right_of_neg`；或 `div_lt_iff_of_neg` / `lt_div_iff_of_neg`；或 L5 的 `div_neg` 路线 |
+| `div_lt_div_iff_of_neg_left` / `div_lt_div_of_neg_left` | `unknown identifier` | 同上；或 `div_lt_iff_of_neg` / `lt_div_iff_of_neg`；或 L5 的 `div_neg` 路线 |
+| `strictAntiOn_inv` / `strictMonoOn_inv` | `unknown identifier` | 不存在；自己 `intro` + 序引理 |
+| `div_neg_neg` | `unknown identifier` | `neg_div_neg_eq` |
+| `StrictMonoOn.const_mul` / `StrictMonoOn.div_const` | `invalid field notation` | 点记法不可用；手写 `intro a ha b hb hab` |
+| `Real.mul_pos` | `@[deprecated mul_pos (since := "2024-08-15")]` | `mul_pos` |
+
+**B. 已漂移（旧名 → 新名，旧名仍能编译但会 warning；新代码用新名）：**
+
+| 旧名（deprecated） | 新名 | since | 源码 |
+|---|---|---|---|
+| `div_lt_iff` | **`div_lt_iff₀`** | 2024-10-02 | `Mathlib/Algebra/Order/Field/Basic.lean:37` |
+| `lt_div_iff` | **`lt_div_iff₀`** | 2024-10-02 | `Mathlib/Algebra/Order/Field/Basic.lean:31` |
+| `div_lt_div_right` | **`div_lt_div_iff_of_pos_right`** | 2024-11-12 | `Mathlib/Algebra/Order/Field/Basic.lean:172` |
+| `div_lt_div_left` | **`div_lt_div_iff_of_pos_left`** | 2024-11-13 | 同上 |
+| `pow_lt_pow_left` | **`pow_lt_pow_left₀`** | 2024-11-13 | `Mathlib/Algebra/Order/Ring/Basic.lean:99` |
+| `pow_left_strictMonoOn` | **`pow_left_strictMonoOn₀`** | 2024-11-13 | 同上 |
+| `lt_of_mul_self_lt_mul_self` | **`lt_of_mul_self_lt_mul_self₀`** | 2024-11-12 | `Mathlib/Algebra/Order/Ring/Basic.lean:194` |
+| `Real.mul_pos` | **`mul_pos`** | 2024-08-15 | `Mathlib/Data/Real/Basic.lean:344` |
+
+**C. 标识符禁止清单（实测，2026-09-20）：**
+
+Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected token '<tok>'; expected '_' or identifier`。
+实测**禁止**的 20 个：
+
+```
+λ  Π  Σ  ↓  ←  →  ↔  ∀  ∃  ∧  ∨  ¬  ≠  ≤  ≥  ∑  ∏  ∫  ∈  ⊆
+```
+
+实测**合法**的 30 个（可作绑定名，`example (ε : ℝ) : ε = ε := rfl` 通过）：
+
+```
+Λ  α  β  γ  Γ  δ  Δ  ε  ζ  η  θ  Θ  ι  κ  μ  ν  ξ  Ξ  π  ρ  σ  τ  υ  φ  Φ  χ  ψ  ω  Ω
+```
+
+- **`λ` 绝对不能用**（`(λ x : ℝ)` → `unexpected token 'λ'`）；`Λ`（大写）合法。
+- 小写 `π` / `σ` 合法，但大写 `Π` / `Σ`（依值积/和记号）禁止。
+- `ε` / `δ` / `Δ` / `μ` **合法** —— prover 若想用它们做物理量名是可以的；
+  但本项目统一 ASCII 化（`lam` / `lamIn` / `lamOut` / `nSq` / `epsS` / `dE` / `dq` / `a1` / `a2`）。
+
+---
+
 ## 待校准清单
 
-<!-- 语句校准（Sprint 0）时逐条勾选，格式示例：
-- [x] `Real.exp_strictMono`（旧名 `strictMono_exp`）— **已漂移**，见记录 8
-- [ ] `...` — 待查
--->
+### A 组 — exp 层（M3 关键路径）
 
-（待 `plan.md` 定理语句确定后填写）
+- [x] `Real.exp_lt_exp` — **存在**，且是 **`↔`**（不是 `→`）：`Real.exp x < Real.exp y ↔ x < y`。用作 `.mpr h` / `.mp h` / `rw [Real.exp_lt_exp]`
+- [x] `Real.exp_le_exp` — **存在**，同样是 `↔`：`Real.exp x ≤ Real.exp y ↔ x ≤ y`
+- [x] `Real.exp_le_exp_of_le` — 存在，`→` 版：`(h : x ≤ y) : exp x ≤ exp y`（收尾追加归档）
+- [x] `Real.exp_le_exp_iff` — **不存在**（`Real.exp_le_exp` 已经是 iff；收尾追加复核）
+- [x] `Real.exp_lt_exp_iff` — **不存在**（`Real.exp_lt_exp` 已经是 iff）
+- [x] `Real.exp_pos` — 存在，`(x : ℝ) : 0 < Real.exp x`
+- [x] `Real.exp_nonneg` — 存在，`(x : ℝ) : 0 ≤ Real.exp x`
+- [x] `Real.exp_neg` — 存在，`exp (-x) = (exp x)⁻¹`
+- [x] `Real.exp_sub` — 存在，`exp (x - y) = exp x / exp y`
+- [x] `Real.exp_add` — 存在，`exp (x + y) = exp x * exp y`
+- [x] `Real.exp_zero` — 存在，`exp 0 = 1`
+- [x] `Real.exp_strictMono` — 存在，`StrictMono Real.exp`
+- [x] `Real.exp_monotone` — 存在，`Monotone Real.exp`
+
+### B 组 — 除法/序（M3 关键路径）
+
+- [x] `div_lt_div_of_pos_right` — 存在，`(h : a < b) (hc : 0 < c) : a / c < b / c`
+- [x] `div_lt_div_iff_of_pos_right` — 存在，**iff**，`(hc : 0 < c) : a / c < b / c ↔ a < b`
+- [x] `div_lt_iff` — **已漂移** → `div_lt_iff₀`
+- [x] `lt_div_iff` — **已漂移** → `lt_div_iff₀`
+- [x] `div_pos` — 存在，`(ha : 0 < a) (hb : 0 < b) : 0 < a / b`
+- [x] `one_div_pos` — 存在，**iff**：`0 < 1 / a ↔ 0 < a`（`inv_pos` 同形）
+- [x] `neg_lt_neg_iff` — 存在，**iff**：`-a < -b ↔ b < a`（注意右边是 `b < a`）
+- [x] `neg_div` — 存在，**参数顺序反直觉**：`(a b : R) : -b / a = -(b / a)`
+- [x] `div_neg` — 存在，`{b} (a : R) : a / -b = -(a / b)`
+- [x] `div_nonneg` — 存在，`(ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a / b`
+- [x] `div_eq_mul_inv` — 存在，`a / b = a * b⁻¹`
+- [x] `mul_div_assoc` — 存在，`a * b / c = a * (b / c)`
+- [x] `div_lt_div_iff_of_neg_right` — **不存在** → 用 `div_lt_div_right_of_neg`（判断见记录 B-4）
+- [x] `div_lt_div_of_neg_right` — **不存在**（收尾追加复核；见记录 B-5）
+- [x] `div_lt_div_right_of_neg` — 存在，**iff**：`(hc : c < 0) : a / c < b / c ↔ b < a`（右边顺序反转）
+- [x] `div_lt_iff_of_neg` / `lt_div_iff_of_neg` — 存在（负分母的 iff）
+- [x] `div_le_div_of_nonneg_right` — 存在，`(hab : a ≤ b) (hc : 0 ≤ c) : a / c ≤ b / c`（`≤` 版，M3 峰值用）
+
+### C 组 — 平方/幂单调
+
+- [x] `sq_lt_sq` — 存在，是**绝对值**版 `a^2 < b^2 ↔ |a| < |b|`
+- [x] `sq_lt_sq_iff` — **不存在**
+- [x] `sq_le_sq` — 存在，`a^2 ≤ b^2 ↔ |a| ≤ |b|`
+- [x] `sq_lt_sq₀` — **存在，`0 ≤ a < b ⇒ a^2 < b^2` 的最省事引理**：`(ha : 0 ≤ a) (hb : 0 ≤ b) : a^2 < b^2 ↔ a < b`
+- [x] `sq_le_sq₀` — 存在，`(ha) (hb) : a^2 ≤ b^2 ↔ a ≤ b`
+- [x] `sq_pos_of_ne_zero` — 存在，**`a` 是隐式参数**：`{a : R} : a ≠ 0 → 0 < a ^ 2`
+- [x] `sq_nonneg` — 存在，`(a : α) : 0 ≤ a ^ 2`
+- [x] `sq_eq_zero_iff` — 存在，`a^2 = 0 ↔ a = 0`
+- [x] `pow_lt_pow_left₀` — 存在，`(hab : a < b) (ha : 0 ≤ a) {n : ℕ} : n ≠ 0 → a^n < b^n`
+- [x] `pow_lt_pow_left` — **已漂移** → `pow_lt_pow_left₀`
+- [x] `mul_self_lt_mul_self` — 存在，`(ha : 0 ≤ a) (hab : a < b) : a * a < b * b`（结论是 `*` 不是 `^`，需 `simpa only [pow_two]`）
+- [x] `sq_lt_sq'` — 存在，`(h1 : -b < a) (h2 : a < b) : a^2 < b^2`
+
+### D 组 — 乘法/序
+
+- [x] `mul_lt_mul_of_pos_left` — 存在，`(bc : b < c) (a0 : 0 < a) : a * b < a * c`
+- [x] `mul_lt_mul_of_pos_right` — 存在，`(bc : b < c) (a0 : 0 < a) : b * a < c * a`
+- [x] `mul_pos` — 存在
+- [x] `mul_nonneg` — 存在
+- [x] `mul_lt_mul₀` — 存在，`(hab : a < b) (hcd : c < d) : a * c < b * d`
+- [x] `pos_of_mul_pos_left` / `pos_of_mul_pos_right` — 存在（取左/右因子，**极易写反**，见记录 D-2）
+- [x] `mul_lt_mul_of_neg_left` — 存在，签名 `(h : b < a) (hc : c < 0) : c * a < c * b`
+- [x] `mul_le_mul_of_nonneg_left` — 存在，`(h : b ≤ c) (a0 : 0 ≤ a) : a * b ≤ a * c`（`≤` 版，M3 峰值用）
+- [x] `mul_div_mul_left` — 存在，`(a b : G₀) (hc : c ≠ 0) : c * a / (c * b) = a / b`（M3 `rate_ratio` 用）
+
+### E 组 — 单调性包装
+
+- [x] `StrictMonoOn` / `StrictAntiOn` / `MonotoneOn` — 存在（`Mathlib/Order/Monotone/Defs.lean:83`）
+- [x] `StrictMonoOn.lt_iff_lt` / `StrictAntiOn.lt_iff_lt` — 存在，**iff 版，实用**
+- [x] `strictMonoOn_iff` — **不存在**（真名 `Set.strictMonoOn_iff_strictMono`，语义是"子类型上的 StrictMono"，对 `Ici`/`Iic` 上的单调无用）
+- [x] `strictMonoOn_mul_self` — 存在，`StrictMonoOn (fun x => x * x) {x | 0 ≤ x}`
+- [x] `pow_left_strictMonoOn₀` — 存在，`(hn : n ≠ 0) : StrictMonoOn (· ^ n) {a | 0 ≤ a}`
+- [x] `StrictMonoOn.const_mul` / `StrictMonoOn.div_const` — **不可用**（点记法报错）
+
+### F 组 — ℚ 层与转移
+
+- [x] `Rat.cast_lt` — 存在，**iff**，`↑p < ↑q ↔ p < q`
+- [x] `Rat.cast_le` — 存在，**iff**
+- [x] `Rat.cast_pos` — 存在，**iff**，`0 < ↑q ↔ 0 < q`
+- [x] `Rat.cast_pos_iff` — **不存在**
+- [x] `Rat.cast_mk` — 存在，`(a b : ℤ) : ↑(Rat.divInt a b) = ↑a / ↑b`（注意是 `Rat.divInt` 形式）
+- [x] `Rat.cast_inj` / `Rat.cast_div` / `Rat.cast_one` / `Rat.cast_ofNat` — 存在
+- [x] `example : (1:ℚ) < 3 := by decide` — **通过**（原样实测）
+- [x] `by decide` 对含除法的 ℚ 字面量 — **失败**，必须 `norm_num [zoneQ]`（见记录 F-2）
+
+### G 组 — 战术可用性
+
+- [x] `nlinarith` — 可用（本项目的**主力**；在去分母后能裸证平方单调）
+- [x] `positivity` — 可用（含 `p * q`、`x^2 / (4*lam)`、`1 / exp x`）
+- [x] `norm_num` — 可用（十进制字面量 `0.5` / `1.2`、ℚ→ℝ 混合、`norm_num [zoneQ]`）
+- [x] `field_simp` — **条件可用**：目标是**等式 + 显式非零前提**时好用；直接作用于不等式会 `simp made no progress`
+- [x] `ring_nf` — 可用（对称性 `barrier lam x = barrier lam (2*lam-x)`，**不需要 `lam ≠ 0`**）
+- [x] `gcongr` — **条件可用**：线性/单调位置可用；直接作用于 `(lam-x₁)^2 < (lam-x₂)^2`（底数为负）**失败**
+- [x] `linarith` — 可用
+- [x] `split_ifs` / `rw [if_pos/if_neg]` — 可用（M1 zone 层）
+- [x] `set_option linter.unusedVariables false in` **不能紧跟文档注释**（语法坑，见记录 G-4）
+
+---
 
 ## 校准记录
 
-<!--
-## YYYY-MM-DD — <主题> — api_researcher — <结论>
+<!-- 格式：## <日期> — <主题> — api_researcher — <结论> -->
+
+## 2026-09-20 — A 组：exp 层（M3 关键路径）— api_researcher — 全部存在；关键点：`Real.exp_lt_exp` 本身就是 iff
+
+**探针**：`proofs/probes/marcus-exp-api.lean`（0 error / 0 warning）
+
+`#check` 原始输出（完整粘贴）：
+
 ```
-#check <名字>
--- 输出
+Real.exp_lt_exp {x y : ℝ} : Real.exp x < Real.exp y ↔ x < y
+Real.exp_le_exp {x y : ℝ} : Real.exp x ≤ Real.exp y ↔ x ≤ y
+Real.exp_pos (x : ℝ) : 0 < Real.exp x
+Real.exp_nonneg (x : ℝ) : 0 ≤ Real.exp x
+Real.exp_neg (x : ℝ) : Real.exp (-x) = (Real.exp x)⁻¹
+Real.exp_sub (x y : ℝ) : Real.exp (x - y) = Real.exp x / Real.exp y
+Real.exp_add (x y : ℝ) : Real.exp (x + y) = Real.exp x * Real.exp y
+Real.exp_zero : Real.exp 0 = 1
+Real.exp_strictMono : StrictMono Real.exp
+Real.exp_monotone : Monotone Real.exp
 ```
-源码位置 / 备注：...
--->
+
+**结论（M3 核心引理的支点，务必按此写）**：
+
+- `Real.exp_lt_exp` 的方向是 **`↔`**：`Real.exp x < Real.exp y ↔ x < y`。
+  从 `h : a < b` 出发取 `Real.exp a < Real.exp b` 用 **`.mpr h`**（或 `Real.exp_lt_exp.2 h`）；
+  反向用 `.mp`。**不存在** `Real.exp_lt_exp_iff` —— 不要写这个名字。
+- 等价写法：`Real.exp_strictMono h`（`StrictMono` 版）也通过。
+- `Real.exp_le_exp` 同样是 `↔`（非严格版）；`Real.exp_le_exp_of_le (h : x ≤ y) : exp x ≤ exp y` 是 `→` 版。
+
+源码位置：`Real.exp_*` 全部在 `Mathlib/Data/Complex/Exponential.lean`（namespace `Real`）：
+`exp_zero:85`、`exp_add:98`、`exp_pos:268`、`exp_nonneg:274`、`exp_strictMono:284`、
+`exp_lt_exp_of_lt:290`、`exp_monotone:293`、`exp_le_exp:304`、`exp_neg:148`、`exp_sub:151`、`exp_lt_exp:300`。
+
+**M3 已实测的最短骨架（`rate_gt_of_barrier_lt`，2 行战术）**：
+
+```lean
+theorem rate_gt_of_barrier_lt {A lam kB T : ℝ} (hA : 0 < A) (hkT : 0 < kB * T) {x y : ℝ}
+    (h : barrier lam x < barrier lam y) : rate A lam kB T y < rate A lam kB T x := by
+  unfold rate
+  exact mul_lt_mul_of_pos_left (Real.exp_lt_exp.2 (div_lt_div_of_pos_right (by linarith) hkT)) hA
+```
+
+链条：取负（`by linarith`）→ 除以正数（`div_lt_div_of_pos_right`）→ exp 严格单调
+（`Real.exp_lt_exp.2`）→ 乘正数（`mul_lt_mul_of_pos_left`）。
+可读的逐步版（同一证明展开）见 `marcus-exp-api.lean` 的 `L4_stepwise`。
+
+## 2026-09-20 — B 组：除法/序（M3 关键路径）— api_researcher — 全部存在（2 个已漂移）
+
+**探针**：`proofs/probes/marcus-order-api.lean`（0 error / 0 warning）
+
+`#check` 原始输出：
+
+```
+div_lt_div_iff_of_pos_right {G₀} [GroupWithZero G₀] [LinearOrder G₀] [ZeroLEOneClass G₀] {a b c : G₀}
+  [PosMulStrictMono G₀] [MulPosStrictMono G₀] (hc : 0 < c) : a / c < b / c ↔ a < b
+div_lt_div_of_pos_right {G₀} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀]
+  [PosMulReflectLT G₀] {a b c : G₀} [MulPosStrictMono G₀] (h : a < b) (hc : 0 < c) : a / c < b / c
+div_pos {G₀} ... (ha : 0 < a) (hb : 0 < b) : 0 < a / b
+div_nonneg {G₀} ... (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a / b
+one_div_pos {G₀} ... {a : G₀} : 0 < 1 / a ↔ 0 < a
+div_eq_mul_inv {G} [DivInvMonoid G] (a b : G) : a / b = a * b⁻¹
+mul_div_assoc {G} [DivInvMonoid G] (a b c : G) : a * b / c = a * (b / c)
+neg_div {R} [DivisionMonoid R] [HasDistribNeg R] (a b : R) : -b / a = -(b / a)
+div_neg {R} [DivisionMonoid R] [HasDistribNeg R] {b : R} (a : R) : a / -b = -(a / b)
+neg_lt_neg_iff {α} [AddGroup α] [LT α] [AddLeftStrictMono α] {a b : α} [AddRightStrictMono α] : -a < -b ↔ b < a
+div_lt_iff_of_neg {α} [LinearOrderedField α] {a b c : α} (hc : c < 0) : b / c < a ↔ b < a * c
+lt_div_iff_of_neg {α} [LinearOrderedField α] {a b c : α} (hc : c < 0) : a < b / c ↔ b < a * c
+div_lt_div_right_of_neg {α} [LinearOrderedField α] {a b c : α} (hc : c < 0) : a / c < b / c ↔ b < a
+div_lt_iff₀ {G₀} ... (hc : 0 < c) : b / c < a ↔ b < a * c
+lt_div_iff₀ {G₀} ... (hc : 0 < c) : a < b / c ↔ a * c < b
+div_lt_div_iff₀ {G₀} [CommGroupWithZero G₀] ... (hb : 0 < b) (hd : 0 < d) : a / b < c / d ↔ a * d < c * b
+```
+
+**B-1（漂移）**：`div_lt_iff` → **`div_lt_iff₀`**，`lt_div_iff` → **`lt_div_iff₀`**
+（`@[deprecated … (since := "2024-10-02")]`，`Mathlib/Algebra/Order/Field/Basic.lean:31,37`）。
+旧名仍能编译但产生 deprecation warning（不影响验收，但新代码用新名）。
+
+**B-2（易混同名）**：`div_lt_div_iff₀`（**两个分母**的版本，`a/b < c/d ↔ a*d < c*b`）
+与 `div_lt_div_iff_of_pos_right`（**同一个分母**）是**两个不同的引理**。barrier 的
+`(…)/(4*lam) < (…)/(4*lam)` 是后者。
+
+**B-3（参数顺序坑）**：`neg_div (a b : R) : -b / a = -(b / a)` —— 结论左边是 `-b / a`，
+**不是** `-(a / b)`。要证 `-(x) / y = -(x / y)` 用 `neg_div y x`。`div_neg {b} (a) : a / -b = -(a / b)` 则正常。
+
+**B-4（负分母，lead 报的坑 —— 已独立复核）**：
+- `div_lt_div_iff_of_neg_right` / `div_lt_div_of_neg_right` **不存在**（`unknown identifier`）。
+- 正确工具：`div_lt_div_right_of_neg : c < 0 → (a / c < b / c ↔ b < a)`
+  （`Mathlib/Algebra/Order/Field/Basic.lean:585`）—— **是 iff，右边方向是 `b < a`（反直觉）**。
+- `lam < 0` 的另一条（本项目实际采用、已验证）路线：把 `4*lam` 改写成 `-(4*(-lam))`，
+  用 `div_neg` + `neg_lt_neg_iff` 翻成正分母，再 `div_lt_div_iff_of_pos_right`。
+  完整骨架见下方"barrier 两支单调"。
+
+## 2026-09-20 — C 组：平方/幂单调 — api_researcher — `0 ≤ a < b ⇒ a² < b²` 最省事的是 `sq_lt_sq₀`（或裸 nlinarith）
+
+**探针**：`proofs/probes/marcus-order-api.lean`（0 error / 0 warning）
+
+`#check` 原始输出：
+
+```
+sq_lt_sq₀ {M₀} [MonoidWithZero M₀] [LinearOrder M₀] [ZeroLEOneClass M₀] [PosMulStrictMono M₀]
+  [MulPosStrictMono M₀] {a b : M₀} (ha : 0 ≤ a) (hb : 0 ≤ b) : a ^ 2 < b ^ 2 ↔ a < b
+sq_le_sq₀ {M₀} ... (ha : 0 ≤ a) (hb : 0 ≤ b) : a ^ 2 ≤ b ^ 2 ↔ a ≤ b
+sq_lt_sq {α} [LinearOrderedRing α] {a b : α} : a ^ 2 < b ^ 2 ↔ |a| < |b|
+sq_le_sq {α} [LinearOrderedRing α] {a b : α} : a ^ 2 ≤ b ^ 2 ↔ |a| ≤ |b|
+sq_lt_sq' {α} [LinearOrderedRing α] {a b : α} (h1 : -b < a) (h2 : a < b) : a ^ 2 < b ^ 2
+sq_le_sq' {α} [LinearOrderedRing α] {a b : α} (h1 : -b ≤ a) (h2 : a ≤ b) : a ^ 2 ≤ b ^ 2
+sq_pos_of_ne_zero {R} [LinearOrderedSemiring R] [ExistsAddOfLE R] {a : R} : a ≠ 0 → 0 < a ^ 2
+sq_nonneg {α} [Semiring α] [LinearOrder α] ... (a : α) : 0 ≤ a ^ 2
+sq_eq_zero_iff {M₀} [MonoidWithZero M₀] {a : M₀} [NoZeroDivisors M₀] : a ^ 2 = 0 ↔ a = 0
+mul_self_lt_mul_self {M₀} [MonoidWithZero M₀] [PartialOrder M₀] {a b : M₀} [PosMulStrictMono M₀]
+  [MulPosMono M₀] (ha : 0 ≤ a) (hab : a < b) : a * a < b * b
+mul_self_lt_mul_self_iff {α} [Semiring α] [LinearOrder α] [PosMulStrictMono α] [MulPosMono α] {a b : α}
+  (h1 : 0 ≤ a) (h2 : 0 ≤ b) : a < b ↔ a * a < b * b
+lt_of_mul_self_lt_mul_self₀ {M₀} ... (hb : 0 ≤ b) : a * a < b * b → a < b
+pow_lt_pow_left₀ {M₀} ... (hab : a < b) (ha : 0 ≤ a) {n : ℕ} : n ≠ 0 → a ^ n < b ^ n
+pow_left_strictMonoOn₀ {M₀} ... (hn : n ≠ 0) : StrictMonoOn (fun x => x ^ n) {a | 0 ≤ a}
+```
+
+**C-1（问题答案）**：从 `0 ≤ a < b` 推 `a^2 < b^2`，最省事的是
+
+```lean
+(sq_lt_sq₀ ha (ha.trans hab.le)).2 hab   -- 显式，不需要 |a|
+-- 或直接：
+by nlinarith                              -- 实测裸 nlinarith 就能过，无需任何 hint
+```
+
+`sq_lt_sq₀` 在 `Mathlib/Algebra/Order/GroupWithZero/Unbundled.lean:1322`；
+`sq_pos_of_ne_zero` 是 alias，在 `Mathlib/Algebra/Order/Ring/Basic.lean:304`。
+**不要用** `sq_lt_sq`（那是 `|a| < |b|` 版，会把目标变成绝对值，反而绕远）。
+**不存在** `sq_lt_sq_iff`。
+
+**C-2（隐式参数坑，lead 报 —— 已独立复核）**：`sq_pos_of_ne_zero` 的 `a` 是**隐式**：
+
+```
+@sq_pos_of_ne_zero : ∀ {R : Type u_1} [inst : LinearOrderedSemiring R] [inst_1 : ExistsAddOfLE R] {a : R},
+  a ≠ 0 → 0 < a ^ 2
+```
+
+正确：`sq_pos_of_ne_zero hdq`。写成 `sq_pos_of_ne_zero dq hdq` 会报
+`application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`。
+⚠️ **`plan.md` §7.2 原先写成显式两参，是错的** —— 本条为正式纠正。
+
+**C-3**：`mul_self_lt_mul_self` 的结论是 `a * a < b * b`（`*` 不是 `^`），直接 `exact` 到
+`a^2 < b^2` 会 `type mismatch`；需要 `simpa only [pow_two] using mul_self_lt_mul_self ha hab`。
+
+**C-4**：`pow_lt_pow_left` **已漂移** → `pow_lt_pow_left₀`（since 2024-11-13）；
+参数顺序 `(hab : a < b) (ha : 0 ≤ a)` 后跟 `{n : ℕ}`，且 `n ≠ 0` 在**最后**（不是前提）。
+
+## 2026-09-20 — D 组：乘法/序 — api_researcher — 全部存在；`pos_of_mul_pos_left/right` 极易写反
+
+**探针**：`proofs/probes/marcus-exp-api.lean`（0 error / 0 warning）
+
+`#check` 原始输出：
+
+```
+mul_lt_mul_of_pos_left {α} [Mul α] [Zero α] [Preorder α] [PosMulStrictMono α] (bc : b < c)
+  (a0 : 0 < a) : a * b < a * c
+mul_lt_mul_of_pos_right {α} [Mul α] [Zero α] [Preorder α] [MulPosStrictMono α] (bc : b < c)
+  (a0 : 0 < a) : b * a < c * a
+mul_pos {α} [MulZeroClass α] [Preorder α] [PosMulStrictMono α] (ha : 0 < a) (hb : 0 < b) : 0 < a * b
+mul_nonneg {α} [MulZeroClass α] [Preorder α] [PosMulMono α] (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a * b
+mul_lt_mul₀ {α} [LinearOrderedCommGroupWithZero α] {a b c d : α} (hab : a < b) (hcd : c < d) :
+  a * c < b * d
+pos_of_mul_pos_left {α} [MulZeroClass α] [Preorder α] [MulPosReflectLT α] (h : 0 < a * b)
+  (hb : 0 ≤ b) : 0 < a
+pos_of_mul_pos_right {α} [MulZeroClass α] [Preorder α] [PosMulReflectLT α] (h : 0 < a * b)
+  (ha : 0 ≤ a) : 0 < b
+mul_lt_mul_of_neg_left {α} [Semiring α] [PartialOrder α] {a b c : α} [ExistsAddOfLE α] [PosMulStrictMono α]
+  [AddRightStrictMono α] [AddRightReflectLT α] (h : b < a) (hc : c < 0) : c * a < c * b
+```
+
+**D-1**：`mul_lt_mul_of_neg_left` 的**参数顺序反直觉**：`(h : b < a) (hc : c < 0) : c * a < c * b`
+（第一个参数是反方向的 `b < a`）。实测
+`example {A u v : ℝ} (hA : A < 0) (h : u < v) : A * v < A * u := mul_lt_mul_of_neg_left h hA` 通过。
+
+**D-2（lead 报的坑 —— 已独立复核）**：`rate A lam kB T x = A * Real.exp (…)`，正的因子
+`A` 在积的**左**边、`exp` 在**右**边。要从 `0 < A * Real.exp u` 得 `0 < A`，必须用
+**`pos_of_mul_pos_left`**（它的前提是"右因子非负"）：
+
+```lean
+example {A u : ℝ} (h : 0 < A * Real.exp u) : 0 < A :=
+  pos_of_mul_pos_left h (Real.exp_pos u).le
+```
+
+用 `pos_of_mul_pos_right` 会报 `application type mismatch`（它的结论是 `0 < b`，即右因子）。
+两者都在 `Mathlib/Algebra/Order/GroupWithZero/Unbundled.lean:448,451`。
+
+## 2026-09-20 — E 组：单调性包装 — api_researcher — 实用的只有 `lt_iff_lt` 与两个现成 `StrictMonoOn`
+
+**探针**：`proofs/probes/marcus-order-api.lean`（0 error / 0 warning）
+
+`#check` 原始输出：
+
+```
+StrictMonoOn.{u, v} {α} {β} [Preorder α] [Preorder β] (f : α → β) (s : Set α) : Prop
+StrictAntiOn.{u, v} {α} {β} [Preorder α] [Preorder β] (f : α → β) (s : Set α) : Prop
+MonotoneOn.{u, v} {α} {β} [Preorder α] [Preorder β] (f : α → β) (s : Set α) : Prop
+StrictMonoOn.lt_iff_lt {α} {β} [LinearOrder α] [Preorder β] {f : α → β} {s : Set α}
+  (hf : StrictMonoOn f s) {a b : α} (ha : a ∈ s) (hb : b ∈ s) : f a < f b ↔ a < b
+StrictAntiOn.lt_iff_lt {α} {β} [LinearOrder α] [Preorder β] {f : α → β} {s : Set α}
+  (hf : StrictAntiOn f s) {a b : α} (ha : a ∈ s) (hb : b ∈ s) : f a < f b ↔ b < a
+Set.strictMonoOn_iff_strictMono {s : Set α} [Preorder α] [Preorder β] {f : α → β} :
+  StrictMonoOn f s ↔ StrictMono fun a => f ↑a
+strictMonoOn_mul_self {M₀} [MonoidWithZero M₀] [PartialOrder M₀] [PosMulStrictMono M₀]
+  [MulPosMono M₀] : StrictMonoOn (fun x => x * x) {x | 0 ≤ x}
+pow_left_strictMonoOn₀ {M₀} [MonoidWithZero M₀] [PartialOrder M₀] {n : ℕ} [ZeroLEOneClass M₀]
+  [PosMulStrictMono M₀] [MulPosStrictMono M₀] (hn : n ≠ 0) : StrictMonoOn (fun x => x ^ n) {a | 0 ≤ a}
+```
+
+**结论**：
+
+- `StrictMonoOn` 的定义就是 `∀ ⦃a⦄, a ∈ s → ⦃b⦄, b ∈ s → a < b → f a < f b`
+  （`Mathlib/Order/Monotone/Defs.lean:83`），所以**直接写 `intro a ha b hb hab` 最省事**，
+  不需要找 `*_iff` 引理。`strictMonoOn_iff` **不存在**。
+- 想用 iff 形式取 `f a < f b → a < b` 时用 **`StrictMonoOn.lt_iff_lt`**
+  （`Mathlib/Order/Monotone/Basic.lean:377`）/ `StrictAntiOn.lt_iff_lt`。
+- `Set.strictMonoOn_iff_strictMono`（`Mathlib/Data/Set/Basic.lean:1480`）的右边是
+  **子类型上的 `StrictMono`**，对 `Set.Ici`/`Set.Iic` 上的单调**没用**，别选它。
+- `StrictMonoOn.const_mul` / `StrictMonoOn.div_const` 在 v4.17 **点记法报错**，复合单调性要手写。
+- **⚠️ `a ∈ Set.Ici lam` 不能直接喂给 `linarith`** —— 必须先 `rw [Set.mem_Ici] at ha hb`
+  把假设变成 `lam ≤ a`。否则报 `linarith failed to find a contradiction`（`a✝ : 0 > a - lam`）。
+
+barrier 的 `StrictMonoOn` / `StrictAntiOn` 打包形式（已实测）：
+
+```lean
+theorem barrier_strictMonoOn_Ici {lam : ℝ} (hlam : 0 < lam) :
+    StrictMonoOn (fun x => (lam - x) ^ 2 / (4 * lam)) (Set.Ici lam) := by
+  intro a ha b hb hab
+  rw [Set.mem_Ici] at ha hb
+  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * lam)]
+  nlinarith
+
+theorem barrier_strictAntiOn_Iic {lam : ℝ} (hlam : 0 < lam) :
+    StrictAntiOn (fun x => (lam - x) ^ 2 / (4 * lam)) (Set.Iic lam) := by
+  intro a ha b hb hab
+  rw [Set.mem_Iic] at ha hb
+  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * lam)]
+  nlinarith
+```
+
+## 2026-09-20 — F 组：ℚ 层与 ℚ→ℝ 转移 — api_researcher — cast 引理全是 iff；`decide` 只对整数字面量可靠
+
+**探针**：`proofs/probes/marcus-tactic-api.lean` + `proofs/probes/marcus-ident-rat-api.lean`（均 0 error）
+
+`#check` 原始输出：
+
+```
+Rat.cast_lt {p q : ℚ} {K} [LinearOrderedField K] : ↑p < ↑q ↔ p < q
+Rat.cast_le {p q : ℚ} {K} [LinearOrderedField K] : ↑p ≤ ↑q ↔ p ≤ q
+Rat.cast_pos {q : ℚ} {K} [LinearOrderedField K] : 0 < ↑q ↔ 0 < q
+Rat.cast_inj {p q : ℚ} {α} [DivisionRing α] [CharZero α] : ↑p = ↑q ↔ p = q
+Rat.cast_div (p q : ℚ) : ↑(p / q) = ↑p / ↑q
+Rat.cast_one : ↑(1 : ℚ) = 1
+Rat.cast_mk (a b : ℤ) : ↑(Rat.divInt a b) = ↑a / ↑b
+```
+
+**F-1（题目要求原样报告）**：`example : (1 : ℚ) < 3 := by decide` —— **通过**（实测 0 error）。
+`decide` 对 ℚ 的整数比较（`1 < 3`、`¬ (3 < 1)`、`1 ≤ 3`）均可用。
+`Rat.cast_pos_iff` **不存在**（`Rat.cast_pos` 本身就是 iff）。
+
+**F-2（M5 判定层规范，lead 报 —— 已独立复核）**：
+
+- ✅ `zoneQ (1 : ℚ) 3 = Zone.inverted` / `zoneQ (1 : ℚ) 1 = Zone.barrierless` —— **`by decide` 通过**。
+- ❌ `zoneQ (1 : ℚ) (3 / 4) = Zone.normal` —— **`by decide` 失败**，原始报错：
+
+```
+tactic 'decide' failed for proposition
+  zoneQ 1 (3 / 4) = Zone.normal
+since its 'Decidable' instance
+  instDecidableEqZone (zoneQ 1 (3 / 4)) Zone.normal
+did not reduce to 'isTrue' or 'isFalse'.
+
+After unfolding the instances 'instDecidableEqBool', 'instDecidableEqNat',
+'instDecidableEqZone', 'Bool.decEq', 'Int.decLt', 'Nat.decEq',
+'Rat.instDecidableLt' and 'Int.decNonneg✝', reduction got stuck at the
+'Decidable' instance
+  match h : (zoneQ 1 (3 / 4)).toCtorIdx.beq Zone.normal.toCtorIdx with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+```
+
+  （卡点在 `Rat.instDecidableLt` → `Int.decNonneg` 路径，不是 `Eq`。）
+
+- ✅ 对策：`by norm_num [zoneQ]`（走证明项而非内核归约）。实测通过：
+  `zoneQ 1 (3/4) = normal`、`zoneQ 1 (6/8) = normal`、`zoneQ 1 (5/4) = inverted`、`zoneQ 1 (4/4) = barrierless`。
+
+**规范**：**整数参数用 `decide`；含除法/约分的有理字面量用 `norm_num [zoneQ]`。**
+
+**F-3（M5a 语法坑）**：`zoneQ_eq_zone` 里**不能**用 `rw [Rat.cast_lt, Rat.cast_inj]`，
+会报 `tactic 'rewrite' failed, motive is not type correct`（依值 `Decidable` 实例）。
+必须用 **`simp only [Rat.cast_lt, Rat.cast_inj]`**：
+
+```lean
+theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) := by
+  unfold zoneQ zone
+  simp only [Rat.cast_lt, Rat.cast_inj]
+```
+
+## 2026-09-20 — G 组：战术可用性实测 — api_researcher — 三类目标形态全过；`gcongr`/`field_simp` 有条件
+
+**探针**：`proofs/probes/marcus-tactic-api.lean`（0 error / 0 warning）
+
+**G-1（题目指定形态 1）**：`positivity` 收尾 —— **通过**，最短就是一行：
+
+```lean
+example {lam x : ℝ} (hlam : 0 < lam) : 0 ≤ (lam - x)^2 / (4*lam) := by positivity
+```
+
+`positivity` 还能直接从 `hlam : 0 < lam` 给出 `(0:ℝ) < 4*lam`，以及从 `h : 0 < kB*T` 给出 `0 < kB*T`。
+
+**G-2（题目指定形态 2，最关键）—— `positivity`/`nlinarith` 最短证明（2 行战术）**：
+
+```lean
+example {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ} (h₁ : lam ≤ x₁) (h₂ : x₁ < x₂) :
+    (lam-x₁)^2/(4*lam) < (lam-x₂)^2/(4*lam) := by
+  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * lam)]
+  nlinarith
+```
+
+这是本主题**实测最短**的成功证明（去分母 + 裸 `nlinarith`，后者连 `sq_nonneg` hint 都不需要）。
+
+对照（lead 在 `marcus-statement-skeleton.lean` R4 里的版本，3 行，同样通过、更稳）：
+
+```lean
+  have hpos : (0 : ℝ) < 4 * lam := by positivity
+  have hsq : (lam - x₁) ^ 2 < (lam - x₂) ^ 2 := by nlinarith
+  exact div_lt_div_of_pos_right hsq hpos
+```
+
+**失败路径（已实测，勿再走）**：
+
+- 单个裸 `nlinarith` 直接作用于**原**目标（不去分母）→ **失败**（`a✝ : (lam-x₁)^2 ≥ (lam-x₂)^2`，分母符号没被利用）。
+- `gcongr` 直接作用于 `(lam-x₁)^2 < (lam-x₂)^2` → **失败**：
+  gcongr 走 `sq` 的单调性，产生子目标 `0 ≤ lam - x₁`，而 `lam ≤ x₁` 时它是 ≤ 0。
+  要么先把底数改写成非负形式 `(x₁ - lam)^2`，要么改用 `nlinarith` 路线。
+- L5（`lam < 0`）用 `div_lt_iff_of_neg` 再 `nlinarith` → **失败**（`rewrite` 后 RHS 变成
+  `(lam-x₁)^2/(4*lam) * (4*lam)`，nlinarith 处理不了）。走 `div_neg` 路线（见下）。
+
+**G-3（题目指定形态 3，对称性）**：`ring_nf` —— **通过，且 `hlam : lam ≠ 0` 未被证明使用（unused）**：
+
+```lean
+example (lam x : ℝ) :
+    (lam - x)^2/(4*lam) = (lam - (2*lam - x))^2/(4*lam) := by ring_nf
+```
+
+原因：Lean 除零约定 `x / 0 = 0` 使 `lam = 0` 时两边同时为 0。带 `hlam` 的版本也通过
+（只产生 unused-variable warning）。
+
+**G-4（语法坑，lead 报 —— 已独立复核）**：`set_option linter.unusedVariables false in`
+**不能紧跟文档注释**：
+
+```lean
+/-- doc comment -/
+set_option linter.unusedVariables false in     -- ❌ error: unexpected token 'set_option'; expected 'lemma'
+theorem bad (z : Zone) : z = z := rfl
+```
+
+正确顺序是「**普通块注释 → `set_option … in` → 文档注释 + 定理**」：
+
+```lean
+-- plain comment first
+set_option linter.unusedVariables false in
+/-- doc comment -/
+theorem good (z : Zone) : z = z := rfl      -- ✅
+```
+
+最省事的替代：在文件顶部放一条不带 `in` 的 `set_option linter.unusedVariables false`。
+
+**G-5**：其余战术全部可用 —— `nlinarith`、`linarith`、`norm_num`（十进制 `0.5` / `1.2`）、
+`ring_nf`、`positivity`。`field_simp` 只在「**等式** + 显式非零前提」时好用；
+直接作用于不等式报 `error: simp made no progress`。
+
+**G-6（`nlinarith` 的边界，给 prover 的反面证据）**：下面这条**真命题**裸 `nlinarith` **失败**：
+
+```lean
+-- ❌ error: linarith failed to find a contradiction / a✝ : 0 ≥ a^2 + b^2
+example {a b : ℝ} (h : a < b) : a ^ 2 + b ^ 2 > 0 := by nlinarith [sq_nonneg a, sq_nonneg b, h]
+```
+
+必须把"至少一个非零"显式做出来喂给它（`marcus-tactic-api.lean` G-7 有可编译版）。
+**结论：`nlinarith` 很强但非万能；卡住时补显式 `have`，不要反复调 hint。**
+
+**G-7（M1 zone 层可用引理，prover_a 交付的一批 —— 已逐一 `#check` 复核）**：
+`if_pos`、`if_neg`、`iff_of_true`、`iff_of_false`、`le_of_not_gt`、`le_of_lt`、`ne_of_lt`、
+`lt_of_le_of_ne`、`Ne.symm`、`lt_irrefl`、`not_lt` —— **全部存在**。
+`Zone`（`deriving DecidableEq`）构造子互异可直接 `by decide`（实测 6 组全部通过）。
+
+推荐战术（M1 实测）：`by_cases h : x < lam` + `rw [if_pos h] / rw [if_neg h]` + `simp`。
+`split_ifs <;> simp_all` 能过 `zone_trichotomy`，但对前三条会留下 `¬x = lam` / `lam < x`
+之类 simp 推不出的目标，需手工补 `ne_of_lt h` 或
+`lt_of_le_of_ne (le_of_not_gt h) (Ne.symm h2)`。
+
+## 2026-09-20 — barrier 两支单调与 rate 单调（M2/M3 关键目标形态）— api_researcher — 三条实测最短骨架
+
+**探针**：`proofs/probes/marcus-proof-skeletons.lean`（35 theorem，0 error / 0 warning / 无 sorry）
+
+**（1）右支（`0 < lam`，引理 2 / `barrier_mono_of_pos`）—— 3 行**：
+
+```lean
+theorem barrier_mono_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
+    (h₁ : lam ≤ x₁) (h₂ : x₁ < x₂) : barrier lam x₁ < barrier lam x₂ := by
+  unfold barrier
+  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * lam)]
+  nlinarith
+```
+
+**（2）左支（`0 < lam`，引理 3 / `barrier_antitone_of_pos`）—— 同形，`nlinarith` 自动搞定方向**：
+
+```lean
+theorem barrier_antitone_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
+    (h₁ : 0 ≤ x₁) (h₂ : x₁ < x₂) (h₃ : x₂ ≤ lam) : barrier lam x₂ < barrier lam x₁ := by
+  unfold barrier
+  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * lam)]
+  nlinarith
+```
+
+> **⚠️ 前提 `h₁ : 0 ≤ x₁` 是"证明未使用（unused）"，不是"可由其他前提推出"**
+> —— **这两句话语义不同，别混**（M2 verifier 发现 A，本日志曾误写为后者，已订正）。
+>
+> - **正确**：该前提**未被证明使用**。去掉它定理仍然成立（内核检查通过，见
+>   `marcus-proof-skeletons.lean` 与下面的 `…_no_h1` 版本），故它只产生
+>   unused-variable warning。它是**显式物理前提**（驱动力非负），按"物理近似显式化"
+>   铁律**保留**。用文件级 `set_option linter.unusedVariables false` 或接受 warning
+>   （**warning 不影响验收**，只有 sorry / 自定义 axiom 才 FAIL）。
+> - **错误（禁止再写）**："`h₁` 可由 `h₃ : x₂ ≤ lam` 与 `h₂ : x₁ < x₂` 推出"。
+>   **内核反例**：`lam = 1, x₁ = -5, x₂ = -4` ⇒ `0 < 1 ✓`、`-5 < -4 ✓`、`-4 ≤ 1 ✓`，
+>   但 `0 ≤ -5 ✗`。`¬ ∀ lam x₁ x₂, 0 < lam → x₁ < x₂ → x₂ ≤ lam → 0 ≤ x₁` 已机器检查。
+>   ⚠️ 把它当"可复用推理依据"会直接写出错误证明 —— 这是典型误写，引以为戒。
+
+```lean
+-- 「未被证明使用」的实证：去掉 `h₁` 定理照样过
+theorem barrier_antitone_of_pos_no_h1 {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
+    (h₂ : x₁ < x₂) (h₃ : x₂ ≤ lam) : barrier lam x₂ < barrier lam x₁ := by
+  unfold barrier
+  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * lam)]
+  nlinarith
+-- 「不可推出」的实证（内核反例）
+example : ¬ (∀ (lam x₁ x₂ : ℝ), 0 < lam → x₁ < x₂ → x₂ ≤ lam → 0 ≤ x₁) := by
+  intro h; have := h 1 (-5) (-4) (by norm_num) (by norm_num) (by norm_num); norm_num at this
+```
+
+**（3）`lam < 0`（引理 5 / `barrier_antitone_of_neg`）—— 4 行，负分母要绕道**：
+
+```lean
+theorem barrier_antitone_of_neg {lam : ℝ} (hlam : lam < 0) {x₁ x₂ : ℝ}
+    (h₁ : lam < x₁) (h₂ : x₁ < x₂) : barrier lam x₂ < barrier lam x₁ := by
+  unfold barrier
+  rw [show (4 : ℝ) * lam = -(4 * (-lam)) by ring, div_neg, div_neg, neg_lt_neg_iff]
+  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * (-lam))]
+  nlinarith
+```
+
+关键：**没有 `div_lt_div_iff_of_neg_right`**。要把 `4*lam` 改写成 `-(4*(-lam))`，
+再用 `div_neg`（`a / -b = -(a / b)`）把负号提到外面、`neg_lt_neg_iff`（`-a < -b ↔ b < a`）
+翻转成正分母，最后 `div_lt_div_iff_of_pos_right` 收尾。
+⚠️ **不要在 `unfold rate` 之后一口气套这套 rw** —— `rate` 自带一个负号，会与 `div_neg`
+产生的负号叠成双重否定，`neg_lt_neg_iff` 就匹配不上（实测失败）。先把 barrier 的
+不等式单独 `have` 出来，再用 `rate_gt_of_barrier_lt` 推速率层。
+
+**（4）核心引理 4（rate 单调性 / `rate_gt_of_barrier_lt`）—— 2 行**：
+
+```lean
+theorem rate_gt_of_barrier_lt {A lam kB T : ℝ} (hA : 0 < A) (hkT : 0 < kB * T) {x y : ℝ}
+    (h : barrier lam x < barrier lam y) : rate A lam kB T y < rate A lam kB T x := by
+  unfold rate
+  exact mul_lt_mul_of_pos_left (Real.exp_lt_exp.2 (div_lt_div_of_pos_right (by linarith) hkT)) hA
+```
+
+链条：`h : barrier x < barrier y` → `by linarith` 取负得 `-(barrier y) < -(barrier x)`
+→ `div_lt_div_of_pos_right … hkT` 除以正数 → `Real.exp_lt_exp.2` 吃掉 exp
+→ `mul_lt_mul_of_pos_left … hA` 乘正数 `A`。
+
+**（5）`lam = 0` 分支不需要任何正性前提**（锐利性必要性，`sharp_lam_pos_of_eq` 签名
+里可以完全不带 `hkB` / `hT` / `hA`）：除零约定使 `barrier 0 x = 0`，速率恒为 `A`：
+
+```lean
+theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T) : False := by
+  have hrate : ∀ x : ℝ, rate A 0 kB T x = A := by
+    intro x; unfold rate; rw [barrier_zero_lam]; simp
+  have hd := hdesc 1 2 (by norm_num) (by norm_num)
+  rw [hrate 2, hrate 1] at hd
+  exact lt_irrefl A hd
+```
+
+**（6）语义要点（校准中发现，影响 M4a 语句）**：`InvertedDescriptor`（"反转区内速率随
+驱动力严格递减"）**只在 `lam > 0` 时成立**，在 `lam < 0` 时**为假**。因为 `lam < 0` 时
+`barrier` 随 `x` **递减**（引理 5），故速率随 `x` **递增**，与描述方向相反。
+`marcus-statement-skeleton.lean` 的 `inverted_descriptor_holds` 已经带 `hlam : 0 < lam`，
+方向正确；`inverted_descriptor_holds_of_neg` 是带 `hA : A < 0` 的**非物理拉伸目标**，
+那里 `A < 0` 的翻转让描述重新成立 —— 两个定理的前提都**不可互换或删减**。
+机器检查的反例已提交在 `marcus-proof-skeletons.lean`：
+`not_invertedDescriptor_of_neg_lam : ¬ InvertedDescriptor 1 (-1) 1 1`（取 `lam = -1, A = kB = T = 1`，
+由 `h : rate 1 (-1) 1 1 1 < rate 1 (-1) 1 1 0` 化简得 `Real.exp 1 < Real.exp (1/4)`，
+再用 `Real.exp_lt_exp.mp` 得 `1 < 1/4` 矛盾）。
+
+## 2026-09-20 — 收尾追加：`≤` 版引理 + `rate_ratio` 链 — api_researcher — 6 个新名字全部存在，签名已归档
+
+**探针**：`proofs/probes/marcus-api-closeout.lean`（0 error / 0 warning）
+
+复核对象：M2/M3/M4a/M5a 交付者在各自 `#check` 中报出的一批新名字。**逐条独立重跑，非照抄。**
+
+`#check` 原始输出：
+
+```
+Real.exp_le_exp {x y : ℝ} : Real.exp x ≤ Real.exp y ↔ x ≤ y
+Real.exp_le_exp_of_le {x y : ℝ} (h : x ≤ y) : Real.exp x ≤ Real.exp y
+div_le_div_of_nonneg_right {G₀} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀]
+  [PosMulReflectLT G₀] {a b c : G₀} [MulPosMono G₀] (hab : a ≤ b) (hc : 0 ≤ c) : a / c ≤ b / c
+mul_le_mul_of_nonneg_left {α} [Mul α] [Zero α] [Preorder α] [PosMulMono α] (h : b ≤ c)
+  (a0 : 0 ≤ a) : a * b ≤ a * c
+mul_div_mul_left {G₀} [CommGroupWithZero G₀] {c : G₀} (a b : G₀) (hc : c ≠ 0) :
+  c * a / (c * b) = a / b
+Real.exp_sub (x y : ℝ) : Real.exp (x - y) = Real.exp x / Real.exp y
+pow_lt_pow_left₀ {M₀} [MonoidWithZero M₀] [PartialOrder M₀] {a b : M₀} [ZeroLEOneClass M₀]
+  [PosMulStrictMono M₀] [MulPosStrictMono M₀] (hab : a < b) (ha : 0 ≤ a) {n : ℕ} :
+  n ≠ 0 → a ^ n < b ^ n
+sq_lt_sq₀ {M₀} [MonoidWithZero M₀] [LinearOrder M₀] [ZeroLEOneClass M₀] [PosMulStrictMono M₀]
+  [MulPosStrictMono M₀] {a b : M₀} (ha : 0 ≤ a) (hb : 0 ≤ b) : a ^ 2 < b ^ 2 ↔ a < b
+```
+
+**确认无误（我复核后一致）**：
+
+- `Real.exp_le_exp` **是 `↔`**（`Real.exp x ≤ Real.exp y ↔ x ≤ y`）；`Real.exp_le_exp_iff` **不存在**（复核：`unknown constant`）；
+  `Real.exp_le_exp_of_le` 是 `→` 版。
+- `Real.exp_sub` 的**方向**确为 `exp (x - y) = exp x / exp y` ⇒ 把"exp 相除"变"exp 差"
+  必须用 **`← Real.exp_sub`**（`rate_ratio` 里就是这么用的）。
+- `pow_lt_pow_left₀`：`n ≠ 0` 在**最后**（不在前提位置）。
+- `sq_lt_sq₀`：`0 ≤ a < b ⇒ a² < b²` 的正解，比 `mul_self_lt_mul_self` + `sq_lt_sq'` 都省事、且不需要 `|·|`。
+- `mul_le_mul_of_nonneg_left`：实际 binder 名是 `(h : b ≤ c) (a0 : 0 ≤ a) : a * b ≤ a * c`
+  （与报出的 `(h : a ≤ b) (hc : 0 ≤ c)` 只差 binder 重命名，签名等价）。
+
+**M3 `rate_peak_at_lam`（`≤` 版峰值）实测体**（三个 `≤` 引理协同）：
+
+```lean
+theorem rate_peak_at_lam {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
+    (x : ℝ) : rate A lam kB T x ≤ rate A lam kB T lam := by
+  unfold rate
+  apply mul_le_mul_of_nonneg_left _ hA.le        -- 乘非负数
+  rw [Real.exp_le_exp]                           -- 吃掉 exp（iff，正向）
+  exact div_le_div_of_nonneg_right (by linarith [barrier_min_at_lam hlam x]) hkT.le
+```
+
+**M3 `rate_ratio` 实测体**（`mul_div_mul_left` + `← Real.exp_sub` 是关键两步）：
+
+```lean
+theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y : ℝ) :
+    rate A lam kB T y / rate A lam kB T x
+      = Real.exp ((barrier lam x - barrier lam y) / (kB * T)) := by
+  unfold rate
+  rw [mul_div_mul_left _ _ hA, ← Real.exp_sub]
+  congr 1
+  field_simp
+  ring
+```
+
+## 2026-09-20 — 收尾追加：B 组禁止清单增补 — api_researcher — `div_lt_div_of_neg_right` 不存在；`sq_pos_of_ne_zero` 的 `a` 是隐式
+
+**探针**：`proofs/probes/marcus-api-closeout.lean`（0 error / 0 warning）
+
+- `div_lt_div_of_neg_right` —— **复核确认不存在**（`unknown identifier`）。
+  负除数下唯一可用的是 `div_lt_div_right_of_neg (hc : c < 0) : a / c < b / c ↔ b < a`
+  —— **iff，且右边是 `b < a`（顺序反转）**，M2 两支方向反转全靠它。
+- `@sq_pos_of_ne_zero : ∀ {R : Type u_1} [inst : LinearOrderedSemiring R] [inst_1 : ExistsAddOfLE R] {a : R},
+  a ≠ 0 → 0 < a ^ 2` —— **`a` 是隐式参数**，正确写法 `sq_pos_of_ne_zero hdq`；
+  写成 `sq_pos_of_ne_zero dq hdq` 报
+  `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`。
+  ⚠️ 本条同时**订正 `plan.md` §7.2 的旧提示**（旧提示写成显式两参，已由 lead 修改）。
+
+## 2026-09-20 — 收尾追加：C 组工具事实（`decide` 域 / plan §8.2 三处纠正）— api_researcher — 4 条复核，1 条按实测定性
+
+**探针**：`proofs/probes/marcus-api-closeout.lean`（0 error / 0 warning）
+
+**C-1 `by decide` 对 ℚ 的可靠域**（复核一致）：
+
+- ✅ **整数/无除法字面量**（含**负整数**）可算：`zoneQ 1 3`、`zoneQ 1 (-3)`、`zoneQ 1 1`、`zoneQ 1 0` 全部 `by decide` 通过。
+- ❌ **含除法或十进制**一律卡在 `Rat.instDecidableLt` → `Int.decNonneg`，报
+  `'Decidable' instance … did not reduce to 'isTrue' or 'isFalse'`（`0.5` 与 `3/4` 均复现）。
+- ⇒ **规范**：整数参数用 `decide`；含除法/十进制用 `norm_num [zoneQ]`。
+
+**C-2 `plan.md` §8.2 三处旧示例纠正**（三条我都构造了最小复现，**逐条实测**）：
+
+1. **`rw [← zoneQ_eq_zone]` 的方向是分情形的，不是一边错**（此处按我的实测定性，比"方向反了"更准确）：
+   `←` 的重写模式是 `zone ↑?lam ↑?x`，正向模式是 `zoneQ ?lam ?x`。
+   - 目标是 `zoneQ lam x = …` ⇒ 必须**正向** `rw [zoneQ_eq_zone]`（§8.2 的情形，旧示例用了 `←`，故错）；
+   - 目标是 `zone ↑lam ↑x = …` ⇒ `rw [← zoneQ_eq_zone]` 才对。
+   两个方向我都实测通过，**选择取决于目标里出现的是哪一边**。
+2. **cast 字面量 ≠ `OfNat` 字面量**（定义层不等）✅ 复核一致：
+   `exact h`（`h : ↑1 < ↑3`）到目标 `InvertedRegion (1 : ℝ) 3` 报
+   `type mismatch: h has type ↑1 < ↑3 but is expected to have type InvertedRegion 1 3`。
+   两条出路：显式写 `((1:ℚ):ℝ)`，或 `norm_num [InvertedRegion]`。
+3. **`rw` 不走 defeq** ✅ 复核一致：`rw [← zoneQ_inverted_iff]` 不展开 `def InvertedRegion`，报
+   `tactic 'rewrite' failed, did not find instance of the pattern ↑?lam < ↑?x`。
+   出路：`exact (zoneQ_inverted_iff lam x).mp h`（走 defeq），或先 `show (lam:ℝ) < (x:ℝ)`。
+
+**C-3** `Zone`（`deriving DecidableEq`）构造子互异可直接 `by decide` —— 6 组全部实测通过。
+
+## 2026-09-20 — ⚠️ 订正：「未使用的前提」≠「可推出的前提」（M2 verifier 发现 A）— api_researcher
+
+**本日志此前（M2 段落）误写**："`barrier_antitone_of_pos` 的 `h₁ : 0 ≤ x₁` 可由
+`h₃ : x₂ ≤ lam` 与 `h₂ : x₁ < x₂` 推出"。**这是假命题，已改**。
+
+- **正确表述**：`h₁` 是**证明未使用（unused）**的前提 —— 去掉它定理仍成立
+  （`barrier_antitone_of_pos_no_h1` 内核通过），故只产生 unused-variable warning。
+- **内核反例**（verifier 给出，我已独立复现）：`lam = 1, x₁ = -5, x₂ = -4` ⇒
+  `0 < 1 ✓`、`-5 < -4 ✓`、`-4 ≤ 1 ✓`，但 `0 ≤ -5 ✗`。
+  `¬ ∀ lam x₁ x₂, 0 < lam → x₁ < x₂ → x₂ ≤ lam → 0 ≤ x₁` 已机器检查。
+- **为什么必须区分**：把"未使用"说成"可推出"，后人会把它当成**可复用的推理依据**，
+  写出错误证明。已连带把 G-3 里同口径的措辞（"`hlam : lam ≠ 0` 是多余的"）
+  改为"**未被证明使用（unused）**"。
+- 该前提作为**显式物理前提**（驱动力非负）**保留**，不因 unused 而删除。
+
+---
+
+## 给 prover 的速查（按 M3/M5 优先级）
+
+**M3（Sprint 3，最紧）**：
+
+```lean
+-- 势垒右支
+rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * lam)]; nlinarith
+-- 势垒左支（lam<0）先翻正分母
+rw [show (4 : ℝ) * lam = -(4 * (-lam)) by ring, div_neg, div_neg, neg_lt_neg_iff]
+rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * (-lam))]; nlinarith
+-- exp 层
+Real.exp_lt_exp.2 h          -- h : a < b  ⇒  Real.exp a < Real.exp b
+Real.exp_lt_exp.mp h         -- 反向
+-- 乘法层
+mul_lt_mul_of_pos_left h hA  -- h : b < c, hA : 0 < a  ⇒  a*b < a*c
+pos_of_mul_pos_left h (le_of_lt (Real.exp_pos u))  -- 从 0 < A * exp u 取 0 < A
+-- ≤ 版（rate_peak_at_lam 峰值）
+mul_le_mul_of_nonneg_left h hA.le    -- h : b ≤ c, hA : 0 < A
+div_le_div_of_nonneg_right h hkT.le  -- h : a ≤ b, hkT : 0 < kB*T
+rw [Real.exp_le_exp]                 -- ≤ 版也是 iff
+-- rate_ratio 的两步关键
+rw [mul_div_mul_left _ _ hA, ← Real.exp_sub]   -- 约掉 A；exp 相除 → exp 差（注意 ←）
+```
+
+**M5（Sprint 2 末）**：
+
+```lean
+-- 整数参数（含负整数）
+example : zoneQ (1 : ℚ) 3 = Zone.inverted := by decide
+example : zoneQ (1 : ℚ) (-3) = Zone.normal := by decide
+-- 含除法 / 十进制 → decide 会卡，必须 norm_num
+example : zoneQ (1 : ℚ) (3 / 4) = Zone.normal := by norm_num [zoneQ]
+-- ℚ→ℝ
+Rat.cast_lt.mpr h            -- h : p < q  ⇒  (p:ℝ) < (q:ℝ)
+simp only [Rat.cast_lt, Rat.cast_inj]   -- 分类器一致性的关键（不能用 rw）
+-- ⚠️ cast 字面量 ≠ OfNat 字面量：((1:ℚ):ℝ) 与 (1:ℝ) 不是 defeq
+--    目标含 InvertedRegion (1:ℝ) 3 时 `exact h`（h : ↑1 < ↑3）会 type mismatch
+-- ⚠️ rw 不走 defeq：rw [← zoneQ_inverted_iff] 不展开 def InvertedRegion
+--    用 `exact (zoneQ_inverted_iff lam x).mp h` 或先 `show (lam:ℝ) < (x:ℝ)`
+```
+
+**⚠️ 术语纪律（M2 verifier 发现 A，已订正本日志）**：
+"前提**未被证明使用**（unused）" ≠ "前提**可由其他前提推出**"。前者只意味着可以省；
+后者是可以被后人当作**可复用推理依据**的命题。写文档时不得混用 ——
+`barrier_antitone_of_pos` 的 `h₁ : 0 ≤ x₁` 属于**前者**（反例 `lam=1, x₁=-5, x₂=-4` 否证后者）。
+
+**命名（硬约束）**：Lean 4 里 `λ` 是保留 token，**不可作标识符**。统一用
+`lam` / `lamIn` / `lamOut` / `nSq` / `epsS` / `dE` / `dq` / `a1` / `a2`（见
+`marcus-statement-skeleton.lean` 文件头）。

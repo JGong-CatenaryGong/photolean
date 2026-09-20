@@ -265,6 +265,20 @@ theorem inverted_descriptor_holds_of_neg {A lam kB T : ℝ} (hA : A < 0) (hkT : 
   rw [Real.exp_lt_exp]
   exact div_lt_div_of_pos_right (by linarith [barrier_antitone_of_neg hlam hx₁ hx₂]) hkT
 
+/-- **语义要点**：`InvertedDescriptor` **只在 `lam > 0` 时成立**。
+    `lam < 0` 时 `barrier` 随 `x` 递减（`barrier_antitone_of_neg`），故速率随 `x` **递增**，
+    与描述方向相反 —— 本定理给出机器检查的反例（`A = kB = T = 1, lam = -1`）。
+    ⇒ `inverted_descriptor_holds` 的 `hlam : 0 < lam` 与
+    `inverted_descriptor_holds_of_neg` 的 `hA : A < 0` **都不可删减或互换**。 -/
+theorem not_invertedDescriptor_of_neg_lam : ¬ InvertedDescriptor 1 (-1) 1 1 := by
+  intro h
+  have hlt : rate 1 (-1) 1 1 1 < rate 1 (-1) 1 1 0 := h 0 1 (by norm_num) (by norm_num)
+  have h1 : rate 1 (-1) 1 1 1 = Real.exp 1 := by unfold rate barrier; norm_num
+  have h0 : rate 1 (-1) 1 1 0 = Real.exp (1 / 4) := by unfold rate barrier; norm_num
+  rw [h1, h0] at hlt
+  have : (1 : ℝ) < 1 / 4 := Real.exp_lt_exp.mp hlt
+  norm_num at this
+
 /-! ## M4b — 微观充分条件 -/
 
 noncomputable def lamInner (kk dq : ℝ) : ℝ := kk * dq ^ 2 / 2
