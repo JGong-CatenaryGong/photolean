@@ -140,3 +140,9 @@ theorem tsCoord_neg {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   field_simp
   ring
 
+/-- Thermoneutrality puts the transition state exactly halfway. -/
+theorem tsCoord_zero {lam : ℝ} (hlam : lam ≠ 0) : tsCoord lam 0 = 1 / 2 := by
+  unfold tsCoord
+  field_simp
+  ring
+
