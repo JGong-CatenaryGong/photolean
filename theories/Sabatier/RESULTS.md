@@ -288,7 +288,9 @@ arithmetic corrected, three counts re-measured, provenance labels aligned with t
 record, the two Chinese experience entries translated, and the acceptance gate's scan extended to
 `constant`). Verifier run 4 (the targeted re-audit of those disposals) confirmed them, reported the
 residual documentation items R1–R7 and found **no invalidated declaration**; R1–R7 were then disposed
-in the closeout commits. The run verdicts are recorded in
+in the closeout commits, and verifier run 5 (the final confirmation) reproduced the counts, the bare
+gate and the fidelity numbers and converted the verdict to **PASS** with one LOW attribution item,
+also disposed. The run verdicts are recorded in
 `theories/Sabatier/TASKS.md` § "Acceptance records".
 
 *What the process caught (three corrections, all logged in `plan.md` §3.1).* (1) Two authority rows of
