@@ -39,7 +39,7 @@ convention of `PhotoLean/Kasha/Basic.lean`).
 Statement authority: every definition body and every theorem signature below is taken word for word
 from the K4 block of `theories/kasha/probes/kasha-statement-skeleton.lean` (frozen state, sha256
 `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations), whose premises follow `theories/kasha/plan.md` §7.1 and §7.2 with
-five strengthening additions reconciled in plan §3.1: 4 definitions and 16 theorems, in the
+six strengthening additions reconciled in plan §3.1: 4 definitions and 16 theorems, in the
 authority's order, with
 nothing added, renamed or restated. Note deliberately: the two keyword literals that
 `proofs/scripts/check.sh --strict` scans for are not spelled out anywhere in this file — that scan

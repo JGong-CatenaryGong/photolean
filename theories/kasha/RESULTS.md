@@ -21,11 +21,13 @@
 `Compose.lean` (K4, composition, the effective two-level reduction and the Marcus bridge),
 `RatModel.lean` (K5a, computable rational verdict layer) and `Instances.lean` (K5b, instance
 verdicts) — containing **150 declarations: 110 theorems, 37 definitions and 3
-structures/inductives** (2,354 lines), all completely proved: **zero unproved placeholders, zero
+structures/inductives** (2,358 lines), all completely proved: **zero unproved placeholders, zero
 custom axioms**. Every statement was calibrated before proof work and the delivered signatures match
 the statement authority `theories/kasha/probes/kasha-statement-skeleton.lean` **150/150 word for
-word** (`signature differences: 0`, no declaration outside the authority). Delivery discipline: one
-commit per lemma — 96 commits touch `PhotoLean/Kasha/` (92 `feat(...)` + 4 `docs(...)`).
+word** (`signature differences: 0`, no declaration outside the authority). Delivery discipline:
+**97 commits touch `PhotoLean/Kasha/`** — 92 `feat(...)` + 5 `docs(...)`; one commit per lemma holds
+literally for K1–K4 (28/22/15/20), while K5a (29 declarations) and K5b (20 rows) are delivered in
+grouped `feat` commits (4 each), **registered as a deviation** on the board.
 
 **The one-sentence result.** In a finite excited-state ladder whose levels decay with a radiative
 rate `rad n` and a nonradiative rate `ic n`, Kasha's rule ("the emission comes from the lowest
@@ -124,7 +126,9 @@ of the model**, and the formalization says so instead of pretending otherwise.
 
 ```text
 KashaWithin tol N   ⟺   (1 − tol)/tol  ≤  ladderRatio rad ic N
-                        where ladderRatio = rad 0 · cascade 0 N / (upperYield N · decay 0)
+         (premises as delivered: RateData rad ic N, 0 < upperYield rad ic N,
+          0 < tol, 0 < decay rad ic 0)
+         where ladderRatio = rad 0 · cascade 0 N / (upperYield N · decay 0)
 ```
 
 and, for the two-level ladder with no other loss at the lowest level (`ic 0 = 0`), this is exactly the
@@ -132,7 +136,14 @@ literature's rate-ratio form (K3 `kashaWithin_one_iff_ic_ratio`):
 
 ```text
 KashaWithin tol 1   ⟺   k_IC / k_rad  ≥  (1 − tol)/tol        (tol = 1/100  ⟺  99)
+         (premises as delivered: ic 0 = 0, rad 0 ≠ 0, 0 < tol,
+          0 < rad 1, 0 < decay rad ic 1)
 ```
+
+The premises are not decoration: without them the displayed biconditionals are **refutable by the
+kernel** (the closing audit exhibits `rad = (1,0,…)`, `ic ≡ 1`, `N = 1`, `tol = 1/100`, where the
+tolerance form holds while `ladderRatio` degenerates to the junk value `0`). The delivered theorems
+carry them; this display now does too.
 
 The requirement `tol` is a **model choice, not a literature number**: no source read in
 `LITERATURE.md` prints a threshold for `k_IC ≫ k_rad` (§R1.3), and the historical anchor for the
@@ -228,8 +239,8 @@ level's nonradiative channel is neglected in the row), and the identification `r
 
 **What the instance layer adds over the qualitative rule.** (i) The verdict is *tolerance-relative*
 and the kernel shows it (I11t): with the I11 ratio 20.6, conformance begins at `tol ≥ 1/21.6 ≈ 4.6 %`
-(and at `1/(40.3+1) ≈ 2.4 %` for the 2026 route), so "azulene violates Kasha's rule" is a statement
-*about a tolerance*, not an absolute; (ii) the family contrast is *internal to one measurement family
+(exactly `7/151 = 4.6358 %` for the I11 ratio `144/7`, and `1/(40.3+1) ≈ 2.4 %` for the 2026 route),
+so "azulene violates Kasha's rule" is a statement *about a tolerance*, not an absolute; (ii) the family contrast is *internal to one measurement family
 at one tolerance*
 (I15) — the methylated derivative conforms while the parent violates; (iii) the three independent
 azulene routes (thesis 20.6, printed quantum yield 40.3, peer-reviewed rates 23.0) agree on the
@@ -270,8 +281,14 @@ recorded with their disposition in `theories/kasha/TASKS.md` §"Acceptance recor
 probes were committed, the fidelity checker gained `--milestone` scoping after a milestone's
 acceptance number proved inexpressible without it, the board's hash history was restored (a Sprint-0
 row must not cite a hash that only exists *after* the corrections), the delivered module headers now
-name the frozen authority state, and seven plan sketches were reconciled with the delivered
-signatures. None of the findings invalidated a delivered theorem.
+name the frozen authority state, and **eight** plan sketches were reconciled with the delivered
+signatures (seven rows strengthened, one unneeded premise dropped; six of the eight are K4 rows).
+Run 3 (the closing audit) verified K3 and K5b for the first time — 35/35 theorems with the single
+allowed axiom footprint, fidelity 15/15 and 20/20, every instance verdict recomputed in the
+verifier's own kernel probe, and a clean positivity sweep — and then **failed the documentation
+plane**: eleven findings, all of them stale numbers, overstatements or missing records, none a
+mathematical defect. They are corrected in this revision, and the acceptance records for all three
+runs are now on the board. No finding ever invalidated a delivered theorem.
 
 **The process caught three false statements before delivery** (plan §3.1, the statement-correction
 log). All three were the *same* mistake in different clothes — a statement whose premises did not
@@ -294,9 +311,13 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 
 **证据（中文）**：每个交付模块都通过三层门（构建 / `--strict` 扫描 `clean` / `#print axioms` 仅
 `propext, Classical.choice, Quot.sound`），里程碑保真报告为 44/22/15/20/29/20 逐字一致；裸跑 `check.sh --strict`
-覆盖全部六个模块并 PASS。只读 verifier 独立复核并**自行在内核重推**头条数字（3/4、7/8、6/7>1/2 与逐层满足却违反的行）；
-其第一轮（K1 + 全部 Sprint-0 探针）判定**数学 PASS**，同时提出 8 条证据链发现，全部连同处置记入任务板
-（未入库的 API 探针已提交、保真检查器新增 `--milestone` 粒度、看板的哈希历史已恢复，其余登记为偏差）。
+覆盖全部六个模块（审计者移走 `Instances.olean` 后由裸跑重建，实测覆盖无遗漏）并 PASS。只读 verifier 独立复核并
+**自行在内核重推**头条数字：三轮分别覆盖 K1 + Sprint-0 探针、K2/K4/K5a、K3/K5b 与全树，共 36 个内核闭合算例
+（有效两层归约在 6 组自选阶梯上、N 级阈值与 `kashaMargin`、三组 Marcus 参数含"任何能隙都不成立"的一组、
+全部实例判决与 6/7 泄漏分数、以及 K3 四行的独立重证）；对 K2/K3/K4/K5a/K5b 逐行做的"除数符号"逆向扫描
+**未发现潜伏假语句**。三轮的发现都属证据链/文档（未入库探针、保真检查器缺里程碑粒度、看板哈希历史、
+模块头权威引用、八处规划草图与交付签名不一致、以及末轮的 11 条文档数字问题），全部连同处置记入任务板 §Acceptance records；
+**没有任何一条发现推翻已交付定理**。
 **流程在交付前抓住三条假语句**（plan §3.1 订正日志），三者是同一错误的三副面孔：**前提没有携带证明所需除数的符号**
 （`tol` 的符号、`decay 1` 的符号），其中 K3 那条被 ℝ 与 ℚ 两侧**独立两次**抓到。每条订正都有内核反例文件；
 另有一条与内核无关的精确有理数交叉核验通路（193 组随机阶梯、825 组有效归约对、400 组 Marcus 参数）全部通过。

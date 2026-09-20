@@ -331,9 +331,10 @@ declaration of `Basic.lean`, definitions included in §4.1.)
 | 2026-09-20 | K3 #9 `not_kashaWithin_one_of_ratio_lt` | it is the strict side of the same (false) equivalence, so it fails on the same witness | added `(h1 : 0 < decay rad ic 1)` in the same pass | same probe file |
 | 2026-09-20 | K5a `kashaWithinQ_iff_funnelRatioQ` | the ℚ twin of K3 #2, with the same defect found **independently** | added `(h1 : 0 < decayQ rad ic 1)` | kernel counterexample in `theories/kasha/probes/kasha-rat-probe.lean` (`probe_criterion_premises_insufficient`, witness `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2`), raised by prover_c |
 
-| 2026-09-20 | plan §5.1 #12, §5.2 #21, §7.2 #8/#9/#11/#12/#13/#14 | **plan-sketch ↔ authority reconciliation** (found by verifier run 2, finding 2): seven rows of the plan's sketches differ from the delivered signatures — six by *strengthening* a premise (`htol : 0 ≤ tol` in K2 #21; `hpos` in K4 #8; `h0 : 0 < decay rad ic 0` in K4 #9/#11; `hr0 : 0 < rad 0` in K4 #12/#13/#14, which is genuinely needed for the `Real.log` step) and one by *dropping* an unneeded premise (`hN : 0 < N` in K2 #12, true at `N = 0` too). None of the seven is a mathematical defect: the authority is the source of truth and was proved as delivered | the plan's tables are corrected in place to the delivered signatures, so plan and authority agree row by row; the `Compose.lean` header's claim of "nothing added" is replaced by a pointer to this entry | verifier run 2 report (batch K2/K4/K5a), reproduced in the board's acceptance record |
+| 2026-09-20 | plan §5.1 #12, §5.2 #21, §7.2 #8/#9/#11/#12/#13/#14 | **plan-sketch ↔ authority reconciliation** (found by verifier run 2, finding 2): **eight** rows of the plan's sketches differ from the delivered signatures — **seven strengthened**, **one weakened by dropping an unneeded premise** (`hN : 0 < N` in K2 #12, true at `N = 0` too). The seven additions: `htol : 0 ≤ tol` (K2 #21), `hpos` (K4 #8), `h0 : 0 < decay rad ic 0` (K4 #9, #11), `hr0 : 0 < rad 0` (K4 #12, #13, #14 — genuinely needed for the `Real.log` step); six of the eight rows are K4 rows. None of the seven is a mathematical defect: the authority is the source of truth and was proved as delivered | the plan's tables are corrected in place to the delivered signatures, so plan and authority agree row by row; the `Compose.lean` header's claim of "nothing added" is replaced by a pointer to this entry | verifier run 2 report (batch K2/K4/K5a), reproduced in the board's acceptance record |
 
-Correction-log lesson (recorded for the engine): **three of the four corrections are the same
+Correction-log lesson (recorded for the engine): **three of the five correction rows — i.e. three of
+the three distinct defects — are the same
 mistake in different clothes** — a statement whose premises do not carry the sign of a quantity the
 proof must divide by (the tolerance `tol`, then the total decay `decay 1`). The Sprint-0 risk probe
 is what caught it before any delivered file carried the false form; `#print axioms`-clean probes are
@@ -378,7 +379,9 @@ Vavilov's rule (§5.2).
 | 21 | `kashaWithin_of_kashaRule (h : RateData rad ic N) (htol : 0 ≤ tol) (hK : KashaRule rad ic N) : KashaWithin rad ic tol N` | 18, `0 ≤ tol·fluoYield`; the delivered row carries the two premises the draft left implicit (reconciled in §3.1) |
 | 22 | `upperYield_le_sum_radBranch (h : RateData rad ic N) : upperYield rad ic N ≤ ∑ i ∈ Finset.Icc 1 N, radBranch rad ic i` | 12 |
 
----## 6. K3 — sharp conditions (`PhotoLean/Kasha/Sharp.lean`)
+---
+
+## 6. K3 — sharp conditions (`PhotoLean/Kasha/Sharp.lean`)
 
 The exact tolerance criterion (the answer to ②) and its sharpness. All rows carry the standing
 positivity premises explicitly.
@@ -402,11 +405,11 @@ positivity premises explicitly.
 |---|---|---|
 | 9 | `not_kashaWithin_one_of_ratio_lt (h0 : 0 < decay rad ic 0) (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1) (h : funnelRatio rad ic < (1 - tol) / tol) : ¬ KashaWithin rad ic tol 1` | contrapositive of 2 — **statement corrected 2026-09-20** in the same pass, see §3.1 |
 | 10 | **`kashaThreshold_attained`** `(h0 : 0 < tol) (h1 : tol < 1) : ∃ rad ic, KashaWithin rad ic tol 1 ∧ (∀ tol' : ℝ, 0 < tol' → tol' < tol → ¬ KashaWithin rad ic tol' 1)` | witness `rad 0 = 1, rad 1 = tol, ic 0 = 0, ic 1 = 1 - tol` (`funnelRatio = (1-tol)/tol` exactly) — **the threshold is attained and cannot be improved** |
-| 11 | `kashaWithin_one_witness : KashaWithin rad ic (1/100) 1` for `rad 0 = 1, rad 1 = 1, ic 0 = 0, ic 1 = 100` | `norm_num`-style two-level computation (funnel ratio `= 100 ≥ 99`) |
-| 12 | `kashaWithin_one_negative : ¬ KashaWithin rad ic (1/100) 1` for `rad 0 = 1, rad 1 = 1, ic 0 = 0, ic 1 = 10` | funnel ratio `= 10 < 99` |
+| 11 | ~~`kashaWithin_one_witness`~~ — **not in the authority**: its content landed in K5b as row I1 (same constants); the sketch row is kept here as the plan's provenance and marked as carried by I1 | `norm_num`-style two-level computation (funnel ratio `= 100 ≥ 99`) |
+| 12 | ~~`kashaWithin_one_negative`~~ — **not in the authority**: its content landed in K5b as row I2 (same constants), and I3b carries the below-threshold variant | funnel ratio `= 10 < 99` |
 | 13 | **`perLevel_criterion_insufficient`** `: ∃ rad ic, RateData rad ic 2 ∧ (∀ i, 1 ≤ i → i ≤ 2 → rad i * decay rad ic (i-1) ≤ ic i * decay rad ic i) ∧ ¬ KashaWithin rad ic (1/2) 2` | witness `rad = fun n => 1`, `ic = fun n => 1` — **the levelwise "k_IC ≥ k_rad" criterion is false**; the general criterion is the aggregate one of K4 |
 | 14 | `vavilov_premise_necessary : ∃ rad ic N, RateData rad ic N ∧ rad (N+1) ≠ 0 ∧ VavilovAt rad ic N` | witness `rad = fun n => 1`, `ic = fun n => 0` — with no loss channel `fluoYield ≡ 1` and Vavilov holds trivially while Kasha fails |
-| 15 | `kashaRule_needs_rad_zero`? subsumed by 14/13; the plan keeps the two witnesses above and adds: `exact_rule_only_at_zero_rad` `(h : RateData rad ic N) : KashaRule rad ic N ↔ ∀ i, 1 ≤ i → i ≤ N → rad i = 0` — re-export of K2 #14 in the sharp layer's narrative | K2 #14 |
+| 15 | ~~`exact_rule_only_at_zero_rad`~~ — **dropped from the sketch**: it is a re-export of K2 #14 in the sharp layer's narrative and the authority does not carry it (no duplicate statements across modules) | K2 #14 is where the content lives |
 | 16 | `kashaWithin_one_sharp_boundary (h0 : 0 < tol) (h1 : tol < 1) : ∃ rad ic, funnelRatio rad ic = (1 - tol) / tol ∧ KashaWithin rad ic tol 1` | the boundary case of 2 is attained (equality ⇒ conformance) |
 | 17 | `upperYield_le_sum_radBranch` — K2 #22 re-export in the sharp layer's bound block? **no**: the plan keeps a bound of the *relative* leak instead: `leak_le_of_radBranch_le (h : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ) (hN : 0 < N) : upperYield rad ic N ≤ θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N` | 12 of K1 |
 | 18 | `kashaWithin_of_uniform_branch (h : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ) (hθ : θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N ≤ tol * fluoYield rad ic N) : KashaWithin rad ic tol N` | 17 |
