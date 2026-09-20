@@ -36,4 +36,10 @@ theorem barrier_nonneg {lam : ℝ} (hlam : 0 < lam) (x : ℝ) : 0 ≤ barrier la
 theorem barrier_at_lam (lam : ℝ) : barrier lam lam = 0 := by
   simp [barrier]
 
+/-- 抛物线对称性：以 `x = lam` 为轴（`(lam - x)² = (lam - (2lam - x))²`）。
+`hlam : lam ≠ 0` 是**显式物理前提**（重组能非零）；实测证明中不需要它 ——
+除零约定 `x / 0 = 0` 使 `lam = 0` 时两端同为 `0`。 -/
+theorem barrier_symm {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) : barrier lam x = barrier lam (2 * lam - x) := by
+  unfold barrier; congr 1; ring
+
 end PhotoLean.Marcus
