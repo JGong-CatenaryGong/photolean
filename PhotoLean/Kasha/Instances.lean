@@ -149,6 +149,31 @@ theorem I9_verdict_violating :
     decayQ, twoRad, twoIc, Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top,
     Finset.sum_singleton, Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
 
+/-- Plan §8.2 row I13 — row inventory: the two model-constructed verdicts of I1/I2 in one
+statement, at the same tolerance. -/
+theorem I13_row_inventory :
+    KashaWithinQ (twoRad 1 1) (twoIc 0 100) (1 / 100) 1 ∧
+      ¬ KashaWithinQ (twoRad 1 1) (twoIc 0 10) (1 / 100) 1 := by
+  constructor
+  · norm_num [KashaWithinQ, upperYieldQ, fluoYieldQ, emitYieldQ, radBranchQ, icBranchQ, cascadeQ,
+      decayQ, twoRad, twoIc, Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top,
+      Finset.sum_singleton, Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
+  · norm_num [KashaWithinQ, upperYieldQ, fluoYieldQ, emitYieldQ, radBranchQ, icBranchQ, cascadeQ,
+      decayQ, twoRad, twoIc, Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top,
+      Finset.sum_singleton, Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
+
+/-- Plan §8.2 row I14 — non-vacuity: both verdict kinds occur in the model-constructed rows. -/
+theorem I14_not_one_sided :
+    (∃ rad ic : ℕ → ℚ, KashaWithinQ rad ic (1 / 100) 1) ∧
+      (∃ rad ic : ℕ → ℚ, ¬ KashaWithinQ rad ic (1 / 100) 1) := by
+  refine ⟨⟨twoRad 1 1, twoIc 0 100, ?_⟩, ⟨twoRad 1 1, twoIc 0 10, ?_⟩⟩
+  · norm_num [KashaWithinQ, upperYieldQ, fluoYieldQ, emitYieldQ, radBranchQ, icBranchQ, cascadeQ,
+      decayQ, twoRad, twoIc, Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top,
+      Finset.sum_singleton, Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
+  · norm_num [KashaWithinQ, upperYieldQ, fluoYieldQ, emitYieldQ, radBranchQ, icBranchQ, cascadeQ,
+      decayQ, twoRad, twoIc, Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top,
+      Finset.sum_singleton, Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
+
 end Kasha
 
 end PhotoLean
