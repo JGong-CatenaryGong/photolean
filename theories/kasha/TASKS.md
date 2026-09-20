@@ -72,7 +72,7 @@
 - [x] Literature round 1: `theories/kasha/LITERATURE.md` §R1 (§R1.0–§R1.9, 787 lines, commit
       `7fc2efd`) — owner `literature_researcher`; the round's three binding consequences are folded
       into plan §1.1 (scope qualifiers; `tol` is a model choice, not a literature number; rates are
-      measurements identified with model scalars) and §13 (the K4b attribution requirement; the ban on
+      measurements identified with model scalars) and §13 (the attribution requirement for the Marcus bridge — plan §7.2 item K4c — the ban on
       a global gap-monotonicity claim)
 - [x] Human confirmation of the plan (2026-09-20: layout + K1–K5 approved; the three-part request
       mapped to §2/§3/§4 of `RESULTS.md`)

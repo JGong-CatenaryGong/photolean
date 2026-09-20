@@ -4,7 +4,7 @@ Kasha milestone — API probe (topic F): feasibility of the exponential-race der
 Scope.  The plan's §1.2 branching probabilities `ic n / decay n` are the embedded-jump-chain
 probabilities of two competing exponential clocks.  This probe answers the bounded feasibility
 question *with kernel evidence*:  can mathlib v4.17.0 state and prove "two independent exponential
-clocks of rates `a`, `b`: the probability that the first fires first is `a / (a + b)`", or must K4c
+clocks of rates `a`, `b`: the probability that the first fires first is `a / (a + b)`", or must K4b
 stay a declared modelling premise?
 
 Findings (details in `proofs/API-NOTES.md` §kasha, prose section (f)):

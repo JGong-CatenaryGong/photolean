@@ -33,7 +33,7 @@ inside a finite excited-state cascade model. The literature round must settle:
    isolated molecules showing resonance fluorescence, thioketones) with per-point data and page
    references, or an explicit `UNSUPPORTED` mark where the numbers are not first-hand.
 5. **The energy-gap law / Marcus-type radiationless-transition form** for internal conversion — the
-   input needed by the plan's Marcus bridge (K4b): is the quadratic driving-force form used in the
+   input needed by the plan's Marcus bridge (plan §7.2 item K4c): is the quadratic driving-force form used in the
    literature for radiationless transitions, and under what stated limits?
 
 ---
@@ -634,7 +634,7 @@ Notes that must travel with the rows (docstring material):
   quantities of the model. They are measurements identified with model scalars (§R1.4.2), and the
   identification (`ic 1` ≡ k_IC(S₂→S₁), `rad 1` ≡ total radiative rate of S₂) is the declared bridge.
 
-## §R1.7 The radiationless-transition rate law, and what the K4b bridge may claim (question 5)
+## §R1.7 The radiationless-transition rate law, and what the Marcus bridge (plan K4c) may claim (question 5)
 
 ### R1.7.1 Bibliographic spine (all Crossref-verified here; bodies mostly closed)
 
@@ -768,7 +768,7 @@ Short answer, stated so the docstring can be written honestly:
 2. **Even "exponential in the gap" is an approximation with a stated range restriction** (§R1.7.2):
    the printed gap-law exponent contains `ln(ΔĒ/λ_h) − 1` and its prefactor has `ΔĒ^(−1/2)`, and its
    validity is conditional (`ΔĒ ≫ λ_h ≫ λ_l`, `ħω_h ≫ k_B T`, stationary-phase evaluation). The
-   honest Lean reading of K4b is therefore: `ic 1` is given by the *classical quadratic* form **as a
+   honest Lean reading of the bridge (plan K4c) is therefore: `ic 1` is given by the *classical quadratic* form **as a
    declared model**, not as the literature's general law.
 3. **The identification is nonetheless used in the literature** for internal conversion — but with a
    named model attached: **MJL / one-effective-mode Marcus–Jortner–Levich**, and (in the cited 2023
