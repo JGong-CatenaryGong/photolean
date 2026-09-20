@@ -19,7 +19,8 @@
 `Instances.lean` (H5b) — containing **102 declarations: 17 definitions and 85 theorems**, all with
 complete proofs: **zero unproved placeholders, zero custom axioms**. Every statement was compiled
 *before* any proof work (the statement skeleton, see §2.3), delivered signatures match it
-**102/102 word for word**, and every theorem is delivered as **one commit per lemma** (87 commits).
+**102/102 word for word**, and every theorem is delivered as **one commit per lemma** —
+85 per-lemma commits plus 2 definition commits, 87 worker commits in total.
 
 **The one-sentence result.** In the two-parabola (Marcus-type) model, the transition-state
 coordinate is `q‡ = (λ - x)/(2λ)` with driving force `x = -ΔG°`; Hammond's structural trend is
@@ -120,7 +121,8 @@ adopted with both sides' kernel counterexamples.
 | `exists_reactantLike`, `exists_productLike`, `exists_reactionRegion` | the predicates are inhabited (not vacuous) | 谓词非空（不退化为空真） |
 | `barrier_eq_gapReactant` | `rfl`-bridge to the already-delivered Marcus barrier — the two theories are about the same object | 与已交付 Marcus 势垒的 `rfl` 桥：两个理论讲同一个对象 |
 
-**Primary locus (literature round 4)**: Marcus 1968, *J. Phys. Chem.* **72**(3), 891,
+**Primary locus (literature record §3.2/§10, status `verified`, read first-hand; round 4)**:
+Marcus 1968, *J. Phys. Chem.* **72**(3), 891,
 `10.1021/j100849a019`, §"Meaning of the Brønsted Slope", printed **p. 896, eq. (32)**:
 "`α = ½(1 + ΔF°'/λ)` (32) when `|ΔF°'| ≲ λ`", with the same page describing the coordinate as the
 "product-like character" of the transition state. Two consequences used below: the identity is the
@@ -192,6 +194,11 @@ real theory**. `Conforms` means `HammondConforms`; every verdict below is a kern
 | I9 | MCC pair `3/5 → 12/5` | `6/5` | `3/5`, `12/5` | descending | `tsCoord (12/5) < tsCoord (3/5)` — the Hammond direction instantiated on literature parameters | 在文献参数上实例化 Hammond 方向 |
 | I10 | non-vacuity on literature parameters | `6/5` | `±1/20` | — | `ReactantLike ∧ ProductLike` both inhabited | 两类谓词都非空 |
 
+Table note: for I2/I3 the `q‡` cells are values computed from the definitions (independently
+recomputed by two verifiers); the *delivered* theorems of those rows are the zone and verdict
+statements (`inst_I2_exergonic_zone/_reactantLike/_conforms`, `inst_I3_endergonic_*`). Rows I1, I4,
+I5, I6, I7 do carry a delivered coordinate theorem (`inst_*_coord`).
+
 Values come from `theories/hammond/LITERATURE.md` §6 (the MCC series `λ = 1.20 eV` — the sum of the
 `λ_s = 0.75` and `λ_v = 0.45 eV` annotations legible inside Nobel 1992 Fig. 8 — and the reaction
 centre `λ ≈ 0.25 eV`; the driving forces are the sibling record's C&EN-based values and the
@@ -219,7 +226,7 @@ Hammond's postulate, and no instance theorem asserts anything about measured rat
 | Statement fidelity | `python3 theories/hammond/probes/hammond-fidelity.py` | 102/102 word-for-word, 0 differences, 0 extra declarations |
 | Commit discipline | `git log --oneline` + `git show --stat` | 87 worker commits: one per theorem (+ one per file for the definitions); each commit touches exactly its owner's file |
 | Independent numeric cross-check (lead) | `python3 theories/hammond/probes/hammond-instance-check.py` | exact rationals reproduce I5 `23/48`, I6 `-1/2`, I7 `-17/10`, secant `-1/8`, reverse-barrier identity |
-| Falsification audit (independent prover) | `theories/hammond/probes/hammond-audit-b.lean` — 99 kernel checks + 40 `#print axioms` | no false statement, no vacuous hypothesis; hypothesis-necessity counterexamples for every main premise |
+| Falsification audit (independent prover) | `theories/hammond/probes/hammond-audit-b.lean` — 99 kernel checks + 41 `#print axioms` | no false statement, no vacuous hypothesis; hypothesis-necessity counterexamples for every main premise |
 | Independent verifier, batch 1 (H1 + H5a) | read-only reviewer, own fidelity implementation, own probes | **PASS / PASS** — 31/31 axioms clean, 48/48 declarations verbatim by a second implementation, 15-point classifier grid on both `ℝ` and `ℚ`, 7 necessity counterexamples |
 | Independent verifier, batch 2 (H2 + H3) | read-only reviewer, own signature parser, own necessity probes, `#print` proof-term inspection | **PASS / PASS** — 21/21 axioms clean; `lefflerSecant` shown to be barrier-data only and its key theorem a real computation (not `rfl`); `hammond_sharp`'s proof is `⟨necessity, H2⟩` with both reversal witnesses consumed across all three `lt_trichotomy` branches |
 | Independent verifier, batch 3 (H4 + H5b) | read-only reviewer, own recomputation from the definitions, mechanical premise diff | **PASS / PASS** — 33/33 axioms clean; H4 calls only the delivered Marcus lemmas; dropping `hPekar` makes the descriptor fail (`lamInner + lamOuter = -2/3`, kernel counterexample); all 29 instance verdicts traced through the ℚ→ℝ transfer chain; independent values `23/48`, `-1/2`, `-17/10`, secant `-1/8` |

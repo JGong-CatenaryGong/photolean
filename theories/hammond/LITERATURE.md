@@ -98,7 +98,7 @@ structural-resemblance reading leaves its domain; **(e)** kernel-checked verdict
 | S7 | Marcus, *Discuss. Faraday Soc.* **29**, 21–31 (1960) | `10.1039/df9602900021` | The **first** statement of the inverted region: item "(v) Possibility of 'inverted' chemical behaviour" | `verified` (local PDF `Marcus1960_Faraday_inverted_region.pdf`, printed p. 28; quote in §4.1). **Full-text grep: no `slope`, no `Brønsted`, no `α`** |
 | S8 | Marcus, Nobel Lecture 1992, "Electron Transfer Reactions in Chemistry: Theory and Experiment", *Chemistry 1992* (Nobel Foundation), printed pp. 71–89 | local PDF `theories/Marcus/literature/Marcus1992_nobel_lecture.pdf` | Printed loci for: barrier Eq. (5b) (p. 78), `λ = λ_o + λ_i` Eq. (6) (p. 78), inverted region + the **Brønsted/Tafel-plot** analogy (p. 82), slope 1/2 (p. 85), Fig. 8 annotation `λ_s = 0.75`/`λ_v = 0.45` eV/`ω = 1500 cm⁻¹` (p. 84), reaction-centre numbers `0.25 eV`/`~1.1 eV` (p. 88), atom/proton/methyl-transfer scope limit (p. 90) | `verified` (text layer + rendered Fig. 8 PNG read here). **"Hammond" 0 hits, "Leffler" 0 hits** |
 | S9 | Cohen & Marcus, *J. Phys. Chem.* **72**(12), 4249–4256 (1968), "On the slope of free energy plots in chemical kinetics" | `10.1021/j100858a052` | **The α formula as an observable slope**, applied to experiment: instantaneous slope of the `ΔF*` vs `ΔF°′` plot `= (1/2)[1 + ΔF°′/(4ΔF_0*)]`, applied to Brønsted-slope data of **16 proton- and atom-transfer series**, "experimental results are consistent with this equation, but more data are needed" | `verified (abstract-level)` (CaltechAUTHORS record `adpqk-tcp81`, abstract reproduced) |
-| S10 | Marcus, *J. Phys. Chem.* **72**(3), 891–899 (1968), "Theoretical relations among rate constants, barriers, and Broensted slopes of chemical reactions" | `10.1021/j100849a019` | **eq. (32), p. 896** (section "Meaning of the Brønsted Slope", pp. 895–896): `α = ½(1 + ΔF°'/λ)` **"when `|ΔF°'| ≲ λ`"**, with `α` described as the **"product-like character"** of the coordinates — the primary source of the plan's α identity **and of its `|x| < λ` range**; barrier with work term `ΔF* = w^r + λ(1 + ΔF°′/λ)²/4`; the "degree-of-reaction parameter" `n`, `n*`; `λ` constant across a series "as a conjecture"; Appendix II: the two-parabola picture is a **projection** of a many-dimensional surface, and for bond-breaking atom/proton transfers the **inverted effect is removed** | `verified (abstract-level)` for the abstract (CaltechAUTHORS `xnks4-y0h56`) + `verified (delegated read)` for eq. (32), the Appendix II/III quotes and the symbol list (§3.2, §4.4, §5.2); first-hand re-extraction requested (§9 item 16) |
+| S10 | Marcus, *J. Phys. Chem.* **72**(3), 891–899 (1968), "Theoretical relations among rate constants, barriers, and Broensted slopes of chemical reactions" | `10.1021/j100849a019` | **eq. (32), p. 896** (section "Meaning of the Brønsted Slope", pp. 895–896): `α = ½(1 + ΔF°'/λ)` **"when `|ΔF°'| ≲ λ`"**, with `α` described as the **"product-like character"** of the coordinates — the primary source of the plan's α identity **and of its `|x| < λ` range**; barrier with work term `ΔF* = w^r + λ(1 + ΔF°′/λ)²/4`; the "degree-of-reaction parameter" `n`, `n*`; `λ` constant across a series "as a conjecture"; Appendix II: the two-parabola picture is a **projection** of a many-dimensional surface, and for bond-breaking atom/proton transfers the **inverted effect is removed** | `verified (abstract-level)` for the abstract (CaltechAUTHORS `xnks4-y0h56`) + **`verified` first-hand for eq. (32), the "product-like character" sentence and the Appendix II fragments** (issue-scan text layer, PDF pp. 130–132 = printed pp. 896–898; §10) |
 | S11 | Marcus, *J. Am. Chem. Soc.* **91**(26), 7224–7225 (1969), "Unusual slopes of free energy plots in kinetics" | `10.1021/ja01054a003` | Primary-adjacent identification **slope of the barrier-vs-driving-force plot ↔ position of the TS along the reaction coordinate**, and application to experimental "unusual Brønsted coefficients" | `verified (abstract-level)` (CaltechAUTHORS `wew6q-35t88`) |
 | S12 | Marcus & Sutin, *Biochim. Biophys. Acta (BBA) — Reviews on Bioenergetics* **811**(3), 265–322 (1985), "Electron transfers in chemistry and biology" | **`10.1016/0304-4173(85)90014-X`** | The standard review-level statement of the unified theory (work terms, cross-relation, inverted region) | `not-accessed` (paywalled). **⚠ The DOI `10.1016/0005-2728(85)90039-9` returns 404 at Crossref and at doi.org — do not use it** |
 | S13 | Sutin, "Theory of Electron Transfer Reactions: Insights and Hindsights", *Prog. Inorg. Chem.* **30**, 441–498 (1983) | `10.1002/9780470166314.ch9` | Review-level treatment of the inverted region; identified for citation only | `not-accessed` |
@@ -285,12 +285,15 @@ Leffler proposed a similar idea two years before Hammond's paper was published."
 ### 3.2 The α formula (the decisive loci)
 
 1. **Marcus 1968 (S10), section "Meaning of the Brønsted Slope", pp. 895–896; the decisive locus is
-   eq. (32) on p. 896** — `verified (delegated read)` (the delegate re-extracted the journal scan and
-   reproduced the strings; a first-hand re-extraction is requested, see §9 item 16):
+   eq. (32) on p. 896** — **`verified` first-hand in this survey** (text layer of the issue scan,
+   PDF p. 130; retrieval record, page mapping and OCR caveat in §10):
    > "Since α is `dΔF*/dΔF0'`, eq 2 yields **α = ½(1 + ΔF°'/λ)  (32)  when |ΔF°'| ≲ λ**."
    and the structural reading of that slope, p. 896:
    > "`n*` and, thereby, α represents the products' contribution to this function … `n*` and hence α
    > would characterize the **product-like character** of both types of coordinates."
+   The immediately preceding sentence, on the same page, ties the slope to the barrier maximum:
+   > "The Brønsted slope, α, is `dΔF*/dΔF0'` and, according to eq 21, equals
+   > `n + (∂ΔF*/∂n)ΔF0'(∂n/∂ΔF0')`, evaluated at `n = n*`."
    **This is the primary source of the plan's central identity**: with `x = -ΔG°` and zero work terms,
    `α = ½ + ΔF°′/(2λ) = (λ - x)/(2λ) = tsCoord lam x`. Note the printed **validity clause
    `|ΔF°'| ≲ λ`**, which is exactly `ReactionRegion (-λ < x ∧ x < λ)` (see §8.2 item 11).
@@ -444,7 +447,8 @@ unaffected). The counterweight is S35: measured `α` values are **not** confined
   > was needed. … The resulting simple expression for [`ΔG‡`] is similar to Eq. (5), when [`ΔG°`] is not
   > large (`< 1/2`), but **differs from it in not having any inverted region**."
   (said of atom, proton and methyl-group transfer).
-- **S10, Appendix II, pp. 897–898** (`verified (delegated read)`): for a bond-breaking atom transfer the
+- **S10, Appendix II, pp. 897–898** (`verified` first-hand **as reconstructed fragments** — the text
+  layer of the issue scan interleaves the two columns; §10): for a bond-breaking atom transfer the
   profile "rises to a maximum, like an Eckart barrier" so that "one can no longer … obtain the
   'inverted chemical effect' … and so the added equation (6) is imposed"; the effect "could again
   occur" only "when most of the reorganization is associated with coordinates not involved in bond
@@ -509,7 +513,7 @@ unaffected). The counterweight is S35: measured `α` values are **not** confined
 |---|---|---|---|
 | `α` = TS position is **exact only in the symmetric (equal-curvature) approximation**; deviates systematically with asymmetry; "the Brønsted coefficient is not a general descriptor of transition-state structure" | S15, abstract | `verified (delegated read)` | forces the equal-curvature assumption to be named in plan §13 |
 | Marcus theory "assuming both reactants and products distort identically and quadratically" implies a thermoneutral local slope fixed at 0.5, "which often does not hold"; "the gradient at `E_eq` is always equal to 0.5" | S14 | `verified` | same, from an OA source; also documents that our `q‡(x=0) = 1/2` is a model artefact |
-| the two-parabola plot is a projection of a many-dimensional surface; the inverted effect is removed for bond-breaking transfers | S10, Appendix II, pp. 897–898 | `verified (delegated read)` | scope boundary + "single coordinate" caveat |
+| the two-parabola plot is a projection of a many-dimensional surface; the inverted effect is removed for bond-breaking transfers | S10, Appendix II, pp. 897–898 | `verified` (first-hand fragments; column-interleaved OCR, §10) | scope boundary + "single coordinate" caveat |
 | force-constant-dependent thermoneutral TS position for asymmetric centres; linear `ΔH` range bounded; nonlinear in Morse-curve models | S17, abstract | `verified (delegated read)` | documents what replaces `tsCoord_zero = 1/2` |
 | realistic variation of bond strengths/distances gives a sigmoid Brønsted slope deviating from Marcus | S25 | `verified (delegated read)` / biblio `verified` | the curvature-criticism anchor |
 | Brønsted-slope deviations in general base catalysis (differential charge development, asymmetry) | S26 | `verified (delegated read)` / biblio `verified` | ditto |
@@ -845,8 +849,11 @@ Arteca set on "heuristic only" and on barrier-shape validity).
     while keeping it model-internal); (iii) record the same page's two bounds — atom/proton transfers
     "probably limited to |ΔF°'/4ΔF₀*| < 1", and eq. (4) "will break down when some appreciable fraction
     of the total [free-energy change is not of that form]". Status of this locus in the record:
-    `verified (delegated read)` — the delegate re-extracted the journal scan; a first-hand
-    re-extraction has been requested and, until it lands, the locus must be quoted with that label.
+    **`verified` first-hand** — this survey re-extracted the text layer of the issue scan
+    (`http://lib3.dss.go.th/fulltext/scan_ebook/j.of_physical_1968_v72_n3.pdf`, PDF p. 130 = printed
+    p. 896) and reproduced eq. (32)'s number, its sentence and the "product-like character" sentence;
+    the OCR mangles the symbol glyphs (`½` → `*/*`, `λ` → `X`, `≲` → `Sj`), so the *sentence and the
+    equation number* are what is verified, not the typography (see §10).
 17. **Add the "heuristic only" and validity set to plan §13**: S46 (Farcasiu 1975: "heuristic value
     only … should not be considered generally valid"), S47 (Fersht 2004: "this is an oversimplification
     and there are documented anomalies"), S49 (Gold Book: "hypothesis"), and S48's Arteca & Mezey 1988
@@ -882,3 +889,36 @@ used here: Marcus's approximation sentences (S8/S34, pp. 79/81), Denisov's `TS �
 sentence (S16 §III), the Fig. 8 annotation (image read), the IUPAC entries (S4), and the OA quotes of
 S14, S19, S23, S24. Items that remain delegate-read only are flagged as such and must not be quoted as
 if they had been re-read here.
+
+**Third pass — first-hand page re-extraction of the Marcus 1968 loci** (this survey; a third-party
+library scan, canonical object remains the DOI):
+
+```
+curl -sSL "http://lib3.dss.go.th/fulltext/scan_ebook/j.of_physical_1968_v72_n3.pdf" -o n3.pdf   # 39 MB, whole issue
+pdftotext -layout -f 129 -l 133 n3.pdf -        # PDF pp. 129-133 = printed pp. 895-899 (running heads "895"/"897" visible)
+```
+
+Reproduced on those pages: the section heading "Meaning of the Br0nsted Slope" (p. 895); "The Br0nsted
+slope, α, is dΔF*/dΔF0' and, according to eq 21, equals n + (∂ΔF*/∂n)ΔF0'(∂n/∂ΔF0'), evaluated at
+n = n*"; "For weak-overlap transfers a represents the products' contribution to this function";
+"n* and hence, α would characterize the **product-like character** of both types of coordinates";
+"Since α is dΔF*/dΔF0', eq 2 yields α = … **(32)** when |ΔF°'| ≲ λ" (the OCR prints `½` as `*/*`,
+`λ` as `X`, `≲` as `Sj`); and in the Summary of Findings the bounds "(1) … probably limited to
+|ΔF0'/4ΔF0*| < 1" and "(4) … will break down when some appreciable fraction of the total free-energy
+change becomes independent of n". On pp. 897–898 (PDF pp. 131–132) the Appendix II fragments appear:
+"a pair of intersecting parabolas", "along a reaction coordinate in many dimensional con[figuration
+space]", "Eckart barrier, and then falls to another constant", "'inverted chemical effect' possible
+with eq 2 at large [`|ΔF°'/λ|`]", "When the bond rupture-bond formation in atom or …" and "the
+'inverted chemical effect' could again occur" — the two-column OCR interleaves the columns, so the
+Appendix II sentences are **reconstructed**, not read off linearly (flagged in §4.4/§5.2).
+
+Caveats: (i) the scan is a **third-party library copy** of an ACS issue, not the publisher's PDF — it
+licenses page/equation *location* only; (ii) the text layer is ABBYY OCR and mangles symbols, so any
+*equation* transcribed from it must be re-checked against the page image by a human (the equation
+**number** and the surrounding sentences are what this survey verifies); (iii) nothing was saved into
+the repository.
+
+**Not re-extracted**: the Cohen & Marcus 1968 body (`…j.of_physical_1968_v72_n12.pdf`, 60 MB) exceeded
+this session's per-command download budget, so that paper's slope formula and its "16 … reaction
+series" statement remain at `verified (abstract-level)` (CaltechAUTHORS abstract `adpqk-tcp81`), and
+the published Introduction page quoted in §5.1 stays `verified (delegated read)`.
