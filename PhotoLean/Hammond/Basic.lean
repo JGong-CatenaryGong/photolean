@@ -182,3 +182,10 @@ theorem reactionRegion_pos {lam x : ℝ} (h : ReactionRegion lam x) : 0 < lam :=
   unfold ReactionRegion at h
   linarith [h.1, h.2]
 
+/-- With non-positive curvature there is no driving force in the Hammond regime. -/
+theorem not_reactionRegion_of_nonpos {lam x : ℝ} (hlam : lam ≤ 0) :
+    ¬ ReactionRegion lam x := by
+  intro h
+  unfold ReactionRegion at h
+  linarith [h.1, h.2]
+
