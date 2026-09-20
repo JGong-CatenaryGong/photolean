@@ -5,9 +5,14 @@
 > this repository already uses for `PhotoLean/Marcus` (rates, inverted region) and
 > `PhotoLean/Hammond` (transition-state structure).
 > Target system: Lean 4.17.0 + mathlib v4.17.0 (`MODULE_PREFIX=PhotoLean`, see `proofs/ENGINE.yml`).
-> Status: **draft for human confirmation** (layout + B1–B5); statement skeleton in preparation
-> (`theories/BEP/probes/bep-statement-skeleton.lean`, owned by `api_researcher`). No proof work
-> starts before the skeleton compiles.
+> Status: **delivered** (2026-09-20) — B1–B5, six modules, **191 declarations** (32 definitions +
+> 2 inductives + 157 theorems), statement fidelity **191/191 word-for-word** against the committed
+> authority `theories/BEP/probes/bep-statement-skeleton.lean`
+> (`sha256 c9aa2cb1f82b8bcc8ca74f389af57d0e1c6c568200b4eb0acfe0d7cac880a476`), zero unproved
+> placeholders and zero custom axioms; independent verifier PASS records for B1, B2+B4 and B5a are
+> in `theories/BEP/TASKS.md` (§Acceptance records), the B3/B5b and frozen-state closeout records are
+> appended there and summarized in `theories/BEP/RESULTS.md` §5. The plan below is kept as the plan
+> of record; §12 has been updated from targets to measured values.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/BEP/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/BEP/LITERATURE.md`.
 > **Statement authority**: `theories/BEP/probes/bep-statement-skeleton.lean` — delivered signatures
@@ -529,20 +534,22 @@ Sprint 5  adversarial audit (prover_b, probes/bep-audit-*.lean) + verifier batch
 
 ---
 
-## 12. Deliverable declaration inventory (target)
+## 12. Deliverable declaration inventory (measured at delivery)
 
-| file | definitions | theorems | milestone |
+| file | definition-level | theorems | milestone |
 |---|---|---|---|
 | `PhotoLean/BEP/Basic.lean` | 17 defs + 1 inductive | 15 | B1 |
-| `PhotoLean/BEP/Criterion.lean` | 0 | 20 | B2 |
-| `PhotoLean/BEP/Sharp.lean` | 0 | 25 | B3 |
-| `PhotoLean/BEP/Compose.lean` | 0 | 12 | B4 |
-| `PhotoLean/BEP/RatModel.lean` | 10 defs + 1 inductive | 14 | B5a |
-| `PhotoLean/BEP/Instances.lean` | 0 | 28 | B5b |
-| **total** | **28 defs + 2 inductives** | **114** | |
+| `PhotoLean/BEP/Criterion.lean` | 0 | 28 | B2 |
+| `PhotoLean/BEP/Sharp.lean` | 1 def + 6 AUX theorems in the sSup block | 25 (+ 6 AUX) | B3 |
+| `PhotoLean/BEP/Compose.lean` | 0 | 13 (12 + the AUX `secSlope_eq_lefflerSecant`) | B4 |
+| `PhotoLean/BEP/RatModel.lean` | 14 defs + 1 inductive | 22 | B5a |
+| `PhotoLean/BEP/Instances.lean` | 0 | 48 | B5b |
+| **total** | **32 defs + 2 inductives** | **157** | **191 declarations** |
 
-(Targets, not promises: the delivered count is whatever passes the gate, and `RESULTS.md` reports
-the measured numbers, never the planned ones.)
+Measured with the comment-stripping parser of `theories/BEP/probes/bep-fidelity.py`: **191
+declarations delivered, 191/191 word-for-word against the authority, 0 differences, 0 declarations
+outside the authority**. The plan's earlier target numbers (114) were targets, not promises; these
+are the delivered values.
 
 ---
 
