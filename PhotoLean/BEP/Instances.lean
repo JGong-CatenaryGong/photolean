@@ -180,6 +180,13 @@ theorem inst_I6_inverted_transfer : Rat.qTransfer (2 : ℚ) 3 = -(1 / 4) := by
   unfold Rat.qTransfer
   norm_num
 
+/-- I6 (`model-constructed`): the Evans–Polanyi bounds `0 ≤ α ≤ 1` fail (not just the open regime:
+the lower bound itself fails). -/
+theorem inst_I6_inverted_notBounds :
+    ¬ (0 ≤ Rat.qTransfer (2 : ℚ) 3 ∧ Rat.qTransfer (2 : ℚ) 3 ≤ 1) := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
