@@ -122,6 +122,14 @@ theorem branchUpQ_cast (alphaA betaA dE : ℚ) :
   push_cast
   ring
 
+/-- Cast transfer of the descending branch. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem branchDownQ_cast (alphaB betaB dE : ℚ) :
+    ((branchDownQ alphaB betaB dE : ℚ) : ℝ)
+      = branchDown (alphaB : ℝ) (betaB : ℝ) (dE : ℝ) := by
+  unfold branchDownQ branchDown
+  push_cast
+  ring
+
 end Sabatier
 
 end PhotoLean
