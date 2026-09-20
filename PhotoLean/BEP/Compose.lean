@@ -110,5 +110,14 @@ theorem epBounds_of_reactionRegion {lam x : ℝ} (hlam : 0 < lam)
   simp only [Marcus.InvertedRegion, Hammond.ReactionRegion, not_or, not_lt] at h ⊢
   exact ⟨le_of_lt h.2, by linarith⟩
 
+/-- Plan §7 #6 (Marcus bridge): a step in the Marcus normal region whose reverse direction is
+thermoneutral or exergonic (`-lam ≤ x`) satisfies the Evans–Polanyi bounds; the two hypotheses are
+exactly the two halves of #4. -/
+theorem epBounds_of_marcus_normal {lam x : ℝ} (hlam : 0 < lam) (h : Marcus.NormalRegion lam x)
+    (hx : -lam ≤ x) : EPBounds lam x := by
+  rw [epBounds_iff_no_inverted_direction hlam]
+  simp only [Marcus.InvertedRegion, Marcus.NormalRegion, not_or, not_lt] at h ⊢
+  exact ⟨le_of_lt h, by linarith⟩
+
 
 end PhotoLean.BEP
