@@ -84,3 +84,18 @@ noncomputable def hammondZone (lam x : ℝ) : HZone :=
   else if 0 < x then HZone.early
   else HZone.late
 
+/-! ## Crossing geometry (plan §4.2) -/
+
+/-- The crossing point is unique and equals `tsCoord`. -/
+theorem crossing_iff {lam dG q : ℝ} (hlam : lam ≠ 0) :
+    reactantSurface lam q = productSurface lam dG q ↔ q = tsCoord lam (-dG) := by
+  unfold reactantSurface productSurface tsCoord
+  constructor
+  · intro h
+    rw [eq_div_iff (mul_ne_zero (by norm_num) hlam)]
+    nlinarith [h]
+  · intro h
+    rw [h]
+    field_simp
+    ring
+
