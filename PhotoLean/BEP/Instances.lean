@@ -304,6 +304,16 @@ theorem inst_I11_F1_lamHat : Rat.qLamOfPair (0.3 : ℚ) 15.6 0.9 15.7 = 9 / 20 :
   unfold Rat.qLamOfPair
   norm_num
 
+/-- F1 (`first-hand`, kcal/mol verbatim): the second divided difference of the three printed rows
+`16(1)` (`ΔG° = -0.9`, `ΔG‡ = 15.7`), `14(1)` (`-2.3`, `15.7`) and `12` (`-4.9`, `13.9`) at the
+model abscissae `0.9`, `2.3`, `4.9`. It is **negative** — for every `λ > 0` the model forces
+`1/(4λ) > 0`. This is a statement about these three printed rows, not about the record's
+family-level regression (a regression is not a ℚ identity). -/
+theorem inst_I11_F1_curvature_negative :
+    Rat.qSecondDividedDiff (0.9 : ℚ) 15.7 2.3 15.7 4.9 13.9 = -(9 / 52) := by
+  unfold Rat.qSecondDividedDiff
+  norm_num
+
 end BEP
 
 end PhotoLean
