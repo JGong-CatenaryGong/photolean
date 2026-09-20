@@ -246,6 +246,13 @@ theorem upperYield_nonneg {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic 
     0 ≤ upperYield rad ic N := by
   unfold upperYield
   exact Finset.sum_nonneg fun i hi => emitYield_nonneg h (Finset.mem_Icc.mp hi).2
+/-- Plan §4.2 #18. The leak is at most the total yield (the lowest state's emission is
+nonnegative). -/
+theorem upperYield_le_fluoYield {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    upperYield rad ic N ≤ fluoYield rad ic N := by
+  have hsplit := fluoYield_eq_low_add_upper h
+  have hlow : 0 ≤ emitYield rad ic 0 N := emitYield_nonneg h (Nat.zero_le N)
+  linarith
 end Kasha
 
 end PhotoLean
