@@ -158,3 +158,10 @@ their branch guards already force the sign information. The premises remain in t
 (they belong to the description layer and keep signature fidelity with the statement skeleton);
 the unused-variable linter is disabled locally so that a warning-free build still surfaces any
 real warning elsewhere in the file. -/
+set_option linter.unusedVariables false in
+/-- The rate-maximizing driving force `x = lam` puts the transition state exactly at the
+reactant geometry. -/
+theorem tsCoord_at_lam {lam : ℝ} (hlam : lam ≠ 0) : tsCoord lam lam = 0 := by
+  unfold tsCoord
+  field_simp
+
