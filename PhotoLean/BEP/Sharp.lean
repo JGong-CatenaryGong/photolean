@@ -263,5 +263,28 @@ theorem epConformsOnWindow_symm {lam tol a b : ℝ} :
     have hmem : -x ∈ Set.Icc (-b) (-a) := ⟨by linarith [hx.2], by linarith [hx.1]⟩
     simpa [heven x] using h (-x) hmem
 
+/-! ## Plan §6.3 — monotonicity in the reorganization energy -/
+
+/- The premise `hx : x ≠ 0` is the plan's strictness convention and is not consumed by the proof
+(both sides vanish at `x = 0`); it is kept for signature fidelity and the unused-variable linter is
+disabled locally, as in `Basic.lean`. -/
+set_option linter.unusedVariables false in
+/-- Plan §6.3 #15: a larger reorganization energy `lam` never enlarges the violation — the defect
+`x²/(4*lam)` is antitone in `lam` at fixed `x ≠ 0`. -/
+theorem bepDefect_antitone_lam {lam₁ lam₂ x : ℝ} (h0 : 0 < lam₁) (hle : lam₁ ≤ lam₂)
+    (hx : x ≠ 0) : bepDefect lam₂ x ≤ bepDefect lam₁ x := by
+  have h₂ : 0 < lam₂ := lt_of_lt_of_le h0 hle
+  have e₁ : bepDefect lam₁ x = x ^ 2 / (4 * lam₁) := by
+    unfold bepDefect bepLine eact
+    field_simp
+    ring
+  have e₂ : bepDefect lam₂ x = x ^ 2 / (4 * lam₂) := by
+    unfold bepDefect bepLine eact
+    field_simp
+    ring
+  rw [e₂, e₁, div_le_div_iff₀ (by linarith : (0 : ℝ) < 4 * lam₂)
+    (by linarith : (0 : ℝ) < 4 * lam₁)]
+  exact mul_le_mul_of_nonneg_left (by linarith : 4 * lam₁ ≤ 4 * lam₂) (sq_nonneg x)
+
 
 end PhotoLean.BEP
