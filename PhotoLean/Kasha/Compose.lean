@@ -294,6 +294,14 @@ theorem ladderRatio_one {rad ic : ℕ → ℝ} (h : decay rad ic 1 ≠ 0) :
   unfold radBranch icBranch
   rw [← mul_div_assoc, div_mul_eq_mul_div, div_div_div_cancel_right₀ h]
 
+/-- Plan §7.2 #11. The strict-failure corollary of row 9: a ladder whose `N`-level funnel ratio is
+below `(1 - tol)/tol` is outside the tolerance, whatever the individual rates are. -/
+theorem not_kashaWithin_of_ladderRatio_lt {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ}
+    (h : RateData rad ic N) (hu : 0 < upperYield rad ic N) (htol : 0 < tol)
+    (h0 : 0 < decay rad ic 0) (hlt : ladderRatio rad ic N < (1 - tol) / tol) :
+    ¬ KashaWithin rad ic tol N :=
+  fun hc => absurd ((kashaWithin_iff_ladderRatio h hu htol h0).mp hc) (not_le.mpr hlt)
+
 
 end Kasha
 
