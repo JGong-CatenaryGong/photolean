@@ -153,6 +153,89 @@ theorem parabolicBarrier_crossing {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < la
   field_simp
   ring
 
+/-! ### The apex is the unique global minimizer (plan §7) -/
+
+/-- Auxiliary: the apex lies strictly between the two parabola minima, `-lam1 < apexPar lam1 lam2`
+and `apexPar lam1 lam2 < lam2`. This is what puts the ascending branch on its increasing side and
+the descending branch on its decreasing side at the crossing. (plan §7, auxiliary) -/
+private theorem apexPar_bounds {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) :
+    -lam1 < apexPar lam1 lam2 ∧ apexPar lam1 lam2 < lam2 := by
+  unfold apexPar
+  set s1 := Real.sqrt lam1 with hs1
+  set s2 := Real.sqrt lam2 with hs2
+  have hs1pos : 0 < s1 := by rw [hs1]; exact Real.sqrt_pos_of_pos h1
+  have hs2pos : 0 < s2 := by rw [hs2]; exact Real.sqrt_pos_of_pos h2
+  have h1sq : lam1 = s1 ^ 2 := by rw [hs1]; exact (Real.sq_sqrt h1.le).symm
+  have h2sq : lam2 = s2 ^ 2 := by rw [hs2]; exact (Real.sq_sqrt h2.le).symm
+  rw [h1sq, h2sq]
+  rw [show s2 ^ 2 * s1 - s1 ^ 2 * s2 = s1 * s2 * (s2 - s1) by ring]
+  have hsum : (0 : ℝ) < s1 + s2 := by linarith
+  constructor
+  · rw [lt_div_iff₀ hsum]
+    nlinarith [hs1pos, hs2pos, sq_nonneg s1, sq_nonneg s2]
+  · rw [div_lt_iff₀ hsum]
+    nlinarith [hs1pos, hs2pos, sq_nonneg s1, sq_nonneg s2]
+
+/-- Auxiliary: dividing a square by a positive denominator is monotone on nonnegative arguments.
+(plan §7, auxiliary) -/
+private theorem sq_div_le_sq_div {c a b : ℝ} (hc : 0 < c) (ha : 0 ≤ a) (hab : a ≤ b) :
+    a ^ 2 / (4 * c) ≤ b ^ 2 / (4 * c) := by
+  have h4 : (0 : ℝ) < 4 * c := by linarith
+  have hs : a ^ 2 ≤ b ^ 2 := by nlinarith
+  exact div_le_div_of_nonneg_right hs h4.le
+
+/-- Auxiliary: strict version of `sq_div_le_sq_div`. (plan §7, auxiliary) -/
+private theorem sq_div_lt_sq_div {c a b : ℝ} (hc : 0 < c) (ha : 0 ≤ a) (hab : a < b) :
+    a ^ 2 / (4 * c) < b ^ 2 / (4 * c) := by
+  have h4 : (0 : ℝ) < 4 * c := by linarith
+  have hs : a ^ 2 < b ^ 2 := by nlinarith
+  exact div_lt_div_of_pos_right hs h4
+
+/-- Auxiliary: on its increasing side (`-lam1 ≤ d₁`) the ascending branch is monotone.
+(plan §7, auxiliary) -/
+private theorem parabolaUp_mono {lam1 : ℝ} (h1 : 0 < lam1) {d₁ d₂ : ℝ} (hd : -lam1 ≤ d₁)
+    (h : d₁ ≤ d₂) : parabolaUp lam1 d₁ ≤ parabolaUp lam1 d₂ := by
+  rw [parabolaUp_eq, parabolaUp_eq]
+  exact sq_div_le_sq_div h1 (by linarith) (by linarith)
+
+/-- Auxiliary: on its decreasing side (`d₂ ≤ lam2`) the descending branch is antitone.
+(plan §7, auxiliary) -/
+private theorem parabolaDown_anti {lam2 : ℝ} (h2 : 0 < lam2) {d₁ d₂ : ℝ} (h : d₁ ≤ d₂)
+    (hd : d₂ ≤ lam2) : parabolaDown lam2 d₂ ≤ parabolaDown lam2 d₁ := by
+  rw [parabolaDown_eq, parabolaDown_eq]
+  exact sq_div_le_sq_div h2 (by linarith) (by linarith)
+
+/-- Auxiliary: strict version of `parabolaUp_mono`. (plan §7, auxiliary) -/
+private theorem parabolaUp_lt_of_lt {lam1 : ℝ} (h1 : 0 < lam1) {d₁ d₂ : ℝ} (hd : -lam1 < d₁)
+    (h : d₁ < d₂) : parabolaUp lam1 d₁ < parabolaUp lam1 d₂ := by
+  rw [parabolaUp_eq, parabolaUp_eq]
+  exact sq_div_lt_sq_div h1 (by linarith) (by linarith)
+
+/-- Auxiliary: strict version of `parabolaDown_anti`. (plan §7, auxiliary) -/
+private theorem parabolaDown_lt_of_lt {lam2 : ℝ} (h2 : 0 < lam2) {d₁ d₂ : ℝ} (h : d₁ < d₂)
+    (hd : d₂ ≤ lam2) : parabolaDown lam2 d₂ < parabolaDown lam2 d₁ := by
+  rw [parabolaDown_eq, parabolaDown_eq]
+  exact sq_div_lt_sq_div h2 (by linarith) (by linarith)
+
+/-- Auxiliary: the crossing point of the two parabolas is where the effective barrier is attained,
+i.e. the parabolic barrier at the apex equals the common branch value there. (plan §7, auxiliary) -/
+private theorem parabolicBarrier_at_apex {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) :
+    parabolicBarrier lam1 lam2 (apexPar lam1 lam2) = parabolaUp lam1 (apexPar lam1 lam2) := by
+  unfold parabolicBarrier
+  rw [parabolicBarrier_crossing h1 h2, max_self]
+
+/-- The crossing point of the two parabolas is a global minimizer of their maximum: above the apex
+the ascending branch dominates and grows, below it the descending branch dominates and grows.
+(plan §7) -/
+theorem parabolicBarrier_apex_le {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) (dE : ℝ) :
+    parabolicBarrier lam1 lam2 (apexPar lam1 lam2) ≤ parabolicBarrier lam1 lam2 dE := by
+  have hb := apexPar_bounds h1 h2
+  rw [parabolicBarrier_at_apex h1 h2]
+  rcases le_total (apexPar lam1 lam2) dE with h | h
+  · exact le_trans (parabolaUp_mono h1 hb.1.le h) (le_max_left _ _)
+  · rw [parabolicBarrier_crossing h1 h2]
+    exact le_trans (parabolaDown_anti h2 h hb.2.le) (le_max_right _ _)
+
 end Sabatier
 
 end PhotoLean
