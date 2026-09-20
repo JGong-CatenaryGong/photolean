@@ -85,6 +85,7 @@ def EPBestOnWindow (lam w : ℝ) : Prop :=
 inductive EPZone where
   | degenerate | unphysical | thermoneutral | exergonic | endergonic
   | atForwardLimit | atReverseLimit | beyondForward | beyondReverse
+  deriving DecidableEq, Repr
 
 /-- Regime classifier, in the style of `Hammond.hammondZone` / `Marcus.zone`. -/
 noncomputable def epZone (lam x : ℝ) : EPZone :=
