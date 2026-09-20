@@ -28,7 +28,9 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.Kasha.Compose", "PhotoLean.Kasha.RatModel",
                   "PhotoLean.Kasha.Sharp", "PhotoLean.Kasha.Instances",
                   "PhotoLean.Kernel", "PhotoLean.Relations",
-                  "PhotoLean.Sabatier.Basic"]
+                  "PhotoLean.Sabatier.Basic", "PhotoLean.Sabatier.Criterion",
+                  "PhotoLean.Sabatier.Sharp", "PhotoLean.Sabatier.Compose",
+                  "PhotoLean.Sabatier.RatModel"]
 
 [[require]]
 name = "mathlib"
