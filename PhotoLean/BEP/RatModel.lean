@@ -341,6 +341,59 @@ theorem epQVerdict_superLinear_iff {lam x : ℚ} (hlam : 0 < lam) :
     · rw [if_neg h5]
       exact iff_of_false (by decide) h5
 
+theorem epQVerdict_subLinear_iff {lam x : ℚ} (hlam : 0 < lam) :
+    epQVerdict lam x = EPQVerdict.subLinear ↔ qTransfer lam x < 0 := by
+  have hlam' : lam ≠ 0 := ne_of_gt hlam
+  have hat : qTransfer lam lam = 0 := by
+    unfold qTransfer
+    field_simp
+  have hatneg : qTransfer lam (-lam) = 1 := by
+    unfold qTransfer
+    field_simp
+    ring
+  unfold epQVerdict
+  rw [if_neg hlam', if_neg (by linarith : ¬ lam < 0)]
+  by_cases h2 : x = lam
+  · rw [if_pos h2]
+    exact iff_of_false (by decide) (by
+      rw [h2, hat]
+      exact lt_irrefl 0)
+  rw [if_neg h2]
+  by_cases h3 : x = -lam
+  · rw [if_pos h3]
+    exact iff_of_false (by decide) (by
+      rw [h3, hatneg]
+      norm_num)
+  rw [if_neg h3]
+  have hne0' : qTransfer lam x ≠ 0 := by
+    intro hz
+    unfold qTransfer at hz
+    field_simp at hz
+    exact h2 (by linarith)
+  have hne1 : qTransfer lam x ≠ 1 := by
+    intro hz
+    unfold qTransfer at hz
+    field_simp at hz
+    exact h3 (by linarith)
+  by_cases h4 : 0 < qTransfer lam x ∧ qTransfer lam x < 1
+  · rw [if_pos h4]
+    exact iff_of_false (by decide) (by rintro h; linarith [h4.1])
+  · rw [if_neg h4]
+    by_cases h5 : 1 < qTransfer lam x
+    · rw [if_pos h5]
+      exact iff_of_false (by decide) (by rintro h; linarith)
+    · rw [if_neg h5]
+      constructor
+      · intro _
+        have hα : qTransfer lam x ≤ 0 := by
+          by_contra hc
+          exact h4 ⟨lt_of_not_ge hc, lt_of_le_of_ne (le_of_not_gt h5) hne1⟩
+        exact lt_of_le_of_ne hα hne0'
+      · intro _
+        rfl
+
+/-! ### AUX decision witnesses (positive + negative control) -/
+
 end Rat
 
 end BEP
