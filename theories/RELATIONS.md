@@ -263,8 +263,8 @@ and the three of §6 — and among those, E7 is itself a composition of two deli
 state was independently gated by a read-only verifier: build with zero warnings, strict scan
 `clean`, all 30 declarations of `Kernel.lean` + `Relations.lean` at
 `[propext, Classical.choice, Quot.sound]`, and the additivity audit (the only change inside the
-three theory directories is the scoping of one linter option in `PhotoLean/Marcus/Barrier.lean`,
-comment-stripped code byte-identical).
+three theory directories is the scoping of one linter option in `PhotoLean/Marcus/Barrier.lean`;
+comment-stripped code byte-identical once those three scoped option lines are removed as well).
 
 **中文（诚实边界）**：①**单一模型、等曲率**——以上全部是等曲率双抛物模型**内部**的陈述（该模型前提登记
 在各理论 plan 中）；BEP 的实例层实测把四个一手文献族**证伪**为等曲率双抛物族（尽管其仿射斜率符合），
@@ -277,7 +277,7 @@ comment-stripped code byte-identical).
 **复合**（§2.1）；其余 24 条是证书与清单。⑥**验证记录**——交付状态由只读 verifier 独立跑门：零警告构建、
 严格扫描 `clean`、`Kernel.lean` + `Relations.lean` 全部 30 条声明公理恰为
 `[propext, Classical.choice, Quot.sound]`，加性审计通过（三个理论目录内唯一改动是
-`PhotoLean/Marcus/Barrier.lean` 一个 linter 选项的作用域收窄，剥注释后代码逐字节相同）。
+`PhotoLean/Marcus/Barrier.lean` 一个 linter 选项的作用域收窄；剥注释并剔除那三行作用域行后，代码逐字节相同）。
 
 ---
 

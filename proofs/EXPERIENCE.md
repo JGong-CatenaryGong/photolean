@@ -1701,5 +1701,7 @@
   and after a round of fixes, expect one round of "the fix is itself a claim" findings.
 - What held: the additivity property survived the whole task — from `10713d1` to HEAD the only change
   inside `PhotoLean/{Marcus,Hammond,BEP}` is the F2 linter scoping, with comment-stripped code of
-  `Barrier.lean` byte-identical both before and after (2038 = 2038), and every re-gate of the three
+  `Barrier.lean` byte-identical both before and after once those three `set_option ... in` lines are
+  removed as well (2038 = 2038 chars, 1566 = 1566 without whitespace; the whole comment-stripped text
+  differs only by those three named lines), and every re-gate of the three
   fidelity probes returned 51 / 191 / 102 with 0 differences.

@@ -205,7 +205,7 @@
 ### 阶段 A — 脚本与文档债（每步一个提交）
 
 - [x] F1 `check.sh` 正则补 `admit`、axiom 锚定放宽至 `private/protected axiom` — `proofs/scripts/check.sh` — lead — done — `5220136`；负控制实测三种形态命中、`axiomatic` 不误伤；严格门仍 PASS
-- [x] F2 文件级 `set_option linter.unusedVariables false` 改为逐声明 `in` 作用域 — `PhotoLean/Marcus/Barrier.lean` — lead — done — `5104150`；verifier 剥注释复核：代码逐字节相同（2038 = 2038）、9/9 签名 0 差异
+- [x] F2 文件级 `set_option linter.unusedVariables false` 改为逐声明 `in` 作用域 — `PhotoLean/Marcus/Barrier.lean` — lead — done — `5104150`；verifier 剥注释并剔除三行 linter 作用域后复核：代码逐字节相同（2038 = 2038、去空白 1566 = 1566），整份剥注释文本仅差这三行、9/9 签名 0 差异
 - [x] F3 定理名笔误 `lamTotal_pos` → `lam_total_pos`（中英两版） — `theories/Marcus/RESULTS{,.en}.md` — lead — done — `d6af5a4`
 - [x] F4 H4 属主列 `prover_b` → `prover_a`（偏离备注保留） — `theories/hammond/TASKS.md` — lead — done — `f283947`
 - [x] F5/F6 README「双语文档」节改写为历史镜像冻结；「现状」节补入 hammond/BEP；删去「待填」 — `README.md` — lead — done — `c1427eb`
@@ -233,8 +233,8 @@
 
 - **提交粒度**：阶段 C 的 4 条新声明装在 2 个提交里（`f42a7d5` 收集 + `3dd1239` 新定理），不满足
   铁律 7「每 lemma 一 commit」；本轮把「一个逻辑变更一个提交」作为粒度口径（与 M5b 的记账方式一致）。
-  另：`Kernel`/`Relations` 不是 plan 里程碑编号，故 `<area>` 用了模块名——与 `COMMIT_TEMPLATE`
-  的 `<area>=里程碑号` 一致性的偏离已记录，未改写历史。
+  另：`Kernel`/`Relations` 不是 plan 里程碑编号，故 `<area>` 用了模块名；`bd9cd27` 的 subject
+  连 `<area>` 括号也省略了——两类与 `COMMIT_TEMPLATE` 的偏离均记录在案，未改写历史。
 - **保真覆盖**：新模块不在三个 `*-fidelity.py` 的 glob 范围内（脚本按理论目录取源），因此
   「51/102/191 不变」**不能**当作新模块的语句证据；新模块的权威见上一节的第 4 行。
 - **文档同步**：本轮按 verifier 的发现订正了 `theories/RELATIONS.md` 的两处措辞（速率谓词的参数依赖、
