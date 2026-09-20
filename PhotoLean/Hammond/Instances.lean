@@ -68,6 +68,11 @@ theorem inst_I1_thermoneutral_coord : tsCoord 1 0 = 1 / 2 := by
 theorem inst_I2_exergonic_zone : Rat.hammondZoneQ (1 : ℚ) (3 / 4) = HZone.early := by
   norm_num [Rat.hammondZoneQ]
 
+/-- I2, resemblance verdict: exergonic (`x > 0`) means reactant-like — an instance of H2's
+`reactantLike_iff`, not a re-derivation. -/
+theorem inst_I2_exergonic_reactantLike : ReactantLike 1 (3 / 4) :=
+  (reactantLike_iff (by norm_num : (0 : ℝ) < 1)).mpr (by norm_num : (0 : ℝ) < 3 / 4)
+
 end Hammond
 
 end PhotoLean
