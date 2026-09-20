@@ -437,6 +437,14 @@ theorem kashaWindow_halfWidth {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (h
       pow_le_pow_left₀ (abs_nonneg _) hh 2
     rwa [sq_abs, Real.sq_sqrt h0] at hsq
 
+/-- Plan §7.2 #15. The gap threshold `K` is positive under the physical premises (positive
+pre-exponential, positive lowest-state rates, `0 < tol < 1`). -/
+theorem kashaGapThreshold_pos {A rad0 dec0 rad1 tol : ℝ} (hA : 0 < A) (hr0 : 0 < rad0)
+    (hdec : 0 < dec0) (hr1 : 0 < rad1) (htol0 : 0 < tol) (htol1 : tol < 1) :
+    0 < kashaGapThreshold A rad0 dec0 rad1 tol := by
+  unfold kashaGapThreshold
+  exact div_pos (mul_pos (mul_pos hA hr0) htol0) (mul_pos (mul_pos hr1 hdec) (by linarith))
+
 
 end Kasha
 
