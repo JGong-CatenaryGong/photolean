@@ -49,4 +49,12 @@ theorem bepDefect_eq {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
   field_simp
   ring
 
+/-- At thermoneutrality the tangent line and the barrier agree:
+the linear law is exact there. -/
+theorem bepLine_exact_at_thermoneutrality {lam : ℝ} (hlam : lam ≠ 0) :
+    bepLine lam 0 = eact lam 0 := by
+  rw [eact_at_zero hlam]
+  unfold bepLine
+  ring
+
 end PhotoLean.BEP
