@@ -179,6 +179,11 @@ theorem icBranch_le_one {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic 
     radBranch_add_icBranch (ne_of_gt (h.decay_pos n hn))
   have hrad : 0 ≤ radBranch rad ic n := radBranch_nonneg h hn
   linarith
+/-- Plan §4.2 #7. The cascade probability from a level to itself is `1` (the empty product). -/
+theorem cascade_self (rad ic : ℕ → ℝ) (i : ℕ) : cascade rad ic i i = 1 := by
+  unfold cascade
+  rw [Finset.Icc_eq_empty (by omega)]
+  simp
 end Kasha
 
 end PhotoLean
