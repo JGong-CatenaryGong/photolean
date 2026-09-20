@@ -129,6 +129,12 @@ theorem qBepLine_cast (lam x : ℚ) :
   push_cast
   ring
 
+theorem qBepDefect_cast (lam x : ℚ) :
+    ((qBepDefect lam x : ℚ) : ℝ) = bepDefect (lam : ℝ) (x : ℝ) := by
+  unfold qBepDefect bepDefect qEact qBepLine eact bepLine
+  push_cast
+  ring
+
 end Rat
 
 end BEP
