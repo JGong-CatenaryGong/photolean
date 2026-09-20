@@ -218,6 +218,16 @@ theorem inst_I8_degenerate_exact : Rat.qEact (0 : ℚ) 1 = 0 := by
   unfold Rat.qEact
   norm_num
 
+/-- I8 (`model-constructed`): the degenerate value of the **linear-response** body is `α = 1/2`
+(plan §4.2 #4). The I8 cell of plan §8.2 still prints `α = 0`, which belonged to the discarded
+transition-state-coordinate body; the statement authority (skeleton) carries `1/2` and the plan's
+I-table cell is the lead's to update. -/
+theorem inst_I8_degenerate_transfer : Rat.qTransfer (0 : ℚ) 1 = 1 / 2 := by
+  unfold Rat.qTransfer
+  norm_num
+
+/-! #### I9 — unphysical curvature (`λ = -2`): the bounds are blind -/
+
 end BEP
 
 end PhotoLean
