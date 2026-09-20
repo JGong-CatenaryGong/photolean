@@ -15,6 +15,28 @@
 
   校准基准：mathlib v4.17.0（lean-toolchain = leanprover/lean4:v4.17.0）
   校准日期：2026-09-20 — api_researcher
+
+  English: marcus-api-closeout.lean — review probes appended at the close-out of API-NOTES
+  (measured archive for M2/M3/M4a/M5a)
+
+  Purpose
+    Independently re-check a batch of names and pitfalls reported by the various contributors
+    during M2/M3/M4a/M5a, **without copying them**:
+    Group A: newly available names (including the `≤` versions and the multiplication/division
+    lemma for `rate_ratio`);
+    Group B: additions to the forbidden list (`div_lt_div_of_neg_right`, the implicit argument of
+    `sq_pos_of_ne_zero`);
+    Group C: tooling facts (the reliable domain of `decide` over ℚ, the three corrections to the
+    examples in `plan.md` §8.2, and constructor discrimination for Zone).
+
+  Run command (execute in the repository root)
+    proofs/scripts/lake env lean proofs/probes/marcus-api-closeout.lean
+
+  This file is a **positive probe**: it must produce 0 error / 0 warning.
+  **Failing** spellings ("expect FAIL") appear only in comments, together with the original error.
+
+  Calibration baseline: mathlib v4.17.0 (lean-toolchain = leanprover/lean4:v4.17.0)
+  Calibration date: 2026-09-20 — api_researcher
 -/
 
 import Mathlib
@@ -45,6 +67,12 @@ namespace MarcusApiCloseout
   ```
 
   ⚠️ `Real.exp_le_exp_iff` **不存在**（`Real.exp_le_exp` 本身就是 iff）。
+
+  English: ## Group A — newly available "usable" names
+
+  `#check` raw output (complete) — see the code block reproduced verbatim above:
+
+  ⚠️ `Real.exp_le_exp_iff` **does not exist** (`Real.exp_le_exp` is itself an iff).
 -/
 
 #check Real.exp_le_exp
@@ -61,16 +89,21 @@ noncomputable def barrier (lam x : ℝ) : ℝ := (lam - x) ^ 2 / (4 * lam)
 noncomputable def rate (A lam kB T x : ℝ) : ℝ := A * Real.exp (-(barrier lam x) / (kB * T))
 
 -- A-1: `Real.exp_le_exp` 是 iff → `≤` 版峰值定理用它
+-- English: A-1: `Real.exp_le_exp` is an iff → the `≤` version of the peak theorem uses it
 example {x y : ℝ} (h : x ≤ y) : Real.exp x ≤ Real.exp y := Real.exp_le_exp.mpr h
 example {x y : ℝ} (h : Real.exp x ≤ Real.exp y) : x ≤ y := Real.exp_le_exp.mp h
 example {x y : ℝ} (h : x ≤ y) : Real.exp x ≤ Real.exp y := Real.exp_le_exp_of_le h
 
 -- A-2: M3 的 `rate_peak_at_lam`（`≤` 版峰值）实测体 —— 用到全部三个 `≤` 引理
+-- English: A-2: the measured proof body of M3's `rate_peak_at_lam` (the `≤` version of the
+-- peak) — it uses all three `≤` lemmas
 theorem rate_peak_at_lam {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T)
     (x : ℝ) : rate A lam kB T x ≤ rate A lam kB T lam := by
   unfold rate
   apply mul_le_mul_of_nonneg_left _ hA.le                  -- A-2a: 乘非负数
+                                                           -- English: A-2a: multiply by a nonnegative number
   rw [Real.exp_le_exp]                                     -- A-2b: 吃掉 exp（iff，正向）
+                                                           -- English: A-2b: eliminate the exp (an iff, forward direction)
   exact div_le_div_of_nonneg_right (by linarith [barrier_min_at_lam hlam x]) hkT.le  -- A-2c
 where
   barrier_min_at_lam {lam : ℝ} (hlam : 0 < lam) (x : ℝ) : barrier lam lam ≤ barrier lam x := by
@@ -79,11 +112,16 @@ where
     nlinarith [sq_nonneg (lam - x)]
 
 -- A-3: `Real.exp_sub` 的**方向** —— 把「exp 相除」变「exp 差」必须用 `← Real.exp_sub`
+-- English: A-3: the **direction** of `Real.exp_sub` — turning "a quotient of exps" into "a
+-- difference of exps" requires `← Real.exp_sub`
 example (a b : ℝ) : Real.exp a / Real.exp b = Real.exp (a - b) := (Real.exp_sub a b).symm
 example (a b : ℝ) : Real.exp (a - b) = Real.exp a / Real.exp b := Real.exp_sub a b
 -- A-4: `mul_div_mul_left` 是 M3 `rate_ratio` 的关键一步（约掉分子分母的 A）
+-- English: A-4: `mul_div_mul_left` is a key step for M3's `rate_ratio` (it cancels the A in
+-- numerator and denominator)
 example {A y x : ℝ} (hA : A ≠ 0) : A * y / (A * x) = y / x := mul_div_mul_left y x hA
 -- A-5: `rate_ratio` 实测体（用到 mul_div_mul_left + ← Real.exp_sub）
+-- English: A-5: the measured proof body of `rate_ratio` (uses mul_div_mul_left + ← Real.exp_sub)
 theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y : ℝ) :
     rate A lam kB T y / rate A lam kB T x
       = Real.exp ((barrier lam x - barrier lam y) / (kB * T)) := by
@@ -105,6 +143,20 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
      正确 `sq_pos_of_ne_zero hdq`；写成 `sq_pos_of_ne_zero dq hdq` 报
      `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`。
      （本条同时订正 `plan.md` §7.2 的旧提示，已由 lead 修改。）
+
+  English: ## Group B — additions to the forbidden list
+
+  ⚠️ **Do not exist**: `div_lt_div_of_neg_right` (`unknown identifier`) —
+     with a negative divisor use `div_lt_div_right_of_neg (hc : c < 0) : a / c < b / c ↔ b < a`
+     (**an iff, and the right-hand side is `b < a`, so the order is reversed**; both directions of
+     the M2 branches rely on it).
+     Also nonexistent: `Real.exp_le_exp_iff` (`unknown constant`) and `div_lt_div_iff_of_neg_right`.
+
+  ⚠️ **The `a` of `sq_pos_of_ne_zero` is an implicit argument**:
+     `@sq_pos_of_ne_zero : ∀ {R} [LinearOrderedSemiring R] [ExistsAddOfLE R] {a : R}, a ≠ 0 → 0 < a ^ 2`
+     Correct: `sq_pos_of_ne_zero hdq`; writing `sq_pos_of_ne_zero dq hdq` reports
+     `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`.
+     (This entry also corrects the old hint in `plan.md` §7.2, which the lead has already edited.)
 -/
 
 #check div_lt_div_right_of_neg
@@ -132,6 +184,29 @@ example {dq : ℝ} (hdq : dq ≠ 0) : 0 < dq ^ 2 := sq_pos_of_ne_zero hdq
   (3) **`rw` 不走 defeq**：`rw [← zoneQ_inverted_iff]` 不会展开 `def InvertedRegion`，
       报 `did not find instance of the pattern ↑?lam < ↑?x`；
       而 `exact (…).mp h` 走 defeq、无此限制（或先 `show`）。
+
+  English: ## Group C — tooling facts
+
+  ### C-1 The reliable domain of `by decide` over ℚ
+
+  Measured: **integer / division-free literals** (including negative integers) reduce;
+  **anything containing a division or a decimal** always gets stuck at
+  `Rat.instDecidableLt` → `Int.decNonneg`, reporting
+  `'Decidable' instance … did not reduce to 'isTrue' or 'isFalse'`.
+  ⇒ Decidability evidence involving divisions / decimals must go through `norm_num [zoneQ]`.
+
+  ### C-2 Corrections to three old examples in `plan.md` §8.2 (found by the M5a contributor; the lead has already fixed the plan)
+
+  (1) The direction of `rw [← zoneQ_eq_zone]` **depends on which side occurs in the goal**:
+      the `←` pattern is `zone ↑?lam ↑?x`; the goals in §8.2 contain `zoneQ …`, so the **forward**
+      direction `rw [zoneQ_eq_zone]` is required. (If the goal contains `zone ↑lam ↑x`, then `←`
+      is the right one — both cases occur, see below.)
+  (2) **A cast literal ≠ an `OfNat` literal**: `((1:ℚ):ℝ)` and `(1:ℝ)` are not defeq.
+      When the goal contains `InvertedRegion (1:ℝ) 3`, `exact h` (with `h : ↑1 < ↑3`) reports
+      `type mismatch: h has type ↑1 < ↑3 but is expected to have type InvertedRegion 1 3`.
+  (3) **`rw` does not use defeq**: `rw [← zoneQ_inverted_iff]` will not unfold `def InvertedRegion`,
+      and reports `did not find instance of the pattern ↑?lam < ↑?x`;
+      whereas `exact (…).mp h` does go through defeq and has no such restriction (or use `show` first).
 -/
 
 inductive Zone where
@@ -149,19 +224,24 @@ def zoneQ (lam x : ℚ) : Zone :=
 def InvertedRegion (lam x : ℝ) : Prop := lam < x
 
 -- C-1：整数（含负整数）→ `decide` ✅
+-- English: C-1: integers (including negative integers) → `decide` ✅
 example : zoneQ (1 : ℚ) 3 = Zone.inverted := by decide
 example : zoneQ (1 : ℚ) (-3) = Zone.normal := by decide
 example : zoneQ (1 : ℚ) 1 = Zone.barrierless := by decide
 example : zoneQ (1 : ℚ) 0 = Zone.normal := by decide
 -- C-1：含除法 / 十进制 → `decide` ❌（见下注释），必须 `norm_num [zoneQ]` ✅
+-- English: C-1: with a division / a decimal → `decide` ❌ (see the comment below);
+-- `norm_num [zoneQ]` is required ✅
 --   example : zoneQ (1 : ℚ) (0.5 : ℚ) = Zone.normal := by decide
 --   -- error: tactic 'decide' failed … did not reduce to 'isTrue' or 'isFalse'
 --   --        （卡点 Rat.instDecidableLt → Int.decNonneg）
+--   --        English: (the blocker is Rat.instDecidableLt → Int.decNonneg)
 example : zoneQ (1 : ℚ) (0.5 : ℚ) = Zone.normal := by norm_num [zoneQ]
 example : zoneQ (1 : ℚ) (3 / 4) = Zone.normal := by norm_num [zoneQ]
 example : zoneQ (1 : ℚ) (6 / 8) = Zone.normal := by norm_num [zoneQ]
 
 -- M5a 的语句依赖（复核用）
+-- English: statement dependencies of M5a (for re-checking)
 theorem zone_eq_inverted_iff (lam x : ℝ) : zone lam x = Zone.inverted ↔ InvertedRegion lam x := by
   by_cases h : x < lam
   · unfold zone InvertedRegion; rw [if_pos h]; simp [not_lt.mpr h.le]
@@ -181,33 +261,44 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
   rfl
 
 -- C-2(1) ✅ 正向：目标是 `zoneQ …` 时用正向
+-- English: C-2(1) ✅ forward: use the forward direction when the goal is `zoneQ …`
 example {lam x : ℚ} (h : zone (lam : ℝ) (x : ℝ) = Zone.inverted) : zoneQ lam x = Zone.inverted := by
   rw [zoneQ_eq_zone]; exact h
 -- C-2(1) ✅ 反向：目标是 `zone ↑lam ↑x` 时用 `←`（说明"方向反了"是**分情形**的）
+-- English: C-2(1) ✅ backward: use `←` when the goal is `zone ↑lam ↑x` (this shows that
+-- "the direction is reversed" is **case-dependent**)
 example {lam x : ℚ} (h : zoneQ lam x = Zone.inverted) : zone (lam : ℝ) (x : ℝ) = Zone.inverted := by
   rw [← zoneQ_eq_zone]; exact h
 
 -- C-2(2) ❌ `exact h` 因 cast/OfNat 字面量不等而 type mismatch：
+-- English: C-2(2) ❌ `exact h` gives a type mismatch because the cast / OfNat literals differ:
 --   example (h : ((1 : ℚ) : ℝ) < ((3 : ℚ) : ℝ)) : InvertedRegion (1 : ℝ) 3 := h
 --   -- error: type mismatch / h has type ↑1 < ↑3 but is expected to have type InvertedRegion 1 3
 -- C-2(2) ✅ 两条出路：显式写 cast 字面量，或 `norm_num [InvertedRegion]`
+-- English: C-2(2) ✅ two ways out: write the cast literal explicitly, or use
+-- `norm_num [InvertedRegion]`
 example (h : ((1 : ℚ) : ℝ) < ((3 : ℚ) : ℝ)) :
     InvertedRegion ((1 : ℚ) : ℝ) ((3 : ℚ) : ℝ) := h
 example : InvertedRegion (1 : ℝ) 3 := by norm_num [InvertedRegion]
 
 -- C-2(3) ❌ `rw` 不展开 def `InvertedRegion`：
+-- English: C-2(3) ❌ `rw` does not unfold the def `InvertedRegion`:
 --   example {lam x : ℚ} (h : zoneQ lam x = Zone.inverted) : InvertedRegion (lam : ℝ) (x : ℝ) := by
 --     rw [← zoneQ_inverted_iff]; exact h
 --   -- error: tactic 'rewrite' failed, did not find instance of the pattern ↑?lam < ↑?x
 -- C-2(3) ✅ `exact (…).mp` 走 defeq
+-- English: C-2(3) ✅ `exact (…).mp` goes through defeq
 example {lam x : ℚ} (h : zoneQ lam x = Zone.inverted) : InvertedRegion (lam : ℝ) (x : ℝ) :=
   (zoneQ_inverted_iff lam x).mp h
 -- C-2(3) ✅ 或先 `show`
+-- English: C-2(3) ✅ or use `show` first
 example {lam x : ℚ} (h : zoneQ lam x = Zone.inverted) : InvertedRegion (lam : ℝ) (x : ℝ) := by
   show (lam : ℝ) < (x : ℝ)
   exact (zoneQ_inverted_iff lam x).mp h
 
 -- C-3：`Zone` 构造子互异可直接 `by decide`（6 组全通过）
+-- English: C-3: distinctness of the `Zone` constructors is directly provable by `by decide`
+-- (all 6 pairs pass)
 example : Zone.normal ≠ Zone.barrierless := by decide
 example : Zone.normal ≠ Zone.inverted := by decide
 example : Zone.barrierless ≠ Zone.inverted := by decide
@@ -225,6 +316,19 @@ end MarcusApiCloseout
 
   下面两条把区别钉成机器检查的事实：`D-1` 证明前提为假的情形仍满足其余全部前提
   （⇒ 不可推出）；`D-2` 证明去掉该前提定理仍成立（⇒ 未使用）。
+
+  English: ## Group D — ⚠️ "an unused hypothesis" ≠ "a hypothesis that can be derived"
+  (finding A of the M2 verifier)
+
+  This log once stated that `h₁ : 0 ≤ x₁` of `barrier_antitone_of_pos` "**can be derived** from
+  `h₃ : x₂ ≤ lam` and `h₂ : x₁ < x₂`". **That is a false proposition** (the verifier produced a
+  kernel counterexample, which I have independently reproduced).
+  The correct wording is "**the proof does not use it (unused)**". The two differ in meaning:
+  the former would be taken as a reusable basis for inference.
+
+  The two items below pin the difference down as machine-checked facts: `D-1` shows a situation in
+  which the hypothesis is false while all the other hypotheses hold (⇒ not derivable);
+  `D-2` shows that the theorem still holds after that hypothesis is removed (⇒ unused).
 -/
 
 namespace MarcusApiCloseout
@@ -232,12 +336,16 @@ namespace MarcusApiCloseout
 noncomputable def barrier' (lam x : ℝ) : ℝ := (lam - x) ^ 2 / (4 * lam)
 
 -- D-1（内核反例）`0 ≤ x₁` **不可由其余前提推出**：lam=1, x₁=-5, x₂=-4
+-- English: D-1 (kernel counterexample): `0 ≤ x₁` **cannot be derived from the remaining
+-- hypotheses**: lam=1, x₁=-5, x₂=-4
 example : ¬ (∀ (lam x₁ x₂ : ℝ), 0 < lam → x₁ < x₂ → x₂ ≤ lam → 0 ≤ x₁) := by
   intro h
   have := h 1 (-5) (-4) (by norm_num) (by norm_num) (by norm_num)
   norm_num at this
 
 -- D-2（未使用的实证）去掉 `h₁`，`barrier_antitone_of_pos` 照样成立
+-- English: D-2 (evidence that it is unused): removing `h₁`, `barrier_antitone_of_pos` still
+-- holds
 theorem barrier_antitone_of_pos_no_h1 {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
     (h₂ : x₁ < x₂) (h₃ : x₂ ≤ lam) : barrier' lam x₂ < barrier' lam x₁ := by
   unfold barrier'

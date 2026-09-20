@@ -13,4 +13,24 @@ marcus-fidelity.lean — 全项目语句保真度比对器（lead 维护，非�
 
 运行：python3 proofs/probes/marcus-fidelity.py   （见同目录脚本；本文件是说明+占位）
 本文件不是 Lean 源码，扩展名故意用 .lean 以便与 probes 放一起。实际比对实现见同名 .py。
+
+English: marcus-fidelity.lean — project-wide statement fidelity comparator (maintained by the lead; not a deliverable file).
+
+Purpose: for every declaration in `PhotoLean/Marcus/*.lean` that **has appeared in the statement
+authority**, compare its signature character-for-character (whitespace removed) against
+`proofs/probes/marcus-statement-skeleton.lean`, covering all modules in a single run.
+
+Rules:
+- Authority = marcus-statement-skeleton.lean (statement-first).
+- Only names that appear in the authority take part in the comparison; helper theorems newly added in
+  the deliverable files (such as sharp_A_pos, barrierQ_cast, normalRegion_of_zoneQ_normal, etc.) are
+  not in the authority and **do not count as differences**.
+- Comparison scope: from the `theorem`/`def` name up to the first `:=` (definition bodies do not take
+  part, because in the authority the `noncomputable def` entries carrying an unfinished-proof
+  placeholder are theorems; definition bodies are checked separately by hand by the verifier).
+
+Run: python3 proofs/probes/marcus-fidelity.py   (see the script in the same directory; this file is
+documentation + placeholder)
+This file is not Lean source; the extension is deliberately .lean so that it sits together with the
+probes. The actual comparison implementation is in the same-named .py file.
 -/

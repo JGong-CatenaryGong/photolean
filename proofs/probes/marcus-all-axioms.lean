@@ -1,4 +1,7 @@
-/- 自动生成（lead）。运行 proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean -/
+/- 自动生成（lead）。运行 proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean
+
+   English: Auto-generated (lead). Run proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean
+-/
 
 import PhotoLean.Marcus.Barrier
 import PhotoLean.Marcus.Basic

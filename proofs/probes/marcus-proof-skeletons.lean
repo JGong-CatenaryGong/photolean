@@ -17,6 +17,29 @@
 
   校准基准：mathlib v4.17.0（lean-toolchain = leanprover/lean4:v4.17.0）
   校准日期：2026-09-20 — api_researcher（每条都独立重跑过，非照抄 lead 结论）
+
+  English: marcus-proof-skeletons.lean — the **proof bodies** for the authoritative statements
+
+  ⚠️ **The authoritative statements are `marcus-statement-skeleton.lean`** (maintained by the lead;
+     this file does not copy its comments).
+     This file **copies its theorem signatures verbatim** and adds only the proof bodies, in order
+     to give prover_a..d proof skeletons that are "already measured to pass and can be moved
+     straight into `PhotoLean/Marcus/*.lean`".
+     If a signature disagrees with `marcus-statement-skeleton.lean`, **that file prevails**.
+
+  Relation to `marcus-statement-skeleton.lean`: this file = that skeleton with all unfinished-proof
+  placeholders removed, i.e. a compilable version (full coverage of M1–M5a). **It contains no
+  unfinished proofs and no custom axiom declarations**.
+
+  Run command (execute in the repository root)
+    proofs/scripts/lake env lean proofs/probes/marcus-proof-skeletons.lean
+  Expected: **0 error, 0 warning** (it already sets `set_option linter.unusedVariables false`;
+        the `h₁ : 0 ≤ x₁` of `barrier_antitone_of_pos` is an explicit physical hypothesis that is
+        mathematically redundant — see the note in API-NOTES).
+
+  Calibration baseline: mathlib v4.17.0 (lean-toolchain = leanprover/lean4:v4.17.0)
+  Calibration date: 2026-09-20 — api_researcher (every entry was re-run independently, not copied
+  from the lead's conclusions)
 -/
 
 import Mathlib
@@ -25,7 +48,9 @@ set_option linter.unusedVariables false
 
 namespace PhotoLean.Marcus.Skeleton
 
-/-! ## M1 — 描述层 -/
+/-! ## M1 — 描述层
+
+English: ## M1 — description layer -/
 
 noncomputable def barrier (lam x : ℝ) : ℝ := (lam - x) ^ 2 / (4 * lam)
 
@@ -53,7 +78,12 @@ noncomputable def zone (lam x : ℝ) : Zone :=
 /-! M1 的推荐战术：`by_cases` + `rw [if_pos/if_neg]` + `simp`。
     `split_ifs <;> simp_all` 也能过 `zone_trichotomy`，但对前三条会留下
     `¬x = lam` / `lam < x` 之类 simp 推不出的目标，需手工补 `ne_of_lt` /
-    `lt_of_le_of_ne (le_of_not_gt h) (Ne.symm h2)`。 -/
+    `lt_of_le_of_ne (le_of_not_gt h) (Ne.symm h2)`。
+
+English: The recommended tactic for M1: `by_cases` + `rw [if_pos/if_neg]` + `simp`.
+    `split_ifs <;> simp_all` also closes `zone_trichotomy`, but for the first three it leaves
+    goals such as `¬x = lam` / `lam < x` that `simp` cannot discharge, so one must supply
+    `ne_of_lt` / `lt_of_le_of_ne (le_of_not_gt h) (Ne.symm h2)` by hand. -/
 
 theorem zone_eq_normal_iff (lam x : ℝ) : zone lam x = Zone.normal ↔ NormalRegion lam x := by
   by_cases h : x < lam
@@ -92,6 +122,14 @@ theorem zone_trichotomy (lam x : ℝ) :
   → 裸 `nlinarith`。`lam < 0` 时先 `4*lam = -(4*(-lam))` 再用 `div_neg` +
   `neg_lt_neg_iff` 翻成正分母（**不存在 `div_lt_div_iff_of_neg_right`**）。
   这些证明体由 api_researcher 独立重跑确认。
+
+  English: ## M2 — barrier algebra
+
+  Uniform pattern: `unfold barrier` → clear the denominator with `div_lt_div_iff_of_pos_right`
+  (lam>0) → bare `nlinarith`.
+  For `lam < 0`, first rewrite `4*lam = -(4*(-lam))`, then use `div_neg` + `neg_lt_neg_iff` to
+  turn it into a positive denominator (**`div_lt_div_iff_of_neg_right` does not exist**).
+  These proof bodies were confirmed by independent re-runs by api_researcher.
 -/
 
 theorem barrier_nonneg {lam : ℝ} (hlam : 0 < lam) (x : ℝ) : 0 ≤ barrier lam x := by
@@ -145,6 +183,13 @@ theorem barrier_mono_cases (lam : ℝ) :
   核心引理 `rate_gt_of_barrier_lt` 的链条：
   取负 (linarith) → 除以正数 (`div_lt_div_of_pos_right`)
   → exp 严格单调 (`Real.exp_lt_exp.2`，**它是 iff**) → 乘正数 (`mul_lt_mul_of_pos_left`).
+
+  English: ## M3 — rate layer
+
+  The chain of the core lemma `rate_gt_of_barrier_lt`:
+  negate (linarith) → divide by a positive number (`div_lt_div_of_pos_right`)
+  → strict monotonicity of exp (`Real.exp_lt_exp.2`, **it is an iff**) → multiply by a positive
+  number (`mul_lt_mul_of_pos_left`).
 -/
 
 theorem rate_pos {A lam kB T : ℝ} (hA : 0 < A) (x : ℝ) : 0 < rate A lam kB T x := by
@@ -181,7 +226,9 @@ theorem rate_peak_at_lam {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam) (hkT :
   rw [Real.exp_le_exp]
   exact div_le_div_of_nonneg_right (by linarith [barrier_min_at_lam hlam x]) hkT.le
 
-/-! ## M4a — 锐利刻画 -/
+/-! ## M4a — 锐利刻画
+
+English: ## M4a — sharp characterization -/
 
 theorem inverted_descriptor_holds {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam)
     (hkT : 0 < kB * T) : InvertedDescriptor A lam kB T :=
@@ -192,7 +239,11 @@ theorem normal_descriptor_holds {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam)
   fun _ _ h₁ h₂ h₃ => normal_rate_increases hA hlam hkT h₁ h₂ h₃
 
 /-- 必要性的一半：速率处处正 ⇒ `A > 0`。
-    ⚠️ 必须用 `pos_of_mul_pos_left`（正的因子 A 在积的**左**边）。 -/
+    ⚠️ 必须用 `pos_of_mul_pos_left`（正的因子 A 在积的**左**边）。
+
+English: One half of necessity: the rate is positive everywhere ⇒ `A > 0`.
+    ⚠️ One must use `pos_of_mul_pos_left` (the positive factor A is on the **left** of the
+    product). -/
 theorem sharp_A_pos {A lam kB T : ℝ} (hpos : ∀ x, 0 < rate A lam kB T x) : 0 < A := by
   have h := hpos lam
   unfold rate at h
@@ -212,7 +263,10 @@ theorem sharp_lam_pos_of_lt {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA :
   have hd := hdesc (lam + 1) (lam + 2) (by linarith) (by linarith)
   exact absurd hd (not_lt.mpr (le_of_lt hrate))
 
-/-- `lam = 0` 分支：**不需要任何正性前提** —— 除零约定使势垒恒为 0，速率恒为 `A`。 -/
+/-- `lam = 0` 分支：**不需要任何正性前提** —— 除零约定使势垒恒为 0，速率恒为 `A`。
+
+English: The `lam = 0` branch: **no positivity hypothesis is needed** — the division-by-zero
+    convention makes the barrier identically 0 and the rate identically `A`. -/
 theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T) : False := by
   have hrate : ∀ x : ℝ, rate A 0 kB T x = A := by
     intro x
@@ -238,7 +292,11 @@ theorem descriptor_sharp {kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (A lam : ℝ) 
   · rintro ⟨hA, hlam⟩
     exact ⟨rate_pos hA, inverted_descriptor_holds hA hlam (mul_pos hkB hT)⟩
 
-/-- 锐利性必要性：`lam ≤ 0` 时描述必假（`lam < 0` 用 L5 反向；`lam = 0` 用除零约定）。 -/
+/-- 锐利性必要性：`lam ≤ 0` 时描述必假（`lam < 0` 用 L5 反向；`lam = 0` 用除零约定）。
+
+English: Sharpness, necessity direction: when `lam ≤ 0` the description must fail (for
+    `lam < 0` use L5 in the reverse direction; for `lam = 0` use the division-by-zero
+    convention). -/
 theorem descriptor_fails_of_nonpos_lam {A kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T)
     (hA : 0 < A) {lam : ℝ} (hlam : lam ≤ 0) : ¬ InvertedDescriptor A lam kB T := by
   intro h
@@ -256,7 +314,10 @@ theorem descriptor_fails_of_nonpos_lam {A kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T
     rw [hrate 2, hrate 1] at hbad
     exact absurd hbad (lt_irrefl A)
 
-/-- 拉伸目标（非物理分支 `A < 0, lam < 0`）：`A < 0` 使乘法翻转序。 -/
+/-- 拉伸目标（非物理分支 `A < 0, lam < 0`）：`A < 0` 使乘法翻转序。
+
+English: A stretch goal (the non-physical branch `A < 0, lam < 0`): `A < 0` makes
+    multiplication reverse the order. -/
 theorem inverted_descriptor_holds_of_neg {A lam kB T : ℝ} (hA : A < 0) (hkT : 0 < kB * T)
     (hlam : lam < 0) : InvertedDescriptor A lam kB T := by
   intro x₁ x₂ hx₁ hx₂
@@ -269,7 +330,14 @@ theorem inverted_descriptor_holds_of_neg {A lam kB T : ℝ} (hA : A < 0) (hkT : 
     `lam < 0` 时 `barrier` 随 `x` 递减（`barrier_antitone_of_neg`），故速率随 `x` **递增**，
     与描述方向相反 —— 本定理给出机器检查的反例（`A = kB = T = 1, lam = -1`）。
     ⇒ `inverted_descriptor_holds` 的 `hlam : 0 < lam` 与
-    `inverted_descriptor_holds_of_neg` 的 `hA : A < 0` **都不可删减或互换**。 -/
+    `inverted_descriptor_holds_of_neg` 的 `hA : A < 0` **都不可删减或互换**。
+
+English: **Semantic point**: `InvertedDescriptor` **holds only when `lam > 0`**.
+    For `lam < 0`, `barrier` is decreasing in `x` (`barrier_antitone_of_neg`), hence the rate is
+    **increasing** in `x`, the opposite of the direction of the description — this theorem provides
+    a machine-checked counterexample (`A = kB = T = 1, lam = -1`).
+    ⇒ The `hlam : 0 < lam` of `inverted_descriptor_holds` and the `hA : A < 0` of
+    `inverted_descriptor_holds_of_neg` **can neither be deleted nor interchanged**. -/
 theorem not_invertedDescriptor_of_neg_lam : ¬ InvertedDescriptor 1 (-1) 1 1 := by
   intro h
   have hlt : rate 1 (-1) 1 1 1 < rate 1 (-1) 1 1 0 := h 0 1 (by norm_num) (by norm_num)
@@ -279,7 +347,9 @@ theorem not_invertedDescriptor_of_neg_lam : ¬ InvertedDescriptor 1 (-1) 1 1 := 
   have : (1 : ℝ) < 1 / 4 := Real.exp_lt_exp.mp hlt
   norm_num at this
 
-/-! ## M4b — 微观充分条件 -/
+/-! ## M4b — 微观充分条件
+
+English: ## M4b — microscopic sufficient condition -/
 
 noncomputable def lamInner (kk dq : ℝ) : ℝ := kk * dq ^ 2 / 2
 
@@ -317,7 +387,12 @@ theorem descriptor_holds_of_microscopic {A kB T kk dq dE a1 a2 R nSq epsS : ℝ}
 /-! ## M5a — ℚ 判定层
 
   `zoneQ_eq_zone` 的关键：`simp only [Rat.cast_lt, Rat.cast_inj]`（**不能**用 `rw`，
-  会因依值 `Decidable` 实例报 "motive is not type correct"）。 -/
+  会因依值 `Decidable` 实例报 "motive is not type correct"）。
+
+English: ## M5a — ℚ decision layer
+
+  The key to `zoneQ_eq_zone`: `simp only [Rat.cast_lt, Rat.cast_inj]` (**one cannot** use `rw`,
+  which reports "motive is not type correct" because of the dependent `Decidable` instance). -/
 
 def zoneQ (lam x : ℚ) : Zone :=
   if x < lam then Zone.normal else if x = lam then Zone.barrierless else Zone.inverted

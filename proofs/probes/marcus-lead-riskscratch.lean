@@ -8,11 +8,29 @@ lead 风险探针（不属于任何交付文件）：把两处最难的证明内
 
 本文件不产生交付定理，只作为 Sprint 2/3/4 的"最短成功骨架"证据。
 运行：proofs/scripts/lake env lean proofs/probes/marcus-lead-riskscratch.lean
+
+English: Lead risk probe (not part of any deliverable file): get the two hardest proof
+kernels **working first**, for reuse in Sprints 3/4.
+
+Risk points:
+  (a) M3 core lemma `rate_gt_of_barrier_lt` — the only place in the whole project that
+      uses the monotonicity of `Real.exp`;
+  (b) the two **necessity** branches of M4a `descriptor_sharp` — especially the `lam = 0`
+      branch: Lean’s division-by-zero convention `x / 0 = 0` gives `barrier 0 x = 0`, which
+      must be covered explicitly.
+
+English: This file produces no deliverable theorem; it is only evidence of the "shortest
+successful skeleton" for Sprints 2/3/4.
+Run: proofs/scripts/lake env lean proofs/probes/marcus-lead-riskscratch.lean
 -/
 import Mathlib
 
 -- 注：`barrier_antitone_of_pos` 的前提 `h₁ : 0 ≤ x₁` 数学上可由 `h₃` 推出（冗余），
 -- 但保留为**显式物理前提**（驱动力非负），故关掉未使用变量 linter。
+-- English: Note: the hypothesis `h₁ : 0 ≤ x₁` of `barrier_antitone_of_pos` is
+-- English: mathematically derivable from `h₃` (redundant), but it is kept as an
+-- English: **explicit physical hypothesis** (nonnegative driving force); hence the
+-- English: unused-variable linter is disabled.
 set_option linter.unusedVariables false
 
 namespace LeadRisk
@@ -24,6 +42,7 @@ def InvertedDescriptor (A lam kB T : ℝ) : Prop :=
   ∀ x₁ x₂ : ℝ, lam < x₁ → x₁ < x₂ → rate A lam kB T x₂ < rate A lam kB T x₁
 
 -- ── M2 骨架 ────────────────────────────────────────────────────────────────
+-- English: ── M2 skeleton ───────────────────────────────────────────────────
 theorem barrier_at_lam (lam : ℝ) : barrier lam lam = 0 := by simp [barrier]
 
 theorem barrier_zero_lam (x : ℝ) : barrier 0 x = 0 := by simp [barrier]
@@ -54,6 +73,7 @@ theorem barrier_antitone_of_neg {lam : ℝ} (hlam : lam < 0) {x₁ x₂ : ℝ}
   exact (div_lt_div_right_of_neg h4).mpr hsq
 
 -- ── M3 核心引理（风险点 a） ────────────────────────────────────────────────
+-- English: ── M3 core lemma (risk point a) ──────────────────────────────────
 theorem rate_pos {A lam kB T : ℝ} (hA : 0 < A) (x : ℝ) : 0 < rate A lam kB T x := by
   unfold rate; positivity
 
@@ -70,6 +90,7 @@ theorem inverted_rate_decreases {A lam kB T : ℝ} (hA : 0 < A) (hlam : 0 < lam)
   rate_gt_of_barrier_lt hA hkT (barrier_mono_of_pos hlam (le_of_lt h₁) h₂)
 
 -- ── M4a 必要性（风险点 b） ─────────────────────────────────────────────────
+-- English: ── M4a necessity (risk point b) ──────────────────────────────────
 theorem sharp_A_pos {A lam kB T : ℝ} (hpos : ∀ x, 0 < rate A lam kB T x) : 0 < A := by
   have h := hpos lam
   unfold rate at h
@@ -89,7 +110,12 @@ theorem sharp_lam_pos_of_lt {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA :
   have hd := hdesc (lam + 1) (lam + 2) (by linarith) (by linarith)
   exact absurd hd (not_lt.mpr (le_of_lt hrate))
 
-/-- `lam = 0` 分支：**不需要任何正性前提** —— 除零约定使势垒恒为零，速率恒为 `A`。--/
+/-- `lam = 0` 分支：**不需要任何正性前提** —— 除零约定使势垒恒为零，速率恒为 `A`。-
+
+English: The `lam = 0` branch: **no positivity hypothesis is needed at all** — the
+division-by-zero convention makes the barrier identically zero, so the rate is identically
+`A`.
+-/
 theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T) : False := by
   have hrate : ∀ x : ℝ, rate A 0 kB T x = A := by
     intro x
@@ -100,7 +126,10 @@ theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T)
   rw [hrate 2, hrate 1] at hd
   exact lt_irrefl A hd
 
-/-- 锐利刻画（必要性）：把两支合起来。--/
+/-- 锐利刻画（必要性）：把两支合起来。-
+
+English: Sharp characterization (necessity direction): combine the two branches.
+-/
 theorem sharp_lam_pos {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA : 0 < A)
     (hdesc : InvertedDescriptor A lam kB T) : 0 < lam := by
   rcases lt_trichotomy lam 0 with h | h | h

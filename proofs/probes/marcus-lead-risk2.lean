@@ -3,6 +3,14 @@ lead 风险探针 2（非交付文件）：Sprint 2 的两个风险点提前跑�
   (a) M1 分类器正确性 + M5a 的 ℚ→ℝ 转移引理（`Rat.cast_lt` / `Rat.cast_inj` 的实际行为）；
   (b) M3 剩余两条速率定理（normal_rate_increases / rate_peak_at_lam）的战术骨架。
 运行：proofs/scripts/lake env lean proofs/probes/marcus-lead-risk2.lean
+
+English: Lead risk probe 2 (non-deliverable file): get the two risk points of Sprint 2
+working ahead of time.
+  (a) M1 classifier correctness + the M5a ℚ→ℝ transfer lemma (the actual behaviour of
+      `Rat.cast_lt` / `Rat.cast_inj`);
+  (b) the tactic skeleton for the two remaining M3 rate theorems
+      (`normal_rate_increases` / `rate_peak_at_lam`).
+Run: proofs/scripts/lake env lean proofs/probes/marcus-lead-risk2.lean
 -/
 import Mathlib
 
@@ -28,6 +36,7 @@ def zoneQ (lam x : ℚ) : Zone :=
   if x < lam then Zone.normal else if x = lam then Zone.barrierless else Zone.inverted
 
 -- ── M1：分类器正确性 ────────────────────────────────────────────────────────
+-- English: ── M1: classifier correctness ─────────────────────────────────────
 theorem zone_eq_normal_iff (lam x : ℝ) : zone lam x = Zone.normal ↔ NormalRegion lam x := by
   unfold zone NormalRegion
   by_cases h : x < lam
@@ -60,6 +69,7 @@ theorem zone_trichotomy (lam x : ℝ) :
   · exact Or.inr (Or.inr rfl)
 
 -- ── M5a：ℚ → ℝ 转移引理 ────────────────────────────────────────────────────
+-- English: ── M5a: ℚ → ℝ transfer lemma ─────────────────────────────────────
 theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) := by
   unfold zoneQ zone
   by_cases h : x < lam
@@ -75,8 +85,11 @@ theorem zoneQ_eq_zone (lam x : ℚ) : zoneQ lam x = zone (lam : ℝ) (x : ℝ) :
 theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam : ℝ) < (x : ℝ) := by
   rw [zoneQ_eq_zone, zone_eq_inverted_iff]
   exact Iff.rfl   -- `InvertedRegion (↑lam) (↑x)` 就是 `(↑lam : ℝ) < ↑x`（定义层 defeq）
+                  -- English: `InvertedRegion (↑lam) (↑x)` is exactly `(↑lam : ℝ) < ↑x`
+                  -- English: (definitionally equal, i.e. `defeq` at the definition layer)
 
 -- ── M3 剩余两条 ─────────────────────────────────────────────────────────────
+-- English: ── M3: the remaining two ──────────────────────────────────────────
 theorem barrier_antitone_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
     (h₁ : 0 ≤ x₁) (h₂ : x₁ < x₂) (h₃ : x₂ ≤ lam) : barrier lam x₂ < barrier lam x₁ := by
   have h4 : (0 : ℝ) < 4 * lam := by positivity
