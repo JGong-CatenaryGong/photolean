@@ -49,6 +49,16 @@ namespace Hammond
 theorem inst_I1_thermoneutral_zone : Rat.hammondZoneQ (1 : ℚ) 0 = HZone.half := by
   norm_num [Rat.hammondZoneQ]
 
+/-- I1, point-level verdict: the instance conforms — the crossing point lies strictly between the
+two wells (`x = 0`), so the Hammond reading applies. The ℚ zone verdict is transferred to the ℝ
+classifier and fed into `conforms_iff_zone`. -/
+theorem inst_I1_thermoneutral_conforms : HammondConforms 1 0 := by
+  have hz : hammondZone (1 : ℝ) 0 = HZone.half := by
+    rw [← (by norm_num : ((1 : ℚ) : ℝ) = (1 : ℝ)),
+        ← (by norm_num : ((0 : ℚ) : ℝ) = (0 : ℝ)),
+        ← Rat.hammondZoneQ_eq_hammondZone, inst_I1_thermoneutral_zone]
+  exact (conforms_iff_zone (by norm_num : (0 : ℝ) < 1)).mpr (Or.inr (Or.inl hz))
+
 end Hammond
 
 end PhotoLean
