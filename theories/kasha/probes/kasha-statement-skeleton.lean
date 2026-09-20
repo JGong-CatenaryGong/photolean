@@ -243,8 +243,13 @@ theorem kashaZone_eq_withinTol_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} 
       ¬ KashaRule rad ic N ∧ KashaWithin rad ic tol N := by
   sorry
 
-/-- Plan §4.2 #24. -/
-theorem kashaZone_eq_violating_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N) :
+/-- Plan §4.2 #24. **Corrected 2026-09-20** (prover_a's kernel counterexample
+`theories/kasha/probes/kasha-k1-counterexample.lean`): as first handed over, without the tolerance
+premise, this row was FALSE — the classifier tests the vanishing leak first, so `upperYield = 0`
+parks it in `pure` and `¬ KashaWithin` can hold there whenever `tol < 0`. The premise `0 < tol` (the
+physical range of the tolerance) restores it: `upperYield = 0` then implies `KashaWithin`. -/
+theorem kashaZone_eq_violating_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N)
+    (htol : 0 < tol) :
     kashaZone rad ic tol N = KashaZone.violating ↔ ¬ KashaWithin rad ic tol N := by
   sorry
 
@@ -720,9 +725,11 @@ theorem kashaQVerdict_eq_withinTol_iff {rad ic : ℕ → ℚ} {tol : ℚ} {N : �
       upperYieldQ rad ic N ≠ 0 ∧ KashaWithinQ rad ic tol N := by
   sorry
 
-/-- Plan §8.1 classifier row. -/
+/-- Plan §8.1 classifier row. **Corrected 2026-09-20** together with its ℝ-side twin
+`kashaZone_eq_violating_iff`: without `0 < tol` the row is FALSE at `rad ≡ 1`, `ic ≡ 1`, `N = 0`,
+`tol = -1` (the vanishing-leak branch parks the verdict in `pure` while `¬ KashaWithinQ` holds). -/
 theorem kashaQVerdict_eq_violating_iff {rad ic : ℕ → ℚ} {tol : ℚ} {N : ℕ}
-    (h : QRateData rad ic N) :
+    (h : QRateData rad ic N) (htol : 0 < tol) :
     kashaQVerdict rad ic tol N = KashaQVerdict.violating ↔ ¬ KashaWithinQ rad ic tol N := by
   sorry
 

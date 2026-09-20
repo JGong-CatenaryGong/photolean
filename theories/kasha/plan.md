@@ -205,7 +205,7 @@ starts before it compiles, and every delivered declaration matches it word for w
 check: `theories/BEP/probes/bep-fidelity.py --theory kasha`, which is theory-generic).
 
 Planned inventory — **measured from the compiled skeleton** (`sha256
-e3ddc2d01317ec6bc46957cae7763034a23df691bffc480a08c9a23d9fe6412b`, `lake env lean`, exit 0):
+801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`, `lake env lean`, exit 0):
 
 | milestone | module | content (declarations) |
 |---|---|---|
@@ -296,12 +296,19 @@ specialization.
 | 21 | `kashaWithin_iff_specFrac (h : fluoYield rad ic N ≠ 0) : KashaWithin rad ic tol N ↔ 1 - specFrac rad ic 0 N ≤ tol` | 20, 13 |
 | 22 | `kashaZone_eq_pure_iff (h : RateData rad ic N) : kashaZone rad ic tol N = KashaZone.pure ↔ KashaRule rad ic N` | `split_ifs` |
 | 23 | `kashaZone_eq_withinTol_iff (h : RateData rad ic N) : kashaZone rad ic tol N = KashaZone.withinTol ↔ ¬ KashaRule rad ic N ∧ KashaWithin rad ic tol N` | `split_ifs` |
-| 24 | `kashaZone_eq_violating_iff (h : RateData rad ic N) : kashaZone rad ic tol N = KashaZone.violating ↔ ¬ KashaWithin rad ic tol N` | `split_ifs` |
+| 24 | `kashaZone_eq_violating_iff (h : RateData rad ic N) (htol : 0 < tol) : kashaZone rad ic tol N = KashaZone.violating ↔ ¬ KashaWithin rad ic tol N` | `split_ifs` — **statement corrected 2026-09-20**, see the correction log in §3.1 |
 | 25 | `kashaRule_of_rad_zero (h : RateData rad ic N) (hzero : ∀ i, 1 ≤ i → i ≤ N → rad i = 0) : KashaRule rad ic N` | each `emitYield i N = 0` |
 | 26 | `KashaZone` + `kashaZone` + `RateData` are the 3 non-theorem declarations of the table above | |
 
 (Note: the theorem rows carry the milestone's proof obligations; the table above lists every
 declaration of `Basic.lean`, definitions included in §4.1.)
+
+### 3.1 Statement-correction log (the authority changes only through this log)
+
+| date | row | what was wrong | correction | evidence |
+|---|---|---|---|---|
+| 2026-09-20 | K1 #24 `kashaZone_eq_violating_iff` | as first handed over (no premise on `tol`) the row is **false**: the classifier tests the vanishing leak first, so `upperYield = 0` parks it in `pure`, while `¬ KashaWithin` can still hold when `tol < 0`. `RateData` bounds `decay`/`rad`/`ic`, never `tol` | added the tolerance premise `(htol : 0 < tol)` (the physical range, plan §2); no other K1 row is affected — prover_a audited all 25 and the other two classifier rows are true with no positivity premise | kernel-checked counterexample `theories/kasha/probes/kasha-k1-counterexample.lean` (witness `rad ≡ 1`, `ic ≡ 1`, `N = 0`, `tol = -1`), raised by prover_a while delivering K1 |
+| 2026-09-20 | K5a `kashaQVerdict_eq_violating_iff` | the same shape defect in ℚ (`QRateData` bounds no tolerance) | added `(htol : 0 < tol)` in the same pass | same witness, restated in ℚ (the row is delivered by K5a; the ℝ-side probe is the evidence) |
 
 ---
 
@@ -458,7 +465,8 @@ def kashaQVerdict (rad ic : ℕ → ℚ) (tol : ℚ) (N : ℕ) : KashaQVerdict :
 
 Theorems: the cast bridges (one per definition, `Rat.cast_*` family; `ℚ`-side strictness lemmas so
 that a verdict computed in ℚ transfers to ℝ), the three classifier equivalences
-(`kashaQVerdict_eq_pure_iff`, `_withinTol_iff`, `_violating_iff`), the ℚ criterion
+(`kashaQVerdict_eq_pure_iff`, `_withinTol_iff`, `_violating_iff` — the third carries the corrected
+tolerance premise `0 < tol`, see §3.1), the ℚ criterion
 (`kashaWithinQ_iff_funnelRatioQ`), and two witness/negative-control rows pinning the recipe. **Trap
 recorded in the API log**: `by decide` does not close ℚ goals containing `/`-literals
 (`Rat.blt` → `Int.decNonneg` does not reduce) and `native_decide` is banned
