@@ -223,6 +223,13 @@ proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.descriptor_shar
 proofs/scripts/lake env lean proofs/probes/marcus-statement-skeleton.lean           # 语句权威
 ```
 
+**结构审计（每个定义是否都被至少一条定理约束）**：对全部 10 个定义做词边界引用统计 ——
+`barrier`(44 处)、`rate`(40)、`InvertedRegion`(21)、`zoneQ`(24)、`InvertedDescriptor`(16)、
+`zone`(14)、`lamInner`(9)、`lamOuter`(8)、`NormalRegion`(7)、`NormalDescriptor`(1，即其自身的描述定理)。
+**唯一"未被任何定理约束"的定义是 `barrierQ`** —— M3+M5a verifier 独立发现同一问题（发现 (b)），
+已补上数值桥 `barrierQ_cast : ((barrierQ lam x : ℚ) : ℝ) = barrier (lam:ℝ) (x:ℝ)`，
+使 ℚ 侧势垒数值有资格作为 ℝ 理论层的证据。
+
 **全量体检结果（2026-09-20，8 个模块 / 55 条定理）**：`marcus-all-axioms.lean` 一次运行输出 **55 条
 `depends on axioms`、0 error**；其中 **54 条恰为 `[propext, Classical.choice, Quot.sound]`**，
 1 条（`inst_I1_zoneQ`）**只依赖 `[propext]`**（允许集合的子集）。**无 `sorryAx`、无自定义公理、
