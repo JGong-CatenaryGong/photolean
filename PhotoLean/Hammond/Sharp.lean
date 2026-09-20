@@ -68,6 +68,10 @@ theorem hammond_fails_of_nonpos {lam : ℝ} (hlam : lam ≤ 0) : ¬ HammondDescr
   intro h
   linarith [hammond_lam_pos_of_descriptor h]
 
+/-- The instance-level verdict also forces a positive curvature (it is the first component of
+`HammondConforms`). -/
+theorem conforms_requires_pos {lam x : ℝ} (h : HammondConforms lam x) : 0 < lam := h.1
+
 end Hammond
 
 end PhotoLean
