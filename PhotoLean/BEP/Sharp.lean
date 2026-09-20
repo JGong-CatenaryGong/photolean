@@ -341,5 +341,34 @@ theorem bep_error_three_point {lam c a w : ℝ} (hlam : lam ≠ 0) :
   field_simp
   ring
 
+/-! ## Plan §6.4 — the best BEP line (minimax block) -/
+
+/- The premise `hw : 0 ≤ w` is not consumed by the pointwise bound (it is consumed by the
+attainment statements, which need `0 ∈ Set.Icc (-w) w`); kept for signature fidelity with the
+linter disabled locally. -/
+set_option linter.unusedVariables false in
+/-- Plan §6.4 #18: the minimax line `bepBestLine` reproduces the barrier within `w²/(8·lam)` at
+every point of the window `[-w, w]`. -/
+theorem bepBestLine_error {lam w : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
+    ∀ x ∈ Set.Icc (-w) w, |eact lam x - bepBestLine lam w x| ≤ w ^ 2 / (8 * lam) := by
+  intro x hx
+  have hxabs : |x| ≤ w := abs_le.mpr hx
+  have hxsq : x ^ 2 ≤ w ^ 2 := by
+    calc x ^ 2 = |x| ^ 2 := (sq_abs x).symm
+      _ ≤ w ^ 2 := pow_le_pow_left₀ (abs_nonneg x) hxabs 2
+  have hkey : eact lam x - bepBestLine lam w x = (x ^ 2 - w ^ 2 / 2) / (4 * lam) := by
+    unfold eact bepBestLine
+    field_simp
+    ring
+  have h4 : (0 : ℝ) < 4 * lam := by linarith
+  rw [hkey, abs_div, abs_of_pos h4, div_le_iff₀ h4]
+  have hmid : |x ^ 2 - w ^ 2 / 2| ≤ w ^ 2 / 2 := by
+    rw [abs_le]
+    constructor <;> linarith [sq_nonneg x, hxsq]
+  calc |x ^ 2 - w ^ 2 / 2| ≤ w ^ 2 / 2 := hmid
+    _ = w ^ 2 / (8 * lam) * (4 * lam) := by
+        field_simp
+        ring
+
 
 end PhotoLean.BEP
