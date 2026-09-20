@@ -243,6 +243,73 @@ theorem upperYield_eq_zero_iff {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData ra
     exact hh i (Finset.mem_Icc.mpr ⟨hi1, hiN⟩)
   · intro hh i hi
     exact hh i (Finset.mem_Icc.mp hi).1 (Finset.mem_Icc.mp hi).2
+/-- Plan §5.2 #14 — **the exact rule**: Kasha's rule holds iff every level above the lowest one is
+nonradiative. Proved by induction on the excitation level: the new top level must be nonradiative,
+and it cannot be the level that stops the cascade (a level with `rad = 0` still has `decay > 0`,
+so it steps down with certainty), so the lower ladder must satisfy the rule by the induction
+hypothesis. -/
+theorem kashaRule_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    KashaRule rad ic N ↔ ∀ i, 1 ≤ i → i ≤ N → rad i = 0 := by
+  have key : ∀ N, RateData rad ic N →
+      (KashaRule rad ic N ↔ ∀ i, 1 ≤ i → i ≤ N → rad i = 0) := by
+    intro N
+    induction N with
+    | zero =>
+        intro h
+        constructor
+        · intro _ i hi1 hiN
+          omega
+        · intro _
+          exact upperYield_zero rad ic
+    | succ N ih =>
+        intro h
+        have hN : RateData rad ic N :=
+          ⟨fun n hn => h.decay_pos n (Nat.le_succ_of_le hn), h.rad_nonneg, h.ic_nonneg⟩
+        constructor
+        · intro hK
+          have hu : upperYield rad ic (Nat.succ N) = 0 := hK
+          have hrec : upperYield rad ic (Nat.succ N) =
+              radBranch rad ic (Nat.succ N)
+                + icBranch rad ic (Nat.succ N) * upperYield rad ic N :=
+            upperYield_succ h
+          have hRnn : 0 ≤ radBranch rad ic (Nat.succ N) := radBranch_nonneg h (le_refl _)
+          have hInn : 0 ≤ icBranch rad ic (Nat.succ N) := icBranch_nonneg h (le_refl _)
+          have hUnn : 0 ≤ upperYield rad ic N := upperYield_nonneg hN
+          have hR0 : radBranch rad ic (Nat.succ N) = 0 := by nlinarith
+          have hI0 : icBranch rad ic (Nat.succ N) * upperYield rad ic N = 0 := by linarith
+          have hrad : rad (Nat.succ N) = 0 := by
+            unfold radBranch at hR0
+            exact (div_eq_zero_iff.mp hR0).resolve_right
+              (ne_of_gt (h.decay_pos (Nat.succ N) (le_refl _)))
+          have hU0 : upperYield rad ic N = 0 := by
+            by_contra hne
+            have hicb : icBranch rad ic (Nat.succ N) = 0 :=
+              (mul_eq_zero.mp hI0).resolve_right hne
+            have hic : ic (Nat.succ N) = 0 := by
+              unfold icBranch at hicb
+              exact (div_eq_zero_iff.mp hicb).resolve_right
+                (ne_of_gt (h.decay_pos (Nat.succ N) (le_refl _)))
+            have hzero : decay rad ic (Nat.succ N) = 0 := by
+              unfold decay
+              rw [hrad, hic]
+              ring
+            exact absurd hzero (ne_of_gt (h.decay_pos (Nat.succ N) (le_refl _)))
+          have ihN := (ih hN).mp hU0
+          intro i hi1 hiS
+          rcases Nat.lt_or_eq_of_le hiS with hlt | heq
+          · exact ihN i hi1 (Nat.le_of_lt_succ hlt)
+          · rw [heq]
+            exact hrad
+        · intro hrad0
+          have hR0 : radBranch rad ic (Nat.succ N) = 0 := by
+            unfold radBranch
+            rw [hrad0 (Nat.succ N) (Nat.succ_pos N) (le_refl _)]
+            simp
+          have hU0 : upperYield rad ic N = 0 :=
+            (ih hN).mpr (fun j hj1 hjN => hrad0 j hj1 (le_trans hjN (Nat.le_succ N)))
+          show upperYield rad ic (Nat.succ N) = 0
+          rw [upperYield_succ h, hR0, zero_add, hU0, mul_zero]
+  exact key N h
 end Kasha
 
 end PhotoLean
