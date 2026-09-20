@@ -425,5 +425,11 @@ theorem bepDefect_zero_lam_witness : bepDefect 0 1 = 1 / 2 ∧ ((1 : ℝ) ^ 2 / 
     norm_num
   · norm_num
 
+/-- Plan §6.5 #23: the nonnegativity statements need `0 < lam` — at `lam = -1` the defect at
+`x = 1` is `-1/4`. -/
+theorem bepDefect_neg_lam_witness : bepDefect (-1) 1 = -(1 / 4) := by
+  unfold bepDefect bepLine eact
+  norm_num
+
 
 end PhotoLean.BEP
