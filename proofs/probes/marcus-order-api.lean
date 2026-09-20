@@ -18,6 +18,8 @@
 
 import Mathlib
 
+set_option linter.unusedVariables false
+
 /-! ## B 组：除法 / 序
 
   ⚠️ 已废弃（names drift，仍能用但会 warning，**新代码不要用**）：

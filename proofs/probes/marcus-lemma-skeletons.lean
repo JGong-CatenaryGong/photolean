@@ -20,6 +20,8 @@
 
 import Mathlib
 
+set_option linter.unusedVariables false
+
 noncomputable def barrier (lam x : ℝ) : ℝ := (lam - x) ^ 2 / (4 * lam)
 
 noncomputable def rate (A lam kB T x : ℝ) : ℝ := A * Real.exp (-(barrier lam x) / (kB * T))
@@ -147,15 +149,16 @@ theorem L7_barrier_symm_with_h {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
     barrier lam x = barrier lam (2 * lam - x) := by
   unfold barrier; ring_nf
 
-/-! ## 实例层：`InvertedDescriptor` 由 L5 直接推出（lam < 0 时反转区非空即反转描述子） -/
+/-! ## 实例层：`InvertedDescriptor` 由 L5（经 L4 的 rate 链）推出 -/
 
 theorem InvertedDescriptor_of_neg {A lam kB T : ℝ} (hA : 0 < A) (hkT : 0 < kB * T)
     (hlam : lam < 0) : InvertedDescriptor A lam kB T := by
   intro x₁ x₂ hx₁ hx₂
-  unfold rate
-  apply mul_lt_mul_of_pos_left _ hA
-  rw [Real.exp_lt_exp]
-  unfold barrier
-  rw [show (4 : ℝ) * lam = -(4 * (-lam)) by ring, div_neg, div_neg, neg_lt_neg_iff]
-  rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * (-lam))]
-  nlinarith
+  -- ⚠️ 不要在这里一口气 unfold rate/barrier 再 rw：`div_neg` 会与 rate 自带的负号
+  --    叠成双重否定，`neg_lt_neg_iff` 就匹配不上了。先把 barrier 的不等式单独做出来。
+  have hbar : barrier lam x₂ < barrier lam x₁ := by
+    unfold barrier
+    rw [show (4 : ℝ) * lam = -(4 * (-lam)) by ring, div_neg, div_neg, neg_lt_neg_iff]
+    rw [div_lt_div_iff_of_pos_right (by linarith : (0 : ℝ) < 4 * (-lam))]
+    nlinarith
+  exact L4_rate_strict hA hkT hbar

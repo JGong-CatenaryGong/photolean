@@ -18,6 +18,8 @@
 
 import Mathlib
 
+set_option linter.unusedVariables false
+
 /-! ## ⚠️ 头号坑：**`λ` 不能作标识符**
 
   题目伪代码里的 `λ`（希腊字母 lambda）在 Lean 4 里是**保留关键字**（lambda 抽象
@@ -132,4 +134,12 @@ example {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ} (h₁ : lam ≤ x₁) (h�
 -- G-7: linarith / nlinarith 基本盘
 example {a b : ℝ} (h : a < b) : a < b + 1 := by linarith
 example {a b : ℝ} (ha : 0 ≤ a) (hab : a < b) : a ^ 2 < b ^ 2 := by nlinarith
-example {a b : ℝ} (h : a < b) : a ^ 2 + b ^ 2 > 0 := by nlinarith [sq_nonneg a, sq_nonneg b, h]
+-- ⚠️ nlinarith 的启发式并非万能：下面这条**真命题**裸 nlinarith 失败
+--     error: linarith failed to find a contradiction / a✝ : 0 ≥ a^2 + b^2
+--     `example {a b : ℝ} (h : a < b) : a ^ 2 + b ^ 2 > 0 := by nlinarith [sq_nonneg a, sq_nonneg b, h]`
+--   必须把"至少一个非零"显式做出来喂给它：
+example {a b : ℝ} (h : a < b) : a ^ 2 + b ^ 2 > 0 := by
+  have hne : a ≠ 0 ∨ b ≠ 0 := by rintro (h0 | h0) <;> linarith
+  rcases hne with h0 | h0
+  · nlinarith [sq_pos_of_ne_zero h0, sq_nonneg b]
+  · nlinarith [sq_pos_of_ne_zero h0, sq_nonneg a]

@@ -47,10 +47,12 @@ example {x y : ℝ} (h : Real.exp x < Real.exp y) : x < y := Real.exp_lt_exp.mp 
 -- A-2: 严格单调包装也可用（两种写法等价）
 example {x y : ℝ} (h : x < y) : Real.exp x < Real.exp y := Real.exp_strictMono h
 example {x y : ℝ} (h : x < y) : Real.exp x < Real.exp y := Real.exp_lt_exp.2 h
--- A-3: exp_pos 可直接喂给 div_lt_div_of_pos_right / mul_lt_mul_of_pos_left
-example (x y : ℝ) : 1 / Real.exp x < 1 / Real.exp y ↔ Real.exp y < Real.exp x := by
-  rw [div_lt_div_iff_of_pos_right (Real.exp_pos y), div_lt_div_iff_of_pos_right (Real.exp_pos x)]
-  exact Real.exp_lt_exp
+-- A-3: exp_pos 可直接喂给 one_div_pos / div_lt_div_of_pos_right / mul_lt_mul_of_pos_left
+example (x : ℝ) : 0 < 1 / Real.exp x := one_div_pos.mpr (Real.exp_pos x)
+example (x : ℝ) : 0 < 1 / Real.exp x := by positivity
+example {c u v : ℝ} (hc : 0 < c) (h : u < v) : u / c < v / c := div_lt_div_of_pos_right h hc
+example {u v c : ℝ} (h : u < v) (hc : Real.exp c ≠ 0) : u / Real.exp c < v / Real.exp c :=
+  div_lt_div_of_pos_right h (Real.exp_pos c)
 
 /-! ## D 组：乘法 / 序 -/
 

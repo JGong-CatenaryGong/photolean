@@ -1,7 +1,7 @@
 # 构建产物与共享缓存（不入库）
 .lake/
 build/
-.toolchain/
+.toolchain
 lean_packages/
 
 # Python / 计算环境
