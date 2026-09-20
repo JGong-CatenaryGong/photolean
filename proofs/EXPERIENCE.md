@@ -876,6 +876,312 @@
   minimax lower bounds it is `set` the residuals, prove the exact second difference, bound it with
   `le_abs_self` + `abs_add`, kill the negated disjunction with `not_or`/`not_le`, finish with `linarith`.
 
+## 2026-09-20 — BEP round-1b: literature data table judged against the model (5 first-hand families; all fail the constant-λ curvature test) — literature_researcher — DONE
+
+- Goal: fill the B5b data-table leaf of `theories/BEP/LITERATURE.md` (≥ 4 families × ≥ 2 `(driving force,
+  barrier)` pairs in kJ/mol with provenance) **and** answer the lead's added question: is each pair
+  *model-consistent* (does it admit a finite positive λ̂)? Result appended as §R1.10–§R1.12 (file now 848 lines).
+- Worked (mirrors + API routes that actually served content when publishers 403'd): **Europe PMC REST
+  `…/fullTextXML`** for OA tables (`PMC13405240`, `PMC5950756`) when the HTML table page is behind
+  reCAPTCHA; **eScholarship / Edinburgh Pure** mirrors for the IUPAC glossary VoR (iupac.org + De Gruyter +
+  goldbook = 403/empty); **Nobel Foundation PDF** for Marcus 1992; **CaltechAUTHORS** records for the 1968
+  abstracts; **`api.crossref.org` + `api.unpaywall.org`** to prove `is_oa=false` before declaring `not-accessed`.
+- Finding that changes the theory's reading: 5 first-hand families (*Antioxidants* **15**(7):840 (2026) Tables 1–2
+  — 31/34 pairs, water vs pentyl ethanoate; *Chem. Sci.* **6**:5866 (2015) Table 1 CCSD(T) row — 5 sites).
+  **All five admit per-pair λ̂ > 0** (water 61.5, PE 50.3, `•OOCH₃` 59.4/53.4, CCSD(T) 37.5 kcal/mol), **but every
+  family's fitted curvature is negative** — and the model requires `d²Ea/dx² = 1/(2λ) > 0` for *every* λ > 0.
+  So no positive λ reproduces any family's shape, while the *linear* BEP fit is excellent (R² = 0.93–0.95 in four
+  of five). Report this as a finding; **never** "fix" it by reporting a λ̂ as a measured reorganization energy.
+  Also: the same substrates in a different solvent give a different λ̂ (Δλ ≈ 11 kcal/mol) ⇒ the family must be
+  indexed by solvent too; and the per-pair λ is only identified up to the spurious small root.
+- 试过且失败（记录以免下一轮重踩）：
+  1. **A prior round of this role had already written the leaf** (round 1, §R1–§R1.9). My first two `write`
+     calls were rejected ("file has not been read"), and two `edit` calls failed with "file changed since it was
+     read" because that round's writer was still appending. Recovery: `cp` the file to `/tmp`, write the new
+     sections to a scratch file, `cat >>` them onto the leaf with a `---` separator. **Pattern: when a leaf is
+     co-authored across rounds, append; never rewrite, and always re-read before an `edit`.**
+  2. **Option (b) of the dispatch (reuse the sibling records' MCC / reaction-centre numbers) is NOT viable as
+     data**: those `x` values are *fit-derived inside the model* (λ = 1.20 eV from a figure annotation), so
+     converting them to kJ/mol would pass model outputs off as measurements. Recorded as `not-accessed` for the
+     pair table together with five other families that lack either the barrier or the driving force side.
+  3. `archive.org` / HathiTrust / Google Books / `books.google.com` all time out from this sandbox (kills
+     Semenov 1935/1958 and any Faraday Soc. 34 scan); `pubs.rsc.org`, `royalsocietypublishing.org`, `science.org`,
+     `goldbook.iupac.org`, `degruyter.com`, `onlinelibrary.wiley.com/doi/pdfdirect`, `orbit.dtu.dk/files` are
+     403/202 for both `curl` and the fetch tool ⇒ Evans–Polanyi 1938/1936, Bell 1936, Leffler 1953 bodies stay
+     `not-accessed`. Search hits included libgen/sci-hub mirrors of them; **deliberately not used**.
+  4. Semantic Scholar's API hangs (>300 s) in this sandbox and its Graph call timed out — use Crossref/Unpaywall/
+     Europe PMC instead, and wrap every `curl` in `timeout` (a hung call also resets the bash session's cwd).
+- Reusable pattern: **a literature data table is only a deliverable if every row carries a verdict** — here,
+  per family: pairs + units + locus + `first-hand`, *plus* a model-consistency test with the test's own algebra
+  printed. Report negative curvature as evidence, not as an error; and treat "is this number the model's input
+  or its output?" as the first question for any candidate family (it disqualified three otherwise attractive ones).
+
+## 2026-09-20 — BEP: API round on the dispatched statement list vs. the plan that landed mid-round — api_researcher — DONE
+
+- Goal: furnish `theories/BEP/probes/bep-statement-skeleton.lean` (statement authority) plus `#check`
+  probes for every name the BEP proofs need, and calibrate the risky rows before the provers start.
+- Tried and failed (kept as banned names in the API log): `Real.sq_le_sq`, `Real.sqrt_lt_iff_lt_sq`,
+  `Real.sqrt_four`, `Rat.castRat`, `Rat.decLe`, `Set.mem_Icc_iff`, `div_nonneg_iff_of_pos_right`
+  (the strict `div_pos_iff_of_pos_right` exists, the `≤` version does not), bare `le_sqrt'`
+  (it is `Real.le_sqrt'`); `div_le_div_iff` / `div_le_div_right` / `div_le_div_left` /
+  `pow_le_pow_left` are deprecated (warning-only, so they must not appear in a 0-warning probe).
+  Two tactic assumptions also failed: `by decide` on ℚ comparisons containing `/`
+  (`Int.decNonneg✝` is not kernel-reducible, so `Rat.blt` never reduces) and `by norm_num` on
+  `|q| ≤ r` over ℚ (no `abs` support). `native_decide` works but adds `Lean.ofReduceBool`, which is
+  outside `ALLOWED_AXIOMS` — banned. `field_simp` sometimes closes a BEP field identity by itself,
+  so the habitual `field_simp; ring` then errors with `no goals to be solved` (4 measured cases).
+- Worked (and is now recorded with kernel evidence): the radius theorem
+  `EPConformsOnWindow lam tol (-w) w ↔ w ≤ bepRadius lam tol`, the whole minimax block
+  (`bepBestLine_error`, the equioscillation bound `bep_minimax_pointwise`, `epBestOnWindow_holds`,
+  `bepLine_worst_case`, `bepBestLine_halves`), the exactness pair
+  `not_epLinearOn_of_ne_zero` / `EPExact ↔ lam = 0`, all nine `epZone_eq_*_iff` rows, the ℚ
+  reconstruction theorem, and the literal `sSup` sharpness form (with the explicit `BddAbove`
+  witness `le_csSup` needs — `sSup` of an unbounded set is `0` in ℝ, so a missing boundedness proof
+  silently falsifies the statement). One genuine formula defect was caught and corrected:
+  `bepDefect_even` is **false** without `lam ≠ 0` (the draft probe stated it unconditionally and the
+  kernel rejected it), while `epConformsOnWindow_symm` survives because it carries `0 < lam`.
+- Reusable pattern 1 — **the dispatch text is not the statement authority.** Mid-round the lead's
+  `theories/BEP/plan.md` landed with a richer spec (9-constructor `EPZone`, linear-response
+  `transfer`, `qLamOfPair`, `EPQVerdict`) than the original dispatch list. The right move was to
+  regenerate the skeleton plan-aligned rather than to deliver a second, conflicting authority, and to
+  keep the old dispatch's names only where the plan is silent (the `sSup`/second-difference AUX
+  block). A skeleton that disagrees with the plan costs every prover a round trip.
+- Reusable pattern 2 — **calibrate the *definition bodies* first, then the theorems.** The
+  `transfer` body change (TS-coordinate → linear-response) inverted the direction of several rows:
+  a `rfl` bridge became a theorem needing `lam ≠ 0`, and a solver's numerator sign flipped the
+  meaning of the whole ℚ layer (`x₁² - x₂²` returns `-λ`). Kernel counterexamples at concrete
+  rationals (`norm_num`-closed `example`s) are the cheapest way to pin this down: they are one line
+  each, they are re-checked on every toolchain bump, and they make the drift entry in the API log
+  unarguable.
+- Reusable pattern 3 — **the API probe should state the *risky rows verbatim*, not a toy analogue.**
+  Where a probe proves the actual delivery-shaped statement (radius theorem, minimax optimality,
+  nine classifier rows), the prover's job collapses to transcription; where it proves a weaker toy
+  version, the prover re-derives the hard part and the probe's evidence does not transfer.
+
+## 2026-09-20 — BEP round-1c: the quadratic barrier law is **Marcus 1968 eq. (2) p. 891**, *not* Marcus 1956; and Cohen & Marcus's strict range clause `|A| < λ` — literature_researcher — DONE (record §R1.13)
+
+- Goal: independently verify a delegated claim that Marcus 1956 (the two-parabola paper) contains **no**
+  quadratic barrier formula, and pin the printed equation numbers of the coefficient formula.
+- Verified first-hand, reproducibly: `pdftotext` plain / `-layout` / `-raw` on
+  `theories/Marcus/literature/Marcus1956_ET_theory_I.pdf`, whitespace collapsed, case-insensitive —
+  `parabola` 0, `intersect` 0, `quadratic` 0, `slope` 0, `alpha` 0, `Bronsted` 0, `Polanyi` 0, `Bell` 0,
+  `Semenov` 0; `Evans` 1 (footnote 9(b) = Eley & Evans, *TFS* **34**, 1093 — a *solvent* paper on p. 1093 of
+  the same volume, not the BEP paper on p. 11); the only `(1 + …` strings are dielectric (`E*(r) = E_t*(r)/(1+4πa…)`).
+  ⇒ 1956 has the barrier derivation (Eq. (38), p. 974) but **neither the quadratic law nor its slope**.
+  The law's home is **Marcus 1968 Eq. (2), printed p. 891**: `ΔF* = w_r + λ(1 + ΔF⁰'/λ)²/4`.
+- ★ The most useful new locus of the whole survey: **Cohen & Marcus 1968, Eqs. (5a)–(5c), printed p. 4250**
+  (full issue scan `lib3.dss.go.th/.../j.of_physical_1968_v72_n12.pdf`, 60 MB, HTTP 200; `printed = PDF + 3938`):
+  `a = ½[1 + (A/λ)] (|A| < λ)` (5a), `a = 0 (A < −λ)` (5b), `a = 1 (A > λ)` (5c), with `A = ΔF°' + RT ln(s_r/s_p)`
+  (their eq. (2), p. 4249) and footnote 9's "we have excluded work and steric terms".
+  Consequences: (i) the affine coefficient's range clause is a **strict inequality** and is printed;
+  (ii) the **endpoint values 0 and 1 are the outside-range behaviour**, so the model's `(0,1) ⟺ |x| < λ`
+  is a statement about *where the linearization is being used*, not a law about families (reinforces §R1.11);
+  (iii) the model's `x` corresponds to `−A`, residual work terms excluded exactly as the model does.
+- 试过且失败 / 教训：
+  1. **A "verified (sibling record)" status does not survive a new question.** The sibling record had already
+     noted "1956 contains no slope/α/Brønsted/inverted", but the *new* question — "does 1956 contain the
+     quadratic barrier?" — still produced a mis-citation candidate in the plan, and needed its own grep set
+     (`parabola`, `intersect`, `quadratic`, plus a whitespace-tolerant pattern for `(1 +`). **Extend the
+     negative grep whenever a formula is attributed, not only when a name is.**
+  2. Ranked greps hide hits: a first pass for `parabola` missed `parabolas`; the decisive Appendix II
+     sentence is plural. Use case-insensitive **substring** counts, not word matches.
+  3. `pdftotext` on a 60 MB whole-issue scan works, but extract with `-f/-l` page windows and verify the
+     page map from running heads before quoting a page number (here `printed = PDF + 3938`; the earlier
+     §n3 scan used `+766`) — **the offset differs per volume/issue**.
+- Reusable pattern: **when a formula is attributed to a classic paper, grep the formula's *shape* (and its
+  OCR variants) in the full text before trusting the attribution**; and prefer the paper's own *body*
+  equation over its abstract rewriting (the abstract of Cohen & Marcus normalizes by `ΔF₀* = λ/4`, while
+  eq. (5a) prints the strict range clause that the formalization actually needs).
+
+## 2026-09-20 — BEP round-1d: `β = 1/2` has a published disclaimer; Denisov 2012 rows are model-derived and circular — literature_researcher — DONE (record §R1.14)
+
+- Goal: verify a delegated new source that bears on the plan's `α(0) = 1/2` claim, and rule on whether a
+  newly offered data family may enter the instance layer.
+- Verified first-hand: Ooka, Huang & Exner, *Front. Energy Res.* **9**, 654460 (2021), DOI
+  `10.3389/fenrg.2021.654460`, gold-OA PDF (HTTP 200), **page map exact** — the running footers print the
+  Frontiers pagination, so printed page = PDF page for all 20 pages. Printed **p. 10**: "β = 0.5 is a
+  frequent assumption, **although there is no physical basis for why β should be 0.5 or why it should be
+  independent of the material**", "no basis for why β should be **constant throughout the various
+  elementary steps**", and "**a negative BEP coefficient, which is a direct contradiction to the
+  assumption of 0 < β < 1**"; printed **p. 9**: the BEP relationship "is in **direct contradiction to the
+  Marcus theory of electron transfer**"; printed **p. 7**, their eq. (2): `ΔG‡_RI = (λ + ΔG_RI)²/(4λ)` —
+  verbatim the model's law with `ΔG_RI = −x`.
+- Anti-circularity ruling: the `(ΔH, Ee)` table of Denisov et al. 2012 (`Russ. Chem. Rev.` **81**, 1117,
+  Table 6, pp. 1125–1126) is **computed from that review's own intersecting-parabola equations (23)–(24)**;
+  any two-point slope computed from it (delegated: ≈ +0.50…+0.56 saturated, ≈ −0.74 across to allylic C–H)
+  measures **the same functional form that produced the table** ⇒ **must not enter the instance layer as
+  `provenance: literature` data**, only as an algebra self-consistency check. The F1–F5 families of §R1.10 are
+  unaffected (their barriers come from DFT/CCSD(T), a different theory from the parabola law).
+- 试过且失败 / 教训：**"first-hand numbers" is not the same as "independent measurements".** Three candidate
+  families looked attractive on a citation basis and had to be rejected for three different reasons — MCC/RC
+  (`x` is *fit-derived inside the model*), Denisov (`Ee` is *computed by the same parabola model*), npj-HER
+  (only *fitted parameters*, points in a figure). Before adding any row to a data-validation table, ask:
+  **is the printed quantity an input to, an output of, or independent of the law being tested?**
+- Reusable pattern: for any "is this constant universal?" claim in a plan, the decisive literature citation
+  is usually a sentence of the form "X is a frequent assumption, although there is no physical basis for …".
+  Grep for `no physical basis` / `no basis for` / `frequent assumption` inside OA reviews of the field, and
+  record the page — that sentence pattern is what turns a model convenience into a documented convention.
+
+## 2026-09-20 — BEP round-1e: the `α ∉ (0,1)` outliers now have printed pages; `α` is a *partial* function of the family — literature_researcher — DONE (record §R1.15)
+
+- Goal: settle verdict (ii) (`0 ≤ α ≤ 1`) with page-level counterexamples, and check whether the "family"
+  premise needs strengthening.
+- Verified first-hand:
+  1. **Pogorelyi & Vishnyakova, *Russ. Chem. Rev.* 53(12):1154–1167 (1984), DOI
+     `10.1070/rc1984v053n12abeh003145`, printed p. 1160** (free PDF `russchemrev.org/RCR3145pdf`, HTTP 200;
+     the page header inside the text layer prints "1160 Russian Chemical Reviews, 53(12), 1984" — a *printed*
+     page, not a PDF offset): "Anomalous values of the Brønsted coefficient (α < 0 and α > 1) are most
+     characteristic of CH acids containing the nitro-group"; "α = −0.7 and β = 1.7 are anomalous";
+     "α = 1.67, 1.61, 1.42, and 1.56 … for nitroalkanes R(CH₃)₂NO₂, ArCH₂CH(CH₃)NO₂, ArCH(CH₃)NO₂, ArCH₂NO₂";
+     and the **new premise**: "**all systems with α > 1 included a fixed base. If the base is varied for the
+     same nitroalkane, then the Brønsted coefficient returns to … 0 < α < 1**" ⇒ a substituent series and a
+     base series are *different objects*; "family" must vary **exactly one parameter**.
+  2. **Mayr & Ofial, *Isr. J. Chem.* 63:e202300054 (2023), printed pp. 7–8** (LMU repository copy 200; Wiley
+     watermark gives the page range): "nitroalkanes have α values around 1.5 … **α is not limited to the range
+     0 < α < 1**, and therefore cannot be an indicator of the position of the transition state"; and
+     "**in identity reactions … δΔG_r° = 0 with the consequence that α = δΔG‡/0 = ∞**" ⇒ the empirical
+     coefficient is a **partial function**: any "coefficient read off a family" needs an explicit
+     non-degeneracy hypothesis (the analogue of the repo's existing `h : x₁ ≠ x₂`).
+- 试过且失败 / 教训：**`russchemrev.org/RCR<nnnn>pdf` and LMU `epub.ub.uni-muenchen.de` served content where
+  the publishers did not** (RSC/ACS/Wiley/De Gruyter all 403/202 here) — but the LMU path must be taken from
+  the Unpaywall `oa_locations` record verbatim; a hand-guessed filename 404'd. Also: a repository copy of a
+  Wiley article can carry a **watermark with the printed page range**, which is the cheapest reliable page
+  locus for an article-number-style citation (here pp. 7–8 for `e202300054`).
+- Reusable pattern: when a plan asserts a **bound** on a physical coefficient, hunt for (a) one source printing
+  values *outside* the bound, (b) one source stating *when* the bound fails, and (c) one source printing the
+  bound itself with its domain. Here (a)+(b) came from the same page of a 1984 review, and (c) turned out to be
+  electrochemical (Inzelt p. 36) — i.e. **the bound's name migrated between subfields, which is exactly the
+  kind of naming import a formalization record must flag rather than inherit.**
+
+## 2026-09-20 — BEP follow-up: plan §8.1 model-consistency block + §8.2 instance table (I1–I12) — api_researcher — DONE
+
+- Goal: extend the frozen statement skeleton with the second divided difference / three-point
+  consistency block and the whole instance table, every row kernel-checked before the provers see it.
+- Tried and failed: a first draft of the falsification rows interleaved the data arguments
+  (`qModelConsistent3 lam x₁ e₁ x₂ e₂ x₃ e₃`) although plan §8.1 defines `qModelConsistent3 lam x₁ x₂ x₃
+  e₁ e₂ e₃` (all abscissae first) while `qSecondDividedDiff x₁ e₁ x₂ e₂ x₃ e₃` interleaves `(x, e)`
+  pairs — two sibling signatures with opposite conventions in the same plan section. Also: the plan's
+  §8.2 I8 row still prints `α = 0`, a leftover of the discarded transition-state body (the delivered
+  body gives `1/2`), and F4 (Table 2 "PE") has no per-row data in `LITERATURE.md` §R1.10 at all.
+- Worked: `len 4` recipes, all `norm_num`-closed — the verdict rows need only
+  `unfold epQVerdict qTransfer; norm_num` (norm_num reduces the six-branch `if`-chain of concrete
+  rational comparisons on its own), the literature rows use **decimal** ℚ literals verbatim from the
+  source (`(15.6 : ℚ)`, `(0.3 : ℚ)`), and the falsification rows are
+  `rintro` + `qModelConsistent3_curvature_pos` + a `show … by unfold …; norm_num` negative value +
+  `norm_num at hpos`.
+- Reusable pattern 1 — **the same plan section can mix argument conventions.** When two signatures are
+  transcribed from one section, check each call site against the definition, not against the
+  neighbouring theorem; the kernel only reports the mismatch three arguments later (our failure showed
+  up as `0.9 ≠ 15.7` inside a distinctness side goal).
+- Reusable pattern 2 — **a corrected body invalidates the *values* of older instance tables.** The
+  `transfer` body change silently made the I8 "α = 0" cell false; the instance round is where such
+  stale cells surface, so grep the instance table for every quantity whose definition changed, and fix
+  the statement rather than adding a hypothesis that hides it.
+- Reusable pattern 3 — **state exactly the data you have.** For a family whose source prints only
+  aggregates (F4), the honest output is "no statement", reported with the reason; a `norm_num`-checkable
+  statement can always be manufactured, and it would have been worthless.
+
+## 2026-09-20 — BEP round-1f: a **bimodal (broken) EP line with non-constant λ** is now the record's violation family — literature_researcher — DONE (record §R1.16)
+
+- Goal: close the last two gaps — a *documented* (not model-constructed) violation family, and a family whose
+  driving force spans both signs.
+- Verified first-hand:
+  1. **Salamone, Galeotti, Romero-Montalvo, van Santen, Groff, Mayer, DiLabio & Bietti, "Bimodal Evans–Polanyi
+     Relationships in Hydrogen Atom Transfer from C(sp³)–H Bonds to the Cumoxyl Radical…", *JACS*
+     143(30):11759–11776 (2021), DOI `10.1021/jacs.1c05566`** — CC-BY full text via Europe PMC
+     (`…/PMC8343544/fullTextXML`). Abstract, opening printed p. 11759, verbatim: "The log k_H′ vs C–H BDE plot
+     shows **two distinct EP relationships**, one for substrates bearing benzylic and allylic C–H bonds
+     (unsaturated group) and the other one, **with a steeper slope**, for saturated hydrocarbons, alcohols,
+     ethers, diols, amines, and carbamates (saturated group)"; and "**A good fit to the Marcus equation is
+     observed only for the saturated group, with λ = 58 kcal mol⁻¹**, indicating that with the unsaturated
+     group **λ must increase with increasing driving force**". ⇒ the fixed-`λ` premise is a **default the
+     literature contradicts**, the "same family" premise gets a page-level basis, and the instance layer has a
+     real violation family. Per-substrate `(k_H, BDE)` are bitmaps in the OA copy ⇒ `not-accessed`, no numbers
+     transcribed.
+  2. **npj Comput. Mater. 10:98 (2024), SI Table 1** (`media.springernature.com/…/41524_2024_1244_MOESM1_ESM.pdf`,
+     10 pp., HTTP 200) — 14 metals, **the only family in the record with both signs of x** (Bi −103.3 kJ/mol …
+     Ni +27.0). **Read the SI's own header before using its α column**: "The α and ΔG₀‡ are **obtained from
+     fitting experimental cyclic voltammograms** for computing ΔG‡_EXP" ⇒ those α values are *electrochemical
+     transfer coefficients of individual electrodes*, **not** BEP slopes of the family's `(ΔG_H, ΔG‡)` scatter,
+     so a delegated reading of "individual fitted BEP slopes 0.37–0.66" is **not** supported by the table
+     itself. What the column legitimately shows is material-dependence **within one reaction class** (Co 0.37 …
+     Rh 0.66), independently matching Exner's "ß may vary within a class of materials".
+- 试过且失败 / 教训：**an SI table's extra columns are the most tempting place to over-read a source.** The α
+  column looked like a ready-made "slope varies" datum; its own header says it comes from fitting CVs of a
+  *different* observable. Before citing any digit from a table, read the **table title and footnotes in the
+  same file** — not the caption quoted elsewhere.
+- Reader warnings recorded for the next round: (i) the Denisov 2012 Table 6 text layer renders the **minus sign
+  as the digit `7`** (`719.5` = −19.5) — misreading it flips exothermic rows to endothermic; (ii) a Wiley
+  repository copy can carry a **watermark with the printed page range**, the cheapest reliable locus for
+  article-number-style citations; (iii) `api.catalysis-hub.org` now demands an API key and MDPI 403s while
+  Europe PMC serves the same OA text — don't re-discover these.
+
+## 2026-09-20 — BEP round-1g: three distinct `α` objects, and coverage-dependence as a *kinetic* counterexample to constancy — literature_researcher — DONE (record §R1.17)
+
+- Goal: settle how the plan may speak about "α" when the electrochemical literature is cited beside the
+  model's own coefficient.
+- Verified first-hand:
+  1. **IUPAC Technical Report 2014, §5 Conclusions, printed p. 257** (read here in §R1.6.2 and independently
+     re-read in round-1g via the same open repository route, Universidad de Alicante RUA DSpace 7; the page
+     header inside the text layer prints "DOI 10.1515/pac-2014-5026  Pure Appl. Chem. 2014; 86(2): 245–258"):
+     "The numerical value of the transfer coefficient `α` **can by no means be assumed**; it can only be
+     obtained by measuring the Tafel slope"; and "**`αc + αa = n/ν` (43)** … The use of the cathodic symmetry
+     factor … should be confined to an overall electrode reaction consisting **exclusively of a one-electron
+     transfer step**." ⇒ the literature's complementarity is `n/ν`, so `α_f + α_r = 1` is a **single-electron /
+     same-rds special case**, while our `transfer + reverseTransfer = 1` stays a model theorem.
+  2. **Shinagawa, Garcia-Esparza & Takanabe, *Sci. Rep.* 5:13801 (2015), DOI `10.1038/srep13801`**, OA via
+     Europe PMC `PMC4642571`, printed pp. 5–6, verbatim: "The Tafel slopes used to evaluate the rate
+     determining steps generally assume extreme coverage of the adsorbed species (θ ≈ 0 or ≈1), although, in
+     practice, **the slopes are coverage-dependent**"; and "**the same Tafel slopes can be obtained for
+     different elementary steps with varied coverages**"; with measured slopes 30 / 120 / 125 mV dec⁻¹.
+- Three `α` objects now separated with loci: (1) the **observable** electrochemical transfer coefficient
+  (IUPAC *Recommendations* 2014 eq. (1), printed p. 259, `10.1515/pac-2014-5025`); (2) the **model's** BEP
+  slope `transfer lam x = 1/2 − x/(2λ)` (a theorem); (3) the **Butler–Volmer symmetry factor** (equating it
+  with (1) needs an extra premise — IUPAC TR printed pp. 255–256 predicts "large deviations of β from 0.5"
+  when the two force constants differ; Fletcher 2009 needs a "conversion formula" — delegated).
+- 试过且失败 / 教训：the plan-level risk was **naming collapse**, not a false statement. A reader who sees
+  `α` in a theorem, `α` in an IUPAC quote and `β` in an electrocatalysis paper will silently equate three
+  different objects. **Whenever a record cites a coefficient from a second field, write the defining equation
+  and the observable it is measured from next to it** — here `α = (RT/F)(dE/dln|j|)⁻¹`, coverage-dependent,
+  vs `∂Ea/∂x` of a model.
+- Reusable pattern: for any "constant across the family" premise, look for **one thermodynamic and one kinetic**
+  counterexample; they fail for different reasons (unequal force constants / non-constant λ vs coverage, site
+  and RDS changes) and the plan's caveat must name both, or a reader will test the premise in the wrong regime.
+
+## 2026-09-20 — BEP round-1h/1i (closing): premise-set anchor, branching LFER verified, and the `efetch` fallback — literature_researcher — DONE (record §R1.18–§R1.19)
+
+- Goal: fold the last delegated items into the record after re-verifying each load-bearing one.
+- Verified first-hand:
+  1. **Migliore, Polizzi, Therien & Beratan, *Chem. Rev.* 114(7):3381–3465 (2014), §6.2** (OA `PMC4317057`) is
+     the **single printed anchor for the model's whole premise set**: "For a homologous set of reactions with
+     **approximately equal reorganization energies and work terms** …"; "Equations 6.23 and 6.24 **hold if the
+     reorganization energy is constant for a reaction series**"; failure branch "**∂λ/∂ΔG_R°** … describes the
+     variation in the intrinsic barrier".
+  2. **Salamone et al. *JACS* 143:11759 (2021)** Figure 3 caption, read verbatim: saturated branch **α = 0.39**,
+     **ΔG‡₀ = 13.9 ± 0.6 kcal/mol**; unsaturated **α = 0.23**, **ΔG‡₀ = 14.3 ± 0.7**; Marcus fits
+     **λ = 58 ± 1** vs **76 ± 1 kcal/mol**, and for the unsaturated branch the fit "**does not match the slope of
+     the data**" ⇒ slope, intercept *and* λ all differ between branches of one 56-substrate experimental family.
+  3. **Huang & York, *PCCP* 16:15846 (2014)** — a **branching** Brønsted correlation in RNA transesterification
+     ("convex break at pKa of 12.58"; β_lg1 = −0.52 vs β_lg2 = −1.34) ⇒ third independent field with a
+     piecewise LFER and slopes outside `(0,1)`.
+  4. **"Breaking the BEP Relation with Dual-Metal Sites", *J. Phys. Chem. Lett.* 16:11302 (2025)** — "mixed
+     low-affinity/high-affinity coadsorption … **decoupling the step responsible for the activation energy at
+     the low-affinity site from the overall reaction energy determined by both sites**" ⇒ measured justification
+     for the "same site" premise.
+  5. **Mayr & Ofial 2023 p. 1**: the diffusion-control criterion is about the **reverse** step ("Hammond referred
+     to SN1 reactions … if the reverse reaction is diffusion-controlled") ⇒ the model's α = 0 at x = λ must not
+     be sold as a diffusion plateau.
+- 试过且失败 / 教训（本轮最有价值的可复用点）：**when Europe PMC's `…/PMC<id>/fullTextXML` returns HTTP 500
+  (or `oa.fcgi` 404s after the service migration), the NCBI EUtils route still works**:
+  `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC<id>&rettype=xml`. Two of this round's
+  three verifications (`PMC4366550`, `PMC12581165`) were only possible through that fallback — try it before
+  declaring an OA article `not-accessed`.
+- Also recorded as standing negatives: the sentence "constant entropy of activation is required for a linear BEP"
+  has **0 first-hand hits** (it can only be synthesised from the glossary's entropy-of-activation /
+  compensation-effect / isokinetic-relationship entries), and the textbook line "diffusion control ⇒ Ea =
+  viscous-flow activation energy" is likewise uncited. **A premise with no source must be declared as
+  assumption-only, not dressed with a citation.**
+
 ## 2026-09-20 — BEP B1+B2: description layer + law layer (`Basic.lean` 33 declarations, `Criterion.lean` 28) — prover_a — DONE
 
 - 目标：deliver the BEP description layer (definitions `eact` / `bepLine` / `bepDefect` / `transfer` /
