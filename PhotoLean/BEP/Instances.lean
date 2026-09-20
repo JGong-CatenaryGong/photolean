@@ -99,6 +99,12 @@ theorem inst_I2_exergonic_zone : Rat.epQVerdict (2 : ℚ) (1 / 2) = Rat.EPQVerdi
   unfold Rat.epQVerdict Rat.qTransfer
   norm_num
 
+/-- I2 (`model-constructed`): `α(1/2) = 3/8 < 1/2` — the coefficient falls below thermoneutral on
+the exergonic side. -/
+theorem inst_I2_exergonic_transfer : Rat.qTransfer (2 : ℚ) (1 / 2) = 3 / 8 := by
+  unfold Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
