@@ -211,3 +211,18 @@ theorem hammondZone_eq_early_iff {lam x : ℝ} (hlam : 0 < lam) :
     rw [if_neg (ne_of_lt h2), if_neg (by linarith), if_neg (by linarith),
       if_neg (not_lt.mpr (le_of_lt h2)), if_neg (ne_of_gt h1), if_pos h1]
 
+/-- Zone characterization, thermoneutral branch. -/
+theorem hammondZone_eq_half_iff {lam x : ℝ} (hlam : 0 < lam) :
+    hammondZone lam x = HZone.half ↔ x = 0 := by
+  constructor
+  · intro h
+    unfold hammondZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6
+    exact h5
+  · intro h
+    rw [h]
+    unfold hammondZone
+    rw [if_neg (by linarith : ¬ ((0 : ℝ) = lam)), if_neg (by linarith : ¬ ((0 : ℝ) = -lam)),
+      if_neg (by linarith : ¬ ((0 : ℝ) < -lam)), if_neg (by linarith : ¬ (lam < (0 : ℝ))),
+      if_pos rfl]
+
