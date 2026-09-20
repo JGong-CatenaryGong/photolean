@@ -62,6 +62,64 @@ noncomputable def alphaObs (x₁ ea₁ x₂ ea₂ : ℝ) : ℝ := (ea₁ - ea₂
 noncomputable def lamOfPair (x₁ ea₁ x₂ ea₂ : ℝ) : ℝ :=
   (x₂ ^ 2 - x₁ ^ 2) / (2 * (x₂ - x₁) - 4 * (ea₁ - ea₂))
 
+namespace Rat
+
+/-! ## Definitions (plan §8.1) -/
+
+/-- Rational forward activation barrier. -/
+def qEact (lam x : ℚ) : ℚ := (lam - x) ^ 2 / (4 * lam)
+
+/-- Rational BEP line. -/
+def qBepLine (lam x : ℚ) : ℚ := lam / 4 - x / 2
+
+/-- Rational exact violation of the BEP line law. -/
+def qBepDefect (lam x : ℚ) : ℚ := qEact lam x - qBepLine lam x
+
+/-- Rational BEP / Brønsted / Leffler coefficient (linear-response form). -/
+def qTransfer (lam x : ℚ) : ℚ := 1 / 2 - x / (2 * lam)
+
+/-- Rational coefficient of the reverse direction. -/
+def qReverseTransfer (lam x : ℚ) : ℚ := 1 / 2 + x / (2 * lam)
+
+/-- Rational observable BEP secant over the window `[x, x+h]`. -/
+def qSecSlope (lam x h : ℚ) : ℚ := (qEact lam x - qEact lam (x + h)) / h
+
+/-- Two-point observable BEP slope from data `(x₁,Ea₁)`, `(x₂,Ea₂)`. -/
+def qAlphaObs (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (ea₁ - ea₂) / (x₂ - x₁)
+
+/-- Two-point reorganization-energy solver (the model's λ from two data points).
+Numerator `x₂² - x₁²` and the premise `lam ≠ 0` are **required** (plan §8.1). -/
+def qLamOfPair (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (x₂ ^ 2 - x₁ ^ 2) / (2 * (x₂ - x₁) - 4 * (ea₁ - ea₂))
+
+/-- Window conformance, in squared form so that it is decided without square roots. -/
+def qConformsWindow (lam tol w : ℚ) : Prop := 0 < lam ∧ 0 < tol ∧ w ^ 2 ≤ 4 * lam * tol
+
+inductive EPQVerdict where
+  | degenerate
+  | unphysical
+  | conforming
+  | boundary
+  | superLinear
+  | subLinear
+  deriving DecidableEq, Repr
+
+/-- Verdict on a *single* family point (the regime of its coefficient). The plan writes `…`: the
+cascade below resolves it as `degenerate` (`λ = 0`), `unphysical` (`λ < 0`), `boundary`
+(`x = ±λ`, i.e. α = 0 or 1), `conforming` (α strictly inside `(0,1)`), `superLinear` (α above the
+Evans–Polanyi band, `1 < α`) and `subLinear` (α below it, `α < 0`). -/
+def epQVerdict (lam x : ℚ) : EPQVerdict :=
+  if lam = 0 then EPQVerdict.degenerate
+  else if lam < 0 then EPQVerdict.unphysical
+  else if x = lam then EPQVerdict.boundary
+  else if x = -lam then EPQVerdict.boundary
+  else if 0 < qTransfer lam x ∧ qTransfer lam x < 1 then EPQVerdict.conforming
+  else if 1 < qTransfer lam x then EPQVerdict.superLinear
+  else EPQVerdict.subLinear
+
+/-! ## Theorems of plan §8.1 -/
+
+end Rat
+
 end BEP
 
 end PhotoLean
