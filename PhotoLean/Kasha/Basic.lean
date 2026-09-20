@@ -293,6 +293,19 @@ theorem kashaZone_eq_pure_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : 
   · intro hr
     unfold kashaZone
     exact if_pos hr
+set_option linter.unusedVariables false in
+/-- Plan §4.2 #23. Classifier characterization, `withinTol` branch: the leak is nonzero and inside
+the tolerance (the `RateData` premise is decorative here — the characterization needs no
+positivity). -/
+theorem kashaZone_eq_withinTol_iff {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N) :
+    kashaZone rad ic tol N = KashaZone.withinTol ↔
+      ¬ KashaRule rad ic N ∧ KashaWithin rad ic tol N := by
+  unfold kashaZone
+  split_ifs with h1 h2 <;>
+    first
+      | exact iff_of_true rfl ⟨h1, h2⟩
+      | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨hK, -⟩; exact hK h1)
+      | exact iff_of_false (by intro hh; cases hh) (by rintro ⟨-, hw⟩; exact h2 hw)
 end Kasha
 
 end PhotoLean
