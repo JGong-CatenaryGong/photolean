@@ -141,6 +141,20 @@ theorem hammondZoneQ_eq_half_iff {lam x : ℚ} (hlam : 0 < lam) :
   · exact iff_of_false (by decide) (ne_of_gt h6)
   · exact iff_of_false (by decide) h5
 
+/-- Rational zone characterization, late branch. -/
+theorem hammondZoneQ_eq_late_iff {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.late ↔ x < 0 ∧ -lam < x := by
+  unfold hammondZoneQ
+  split_ifs with h1 h2 h3 h4 h5 h6
+  · exact iff_of_false (by decide) (by rintro ⟨hx, -⟩; linarith)
+  · exact iff_of_false (by decide) (by rintro ⟨-, hy⟩; linarith)
+  · exact iff_of_false (by decide) (by rintro ⟨-, hy⟩; linarith)
+  · exact iff_of_false (by decide) (by rintro ⟨hx, -⟩; linarith)
+  · exact iff_of_false (by decide) (by rintro ⟨hx, -⟩; linarith)
+  · exact iff_of_false (by decide) (by rintro ⟨hx, -⟩; linarith)
+  · exact iff_of_true rfl
+      ⟨lt_of_le_of_ne (le_of_not_gt h6) h5, lt_of_le_of_ne (le_of_not_gt h3) (Ne.symm h2)⟩
+
 end Rat
 
 end Hammond
