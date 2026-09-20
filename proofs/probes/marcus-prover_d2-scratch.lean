@@ -96,4 +96,35 @@ example {A kB T kk dq dE a1 a2 R nSq epsS : ℝ} (hA : 0 < A)
     InvertedDescriptor A (lamInner kk dq + lamOuter dE a1 a2 R nSq epsS) kB T :=
   descriptor_holds_of_nonoverlap hA hkB hT hkk hdE ha1 ha2 hRge hnSq hepsS hPekar
 
+/-! ## E. 非空性/相容性取证：把拉伸版喂具体数字（几何侧 `a1 = a2 = 1`、`R = 3`）
+
+前提集**可满足**（不是空洞定理）：
+- `hRge : 1 + 1 ≤ 3` ✓；`hgeom` 的结论 `1/3 < 1/(2·1) + 1/(2·1) = 1` ✓（下面第一条 example）；
+- Pekar 侧 `nSq = 1 < epsS = 2` ⇒ `1/2 < 1` ✓；
+- 取 `kk = 0`（无内层重组，内层只要求非负 —— 正是 `lamInner_nonneg` 而非 `lamInner_pos`
+  的用武之地）、`dE = 1`、`A = kB = T = 1`。
+  此时 `lamInner 0 dq = 0`、`lamOuter 1 1 1 3 1 2 = (1/2 + 1/2 - 1/3) · (1 - 1/2) = 1/3`，
+  结论退化为 `InvertedDescriptor 1 (1/3) 1 1`（在 `x > 1/3` 处速率随驱动力严格递减）——
+  一条**具体的、可继续代入实例层**的判断。 -/
+
+example : (1 : ℝ) / 3 < 1 / (2 * 1) + 1 / (2 * 1) :=
+  hgeom_of_nonoverlap (by norm_num) (by norm_num) (by norm_num)
+
+example (dq : ℝ) : InvertedDescriptor 1 (lamInner 0 dq + lamOuter 1 1 1 3 1 2) 1 1 :=
+  descriptor_holds_of_nonoverlap (A := 1) (kB := 1) (T := 1) (kk := 0) (dq := dq) (dE := 1)
+    (a1 := 1) (a2 := 1) (R := 3) (nSq := 1) (epsS := 2)
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+
+-- 同一条链的 microscopic 版（几何前提显式给出），确认两条定理取值一致：
+-- ⚠️ 坑（实测）：**不要混用位置参数与具名参数** —— 上面 nonoverlap 版那样全位置最省事；
+--    microscopic 版有 12 条显式前提（多一个 `hR`），混写会少喂一个参数，
+--    报 `type mismatch … but is expected to have type …`（缺参 = 部分应用）。
+example (dq : ℝ) : InvertedDescriptor 1 (lamInner 0 dq + lamOuter 1 1 1 3 1 2) 1 1 :=
+  descriptor_holds_of_microscopic (A := 1) (kB := 1) (T := 1) (kk := 0) (dq := dq) (dE := 1)
+    (a1 := 1) (a2 := 1) (R := 3) (nSq := 1) (epsS := 2)
+    (hA := by norm_num) (hkB := by norm_num) (hT := by norm_num) (hkk := by norm_num)
+    (hdE := by norm_num) (ha1 := by norm_num) (ha2 := by norm_num) (hR := by norm_num)
+    (hgeom := by norm_num) (hnSq := by norm_num) (hepsS := by norm_num) (hPekar := by norm_num)
+
 end PhotoLean.Marcus.ProbeD2
