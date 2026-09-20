@@ -86,6 +86,14 @@ theorem inst_I1_thermoneutral_transfer : Rat.qTransfer (2 : ℚ) 0 = 1 / 2 := by
   unfold Rat.qTransfer
   norm_num
 
+/-- I1 (`model-constructed`): the window predicate conforms at `tol = 1/4` and `w = 0` — the exact
+window, in the squared form `w ^ 2 ≤ 4 * λ * tol`. -/
+theorem inst_I1_thermoneutral_conforms : Rat.qConformsWindow (2 : ℚ) (1 / 4) 0 := by
+  unfold Rat.qConformsWindow
+  norm_num
+
+/-! #### I2 — mildly exergonic family -/
+
 end BEP
 
 end PhotoLean
