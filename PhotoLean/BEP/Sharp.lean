@@ -394,5 +394,15 @@ theorem epBestOnWindow_holds {lam w : ℝ} (hlam : 0 < lam) (hw : 0 < w) :
     ring
   linarith
 
+/-- Plan §6.4 #20: the tangent line's worst case on the window — the witness is the endpoint
+`x = w`, where the absolute defect is exactly `w²/(4·lam)`. -/
+theorem bepLine_worst_case {lam w : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
+    ∃ x ∈ Set.Icc (-w) w, |bepDefect lam x| = w ^ 2 / (4 * lam) := by
+  have hdef : bepDefect lam w = w ^ 2 / (4 * lam) := by
+    unfold bepDefect bepLine eact
+    field_simp
+    ring
+  exact ⟨w, ⟨by linarith, le_rfl⟩, by rw [hdef, abs_of_nonneg (by positivity)]⟩
+
 
 end PhotoLean.BEP
