@@ -346,6 +346,12 @@ strictly below it). Plan §5 (non-vacuity witnesses). -/
 theorem exists_tooStrong (apexD : ℝ) : ∃ dE : ℝ, TooStrong apexD dE :=
   ⟨apexD - 1, by unfold TooStrong; linarith⟩
 
+/-- Non-vacuity: the tolerance band is inhabited whenever the tolerance is nonnegative — the apex
+itself is within every nonnegative `tol` of the apex. The hypothesis `0 ≤ tol` is the physical
+premise that a tolerance be a length. Plan §5 (non-vacuity witnesses). -/
+theorem exists_nearOptimal {apexD tol : ℝ} (htol : 0 ≤ tol) : ∃ dE : ℝ, NearOptimal tol apexD dE :=
+  ⟨apexD, by unfold NearOptimal; simpa using htol⟩
+
 end Sabatier
 
 end PhotoLean
