@@ -480,9 +480,11 @@ Additional instance requirements:
   registered in `API-NOTES.md`, in the delivered file's header and in this table.
 - **The pair/triple selection is disclosed** (verifier B5b observation 3): the delivered `_lamHat`
   rows use *adjacent printed pairs* and the refutation rows use *three printed rows*; the model
-  solver is pair-dependent on real data (`qLamOfPair` is negative on the widest pairs of the same
-  families), and that pair-dependence is itself evidence of model inconsistency — no delivered
-  verdict depends on `λ̂`.
+  solver is pair-dependent on real data: on other documented pairs of the *same* families it takes
+  other values, negative among them (F1 `16(2)`/`8` → `-2079/25`, F2 `13`/`19(2)` → `-53/60`,
+  F3 `19(2)`/`1` → `-749/108`, F5 `R3`/`R4` → `-19667/1620`; the abscissa-widest pairs give `-37`,
+  `-609/10`, `-1701/292` and `+20923/810`), and that pair-dependence is itself evidence of model
+  inconsistency — no delivered verdict depends on `λ̂`.
 - **I9 is the instructive row (lead numeric audit, 2026-09-20)**: for `λ = -2, x = 1` the transfer
   coefficient is `α = 3/4`, which lies **inside** `[0,1]` — so the Evans–Polanyi bounds alone do
   **not** detect an unphysical curvature; what detects it is the *sign* of the defect

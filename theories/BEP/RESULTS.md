@@ -192,8 +192,11 @@ consistency* are different questions, and the table answers both: the literature
 `conforming` at the point level (their two-point slopes lie in `[0,1]`) while their triples are
 **not** consistent with any positive-`λ` equal-curvature two-parabola model. The delivered
 `_lamHat` rows use adjacent printed pairs and the refutation rows use three printed rows; the model
-solver is pair-dependent on real data (it is negative on the widest pairs of the same families),
-which is itself evidence of the inconsistency — no verdict depends on `λ̂`. A ±half-unit
+solver is pair-dependent on real data: other documented pairs of the *same* families give other
+values, negative among them (F1 `16(2)`/`8` → `-2079/25`, F2 `13`/`19(2)` → `-53/60`, F3
+`19(2)`/`1` → `-749/108`, F5 `R3`/`R4` → `-19667/1620`; the abscissa-widest pairs give `-37`,
+`-609/10`, `-1701/292` and `+20923/810`), which is itself evidence of the inconsistency — no
+verdict depends on `λ̂`. A ±half-unit
 perturbation of every printed number flips **no** verdict (verifier B5b), so the rows are not
 knife-edge.
 
