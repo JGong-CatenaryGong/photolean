@@ -62,4 +62,12 @@ theorem bepDefect_at_thermoneutrality {lam : ℝ} (hlam : lam ≠ 0) : bepDefect
   rw [bepDefect_eq hlam]
   ring
 
+/-- The Leffler/Brønsted identification: the linear-response coefficient is the
+transition-state coordinate `(lam - x) / (2 * lam)` of the equal-curvature model. This is a theorem
+about the definition, not a definitional restatement (the two bodies agree only for `lam ≠ 0`). -/
+theorem transfer_eq_tsCoord {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+    transfer lam x = (lam - x) / (2 * lam) := by
+  unfold transfer
+  field_simp
+
 end PhotoLean.BEP
