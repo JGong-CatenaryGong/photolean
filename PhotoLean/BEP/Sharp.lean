@@ -142,5 +142,21 @@ theorem not_epLinearOn_of_ne_zero {lam a b : ℝ} (hlam : lam ≠ 0) (hab : a < 
     ring
   exact hne hzero
 
+/-- Plan §6.1 #7: over the whole line the barrier is affine exactly at `lam = 0`, where
+`eact 0 x = x²/0 = 0` by the totalised-division convention; the affine witness is the constant
+`0` law. -/
+theorem epExact_iff_degenerate (lam : ℝ) : EPExact lam ↔ lam = 0 := by
+  constructor
+  · intro h
+    by_contra hlam
+    have h' : EPLinearOn lam (Set.Icc 0 1) :=
+      ⟨h.choose, h.choose_spec.choose, fun x _ => h.choose_spec.choose_spec x trivial⟩
+    exact not_epLinearOn_of_ne_zero hlam (by norm_num) h'
+  · intro h
+    subst h
+    refine ⟨0, 0, fun x _ => ?_⟩
+    unfold eact
+    norm_num
+
 
 end PhotoLean.BEP
