@@ -143,5 +143,9 @@ at `lam = 0`; plan §4.2 row 4, corrected 2026-09-20.) -/
 theorem transfer_zero_lam (x : ℝ) : transfer 0 x = 1 / 2 := by
   unfold transfer
   norm_num
+/-- The BEP line at thermoneutrality: the tangent line passes through `lam / 4`. -/
+theorem bepLine_at_zero (lam : ℝ) : bepLine lam 0 = lam / 4 := by
+  unfold bepLine
+  ring
 
 end PhotoLean.BEP
