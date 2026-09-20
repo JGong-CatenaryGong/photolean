@@ -17,7 +17,8 @@ version = "0.1.0"
 defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus.Reorg",
                   "PhotoLean.Marcus.Barrier", "PhotoLean.Marcus.Rate", "PhotoLean.Marcus.RatModel",
                   "PhotoLean.Marcus.Sharp", "PhotoLean.Marcus.Compose",
-                  "PhotoLean.Marcus.Instances"]
+                  "PhotoLean.Marcus.Instances",
+                  "PhotoLean.Hammond.Basic"]
 
 [[require]]
 name = "mathlib"
