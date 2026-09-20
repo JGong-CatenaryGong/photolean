@@ -1327,3 +1327,79 @@
   the Lean `qSecondDividedDiff = 1/(4λ)`) although §R1.10.1's prose writes `d²Ea/dx² = 1/(2λ)` — a factor-2
   labelling question that does not change the verdict (negative curvature ⇒ no positive λ), and the
   literature-side findings were reported to the lead rather than "fixed" in the record.
+
+## 2026-09-20 — BEP round-1j: the AUDIT-FAIL was real, and the *checker's own ledger* is a second, hidden copy of the data — literature_researcher — DONE (record §R1.10.5 + §R1.10.1)
+
+- Goal: fix the two flagged λ̂ cells of §R1.10.5 and relabel the two curvature conventions, without touching
+  anything else.
+- Result: **the flag was correct.** The 2-butanol CCSD(T) family's printed rows are `(ΔE, V‡f)` in kcal/mol =
+  (7.62,12.38), (13.14,17.57), (14.56,17.47), (15.80,20.32), (19.82,21.72) (re-read from the source table itself,
+  `PMC5950756` Table 1). With the single convention `x = −ΔE` the large roots of `λ² − (2x+4Ea)λ + x² = 0` are
+  32.493019, 39.644841, 34.640112, 44.007305, 36.468035 (mean 37.4507, range 32.493–44.007) ⇒ the cells
+  `R4 = 41.6` and `R5 = 32.5` were wrong; R1/R2/R3 were within rounding. The family summary was already right,
+  which is how the error survived: the summary was computed from the *correct* roots while two table cells were
+  not (the wrong `R5` cell even coincides numerically with the correct `R2` root, 32.4930).
+- 试过且失败 / 教训（本条是本轮最有价值的东西）：
+  1. **A cross-check script can hold a second copy of the data.** After correcting the record, the script still
+     failed — because *its own* hardcoded transcription (`F5.aggregates["printed_lam_hat"]`, and the F5
+     `aggregates=dict(mean=…, range=…)` ledger) still encoded the old cells, and its read-back step compares the
+     record against that ledger. **Lesson: when a record and a checker disagree, decide which side is stale and
+     fix both; a "fix the record only" edit leaves the gate failing and looks like a new defect.**
+  2. **Never assert a cause you have not reproduced.** I first wrote "those two cells used the opposite sign
+     orientation" — that reproduces `R5` exactly (`λ̂(x=+19.82, Ea=21.72) = 32.4930`) but **not** `R4`
+     (41.6 is not reproducible from R4's own two numbers under any sign/column permutation tried). The note now
+     says so explicitly instead of inventing a tidy diagnosis.
+  3. **The large root is not sign-invariant** (`x + 2Ea + 2√(Ea²+x·Ea)`), and I briefly "verified" the wrong
+     invariance by comparing `λ_+(−x)` with `λ_+(x)` through a mislabelled helper. A one-line print of both
+     branches would have caught it immediately — print the quantity, do not reason about it.
+  4. Prefix `grep` probes with `-a`/count guards: a `grep -c` on a large binary-ish log emitted a broken-pipe
+     write error that nearly hid the final status line.
+- Reusable pattern: **a numeric record that a script audits must state its convention once and in-tree.** The
+  record already implied two normalizations (`d²Ea/dx² = 1/(2λ)` in prose vs `λ = 1/(4·curvature)` in the tables),
+  differing by exactly a factor 2; the verdict (negative curvature ⇒ no positive λ) is invariant, but the printed
+  `λ` values are not. §R1.10.1 now carries a two-row convention-labelled table, and the script's own audit line
+  for that check is back to `AUDIT-OK` with the label recorded.
+- Verification: `python3 theories/BEP/probes/bep-instance-check.py` → **exit 0**, `17 audit check(s), 0
+  AUDIT-FAIL`, `no disagreement: every checked value follows from the recomputation`, `CROSS-CHECK: OK`.
+
+## 2026-09-20 — BEP B1+B2 post-verification comment-only wording round (token-stream gate) — prover_a — DONE
+
+- 目标：close the independent verifier's documentation findings on `PhotoLean/BEP/Basic.lean` (B1) and
+  `PhotoLean/BEP/Criterion.lean` (B2) — O2/O3 (the headers and `eact_at_zero` claimed every physical
+  premise is needed by the statement, while the kernel proves three zone characterizations and both
+  value lemmas without it) and O4–O8 (five B1 comments narrated B2/B3 results as if proved in B1) —
+  while keeping the delivered token streams byte-identical, so the acceptance record still applies.
+- 试过且失败（both failures are gate-design failures, not proof failures）：
+  1. **A comment-strip check that silently passes on empty input.** The first version of the stripper was
+     written to `/tmp` with the file tool, but the bash tool's `/tmp` is a different mount, so
+     `python3 /tmp/strip_lean_comments.py …` failed on both sides; command substitution then produced the
+     empty string for the pre- and post-edit hash, the two strings compared equal, and the shell printed
+     `same=yes` — a **false PASS** on the one gate whose whole job is proving that the token stream did not
+     move. Fix: recreate the script through the bash heredoc, print the stripped byte count, and require a
+     non-empty hash; agreement between two empty strings must never be reported as evidence.
+  2. **Rewrapping a comment can trip the strict scanner.** `check.sh --strict` greps
+     `^[[:space:]]*axiom([[:space:]]|$)`, so the natural rewrap of the header ("… no custom\naxiom
+     anywhere in this file.") put `axiom anywhere in this file.` at the start of a line: a strict-scan
+     FAIL that has nothing to do with any proof. Fix: rewrap so that no line begins with `axiom` (and no
+     `sorry` appears anywhere in the new prose); the hit was diagnosed from the scanner's regex, not by
+     touching the proof.
+- 奏效：A1–A4 in B1 (commit `90e7f15`), B1–B3 in B2 (commit `02a5a54`); token streams identical before and
+  after — B1 `d2898dc4e1eb3cca6891c6cc3b774840234e11e1567718e24b3962f669490124`, B2
+  `4a4eacda63828ea8ded7e5df41dc660f449cf6a77e418567f10044acba013535` (nested `/- -/`-aware stripper,
+  string literals preserved, byte count printed alongside the hash);
+  `check.sh --strict PhotoLean.BEP.Basic` and `… PhotoLean.BEP.Criterion` both `verdict: PASS`, scan
+  `clean`; both commits are path-limited (`git commit -- <file>`), so the concurrent B4/B5a edits present
+  in the working tree were not swept in.
+- 可复用模式：
+  1. **A no-op gate needs a negative control.** Any check comparing two derived artifacts must be run once
+     against a *known* difference (mutate one token → the hash must change) and once against a
+     known-equivalent difference (rewrite one comment → the hash must not change); otherwise an empty or
+     erroring pipeline reports agreement. Print the artifact size, not only the boolean.
+  2. **Comment-only does not mean gate-invisible.** The strict scan is a text grep, so prose rewording must
+     be written against the scanner's regex; run the strip check *first* and the gate second, so that a
+     scanner hit is attributed to the prose instead of being misread as a phantom proof regression.
+  3. **Honesty wording must be kernel-backed per declaration.** Before writing "this hypothesis is
+     decorative", prove the hypothesis-free form in a scratch probe (here `transfer_add_reverse`,
+     `bepLine_exact_at_thermoneutrality`, `bepDefect_at_thermoneutrality`, each closed by
+     `rcases eq_or_ne` + `field_simp; ring`): a reworded claim is a new claim and the verifier checks it
+     like any theorem.
