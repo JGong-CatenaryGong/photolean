@@ -183,4 +183,10 @@ theorem exists_thermoneutral : ∃ lam x : ℝ, epZone lam x = EPZone.thermoneut
   unfold epZone
   norm_num
 
+/-- Non-vacuity, exergonic regime (`lam = 1`, `x = 1/2`). -/
+theorem exists_exergonic : ∃ lam x : ℝ, epZone lam x = EPZone.exergonic := by
+  refine ⟨1, 1 / 2, ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
