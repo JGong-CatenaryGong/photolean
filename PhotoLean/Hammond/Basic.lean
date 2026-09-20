@@ -165,3 +165,15 @@ theorem tsCoord_at_lam {lam : ℝ} (hlam : lam ≠ 0) : tsCoord lam lam = 0 := b
   unfold tsCoord
   field_simp
 
+/-! ## Regime predicates and the classifier (plan §4.3) -/
+
+/-- Structural regime: the transition state lies strictly between the two wells. -/
+theorem tsCoord_mem_iff {lam x : ℝ} (hlam : 0 < lam) :
+    0 < tsCoord lam x ∧ tsCoord lam x < 1 ↔ ReactionRegion lam x := by
+  have h2 : (0 : ℝ) < 2 * lam := by linarith
+  unfold ReactionRegion tsCoord
+  rw [div_pos_iff_of_pos_right h2, div_lt_one h2]
+  constructor
+  · intro ⟨ha, hb⟩; exact ⟨by linarith, by linarith⟩
+  · intro ⟨ha, hb⟩; exact ⟨by linarith, by linarith⟩
+
