@@ -427,6 +427,14 @@ theorem inst_I11_F5_alphaObs :
   unfold Rat.qAlphaObs
   norm_num
 
+/-- F5 (`first-hand`, kcal/mol verbatim, `CCSD(T)-F12a/jun-cc-pVTZ`): the model's two-point solver
+at the adjacent printed pairs `R2` (`ΔE = 7.62`, `V‡f = 12.38`) and `R3` (`13.14`, `17.57`); model
+abscissae `-7.62`, `-13.14`. Classical energies, so this is `λ̂` in the `ΔE` convention. -/
+theorem inst_I11_F5_lamHat :
+    Rat.qLamOfPair (-(7.62) : ℚ) 12.38 (-(13.14)) 17.57 = 7958 / 675 := by
+  unfold Rat.qLamOfPair
+  norm_num
+
 end BEP
 
 end PhotoLean
