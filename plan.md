@@ -464,8 +464,12 @@ theorem zoneQ_inverted_iff (lam x : ℚ) : zoneQ lam x = Zone.inverted ↔ (lam 
 ```lean
 -- 形态示例（I1；**已由 M5a 交付者实测跑通**，见 proofs/probes/marcus-prover_c-scratch.lean 的 F1–F7）
 -- ⚠️ 三处纠正（原计划写法不可编译，M5a 交付者实测）：
---   (1) `rw [← zoneQ_eq_zone]` **方向反了** —— `←` 的改写模式是 `zone ↑?lam ↑?x`，
---       与 `h : zoneQ 1 3 = ...` 对不上；必须**正向** `rw [zoneQ_eq_zone] at h`。
+--   (1) `rw` 的方向**取决于改写对象里出现的是哪个符号**（M5a/M5b 交付者各实测一半，此处给统一规则）：
+--       * 改写**假设** `h : Rat.zoneQ lam x = ...`（含 `zoneQ`）→ 用**正向** `rw [Rat.zoneQ_eq_zone] at h`
+--         （规则的 LHS 是 `zoneQ`，能对上）；写 `←` 会报 `did not find instance of the pattern`。
+--       * 改写**目标**里已有的 `zone ↑lam ↑x` → 用**反向** `rw [← Rat.zoneQ_eq_zone]`
+--         （`←` 的模式是 `zone ↑?lam ↑?x`）。M5b 的 `normalRegion_of_zoneQ_normal` 正是这一支。
+--       一句话：**看模式，不看直觉** —— `zoneQ` 在式子里就用正向，`zone ↑↑` 在式子里就用反向。
 --   (2) cast 字面量 ≠ `OfNat` 字面量（**定义层不等**）：转移后 ℝ 侧参数是 `↑(1:ℚ)`，
 --       直接 `exact (zone_eq_inverted_iff 1 3).mp h` 会 type mismatch
 --       （`↑1 < ↑3` vs `(1:ℝ) < 3`）。出路：ℝ 侧参数写成 `((·:ℚ):ℝ)` 与引理结论逐字对齐，
