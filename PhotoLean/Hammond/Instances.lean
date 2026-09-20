@@ -87,6 +87,11 @@ theorem inst_I2_exergonic_conforms : HammondConforms 1 (3 / 4) := by
 theorem inst_I3_endergonic_zone : Rat.hammondZoneQ (1 : ℚ) (-(1 / 2)) = HZone.late := by
   norm_num [Rat.hammondZoneQ]
 
+/-- I3, resemblance verdict: endergonic (`x < 0`) means product-like — an instance of H2's
+`productLike_iff`. -/
+theorem inst_I3_endergonic_productLike : ProductLike 1 (-(1 / 2)) :=
+  (productLike_iff (by norm_num : (0 : ℝ) < 1)).mpr (by norm_num : (-(1 / 2) : ℝ) < 0)
+
 end Hammond
 
 end PhotoLean
