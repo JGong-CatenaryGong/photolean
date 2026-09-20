@@ -19,6 +19,7 @@
 | `proofs/probes/marcus-ident-rat-api.lean` | 标识符禁止清单 + `decide` 对 ℚ 的可靠域 + lead 风险探针独立复核 | 同上 |
 | `proofs/probes/marcus-proof-skeletons.lean` | **M1–M5a 全部定理的证明体**（36 个 theorem，无 sorry） | 同上 |
 | `proofs/probes/marcus-api-closeout.lean` | **收尾追加复核**：`≤` 版引理 / `rate_ratio` 链 / `decide` 域 / plan §8.2 三处纠正 | 同上 |
+| `proofs/probes/marcus-api-cast-normnum.lean` | **收尾追加复核（第 2 批）**：`Rat.cast_*` 家族 / `norm_num` 边界 / 倒数与交叉相乘 / `field_simp` 失败路径 | 同上 |
 
 > `proofs/probes/marcus-statement-skeleton.lean` 是**语句权威**（lead 所有，含 sorry 占位）；
 > `marcus-proof-skeletons.lean` 是它的**可编译完成版**，签名逐字一致、只补证明体。
@@ -117,6 +118,9 @@ Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected 
 - [x] `div_lt_div_right_of_neg` — 存在，**iff**：`(hc : c < 0) : a / c < b / c ↔ b < a`（右边顺序反转）
 - [x] `div_lt_iff_of_neg` / `lt_div_iff_of_neg` — 存在（负分母的 iff）
 - [x] `div_le_div_of_nonneg_right` — 存在，`(hab : a ≤ b) (hc : 0 ≤ c) : a / c ≤ b / c`（`≤` 版，M3 峰值用）
+- [x] `one_div_le_one_div_of_le` — 存在，**取倒数翻转方向**：`(ha : 0 < a) (h : a ≤ b) : 1 / b ≤ 1 / a`（收尾第 2 批补录，见记录 D-3）
+- [x] `div_lt_div_iff₀` — 存在，**两个参数都是分母正性**：`(hb : 0 < b) (hd : 0 < d) : a/b < c/d ↔ a*d < c*b`（见记录 D-4）
+- [x] `div_lt_iff₀` — 存在，`(hc : 0 < c) : b / c < a ↔ b < a * c`（见记录 D-4）
 
 ### C 组 — 平方/幂单调
 
@@ -144,6 +148,7 @@ Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected 
 - [x] `mul_lt_mul_of_neg_left` — 存在，签名 `(h : b < a) (hc : c < 0) : c * a < c * b`
 - [x] `mul_le_mul_of_nonneg_left` — 存在，`(h : b ≤ c) (a0 : 0 ≤ a) : a * b ≤ a * c`（`≤` 版，M3 峰值用）
 - [x] `mul_div_mul_left` — 存在，`(a b : G₀) (hc : c ≠ 0) : c * a / (c * b) = a / b`（M3 `rate_ratio` 用）
+- [x] `mul_neg_of_neg_of_pos` — 存在，`(ha : a < 0) (hb : 0 < b) : a * b < 0`（M4a 备用 verifier 用它证 `rate (-1) (-1) 1 1 x < 0`）
 
 ### E 组 — 单调性包装
 
@@ -162,6 +167,9 @@ Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected 
 - [x] `Rat.cast_pos_iff` — **不存在**
 - [x] `Rat.cast_mk` — 存在，`(a b : ℤ) : ↑(Rat.divInt a b) = ↑a / ↑b`（注意是 `Rat.divInt` 形式）
 - [x] `Rat.cast_inj` / `Rat.cast_div` / `Rat.cast_one` / `Rat.cast_ofNat` — 存在
+- [x] `Rat.cast_pow` / `Rat.cast_mul` / `Rat.cast_sub` / `Rat.cast_add` / `Rat.cast_inv` / `Rat.cast_natCast` / `Rat.cast_zero` — 存在（收尾追加第 2 批，见记录 F-4）
+- [x] `Rat.cast_ofNat` 需要 `[n.AtLeastTwo]` 实例 — 签名核查（同上）
+- [x] `Rat.cast_inj` 的 `α` 隐式 → `apply` 下卡 `CharZero ?m`，必须 `(Rat.cast_inj (α := ℝ))`（同上）
 - [x] `example : (1:ℚ) < 3 := by decide` — **通过**（原样实测）
 - [x] `by decide` 对含除法的 ℚ 字面量 — **失败**，必须 `norm_num [zoneQ]`（见记录 F-2）
 
@@ -170,12 +178,24 @@ Lean 4 **保留 token 不能作标识符**，报错统一为 `error: unexpected 
 - [x] `nlinarith` — 可用（本项目的**主力**；在去分母后能裸证平方单调）
 - [x] `positivity` — 可用（含 `p * q`、`x^2 / (4*lam)`、`1 / exp x`）
 - [x] `norm_num` — 可用（十进制字面量 `0.5` / `1.2`、ℚ→ℝ 混合、`norm_num [zoneQ]`）
+  - ⚠️ **可靠域边界**（收尾追加第 2 批）：`norm_num` **不认识 `Real.exp` 的正性/单调性**。
+    可靠域见下方"三张可靠域表"。
 - [x] `field_simp` — **条件可用**：目标是**等式 + 显式非零前提**时好用；直接作用于不等式会 `simp made no progress`
+- [x] `push_cast` — 可用，但**不自带收尾**（留下 `X = X`，必须补 `ring`/`rfl`）
 - [x] `ring_nf` — 可用（对称性 `barrier lam x = barrier lam (2*lam-x)`，**不需要 `lam ≠ 0`**）
 - [x] `gcongr` — **条件可用**：线性/单调位置可用；直接作用于 `(lam-x₁)^2 < (lam-x₂)^2`（底数为负）**失败**
 - [x] `linarith` — 可用
 - [x] `split_ifs` / `rw [if_pos/if_neg]` — 可用（M1 zone 层）
 - [x] `set_option linter.unusedVariables false in` **不能紧跟文档注释**（语法坑，见记录 G-4）
+
+### 三张「可靠域」表（工具能做什么 / 不能做什么）
+
+| 工具 | 可靠域 | **不可靠域** | 出路 |
+|---|---|---|---|
+| `decide` | ℚ 的**整数/无除法**字面量（含负整数） | 含除法或十进制的 ℚ 字面量（卡 `Rat.instDecidableLt` → `Int.decNonneg`） | `norm_num [zoneQ]` |
+| `norm_num` | 多项式/字面量的算术归约；`norm_num [barrier]` 求势垒值 | **`Real.exp` 的正性/单调性**（会留下 `⊢ False` 未解） | `linarith [Real.exp_pos c]` |
+| `field_simp` | **等式**（+ 显式非零前提） | **不等式**（`simp made no progress`） | `div_lt_div_iff₀` 交叉相乘 → `nlinarith` |
+| `push_cast` | 把 cast 逐运算推进 | **不自带收尾**（留 `X = X`） | 补 `ring`（`rw` 链则相反，见 F-4） |
 
 ---
 
@@ -792,6 +812,112 @@ theorem rate_ratio {A lam kB T : ℝ} (hA : A ≠ 0) (hkT : kB * T ≠ 0) (x y :
   改为"**未被证明使用（unused）**"。
 - 该前提作为**显式物理前提**（驱动力非负）**保留**，不因 unused 而删除。
 
+## 2026-09-20 — 收尾追加第 2 批：F 组 `Rat.cast_*` 家族（M5a `barrierQ_cast`）— api_researcher — 10 个名字全部存在；两条"尾巴规则相反"的坑
+
+**探针**：`proofs/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
+
+`#check` 原始输出（`@` 形式以暴露隐式参数）：
+
+```
+@Rat.cast_pow {α} [DivisionRing α] (p : ℚ) (n : ℕ) : ↑(p ^ n) = ↑p ^ n
+@Rat.cast_mul {α} [DivisionRing α] [CharZero α] (p q : ℚ) : ↑(p * q) = ↑p * ↑q
+@Rat.cast_sub {α} [DivisionRing α] [CharZero α] (p q : ℚ) : ↑(p - q) = ↑p - ↑q
+@Rat.cast_div {α} [DivisionRing α] [CharZero α] (p q : ℚ) : ↑(p / q) = ↑p / ↑q
+@Rat.cast_add {α} [DivisionRing α] [CharZero α] (p q : ℚ) : ↑(p + q) = ↑p + ↑q
+@Rat.cast_ofNat {α} [DivisionRing α] (n : ℕ) [n.AtLeastTwo] : ↑(OfNat.ofNat n) = OfNat.ofNat n
+@Rat.cast_natCast {α} [DivisionRing α] (n : ℕ) : ↑↑n = ↑n
+@Rat.cast_inv {α} [DivisionRing α] [CharZero α] (p : ℚ) : ↑p⁻¹ = (↑p)⁻¹
+@Rat.cast_zero {α} [DivisionRing α] : ↑0 = 0
+@Rat.cast_inj {α} [DivisionRing α] [CharZero α] {p q : ℚ} : ↑p = ↑q ↔ p = q
+```
+
+**F-4（两条"尾巴规则相反"的坑，实测，极易写错）**：目标是
+`((barrierQ lam x : ℚ) : ℝ) = barrier (lam : ℝ) (x : ℝ)`（**不需要任何前提**，含 `lam = 0`）：
+
+- **路线 1 `push_cast`**：`unfold barrierQ barrier; push_cast` **单独不够** ——
+  它把两侧归一到 `(↑lam - ↑x)^2/(4*↑lam) = (↑lam - ↑x)^2/(4*↑lam)`，**不自带收尾**，
+  必须**补 `ring`**（或 `rfl`）。去掉 `ring` 报
+  `error: unsolved goals`。
+- **路线 2 显式 `rw` 链**：`rw [Rat.cast_div, Rat.cast_pow, Rat.cast_sub, Rat.cast_mul, Rat.cast_ofNat]`
+  **自带 `rfl` 收尾**，目标已被关掉；**后面再写 `ring` 报 `error: no goals to be solved`**。
+  ⇒ 这条路线**不能有尾巴战术**。
+- **`Rat.cast_inj` 的 `α` 在 `apply` 下会卡住**：`apply Rat.cast_inj.mp` 报
+  `typeclass instance problem is stuck, it is often due to metavariables / CharZero ?m.41`。
+  必须**显式给出目标域**：`apply (Rat.cast_inj (α := ℝ)).mp`。
+- 另注：`cast_pow` / `cast_ofNat` / `cast_natCast` / `cast_zero` **不需要** `[CharZero α]`；
+  `mul` / `sub` / `div` / `add` / `inv` / `inj` **需要**。`cast_ofNat` 带 `[n.AtLeastTwo]`。
+
+## 2026-09-20 — 收尾追加第 2 批：`norm_num` 的可靠域边界 — api_researcher — 它不认识 `Real.exp` 的正性
+
+**探针**：`proofs/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
+
+**复核确认**（M5b `inst_I7_unphysical_rate_not_pos` 的实测偏差）：派发提示里的写法
+`intro h; have := h 0; norm_num [rate, barrier] at this` **不足以收尾** ——
+它把假设约简为 `Real.exp (1/4) < 0` 一类，但 `norm_num` **不认识 `Real.exp` 的正性**，
+留下未解目标 `⊢ False`。
+
+✅ **奏效写法**（四步，`PhotoLean/Marcus/Instances.lean` 已采用）：
+
+```lean
+theorem inst_I7_unphysical_rate_not_pos : ¬ (∀ x : ℝ, 0 < rate (-1) (-1) 1 1 x) := by
+  intro h
+  have h0 := h 0
+  have hb : barrier (-1) 0 = -(1 / 4) := by norm_num [barrier]   -- ⑴ 先算势垒值
+  rw [rate, hb] at h0                                            -- ⑵ 代回 rate
+  norm_num at h0                                                 -- ⑶ 归约
+  linarith [Real.exp_pos (1 / 4)]                                -- ⑷ exp 正性交给 linarith
+```
+
+⇒ 已与 `decide`/`Rat` 归约条目并列，形成 **"三张可靠域表"**（见"待校准清单"G 组末尾）：
+`decide`（ℚ 整数）· `norm_num`（多项式/字面量，**不含 `Real.exp`**）· `field_simp`（**仅等式**）。
+
+`Real.exp_pos` 与本日志 A 组登记一致（`(x : ℝ) : 0 < Real.exp x`）。
+同链备用工具 `mul_neg_of_neg_of_pos (ha : a < 0) (hb : 0 < b) : a * b < 0` 已实测通过
+（M4a 备用 verifier 用它证 `rate (-1) (-1) 1 1 x < 0`）。
+
+## 2026-09-20 — 收尾追加第 2 批：D 组倒数 / 交叉相乘 / `field_simp` 失败路径 — api_researcher — 3 个名字存在，方向坑已钉住
+
+**探针**：`proofs/probes/marcus-api-cast-normnum.lean`（0 error / 0 warning）
+
+`#check` 原始输出：
+
+```
+one_div_le_one_div_of_le.{u_2} {α} [LinearOrderedSemifield α] {a b : α} (ha : 0 < a) (h : a ≤ b) :
+  1 / b ≤ 1 / a
+div_lt_div_iff₀.{u_2} {G₀} [CommGroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀]
+  [PosMulReflectLT G₀] [PosMulStrictMono G₀] {a b c d : G₀} (hb : 0 < b) (hd : 0 < d) :
+  a / b < c / d ↔ a * d < c * b
+div_lt_iff₀.{u_2} {G₀} [GroupWithZero G₀] [PartialOrder G₀] [ZeroLEOneClass G₀] [PosMulReflectLT G₀]
+  {a b c : G₀} [MulPosStrictMono G₀] (hc : 0 < c) : b / c < a ↔ b < a * c
+```
+
+**D-3（方向坑）**：`one_div_le_one_div_of_le ha h` 的结论是 **`1 / b ≤ 1 / a`** ——
+`a ≤ b` 取倒数后**翻转方向**。本日志此前未收录该名字（它只在
+`proofs/probes/marcus-prover_d2-scratch.lean:38` 的 `#check` 里出现过，
+是 `PhotoLean/Marcus/Reorg.lean` 的 `hgeom_of_nonoverlap` 所用），现补录。
+
+**D-4（多分母不等式三步法）**：
+
+- `div_lt_div_iff₀ hb hd` 的**两个参数都是"分母正性"**（`0 < b`、`0 < d`）；
+  注意与 `div_lt_div_iff_of_pos_right`（**同一个**分母）区分。
+- **`field_simp` 对不等式不可靠**：实测报 `error: simp made no progress`（它只对**等式**可靠）。
+- **通用三步**：⑴ 需要通分时先对**等式**用 `field_simp`；⑵ 用 `div_lt_div_iff₀ hb hd`
+  （或 `div_lt_iff₀ hc`）**交叉相乘**去掉分母；⑶ `nlinarith` 收尾。
+  **未通分前 `nlinarith` / `gcongr` 都看不到分母符号，目标不动。**
+
+## 2026-09-20 — 内核引理索引（`barrier`/`rate` 退化点）— api_researcher
+
+给 M4a 备份 verifier 报告的一条索引（只登记，不新增章节）；
+`Sharp.lean` 的 5 条签名经三方比对（`plan §7.1` / 语句骨架 / 交付）一致：
+
+- **`sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T) : False`**
+  —— ⚠️ **签名里不含任何正性前提**（无 `hkB` / `hT` / `hA`）。
+  机制：Lean 除零约定 `x / 0 = 0` 使 `barrier 0 x = 0`，故速率恒为 `A`，
+  描述要求 `rate … 2 < rate … 1` 即 `A < A`，`lt_irrefl` 收尾。
+  可编译证明体见 `proofs/probes/marcus-proof-skeletons.lean` 的 `sharp_lam_pos_of_eq`。
+- 同链其它退化点引理：`barrier_at_lam`（`ring`，无前提）、`barrier_zero_lam`（`ring`，无前提）、
+  `barrier_symm`（`ring_nf`，`lam ≠ 0` 未被证明使用）。
+
 ---
 
 ## 给 prover 的速查（按 M3/M5 优先级）
@@ -833,7 +959,18 @@ simp only [Rat.cast_lt, Rat.cast_inj]   -- 分类器一致性的关键（不能�
 --    目标含 InvertedRegion (1:ℝ) 3 时 `exact h`（h : ↑1 < ↑3）会 type mismatch
 -- ⚠️ rw 不走 defeq：rw [← zoneQ_inverted_iff] 不展开 def InvertedRegion
 --    用 `exact (zoneQ_inverted_iff lam x).mp h` 或先 `show (lam:ℝ) < (x:ℝ)`
+-- ℚ→ℝ cast 家族（barrierQ_cast）：两条路线**尾巴规则相反**
+push_cast; ring   -- 路线 1：push_cast 不自带收尾，必须补 ring
+rw [Rat.cast_div, Rat.cast_pow, Rat.cast_sub, Rat.cast_mul, Rat.cast_ofNat]  -- 路线 2：自带 rfl，**不能**再加 ring
+apply (Rat.cast_inj (α := ℝ)).mp   -- ⚠️ 必须显式给 α，否则卡 CharZero ?m
+-- 多分母不等式三步：field_simp 只对等式 → div_lt_div_iff₀ 交叉相乘 → nlinarith
+rw [div_lt_div_iff₀ hb hd]   -- hb : 0 < b, hd : 0 < d（**两个都是分母正性**）
+one_div_le_one_div_of_le ha h   -- a ≤ b ⇒ 1/b ≤ 1/a（**取倒数翻转方向**）
 ```
+
+**⚠️ 工具边界（三张可靠域表，详见"待校准清单"G 组末尾）**：
+`decide` 只吃 ℚ 整数；`norm_num` **不认识 `Real.exp` 的正性**（要用 `linarith [Real.exp_pos c]`）；
+`field_simp` 只对**等式**可靠。
 
 **⚠️ 术语纪律（M2 verifier 发现 A，已订正本日志）**：
 "前提**未被证明使用**（unused）" ≠ "前提**可由其他前提推出**"。前者只意味着可以省；
