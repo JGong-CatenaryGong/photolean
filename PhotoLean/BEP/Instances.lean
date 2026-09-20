@@ -130,6 +130,12 @@ theorem inst_I3_endergonic_conforms : Rat.qConformsWindow (2 : ℚ) (1 / 4) (1 /
 
 /-! #### I4 — forward barrierless limit -/
 
+/-- I4 (`model-constructed`): forward barrierless limit `λ = 2`, `x = 2` — the cascade reaches the
+boundary guard `x = lam` before the open regime. -/
+theorem inst_I4_forwardLimit_zone : Rat.epQVerdict (2 : ℚ) 2 = Rat.EPQVerdict.boundary := by
+  unfold Rat.epQVerdict Rat.qTransfer
+  norm_num
+
 end BEP
 
 end PhotoLean
