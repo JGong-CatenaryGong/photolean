@@ -89,8 +89,20 @@ COMMIT_TEMPLATE="feat(<area>): <lemma>"
 # English: additional theories declare their leaves as <LEAF>_<theory> (<theory> lowercase, matching theories/<theory>).
 # check.sh 对 THEORIES 的每个理论逐项做叶子存在性检查（缺任何一个 = FAIL）。
 # English: check.sh performs the leaf-existence check for every theory listed in THEORIES (a missing leaf = FAIL).
+# 另有一遍**目录遍历**（与上面的变量机制并存、互不替代）：<THEORIES_DIR>/*/ 每个理论目录
+# 必须含五项 plan.md / TASKS.md / LITERATURE.md / RESULTS.md / probes/，缺项 = FAIL。
+# English: a second, directory-sweeping pass coexists with the variable mechanism above (neither replaces the other):
+# English: every theory directory under <THEORIES_DIR>/*/ must carry five items — plan.md / TASKS.md /
+# English: LITERATURE.md / RESULTS.md / probes/ — and a missing item = FAIL.
+# 为什么两套都要：变量机制只覆盖**显式列进 THEORIES** 的理论，新建目录会被静默漏过（曾实测如此）；
+# 目录遍历自动覆盖任何新理论，专门拦"半初始化的理论目录"。
+# English: Why both: the variable mechanism only covers theories explicitly listed in THEORIES, so a new directory
+# English: is silently skipped (measured); the sweep covers any new theory and exists to catch half-initialised ones.
 # SOURCE_DIRS 保持全局：任何交付源码都必须落在扫描范围内，否则验收门覆盖不到。
 # English: SOURCE_DIRS stays global: every delivered source must lie inside the scan range, otherwise the gate cannot see it.
+# 理论根目录：check.sh 的第二遍遍历扫 <THEORIES_DIR>/*/。
+# English: Theories root: the second pass of check.sh sweeps <THEORIES_DIR>/*/.
+THEORIES_DIR="theories"
 THEORIES="Marcus hammond BEP"
 PLAN_Marcus="theories/Marcus/plan.md"
 TASKS_Marcus="theories/Marcus/TASKS.md"

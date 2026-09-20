@@ -467,6 +467,35 @@
   2. `push_cast` 与显式 `rw [Rat.cast_*]` 是两条**收尾规则相反**的路线：前者不给 rfl 需要 `ring`，后者自带 rfl。
   3. 若某条更短的路线需要给文件**新增 import**（破坏"只依赖 M1"的约定），**宁可写长一点**也不破坏依赖边界。
 
+## 2026-09-20 — The gate silently skipped newly added theories (variable pass vs directory pass) — lead — FIXED
+
+- Goal: with three theories in the repository (`theories/Marcus`, `theories/BEP`, `theories/hammond`), make the
+  acceptance gate validate **every** theory's leaf data plane, not just the canonical one.
+- Tried and failed (a gate that passes when it should fail):
+  the contract's existing multi-theory mechanism declared per-theory leaves as `<LEAF>_<theory>` variables
+  (`PLAN_Marcus`, `TASKS_BEP`, …) and `check.sh` looped over `THEORIES` checking `"${!var}"`. But the guard is
+  `[ -z "$leaf" ] && continue` — so **any theory whose variables are not declared is silently skipped**. Before the
+  declarations existed the whole loop was a no-op, and the contract's own comment still claimed
+  "a missing leaf = FAIL". Measured directly: a freshly created theory directory was not reported at all.
+- What worked:
+  1. a second, **directory-sweeping** pass in `check.sh`: for every `"$THEORIES_DIR"/*/`, require the five items
+     `plan.md / TASKS.md / LITERATURE.md / RESULTS.md / probes/`; report `OK <dir> (5/5)` or
+     `MISSING <dir>: <items>` and set the shared `LEAF_FAIL` (so `--strict` exits 1);
+  2. the theories root is read from the contract (`THEORIES_DIR`, added to `ENGINE.yml`), with a derivation
+     fallback from any `<LEAF>_<theory>` path — the script still hard-codes no project path;
+  3. the variable pass is **kept** (it serves projects with non-standard layouts); the two passes coexist.
+- Reverse-validated (the house rule: a checker that cannot fail is worthless): creating
+  `theories/_gate_probe/plan.md` made the gate print
+  `MISSING theories/_gate_probe: TASKS.md LITERATURE.md RESULTS.md probes` and exit 1 under `--strict`;
+  in non-strict mode it reports and continues; after removing the probe directory the tree is back to PASS.
+- Reusable patterns:
+  1. **A guard like `[ -z "$x" ] && continue` turns a validator into a no-op.** Any check driven by
+     *optional declarations* must have a *discovery* mechanism (here: glob the directory) behind it,
+     otherwise the thing you forgot to declare is exactly the thing that goes unchecked.
+  2. Prefer **discovery over declaration** for coverage, and keep declarations for exceptions.
+  3. When you extend a gate, immediately **construct the failing case** and watch it fail — the same
+     discipline this project used on Sprint 0's gate and on every checker added since.
+
 <!-- 条目从这里继续往下追加 -->
 
 ## 2026-09-20 — H1 description layer (13 definitions + 19 theorems): a **false** skeleton statement + `split_ifs` auto-discharge — prover_a — DONE

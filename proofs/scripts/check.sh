@@ -65,6 +65,40 @@ for t in ${THEORIES:-}; do
     fi
   done
 done
+# ── 多理论数据面：遍历 <理论根>/*/ 的每一项（本项与上面的变量机制互不替代）──────
+# English: ── Multi-theory data plane: sweep every <theories-root>/*/ (this does not replace the variable mechanism above) ──
+# 每个 `theories/<理论>/` 目录 = 一个理论，必须含五项：plan.md / TASKS.md / LITERATURE.md / RESULTS.md / probes/
+# English: each `theories/<theory>/` directory is one theory and must carry five items:
+# English: plan.md / TASKS.md / LITERATURE.md / RESULTS.md / probes/
+# 为什么要有这一遍：变量机制只检查**显式列在 THEORIES 里**的理论，新建目录会被静默漏掉；
+# 目录遍历自动覆盖任何新理论（未建全 = FAIL，这正是要防的"半初始化理论"）。
+# English: Why this sweep: the variable mechanism only checks theories explicitly listed in THEORIES and silently skips
+# English: a newly created directory; the sweep automatically covers any new theory (incomplete = FAIL, which is the point).
+# 理论根目录名从契约读：优先 THEORIES_DIR，否则由任一 <LEAF>_<theory> 路径推导，最后退回 "theories"。
+# English: The theories root is read from the contract: prefer THEORIES_DIR, else derive it from any <LEAF>_<theory>
+# English: path, and only then fall back to "theories".
+if [ -z "${THEORIES_DIR:-}" ] && [ -n "${PLAN_Marcus:-}" ]; then
+  THEORIES_DIR="$(dirname "$(dirname "$PLAN_Marcus")")"
+fi
+THEORIES_DIR="${THEORIES_DIR:-theories}"
+if [ -d "$THEORIES_DIR" ]; then
+  echo "==> per-theory leaf data plane ($THEORIES_DIR/*/ : plan.md TASKS.md LITERATURE.md RESULTS.md probes/)"
+  for tdir in "$THEORIES_DIR"/*/; do
+    [ -d "$tdir" ] || continue
+    label="${tdir%/}"
+    miss=""
+    for item in plan.md TASKS.md LITERATURE.md RESULTS.md probes; do
+      [ -e "$label/$item" ] || miss="$miss $item"
+    done
+    if [ -z "$miss" ]; then
+      echo "   OK      $label (5/5)"
+    else
+      echo "   MISSING $label:$miss"
+      LEAF_FAIL=1
+    fi
+  done
+fi
+
 if [ "$LEAF_FAIL" = 1 ]; then
   echo "   (引擎按契约要求这些文件存在；补齐后重跑)"
   [ "$STRICT" = 1 ] && { echo "==> verdict: FAIL (missing leaf data plane)"; exit 1; }

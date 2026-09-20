@@ -85,6 +85,29 @@ markdown 更稳、检索 mathlib 文档更顺；而人类读者需要用中文�
 这条政策同时编码在 preset 的 lead persona、全部 7 个角色 persona 与
 `formalization-engine` skill 中 —— 换 preset 版本不会丢，因为工作区自己也声明了。
 
+## 1.6 多理论布局（引擎扩展）
+
+一个仓库可承载**多个理论**：每个理论 = `theories/<理论>/`（数据面）+ `PhotoLean/<理论>/`（Lean 源码）。
+`theories/<理论>/` 必须含五项，缺一项即 FAIL（由 `check.sh` 的第二遍遍历强制）：
+
+```
+theories/<理论>/
+  plan.md        TASKS.md        LITERATURE.md        RESULTS.md        probes/
+```
+
+验收门对每个理论做**两遍**检查，两遍并存、互不替代：
+
+| 遍 | 机制 | 覆盖 |
+|---|---|---|
+| 变量遍 | 契约里的 `<LEAF>_<理论>` 变量（如 `PLAN_BEP`） | 只覆盖**显式列进 `THEORIES`** 的理论 |
+| 目录遍 | 遍历 `<THEORIES_DIR>/*/`（`THEORIES_DIR` 亦由契约声明） | 覆盖**任何**理论目录，包括刚建的 |
+
+**为什么两遍都要**：变量遍在实测中被发现**会静默漏过**新建的理论目录 —— 契约里没声明变量，
+循环就 `continue`，门照样 PASS。目录遍专门堵这个洞，且能拦住"半初始化的理论目录"。
+这是本引擎反复出现的同一类教训：**门的覆盖范围必须被独立验证**（见 `EXPERIENCE.md`）。
+
+引擎级（跨理论共享）的叶子只有两个：`EXPERIENCE.md`（经验库）与 `API-NOTES.md`（mathlib 校准）。
+
 ## 2. 角色名册（项目无关）
 
 引擎的 preset 注册固定角色名；**每个角色的具体职责从叶子数据面读取**，
