@@ -415,6 +415,15 @@ theorem not_descriptor_flat :
     simp [apex]
   exact hne (hD.2 1 hw)
 
+/-- Zero-slope witness (plan §6): one insensitive branch (here `alphaA = 0`) turns the apex into a
+half-line plateau — the effective barrier is constant on the whole weak-binding side `0 ≤ dE`. -/
+theorem plateau_witness (dE : ℝ) (h : 0 ≤ dE) :
+    volcanoBarrier 0 0 1 0 dE = volcanoBarrier 0 0 1 0 (apex 0 0 1 0) := by
+  have hmax : max (0:ℝ) (-dE) = 0 := max_eq_left (by linarith)
+  simp only [volcanoBarrier, branchUp, branchDown, apex, zero_mul, one_mul, zero_add, zero_sub,
+    sub_zero, div_one, neg_zero]
+  rw [hmax, max_self]
+
 end Sabatier
 
 end PhotoLean
