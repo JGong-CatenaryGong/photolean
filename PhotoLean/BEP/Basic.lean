@@ -207,5 +207,23 @@ theorem epZone_eq_exergonic_iff {lam x : ℝ} (hlam : 0 < lam) :
     rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
       if_neg (ne_of_gt h1), if_neg (ne_of_lt h2), if_neg (by linarith : ¬ (x = -lam)),
       if_neg (not_lt.mpr (le_of_lt h2)), if_neg (by linarith : ¬ x < -lam), if_pos h1]
+/- The premise `hlam : 0 < lam` is kept for signature fidelity; the proof derives both bounds
+from the branch guards (`¬ (x < -lam)`, `x ≠ -lam`, `¬ (0 < x)`, `x ≠ 0`) instead. -/
+set_option linter.unusedVariables false in
+/-- Zone characterization, endergonic branch: the strictly endergonic side inside the structural
+window `(-lam, lam)`. -/
+theorem epZone_eq_endergonic_iff {lam x : ℝ} (hlam : 0 < lam) :
+    epZone lam x = EPZone.endergonic ↔ -lam < x ∧ x < 0 := by
+  constructor
+  · intro h
+    unfold epZone at h
+    split_ifs at h with h1 h2 h3 h4 h5 h6 h7 h8
+    exact ⟨lt_of_le_of_ne (not_lt.mp h7) (Ne.symm h5), lt_of_le_of_ne (not_lt.mp h8) h3⟩
+  · intro ⟨h1, h2⟩
+    unfold epZone
+    rw [if_neg (by linarith : ¬ (lam = 0)), if_neg (by linarith : ¬ lam < 0),
+      if_neg (ne_of_lt h2), if_neg (by linarith : ¬ (x = lam)),
+      if_neg (by linarith : ¬ (x = -lam)), if_neg (by linarith : ¬ lam < x),
+      if_neg (by linarith : ¬ x < -lam), if_neg (not_lt.mpr (le_of_lt h2))]
 
 end PhotoLean.BEP
