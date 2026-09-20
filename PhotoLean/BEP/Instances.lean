@@ -392,6 +392,14 @@ theorem inst_I11_F3_lamHat : Rat.qLamOfPair (-(0.8) : ℚ) 15.6 (-(3.6)) 17.7 = 
   unfold Rat.qLamOfPair
   norm_num
 
+/-- F3 (`first-hand`, kcal/mol verbatim, Table 2 "Water"): second divided difference of the printed
+representative rows `16(1)` (`ΔG° = +0.8`, `ΔG‡ = 15.6`), `1` (`-7.1`, `11.0`), `7` (`-9.9`, `7.3`);
+model abscissae `-0.8`, `7.1`, `9.9`. Negative. -/
+theorem inst_I11_F3_curvature_negative :
+    Rat.qSecondDividedDiff (-(0.8) : ℚ) 15.6 7.1 11.0 9.9 7.3 = -(8175 / 118342) := by
+  unfold Rat.qSecondDividedDiff
+  norm_num
+
 end BEP
 
 end PhotoLean
