@@ -79,10 +79,13 @@ read **first-hand** by this record — with **one** labelled exception: the two 
 marked `second-reader`; they must be re-read before any of their numbers enters a Lean docstring.
 
 **Additional hosts reached later in the round** (`URLS FETCHED`, all HTTP 200): `lirias.kuleuven.be`
-(the KU Leuven repository copy of Veys & Escudero 2020, §R1.4.1(C-bis)), `harvest.usask.ca` (the 1995
-thesis, §R1.4.1(A)), `ar5iv.labs.arxiv.org` (the arXiv HTML rendering of Jang 2021, §R1.7.2),
-`arxiv.org` (the gas-phase azulene PDF, §R1.4.1(D)). Their hosts join the reachable list above; the
-blocked list is unchanged and no blocked host was worked around by a proxy.
+(the KU Leuven repository copies of Veys & Escudero 2020, §R1.4.1(C-bis), **and** of the Veys 2023 PhD
+thesis, §R1.2.3/§R1.3/§R1.5.3), `harvest.usask.ca` (the 1995 thesis, §R1.4.1(A)),
+`ar5iv.labs.arxiv.org` (the arXiv HTML rendering of Jang 2021, §R1.7.2), `arxiv.org` (the gas-phase
+azulene PDF, §R1.4.1(D)), **`nvlpubs.nist.gov`** (the NIST OA journal copy of Birks 1976 — the single
+most useful new host of the round: it carries a first-hand statement of *both* rules, their deviation
+lists and Table 2 of fluorescence lifetimes, §R1.1.3/§R1.2.3/§R1.5.3). These hosts join the reachable
+list above; the blocked list is unchanged and no blocked host was worked around by a proxy.
 
 ## §R1.1 The canonical statement (question 1)
 
@@ -171,15 +174,37 @@ Photoexcited Molecular Aggregates", *J. Phys. Chem. A* **128**, 3910–3915 (202
 phosphorescence**) occurs in appreciable yield only from the lowest excited state of a given
 multiplicity".
 
+**⭐ A first-hand, *reachable* locus for the same two-multiplicity reading (this supersedes the
+Cloudflare-blocked Gold Book as the citable source).** J. B. Birks, "Fluorescence Quantum Yield
+Measurements", *Journal of Research of the National Bureau of Standards A — Physics and Chemistry*
+**80A**(3), 389–399 (1976), DOI `10.6028/jres.080a.038` — retrieved here as the NIST OA PDF
+(`https://nvlpubs.nist.gov/nistpubs/jres/80A/jresv80An3p389_A1b.pdf`, 13 158 311 bytes; `pdftotext`).
+**status `first-hand`.** **Locus: §2.5 "Vavilov's Law and Kasha's Rules", printed p. 392.** Verbatim
+(the OCR's broken spacing repaired, wording untouched):
+
+> "**Kasha's rules** [9], another well-known generalization, state that in a complex molecule
+> luminescence occurs only from the lowest excited state of a given multiplicity, i.e., **S₁→S₀
+> fluorescence and T₁→S₀ phosphorescence**. For many years azulene and its derivatives, which emit
+> S₂→S₀ fluorescence and negligible S₁→S₀ fluorescence, were the main exceptions to Kasha's rules.
+> Recently the picture has changed dramatically. In addition to the normal S₁→S₀ fluorescence,
+> **weak S₂→S₀ fluorescence has been observed in benzene, toluene, p-xylene, mesitylene, naphthalene,
+> pyrene, 1:2-benzanthracene, 3:4-benzopyrene, 1:12-benzoperylene and ovalene**, weak S₃→S₀
+> fluorescence has […]"
+
+Note the plural "**rules**" and the explicit dual reading `S₁` / `T₁` — the extended rule is therefore
+citable from an OA source, and the word "**weak**" is the source's own hedge on the conforming
+molecules (see §R1.5.3, where it becomes decisive).
+
 **Formalizable implication of §R1.1.3.**
 - The normative wording supports the plan's ladder being **multiplicity-indexed**: the same predicate
   applies to the singlet ladder (fluorescence from `S₁`) and to the triplet ladder (phosphorescence
   from `T₁`). Nothing in `KashaRule`/`KashaWithin` mentions multiplicity, which is correct — but the
   **docstring must say that the ladder is "the levels of one multiplicity"** so that the
   `T₁`-reading is licensed. **Impact on the plan: docstring only; no statement changes.**
-- "**appreciable** yield" is the source's own hedge and is the *only* normative support for a
-  tolerance formulation. Its quantitative version is the plan's `tol`; keep the word "appreciable"
-  in the docstring as the bridge from the source to `tol`.
+- "**appreciable** yield" (Gold Book) and "**weak** S₂→S₀ fluorescence [is] observed" (Birks 1976) are
+  two first-hand hedges, and they are the *only* normative support for a tolerance formulation. The
+  plan's `tol` is their quantitative version; keep the words "appreciable"/"weak" in the docstring as
+  the bridge from the sources to `tol`, and see §R1.5.3 for why "weak" matters to the instance layer.
 - One honest discontinuity to record: the normative entry says *luminescence* (covering
   phosphorescence), while the plan's K5 instance rows are all fluorescence. **Impact: K5b rows are
   singlet-ladder rows; `RESULTS.md` must not claim that the instance layer tests the T₁ half of the
@@ -265,6 +290,57 @@ What the 1927 paper actually reports (all `first-hand`, from the reprint; own tr
   historical precedent for stating the rule *with* an accuracy, but it must **not** be used as the
   numerical value of `tol` in the instance rows.
 
+### R1.2.3 ⭐ Vavilov's law in a critical review, **with its documented deviation list** (first-hand)
+
+**source / locus / status**: J. B. Birks, *J. Res. NBS A* **80A**(3), 389–399 (1976), DOI
+`10.6028/jres.080a.038`, **§2.5, printed p. 392** — **`first-hand`** (NIST OA PDF fetched and read
+here; see §R1.1.3 for the retrieval details). Three verbatim passages (OCR spacing repaired):
+
+> "It is commonly assumed that φ_MH = 1.0 for S₂→S₁ IC and that φ = 1 for IC between higher excited
+> states within the singlet (S_F) manifold, so that φ_FM is **independent of the excitation wavelength
+> λ_ex** up to the ionization potential. This assumption, known as **Vavilov's Law**, has been
+> confirmed for many compounds in solution. **Major deviations** from Vavilov's law have, however,
+> been observed for solutions of **benzene, toluene, p-xylene, mesitylene, fluorobenzene, naphthalene,
+> 2-methylnaphthalene, 1,6-dimethylnaphthalene** [1], tryptophan, tyrosine and phenylalanine [7]. In
+> each case it is observed that **φ'_FM/φ_FM = φ_MH < 1**."
+
+> "In benzene and its derivatives and possibly in the other compounds, the effect is due to efficient
+> **S₂→S\*\* IC (k_CH) competing with S₂→S₁ IC (k_MH)** [8]."
+
+> "In fluorescence quantum yield measurements it is essential **either to verify that Vavilov's law
+> applies, or to limit the excitation to the region of the S₀→S₁ absorption spectrum**."
+
+⚠️ **These are qualitative + mechanistic statements with a printed page; Birks prints no numerical
+`φ` ratio and no rate constant in them.** A first-hand *quantitative* Vavilov test (a φ(λ_ex) table
+with numbers) was **not** reached in this round → `UNSUPPORTED` (§R1.9).
+
+**Corroborating reachable statement of both rules (first-hand)**: K. Veys, "Quantum Chemical
+Investigations of Anti-Kasha Fluorescence", PhD thesis, KU Leuven, Oct 2023 (OA,
+`lirias.kuleuven.be/retrieve/d5d2667e-0a82-45d7-ad47-dee27a99cb45`), **printed pp. 3–4**, writes:
+"**Vibrational relaxation and IC processes between excited states typically happen in the range of
+picoseconds.** Therefore, they do outcompete other processes like fluorescence from higher-lying
+states. In the 1950s, Michael Kasha accordingly wrote down the so-called **Kasha's rule**, namely:
+'polyatomic molecular entities react with appreciable yield only from the lowest excited state of a
+given multiplicity'. Later, it was extended into the **Kasha–Vavilov rule**, stating that 'the quantum
+yield of luminescence is independent of the wavelength of exciting radiation'." — i.e. a third
+independent, *accessible* source for both rule statements (its refs 2–4).
+
+**Formalizable implication of §R1.2.3.**
+- **The plan's tolerance formulation is now supported by a first-hand critical review, not by
+  folklore**: Birks states the law, and in the same section states its documented failures *and* the
+  operational consequence ("verify … or limit the excitation"). **Impact: K3's tolerance form is the
+  literature-faithful one; `RESULTS.md` may cite p. 392 for it. No premise changes.**
+- ⚠️ **But the same page names the plan's candidate conforming family as deviators.** Benzene,
+  naphthalene and pyrene appear in Birks' Vavilov-deviation list (benzene, naphthalene) and in the
+  "weak S₂→S₀ fluorescence observed" list (§R1.1.3: benzene, naphthalene, pyrene, ovalene, …). **This
+  is the literature's own warning that a classical PAH is a bad choice for a *conforming* instance
+  row** — see §R1.5.3, which is rewritten accordingly.
+- **`VavilovAt`/`VavilovUpTo` are model predicates on the total yield.** Birks' `φ_MH`, `φ_FM` and
+  `k_CH`/`k_MH` are *channel-resolved* quantities; the model's `VavilovAt` is their aggregate
+  consequence. The equivalence K2 #18 is therefore a statement about the aggregate, and the docstring
+  should say that the literature's `φ_MH` corresponds to the model's `icBranch` product, not to a
+  single field.
+
 ## §R1.3 Which rate inequalities the literature actually asserts (question 3)
 
 **What is asserted qualitatively (first-hand).** "Rapid internal conversion and vibrational
@@ -286,6 +362,7 @@ is the main outcome of question 3:
 | **computed** (modern emitter, S₂→S₁ IC) | S₂→S₁ IC = **2.54 × 10¹² s⁻¹** (SCS-ADC(2)) to **4.37 × 10¹² s⁻¹** (CC2) | `first-hand` (these are the paper's own *calculations*, not measurements) | *Chem. Sci.* **17**, 10967–10981 (2026), DOI `10.1039/d6sc01726f` (`PMC13129759`), five-state-model section |
 | **textbook order of magnitude** | "routinely driving k_ISC to **10⁸ to 10¹⁰ s⁻¹** in conventional polyaromatic scaffolds" | `first-hand` reading of a printed *typical-range* sentence | *Chem. Sci.* 2026, `PMC13576160`, introduction |
 | **textbook order of magnitude (ISC, T₁→T₂)** | rIC T₁→T₂ = 3.9 × 10¹⁰ s⁻¹, T₂→T₁ IC = 9.8 × 10¹⁰ s⁻¹, T₂→T₁ IC = 1.4 × 10¹⁴ s⁻¹ | `first-hand`, **computed** values in a specific molecule | *Chem. Sci.* 2026, `PMC13129759` |
+| ⭐ **textbook order of magnitude (IC vs fluorescence — the closest thing to the `k_IC ≫ k_rad` slogan with a printed page)** | "**internal conversion (IC, 10⁻¹² s)** between electronic (singlet) states … by emitting a photon (**fluorescence, 10⁻⁹ s**) … intersystem crossing (**ISC, 10⁻⁶ s**)" and "**Vibrational relaxation and IC processes between excited states typically happen in the range of picoseconds.** Therefore, they do outcompete other processes like fluorescence from higher-lying states." | `first-hand` reading of a printed *typical-range* statement (the thesis explicitly frames it as typical, not measured) | K. Veys, PhD thesis, KU Leuven (2023), **printed p. 3**, `lirias.kuleuven.be/retrieve/d5d2667e-0a82-45d7-ad47-dee27a99cb45` |
 
 ⚠️ **Negative result of this round (important for honesty).** The often-repeated pair
 "k_IC ≈ 10¹¹–10¹³ s⁻¹ versus k_rad ≈ 10⁷–10⁹ s⁻¹ **for aromatic hydrocarbons**" was **not** found
@@ -470,16 +547,26 @@ deliberately reported *as a slope* rather than as a "γ", because the gap-law co
 between sources): between TMA and azulene, ln(6.7×10¹⁰ / 7.2×10⁸) / (12 290 − 14 010 cm⁻¹) ≈
 **−2.6 × 10⁻³ cm**.
 
-### R1.5.3 The classical aromatic hydrocarbons — `UNSUPPORTED` in this round
+### R1.5.3 The classical aromatic hydrocarbons — `UNSUPPORTED`, **and documented deviators**
 
 **benzene, naphthalene, anthracene, pyrene, perylene**: this round found **no** reachable source that
 prints, first-hand, both a radiative rate for S₂ (or an S₂ emission quantum yield) *and* an S₂→S₁
 internal-conversion rate for any of these molecules. What was found instead:
-- qualitative statements that IC/VR is "rapid" and Kasha's rule is "typically" followed
-  (`PMC12132800`, first-hand, §R1.3);
-- computed S₂→S₁ IC rates of 2.5–4.4 × 10¹² s⁻¹ for a **specific TADF emitter**, not for a PAH
-  (`PMC13129759`, first-hand);
-- the *S₁* photophysics of these molecules (widely tabulated, but not what the row needs).
+
+| what | value | source / locus | status |
+|---|---|---|---|
+| **S₁ radiative rate, perylene** | Φ_F = 0.89, τ_F = **4.9 / 4.79 / 5.02 ns** (three laboratories), benzene ⇒ k_F = Φ/τ ≈ **1.8 × 10⁸ s⁻¹** (**this record's arithmetic**; the source prints no rate) | Birks, *J. Res. NBS A* **80**, 389–399 (1976), **Table 2, printed p. 398** | `first-hand` (table read here) |
+| S₁ radiative rate, perylene (independent) | k_r = **1.6 × 10⁸ s⁻¹**; Φ_F = 0.87–0.98 (avg 0.93) | Veys, PhD thesis KU Leuven (2023), **Table 5-1, printed p. 69** | `secondary (via that table's refs 18/19/40)` — ⚠️ its last column in **Birks'** table is a *ratio* `k_exp/k_theory`, not a rate; do not confuse the two tables |
+| S₁ radiative rates, other PAHs | anthracene **3.3–3.7 × 10⁷**, phenanthrene **3.2 × 10⁷**, tetracene 6.3–7.7 × 10⁷, dibenzothiophene 1.4–2.9 × 10⁷, fluorobenzene 0.27–1.8 × 10⁷ s⁻¹ | same thesis table, printed p. 69 | `secondary (via that table)` |
+| **S₂→S₁ internal conversion, pyrene** | time constant "about **150–300 fs**" (⇒ k_IC ≈ 3–7 × 10¹² s⁻¹, **this record's inversion**) | quoted inside Wega & Vauthey, *J. Phys. Chem. A* **130**, 2148–2157 (2026) (OA, `PMC12990110`); the primary measurement is F. V. R. Neuwahl, P. Foggi, *Laser Chem.* **19**(1–4), 375–379 (1999), DOI `10.1155/1999/37692` | **`secondary (via Wega & Vauthey 2026)`**; primary `not-accessed` (Hindawi/Wiley 403, Wayback down) |
+| the classical PAHs' relation to the rules | "**Major deviations from Vavilov's law** have … been observed for solutions of **benzene**, …, **naphthalene** …" and "weak **S₂→S₀ fluorescence has been observed in benzene, …, naphthalene, pyrene, …**" | Birks 1976, **printed p. 392** (§R1.1.3, §R1.2.3) | `first-hand` |
+| qualitative mechanism | S₂→S₁ IC "typically … in the range of picoseconds" outcompetes higher-state fluorescence | Veys 2023 thesis, **printed p. 3** | `first-hand` (typical-range statement) |
+
+⚠️ **The decisive point is the last two rows, not the missing numbers**: the literature that states
+the rules also states that these very molecules **weakly violate them** (weak S₂ emission observed;
+Vavilov-law deviations). A classical PAH is therefore **not** a "Kasha-conforming" instance in the
+exact sense — it conforms only *within a tolerance*, which is precisely the plan's §1.3 structural
+point and must be said in `RESULTS.md` if these molecules are mentioned at all.
 
 **Formalizable implication of §R1.5.**
 - **I10 can be delivered, but not with a classical PAH**: use **4,6,8-trimethylazulene** (§R1.5.1)
@@ -487,17 +574,26 @@ internal-conversion rate for any of these molecules. What was found instead:
   criterion as the violating azulene row. This has a methodological advantage that must be stated in
   the row's docstring: the two rows are *the same experiment on the same chromophore family*, so the
   contrast is not produced by mixing sources or conditions.
-- **The benzene/naphthalene/anthracene/pyrene family is `UNSUPPORTED` for round 1 and must not
-  appear in `Instances.lean`.** If the lead wants it, the request for round 2 is precise: *for one
-  named PAH, a printed upper bound on the S₂ (or S₃) emission quantum yield, or an S₂ lifetime
-  together with an S₂ radiative rate*. A printed **upper bound** would be *sufficient* in Lean via
-  the plan's own monotonicity lemma (K3 #8 `kashaWithin_one_mono_ic`): a smaller Φ(S₂) means a larger
-  `ic 1/rad 1`, so an upper-bound row yields a **conservative but certified** conformance verdict —
-  provided the bound is carried into the Lean literal honestly (`ic 1` set to the value implied by
-  the bound, and the docstring saying "bound, not measurement").
+- **The benzene/naphthalene/anthracene/pyrene/perylene family is `UNSUPPORTED` for round 1 and must
+  not appear in `Instances.lean`** — and it must not appear as a *conforming* row in prose either,
+  because Birks 1976 p. 392 documents weak S₂ emission and Vavilov deviations for benzene,
+  naphthalene and pyrene. If the lead wants a classical-PAH row after all, the round-2 request is
+  precise: *for one named PAH, a printed upper bound on the S₂ (or S₃) emission quantum yield, or an
+  S₂ lifetime together with an S₂ radiative rate*. A printed **upper bound** would be *sufficient* in
+  Lean via the plan's own monotonicity lemma (K3 #8 `kashaWithin_one_mono_ic`): a smaller Φ(S₂) means a
+  larger `ic 1/rad 1`, so an upper-bound row yields a **conservative but certified** conformance
+  verdict — provided the bound is carried into the Lean literal honestly (`ic 1` set to the value
+  implied by the bound, and the docstring saying "bound, not measurement").
+- **Pyrene is the only classical PAH with an S₂→S₁ IC number at all** and that number is `secondary`
+  (the primary is a 1999 *Laser Chemistry* paper whose text is unreachable here). **It may be quoted
+  as a magnitude in `RESULTS.md` with its label; it may not become an `Instances.lean` literal.**
+- **A partially usable classical-PAH pair exists for the S₁ level only**: perylene's
+  (Φ_F = 0.89, τ_F ≈ 4.9 ns) gives `rad 0`/`decay 0` for a row module; the missing half is `ic 1`/`rad 1`
+  for S₂. If a future round finds only an *upper bound* on Φ(S₂), that is enough to close I10-classical
+  (see the previous bullet).
 - **Ovalene is excluded** (§R1.4.2) and the exclusion must be visible in the record, because an
   unwary reader would otherwise take "ovalene" from the plan's §1.1 exception list as a
-  ready-made anti-Kasha row.
+  ready-made anti-Kasha row — Birks' p. 392 list is exactly where that name comes from.
 
 ## §R1.6 Proposed K5b literature rows (I10/I11/I12) — the literals and the reduction
 
@@ -729,7 +825,7 @@ Short answer, stated so the docstring can be written honestly:
 | §1.1 "other anti-Kasha emitters are reported" | supported only qualitatively | ✔ thioketones (mechanism, no numbers); ✘ ovalene must be **removed** from the exception list (§R1.4.2) |
 | K2 #18 `kashaRule_iff_vavilovUpTo` | model theorem | ✔ unaffected; but the two rules' literature relation is mechanistic, not an identity (§R1.2.2) |
 | K3 #3 threshold `99` at `tol = 1/100` | model's sharpening of a slogan | ⚠️ **no literature citation for `99` or for `tol = 1/100`**; the only printed accuracy in the corpus is Vavilov's ± 8 % (yield, dye) |
-| K5b I10 (conforming aromatic hydrocarbon) | "literature" row | ✔ deliverable — but as **4,6,8-trimethylazulene**, not a classical PAH (§R1.5, §R1.6) |
+| K5b I10 (conforming aromatic hydrocarbon) | "literature" row | ✔ deliverable — but as **4,6,8-trimethylazulene**, not a classical PAH (§R1.5, §R1.6); and Birks 1976 p. 392 shows the classical PAHs are **documented weak violators**, so at best they give a *tolerance*-conforming row |
 | K5b I11 (azulene) | "literature" row | ✔ deliverable with first-hand numbers, two independent sources (§R1.4.1, §R1.6) |
 | K5b I12 (second anti-Kasha molecule) | "if first-hand numbers exist" | ✘ **does not exist in this round → drop the row** |
 | K4 #12 `kashaWithin_one_marcus` | bridge with `hic` hypothesis | ✔ statement unchanged; the docstring must carry the three restrictions of §R1.7.4 |
@@ -759,29 +855,60 @@ in Molecular Systems*** (`10.1002/9783527602575`), **Klessinger & Michl**, and *
 be cited as a premise**. Also `secondary`-only in this record: the printed page numbers inside
 `JACS 146, 15506` (pp. 15510–15511) and `ACS Cent. Sci. 12, 856` (p. 861), and the whole of
 `ACS Phys. Chem. Au 6, 246` and `J. Chem. Phys. 164` (`10.1063/5.0310931`) — these need one
-confirming read before they enter a Lean docstring.
+confirming read. **Added late in the round (the classical-PAH carriers, all blocked here):**
+F. V. R. Neuwahl, P. Foggi, *Laser Chem.* **19**(1–4), 375–379 (1999), DOI `10.1155/1999/37692`
+(Crossref-verified; `downloads.hindawi.com` and four Wiley URL variants → 403, Wayback down) —
+the primary measurement behind pyrene's 150–300 fs; W. Ni, G. Gurzadyan, L. Sun, M. F. Gelin,
+*J. Chem. Phys.* **155**, 191102 (2021), DOI `10.1063/5.0069398` (closed, no repository copy);
+V. L. Ermolaev, *Russ. Chem. Rev.* **70**, 471–490 (2001) (`iopscience.iop.org` returned a **Radware
+Bot Manager CAPTCHA page**, HTTP 200 with no article); T. Itoh, *Chem. Rev.* **112**, 4541 (2012)
+(§above); the classic monograph pages behind both rules — **Turro, *Modern Molecular Photochemistry*,
+Ch. 1, Scheme 1.4, p. 17** (reached only as a quotation on a UCI lecture handout, slide 243;
+`turroserver.chem.columbia.edu` is unreachable at the network level), **Birks, *Photophysics of
+Aromatic Molecules* (1970)**, **Valeur**, **Klessinger & Michl**. Also observed-blocked in this round:
+`mdpi.com` article pages (403 Akamai), `macau.uni-kiel.de` (an "Anubis" proof-of-work interstitial),
+`pure.rug.nl` (404 for the guessed repository file), `shodhganga.inflibnet.ac.in`,
+`apps.dtic.mil` (no route). The `secondary`-page loci named above still need one confirming read
+before they enter a Lean docstring.
 
 **Round-2 request (precise, so it can be dispatched):**
 1. **A classical PAH conforming row**: for one named molecule of benzene/naphthalene/anthracene/
    pyrene/perylene, a printed **S₂ (or S₃) emission quantum yield — a value or an upper bound — with
    its printed page**, or an S₂ lifetime together with an S₂ radiative rate. An upper bound suffices
-   for a conservative Lean verdict (§R1.5.3).
+   for a conservative Lean verdict (§R1.5.3). ⚠️ **This request is now lower-priority than it looks**:
+   Birks 1976 p. 392 documents weak S₂ emission and Vavilov deviations for exactly these molecules, so
+   even a successful retrieval yields a *tolerance-conforming*, not an exactly conforming, row.
+   The three carriers most likely to hold a **measured S₂→S₁ rate with a page** — and all three
+   currently blocked from this sandbox — are: (i) V. L. Ermolaev, *Russ. Chem. Rev.* **70**, 471–490
+   (2001) [IOPscience served a Radware CAPTCHA], (ii) T. Itoh, *Chem. Rev.* **112**, 4541–4568 (2012)
+   [closed, no repository copy per Unpaywall], (iii) W. Ni, G. G. Gurzadyan, L. Sun, M. F. Gelin,
+   *J. Chem. Phys.* **155**, 191102 (2021) [closed, `any_repository_has_fulltext: false`]. Closing any
+   one of the three is the single highest-value retrieval for a classical-PAH row.
 2. **A second anti-Kasha molecule with numbers** (thioketone or a gas-phase small molecule), or an
    explicit written decision that I12 stays dropped.
 3. **Human read of Kasha 1950 p. 14–19** (library/publisher access) to convert §R1.1.1 from
    `secondary` to `first-hand` and to fix the page of the canonical sentence.
 4. **Human read of the PAC 2007 glossary** entries "Kasha rule"/"Vavilov rule" for the normative
-   wording with printed pages (pp. 293–465, entries alphabetic).
-5. **One confirming read** of the four `secondary`-page loci listed just above (they are the only
-   page numbers in this record not verified by its own two eyes).
+   wording with printed pages (pp. 293–465, entries alphabetic). ⚠️ This is now *confirmation only*:
+   the two rule statements are already citable from **reachable** OA sources (Birks 1976 p. 392 for
+   both rules + the deviation lists; Veys 2023 pp. 3–4 for both rule statements), so the glossary is no
+   longer on the critical path.
+5. **One confirming read** of the `secondary`-page loci listed in this record (the printed pages inside
+   `JACS 146, 15506`, `ACS Cent. Sci. 12, 856` and `ACS Phys. Chem. Au 6, 246`) — the only page numbers
+   here not verified by this record's own two eyes.
+6. **Optional, for a future Vavilov *quantitative* row**: a first-hand φ(λ_ex) table with numbers.
+   Birks 1976 gives the qualitative deviation list with a printed page, but **prints no φ ratio**.
 
 **Closing statement of this record.** Every number in §R1.4–§R1.6 was read by this record at the
 locus named; every `secondary` label names the source that carried the wording; every failed access
 is listed above with its obstacle. Two DOI traps were disproof-verified rather than propagated
 (§R1.7.1); **all 41 DOIs cited in this file were re-checked against Crossref in a final pass**; and
 the instance families that no source could support with first-hand numbers are marked `UNSUPPORTED`
-instead of being guessed — **classical PAHs (benzene/naphthalene/anthracene/pyrene/perylene),
-thioketone rates, porphyrin/chlorin S₂ quantities, and the gas-phase SO₂/CS₂/HCHO/glyoxal rates** —
-while the two rows that *are* decidable (azulene violating, 4,6,8-trimethylazulene conforming) rest on
-numbers read at their printed loci, in one case (Veys & Escudero) with a printed quantum yield that
-independently reproduces the rate ratio to within 20 %.
+instead of being guessed — **thioketone rates, porphyrin/chlorin S₂ quantities, and the gas-phase
+SO₂/CS₂/HCHO/glyoxal rates** — while the classical PAHs turned out to be *documented weak violators*
+(Birks 1976, printed p. 392: weak S₂→S₀ fluorescence observed in benzene/naphthalene/pyrene/ovalene,
+and benzene/naphthalene in the Vavilov-deviation list), so they can at best carry a
+*tolerance*-conforming row and were **not** used for I10. The two rows that *are* decidable (azulene
+violating, 4,6,8-trimethylazulene conforming) rest on numbers read at their printed loci, in one case
+(Veys & Escudero 2020) with a printed quantum yield that independently reproduces the rate ratio to
+within 20 %.

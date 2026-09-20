@@ -808,6 +808,64 @@ theorem I14_not_one_sided :
       (∃ rad ic : ℕ → ℚ, ¬ KashaWithinQ rad ic (1 / 100) 1) := by
   sorry
 
+/-! ### K5b literature rows (appended 2026-09-20, plan §8.2; numbers from
+`theories/kasha/LITERATURE.md` §R1.6) -/
+
+/-- Plan §8.2 row I10 — **literature row, conforming**: 4,6,8-trimethylazulene in cyclohexane.
+Transcribed in units of `10⁶ s⁻¹` from `theories/kasha/LITERATURE.md` §R1.6 (source: the 1995
+Saskatchewan thesis, Table 3.3 p. 126, printing `Σk_r = 3.3×10⁷ s⁻¹` and `Σk_nr = 6.7×10¹⁰ s⁻¹`;
+the identification `rad 1 ≡ Σk_r(S₂)`, `ic 1 ≡ Σk_nr(S₂)` is the declared bridge of §R1.4.2, not a
+theorem of this development). `rad 0 = 1`, `ic 0 = 0` is a **declared modelling reduction** — the
+lowest level's nonradiative channel is neglected in this row — and it is what makes K3 #3's reduced
+criterion apply exactly. Ratio `ic 1 / rad 1 = 67000/33 ≈ 2030 ≥ 99 = (1 - 1/100)/(1/100)`. -/
+theorem I10_trimethylazulene_conforming :
+    KashaWithinQ (twoRad 1 33) (twoIc 0 67000) (1 / 100) 1 := by
+  sorry
+
+/-- Plan §8.2 row I11 — **literature row, anti-Kasha**: parent azulene in cyclohexane. Same
+transcription rule and same `rad 0 = 1, ic 0 = 0` reduction as I10 (source: the 1995 thesis Table 3.1
+p. 115, printing `Σk_r = 3.5×10⁷`, `Σk_nr = 7.2×10⁸ s⁻¹`). Ratio `720/35 ≈ 20.6 < 99`. -/
+theorem I11_azulene_violating :
+    ¬ KashaWithinQ (twoRad 1 35) (twoIc 0 720) (1 / 100) 1 := by
+  sorry
+
+/-- Plan §8.2 row I11-alt — **literature row, anti-Kasha, independent route**: azulene as printed in
+*Chem. Sci.* 2026 (Table 2/3, `Φ_Fl = 2.42 %`, `τ_IC = 1.35 ns`; `LITERATURE.md` §R1.4/§R1.6). Here
+the numbers come from the **printed quantum yield** rather than from two rate columns: with
+`ic 0 = 0`, `(1 - Φ)/Φ` *is* the ratio `ic 1 / rad 1`, so `rad 1 = 242`, `ic 1 = 9758` in units of
+`10⁶ s⁻¹`. Ratio `≈ 40.3 < 99`. The docstring records the spread against I11 (20.6), which is solvent
+and method spread, not a disagreement in sign. -/
+theorem I11alt_azulene2026_violating :
+    ¬ KashaWithinQ (twoRad 1 242) (twoIc 0 9758) (1 / 100) 1 := by
+  sorry
+
+/-- Plan §8.2 row I11-alt2 — **literature row, anti-Kasha, peer-reviewed rates**: azulene from
+Veys & Escudero, *J. Phys. Chem. A* **124**, 7228 (2020), Table 2 (both rates printed as
+experimental: `k_r(S₂) = 2.3 × 10⁷ s⁻¹`, `k_IC(S₂ → S₁) = 5.3 × 10⁸ s⁻¹`; `LITERATURE.md` §R1.6).
+Ratio `530/23 ≈ 23.0 < 99`; the printed `Φ = (3.5 ± 0.4) %` independently gives `≈ 27.6`. -/
+theorem I11alt2_azulene2020_violating :
+    ¬ KashaWithinQ (twoRad 1 23) (twoIc 0 530) (1 / 100) 1 := by
+  sorry
+
+/-- Plan §8.2 row I11t — **the verdict is tolerance-relative** (the honest form of "azulene violates
+Kasha's rule"): the *same* measured azulene data (I11) violates the 1 % purity criterion and conforms
+to a 10 % one. `LITERATURE.md` §R1.3 records that the literature's `k_IC ≫ k_rad` is a qualitative
+statement with no printed threshold, and §R1.6 records that `tol = 1/100` is a **model choice**: this
+row is what makes that choice visible in the kernel instead of hiding it in prose. -/
+theorem I11t_azulene_tolerance_dependence :
+    ¬ KashaWithinQ (twoRad 1 35) (twoIc 0 720) (1 / 100) 1 ∧
+      KashaWithinQ (twoRad 1 35) (twoIc 0 720) (1 / 10) 1 := by
+  sorry
+
+/-- Plan §8.2 row I15 — **family contrast at one tolerance**: within the azulene family the measured
+S₂ rates separate the methylated derivative (conforming, I10) from the parent (violating, I11) at the
+*same* `tol = 1/100`. Two kernel computations, one tolerance, opposite verdicts — this is the
+instance-level content that the model adds over the qualitative rule. -/
+theorem I15_familyContrast :
+    KashaWithinQ (twoRad 1 33) (twoIc 0 67000) (1 / 100) 1 ∧
+      ¬ KashaWithinQ (twoRad 1 35) (twoIc 0 720) (1 / 100) 1 := by
+  sorry
+
 end Kasha
 
 end PhotoLean

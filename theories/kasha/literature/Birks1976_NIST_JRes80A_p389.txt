@@ -1,0 +1,774 @@
+                                      JOURNAL OF RESEARCH of th e Na tion a l Bureau of Sta nd a rd s- A. Physic s and Chem istry
+                                                             Vol. BOA , No. 3, M ay-June 1976
+
+
+
+                            Fluorescence Quantum Yield Measurements*
+
+                                                                                        J. B. Birks
+
+                                                            University of Manchester, Manchester, U .K.
+
+                                                                                        (April 9, 1976)
+
+
+
+                                Four m olecnla r jlnorescence pa rameters d esc ribe th e be havi our of a flu oresce nt molec ul e in ve ry
+                           dilute ( - 10- 6M ) so luti on:
+
+                                (i) th e flu oresce nce s pectrum FII (Il);
+                                (ii ) th e flu oresce nce pola ri za ti on PM:
+                                (iii) the radia tiv e tr a nsitio n proba bilit y k r M; a nd
+                                (iv ) the radiation less tra ns iti on proba bilit y kIM.
+
+                           Th ese pa ra me ters a nd th eir te mpe rature a nd so lve nt de pe nd e nce are th ose of prim a ry inte res t to the
+                           photoph ys ic is t a nd ph otoc he mi s t. FII (v ) and PM ca n be de termin e d directl y, bu t krM a nd kloll ca n only
+                           be found indirec tly fro m meas ure me nts of the seco nda ry p ara mete rs,
+
+                                 (v) the flu oresce nce li fe tim e 7 .11 , and
+                                 (vi) th e flu oresce nce qu a ntum e ffi cie nc y qr M,
+
+                           wh e re k"M= qrMi7M a nd kIM = (1 - q r M ) 7M.
+
+                                 Th e real jlno rescence para meters F (iJ) , 7 a nd cpr of more co nce nt ra ted (c> 10- 5 M ) solutions
+                           us uall y diffe r from th e molec ul a r pa ra me ters FM (iJ) , 7 .11 and q"M d ue to co nce n tra ti on (se lf) q ue nc hin g,
+                           so th at 7 > 7 .\, a nd cp" < q" M. The conce ntration q ue nc hin g is due to exc ime r form ati o n a nd di ssocia-
+                           ti on (ra tes kOMc a nd k.1I0, respec ti vely) a nd it is oft e n acco mp a ni ed b y th e a ppeara nce of a n e xc im e r
+                           flu orescence spec trum Fo{li) in a dditio n to F.II (v) , so th at F (v) has t wo co mp onents. Th e excimer
+                           jlno rescence p aram eters Fo( iJ ), Po, k,.,) a nd kID, toge th e r with k"", a nd k.1I0, and th e ir so lve nt a nd te m-
+                            pe ra ture de pe nde nce, a re also of prim a ry sc ie ntifi c int e res t.
+                                 Th e observed (tec hnica l) jlno rescence pa ra meters F T ( v)_ 77' a nd cpUn more co nce ntra ted so1!!0 Q.1ls
+                           us ually diffe r from th e real param e te rs F ( v ), 7 and cp,.... du e to th e e ffects of se lf-a bso rpti on a nd sec-
+                           ond a ry flu oresce nce. Th e tec hni cal pa ra me te rs a lso de pe nd on th e opt ica l geo me tr y a nd th e excit a ti on
+                            wave le ngth . Th e probl e ms of de te rmining th e rea l para me te rs fro m th e obse rv ed , a nd th e molec ul a r
+                            param ete rs from th e rea l, wi ll be di sc ussed .
+                                 M ethod s are avail a bl e fo r th e acc urate d ete rmin ation of F T (v) a nd 7 T T h e usual me thod of de te r-
+                           minin g cpT involves co mp ari so n with a refe re nce solution R , a lthough a fe w c alo rim etri c and oth e r
+                           a bso lute de te rmin ati ons have bee n made. F or t wo so lutions excit ed und e r id e nti ca l co nditions a nd
+                           o bse rved at norm a l in cid e nce
+
+                                                                                       cpr   JfTCv) dv
+                                                                                              n'
+
+
+                                                                                      cpr" n~ JFJ,CJj)dV
+                           whe re n is th e so lv e nt refr activ e ind ex.
+                                 Two refe re nce so lution s ta ndard s have bee n proposed , quinin e s ulph ate in N H 2 S0 4 whi c h has
+                           no se lf- abso rpti on, and 9,10-diph e nyla nthrace ne in c yclohe xane whi c h has no se lf-qu e nc hing_ Th e
+                           rela tive me ri ts of th ese so luti ons will be disc usse d, a nd poss ible ca ndid ates for a n " id ea l" flu oresce nce
+                           s ta ndard with no se lf- a bsorpti on a nd no se lf-quen c hin g will be con side re d .
+
+                           Key word s: Flu oresce nce life tim e; fluoresce nce qu a ntum effi cie ncy; flu orescence qu a ntum yie ld s;
+                           flu oresce nce spectrum ; flu o resce nce s tand a rd s : molec ular flu orescence param ete rs; observe d (tec h-
+                           nical) flu oresce nce pa ram e te rs; po larizati on; radi ative and non-radi ative tra nsiti o n proba bilities;
+                           real flu orescence pa ra me ters _
+
+
+  *Paper prese nt ed at the W ork shop Se min ar ·S tanda rd izat ion in Spec trop hotometry and
+Luminesce nce \\tl ea surem enl s' hel d at th e Na tional Burea u of S tandards. Ga ithers burg.
+Md., No v. 19-20 . 1975.
+
+
+                                                                                               389
+                                   1. Introduction                                                (vi) Many biological molecules are luminescent.
+                                                                                                These include
+   Most atoms, molecules, polymers and crystals emit
+ultraviolet, visible or infrared photons following exci-                                            (a)   aromatic amino-acids (tryptophan, tyrosine,
+tation of their electronic energy levels. This emission                                                   phenylalanine) in proteins;
+or luminescence is classified according to the mode of                                              (b)   nucleotides (adenine, guanine, uracil, cyto-
+excitation:                                                                                               sine, thymine) in DNA and RNA;
+                                                                                                    (c)   retinyl polyenes in the visual pigments;
+         photoluminescence due to optical (non-ionizing)                                            (d)   chlorophylls and carotenoids in the photo-
+              radiation;                                                                                  synthetic chloroplast; and
+         cathodoluminescence due to cathode rays (elec-                                             (e)   several vitamins and hormones.
+              tron beams);
+         radioluminescence (scintillations) due to ionizing                                     The study of biomolecular luminescence is an important
+              radiation;                                                                        area of biophysical research [5].
+         electro luminescence due to electric fields;                                             (vii) Aliphatic molecules , such as the paraffins and
+         thermoluminescence produced thermally after                                            cyclohexane, once considered to be nonluminescent,
+              prior irradiation by other means;                                                 are now known to emit in the far ultraviolet (- 200 nm)
+         triboluminescence due to frictional and electro-                                       with low quantum yield [6]. This list, which is not ex-
+              static forces;                                                                    haustive, illustrates the wide range of luminescent
+         sonoluminescence due to ultrasonic radiation;                                          materials and their applications.
+         chemiluminescence due to a chemical process,
+              commonly oxidation;             .                                                     2. Luminescence of Aromatic Molecules
+         electro chemiluminescence due to a chemical
+              process, initiated by an electric field; and                                                      2. 1. Radiative transitions
+         bioluminescence due to a biological process,
+              usually enzymatic in origin.                                                          The initial discussion is limited to aromatic molecules
+                                                                                                (i), but it will be later extended to other luminescent
+         Luminescent materials can be divided into several                                      materials (ii)-(vii). Most aromatic molecules have an
+             broad groups.                                                                      even number of 7T-electrons, giving a ground singlet
+                                                                                                electronic state 50 in which the electron s pins are
+   (i) Aromatic molecules constitute the largest group.                                         paired. The excited 7T electronic states of the molecule
+They emit luminescence in the vapour, liquid, polymer                                           are either
+and crystal phases and in fluid and rigid solutions                                                   singlet states: 5 [,5 2 • • • 5 p; or
+[1)1. They are used extensively in organic liquid,                                                    triplet states: T 1 , T2 . . . Tq.
+plastic and crystal scintillators [2], luminescent dyes                                         A spin-allowed radiative transition (luminescence) be-
+and paints, detergent and paper whiteners, lumines-                                             tween two states of the same multiplicity (e.g. 5 I ~ So,
+cent screens, dye lasers, etc.                                                                  Sp ~ 50' Tq ~ Td is called fluorescence (F). A spin-
+   (ii) Many inorganic crystals , including diamond,                                            forbidden radiative transition between two states of
+ruby, alkali halides, zinc sulphide and calcium tung-                                           different multiplicity (e.g. TI ~ 50) is called phosphor-
+state, luminesce efficiently. The emission is usually                                           escence (P). The energy difference between the initial
+from impurity centres (activators) or, in the absence                                           and final electronic state is emitted as a fluorescence
+of such impurities, from crystal defects [2]. Lumines-                                          photon (hv F) or phosphorescence photon (hvp).
+cent inorganic crystals are used as scintillators [2],                                              The fluorescence occurring immediately after the
+luminescent screens, solid-state lasers, jewels, etc.                                           initial excitation of S 1 (or 5 p) is known as prompt
+   (iii) Noble gases (He, Ne, Ar, Kr, Xe) luminesce in                                          fluorescence. In some molecules or molecular systems
+the vapour, liquid, and solid phases and in liquid and                                          there are mechanisms by which 51 (or 5 p ) may become
+solid solutions [2, 3]. They are used in discharge                                              excited subsequent to the initial excitation, resulting
+lamps, gas lasers and scintillators.                                                            in delayed fluorescence. The two principal mechanisms
+   (iv) Many simple inorganic molecules luminesce in                                             are as follows [1].
+the vapour phase [4]. Some, like H 2 , D2 , N 2 , and Hg
+are used in discharge lamps; others, like N 2 , Iz, and                                             (i) Thermal activation of molecules in the lowest
+CO 2 are used in gas lasers.                                                                    triplet state Tlo which is long-lived because the TI ~ So
+   (v) Some inorganic ions , notably those of the rare                                          transition is spin-forbidden, repopulates the fluorescent
+earth elements, are luminescent. They are used as                                               singlet state St, resulting in E-type (eosin-type)
+activators in inorganic crystals (see (ii) above), glasses                                      delayed fluorescence, so called because it occurs in
+and chelates. Applications include inorganic crystal                                            eosin and other dye molecules.
+and glass scintillators and Nd glass lasers.                                                    (ii) Diffusional interaction between pairs of T1-ex-
+                                                                                                cited molecules in solution or Tl excitons in a crystal
+                                                                                                creates singlet-excited molecules by the process
+
+  I   Fi gures in brac kets indi cate the literature references at th e end of this pape r.                                                             (1)
+
+                                                                                              390
+res ulting in P-type (pyrene-type) delayed fluores cence,                            IC             52             IC
+                                                                         5o -,                                               5"I
+so called because it occ urs in pyre ne and other aro -                                                                      ,
+                                                                                ,,
+                                                                                 1
+matic hydrocarbons.                                                                                                          :VR
+                                                                                I         IC                                 I
+                                                                                                    51                       \!II5e
+             2 .2 . Radiationless Transitions                                   :S;
+                                                                                I    1
+                                                                                                                                        ,TI"
+                                                                                1    1                                                  ,1
+                                                                                I,
+  Radiative tra nsiti ons are be twee n electroni c states
+                                                                                1
+                                                                                   ,,1
+                                                                                                                F2                      I
+                                                                                                                                         'VR
+of different e ner gy. In a co mplex molec ul e or crysta l
+there are also radiationless tran sitions be tween differ ent
+                                                                            VR' :VR
+                                                                                                                     So",
+                                                                                                                                 15C    V          TI
+                                                                                                    FI                   I
+electronic states of th e sa me e nergy. T hese isoe ner-                                                                I
+getic radiationless transitions are indu ced by molec ular                                                               1
+                                                                                                                         ,VR                            P
+or crys tal vibrations.                                                              ,,                                  I
+                                                                                                                         I
+   A spin-allowed radiationless transition between two                               1
+                                                                                     1                                   I
+states of the same multipli city is called internal conver-
+sion (IC). A spin-forbidd e n radi a tionless transition
+                                                                               ,,\)t,1
+
+                                                                                                         50    V        V
+                                                                                                                         I
+
+
+be tween two s tates of diffe re nt multipli city is called     F IGURE   1. Schematic diagram of radiative (solid vertical Lines),
+intersystem crossing U5C) .                                        radiationless (wavy horizontal lines), and vibrational relaxat ion
+                                                                   (b roken vertical Lines) transitions between electronic states (so lid
+                                                                   horizontal lines) $" 5" T, and 50 of an a romatic molecule in a
+               2.3 . Vibrational Relaxation                        co ndensed medium.
+                                                                  F = fluoresce nce . P = phos ph orescence. I e = int ernal c onv(' rsion. I SC = intersyst em
+   After the initi al excitation or after an isoe nergetic cross ing. VR = vibrationa l relaxation .
+radiationless tra nsition, th e molec ule is us ually in a
+vibronic s ta te 5 ~ (or Tn       corresponding to a vibra- is forbidden since 52 a nd 5 I hav e th e sa me parity
+tionally-excite d le vel of a partic ular elec troni c state (ungerade) [1].
+Sp (o r Tq). In a co nd e nsed medium (solution, liqui d,        51, from (a), decays by
+polyme r , crys tal) or a hi gh-press ure va pour the excess        (d) 51 ~So fluoresce nce F ,;
+vibrati onal e nergy s~-sg (or T ~- T~) is rapidl y                 (e) ISC to             n, followed by VR to T , ; or
+di ssipated colli s ion ally to th e e nvironme nt leadin g to      (f) IC to             sr, followed by VR to 5 o·
+vibrational relaxation (VR).                                     T " from (e), decays by
+   The di ss ipa tive VR process , whic h is di stin ct from        (g) T, ~So phosphorescence P ; or
+the nondi ssipati ve IC a nd I5C processes, plays a n               (h) ISC to 56', followed by VR to So
+esse ntial role in the thermal eq uilibration of the
+excited molec ules. At norma l temperatures VR is                F , P, IC, a nd ISC are the rate-determining processes,
+rapid ( ~ 1O - '2 -10 - 13 s, depending on the excess sin ce VR is mu c h faster. kA/3 is defined as the rate
+vibrational ene rgy to be di ssipated ) and mu ch faster parameter of the B ~ A process, where B is the initi al
+than IC , ISC, F or P .                                        state and A is th e produ c t radiation (F or P) or final
+   Isolated excited molecules in a low- press ure vapour, state (for IC or I5C) [1]. S ubscripts G=5 T= Tt,
+                                                                                                                         o,
+where VR is inhibited by the low collision rate, beh ave
+                                                               M = 51, and H = 52 indicate the differe nt states.
+in a different mann er than those in th e conde nsed
+phase [6]. In an isolated molecule the fluorescence
+occurs from the vibronic s tate 5 J~ initially excited or                                  5 2 (H)
+from isoenergetic vibronic s tates 5 t, 5: . . . . of                                                    ,1
+lower electronic states populated by Ie. This phenom-
+                                                                                                          : kMH
+e na is called resonance fluorescence. In the condensed
+phase VR brings the excited molecules rapidly into                                        ,
+                                                                                            51 (M)       V
+thermal equilibriu m and all the processes (F , p, IC                                    ,,                      ,,,
+and IS C) occur from an equilibra ted sys te m of                                         1
+                                                                                          1                 k TM :
+ molec ules.
+                                                                       kGH
+                                                                                 1
+                                                                                   k GM : kFM
+                                                                                               1
+                                                                                                     kFH        V T, (T)
+                                                                                 1             1
+      2 .4. Photophysical Processes and Parameters                                             1
+                                                                                               I                                   ,
+Figure 1 s hows schemati cally th e photophysical                                                                             k GT ,:       k pT
+processes th at can occ ur in an aro mati c molecular
+                                                                                 1
+                                                                                               ,                                   ,
+sys tem in very dilute solution ( ~ 10 - 6 M) following
+excita tion into 5 2.
+                                                                                V              ~                   50 (G)
+                                                                                                                                   V
+  52 decays by
+                                                                         2. Rate parameters of radiative transitions (so lid vertical
+      (a) IC to st, follow ed by VR to 51;
+                                                                FI GURE
+                                                                  lines) and radiationless plus vibrational relaxation transitions
+      (b) IC to 5 0*** , followed by VR to So; or                 (broken vertical Lines) between electronic states (solid horizontal
+      (c) 52 ~ So fluorescence F 2 •                              lines) 5" 5 I , T I, and 50 of an aromatic molecule in a co ndensed
+                                                                  medium.
+52 ~ 51 fluorescence, whic h could potentially occur,             Th e notation of th e stat es. radiat io ns and rate parameters is indi cated.
+
+
+                                                            391
+Figure 2 shows the rate parameters corresponding to                                                                       (3a)
+the processes of figure 1. In the rate parameter
+des cription the VR subsequent to each IC or 15C is                                                                       (4a)
+omitted, but the distinction between the isoenergetic
+radiationless transitions and the vibrational relaxation         respectively, where 711 , 7.(1 and Tr are the 52, 51 and
+should not be overlooked.                                        TI lifetimes in a solution of molar concentration c. An
+  The 52, 5 I and TI decay parameters are given by               exact treatment also considers the rate parameters of
+                                                                 the excimers produced by the concentration quench-
+              kll = kVII + k.\f/I + k(;H = I/TH            (2)   ing and their dissociation [1], but the Stern-Volmer
+                                                                 approximation of (2a)-(4a) is adequate for the present
+                                                           (3)   discussion.
+                                                                    The quantum yield 1> of any photophysical process
+                                                           (4)   in a solution of concentration c is defined in the same
+                                                                 manner as the quantum efficiency, except that the
+where T f/ , TM and Tr are the 52, 51 and Tl lifetimes,          limitation to very dilute solutions is removed. The
+respectively.                                                    52 -'; 50 and 5 1-'; 50 fluorescence quantum yields are ,
+  The quantum efficiency q.·I/J of any photophysical             res pecti vely
+process, rate kAII , from an excited state B is defined
+as the fraction of the excited molecules in B that                                                                        (12)
+decay by that process, so that
+
+                                                           (5)
+The 52 -'; 50 and 5 1-'; 50 fluorescence quantum efficien-
+cies are, respectively.
+                                                                 and the TI -'; 50 phosphorescence quantum yield is
+                                                           (6)
+                                                                                                               qp'!'
+                                                                                                                          (14)
+                                                           (7)                                              1 + K c'!'c
+
+the TI -'; 50 phosphorescence quantum efficiency is
+                                                                 The parameters K e H (= kCfdk/f), K c .I/ (= kC.\llkJld
+                                                                 and Kcr(kc'!'/ k r ) are the 5tern-Volmer coefficients of
+                                                           (8)
+                                                                 concentration quenching of 52, 51 and T 1 , res pectively.
+                                                                   The 52 -'; 5 t internal conversion ~quantum yield is
+the 52 -'; 5 t internal conversion quantum efficiency is
+                                                                                              kWf/
+                                                                               1>.\1 f/ = _-,c:..:.:...._      q.\1/1
+                                                           (9)                                                            (15)
+                                                                                         kl/ + kCHc         1 + K cllc
+                  t
+and the 5 I - ' ; T and T I - ' ; 5 0* intersystem crossmg
+                                                                 and the 5 1-'; Tt and TI -'; 5 oT- intersystem crossing
+quantum efficiencies are, res pectively,                         quantum yields are, respectively ,
+                                                       (10)
+                                                                                                                          (16)
+                                                       (11)
+
+  The rate parameters (fig. 2), the decay parameters                                                                      (17)
+and lifetimes (2)-(4), and the quantum efficiencies                                                         I+KC'J'c
+(5)-(11) are molecular parameters. They refer to very
+dilute ( ~ 10 - 6M) solutions, containing no dissolved              The above expressions for quantum e fficiencies and
+oxygen or other impurity quenchers.                              yields all refer to direct excitation of the state from
+   An increase in the solution molar concentration c             which the process occurs, and they require revision
+does not change the unimolecular rate parameters,                when the state is not excited directly. Thus for excita-
+but it introduces bimolecular processes due to inter-            tion into 52 , the 5 I - ' ; So fluorescence quantum yield
+                                                                 IS
+actions between excited molecules in 52, 51 or TI and
+unexcited molecules in 50, producing concentration
+quenchi ng. To a first approximation the 52, 51 and TI                                                                    (18)
+concentration qu enching rates may be expressed as
+kCf/c, k c.\Ic and kcrc, and the 52, 51 and TI decay             For excitation into 5 I , the TI -'; 50 phosphorescence
+parameters become                                                quantum yield is
+
+                                                       (2a)                                                               (19)
+
+                                                             392
+           2.5. Vavilov's Law and Kasha's Rules                      tion in the 5 ~ -750 fluorescence spectrum. In the
+                                                                     va pour (voo) F co incides with (VOO) A, the corresponding
+  It is commonly assumed that cPMH = 1.0 for 5 2-7 5~                5 g-7 5 \1 0-0 absorption transition. In solution, due to
+IC and that cP= 1 for IC between higher e xc ited states             so lve nt polariza tion effec ts
+within th e singlet (5 p ) manifold, so th a t cPFM is ind e pe n·
+de nt of the excitation wavele ngth Aex up to the ioniza·
+tion potential. This as sumption , known as VaviLov's                                   (VOO) II - (voo),..= ~ voo             (20)
+Law, has been confirm ed for ma ny co mpound s in solu·
+tion. Major d e viations from Vavilov' s law hav e, how ·            wh er e ~voo vari es from 0 to a few hundred c m- I de-
+e ve r, bee n observed for solutions of be nzene, tolu ene,          pe ndin g on the solve nt [1). In be nze ne the 0-0 fluores-
+p·xylene, mesityle ne, fluorob e nze ne, naphthalen e,               cence and absorption transitions are sy mm e try-forbid -
+2·methylnaphthale ne, 1,6·dim ethylnaphthalen e [1],                 den and they are absent from the vapour spectra. Th ey
+tryptophan, tyrosine and phenylalanin e [7]. In each                 appear as weak solve nt-indu ced bands (the Ham band s)
+case it is observed that cP;'!MlcPF.ll = cPMH < 1. In be nzen e      in solution spectra, th e intensity de pe ndin g on th e
+                                                                     solvent [1].
+and its derivatives and possibly in the other co m·
+pounds, th e effect is due to efficie nt 5 2-7 5;** IC                   At low te mpe ratures th e 51-750 (=5?-750)
+ (k CH ) co m petin g with 5 2 -7 5 ~ IC (k MH ) [8]. In fluores·    fluoresce nce spectrum F.II (jj) co nsists of a co m pl ex
+ce nce quantum yield meas ure me nts it is esse ntial                seri es of a fe w hundred narrow lin es of diffe re nt
+e ithe r to verify th a t Vavilov's law applies, or to limit         inte ns iti es, which may be analysed into progress ion s
+the excitation to the region of th e 50 -75 I absorption             a nd co mbination s of th e diffe re nt vibrational modes
+s pec trum .                                                         of the un excited molecul e. Wh e n th e te mpe rature is
+    Kasha 's ruLes [9] , a noth er well· known ge ne ralizati o n,   in cr eased , th erm al broade nin g a nd solv e nt-so lute
+state that in a co mpl ex molec ule lumin esce nce occ urs            interac tion s obscure most of th e vibrational s tru c ture.
+only from the lowes t excited state of a giv en multi·               At room te mpe rature F.\1 (jj) com monl y cons is ts of a
+pli city, i. e., 5 1-750 fluoresce nce a nd TI -750 ph os·           few pro min e nt broad ba nd s with little oth er stru c ture.
+phorescence. For ma n y years azule ne and its de riva·              Thu s F.\ / (jj) for a nthrace ne in cyclohexa ne soluti on
+tives, whi c h e mit 52 -7 50 flu oresce nce and negli gibl e        co ns ists of a progression of 5 broad bands, s pa ce d
+5 1-7 5 0 fluoresce nce, we re th e main exception s to              abo ut 1400 c m- I apart , corres pondin g to CC vibra-
+Kash a's rul es. Rece ntl y th e pi cture has c ha nged              ti onal modes . Simil a r vibration al progression s occ ur
+d ram a ti call y.                                                   in F\I (/J) [or oth e r co nd e nsed hydrocarbon s [1). For
+    In addition to th e norm al 5 I -750 flu orescence, weak         large molec ul es, e.g., dyes, with man y degrees of
+52 -7 50 fluoresce nce has bee n observed in be nze ne,               vibrat iona l a nd/or rotational freedom, FII (jj) at roo m
+tolu e ne, p-xylene, mesit yle ne, nap hth ale ne, pyrene,           te mpe rature ofte n co nsis ts of a s in gle broad ba nd with
+1 : 2-benzanthracene, 3:4- be nzopyre ne, 1: 12- be nzo-              no vibrati onal stru cture. Berlman [1 2) has recorded
+ peryle ne a nd ovalene, weak 53 -7 50 flu oresce nce has             th e fluoresce nce s pectra of ma ny aromatic molec ul es.
+bee n observed in p -xyle ne, mesit ylen e, naphth ale ne,               Th e solve nt has a s tro ng influ e nce on F\I (jj) a t
+ pyre ne and l:2-benzanthracene, and wea k 54 -7 50                   roo m te mpe rature. In a polar so lv e nt like e than ol th e
+ fluorescence has been observed in pyrene and fluoran -               vibratio nal bands are broad a nd poorly resolved, a nd
+ the ne [6, 10].                                                      th e separa ti on ~ jjoo between th e absor pti on a nd
+    Such fluoresce nce from hi gher e xcited s tates was              fluoresce nce 0-0 bands is re la tiv ely large . In a non-
+ predi c ted by th e a uthor in 1954 [I1J. Its detec tion is          polar aliphati c hydrocarbon solve nt , lik e cyclo hexa ne
+diffic ult, sin ce it occ urs in the region of the 50 -7 5 p         or n-hexane, the spec tra l reso luti o n is improved a nd
+                                                                     ~jjoo is redu ced. In a fluorocarbo n solve nt , lik e pe r-
+a bsorption spectrum, a nd its quantu m yield is only
+ - 10 - 5 cPFA'/ [6]. Subsequent attention will be focus ed           fluoro-n-h exan e (PFH) , eac h of th e vibrational band s
+on the main 5 I -750 fluoresce nce.                                   has a well-re solved fin e structure, s imilar to that in
+                                                                     th e vapour phase , and ~jjoo = O [13]. PFH is an ideal
+                2. 6 . The Fluorescence Spectru m                    s pectrosc.opic solvent, apart from cos t and the low
+                                                                     solubility of aromatic molecul es in PFH.
+   The 51 -750 flu oresce nce s pectrum occurs from a                    At temperatures above about -100 °C th e " hot"
+sys tem of 5 I excited molecules in thermal equilibrium              vibrationally·excited 51 molecules with a Boltzmann
+in solution. The frac tion of th ese molec ules with vibra-          di stribution of e nergies 51" (=5?+ ]f:v) also contribute
+tional e nergy E v is proportional to exp (- E vi kT) ,               to FM(f/). Each component 5r -7 50 spectrum is similar
+wh e re k is Boltzmann's co nsta nt and T is the a bsolute           to th e 5?-750 s pectrum, exce pt that it is s hifted by
+te mp erature . A large majorit y are in the zero point              a n a mount ED towards hi gher e nergies, and its in-
+le vel 5?, a nd to a firs t a pproxima tion th e fluoresce nce of    tensity is proportional to exp (- E,.//rT) . Most of th e
+the " hot" molec ules ca n be di s regarded.                         5t-750 spectral distribution li es below th e 5?-75 0
+   The 5~ -7 5 0 flu oresce nce occurs into 5g, the zero-            s pec trum and is o bsc ured th e re by. H owever, each
+point level of 50, a nd into th e many vibrational le vels           co mpone nt 5t-750 s pectrum ex te nd s beyo nd /Joo to
+of 50. Th e 5~ -7 5g transitio n, or 0-0 fluorescence transi-        jjoo+ E v, givin g ri se to hot fluorescence bands, th e
+tion , of wavenumbe r (VOO)F is the highest e ne rgy transi-         inte nsit y and extent of whi c h in crease with te mpera-
+
+                                                                 393
+ture. These hot fluorescence bands, which are an                    reciprocal of the average value of ii - 3 over the fluores-
+integral p'art of the 5, ~ 50 fluorescence spectrum                 cence spectrum, E (ii) is the decadic molar extinction
+FM (ii) at room temperature, occur in all aromatic                  coefficient, and the integral is taken over the 50 ~ 5\
+molecules, although they are not often recorded. The                absorption spectrum. Relation (23) has been tested for
+emission bands are in the same region as the 50 ~ 5,                a number of molecules, and excellent agreement be-
+absorption, and special care is needed to observe                   tween kFM and k}'M has been obtained for several
+them [6].                                                           molecules in different laboratories [1, 12, 16, 17, 18].
+                                                                    Such molecules may be useful as fluorescence
+                 2.7. The rate parameters                           standards.
+  Observations of qFJ! and TM for a very dilute solution
+                                                                      If the solvent optical dispersion is small nF = nA =
+enable                                                              n, and (23) can be simplified to
+                                                    (21)
+                                                                                                                            (24)
+
+                                                                     where (k~M)O is a molecular constant, independent of
+to be determined. Birks and Munro [14] have reviewed                 the solvent and the temperature. Relation (24) has been
+methods of measuring TM. Observations of qTM                         verified for several solutes in different solvents over
+(= knrl k\l ), by one of the several methods described               a wide temperature range [19].
+by Wilkinson [15] , enable k T .I ! and k r;\1 to be evaluated.         In some molecules there are large dis cre pancies
+The measurement of q!'T and TT permits kp-r and kG?'                 between kFM and k~M' A detailed study of these anoma-
+to be determined [1]. Thus measurements of five                      lies has revealed the presence of electronic states not
+quantities qF.\I, T.\I, qn-J, qPT and T1' are required to            observed spectroscopically [20, 21]. The nature and
+determine the five 5, and T, unimolecular rate param-                origin of such radiative lifetime anomalies are dis-
+eters kpM , krM ' k(;M, kP'/' and kG7,.                              c ussed elsewhere [22]. The factors determining the
+   Observations of T~-J and T~ (or CPFM and CPPT) as a               other 5 \ and T\ rate parameters kTM' kCM' kPT and kCT
+function of the molar concentration c enable the                     have been considered previously [1, 6, 8].
+bimolecular rate parameters kCM and kCT to be de-
+termined. The observations and analysis may be ex-                             2.9. Molecular Fluorescence Parameters
+tended further to obtain the fluorescence (k FD ), I5C
+ (k TD ), IC (kCD) and dissociation (k MD ) rate parameters            The 51 ~ 50 fluorescenc e of an aromatic compound
+of the singlet excimer [1]. This involves observations               in very dilute solution is characterized by the follow-
+of the molecular (cpFM) and excimer (CPFD) fluores-                  ing molecular parameters.
+cence quantum yields of concentrated solutions.
+   It is the rate parameters and .their dependence on                    (a)   The fluorescence spectrum FM (ii) depends
+temperature, solvent, substitution etc. that are the                           on the solvent and temperature (see 2.6).
+quantities of interest to the photophysicist and photo-                  (b) The fluorescence polarization PM depends
+chemist, and not the properties from which they are                           on the direction of the transition dipole
+derived. The latter may be of technical interest for                          moment relative to the molecular axes. For
+particular applications. Of the three quantities qFM,                         a 1T* I ~ 1T electronic transition this lies in the
+TM and q1'M required to determine the 5, rate pa-                             molecular plane along one of two orthogonal
+rameters kFA-J, k1'M and kCM' the published values of                         axes depending on the symmetry of 5 \. For
+qFM (or CPn-J, which is often implicitly equated to                           naphthalene the fluorescence is long-axis
+qEM) show the largest scatter. When the solution                              polarized; for anthracene it is short-axis
+concentration C is increased, self-absorption effects                         polarized [1].
+introduce difficulties in the determination of CPFM. It                  (c) The fluorescence rate parameter kFM is pro-
+is hoped that this paper will help to improve the                             portional to the square of the transition dipole
+situation.                                                                    moment [1]. In the absence of any anomalies
+                                                                             'kFM /n 2 is independent of the solvent and
+                                                                              temperature (24).
+            2.8. The Fluorescence Rate Parameter                         (d) The 5 \ radiationless rate parameter kiM (= knl
+                                                                             + k CM) describes the processes competing
+   A theoretical expression for knl has been derived                          with the fluorescence. kIM usually depends
+from the Einstein radiation relation using the zero-order                     markedly on the solvent and on the tempera-
+Born-Oppenheimer approximation [16, 17]                                       ture [1].
+
+          ktFM =2 . 88x 10- 9 -n~ (v- F- 3 ) -Av\   J
+                                                    E(v)dv
+                                                    -- -     (23)
+                                                                       FM (ii) and PM can be observed directly. The
+                                  nA                    v            evaluation of kFM and kIM involves measurements of
+                                                                     two secondary parameters:
+where np and nA are the mean refractive indices of the
+solvent over the 5, ~ 50 fluorescence and 50 ~ 5,                        (e)    The fluorescence lifetime TM; and
+absorption spectra, respectively, (v -f) -iv is the                      (f)    the fluorescence quantum efficiency q FM.
+
+
+                                                               394
+Several accurate me thods are available for meas uring                              The inorganic luminescence terminology predates
+7M[14]. Reli a ble methods are a vailable for meas uring                         the di scovery of electron spin, and it has not been
+qPM, but they are often used in correctly [23].                                  adju sted to take account of this. Because of spin,
+  The molec ular fluorescence para me ters FM (Ii) ,                             processes l ea) a nd l (b) differ in lifetime by a factor of
+PM, k pM and kI M are !ndepe nde nt of the molar co n-                           up to lOS , a nd it would see m a ppropriate to di stinguish
+ce ntration c. The secondary flu ores ce nce param e ters                        th e m. In 1933 Jablon s ki [24] , the ori gi nator of figure
+7M and <PPM decrease with in crease in c due to                                  1, s howed that th e two slow e mi ssion s l (b) and l (c)
+     (g) th e co nce ntration que nc hin g r ate para me ter                     observ ed in organi c d yes ori ginated from a common
+             k CM.
+                                                                                 me tas ta bl e sta te X, a nd he proposed th a t th e y be
+                                                                                 called j3-phos ph orescence and a -ph os ph oresce nce,
+k CM, whic h de pe nd s markedl y on the solve nt ,viscosity                     res pectively. Sin ce 1944 when Le wi s a nd Kas ha [25]
+and the te mpera ture" is a lfurth er mol ec ul a r para me ter                  de monstrated that X = T1 , th e lowes t excited tri ple t
+of photophysical inte rest.           .                                          s tate, l (b) has bee n called simpl y ph os ph oresce nce,
+                                                                                 while l (c) which has th e sam e e mi ssion spectrum as
+            3. Other Luminescent Materials                                       lea) is called E-type delayed fluoresce nce.
+                                                                                    Standardization of lumin escence te rminology is
+    The precedin g disc ussion of the luminescence of                            long overdu e. Those res ponsible for organizin g inter-
+aromatic molec ules is a pplicable to th e other lumines-                        na tional luminesce nce co nfere nces and publishin g
+ce nt ma terials considered in the Introducti on. It                             lumin escence journ als ha ve unfortu nately neglec te d
+a ppli es directly to bi ological molec ules (vi) and aliphatic                  to formula te a scie ntific la nguage co mm on to workers
+organic molec ul es (vii). Noble gases (iii) also have                           in organic a nd inorgani c luminesce nce. P e rhaps the '
+sin gle t ground states, and the re are close analogies                          Nation al Bureau of Standards ca n assist in th e matte r.
+be tween the m a nd th e aroma ti c hydrocarbon s, par-
+ti c ularly in excim er fo rm ation [3]. The re are no radi a-                              4. Fluorescence Measurements
+tionless tra nsitions in th e noble gases (qF!v1 = qFfI = l.0 )
+because of th e abse nce of inte rnal vibra tions. They                                           4 . 1. Fluorescence Spectra
+form excim ers in th e vapour, li quid , a nd solid phases,
+and th e vibra tional modes of these may generate radi a-                           A tru e (correc ted) flu orescence s pec trum is plotte d
+tionless tra nsitions a nd vibra ti onal relaxation in th e                      as th e relative quantum inte nsity F MCfJ) (relative num -
+co nd e nsed ph ase [3]-                                                         ber of qu a nta per unit wa ve-number inte rval) again st
+    Sim ple in orga nic molec ules (iv) are similar. Th ey                       wa ve number v. A fe w spec trome ters ha ve been de-
+norm ally have sin glet groun d s ta tes a nd exc ited sin glet                  veloped whic h record directly the tru e flu oresce nce
+and triplet sta tes. Although they ha ve inte rnal vibra-                        spectrum . Th e majority provide spec tra whi c h require
+tions, the vibroni c s tate de nsity is low, and there are                       correction for the di s persion of the an alyzin g mono-
+normally no r adiationless transitions exce pt at hi gh
+                                                                                 c hro ma tor , th e s pec tral res ponse of th e ph otom ulti -
+excitation energies. where predi ssocia tion may occur
+                                                                                 plie r or de tec tor, a nd a ny li ght losses. Thi s involves th e
+[4].
+                                                                                 pre paration of a n instrumental calibratio n curve, b y
+    The luminescence of in organic c r ys tals (ii) and in -
+                                                                                 meas ure me nts
+organic ions (v) in a solid ma trix is closely related to
+that of aromatic molecul ar cr ystals. Unfortuna tely                                 (a)   with a calibrated la mp th ro ugh a ne utral
+th ere are major te rmin ological differen ces betwee n                                     filt er ;
+in organic cr ystal ph oto physics and orf;anic molec ular                            (b)   with a thermopile or bolome ter ;
+crystal photo ph ysics. T able 1 is base d on a brief                                 (c)   of refere nce solution fluorescence s pectra
+survey of the in organic luminesce nce literature, and                                      [26]; or
+may require re vi sion in th e light of any recent c hanges_                          (d)   with a fluorescent quantum counter.
+          TABLE 1.      Terminology 0/ photophysical processes                      A quantum counter is a system whi c h has a co ns ta nt
+                                                                                 flu orescen ce quantum yield over a broad s pectral
+           P rocess                         Organi c             In organi c     range. To achie ve this it should have a hi gh and
+1. Lumin esce nce,
+                                                                                 relatively co nstant abs orption over the s pectral ra nge
+  (a) spin-allowed                 Fluo resce nce ( F )        Fluorescence      of inte rest , it should have negligible self- a bsorption (no
+  (b) spin-forbidde n              Ph os ph oresce nce (P )    Fluoresce nce     ov erlap of fluorescence and absor pti on s pectrum),
+  (c) th ermall y- activated       E· t ype delayed            Ph os phores·     it s hould obey Vavilov 's law, and it s hould be stable
+      delayed                         flu oresce nce             ce nce
+2. Rad iationless tra ns iti o n                                                 photoc he mically. Sys te ms commonly use d as quantum
+  (a) spin·all owed                Inte rn a l co nversion                       counte rs include:
+                                     (lC)                                              (i)    3 gl - I Rh oda min e B in e th yle ne glycol
+  (b) spin·fo rbidd en             I nt ersys tem c ros sing
+                                     (lSC)                                                    (2 10-530 nm) ,
+3. Vibrational relaxati on         Vibrati onal relaxa-                                (ii) 4 gl - I quinin e s ulph ate in N H 2 S0 4 (220-340
+                                     ti on (VR )                                              nm), and
+4. Rad iationl ess tra nsi·        IC (o r ISC) an d VR        Multi phonon            (iii) ,1O - 2 M I -dime th yla minona phth ale ne 5-(or 7-)
+     ti on plu s vibrational                                    process
+     relaxati on                                                                              sodium s ulph onate in 0.1 N Na 2C0 3 (2 10 -
+                                                                                              400 nm).
+                                                                               395
+An extension of this list would be advantageous.                  dete rmination s of 4>1'.11 are difficult and uncommon,
+    Three commo n optical geometri es are used in fluor·          and it is normal practice to measure 4>rll by comparison
+escence measurements;                                             with a standard of known fluoresc e nce quantum yield
+       (a) front·surface or reflection geo metry, in whi c h      4>TII' If Ffl (v) and FH v) are th e corrected fluores -
+            the fluorescence from the irradia ted sur-            cence spectra of the s pecimen and standard , respect-
+            face of the specimen is observed;                     ively, excited under ide ntical co ndition s (same exci-
+       (b) 90° geometry, in which the fluores cence is            tation wavelength, optical density and geom etry) and
+            observed in a direction normal to the incident        observed at normaL incidence in reflection , then
+             beam ; and
+                                                                                              n" { ' FX~(v)dv
+       (c) transmission geo metry, in which th e fluores-
+            ce nce is observed from the opposite side of                            4>{M
+            the speciment to the excitation.                                                                             (25)
+For very dilute solution s (- 10 -6M) the three geo me-                            4>1'FR    n~ 10'" FJ; (v)dv
+tries give the sa me fluorescence spectrum, quantum
+efficiency and lifetime. The 90° geo metry, used by Birks
+and Dyson [17] and others. has th e advantage of                  where nand nR are the refractive indices of the speci-
+minimizing bac kground incide nt light and of allowing            men solution and th e standard solution, respectively.
+th e fraction of in cident light absorbed in the s pecime n       The integrations are often made using a quantum
+to be monitored directly.                                         co UTi ter [28].
+    An in c rease in the soluti on conce ntration c redu ces         The refractiv e index te rm is a corre ction for the
+qf.'M and T.l1 to 4>1',11 and T.1/ , respectively, du e to con-
+                                                                  solution optical geometry. The angular dependence of
+ce ntration quenching. It also attenuates the hi gh-              the fluor escence flux F (4)) from a s mall iso tropically
+e ne rgy regio n of F.II Cv) due to self-absorption arising       e mitting source be hind an infinite plane surface in a
+from th e overlap of th e absorption and fluoresce nce            medium of refractive index n is
+spectra. As c is inc reased th e inte nsity of the 0-0
+fluore sce nce band decreases toward s zero du e to its                    F(4)) = Fo( cos 4»n - 1 (n 2 - sin"4» - 1/2   (26)
+overlap with th e 0-0 absorption band. At room te m-
+perature and hi gh c th e self-ab sorption may exte nd to         where Fo is a constant (cr:4>FII) and F(4)) is the flux
+the 0-1 and 0-2 fluoresce nce bands, whic h overlap               (i n quanta c m " s - I) falling on a small aperture at an
+the 1-0 and 2-0 hot absorption band s, du e to thermally          angle 4> from th e normal to th e fac e. For 4> = 0° (26)
+activated molec ul es in the fir st and seco nd vibrational       reduces to
+levels of So. Th ese self·a bsorption effects are a max-
+imum in the tran s mi ssion geometry (c), so mewhat                                         F (O)=Fo /n"                 (27)
+reduced in the 90° geo me try (b), and th ey are leas t in
+th e re fl ection geometry (a), whic h is normally used           leadi ng to (25). Relation (26) has been verified by
+for fluoresce nce studies of more co nce ntrated solution s.      Melhuish [29] who recomme nded th e use of c uve ttes
+    The effect of self-ab sorption on F.l1 (v) observed in        with blackened back and sides for fluoresce nce yield
+re flection can be minimize d by Berlman's technique              measurements to minimize internal reflection errors.
+[12] of excitation at an inten se absorption maximum ,                Shinitzky [30] has pointed out a further potential
+th e re by minimizin g th e penetration depth d ex of th e        so urce of error in flu orescence quantum yield and
+exciting li ght. This tec hniqu e does not , how ever,            lifetime measure ments. Whe n a fluorescent system is
+co mp e nsate for the secondar y fluorescence produced            excited by un polarized light and its emission is de-
+by th e self-absorption and which modifies 4>1'.11 and            tected without a polarizer, the e mission intensity has
+T,\! , as disc ussed below.
+                                                                  a typi cal anisotropic distribution whic h is directly
+                                                                  related to its degree of polarization. This effect can
+            4 .2 . Fluorescence Quantum Yields                    introduce an error of up to 20 percent in all fluores-
+                                                                  cen ce quantum yield and life time measurements, but
+    Absolute determinations of fluorescence quantum               it is eliminated when the fluorescence is d etected at
+yields have been made using integrating sp heres to               an angle of 55 ° or 125 ° to tl-.e direction of excitation,
+collect th e fluorescence emission over a full 47T solid          provided that the emission detection syste m is un-
+a ngle, by calorime try to distin guish radiative proces ses      biased with respect to polarization. Procedures for
+from radiati onless processes and vibrational relaxa-             the eliminati on of polarization errors for partially
+ti on, by actinometry to integrate light inte ns ities            polarized excitation an d biased detection systems
+photochemically, and by polarization and scatteri ng              were developed by Cehelnik, Mielen z. and Velapoldi
+measurements. These meth ods have been reviewed                   [31] and Mielenz. Cehelnik. and McKenzie r3n
+by Lipsett [27] a nd Demas and Crosby [28].                           If n and nil differ, it is reco mm ended that the speci-
+    The su perscript T is introduced to refer to the              men and reference solutions be excited at 55° in ci-
+observed (technical) fluorescence parameters FII (v),             dence angle and observed at normal incide nce, to
+4>{,11 and Ti~ , whi c h may diffe r from the true fluores -      eliminate th e polarization effect and simplify the refrac-
+ce nce parameters F.II (v), 4>1'.11 and T.\I, due to self-        ti ve index correction. The latter correction disappears
+absorption and secondary fluorescence. Absolute                   if n = nil, and the excitation and front-face observation
+                                                              396
+direction s need o nly diffe r by 5S 0. Th e angles of in ci-
+de nce and " re flec tion " s hould diffe r to minimize
+scatter ed li ght.
+   Th e self-ab sorpti on attenuates th e hi gh-e nergy e nd              T
+of FI/ (v), but it does not affect th e low-e ne rg y e nd.            <P FM
+If FI/ (v) , observ ed in ve ry dilute s olution, and F:(~ (v ),
+observed at molar conce ntrati on c, a re normalized in
+th e low-ene rgy region , th e n th e param e te r
+
+                             a = A .\I - Arl
+                                          .                    (28)    <PFM
+                                         A .\1
+wh e re
+
+
+                       J:
+                   A .\1 =            F\/( ii) dii             (29)                                                            c (M )
+
+
+                                                                                      F I GU I1 E: 3. 9,1O· diphenylanthracene in benzene.
+
+                   A~~ f'F;{~ (v)
+                        =                        di/           (30)      Front -s udace uh se rva ti on al A"x = 365 11m . Tec h ni cal fiu or c scc llCt' q uan tum yield cb~"
+                                                                       (+) and true flu o rescence quantum yie ld CPf·.\f (0) aga in s t mola r co nce ntratio n c. Data
+                                  o                                    from Mclhu ish 1361.
+
+
+re prese nts th e sel/abso rption probability. Thi s normal-
+izati on procedure, introdu ced for anthrace ne cr ystal               th e wh ole ra nge of c, thu s de mons tra tin g th at DPA is
+fluoresce nce [33], has been appli ed by Birks a nd Christ-            immun e to co nce ntrati on qu e nc hin g [36].
+oph oro u [34] to co nce ntrated so lutions of aromati c                   Th e seco nd a r y flu oresce nce co ntributi on to ¢rll
+hydrocarbons. S ub s tituti on of A .\1 in pl ace of A ;C in           in creases with dec rease in th e exc itati on pe ne trati o n
+(25) giv es ¢FM in place of (Pr- It For ma te rials of low             depth dex . Be rlm a n's [12] c hoice of a n inte nse a bso rp-
+¢F .\1 « 0. 3), th e lin ear S te rn -Vo lm e r plots of qF.It/¢ F\I   ti on band for exc itation P."cx=265 nm for DPA ) mini -
+again st c of gradi e nt K CM (13) co nfirm th e validity of           mizes d ex ' Thi s minimizes th e effec t of self- abso rption
+th e procedure, whi ch co rres po nd s to ass umin g                   o n FII (ii), but it also maximi zes th e effect of seco ndary
+                                                                       flu o resce nce o n ¢r.\I ' T o redu ce th e la lle r, a weak
+                                                               (3 1)   a bso rpti on region s ho uld be c hose n for exc ita ti on , a nd
+                                                                       c s hould be ke pt as low as possibl e.
+  This relation neglec ts the secondary fluorescence                       T o s umm ari ze, th ere a re no particular proble ms in
+res ultin g from the self-ab sorption . Allowing for thi s,            de terminin g ¢n.'1 for (a) ve r y dilute solu tion s (b) more
+the author [11,35] has s how n th a t                                  co nce ntrated olution s observ ed in th e tra ns mi ss ion
+                                                                       o r 90 ° geo metries, a nd (c) more co ncentrated soluti ons
+                      "'1' = (1- a)¢FM                         (32)    of ¢FAI < - 0.3 observed in the re fl ec tion geo metry.
+                      '1-'1'.1/        1 - a¢/.'JI                     Th e effects of self-abso rptio n and seco ndary fluores-
+                                                                       ce nce are, however, diffi c ult to co mpen sate in co nce n-
+which approximates to (31) wh e n a¢F\I «i 1, and that                 trated solutions of hi gh ¢VM observ ed in th e re fl ectio n
+                                                                       geometry. On e simple solution is to a ba nd o n the re-
+                                                               (33)    fl ection geome try and to observe su c h s ystems in th e
+                                                                       more tractable transmission geo metry. The alternative
+                                                                       is to utilize one of the numerous mathematical rela-
+Relation (33) is co nsid ered to be ge ne rally valid.                 tions, some simple [11, 35], some co mplex [27, 36],
+R elation (32) is co nsid e red to be valid for th e tran s-           which have been developed to describe self-absorption
+mission and 90° geo metries. It is also valid for th e                 and secondary fluorescen ce.
+refl ection geo metry , exce pt for s pecime ns of hi gh ¢F.41.
+Unde r the latte r condition s the seco ndary flu oresce nce
+                                                                           4.3. Fluorescence Standards
+contributes ma rkedl y to the observed flu oresce nce
+inte n sity, so that ¢Tu> ¢F.\1 in re fl ection , although
+                                                                 Melhuish [36] proposed the use of a S X 10 - 3M solu -
+¢Tu< ¢v.\1 in tran s mi ss ion as predi c ted by (32). Figure tion of quinine bisulphate (QS) in I N s ulphuri c acid
+3 plots Melhui s h' s observati ons [36] of ¢f.MaS a func- as a fluoresce nce standard. From carefu l meas ure-
+tio n of c for 9,l 0-diphe nylanthrace ne (DPA) in be nzene me nts he obtain ed ¢FM = 0.5 10 for c= S X 10 - :JM in-
+solution , excited at 366 nm with front-face o bserva- creasin g to qFM= 0.546 at infinite dilution at 2S                                                              0c.
+tion. Due to seco ndary flu oresce nce ¢f.M in creases The value of ¢f'M at any other co nce ntration can be
+from qFM = 0 .83 in very dilute solutio n t o ¢LF 1.0 at e valu ated using the Stern-Volmer relatio n (13). Th e
+c"'" 1.S X 10- 3M. Co rrection for self-ab sorption and QS solution is s ta ble und er prolo nge d irradi a tion , its
+seco ndar y flu oresce nce, usin g a mu c h more co mpl ex flu orescence is not qu e nc hed by di ssolved air (unlik e
+relatio n than (32), showed that ¢f' A/ = 0 .83 ± 0.02 over mos t aromati c molec ules), and it has a vel)' s mall over·
+                                                                   397
+lap of th e absorption and fluorescence spectra. It                                 yield of ¢T.\1 = 1.0, due to self-absorption and secondary
+s uffers from three minor disadvantages:                                            fluorescence, although the true fluorescence quantum
+                                                                                    yield is ¢VM= q" ',lr= 0_83 (± 0.02) (fig. 3). Relation (25)
+     (a)     concentration quenching;                                               requires that the specimen and standard be compared
+     (b)     the temperature coefficient of ¢FM is about                            under identical conditions of excitation and optical
+             -0.25 percent per degree over the range 10°                            density, so that the 1O- 3M DP A solution standard is
+             to 40° C; and                                                          only suitable for observations of ¢JM on concentrated
+     (c)     sulphuric acid is not a conventional solvent                           solution s in reflection geometry. The QS standard is
+             for aromatic molecules and this necessitates                           more versatile since it does not limit the specimen
+             using the refractive index correction in (25).                         concentration or optical geometry.
+                                                                                       Berlman [12] observed TIl with heterochromatic
+   Nevertheless the QS standard, and various secondary                              excitation and nl (jj) with monochromatic excitation
+standards derived therefrom, have been adopted in                                   (these parameters need to be observed under identical
+this and many other laboratories [28, 37]. Quinine is                               conditions for (32) and (33) to be applicable [35]). He
+the fluorescent entity, and the use of quinine sulphate
+                                                                                   e valuated ¢TM by comparison with FJ; (jj) for th e DPA
+in place of the bisulphate does not appear to qffect
+the values of qPM and ¢PM [28]. Unfortunately many                                 standard observed under similar conditions, although
+authors have chosen to use 0.1 N sulphuric acid as the                             the optical de nsities and excitation wavelengths of
+solvent, rather than 1 N as recommended by Melhuish                                the specimen and standard appear to have differed.
+[36], while assuming his fluorescence quantum yield                                Apart from the us ual hot band elimination and some
+values to be unchanged. There is evidence that ¢FM                                 0-0 band attenuation, FI,( jj) approximates to th e
+increases by 6-8 percent on increasing the solvent                                 molecular spectrum FM (v) . ¢LIf and TI, do not cor-
+normality from 0.1 N to 1 N [f8].                                                  re s pond to qVM and Till , as implicitly assumed by
+  Table 2 lists co mparative data on TM and qFM for                                Be rlman [12], who used them to "evaluate" k" ·M.
+very dilute solutions of several aromatic co mpounds                               They require correction for self-absorption and
+obtained using the QS standard [16-18]. The con-                                   secondary fluore scence to obtain ¢VM and Til, and
+sistency of the data from three different laboratories is                          these parameters need correction for concentration
+gratifying. The close agreement between the experi-                                quenching to obtain qV\I and T\I. Birks [1] tried to
+ment values of k FAr (= qFAr /TM) and the theoretical                              correct Berlman's ¢TM data [12] by renormalizing th e m
+values of k~'M from (23) for several compounds shows                               to ql 'R= 0.83 for DPA, but this proced ure has s in ce
+the error in q FMfor the QS standard to be s mall. Gelernt                         been shown to be invalid [23].
+et al. [36] have recently calorimetrically determined                                 It is of interest to note the effect of substituting dif-
+qPM for QS in 1 N sulphuric acid at 25 ° C. The calori-                            ferent fluores cence parameters in the relations used
+metric value of qFM=0.561 (±O.039) agrees satis-                                   to evaluate kFM and kIM. From (3a), (13), (21), (22),
+factorily with the fluorim etric value of q FM = 0.546 [34].                       (32) and (33)
+Other fluorescence standards have been dis c ussed by
+Demas and Crosby [28].
+                                                                                                           qFAr = ¢r;M = kFM                (34)
+TABLE   2.   Fluorescence lifetimes (7",,) and quantum efficiencies                                         TM        TM
+                    ( q",,) of very dilute solutions
+
+      Compound           Solvent    T ,II   (ns)   q,',11   k,.,.dk)'11   Ref.
+                                                                                                                                            (35)
+Quinine Bisulphate      IN H,SO,       20.1        0.54       0.73        [17]
+                        IN H,SO,       19.4         .54        .75        [18]
+                                                                                                                                            (36)
+Perylene                benze ne            4.9     .89         .93       [17]                                   TM
+                        be nze ne           4.79    .89         .90       [16]
+                        benze ne            5.02    .89         .90       [18]                                                              (37)
+                                                                                                      ,                    k IM + kCMc.
+Ac ridone               ethanol        11.8         .83       1.02        [16]                       TM
+                        ethanol        12.5         .825      1.05        [18]
+
+9-Aminoacridine         eth anol       13.87        .99       1.15        [16]            An ideal fluorescence standard for aromatic solu-
+                        ethanol        15.15        .99       1.02        [18]         tions should
+9,10-Diphenyl           be nzene            7.3     .85       0.99        [17]
+  a nthracene           benzene             7.37    .84        .98        [18]            (i)     have no self.absorption,
+                                                                                          (ii)    have no concentration quenching,
+                                                                                          (iii)   be in a common solvent suitable for other
+  Berlman [12] used a 1O-3M solution of 9,1O-diphenyl-                                            aromatic molecules (to eliminate the refrac-
+anthracene (DPA) in cyclohexane, excited at 265 nm                                                tive index correction),
+(an absorption maximum) and observed in reflection,                                       (iv)    be readily available as a high-purity material
+as a fluore scence standard_ Under these condition s                                              (or be insensitive to impurities), and
+the DPA solution has a technical fluorescen ce quantum                                    (v)     be photochemically stable.
+
+                                                                                 398
+QS satis fi e s (iv) and (v) a nd it a pproximates clos ely           18) Birk s, .I. B., O rga nic Molec ular Photoph ys ics, Vol. I, Ed. Birks,
+to (i) , but it does not sati sfy (ii) and (iii). DPA mee ts                .1 . B. (Wil ey·lnt e rscie nce, London, a nd Ne w York , p. 1, 1973).
+                                                                      [9) Kas ha , M., Di sc. Fa raday Soc. 9, 14 (1950).
+criteri a (ii)-(v) , but it exhibits s trong self-a bsorption. (10) Nic ke l, B., C he m. Ph ys. Lett e rs 27,84 (1974).
+T o minimize self-a bsorpti on in an aromati c hydrocar- (11) Bir ks, .I . B., Ph ys. Rev. 94,1 567 (1954).
+bon soluti on it is necessar y th at 51 is a 1Lb s ta te, so 1l2) Be rim an, I. B., Ha ndboo k of Flu oresce nce S pec tra of Aro matic
+that the S o ~ 51 a bsorpti on is weak, a nd not a 1La                      Mo lec ul es (Acade mi c P ress, Ne w York. 1st editi on, 1965:
+                                                                            2 nd editi on, 1971).
+state, givin g s trong 50 ~ 51 a bsorpti on, as in DPA [1]. [1 3) Law            so n, C. W. , Hiraya ma, r., and Lipsky, S., .I . C he m. Ph ys .
+There are two hydrocarbons whi c h e xhibit no co nce n·                    51 ,1590 (]969).
+tration que nc hin g (ii), have 5 = 1 Lb so that self-abso rp- [14] Birk s. J. B.. a nd M unro. L. H., Progr ess in Rea c ti on Kin e ti cs . 4 ,
+tion (i) is reduced , and sati sfy (iii) and (v). Th ese                    239 (1967).
+                                                                                    so n, F., O rga nic Mo lec ular P hotoph ys ics, Vo l. If, Ed.
+compounds, phenanthrene a nd chrysene, merit co n· [1 5] Wilkin             Birk s, .I. B. (W il ey·lnt e rsc ie nce, Lo ndo n, a nd New Yor k,
+sideration as flu orescence stand ards. They can be                         p. 95, 1975).
+obtained , but a re not yet readily availa ble, as high· [16) S tri c kle r, S . J., a nd Be rg. R. A. , J . C he m. Ph ys. 37, 8] 4(1962).
+purity mate rials (iv).                                             [l7] Birks, .I. B., a nd Dyso n, D. .I. , Proc. Roy. Soc. A275, 135 (1963).
+   Aromatic excimers sati sfy all th e c rite ri a for a fluores - [18] Wa(1964).
+                                                                               re, W. R., a nd Ba ld win , B. A., .I . C he m. P hys . 4 0, 1703
+cence sta nd ard , since th ey have no self-a bsorption [1 9] C und a ll R. B., a nd Pe re ira, L. c., .J. C he m. Soc. Fa raday T ra ns.
+(i) or con ce ntration qu e nc hin g (ii) [1]. In conce ntra te d          II , 68 , 11 52 (1972) .
+solutions th e excim er s pectrum F D (v) ca n be re adily [20] Birks, J. B., a nd Birc h, D. J. S., C he m. Ph ys. Lette rs, 31 ,
+                                                                           608(1975).                                       .      .
+distinguis h ed from th e atte nu a ted monome r s pectrum [21] Birc h, D. .I . S. , a nd Bi rks, .I. B. , C he m. Ph ys . Le tt e rs, in press.
+F ;(~(v) [34] , although th e prese nce of the latter may 122] Bir ks, J. B. , Z. P hys. C he m. (N .F.) s u bmitted fo r publicat ion.
+be undes ira ble. It can be elimin a ted by th e use of a [23] Bir ks, .I. B., .I . Lumin esce nce 9 , 311 (1974).
+pure liquid or c rystal. A pyrene crystal has <P FD= q F D [24) .l a bl ons ki , A .. Na ture 131 , 839 (1933): Z. Ph ys. Lpz. 94 ,38
+                                                                           (] 935).
+= 1.0 at low te m pera tures and <P ViJ = q V I) = 0.65 at [25] Lew is, C. N., and Kas ha , M. , .I. Ame r. C he m. Soc. 66, 2100
+room temperature, a broad s tru ctureless flu oresce nce                   (1944).
+spectrum betwee n 400 and 550 nm with a maximum [26] Me lhui s h, W . H .. .J. P hys. C he m. 64, 792 (1960).
+at 470 nm , a nd no self- a bso rption in a ny opti cal geo m- [27] Lipse tt , F. R., Progress in d ie lec tri cs 7 , 217 (1967).
+                                                                   [28] De mas , .1. N., a nd Cros b y, C. A., .I . Ph ys . C he m. 75 ,991 (197 1).
+etry [1]. It would appear to be an id eal crystal flu ores- [29] Me lhui s h, W. H.• .I . Opt. Soc. Amer. 51 ,278 (196 1).
+cence sta nd ard.                                                  [30] S hinitz ky, M., J . C he m. Ph ys. 56 ,5979 (1972).
+                                                                                        [3 1] Ce helnik , E. D.. Mie le nz, K. D., a nd Ve lapo ld i, R. A.. .I. Res.
+                                                                                                Nat. Bur. tand . (U .S.), 79A (P hys. a nd C he m.), No. 1,
+                            5.      References                                                  1- 15 (.Jan .- Feb. 1975).
+                                                                                        [32) Mie le nz , K. D., Ce he ln ik, E. D. , and McKe nzie, R. L.. J . C he m.
+ II) Bir ks, J. B. , Ph otop h ysics of Aroma ti c Molec ul es, (Wi ley· lnte r·                P hys . 64, 370 (1976).
+       scie nce, Lo ndo n, a nd New Yo rk , 1970).                                      [33) Bi rk s, .I . B. , a nd Little, W. A., Proc. Ph ys . Soc. A 66, 921
+ (2) Birk s, .I. B.. Th e Th eor y a nd Practi ce of Scintill ati on Co untin g                 (1953).
+       (P e rga mon Press, Oxfo rd 1964).                                               [34) Birks, J. B., a nd C hristop horou, L. C., Proc. Roy. Soc. A 274,
+[3] Birks. J. B.. Excim e rs. Rpts. Prog. P hys. 38 ,903 (1975).                                552 (1963).
+ (4) He rzbe r g, C., Mo lec ul a r S pec tra a nd Molec ular S tru c ture.             [35] Bir ks, J . B.. Mo lec. Crys \. Liq . Crys t. 28, 11 7 (1975).
+       I. Soectra of Di a tomi c Molecul es (Va n Nos trand , Prin ceto n               [36] Me lhui sh, W. H.. .J. P hys. C hem. 65 , 229 (1961).
+       1950).                                                                           [37] P arke r, C. A., P hoto lumi nesce nce of So luti ons. (E lsev ier,
+ [5) Birks, J. B., (Ed.) Exc it ed S tates of Biologica l Molec ules. Proc.                     A ms te rd am 1968).
+       Int e rn . Co nI'. Li s bon 1974 (Wiley-lnte rscie nce, Lon don, a nd            [38] Ce le rnt , B. , Fin de ise n, A.. Ste in , A ., and P oo le, .I. A. , VIII
+       Ne w York , 1976).                                                                       Int e rn . Conf. Ph otoc hem is try, Edm onton, August 1975,
+16) Bir ks, .I . B. , O rga ni c Molec ul a r Ph otoph ys ics, Vo l. II , Ed. Bi rks,           Abs trac t 0 10.
+      J . B. (Wil ey· lnte rsc ie nce, Lo ndon, and New York, p. 409,
+       1975).
+[7) T ati sche ff, I. , a nd Kl ein , R., ref. (5), p. 375 (1976).                                                                           (Paper 80A3-890)
+
+
+
+
+                                                                                    399
+

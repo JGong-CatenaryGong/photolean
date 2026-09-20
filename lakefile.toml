@@ -24,7 +24,8 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.BEP.Basic", "PhotoLean.BEP.Criterion",
                   "PhotoLean.BEP.Compose", "PhotoLean.BEP.RatModel",
                   "PhotoLean.BEP.Sharp", "PhotoLean.BEP.Instances",
-                  "PhotoLean.Kasha.Basic",
+                  "PhotoLean.Kasha.Basic", "PhotoLean.Kasha.Criterion",
+                  "PhotoLean.Kasha.Compose", "PhotoLean.Kasha.RatModel",
                   "PhotoLean.Kernel", "PhotoLean.Relations"]
 
 [[require]]

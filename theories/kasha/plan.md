@@ -41,6 +41,24 @@ The rule has a documented domain of failure: azulene's anomalously large `S₂�
 show resonance fluorescence from the initially prepared level; and other anti-Kasha emitters are
 reported (`theories/kasha/LITERATURE.md`).
 
+**Provenance and scope of the statement (literature round 1, `theories/kasha/LITERATURE.md`
+§R1.1).** The canonical wording is quoted as *"The emitting electronic level of a given multiplicity
+is the lowest excited level of that multiplicity"* (Kasha 1950, *Discuss. Faraday Soc.* **9**, 14–19
+— the sentence is reached through del Valle & Catalán, *PCCP* **21**, 10061 (2019), because the 1950
+body is behind a paywall; the record marks that evidence strength `secondary`). The scope qualifiers
+the source states with it are binding on the model's docstrings: **complex molecules**, **condensed
+phase**, **one photon per molecule**, **photostationary conditions**. Two further consequences of
+that round are registered here because they bound what this formalization may claim:
+
+* the tolerance `tol` is a **model choice, not a literature number** — no source read in the record
+  prints a threshold for `k_IC ≫ k_rad` (§R1.3). The plan's working value `tol = 1/100` is therefore
+  labelled as such wherever it appears, and K5b carries a row that makes the dependence explicit
+  (I11t: the same azulene data conforms at `tol = 1/10` and violates at `tol = 1/100`). Historically
+  the tolerance formulation is not an invention of this development: Vavilov's own 1927 paper states
+  his rule with a **±8 %** tolerance (§R1.2);
+* the model's rates are **measured quantities identified with model scalars** (`rad 1 ≡ Σk_r(S₂)`,
+  `ic 1 ≡ Σk_nr(S₂)`), and that identification is a declared bridge (§R1.4.2), never a theorem.
+
 This plan formalizes exactly that: the Kasha *description* (K1), the *laws and their exact validity
 conditions* (K2, K3), the *composition and the cross-theory bridge* (K4), and *instance verdicts
 decided by the kernel* (K5).
@@ -205,7 +223,7 @@ starts before it compiles, and every delivered declaration matches it word for w
 check: `theories/BEP/probes/bep-fidelity.py --theory kasha`, which is theory-generic).
 
 Planned inventory — **measured from the compiled skeleton** (`sha256
-4cf2b1055f1aee41463e7f5ad9bb6913c2c82600a0c4aa064cb58210fc68c0fb`, `lake env lean`, exit 0):
+8508e1df7705daaac31288ef78e97073aaff2f1c6422c31bd2eb83b669cbf888`, `lake env lean`, exit 0):
 
 | milestone | module | content (declarations) |
 |---|---|---|
@@ -503,7 +521,13 @@ data). Planned rows:
 | I9 | model-constructed | the verdict classifier on the I2 data | `kashaQVerdict = violating` |
 | I13 | summary | the I1/I2 verdicts as one conjunction | the row inventory is reproducible |
 | I14 | non-vacuity | both verdict kinds occur among the model-constructed rows | the layer is not one-sided |
-| I10–I12 | literature | appended after the literature round: a conforming aromatic hydrocarbon (Vavilov/Kasha conformance), azulene's anomalous `S₂` emission, and a second anti-Kasha row if first-hand numbers exist | verdicts as the printed numbers decide |
+| I10 | literature | 4,6,8-trimethylazulene in cyclohexane: `rad 1 = 33`, `ic 1 = 67000` (units `10⁶ s⁻¹`; 1995 thesis Table 3.3 p. 126) | `KashaWithinQ 1/100 1` (ratio ≈ 2030 ≥ 99) |
+| I11 | literature | parent azulene in cyclohexane: `rad 1 = 35`, `ic 1 = 720` (thesis Table 3.1 p. 115) | `¬ KashaWithinQ 1/100 1` (ratio ≈ 20.6) |
+| I11-alt | literature | azulene via the **printed quantum yield** route: `Φ_Fl = 2.42 %` ⇒ `rad 1 = 242`, `ic 1 = 9758` (*Chem. Sci.* 2026 Table 2/3) | `¬ KashaWithinQ 1/100 1` (ratio ≈ 40.3) |
+| I11-alt2 | literature | azulene, peer-reviewed experimental rates: `k_r(S₂) = 2.3×10⁷`, `k_IC(S₂→S₁) = 5.3×10⁸ s⁻¹` (Veys & Escudero, *JPCA* **124**, 7228 (2020) Table 2) | `¬ KashaWithinQ 1/100 1` (ratio ≈ 23.0) |
+| I11t | literature | the **same** I11 data at two tolerances | `¬ KashaWithinQ 1/100 1 ∧ KashaWithinQ 1/10 1` — conformance is tolerance-relative, and `tol = 1/100` is the model's choice (§R1.3/§R1.6) |
+| I15 | literature summary | the two azulene-family rows at one tolerance | the methylated derivative conforms while the parent violates, at `tol = 1/100` |
+| ~~I12~~ | — | **dropped 2026-09-20**: the literature round found **no** second anti-Kasha molecule with first-hand numbers (§R1.6); ovalene is excluded because its S₁/S₂ populations are thermal (gap ≈ 1200 cm⁻¹), i.e. a different mechanism (§R1.5) | — |
 
 Row names are fixed by the statement authority; the literature rows' *numbers* are transcribed from
 `theories/kasha/LITERATURE.md` and their docstrings carry the source locus, the unit (s⁻¹) and the
@@ -607,7 +631,18 @@ git log -1 --oneline                                                     # 4. co
 5. The yields are time-integrated probabilities; no rate equations, no transients, no collisions,
    no re-excitation.
 6. The Marcus bridge (K4) is conditional and classical; the general energy-gap law's exponential
-   form is out of scope.
+   form is out of scope. **Attribution requirement (literature round 1, §R1.7)**: the hypothesis
+   `hic : ic 1 = marcusIC …` may only be presented as the *single-effective-mode, strong-coupling /
+   classical high-temperature limit* of the radiationless-transition rate (sources recorded in
+   `theories/kasha/LITERATURE.md` §R1.7.3: Jang, *JCP* **155**, 164106 (2021) for the two assumptions
+   behind the gap law; Bozzi & Rocha, *JCTC* **19**, 2316, and Sutcliffe–Cagan–Hadt, *JACS* **146**,
+   15506, for the Marcus-type limits); the delivered docstrings and `RESULTS.md` must say so.
+7. **No global monotonicity claim about nonradiative rates and the energy gap.** The literature round
+   found first-hand evidence *against* a monotone global statement — in the azulene family two
+   channels with nearly equal gaps (14 010 vs 14 370 cm⁻¹) differ by about four orders of magnitude
+   (§R1.4, §R1.8) — so `ic n` stays an unstructured scalar per level. A statement of the form "the IC
+   rate decreases with the gap" must not be added, and the Marcus bridge (K4) is *per channel*: its
+   `lam`, `A` are parameters of the `S₂ → S₁` channel it models, not of the molecule.
 7. Instances are arithmetic verdicts about printed numbers, not fits; `UNSUPPORTED` marks are
    reported rather than filled with guesses.
 
