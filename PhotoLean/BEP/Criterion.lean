@@ -172,9 +172,11 @@ theorem epDescriptor_conforms {lam x : ℝ} (h : EPDescriptor lam) (hx : x ≠ 0
   exact div_pos (sq_pos_of_ne_zero hx) (by positivity)
 
 /-- Pointwise conformance is the positivity of the curvature together with the
-Evans–Polanyi bounds; the positivity is not implied by the bounds — `Instances.lean` (B5b)
-instantiates this: a negative curvature whose coefficient still lies in `[0,1]` (its witness is
-`lam = -2`, `x = 0`). -/
+Evans–Polanyi bounds; the positivity is not implied by the bounds — the delivered instance row I9
+of `PhotoLean/BEP/Instances.lean` (B5b) exhibits the gap in its ℚ decision layer: the witness
+`λ = -2, x = 1` has `Rat.qTransfer (-2) 1 = 3 / 4`, which lies inside `[0,1]`
+(`inst_I9_unphysical_transfer`, `inst_I9_unphysical_bounds_blind`), while the positivity premise
+`0 < lam` fails at that curvature; `λ = -2, x = 0` is an equally valid witness. -/
 theorem epConforms_iff_bounds {lam x : ℝ} (hlam : 0 < lam) :
     EPConforms lam x ↔ EPBounds lam x := by
   unfold EPConforms
