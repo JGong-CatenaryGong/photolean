@@ -335,4 +335,47 @@ theorem inst_I7_unphysical_not_admissible :
     ¬ ((∀ x : ℝ, 0 < rate (-1) (-1) 1 1 x) ∧ InvertedDescriptor (-1) (-1) 1 1) :=
   fun h => inst_I7_unphysical_rate_not_pos h.1
 
+/-! ## I4 — 文献参数 MCC 系列的**描述算子实例化**（人类需求第三部分的核心判定）
+
+`lam = 1.20`（MCC 系列参数来源与第一批 I4 相同：`plan.md` §8.3 /
+`proofs/LITERATURE.md` §实例参数候选表，核实状态「已核实」）。三条按强度递进：
+
+1. `inst_I4_mcc_descriptor_any_kT`：对**任意** `kBT > 0`，反转区描述成立（`A = 1`）——
+   主定理 `inverted_descriptor_holds` 在文献参数上的实例化，同时是「判定与温度无关」的
+   **语句级**证据（`kBT` 是定理的全称变量，不是注释里的声称）；
+2. `inst_I4_mcc_descriptor`：`kB = T = 1` 的特例（与派发语句逐字一致）；
+3. `inst_I4_mcc_admissible`：速率**处处为正** **且**描述成立 —— 主定理 `descriptor_sharp`
+   的 `(⟸)` 方向实例化，即「该实例**可采纳**」的完整判定（与 I7 的不可采纳实例对照）。
+
+`inst_I6_rc_descriptor_any_kT` 把同一实例化搬到**深反转区**的光合反应中心参数
+（`lam = 0.25`，`x = 1.10`，第一批 I6 已判其落在反转区），使 I3–I6 四条文献实例
+都带有描述算子层面的判定。 -/
+
+/-- I4 描述算子判定（**与温度无关**）：文献 MCC 参数 `lam = 1.20`、`A = 1` 下，
+对**任意** `kBT > 0`，反转区描述成立（主定理 `inverted_descriptor_holds` 实例化）。 -/
+theorem inst_I4_mcc_descriptor_any_kT {kBT : ℝ} (hkBT : 0 < kBT) :
+    InvertedDescriptor (1 : ℝ) (1.20 : ℝ) kBT 1 :=
+  inverted_descriptor_holds (A := 1) (lam := 1.20) (kB := kBT) (T := 1)
+    (by norm_num) (by norm_num) (by simpa using hkBT)
+
+/-- I4 描述算子判定（`kB = T = 1` 的具体实例）：`lam = 1.20` 上反转区描述成立。 -/
+theorem inst_I4_mcc_descriptor : InvertedDescriptor (1 : ℝ) (1.20 : ℝ) 1 1 :=
+  inst_I4_mcc_descriptor_any_kT (by norm_num)
+
+/-- I4 判定汇总：文献 MCC 实例 **可采纳** —— 速率处处为正 **且** 反转区描述成立
+（主定理 `descriptor_sharp` 的 `(⟸)` 方向实例化：`0 < A ∧ 0 < lam` 给出两件事）。
+与 `inst_I7_unphysical_not_admissible` 对读：可采纳性由「正性 + 描述」两条共同承担。 -/
+theorem inst_I4_mcc_admissible {kBT : ℝ} (hkBT : 0 < kBT) :
+    (∀ x : ℝ, 0 < rate (1 : ℝ) (1.20 : ℝ) kBT 1 x) ∧
+      InvertedDescriptor (1 : ℝ) (1.20 : ℝ) kBT 1 :=
+  (descriptor_sharp (kB := kBT) (T := 1) (by simpa using hkBT) (by norm_num) 1 1.20).mpr
+    ⟨by norm_num, by norm_num⟩
+
+/-- I6 描述算子判定（深反转区）：光合反应中心参数 `lam = 0.25`、`A = 1` 下，
+对**任意** `kBT > 0`，反转区描述成立（与 I4 同一条主定理，仅更换文献参数）。 -/
+theorem inst_I6_rc_descriptor_any_kT {kBT : ℝ} (hkBT : 0 < kBT) :
+    InvertedDescriptor (1 : ℝ) (0.25 : ℝ) kBT 1 :=
+  inverted_descriptor_holds (A := 1) (lam := 0.25) (kB := kBT) (T := 1)
+    (by norm_num) (by norm_num) (by simpa using hkBT)
+
 end PhotoLean.Marcus
