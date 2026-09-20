@@ -141,6 +141,15 @@ theorem qTransfer_cast (lam x : ℚ) :
   push_cast
   ring
 
+set_option linter.unusedVariables false in
+/-- The `≠ 0` premise is the mathematical premise of a finite difference and is *not* consumed by
+the cast: `Rat.cast_div` moves the cast through division unconditionally. -/
+theorem qSecSlope_cast {lam x h : ℚ} (hh : h ≠ 0) :
+    ((qSecSlope lam x h : ℚ) : ℝ) = secSlope (lam : ℝ) (x : ℝ) (h : ℝ) := by
+  unfold qSecSlope secSlope qEact eact
+  push_cast
+  ring
+
 end Rat
 
 end BEP
