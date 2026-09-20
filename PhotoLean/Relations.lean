@@ -345,6 +345,59 @@ whenever the pre-exponential factor is. -/
 theorem marcusIC_pos {A lam kB T x : ℝ} (hA : 0 < A) : 0 < Kasha.marcusIC A lam kB T x :=
   Kasha.marcusIC_pos hA
 
+/-! ## 8. Composition edge: the Sabatier volcano over the BEP two-parabola model
+
+The Sabatier theory describes the volcano in the phenomenological language of two affine BEP
+branches; `PhotoLean.Sabatier.Compose` closes the loop with the repository's two-parabola model by
+replacing each affine branch with the exact barrier `BEP.eact`. The rows below are re-exported
+verbatim: the literature's linear volcano *is* the maximum of the two tangent lines
+(`linearVolcano_eq_bepTangent`); the tangent lies below its parabola (`bepLine_le_eact`, the BEP
+defect-law inequality `x^2/(4*lam) ≥ 0` read geometrically); hence the linear volcano
+*underestimates* the two-parabola barrier pointwise (`linearVolcano_le_parabolic`); the
+two-parabola model is itself a volcano with **no linearization** (`parabolic_descriptor`); and at a
+symmetric cycle's apex the linear and the parabolic volcano agree exactly
+(`linearVolcano_apex_exact`, with the apex at thermoneutrality, `apexPar_self`). -/
+
+/-- Sabatier → BEP: the BEP-linear volcano is the maximum of the two tangent lines of the
+parabolic branches at thermoneutrality. -/
+theorem linearVolcano_eq_bepTangent (lam1 lam2 dE : ℝ) :
+    Sabatier.volcanoBarrier (1 / 2) (lam1 / 4) (1 / 2) (lam2 / 4) dE
+      = max (BEP.bepLine lam1 (-dE)) (BEP.bepLine lam2 dE) :=
+  Sabatier.linearVolcano_eq_bepTangent lam1 lam2 dE
+
+/-- Sabatier → BEP: the BEP tangent line lies below the parabola it is tangent to — the exact
+violation is the quadratic remainder of the BEP defect law. -/
+theorem bepLine_le_eact {lam : ℝ} (hlam : 0 < lam) (x : ℝ) :
+    BEP.bepLine lam x ≤ BEP.eact lam x :=
+  Sabatier.bepLine_le_eact hlam x
+
+/-- Sabatier → BEP: the linear volcano is a pointwise lower bound on the two-parabola volcano —
+the linear model underestimates the barrier away from the apex. -/
+theorem linearVolcano_le_parabolic {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) (dE : ℝ) :
+    Sabatier.volcanoBarrier (1 / 2) (lam1 / 4) (1 / 2) (lam2 / 4) dE
+      ≤ Sabatier.parabolicBarrier lam1 lam2 dE :=
+  Sabatier.linearVolcano_le_parabolic h1 h2 dE
+
+/-- Sabatier → BEP: the Sabatier description holds in the two-parabola model with no BEP
+linearization — the crossing point of the two parabolas is the unique global minimizer whenever
+both curvatures are physical. -/
+theorem parabolic_descriptor {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) :
+    Sabatier.VolcanoDescriptor (fun dE => Sabatier.parabolicBarrier lam1 lam2 dE)
+      (Sabatier.apexPar lam1 lam2) :=
+  Sabatier.parabolic_descriptor h1 h2
+
+/-- Sabatier → BEP: a symmetric two-parabola cycle has its apex at the thermoneutral descriptor
+value. -/
+theorem apexPar_self {lam : ℝ} (h : 0 < lam) : Sabatier.apexPar lam lam = 0 :=
+  Sabatier.apexPar_self h
+
+/-- Sabatier → BEP: at a symmetric cycle's apex the tangent-line model and the parabola model
+agree exactly. -/
+theorem linearVolcano_apex_exact {lam : ℝ} (h : 0 < lam) :
+    Sabatier.volcanoBarrier (1 / 2) (lam / 4) (1 / 2) (lam / 4) 0
+      = Sabatier.parabolicBarrier lam lam 0 :=
+  Sabatier.linearVolcano_apex_exact h
+
 end Relations
 
 end PhotoLean
