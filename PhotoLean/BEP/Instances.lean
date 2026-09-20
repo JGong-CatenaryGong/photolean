@@ -414,6 +414,19 @@ theorem inst_I11_F3_not_model_consistent :
 
 /-! #### F5 — site-resolved C–H abstraction from 2-butanol (classical `ΔE`) -/
 
+/-- F5 — source: *Chem. Sci.* **6**(10), 5866–5881 (2015), DOI `10.1039/c5sc01848j`
+(OA, `PMC5950756`); locus: **Table 1**, row `CCSD(T)-F12a/jun-cc-pVTZ`; status **`first-hand`**;
+reaction family: H abstraction from the five distinct C–H sites of 2-butanol by `•OOH`. Units: the
+table prints a **classical** reaction energy `ΔE` and forward barrier `V‡f` in **kcal/mol** — an
+energy, **not** a Gibbs energy, so the `ΔE`-vs-`ΔG` caveat of §R1.10.5 applies to every row and the
+model's driving force is `x = -ΔE`. The kJ/mol column of the record is the record's own arithmetic
+(not used). Rows used (kcal/mol, verbatim): `R2` `7.62 / 12.38`; `R5` `19.82 / 21.72` (model
+abscissae `-7.62`, `-19.82`). -/
+theorem inst_I11_F5_alphaObs :
+    Rat.qAlphaObs (-(7.62) : ℚ) 12.38 (-(19.82)) 21.72 = 467 / 610 := by
+  unfold Rat.qAlphaObs
+  norm_num
+
 end BEP
 
 end PhotoLean
