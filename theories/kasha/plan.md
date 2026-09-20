@@ -84,8 +84,8 @@ The **branching probabilities** of level `n` are therefore `rad n / decay n` (em
 clocks with these rates give exactly these branching probabilities (the standard embedded-jump-chain
 fact of a continuous-time Markov chain). That fact is a **modelling premise** here: the model is
 stated in terms of the branching probabilities, and the derivation of the branching ratio from
-exponential clocks is *not* formalized (it is recorded as a scope limit in §13; the plan's stretch
-item K4c probes whether the installed mathlib supports it).
+exponential clocks is *not* formalized (it is a declared modelling premise — the honesty table §12,
+row 2, and §13 item 5; probe K4b closed on 2026-09-20 with the negative result recorded in §7.2).
 
 The observables are the **time-integrated** yields of this cascade, i.e. the standard fluorescence
 quantum yields. With excitation at level `N`:
@@ -474,7 +474,8 @@ the supporting pieces (`expMeasure r (Ioi x) = ofReal (exp (-(r*x)))`, `∫ x in
 (`iIndepFun` ↔ `Measure.prod`), the density-measure and `Ioi 0` bookkeeping, the `ofReal`
 integrability conditions and the `s < 0` a.e. split amount to roughly a hundred lines of measure
 theory — a sprint of its own, out of scope here. The row therefore stays **out** of the statement
-authority, the branching probability stays a declared modelling premise (§13.5), and the negative
+authority, the branching probability stays a declared modelling premise (§12 row 2 and §13 item 5),
+and the negative
 result is recorded in `proofs/API-NOTES.md` §kasha (f) and in `proofs/EXPERIENCE.md`. **No delivered
 statement depends on a failed probe.**
 

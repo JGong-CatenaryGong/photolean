@@ -188,7 +188,8 @@ KashaWithin tol 1  ⟺  (lam − x)²  ≤  4 · lam · (kB·T) · log K,     K 
           0 < A, 0 < lam, 0 < kB·T, 0 < rad 0, 0 < rad 1, 0 < tol < 1)
 ```
 
-with the window corollary `|lam − x| ≤ sqrt(4·lam·(kB·T)·log K)` (`kashaWindow_halfWidth`) and the
+with the window corollary `|lam − x| ≤ sqrt(4·lam·(kB·T)·log K)` (`kashaWindow_halfWidth`, which
+additionally assumes `0 ≤ 4·lam·(kB·T)·log K` so that the square root is the window's half-width) and the
 anti-Kasha direction `not_kashaWithin_of_gap_far`. **Attribution limit** (binding, §R1.7): this may
 only be read as the *single-effective-mode, strong-coupling / classical high-temperature limit* of the
 radiationless-transition rate — the general energy-gap law is exponential, and the literature record
@@ -276,7 +277,9 @@ independent reconstructions in a scratch tree (`git archive` + rebuild from sour
 stale oleans): the K4 effective-reduction equivalence on six of its own ladders, the N-level
 threshold and `kashaMargin` values computed independently, the Marcus bridge on three parameter
 settings including one where no gap can work, and the K5a verdicts with the `6/7` leak fraction — **36** kernel-closed examples in runs 1–2 and
-**56 more** in run 3's own probe, which also re-derived four K3 rows from the definitions. Run 2's adversarial sweep of the K2/K4/K5a blocks *line by line*
+**56 more** in run 3's own probe, which also re-derived four K3 rows from the definitions (these are
+the verifier's own reported probe counts; the probes live outside the repository, so they are cited as
+reported rather than as tree-measurable values). Run 2's adversarial sweep of the K2/K4/K5a blocks *line by line*
 for the defect class this theory has already produced (a division whose denominator's sign is not in
 the premises) found **no latent false statement**; the one row that looked suspect (K2 #18, which
 needs `cascade 0 i > 0` without hypothesising it) was re-derived by the verifier as true via a
@@ -325,7 +328,7 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 覆盖全部六个模块（审计者移走 `Instances.olean` 后由裸跑重建，实测覆盖无遗漏）并 PASS。只读 verifier 独立复核并
 **自行在内核重推**头条数字：三轮分别覆盖 K1 + Sprint-0 探针、K2/K4/K5a、K3/K5b 与全树：前两轮 **36** 个内核闭合算例，第三轮另有
 **56** 个（其自建探针）并独立重证 K3 四行（有效两层归约在 6 组自选阶梯上、N 级阈值与 `kashaMargin`、
-三组 Marcus 参数含"任何能隙都不成立"的一组、全部实例判决与 6/7 泄漏分数）；对 K2/K3/K4/K5a/K5b 逐行做的"除数符号"逆向扫描
+三组 Marcus 参数含"任何能隙都不成立"的一组、全部实例判决与 6/7 泄漏分数）；其中第二、三轮分别对 K2/K4/K5a（第二轮）与 K3/K5b（第三轮）逐行做的"除数符号"逆向扫描
 **未发现潜伏假语句**。三轮的发现都属证据链/文档（未入库探针、保真检查器缺里程碑粒度、看板哈希历史、
 模块头权威引用、八处规划草图与交付签名不一致、以及末轮的 11 条文档数字问题），全部连同处置记入任务板 §Acceptance records。第三轮在**文档面**判 FAIL 的 11 条（陈旧计数、
 未带前提的展示式、缺失的看板记录等）已修正，第四轮复核确认 7 条已真正修复、并指出中文半篇的 4 处残留漂移

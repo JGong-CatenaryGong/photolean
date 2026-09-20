@@ -17,11 +17,14 @@
   2026-09-20 (three parts: formal description / proof and validity conditions / instance verdicts).
 - Deliverable module prefix: `PhotoLean.Kasha`; sources under `PhotoLean/Kasha/`
   (`SOURCE_DIRS` is global and covers them — `theories/kasha/` is outside the strict scan range).
-- Status of this theory: **Sprint 0 closed, Sprint 1 open** — skeleton compiled, plan landed,
-  literature round 1 and API calibration running; K1 (the critical path) dispatched.
-- Literature rows I10–I12 are **not yet in the skeleton**: their Lean literals must be transcribed
-  from `theories/kasha/LITERATURE.md` (never guessed) and the append is recorded in
-  `proofs/API-NOTES.md`.
+- Status of this theory: **delivered and verified** — six modules, 150 declarations, every row on
+  this board ticked; four verifier runs for the mathematics (K1+probes, K2/K4/K5a, K3/K5b+whole tree,
+  and the documentation re-audits); the authority is frozen at
+  `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17` (150 declarations).
+- Literature rows: **in the skeleton** (I10, I11, I11-alt, I11-alt2, I11t, I15 — appended 2026-09-20,
+  literals transcribed from `theories/kasha/LITERATURE.md` §R1.6, never guessed); sketched row I12 is
+  **absent by decision** (the literature round found no second anti-Kashi molecule with first-hand
+  numbers, §R1.6).
 
 ---
 
@@ -371,10 +374,33 @@ Nine further (smaller) findings: the self-invalidating commit count (N1), the un
 open … K1 dispatched"), a `§13.5` cross-reference that should be §12/§13-item-5 (N7), the Marcus
 display's missing premise list (N8), and a duplicated item number in plan §13 (N9).
 
-**All of these were corrected in the follow-up commits of this round** (the counts are re-measured
-after the last commit that touches `PhotoLean/`), and run 5 re-audited the corrections.
+Most of these were corrected in the follow-up commits of this round (the counts are re-measured after
+the last commit that touches `PhotoLean/`); run 5 checked each one and its record is below.
 
-### Run 5 — pending — re-audit of the run-4 corrections
+### Run 5 — 2026-09-20 — re-check of the run-4 corrections — verdict **C-plane FAIL (11 of 13 items fixed)**
 
-A focused re-check (C-plane only) is scheduled; no verdict is recorded here until that report
-exists.
+Verifier: same role, C-plane only. Baseline: the comment-stripped code plane of all 29
+`PhotoLean/**/*.lean` files hashes `21f46569e1d09a428ad652a5d1ed111d` at every revision from
+`baa5c1e` to `HEAD` — **only comments moved**, so no mathematics re-verification was triggered; gates
+re-run on the tree (`build` OK, `--strict` PASS/clean, two `axioms.sh` rows clean, fidelity
+44/22/15/20/29/20 and unscoped 150/150 with 0 differences).
+
+Fixed and confirmed: the Chinese half's line count (**2,360**, both halves), the commit count
+(**99 = 92 `feat` + 7 `docs`**, quoted value = `git log --oneline -- PhotoLean/Kasha | wc -l`), the
+per-lemma sentence qualified with the K5a/K5b deviation, the example-count attribution (36 for runs
+1–2, 56 for run 3, consistently in both halves and on this board), N1 (the counting commit touches no
+`PhotoLean/` file, so the count does not invalidate itself), N2, N3, N4 (the run-2 range really holds
+23 commits: 16 `feat` + 7 `docs`), N5 (`Compose.lean`'s header and plan §3.1 now agree and both are
+literally true), N8 (the Marcus display lists exactly the authority's hypotheses), N9 (plan §13 items
+1–8, no duplicate).
+
+Standing after run 5 (both corrected afterwards): **N6-board** — the *status header of this board*
+still read "Sprint 0 closed, Sprint 1 open … K1 dispatched" and claimed the literature rows were not
+in the skeleton, contradicting the delivered state — and **N7** — `plan.md` §1.2 still cross-referred
+to "§13.5" (which is the time-integrated-yields item) and named the exponential-race probe "K4c"
+(it is K4b; K4c is bridge bookkeeping). Four smaller drifts were also reported and corrected: the
+past-tense claim on this board that "run 5 re-audited the corrections" (a record for a run that had
+not happened), the Chinese half of `RESULTS.md` §5 attributing the positivity sweep to five
+milestones instead of run 2's three, the window corollary's omission of its extra premise `h0`, and
+the status of the 36/56 example counts (they are the verifier's own reported probe counts; its probes
+live outside the repository, so the counts are cited as reported, not as tree-measurable).
