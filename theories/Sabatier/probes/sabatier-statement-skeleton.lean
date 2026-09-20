@@ -609,6 +609,64 @@ theorem inst_I7_linear_below :
 /-- I8 (non-vacuity of the verdict layer): the I2 series has an exactly optimal catalyst. -/
 theorem inst_I8_exists_optimal : ∃ dE : ℝ, Optimal (apex (1 / 2) 0 1 1) dE := by sorry
 
+/-- I9 (literature row, HER — the number is a premise, the verdict is kernel-checked): the reported
+`ΔG_H*` of Pt is `-0.09` eV (Nørskov et al. 2005, Table I with Eq. [8] `ΔG_H* = ΔE_H + 0.24 eV`;
+`[arith]` in `theories/Sabatier/LITERATURE.md` §R2.1; the axis convention is plan §2). Read against
+the symmetric reference volcano (apex at `dE = 0`, the literature's own reading "ΔG_H* = 0 separates
+the two legs"), Pt binds too strongly. -/
+theorem inst_I9_zone_Pt :
+    sabatierZone (apex (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(9 / 100)) = SZone.tooStrong := by sorry
+
+/-- I9: Pt is within the 10 %-of-1 tolerance band of the apex (`9/100 ≤ 1/10`). -/
+theorem inst_I9_nearOptimal_Pt :
+    NearOptimalQ (1 / 10) (apexQ (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(9 / 100)) := by sorry
+
+/-- I9: the barrier of Pt on the reference volcano (`109/200` — the pass height `1/2` plus `9/200`,
+i.e. half of the descriptor's distance from the apex). -/
+theorem inst_I9_barrier_Pt :
+    volcanoBarrier (1 / 2) (1 / 2) (1 / 2) (1 / 2) (-(9 / 100)) = 109 / 200 := by sorry
+
+/-- I10 (literature row, HER): the reported `ΔG_H*` of Au is `+0.45` eV (same provenance) — too weak,
+and outside the 10 % band. -/
+theorem inst_I10_zone_Au :
+    sabatierZone (apex (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (45 / 100) = SZone.tooWeak := by sorry
+
+/-- I10: Au is outside the 10 % tolerance band (`45/100 > 1/10`). -/
+theorem inst_I10_notNearOptimal_Au :
+    ¬ NearOptimalQ (1 / 10) (apexQ (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (45 / 100) := by sorry
+
+/-- I10: the barrier of Au on the reference volcano (`29/40`). -/
+theorem inst_I10_barrier_Au :
+    volcanoBarrier (1 / 2) (1 / 2) (1 / 2) (1 / 2) (45 / 100) = 29 / 40 := by sorry
+
+/-- I11 (literature row, HER): the reported `ΔG_H*` of W is `-0.43` eV (Table I, bcc(110); the source
+itself warns that the measured value for W/Mo/Nb is probably not representative of the metallic
+state — the caveat travels with the number). Too strong; inside a `1/2` band, which is the
+tolerance sensitivity the verdict layer exists to expose. -/
+theorem inst_I11_zone_W :
+    sabatierZone (apex (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(43 / 100)) = SZone.tooStrong := by sorry
+
+/-- I11: W is inside the `1/2` tolerance band. -/
+theorem inst_I11_nearOptimal_W :
+    NearOptimalQ (1 / 2) (apexQ (1 / 2) (1 / 2) (1 / 2) (1 / 2)) (-(43 / 100)) := by sorry
+
+/-- I12 (literature row, OER — DERIVABLE from the stated premise): the printed OER volcano of Man et
+al. 2011 (Eq. 4.16–4.18), `max (ΔG_O - ΔG_OH, 3.20 - (ΔG_O - ΔG_OH))`, IS the two-branch model with
+`alphaA = alphaB = 1`, `betaA = 0`, `betaB = 16/5` (the printed `3.20 eV` scaling premise). Apex. -/
+theorem inst_I12_OER_apex : apex 1 0 1 (16 / 5) = 8 / 5 := by sorry
+
+/-- I12: the pass height of the OER volcano is `8/5` eV — the literature's printed optimal descriptor
+`1.60 eV`. -/
+theorem inst_I12_OER_apexBarrier : apexBarrier 1 0 1 (16 / 5) = 8 / 5 := by sorry
+
+/-- I12: the OER series conforms to the Sabatier description. -/
+theorem inst_I12_OER_conforms : SabatierConforms 1 1 := by sorry
+
+/-- I12: the OER overpotential at the apex, `8/5 - 123/100 = 37/100` V — the literature's printed
+`0.37 V` (LITERATURE.md §R2.2). -/
+theorem inst_I12_OER_overpotential :
+    apexBarrier 1 0 1 (16 / 5) - 123 / 100 = 37 / 100 := by sorry
+
 end Sabatier
 
 end PhotoLean
