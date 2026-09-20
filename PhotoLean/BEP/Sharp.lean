@@ -459,5 +459,11 @@ an unbounded set is `0` in `ℝ`, which would silently falsify the sharpness sta
 noncomputable def epSupError (lam w c a : ℝ) : ℝ :=
   sSup ((fun x => |eact lam x - (c + a * x)|) '' Set.Icc (-w) w)
 
+/-- AUX: an upper bound plus an attained value pin down a supremum (the `sSup` recipe) —
+`csSup_le` for `≤`, `le_csSup` for `≥`. -/
+theorem sSup_eq_of_le_of_mem {s : Set ℝ} {b : ℝ} (hne : s.Nonempty) (hbdd : BddAbove s)
+    (hle : ∀ a ∈ s, a ≤ b) (hmem : b ∈ s) : sSup s = b :=
+  le_antisymm (csSup_le hne hle) (le_csSup hbdd hmem)
+
 
 end PhotoLean.BEP
