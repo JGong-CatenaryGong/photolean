@@ -254,6 +254,12 @@ theorem inst_I9_unphysical_bounds_blind :
 
 /-! #### I10 — the tolerance threshold (`λ = 2`, `w = 1`) -/
 
+/-- I10 (`model-constructed`): at `λ = 2`, `w = 1` the threshold is `tol = 1/8` — exactly
+`w ^ 2 = 4 * λ * tol`, so the window predicate holds (`w* = 2 * √(λ * tol)`). -/
+theorem inst_I10_threshold_conforms : Rat.qConformsWindow (2 : ℚ) (1 / 8) 1 := by
+  unfold Rat.qConformsWindow
+  norm_num
+
 end BEP
 
 end PhotoLean
