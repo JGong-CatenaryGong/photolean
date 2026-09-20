@@ -1,11 +1,5 @@
-/-
-marcus-all-axioms.lean — 全量公理体检探针（lead 维护，非交付文件）。
-
-由 lead 用脚本从 PhotoLean/Marcus/*.lean 自动生成（含 namespace 解析）：导入全部 Marcus 模块，
-对**每一条 theorem** 打印 #print axioms。一次命令拿到全项目的公理卫生证据。
-
+/- marcus-all-axioms.lean — 由 proofs/probes/marcus-fidelity.py 同款脚本自动生成（lead 维护）。
 运行：proofs/scripts/lake env lean proofs/probes/marcus-all-axioms.lean
-通过标准：不出现 sorryAx / Lean.ofReduceBool / 任何非基础设施公理。
 -/
 
 import PhotoLean.Marcus.Barrier
@@ -45,20 +39,35 @@ import PhotoLean.Marcus.Sharp
 #print axioms PhotoLean.Marcus.inst_I2_zoneQ
 #print axioms PhotoLean.Marcus.inst_I3_barrier_value
 #print axioms PhotoLean.Marcus.inst_I3_inverted
+#print axioms PhotoLean.Marcus.inst_I3_rate_peak
 #print axioms PhotoLean.Marcus.inst_I3_zoneQ
+#print axioms PhotoLean.Marcus.inst_I4_mcc_admissible
+#print axioms PhotoLean.Marcus.inst_I4_mcc_descriptor
+#print axioms PhotoLean.Marcus.inst_I4_mcc_descriptor_any_kT
+#print axioms PhotoLean.Marcus.inst_I4_mcc_rate_drop
+#print axioms PhotoLean.Marcus.inst_I4_mcc_rate_drop_unit_kT
+#print axioms PhotoLean.Marcus.inst_I4_mcc_rate_drop_x200
 #print axioms PhotoLean.Marcus.inst_I4_mcc_x200
 #print axioms PhotoLean.Marcus.inst_I4_mcc_x200_zoneQ
 #print axioms PhotoLean.Marcus.inst_I4_mcc_x240
 #print axioms PhotoLean.Marcus.inst_I4_mcc_x240_zoneQ
 #print axioms PhotoLean.Marcus.inst_I5_mcc_not_inverted
+#print axioms PhotoLean.Marcus.inst_I5_mcc_rate_rise
 #print axioms PhotoLean.Marcus.inst_I5_mcc_x060
 #print axioms PhotoLean.Marcus.inst_I5_mcc_x060_zoneQ
+#print axioms PhotoLean.Marcus.inst_I6_rc_descriptor_any_kT
 #print axioms PhotoLean.Marcus.inst_I6_rc_x110
 #print axioms PhotoLean.Marcus.inst_I6_rc_x110_zoneQ
+#print axioms PhotoLean.Marcus.inst_I7_nonpos_lam_not_descriptor
+#print axioms PhotoLean.Marcus.inst_I7_unphysical_descriptor
+#print axioms PhotoLean.Marcus.inst_I7_unphysical_not_admissible
+#print axioms PhotoLean.Marcus.inst_I7_unphysical_rate_not_pos
 #print axioms PhotoLean.Marcus.normalRegion_of_zoneQ_normal
 #print axioms PhotoLean.Marcus.not_invertedRegion_of_zoneQ_normal
 
 -- ---- RatModel.lean ----
+#print axioms PhotoLean.Marcus.Rat.barrierQ_cast
+#print axioms PhotoLean.Marcus.Rat.barrierQ_zero_lam
 #print axioms PhotoLean.Marcus.Rat.zoneQ_eq_zone
 #print axioms PhotoLean.Marcus.Rat.zoneQ_inverted_iff
 
