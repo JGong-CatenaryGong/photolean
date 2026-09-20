@@ -73,4 +73,17 @@ theorem zone_eq_normal_iff (lam x : ℝ) : zone lam x = Zone.normal ↔ NormalRe
     · rw [if_neg h2]
       exact iff_of_false (by decide) h
 
+/-- 分类器判"无势垒点"当且仅当 `x = lam`。 -/
+theorem zone_eq_barrierless_iff (lam x : ℝ) : zone lam x = Zone.barrierless ↔ x = lam := by
+  unfold zone
+  by_cases h : x < lam
+  · rw [if_pos h]
+    exact iff_of_false (by decide) (ne_of_lt h)
+  · rw [if_neg h]
+    by_cases h2 : x = lam
+    · rw [if_pos h2]
+      exact iff_of_true rfl h2
+    · rw [if_neg h2]
+      exact iff_of_false (by decide) h2
+
 end PhotoLean.Marcus
