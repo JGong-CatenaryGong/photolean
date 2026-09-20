@@ -204,6 +204,11 @@ been lost on the way). -/
 theorem emitYield_self (rad ic : ℕ → ℝ) (i : ℕ) : emitYield rad ic i i = radBranch rad ic i := by
   unfold emitYield
   rw [cascade_self, mul_one]
+/-- Plan §4.2 #11. The level-resolved yield is nonnegative under `RateData`. -/
+theorem emitYield_nonneg {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N) (h1 : i ≤ N) :
+    0 ≤ emitYield rad ic i N := by
+  unfold emitYield
+  exact mul_nonneg (radBranch_nonneg h h1) (cascade_nonneg h h1)
 end Kasha
 
 end PhotoLean
