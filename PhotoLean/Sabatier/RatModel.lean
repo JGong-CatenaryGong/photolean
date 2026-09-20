@@ -195,6 +195,13 @@ theorem sabatierZoneQ_eq_tooWeak_iff (apexD dE : ℚ) :
   · exact ⟨fun h => absurd h (by decide), fun h => absurd h (by linarith)⟩
   · exact ⟨fun _ => lt_of_le_of_ne (le_of_not_gt h2) (Ne.symm h1), fun _ => rfl⟩
 
+/-- The rational conformance verdict is the rational mirror of the real one: the physical orientation
+of the two slopes transfers across the cast. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem sabatierConformsQ_iff (alphaA alphaB : ℚ) :
+    SabatierConformsQ alphaA alphaB ↔ SabatierConforms (alphaA : ℝ) (alphaB : ℝ) := by
+  unfold SabatierConformsQ SabatierConforms
+  norm_cast
+
 end Sabatier
 
 end PhotoLean
