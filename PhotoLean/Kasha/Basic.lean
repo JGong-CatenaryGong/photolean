@@ -33,12 +33,16 @@ in the plan's honesty table and scope limits; no theorem below depends on one of
 
 Statement authority: every definition body and every theorem signature below is taken word for
 word from `theories/kasha/probes/kasha-statement-skeleton.lean` (its §K1 block; sha256
-`e3ddc2d01317ec6bc46957cae7763034a23df691bffc480a08c9a23d9fe6412b`), which in turn transcribes
-`theories/kasha/plan.md` §4.1 and §4.2. The design rule of the engine applies throughout: a
-physical approximation is an explicit hypothesis (that is what `RateData` is for), never a
-definition. Note deliberately: the two keyword literals that `proofs/scripts/check.sh --strict`
-scans for are not spelled out anywhere in this file — that scan covers `PhotoLean/**/*.lean`
-including block comments, so writing them (even in prose) would be a false-positive FAIL.
+`801983702a9dc0129e7a2ab4ec6505c4d7c9967daed444c58b460910bc7e3cb0`), which in turn transcribes
+`theories/kasha/plan.md` §4.1 and §4.2 — including the single statement correction of that block,
+recorded in the plan's §3.1 statement-correction log: row §4.2 #24 carries the tolerance premise
+`0 < tol`, because without it the row is false (kernel counterexample
+`theories/kasha/probes/kasha-k1-counterexample.lean`, witness `rad ≡ 1`, `ic ≡ 1`, `N = 0`,
+`tol = -1`). The design rule of the engine applies throughout: a physical approximation is an
+explicit hypothesis (that is what `RateData` is for), never a definition. Note deliberately: the
+two keyword literals that `proofs/scripts/check.sh --strict` scans for are not spelled out
+anywhere in this file — that scan covers `PhotoLean/**/*.lean` including block comments, so
+writing them (even in prose) would be a false-positive FAIL.
 
 Plan locus: `theories/kasha/plan.md` §4 (K1); board `theories/kasha/TASKS.md` §K1. This module
 imports `Mathlib` only — no `PhotoLean.Marcus`, no other `PhotoLean` module: the description
