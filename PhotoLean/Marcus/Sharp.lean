@@ -116,4 +116,14 @@ theorem sharp_lam_pos_of_eq {A kB T : ℝ} (hdesc : InvertedDescriptor A 0 kB T)
   rw [hrate 2, hrate 1] at hd
   exact lt_irrefl A hd
 
+/-- 必要性内核汇总：描述成立且速率为正 ⇒ `lam > 0`。
+对 `lt_trichotomy lam 0` 的**三支**分别处理（`lam < 0` 与 `lam = 0` 两支各自矛盾，
+第三支即结论），不经由 `le_antisymm` 之类的间接路线 —— 保证 `lam = 0` 是真分支。 -/
+theorem sharp_lam_pos {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA : 0 < A)
+    (hdesc : InvertedDescriptor A lam kB T) : 0 < lam := by
+  rcases lt_trichotomy lam 0 with h | h | h
+  · exact (sharp_lam_pos_of_lt hkB hT hA hdesc h).elim
+  · subst h; exact (sharp_lam_pos_of_eq hdesc).elim
+  · exact h
+
 end PhotoLean.Marcus
