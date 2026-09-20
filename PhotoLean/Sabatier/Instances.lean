@@ -205,6 +205,19 @@ theorem inst_I4_plateau (dE : ℝ) (h : 0 ≤ dE) :
   norm_num
   linarith
 
+/-- I5 (mixed-slope series `alphaA = 1`, `betaA = 0`, `alphaB = -1`, `betaB = 1`): the series does
+NOT conform to the Sabatier description. Plan locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I5_notConforms : ¬ SabatierConforms 1 (-1) := by
+  unfold SabatierConforms
+  norm_num
+
+/-- I5: its barrier is strictly monotone in the descriptor — the volcano has disappeared. Discharged
+from the delivered S3 witness `antiVolcano_monotone`, whose parameters are exactly this series. Plan
+locus: `theories/Sabatier/plan.md` §8.2. -/
+theorem inst_I5_monotone (dE₁ dE₂ : ℝ) (h : dE₁ < dE₂) :
+    volcanoBarrier 1 0 (-1) 1 dE₁ < volcanoBarrier 1 0 (-1) 1 dE₂ :=
+  antiVolcano_monotone dE₁ dE₂ h
+
 end Sabatier
 
 end PhotoLean
