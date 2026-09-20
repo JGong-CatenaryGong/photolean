@@ -268,6 +268,17 @@ Plan §5 (activity layer). -/
 theorem activity_pos (f : ℝ → ℝ) (kB T dE : ℝ) : 0 < activity f kB T dE :=
   Real.exp_pos _
 
+/-- If the barrier profile is a volcano, the apex is a global maximizer of the activity: a lower
+barrier always means a higher Arrhenius activity. `0 < kB * T` is the explicit physical premise.
+Plan §5 (activity layer). -/
+theorem activity_le_apex {f : ℝ → ℝ} {de0 kB T : ℝ} (hkT : 0 < kB * T)
+    (h : VolcanoDescriptor f de0) (dE : ℝ) :
+    activity f kB T dE ≤ activity f kB T de0 := by
+  have hle : f de0 ≤ f dE := h.1 dE
+  unfold activity
+  rw [Real.exp_le_exp, div_le_div_iff_of_pos_right hkT, neg_le_neg_iff]
+  exact hle
+
 end Sabatier
 
 end PhotoLean
