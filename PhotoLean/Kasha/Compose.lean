@@ -102,6 +102,23 @@ noncomputable def kashaGapThreshold (A rad0 dec0 rad1 tol : ℝ) : ℝ :=
 
 /-! ## Theorems (plan §7.2) -/
 
+/-- Plan §7.2 #1. **The cascade splits at an interior level**: reaching `i` from `N` without emitting
+is reaching `M` from `N` and then `i` from `M`. Proof: induction on the gap `N - M`
+(`Nat.le_induction`), peeling the top index of the product with `Finset.prod_Icc_succ_top` and
+finishing by associativity; no `Icc`-union lemma is needed (the plan §10 risk register's friction
+point). -/
+theorem cascade_compose {rad ic : ℕ → ℝ} {i M N : ℕ} (h1 : i ≤ M) (h2 : M ≤ N) :
+    cascade rad ic i N = cascade rad ic i M * cascade rad ic M N := by
+  induction N, h2 using Nat.le_induction with
+  | base => rw [cascade_self, mul_one]
+  | succ N hM ih =>
+    have hstep : ∀ a : ℕ, a ≤ N →
+        cascade rad ic a (N + 1) = cascade rad ic a N * icBranch rad ic (N + 1) := by
+      intro a ha
+      unfold cascade
+      rw [Finset.prod_Icc_succ_top (by omega : a + 1 ≤ N + 1)]
+    rw [hstep i (le_trans h1 hM), hstep M hM, ih, mul_assoc]
+
 
 end Kasha
 
