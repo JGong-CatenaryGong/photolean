@@ -38,6 +38,12 @@
       157 theorems) with 157 placeholder declarations, `lake env lean` exit 0 / 0 other warnings,
       `sha256 c9aa2cb1…` (recorded in plan §3); the delivered set replaces every placeholder
       word-for-word (191/191, 0 differences)
+- [x] Lead audit probe (closeout artifact): `theories/BEP/probes/bep-lead-audit.lean` — the small
+      set of numbers quoted in `RESULTS.md` that no delivered theorem states (`13/16` is the two-point
+      observable slope at `x₁ = 1, x₂ = 3/2` while the I9 coefficient is `3/4`; the blindness witness;
+      `bepDefect 2 1 = 1/8`, `secSlope 2 0 1 = 3/8`, `epZone 2 3`) is kernel-checked **here**, in the
+      repository, so the claim "kernel-checked" has an artifact; compiles with
+      `proofs/scripts/lake env lean theories/BEP/probes/bep-lead-audit.lean`, exit 0, no output
 - [x] Lead risk probe: `theories/BEP/probes/bep-risk-probe.lean` — owner `prover_d`; seven riskiest
       B3/Sprint-0 forms, **six PASS** (including the `Real.sqrt` tolerance radius by two independent
       routes and the equioscillation minimax lower bound in its original `∀ c a, ∃ x` form) and
