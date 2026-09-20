@@ -189,6 +189,32 @@ theorem volcanoBarrier_le_apex_add {alphaA betaA alphaB betaB : ℝ} (hA : 0 < a
         _ ≤ max alphaA alphaB * tol := mul_le_mul_of_nonneg_right (le_max_left _ _) htol
     linarith
 
+/-- Apex-centred form of the barrier: the excess over the pass is the maximum of two linear
+penalties, one for each end of the descriptor axis, with the two BEP slopes as coefficients. The
+identity is algebraic and needs only `alphaA + alphaB ≠ 0`, i.e. that the apex formula be defined —
+no sign hypothesis. Plan §5. -/
+theorem volcanoBarrier_apex_form {alphaA betaA alphaB betaB : ℝ} (h : alphaA + alphaB ≠ 0) (dE : ℝ) :
+    volcanoBarrier alphaA betaA alphaB betaB dE
+      = apexBarrier alphaA betaA alphaB betaB
+        + max (alphaA * (dE - apex alphaA betaA alphaB betaB))
+            (alphaB * (apex alphaA betaA alphaB betaB - dE)) := by
+  have hup : branchUp alphaA betaA dE
+      = apexBarrier alphaA betaA alphaB betaB
+        + alphaA * (dE - apex alphaA betaA alphaB betaB) := by
+    unfold apexBarrier
+    rw [volcanoBarrier_at_apex h]
+    unfold branchUp
+    ring
+  have hdown : branchDown alphaB betaB dE
+      = apexBarrier alphaA betaA alphaB betaB
+        + alphaB * (apex alphaA betaA alphaB betaB - dE) := by
+    unfold apexBarrier
+    rw [volcanoBarrier_at_apex h, apex_crossing h]
+    unfold branchDown
+    ring
+  unfold volcanoBarrier
+  rw [hup, hdown, max_add_add_same]
+
 end Sabatier
 
 end PhotoLean
