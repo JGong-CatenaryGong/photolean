@@ -151,6 +151,14 @@ theorem qTransfer_cast (lam x : ℚ) :
   push_cast
   ring
 
+/-- Transfer: the rational reverse coefficient casts to the real one (the mirror of
+`qTransfer_cast`; added 2026-09-20 so that `qReverseTransfer` is not an unconstrained definition). -/
+theorem qReverseTransfer_cast (lam x : ℚ) :
+    ((qReverseTransfer lam x : ℚ) : ℝ) = reverseTransfer (lam : ℝ) (x : ℝ) := by
+  unfold qReverseTransfer reverseTransfer
+  push_cast
+  ring
+
 set_option linter.unusedVariables false in
 /-- The `≠ 0` premise is the mathematical premise of a finite difference and is *not* consumed by
 the cast: `Rat.cast_div` moves the cast through division unconditionally. -/
