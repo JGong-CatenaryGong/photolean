@@ -84,6 +84,12 @@ lowest state's radiative rate, level `1` carries the **whole upper block's** rad
 noncomputable def effRad (rad ic : ℕ → ℝ) (N : ℕ) : ℕ → ℝ :=
   fun n => if n = 0 then rad 0 else if n = 1 then upperYield rad ic N else 0
 
+/-- Effective two-level nonradiative data of the ladder at excitation level `N`: level `0` keeps the
+lowest state's loss rate, level `1` carries the upper block's arrival probability
+(`cascade rad ic 0 N`), and every level above `1` is inert (plan §7.1). -/
+noncomputable def effIc (rad ic : ℕ → ℝ) (N : ℕ) : ℕ → ℝ :=
+  fun n => if n = 0 then ic 0 else if n = 1 then cascade rad ic 0 N else 0
+
 
 end Kasha
 
