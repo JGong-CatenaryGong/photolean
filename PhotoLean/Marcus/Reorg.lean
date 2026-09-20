@@ -53,4 +53,9 @@ noncomputable def lamInner (kk dq : ℝ) : ℝ := kk * dq ^ 2 / 2
 noncomputable def lamOuter (dE a1 a2 R nSq epsS : ℝ) : ℝ :=
   dE ^ 2 * (1 / (2 * a1) + 1 / (2 * a2) - 1 / R) * (1 / nSq - 1 / epsS)
 
+/-- 内层重组能非负：力常数非负即可（`kk = 0` 即无内层重组，物理上允许）。--/
+theorem lamInner_nonneg {kk : ℝ} (hkk : 0 ≤ kk) (dq : ℝ) : 0 ≤ lamInner kk dq := by
+  unfold lamInner
+  positivity
+
 end PhotoLean.Marcus
