@@ -310,7 +310,8 @@ F5 = Family(
         ("R1", F("15.80"), F("20.32"), F("66.1"), F("85.0")),
         ("R5", F("19.82"), F("21.72"), F("82.9"), F("90.9")),
     ],
-    aggregates=dict(n=5, mean=F("37.5"), sd=None, range=(F("32.5"), F("44.0")),
+    aggregates=dict(n=5, mean=F("37.4507"), sd=None,
+                    range=(F("32.493019"), F("44.007305")),
                     curvature=F("-0.0203"), lam_from_curvature=F("-12.3"),
                     fit=None, r2=None),
     notes=("all 5 rows printed (the only §R1.10 family whose aggregates are recomputable "
@@ -1165,7 +1166,11 @@ F2.aggregates["printed_lam_hat"] = {
     "1": F("48.2"), "8": F("50.7"), "10": F("44.4"),
 }
 F5.aggregates["printed_lam_hat"] = {
-    "R2": F("32.5"), "R3": F("39.6"), "R4": F("41.6"), "R1": F("44.0"), "R5": F("32.5"),
+    # round 1j: R4 and R5 were AUDIT-FAILed by this script (the record had the wrong sign
+    # orientation for those two rows) and are superseded by the recomputed roots; all five
+    # entries below are the record's current cells, checked against the exact roots (±0.05).
+    "R2": F("32.493"), "R3": F("39.645"), "R4": F("34.640"), "R1": F("44.007"),
+    "R5": F("36.468"),
 }
 
 

@@ -678,6 +678,22 @@ verdicts per family:
    so a family whose fitted curvature is **negative** cannot be reproduced by *any* positive-`λ`
    two-parabola law (the stronger, λ-independent test).
 
+⚠️ **Two-convention label (added round 1j; the record uses both and they differ by exactly a factor 2).**
+The verdicts above are computed in **two different normalizations** of the same law:
+
+| label | normalization | how a fitted curvature becomes a `λ` | used for |
+|---|---|---|---|
+| **(A) curvature convention** | `Ea(x) = λ/4 − x/2 + x²/(4λ)` at the level of the *second derivative*, so `d²Ea/dx² = 1/(2λ)` | `λ = 1/(2·curvature)` | the family-curvature verdicts (`−0.0160` ⇒ `λ = −31.3 kcal/mol`, etc.) |
+| **(B) quadratic-coefficient convention** | the fitted polynomial `y = a + b·x + c·x²` with `c = 1/(4λ)` | `λ = 1/(4·curvature)` | the per-pair `λ̂` columns and the 2-butanol family's constants |
+
+Both are negative in every family, and the **conclusion (negative curvature ⇒ no positive `λ` exists) is
+invariant under either label** — the factor 2 changes the *value* of the implied `λ`, never its sign. Any
+figure quoted from this record must therefore carry its label; e.g. §R1.10.2's water family reads
+`λ = −15.6 kcal/mol` under (B) and `λ = −31.3 kcal/mol` under (A) — the ~0.5 % difference between the
+printed `−15.7` and the exact `−15.625` is rounding of the *curvature* to two significant figures, not a
+convention difference. **Rule for this record: report `λ̂` cells to the precision they are computed at
+(three decimals below), and always name the label when a `λ` is derived from a fitted curvature.**
+
 Both tests are **our arithmetic** on the sources' numbers; they are not literature claims.
 
 ## R1.10.2 Family F1 — f-HAT from phenolic antioxidants to `•OOH`, water
@@ -753,16 +769,42 @@ is **deliberately excluded** from this table.
 prints a **classical reaction energy `ΔE`** and a **classical forward barrier `V‡f`** — `ΔE` is an
 *energy*, **not** a Gibbs energy (the `ΔE`-vs-`ΔG` caveat applies to every row).
 
+The five rows below were re-verified against the source in round 1j (`V‡f` = 20.32, 12.38, 17.57, 17.47,
+21.72 and `ΔE` = 15.80, 7.62, 13.14, 14.56, 19.82 kcal·mol⁻¹, for (R1)–(R5)); the `λ̂` column was
+**corrected** in that round (see the correction note after the table).
+
 | site | `ΔE` /kcal·mol⁻¹ | `V‡f` /kcal·mol⁻¹ | `ΔE` /kJ·mol⁻¹ | `V‡f` /kJ·mol⁻¹ | `λ̂` /kcal·mol⁻¹ |
 |---|---|---|---|---|---|
-| R2 | 7.62 | 12.38 | 31.9 | 51.8 | 32.5 |
-| R3 | 13.14 | 17.57 | 55.0 | 73.5 | 39.6 |
-| R4 | 14.56 | 17.47 | 60.9 | 73.1 | 41.6 |
-| R1 | 15.80 | 20.32 | 66.1 | 85.0 | 44.0 |
-| R5 | 19.82 | 21.72 | 82.9 | 90.9 | 32.5 |
+| R2 | 7.62 | 12.38 | 31.9 | 51.8 | 32.493 |
+| R3 | 13.14 | 17.57 | 55.0 | 73.5 | 39.645 |
+| R4 | 14.56 | 17.47 | 60.9 | 73.1 | **34.640** |
+| R1 | 15.80 | 20.32 | 66.1 | 85.0 | 44.007 |
+| R5 | 19.82 | 21.72 | 82.9 | 90.9 | **36.468** |
 
-**Family verdicts (ours):** all five pairs admit `λ̂ > 0` (mean **37.5**, range 32.5–44.0 kcal/mol
-≈ **157 kJ/mol**); curvature `−0.0203` ⇒ `λ = −12.3` ⇒ **INCONSISTENT**.
+**Family verdicts (ours):** all five pairs admit `λ̂ > 0` (mean 37.4507, range 32.493019–44.007305
+kcal/mol ≈ **157 kJ/mol**; spread 137–184 kJ/mol); curvature `−0.0203` ⇒ `λ = −12.3` under the curvature
+convention (label note in §R1.10.1) ⇒ **INCONSISTENT**.
+
+**CORRECTION (round 1j), caught by the cross-check script `theories/BEP/probes/bep-instance-check.py`.**
+The two cells previously printed as `R4 = 41.6` and `R5 = 32.5` were **wrong** and are superseded by
+`R4 = 34.640112` and `R5 = 36.468035`. **Verified for `R5`:** its wrong value is reproduced exactly by
+evaluating that row with the **opposite sign orientation** of the driving force,
+`λ̂(x = +19.82, Ea = 21.72) = 32.4930` — and the large root `λ̂ = x + 2Ea + 2√(Ea² + x·Ea)` is **not**
+invariant under `x → −x`, so the orientation change silently replaces the correct root (`36.4680`) by a
+mixture of the two. ⚠️ Two traps made this hard to see, recorded so they are not re-litigated: (i) the wrong
+`R5` cell coincides numerically with the **correct** `R2` root (both `32.4930`); (ii) for `R4` the wrong
+value `41.6` is **not reproducible from that row's own two printed numbers under any sign orientation or
+column order** tried here (`97.8`, `92.3`, `34.6`, `6.1`, and the column swap has a negative discriminant),
+so the proximate cause of that one cell is **not established** and is recorded as an unexplained
+transcription-level defect rather than as a diagnosable convention error. Recomputed uniformly under
+**`x = −ΔE`** (printed `ΔE > 0` ⇒ `x < 0`, i.e. the endergonic branch under the model's `x = -ΔG°`), the
+large roots are `(R1, R2, R3, R4, R5) = (44.007305, 32.493019, 39.644841, 34.640112, 36.468035)`, mean
+**37.4507**, range **32.493–44.007** — exactly the family summary printed *before* the correction, which
+confirms the error was confined to those two cells. The conclusion (`λ̂ > 0` for every pair, negative family
+curvature) is unchanged. **The record and the script now agree cell by cell** (R1/R2/R3 were already within
+rounding: drifts +0.0073, −0.0070, +0.0448). The remaining families (§R1.10.2–§R1.10.4) were re-checked in
+the same round against the same formula and are **correct as printed** (spot-checks: water `16(2)` → 62.999
+vs 63.0; water `19(2)` → 65.345 vs 65.3; PE `10` → 44.394 vs 44.4).
 
 ## R1.10.6 The honest consequence for the instance layer
 

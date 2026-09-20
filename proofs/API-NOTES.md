@@ -1463,3 +1463,409 @@ API-wise nothing further is needed for the remaining statements; they are arithm
 `statement-first` 不等于"只检查看起来有风险的语句"。骨架定稿前必须做一次**带反向对照的系统审计**
 （`theories/hammond/probes/hammond-lead-audit.lean`：每条非平凡语句在具体有理点上实例化，
 并在"必须为假"的点上验证其为假），否则一条假语句会以"prover 报障 + 语句变更"的昂贵方式暴露。
+
+---
+
+## 2026-09-20 — BEP round (Bell–Evans–Polanyi) — api_researcher — 5 probes + 1 statement skeleton, **all 0 error / 0 warning**; the two Sprint-0 statement corrections are folded in; the minimax and radius rows are kernel-verified end to end
+
+> 本节正文用英文（`AGENTS.md` 语言政策把 `proofs/API-NOTES.md` 列为 English 产物；不写第二份镜像）。
+> 标识符、`#check` 输出、报错与 warning 原文照抄。
+
+### 1. Deliverables and compile evidence
+
+| Artifact | Declarations | Run (repo root) | Result |
+|---|---|---|---|
+| `theories/BEP/probes/bep-statement-skeleton.lean` | **137** (105 theorems + 18 `def` + 12 `noncomputable def` + 2 `inductive`) | `proofs/scripts/lake env lean theories/BEP/probes/bep-statement-skeleton.lean` | **exit 0, 0 error, 105 warnings — all of them `declaration uses 'sorry'` (0 other warnings)** |
+| `theories/BEP/probes/bep-api-algebra.lean` | 29 named (21 theorems + 8 defs) + 6 `example` | same command, filename swapped | exit 0, 0 error / 0 warning |
+| `theories/BEP/probes/bep-api-abs-sqrt.lean` | 25 named (17 theorems + 8 defs) + 3 `example` | as above | exit 0, 0 error / 0 warning |
+| `theories/BEP/probes/bep-api-rat.lean` | 41 named (21 theorems + 20 defs) + 19 `example` | as above | exit 0, 0 error / 0 warning |
+| `theories/BEP/probes/bep-api-minimax.lean` | 22 named (14 theorems + 8 defs) | as above | exit 0, 0 error / 0 warning |
+| `theories/BEP/probes/bep-api-zone.lean` | 11 named (9 theorems + 2 defs) + 14 `example` | as above | exit 0, 0 error / 0 warning |
+
+Skeleton declaration count per milestone block (the lead's dispatch granularity):
+
+| Block | Declarations | Content |
+|---|---|---|
+| B1 `Basic.lean` — plan §4.1 | 18 | 17 definitions + the `EPZone` inductive (9 constructors, plan order, `deriving DecidableEq, Repr`) |
+| B1 `Basic.lean` — plan §4.2 | 15 | the description-layer theorems, incl. the nine `epZone_eq_*_iff` |
+| (AUX, ℝ helpers for the B5a casts) | 2 | `alphaObs`, `lamOfPair` |
+| B2 `Criterion.lean` — plan §5 | 28 | 19 numbered rows + 9 non-vacuity witnesses |
+| B3 `Sharp.lean` — plan §6.1–§6.5 | 25 | radius theorem, monotonicities, minimax pair, hypothesis-necessity witnesses |
+| (AUX, literal `sSup` form of the minimax block) | 7 | `epSupError`, its `BddAbove` witness, the two second-difference identities, `sSup_eq_of_le_of_mem`, the two `sSup` sharpness forms |
+| B4 `Compose.lean` — plan §7 | 13 | 12 numbered rows + the AUX `secSlope = Hammond.lefflerSecant` bridge |
+| B5a `RatModel.lean` — plan §8.1 | 11 | 10 definitions + `EPQVerdict` (6 constructors) |
+| B5a `RatModel.lean` — plan §8.1 theorems | 18 | 13 plan-named + `qBepLine_cast` + the two reconstruction theorems + 2 decision witnesses |
+| **total** | **137** | |
+
+**Not covered by this round**: plan §8.2 (`PhotoLean/BEP/Instances.lean`, rows I1–I11). The plan's
+table gives ids and theorem *names* but no signatures; guessing them is forbidden by the engine
+rules, so the skeleton stops at B5a. A follow-up API round is required once
+`theories/BEP/LITERATURE.md` fixes the literature families.
+
+Plan-internal count mismatches seen while transcribing (recorded, not silently "fixed"):
+§4.2 is titled "(13)" but lists 15 rows; §5's last row is titled "20–26" but lists 9 regime
+non-vacuity lemmas; §8.1 says "Theorems (13)" and names 13 (the skeleton adds 5 AUX/the plan's
+reconstruction counterpart).
+
+### 2. The two statement corrections folded in (Sprint-0 risk probe → skeleton)
+
+#### (1) `transfer` / `reverseTransfer` are the **linear-response** bodies (plan §4.1)
+
+```lean
+noncomputable def transfer (lam x : ℝ) : ℝ := 1 / 2 - x / (2 * lam)
+noncomputable def reverseTransfer (lam x : ℝ) : ℝ := 1 / 2 + x / (2 * lam)
+```
+
+Consequences, all now consistent in the skeleton and in the probes:
+
+| Row | Statement | Note |
+|---|---|---|
+| `transfer_thermoneutral` (plan §5 #6) | `transfer lam 0 = 1 / 2` | **no hypothesis** (`zero_div`, `sub_zero`) |
+| `transfer_zero_lam` (plan §4.2 #4) | `transfer 0 x = 1 / 2` | degenerate value is `1/2`, **not** `0` (`mul_zero`, `div_zero`) |
+| `transfer_eq_tsCoord` (plan §5 #5) | `(hlam : lam ≠ 0) : transfer lam x = (lam - x) / (2 * lam)` | a **genuine theorem** now (the Leffler/Brønsted identification); `unfold; field_simp` alone closes it |
+| `transfer_eq_tsCoord_bridge` (plan §7 #3) | `(hlam : lam ≠ 0) : transfer lam x = Hammond.tsCoord lam x` | cross-module form |
+| `transfer_add_reverse` (plan §5 #8) | `(hlam : lam ≠ 0) : transfer lam x + reverseTransfer lam x = 1` | pure **ring** identity — `hlam` is *not* consumed (`x / 0 = 0` cancels) |
+| `reverseTransfer_eq_transfer_neg` (plan §5 #9) | `reverseTransfer lam x = transfer lam (-x)` | pure ring identity, no hypothesis needed |
+| `secSlope_eq_transfer_mid` (plan §5 #10) | `(hlam : lam ≠ 0) (hh : h ≠ 0) : secSlope lam x h = transfer lam (x + h / 2)` | now needs `hlam`; `field_simp; ring` |
+| `transfer_at_lam` / `transfer_at_neg_lam` (plan §6.1 #3/#4) | `(hlam : 0 < lam) : transfer lam lam = 0`, `transfer lam (-lam) = 1` | `field_simp` closes the first by itself |
+
+**⚠️ The probe-local `transfer := (lam - x) / (2 * lam)` is NOT the delivered body.** It is the
+discarded transition-state body; `bep-api-algebra.lean` keeps it under the explicit name
+`transferTS` in a section marked `DISCARDED body`, together with `transfer_eq_transferTS`
+(`transfer lam x = transferTS lam x` for `lam ≠ 0`) so that no prover copies an old recipe against
+the new definition. The statement authority (`bep-statement-skeleton.lean`) uses the linear-response
+form, hence `transfer_eq_tsCoord` requires `lam ≠ 0`.
+
+#### (2) `qLamOfPair` — numerator and the `lam ≠ 0` premise (plan §8.1)
+
+```lean
+def qLamOfPair (x₁ ea₁ x₂ ea₂ : ℚ) : ℚ := (x₂ ^ 2 - x₁ ^ 2) / (2 * (x₂ - x₁) - 4 * (ea₁ - ea₂))
+```
+
+Kernel counterexamples (all in `bep-api-rat.lean`, `norm_num` closed):
+
+| Fact | Evidence |
+|---|---|
+| the literal numerator `x₁^2 - x₂^2` returns `-λ` | `qLamOfPairLiteral 0 (qEact 2 0) 1 (qEact 2 1) = -2` while `qLamOfPair 0 (qEact 2 0) 1 (qEact 2 1) = 2` (λ = 2 at `x = 0, 1` with barriers `1/2, 1/8`) |
+| the two forms are exact negatives | `qLamOfPairLiteral x₁ ea₁ x₂ ea₂ = -qLamOfPair x₁ ea₁ x₂ ea₂` (`rw [← neg_div]; ring`) |
+| `lam ≠ 0` is **necessary** | `qEact 0 0 = 0`, `qEact 0 1 = 0`, the denominator `2*(1-0) - 4*(0-0) = 2 ≠ 0`, yet `qLamOfPair 0 (qEact 0 0) 1 (qEact 0 1) = 1/2 ≠ 0` |
+| `hden` cannot be dropped | at the symmetric pair `(x, -x)` the numerator and the denominator vanish together: `qLamOfPair 1 (qEact 2 1) (-1) (qEact 2 (-1)) = 0`; the data pair is blind to λ (`eact 2 1 - eact 2 (-1) = eact 5 1 - eact 5 (-1)`) |
+
+`qLamOfPair_reconstructs` in the plan's shape (and its ℝ twin `lamOfPair_reconstructs`) is proved:
+`subst h₁; subst h₂; unfold qLamOfPair; rw [div_eq_iff hden]; unfold qEact at *; field_simp; ring`.
+
+### 3. Verified names — exact signatures (verbatim `#check` output, joined at line wraps)
+
+**A. Division / order / field** (all exist, none deprecated unless marked):
+
+```
+@div_eq_iff : ∀ {G₀} [GroupWithZero G₀] {a b c : G₀}, b ≠ 0 → (a / b = c ↔ a = c * b)
+@eq_div_iff : ∀ {G₀} [GroupWithZero G₀] {a b c : G₀}, b ≠ 0 → (c = a / b ↔ c * b = a)
+@div_mul_eq_mul_div : ∀ {α} [DivisionCommMonoid α] (a b c : α), a / b * c = a * c / b
+@pow_two : ∀ {M} [Monoid M] (a : M), a ^ 2 = a * a
+@sq_nonneg : ∀ {α} [Semiring α] [LinearOrder α] … (a : α), 0 ≤ a ^ 2
+@sq_pos_of_ne_zero : ∀ {R} [LinearOrderedSemiring R] [ExistsAddOfLE R] {a : R}, a ≠ 0 → 0 < a ^ 2
+@div_nonneg : 0 ≤ a → 0 ≤ b → 0 ≤ a / b
+@div_pos : 0 < a → 0 < b → 0 < a / b
+@div_pos_iff_of_pos_right : 0 < b → (0 < a / b ↔ 0 < a)
+@div_ne_zero : a ≠ 0 → b ≠ 0 → a / b ≠ 0
+@div_zero : ∀ {G₀} [GroupWithZero G₀] (a : G₀), a / 0 = 0
+@zero_div : 0 / a = 0
+@sub_ne_zero : a - b ≠ 0 ↔ a ≠ b
+@mul_ne_zero : a ≠ 0 → b ≠ 0 → a * b ≠ 0
+@div_le_div_of_nonneg_right : a ≤ b → 0 ≤ c → a / c ≤ b / c
+@div_le_div_of_nonneg_left : 0 ≤ a → 0 < c → c ≤ b → a / b ≤ a / c
+@div_le_div_iff₀ : 0 < b → 0 < d → (a / b ≤ c / d ↔ a * d ≤ c * b)
+@div_lt_div_iff₀ : 0 < b → 0 < d → (a / b < c / d ↔ a * d < c * b)
+@div_le_div_iff_of_pos_right : 0 < c → (a / c ≤ b / c ↔ a ≤ b)
+@div_le_iff₀ : 0 < c → (b / c ≤ a ↔ b ≤ a * c)
+@le_div_iff₀ : 0 < c → (a ≤ b / c ↔ a * c ≤ b)
+@div_lt_iff₀ : 0 < c → (b / c < a ↔ b < a * c)
+@lt_div_iff₀ : 0 < c → (a < b / c ↔ a * c < b)
+@div_le_one : 0 < b → (a / b ≤ 1 ↔ a ≤ b)
+@div_lt_one : 0 < b → (a / b < 1 ↔ a < b)
+@one_le_div / @div_le_one : the `1 ≤ ·` twins
+@div_nonneg_iff : 0 ≤ a / b ↔ 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0   (general disjunction)
+@mul_le_mul_of_nonneg_left : b ≤ c → 0 ≤ a → a * b ≤ a * c
+@mul_le_mul_of_nonneg_right : b ≤ c → 0 ≤ a → b * a ≤ c * a
+@neg_div : -a / b = -(a / b)           -- orientation matters, see §4
+```
+
+**B. Absolute value / intervals**:
+
+```
+@abs_le : |a| ≤ b ↔ -b ≤ a ∧ a ≤ b
+@abs_add : |a + b| ≤ |a| + |b|
+@abs_mul : |a * b| = |a| * |b|
+@abs_div : |a / b| = |a| / |b|
+@abs_of_nonneg : 0 ≤ a → |a| = a        -- and abs_of_pos / abs_of_neg / abs_of_nonpos / abs_neg
+@le_abs_self : a ≤ |a|                  @neg_le_abs : -a ≤ |a|
+@sq_le_sq : a ^ 2 ≤ b ^ 2 ↔ |a| ≤ |b|   -- ROOT-LEVEL name (see §4)
+@Set.mem_Icc : x ∈ Set.Icc a b ↔ a ≤ x ∧ x ≤ b
+@Set.right_mem_Icc : b ∈ Set.Icc a b ↔ a ≤ b     @Set.left_mem_Icc : a ∈ Set.Icc a b ↔ a ≤ b
+@Set.Icc_subset_Icc_iff : a₁ ≤ b₁ → (Set.Icc a₁ b₁ ⊆ Set.Icc a₂ b₂ ↔ a₂ ≤ a₁ ∧ b₁ ≤ b₂)
+@not_or : ¬(p ∨ q) ↔ ¬p ∧ ¬q            @not_le : ¬a ≤ b ↔ b < a
+```
+
+**C. Square roots**:
+
+```
+@Real.sq_sqrt : 0 ≤ x → √x ^ 2 = x
+@Real.sqrt_sq : 0 ≤ x → √(x ^ 2) = x
+Real.sqrt_sq_eq_abs : ∀ x, √(x ^ 2) = |x|
+@Real.sqrt_mul_self : 0 ≤ x → √(x * x) = x     @Real.mul_self_sqrt : 0 ≤ x → √x * √x = x
+@Real.sqrt_mul : 0 ≤ x → ∀ y, √(x * y) = √x * √y
+Real.sqrt_nonneg : ∀ x, 0 ≤ √x
+@Real.sqrt_pos : 0 < √x ↔ 0 < x
+@Real.sqrt_le_iff : √x ≤ y ↔ 0 ≤ y ∧ x ≤ y ^ 2
+@Real.le_sqrt : 0 ≤ x → 0 ≤ y → (x ≤ √y ↔ x ^ 2 ≤ y)
+@Real.le_sqrt' : 0 < x → (x ≤ √y ↔ x ^ 2 ≤ y)
+@Real.sqrt_le_sqrt : x ≤ y → √x ≤ √y          (unconditional!)
+@Real.sqrt_lt_sqrt : 0 ≤ x → x < y → √x < √y
+@Real.lt_sqrt : 0 ≤ x → (x < √y ↔ x ^ 2 < y)
+@Real.sqrt_le_sqrt_iff : 0 ≤ y → (√x ≤ √y ↔ x ≤ y)
+Real.sqrt_zero / Real.sqrt_one / @Real.sqrt_eq_zero_of_nonpos
+```
+
+**D. Supremum (the minimax block)**:
+
+```
+@sSup : {α} → [SupSet α] → Set α → α
+@csSup_le : s.Nonempty → (∀ b ∈ s, b ≤ a) → sSup s ≤ a
+@le_csSup : BddAbove s → a ∈ s → a ≤ sSup s              -- boundedness argument comes FIRST
+@csSup_eq_of_forall_le_of_forall_lt_exists_gt : s.Nonempty → (∀ a ∈ s, a ≤ b) → (∀ w < b, ∃ a ∈ s, w < a) → sSup s = b
+@isLUB_csSup : s.Nonempty → BddAbove s → IsLUB s (sSup s)
+@bddAbove_def : BddAbove s ↔ ∃ x, ∀ y ∈ s, y ≤ x
+Real.instConditionallyCompleteLinearOrder : ConditionallyCompleteLinearOrder ℝ
+Real.sSup_def : ∀ s, sSup s = if h : s.Nonempty ∧ BddAbove s then Classical.choose ⋯ else 0
+```
+
+**E. ℚ decision layer**:
+
+```
+#synth Ord ℚ                        → LinearOrder.toOrd
+#synth DecidableRel (· ≤ · : ℚ → ℚ → Prop) → Rat.instDecidableLe : (a b : ℚ) → Decidable (a ≤ b)
+#synth DecidableRel (· < · : ℚ → ℚ → Prop) → Rat.instDecidableLt : (a b : ℚ) → Decidable (a < b)
+@instDecidableRelLe : {α} → [Ord α] → DecidableRel LE.le
+@Rat.cast_div / cast_add / cast_sub / cast_mul / cast_pow / cast_neg / cast_inv / cast_lt / cast_le /
+ cast_abs / cast_one / cast_zero / cast_mk   (all verified; `cast_lt`/`cast_le` are `↔`)
+@decide_eq_true_iff : decide p = true ↔ p        @of_decide_eq_true
+@Rat.divInt_eq_div : ∀ n d, Rat.divInt n d = ↑n / ↑d
+```
+
+**F. Tactic domains (measured, not documented)**
+
+| Tactic | Domain measured this round |
+|---|---|
+| `ring` | genuine polynomial identities incl. division-as-inverse (`transfer_add_reverse`, `reverseTransfer_eq_transfer_neg`, `secSlope_eq_lefflerSecant`, `bepDefect_even` after `field_simp`) |
+| `ring_nf` | same; `ring_nf` did **not** close `qAlphaObs = qTransfer` at the midpoint (the denominator normalises but does not cancel) — the working route is an explicit `hkey : ea₁ - ea₂ = (x₂-x₁)*(2*lam-x₁-x₂)/(4*lam)` then `field_simp; ring` |
+| `field_simp` | clears `lam ≠ 0`, `h ≠ 0`, `x₂ - x₁ ≠ 0`, `2*lam ≠ 0`, `4*lam ≠ 0`, `8*lam ≠ 0` from the context; **sometimes closes the goal by itself** (`transfer_eq_tsCoord`, `transfer_eq_tsCoord_bridge`, `transfer_eq_transferTS`, `transfer_at_lam`, `qTransfer_at_lam`, `bepBestLine_halves`'s first conjunct) — appending `ring` then errors with `no goals to be solved` |
+| `linarith` / `nlinarith` | `nlinarith` needs its nonlinear hints supplied; the parabolas' monotonicity rows are `linarith` once the quadratic normal form is rewritten in |
+| `positivity` | closes `0 < 4 * lam` from `0 < lam`, `0 ≤ w ^ 2 / (8 * lam)` from `0 < lam`, `0 ≤ 2 * √(lam * tol)` |
+| `by decide` | **only** kernel-reducible rationals: integer literals and `Rat.divInt` literals. It **fails** on any comparison containing a `/`-literal, and it cannot even *synthesize* `Decidable` for a `def`-wrapped predicate before `unfold` |
+| `by norm_num` | the workhorse of the ℚ layer (`≤`, `<`, `≠`, `=`, `|q| = r`); it has **no `abs` support on ℚ** (`|q| ≤ r` is left unsolved) |
+| `native_decide` | works, but **BANNED**: `'nativeDecideWitness' depends on axioms: [propext, Lean.ofReduceBool]` and `Lean.ofReduceBool ∉ ALLOWED_AXIOMS` → `axioms.sh` FAIL |
+| `exact_mod_cast` | moves ℚ comparisons to ℝ and back (verified both directions) |
+| `push_cast` | the ℚ → ℝ transfer recipe is `unfold …; push_cast; ring` (7 cast lemmas verified) |
+
+### 4. Failures and drift (mandatory section)
+
+**Names that do not exist** (measured this round; verbatim errors):
+
+```
+error: unknown identifier 'div_nonneg_iff_of_pos_right'
+error: unknown identifier 'div_nonneg_iff_of_pos_left'
+error: unknown constant 'Set.mem_Icc_iff'
+error: unknown constant 'Real.sqrt_lt_iff_lt_sq'
+error: unknown constant 'Real.sq_le_sq'
+error: unknown constant 'Real.sqrt_four'
+error: unknown identifier 'le_sqrt''          -- the bare name; it is Real.le_sqrt'
+error: unknown constant 'Rat.castRat'
+error: unknown constant 'Rat.decLe'
+error: unknown identifier 'div_nonneg_iff_of_pos_left'
+```
+
+Consequences for the plan's own proof sketches:
+
+| Plan sketch says | Reality | Replacement |
+|---|---|---|
+| §6.1 #1 suggests `div_le_iff` / `le_div_iff` | those old names are deprecated | `div_le_iff₀` / `le_div_iff₀`; for the `0 ≤` quotient the shortest route is `le_div_iff₀` + `zero_mul` (there is **no** `div_nonneg_iff_of_pos_right`) |
+| §6.2 #10 suggests `abs_pow` | not `#check`ed as such; the working route is `abs_div` + `abs_of_nonneg (sq_nonneg x)` + `abs_mul` + `abs_of_nonneg` | verified in `bep-api-abs-sqrt.lean` |
+| anywhere `Real.sq_le_sq` | does not exist | root-level `sq_le_sq : a^2 ≤ b^2 ↔ |a| ≤ |b|`, or `sq_le_sq' : -b ≤ a → a ≤ b → a^2 ≤ b^2` |
+
+**Deprecated (warning only, so `#check`ing them breaks a 0-warning probe — cite as comments):**
+
+```
+warning: `div_le_div_iff` has been deprecated: use `div_le_div_iff₀` instead
+warning: `div_le_div_right` has been deprecated: use `div_le_div_iff_of_pos_right` instead
+warning: `div_le_div_left` has been deprecated: use `div_le_div_iff_of_pos_left` instead
+warning: `pow_le_pow_left` has been deprecated: use `pow_le_pow_left₀` instead
+```
+
+**Orientation traps measured:**
+
+* `neg_div` is `-a / b = -(a / b)`, so turning `-(a / b)` into `(-a) / b` needs `rw [← neg_div]`
+  (the forward rewrite fails with `did not find instance of the pattern in the target expression:
+  -?b / ?a`). `div_neg` is `a / -b = -(a / b)`.
+* `field_simp` does **not** discharge a `≠ 0` fact about `x₂ - x₁` from `h : x₁ ≠ x₂` — restate it
+  (`sub_ne_zero.mpr (Ne.symm h)`), the same trap as the Hammond round.
+* `rw [← hval]` inside a goal that still mentions `sSup` of a set built from `hval`'s subterms
+  rewrites **inside the set** and silently changes the statement (measured; the fix is the explicit
+  `sSup_eq_of_le_of_mem` helper).
+
+### 5. Kernel-verified recipes for the risky rows
+
+| Row | Status | Recipe |
+|---|---|---|
+| plan §6.2 #11 `epConformsOnWindow_iff_radius` | **verified end to end** | `(→)` evaluate at `x = -w` → `w^2/(4*lam) ≤ tol` → `div_le_iff₀` → `√(w^2) ≤ √(4*lam*tol)` via `Real.sqrt_sq hw` + `Real.sqrt_le_sqrt` + `Real.sqrt_mul`; `(←)` `abs_le.mpr hx` → `x^2 ≤ w^2` (`pow_le_pow_left₀` + `sq_abs`) → `(2*√(lam*tol))^2 = 4*lam*tol` (`mul_pow` + `Real.sq_sqrt`) |
+| plan §6.2 #12 `epConformsOnWindow_at_radius` | verified | one line from #11 with `le_rfl` and `0 ≤ bepRadius lam tol` by `positivity` |
+| plan §6.1 #7/#8 `EPExact ↔ lam = 0`, `not_epLinearOn_of_ne_zero` | verified | three-point identity `eact_second_difference`; `(x₁-x₂)^2/(8*lam) ≠ 0` kills affinity; the `Set.univ` direction is true *only* because `eact 0 x = x^2/0 = 0` |
+| plan §6.4 #18–#21 (minimax block) | **verified end to end** | `bepBestLine_error` (pointwise bound via `|x^2 - w^2/2| ≤ w^2/2`), `bep_minimax_pointwise` (equioscillation: `by_contra h; push_neg at h`, the three `abs_lt.mp` facts and `linarith`), `epBestOnWindow_holds` (one line from it), `bepLine_worst_case` (witness `x = w`), `bepBestLine_halves` (`field_simp` + `div_lt_div_iff₀` + `nlinarith`) |
+| literal `sSup` layer (AUX) | verified | `csSup_le` for `≤`, `le_csSup` with the explicit `BddAbove` witness for `≥`; `epSupError_bestLine` and `epSupError_sharp` both compile |
+| plan §4.2 #7–#15 (nine classifier rows) | **verified** | `unfold epZone; split_ifs with h1 … h8` → 9 leaves, each `iff_of_true rfl _` / `iff_of_false (by decide) _`; plus 9 non-vacuity witnesses and 4 negative controls |
+| plan §8.1 `qLamOfPair_reconstructs` | verified | see §2 |
+| plan §5 #10/#11 (`secSlope` rows) | verified | #10 = `field_simp; ring`; #11 = #10 twice |
+| plan §6.3 #15/#16 | verified | `div_le_div_iff₀` + `mul_le_mul_of_nonneg_left`; `Real.sqrt_le_sqrt` + `mul_le_mul_of_nonneg_right` |
+
+**Measured correction to the plan's risk register**: the equioscillation lower bound needs **neither
+`not_forall` nor `not_or`** — the verified route is `by_contra h; push_neg at h` (the single
+existential negates into a `∀` of strict bounds), then `linarith` over the three sampled errors and
+the three-point identity. `prover_b` should not spend time on the pre-registered `push_neg` risk.
+
+### 6. API-risk list per milestone (what is hardest, and where mathlib could force a statement change)
+
+| Block | Hardest expected row | Risk / gap |
+|---|---|---|
+| B1 `Basic.lean` | the nine `epZone_eq_*_iff` | **already kernel-verified** in the probe; the only real risk is the *cascade shape* (a reordering of the guards invalidates several rows). Keep the plan §4.1 order verbatim |
+| B2 `Criterion.lean` | `eact_antitone` (needs `nlinarith` with the expanded square) and `secSlope_midpoint_invariant` | low; all identities verified. `bepDefect_pos_iff` needs `sq_pos_iff` (not `sq_pos_of_ne_zero`) after `div_pos_iff_of_pos_right` |
+| B3 `Sharp.lean` | the radius theorem (√ layer) and the minimax pair | **both verified end to end**; the remaining gap is the literal sup-norm phrasing — plan §6.4 states the ε-free `EPBestOnWindow`, and the literal `sSup` twin is available as AUX (7 declarations) if the plan wants it |
+| B4 `Compose.lean` | `rate_eq_exp_neg_eact` and `epConformsOnWindow_shrinks_with_inner` | the plan's own sketches carry placeholders (`(h : Marcus.rate … = …)`, `(…)`) that the skeleton had to resolve (see §7); no mathlib gap, but the lead should confirm the resolved shapes |
+| B5a `RatModel.lean` | `qLamOfPair_reconstructs` (needs `lam ≠ 0`, `hden`) and the `epQVerdict` cascade | **no mathlib gap**, but the plan's "decidable predicate decided by `decide`" is not achievable in this toolchain for `/`-literals: use `norm_num` (+ an `abs`-free normal form); `decide` only on integer/`Rat.divInt` literals; `native_decide` is banned by `ALLOWED_AXIOMS` |
+| B5b `Instances.lean` | not covered | signatures for I1–I11 are not derivable from plan §8.2 (ids only) |
+
+**No statement change was forced by mathlib** in this round: every row of plan §4.1–§8.1 that this
+round covers is expressible and (for the risky ones) already proved. The only statements this round
+had to *change* are the two Sprint-0 corrections of §2, both of which were mathematical defects of
+the draft, not mathlib gaps.
+
+### 7. Interpretation log — plan placeholders resolved by api_researcher (lead to confirm)
+
+| Plan locus | Placeholder in the plan | Resolution in the skeleton | Why |
+|---|---|---|---|
+| §4.1 | `def epQVerdict (lam x : ℚ) : EPQVerdict := …` | 7-branch cascade: `degenerate` (`λ = 0`), `unphysical` (`λ < 0`), `boundary` (`x = ±λ`, i.e. α = 0 or 1), `conforming` (α ∈ (0,1) strictly), `superLinear` (`1 < α`, above the Evans–Polanyi band), `subLinear` (`α < 0`, below it) | makes the plan's four `epQVerdict_*_iff` rows provable; all four are kernel-verified in `bep-api-rat.lean` |
+| §8.1 | `qConformsWindow_iff_radius_sq` (name only) | `qConformsWindow lam tol w ↔ ((w : ℚ) : ℝ) ≤ bepRadius (lam : ℝ) (tol : ℝ)` | the name demands the radius, and the ℚ predicate is the squared form, so the row is the binding bridge to §6.2 #11 |
+| §7 #2 | `rate_eq_exp_neg_eact (h : Marcus.rate A lam kB T x = …)` | `(A lam kB T x : ℝ) : Marcus.rate A lam kB T x = A * Real.exp (-(eact lam x) / (kB * T))` | the ellipsis is the identity itself; `eact_eq_barrier` makes both sides `rfl`-equal up to `Marcus.rate`'s body |
+| §6.3 #17, §7 #11 | `(…)` for the hypotheses | positivity of the curvatures (and of `tol` where the window is used) | exactly what the proofs of #15/#16 consume |
+| §4.2 | "B1 theorems (13)" but 15 rows; §5's "20–26" row lists 9 lemmas | all 15 + all 9 are in the skeleton | counting only |
+
+### 8. Tightness observations (verified; not defects, but report them as such)
+
+1. **`bepDefect_even` needs `lam ≠ 0`.** The first draft of the probe stated it unconditionally and
+   the kernel rejected it (`bepDefect 0 x = x/2`, `bepDefect 0 (-x) = -x/2`; the cancellation
+   `(4*lam)*(4*lam)⁻¹ = 1` is what fails). `epConformsOnWindow_symm` is nevertheless true because
+   `EPConformsOnWindow` carries `0 < lam`. **This is the one place where a plausible "obvious"
+   symmetry lemma is false** — do not restate it without the premise.
+2. `transfer_add_reverse` (plan §5 #8), `reverseTransfer_eq_transfer_neg` (§5 #9) and
+   `transfer_complementary_microscopic` (§7 #12) are pure ring identities: their `hlam` premises are
+   never consumed (`x / 0 = 0` cancels). Deliver them with the premise (plan fidelity) and the local
+   `set_option linter.unusedVariables false`, as `PhotoLean/Hammond/Basic.lean` already does.
+3. `bepRadius_mono` (§6.3 #16): `h0 : 0 ≤ lam₁` is not consumed; the essential premise is
+   `0 ≤ tol` (with `tol < 0` the statement is false: `tol = -1`, `lam₁ = -2`, `lam₂ = -1`).
+4. `bepDefect_antitone_lam` (§6.3 #15): `hx : x ≠ 0` is not consumed (at `x = 0` both sides are `0`).
+5. `epZone_eq_unphysical_iff` (§4.2 #8): `hlam : lam ≠ 0` is **redundant** — the statement holds for
+   every `lam` (both sides are false at `λ = 0`).
+6. `bepBestLine_error` (§6.4 #18) / `epSupError_bddAbove`: the pointwise bound does not consume
+   `0 ≤ w`; the attainment and `sSup` rows do (they need `0 ∈ Set.Icc (-w) w`).
+7. `qLamOfPair_reconstructs` (§8.1): `hx : x₁ ≠ x₂` is not consumed by the proof — `hden` already
+   carries the non-degeneracy; keep it (it is the mathematical premise of a two-point estimator).
+
+---
+
+## 2026-09-20 — BEP round, follow-up: plan §8.1 model-consistency block + plan §8.2 instances (I1–I12) — api_researcher — 190 declarations, 0 error, 156 placeholder warnings (all `declaration uses 'sorry'`); every instance row kernel-checked
+
+### 1. New content and compile evidence
+
+| Block | Declarations | Evidence |
+|---|---|---|
+| B5a `RatModel.lean` (plan §8.1 addition) | **5**: `qSecondDividedDiff`, `qModelConsistent3`, `qSecondDividedDiff_model`, `qModelConsistent3_curvature_pos`, `qModelConsistent3_lam_eq` | kernel-checked in `theories/BEP/probes/bep-api-instances.lean` (0 error / 0 warning) |
+| B5b `Instances.lean` (plan §8.2) | **48**: I1–I8 3 rows each, I9 4 rows, I10 2 rows, I11 4 rows × 4 families, I12 1 row, `inst_nonvacuous` | all 48 rows proved in the same probe with `norm_num` / `decide`-on-integers only |
+
+Skeleton after the addition: **190 declarations** = 156 theorems + 20 `def` + 12 `noncomputable def` +
+2 `inductive`; `proofs/scripts/lake env lean theories/BEP/probes/bep-statement-skeleton.lean` → exit 0,
+**0 error, 156 warnings, all of them `declaration uses 'sorry'` (0 other warnings)**. Per block:
+B1 definitions 18 + B1 theorems 15; AUX ℝ observation layer 2; B2 28; B3 25; AUX `sSup` block 7;
+B4 13; B5a definitions 11 + B5a theorems **23**; B5b **48**.
+
+### 2. The ℚ-side recipe for the model-consistency block (measured)
+
+```lean
+theorem qSecondDividedDiff_model {lam x₁ x₂ x₃ : ℚ} (hlam : lam ≠ 0)
+    (h₁₂ : x₁ ≠ x₂) (h₂₃ : x₂ ≠ x₃) (h₁₃ : x₁ ≠ x₃) :
+    qSecondDividedDiff x₁ (qEact lam x₁) x₂ (qEact lam x₂) x₃ (qEact lam x₃) = 1 / (4 * lam)
+```
+* pure ℚ algebra: restate the three point-inequalities as **denominator** facts
+  (`x₂ - x₁ ≠ 0`, `x₃ - x₂ ≠ 0`, `x₃ - x₁ ≠ 0` via `sub_ne_zero.mpr (Ne.symm h)`), then
+  `unfold qSecondDividedDiff qEact; field_simp; ring`. `field_simp` discharges `4 * lam ≠ 0` from
+  `hlam`; `eq_div_iff` / `div_eq_iff` are not needed for this row but are the tools for the
+  `_lam_eq` row (`field_simp` alone closes it).
+* **The three pairwise-distinctness premises are necessary** (kernel-measured): at `x₁ = x₃` the outer
+  denominator of the divided difference is `0`, the totalised division gives `0`, and the claimed
+  `1/(4λ)` is false. The plan's §8.1 sketch hides them behind `…`; they are now explicit.
+* `qModelConsistent3_curvature_pos` = rewrite the three data equalities from the predicate, apply the
+  model identity, `positivity`. `qModelConsistent3_lam_eq` = the same rewrite, then `field_simp`.
+* Argument order matters: `qModelConsistent3 lam x₁ x₂ x₃ e₁ e₂ e₃` takes **all abscissae first**
+  (plan §8.1 verbatim), whereas `qSecondDividedDiff x₁ e₁ x₂ e₂ x₃ e₃` interleaves `(x, e)` pairs.
+  A first draft mixed the two and failed elaboration — worth a docstring line in `Instances.lean`.
+
+### 3. The instance block (plan §8.2): what `norm_num` can and cannot do
+
+**Verified `norm_num` domain (all measured):**
+
+| Row shape | Recipe |
+|---|---|
+| verdict rows (`Rat.epQVerdict (2:ℚ) 0 = Rat.EPQVerdict.conforming`) | `unfold epQVerdict qTransfer; norm_num` — `norm_num` reduces the whole six-branch `if`-chain of concrete rational comparisons; no `split_ifs`/`decide` case bash needed |
+| value rows (`Rat.qTransfer (2:ℚ) (1/2) = 3/8`, `Rat.qBepDefect (-2:ℚ) 1 = -(1/8)`) | `unfold <def>; norm_num` |
+| window rows (`Rat.qConformsWindow (2:ℚ) (1/8) 1`, and its negation) | `unfold qConformsWindow; norm_num` |
+| literature rows with **decimal** literals | decimals are first-class ℚ literals: `(15.6 : ℚ) = 78/5`, `(0.3 : ℚ)`, `(7.62 : ℚ)` all normalise; `norm_num` on `qSecondDividedDiff`/`qAlphaObs`/`qLamOfPair` after `unfold` |
+| falsification rows (`¬ ∃ lam : ℚ, qModelConsistent3 lam …`) | `rintro ⟨lam, hlam, h₁, h₂, h₃⟩`, then `qModelConsistent3_curvature_pos` with the three `by norm_num` distinctness facts, the computed negative value via a `show … by unfold …; norm_num` rewrite, and `norm_num at hpos` |
+
+`by decide` remains unusable on `/`-literals and `native_decide` remains banned (see the main BEP
+section); the integer-only `decide` was not needed by any row.
+
+**Rows that could NOT be made `norm_num`-checkable (the list requested):**
+
+1. **Family F4** (plan §8.2 I11, *Antioxidants* 2026 **Table 2 "PE"**) — `theories/BEP/LITERATURE.md`
+   §R1.10.4 prints **only family aggregates** for it (mean `λ̂` = 53.4 kcal/mol, range 43.8–57.9,
+   curvature −0.0046, fit `Ea = 13.7 − 0.585x`, R² = 0.952) and **no per-row `(x, Ea)` pairs**, so
+   `_alphaObs` / `_lamHat` / `_curvature_negative` / `_not_model_consistent` cannot be stated for it
+   without inventing numbers. The skeleton therefore carries I11 rows for **F1, F2, F3, F5 only**;
+   the gap is documented in the B5b section header. If a per-row table for F4 is read first-hand in a
+   later literature round, the four rows can be added by the same recipe.
+2. Nothing else failed: all I1–I10 rows, the 16 I11 rows and the I12 conjunction are closed by the
+   recipes above.
+3. **Plan §8.2 I8 is stale on one value** (statement defect, corrected in the skeleton): the table
+   still prints `α = 0` for the degenerate family `λ = 0`, which belonged to the discarded
+   transition-state body. With the delivered linear-response body,
+   `Rat.qTransfer (0 : ℚ) 1 = 1 / 2` (plan §4.2 #4). The skeleton states `1/2`; the plan's I-table
+   cell should be updated by the lead.
+
+### 4. Honesty notes on the literature rows (needed so no prover "improves" them)
+
+* `Rat.qLamOfPair` is the **model's two-point solver**, not the record's per-pair `λ̂`
+  (`λ̂ = (x + 2Ea) ± 2√(Ea² + x·Ea)`, irrational and not a ℚ literal). The `_lamHat` rows therefore
+  state exact ℚ values at two **adjacent** printed pairs, where the model solver happens to be
+  positive (F1 `9/20`, F2 `16/15`, F3 `22/5`, F5 `7958/675`) — the record's "all pairs admit
+  `λ̂ > 0`" is a *different* estimator and is deliberately not restated. At a wide pair the model
+  solver is negative (F1, `16(2)`&`8`: `-2079/25`), which is itself an instance of the
+  wrong-sign-curvature phenomenon; the skeleton does not hide it.
+* `_curvature_negative` is a statement about the **three chosen printed rows**, not about the
+  record's family-level regression (R², fitted curvature) — a regression is not a ℚ identity and is
+  not formalised. The λ-independent falsification (`¬ ∃ lam, qModelConsistent3 …`) is exactly the
+  logical content of the chosen triple.
+* `_alphaObs` uses the family's widest printed `x`-pair (the closest analogue of a fitted slope);
+  the values lie strictly inside `(0,1)`, matching the record's "the BEP side works" reading.
+* Units: every Lean literal is the source's **kcal/mol** number (the sources' own first-hand value);
+  the record's kJ/mol column is its own arithmetic and is deliberately never used in a statement.
+  `F5` prints a classical `ΔE / V‡f`, so the docstrings carry the `ΔE`-vs-`ΔG` caveat.
+* The numbers and loci are verbatim from §R1.10 (all five families `first-hand` there); nothing was
+  converted, rounded or re-derived here.
