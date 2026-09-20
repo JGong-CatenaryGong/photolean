@@ -441,6 +441,13 @@ theorem antiVolcano_monotone (dE₁ dE₂ : ℝ) (h : dE₁ < dE₂) :
     volcanoBarrier 1 0 (-1) 1 dE₁ < volcanoBarrier 1 0 (-1) 1 dE₂ :=
   barrier_strictMono_of_slopes_up (1:ℝ) (0:ℝ) (-1:ℝ) (1:ℝ) (by norm_num) (by norm_num) dE₁ dE₂ h
 
+/-- The mixed-sign model is not a volcano (plan §6): its barrier is strictly increasing in `dE`, so
+no point — the apex included — is a global minimizer. -/
+theorem not_descriptor_mixedSign :
+    ¬ VolcanoDescriptor (fun dE => volcanoBarrier 1 0 (-1) 1 dE) (apex 1 0 (-1) 1) :=
+  notDescriptor_of_slopes_up (alphaA := 1) (betaA := 0) (alphaB := -1) (betaB := 1)
+    (by norm_num) (by norm_num)
+
 end Sabatier
 
 end PhotoLean
