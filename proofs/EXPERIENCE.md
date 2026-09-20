@@ -890,7 +890,9 @@
   — 31/34 pairs, water vs pentyl ethanoate; *Chem. Sci.* **6**:5866 (2015) Table 1 CCSD(T) row — 5 sites).
   **All five admit per-pair λ̂ > 0** (water 61.5, PE 50.3, `•OOCH₃` 59.4/53.4, CCSD(T) 37.5 kcal/mol), **but every
   family's fitted curvature is negative** — and the model requires `d²Ea/dx² = 1/(2λ) > 0` for *every* λ > 0.
-  So no positive λ reproduces any family's shape, while the *linear* BEP fit is excellent (R² = 0.93–0.95 in four
+  So no positive λ reproduces any family's shape, while the *linear* BEP fit is excellent where the record
+  reports it (R² = 0.934 / 0.548 / 0.934 / 0.952 for F1/F2/F3/F4 — F2 is the printed exception and F5 is
+  not reported; three of the five families have a good linear fit)
   of five). Report this as a finding; **never** "fix" it by reporting a λ̂ as a measured reorganization energy.
   Also: the same substrates in a different solvent give a different λ̂ (Δλ ≈ 11 kcal/mol) ⇒ the family must be
   indexed by solvent too; and the per-pair λ is only identified up to the spurious small root.
@@ -1523,7 +1525,7 @@
     ring`) instead of importing `Criterion.lean`: one upstream file, immune to a co-worker's mid-edit
     state, and the dependency is visible in the proof rather than in the import list.
   - The comment-only follow-up round (verifier MEDIUM-1/LOW-1) kept the comment-stripped text
-    byte-identical: sha256 `815e9a3614a7af9d3bd2bec92b2e9a66873e5d99ae871ef42f79e4f8ce2f60ab` (15618 bytes
+    byte-identical: sha256 `815e9a3614a7af9d3bd2bec92b2e9a66873e5d99ae871ef42f79e4f8ce2f60ab` (15618 characters = 16328 bytes
     on both sides, stripper = the official checker's `strip_comments`); raw file sha256 before
     `b9b3b568f0d0b37c2df22a1721e4d9cd8e29e6234f5f68300e887c8ada1c81cf`, after
     `a874ce82e85db1c496590d6bf80541d74e40296fde740a6765e7c462d3bbc068` (commit `bff7cfa`);
