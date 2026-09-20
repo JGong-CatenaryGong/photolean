@@ -169,6 +169,14 @@ theorem qLamOfPair_cast {x₁ ea₁ x₂ ea₂ : ℚ} (h : x₁ ≠ x₂) :
   push_cast
   ring
 
+/-- Plan §8.1: ℚ mean-value identity — the secant over `[x, x+h]` is the coefficient at the
+midpoint `x + h/2`. -/
+theorem qSecSlope_eq_qTransfer_mid {lam : ℚ} (hlam : lam ≠ 0) {x h : ℚ} (hh : h ≠ 0) :
+    qSecSlope lam x h = qTransfer lam (x + h / 2) := by
+  unfold qSecSlope qTransfer qEact
+  field_simp
+  ring
+
 end Rat
 
 end BEP
