@@ -109,6 +109,25 @@ theorem hammondZoneQ_eq_hammondZone (lam x : ℚ) :
   unfold hammondZoneQ hammondZone
   norm_cast
 
+/-! ## Zone characterization lemmas (plan §8.1)
+
+These carry the ℚ-side semantic content of the classifier: each one identifies the exact branch
+condition, so a kernel computation of `hammondZoneQ` at rational literals yields a statement
+about the corresponding ℚ predicate. The recipe is uniform: `unfold hammondZoneQ`, then
+`split_ifs with h1 … h6` produces exactly the seven leaves and hands each one the accumulated
+(negated) branch tests; every leaf is closed by `iff_of_true rfl …` or
+`iff_of_false (by decide) …`, with `linarith` on the arithmetic side. The hypothesis `0 < lam`
+is what rules out the impossible combinations of conditions. -/
+
+/-- Rational zone characterization, early branch. -/
+theorem hammondZoneQ_eq_early_iff {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.early ↔ 0 < x ∧ x < lam := by
+  unfold hammondZoneQ
+  split_ifs with h1 h2 h3 h4 h5 h6 <;>
+    first
+      | exact iff_of_true rfl ⟨h6, lt_of_le_of_ne (le_of_not_gt h4) h1⟩
+      | exact iff_of_false (by decide) (by rintro ⟨hx, hy⟩; linarith)
+
 end Rat
 
 end Hammond
