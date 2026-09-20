@@ -398,6 +398,114 @@ theorem linearVolcano_apex_exact {lam : ℝ} (h : 0 < lam) :
       = Sabatier.parabolicBarrier lam lam 0 :=
   Sabatier.linearVolcano_apex_exact h
 
+/-! ## 9. Look-alike but different: the Sabatier volcano predicate and the Marcus rate
+
+Both theories present an observable with a unique interior optimum, and — as `C1` makes checkable —
+they even share one functional form: the Marcus rate *is* the Sabatier activity of the kernel
+barrier, scaled by the pre-exponential factor. `C2` pushes that further: the Marcus rate satisfies
+the very same predicate `Sabatier.AntiVolcanoDescriptor`, with `lam` as its unique maximizer.
+
+What the pair does **not** share is the optimum itself, and the three facets below pin the
+difference. `C3`: at the optimum the Marcus barrier vanishes identically (the optimum is the
+barrierless point), while the Sabatier reference pass sits at `1/2` — a volcano pass is not a
+barrierless point. `C4`: the one-sided secant at the Marcus optimum is `h / (4 * lam)`, i.e. it
+vanishes with the step, whereas the Sabatier volcano legs have secant slopes that do not depend on
+the step at all (`alphaA` above the apex, `-alphaB` below it) — a kink against a smooth optimum,
+stated without any calculus. `C5`: the Marcus optimal position is fixed by the curvature alone —
+the same `lam` is optimal for every admissible prefactor and thermal energy — while the Sabatier
+apex moves when only the offsets change with the slopes held fixed.
+
+Accounting: `C1` is a certificate (the two bodies coincide after unfolding, no new mathematics);
+`C2` is the instantiation of the shared predicate at the Marcus rate (new proof, the uniqueness
+half is new); `C3`–`C5` are non-relations, i.e. the checkable content of "look-alike but
+different". The statement forms were calibrated first in
+`theories/Marcus/probes/relations-b2-statement-skeleton.lean`. -/
+
+/-- **C1** — shared functional form: the Marcus rate is the Sabatier activity functional applied
+to the kernel barrier, scaled by the pre-exponential factor. This is what makes "same shape" a
+shared definition pattern rather than an analogy. -/
+theorem marcus_rate_eq_activity (A lam kB T x : ℝ) :
+    Marcus.rate A lam kB T x =
+      A * Sabatier.activity (fun y => Kernel.barrier lam y) kB T x := by
+  unfold Marcus.rate Sabatier.activity Kernel.barrier Marcus.barrier
+  rfl
+
+/-- **C2** — the same predicate, instantiated: the Marcus rate has the Sabatier volcano shape in
+the very same predicate, with `lam` as its unique global maximizer. The first conjunct is the
+delivered `Marcus.rate_peak_at_lam`; the uniqueness half is proved here (a tie in the rate forces a
+tie in the barrier, and the barrier vanishes only at `lam`). -/
+theorem marcusRate_antiVolcanoDescriptor {A lam kB T : ℝ}
+    (hA : 0 < A) (hlam : 0 < lam) (hkT : 0 < kB * T) :
+    Sabatier.AntiVolcanoDescriptor (Marcus.rate A lam kB T) lam := by
+  constructor
+  · intro x
+    exact Marcus.rate_peak_at_lam hA hlam hkT x
+  · intro x hx
+    have hAne : A ≠ 0 := ne_of_gt hA
+    have hkTne : kB * T ≠ 0 := ne_of_gt hkT
+    have h4 : (4 : ℝ) * lam ≠ 0 := mul_ne_zero (by norm_num) (ne_of_gt hlam)
+    have h1 : Real.exp (-(Marcus.barrier lam x) / (kB * T))
+        = Real.exp (-(Marcus.barrier lam lam) / (kB * T)) := by
+      unfold Marcus.rate at hx
+      exact mul_left_cancel₀ hAne hx
+    have h2 : -(Marcus.barrier lam x) / (kB * T) = -(Marcus.barrier lam lam) / (kB * T) :=
+      Real.exp_injective h1
+    have h3 : Marcus.barrier lam x = Marcus.barrier lam lam := by
+      have h2' : -(Marcus.barrier lam x) = -(Marcus.barrier lam lam) := by
+        have h := h2
+        rw [div_eq_div_iff hkTne hkTne] at h
+        exact mul_right_cancel₀ hkTne h
+      linarith
+    have hzero : Marcus.barrier lam x = 0 := by
+      rw [Marcus.barrier_at_lam lam] at h3
+      exact h3
+    unfold Marcus.barrier at hzero
+    have hsq : (lam - x) ^ 2 = 0 := by
+      rcases div_eq_zero_iff.mp hzero with h | h
+      · exact h
+      · exact absurd h h4
+    have hsub : lam - x = 0 := sq_eq_zero_iff.mp hsq
+    linarith
+
+/-- **C3a** — non-relation: the reference volcano's optimal pass height is nonzero (`1/2`), so a
+volcano pass is not a barrierless point. -/
+theorem apexBarrier_reference_nonzero :
+    Sabatier.apexBarrier (1 / 2) (1 / 2) (1 / 2) (1 / 2) = 1 / 2 := by
+  norm_num [Sabatier.apexBarrier, Sabatier.volcanoBarrier, Sabatier.branchUp, Sabatier.branchDown,
+    Sabatier.apex]
+
+/-- **C3b** — the contrast side by side: the Marcus optimal barrier is identically zero while the
+Sabatier reference pass is `1/2`. -/
+theorem optimal_barrier_height_contrast :
+    (∀ lam : ℝ, Kernel.barrier lam lam = 0) ∧
+      Sabatier.apexBarrier (1 / 2) (1 / 2) (1 / 2) (1 / 2) = 1 / 2 :=
+  ⟨fun lam => by simp [Kernel.barrier], apexBarrier_reference_nonzero⟩
+
+/-- **C4** — non-relation: at the Marcus optimum the one-sided secant of the barrier is exactly
+`h / (4 * lam)`, hence it vanishes with the step; the Sabatier volcano legs have step-independent
+secant slopes (`Sabatier.volcanoBarrier_secSlope_of_apex_le` gives `alphaA`, its counterpart below
+the apex gives `-alphaB`). No calculus is involved on either side. -/
+theorem marcus_secant_at_optimum {lam h : ℝ} (hlam : lam ≠ 0) (hh : h ≠ 0) :
+    (Kernel.barrier lam (lam + h) - Kernel.barrier lam lam) / h = h / (4 * lam) := by
+  have h4 : (4 : ℝ) * lam ≠ 0 := mul_ne_zero (by norm_num) hlam
+  unfold Kernel.barrier
+  field_simp
+  ring
+
+/-- **C5a** — non-relation: the Sabatier apex moves when only the offsets change, the two slopes
+being held fixed (`apex (1/2) 0 (1/2) 1 = 1` against `apex (1/2) 0 (1/2) 0 = 0`). -/
+theorem sabatier_apex_moves_with_offsets :
+    Sabatier.apex (1 / 2) 0 (1 / 2) 1 = 1 ∧ Sabatier.apex (1 / 2) 0 (1 / 2) 0 = 0 := by
+  constructor <;> norm_num [Sabatier.apex]
+
+/-- **C5b** — non-relation: the Marcus optimal position is fixed by the curvature alone — the same
+descriptor `lam` is optimal for every admissible pre-exponential factor and thermal energy, whereas
+`C5a` shows the Sabatier apex responding to the offsets. -/
+theorem marcus_optimum_fixed_by_curvature {lam : ℝ} (hlam : 0 < lam) :
+    ∀ (A kB T : ℝ), 0 < A → 0 < kB * T →
+      Sabatier.AntiVolcanoDescriptor (Marcus.rate A lam kB T) lam :=
+  fun A kB T hA hkT => marcusRate_antiVolcanoDescriptor hA hlam hkT
+
 end Relations
 
 end PhotoLean
