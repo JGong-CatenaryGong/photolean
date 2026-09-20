@@ -229,6 +229,20 @@ theorem volcanoBarrier_secSlope_of_apex_le {alphaA betaA alphaB betaB : ℝ}
   unfold branchUp
   ring
 
+/-- Observable slope of the strong-binding volcano leg: its finite differences are `-alphaB`. The
+descending branch is what the profile *is* below the apex, and its slope is the negative BEP
+coefficient of the strong-binding step. Plan §5. -/
+theorem volcanoBarrier_secSlope_of_le_apex {alphaA betaA alphaB betaB : ℝ}
+    (hAB : 0 < alphaA + alphaB) {dE₁ dE₂ : ℝ} (h₂ : dE₂ ≤ apex alphaA betaA alphaB betaB)
+    (h₁ : dE₁ < dE₂) :
+    (volcanoBarrier alphaA betaA alphaB betaB dE₂ - volcanoBarrier alphaA betaA alphaB betaB dE₁)
+        / (dE₂ - dE₁) = -alphaB := by
+  have hne : dE₂ - dE₁ ≠ 0 := by linarith
+  rw [volcanoBarrier_eq_branchDown_of_le_apex hAB h₂,
+    volcanoBarrier_eq_branchDown_of_le_apex hAB (le_trans h₁.le h₂), div_eq_iff hne]
+  unfold branchDown
+  ring
+
 end Sabatier
 
 end PhotoLean
