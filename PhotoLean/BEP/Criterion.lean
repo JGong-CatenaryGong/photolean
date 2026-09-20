@@ -163,4 +163,12 @@ theorem epDescriptor_conforms {lam x : ℝ} (h : EPDescriptor lam) (hx : x ≠ 0
   rw [hdef x]
   exact div_pos (sq_pos_of_ne_zero hx) (by positivity)
 
+/-- Pointwise conformance is the positivity of the curvature together with the
+Evans–Polanyi bounds; the positivity is not implied by the bounds (the instance layer exhibits a
+negative curvature whose coefficient still lies in `[0,1]`). -/
+theorem epConforms_iff_bounds {lam x : ℝ} (hlam : 0 < lam) :
+    EPConforms lam x ↔ EPBounds lam x := by
+  unfold EPConforms
+  exact ⟨fun h => h.2, fun h => ⟨hlam, h⟩⟩
+
 end PhotoLean.BEP
