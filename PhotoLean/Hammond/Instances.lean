@@ -206,6 +206,12 @@ theorem inst_I7_rc_inverted_notConforms : ¬ HammondConforms (1 / 4) (11 / 10) :
   rw [hz] at hd
   rcases hd with h | h | h <;> exact absurd h (by decide)
 
+/-! ## I8 — non-physical curvature instances (rejected by the sharp characterization) -/
+/-- I8 (negative curvature): the descriptor fails — H3's `hammond_fails_of_nonpos` at
+`lam = -1/2`. -/
+theorem inst_I8_nonphysical_fails_neg : ¬ HammondDescriptor (-(1 / 2)) :=
+  hammond_fails_of_nonpos (by norm_num : (-(1 / 2) : ℝ) ≤ 0)
+
 end Hammond
 
 end PhotoLean
