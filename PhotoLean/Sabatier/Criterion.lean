@@ -336,6 +336,11 @@ three Sabatier regimes are therefore never empty, so the verdict vocabulary of t
 not vacuous. Plan §5 (non-vacuity witnesses). -/
 theorem exists_optimal (apexD : ℝ) : ∃ dE : ℝ, Optimal apexD dE := ⟨apexD, rfl⟩
 
+/-- Non-vacuity: a too-weakly-binding catalyst exists for every claimed apex (any descriptor strictly
+above it). Plan §5 (non-vacuity witnesses). -/
+theorem exists_tooWeak (apexD : ℝ) : ∃ dE : ℝ, TooWeak apexD dE :=
+  ⟨apexD + 1, by unfold TooWeak; linarith⟩
+
 end Sabatier
 
 end PhotoLean
