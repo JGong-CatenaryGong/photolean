@@ -445,6 +445,12 @@ theorem kashaGapThreshold_pos {A rad0 dec0 rad1 tol : ℝ} (hA : 0 < A) (hr0 : 0
   unfold kashaGapThreshold
   exact div_pos (mul_pos (mul_pos hA hr0) htol0) (mul_pos (mul_pos hr1 hdec) (by linarith))
 
+/-- Plan §7.2 #16. The Marcus internal-conversion rate is positive whenever the pre-exponential is:
+`Real.exp` is positive everywhere, so no positivity of `lam`, `kB·T` or the gap is needed. -/
+theorem marcusIC_pos {A lam kB T x : ℝ} (hA : 0 < A) : 0 < marcusIC A lam kB T x := by
+  unfold marcusIC
+  exact mul_pos hA (Real.exp_pos _)
+
 
 end Kasha
 
