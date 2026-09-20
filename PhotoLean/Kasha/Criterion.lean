@@ -158,6 +158,20 @@ theorem cascade_add_upperYield {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData ra
           _ = radBranch rad ic (Nat.succ N) + icBranch rad ic (Nat.succ N) * 1 := by rw [hstep]
           _ = 1 := by rw [mul_one, hsum]
   exact key N h
+/-- Plan §5.1 #7 — the total yield is one minus the ground-state loss current. -/
+theorem fluoYield_eq_one_sub_loss {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    fluoYield rad ic N = 1 - icBranch rad ic 0 * cascade rad ic 0 N := by
+  have hsplit : fluoYield rad ic N = emitYield rad ic 0 N + upperYield rad ic N :=
+    fluoYield_eq_low_add_upper h
+  have hcons : cascade rad ic 0 N + upperYield rad ic N = 1 := cascade_add_upperYield h
+  have hsum : radBranch rad ic 0 + icBranch rad ic 0 = 1 :=
+    radBranch_add_icBranch (ne_of_gt (h.decay_pos 0 (Nat.zero_le N)))
+  have hic : icBranch rad ic 0 = 1 - radBranch rad ic 0 := by linarith
+  have hupper : upperYield rad ic N = 1 - cascade rad ic 0 N := by linarith
+  rw [hsplit, hupper]
+  unfold emitYield
+  rw [hic]
+  ring
 end Kasha
 
 end PhotoLean
