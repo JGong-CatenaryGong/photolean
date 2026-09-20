@@ -191,6 +191,14 @@ theorem cascade_nonneg {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N
     0 ≤ cascade rad ic i N := by
   unfold cascade
   exact Finset.prod_nonneg fun j hj => icBranch_nonneg h (Finset.mem_Icc.mp hj).2
+set_option linter.unusedVariables false in
+/-- Plan §4.2 #9. The cascade probability is at most `1`: it is a probability (the premise `i ≤ N`
+is part of the signature; the product's own membership hypothesis supplies `j ≤ N`). -/
+theorem cascade_le_one {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateData rad ic N) (h1 : i ≤ N) :
+    cascade rad ic i N ≤ 1 := by
+  unfold cascade
+  exact Finset.prod_le_one (fun j hj => icBranch_nonneg h (Finset.mem_Icc.mp hj).2)
+    (fun j hj => icBranch_le_one h (Finset.mem_Icc.mp hj).2)
 end Kasha
 
 end PhotoLean
