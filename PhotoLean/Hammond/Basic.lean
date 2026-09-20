@@ -146,3 +146,15 @@ theorem tsCoord_zero {lam : ℝ} (hlam : lam ≠ 0) : tsCoord lam 0 = 1 / 2 := b
   field_simp
   ring
 
+/-- Degenerate zero curvature: the coordinate is constant (division-by-zero convention). -/
+theorem tsCoord_zero_lam (x : ℝ) : tsCoord 0 x = 0 := by
+  unfold tsCoord
+  norm_num
+
+/- Note on `set_option linter.unusedVariables false in`: four declarations below carry an
+explicit premise (`hlam : lam ≠ 0` or `hlam : 0 < lam`) that the corresponding proof does not
+consume — `tsCoord_at_lam` because Lean fixes `x / 0 = 0`, and three classifier lemmas because
+their branch guards already force the sign information. The premises remain in the statements
+(they belong to the description layer and keep signature fidelity with the statement skeleton);
+the unused-variable linter is disabled locally so that a warning-free build still surfaces any
+real warning elsewhere in the file. -/
