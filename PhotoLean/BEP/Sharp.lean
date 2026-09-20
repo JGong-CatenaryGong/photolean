@@ -17,7 +17,12 @@ line, the regime classifier). This module sharpens that description into *exact*
   (`bepBestLine_error`), no affine law does better (`epBestOnWindow_holds`, three-point
   equioscillation), and the best line halves the tangent line's worst case
   (`bepLine_worst_case`, `bepBestLine_halves`);
-* §6.5 — one hypothesis-necessity witness per premise carried by the sharp statements;
+* §6.5 — four hypothesis-necessity witnesses, exactly the witness set of the statement authority:
+  `bepDefect_zero_lam_witness` (`lam ≠ 0` in the defect identity), `bepDefect_neg_lam_witness`
+  (`0 < lam` in nonnegativity), `bepDefect_sign_flips` (the `lam < 0` sign flip) and
+  `secSlope_needs_h_ne_zero` (`h ≠ 0` in the mean-value identity). The sharp statements carry three
+  further premises — `0 < tol`, `a < b` and `0 < w` — for which the authority has **no** witness row;
+  the independent verifier produced kernel counterexamples for them outside this file;
 * AUX — the same minimax block in literal sup-norm (`sSup`) form, which is also the form the
   equioscillation constant is stated in.
 
@@ -25,12 +30,16 @@ Model assumptions (unchanged from `Basic.lean`; `theories/BEP/plan.md` §13): eq
 two-parabola model, one scalar reaction coordinate, classical crossing point as the transition
 state, `lam` fixed across the compared family, driving force `x = -ΔG°`. Every physical premise
 (`0 < lam`, `lam ≠ 0`, `0 < tol`, `0 ≤ w`, `0 < w`, `x ≠ 0`, `h ≠ 0`) is an explicit hypothesis of
-the statement that needs it; nothing is hidden in a definition. Three premises of the statement
-authority are physical bookkeeping rather than proof inputs — `x ≠ 0` in `bepDefect_antitone_lam`
-(both sides vanish at `x = 0`), `0 ≤ lam₁` in `bepRadius_mono` (`Real.sqrt_le_sqrt` is
-unconditional) and `0 ≤ w` in `bepBestLine_error` (the pointwise bound does not use it) — and are
-kept for signature fidelity with the local linter disabled, exactly as in `Basic.lean`, rather than
-being dropped from the statement.
+the statement that needs it; nothing is hidden in a definition. Four premises of the statement
+authority are physical bookkeeping rather than statement inputs — `x ≠ 0` in
+`bepDefect_antitone_lam` (both sides vanish at `x = 0`), `0 ≤ lam₁` in `bepRadius_mono`
+(`Real.sqrt_le_sqrt` is unconditional), `0 ≤ w` in `bepBestLine_error` (the pointwise bound does not
+use it) and `0 ≤ w` in `epConformsOnWindow_iff_radius` (not needed by the **statement** either: for
+`w < 0` the window `Set.Icc (-w) w` is empty, so its conformance condition is vacuous, while
+`w ≤ bepRadius lam tol` still holds because `0 ≤ bepRadius lam tol`; the independent verifier proved
+that strengthened form in the kernel as `iff_radius_strengthened`. The proof *below* does consume
+`hw`, at the endpoint `x = w` of the forward direction) — and are kept for signature fidelity with
+the local linter disabled, exactly as in `Basic.lean`, rather than being dropped from the statement.
 
 Statement authority: every declaration below matches
 `theories/BEP/probes/bep-statement-skeleton.lean` (plan §6.1–§6.5 plus its AUX section
