@@ -264,6 +264,21 @@ theorem specFrac_sum {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
     ∑ i ∈ Finset.range (N + 1), specFrac rad ic i N = 1 := by
   unfold specFrac
   rw [← Finset.sum_div, ← fluoYield, div_self hF]
+/-- Plan §4.2 #21. The tolerance form is the statement that the lowest state carries all but `tol`
+of the spectrum; dividing by the (positive, under `RateData`) total yield turns it into the
+normalized form. -/
+theorem kashaWithin_iff_specFrac {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h : RateData rad ic N)
+    (hF : fluoYield rad ic N ≠ 0) :
+    KashaWithin rad ic tol N ↔ 1 - specFrac rad ic 0 N ≤ tol := by
+  have hFpos : 0 < fluoYield rad ic N := lt_of_le_of_ne (fluoYield_nonneg h) (Ne.symm hF)
+  have hkey : 1 - specFrac rad ic 0 N = upperYield rad ic N / fluoYield rad ic N := by
+    have hu : upperYield rad ic N = fluoYield rad ic N - emitYield rad ic 0 N := by
+      linarith [fluoYield_eq_low_add_upper h]
+    rw [hu]
+    unfold specFrac
+    rw [← div_self hF, ← sub_div]
+  rw [hkey]
+  exact (div_le_iff₀ hFpos).symm
 end Kasha
 
 end PhotoLean
