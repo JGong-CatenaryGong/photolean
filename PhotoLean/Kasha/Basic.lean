@@ -155,6 +155,11 @@ theorem radBranch_add_icBranch {rad ic : ℕ → ℝ} {n : ℕ} (h : decay rad i
   unfold radBranch icBranch
   rw [← add_div]
   exact div_self h
+/-- Plan §4.2 #3. The radiative branch is nonnegative under `RateData`. -/
+theorem radBranch_nonneg {rad ic : ℕ → ℝ} {N n : ℕ} (h : RateData rad ic N) (hn : n ≤ N) :
+    0 ≤ radBranch rad ic n := by
+  unfold radBranch
+  exact div_nonneg (h.rad_nonneg n) (le_of_lt (h.decay_pos n hn))
 end Kasha
 
 end PhotoLean
