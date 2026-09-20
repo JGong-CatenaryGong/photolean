@@ -378,4 +378,70 @@ theorem inst_I6_rc_descriptor_any_kT {kBT : ℝ} (hkBT : 0 < kBT) :
   inverted_descriptor_holds (A := 1) (lam := 0.25) (kB := kBT) (T := 1)
     (by norm_num) (by norm_num) (by simpa using hkBT)
 
+/-! ## 速率比较 —— 反转区的标志性结论（**与温度无关**）
+
+反转区的标志性物理结论是「**驱动力更大的体系速率反而更小**」。本组把 M3 速率层
+（`inverted_rate_decreases` / `normal_rate_increases` / `rate_peak_at_lam`）实例化到
+文献 MCC 参数 `lam = 1.20`：
+
+* `inst_I4_mcc_rate_drop`：`rate(2.40) < rate(1.23)` —— 系列内 (1.23, 2.40) 一对；
+  两者都由第一批判为反转区（`1.23` 是近无势垒点、`2.40` 是系列放能上界）；
+* `inst_I4_mcc_rate_drop_x200`：`rate(2.40) < rate(2.00)` —— 第一批 I4 的两个反转区刻度
+  （`2.00` 为内插刻度值，`2.40` 为系列上界）之间的速率比较；
+* `inst_I4_mcc_rate_drop_unit_kT`：上一条在 `kB = T = 1` 的具体化（派发建议的推论形态）；
+* `inst_I5_mcc_rate_rise`：正常区方向 `rate(0.60) < rate(1.20)` —— 速率升到 `x = lam`；
+* `inst_I3_rate_peak`：`rate(2.40) ≤ rate(1.20)` —— `x = lam`（文献最优/无势垒点附近）
+  是速率的极大点。
+
+每条的证明都是「M2 势垒单调性 + M3 核心转移引理」的复合，由 `Rate.lean` 的三条
+单调性定理打包，故实例层不出现新的实分析风险。
+
+**温度无关性**：含 `kBT` 的定理都把 `0 < kBT` 写成**前提**、`T := 1` 只作单位选择
+（`kB * T = kBT`），故结论对**任意**正温度成立 —— 这是「判定与温度无关」的语句级证据，
+而非注释里的声称。
+
+**文案边界（plan §8.3，必须遵守）**：以上是**经典 Marcus 模型**在文献参数上的性质，
+**不是**对实验的断言：经典公式在此区间下降过快（`x: 1.23 → 2.40` 预言降 5.1 个数量级，
+实测只降 1.46 个数量级），实验数据的严格版本需要量子振动修正（Bixon–Jortner）。
+本组定理只断言**严格不等号的方向**，不断言下降的**幅度**。 -/
+
+/-- I4 速率比较（**反转区的标志性结论**，且**与温度无关**）：文献 MCC 参数
+`lam = 1.20`、`A = 1` 下，对任意 `kBT > 0`，驱动力 2.40 的速率**严格小于**
+驱动力 1.23（无势垒点附近）的速率。依据：`inverted_rate_decreases`
+（`1.20 < 1.23 < 2.40` 都在反转区）。 -/
+theorem inst_I4_mcc_rate_drop {kBT : ℝ} (hkBT : 0 < kBT) :
+    rate (1 : ℝ) (1.20 : ℝ) kBT 1 2.40 < rate (1 : ℝ) (1.20 : ℝ) kBT 1 1.23 :=
+  inverted_rate_decreases (A := 1) (lam := 1.20) (kB := kBT) (T := 1)
+    (by norm_num) (by norm_num) (by simpa using hkBT) (by norm_num) (by norm_num)
+
+/-- I4 速率比较（文献反转区对的内插刻度）：`rate(2.40) < rate(2.00)`。
+`2.00` 与 `2.40` 是第一批 I4 判为反转区的两个刻度（见 `inst_I4_mcc_x200` /
+`inst_I4_mcc_x240`）；本条把「同系列内放能性更大 ⇒ 速率更小」在该对上落实。 -/
+theorem inst_I4_mcc_rate_drop_x200 {kBT : ℝ} (hkBT : 0 < kBT) :
+    rate (1 : ℝ) (1.20 : ℝ) kBT 1 2.40 < rate (1 : ℝ) (1.20 : ℝ) kBT 1 2.00 :=
+  inverted_rate_decreases (A := 1) (lam := 1.20) (kB := kBT) (T := 1)
+    (by norm_num) (by norm_num) (by simpa using hkBT) (by norm_num) (by norm_num)
+
+/-- I4 速率比较（`kB = T = 1` 的具体推论，即 `kBT = 1`）：派发建议的实例形态。 -/
+theorem inst_I4_mcc_rate_drop_unit_kT :
+    rate (1 : ℝ) (1.20 : ℝ) 1 1 2.40 < rate (1 : ℝ) (1.20 : ℝ) 1 1 1.23 :=
+  inst_I4_mcc_rate_drop (kBT := 1) (by norm_num)
+
+/-- I5 速率比较（**正常区**：速率随驱动力**上升**至 `x = lam`）：
+文献 MCC 刻度 `x = 0.60 < lam = 1.20` 处的速率严格小于 `x = lam = 1.20` 处。
+依据：`normal_rate_increases`（`0 ≤ 0.60 < 1.20 ≤ lam`）。 -/
+theorem inst_I5_mcc_rate_rise {kBT : ℝ} (hkBT : 0 < kBT) :
+    rate (1 : ℝ) (1.20 : ℝ) kBT 1 0.60 < rate (1 : ℝ) (1.20 : ℝ) kBT 1 1.20 :=
+  normal_rate_increases (A := 1) (lam := 1.20) (kB := kBT) (T := 1)
+    (by norm_num) (by norm_num) (by simpa using hkBT)
+    (by norm_num : (0 : ℝ) ≤ 0.60) (by norm_num) (by norm_num)
+
+/-- I3 峰值：`x = lam = 1.20` 处速率**最大**（文献的最优/无势垒点）——
+对任意驱动力（此处取 I4 的 `2.40`）速率不超过它。依据：`rate_peak_at_lam`
+（M2 `barrier_min_at_lam` + 非严格 `Real.exp` 单调性）。 -/
+theorem inst_I3_rate_peak {kBT : ℝ} (hkBT : 0 < kBT) :
+    rate (1 : ℝ) (1.20 : ℝ) kBT 1 2.40 ≤ rate (1 : ℝ) (1.20 : ℝ) kBT 1 1.20 :=
+  rate_peak_at_lam (A := 1) (lam := 1.20) (kB := kBT) (T := 1)
+    (by norm_num) (by norm_num) (by simpa using hkBT) 2.40
+
 end PhotoLean.Marcus
