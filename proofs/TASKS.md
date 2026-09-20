@@ -25,8 +25,10 @@
 - [x] **语句骨架编译通过**：`proofs/probes/marcus-statement-skeleton.lean`
       （M1–M5 全部语句，31 处 `sorry` warning、**0 error**；末尾 4 个风险探针无 sorry 真通过）
 - [x] `proofs/probes/` 目录建立；`git init` + 基线 commit
-- [ ] API 校准（`api_researcher` 进行中 → `proofs/API-NOTES.md`）
-- [ ] 文献参数表（`literature_researcher` 进行中 → `proofs/LITERATURE.md` §实例参数候选表）
+- [x] API 校准完成（`api_researcher`）：`proofs/API-NOTES.md` 重写（可用/漂移/不可用三栏 + 20 个保留 token 的标识符合法性矩阵）、
+      5 个探针 0 error，另附 `proofs/probes/marcus-proof-skeletons.lean`（36 条**已跑通**证明体，覆盖 M1–M5a）
+- [x] 文献参数表完成（`literature_researcher`）：`proofs/LITERATURE.md` 552 行，含 6 组"已核实"参数、
+      DOI 更正、Pekar 条件、5 条必显式化近似、不可表达清单排序
 
 ---
 
@@ -46,11 +48,11 @@
 - [ ] `barrier_at_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 8d9c2ff
 - [ ] `barrier_symm` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 03c740f
 - [ ] `barrier_min_at_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 169a0c7
-- [ ] `barrier_mono_of_pos` — Marcus/Barrier.lean — prover_a — todo — plan §5
-- [ ] `barrier_antitone_of_pos` — Marcus/Barrier.lean — prover_a — todo — plan §5
-- [ ] `barrier_antitone_of_neg` — Marcus/Barrier.lean — prover_a — todo — plan §5
-- [ ] `barrier_zero_lam` — Marcus/Barrier.lean — prover_a — todo — plan §5
-- [ ] `barrier_mono_cases` — Marcus/Barrier.lean — prover_a — todo — plan §5
+- [ ] `barrier_mono_of_pos` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 3dc2fcc
+- [ ] `barrier_antitone_of_pos` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 4ab7259
+- [ ] `barrier_antitone_of_neg` — Marcus/Barrier.lean — prover_a — review — plan §5；commit 4561931
+- [ ] `barrier_zero_lam` — Marcus/Barrier.lean — prover_a — review — plan §5；commit ae1276e
+- [ ] `barrier_mono_cases` — Marcus/Barrier.lean — prover_a — review — plan §5；commit f0d79ee
 
 ## M3 — 速率层（`PhotoLean/Marcus/Rate.lean`；属主 prover_b）
 
@@ -76,6 +78,7 @@
 - [ ] `lamInner_pos` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit acc5e8e
 - [ ] `lamOuter_pos`（Pekar 因子正性）— Marcus/Reorg.lean — prover_d — review — plan §7.2；commit fcb7589
 - [ ] `lam_total_pos` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit de63c09
+- [ ] **[拉伸·建议]** `hgeom_of_nonoverlap`（`a1+a2 ≤ R ⇒ 几何因子正`，把 `hgeom` 从假设变成推导）— Marcus/Reorg.lean — prover_d — todo — plan §7.2（Sprint 5）
 
 ## M4c — 复合定理（`PhotoLean/Marcus/Compose.lean`；属主 prover_d；Sprint 5）
 
@@ -88,6 +91,10 @@
 - [ ] `zoneQ_inverted_iff` — Marcus/RatModel.lean — prover_c — review — plan §8.1；commit 166ab4e
 
 ## M5b — 实例与判定（`PhotoLean/Marcus/Instances.lean`；属主 prover_c）
+
+> **⚠️ 实例层文案边界（文献定量警示）**：经典模型在反转区**下降过快**（λ=1.2 时 x: 2.0→2.4 掉约 5 个数量级，
+> 实验只掉约 2 个数量级）。实例结论只能写"该体系落在反转区，且**经典 Marcus 模型**在该 (lam,x,T,A) 上满足描述"，
+> **不得**写成对实验的断言。
 
 - [ ] I1 反转区（纯数 `lam=1, x=3`）— Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 3）
 - [ ] I2 正常区（`lam=1, x=3/4`）— Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 3）
