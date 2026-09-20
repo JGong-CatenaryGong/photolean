@@ -235,6 +235,12 @@ theorem fluoYield_zero (rad ic : ℕ → ℝ) : fluoYield rad ic 0 = radBranch r
 theorem upperYield_zero (rad ic : ℕ → ℝ) : upperYield rad ic 0 = 0 := by
   unfold upperYield
   simp
+/-- Plan §4.2 #16. The total yield is nonnegative under `RateData`. -/
+theorem fluoYield_nonneg {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    0 ≤ fluoYield rad ic N := by
+  unfold fluoYield
+  exact Finset.sum_nonneg fun i hi =>
+    emitYield_nonneg h (Nat.le_of_lt_succ (Finset.mem_range.mp hi))
 end Kasha
 
 end PhotoLean
