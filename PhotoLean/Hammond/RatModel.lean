@@ -128,6 +128,19 @@ theorem hammondZoneQ_eq_early_iff {lam x : ℚ} (hlam : 0 < lam) :
       | exact iff_of_true rfl ⟨h6, lt_of_le_of_ne (le_of_not_gt h4) h1⟩
       | exact iff_of_false (by decide) (by rintro ⟨hx, hy⟩; linarith)
 
+/-- Rational zone characterization, thermoneutral branch. -/
+theorem hammondZoneQ_eq_half_iff {lam x : ℚ} (hlam : 0 < lam) :
+    hammondZoneQ lam x = HZone.half ↔ x = 0 := by
+  unfold hammondZoneQ
+  split_ifs with h1 h2 h3 h4 h5 h6
+  · exact iff_of_false (by decide) (by rintro rfl; linarith)
+  · exact iff_of_false (by decide) (by rintro rfl; linarith)
+  · exact iff_of_false (by decide) (by rintro rfl; linarith)
+  · exact iff_of_false (by decide) (by rintro rfl; linarith)
+  · exact iff_of_true rfl h5
+  · exact iff_of_false (by decide) (ne_of_gt h6)
+  · exact iff_of_false (by decide) h5
+
 end Rat
 
 end Hammond
