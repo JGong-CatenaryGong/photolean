@@ -111,6 +111,18 @@ theorem inst_I4_barrierless_zone : Rat.hammondZoneQ (1 : ℚ) 1 = HZone.atReacta
 theorem inst_I4_barrierless_coord : tsCoord 1 1 = 0 := by
   norm_num [tsCoord]
 
+/-- I4, point-level verdict **fails**: the crossing point is not strictly between the two wells,
+so the resemblance reading is degenerate at this point — the instance lies on the boundary of the
+domain where the Hammond description applies (it is not an anti-Hammond instance). -/
+theorem inst_I4_barrierless_notConforms : ¬ HammondConforms 1 1 := by
+  intro hc
+  have hz : hammondZone (1 : ℝ) 1 = HZone.atReactant := by
+    rw [← (by norm_num : ((1 : ℚ) : ℝ) = (1 : ℝ)),
+        ← Rat.hammondZoneQ_eq_hammondZone, inst_I4_barrierless_zone]
+  have hd := (conforms_iff_zone (by norm_num : (0 : ℝ) < 1)).mp hc
+  rw [hz] at hd
+  rcases hd with h | h | h <;> exact absurd h (by decide)
+
 end Hammond
 
 end PhotoLean
