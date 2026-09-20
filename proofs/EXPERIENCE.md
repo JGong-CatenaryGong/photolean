@@ -468,3 +468,97 @@
   3. 若某条更短的路线需要给文件**新增 import**（破坏"只依赖 M1"的约定），**宁可写长一点**也不破坏依赖边界。
 
 <!-- 条目从这里继续往下追加 -->
+
+## 2026-09-20 — H1 描述层（13 定义 + 19 定理）：骨架里一条**假语句** + `split_ifs` 的自动收尾 — prover_a — DONE
+
+- 目标：`PhotoLean/Hammond/Basic.lean`（只 `import Mathlib`），20 个 `feat(H1)` 提交；
+  签名对骨架逐字一致（保真脚本 32/32 VERBATIM MATCH），19 条定理 `axioms.sh` 全 PASS。
+- 试过且失败（5 条，前三条可迁移）：
+  1. **骨架语句 `gapProduct_eq_crossing_energy` 为假**（不是 API 漂移）。原式
+     `gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG))`：LHS `= (lam-dG)²/(4lam)`，
+     RHS `= (lam-dG)²/(4lam) + dG`（产物曲面在交叉点的值是**绝对能量**，而逆势垒是相对**产物井** `dG` 的）。
+     `field_simp; ring` 留下的残局正好暴露它：`... - lam^3*dG*8 ... = ... + lam^3*dG*8 ...`。
+     内核反例（编译通过）：`example : gapProduct 1 1 ≠ productSurface 1 (-1) (tsCoord 1 1) := by norm_num [...]`。
+     **教训：`field_simp` 后 `ring` 失败且残局出现"只差一个符号项"时，先怀疑语句本身的物理约定，再怀疑战术**
+     —— 报 lead 后用方案 (a)（补 `- dG`）修正骨架，重证一次通过。lead 自查还发现同类问题
+     `conforms_iff_structure`（三重析取恒真式，无刻画力）。
+  2. **`split_ifs at h with h1 … h6` 会自己收掉矛盾分支**。把 7 个分支逐条写成 7 个 bullet 会报
+     `no goals to be solved`；实际只留下**真正产出该构造子**的那一支（带 6 条分支假设），
+     其余分支的 `h : Ctor₁ = Ctor₂` 被构造子互异自动判死。正确写法是
+     `split_ifs at h with h1 … h6` 后**只写一支**证明（M1 的经验说"三支都自动收"，此处确认到 7 支链）。
+  3. **`constructor` 之后，`↔` 的两支目标已经是"单边"**：反向支的目标是**等式**（不是 `↔`），
+     所以 `unfold <def>; rw [if_neg …, if_pos …]` 会直接以 `rfl` 收尾；再补 `exact iff_of_true …`
+     必报 `no goals to be solved`。另：`exact iff_of_true h …` 用匿名构造子 `⟨h1,h2⟩` 会报
+     `expected type must be an inductive type ?m`（隐式参数未先确定），改 `And.intro h1 h2` 或先 `have`。
+  4. **自建提交驱动的经典自吞 bug**：`python3 emit.py k > PhotoLean/Hammond/Basic.lean` 里
+     `emit.py` 读的就是同一路径 → shell 先截断输入文件，脚本读到空文件（`segments:` 为空）。
+     修法：**先写临时文件再 `cp`**（或让脚本读一份 master 副本）。同时 driver 必须**始终从
+     master 快照生成第 k 步**，否则上一步提交后的工作区已不含后面的定理，`assert` 立刻炸。
+  5. 工具面坑：`write` 工具写到 `/tmp/*.sh` 报成功但文件不存在（`bash: /tmp/…: No such file or directory`）；
+     `/tmp` 下的脚本/探针一律用 bash heredoc 创建，工作区文件才用 `write`/`edit`。
+- 奏效（可复用配方）：
+  - **`set_option linter.unusedVariables false in` 必须写在 docstring 之前**：
+    `set_option … in` → `/-- doc -/` → `theorem …`（实测通过；反过来报 `unexpected token`）。
+    H1 有 4 条声明带**证明用不到的物理前提**（`tsCoord_at_lam` 因 `x/0 = 0` 约定；三条 zone 引理因
+    分支假设已足够推出符号信息）——**保留前提、局部关 linter**，不改语句（签名保真是硬约束）。
+  - zone 类 iff 的**双向最短路径**：正向 `unfold <def> at h; split_ifs at h with …`（自动收尾，剩一支）；
+    反向 `unfold <def>; rw [if_neg …, if_pos …]`（`rfl` 收尾）。分支条件就用
+    `ne_of_lt h2` / `not_lt.mpr (le_of_lt h2)` / `by linarith` 现给，不依赖 `simp`。
+  - 提交驱动一次性跑完 20 步（每步 build + `check.sh --strict` + `axioms.sh` + `git commit -- <path>`），
+    日志留档 `/tmp/h1-gate-log.txt`；`git commit -m … -- <path>` 保证不吞并发写者的文件。
+
+## 2026-09-20 — H5a 判定层（`Hammond/RatModel.lean`：4 定义 + 12 定理，含 7 分支分类器转移） — prover_c — DONE
+
+(This entry is in English per the language policy; the earlier entries in this file predate it.)
+
+- Goal: the ℚ-side classifier and transfer lemmas, so that a kernel-computed zone verdict is
+  binding for the ℝ theory (`ℚ` order/equality are decidable, `ℝ`'s are not). Highest-risk item:
+  the seven-branch `hammondZoneQ` vs `hammondZone` transfer. 13 commits, one declaration each.
+- Tried and FAILED (4 items):
+  1. **Copying branch closers across an order change.** The API probe proves the ℝ-side `late`
+     characterization for the conjunction `-lam < x ∧ x < 0`; the skeleton states the ℚ-side one as
+     `x < 0 ∧ -lam < x`. I copied `rintro ⟨hx, -⟩; linarith` into the `x = -lam` and `x < -lam`
+     leaves, where the *first* conjunct is TRUE and the second is the false one. Measured error:
+     `linarith failed to find a contradiction … h2 : x = -lam, hx : x < 0 ⊢ False`.
+     Fix: leaves 1/4/5/6 need `⟨hx, -⟩`, leaves 2/3 need `⟨-, hy⟩`.
+     **Lesson: the statement's conjunction order decides which component each leaf must destroy;
+     re-derive it per leaf instead of transplanting branch closers.**
+  2. `set_option linter.unusedVariables false in` written AFTER the doc comment →
+     `error: unexpected token 'set_option'; expected 'lemma'`. The `in` form must precede the doc
+     comment (same lesson `prover_a` recorded above, independently hit here). Works: `set_option … in`
+     → `/-- doc -/` → `theorem …`.
+  3. Chasing the wrapped `#print axioms` output with printer options: `pp.width` is not a Lean 4
+     option (`unknown option 'pp.width'`); the real option `format.width` (file-level **and** the
+     `… in` form) and `lean -Dformat.width=400` all leave the message rendering unchanged. The wrap
+     cannot be fixed from the theorem side.
+  4. Transcribing Marcus's three-branch `by_cases` ladder to seven branches: does not scale
+     (independently measured by `api_researcher`: 31 lines and still fragile). Not attempted after
+     reading that measurement — recorded here as the rejected path.
+- Worked (reusable recipes):
+  - **The seven-branch transfer is two lines**: `unfold hammondZoneQ hammondZone` then `norm_cast`.
+    No hypotheses (the degenerate `lam = 0` branch transfers too), no case bash: `norm_cast` moves
+    all six ℝ-side tests back to ℚ, including the literal `0` and `-↑lam` via `Rat.cast_neg`.
+  - All seven ℚ-side characterizations: `unfold hammondZoneQ; split_ifs with h1 … h6` (exactly the
+    seven leaves, each with the accumulated negated tests), then per leaf one of
+    `exact iff_of_true rfl …` / `exact iff_of_false (by decide) …` with `linarith` on the arithmetic
+    side. `early` compacts to 7 lines with `<;> first | … | …`.
+  - The Marcus cross-link is pure composition, no new arithmetic:
+    `rw [hammondZoneQ_eq_beyondReactant_iff hlam, Marcus.Rat.zoneQ_inverted_iff, Rat.cast_lt]`
+    (the last rewrite returns the ℝ comparison to ℚ and `rw` closes the goal by `rfl`).
+  - Algebraic casts: `unfold …; push_cast; ring` (coordinate, barrier) and
+    `unfold …; push_cast; rw [gapReactantQ_cast, gapReactantQ_cast]` (secant; the skeleton-mandated
+    `h : x₁ ≠ x₂` is kept but is **not used** — `Rat.cast_div` commutes the cast with division
+    unconditionally, so both sides collapse to `0` at `x₁ = x₂`; linter switched off for that
+    declaration only, doc comment says "not used by the proof" — never "implied by the others").
+  - Workflow: develop the **whole** file in a probe importing the same two upstream modules, verify
+    fidelity (script: all 16 declarations byte-identical to the skeleton) and 0 warnings there,
+    then deliver one declaration per commit with build + `check.sh --strict` + `axioms.sh`.
+- ⚠️ **Gate defect found (engine-level, script-owned)**: `axioms.sh` parses `#print axioms` with
+  `sed -n 's/.*\[\(.*\)\].*/\1/p' | head -1`, which is **line-based**. `hammondZoneQ…
+  _beyondReactant_iff_inverted` has a 62-character name ⇒ the message
+  `'NAME' depends on axioms: [propext, Classical.choice, Quot.sound]` (124 chars) is wrapped by the
+  ~120-column layout into three lines ⇒ LIST empty ⇒ **false** `verdict: FAIL (could not parse axiom
+  list from output)`. Raw output and a line-joined parse show exactly
+  `[propext, Classical.choice, Quot.sound]`. Fix belongs in the script (`tr '\n' ' '` before `sed`),
+  reported to the lead. **Lesson: a gate is code too — a FAIL from a long name can be a parser
+  artifact, so verify the raw output before touching the statement.**
