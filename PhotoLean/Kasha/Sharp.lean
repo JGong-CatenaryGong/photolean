@@ -419,6 +419,20 @@ theorem kashaWithin_one_sharp_boundary {tol : ℝ} (h0 : 0 < tol) (h1 : tol < 1)
   have hd1 : 0 < decay rad ic 1 := by simp [rad, ic, decay]
   have hr1 : 0 < rad 1 := by simpa [rad] using h0
   exact ⟨rad, ic, hfr, (kashaWithin_one_iff_ratio hd0 hd1 h0 hr1).mpr (le_of_eq hfr.symm)⟩
+/-! ## The uniform-branch bound (plan §6.2) -/
+
+/-- Plan §6.2 #17. If every upper level's radiative branch is at most `θ`, the leak is at most
+`θ` times the sum of the cascade probabilities: termwise `emitYield i N = radBranch i · cascade i N`
+with `cascade i N ≥ 0` (K1), then `Finset.mul_sum` on the right. -/
+
+theorem leak_le_of_radBranch_le {rad ic : ℕ → ℝ} {N : ℕ} {θ : ℝ} (h : RateData rad ic N)
+    (hθ : ∀ i, 1 ≤ i → i ≤ N → radBranch rad ic i ≤ θ) :
+    upperYield rad ic N ≤ θ * ∑ i ∈ Finset.Icc 1 N, cascade rad ic i N := by
+  rw [upperYield, Finset.mul_sum]
+  refine Finset.sum_le_sum fun i hi => ?_
+  rw [Finset.mem_Icc] at hi
+  rw [emitYield]
+  exact mul_le_mul_of_nonneg_right (hθ i hi.1 hi.2) (cascade_nonneg h hi.2)
 
 end Kasha
 
