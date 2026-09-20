@@ -9,9 +9,12 @@
 > 2 inductives + 157 theorems), statement fidelity **191/191 word-for-word** against the committed
 > authority `theories/BEP/probes/bep-statement-skeleton.lean`
 > (`sha256 c9aa2cb1f82b8bcc8ca74f389af57d0e1c6c568200b4eb0acfe0d7cac880a476`), zero unproved
-> placeholders and zero custom axioms; independent verifier PASS records for B1, B2+B4 and B5a are
-> in `theories/BEP/TASKS.md` (§Acceptance records), the B3/B5b and frozen-state closeout records are
-> appended there and summarized in `theories/BEP/RESULTS.md` §5. The plan below is kept as the plan
+> placeholders and zero custom axioms; independent verifier PASS records for all six milestones and the
+> frozen-state closeout are in `theories/BEP/TASKS.md` (§Acceptance records) and summarized in
+> `theories/BEP/RESULTS.md` §5. The first closeout run **FAILed on documentation numbers only** (eight
+> findings: an `α` conflated with the two-point slope, an off-by-four value count, a commit count, the
+> R² range, a reproduction command, a commit tally, a forward-looking claim and two stale board
+> numbers); all were corrected and re-audited, and the FAIL is preserved in the records. The plan below is kept as the plan
 > of record; §12 has been updated from targets to measured values.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/BEP/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/BEP/LITERATURE.md`.
@@ -465,7 +468,7 @@ statements through the §8.1 transfer lemmas). `provenance` is `model-constructe
 | I9 | unphysical curvature | `λ = -2`, `x = 1` | **not conforming**, defect `< 0` | `inst_I9_unphysical/defect_negative` |
 | I10 | tolerance threshold | `λ = 2`, `w = 1` | conforms at `tol = 1/8`, fails at `tol = 1/16` (`w* = 2√(λ·tol)`) | `inst_I10_conforms/fails` |
 | I11 | literature families from `LITERATURE.md` §R1.10 — **four** of the five first-hand families have per-point data and are formalized (the two `Antioxidants` 2026 f-HAT/•OOH solvent columns, the Table 2 *water* column, and the `Chem. Sci.` 2015 CCSD(T) 2-butanol series); the fifth (Table 2 *PE*) is aggregate-only and is **not** formalized (see the F4 row below) | printed `(driving force, barrier)` kcal/mol pairs taken **verbatim** with the source's own loci; the Lean docstring states the unit and the source's kJ/mol conversion instead of silently converting | per family: (i) two-point `qAlphaObs` and `qLamOfPair` (both first-hand-consistent: `λ̂ > 0`), (ii) three-point `qSecondDividedDiff` | `inst_I11_<family>_alphaObs / _lamHat / _curvature_negative / _not_model_consistent` |
-| I12 | family-level consistency of the literature set (the falsification summary) | the five families | **the affine BEP description is fine (linear fits R² ≈ 0.93–0.95, `0 < α_obs < 1`) but the family curvature is negative in every family, while the model with `λ > 0` forces the second divided difference to be `1/(4λ) > 0` ⇒ no positive-λ equal-curvature two-parabola model reproduces any of them** | `inst_I12_affine_conforms_model_refuted` |
+| I12 | family-level consistency of the literature set (the falsification summary) | the five families (four with per-point data) | **the affine BEP description is fine on the chosen rows (`0 < α_obs < 1`) — the record's own family-level linear fits are R² = 0.934 (F1), 0.548 (F2, the printed exception), 0.934 (F3) and 0.952 (F4, aggregate-only; F5 not reported) — but the family curvature is negative in every formalized family, while the model with `λ > 0` forces the second divided difference to be `1/(4λ) > 0` ⇒ no positive-λ equal-curvature two-parabola model reproduces any of them** | `inst_I12_affine_conforms_model_refuted` |
 
 Additional instance requirements:
 - **The literature block is a table of refutations, and that is the honest outcome.** Plan §8.2
@@ -614,7 +617,7 @@ are the delivered values.
 | **additivity of the reorganization energy** | model assumption behind B4 rows 7–12: `λ = λ_inner + λ_outer` with each part **independent** and the decomposition read as the inner/outer split of Marcus theory; "Pekar-type" is only a label — no Pekar factor is formalized. The theorems are about the *term* `lamInner + lamOuter`; the reading "a larger total reorganization improves the linear law" additionally assumes the two contributions can be varied independently, which is a physical premise, not a theorem |
 | **positivity lives in the conformance predicates by design** | `EPConforms`, `EPConformsOnWindow`, `EPDescriptor`, `EPBestOnWindow` carry `0 < lam` (and `0 < tol`, `0 < w`) **as conjuncts of the predicate** — that is plan §4.1's frozen design, so a reader sees the condition in the predicate's type and every theorem states the positivity it needs as an explicit premise too (engine rule 3 is satisfied by construction; this row exists so no reader mistakes the conjunct for a hidden hypothesis) |
 | **naming of `transfer`** | primary name: Brønsted/Leffler coefficient; "transfer coefficient" is the electrochemical synonym (Inzelt p. 36) — the identifiers stay as delivered, the docstrings and `RESULTS.md` carry the naming |
-| **the first-hand literature families (five; four with per-point data)** | their affine BEP fits are good (R² ≈ 0.93–0.95) but each family's second divided difference is **negative**, while the model with `λ > 0` forces `1/(4λ) > 0`: the equal-curvature two-parabola model is **refuted as a family-level description** of those data while the affine description survives (instances I11/I12, §8.2) — a finding about the *model*, not about the molecules, and it is the concrete content of this plan's "the model is not the molecule" |
+| **the first-hand literature families (five; four with per-point data)** | their affine BEP fits are good except where the record itself prints otherwise (`0.934 / 0.548 / 0.934 / 0.952` for F1/F2/F3/F4; F5 not reported), but each formalized family's second divided difference is **negative**, while the model with `λ > 0` forces `1/(4λ) > 0`: the equal-curvature two-parabola model is **refuted as a family-level description** of those data while the affine description survives (instances I11/I12, §8.2) — a finding about the *model*, not about the molecules, and it is the concrete content of this plan's "the model is not the molecule" |
 
 ---
 

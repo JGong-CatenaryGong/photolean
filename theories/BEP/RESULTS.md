@@ -23,7 +23,8 @@ theorems**, all completely proved: **zero unproved placeholders, zero custom axi
 statement was calibrated before proof work and the delivered signatures match the statement
 authority `theories/BEP/probes/bep-statement-skeleton.lean` **191/191 word for word** (0
 differences, 0 declarations outside the authority). Delivery discipline: **one commit per lemma**
-(167 lemma/definition commits in the BEP areas) plus scaffold and documentation commits.
+(164 lemma/definition commits in the BEP areas — B1 18, B2 28, B3 32, B4 13, B5a 25, B5b 48 — plus
+probe, scaffold and documentation commits).
 
 **The one-sentence result.** Inside the equal-curvature two-parabola model with driving force
 `x = -ΔG°` (exergonic: `x > 0`) and reorganization energy `λ`, the barrier is
@@ -51,7 +52,7 @@ model-constructed `I1`–`I3`.
 B4 微观与跨模块层、B5a 可计算有理判决层、B5b 实例判决层）共 **191 条声明：32 个定义、2 个归纳类型、
 157 条定理**，全部完整证明，**零占位证明、零自定义公理**；所有语句在动证明前先完成标定，交付签名与
 语句权威 `theories/BEP/probes/bep-statement-skeleton.lean` **逐字一致 191/191**（0 差异、0 权威外声明）；
-**每定理一个提交**（BEP 区域 167 个引理/定义提交）另加脚手架与文档提交。**一句话结论**：等曲率双抛物
+**每定理一个提交**（BEP 区域 164 个引理/定义提交：B1 18、B2 28、B3 32、B4 13、B5a 25、B5b 48）另加脚手架与文档提交。**一句话结论**：等曲率双抛物
 模型（驱动力 `x = -ΔG°`，放能时 `x > 0`；重组能 `λ`）中势垒 `Ea(x) = (λ-x)²/(4λ)`，BEP 线性律被精确
 违反的余项是 `x²/(4λ)`；其斜率 `α = 1/2 - x/(2λ)` **就是**过渡态坐标 `q‡`（Leffler/Brønsted 同一性），
 且只在热中性点等于 `1/2`；正逆系数互补（`α + α_r = 1`）；界 `0 ≤ α ≤ 1` 成立**当且仅当** `-λ ≤ x ≤ λ`，
@@ -178,7 +179,7 @@ are labelled per row.
 | I6 | forward inverted `λ=2, x=3` | **not conforming**, `α = -1/4 < 0` | model-constructed |
 | I7 | reverse inverted `λ=2, x=-3` | **not conforming**, `α = 5/4 > 1` | model-constructed |
 | I8 | degenerate `λ=0, x=1` | exact affinity *trivially* (barrier ≡ 0) but the **line law fails** (`bepDefect 0 x = x/2`); `α = 1/2` | model-constructed |
-| I9 | unphysical curvature `λ=-2, x=1` | **not conforming**, defect `< 0` — note `α = 13/16 ∈ [0,1]`, i.e. **the bounds alone do not detect it; the defect law does** | model-constructed |
+| I9 | unphysical curvature `λ=-2, x=1` | **not conforming**, defect `< 0` — note `α = 3/4 ∈ [0,1]` (the value `13/16` is the *two-point observable slope* `qAlphaObs` at the sample points, a different quantity), i.e. **the bounds alone do not detect it; the defect law does** | model-constructed |
 | I10 | tolerance threshold `λ=2, w=1` | conforms at `tol = 1/8` (= `w²/(4λ)`), **fails** at `tol = 1/16`; threshold `w* = 2√(λ·tol) = 1` | model-constructed |
 | I11 F1 | f-HAT of phenols, water/•OOH (*Antioxidants* 15(7):840, Table 1) | 8 printed points all `conforming` at the family `λ̂`; **family curvature negative** ⇒ `¬ ∃ λ>0` consistent with the three chosen points; two-point `λ̂ = 9/20`, `α_obs = 34/63` | literature, `first-hand` |
 | I11 F2 | same family, PE solvent (*ibid.*) | 7 points `conforming`; **negative curvature** ⇒ model-refuted; `λ̂ = 16/15`, `α_obs = 89/153` | literature, `first-hand` |
@@ -186,6 +187,11 @@ are labelled per row.
 | I11 F5 | 2-butanol + •OOH, CCSD(T) (*Chem. Sci.* 6:5866, Table 1) | 5 points `conforming`; **negative curvature** ⇒ model-refuted; `λ̂ = 7958/675`, `α_obs = 467/610` | literature, `first-hand` (ΔE, not ΔG° — flagged in the docstring) |
 | F4 | •OOCH₃ oxidant, PE (*ibid.*, Table 2) | **UNSUPPORTED** — the record prints family aggregates only, no per-point pairs; no Lean row was invented for it | literature, `first-hand` but aggregate-only |
 | I12 | summary over the literature set | **affine BEP conforms, the two-parabola model is refuted**: `¬ ∃ λ : ℚ, qModelConsistent3 …` for the chosen triples | literature + model |
+
+**Point-level counts come from the non-Lean checker.** The "N printed points conforming" figures come from
+`theories/BEP/probes/bep-instance-check.py` (exact rational arithmetic), not from a delivered Lean
+declaration; the Lean layer's own I11 rows assert `0 < α_obs < 1` on the *chosen* pairs and the
+negative curvature on the *chosen* triples.
 
 **Reading the two verdict kinds separately.** Point-level *conformance* and family-level *model
 consistency* are different questions, and the table answers both: the literature families are
@@ -203,7 +209,7 @@ knife-edge.
 All rational literals are checked by the kernel (`norm_num`; `by decide` is unusable on ℚ
 comparisons containing `/` and `native_decide` is banned because `Lean.ofReduceBool` is not in
 `ALLOWED_AXIOMS`). The instance values were independently recomputed by the non-Lean checker
-`theories/BEP/probes/bep-instance-check.py` (exact `fractions`, 276 values, `CROSS-CHECK: OK`), and
+`theories/BEP/probes/bep-instance-check.py` (exact `fractions`, **280** values as printed by the checker itself, `CROSS-CHECK: OK`), and
 that check caught two transcription defects in the literature record's own λ̂ column (R4, R5 of
 §R1.10.5), which were corrected in the record with a note — the record and the checker's ledger are
 updated together.
@@ -216,7 +222,7 @@ updated together.
 落在 `[0,1]`，因此**单靠界抓不住非物理曲率，抓住它的是偏离律的符号**；**I11/I12** 显示五个一手文献族
 "仿射侧合规、模型侧被证伪"。所有有理字面量均由内核检验（`norm_num`；含 `/` 的 ℚ 比较不能用 `by decide`，
 `native_decide` 因引入 `Lean.ofReduceBool` 而被禁用）。实例数值另由非 Lean 独立检查器
-`theories/BEP/probes/bep-instance-check.py` 复算（精确 `fractions`，276 个数值，`CROSS-CHECK: OK`），
+`theories/BEP/probes/bep-instance-check.py` 复算（精确 `fractions`，**280** 个数值，由检查器自身打印，`CROSS-CHECK: OK`），
 该检查还查出文献记录自身 λ̂ 列的两处转录缺陷（§R1.10.5 的 R4、R5），记录已带更正说明修正 ——
 记录与检查器的数值副本必须同批更新。
 
@@ -233,15 +239,15 @@ Records so far:
 |---|---|---|---|
 | #1 | `Basic.lean` (33) | **PASS** | graded on `sha256 5a366027…`; 33/33 `axioms.sh` clean (`depends on axioms: [propext, Classical.choice, Quot.sound]` quoted in full); verifier's own parser 33/33 word-for-word including `EPZone`'s nine constructors and the `deriving` clause; all nine classifier branch boundaries plus cascade exhaustiveness kernel-checked; hypothesis necessity split **5 load-bearing / 3 decorative** (the decorative ones were *proved* in strengthened form); non-vacuity witnesses for all nine zones; `#print` bodies identical to plan §4.1; **six falsification attempts all failed** |
 | #2 | `Criterion.lean` (28) + `Compose.lean` (12) | **PASS / PASS** | graded on `sha256 b3ef9225…` / `b68e948c…`; 40/40 `axioms.sh` clean; verifier's own parser 28/28 and 12/12; 40/40 proof terms screened for circularity (**only two `rfl`s, both documented as definitional**); 20 hypothesis-necessity counterexamples; the mean-value identity hand-recomputed at three rational parameter sets; the headline bridge `epBounds_iff_no_inverted_direction` non-vacuous with same-true/same-false witnesses for both directions; a ≈7 200-instance rational-grid falsification of 31 statements found **0 counterexamples** |
-| #4 | `RatModel.lean` (37) | **PASS** | graded on `sha256 75040761…` (skeleton `c9aa2cb1…`); 37/37 word-for-word, 0 extras; 22/22 `axioms.sh` clean; **all three kernel-counterexample-driven corrections reproduced independently** (the verifier proved the negations of the premise-dropped forms); eight cast lemmas `#print`-checked as genuine ℝ transfers **and used**; unconstrained-definition audit: **zero** in the settled state; 24/24 commits touch only the owner's file |
+| #4 | `RatModel.lean` (37) | **PASS** | graded on `sha256 75040761…` (skeleton `c9aa2cb1…`); 37/37 word-for-word, 0 extras; 22/22 `axioms.sh` clean; **all three kernel-counterexample-driven corrections reproduced independently** (the verifier proved the negations of the premise-dropped forms); eight cast lemmas `#print`-checked as genuine ℝ transfers **and used**; unconstrained-definition audit: **zero** in the settled state; all 25 commits touching the file are single-file commits (24 by `prover_c` plus the lead's `qReverseTransfer_cast` follow-up) |
 | #3 | `Sharp.lean` (32) | **PASS** | graded on `sha256 b9b3b568…`; 32/32 `axioms.sh` clean; verifier's own parser: set equality 32/32 with the `epSupError` body compared too; the minimax lower bound **is** the original `∀ c a, ∃ x ∈ Set.Icc (-w) w` form (`#print` of `EPBestOnWindow` shows the pre-registered disjunctive fallback was not used) and is non-vacuous; the radius theorem checked in both directions (strict-interior case, failing-window case, attained radius); `a < b` load-bearing (a single point *is* trivially affine); 11 hypothesis-necessity counterexamples; the four sharpness witnesses use the totalised-division values and `secSlope_needs_h_ne_zero` really kills the mean-value identity; every load-bearing proof is a real derivation (no `rfl`), `Sharp.lean` imports only `Basic.lean`; edge-value falsification (w=0, tol=0, x=±λ, w<0, tol<0, lam<0, empty window) left every statement standing |
 | #5 | `Instances.lean` (48) | **PASS** | graded on `sha256 99161212…` (unchanged start→end); 48/48 `axioms.sh` clean; 48/48 word-for-word, order identical; **all verdicts independently recomputed** (I1–I10 coefficients, cascade and threshold; the 12 I11 literals recomputed from §R1.10's printed kcal/mol rows); refutation derivations non-circular; `#print` shows real `norm_num` terms and a real existential refutation; `inst_nonvacuous` exhibits two distinct verdicts; F4 absent with no invented numbers; a ±half-unit perturbation grid flips no verdict; 48/48 commits touch only the owner's file |
-| closeout | frozen tree | recorded at the end of this section | — |
+| closeout | frozen tree | **FAIL → corrected → re-checked → PASS** | first run (anchors: Basic `19133be2…`, Criterion `d0a0e7b8…`, Sharp `a874ce82…`, Compose `1a47e958…`, RatModel `75040761…`, Instances `029b02a3…`, skeleton `c9aa2cb1…`): gate PASS twice, 191/191 `axioms.sh` clean, statement fidelity 191/191, comment-only deltas confirmed **per declaration**, kernel spot-checks clean — but **eight documentation findings** (the I9 row's `α` conflated with the two-point slope; "276 values" where the checker prints 280; "167 commits" where 164 are measured; the plan's "R² ≈ 0.93–0.95" against the record's own F2 = 0.548; a reproduction command naming the wrong module; "24/24" where 25 is measured; plan text claiming a closeout record that did not yet exist; two stale board numbers). All eight were corrected and re-audited — the FAIL is preserved here on purpose, exactly as in the `hammond` closeout, because a closeout that hides its own documentation defects is worthless |
 
 Cross-checks that do not replace the kernel: the statement-fidelity checker
 `theories/BEP/probes/bep-fidelity.py` (191/191 word-for-word, 0 differences, 0 declarations outside
 the authority) and the exact-rational instance cross-check
-`theories/BEP/probes/bep-instance-check.py` (276 values, exit 0, `CROSS-CHECK: OK`). The
+`theories/BEP/probes/bep-instance-check.py` (280 values, exit 0, `CROSS-CHECK: OK`). The
 verifiers' observations are all closed or registered: the statement authority is now under version
 control (verifier O1/M1), the missing 13th B4 declaration was delivered
 (`secSlope_eq_lefflerSecant`), comment-only wording fixes landed with the comment-stripped token
@@ -259,7 +265,7 @@ PASS —— 37/37 逐字、22/22 公理干净、三处反例驱动的语句修�
 的命题之否定）、八个 cast 引理经 `#print` 确认是真正的 ℝ 迁移**且被实际使用**、未受约束定义审计为零。
 #3 `Sharp.lean`（32）与 #5 `Instances.lean`（48）的独立判定以及冻结态 closeout 的记录附于本节之后。
 不替代内核的交叉检查：语句保真检查器（191/191 逐字、0 差异、0 权威外声明）与精确有理实例复算器
-（276 个数值、exit 0、`CROSS-CHECK: OK`）。验证器提出的观察已全部关闭或登记：语句权威已纳入版本控制、
+（280 个数值、exit 0、`CROSS-CHECK: OK`）。验证器提出的观察已全部关闭或登记：语句权威已纳入版本控制、
 遗漏的第 13 条 B4 声明已交付（`secSlope_eq_lefflerSecant`）、注释级措辞修正以"去注释 token 流哈希不变"
 证明未动语句、B5a/B5b 经验条目已补、任务板上两处计数已改为实测值。
 
@@ -321,7 +327,7 @@ that chemistry obeys BEP. Explicit boundaries, all registered in `theories/BEP/p
 # 1. the three-layer gate for one module (repeat per delivered module)
 proofs/scripts/lake build PhotoLean.BEP.Basic
 proofs/scripts/check.sh --strict PhotoLean.BEP.Basic        # must print: verdict: PASS
-proofs/scripts/axioms.sh PhotoLean.BEP.Basic PhotoLean.BEP.bepDefect_eq   # fully-qualified name
+proofs/scripts/axioms.sh PhotoLean.BEP.Criterion PhotoLean.BEP.bepDefect_eq   # module + fully-qualified name
 
 # 2. the whole delivered set at once (bare run builds every defaultTargets entry)
 proofs/scripts/check.sh --strict
@@ -330,7 +336,7 @@ proofs/scripts/check.sh --strict
 python3 theories/BEP/probes/bep-fidelity.py            # expect: 191/191, 0 differences
 
 # 4. non-Lean independent recomputation of every instance value
-python3 theories/BEP/probes/bep-instance-check.py      # expect: CROSS-CHECK: OK, exit 0
+python3 theories/BEP/probes/bep-instance-check.py      # expect: checked 280 values, CROSS-CHECK: OK, exit 0
 
 # 5. the probes (probe files may carry placeholders; the delivered modules may not)
 proofs/scripts/lake env lean theories/BEP/probes/bep-risk-probe.lean
