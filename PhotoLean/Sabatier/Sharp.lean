@@ -404,6 +404,17 @@ theorem flat_witness (dE : ℝ) :
     volcanoBarrier 0 0 0 0 dE = volcanoBarrier 0 0 0 0 (apex 0 0 0 0) := by
   simp [volcanoBarrier, branchUp, branchDown, apex]
 
+/-- The constant profile is not a volcano (plan §6): uniqueness of the minimizer fails, so the
+zero-slope series has no Sabatier optimum at all. -/
+theorem not_descriptor_flat :
+    ¬ VolcanoDescriptor (fun dE => volcanoBarrier 0 0 0 0 dE) (apex 0 0 0 0) := by
+  intro hD
+  have hw : volcanoBarrier 0 0 0 0 1 = volcanoBarrier 0 0 0 0 (apex 0 0 0 0) := by
+    simp [volcanoBarrier, branchUp, branchDown, apex]
+  have hne : (1:ℝ) ≠ apex 0 0 0 0 := by
+    simp [apex]
+  exact hne (hD.2 1 hw)
+
 end Sabatier
 
 end PhotoLean
