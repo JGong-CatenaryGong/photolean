@@ -175,9 +175,25 @@ proofs/scripts/axioms.sh <Module> <fully.qualified.theorem>   # #print axioms �
 | I4 | 文献 MCC 系列高放能支：`x = 2.40`（与 `2.00`） | **明显反转区** | 文献参数 + 转移引理 |
 | I5 | 文献 MCC 系列正常支：`x = 0.60` | **不在反转区**（正常区） | 同上 + 排除反转区引理 |
 | I6 | 文献光合反应中心：`lam = 0.25, x = 1.10` | **深反转区**（`x ≫ lam`） | 同上 |
-| I7 | 非物理参数（`lam = -1/2`；及 `A = -1 ∧ lam = -1`） | **不符合 / 不可采纳** | *（batch 2 交付中）* 依据已就绪：`descriptor_fails_of_nonpos_lam`；`inverted_descriptor_holds_of_neg` + 速率非正反证 |
+| I7 | 非物理参数 `lam = -1/2` | **不符合反转区描述** | `inst_I7_nonpos_lam_not_descriptor`（实例化 `descriptor_fails_of_nonpos_lam`） |
+| I7′ | 非物理分支 `A = -1 ∧ lam = -1` | **不可采纳** | `inst_I7_unphysical_descriptor`（描述**形式上成立**）+ `inst_I7_unphysical_rate_not_pos`（速率非正：`rate … 0 = -exp(1/4) < 0`）+ 汇总判定 `inst_I7_unphysical_not_admissible` —— 这是"**正性前提不可去**"的可检查证据 |
 
 > 每条实例都是**有名字的定理**（可被 `axioms.sh` 单独复核），不是注释里的声称。
+
+### 3.2b 文献参数的"描述算子实例化"（最直接的"是否符合描述"判定）
+
+| 定理 | 内容 | 依据 |
+|---|---|---|
+| `inst_I4_mcc_descriptor_any_kT` | 对**任意** `kBT > 0`，MCC 参数 `lam = 1.20` 上反转区描述**成立** | `inverted_descriptor_holds` 实例化 |
+| `inst_I4_mcc_descriptor` | 同上（`kB = T = 1` 的具体推论） | 同上 |
+| `inst_I4_mcc_admissible` | 上述实例**可采纳**（描述成立 ∧ 速率处处为正） | 同上 + `rate_pos` |
+| `inst_I6_rc_descriptor_any_kT` | 光合反应中心 `lam = 0.25` 上描述成立（任意 `kBT > 0`） | 同上 |
+| `inst_I4_mcc_rate_drop` | **反转区标志结论**：`rate(1.20, 2.40) < rate(1.20, 1.23)`（**与 `kBT` 无关**） | `inverted_rate_decreases` 实例化 |
+| `inst_I5_mcc_rate_rise` | 正常区：`rate(1.20, 0.60) < rate(1.20, 1.20)`（升至 `x = lam`） | `normal_rate_increases` 实例化 |
+| `inst_I3_rate_peak` | 峰位：`rate(1.20, 2.40) ≤ rate(1.20, 1.20)` | `rate_peak_at_lam` 实例化 |
+
+> **`kBT` 是全称变量而不是注释里的声称** —— 把 `kBT > 0` 写成定理的显式前提，使
+> "**判定与温度无关**"成为**语句的一部分**（这正回应了文献对原文温度未核实的保留）。
 
 ### 3.3 文献参数（可核查来源）
 
