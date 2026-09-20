@@ -86,4 +86,10 @@ theorem lamOuter_pos {dE a1 a2 R nSq epsS : ℝ} (hdE : 0 < dE) (ha1 : 0 < a1) (
   unfold lamOuter
   exact mul_pos (mul_pos hdE2 hgeom') hPekar'
 
+/-- 重组能分解的加性：内层非负 + 外层严格正 ⇒ 总重组能严格正。
+    （M4c 的复合定理用它把 `lamInner kk dq + lamOuter ...` 的正性交给
+    `lamInner_nonneg` 与 `lamOuter_pos`。）--/
+theorem lam_total_pos {lamIn lamOut : ℝ} (h₁ : 0 ≤ lamIn) (h₂ : 0 < lamOut) : 0 < lamIn + lamOut := by
+  linarith
+
 end PhotoLean.Marcus
