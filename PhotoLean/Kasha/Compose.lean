@@ -158,6 +158,30 @@ theorem effUpperYield_one {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic 
   rw [hU, radBranch, effDecay_one]
   simp [effRad]
 
+set_option linter.unusedVariables false in
+/-- Plan §7.2 #6. The effective two-level emission from the lowest state is the ladder's
+`emitYield rad ic 0 N`, normalized the same way. The `RateData` premise is part of the row's
+authority signature and is **not consumed** here (the linter is off locally). -/
+theorem effEmitYield_zero_one {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    emitYield (effRad rad ic N) (effIc rad ic N) 0 1
+      = emitYield rad ic 0 N / (upperYield rad ic N + cascade rad ic 0 N) := by
+  have hC : cascade (effRad rad ic N) (effIc rad ic N) 0 1
+      = icBranch (effRad rad ic N) (effIc rad ic N) 1 := by
+    unfold cascade
+    have hset : Finset.Icc (0 + 1) 1 = ({1} : Finset ℕ) := by
+      ext j
+      simp only [Finset.mem_Icc, Finset.mem_singleton]
+      omega
+    rw [hset, Finset.prod_singleton]
+  unfold emitYield radBranch
+  rw [hC]
+  unfold icBranch
+  rw [effDecay_zero, effDecay_one]
+  have hR0 : effRad rad ic N 0 = rad 0 := by simp [effRad]
+  have hI1 : effIc rad ic N 1 = cascade rad ic 0 N := by simp [effIc]
+  rw [hR0, hI1]
+  ring
+
 
 end Kasha
 
