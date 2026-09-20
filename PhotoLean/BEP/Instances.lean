@@ -245,6 +245,15 @@ theorem inst_I9_unphysical_defect_negative : Rat.qBepDefect (-2 : ℚ) 1 = -(1 /
   unfold Rat.qBepDefect Rat.qBepLine Rat.qEact
   norm_num
 
+/-- I9 (`model-constructed`): the Evans–Polanyi bounds hold at the unphysical point — this is why
+the descriptor `EPDescriptor` is strictly stronger than the bounds pair (plan §8.2). -/
+theorem inst_I9_unphysical_bounds_blind :
+    0 ≤ Rat.qTransfer (-2 : ℚ) 1 ∧ Rat.qTransfer (-2 : ℚ) 1 ≤ 1 := by
+  unfold Rat.qTransfer
+  norm_num
+
+/-! #### I10 — the tolerance threshold (`λ = 2`, `w = 1`) -/
+
 end BEP
 
 end PhotoLean
