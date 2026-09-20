@@ -321,6 +321,20 @@ theorem not_kashaRule_of_rad_pos {rad ic : ℕ → ℝ} {N i : ℕ} (h : RateDat
 theorem vavilovAt_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N + 1))
     (h1 : fluoYield rad ic N < 1) : VavilovAt rad ic N ↔ rad (N + 1) = 0 :=
   fluoYield_eq_iff_rad_zero h h1
+/-- Plan §5.2 #17. Vavilov's rule up to level `N` holds iff every level up to `N` other than the
+lowest is nonradiative, given that the lower ladders each lose something. -/
+theorem vavilovUpTo_iff_rad_zero {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N)
+    (h1 : ∀ i, i < N → fluoYield rad ic i < 1) :
+    VavilovUpTo rad ic N ↔ ∀ i, i < N → rad (i + 1) = 0 := by
+  constructor
+  · intro hV i hi
+    have hR : RateData rad ic (i + 1) :=
+      ⟨fun n hn => h.decay_pos n (le_trans hn (Nat.succ_le_of_lt hi)), h.rad_nonneg, h.ic_nonneg⟩
+    exact (vavilovAt_iff_rad_zero hR (h1 i hi)).mp (hV i hi)
+  · intro hr i hi
+    have hR : RateData rad ic (i + 1) :=
+      ⟨fun n hn => h.decay_pos n (le_trans hn (Nat.succ_le_of_lt hi)), h.rad_nonneg, h.ic_nonneg⟩
+    exact (vavilovAt_iff_rad_zero hR (h1 i hi)).mpr (hr i hi)
 end Kasha
 
 end PhotoLean
