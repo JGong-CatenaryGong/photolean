@@ -236,6 +236,31 @@ theorem parabolicBarrier_apex_le {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam
   · rw [parabolicBarrier_crossing h1 h2]
     exact le_trans (parabolaDown_anti h2 h hb.2.le) (le_max_right _ _)
 
+/-- The crossing point is the unique global minimizer of the parabolic effective barrier: the two
+branches are strictly monotone on their own sides, so no other descriptor attains the pass height.
+(plan §7) -/
+theorem parabolicBarrier_eq_apex_iff {lam1 lam2 : ℝ} (h1 : 0 < lam1) (h2 : 0 < lam2) (dE : ℝ) :
+    parabolicBarrier lam1 lam2 dE = parabolicBarrier lam1 lam2 (apexPar lam1 lam2)
+      ↔ dE = apexPar lam1 lam2 := by
+  have hb := apexPar_bounds h1 h2
+  have hbar := parabolicBarrier_at_apex h1 h2
+  constructor
+  · intro heq
+    rcases lt_trichotomy dE (apexPar lam1 lam2) with h | h | h
+    · have hlt : parabolicBarrier lam1 lam2 (apexPar lam1 lam2)
+          < parabolicBarrier lam1 lam2 dE := by
+        rw [hbar, parabolicBarrier_crossing h1 h2]
+        exact lt_of_lt_of_le (parabolaDown_lt_of_lt h2 h hb.2.le) (le_max_right _ _)
+      linarith
+    · exact h
+    · have hlt : parabolicBarrier lam1 lam2 (apexPar lam1 lam2)
+          < parabolicBarrier lam1 lam2 dE := by
+        rw [hbar]
+        exact lt_of_lt_of_le (parabolaUp_lt_of_lt h1 hb.1 h) (le_max_left _ _)
+      linarith
+  · intro h
+    rw [h]
+
 end Sabatier
 
 end PhotoLean
