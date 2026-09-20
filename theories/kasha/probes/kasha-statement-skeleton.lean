@@ -814,8 +814,8 @@ theorem I14_not_one_sided :
 /-- Plan §8.2 row I10 — **literature row, conforming**: 4,6,8-trimethylazulene in cyclohexane.
 Transcribed in units of `10⁶ s⁻¹` from `theories/kasha/LITERATURE.md` §R1.6 (source: the 1995
 Saskatchewan thesis, Table 3.3 p. 126, printing `Σk_r = 3.3×10⁷ s⁻¹` and `Σk_nr = 6.7×10¹⁰ s⁻¹`;
-the identification `rad 1 ≡ Σk_r(S₂)`, `ic 1 ≡ Σk_nr(S₂)` is the declared bridge of §R1.4.2, not a
-theorem of this development). `rad 0 = 1`, `ic 0 = 0` is a **declared modelling reduction** — the
+the identification `rad 1 ≡ Σk_r(S₂)`, `ic 1 ≡ Σk_nr(S₂)` is the declared bridge of §R1.4.2 — it is
+not a statement of this development). `rad 0 = 1`, `ic 0 = 0` is a **declared modelling reduction** — the
 lowest level's nonradiative channel is neglected in this row — and it is what makes K3 #3's reduced
 criterion apply exactly. Ratio `ic 1 / rad 1 = 67000/33 ≈ 2030 ≥ 99 = (1 - 1/100)/(1/100)`. -/
 theorem I10_trimethylazulene_conforming :

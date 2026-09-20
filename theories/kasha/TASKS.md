@@ -12,7 +12,7 @@
 - Plan and milestone statements: `theories/kasha/plan.md`.
 - **Statement authority**: `theories/kasha/probes/kasha-statement-skeleton.lean`
   (compiles at 0 error with `proofs/scripts/lake env lean`, Sprint-0 gate; sha256
-  `8508e1df7705daaac31288ef78e97073aaff2f1c6422c31bd2eb83b669cbf888`), **151 declarations** (111 theorems + 37 definitions + 3 structures/inductives).
+  `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`), **150 declarations** (110 theorems + 37 definitions + 3 structures/inductives).
 - Theory direction: **Kasha's rule in a finite excited-state cascade model**, human request of
   2026-09-20 (three parts: formal description / proof and validity conditions / instance verdicts).
 - Deliverable module prefix: `PhotoLean.Kasha`; sources under `PhotoLean/Kasha/`
@@ -33,8 +33,16 @@
       and the gate behaviour are unchanged
 - [x] Plan landed: `theories/kasha/plan.md` (K1–K5, statement inventory, sprint order, risk
       register, honesty table, scope limits)
-- [x] **Statement skeleton compiles**: `theories/kasha/probes/kasha-statement-skeleton.lean` —
-      151 declarations with placeholder theorem bodies, `lake env lean` exit 0, sha256 `8508e1df7705daaac31288ef78e97073aaff2f1c6422c31bd2eb83b669cbf888`
+- [x] **Statement skeleton compiles** (the Sprint-0 gate): `theories/kasha/probes/kasha-statement-skeleton.lean`
+      — **144 declarations** with placeholder theorem bodies, `lake env lean` exit 0, sha256
+      `e3ddc2d01317ec6bc46957cae7763034a23df691bffc480a08c9a23d9fe6412b` **at that gate**. The authority
+      then grew, and the hash history is part of the record (verifier finding MEDIUM-5 was that this
+      row had been rewritten to a later hash, which would have made no hash identify the Sprint-0
+      artifact): `4cf2b105…` — the three statement corrections of §3.1; `8508e1df…` — the six K5b
+      literature rows appended (whose raw line count read 151 because a docstring line happened to
+      begin with a declaration keyword); `b645cbfb…` — that line reflowed, **150 declarations**
+      measured comment-stripped (110 theorems + 37 definitions + 3 structures/inductives), which is
+      the state this board's header names
 - [x] **Fidelity-checker coverage gap found and fixed** (lead, 2026-09-20): the theory-generic
       checker `theories/BEP/probes/bep-fidelity.py` matched only `theorem|def|inductive` and
       silently skipped `structure` declarations, so it reported **143** of kasha's 144 declarations.
@@ -70,165 +78,165 @@
 
 ### K1 — `PhotoLean/Kasha/Basic.lean` (owner prover_a)
 
-- [x] `decay` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `radBranch` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `icBranch` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `cascade` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `emitYield` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `fluoYield` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `upperYield` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `specFrac` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaMargin` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `funnelRatio` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `ladderRatio` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `KashaRule` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `KashaWithin` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `VavilovAt` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `VavilovUpTo` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `KashaDescriptor` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `RateData` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `KashaZone` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaZone` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `decay_eq_rad_add_ic` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `radBranch_add_icBranch` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `radBranch_nonneg` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `icBranch_nonneg` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `radBranch_le_one` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `icBranch_le_one` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `cascade_self` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `cascade_nonneg` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `cascade_le_one` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `emitYield_self` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `emitYield_nonneg` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `emitYield_le_radBranch` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `fluoYield_eq_low_add_upper` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `fluoYield_zero` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `upperYield_zero` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `fluoYield_nonneg` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `upperYield_nonneg` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `upperYield_le_fluoYield` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaRule_iff_upperYield_zero` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `specFrac_sum` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaWithin_iff_specFrac` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaZone_eq_pure_iff` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaZone_eq_withinTol_iff` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaZone_eq_violating_iff` — Basic.lean — prover_a — done — skeleton `8508e1df`
-- [x] `kashaRule_of_rad_zero` — Basic.lean — prover_a — done — skeleton `8508e1df`
+- [x] `decay` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `radBranch` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `icBranch` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `cascade` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `emitYield` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `fluoYield` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `upperYield` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `specFrac` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaMargin` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `funnelRatio` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `ladderRatio` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `KashaRule` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `KashaWithin` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `VavilovAt` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `VavilovUpTo` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `KashaDescriptor` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `RateData` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `KashaZone` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaZone` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `decay_eq_rad_add_ic` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `radBranch_add_icBranch` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `radBranch_nonneg` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `icBranch_nonneg` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `radBranch_le_one` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `icBranch_le_one` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `cascade_self` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `cascade_nonneg` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `cascade_le_one` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `emitYield_self` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `emitYield_nonneg` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `emitYield_le_radBranch` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `fluoYield_eq_low_add_upper` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `fluoYield_zero` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `upperYield_zero` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `fluoYield_nonneg` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `upperYield_nonneg` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `upperYield_le_fluoYield` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaRule_iff_upperYield_zero` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `specFrac_sum` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaWithin_iff_specFrac` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaZone_eq_pure_iff` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaZone_eq_withinTol_iff` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaZone_eq_violating_iff` — Basic.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaRule_of_rad_zero` — Basic.lean — prover_a — done — skeleton `b645cbfb`
 
 ### K2 — `PhotoLean/Kasha/Criterion.lean` (owner prover_a)
 
-- [ ] `cascade_succ` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `emitYield_succ` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `emitYield_succ_self` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `fluoYield_succ` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `upperYield_succ` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `cascade_add_upperYield` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `fluoYield_eq_one_sub_loss` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `fluoYield_le_one` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `fluoYield_mono_succ` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `fluoYield_lt_succ_of_rad_pos` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `fluoYield_eq_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `fluoYield_lt_one_iff_loss` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `upperYield_eq_zero_iff` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `kashaRule_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `not_kashaRule_of_rad_pos` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `vavilovAt_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `vavilovUpTo_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `kashaRule_iff_vavilovUpTo` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `not_kasha_universal` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `kashaDescriptor_nonvacuous` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_of_kashaRule` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
-- [ ] `upperYield_le_sum_radBranch` — Criterion.lean — prover_a — todo — skeleton `8508e1df`
+- [ ] `cascade_succ` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `emitYield_succ` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `emitYield_succ_self` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `fluoYield_succ` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `upperYield_succ` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `cascade_add_upperYield` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `fluoYield_eq_one_sub_loss` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `fluoYield_le_one` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `fluoYield_mono_succ` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `fluoYield_lt_succ_of_rad_pos` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `fluoYield_eq_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `fluoYield_lt_one_iff_loss` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `upperYield_eq_zero_iff` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `kashaRule_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `not_kashaRule_of_rad_pos` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `vavilovAt_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `vavilovUpTo_iff_rad_zero` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `kashaRule_iff_vavilovUpTo` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `not_kasha_universal` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `kashaDescriptor_nonvacuous` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_of_kashaRule` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
+- [ ] `upperYield_le_sum_radBranch` — Criterion.lean — prover_a — todo — skeleton `b645cbfb`
 
 ### K3 — `PhotoLean/Kasha/Sharp.lean` (owner prover_b)
 
-- [ ] `kashaWithin_one_iff_rates` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_one_iff_ratio` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_one_iff_ic_ratio` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `funnelRatio_eq_ladderRatio_one` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_iff_margin` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_mono_tol` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_zero_iff` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_one_mono_ic` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `not_kashaWithin_one_of_ratio_lt` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaThreshold_attained` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `perLevel_criterion_insufficient` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `vavilov_premise_necessary` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_one_sharp_boundary` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `leak_le_of_radBranch_le` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_of_uniform_branch` — Sharp.lean — prover_b — todo — skeleton `8508e1df`
+- [ ] `kashaWithin_one_iff_rates` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_one_iff_ratio` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_one_iff_ic_ratio` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `funnelRatio_eq_ladderRatio_one` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_iff_margin` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_mono_tol` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_zero_iff` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_one_mono_ic` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `not_kashaWithin_one_of_ratio_lt` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaThreshold_attained` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `perLevel_criterion_insufficient` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `vavilov_premise_necessary` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_one_sharp_boundary` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `leak_le_of_radBranch_le` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_of_uniform_branch` — Sharp.lean — prover_b — todo — skeleton `b645cbfb`
 
 ### K4 — `PhotoLean/Kasha/Compose.lean` (owner prover_d)
 
-- [ ] `effRad` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `effIc` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `marcusIC` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `kashaGapThreshold` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `cascade_compose` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `emitYield_compose` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `effDecay_zero` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `effDecay_one` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `effUpperYield_one` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `effEmitYield_zero_one` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `kashaMargin_effective` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_iff_effective` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_iff_ladderRatio` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `ladderRatio_one` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `not_kashaWithin_of_ladderRatio_lt` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `kashaWithin_one_marcus` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `not_kashaWithin_of_gap_far` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `kashaWindow_halfWidth` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `kashaGapThreshold_pos` — Compose.lean — prover_d — todo — skeleton `8508e1df`
-- [ ] `marcusIC_pos` — Compose.lean — prover_d — todo — skeleton `8508e1df`
+- [ ] `effRad` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `effIc` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `marcusIC` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `kashaGapThreshold` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `cascade_compose` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `emitYield_compose` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `effDecay_zero` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `effDecay_one` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `effUpperYield_one` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `effEmitYield_zero_one` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `kashaMargin_effective` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_iff_effective` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_iff_ladderRatio` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `ladderRatio_one` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `not_kashaWithin_of_ladderRatio_lt` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `kashaWithin_one_marcus` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `not_kashaWithin_of_gap_far` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `kashaWindow_halfWidth` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `kashaGapThreshold_pos` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
+- [ ] `marcusIC_pos` — Compose.lean — prover_d — todo — skeleton `b645cbfb`
 
 ### K5a — `PhotoLean/Kasha/RatModel.lean` (owner prover_c)
 
-- [ ] `decayQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `radBranchQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `icBranchQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `cascadeQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `emitYieldQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `fluoYieldQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `upperYieldQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `funnelRatioQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `ladderRatioQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `KashaWithinQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `QRateData` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `KashaQVerdict` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `kashaQVerdict` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `twoRad` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `twoIc` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `threeRad` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `threeIc` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `decayQ_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `radBranchQ_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `icBranchQ_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `cascadeQ_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `emitYieldQ_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `fluoYieldQ_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `upperYieldQ_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `kashaWithinQ_iff_cast` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `kashaWithinQ_iff_funnelRatioQ` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `kashaQVerdict_eq_pure_iff` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `kashaQVerdict_eq_withinTol_iff` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `kashaQVerdict_eq_violating_iff` — RatModel.lean — prover_c — todo — skeleton `8508e1df`
+- [ ] `decayQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `radBranchQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `icBranchQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `cascadeQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `emitYieldQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `fluoYieldQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `upperYieldQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `funnelRatioQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `ladderRatioQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `KashaWithinQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `QRateData` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `KashaQVerdict` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `kashaQVerdict` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `twoRad` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `twoIc` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `threeRad` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `threeIc` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `decayQ_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `radBranchQ_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `icBranchQ_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `cascadeQ_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `emitYieldQ_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `fluoYieldQ_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `upperYieldQ_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `kashaWithinQ_iff_cast` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `kashaWithinQ_iff_funnelRatioQ` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `kashaQVerdict_eq_pure_iff` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `kashaQVerdict_eq_withinTol_iff` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `kashaQVerdict_eq_violating_iff` — RatModel.lean — prover_c — todo — skeleton `b645cbfb`
 
 ### K5b — `PhotoLean/Kasha/Instances.lean` (owner prover_c)
 
-- [ ] `I1_conforming_control` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I2_antiKasha_control` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I3_threshold_boundary` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I3b_threshold_below` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I4_fluoYield_one` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I5_upperYield_one` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I6_fluoYield_two` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I7_equalRates_leak_two` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I7b_equalRates_violating` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I8_noLoss_vavilov` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I8b_noLoss_not_kasha` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I9_verdict_violating` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I13_row_inventory` — Instances.lean — prover_c — todo — skeleton `8508e1df`
-- [ ] `I14_not_one_sided` — Instances.lean — prover_c — todo — skeleton `8508e1df`
+- [ ] `I1_conforming_control` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I2_antiKasha_control` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I3_threshold_boundary` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I3b_threshold_below` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I4_fluoYield_one` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I5_upperYield_one` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I6_fluoYield_two` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I7_equalRates_leak_two` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I7b_equalRates_violating` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I8_noLoss_vavilov` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I8b_noLoss_not_kasha` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I9_verdict_violating` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I13_row_inventory` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
+- [ ] `I14_not_one_sided` — Instances.lean — prover_c — todo — skeleton `b645cbfb`
 - [ ] `I10_trimethylazulene_conforming` — Instances.lean — prover_c — todo — literature row (thesis 1995 Table 3.3, `rad 1 = 33`, `ic 1 = 67000` in 10⁶ s⁻¹; LITERATURE §R1.6)
 - [ ] `I11_azulene_violating` — Instances.lean — prover_c — todo — literature row (thesis 1995 Table 3.1, `35` / `720`; LITERATURE §R1.6)
 - [ ] `I11alt_azulene2026_violating` — Instances.lean — prover_c — todo — literature row (Chem. Sci. 2026, printed `Φ_Fl = 2.42 %` ⇒ `242` / `9758`; LITERATURE §R1.4/§R1.6)
@@ -265,7 +273,7 @@ the tree was **not frozen** during this run (`HEAD` moved 5×: `0b87f93 → 849b
 | 2 | HIGH | the five `api_researcher` probes were untracked (absent from HEAD), so the API log's evidence was unreproducible | fix dispatched to the owner (commit the probes + the log); tracked here until the commit lands |
 | 3 | MED | `PhotoLean/Kasha/Basic.lean` and `API-NOTES.md` cite an authority hash that later moved | the log's citation is being rewritten as a *hash history*; the delivered module headers are updated once, at the freeze, to the frozen authority hash (a citation must name the state it was checked against) |
 | 4 | MED | `API-NOTES.md` claimed two deprecation warnings in `kasha-api-risk.lean`; measured: **0 warnings** (and `EXPERIENCE.md` already said 0) | accepted — the API log is the single source of truth for calibrated names and must not carry a refuted warning claim; fix dispatched to the owner |
-| 5 | MED | `TASKS.md` had rewritten the Sprint-0 gate row's hash to a value that only exists *after* the later corrections | accepted. The hash history is: Sprint-0 gate at `e3ddc2d0…` (144 declarations) → correction round `4cf2b105…` (K1 #24, K3 #2/#9, K5a criterion) → literature rows `8508e1df…` (**151 declarations**). Quoting the current hash as "the artifact that passed the Sprint-0 gate" is a stale-number defect |
+| 5 | MED | `TASKS.md` had rewritten the Sprint-0 gate row's hash to a value that only exists *after* the later corrections | accepted. The hash history is: Sprint-0 gate at `e3ddc2d0…` (144 declarations) → correction round `4cf2b105…` (K1 #24, K3 #2/#9, K5a criterion) → literature rows `b645cbfb…` (**150 declarations**). Quoting the current hash as "the artifact that passed the Sprint-0 gate" is a stale-number defect |
 | 6 | MED | the fidelity checker had no milestone granularity, so a milestone's acceptance number was inexpressible | **fixed**: `bep-fidelity.py --milestone <K1…K5b>` scopes the report to the authority's `## <milestone>` block; regression re-run on BEP/hammond/Marcus (unchanged) |
 | 7 | LOW | `KashaWithin` is defined for every real `tol`; `kashaMargin` is `0/0`-degenerate exactly on the branch it names | recorded in plan §12 (honesty table): the tolerance premise is explicit in every criterion row, and `kashaMargin` is only consumed under `0 < upperYield` |
 | 8 | LOW | the `lakefile.toml` target for a module lands in a separate (lead) commit, while plan §11 says "same commit" | recorded as a **registered deviation**: `lakefile.toml` is lead-owned (workers are forbidden to edit it), so "same commit" is unachievable as written; the rule's purpose — no delivered module outside the build — is enforced by the lead immediately after each module lands |

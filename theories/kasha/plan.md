@@ -223,7 +223,7 @@ starts before it compiles, and every delivered declaration matches it word for w
 check: `theories/BEP/probes/bep-fidelity.py --theory kasha`, which is theory-generic).
 
 Planned inventory — **measured from the compiled skeleton** (`sha256
-8508e1df7705daaac31288ef78e97073aaff2f1c6422c31bd2eb83b669cbf888`, `lake env lean`, exit 0):
+b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, `lake env lean`, exit 0):
 
 | milestone | module | content (declarations) |
 |---|---|---|
@@ -232,8 +232,8 @@ Planned inventory — **measured from the compiled skeleton** (`sha256
 | K3 | `PhotoLean/Kasha/Sharp.lean` | 15 theorems (sharp conditions + necessity witnesses) = **15** |
 | K4 | `PhotoLean/Kasha/Compose.lean` | 4 definitions + 16 theorems = **20** |
 | K5a | `PhotoLean/Kasha/RatModel.lean` | 16 definitions + 1 inductive + 12 theorems = **29** |
-| K5b | `PhotoLean/Kasha/Instances.lean` | 14 kernel-checked rows (I1–I9 with their sub-rows, I13, I14) = **14**, plus the literature rows I10–I12 appended when the literature round lands their printed numbers |
-| **total** | | **144 declarations** (104 theorems + 37 definitions + 3 structures/inductives) |
+| K5b | `PhotoLean/Kasha/Instances.lean` | 14 model-constructed rows (I1–I9 with their sub-rows, I13, I14) + 6 literature rows (I10, I11, I11-alt, I11-alt2, I11t, I15) = **20** |
+| **total** | | **150 declarations** (110 theorems + 37 definitions + 3 structures/inductives); I12 was dropped by the literature round's negative result (§8.2) |
 
 The literature rows (I10–I12) are **deliberately absent** from the Sprint-0 skeleton: their Lean
 literals must be transcribed from `theories/kasha/LITERATURE.md` and may not be guessed. Appending
@@ -392,7 +392,7 @@ positivity premises explicitly.
 | 5 | `kashaWithin_iff_margin (h : RateData rad ic N) (hu : 0 < upperYield rad ic N) (htol : 0 < tol) : KashaWithin rad ic tol N ↔ 1 - tol ≤ tol * kashaMargin rad ic N` | 13 of K1, divide by `upperYield > 0` |
 | 6 | `kashaWithin_mono_tol (h : RateData rad ic N) (h : tol ≤ tol') : KashaWithin rad ic tol N → KashaWithin rad ic tol' N` | 18 of K1 + `mul_le_mul_of_nonneg_right` |
 | 7 | `kashaWithin_zero_iff (h : RateData rad ic N) : KashaWithin rad ic 0 N ↔ KashaRule rad ic N` | `0 * fluoYield = 0`, `upperYield_nonneg` |
-| 8 | `kashaWithin_one_mono_ic (h : RateData rad ic 1) (h' : RateData rad' ic' 1) (hrad : ∀ n, rad' n = rad n) (hic0 : ic' 0 = ic 0) (hic : ic 1 ≤ ic' 1) : KashaWithin rad ic tol 1 → KashaWithin rad' ic' tol 1` | the rate criterion 1 is monotone in `ic 1` |
+| 8 | `kashaWithin_one_mono_ic (h : RateData rad ic 1) (h' : RateData rad' ic' 1) (hrad : ∀ n, rad' n = rad n) (hic0 : ic' 0 = ic 0) (hic : ic 1 ≤ ic' 1) : KashaWithin rad ic tol 1 → KashaWithin rad' ic' tol 1` | the rate criterion 1 is monotone in `ic 1`. **Correction to this sketch (delivered as stated, 2026-09-20):** the sketch implicitly assumed `0 ≤ tol`; the row carries no tolerance premise and is still true, but for `tol · rad 0 < 0` the rate form forces `rad 1 = 0` and `ic 1 = 0`, hence `decay 1 = 0` against `RateData` — the implication holds vacuously on that branch. prover_b proved it as stated and documented the branch in the module header; **adding `0 ≤ tol` would weaken the row, so the authority is unchanged** |
 
 ### 6.2 Sharpness, attainment, and the counterexample
 
