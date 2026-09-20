@@ -135,32 +135,35 @@
 - [x] `epConformsOnWindow_of_microscopic` — Compose.lean — prover_b — done — plan §7
 - [x] `epConformsOnWindow_shrinks_with_inner` — Compose.lean — prover_b — done — plan §7
 - [x] `transfer_complementary_microscopic` — Compose.lean — prover_b — done — plan §7
+- [x] `secSlope_eq_lefflerSecant` — Compose.lean — prover_b — done — plan §7 post-verification
+      addition (verifier M2: the skeleton's 13th B4 declaration had no owner; delivered as a pure
+      insertion, `0c86c32`, all twelve verified declarations byte-identical)
 
 ## B5a — rational decision layer (`PhotoLean/BEP/RatModel.lean`; owner prover_c; Sprint 2)
 
-- [ ] definitions `qEact` / `qBepLine` / `qBepDefect` / `qTransfer` / `qReverseTransfer` / `qSecSlope`
+- [x] definitions `qEact` / `qBepLine` / `qBepDefect` / `qTransfer` / `qReverseTransfer` / `qSecSlope`
       / `qAlphaObs` / `qLamOfPair` / `qConformsWindow` / `EPQVerdict` / `epQVerdict`
-      — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qEact_cast` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qBepDefect_cast` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qTransfer_cast` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qSecSlope_cast` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qAlphaObs_cast` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qLamOfPair_cast` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qSecSlope_eq_qTransfer_mid` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qAlphaObs_eq_qTransfer_mid` — RatModel.lean — prover_c — review — plan §8.1 (data → structure)
-- [ ] `qLamOfPair_reconstructs` — RatModel.lean — prover_c — review — plan §8.1 (λ̂ from two points)
-- [ ] `epQVerdict_conforming_iff` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `epQVerdict_boundary_iff` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `epQVerdict_superLinear_iff` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `epQVerdict_subLinear_iff` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qConformsWindow_iff_radius_sq` — RatModel.lean — prover_c — review — plan §8.1
-- [ ] `qSecondDividedDiff` / `qModelConsistent3` definitions — RatModel.lean — prover_c — proving —
+      — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qEact_cast` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qBepDefect_cast` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qTransfer_cast` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qSecSlope_cast` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qAlphaObs_cast` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qLamOfPair_cast` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qSecSlope_eq_qTransfer_mid` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qAlphaObs_eq_qTransfer_mid` — RatModel.lean — prover_c — done — plan §8.1 (data → structure)
+- [x] `qLamOfPair_reconstructs` — RatModel.lean — prover_c — done — plan §8.1 (λ̂ from two points)
+- [x] `epQVerdict_conforming_iff` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `epQVerdict_boundary_iff` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `epQVerdict_superLinear_iff` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `epQVerdict_subLinear_iff` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qConformsWindow_iff_radius_sq` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qSecondDividedDiff` / `qModelConsistent3` definitions — RatModel.lean — prover_c — done —
       plan §8.1 (added 2026-09-20 from literature round 1c)
-- [ ] `qSecondDividedDiff_model` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qModelConsistent3_curvature_pos` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] `qModelConsistent3_lam_eq` — RatModel.lean — prover_c — proving — plan §8.1
-- [ ] AUX ℝ observation twins `alphaObs` / `lamOfPair` — RatModel.lean — prover_c — proving —
+- [x] `qSecondDividedDiff_model` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qModelConsistent3_curvature_pos` — RatModel.lean — prover_c — done — plan §8.1
+- [x] `qModelConsistent3_lam_eq` — RatModel.lean — prover_c — done — plan §8.1
+- [x] AUX ℝ observation twins `alphaObs` / `lamOfPair` — RatModel.lean — prover_c — done —
       lead decision: they live here and nowhere else
 
 ## B5b — instance verdicts (`PhotoLean/BEP/Instances.lean`; owner prover_c; Sprint 4)
@@ -186,8 +189,8 @@
 
 | Batch | Scope | Verdict | Key evidence | Notes |
 |---|---|---|---|---|
-| B1 (independent verifier #1) | `Basic.lean` (33 declarations) | **PASS** | 33/33 `axioms.sh` clean (raw `depends on axioms: [propext, Classical.choice, Quot.sound]` lines quoted); verifier's own fidelity parser: 33/33 MATCH including the `EPZone` constructors **and** `deriving DecidableEq, Repr`; all nine zone branch boundaries + cascade exhaustiveness kernel-checked; hypothesis necessity: **5 load-bearing / 3 decorative** (kernel-proved strengthened forms for `epZone_eq_unphysical_iff`, `epZone_eq_exergonic_iff`, `epZone_eq_endergonic_iff`); non-vacuity witnesses for all nine constructors; `#print` bodies == plan §4.1; six falsification attempts all failed; 18/18 commits touch only `Basic.lean` | graded on `sha256 5a366027…`; observations: **O1 HIGH** — the statement authority was untracked and rewritten twice during the run (`f261a131…` → `28300289…`); B1's block was verified identical in both snapshots and against the committed plan §4.1, and the skeleton is now committed by the lead with its hash recorded (plan §3) so the claim is auditable; **O2/O3 MEDIUM** — two self-description wordings ("every physical premise is an hypothesis of the statement that needs it"; `eact_at_zero` "(needs `lam ≠ 0`)") are refuted by the kernel: these hypotheses are kept for signature fidelity, not needed by the statement — comment-only fix queued (token-stream check + re-gate + closeout re-check); **O4–O8 LOW** — five comments describe B2/B3 facts as if proved in this file (reworded with the same batch), the `deriving` clause change was not logged in `API-NOTES.md` (being logged), plan §4.1's `EPBounds` doc block is shorter than the delivered docstring, `bepRadius` is silently `0` for `lam*tol < 0` (unconstrained domain, documented), skeleton layout puts the AUX twins inside the B1 block |
-| B5a (independent verifier #4) | `RatModel.lean` (36 declarations) | — | — | delivered by `prover_c` (24 commits, worker gate PASS); verification in progress |
+| B1 (independent verifier #1) | `Basic.lean` (33 declarations) | **PASS** | 33/33 `axioms.sh` clean (raw `depends on axioms: [propext, Classical.choice, Quot.sound]` lines quoted); verifier's own fidelity parser: 33/33 MATCH including the `EPZone` constructors **and** `deriving DecidableEq, Repr`; all nine zone branch boundaries + cascade exhaustiveness kernel-checked; hypothesis necessity: **5 load-bearing / 3 decorative** (kernel-proved strengthened forms for `epZone_eq_unphysical_iff`, `epZone_eq_exergonic_iff`, `epZone_eq_endergonic_iff`); non-vacuity witnesses for all nine constructors; `#print` bodies == plan §4.1; six falsification attempts all failed; 18/18 commits touch only `Basic.lean` | graded on `sha256 5a366027…`; observations: **O1 HIGH** — the statement authority was untracked and rewritten twice during the run (`f261a131…` → `28300289…`); B1's block was verified identical in both snapshots and against the committed plan §4.1, and the skeleton is now committed by the lead with its hash recorded (plan §3) so the claim is auditable; **O2/O3 MEDIUM** — two self-description wordings ("every physical premise is an hypothesis of the statement that needs it"; `eact_at_zero` "(needs `lam ≠ 0`)") are refuted by the kernel: these hypotheses are kept for signature fidelity, not needed by the statement — comment-only fix **landed** (`90e7f15` / `02a5a54`, token-stream hashes identical `d2898dc4…` / `4a4eacda…`, both modules re-gated PASS) — the closeout re-check range includes these two commits; **O4–O8 LOW** — five comments describe B2/B3 facts as if proved in this file (reworded with the same batch), the `deriving` clause change was not logged in `API-NOTES.md` (being logged), plan §4.1's `EPBounds` doc block is shorter than the delivered docstring, `bepRadius` is silently `0` for `lam*tol < 0` (unconstrained domain, documented), skeleton layout puts the AUX twins inside the B1 block |
+| B5a (independent verifier #4) | `RatModel.lean` (37 = 14 defs + 1 inductive + 22 theorems) | **PASS** | judged on `sha256 75040761…` (skeleton `c9aa2cb1…`); independent fidelity parser 37/37 word-for-word, 0 extras; 22/22 `axioms.sh` clean; the three kernel-counterexample-driven corrections *reproduced* by the verifier (it proved the negations of the premise-dropped forms: `¬` for the `hlam`-free reconstruction, `¬` for the `h₂₃`-free and `h₁₂`-free model-consistency statements); all eight cast lemmas `#print`-checked as genuine ℝ transfers and *used* (not decorative); model-consistency block instantiated with concrete rationals; `qConformsWindow_iff_radius_sq` both directions + negative control (`tol = 1/16`); unconstrained-definition audit: **zero** in the settled state (`qReverseTransfer` was the only one at delivery, fixed by `qReverseTransfer_cast`); 24/24 commits touch only the owner's file | observations: **HIGH** — the acceptance anchor must be the hash pair, not a branch name (the window moved under the verifier); **HIGH→closed** — plan→skeleton→delivery were briefly out of sync on `qReverseTransfer_cast`; **MEDIUM** — five premises are decorative (`hh`/`h` on three cast lemmas, `hx` on the two reconstructions) and must not be described as physical guards in `RESULTS.md`; **MEDIUM** — the B5a round's own experience entry is missing (being added); **LOW** — file header says "two corrections" where three are carried; board counts updated to the measured `14 defs + 1 inductive + 22 theorems`; the factor-2 naming difference between `qModelConsistent3_curvature_pos` and `LITERATURE.md` §R1.10.1's `d²Ea/dx² = 1/(2λ)` is now labelled in the record |
 | B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | — | — | delivered; verification in progress |
 | B2 + B4 (independent verifier #2) | `Criterion.lean` (28) + `Compose.lean` (12) | **PASS / PASS** | 40/40 `axioms.sh` clean (raw lines quoted); verifier's own parser: B2 28/28 word-for-word, B4 12/12; 40/40 proof terms screened for circularity (**only two `rfl`s, both documented as definitional**: `eact_eq_barrier`, `rate_exp`); 20 hypothesis-necessity counterexamples (load-bearing vs decorative split reported); `secSlope_eq_transfer_mid` hand-recomputed at three rational parameter sets (mean-value convention confirmed); B4 row 4 non-vacuous with same-true/same-false witnesses for both directions; a ~7 200-instance rational grid falsification of 31 statements found **0 counterexamples**; 28/28 + 12/12 commits touch only the owner's file | graded on `sha256 b3ef9225…` / `b68e948c…`; observations: **M1** skeleton untracked and rewritten mid-run (fixed: authority now committed), **M2** the skeleton's B4 AUX `secSlope_eq_lefflerSecant` was not delivered anywhere (fixed: `prover_b` is adding it, post-verification addition marked in the header), **M3** EXPERIENCE.md lacked the B2/B4 proof-round entries at verification time (fixed: committed), **M4** λ-additivity is an unregistered physical premise (registered in plan §13), **M5** positivity sits in the conformance predicates by design (registered in plan §13; wording fixed with the comment-only batch); **LOW 1–6** wording/registration items (comment-only fixes queued; junk files in the repo root removed by the lead) |
 | B3 (independent verifier #3) | `Sharp.lean` (32 = 25 + 7 AUX) | — | — | delivered by `prover_d` (32 commits, 32/32 `axioms.sh` clean, 0 fidelity differences, 3 documented order deviations); verification to be dispatched |

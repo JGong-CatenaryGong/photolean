@@ -354,6 +354,12 @@ Imports `PhotoLean.Marcus.Basic` and `PhotoLean.Hammond.Basic` (both delivered; 
 | 11 | `epConformsOnWindow_shrinks_with_inner (…) : EPConformsOnWindow lamInner tol (-w) w → EPConformsOnWindow (lamInner + lamOuter) tol (-w) w` | 7/8 |
 | 12 | `transfer_complementary_microscopic (hlam : lamInner + lamOuter ≠ 0) : transfer (lamInner + lamOuter) x + reverseTransfer (lamInner + lamOuter) x = 1` | 5.8 at the composed `λ` |
 
+**Post-verification addition (2026-09-20, verifier M2)**: the skeleton's B4 region carries a 13th
+declaration, `secSlope_eq_lefflerSecant (lam x h : ℝ) : secSlope lam x h = Hammond.lefflerSecant lam x (x + h)`
+— the cross-theory dictionary link (the BEP observable window slope *is* Hammond's Leffler secant
+over the same pair). It was delivered after the B4 PASS (pure addition, the twelve verified
+declarations untouched) and is therefore part of the frozen-state closeout's re-check range.
+
 **Physical reading of B4**: BEP's accuracy is a *microscopic* consequence — a larger total
 reorganization energy (inner + outer, Pekar-type) shrinks the exact violation and widens the
 tolerance window, and the Evans–Polanyi bounds fail **exactly** when one of the two directions lies
