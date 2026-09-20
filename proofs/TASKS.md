@@ -34,12 +34,12 @@
 
 ## M1 — 描述层（`PhotoLean/Marcus/Basic.lean`；属主 prover_a；Sprint 1）
 
-- [ ] 定义 `barrier` / `rate` / `InvertedRegion` / `NormalRegion` / `InvertedDescriptor`
+- [x] 定义 `barrier` / `rate` / `InvertedRegion` / `NormalRegion` / `InvertedDescriptor`
       / `NormalDescriptor` / `Zone` / `zone` — Marcus/Basic.lean — prover_a — review — plan §2.2；commit 3644a82
-- [ ] `zone_eq_normal_iff` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit f3d2055
-- [ ] `zone_eq_barrierless_iff` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit ac80776
-- [ ] `zone_eq_inverted_iff` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit c98c85d
-- [ ] `zone_trichotomy` — Marcus/Basic.lean — prover_a — review — plan §4.2；commit 1376f8e
+- [x] `zone_eq_normal_iff` — Marcus/Basic.lean — prover_a — done — plan §4.2；commit f3d2055
+- [x] `zone_eq_barrierless_iff` — Marcus/Basic.lean — prover_a — done — plan §4.2；commit ac80776
+- [x] `zone_eq_inverted_iff` — Marcus/Basic.lean — prover_a — done — plan §4.2；commit c98c85d
+- [x] `zone_trichotomy` — Marcus/Basic.lean — prover_a — done — plan §4.2；commit 1376f8e
 
 ## M2 — 势垒代数（`PhotoLean/Marcus/Barrier.lean`；属主 prover_a；Sprint 2）
 
@@ -73,12 +73,12 @@
 
 ## M4b — 微观重组能正性（`PhotoLean/Marcus/Reorg.lean`；属主 prover_d；Sprint 1，**零依赖**）
 
-- [ ] `lamInner` / `lamOuter` 定义 — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit 2d4e296
-- [ ] `lamInner_nonneg` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit 723034d
-- [ ] `lamInner_pos` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit acc5e8e
-- [ ] `lamOuter_pos`（Pekar 因子正性）— Marcus/Reorg.lean — prover_d — review — plan §7.2；commit fcb7589
-- [ ] `lam_total_pos` — Marcus/Reorg.lean — prover_d — review — plan §7.2；commit de63c09
-- [ ] **[拉伸·建议]** `hgeom_of_nonoverlap`（`a1+a2 ≤ R ⇒ 几何因子正`，把 `hgeom` 从假设变成推导）— Marcus/Reorg.lean — prover_d — todo — plan §7.2（Sprint 5）
+- [x] `lamInner` / `lamOuter` 定义 — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit 2d4e296
+- [x] `lamInner_nonneg` — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit 723034d
+- [x] `lamInner_pos` — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit acc5e8e
+- [x] `lamOuter_pos`（Pekar 因子正性）— Marcus/Reorg.lean — prover_d — done — plan §7.2；commit fcb7589
+- [x] `lam_total_pos` — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit de63c09
+- [x] **[拉伸·建议]** `hgeom_of_nonoverlap`（`a1+a2 ≤ R ⇒ 几何因子正`，把 `hgeom` 从假设变成推导）— Marcus/Reorg.lean — prover_d — todo — plan §7.2（Sprint 5）
 
 ## M4c — 复合定理（`PhotoLean/Marcus/Compose.lean`；属主 prover_d；Sprint 5）
 
@@ -105,6 +105,21 @@
 - [ ] I7 非物理分支 `A<0 ∧ lam<0` 判"不可采纳" — Marcus/Instances.lean — prover_c — todo — plan §8.2（Sprint 5）
 
 ---
+
+## 验收记录（verifier 独立跑门；lead 据此打勾）
+
+| 批次 | 范围 | 判决 | 关键证据 | 备注 |
+|---|---|---|---|---|
+| M1 + M4b | `Basic.lean`(12 声明) + `Reorg.lean`(6) | **PASS / PASS** | 四步门 + 8/8 `axioms.sh` 均 `[propext, Classical.choice, Quot.sound]`；18/18 语句与骨架**逐字一致**；8/8 提交各含**恰一条**定理、恰一个文件；耍花招排查 0 命中；对抗性探针内核级验证 | 1 条**注释级**缺陷待修（`Reorg.lean` 把 5 条定义域前提说成"被蕴含"，实为"未被使用" —— verifier 给了内核反例）；另：`zone_trichotomy` 本身信息量弱（对任意 `ℝ→ℝ→Zone` 函数均成立），真正钉住语义的是三条 `zone_eq_*_iff` |
+
+**verifier 提出的诚实性提醒（已采纳）**：
+1. **`zone_trichotomy` 强度很弱** —— 它没有断言分类器与三个区的对应，也没有断言三支互斥；
+   语义由三条 `zone_eq_*_iff`（穷尽且一致）承担。文档与最终报告里**不得**夸大它的作用。
+2. **几何约定不在 Lean 语句里**：`lamOuter_pos` 的前提在数学上允许 `a1 < 0, R < 0` 的赋值
+   （结论仍为真）。即"两球、`R ≥ a1 + a2`、连续介质"只写在 plan 与注释里 ——
+   **M5 实例层若用到 `lamOuter`，必须显式断言物理定义域**（`0 < a1`、`0 < a2`、`a1 + a2 ≤ R`）。
+3. **并发窗口**：`check.sh --strict` 的扫描覆盖整个 `PhotoLean/`，别人的 WIP 会翻转门的判定 ⇒
+   **打勾/最终结论必须在 frozen 提交上重跑门**（本表已如此执行）。
 
 ## 备注与冲突记录
 
