@@ -1270,8 +1270,9 @@ def table():
     for r in rows:
         print(" | ".join(str(r[i]).ljust(w[i]) for i in range(6)))
     print()
-    print("# reading of the literature rows: 'alphaObs' is the widest-pair observable slope")
-    print("# (dimensionless), 'lamOfPair' the designated adjacent-pair solver (kcal/mol); the")
+    print("# reading of the literature rows: 'alphaObs' (dimensionless) is the observable two-point")
+    print("# slope over the family's leading documented pair as named in that family's heading (NOT the")
+    print("# abscissa-widest pair); 'lamOfPair' is the designated adjacent-pair solver (kcal/mol); the")
     print("# 'verdict' column classifies every printed point at the family λ̂ of §R1.10 (the")
     print("# κ = 1/(4λ) reading), and 'sdd-sign' '-' is the λ-independent refutation: the model")
     print("# with λ > 0 forces '+'.  F1–F3 and F5 pass the affine test and fail the curvature")

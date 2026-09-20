@@ -12,16 +12,21 @@
 > placeholders and zero custom axioms; independent verifier **PASS** records for the six milestone
 > batches (B1, B2+B4, B3, B5a, B5b) and the **FAIL** records of the frozen-state closeout runs are in
 > `theories/BEP/TASKS.md` (§Acceptance records) and summarized in `theories/BEP/RESULTS.md` §5.
-> The closeout history so far, in the order the audits reported it: **run 1 — FAIL (eight
+> The closeout history, in the order the audits reported it (the acceptance table below carries every
+> run whose report exists — the rows, not this sentence, are the count): **run 1 — FAIL (eight
 > documentation findings: an `α` conflated with the two-point slope, an off-by-four value count, a
 > commit count, the R² range, a reproduction command, a commit tally, a forward-looking claim and two
 > stale board numbers); run 2 — FAIL (residual documentation findings: three stale draft rows, a
 > theorem name that never existed, an R² sentence in the experience bank, this header's own
 > forward-looking claim); run 3 — FAIL (a status line and this header still claiming a closeout PASS
 > that does not exist, the second run's FAIL missing here, an R² sentence in the literature record,
-> and an unlabelled sample pair in `RESULTS.md`); all three runs verified the mathematics
-> independently and found no mathematical defect.** Each run's findings were corrected, and a
-> verdict is only ever recorded in these leaves from an audit report that already exists. The plan
+> and an unlabelled sample pair in `RESULTS.md`); **run 4 — FAIL (this header's sentence about the
+> no-forward-looking-verdict invariant was left corrupted by the fix for run 3, the literature
+> record's line count was stale at 1584 where the file has 1587, and the `13/16` note claimed
+> "kernel-checked" with no in-repository artifact — the artifact `bep-lead-audit.lean` was added in
+> response); every run verified the mathematics independently and found no mathematical defect.**
+> Each run's findings were corrected, and a verdict is only ever recorded in these leaves from an
+> audit report that already exists. The plan
 > below is kept as the plan of record; §12 has been updated from targets to measured values.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/BEP/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/BEP/LITERATURE.md`.
