@@ -187,4 +187,25 @@
   - `experience.md` 是并发写热点：追加时用**唯一锚点**做局部替换，若报
     "file changed since it was read" 就重读再试（本次实测被 prover_a 的并发追加拦下一次）。
 
+## 2026-09-20 — ⚠️ lead 的并发提交事故：`git add -A` 吞掉工人的中间产物 — lead — FAIL→已修正
+
+- 目标：把 `plan.md` §8.3 的文献参数回填与任务板状态更新提交。
+- 试过且失败：提交时用了 `git add -A`（图省事）。当时有三个工人在并发写自己的工作文件，
+  于是：
+  - `e53d562`（本应是"任务板 + lakefile"）里混进了 `proofs/LITERATURE.md` 的 453 行初稿、
+    `api_researcher` 的两个探针、`prover_b` 的 scratch 探针，以及 **`marcus-lemma-skeletons.lean` 的删除**；
+  - `c000996`（本应是"plan 文档更新"）里混进了 **`PhotoLean/Marcus/Barrier.lean` 的 WIP** 与两个 scratch 探针。
+  后果：**`barrier_nonneg`（M2 第一条）失去了自己的 per-lemma 提交** —— 内容落在一个
+  标题为 `docs(plan): ...` 的提交里，审计轨迹被污染。
+- 奏效（修正）：
+  1. **规则写进任务板**：lead 只用 `git add <显式路径>`（`plan.md`/`proofs/TASKS.md`/`proofs/EXPERIENCE.md`/`lakefile.toml`），
+     **永不 `git add -A`/`git add .`**；工人的对应规则是"只 add 自己的属主文件"；
+  2. 把偏差**如实记在任务板** `barrier_nonneg` 行（不伪造一个"补提交"来回填审计轨迹 —— 那比偏差本身更糟）；
+  3. 通知受影响工人：不要重试已被吸收的提交，继续按 lemma 提交余下部分。
+- 可复用模式：**多写者共享一个 git 仓库时，`git add -A` 是并发事故的头号来源**。
+  正确姿势是"属主即提交边界"：谁拥有文件谁 add，lead 只 add 叶子文档。
+  另外一条：**事故本身要写进经验库而不是抹掉** —— 抹掉会让下一轮的 fresh agent 再犯同样的错，
+  而记录它能让"规则"变成可核查的任务板条目。
+- 未受影响（重要）：交付定理 M1 四条、M4b 五条各自都有正确的 `feat(M1)/feat(M4b)` per-lemma 提交。
+
 <!-- 条目从这里继续往下追加 -->

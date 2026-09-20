@@ -41,7 +41,8 @@
 
 ## M2 — 势垒代数（`PhotoLean/Marcus/Barrier.lean`；属主 prover_a；Sprint 2）
 
-- [ ] `barrier_nonneg` — Marcus/Barrier.lean — prover_a — todo — plan §5
+- [ ] `barrier_nonneg` — Marcus/Barrier.lean — prover_a — review — plan §5；⚠️ **提交偏差**：内容已被
+      lead 的 `c000996`（`git add -A` 误卷）吸收，本条无独立 feat 提交；余下 8 条仍各自一提交
 - [ ] `barrier_at_lam` — Marcus/Barrier.lean — prover_a — todo — plan §5
 - [ ] `barrier_symm` — Marcus/Barrier.lean — prover_a — todo — plan §5
 - [ ] `barrier_min_at_lam` — Marcus/Barrier.lean — prover_a — todo — plan §5
@@ -100,6 +101,12 @@
 
 ## 备注与冲突记录
 
+- **⚠️ lead 流程失误与修正（2026-09-20，必须记住）**：我在做 `docs(plan)`/`chore(board)` 提交时用了
+  `git add -A`，把当时**未提交的中间产物**（`Barrier.lean` 的 WIP、`RatModel.lean`、若干探针、
+  `LITERATURE.md` 初稿）卷进了我的提交（`e53d562`、`c000996`）。**规则从此刻起**：lead 只允许
+  `git add <自己拥有的显式路径>`（`plan.md` / `proofs/TASKS.md` / `proofs/EXPERIENCE.md` / `lakefile.toml`），
+  永不使用 `git add -A` / `git add .`；工人同理只 add 自己的属主文件。
+  影响：交付定理（M1 四条、M4b 五条）的 per-lemma 提交**未受影响**；仅 `barrier_nonneg` 一条被吸收（见上）。
 - **块注释扫描坑（M1 交付者实测，2026-09-20）**：`check.sh --strict` 的 sorry/axiom 扫描
   **包含块注释 `/- ... -/`**（只跳过行首 `--` 的行注释），因此在**文件头文档注释里写出被扫描的
   关键字字面量**会造成假 FAIL。全队约定：交付文件的文档注释里改用「零占位证明」等措辞。
