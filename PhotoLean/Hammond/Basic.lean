@@ -133,3 +133,10 @@ theorem gapProduct_eq_gapReactant_neg (lam x : ℝ) : gapProduct lam x = gapReac
   unfold gapProduct gapReactant
   ring
 
+/-- The reverse-reaction transition state mirrors the forward one about `q = 1/2`. -/
+theorem tsCoord_neg {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+    tsCoord lam (-x) = 1 - tsCoord lam x := by
+  unfold tsCoord
+  field_simp
+  ring
+
