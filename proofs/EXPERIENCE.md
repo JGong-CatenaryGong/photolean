@@ -145,4 +145,46 @@
     交付文件里讨论纪律时**改写措辞**（本次改为"零占位证明、无自定义公理声明"）。
     这是 prover 侧必须知道的坑（脚本注释里只提到"由 verifier 人工复核"，实际 `--strict` 直接 FAIL）。
 
+## 2026-09-20 — M4b 微观重组能正性（`Marcus/Reorg.lean`，零依赖支线） — prover_d — DONE
+
+- 目标：`PhotoLean/Marcus/Reorg.lean`（只 `import Mathlib`）的 2 个定义 + 4 条定理；
+  签名必须与 `proofs/probes/marcus-statement-skeleton.lean` 的 M4b 段**逐字一致**
+  （已用脚本抽取两侧语句做 diff 验证：6/6 VERBATIM MATCH）。
+- 试过且失败（3 条，全部可迁移）：
+  1. **`plan.md` §7.2 的证明提示在 API 层是错的**：照抄提示写 `sq_pos_of_ne_zero dq hdq`
+     → `application type mismatch: dq has type ℝ but is expected to have type ?m ≠ 0`。
+     v4.17 实测签名为 `∀ {R} [LinearOrderedSemiring R] [ExistsAddOfLE R] {a : R}, a ≠ 0 → 0 < a ^ 2`
+     —— **`a` 是隐式参数**，正确写法 `sq_pos_of_ne_zero hdq`。
+     结论：规划文件里的证明提示是"意图"，不是 API 事实。
+  2. `set_option linter.unusedVariables false in` **不能紧跟在文档注释 `/-- ... -/` 之后**
+     → `error: unexpected token 'set_option'; expected 'lemma'`（doc comment 后只接受声明命令）。
+     修法：说明写成普通块注释 `/- ... -/` → 再 `set_option ... in` → 最后文档注释 + 定理。
+  3. 探针里手算几何因子口算错误：`R = 1/2, a1 = a2 = 1` 时
+     `1/(2a₁) + 1/(2a₂) − 1/R = −1 < 0`（要 `R > 1` 几何因子才可能为正）
+     → `norm_num` 报 unsolved goals，**由机器替口算兜底**（写非空真例证时别信心算）。
+- 奏效（证明骨架，一次通过）：
+  - `lamInner_nonneg`：`unfold lamInner; positivity`（`positivity` 直接读假设 `0 ≤ kk`）；
+  - `lamInner_pos`：`have hsq : 0 < dq ^ 2 := sq_pos_of_ne_zero hdq` → `unfold lamInner; positivity`；
+  - `lamOuter_pos`：`linarith` 把 `hgeom` / `hPekar` 分别转成两因子正性 →
+    `positivity` 得 `0 < dE ^ 2` → `mul_pos (mul_pos hdE2 hgeom') hPekar'`；
+  - `lam_total_pos`：`linarith`。
+  - 提交（每 lemma 一个 commit）：`2d4e296` 定义 / `723034d` / `acc5e8e` / `fcb7589` / `de63c09`。
+  - 证据：`check.sh --strict PhotoLean.Marcus.Reorg` verdict PASS；4 条定理 `axioms.sh` 全部
+    `depends on axioms: [propext, Classical.choice, Quot.sound]` → PASS。
+- 可复用模式：
+  - **`linarith` 是"不等式前提 → 因子正性"的最佳转换器**：目标形如 `0 < A + B - C` 时，
+    直接 `have : 0 < A + B - C := by linarith`，再交给 `mul_pos` 组合；
+    比让 `positivity` 独自啃"带括号的多因子乘积"更稳、报错也更可读。
+  - **`positivity` 会读上下文里的正性假设**，故 `unfold <def>; positivity` 是
+    "定义 = 显式乘积/除法"类目标的默认收尾 —— 但严格性前提（如 `dq ≠ 0`）
+    必须自己先补成 `have hsq : 0 < dq ^ 2`。
+  - **签名里有"物理定义域前提"但证明用不到时，不要为此改签名**（plan §7.2 明确要求
+    这些前提在签名里可见）。做法：普通块注释写清"哪些前提是定义域、哪些被证明真正使用"，
+    再用**局部** `set_option linter.unusedVariables false in` 消警告 —— 只作用于该定理，
+    语句与骨架仍逐字一致（比留一排 warning 更便于 verifier 判读）。
+  - **交付前跑一次"语句 vs 骨架"的脚本 diff**（正则抽 `theorem/def ... :=` 前缀再规范化空白），
+    比人工比对可靠，且能作为 statement-first 的机器证据。
+  - `experience.md` 是并发写热点：追加时用**唯一锚点**做局部替换，若报
+    "file changed since it was read" 就重读再试（本次实测被 prover_a 的并发追加拦下一次）。
+
 <!-- 条目从这里继续往下追加 -->
