@@ -58,5 +58,11 @@ namespace PhotoLean.BEP
 barrier *is* the delivered Marcus barrier. -/
 theorem eact_eq_barrier (lam x : ℝ) : eact lam x = Marcus.barrier lam x := rfl
 
+/-- Plan §7 #2: the delivered Marcus rate descriptor written through #1 — its activation barrier is
+the BEP barrier, so the BEP description of the barrier is a statement about the Marcus rate. Both
+sides of the equation are the same term up to unfolding the two definitions, hence definitional. -/
+theorem rate_eq_exp_neg_eact (A lam kB T x : ℝ) :
+    Marcus.rate A lam kB T x = A * Real.exp (-(eact lam x) / (kB * T)) := rfl
+
 
 end PhotoLean.BEP
