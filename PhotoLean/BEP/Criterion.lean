@@ -149,4 +149,9 @@ theorem bepDefect_pos_iff {lam x : ℝ} (hlam : 0 < lam) : 0 < bepDefect lam x �
     rw [bepDefect_eq (ne_of_gt hlam)]
     exact div_pos (sq_pos_of_ne_zero hx) (by positivity)
 
+/-- Every positive curvature realizes the family-level descriptor: `EPDescriptor
+lam` holds for each `0 < lam`. -/
+theorem epDescriptor_holds {lam : ℝ} (hlam : 0 < lam) : EPDescriptor lam := by
+  exact ⟨hlam, fun x => bepDefect_eq (ne_of_gt hlam) x⟩
+
 end PhotoLean.BEP
