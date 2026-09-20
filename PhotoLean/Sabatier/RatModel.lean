@@ -184,6 +184,17 @@ theorem sabatierZoneQ_eq_tooStrong_iff (apexD dE : ℚ) :
   · exact ⟨fun _ => h2, fun _ => rfl⟩
   · exact ⟨fun h => absurd h (by decide), fun h => absurd h h2⟩
 
+/-- The rational classifier recognizes the too-weak-binding regime. Plan locus:
+`theories/Sabatier/plan.md` §8.1. -/
+theorem sabatierZoneQ_eq_tooWeak_iff (apexD dE : ℚ) :
+    sabatierZoneQ apexD dE = SZone.tooWeak ↔ apexD < dE := by
+  unfold sabatierZoneQ
+  split_ifs with h1 h2
+  · subst h1
+    exact ⟨fun h => absurd h (by decide), fun h => absurd h (lt_irrefl _)⟩
+  · exact ⟨fun h => absurd h (by decide), fun h => absurd h (by linarith)⟩
+  · exact ⟨fun _ => lt_of_le_of_ne (le_of_not_gt h2) (Ne.symm h1), fun _ => rfl⟩
+
 end Sabatier
 
 end PhotoLean
