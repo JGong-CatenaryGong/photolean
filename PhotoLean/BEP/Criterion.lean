@@ -177,4 +177,10 @@ theorem exists_epDescriptor : ∃ lam : ℝ, EPDescriptor lam := by
 
 /-! ## Plan §5 #20–26 — non-vacuity of the nine regimes -/
 
+/-- Non-vacuity, thermoneutral regime (`lam = 1`, `x = 0`). -/
+theorem exists_thermoneutral : ∃ lam x : ℝ, epZone lam x = EPZone.thermoneutral := by
+  refine ⟨1, 0, ?_⟩
+  unfold epZone
+  norm_num
+
 end PhotoLean.BEP
