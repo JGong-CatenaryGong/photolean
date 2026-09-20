@@ -83,4 +83,12 @@ theorem reverseTransfer_thermoneutral (lam : ℝ) : reverseTransfer lam 0 = 1 / 
   unfold reverseTransfer
   norm_num
 
+/-- Brønsted complementarity: the forward and reverse coefficients of the same
+step sum to one. -/
+theorem transfer_add_reverse {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+    transfer lam x + reverseTransfer lam x = 1 := by
+  unfold transfer reverseTransfer
+  field_simp
+  ring
+
 end PhotoLean.BEP
