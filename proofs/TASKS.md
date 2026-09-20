@@ -109,8 +109,8 @@
 - [ ] I4 文献 MCC 反转区对 (1.20, 2.40) 与 (1.20, 2.00) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
 - [ ] I5 文献 MCC 正常区 (1.20, 0.60)（含"不符合反转区"否定判定）— Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
 - [ ] I6 光合反应中心深反转区 (0.25, 1.10) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [ ] I7 非物理参数判定（`lam ≤ 0` ⇒ 描述失效；`A<0 ∧ lam<0` ⇒ 描述成立但速率非正 ⇒ 不可采纳）— Marcus/Instances.lean — prover_c — todo — plan §8.2（第二批）
-- [ ] I8 文献参数的**描述算子实例化** + **速率比较**（`rate(x=2.40) < rate(x=1.23)` 等，`kBT` 作显式前提）— Marcus/Instances.lean — prover_c — todo — plan §8.2（第二批）
+- [ ] I7 非物理参数判定（`lam ≤ 0` ⇒ 描述失效；`A<0 ∧ lam<0` ⇒ 描述成立但速率非正 ⇒ 不可采纳）— Marcus/Instances.lean — prover_c — review — plan §8.2；commit cb72b16
+- [ ] I8 文献参数的**描述算子实例化** + **速率比较**（`rate(x=2.40) < rate(x=1.23)` 等，`kBT` 作显式前提）— Marcus/Instances.lean — prover_c — review — plan §8.2；commit a83bfe7 / 8f8f041
 
 ---
 
