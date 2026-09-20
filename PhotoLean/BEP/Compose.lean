@@ -151,5 +151,19 @@ theorem bepDefect_le_of_microscopic {lamInner lamOuter x : ℝ} (hli : 0 < lamIn
   rw [key (lamInner + lamOuter) (ne_of_gt hL), key lamInner (ne_of_gt hli)]
   exact div_le_div_of_nonneg_left (le_of_lt (sq_pos_of_ne_zero hx)) (by linarith) (by linarith)
 
+set_option linter.unusedVariables false in
+/-- Plan §7 #9: the tolerance radius grows with the total reorganization energy (the plan §6.3
+`bepRadius_mono`, derived here from `Real.sqrt_le_sqrt` because `Sharp.lean` is not imported). The
+hypothesis `hli : 0 ≤ lamInner` is kept for signature fidelity with plan §6.3 and the statement
+skeleton; the proof does not consume it, since `lamInner ≤ lamInner + lamOuter` already follows from
+`hlo` alone. -/
+theorem bepRadius_add {lamInner lamOuter tol : ℝ} (hli : 0 ≤ lamInner) (hlo : 0 ≤ lamOuter)
+    (htol : 0 ≤ tol) : bepRadius lamInner tol ≤ bepRadius (lamInner + lamOuter) tol := by
+  unfold bepRadius
+  have hmul : lamInner * tol ≤ (lamInner + lamOuter) * tol :=
+    mul_le_mul_of_nonneg_right (by linarith) htol
+  have hsqrt := Real.sqrt_le_sqrt hmul
+  linarith
+
 
 end PhotoLean.BEP
