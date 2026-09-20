@@ -72,6 +72,7 @@ set_option autoImplicit false
 namespace PhotoLean
 
 namespace Kasha
+
 /-! ## The two-level threshold (plan §6.1) -/
 
 /-- Plan §6.1 #1 — the exact two-level criterion in rate form. Both cross-multiplications are by
@@ -119,6 +120,7 @@ theorem kashaWithin_one_iff_rates {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < d
   rw [KashaWithin, hfluo, hupper]
   unfold radBranch icBranch decay
   exact halg
+
 /-- Plan §6.1 #2 — **the funnel-ratio threshold** (two-level form), with the statement correction
 of plan §3.1: `0 < decay rad ic 1` is an explicit premise. This is row 1 divided by
 `tol · rad 1 · decay 0 > 0`. -/
@@ -129,6 +131,7 @@ theorem kashaWithin_one_iff_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (h0 : 0 < d
   have hrd : 0 < rad 1 * decay rad ic 0 := mul_pos hr h0
   rw [kashaWithin_one_iff_rates h0 h1, funnelRatio, div_le_div_iff₀ htol hrd]
   constructor <;> intro hh <;> linarith
+
 /-- Plan §6.1 #3 — the literature form: with no other loss at the lowest level, the rule needs
 `ic 1 / rad 1 ≥ (1 - tol) / tol` (for `tol = 1/100`: `99`). The premise is `rad 0 ≠ 0` rather
 than `0 < rad 0`, and that is exactly what the proof consumes: `decay 0 = rad 0` makes
@@ -169,6 +172,7 @@ theorem kashaWithin_one_iff_ic_ratio {rad ic : ℕ → ℝ} {tol : ℝ} (hic0 : 
   rw [div_le_iff₀ h1, div_le_div_iff₀ htol hr]
   unfold decay
   constructor <;> intro hh <;> linarith
+
 /-- Plan §6.1 #4. The two-level funnel ratio is the ladder ratio at `N = 1`: the ratio's
 `cascade 0 1 / upperYield 1` block is `(ic 1/decay 1)/(rad 1/decay 1)`, and the two `decay 1`
 factors cancel (`div_div_div_cancel_right₀`; the junk-value convention `x/0 = 0` keeps the
@@ -194,6 +198,7 @@ theorem funnelRatio_eq_ladderRatio_one {rad ic : ℕ → ℝ} (h : decay rad ic 
   have h2 : rad 1 / decay rad ic 1 * decay rad ic 0 = rad 1 * decay rad ic 0 / decay rad ic 1 :=
     div_mul_eq_mul_div₀ (rad 1) (decay rad ic 0) (decay rad ic 1)
   rw [h1, h2, div_div_div_cancel_right₀ h]
+
 /-! ## The general-`N` margin form and monotonicity (plan §6.1) -/
 
 set_option linter.unusedVariables false in
@@ -216,6 +221,7 @@ theorem kashaWithin_iff_margin {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h :
   · intro hW
     have h2 : (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N := hstep.mpr hW
     linarith
+
 /-- Plan §6.1 #6. The criterion is monotone in the tolerance: only the nonnegativity of the
 total yield (`fluoYield_nonneg`, K1) is needed to multiply the given inequality by
 `tol ≤ tol'`. -/
@@ -226,6 +232,7 @@ theorem kashaWithin_mono_tol {rad ic : ℕ → ℝ} {N : ℕ} {tol tol' : ℝ} (
   rw [KashaWithin] at hW ⊢
   calc upperYield rad ic N ≤ tol * fluoYield rad ic N := hW
     _ ≤ tol' * fluoYield rad ic N := mul_le_mul_of_nonneg_right hle hF
+
 /-- Plan §6.1 #7 — exactness: at `tol = 0` the tolerance form IS the exact rule. With
 `0 ≤ upperYield N` (K1) the inequality `upperYield ≤ 0` is an equality. -/
 
@@ -234,6 +241,7 @@ theorem kashaWithin_zero_iff {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad 
   have hU : 0 ≤ upperYield rad ic N := upperYield_nonneg h
   rw [KashaWithin, KashaRule, zero_mul]
   exact ⟨fun hW => le_antisymm hW hU, fun hW => le_of_eq hW⟩
+
 /-- Plan §6.1 #8. The criterion is monotone in the internal-conversion rate `ic 1`: the two
 ladders differ only in `ic 1 ≥ ic 1'`, and `decay 0`, `rad 0`, `rad 1` agree, so the rate forms
 of row 1 are comparable. The hypotheses carry **no sign for `tol`**: for `0 ≤ tol` the comparison
@@ -288,6 +296,7 @@ theorem kashaWithin_one_mono_ic {rad ic rad' ic' : ℕ → ℝ} {tol : ℝ} (h :
     exfalso
     have hdec1 : decay rad ic 1 = 0 := by rw [decay, hrad1, hic1, add_zero]
     exact absurd hdec1 (ne_of_gt hd1)
+
 /-! ## The strict side, attainment, and the boundary (plan §6.2) -/
 
 /-- Plan §6.2 #9 — the strict failure side of the threshold, the contrapositive of row #2 (with
@@ -297,6 +306,7 @@ theorem not_kashaWithin_one_of_ratio_lt {rad ic : ℕ → ℝ} {tol : ℝ} (h0 :
     (h1 : 0 < decay rad ic 1) (htol : 0 < tol) (hr : 0 < rad 1)
     (h : funnelRatio rad ic < (1 - tol) / tol) : ¬ KashaWithin rad ic tol 1 := fun hW =>
   absurd ((kashaWithin_one_iff_ratio h0 h1 htol hr).mp hW) (not_le.mpr h)
+
 set_option linter.unusedVariables false in
 
 /-- Plan §6.2 #10 — **attainment**: for every tolerance in `(0,1)` the threshold is met exactly
@@ -320,6 +330,7 @@ theorem kashaThreshold_attained {tol : ℝ} (h0 : 0 < tol) (h1 : tol < 1) :
   refine not_kashaWithin_one_of_ratio_lt hd0 hd1 ht0 hr1 ?_
   rw [hfr, div_lt_div_iff₀ h0 ht0]
   nlinarith
+
 /-- Plan §6.2 #13 — **the levelwise criterion is insufficient**: "internal conversion beats
 radiation at every level above the lowest" (`rad i · decay (i-1) ≤ ic i · decay i`) does not make
 the ladder Kasha-pure. Kernel-checked witness `rad ≡ 1`, `ic ≡ 1`: `RateData rad ic 2` holds, the
@@ -369,6 +380,7 @@ theorem perLevel_criterion_insufficient :
   · intro hcon
     rw [KashaWithin, hU2, hF2] at hcon
     norm_num at hcon
+
 /-- Plan §6.2 #14 — **the loss premise of the Kasha–Vavilov equivalence is necessary**: in the
 loss-free ladder `rad ≡ 1`, `ic ≡ 0` no current is lost to the ground state, so the total yield is
 exactly `1` at every excitation level — `VavilovAt` holds at `N = 1` trivially, while
@@ -404,6 +416,7 @@ theorem vavilov_premise_necessary :
     intro hzero
     rw [upperYield, Finset.Icc_self, Finset.sum_singleton, emitYield_self] at hzero
     norm_num [radBranch, decay] at hzero
+
 set_option linter.unusedVariables false in
 
 /-- Plan §6.2 #16 — the boundary of the threshold is attained with equality: the witness of
@@ -419,6 +432,7 @@ theorem kashaWithin_one_sharp_boundary {tol : ℝ} (h0 : 0 < tol) (h1 : tol < 1)
   have hd1 : 0 < decay rad ic 1 := by simp [rad, ic, decay]
   have hr1 : 0 < rad 1 := by simpa [rad] using h0
   exact ⟨rad, ic, hfr, (kashaWithin_one_iff_ratio hd0 hd1 h0 hr1).mpr (le_of_eq hfr.symm)⟩
+
 /-! ## The uniform-branch bound (plan §6.2) -/
 
 /-- Plan §6.2 #17. If every upper level's radiative branch is at most `θ`, the leak is at most
@@ -433,6 +447,7 @@ theorem leak_le_of_radBranch_le {rad ic : ℕ → ℝ} {N : ℕ} {θ : ℝ} (h :
   rw [Finset.mem_Icc] at hi
   rw [emitYield]
   exact mul_le_mul_of_nonneg_right (hθ i hi.1 hi.2) (cascade_nonneg h hi.2)
+
 /-- Plan §6.2 #18. The sufficient criterion: the uniform-branch bound of row #17 composed with
 the hypothesis that `θ · Σ cascade` already fits inside `tol · fluoYield`. -/
 
