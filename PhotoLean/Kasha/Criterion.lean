@@ -190,6 +190,18 @@ theorem fluoYield_mono_succ {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad i
   have hR : 0 ≤ radBranch rad ic (N + 1) := radBranch_nonneg h (le_refl _)
   have hF : fluoYield rad ic N ≤ 1 := fluoYield_le_one hN
   nlinarith [hrec, hsum, hR, hF]
+/-- Plan §5.1 #10. The increase is strict exactly when the newly excited level can emit
+radiatively. -/
+theorem fluoYield_lt_succ_of_rad_pos {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N + 1))
+    (hr : 0 < rad (N + 1)) (h1 : fluoYield rad ic N < 1) :
+    fluoYield rad ic N < fluoYield rad ic (N + 1) := by
+  have hrec := fluoYield_succ h
+  have hsum : radBranch rad ic (N + 1) + icBranch rad ic (N + 1) = 1 :=
+    radBranch_add_icBranch (ne_of_gt (h.decay_pos (N + 1) (le_refl _)))
+  have hR : 0 < radBranch rad ic (N + 1) := by
+    unfold radBranch
+    exact div_pos hr (h.decay_pos (N + 1) (le_refl _))
+  nlinarith [hrec, hsum, mul_pos hR (sub_pos.mpr h1)]
 end Kasha
 
 end PhotoLean
