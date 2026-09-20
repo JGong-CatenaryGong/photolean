@@ -216,6 +216,16 @@ theorem kashaWithin_iff_margin {rad ic : ℕ → ℝ} {N : ℕ} {tol : ℝ} (h :
   · intro hW
     have h2 : (1 - tol) * upperYield rad ic N ≤ tol * emitYield rad ic 0 N := hstep.mpr hW
     linarith
+/-- Plan §6.1 #6. The criterion is monotone in the tolerance: only the nonnegativity of the
+total yield (`fluoYield_nonneg`, K1) is needed to multiply the given inequality by
+`tol ≤ tol'`. -/
+
+theorem kashaWithin_mono_tol {rad ic : ℕ → ℝ} {N : ℕ} {tol tol' : ℝ} (h : RateData rad ic N)
+    (hle : tol ≤ tol') (hW : KashaWithin rad ic tol N) : KashaWithin rad ic tol' N := by
+  have hF : 0 ≤ fluoYield rad ic N := fluoYield_nonneg h
+  rw [KashaWithin] at hW ⊢
+  calc upperYield rad ic N ≤ tol * fluoYield rad ic N := hW
+    _ ≤ tol' * fluoYield rad ic N := mul_le_mul_of_nonneg_right hle hF
 
 end Kasha
 
