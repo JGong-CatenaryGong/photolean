@@ -35,7 +35,7 @@
 ## M1 — 描述层（`PhotoLean/Marcus/Basic.lean`；属主 prover_a；Sprint 1）
 
 - [x] 定义 `barrier` / `rate` / `InvertedRegion` / `NormalRegion` / `InvertedDescriptor`
-      / `NormalDescriptor` / `Zone` / `zone` — Marcus/Basic.lean — prover_a — review — plan §2.2；commit 3644a82
+      / `NormalDescriptor` / `Zone` / `zone` — Marcus/Basic.lean — prover_a — done — plan §2.2；commit 3644a82
 - [x] `zone_eq_normal_iff` — Marcus/Basic.lean — prover_a — done — plan §4.2；commit f3d2055
 - [x] `zone_eq_barrierless_iff` — Marcus/Basic.lean — prover_a — done — plan §4.2；commit ac80776
 - [x] `zone_eq_inverted_iff` — Marcus/Basic.lean — prover_a — done — plan §4.2；commit c98c85d
@@ -78,11 +78,12 @@
 - [x] `lamInner_pos` — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit acc5e8e
 - [x] `lamOuter_pos`（Pekar 因子正性）— Marcus/Reorg.lean — prover_d — done — plan §7.2；commit fcb7589
 - [x] `lam_total_pos` — Marcus/Reorg.lean — prover_d — done — plan §7.2；commit de63c09
-- [x] **[拉伸·建议]** `hgeom_of_nonoverlap`（`a1+a2 ≤ R ⇒ 几何因子正`，把 `hgeom` 从假设变成推导）— Marcus/Reorg.lean — prover_d — todo — plan §7.2（Sprint 5）
+- [ ] **[拉伸]** `hgeom_of_nonoverlap`（`a1+a2 ≤ R ⇒ 几何因子正`，把 `hgeom` 从假设变成推导）— Marcus/Reorg.lean — prover_d — review — plan §7.2；commit 61759b3
 
 ## M4c — 复合定理（`PhotoLean/Marcus/Compose.lean`；属主 prover_d；Sprint 5）
 
-- [ ] `descriptor_holds_of_microscopic`（import Sharp + Reorg）— Marcus/Compose.lean — prover_d — todo — plan §7.2
+- [ ] `descriptor_holds_of_microscopic`（import Sharp + Reorg）— Marcus/Compose.lean — prover_d — review — plan §7.2；commit c778d4e
+- [ ] `descriptor_holds_of_nonoverlap`（拉伸：几何替代 hgeom）— Marcus/Compose.lean — prover_d — review — plan §7.2；commit 6338f7f
 
 ## M5a — ℚ 判定层（`PhotoLean/Marcus/RatModel.lean`；属主 prover_c；Sprint 2）
 
@@ -101,12 +102,12 @@
 > 实验只掉约 2 个数量级）。实例结论只能写"该体系落在反转区，且**经典 Marcus 模型**在该 (lam,x,T,A) 上满足描述"，
 > **不得**写成对实验的断言。
 
-- [x] 转移辅助 `normalRegion_of_zoneQ_normal` / `not_invertedRegion_of_zoneQ_normal` — Marcus/Instances.lean — prover_c — review — plan §8.2；commit f3f93f5
-- [x] I1 反转区（纯数 `lam=1, x=3`）+ I2 正常区（`3/4`）判定链 — Marcus/Instances.lean — prover_c — review — plan §8.2；commit 4e14952 / f3f93f5
-- [x] I3 文献无势垒点 (1.20, 1.23)：`barrier 1.20 1.23 = 0.0001875`（与文献 `ΔG‡ ≈ 0.0002 eV` 吻合）+ 反转区判定 — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [x] I4 文献 MCC 反转区对 (1.20, 2.40) 与 (1.20, 2.00) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [x] I5 文献 MCC 正常区 (1.20, 0.60)（含"不符合反转区"否定判定）— Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
-- [x] I6 光合反应中心深反转区 (0.25, 1.10) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [ ] 转移辅助 `normalRegion_of_zoneQ_normal` / `not_invertedRegion_of_zoneQ_normal` — Marcus/Instances.lean — prover_c — review — plan §8.2；commit f3f93f5
+- [ ] I1 反转区（纯数 `lam=1, x=3`）+ I2 正常区（`3/4`）判定链 — Marcus/Instances.lean — prover_c — review — plan §8.2；commit 4e14952 / f3f93f5
+- [ ] I3 文献无势垒点 (1.20, 1.23)：`barrier 1.20 1.23 = 0.0001875`（与文献 `ΔG‡ ≈ 0.0002 eV` 吻合）+ 反转区判定 — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [ ] I4 文献 MCC 反转区对 (1.20, 2.40) 与 (1.20, 2.00) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [ ] I5 文献 MCC 正常区 (1.20, 0.60)（含"不符合反转区"否定判定）— Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
+- [ ] I6 光合反应中心深反转区 (0.25, 1.10) — Marcus/Instances.lean — prover_c — review — plan §8.3；commit 6df4cf9
 - [ ] I7 非物理参数判定（`lam ≤ 0` ⇒ 描述失效；`A<0 ∧ lam<0` ⇒ 描述成立但速率非正 ⇒ 不可采纳）— Marcus/Instances.lean — prover_c — todo — plan §8.2（第二批）
 - [ ] I8 文献参数的**描述算子实例化** + **速率比较**（`rate(x=2.40) < rate(x=1.23)` 等，`kBT` 作显式前提）— Marcus/Instances.lean — prover_c — todo — plan §8.2（第二批）
 
@@ -119,6 +120,11 @@
 | M1 + M4b | `Basic.lean`(12 声明) + `Reorg.lean`(6) | **PASS / PASS** | 四步门 + 8/8 `axioms.sh` 均 `[propext, Classical.choice, Quot.sound]`；18/18 语句与骨架**逐字一致**；8/8 提交各含**恰一条**定理、恰一个文件；耍花招排查 0 命中；对抗性探针内核级验证 | 1 条**注释级**缺陷待修（`Reorg.lean` 把 5 条定义域前提说成"被蕴含"，实为"未被使用" —— verifier 给了内核反例）；另：`zone_trichotomy` 本身信息量弱（对任意 `ℝ→ℝ→Zone` 函数均成立），真正钉住语义的是三条 `zone_eq_*_iff` |
 
 | M2 | `Barrier.lean`(9 条) | **PASS** | 四步门 + 9/9 `axioms.sh` 干净（另用唯一路径隔离探针独立重取）；9/9 语句与骨架逐字一致；8/8 提交各含恰一条定理、只含该文件；`c000996` 偏差**核实为真**（`barrier_nonneg` 内容确在其中，行数闭合 35+4+6+4+9+8+11+5+13 = 95 = 文件总行数）；三条对抗性内核检查全过（`barrier_antitone_of_neg` 方向/`mono_cases` 四支穷尽且 `lam=0` 支未混入/`barrier_min_at_lam` 真全局最小且前提必需） | **发现 A**：文件与 API-NOTES 共 3 处把 `h₁ : 0 ≤ x₁` 说成"可由其他前提推出" —— **错**（反例 `lam=1,x₁=-5,x₂=-4`），正确定性是"**未被使用**（unused）"；**发现 D**：`lam = 0` 分支依赖除零约定（形式约定，非物理事实）⇒ 已补进 plan §13 |
+
+**M2 发现 A 的关闭**：三处（`Barrier.lean` 头注释与 doc comment、`API-NOTES.md`）均已修正为
+"**证明未使用（unused）**"，并保留内核反例作为"典型误写"警示 ——
+`Barrier.lean` 见 `8ca59d7`（纯注释，机械证据：剥离注释后代码逐字节相同）；
+`API-NOTES.md` 见 `a0796fc`（新增"未使用 ≠ 可推出"的专项订正记录）。
 
 **verifier 提出的诚实性提醒（已采纳）**：
 1. **`zone_trichotomy` 强度很弱** —— 它没有断言分类器与三个区的对应，也没有断言三支互斥；
