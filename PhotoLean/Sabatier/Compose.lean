@@ -94,6 +94,18 @@ private theorem parabolaUp_eq (lam1 dE : ℝ) : parabolaUp lam1 dE = (lam1 + dE)
 private theorem parabolaDown_eq (lam2 dE : ℝ) : parabolaDown lam2 dE = (lam2 - dE) ^ 2 / (4 * lam2) :=
   rfl
 
+/-- The BEP-linear volcano is the maximum of the two tangent lines of the parabolic branches: the
+literature's linear volcano, read as the tangent (linear-response) form of the repository's model.
+The identification is exact for the parameter choice `alphaA = alphaB = 1/2`,
+`betaA = lam1/4`, `betaB = lam2/4` — the BEP intercepts of the two steps. (plan §7) -/
+theorem linearVolcano_eq_bepTangent (lam1 lam2 dE : ℝ) :
+    volcanoBarrier (1 / 2) (lam1 / 4) (1 / 2) (lam2 / 4) dE
+      = max (BEP.bepLine lam1 (-dE)) (BEP.bepLine lam2 dE) := by
+  unfold volcanoBarrier branchUp branchDown BEP.bepLine
+  have h1 : (1 : ℝ) / 2 * dE + lam1 / 4 = lam1 / 4 - -dE / 2 := by ring
+  have h2 : lam2 / 4 - 1 / 2 * dE = lam2 / 4 - dE / 2 := by ring
+  rw [h1, h2]
+
 end Sabatier
 
 end PhotoLean
