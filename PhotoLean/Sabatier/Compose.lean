@@ -279,6 +279,15 @@ theorem apexPar_self {lam : ℝ} (h : 0 < lam) : apexPar lam lam = 0 := by
   unfold apexPar
   rw [sub_self, zero_div]
 
+/-- At a symmetric cycle's apex the linear volcano is exact: the tangent-line model and the parabola
+model agree at the pass. Both sides equal `lam / 4`, the thermoneutral barrier of the two-parabola
+model (`BEP.eact_at_zero`). (plan §7) -/
+theorem linearVolcano_apex_exact {lam : ℝ} (h : 0 < lam) :
+    volcanoBarrier (1 / 2) (lam / 4) (1 / 2) (lam / 4) 0 = parabolicBarrier lam lam 0 := by
+  rw [linearVolcano_eq_bepTangent, BEP.bepLine_at_zero, neg_zero, BEP.bepLine_at_zero, max_self]
+  unfold parabolicBarrier parabolaUp parabolaDown
+  rw [BEP.eact_at_zero h.ne', neg_zero, BEP.eact_at_zero h.ne', max_self]
+
 end Sabatier
 
 end PhotoLean
