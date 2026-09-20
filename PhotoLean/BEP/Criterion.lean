@@ -113,4 +113,11 @@ theorem secSlope_midpoint_invariant {lam x y h k : ℝ} (hlam : lam ≠ 0) (hh :
     (hmid : x + h / 2 = y + k / 2) : secSlope lam x h = secSlope lam y k := by
   rw [secSlope_eq_transfer_mid hlam hh, secSlope_eq_transfer_mid hlam hk, hmid]
 
+/-- Barrier-reversal identity: the reverse barrier exceeds the forward barrier by
+exactly the driving force. -/
+theorem eact_neg_eq_add {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) : eact lam (-x) = eact lam x + x := by
+  unfold eact
+  field_simp
+  ring
+
 end PhotoLean.BEP
