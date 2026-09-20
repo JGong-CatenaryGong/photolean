@@ -1,7 +1,7 @@
 /-
 PhotoLean.Relations — the single home of the cross-theory relations of the two-parabola family.
 
-The three delivered theories share one mathematical substrate (the equal-curvature two-parabola
+The five delivered theories share one mathematical substrate (the equal-curvature two-parabola
 model, now defined once in `PhotoLean.Kernel`), and their relation inventory is collected here,
 organised by edge type:
 
@@ -20,14 +20,25 @@ organised by edge type:
   in which the Hammond trend is exactly affine while the BEP line law is exactly violated on every
   non-degenerate interval, the co-extensiveness of the two sharp conditions, and the two `∀∀`
   predicates' different strength.
+* §7 **Kasha → Marcus, conditional composition**: the excited-state ladder's internal-conversion
+  rate is a Marcus rate (an explicit *modelling* premise), and conformance to Kasha's rule is then
+  exactly a window condition on the energy gap. The edge carries its premise with it.
+* §8 **Sabatier → BEP, composition**: the literature's linear volcano is the tangent (BEP) form of
+  the repository's two-parabola model, it *underestimates* the barrier pointwise, and the volcano
+  holds in the two-parabola model with no linearization at all.
+* §9 **Sabatier ↔ Marcus, look-alike but different**: the two theories share one "interior
+  optimum" predicate (and one observable functional form), while the optima themselves come apart
+  in three checkable ways — the barrier height at the optimum, the one-sided secant behaviour, and
+  the parameter dependence of the optimal position.
+* §10 **the no-edge registry**: the theory pairs that carry no relation, with the reason, so that
+  the graph is complete in the sense that *every* theory sits on it (an absent edge is a
+  registered fact, not an oversight).
 
-The re-exports of §1–§5 add no mathematics — they are certificates and a ledger, and their value is
-the compile-time pin: every statement below is written out in full, so a statement drift anywhere
-upstream makes this module fail to compile. The only declarations proved here rather than reused
-are the last one of §3 and the three of §6. Every declaration is fully proved: no unproved
-placeholder, no custom axiomatic declaration.
-
-See `theories/RELATIONS.md` for the discussion draft that this module makes checkable.
+The re-exports of §1–§5 and §7–§8 add no mathematics — they are certificates and a ledger, and their
+value is the compile-time pin: every statement below is written out in full, so a statement drift
+anywhere upstream makes this module fail to compile. The declarations proved here rather than reused
+are the last one of §3, the three of §6, the kernel certificate of §7, and the seven of §9. Every
+declaration is fully proved: no unproved placeholder, no custom axiomatic declaration.
 -/
 import PhotoLean.Kernel
 import PhotoLean.Marcus.RatModel
@@ -37,6 +48,9 @@ import PhotoLean.Hammond.RatModel
 import PhotoLean.Hammond.Sharp
 import PhotoLean.BEP.Compose
 import PhotoLean.BEP.Sharp
+import PhotoLean.Kasha.Compose
+import PhotoLean.Sabatier.Compose
+import PhotoLean.Sabatier.Criterion
 
 namespace PhotoLean
 
@@ -268,6 +282,68 @@ theorem rate_predicate_satisfiable_without_positive_curvature :
   · exact Marcus.inverted_descriptor_holds_of_neg (A := -1) (lam := -1) (kB := 1) (T := 1)
       (by norm_num) (by norm_num) (by norm_num)
   · exact Hammond.hammond_fails_of_nonpos (by norm_num : (-1 : ℝ) ≤ 0)
+
+/-! ## 7. Conditional composition edge: Kasha's internal conversion on the Marcus barrier
+
+The excited-state ladder of `PhotoLean.Kasha` is a rate-competition model, and its only contact
+with the two-parabola family is the **declared modelling premise** that the `S₂ → S₁`
+internal-conversion rate is the Marcus rate `Kasha.marcusIC A lam kB T x`. The rows below carry
+that premise explicitly (`hic`): nothing here claims that internal conversion *is* a Marcus
+process — the identification is registered in the Kasha plan's honesty table and in
+`theories/kasha/LITERATURE.md`. The conditional equivalence and its two consequences are
+re-exported verbatim from `PhotoLean.Kasha.Compose`; the kernel certificate puts Kasha on the
+shared kernel of §1 (Kasha itself states its rate against `PhotoLean.Marcus.Basic` and does not
+import the kernel). -/
+
+/-- Kernel certificate: the Kasha internal-conversion rate is the kernel barrier inside the
+Marcus rate law, scaled by the pre-exponential factor. -/
+theorem kernel_marcusIC (A lam kB T x : ℝ) :
+    Kasha.marcusIC A lam kB T x = A * Real.exp (-(Kernel.barrier lam x) / (kB * T)) := by
+  unfold Kasha.marcusIC Kernel.barrier Marcus.barrier
+  rfl
+
+/-- Kasha → Marcus (conditional equivalence): under the ladder data `RateData` and the declared
+identification `hic` of the `S₂ → S₁` internal-conversion rate with the Marcus rate, conformance
+at tolerance `tol` is exactly the explicit window condition on the squared energy gap. -/
+theorem kashaWithin_one_marcus {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ}
+    (h : Kasha.RateData rad ic 1) (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A)
+    (hlam : 0 < lam) (hkT : 0 < kB * T) (hr0 : 0 < rad 0) (hr1 : 0 < rad 1)
+    (hic : ic 1 = Kasha.marcusIC A lam kB T x) :
+    Kasha.KashaWithin rad ic tol 1 ↔
+      (lam - x) ^ 2 ≤ 4 * lam * (kB * T)
+        * Real.log (Kasha.kashaGapThreshold A (rad 0) (Kasha.decay rad ic 0) (rad 1) tol) :=
+  Kasha.kashaWithin_one_marcus h htol0 htol1 hA hlam hkT hr0 hr1 hic
+
+/-- Kasha → Marcus (one-way, the anti-Kasha direction): a gap outside the window violates the
+tolerance, so the model-side face of the anti-Kasha family is the Marcus inverted region and the
+activation-controlled side, read at the `S₂ → S₁` gap. -/
+theorem not_kashaWithin_of_gap_far {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ}
+    (h : Kasha.RateData rad ic 1) (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A)
+    (hlam : 0 < lam) (hkT : 0 < kB * T) (hr0 : 0 < rad 0) (hr1 : 0 < rad 1)
+    (hic : ic 1 = Kasha.marcusIC A lam kB T x)
+    (hfar : 4 * lam * (kB * T)
+        * Real.log (Kasha.kashaGapThreshold A (rad 0) (Kasha.decay rad ic 0) (rad 1) tol)
+      < (lam - x) ^ 2) :
+    ¬ Kasha.KashaWithin rad ic tol 1 :=
+  Kasha.not_kashaWithin_of_gap_far h htol0 htol1 hA hlam hkT hr0 hr1 hic hfar
+
+/-- Kasha → Marcus (window form): the same criterion as a half-width bound around the
+reorganization energy, `|lam - x| ≤ sqrt K'`. -/
+theorem kashaWindow_halfWidth {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ}
+    (h : Kasha.RateData rad ic 1) (htol0 : 0 < tol) (htol1 : tol < 1) (hA : 0 < A)
+    (hlam : 0 < lam) (hkT : 0 < kB * T) (hr0 : 0 < rad 0) (hr1 : 0 < rad 1)
+    (hic : ic 1 = Kasha.marcusIC A lam kB T x)
+    (h0 : 0 ≤ 4 * lam * (kB * T)
+        * Real.log (Kasha.kashaGapThreshold A (rad 0) (Kasha.decay rad ic 0) (rad 1) tol)) :
+    Kasha.KashaWithin rad ic tol 1 ↔
+      |lam - x| ≤ Real.sqrt (4 * lam * (kB * T)
+        * Real.log (Kasha.kashaGapThreshold A (rad 0) (Kasha.decay rad ic 0) (rad 1) tol)) :=
+  Kasha.kashaWindow_halfWidth h htol0 htol1 hA hlam hkT hr0 hr1 hic h0
+
+/-- Kasha → Marcus (supporting row): the Marcus-form internal-conversion rate is positive
+whenever the pre-exponential factor is. -/
+theorem marcusIC_pos {A lam kB T x : ℝ} (hA : 0 < A) : 0 < Kasha.marcusIC A lam kB T x :=
+  Kasha.marcusIC_pos hA
 
 end Relations
 
