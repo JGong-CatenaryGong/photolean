@@ -123,6 +123,12 @@ theorem inst_I4_barrierless_notConforms : ¬ HammondConforms 1 1 := by
   rw [hz] at hd
   rcases hd with h | h | h <;> exact absurd h (by decide)
 
+/-- I4, family-level verdict: the descriptor holds, because it is a statement about `lam` alone
+(`0 < 1`) — an instance of H2's `hammond_descriptor_holds`, showing that the family level is
+insensitive to the boundary verdict above. -/
+theorem inst_I4_family_descriptor : HammondDescriptor 1 :=
+  hammond_descriptor_holds (by norm_num : (0 : ℝ) < 1)
+
 end Hammond
 
 end PhotoLean
