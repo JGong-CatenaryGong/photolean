@@ -1295,7 +1295,7 @@
   only) every number the instance layer will assert — `alphaObs`, `lamOfPair`, the second divided
   difference, the six-branch `epQVerdict` verdict, the I1–I10 model-constructed rows and the §R1.10
   literature families — from `theories/BEP/LITERATURE.md` §R1.10, and exit 1 with a per-number diff if a
-  Lean-side literal in plan §8.2 or the skeleton's B5b block disagrees. 276 Lean-side values checked;
+  Lean-side literal in plan §8.2 or the skeleton's B5b block disagrees. 280 Lean-side values checked;
   result `CROSS-CHECK: OK`, exit 0.
 - 试过且失败（脚本自身的三个实测缺陷，全部只有靠"算出来的数不对"才发现）：
   1. **A helper mirroring Lean's totalised division leaked floats.** `qdiv(a, b) = F(0) if b == 0 else
@@ -1312,7 +1312,7 @@
      of F3/F4, F3's prose rows, the family means/ranges) and a mismatch is a hard failure, so a stale
      transcription can never silently invalidate the cross-check. Verified by mutating a copy of the
      record: the run then exits 1 naming the exact cell.
-- 奏效：`python3 theories/BEP/probes/bep-instance-check.py` → exit 0, `CROSS-CHECK: OK`, 276 checked values,
+- 奏效：`python3 theories/BEP/probes/bep-instance-check.py` → exit 0, `CROSS-CHECK: OK`, 280 checked values,
   a final paste-ready table (`family | alphaObs | lamOfPair | sdd-sign | verdict | provenance flag`) and
   explicit `UNSUPPORTED` lines for F4 (aggregate-only) and for the six §R1.10.7 families (no pair data);
   the script also refuses to invent per-point rows and states per number whether it is `kcal/mol`,

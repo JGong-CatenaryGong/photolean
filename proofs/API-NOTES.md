@@ -1783,6 +1783,10 @@ the draft, not mathlib gaps.
 
 ## 2026-09-20 — BEP round, follow-up: plan §8.1 model-consistency block + plan §8.2 instances (I1–I12) — api_researcher — 190 declarations, 0 error, 156 placeholder warnings (all `declaration uses 'sorry'`); every instance row kernel-checked
 
+> **Lead correction (closeout, 2026-09-20)**: the *final* authority has **191 declarations** (157
+> placeholder warnings); the 190/156 figures above predate the mirrored `qReverseTransfer_cast`
+> insertion. Everything else in this entry stands.
+
 ### 1. New content and compile evidence
 
 | Block | Declarations | Evidence |

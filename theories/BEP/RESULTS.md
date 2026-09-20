@@ -250,8 +250,9 @@ the authority) and the exact-rational instance cross-check
 `theories/BEP/probes/bep-instance-check.py` (280 values, exit 0, `CROSS-CHECK: OK`). The
 verifiers' observations are all closed or registered: the statement authority is now under version
 control (verifier O1/M1), the missing 13th B4 declaration was delivered
-(`secSlope_eq_lefflerSecant`), comment-only wording fixes landed with the comment-stripped token
-streams proven identical (`Basic.lean` `d2898dc4…`, `Criterion.lean` `4a4eacda…`), the B5a/B5b
+(`secSlope_eq_lefflerSecant`), comment-only wording fixes landed with the comment-stripped token streams proven identical
+**per declaration** by the closeout audit (`Basic.lean`, `Criterion.lean`, `Sharp.lean`,
+`Instances.lean`; `Compose.lean` gained exactly one declaration), the B5a/B5b
 experience entries were written, and the two bookkeeping numbers on the board were corrected to the
 measured values.
 
