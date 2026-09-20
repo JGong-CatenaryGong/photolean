@@ -469,43 +469,53 @@
 
 <!-- 条目从这里继续往下追加 -->
 
-## 2026-09-20 — H1 描述层（13 定义 + 19 定理）：骨架里一条**假语句** + `split_ifs` 的自动收尾 — prover_a — DONE
+## 2026-09-20 — H1 description layer (13 definitions + 19 theorems): a **false** skeleton statement + `split_ifs` auto-discharge — prover_a — DONE
 
-- 目标：`PhotoLean/Hammond/Basic.lean`（只 `import Mathlib`），20 个 `feat(H1)` 提交；
-  签名对骨架逐字一致（保真脚本 32/32 VERBATIM MATCH），19 条定理 `axioms.sh` 全 PASS。
-- 试过且失败（5 条，前三条可迁移）：
-  1. **骨架语句 `gapProduct_eq_crossing_energy` 为假**（不是 API 漂移）。原式
-     `gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG))`：LHS `= (lam-dG)²/(4lam)`，
-     RHS `= (lam-dG)²/(4lam) + dG`（产物曲面在交叉点的值是**绝对能量**，而逆势垒是相对**产物井** `dG` 的）。
-     `field_simp; ring` 留下的残局正好暴露它：`... - lam^3*dG*8 ... = ... + lam^3*dG*8 ...`。
-     内核反例（编译通过）：`example : gapProduct 1 1 ≠ productSurface 1 (-1) (tsCoord 1 1) := by norm_num [...]`。
-     **教训：`field_simp` 后 `ring` 失败且残局出现"只差一个符号项"时，先怀疑语句本身的物理约定，再怀疑战术**
-     —— 报 lead 后用方案 (a)（补 `- dG`）修正骨架，重证一次通过。lead 自查还发现同类问题
-     `conforms_iff_structure`（三重析取恒真式，无刻画力）。
-  2. **`split_ifs at h with h1 … h6` 会自己收掉矛盾分支**。把 7 个分支逐条写成 7 个 bullet 会报
-     `no goals to be solved`；实际只留下**真正产出该构造子**的那一支（带 6 条分支假设），
-     其余分支的 `h : Ctor₁ = Ctor₂` 被构造子互异自动判死。正确写法是
-     `split_ifs at h with h1 … h6` 后**只写一支**证明（M1 的经验说"三支都自动收"，此处确认到 7 支链）。
-  3. **`constructor` 之后，`↔` 的两支目标已经是"单边"**：反向支的目标是**等式**（不是 `↔`），
-     所以 `unfold <def>; rw [if_neg …, if_pos …]` 会直接以 `rfl` 收尾；再补 `exact iff_of_true …`
-     必报 `no goals to be solved`。另：`exact iff_of_true h …` 用匿名构造子 `⟨h1,h2⟩` 会报
-     `expected type must be an inductive type ?m`（隐式参数未先确定），改 `And.intro h1 h2` 或先 `have`。
-  4. **自建提交驱动的经典自吞 bug**：`python3 emit.py k > PhotoLean/Hammond/Basic.lean` 里
-     `emit.py` 读的就是同一路径 → shell 先截断输入文件，脚本读到空文件（`segments:` 为空）。
-     修法：**先写临时文件再 `cp`**（或让脚本读一份 master 副本）。同时 driver 必须**始终从
-     master 快照生成第 k 步**，否则上一步提交后的工作区已不含后面的定理，`assert` 立刻炸。
-  5. 工具面坑：`write` 工具写到 `/tmp/*.sh` 报成功但文件不存在（`bash: /tmp/…: No such file or directory`）；
-     `/tmp` 下的脚本/探针一律用 bash heredoc 创建，工作区文件才用 `write`/`edit`。
-- 奏效（可复用配方）：
-  - **`set_option linter.unusedVariables false in` 必须写在 docstring 之前**：
-    `set_option … in` → `/-- doc -/` → `theorem …`（实测通过；反过来报 `unexpected token`）。
-    H1 有 4 条声明带**证明用不到的物理前提**（`tsCoord_at_lam` 因 `x/0 = 0` 约定；三条 zone 引理因
-    分支假设已足够推出符号信息）——**保留前提、局部关 linter**，不改语句（签名保真是硬约束）。
-  - zone 类 iff 的**双向最短路径**：正向 `unfold <def> at h; split_ifs at h with …`（自动收尾，剩一支）；
-    反向 `unfold <def>; rw [if_neg …, if_pos …]`（`rfl` 收尾）。分支条件就用
-    `ne_of_lt h2` / `not_lt.mpr (le_of_lt h2)` / `by linarith` 现给，不依赖 `simp`。
-  - 提交驱动一次性跑完 20 步（每步 build + `check.sh --strict` + `axioms.sh` + `git commit -- <path>`），
-    日志留档 `/tmp/h1-gate-log.txt`；`git commit -m … -- <path>` 保证不吞并发写者的文件。
+- Goal: `PhotoLean/Hammond/Basic.lean` (`import Mathlib` only), 20 `feat(H1)` commits; signatures
+  verbatim against the skeleton (fidelity script: 32/32 VERBATIM MATCH), `axioms.sh` PASS for all 19.
+- Tried and failed (5 items; the first three are transferable):
+  1. **The skeleton statement `gapProduct_eq_crossing_energy` is false** (not API drift). Original:
+     `gapProduct lam (-dG) = productSurface lam dG (tsCoord lam (-dG))`: LHS `= (lam-dG)²/(4lam)`,
+     RHS `= (lam-dG)²/(4lam) + dG` (the product surface at the crossing point is the **absolute**
+     energy, while the reverse barrier is referenced to the **product well**, whose energy is `dG`).
+     The leftover goal after `field_simp; ring` exposes it: `... - lam^3*dG*8 ... = ... + lam^3*dG*8 ...`.
+     Kernel counterexample (compiles):
+     `example : gapProduct 1 1 ≠ productSurface 1 (-1) (tsCoord 1 1) := by norm_num [...]`.
+     **Lesson: when `field_simp` + `ring` fails and the leftover goal differs only by one signed term,
+     suspect the statement's physical convention before the tactic** — reported to the lead, who adopted
+     fix (a) (add `- dG`); re-proved in one shot afterwards. The lead's own audit then found the same class
+     of defect in `conforms_iff_structure` (a three-way disjunction, i.e. a tautology with no content).
+  2. **`split_ifs at h with h1 … h6` discharges the contradictory branches itself.** Writing all 7 branches
+     as 7 bullets reports `no goals to be solved`; only the branch that really produces the constructor
+     survives (carrying its 6 guards), the others being killed by constructor injectivity on
+     `h : Ctor₁ = Ctor₂`. Correct shape: `split_ifs at h with h1 … h6` followed by **one** proof.
+  3. **After `constructor` on a `↔`, each branch goal is one-directional**: the backward goal is an
+     **equality** (not an `↔`), so `unfold <def>; rw [if_neg …, if_pos …]` closes it by `rfl`; adding
+     `exact iff_of_true …` then reports `no goals to be solved`. Also, `exact iff_of_true h …` with the
+     anonymous constructor `⟨h1,h2⟩` reports `expected type must be an inductive type ?m` (the implicit
+     argument is not fixed yet) — use `And.intro h1 h2` or a `have` first.
+  4. **Self-swallowing commit driver**: `python3 emit.py k > PhotoLean/Hammond/Basic.lean` where `emit.py`
+     *reads* the same path → the shell truncates the input before the script reads it (`segments:` empty).
+     Fix: **emit to a temp file, then `cp`** (or have the script read a master copy). The driver must also
+     always generate step k from the **master snapshot**, since after step k-1 the working tree no longer
+     contains the later theorems and an `assert` fires immediately.
+  5. Tool-surface trap: the `write` tool reported success for `/tmp/*.sh` but the file did not exist
+     (`bash: /tmp/…: No such file or directory`); create `/tmp` scripts/probes with a bash heredoc and use
+     `write`/`edit` for workspace files only.
+- Worked (reusable recipes):
+  - **`set_option linter.unusedVariables false in` must precede the docstring**:
+    `set_option … in` → `/-- doc -/` → `theorem …` (measured; the reverse order reports `unexpected token`).
+    H1 has 4 declarations with a physical premise the proof does not consume (`tsCoord_at_lam` because of
+    Lean's `x / 0 = 0` convention; three zone lemmas because their branch guards already force the signs) —
+    **keep the premise, disable the linter locally**, never touch the statement (signature fidelity is a hard
+    constraint).
+  - Shortest two-way path for `if`-classifier `iff` lemmas: forward
+    `unfold <def> at h; split_ifs at h with …` (auto-discharge, one goal left); backward
+    `unfold <def>; rw [if_neg …, if_pos …]` (closed by `rfl`). Supply the guard facts directly with
+    `ne_of_lt h2` / `not_lt.mpr (le_of_lt h2)` / `by linarith`, never relying on `simp`.
+  - One submission driver ran all 20 steps (build + `check.sh --strict` + `axioms.sh` + `git commit -- <path>`
+    per theorem), log kept at `/tmp/h1-gate-log.txt`; `git commit -m … -- <path>` guarantees that concurrent
+    writers' files are not swallowed.
 
 ## 2026-09-20 — H5a 判定层（`Hammond/RatModel.lean`：4 定义 + 12 定理，含 7 分支分类器转移） — prover_c — DONE
 
@@ -562,3 +572,72 @@
   `[propext, Classical.choice, Quot.sound]`. Fix belongs in the script (`tr '\n' ' '` before `sed`),
   reported to the lead. **Lesson: a gate is code too — a FAIL from a long name can be a parser
   artifact, so verify the raw output before touching the statement.**
+
+## 2026-09-20 — H2 Hammond criterion (15 theorems, `Hammond/Criterion.lean`) — prover_a — DONE
+
+- Goal: `PhotoLean/Hammond/Criterion.lean` (imports `PhotoLean.Hammond.Basic` + `PhotoLean.Marcus.Basic`),
+  15 theorems verbatim against the corrected skeleton (15/15 VERBATIM MATCH), one `feat(H2)` commit each,
+  `check.sh --strict` PASS, `axioms.sh` PASS for all 15.
+- Tried and failed (4 items):
+  1. `conforms_iff_zone`, backward direction: `exact (hammondZone_eq_early_iff hlam).mp h` →
+     `type mismatch: 0 < x ∧ x < lam` vs expected `ReactionRegion lam x`. `ReactionRegion lam x` unfolds to
+     `-lam < x ∧ x < lam`: the **right** conjunct matches, the **left** one does not (`0 < x` vs `-lam < x`),
+     and they are only equivalent through `0 < lam`, not definitionally. Same trap in the `late` branch
+     (whose conjunction has the reverse order). Fix: `unfold ReactionRegion` first, then
+     `obtain ⟨hx0, hxlam⟩ := …mp h; exact ⟨by linarith, hxlam⟩` / `exact ⟨hnlam, by linarith⟩`.
+     **Lesson: a conjunction proved by a lemma with a reordered/weaker left component never closes by
+     `exact`; unfold the target predicate and re-assemble the pair explicitly.**
+  2. `lefflerSecant_eq_midpoint`: `positivity` supplies `(4*lam) ≠ 0` and `(2*lam) ≠ 0`, but `field_simp`
+     additionally needs the secant denominator — had to add
+     `have hd : x₂ - x₁ ≠ 0 := sub_ne_zero.mpr (Ne.symm h)`. `field_simp` consumes **every** denominator's
+     nonzero fact explicitly; a missing one is not inferred from `h : x₁ ≠ x₂`.
+  3. Almost guessed that `barrier_eq_gapReactant` needs unfolding; it is `rfl` directly, because
+     `Marcus.barrier` and `gapReactant` have literally the same body `(lam - x)^2 / (4*lam)` — checked in the
+     source (`PhotoLean/Marcus/Basic.lean` line 50) **before** guessing any API name.
+  4. No unused-premise problem here: unlike H1 (4 declarations with a proof-redundant physical premise,
+     needing `set_option linter.unusedVariables false in`), every H2 premise (`0 < lam`, `x₁ ≠ x₂`) is consumed.
+- Worked (reusable recipes):
+  - `reactantLike_iff` / `productLike_iff`: after `unfold <pred> tsCoord`, one `rw [div_lt_iff₀ h2]`
+    (or `lt_div_iff₀ h2`) with `h2 : 0 < 2*lam` by `linarith`, then `constructor <;> intro h <;> linarith`.
+  - `tsCoord_antitone`: `unfold tsCoord; rw [div_lt_div_iff_of_pos_right (by linarith : (0:ℝ) < 2*lam)]; linarith`.
+  - `lefflerSecant_mem_iff` / `lefflerSecant_neg_iff_inverted`: `rw [lefflerSecant_eq_midpoint hlam h]`
+    then `exact tsCoord_mem_iff hlam` / `exact tsCoord_lt_zero_iff_inverted hlam` — chaining the identity lemma
+    with the H1 characterization is the shortest path (no recomputation).
+  - `tsCoord_lt_zero_iff_inverted`: `unfold tsCoord Marcus.InvertedRegion; rw [div_lt_iff₀ h2]`, then
+    `constructor <;> intro h <;> linarith` (avoids the nonexistent `div_neg_iff_pos_right` route).
+  - Submission driver reused from H1: `python3 emit.py k > /tmp/snap.lean && cp /tmp/snap.lean <file>`
+    (never redirect the emitter into its own input), then build + `check.sh --strict` + `axioms.sh` +
+    `git commit -m … -- <path>` per theorem; logs at `/tmp/h2-gate-log.txt`.
+
+## 2026-09-20 — H4 microscopic composition (4 theorems, `Hammond/Compose.lean`) — prover_a — DONE
+
+- Goal: `PhotoLean/Hammond/Compose.lean` (imports `PhotoLean.Hammond.Criterion` +
+  `PhotoLean.Marcus.Reorg`), 4 theorems verbatim against the skeleton H4 section (4/4 VERBATIM MATCH),
+  one `feat(H4)` commit each, `check.sh --strict` PASS, `axioms.sh` PASS for all 4.
+  Whole file compiled on the first attempt with 0 warnings.
+- Tried and failed / traps avoided (3 items):
+  1. **Implicit-argument drift in `Marcus.lamInner_pos`**: the source signature is
+     `lamInner_pos {kk : ℝ} (hkk : 0 < kk) {dq : ℝ} (hdq : dq ≠ 0) : 0 < lamInner kk dq` — `dq` is
+     **implicit**, so the call is `Marcus.lamInner_pos hkk hdq` (no explicit `dq`). The plan's sketch and
+     the printed line in `Reorg.lean` both hide this (the printed line starts mid-signature). Read the
+     signature from source before writing the call — same class of failure as the M4b `sq_pos_of_ne_zero`
+     incident recorded above, which is why it did **not** become an error this time.
+  2. `Marcus.lam_total_pos` needs `0 ≤ lamIn` (not `0 <`): in `exists_reactionRegion_of_microscopic` the
+     strict `lamInner_pos` must be pushed through `le_of_lt`, while the microscopic (non-strict `hkk`)
+     version uses `lamInner_nonneg hkk dq`. Two different producers for the same `0 ≤` slot.
+  3. `hammond_descriptor_of_nonoverlap` has **no** `hR : 0 < R` hypothesis (only `hRge : a1 + a2 ≤ R`):
+     `lamOuter_pos` still wants `0 < R`, so it must be derived — `(by linarith)` from `ha1`, `ha2`, `hRge`.
+     The stretch target replaces only the geometric premise, via
+     `Marcus.hgeom_of_nonoverlap ha1 ha2 hRge`.
+- Worked (reusable recipes):
+  - The whole H4 layer is **term mode, one line per theorem**:
+    `hammond_descriptor_holds (Marcus.lam_total_pos (Marcus.lamInner_nonneg hkk dq) (Marcus.lamOuter_pos …))`.
+    Composition lemmas whose only content is "positivity transports through a definitional wrapper" need no
+    tactics at all.
+  - **Scope note that belongs in the artifact, not only in the report**: this composition carries no
+    `A`/`kB`/`T` premise (it is a structural statement), unlike the Marcus rate-level counterpart
+    `Marcus.descriptor_holds_of_microscopic`. Written into the file header so a reader cannot mistake the
+    weaker premise set for an omission.
+  - Submission driver reused unchanged from H1/H2 (emit → build → strict scan → `axioms.sh` → commit -- path);
+    logs at `/tmp/h4-gate-log.txt`. Reusing one driver for three milestones cost nothing and kept the evidence
+    format identical across H1/H2/H4.
