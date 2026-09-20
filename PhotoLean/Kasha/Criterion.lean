@@ -124,6 +124,40 @@ theorem upperYield_succ {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic (N
         rw [upperYield, emitYield_succ_self]
     _ = radBranch rad ic (N + 1) + icBranch rad ic (N + 1) * upperYield rad ic N := by
         rw [add_comm]
+/-- Plan §5.1 #6 — probability conservation: the probability of reaching the lowest level without
+emitting, plus the probability of emitting somewhere above it, is one. Proved by induction on the
+excitation level from the two Markov recursions. -/
+theorem cascade_add_upperYield {rad ic : ℕ → ℝ} {N : ℕ} (h : RateData rad ic N) :
+    cascade rad ic 0 N + upperYield rad ic N = 1 := by
+  have key : ∀ N, RateData rad ic N → cascade rad ic 0 N + upperYield rad ic N = 1 := by
+    intro N
+    induction N with
+    | zero =>
+        intro h
+        rw [cascade_self, upperYield_zero, add_zero]
+    | succ N ih =>
+        intro h
+        have hN : RateData rad ic N :=
+          ⟨fun n hn => h.decay_pos n (Nat.le_succ_of_le hn), h.rad_nonneg, h.ic_nonneg⟩
+        have hc : cascade rad ic 0 (Nat.succ N)
+            = icBranch rad ic (Nat.succ N) * cascade rad ic 0 N := by
+          rw [cascade_succ (i := 0) (N := N) (Nat.zero_le N), mul_comm]
+        have hu : upperYield rad ic (Nat.succ N)
+            = radBranch rad ic (Nat.succ N) + icBranch rad ic (Nat.succ N) * upperYield rad ic N :=
+          upperYield_succ h
+        have hstep : cascade rad ic 0 N + upperYield rad ic N = 1 := ih hN
+        have hsum : radBranch rad ic (Nat.succ N) + icBranch rad ic (Nat.succ N) = 1 :=
+          radBranch_add_icBranch (ne_of_gt (h.decay_pos (Nat.succ N) (le_refl _)))
+        rw [hc, hu]
+        calc icBranch rad ic (Nat.succ N) * cascade rad ic 0 N
+              + (radBranch rad ic (Nat.succ N)
+                + icBranch rad ic (Nat.succ N) * upperYield rad ic N)
+            = radBranch rad ic (Nat.succ N)
+              + icBranch rad ic (Nat.succ N) * (cascade rad ic 0 N + upperYield rad ic N) := by
+              ring
+          _ = radBranch rad ic (Nat.succ N) + icBranch rad ic (Nat.succ N) * 1 := by rw [hstep]
+          _ = 1 := by rw [mul_one, hsum]
+  exact key N h
 end Kasha
 
 end PhotoLean
