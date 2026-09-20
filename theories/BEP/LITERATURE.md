@@ -808,9 +808,12 @@ vs 63.0; water `19(2)` → 65.345 vs 65.3; PE `10` → 44.394 vs 44.4).
 
 ## R1.10.6 The honest consequence for the instance layer
 
-- **The BEP side works**: in four of five families a straight line through the printed pairs has
-  R² = 0.93–0.95 (F2 is the exception at 0.55). Claim (i) — BEP as a first-order LFER — is what these data
-  show.
+- **The BEP side works**: a straight line through the printed pairs has R² = 0.934 (F1), 0.934 (F3)
+  and 0.952 (F4, the aggregate-only family); F2 is the printed exception at 0.548, and no R² is
+  reported for F5. *(Lead correction 2026-09-20, third closeout finding 4: the earlier wording here
+  said "in four of five families … 0.93–0.95", which contradicted this record's own §R1.10.2–§R1.10.5;
+  the numbers above are the ones those sections print.)* Claim (i) — BEP as a first-order LFER — is
+  what these data show.
 - **The two-parabola side does not**: every family's fitted curvature is **negative**, while the model
   requires `d²Ea/dx² = 1/(2λ) > 0`. **No positive `λ` can reproduce any of these five families' shape**,
   however it is fitted. Equivalently, the barriers fall off **more slowly** than `λ/4 − x/2` over the

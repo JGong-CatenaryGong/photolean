@@ -9,13 +9,21 @@
 > 2 inductives + 157 theorems), statement fidelity **191/191 word-for-word** against the committed
 > authority `theories/BEP/probes/bep-statement-skeleton.lean`
 > (`sha256 c9aa2cb1f82b8bcc8ca74f389af57d0e1c6c568200b4eb0acfe0d7cac880a476`), zero unproved
-> placeholders and zero custom axioms; independent verifier PASS records for all six milestones and the
-> frozen-state closeout are in `theories/BEP/TASKS.md` (§Acceptance records) and summarized in
-> `theories/BEP/RESULTS.md` §5. The first closeout run **FAILed on documentation numbers only** (eight
-> findings: an `α` conflated with the two-point slope, an off-by-four value count, a commit count, the
-> R² range, a reproduction command, a commit tally, a forward-looking claim and two stale board
-> numbers); all were corrected and re-audited, and the FAIL is preserved in the records. The plan below is kept as the plan
-> of record; §12 has been updated from targets to measured values.
+> placeholders and zero custom axioms; independent verifier **PASS** records for the six milestone
+> batches (B1, B2+B4, B3, B5a, B5b) and the **FAIL** records of the frozen-state closeout runs are in
+> `theories/BEP/TASKS.md` (§Acceptance records) and summarized in `theories/BEP/RESULTS.md` §5.
+> The closeout history so far, in the order the audits reported it: **run 1 — FAIL (eight
+> documentation findings: an `α` conflated with the two-point slope, an off-by-four value count, a
+> commit count, the R² range, a reproduction command, a commit tally, a forward-looking claim and two
+> stale board numbers); run 2 — FAIL (residual documentation findings: three stale draft rows, a
+> theorem name that never existed, an R² sentence in the experience bank, this header's own
+> forward-looking claim); run 3 — FAIL (a status line and this header still claiming a closeout PASS
+> that does not exist, the second run's FAIL missing here, an R² sentence in the literature record,
+> and an unlabelled sample pair in `RESULTS.md`); all three runs verified the mathematics
+> independently and found no mathematical defect.** Each run's findings were corrected; no run is
+> recorded as PASS here, and a verdict is only ever recorded from an audit report that already
+> exists. The plan below is kept as the plan of record; §12 has been updated from targets to measured
+> values.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/BEP/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/BEP/LITERATURE.md`.
 > **Statement authority**: `theories/BEP/probes/bep-statement-skeleton.lean` — delivered signatures
