@@ -106,6 +106,18 @@ theorem linearVolcano_eq_bepTangent (lam1 lam2 dE : ℝ) :
   have h2 : lam2 / 4 - 1 / 2 * dE = lam2 / 4 - dE / 2 := by ring
   rw [h1, h2]
 
+/-- The BEP tangent line lies below the parabola it is tangent to (the linear-response direction).
+The exact violation is the square `x ^ 2 / (4 * lam)`, so the tangent is the tangent at
+thermoneutrality and touches the parabola only at `x = 0`. (plan §7) -/
+theorem bepLine_le_eact {lam : ℝ} (hlam : 0 < lam) (x : ℝ) :
+    BEP.bepLine lam x ≤ BEP.eact lam x := by
+  have h : BEP.eact lam x - BEP.bepLine lam x = x ^ 2 / (4 * lam) := by
+    unfold BEP.eact BEP.bepLine
+    field_simp
+    ring
+  have hnonneg : 0 ≤ x ^ 2 / (4 * lam) := by positivity
+  linarith
+
 end Sabatier
 
 end PhotoLean
