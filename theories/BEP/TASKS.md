@@ -202,6 +202,17 @@
 
 ## Notes and conflict log
 
+- **Observation queue closed (2026-09-20)**: all verifier observations that named a file were fixed by
+  the file's owner with comment-only edits and a token-stream gate — `Sharp.lean` (`bff7cfa`: the
+  fourth decorative premise `hw : 0 ≤ w` disclosed, §6.5 header claim tightened; new raw hash
+  `a874ce82…`, stripped token stream unchanged `815e9a36…`), `Instances.lean` (`a6f5402`, `16e3ae3`,
+  `b4107ec`, `eae9bb8`: per-row provenance, selection disclosure, the stale I8 docstring corrected,
+  header/wording fixes; new raw hash `029b02a3…`, stripped token stream unchanged `b68b010f…`),
+  `Basic.lean`/`Criterion.lean` (`90e7f15`, `02a5a54`, stripped hashes unchanged `d2898dc4…` /
+  `4a4eacda…`), plus the B3 experience entry (`8773775`) and the B5b one (`f4676c0`). One factual
+  wording error of the lead's was caught in the process and corrected: `λ̂` is **pair-dependent**
+  (negative on many documented pairs, but **positive** on the F5 abscissa-widest pair), not
+  "negative on the widest pairs" — plan §8.2 and `RESULTS.md` §4 now carry the reproducible values.
 - **Statement authority is now under version control (verifier O1, lead action 2026-09-20)**: the
   whole `theories/BEP/probes/` directory (skeleton, API probes, risk probe, fidelity and
   instance-cross-check scripts, prover scratch calibrations) is committed; the skeleton's hash is
