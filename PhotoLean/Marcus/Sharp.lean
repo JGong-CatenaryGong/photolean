@@ -82,4 +82,21 @@ theorem sharp_A_pos {A lam kB T : ℝ} (hpos : ∀ x, 0 < rate A lam kB T x) : 0
   unfold rate at h
   exact pos_of_mul_pos_left h (le_of_lt (Real.exp_pos _))
 
+/-- `lam < 0` 分支：反转区内 `barrier` 严格递减（`barrier_antitone_of_neg`）⇒
+`exp(-Φ/k_BT)` 严格递增 ⇒ 速率严格递增，与描述要求的严格递减矛盾。
+取 `x₁ = lam + 1 < lam + 2 = x₂`（两者都在反转区内）。 -/
+theorem sharp_lam_pos_of_lt {A lam kB T : ℝ} (hkB : 0 < kB) (hT : 0 < T) (hA : 0 < A)
+    (hdesc : InvertedDescriptor A lam kB T) (hlt : lam < 0) : False := by
+  have hkT : 0 < kB * T := mul_pos hkB hT
+  have hb : barrier lam (lam + 2) < barrier lam (lam + 1) :=
+    barrier_antitone_of_neg hlt (by linarith) (by linarith)
+  have hu : -(barrier lam (lam + 1)) / (kB * T) < -(barrier lam (lam + 2)) / (kB * T) :=
+    div_lt_div_of_pos_right (by linarith) hkT
+  have hexp := Real.exp_lt_exp.mpr hu
+  have hrate : rate A lam kB T (lam + 1) < rate A lam kB T (lam + 2) := by
+    unfold rate
+    exact mul_lt_mul_of_pos_left hexp hA
+  have hd := hdesc (lam + 1) (lam + 2) (by linarith) (by linarith)
+  exact absurd hd (not_lt.mpr (le_of_lt hrate))
+
 end PhotoLean.Marcus
