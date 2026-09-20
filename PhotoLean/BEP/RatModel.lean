@@ -123,6 +123,12 @@ theorem qEact_cast (lam x : ℚ) : ((qEact lam x : ℚ) : ℝ) = eact (lam : ℝ
   push_cast
   ring
 
+theorem qBepLine_cast (lam x : ℚ) :
+    ((qBepLine lam x : ℚ) : ℝ) = bepLine (lam : ℝ) (x : ℝ) := by
+  unfold qBepLine bepLine
+  push_cast
+  ring
+
 end Rat
 
 end BEP
