@@ -435,6 +435,15 @@ theorem inst_I11_F5_lamHat :
   unfold Rat.qLamOfPair
   norm_num
 
+/-- F5 (`first-hand`, kcal/mol verbatim): second divided difference of the printed rows `R4`
+(`ΔE = 14.56`, `V‡f = 17.47`), `R1` (`15.80`, `20.32`), `R5` (`19.82`, `21.72`); model abscissae
+`-14.56`, `-15.8`, `-19.82`. Negative (classical energies; the `ΔE`-vs-`ΔG` caveat stands). -/
+theorem inst_I11_F5_curvature_negative :
+    Rat.qSecondDividedDiff (-(14.56) : ℚ) 17.47 (-(15.8)) 20.32 (-(19.82)) 21.72 =
+      -(1215125 / 3277506) := by
+  unfold Rat.qSecondDividedDiff
+  norm_num
+
 end BEP
 
 end PhotoLean
