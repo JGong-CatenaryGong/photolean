@@ -108,6 +108,24 @@ noncomputable def funnelRatio (rad ic : ℕ → ℝ) : ℝ := rad 0 * ic 1 / (ra
 /-- The N-level funnel ratio: the quantity the general threshold tests (plan §6.1 #5, §7.2 #9). -/
 noncomputable def ladderRatio (rad ic : ℕ → ℝ) (N : ℕ) : ℝ :=
   rad 0 * cascade rad ic 0 N / (upperYield rad ic N * decay rad ic 0)
+/-- The exact Kasha rule: no emission from above the lowest excited state (plan §4.1). -/
+def KashaRule (rad ic : ℕ → ℝ) (N : ℕ) : Prop := upperYield rad ic N = 0
+
+/-- The tolerance form of the rule: the fraction of emitted photons that does not come from the
+lowest state is at most `tol` (plan §4.1). -/
+def KashaWithin (rad ic : ℕ → ℝ) (tol : ℝ) (N : ℕ) : Prop :=
+  upperYield rad ic N ≤ tol * fluoYield rad ic N
+
+/-- Vavilov's rule at one step: raising the excitation level from `N` to `N+1` leaves the total
+fluorescence yield unchanged (plan §4.1). -/
+def VavilovAt (rad ic : ℕ → ℝ) (N : ℕ) : Prop := fluoYield rad ic (N + 1) = fluoYield rad ic N
+
+/-- Vavilov's rule up to level `N` (plan §4.1). -/
+def VavilovUpTo (rad ic : ℕ → ℝ) (N : ℕ) : Prop := ∀ i, i < N → VavilovAt rad ic i
+
+/-- The Kasha description is realized by this ladder data: some excitation level satisfies the exact
+rule (non-vacuity, plan §4.1). -/
+def KashaDescriptor (rad ic : ℕ → ℝ) : Prop := ∃ N, KashaRule rad ic N
 end Kasha
 
 end PhotoLean
