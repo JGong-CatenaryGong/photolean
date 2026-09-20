@@ -76,6 +76,13 @@ theorem tsCoordQ_cast (lam x : ℚ) :
   push_cast
   ring
 
+/-- Transfer: the rational barrier casts to the real one. -/
+theorem gapReactantQ_cast (lam x : ℚ) :
+    ((gapReactantQ lam x : ℚ) : ℝ) = gapReactant (lam : ℝ) (x : ℝ) := by
+  unfold gapReactantQ gapReactant
+  push_cast
+  ring
+
 end Rat
 
 end Hammond
