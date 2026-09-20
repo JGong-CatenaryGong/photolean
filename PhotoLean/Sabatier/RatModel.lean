@@ -138,6 +138,14 @@ theorem volcanoBarrierQ_cast (alphaA betaA alphaB betaB dE : ℚ) :
   unfold volcanoBarrierQ volcanoBarrier
   rw [Rat.cast_max, branchUpQ_cast, branchDownQ_cast]
 
+/-- Cast transfer of the apex. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem apexQ_cast (alphaA betaA alphaB betaB : ℚ) :
+    ((apexQ alphaA betaA alphaB betaB : ℚ) : ℝ)
+      = apex (alphaA : ℝ) (betaA : ℝ) (alphaB : ℝ) (betaB : ℝ) := by
+  unfold apexQ apex
+  push_cast
+  ring
+
 end Sabatier
 
 end PhotoLean
