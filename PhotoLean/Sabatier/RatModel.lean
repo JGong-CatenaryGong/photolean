@@ -292,6 +292,29 @@ private theorem volcanoBarrierQ_at_apexQ {alphaA betaA alphaB betaB : ℚ}
   unfold volcanoBarrierQ
   rw [apexQ_crossing h, max_self]
 
+/-- The rational apex is a global minimizer of the rational effective barrier: in the physical
+orientation `0 < alphaA`, `0 < alphaB` the rational volcano pass is no higher than the rational
+barrier anywhere. This is the computable counterpart of the S2 row `volcanoBarrier_apex_le`, and it is
+what lets the instance layer close "this catalyst is at least as good as the apex" by rational
+arithmetic. Plan locus: `theories/Sabatier/plan.md` §8.1. -/
+theorem volcanoBarrierQ_apex_le {alphaA betaA alphaB betaB : ℚ} (hA : 0 < alphaA)
+    (hB : 0 < alphaB) (dE : ℚ) :
+    volcanoBarrierQ alphaA betaA alphaB betaB (apexQ alphaA betaA alphaB betaB)
+      ≤ volcanoBarrierQ alphaA betaA alphaB betaB dE := by
+  have hAB : 0 < alphaA + alphaB := by linarith
+  have hxA : volcanoBarrierQ alphaA betaA alphaB betaB (apexQ alphaA betaA alphaB betaB)
+      = branchUpQ alphaA betaA (apexQ alphaA betaA alphaB betaB) :=
+    volcanoBarrierQ_at_apexQ hAB.ne'
+  rcases le_total dE (apexQ alphaA betaA alphaB betaB) with h | h
+  · rw [hxA, volcanoBarrierQ_eq_branchDownQ_of_le_apexQ hAB h, apexQ_crossing hAB.ne']
+    unfold branchDownQ
+    have hmul := mul_le_mul_of_nonneg_left h hB.le
+    linarith
+  · rw [hxA, volcanoBarrierQ_eq_branchUpQ_of_apexQ_le hAB h]
+    unfold branchUpQ
+    have hmul := mul_le_mul_of_nonneg_left h hA.le
+    linarith
+
 end Sabatier
 
 end PhotoLean
