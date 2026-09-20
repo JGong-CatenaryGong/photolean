@@ -45,6 +45,19 @@ theorem exists_direction_reversal_of_eq :
   rw [tsCoord_zero_lam, tsCoord_zero_lam]
   norm_num
 
+/-- Necessity kernel: the Hammond descriptor forces a positive curvature. All three branches of
+`lt_trichotomy lam 0` are consumed: `lam < 0` and `lam = 0` contradict the descriptor at the
+explicit two-point witnesses above, and `0 < lam` is the conclusion. -/
+theorem hammond_lam_pos_of_descriptor {lam : ℝ} (h : HammondDescriptor lam) : 0 < lam := by
+  rcases lt_trichotomy lam 0 with hneg | hzero | hpos
+  · obtain ⟨x₁, x₂, hlt, hrev⟩ := exists_direction_reversal_of_neg hneg
+    have hdesc : tsCoord lam x₂ < tsCoord lam x₁ := h x₁ x₂ hlt
+    linarith
+  · subst hzero
+    obtain ⟨x₁, x₂, hlt, hnot⟩ := exists_direction_reversal_of_eq
+    exact absurd (h x₁ x₂ hlt) hnot
+  · exact hpos
+
 end Hammond
 
 end PhotoLean
