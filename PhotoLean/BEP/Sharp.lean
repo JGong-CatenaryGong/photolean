@@ -526,5 +526,28 @@ theorem epSupError_bestLine {lam w : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
   rintro y ⟨x, hx, rfl⟩
   exact hg x hx
 
+/-- AUX: every affine model has sup-norm error at least `w²/(8·lam)` — the `sSup` form of
+`epBestOnWindow_holds`. The degenerate half-width `w = 0` is handled separately, because
+`EPBestOnWindow` carries the strict premise `0 < w`; there the statement reduces to the
+nonnegativity of an absolute value. -/
+theorem epSupError_sharp {lam w c a : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
+    w ^ 2 / (8 * lam) ≤ epSupError lam w c a := by
+  rcases eq_or_lt_of_le hw with hw0 | hwpos
+  · subst hw0
+    have hmem : |eact lam 0 - (c + a * 0)| ∈
+        (fun x => |eact lam x - (c + a * x)|) '' Set.Icc (-0) 0 :=
+      ⟨0, ⟨by norm_num, le_rfl⟩, rfl⟩
+    have hle := le_csSup (epSupError_bddAbove hlam hw) hmem
+    have hzero : (0 : ℝ) ^ 2 / (8 * lam) = 0 := by norm_num
+    rw [hzero]
+    unfold epSupError
+    linarith [abs_nonneg (eact lam 0 - (c + a * 0))]
+  · obtain ⟨x, hx, hxerr⟩ := (epBestOnWindow_holds hlam hwpos).2.2 c a
+    have hmem : |eact lam x - (c + a * x)| ∈
+        (fun x => |eact lam x - (c + a * x)|) '' Set.Icc (-w) w := ⟨x, hx, rfl⟩
+    have hle := le_csSup (epSupError_bddAbove hlam hw) hmem
+    unfold epSupError
+    linarith
+
 
 end PhotoLean.BEP
