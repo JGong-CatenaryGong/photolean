@@ -465,5 +465,39 @@ theorem sSup_eq_of_le_of_mem {s : Set ℝ} {b : ℝ} (hne : s.Nonempty) (hbdd : 
     (hle : ∀ a ∈ s, a ≤ b) (hmem : b ∈ s) : sSup s = b :=
   le_antisymm (csSup_le hne hle) (le_csSup hbdd hmem)
 
+/- The premise `hw : 0 ≤ w` is not consumed (the explicit upper-bound witness only uses the
+window membership `x ∈ Set.Icc (-w) w`); kept for signature fidelity with the linter disabled
+locally. -/
+set_option linter.unusedVariables false in
+/-- AUX: the error set of the sup-norm is bounded above — the side condition `le_csSup` needs,
+discharged with an explicit upper-bound witness. -/
+theorem epSupError_bddAbove {lam w c a : ℝ} (hlam : 0 < lam) (hw : 0 ≤ w) :
+    BddAbove ((fun x => |eact lam x - (c + a * x)|) '' Set.Icc (-w) w) := by
+  refine ⟨lam / 4 + w / 2 + w ^ 2 / (4 * lam) + (|c| + |a| * w), ?_⟩
+  rintro y ⟨x, hx, rfl⟩
+  have hxabs : |x| ≤ w := abs_le.mpr hx
+  have hxsq : x ^ 2 ≤ w ^ 2 := by
+    calc x ^ 2 = |x| ^ 2 := (sq_abs x).symm
+      _ ≤ w ^ 2 := pow_le_pow_left₀ (abs_nonneg x) hxabs 2
+  have he : eact lam x = lam / 4 - x / 2 + x ^ 2 / (4 * lam) := by
+    unfold eact
+    field_simp
+    ring
+  have hx2 : x ^ 2 / (4 * lam) ≤ w ^ 2 / (4 * lam) :=
+    div_le_div_of_nonneg_right hxsq (by linarith : (0 : ℝ) ≤ 4 * lam)
+  have hx2' : (0 : ℝ) ≤ x ^ 2 / (4 * lam) := by positivity
+  have hlin : |c + a * x| ≤ |c| + |a| * w := by
+    have hax : |a * x| ≤ |a| * w := by
+      rw [abs_mul]
+      exact mul_le_mul_of_nonneg_left hxabs (abs_nonneg a)
+    rw [abs_le]
+    constructor <;>
+      linarith [le_abs_self c, neg_le_abs c, le_abs_self (a * x), neg_le_abs (a * x)]
+  have hlin' := abs_le.mp hlin
+  have hxlow : -w ≤ x := hx.1
+  have hxhigh : x ≤ w := hx.2
+  rw [abs_le]
+  constructor <;> rw [he] <;> linarith
+
 
 end PhotoLean.BEP
