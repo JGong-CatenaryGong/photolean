@@ -8,11 +8,13 @@ PhotoLean.Marcus.Barrier — M2 势垒代数（Marcus 反转区）。
 **注**：本文件头刻意不写出被 `check.sh --strict` 扫描的两个关键字字面量
 （块注释同样在扫描范围内，写了会造成误报 FAIL）。
 
-**显式物理前提的冗余性（plan §5；实测记录见 proofs/API-NOTES.md）**：
+**显式物理前提：未被证明使用（unused），而非可由其余前提推出（plan §5；实测见 proofs/API-NOTES.md）**：
 - `barrier_symm` 的 `hlam : lam ≠ 0`：实测 `unfold barrier; ring_nf` **不需要**它 ——
   除零约定下 `lam = 0` 时两端同为 `0`；仍按语句权威保留为显式物理前提。
-- `barrier_antitone_of_pos` 的 `h₁ : 0 ≤ x₁`：可由 `h₂` 与 `h₃ : x₂ ≤ lam` 推出，
-  证明中不参与；保留为显式物理前提（驱动力非负，normal 区的物理定义域）。
+- `barrier_antitone_of_pos` 的 `h₁ : 0 ≤ x₁`：**证明未使用**它（`hlam`、`h₂`、`h₃`
+  已足以推出结论），但它**并非**由 `h₂`、`h₃ : x₂ ≤ lam` 蕴含 —— **内核已验证的反例**：
+  `lam = 1, x₁ = -5, x₂ = -4` 满足 `0 < lam`、`x₁ < x₂`、`x₂ ≤ lam`，而 `0 ≤ x₁` 为假。
+  保留为显式物理前提（驱动力非负，normal 区的物理定义域）。
 故顶部关掉未使用变量 linter（warning 不影响验收）。
 
 验收（契约 `proofs/ENGINE.yml`）：
@@ -56,7 +58,10 @@ theorem barrier_mono_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
   exact div_lt_div_of_pos_right hsq h4
 
 /-- `lam > 0`、正常区（`0 ≤ x₁ < x₂ ≤ lam`）：势垒严格递减。
-`h₁ : 0 ≤ x₁` 是**显式物理前提**（驱动力非负），数学上可由 `h₃` 推出，证明中不使用。 -/
+`h₁ : 0 ≤ x₁` 是**显式物理前提**（驱动力非负），但**证明未使用**它（unused；`hlam`、`h₂`、`h₃`
+已足以推出结论）。注意它**并非**由 `h₂`、`h₃` 蕴含 —— **内核已验证的反例**（同文件头）：
+`lam = 1, x₁ = -5, x₂ = -4` 满足 `0 < lam`、`x₁ < x₂`、`x₂ ≤ lam`，却使 `0 ≤ x₁` 为假。
+按 statement-first，语句与权威骨架逐字一致，故该前提**保留不动**。 -/
 theorem barrier_antitone_of_pos {lam : ℝ} (hlam : 0 < lam) {x₁ x₂ : ℝ}
     (h₁ : 0 ≤ x₁) (h₂ : x₁ < x₂) (h₃ : x₂ ≤ lam) : barrier lam x₂ < barrier lam x₁ := by
   have h4 : (0 : ℝ) < 4 * lam := by positivity
