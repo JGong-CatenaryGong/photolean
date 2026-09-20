@@ -1588,3 +1588,36 @@
      statements' remaining premises (`0 < tol`, `a < b`, `0 < w`) have no witness row in the authority
      (the verifier's counterexamples live outside the file). A "one witness per premise" claim that is
      not per-premise is a documentation defect the verifier will find.
+
+## 2026-09-20 — B1: kernel extraction (`PhotoLean.Kernel`, owner prover_a)
+
+- Delivered: `PhotoLean/Kernel.lean` (69 lines, `import Mathlib` as the only import, zero warnings) plus
+  `"PhotoLean.Kernel"` appended to `defaultTargets` in `lakefile.toml`; commit `3ef20a4` with exactly
+  those two files (`git show --stat` confirms nothing under `PhotoLean/{Marcus,Hammond,BEP}`).
+- Gates, all run on the committed content:
+  - `proofs/scripts/lake build` → `Build completed successfully.`, and `grep -ci warning` on the full log = 0.
+  - `proofs/scripts/check.sh --strict` → scan section `clean`, `verdict: PASS`.
+  - `proofs/scripts/axioms.sh PhotoLean.Kernel <thm>` for both theorems → `verdict: PASS (only mathlib
+    infrastructure axioms)`, each printing its own name.
+  - The three statement-fidelity probes: Marcus 51/51, hammond 102/102, BEP 191/191, **0 signature
+    differences each**.
+- Tried and failed (recorded so a later round does not repeat it):
+  1. **Dropping the `hlam : lam ≠ 0` hypothesis of `transfer_eq_tsCoord` (the strictly stronger form)
+     is refuted by the kernel**, not merely unproved: at `lam = 0` the two totalised divisions differ —
+     `transfer 0 1 = 1/2` while `tsCoord 0 1 = 0` (both closed by `norm_num` in a throwaway probe under
+     `.lake/tmp`, so the hypothesis is necessary rather than decorative). Any later attempt to "unify the
+     two presentations" must keep that premise explicit.
+  2. Checking the gate order the wrong way round is a real trap: running a bare `check.sh --strict`
+     **before** registering a new module in `defaultTargets` yields a scan that covers the whole
+     `PhotoLean/` directory while the build covers only the old targets — a "scanned but never compiled"
+     false PASS. Here the `lakefile.toml` registration was made *before* the first gate run, so the build
+     genuinely covered the new module.
+  3. The three fidelity scripts each glob only their own `PhotoLean/<Theory>/*.lean`, so a new sibling
+     module cannot move their counts — verified by reading the scripts rather than assumed; the baseline
+     numbers 51/102/191 came back unchanged.
+- Reusable pattern: treat the dispatch's code block as the *statement authority* and diff it against the
+  delivered file with the same comment stripper the official fidelity checker uses
+  (`strip_comments`) before running any gate — 795 = 795 bytes of code, byte-identical, which is much
+  harder to fool than a visual check. Note also that the header of `PhotoLean/Kernel.lean` forward-refers
+  to `PhotoLean/Relations.lean` (the regression certificates), which does not exist yet: a deliberate
+  forward reference required by the task spec, not a delivered module.
