@@ -146,3 +146,13 @@
       `LaMnO₃` spin state and the unverified `Mn³⁺` radius, the documented coupled-substitution
       citations replacing the undocumented `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`) — lead — todo (comment-only)
 - [ ] final verifier runs recorded in the acceptance table below (runs 2 and 3) — lead — todo
+
+---
+
+## Acceptance records (independent verifier runs; the lead ticks from these)
+
+| batch | scope | verdict | key evidence |
+|---|---|---|---|
+| Run 1 (independent verifier; batch 1 = G1 + the Sprint-0 artifacts) | `PhotoLean/Goldschmidt/Basic.lean` (29 declarations) + authority skeleton, 5 API probes, the off-kernel instance script, contract/lakefile registration, plan/board/experience | **PASS** — 0 HIGH / 6 MEDIUM / 9 LOW | verifier re-ran all four gates (14/14 `axioms.sh`, bare `check.sh --strict` PASS, clean-tree `git archive` re-runs at `65cdd32`/`bdfd681`); 1000-point exact-rational search over the four classifier rows (450 inverted + 100 degenerate bands) with **0 violations**; independent recomputation of all six instance `t²` values, identical to plan §9; all 15 findings were record-layer only and were disposed in `fdb9899` (M1–M3 with `api_researcher`) |
+| Run 2 (independent verifier; batch 2 = G2 + G3) | `Rules.lean` (18) + `Criterion.lean` (24 + 8 `private` helpers), the corrected `r_O` rows and `chiTol_anti` | in flight | — |
+| Run 3 (independent verifier; batch 3 = G4 + G5 + G6 + documentation plane + the frozen tree) | `Sharp.lean` (12) + `RatModel.lean` (22) + `Instances.lean` (34), the risk probe, plan/TASKS/LITERATURE/RESULTS/API-NOTES/README/Relations/lakefile | in flight | — |

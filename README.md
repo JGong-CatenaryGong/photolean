@@ -51,6 +51,13 @@ Agent preset 驱动。
 proofs/scripts/check.sh --strict                                   # 全树扫描 + 构建（应 verdict: PASS）
 proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.descriptor_sharp   # 主定理公理检查
 proofs/scripts/lake env lean theories/Marcus/probes/marcus-statement-skeleton.lean           # 语句权威（含抱歉占位，仅编译）
+# 六个理论的语句保真（应各报 0 signature differences）
+python3 theories/Marcus/probes/marcus-fidelity.py
+python3 theories/BEP/probes/bep-fidelity.py                         # BEP，另支持 --theory kasha|Sabatier|goldschmidt
+python3 theories/hammond/probes/hammond-fidelity.py
+# 第六个理论（Goldschmidt）的专属复核：主等价式的公理检查 + off-kernel 精确有理实例交叉检查
+proofs/scripts/axioms.sh PhotoLean.Goldschmidt.Criterion PhotoLean.Goldschmidt.conforms_iff_radius_window
+python3 theories/goldschmidt/probes/goldschmidt-instance-check.py   # exit 0, 0 mismatches
 ```
 **`lake build` 返回 0 不是验收**：零占位证明与自定义公理都会返回 0，必须三层齐备
 （构建 + 扫描 + `#print axioms`），且由不写证明的角色独立执行。
