@@ -172,11 +172,19 @@ Full discussion and the formalizable implications: record §S3.2 / §S3.2.1. Thi
 
 | # | pair as printed | increments as printed | host | source (record id) |
 |---|---|---|---|---|
-| **P0** | `NaAlSi₃O₈` / `CaAl₂Si₂O₈` (plagioclase) | ⭐ **Goldschmidt's own documented coupled example**: a `(+1,+4) ↔ (+2,+3)` swap (`Na⁺+Si⁴⁺ ↔ Ca²⁺+Al³⁺`). He prints the *condition* ("corresponding amounts of positive and corresponding amounts of negative building blocks"), **not** the increments | framework silicate | Goldschmidt et al. 1926, printed p. 81 (`S9`) |
+| **P0** | `NaAlSi₃O₈` / `CaAl₂Si₂O₈` (plagioclase) | ⭐ **Goldschmidt's own documented coupled example**: a `(+1,+4) ↔ (+2,+3)` swap (`Na⁺+Si⁴⁺ ↔ Ca²⁺+Al³⁺`). He prints the *condition* ("corresponding amounts of positive and corresponding amounts of negative building blocks"), **not** the increments. ⭐ Independently reprinted by CIDER 2016 (`S13`) as `Si⁴⁺ + Na⁺ = Al³⁺ + Ca²⁺`, Albite ↔ Anorthite | framework silicate | Goldschmidt et al. 1926, printed p. 81 (`S9`) |
+| ⭐ **P–plan** | 🌟 **`Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` — THE PLAN'S OWN PAIR, DOCUMENTED**: "Na⁺ is substituted at the Ca²⁺ site in this system to ensure local level charge compensation", with Na⁺ at the **A** site and Nb⁵⁺ at the **B** site | printed charges `1+, 5+, 2+, 4+`; `1+ + 5+ = 6 = 2+ + 4+` is **this record's arithmetic from those printed charges** — the source prints the charges, the sites and the compensation reason, not the one-line equation | oxide perovskite, **`CaTiO₃`–`NaNbO₃`** | M. Shindhu, N. Ahlawat, S. Sanghi et al., *Indian J. Pure & Appl. Phys.* **63**(1) (2025) 22–33, p. 23 (`S20`). ⚠️ **DOI `10.56042/ijpap.v63i1.9803` is publisher-asserted only — Crossref returns `Resource not found` (checked in this session); cite by journal/volume/pages** |
 | **P1** | `La³⁺` and `Na⁺` as **heterovalent** ions, "as represented by `A²⁺B⁴⁺O₃`" | `Δz = +1` (for `A²⁺` → `A³⁺`) paired with `Δz = −1` (for `A²⁺` → `A⁺`); **the source prints the host formula and the conclusion, not the two increments** | oxide perovskite, A site | Li, Zhao, Fan, Li, Tan, Wang et al., *Adv. Sci.* **13**, e16938 (2025), `10.1002/advs.202516938` (`PMC12766988`) |
 | **P2** | `Sm³⁺` replacing `Bi³⁺` **and** `Na⁺`, with the printed arithmetic `0.5 − 0.0027 × 3/1 = 0.4919` | ⭐ **`3 Na⁺ per 1 Sm³⁺`** — the compensating-partner ratio printed as `3/1`; the isovalent half is `Sm³⁺ ↔ Bi³⁺` at `1:1` | oxide perovskite, `Bi₀.₅Na₀.₅TiO₃`-based | Tang, Hu, Koval, Zeng et al., *ACS Appl. Mater. Interfaces* **17**, 53780–53790 (2025), `10.1021/acsami.5c12016` (`PMC12464909`) |
-| **P3** | `Pr³⁺ ↔ Cs⁺` paired with `Ni²⁺ ↔ Pb²⁺`; "self-compensating mechanism … maintains overall charge neutrality … total cationic charge remains `+4` per unit cell" | `Δz = +2` paired with `Δz = 0` | **halide** perovskite, `CsPbCl₃` | *RSC Adv.* **15** (2025), `10.1039/d5ra07356a` (`PMC12757862`) |
-| — | `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` | — | — | ⚠️ **NOT DOCUMENTED** — no retrieved source, and not the primary memoir, prints this pair. The plan's `I6` row family should replace it (with `P1`/`P2`) or mark it as undocumented |
+| **P3** | `Pr³⁺ ↔ Cs⁺` paired with `Ni²⁺ ↔ Pb²⁺`; "self-compensating mechanism … maintains overall charge neutrality … total cationic charge remains `+4` per unit cell" | `Δz = +2` paired with `Δz = 0` | **halide** perovskite, `CsPbCl₃` | Azam, Zaman, Rafiq, Rahman et al., *RSC Adv.* **16** 55–75 (2026) (`PMC12757862`). ⚠️ **DOI unverified**: `10.1039/d5ra07356a` resolves in Crossref to a **different work** — do not cite it |
+| **P4** | ⭐ **the plan's `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺` family, printed as the reverse direction**: "the charge-coupled substitution **`A`Mg²⁺ + `B`Si⁴⁺ ↔ `A`Fe³⁺(high-spin) + `B`Al³⁺** is predominant in the incorporation of Fe and Al into the practically **eightfold-coordinated A-site** and the **sixfold-coordinated B-site** in bridgmanite" | `2+ + 4+ = 6 = 3+ + 3+` (measured: single-crystal XRD + ⁵⁷Fe Mössbauer) | oxide perovskite, bridgmanite `Mg₀.₆₆₂Fe₀.₃₃₈Si₀.₆₆₂Al₀.₃₃₈O₃` | Nakatsuka, Fukui, Kamada et al., *Sci. Rep.* **11** 22839 (2021), `10.1038/s41598-021-00403-6` ✔ Crossref-checked here |
+
+⚠️ **A negative that must be recorded as a non-theorem** (second parcel's finding, kept here because it
+constrains what may become a premise): the charge sums **do not discriminate** the families. Both
+`Na⁺ + Nb⁵⁺ = 6 = Ca²⁺ + Ti⁴⁺` (P–plan) and `A³⁺ + B³⁺ = 6 = A²⁺ + B⁴⁺` (P4) balance, and so does the
+single-site `2 Ca²⁺ → A⁺ + Ln³⁺` form (`4 = 1 + 3`) and the rutile `2 Ti⁴⁺ → B³⁺ + Nb⁵⁺` form
+(`8 = 3 + 5`). **No premise may be added that any one of these families is charge-forbidden**, and the
+substitution *direction* is a free parameter of the relation, not fixed by Nature.
 
 ⭐ **The primary text's own words about the charge rule** (`S9`, printed p. 81, first-hand):
 *"Wir dürfen uns aber nicht wundern, daß ein Unterschied der Valenz in unserem Isomorphiegesetz nicht
@@ -192,6 +200,9 @@ systematization, and `plan.md` §12 must say so.
 | criterion | as printed | status | source |
 |---|---|---|---|
 | ⭐ Pauling's radius-ratio table, **as Pauling's** | `Rcation/Ranion` → `1.0` = 12 (hexagonal or cubic closest packing); `1.0 - 0.732` = 8 Cubic; `0.732 – 0.414` = 6 Octahedral; `0.414 – 0.225` = 4 Tetrahedral; `0.225 – 0.155` = 3 Triangular; `< 0.155` = 2 Linear | **first-hand** | Jackson & Solomatova, CIDER 2016 slides (`S13`), "Pauling's First Rule — The Radius Ratio Rule" |
+| ⚠️ **who actually owns the ladder** | *"the ionic-radius ratio rules are either incorrectly attributed to Linus Pauling in the chemical literature or to Victor Goldschmidt in the geochemical literature"* — first proposed by **G. F. Hüttig (1920)**, extended by **A. Magnus (1922)**, first applied to **infinite ionic lattices by Goldschmidt's Skrifter VII, 1926, pp. 112–117**; and *"Hüttig (1920) proposed that the coordination number of a cation is determined by radius-ratio considerations and this became Pauling's first rule (Pauling, 1929)"* | **second-reader** (second parcel; DOIs Crossref-checked here) | W. B. Jensen, *J. Chem. Educ.* **87** (2010) 587–588 (`10.1021/ed100258f` ✔); F. C. Hawthorne & O. C. Gagné, *Acta Cryst. B* **80** (2024) 326–339 (`10.1107/S2052520624005080` ✔) |
+| ⚠️ **Pauling 1929 itself** | the numeric ladder is normally cited to Pauling's **1960 book**, not the 1929 paper; the 1929 paper's text **was not read** this round (no OA copy) | **bibliographic-only** | L. Pauling, *JACS* **51** (1929) 1010–1026 (`10.1021/ja01379a006` ✔) |
+| `0.732` printed for the 8-fold cube, first-hand | "their radius ratio of `M³⁺/F⁻` is often **greater than 0.732**" (8-fold `MF₈`); "Two critical values of **0.414 (octahedral factor) and 0.732 (cubic factor)**"; "This octahedral factor needs to be in the range of **`0.414 < μ < 0.732`** to facilitate the formation of the `BX₆` octahedral" | **second-reader** (second parcel; first DOI Crossref-checked here) | Wang, Liang, Kim, Sun, *Sci. Adv.* **8** (2022) eadc9516 (`10.1126/sciadv.adc9516` ✔); Li, Kim, Luo et al., *Nat. Commun.* **15** (2024) 53; Miah et al., *RSC Adv.* **14** (2024) 15876 |
 | octahedral factor `μ = r_B/r_O`, the **geometric** limit for 6-fold coordination | `rB/rX value of octahedron BX6 is ranging from 0.414 to 0.732` | **first-hand** | Kumar et al. 2008 (`S8`), §Results |
 | the **same** interval read as the radius-ratio rule for 6-fold | `μ > 0.41` for the iodides; `μ > 0.425` for the oxides; boundary "corresponds exactly to the geometric limit for octahedral coordination of the B site of `μ = 0.41`" | **first-hand** | Travis et al. 2016 (`S3`) |
 | octahedral factor as a *separate* axis of a `t`–`μ` structure map | "A plot of `t` against `μ` can then be constructed and used as a structure map" | **first-hand** | Travis et al. 2016 (`S3`) |
@@ -259,10 +270,20 @@ citation.
 | `S15` | Reda, El-Dek & Arman, *J. Mater. Sci.: Mater. Electron.* **33**, 16753–16776, 2022 | `10.1007/s10854-022-08541-x` |
 | `S16` | Talebkeikhah; Rad; Faghani; Zokaeian; Hernádi; Melchionna; Fornasiero; Nishioka, *Beyond SrTiO₃: Emerging Perovskite Photocatalysts for Solar Water Splitting*, Materials **19** (17), 3635 (2026-08-26) | `10.3390/ma19173635` |
 | `S17` | *Hidden Hydroxides in KOH-Grown BaNiO₃ Crystals* (first-hand via `arXiv:2306.05488`) | `arXiv:2306.05488` |
-| `S19` | coupled-substitution examples P1–P3 (§T4) | `10.1002/advs.202516938` · `10.1021/acsami.5c12016` · `10.1039/d5ra07356a` |
+| `S19` | coupled-substitution examples P1–P3 (§T4) | `10.1002/advs.202516938` · `10.1021/acsami.5c12016` · E3 by `PMC12757862` (its DOI is **unverified**) |
+| `S20` | ⭐ **the plan's own pair, documented** — Shindhu; Ahlawat; Sanghi et al., *Indian J. Pure & Appl. Phys.* **63**(1) 22–33 (2025), p. 23, `CaTiO₃`–`NaNbO₃` (see §T4 P–plan) | ⚠️ **no resolvable DOI** — the asserted `10.56042/ijpap.v63i1.9803` returns `Resource not found` from Crossref (checked here); cite by journal/volume/pages |
+| `S21` | smaller-ion denominator, printed | `10.1107/S2052520624002683` ✔ (Gollé-Leidreiter et al., *Acta Cryst. B* **80** 182) · `10.1016/j.heliyon.2020.e03497` ✔ (Nagaenko et al., *Heliyon* **6** e03497) · `10.1039/D6SC02582J` · `10.3389/fchem.2020.00564` |
+| `S22` | the dissenting (**larger**-ion) denominator | `10.1002/cssc.202401180` ✔ (Cani, Cuyvers & Pescarmona, *ChemSusChem* **18**) |
+| `S23` | the `ΔEN ≤ 0.4` Pauling-scale cap (printed twice) | `10.1016/j.heliyon.2020.e03497` ✔ · `10.3390/molecules30214282` ✔ |
+| `S24` | attribution correction for the `0.732` ladder (Hüttig 1920 / Magnus 1922; Goldschmidt applied it in `S9`) | `10.1021/ed100258f` ✔ (Jensen 2010) · `10.1107/S2052520624005080` ✔ (Hawthorne & Gagné 2024) · `10.1021/ja01379a006` ✔ (**bibliographic-only**, Pauling 1929) |
+| `S25` | `0.732` printed for the 8-fold cube | `10.1126/sciadv.adc9516` ✔ · `10.1038/s41467-023-43886-9` · `10.1039/D4RA01640H` |
+| — | ⭐ the measured `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺` direction (§T4 P4) | `10.1038/s41598-021-00403-6` ✔ (Nakatsuka et al., *Sci. Rep.* **11** 22839) |
 
 Every DOI in this table was resolved through `api.crossref.org/works/<DOI>` during this round, and
-the volume / page / date columns are the values Crossref returned — **except** `S9`, `S13` and `S14`,
-which have **no DOI** and were read either as a scan (`S9`, via delegate OCR; the OPUS host is behind
-an Anubis bot wall for this session) or as lecture PDFs (`S13`, `S14`). `S3`, `S7`, `S16` are open
-access and their full text was read first-hand.
+the volume / page / date columns are the values Crossref returned — **except** `S9`, `S13`, `S14` and
+`S20`, which have **no resolvable DOI** and were read either as a scan (`S9`, via delegate OCR; the
+OPUS host is behind an Anubis bot wall for this session), as lecture PDFs (`S13`, `S14`), or from a
+publisher PDF whose asserted DOI is not in Crossref (`S20`). `S3`, `S7`, `S16` are open access and
+their full text was read first-hand. ⚠️ One DOI **proved wrong on re-check**: `10.1039/d5ra07356a`
+resolves to a different work than the Ni²⁺/Pr³⁺ `CsPbCl₃` paper it was cited for; that paper is cited
+by its PMC id instead.

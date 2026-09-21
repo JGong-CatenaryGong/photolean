@@ -9,6 +9,10 @@
 > raw PDFs are kept under `theories/goldschmidt/literature/` (never pasted into context).
 
 Status: **round 1 — retrieval record delivered** (§S1–§S6 plus §NOT and §IMPACT). Date: **2026-09-21**.
+Two parcels are folded in: the first delivered the band/refinement/instance evidence, the second the
+**primary text** (`S9`) and the **charge-rule examples** (`S19`–`S25`). Where the second parcel's
+citations were re-checked here against Crossref and found wrong, this record corrects them instead of
+repeating them — see `S20`'s DOI-less status, `S19`'s E3 DOI caveat, and `S24`'s attribution correction.
 
 > ⭐ **Headline of the round.** The **primary text was retrieved and read**: Goldschmidt, Barth, Lunde
 > & Zachariasen, *Geochemische Verteilungsgesetze der Elemente VII: Die Gesetze der Krystallochemie*,
@@ -53,7 +57,13 @@ Status: **round 1 — retrieval record delivered** (§S1–§S6 plus §NOT and �
 | `S12` | E. W. Parker & M. Fleischer, *Geochemistry of niobium and tantalum*, **U.S. Geological Survey Professional Paper 612 (1968)**, §"Isomorphous substitution", printed p. 13 | `10.3133/pp612`; PDF `pubs.usgs.gov/pp/0612/report.pdf` | **first-hand** | the three-rule statement of "Goldschmidt (1937a, 1954)" rules: the 15 % radius rule, the charge-difference rule, the higher-charge rule; Ringwood's electronegativity modification and the `Δχ ≈ 0.1` gloss (§S3.1–§S3.3) |
 | `S13` | J. M. Jackson & N. V. Solomatova, *Mineral Physics 1: Earth Mineralogy and Phase Diagrams*, **CIDER 2016** short-course slides (Goldschmidt-rules slides credited to **A. Kavner**, UCLA) | `seismo.berkeley.edu/wiki_cider/images/e/eb/Jackson_CIDER_MinPhys.pdf` | **first-hand** | the `< 15 % / 15–30 % / > 30 %` three-way classification; the `\|Δz\| = 1` charge rule; the four-rule list including Ringwood's electronegativity rule; Pauling's radius-ratio table (`1.0–0.732` → 8-fold cubic; `0.732–0.414` → 6-fold octahedral) (§S1.3, §S3.1–§S3.3) |
 | `S14` | Ankara University lecture notes, *İyonik yer değiştirme (Substitution) — Goldschmidt kuralları* | `acikders.ankara.edu.tr/pluginfile.php/16721/mod_resource/content/0/MKK-7.pdf` | **first-hand** | an independent-language statement of the 15 % radius rule and the `\|Δz\| = 1` charge rule, plus a printed "coupled substitution" heading (§S3.1, §S3.2) |
-| `S19` | ⭐ **documented coupled-substitution examples** (E1–E3; see §S3.2.1) | `10.1002/advs.202516938` · `10.1021/acsami.5c12016` · `10.1039/d5ra07356a` | **first-hand** | the printed `A²⁺B⁴⁺O₃` charge-balance statement, the printed `3/1` compensating arithmetic, and the "self-compensating mechanism" statement (§S3.2.1) |
+| `S19` | ⭐ **documented coupled-substitution examples** (E1–E3; see §S3.2.1) | `10.1002/advs.202516938` · `10.1021/acsami.5c12016` · `PMC12757862` (E3's DOI is **unverified** — see §S3.2.1) | **first-hand** | the printed `A²⁺B⁴⁺O₃` charge-balance statement, the printed `3/1` compensating arithmetic, and the "self-compensating mechanism" statement (§S3.2.1) |
+| `S20` | ⭐ **the plan's own coupled pair, documented**: M. Shindhu, N. Ahlawat, S. Sanghi et al., *Indian Journal of Pure & Applied Physics* **63**(1) (2025) 22–33, `CaTiO₃`–`NaNbO₃`, p. 23 | ⚠️ **no resolvable DOI** — the asserted `10.56042/ijpap.v63i1.9803` returns `Resource not found` from Crossref (checked here); cite by journal/volume/pages | **first-hand** (second parcel) | `Na⁺`(A site) + `Nb⁵⁺`(B site) ↔ `Ca²⁺` + `Ti⁴⁺` with "local level charge compensation" (§S3.2.1 E0) |
+| `S21` | ⭐ **the denominator convention, printed by modern sources**: Gollé-Leidreiter, Bhat, Wiehl et al., *Acta Cryst. B* **80** (2024) 182–192, `10.1107/S2052520624002683` ✔ · Nagaenko, Chang, Andryushin et al., *Heliyon* **6** (2020) e03497, `10.1016/j.heliyon.2020.e03497` ✔ · Ou, Yang, Chang et al., *Chem. Sci.* **17** (2026) 16201, `10.1039/D6SC02582J` · Umedov, Grigorieva, Lepnev et al., *Front. Chem.* **8** (2020) 564, `10.3389/fchem.2020.00564` | Crossref-verified for the first two; last two not resolved here | **second-reader** (second parcel; two DOIs re-checked here) | `15 %` **of the smaller ion** printed verbatim; and the only explicit radius-difference **formula** retrieved: `[(M_a − M_b)/M_b] × 100 %` (§S3.1 item 3) |
+| `S22` | **the dissenting denominator**: Cani, Cuyvers, Pescarmona, *ChemSusChem* **18** (2025) `10.1002/cssc.202401180` ✔ (Crossref-verified here) | — | **second-reader** | prints "the solute and solvent ionic radii should not differ for more than 15 %" and whose own arithmetic (0.645 Å vs 0.80 Å called "19 %") implies the **larger** ion — the one source conflicting with the primary text (§S3.1 item 3) |
+| `S23` | ⭐ **the chemical rule as an explicit numeric cap**: `Heliyon` **6** (2020) e03497 (`S21`) and Vojnović, Ranković, Jevremović et al., *Molecules* **30** (2025) 4282, `10.3390/molecules30214282` ✔ (Crossref-verified here) | — | **second-reader** | `ΔEN ≤ 0.4` on the Pauling scale, twice independently — the only *numeric* electronegativity criterion retrieved, and it is a **conjunction**, not a trade-off (§S3.3) |
+| `S24` | ⭐ **attribution correction for the radius-ratio rule**: W. B. Jensen, *J. Chem. Educ.* **87** (2010) 587–588, `10.1021/ed100258f` ✔ · F. C. Hawthorne & O. C. Gagné, *Acta Cryst. B* **80** (2024) 326–339, `10.1107/S2052520624005080` ✔ · L. Pauling, *JACS* **51** (1929) 1010–1026, `10.1021/ja01379a006` ✔ | all three Crossref-verified here | **second-reader** (first two); **bibliographic-only** (Pauling 1929 — no full text) | the `0.732`/`0.414` ladder is **Hüttig (1920)/Magnus (1922)**, applied to ionic lattices by **Goldschmidt's Skrifter VII itself**, and attributed to Pauling only later; **Pauling 1929's text was not read**, so the 1929 paper must not be cited as printing `0.732` (§S1.3) |
+| `S25` | **radius-ratio `0.732` printed first-hand**: Wang, Liang, Kim, Sun, *Sci. Adv.* **8** (2022) eadc9516, `10.1126/sciadv.adc9516` ✔ · Li, Kim, Luo et al., *Nat. Commun.* **15** (2024) 53, `10.1038/s41467-023-43886-9` · Miah et al., *RSC Adv.* **14** (2024) 15876, `10.1039/D4RA01640H` | first Crossref-verified here | **second-reader** | `> 0.732` for the 8-fold `MF₈` cube; "`0.414` (octahedral factor) and `0.732` (cubic factor)"; `0.414 < μ < 0.732` for the `BX₆` octahedron (§S1.3, `INSTANCE-DATA.md` §T5) |
 | `S15` | Reda, El-Dek, Arman, *J. Mater. Sci.: Mater. Electron.* **33**, 16753–16776 (2022) | `10.1007/s10854-022-08541-x` | **first-hand** | printed `BaTiO₃ t = 1.071`; `0.77 ≤ t ≤ 1.10` (§S2, §S5) |
 | `S16` | Talebkeikhah, Rad, Faghani, Zokaeian, Hernádi, Melchionna, Fornasiero, Nishioka, *Beyond SrTiO₃: Emerging Perovskite Photocatalysts for Solar Water Splitting*, Materials **19** (17), 3635 (2026-08-26) | `10.3390/ma19173635` | **first-hand** | ⭐ our exact radius triple `Sr²⁺(1.44, CN 12)`, `Ti⁴⁺(0.605, CN 6)`, `O²⁻(1.40)`, "tolerance factor close to unity" (§S4, §S5) |
 | `S17` | *Hidden Hydroxides in KOH-Grown BaNiO₃ Crystals: A Potential Link to Their Catalytic Behaviour* | `arXiv:2306.05488` | **first-hand** | `BaNiO₃` is a 2H hexagonal perovskite, `P6₃/mmc`, face-sharing `[NiO₆]` (§S5) |
@@ -206,13 +216,26 @@ Status: **round 1 — retrieval record delivered** (§S1–§S6 plus §NOT and �
 - **Formalizable implication.** This is a **declared non-goal**, not a premise: plan §1.4 already
   excludes "the octahedral factor `μ = r_B/r_O`", and this record confirms that exclusion is
   *correct* rather than merely conservative, because the literature treats `μ` as an independent
-  axis. **What must not happen in Lean:** the radius-window equivalence `conforms_iff_radius_window`
+  axis. ⚠️ **Two attribution facts the plan must not get wrong.** (i) The `0.732`/`0.414`/`0.225`
+  ladder must **not** be labelled "Pauling's rule" without qualification: `S24` (Jensen 2010, *J. Chem.
+  Educ.*; Hawthorne & Gagné 2024, *Acta Cryst. B*) reports that the rules are *"either incorrectly
+  attributed to Linus Pauling in the chemical literature or to Victor Goldschmidt in the geochemical
+  literature"* — they were first proposed by **Hüttig (1920)** and **Magnus (1922)**, and Goldschmidt
+  first applied them to infinite ionic lattices **in the very Skrifter VII volume this round read
+  (`S9`, pp. 112–117)**. And **Pauling 1929's text was not read** this round (no open copy), so the
+  `0.732` threshold must not be cited to that paper; modern sources attribute the table to Pauling's
+  **1960 book**. (ii) The `0.732` number is first-hand print-verified for the 8-fold cube in `S25`
+  (`Sci. Adv.` 8 (2022) eadc9516: "greater than `0.732`"; `Nat. Commun.` 15 (2024) 53: "`0.414`
+  (octahedral factor) and `0.732` (cubic factor)"; `RSC Adv.` 14 (2024) 15876: "`0.414 < μ < 0.732`"),
+  so the *number* is solid and only the *eponym* is contested.
+  **What must not happen in Lean:** the radius-window equivalence `conforms_iff_radius_window`
   must never be phrased as, or cross-referenced with, a statement about `μ`; and the value `0.732`
-  must **not** be introduced as an 8-fold cations/anion threshold, because the only retrieved
-  occurrence of `0.732` is `S8`'s *upper end of the 6-fold octahedral-factor interval*. **Impact on
+  must **not** be introduced as an 8-fold cations/anion threshold, because the plan declares no such
+  quantity and this round deliberately adds none. **Impact on
   `plan.md`:** none of §6's statements change; §1.4's non-goal list should gain the sentence "the
-  `r_cation/r_anion ≥ 0.732` radius-ratio rule is a criterion on a different ratio and is not
-  formalized here" so that the boundary is *recorded*.
+  `r_cation/r_anion ≥ 0.732` radius-ratio rule is a criterion on a **different ratio**, is not
+  formalized here, and is not eponymously Pauling's (Hüttig 1920 / Magnus 1922; Goldschmidt applied it
+  to ionic lattices in the same 1926 volume cited for `t`)" so that the boundary is *recorded*.
 
 ---
 
@@ -323,8 +346,10 @@ radii") and of `S9` itself, and it belongs in the `SrTiO₃` docstring.
 > reached, so no rule is quoted from Goldschmidt's own text here." **`S9` was reached** (the Frankfurt
 > OPUS scan; see §S1.1b) and its rules **are** quoted below, verbatim and with printed page numbers,
 > with the access caveat stated there. The primary text also **overturns** part of the plan's framing
-> (see §S3.1 item 3 and §S3.2 Form 0) and **the plan's own description of this round's finding**: the
-> `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` pair is undocumented.
+> (see §S3.1 item 3 and §S3.2 Form 0). ⚠️ Two round-0 statements about the plan were themselves
+> overturned during the round and are **withdrawn**: the claim that `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` is
+> undocumented (it **is** documented — `S20`, `CaTiO₃`–`NaNbO₃`; see §S3.2.1 E0), and the claim that
+> the primary source is unreachable (it was reached — §S1.1b).
 
 *(§S3.1–§S3.3 are delivered below.)*
 
@@ -343,6 +368,14 @@ radii") and of `S9` itself, and it belongs in the `SrTiO₃` docstring.
   Goldschmidt's *1937* works, not the 1926 article, and this is a `secondary` attribution in the sense
   that Parker & Fleischer are quoting him rather than my reading him. **No reference ion is named: the
   source says "must not differ by more than 15 percent" and nothing about 15 % *of what*.**
+  `sources` — and this is the point where the two parcels agree: the second parcel independently
+  located a *peer-reviewed* modern source for the same rule and **Crossref-checked here**,
+  **Gollé-Leidreiter, Bhat, Wiehl et al., *Acta Cryst. B* **80** (2024) 182–192,
+  `10.1107/S2052520624002683`** — *"isomorphic substitution between different ions is only possible if
+  the difference in ionic radii is less than **15 % of the smaller ion**"* — whose own worked arithmetic
+  corroborates the printed denominator (Sn⁴⁺ `0.69 Å` vs Ge⁴⁺ `0.53 Å` printed as `30 %`, i.e.
+  `0.16/0.53`). It numbers the rule "**Goldschmidt's ninth rule**" — a **non-canonical ordinal** that
+  the record flags rather than adopts.
 - **Source — the same rule with both variants printed side by side.** J. M. Jackson & N. V. Solomatova,
   *Mineral Physics 1: Earth Mineralogy and Phase Diagrams*, **CIDER 2016 short course** (slides,
   `seismo.berkeley.edu/wiki_cider/images/e/eb/Jackson_CIDER_MinPhys.pdf`), slides "Goldschmidt's
@@ -411,6 +444,27 @@ interpretations for the admissible `r'` given a reference `r` — and then the p
    *declared* parameterization. The delivered `radiusMatch_min_iff`, whose right-hand side is
    `|r − r'| ≤ τ * min r r'`, is therefore **the faithful formalization of the printed rule** — a much
    stronger statement than "one of several defensible readings".
+3b. ⭐ **Independent modern confirmation of the same denominator** (`S21`, `first-hand` via the second
+   parcel; two DOIs re-checked against Crossref here). Four modern sources print the **smaller-ion**
+   convention: Gollé-Leidreiter et al., *Acta Cryst. B* **80** (2024) 182: *"isomorphic substitution
+   between different ions is only possible if the difference in ionic radii is less than 15 % **of the
+   smaller ion**"* (and its own arithmetic corroborates it: Sn⁴⁺ 0.69 Å vs Ge⁴⁺ 0.53 Å printed as
+   `30 %` = `0.16/0.53`); Nagaenko et al., *Heliyon* **6** (2020) e03497: *"the difference in ionic
+   radii (ΔR) should not exceed 15 % **relative to a smaller value**"*; Umedov et al., *Front. Chem.*
+   **8** (2020) 564 computes `7.24 %` from Sn⁴⁺/In³⁺, which is the smaller-ion denominator; and Ou et
+   al., *Chem. Sci.* **17** (2026) 16201 prints **the only explicit radius-difference formula**
+   retrieved: *"The ionic radius ratio for each pair of lanthanides `M_a/M_b` is quantified as
+   `[(M_a − M_b)/M_b] × 100 %`"* — denominator `= M_b`, the smaller ion in every worked example.
+   ⇒ The primary text's convention is **not an isolated reading**: it is the convention of four
+   independent modern works, and one modern paper states it as an explicit formula.
+3c. ⚠️ **But the convention is genuinely inconsistent in modern usage, and this must be recorded.**
+   Cani, Cuyvers & Pescarmona, *ChemSusChem* **18** (2025) `10.1002/cssc.202401180` (Crossref-checked
+   here) prints *"the solute and solvent ionic radii should not differ for more than 15 %"* with **no
+   reference ion**, and its own next sentence calls Fe³⁺ `0.645 Å` vs In³⁺ `0.80 Å` a difference of
+   `19 %` — which is `0.155/0.80`, i.e. the **larger**-ion denominator. Four further sources print the
+   percentage with **no** reference ion at all. So: **the primary text fixes `min` for a Goldschmidt
+   transcription, while a minority modern usage uses `max`** — which is exactly why `RadiusMatch`'s
+   first argument must stay an explicit parameter rather than being silently fixed.
 4. **Three premises the original makes explicit and the plan should carry** (same sentence and its
    neighbourhood): (a) the comparison is made **at temperatures not very close to the melting
    curves**; (b) the memoir's discussion is restricted to the **simplest compound types** (`AX`, `AX₂`);
@@ -500,30 +554,51 @@ premise finding after §S3.1.
 ### S3.2.1 Documented coupled-substitution examples
 
 **Q. Do the sources document the plan's `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` pair?**
-**A. No.** No retrieved source — and not the primary memoir — prints that pair. The primary memoir's
-documented coupled example is instead **the plagioclase pair `NaAlSi₃O₈` / `CaAl₂Si₂O₈`**
-(`S9`, printed p. 81, quoted above), i.e. `Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺` in a framework silicate — a
-`(+1,+4) ↔ (+2,+3)` swap, **not** an oxide perovskite and **not** the `NaNbO₃`/`CaTiO₃` pair. That
-pair, or `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺`, **is** documented in the modern perovskite literature, and so are
-`(+1)`-for-`(+2)` swaps in oxides. Four `first-hand` examples, in increasing explicitness:
+**A. YES — one peer-reviewed source does** (`S20`, delivered by this round's second parcel and
+Crossref-checked here), and it is the *only* one found. The **primary memoir's** own coupled example
+is instead **the plagioclase pair `NaAlSi₃O₈` / `CaAl₂Si₂O₈`** (`S9`, printed p. 81, quoted above),
+i.e. `Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺` in a framework silicate — a `(+1,+4) ↔ (+2,+3)` swap, **not** an
+oxide perovskite. Five `first-hand` examples follow, in increasing explicitness:
 
 | # | printed example, verbatim | source | status |
 |---|---|---|---|
+| ⭐ **E0** | "**Na⁺ is substituted at the Ca²⁺ site in this system to ensure local level charge compensation.**" — with, elsewhere in the same introduction, substituting "Na⁺ at the A-site and Nb⁵⁺ at the B-site in `CaTiO₃`" | M. Shindhu, N. Ahlawat, S. Sanghi et al., *Indian Journal of Pure & Applied Physics* **63**(1) (2025) 22–33, p. 23 — a peer-reviewed study of the **`CaTiO₃`–`NaNbO₃`** system. ⚠️ **the DOI `10.56042/ijpap.v63i1.9803` is publisher-asserted only — `api.crossref.org` returns `Resource not found` (checked here)**; cite by journal/volume/pages, not by DOI | **first-hand** (second parcel; the DOI caveat is this session's check) |
 | **E1** | "The introduction of **La** and **Na** as **heterovalent** ions into the perovskite also satisfies the **charge balance**, as represented by **A²⁺B⁴⁺O₃**." | Li, Zhao, Fan, Li, Tan, Wang et al., *Rational A-Site Entropy Engineering in Perovskites: Dual-Exchange Enhanced Magnetoelectric Coupling*, **Adv. Sci. 13**, e16938 (2025-10-17), DOI `10.1002/advs.202516938` (`PMC12766988`) | **first-hand** |
 | **E2** | "half of Sm was designed to partially substitute Bi, and the other half of Sm to partially replace Na. The specific amounts of Bi and Na replaced were determined based on **the charge balance condition**. … in BNTS0.5, the amount of Sm³⁺ is 0.0054 moles. Since half of Sm³⁺ replaces Bi³⁺, the amount of the latter after doping is given by 0.5 – 0.0027 = 0.4973 moles. Instead, the amount of Na⁺ is given by **0.5 – 0.0027 × 3/1 = 0.4919 moles**." | Tang, Hu, Koval, Zeng et al., *Effect of Samarium Doping on the Energy Storage Properties of Bismuth Sodium Titanate-Based Lead-Free Ceramics*, **ACS Appl. Mater. Interfaces 17**, 53780–53790 (2025-09-10), DOI `10.1021/acsami.5c12016` (`PMC12464909`) | **first-hand** |
-| **E3** | "Ni²⁺ substitutes for Pb²⁺ at the B-site and Pr³⁺ for Cs⁺ at the A-site, **keeping charge balance**." / "The **self-compensating mechanism** of Ni²⁺/Pr³⁺ codoping (**Ni²⁺ ↔ Pb²⁺, Pr³⁺ ↔ Cs⁺**) maintains overall **charge neutrality** by complementing itself. The total cationic charge … remains +4 per unit cell." | *Dynamical stability and multifunctional properties of Ni²⁺/Pr³⁺ co-doped CsPbCl₃*, **RSC Adv. 15** (2025), DOI `10.1039/d5ra07356a` (`PMC12757862`) — a **halide** perovskite | **first-hand** |
+| **E3** | "Ni²⁺ substitutes for Pb²⁺ at the B-site and Pr³⁺ for Cs⁺ at the A-site, **keeping charge balance**." / "The **self-compensating mechanism** of Ni²⁺/Pr³⁺ codoping (**Ni²⁺ ↔ Pb²⁺, Pr³⁺ ↔ Cs⁺**) maintains overall **charge neutrality** by complementing itself. The total cationic charge … remains +4 per unit cell." | Azam, Zaman, Rafiq, Rahman et al., *Dynamical stability and multifunctional properties of Ni²⁺/Pr³⁺ co-doped CsPbCl₃*, **RSC Adv. 16** (2026) 55–75 … ⚠️ **DOI caveat:** the paper id `PMC12757862` is the locus read; the DOI `10.1039/d5ra07356a` is **not** this paper's (Crossref resolves it to a different work), and the RSC Adv. **16** 55–75 DOI is **unverified** here. Cite by journal/volume/pages or the PMC id | **first-hand** (text) / DOI **unverified** |
+| **E4** | "the charge-coupled substitution **`A`Mg²⁺ + `B`Si⁴⁺ ↔ `A`Fe³⁺(high-spin) + `B`Al³⁺** is predominant in the incorporation of Fe and Al into the practically **eightfold-coordinated A-site** and the **sixfold-coordinated B-site** in bridgmanite structure" | Nakatsuka, Fukui, Kamada et al., *Scientific Reports* **11** 22839 (2021-11-24), DOI `10.1038/s41598-021-00403-6` ✔ (Crossref-verified here) | **first-hand** (second parcel; Crossref check here) |
+
+⭐ **E4 is the exact charge-increment structure the plan names, printed *backwards*.** The plan's
+`A²⁺+B⁴⁺ ↔ A³⁺+B³⁺` is the reverse of E4's measured direction `A²⁺+B⁴⁺ → A³⁺+B³⁺`… i.e. E4 reads
+`Mg²⁺+Si⁴⁺ ↔ Fe³⁺+Al³⁺`, whose right-hand side is precisely `A³⁺+B³⁺` and left-hand side `A²⁺+B⁴⁺`.
+The substitution direction is a **free parameter** of the relation; the charge arithmetic is symmetric
+(`2+4 = 3+3 = 6`). ⚠️ **Corollary that must be recorded as a non-theorem:** the charge sums do **not**
+discriminate the two families — both `Na⁺+Nb⁵⁺ = 6 = Ca²⁺+Ti⁴⁺` and `A³⁺+B³⁺ = 6 = A²⁺+B⁴⁺` balance.
+So **no premise may be added that one family is charge-forbidden.**
 
 **Which pair the sources actually document, and with what increments:**
 
+- ⭐ **E0 documents the plan's pair itself**, in an oxide perovskite (`CaTiO₃`–`NaNbO₃`): `Na⁺` at the
+  **A** site substituting `Ca²⁺`, and `Nb⁵⁺` at the **B** site substituting `Ti⁴⁺`, with "local level
+  charge compensation" printed as the reason. Printed charges `1+, 5+, 2+, 4+`; the sum
+  `1+ + 5+ = 6 = 2+ + 4+` is **this record's arithmetic from those printed charges** — the source
+  prints the charges, the sites and the compensation reason, not the one-line equation. **So §9's I6
+  row family may keep the plan's pair after all**, citing `S20`; the round-1 recommendation to drop it
+  is **withdrawn**, with the caveat that the citation has **no resolvable DOI**.
+
 - **E1** documents the `(A²⁺) ↔ (A³⁺ + A⁺)` structure in an **oxide** perovskite: `La³⁺` on the A
   site gives `Δz = +1` against the host `A²⁺`, and `Na⁺` on the A site gives `Δz = −1`; the equal
-  proportions cancel. ⭐ **This is the closest documented analogue of the plan's charge-increment
-  structure in an oxide perovskite** — and note it is a **`+1`-for-`+2` paired with `+3`-for-`+2`**
-  swap (an `A²⁺+A²⁺ ↔ A³⁺+A⁺` pairing), whereas the plan's example `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` is a
-  **cross-site** `(+1,+5) ↔ (+2,+4)` pairing. Both are `∑ dz = 0`; they are **not the same pair**, and
-  the plan's specific pair remains **undocumented**. E1 also does **not** print the two increments —
-  it prints the host formula `A²⁺B⁴⁺O₃` and the conclusion that charge balance holds, so the site
-  assignment above is a **reading of the source, not a printed statement**.
+- ⭐ **E0 documents the plan's own pair** in an oxide perovskite, so it supersedes the round-1
+  conclusion. `Na⁺` at the **A** site for `Ca²⁺`, `Nb⁵⁺` at the **B** site for `Ti⁴⁺`, "local level
+  charge compensation" printed as the reason. This is a **cross-site** `(+1,+5) ↔ (+2,+4)` pairing —
+  the same charge-increment shape as **E4** (`+1/-1` at one site paired with `-1/+1`… i.e.
+  `(+2,+4) ↔ (+3,+3)`), and a *different shape* from E1's same-site `A²⁺+A²⁺ ↔ A³⁺+A⁺` pairing. All
+  three satisfy `∑ dz = 0`, which is exactly why the charge sums cannot select among them.
+- **E1** documents the same-site `(A²⁺) ↔ (A³⁺ + A⁺)` structure in an **oxide** perovskite: `La³⁺` on
+  the A site gives `Δz = +1` against the host `A²⁺`, and `Na⁺` on the A site gives `Δz = −1`; the
+  equal proportions cancel — a **`+1`-for-`+2` paired with `+3`-for-`+2`** swap. E1 does **not** print
+  the two increments: it prints the host formula `A²⁺B⁴⁺O₃` and the conclusion that charge balance
+  holds, so the site assignment above is a **reading of the source, not a printed statement**.
 - **E2** is the cleanest for `ChargeBalanced` because it prints the arithmetic: `Sm³⁺` replaces
   `Bi³⁺` (isovalent, 1:1) **and** `Na⁺` at the printed ratio `3/1` — i.e. **three `Na⁺` per one
   `Sm³⁺`**, which is the compensating-partner arithmetic of the plan's `exists_compensating_partner`
@@ -541,6 +616,9 @@ pair, or `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺`, **is** documented in the modern per
   framework silicate. It is **not** a perovskite and **not** an oxide, but it is the example the
   *primary source* uses for the charge condition, and its increments are the plan's
   `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺` **structure** with the roles of A and B swapped between the two sublattices.
+  ⭐ **Independent convergence worth recording:** the *modern teaching literature* prints the *same*
+  pair — CIDER 2016 (`S13`) writes the coupled reaction as `Si⁴⁺ + Na⁺ = Al³⁺ + Ca²⁺` and gives
+  Albite `NaAlSi₃O₈` ↔ Anorthite `CaAl₂Si₂O₈`, i.e. the pair Goldschmidt documents on printed p. 81.
 
 - **Formalizable implication.** What becomes an **explicit Lean premise**: `ChargeBalanced dz :=
   ∑ i, dz i = 0` is a **declared rule** — and after reading the primary text, that phrase must be
@@ -559,10 +637,12 @@ pair, or `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺`, **is** documented in the modern per
   between that index set and real lattice sites is a **declared** modelling step expressible only in
   prose. **Impact on `plan.md`:** §5's rows (`chargeBalanced_single_iff`, `chargeBalanced_pair_iff`,
   `isovalent_single`, `exists_negative_of_pos`, `exists_compensating_partner`) require **no statement
-  change**; but (i) §9's row family I6 should cite **E1** for the `A²⁺ ↔ (A³⁺, A⁺)` oxide structure,
-  **E2** for the printed `3/1` compensating arithmetic, and the plagioclase pair for the primary
-  locus, and should **mark the specific pair `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` as undocumented** (or replace
-  it with E1's pair, which *is* documented); (ii) §12's charge-rule row must be rewritten from
+  change**; but (i) §9's row family I6 may **keep** the plan's pair `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` on the
+  strength of **`S20`** (documented in `CaTiO₃`–`NaNbO₃`, §S3.2.1 E0) — cited **by journal/volume/
+  pages**, because its DOI does not resolve — and should additionally cite the plagioclase pair for
+  the primary locus, **E1** for the `A²⁺ ↔ (A³⁺, A⁺)` oxide structure, **E2** for the printed `3/1`
+  compensating arithmetic, and **P4** for the measured `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺` direction; ⚠️ and it must
+  **not** add any premise that one family is charge-forbidden (the charge sums do not discriminate); (ii) §12's charge-rule row must be rewritten from
   "**declared rule**" to "**declared rule, and NOT Goldschmidt's own criterion** — the primary text
   (`S9`, p. 80–81) states a stoichiometric matching condition and explicitly folds valency into the
   apparent radii; `∑ dz = 0` is a later systematization; the literature also prints a `|Δz| = 1`
@@ -610,7 +690,16 @@ pair, or `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺`, **is** documented in the modern per
   to it anywhere retrieved is the `Δχ ≳ 0.1` threshold of Ringwood as reported by the USGS report.
   `S8` (first-hand) confirms the tradition's use of the descriptor: "the factors they used were the
   difference of electronegativity […]" in a two-dimensional formability map. **No source retrieved
-  proposes a functional form.**
+  proposes a functional form** — none, that is, until the second parcel's `S23`, which finds a
+  **different** kind of quantitative statement:
+  ⭐ **`ΔEN ≤ 0.4` on the Pauling scale, printed twice independently** (Heliyon **6** (2020) e03497:
+  *"the difference in electronegativity (ΔEN) should not exceed 0.4 according to Pauling"*; Molecules
+  **30** (2025) 4282: *"relaxing the electronegativity constraint to not more than ±0.4 on the Pauling
+  scale"*). ⚠️ **But this is a conjunction, not a trade-off**: those sources apply the radius bound
+  **and** the `Δχ` cap independently (a rectangle in `(|Δχ|, |Δr|)`), whereas `S9`/`chiTol` is a
+  **trade-off** (a moving radius threshold). The two shapes are not the same theory, and the plan
+  formalizes the trade-off — so the `0.4` cap may be cited only as *evidence that a numeric
+  electronegativity threshold exists on the Pauling scale*, never as support for linearity.
 - ⭐ **A printed isovalent A-site example in a perovskite** (`S9`, printed p. 91 / scan p. 90):
   *"Beispielsweise können wir im `CaTiO₃` das `Ca` durch `Sr` oder `Ba` ersetzen, unter Beibehaltung
   des Strukturtypus"* — "for example, in `CaTiO₃` we can replace the `Ca` by `Sr` or `Ba`, preserving
@@ -844,15 +933,16 @@ provenance of the factor and of the band `[0.8, 1]` is now **first-hand**, so th
 | 2 | §4 constant `hiTetragonal = 11/10` | **keep the definition**, add a §12 honesty row: "declared band edge, chosen for the instance layer; **no printed `[1, 11/10]` band exists**" | the band is a *parameter* by design; what was wrong was presenting this edge as the literature's tetragonal band. Nearest printed support: `S15`'s `t ≥ 1.1` rejection sentence |
 | 3 | §2 conventions | **add** "every printed `t` is quoted together with the radius triple its source used; two `t` values for one compound from sources with different `r_O` are two different numbers" | `rO = 1.35` (`S8`, `S15`) vs `1.40` (`S6`, `S16`) moves every `t` by ≈ 0.5–1 % (`INSTANCE-DATA.md` §T3b) |
 | 4 | §9 rows I2/I3/I4 docstrings | **add** the literature locus: `SrTiO₃` `t = 1.00` (`S6`, same radii, rounded), `1.009` (`S8`, `rO = 1.35`), and ⭐ **Goldschmidt's own `0,9x`** (`S9`, his radii); `BaNiO₃` `t = 1.13` (`S6`) hexagonal | a delivered `tooLarge` verdict for the archetype otherwise reads as a defect (§S5.1); and the radius-compilation dependence is now first-hand |
-| 5 | §1.4 non-goals | **add** the `r_cation/r_anion ≥ 0.732` / radius-ratio rule as a criterion on a **different ratio**, and note that `0.732` in `S8` is the *upper end of the 6-fold octahedral-factor interval* | the plan must not be read as conflating the two criteria (§S1.3) |
+| 5 | §1.4 non-goals | **add** the `r_cation/r_anion ≥ 0.732` / radius-ratio rule as a criterion on a **different ratio**, note that `0.732` appears in `S8` as the *upper end of the 6-fold octahedral-factor interval* and in `S25` as the 8-fold cube factor, and ⚠️ **do not eponym it "Pauling's rule" without qualification** | the plan must not be read as conflating the two criteria (§S1.3); and `S24` reports the ladder is Hüttig/Magnus, with Goldschmidt applying it to ionic lattices in the same 1926 volume — while **Pauling 1929's text was not read** |
 | 6 | §12 honesty table | **strengthen** the "declared modelling premise" rows by citing `S3`'s "There is no boundary on the tolerance factor scale that separates perovskites from non-perovskites" and `S6`'s "the tolerance factor is only a rough estimate" | these are the printed statements that license treating the band as declared rather than proved (§S2.3) |
 | 7 | §1.1 / §12 attribution to Goldschmidt | ✅ **no longer a weakening — a strengthening.** Cite `S9` for the factor, the band, and the rules | the primary text **was** read (§S1.1b–c); the round-1 "soften the attribution" recommendation is **withdrawn** |
 | 8 | §1.2 / §6–§7 / §12 | **no change** | the "absent from the literature" claim is now *evidenced* by §NOT and the statements themselves are correct as written |
-| 9 | §2 `τ` row and §5 `radiusMatch_*` docstrings | ⭐ **record that the printed rule is the `min` form**, `\|r − r'\| ≤ (3/20)·min(r, r')` (`S9` p. 83: "in Prozenten des kleinsten Radius"), and that `radiusMatch_min_iff` is therefore the *faithful* form; `RadiusMatch τ r r'` is the declared parameterization | the round-1 recommendation to "declare the reference ion as a convention" is **withdrawn** — the reference ion is a literature datum (§S3.1 item 3) |
+| 9 | §2 `τ` row and §5 `radiusMatch_*` docstrings | ⭐ **record that the printed rule is the `min` form**, `\|r − r'\| ≤ (3/20)·min(r, r')` (`S9` p. 83: "in Prozenten des kleinsten Radius"), **corroborated by four modern sources** (`S21`, one of them printing the explicit formula `[(M_a − M_b)/M_b] × 100 %`), **and that a minority modern usage uses `max`** (`S22`'s own arithmetic). So `radiusMatch_min_iff` **is** the faithful form and `RadiusMatch τ r r'` stays the declared parameterization — the parameter is *load-bearing*, not cosmetic | the round-1 recommendation to "declare the reference ion as a convention" is **withdrawn** as to Goldschmidt (it is a literature datum) but **strengthened** as to the modern corpus (which is inconsistent) (§S3.1 items 3–3c) |
 | 10 | §12 charge-rule row | ⭐ **rewrite**: `ChargeBalanced dz` (`∑ dz = 0`) is a **later systematization, NOT Goldschmidt's criterion** — `S9` (pp. 80–81) states a *stoichiometric* matching condition and **explicitly folds valency into the apparent radii**; the literature also prints a `\|Δz\| = 1` variant | this is the §S3 finding that most changes the honesty table (§S3.2 Form 0) |
-| 11 | §9 row family I6 | **replace or mark as undocumented** the pair `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`; cite instead the primary plagioclase pair `NaAlSi₃O₈`/`CaAl₂Si₂O₈` (`S9` p. 81), the oxide `A²⁺ ↔ (A³⁺, A⁺)` statement E1, and the printed `3/1` arithmetic E2 | no retrieved source prints the plan's specific pair (§S3.2.1) |
+| 11 | §9 row family I6 | ⭐ **the plan's pair MAY STAY**: `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` **is** documented in `CaTiO₃`–`NaNbO₃` (`S20`), so the round-1 recommendation to drop it is **withdrawn** — but cite it **by journal/volume/pages** because its DOI does not resolve in Crossref. Add the primary plagioclase pair (`S9` p. 81, also reprinted by `S13`), the measured `A²⁺+B⁴⁺ ↔ A³⁺+B³⁺` direction (`INSTANCE-DATA.md` §T4 **P4**, Nakatsuka et al., *Sci. Rep.* **11** 22839, `10.1038/s41598-021-00403-6`), the oxide `A²⁺ ↔ (A³⁺, A⁺)` statement (E1) and the printed `3/1` arithmetic (E2) | the pair is documented (§S3.2.1 E0) but the citation is DOI-less; and **no premise may say a family is charge-forbidden** — the charge sums do not discriminate (§S3.2.1) |
 | 12 | §9 row family I5 | **add** the primary isovalent example `CaTiO₃` → `Sr`/`Ba` at the A site (`S9` p. 91) as the positive instance of the radius rule | first-hand locus for a row family that currently cites only Shannon radii (§S3.3) |
-| 13 | §12 radius-rule row and §2 `χ` row | **add** that the 15 % is printed as *"etwa 15 %"* ("about"), and that the plan's `τ = 3/20` is a **declared sharpening**; and that Goldschmidt's quantity is `Feldwirkungen`, with electronegativity a modern surrogate | the source is explicit about both (§S3.1, §S3.3) |
+| 13 | §12 radius-rule row and §2 `χ` row | **add** that the 15 % is printed as *"etwa 15 %"* ("about"), and that the plan's `τ = 3/20` is a **declared sharpening**; and that Goldschmidt's quantity is `Feldwirkungen`, with electronegativity a modern surrogate. ⭐ Also **add** the `ΔEN ≤ 0.4` Pauling-scale cap (`S23`, printed twice independently) as the only *numeric* electronegativity criterion in the literature — **while stating that it is a conjunction, not the trade-off the plan formalizes** | the source is explicit about the first two (§S3.1, §S3.3); the `0.4` cap tells the reader a numeric threshold exists, and the shape difference tells them not to mistake it for `chiTol` |
+| 14 | §12 row for the primary source | ⭐ **add one row**: the factor, the ideal relation and the band `[4/5, 1]` are **first-hand from Goldschmidt's own memoir** (`S9`), so those three are **transcriptions**, while §6–§7's equivalences remain the theory's own. ⚠️ State that the `S9` quotations are **OCR of an image-only scan** (the volume has no text layer) and that its tables are `OCR-variant` | keeps the record's strongest evidence and its weakest link visible in the same table (§S1.1b) |
 
 **Statements that this round confirms need NO change** (worth recording, so round 2 does not revisit
 them): the parameterized-band design (§2), the radius-window equivalence and its squared form as
@@ -878,9 +968,22 @@ themselves.
    radius-ratio table: `1.0–0.732` → 8-fold cubic, `0.732–0.414` → 6-fold octahedral). Update §S1.3
    and `INSTANCE-DATA.md` §T5 to cite `S13` alongside `S8`, and note that `S13` is the source that
    prints the table **as Pauling's** rather than as an octahedral-factor interval.
-5. **The `10 %` / `20 %` radius-rule variants** — this round found **15 % only** in retrieved sources
-   (the `10 %` figure belongs to the electronegativity threshold, §S3.3). A second parcel on this is
-   still running; if it reports a printed `10 %` or `20 %` radius rule, §S3.1 gains rows.
+5. ✅ **DONE — the `10 %` / `20 %` radius-rule variants**: the second parcel's ~30 full-text phrase
+   searches plus this session's own searches found **no** peer-reviewed source printing a `10 %` or
+   `20 %` radius-difference threshold — **every citable source prints 15 %**. The `10 %` figure belongs
+   to the **electronegativity** threshold (§S3.3). The only non-15 % *size* boundary retrieved is the
+   three-band `< 15 % / 15–30 % / > 30 %` classification (§S3.1). **Treat "sometimes 10 % or 20 %" as
+   unverified by this survey.**
+5b. ⭐ **NEW round-2 item — the two DOI defects this round found.** (i) `S20` (the plan's own
+   `Na⁺+Nb⁵⁺ ↔ Ca²⁺+Ti⁴⁺` pair, *Indian J. Pure & Appl. Phys.* **63**(1) 2025) has **no Crossref DOI**:
+   verify the record against the publisher's own landing page and record the page of the quoted
+   sentences. (ii) E3's asserted DOI `10.1039/d5ra07356a` resolves to a **different work** — obtain the
+   correct DOI for the Ni²⁺/Pr³⁺-codoped `CsPbCl₃` paper (locus `PMC12757862`).
+5c. ⭐ **NEW round-2 item — the primary text's OCR, and pp. 112–117.** All `S9` quotations are OCR of
+   an **image-only** scan; re-read the page images for printed pp. 79–80 (the band), p. 83 (the `15 %`
+   clause and its parenthetical), and pp. 80–81 (the charge condition). Also read pp. **112–117**,
+   where `S24` says Goldschmidt applies the radius-ratio rules to infinite ionic lattices — **this
+   round did not read those pages**, which is why §S1.3 records the `0.732` attribution as contested.
 6. **`S10` (Li, Soh & Wu 2004)** — Elsevier paywall; the `0.8 ≤ t ≤ 1` attribution currently rests on
    `S3`. Retrieve to close the loop on the `0.75`-vs-`0.8` lower edge's provenance.
 7. **`S11` (Glazer 1972)** — `bibliographic-only`; obtain if the round-2 record wants to state
