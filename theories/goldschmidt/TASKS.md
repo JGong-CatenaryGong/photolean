@@ -76,24 +76,27 @@
 - [x] definitions `tolFac` / `latticeOf` / `idealAO` / `idealA` / `rAMin` / `rAMax` / `InBand` /
       `GoldschmidtConforms` / `GoldschmidtZone` / `goldschmidtZone` / band constants / `gapA`
       — Basic.lean — prover_b — done — (verifier run 1 PASS) — plan §4
-- [ ] `tolFac_pos`, `two_div_sqrtTwo`, `latticeOf_div_sqrtTwo`, `tolFac_eq_distRatio`,
+- [x] `tolFac_pos`, `two_div_sqrtTwo`, `latticeOf_div_sqrtTwo`, `tolFac_eq_distRatio`,
       `contact_iff_tolFac_one`, `idealA_eq`, `idealA_tolFac`, `gapA_pos_iff`,
       `goldschmidtZone_eq_tooSmall_iff`, `goldschmidtZone_eq_ideal_iff`,
       `goldschmidtZone_eq_tooLarge_iff` (exact form), `goldschmidtZone_eq_tooLarge_iff_of_band`,
       `rAMin_one`, `rAMax_one` — Basic.lean — prover_b — done — (verifier run 1 PASS) — plan §4
 
-## G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_c; proving)
+## G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_c; delivered, in review)
 
-- [ ] all rows of plan §5 — Rules.lean — prover_c — proving — (dispatched in parallel with G1: the
+- [ ] all rows of plan §5 — Rules.lean — prover_c — review — commits `52e204e`/`931e350`,
+      **18/18**, gates green (build / `check.sh --strict` / 13 of 13 `axioms.sh` both by the owner and
+      by the lead / fidelity 18/18 `0 differences`). Milestone delivered — (dispatched in parallel with G1: the
       rules layer does not import the description layer, so it needed no Basic.lean)
       — author reports **17/18 delivered and all four gates green** (build OK / `check.sh --strict`
       PASS / 12 of 12 `axioms.sh` PASS / fidelity `signature differences: 0`, `not delivered yet: 1`);
       the missing row is `chiTol_anti`, FALSE in the authority and corrected in commit `d6821c4`
       (plan §3.1 item 8; the owner is delivering it in a second commit)
 
-## G3 — law layer (`PhotoLean/Goldschmidt/Criterion.lean`; owner prover_d; proving)
+## G3 — law layer (`PhotoLean/Goldschmidt/Criterion.lean`; owner prover_d; delivered, in review)
 
-- [ ] all rows of plan §6 — Criterion.lean — prover_d — proving — (the two headline equivalences
+- [ ] all rows of plan §6 — Criterion.lean — prover_d — review — commit `2ca5f2c`, **24/24**
+      plus 8 `private` helpers, gates green (lead re-ran all 24 `axioms.sh` independently: 24/24) — (the two headline equivalences
       `conforms_iff_radius_window` and `conforms_iff_sq` are the critical path for G4/G5/G6)
       — **three of its rows were FALSE in the authority and were corrected before delivery**
       (`tolFac_mono_rO_of_lt` / `tolFac_anti_rO_of_lt`: the `rO ↦ t` pole at `rO = -rB` means
@@ -104,22 +107,42 @@
 
 - [ ] all rows of plan §7 (12 theorems: the two edge-failure rows, the point-band row, the
       substitution transfer, the 15 %-rule → Δt bridge, `tolFac_irrational`, and the five witnesses)
-      — Sharp.lean — prover_b — review — commit `cd09ef1`; owner-reported gates: build OK /
+      — Sharp.lean — prover_b — review — commits `cd09ef1` + `af9429a` (the point-band row
+      re-delivered after the authority dropped its unconsumed premise, plan §3.1 item 9); owner-reported gates: build OK /
       `check.sh --strict` PASS / 12 of 12 `axioms.sh` PASS / fidelity 12/12 `0 differences`.
       Owner finding: `conforms_point_band_iff`'s `0 < rB + rO` premise is never consumed → the
       authority dropped it (plan §3.1 item 9) and the row is being re-delivered.
       (verifier run 2 covers G2/G3/G4)
 
-## G5 — rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`; owner prover_c)
+## G5 — rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`; owner prover_c; delivered, in review)
 
-- [ ] all rows of plan §8 — RatModel.lean — prover_c — todo
+- [ ] all rows of plan §8 — RatModel.lean — prover_c — review — commits `65985fe` + `67a58a4`,
+      **22/22**, gates green (lead re-ran all 12 `axioms.sh`: 12/12); the second commit drops the two
+      unconsumed premises of `inBandQ_ideal_iff` (plan §3.1 item 10)
 
-## G6 — instance verdicts (`PhotoLean/Goldschmidt/Instances.lean`; owner prover_c)
+## G6 — instance verdicts (`PhotoLean/Goldschmidt/Instances.lean`; owner prover_d; delivered, in review)
 
-- [ ] all rows of plan §9 (families I1–I8) — Instances.lean — prover_c — todo
+- [ ] all rows of plan §9 (families I1–I8) — Instances.lean — prover_d — review — commit
+      `427609b`, **34/34**, gates green (owner-reported build / `check.sh --strict` / 23 of 23
+      `axioms.sh` / fidelity 34/34; the lead re-ran the 23-row `axioms.sh` sweep: 23/23); the
+      off-kernel exact-rational cross-check exits 0 with 0 mismatches. Owner finding: the strict scan
+      caught one comment line beginning with `constant` (the keyword-allow-list is matched by a
+      line-wise grep over comments too) — reworded, recorded in the experience bank
 
 ## G7 — closeout (owner lead)
 
-- [ ] relations node / no-edge registry for the Goldschmidt theory (`PhotoLean/Relations.lean`,
-      `theories/RELATIONS.md`), README + AGENTS status, bilingual `RESULTS.md`, final verifier run
-      — lead — todo
+- [x] relations node / no-edge registry for the Goldschmidt theory (`PhotoLean/Relations.lean` §10,
+      `theories/RELATIONS.md` §1/§2.5/§3 N4), with the measured import facts and the N4 shape look-alike
+      against Sabatier — commit `c045fe5`; `Relations.lean` rebuilt and gate-clean — lead — done
+- [x] README sixth-theory status entry (modules, 139 declarations, fidelity 139/139) and the
+      six-theory relation-graph bullet — commit `b5e28d8` — lead — done
+- [x] bilingual `RESULTS.md` (the single human-facing deliverable, English original + Chinese
+      rendering per section) — commits `b3e2e69`/`f95a704`/`671b082` — lead — done
+- [ ] literature round 1 incorporated into `plan.md` §1.1/§2/§9/§12 and `RESULTS.md` §6 (the primary
+      source retrieved: the factor and the `0.8–1.0` band are Goldschmidt's own, the `[1, 11/10]` band
+      is declared with no printed support, the 15 % reference is the *smaller* ion, the charge rule is a
+      later systematization) — commits `671b082`/`f95a704` — lead — done
+- [ ] instance docstrings aligned with the literature record (the `SrTiO₃` printed-vs-derived flip, the
+      `LaMnO₃` spin state and the unverified `Mn³⁺` radius, the documented coupled-substitution
+      citations replacing the undocumented `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`) — lead — todo (comment-only)
+- [ ] final verifier runs recorded in the acceptance table below (runs 2 and 3) — lead — todo
