@@ -3055,3 +3055,56 @@
   `0 ≤ hi`, `0 ≤ rA + rO`) that squaring requires; (c) a trichotomy row is delivered as two branch rows
   with the pole-excluding premise plus one constant row whose quantifier cannot reach the pole, and the
   docstring should name which hypothesis carries the row.
+
+## 2026-09-21 — G4 Goldschmidt sharp conditions: failure characterizations, the 15 %-rule Δt bridge and the witnesses — prover_b — DONE
+
+- Task: `PhotoLean/Goldschmidt/Sharp.lean` (milestone G4). Delivered **12 theorem rows and no
+  definitions**: `not_conforms_of_band_empty`, `conforms_point_band_iff`,
+  `not_conforms_of_lt_rAMin`, `not_conforms_of_rAMax_lt`, `tolFac_irrational`, `tolFacFifteen_le`,
+  `conforms_of_radiusMatch_window`, `witness_tooSmall`, `witness_tooLarge`,
+  `witness_inverted_band`, `witness_ideal_packing`, `witness_band_flip`. No auxiliary and no `private`
+  declaration, so fidelity reports exactly the authority's 12 rows with 0 "not in authority" entries.
+  Commit `cd09ef1`.
+- Gates, raw: `proofs/scripts/lake build PhotoLean.Goldschmidt.Sharp` → exit 0, "Build completed
+  successfully."; a direct `proofs/scripts/lake env lean PhotoLean/Goldschmidt/Sharp.lean` → **0 lines
+  of output, exit 0** (the zero-warning evidence, see item 5 below); `proofs/scripts/check.sh --strict
+  PhotoLean.Goldschmidt.Sharp` → exit 0, scan `clean`, `verdict: PASS`; `axioms.sh` on **all 12
+  theorems** → each exit 0, `verdict: PASS (only mathlib infrastructure axioms)`,
+  `[propext, Classical.choice, Quot.sound]`; `bep-fidelity.py --theory goldschmidt --milestone G4` →
+  `skeleton declarations: 12`, `delivered, word-for-word: 12`, `delivered, not in authority: 0`,
+  `not delivered yet: 0`, `signature differences: 0` (exit 0).
+- **One more authority defect of the non-load-bearing-premise class (finding class F4), not a FALSE
+  row:** `conforms_point_band_iff` carries `(h : 0 < rB + rO)`, which the row does not consume — a
+  point band is `lo ≤ t ∧ t ≤ lo`, i.e. `t = lo`, for every real `t`, including a vanishing
+  denominator (plan §3.1 item 2 removed exactly this kind of premise from
+  `conforms_symmetric_band_iff`). The premise was kept verbatim for signature fidelity and the
+  unused-variable linter disabled locally (header note +
+  `set_option linter.unusedVariables false in`), the convention already used for four declarations in
+  `PhotoLean/Hammond/Basic.lean`. Flagged to the lead as a candidate §3.1 correction; no other G4 row
+  has an unconsumed hypothesis.
+- Tried and failed (all measured on the pinned toolchain, each with its working replacement):
+  1. **`norm_num` alone after `rw [conforms_iff_sq …]` does not unfold the band constants.**
+     Result: `unsolved goals ⊢ 2 * classicLo ^ 2 * 4 ≤ 0 → classicHi ^ 2 < 0`. Working:
+     `norm_num [classicLo, classicHi]` (put the constants in the simp set).
+  2. **`rw [tolFac_abs_shift_eq (rA := rA) … (d := rA' - rA) h]` cannot fire on `tolFac rA' rB rO`.**
+     Result: `tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+     |tolFac (rA + (rA' - rA)) rB rO - tolFac rA rB rO|` — `rA'` is not syntactically
+     `rA + (rA' - rA)`. Working: rewrite the goal first,
+     `rw [show rA' = rA + (rA' - rA) by ring, tolFac_abs_shift_eq … h]`.
+  3. **`norm_num` does not unfold a constant in a hypothesis-position proof.**
+     `not_conforms_of_band_empty (by norm_num)` for the inverted witness leaves
+     `unsolved goals ⊢ classicLo < 1`; working: `(by unfold classicLo; norm_num)`.
+  4. **Measured non-failure worth recording:** `exact hm` **does** see through the `RadiusMatch` def
+     (`hm : RadiusMatch tauGoldschmidt rA rA'` closes `|rA - rA'| ≤ tauGoldschmidt * rA`), so the
+     delivered `rw [RadiusMatch] at hm` is optional; the same defeq folding does **not** extend to the
+     `conforms_iff_sq` rewrite of a `GoldschmidtConforms` goal.
+  5. **A warning is a defect under this repo's zero-warning standard, and `lake build` can hide it.**
+     The first draft of `conforms_point_band_iff` produced `warning: unused variable `h`` while the
+     build still exited 0; and `touch` + `lake build` did not re-elaborate the module (Lake caches by
+     content hash). Working evidence route: `proofs/scripts/lake env lean <file>` and require **0 lines
+     of output**.
+- Reusable pattern: the four rational witnesses need no `Real.sqrt` algebra at all — routing them
+  through G3's `√2`-free `conforms_iff_sq` turns each into a concrete rational comparison that
+  `norm_num [constants]` decides in one line; the milestone's own irrationality row is the exact dual
+  of that choice (it is *why* comparing `t` cannot be the decision route), so `tolFac_irrational` and
+  the `witness_*` family should be read together.

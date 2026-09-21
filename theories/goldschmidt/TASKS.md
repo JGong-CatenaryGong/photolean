@@ -12,7 +12,9 @@
 - Plan and milestone statements: `theories/goldschmidt/plan.md`.
 - **Statement authority**: `theories/goldschmidt/probes/goldschmidt-statement-skeleton.lean`
   (fidelity check `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt [--milestone G<k>]`).
-- **Sprint-0 kernel evidence**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` (0 error).
+- **Sprint-0 kernel evidence**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — **not yet
+  evidence**: it does not compile yet (see the Sprint-0 row below and plan §1.2/§11). No row of it may
+  be cited as kernel evidence until it reports exit 0 / 0 errors.
 - Theory direction: **the Goldschmidt tolerance factor and Goldschmidt's rules of ionic
   substitution**, human request of 2026-09-21 (three parts: formal description / proof and exact
   conditions / instance verdicts).
@@ -36,11 +38,12 @@
       compiling plus the provers' own kernel work did), and **no row of it may be cited as kernel
       evidence until it reports exit 0 / 0 errors** — plan §1.2. Four FALSE authority rows were caught
       instead by the milestone provers (`chiTol_anti` in G2; the two `r_O` monotonicity rows and
-      `tolFac_rO_const_iff` in G3 — plan §3.1 items 6–9); the probe is being brought to 0 error
+      `tolFac_rO_const_iff` in G3 — plan §3.1 items 6–8); the probe is being brought to 0 error
       against the corrected signatures
 - [~] API calibration (`api_researcher`) → `proofs/API-NOTES.md` § "Goldschmidt theory (2026-09-21)"
-      + `theories/goldschmidt/probes/goldschmidt-api-*.lean` (5 probes; the lead independently
-      re-ran all five: exit 0 / 0 error each)
+      + `theories/goldschmidt/probes/goldschmidt-api-*.lean` (7 probes; the lead and the verifier independently
+      re-ran all seven: exit 0 / 0 error each; the probes themselves are committed with the
+      API-NOTES entry)
 - [~] Literature survey (`literature_researcher`) → `theories/goldschmidt/LITERATURE.md` +
       `theories/goldschmidt/literature/INSTANCE-DATA.md`
 - [x] Plan landed: `theories/goldschmidt/plan.md` §1–§14
@@ -52,7 +55,16 @@
 - [x] Human confirmation of the design (2026-09-21: directory `theories/goldschmidt/`, full scope
       ①+②+③, module layout G1–G6)
 
-## G1 — description layer (`PhotoLean/Goldschmidt/Basic.lean`; owner prover_b; delivered)
+## G1 — description layer (`PhotoLean/Goldschmidt/Basic.lean`; owner prover_b; **VERIFIED — verifier run 1 PASS**)
+
+> **Verifier run 1 (independent, batch 1 = G1 + the Sprint-0 artifacts): PASS — 0 HIGH / 6 MEDIUM / 9
+> LOW.** All 15 findings are in the record layer (plan/board/API-NOTES wording, the probe's status, and
+> the fidelity checker's milestone-scope blind spot); no delivered declaration was invalidated. The
+> verifier re-ran all four gates itself (14/14 `axioms.sh`, bare `check.sh --strict` PASS, and the
+> clean-tree `git archive` re-runs at `65cdd32`/`bdfd681`), re-derived the six instance `t²` values
+> independently (identical to plan §9), and tried to break the four classifier rows with a
+> **1000-point exact-rational search including 450 inverted bands and 100 degenerate bands: 0
+> violations**. The lead has disposed of M1–M6 and L1–L9 in the record (M1/M2/M3 with api_researcher).
 
 > Delivered commit `65cdd32` (213 lines, 29 declarations = 15 definitions + 14 theorems), all
 > word-for-word against the corrected authority. Gates reported by the owner and independently
@@ -61,15 +73,14 @@
 > `signature differences: 0`. Owner side-effect: the authority's `goldschmidtZone_eq_tooLarge_iff`
 > draft was FALSE on an inverted band and was corrected before delivery (plan §3.1 item 4).
 
-- [ ] definitions `tolFac` / `latticeOf` / `idealAO` / `idealA` / `rAMin` / `rAMax` / `InBand` /
+- [x] definitions `tolFac` / `latticeOf` / `idealAO` / `idealA` / `rAMin` / `rAMax` / `InBand` /
       `GoldschmidtConforms` / `GoldschmidtZone` / `goldschmidtZone` / band constants / `gapA`
-      — Basic.lean — prover_b — review — plan §4
+      — Basic.lean — prover_b — done — (verifier run 1 PASS) — plan §4
 - [ ] `tolFac_pos`, `two_div_sqrtTwo`, `latticeOf_div_sqrtTwo`, `tolFac_eq_distRatio`,
       `contact_iff_tolFac_one`, `idealA_eq`, `idealA_tolFac`, `gapA_pos_iff`,
       `goldschmidtZone_eq_tooSmall_iff`, `goldschmidtZone_eq_ideal_iff`,
       `goldschmidtZone_eq_tooLarge_iff` (exact form), `goldschmidtZone_eq_tooLarge_iff_of_band`,
-      `rAMin_one`, `rAMax_one` — Basic.lean — prover_b — review — plan §4
-      (verifier run 1: batch 1 = G1 + Sprint-0 artifacts)
+      `rAMin_one`, `rAMax_one` — Basic.lean — prover_b — done — (verifier run 1 PASS) — plan §4
 
 ## G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_c; proving)
 
@@ -89,9 +100,15 @@
       `0 < rO` is not enough — the rows now take `(hB : 0 < rB + rO)`; `tolFac_rO_const_iff`: now takes
       `(hrB : 0 ≤ rB) (hrO : 0 < rO)`. Kernel counterexamples in plan §3.1 items 6–8)
 
-## G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_d)
+## G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_b; delivered, in review)
 
-- [ ] all rows of plan §7 — Sharp.lean — prover_d — todo
+- [ ] all rows of plan §7 (12 theorems: the two edge-failure rows, the point-band row, the
+      substitution transfer, the 15 %-rule → Δt bridge, `tolFac_irrational`, and the five witnesses)
+      — Sharp.lean — prover_b — review — commit `cd09ef1`; owner-reported gates: build OK /
+      `check.sh --strict` PASS / 12 of 12 `axioms.sh` PASS / fidelity 12/12 `0 differences`.
+      Owner finding: `conforms_point_band_iff`'s `0 < rB + rO` premise is never consumed → the
+      authority dropped it (plan §3.1 item 9) and the row is being re-delivered.
+      (verifier run 2 covers G2/G3/G4)
 
 ## G5 — rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`; owner prover_c)
 

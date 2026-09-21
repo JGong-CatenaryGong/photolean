@@ -185,7 +185,7 @@ difference is a defect**.
 
 ### 3.1 Statement-correction log (the authority changes only through this log)
 
-The authority declares **138 declarations** (Sprint 0). Three rows were corrected by hand-derivation
+The authority declares **139 declarations** (Sprint 0). Eight rows were corrected before the milestones were dispatched or while they were being proved (items 1–8 below)
 *before* the milestones were dispatched — every statement is spot-checked, not only the ones that
 look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-checks them in the kernel.
 
@@ -194,8 +194,10 @@ look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-check
    reference radius would flip it). Corrected row: `(htau : 0 ≤ tau) (hr : 0 ≤ r) → RadiusMatch τ r r`.
 2. **`conforms_symmetric_band_iff` — hypothesis dropped.** First draft carried `0 ≤ delta`. The
    equivalence is `abs_le` applied to the window row `rAMin (1-δ) ≤ rA ≤ rAMax (1+δ)` with the two
-   closed forms `idealA ∓ δ * idealAO`, which holds for **every** `δ` (at `δ > 1` the band is empty
-   but the two sides of the equivalence are both false). Keeping the unused premise would have been a
+   closed forms `idealA ∓ δ * idealAO`, which holds for **every** `δ` (at `δ < 0` the band is empty
+   and both sides of the equivalence are false; for `δ > 1` the band is *not* empty — `[1-δ, 1+δ]`
+   contains `1` — which the verifier's kernel check of `δ = 2` confirmed, so that justification was
+   corrected here). Keeping the unused premise would have been a
    non-load-bearing hypothesis (a finding class the Sabatier verifier raised as F4), so it is removed
    rather than retained.
 3. **`rAMin_le_iff_sq` / `le_rAMax_iff_sq` moved from G4 to G3.** The two per-edge squared rows are
@@ -255,13 +257,20 @@ look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-check
    (that row was TRUE as drafted and is unchanged); its proof instantiates this row with the two
    `χ` arguments swapped, which is a one-liner.
 
-Item 9 sits in G2, items 6–8 in G3; all four were caught by the milestone provers **before** the rows
+Item 8 sits in G2; items 6–7 in G3; all four were caught by the milestone provers **before** the rows
 were delivered, so no delivered declaration was ever invalidated. Process note, recorded because it
 is the same failure class as items 1–5: the Sprint-0 risk probe was supposed to catch exactly these
 rows before dispatch, and it did not, because the probe itself still had errors at that moment
 (§1.2's honest status). The lesson is in `proofs/EXPERIENCE.md`: **a probe's "0 error" claim is an
 artifact claim like any other — it must be measured after the last edit, not assumed from the
 absence of a complaint.**
+
+9. **`conforms_point_band_iff` — hypothesis dropped (found by `prover_b` in G4, kernel-measured).**
+   The draft carried `(h : 0 < rB + rO)`. The row is `GoldschmidtConforms lo lo rA rB rO ↔ tolFac rA
+   rB rO = lo`, i.e. `lo ≤ t ∧ t ≤ lo ↔ t = lo` for the *number* `tolFac rA rB rO` — pure antisymmetry,
+   with no division algebra in sight, so the premise is never consumed (the first draft of the proof
+   warned `unused variable h`). Removed rather than retained with a lint suppression, following items 2
+   and 5. The other eleven G4 rows have no unconsumed premise.
 
 The instance layer's numbers were fixed by an **off-kernel exact-rational cross-check** before any
 row was dispatched (see §9 and `theories/goldschmidt/probes/goldschmidt-instance-check.py`); its run
@@ -272,11 +281,11 @@ tetragonal band (`t² = 90601/70688`).
 
 ---
 
-## 4. G1 — description layer (`PhotoLean/Goldschmidt/Basic.lean`; owner lead; Sprint 0)
+## 4. G1 — description layer (`PhotoLean/Goldschmidt/Basic.lean`; owner prover_b; Sprint 0)
 
 Definitions: `tolFac`, `latticeOf`, `idealAO`, `idealA`, `rAMin`, `rAMax`, `InBand`,
 `GoldschmidtConforms`, `GoldschmidtZone` (inductive, with `DecidableEq`), `goldschmidtZone`, the band
-constants `classicLo = 4/5`, `classicHi = 1`, `hiTetragonal = 11/10`, `tauGoldschmidt = 3/20`, plus
+constants `classicLo = 4/5`, `classicHi = 1`, `tetragonalHi = 11/10`, `tauGoldschmidt = 3/20`, plus
 the geometric auxiliary `gapA rA rB rO = idealAO rB rO - (rA + rO)` (the A–O rattling gap).
 
 Theorems:
@@ -295,7 +304,7 @@ Theorems:
 
 ## 5. G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_a; Sprint 1)
 
-Definitions: `RadiusMatch` (already G1), `chiTol`, `Substitutable`, `ChargeBalanced`, `isovalent`.
+Definitions: `RadiusMatch` (defined here, in G2), `chiTol`, `Substitutable`, `ChargeBalanced`, `isovalent`.
 
 | row | statement | sketch |
 |---|---|---|
@@ -303,11 +312,10 @@ Definitions: `RadiusMatch` (already G1), `chiTol`, `Substitutable`, `ChargeBalan
 | `radiusMatch_min_iff` | `0 ≤ τ → (RadiusMatch τ r r' ∧ RadiusMatch τ r' r ↔ |r - r'| ≤ τ * min r r')` | `min` case split |
 | `radiusMatch_refl` / `radiusMatch_mono_tau` | reflexivity, monotonicity in `τ` | `abs_nonneg`, `mul_le_mul_of_nonneg_right` |
 | `radiusMatch_fifteen_window` | `RadiusMatch (3/20) r r' ↔ 17 * r ≤ 20 * r' ∧ 20 * r' ≤ 23 * r` | `norm_num` arithmetic form of the window |
-| `radiusMatch_comp` | `0 < r1 → 0 ≤ τ → RadiusMatch τ r1 r2 → RadiusMatch τ r2 r3 → RadiusMatch ((1+τ)^2 - 1) r1 r3` | the *ratchet*: two 15 % steps drift by more than 15 % |
+| `radiusMatch_comp_ratchet` | `0 < r1 → 0 ≤ τ → RadiusMatch τ r1 r2 → RadiusMatch τ r2 r3 → RadiusMatch ((1+τ)^2 - 1) r1 r3` | the *ratchet*: two 15 % steps drift by more than 15 % |
 | `radiusMatch_symm_iff` | `RadiusMatch τ r r' ↔ RadiusMatch τ r' r` under the *min* form (both directions) | from `radiusMatch_min_iff` |
 | `chargeBalanced_single_iff` | `ChargeBalanced (fun _ : Unit => dz) ↔ dz = 0` | `Finset.sum_unit` |
 | `chargeBalanced_pair_iff` | `ChargeBalanced (dz : Bool → ℤ) ↔ dz false + dz true = 0` | `Finset.sum_bool` |
-| `isovalent_single` | a single-site substitution is charge-balanced iff it is isovalent | `chargeBalanced_single_iff` |
 | `exists_negative_of_pos` | `∑ i, dz i = 0 → (∃ i, 0 < dz i) → ∃ j, dz j < 0` | `Finset.sum_eq_zero_iff_of_nonneg` (contrapositive) |
 | `exists_compensating_partner` | `∑ i, dz i = 0 → 0 < dz i → ∃ j, j ≠ i ∧ dz j < 0` | sum over `erase i` is non-positive |
 | `chiTol_anti` | `|χ'' - χ| ≤ |χ' - χ| → 0 ≤ k → chiTol tol₀ k χ χ'' ≤ chiTol tol₀ k χ χ'` | `sub_le_sub_left` |
@@ -326,13 +334,13 @@ Definitions: `RadiusMatch` (already G1), `chiTol`, `Substitutable`, `ChargeBalan
 | `tolFac_scale_invariance` | `0 < c → tolFac (c*rA) (c*rB) (c*rO) = tolFac rA rB rO` | factor `c` out, cancel |
 | `tolFac_ratio_form` | `0 < rO → tolFac rA rB rO = ((rA/rO) + 1) / (√2 * ((rB/rO) + 1))` | `field_simp` |
 | `tolFac_shift` | `tolFac (rA + d) rB rO - tolFac rA rB rO = d / (√2 * (rB + rO))` | **exact** affine shift law |
-| `tolFac_abs_shift_le` | `0 < rB + rO → |tolFac (rA + d) rB rO - tolFac rA rB rO| ≤ |d| / (√2 * (rB + rO))` | from the identity |
+| `tolFac_abs_shift_eq` | `0 < rB + rO → |tolFac (rA + d) rB rO - tolFac rA rB rO| ≤ |d| / (√2 * (rB + rO))` | from the identity |
 | `conforms_at_idealA_iff` | `0 < rB + rO → (GoldschmidtConforms lo hi (idealA rB rO) rB rO ↔ lo ≤ 1 ∧ 1 ≤ hi)` | `idealA_tolFac` |
-| **`conforms_iff_radius_window`** | `0 ≤ lo → lo ≤ hi → 0 < rB + rO → (GoldschmidtConforms lo hi rA rB rO ↔ rAMin lo rB rO ≤ rA ∧ rA ≤ rAMax hi rB rO)` | **headline**: divide by the positive denominator, no squaring |
+| **`conforms_iff_radius_window`** | `0 < rB + rO → (GoldschmidtConforms lo hi rA rB rO ↔ rAMin lo rB rO ≤ rA ∧ rA ≤ rAMax hi rB rO)` (no band-nonemptiness premise — exact for every `lo`, `hi`) | **headline**: divide by the positive denominator, no squaring |
 | `rAMin_le_iff_sq` | `0 ≤ lo → 0 < rB + rO → 0 ≤ rA + rO → (rAMin lo rB rO ≤ rA ↔ 2*lo^2*(rB+rO)^2 ≤ (rA+rO)^2)` | per-edge squared form (`mul_self_le_mul_self_iff` + `Real.sq_sqrt`) |
 | `le_rAMax_iff_sq` | `0 ≤ hi → 0 < rB + rO → 0 ≤ rA + rO → (rA ≤ rAMax hi rB rO ↔ (rA+rO)^2 ≤ 2*hi^2*(rB+rO)^2)` | the upper edge |
 | **`conforms_iff_sq`** | `0 ≤ lo → 0 ≤ hi → 0 < rB + rO → 0 ≤ rA + rO → (GoldschmidtConforms lo hi rA rB rO ↔ 2*lo^2*(rB+rO)^2 ≤ (rA+rO)^2 ∧ (rA+rO)^2 ≤ 2*hi^2*(rB+rO)^2)` | the `√2`-free form (`sq_le_sq'`) |
-| `conforms_symmetric_band_iff` | `0 ≤ δ → δ < 1 → 0 < rB + rO → (GoldschmidtConforms (1-δ) (1+δ) rA rB rO ↔ |rA - idealA rB rO| ≤ δ * idealAO rB rO)` | from the window: `|·| ≤ y ↔ -y ≤ · ≤ y` |
+| `conforms_symmetric_band_iff` | `0 < rB + rO → (GoldschmidtConforms (1-δ) (1+δ) rA rB rO ↔ |rA - idealA rB rO| ≤ δ * idealAO rB rO)` (no `0 ≤ δ` premise, §3.1 item 2) | from the window: `|·| ≤ y ↔ -y ≤ · ≤ y` |
 | `conforms_classic_band_iff` | `0 < rB + rO → (GoldschmidtConforms (4/5) 1 rA rB rO ↔ (4/5) * idealAO rB rO - rO ≤ rA ∧ rA ≤ idealA rB rO)` | instantiate the window |
 | `conforms_of_conforms_window_le` | `lo' ≤ lo → hi ≤ hi' → GoldschmidtConforms lo hi .. → GoldschmidtConforms lo' hi' ..` | intervals |
 | `exists_conforming` / `exists_tooSmall` / `exists_tooLarge` | band-level non-vacuity (`lo ≤ hi` → ∃ rA conforming; ∃ rA below; ∃ rA above) | explicit witnesses |
@@ -342,14 +350,14 @@ Definitions: `RadiusMatch` (already G1), `chiTol`, `Substitutable`, `ChargeBalan
 
 | row | statement | sketch |
 |---|---|---|
-| `conforms_iff_band_nonempty` | `hi < lo → ¬ GoldschmidtConforms lo hi rA rB rO` | `not_and_of_not_le` |
+| `not_conforms_of_band_empty` | `hi < lo → ¬ GoldschmidtConforms lo hi rA rB rO` | `not_and_of_not_le` |
 | `conforms_point_band_iff` | `0 < rB + rO → (GoldschmidtConforms lo lo rA rB rO ↔ tolFac rA rB rO = lo)` | antisymmetry |
 | `not_conforms_of_lt_rAMin` / `not_conforms_of_rAMax_lt` | the two sharp failure characterizations: below the window / above the window | window equivalence |
 | `witness_band_flip` | `GoldschmidtConforms classicHi tetragonalHi (161/100) (121/200) (7/5) ∧ ¬ GoldschmidtConforms classicLo classicHi (161/100) (121/200) (7/5)` | the band convention is a *parameter*: `BaTiO₃`'s two verdicts are both kernel facts |
 | `tolFac_irrational` | `Irrational (Real.sqrt 2)` scaled by the rational ratio: for rational `rA rB rO` with `rB + rO ≠ 0` and `rA + rO ≠ 0`, `Irrational (tolFac rA rB rO)` | `Irrational.mul_ratCast`-type closure (API probe) |
 | `tolFacFifteen_le` | `0 < rB + rO → RadiusMatch (3/20) rA rA' → |tolFac rA' rB rO - tolFac rA rB rO| ≤ (3/20) * rA / (√2 * (rB + rO))` | §6 shift + the radius window |
 | `conforms_of_radiusMatch_window` | `0 < rB + rO → RadiusMatch τ rA rA' → rAMin lo rB rO ≤ (1 - τ) * rA → (1 + τ) * rA ≤ rAMax hi rB rO → GoldschmidtConforms lo hi rA' rB rO` | rule 1 ⟹ the band verdict survives the substitution |
-| `witness_tooSmall` / `witness_tooLarge` / `witness_not_conforms_inverted` | explicit kernel-checked non-conformance rows | concrete numbers |
+| `witness_tooSmall` / `witness_tooLarge` / `witness_inverted_band` | explicit kernel-checked non-conformance rows | concrete numbers |
 
 ## 8. G5 — rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`; owner prover_c; Sprint 2)
 
@@ -409,7 +417,7 @@ literature record flags rather than resolves.
 
 | sprint | milestone | file | owner |
 |---|---|---|---|
-| 0 | contract + skeleton + risk probe + API + literature + plan (lead), G1 | `Basic.lean` | lead |
+| 0 | contract + skeleton + API + literature + plan (lead); risk probe (prover_a); G1 (prover_b) | `Basic.lean` | prover_b |
 | 1 | G2 rules, G3 law | `Rules.lean`, `Criterion.lean` | prover_a, prover_b |
 | 2 | G4 sharp, G5 rational layer | `Sharp.lean`, `RatModel.lean` | prover_d, prover_c |
 | 3 | G6 instances | `Instances.lean` | prover_c |
@@ -432,7 +440,7 @@ milestone that owns them — because early failure is cheaper.
 | the charge-compensation existence theorem needs `Finset` sum APIs (`sum_eq_zero_iff_of_nonneg`) | probe first; fallback is the two-site pairing + the sign lemma |
 | instance rows are decided by `norm_num` in `ℚ`; a mis-scaled decimal silently types the wrong verdict | each row's rationals are derived from the printed decimals in the docstring; the Python cross-check recomputes independently |
 | a band-convention verdict may look like a defect to a reader (SrTiO₃ above 1) | the band is a *parameter*; the flip rows and the monotonicity theorem make the dependence explicit, and the docstrings state which convention is being applied |
-| the `goldschmidtZone` classifier's `if`-characterization rows can be a tautology trap (S1/Hammond lesson) | only the three `…_iff` rows are delivered, each checked in the risk probe against the trichotomy |
+| the `goldschmidtZone` classifier's `if`-characterization rows are rows about the *order* of the tests, not about the predicates (S1/Hammond lesson, and here an actual defect) | four rows are delivered (`…_tooSmall_iff`, `…_ideal_iff`, the exact `…_tooLarge_iff`, and the `…_of_band` corollary); the exact row is forced by the inverted-band witness `lo = 1, hi = 0, t = 1/2` (§3.1 item 4), and the empirical risk probe failed to catch it — the kernel check that did is the provers' own work |
 
 ## 12. Honesty table (premise vs theorem)
 

@@ -335,7 +335,7 @@ theorem not_conforms_of_band_empty {lo hi rA rB rO : ℝ} (h : hi < lo) :
     ¬ GoldschmidtConforms lo hi rA rB rO := by
   sorry
 
-theorem conforms_point_band_iff {lo rA rB rO : ℝ} (h : 0 < rB + rO) :
+theorem conforms_point_band_iff (lo rA rB rO : ℝ) :
     GoldschmidtConforms lo lo rA rB rO ↔ tolFac rA rB rO = lo := by
   sorry
 
