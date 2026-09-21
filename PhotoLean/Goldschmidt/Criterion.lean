@@ -20,8 +20,9 @@
   `GoldschmidtConforms lo hi rA rB rO ↔ rAMin lo rB rO ≤ rA ∧ rA ≤ rAMax hi rB rO` (exact for every
   band, including inverted ones, because it is the result of dividing by the positive denominator
   `√2 (rB + rO)`); its `√2`-free **squared** form (the decision form of the rational layer G5); the
-  symmetric band `1 ± δ` as an absolute-value bound, with **no** hypothesis on `δ` (at `δ > 1` the
-  band is empty and both sides of the equivalence are false); the classic `4/5`–`1` band; band
+  symmetric band `1 ± δ` as an absolute-value bound, with **no** hypothesis on `δ` (at `δ < 0` the
+  band is empty and both sides of the equivalence are false; for `δ > 1` the band is *not* empty —
+  `[1 - δ, 1 + δ]` contains `1`); the classic `4/5`–`1` band; band
   monotonicity; the bridge to the G1 classifier; and band-level non-vacuity.
 
   Physical premises are explicit hypotheses (engine iron rule 3): `0 < rB + rO` wherever the
@@ -340,9 +341,11 @@ i.e. the A radius is within the fraction `δ` of the ideal A–O distance of the
 
 The equivalence carries **no hypothesis on `δ`** — in particular not `0 ≤ δ < 1`.  That is not an
 oversight but the exact statement: the window row gives `idealA - δ * idealAO ≤ rA ≤ idealA +
-δ * idealAO`, and `abs_le` turns that into the absolute-value bound for *every* `δ`; at `δ > 1` the
-band is empty and the two sides of the equivalence are both false (plan §3.1 item 2, where the
-non-load-bearing `0 ≤ δ` draft hypothesis was removed). -/
+δ * idealAO`, and `abs_le` turns that into the absolute-value bound for *every* `δ`; at `δ < 0` the
+band is empty and both sides of the equivalence are both false, while for `δ > 1` the band is *not*
+empty (`[1 - δ, 1 + δ]` contains `1`) — the first draft of this sentence said the opposite and was
+corrected after the independent verifier refuted it in the kernel (`δ = 2`, `rB = 1`, `rO = 0`,
+`rA = √2` makes both sides true; plan §3.1 item 2). -/
 theorem conforms_symmetric_band_iff {delta rA rB rO : ℝ} (h : 0 < rB + rO) :
     GoldschmidtConforms (1 - delta) (1 + delta) rA rB rO ↔
       |rA - idealA rB rO| ≤ delta * idealAO rB rO := by

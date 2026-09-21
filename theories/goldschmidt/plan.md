@@ -199,7 +199,7 @@ difference is a defect**.
 
 ### 3.1 Statement-correction log (the authority changes only through this log)
 
-The authority declares **139 declarations** (Sprint 0). Eight rows were corrected before the milestones were dispatched or while they were being proved (items 1–8 below)
+The authority declares **139 declarations** (Sprint 0). Ten rows were corrected before the milestones were dispatched or while they were being proved (items 1–10 below)
 *before* the milestones were dispatched — every statement is spot-checked, not only the ones that
 look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-checks them in the kernel.
 
@@ -271,7 +271,7 @@ look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-check
    (that row was TRUE as drafted and is unchanged); its proof instantiates this row with the two
    `χ` arguments swapped, which is a one-liner.
 
-Item 8 sits in G2; items 6–7 in G3; all four were caught by the milestone provers **before** the rows
+Item 8 sits in G2; items 6–7 in G3; items 9–10 were found by the milestone provers after delivery; all four were caught by the milestone provers **before** the rows
 were delivered, so no delivered declaration was ever invalidated. Process note, recorded because it
 is the same failure class as items 1–5: the Sprint-0 risk probe was supposed to catch exactly these
 rows before dispatch, and it did not, because the probe itself still had errors at that moment
@@ -304,6 +304,17 @@ the file being written. The delivered import graph is: `Basic` (Mathlib only) �
 `Criterion` (Basic) ← `Sharp` (Basic + Rules + Criterion), `RatModel` (Basic + Criterion + Rules), and
 `Instances` (all five).
 
+11. **`radiusMatch_comp_ratchet` — two hypotheses dropped (found by the independent verifier's
+   adversarial round on batch 2).** The row carried `(hr1 : 0 < r1)` and `(htau1 : tau ≤ 1)`. Neither is
+   needed: the triangle route `|r1 - r3| ≤ |r1 - r2| + |r2 - r3| ≤ τ r1 + τ r2 ≤ (2τ + τ²) r1` (the
+   last step from `r2 ≤ (1 + τ) r1`, which is what `RadiusMatch τ r1 r2` says, and `0 ≤ τ`) closes the
+   row with `0 ≤ tau` alone — the verifier proved that form in the kernel. The owner's first proof had
+   used exactly that route and had then switched to a version consuming all three hypotheses *only to
+   avoid an `unused variable` warning*; suppressing a lint by strengthening a statement is the same
+   mistake the G5 round recorded (plan §3.1 item 10's follow-up), so the two premises are removed. Only
+   `0 ≤ tau` remains, and it is load-bearing (the verifier's counterexample `τ = -2, r1 = r2 = -1,
+   r3 = 1`).
+
 The instance layer's numbers were fixed by an **off-kernel exact-rational cross-check** before any
 row was dispatched (see §9 and `theories/goldschmidt/probes/goldschmidt-instance-check.py`); its run
 reproduced every asserted verdict with 0 mismatches, including the three rows a reader is most likely
@@ -334,7 +345,7 @@ Theorems:
 | `goldschmidtZone_eq_tooLarge_iff_of_band` | the physically used degenerate form `lo ≤ hi → (… = tooLarge ↔ hi < t)` | from the exact row |
 | `rAMin_one` / `rAMax_one` | `rAMin 1 rB rO = idealA rB rO` / `rAMax 1 rB rO = idealA rB rO` | `ring` |
 
-## 5. G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_a; Sprint 1)
+## 5. G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_c; Sprint 1)
 
 Definitions: `RadiusMatch` (defined here, in G2), `chiTol`, `Substitutable`, `ChargeBalanced`, `isovalent`.
 
@@ -345,7 +356,6 @@ Definitions: `RadiusMatch` (defined here, in G2), `chiTol`, `Substitutable`, `Ch
 | `radiusMatch_refl` / `radiusMatch_mono_tau` | reflexivity, monotonicity in `τ` | `abs_nonneg`, `mul_le_mul_of_nonneg_right` |
 | `radiusMatch_fifteen_window` | `RadiusMatch (3/20) r r' ↔ 17 * r ≤ 20 * r' ∧ 20 * r' ≤ 23 * r` | `norm_num` arithmetic form of the window |
 | `radiusMatch_comp_ratchet` | `0 < r1 → 0 ≤ τ → RadiusMatch τ r1 r2 → RadiusMatch τ r2 r3 → RadiusMatch ((1+τ)^2 - 1) r1 r3` | the *ratchet*: two 15 % steps drift by more than 15 % |
-| `radiusMatch_symm_iff` | `RadiusMatch τ r r' ↔ RadiusMatch τ r' r` under the *min* form (both directions) | from `radiusMatch_min_iff` |
 | `chargeBalanced_single_iff` | `ChargeBalanced (fun _ : Unit => dz) ↔ dz = 0` | `Finset.sum_unit` |
 | `chargeBalanced_pair_iff` | `ChargeBalanced (dz : Bool → ℤ) ↔ dz false + dz true = 0` | `Finset.sum_bool` |
 | `exists_negative_of_pos` | `∑ i, dz i = 0 → (∃ i, 0 < dz i) → ∃ j, dz j < 0` | `Finset.sum_eq_zero_iff_of_nonneg` (contrapositive) |
@@ -354,17 +364,17 @@ Definitions: `RadiusMatch` (defined here, in G2), `chiTol`, `Substitutable`, `Ch
 | `substitutable_mono_chi` | the same monotonicity at the level of `Substitutable` (rule 3: closer electronegativity never loses a substitution) | from `chiTol_anti` + `radiusMatch_mono_tau` |
 | `substitutable_iff_window` | `Substitutable tol₀ k χ χ' r r' ↔ (1 - chiTol ..) * r ≤ r' ∧ r' ≤ (1 + chiTol ..) * r` | `radiusMatch_iff_window` |
 
-## 6. G3 — law layer (`PhotoLean/Goldschmidt/Criterion.lean`; owner prover_b; Sprint 1)
+## 6. G3 — law layer (`PhotoLean/Goldschmidt/Criterion.lean`; owner prover_d; Sprint 1)
 
 | row | statement | sketch |
 |---|---|---|
 | `tolFac_strictMono_rA` | `0 < rB + rO → rA < rA' → tolFac rA rB rO < tolFac rA' rB rO` | `div_lt_div_of_pos_right` |
 | `tolFac_strictAnti_rB` | `0 < rA + rO → 0 < rB + rO → rB < rB' → tolFac rA rB' rO < tolFac rA rB rO` | `div_lt_div_of_pos_left` + monotone denominator |
 | `tolFac_mono_rO_of_lt` / `tolFac_anti_rO_of_lt` | `rA < rB` (resp. `rB < rA`) → monotone (resp. antitone) in `rO` | sign of the derivative numerator `rB - rA` |
-| `tolFac_rO_const_iff` | `0 < rB + rO → (∀ rO', tolFac rA rB rO' = tolFac rA rB rO) ↔ rA = rB` | two-instance argument |
+| `tolFac_rO_const_iff` | `(hrB : 0 ≤ rB) (hrO : 0 < rO) → (∀ rO', 0 < rO' → tolFac rA rB rO' = tolFac rA rB rO) ↔ rA = rB` | two-instance argument (§3.1 item 7; `0 < rB + rO` alone is *not* enough) |
 | `tolFac_eq_invSqrtTwo_iff` | `0 < rB + rO → (tolFac rA rB rO = 1/√2 ↔ rA = rB)` | `div_eq_iff` + `√2·(1/√2) = 1` |
-| `tolFac_scale_invariance` | `0 < c → tolFac (c*rA) (c*rB) (c*rO) = tolFac rA rB rO` | factor `c` out, cancel |
-| `tolFac_ratio_form` | `0 < rO → tolFac rA rB rO = ((rA/rO) + 1) / (√2 * ((rB/rO) + 1))` | `field_simp` |
+| `tolFac_scale_invariance` | `c ≠ 0 → tolFac (c*rA) (c*rB) (c*rO) = tolFac rA rB rO` | factor `c` out, cancel |
+| `tolFac_ratio_form` | `rO ≠ 0 → tolFac rA rB rO = ((rA/rO) + 1) / (√2 * ((rB/rO) + 1))` | `field_simp` |
 | `tolFac_shift` | `tolFac (rA + d) rB rO - tolFac rA rB rO = d / (√2 * (rB + rO))` | **exact** affine shift law |
 | `tolFac_abs_shift_eq` | `0 < rB + rO → |tolFac (rA + d) rB rO - tolFac rA rB rO| ≤ |d| / (√2 * (rB + rO))` | from the identity |
 | `conforms_at_idealA_iff` | `0 < rB + rO → (GoldschmidtConforms lo hi (idealA rB rO) rB rO ↔ lo ≤ 1 ∧ 1 ≤ hi)` | `idealA_tolFac` |
@@ -376,15 +386,18 @@ Definitions: `RadiusMatch` (defined here, in G2), `chiTol`, `Substitutable`, `Ch
 | `conforms_classic_band_iff` | `0 < rB + rO → (GoldschmidtConforms (4/5) 1 rA rB rO ↔ (4/5) * idealAO rB rO - rO ≤ rA ∧ rA ≤ idealA rB rO)` | instantiate the window |
 | `conforms_of_conforms_window_le` | `lo' ≤ lo → hi ≤ hi' → GoldschmidtConforms lo hi .. → GoldschmidtConforms lo' hi' ..` | intervals |
 | `exists_conforming` / `exists_tooSmall` / `exists_tooLarge` | band-level non-vacuity (`lo ≤ hi` → ∃ rA conforming; ∃ rA below; ∃ rA above) | explicit witnesses |
+| `conforms_iff_ideal_packing` | `0 < rB + rO → (GoldschmidtConforms 1 1 rA rB rO ↔ rA + rO = idealAO rB rO)` | the point band at `t = 1` is exactly the simultaneous-contact condition |
+| `goldschmidtZone_ideal_iff_conforms` | `goldschmidtZone lo hi (tolFac rA rB rO) = ideal ↔ GoldschmidtConforms lo hi rA rB rO` | the classifier/verdict bridge |
 | `conforms_at_idealA_classic` | `GoldschmidtConforms (4/5) 1 (idealA rB rO) rB rO` | the model's positive headline row |
 
-## 7. G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_d; Sprint 2)
+## 7. G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_b; Sprint 2)
 
 | row | statement | sketch |
 |---|---|---|
 | `not_conforms_of_band_empty` | `hi < lo → ¬ GoldschmidtConforms lo hi rA rB rO` | `not_and_of_not_le` |
-| `conforms_point_band_iff` | `0 < rB + rO → (GoldschmidtConforms lo lo rA rB rO ↔ tolFac rA rB rO = lo)` | antisymmetry |
+| `conforms_point_band_iff` | `(lo rA rB rO : ℝ) → (GoldschmidtConforms lo lo rA rB rO ↔ tolFac rA rB rO = lo)` (no premise — §3.1 item 9) | antisymmetry |
 | `not_conforms_of_lt_rAMin` / `not_conforms_of_rAMax_lt` | the two sharp failure characterizations: below the window / above the window | window equivalence |
+| `witness_ideal_packing` | `GoldschmidtConforms classicLo classicHi (idealA 1 1) 1 1` | the ideal-`A` row of family I1 (delivered; reuses `conforms_at_idealA_classic`) |
 | `witness_band_flip` | `GoldschmidtConforms classicHi tetragonalHi (161/100) (121/200) (7/5) ∧ ¬ GoldschmidtConforms classicLo classicHi (161/100) (121/200) (7/5)` | the band convention is a *parameter*: `BaTiO₃`'s two verdicts are both kernel facts |
 | `tolFac_irrational` | `Irrational (Real.sqrt 2)` scaled by the rational ratio: for rational `rA rB rO` with `rB + rO ≠ 0` and `rA + rO ≠ 0`, `Irrational (tolFac rA rB rO)` | `Irrational.mul_ratCast`-type closure (API probe) |
 | `tolFacFifteen_le` | `0 < rB + rO → RadiusMatch (3/20) rA rA' → |tolFac rA' rB rO - tolFac rA rB rO| ≤ (3/20) * rA / (√2 * (rB + rO))` | §6 shift + the radius window |
@@ -406,7 +419,7 @@ Definitions: `tolFacSq`, `inBandQ`, `radiusMatchQ`, `chiTolQ`, `zoneQ` (computab
 | `zoneQ_tooSmall_iff` / `…_ideal_iff` / `…_tooLarge_iff` | the computable classifier's characterization rows in `ℚ` | `zoneQ_eq_zone` + G1 |
 | `chargeBalancedQ` rows | the charge rule in `ℚ`/`ℤ` (same statements, rational increments) | `chargeBalanced_single_iff` analogues |
 
-## 9. G6 — instances & verdicts (`PhotoLean/Goldschmidt/Instances.lean`; owner prover_c; Sprint 3)
+## 9. G6 — instances & verdicts (`PhotoLean/Goldschmidt/Instances.lean`; owner prover_d; Sprint 3)
 
 Row families (each row is a kernel-checked verdict, with the printed radii cited in the docstring):
 
@@ -450,8 +463,8 @@ literature record flags rather than resolves.
 | sprint | milestone | file | owner |
 |---|---|---|---|
 | 0 | contract + skeleton + API + literature + plan (lead); risk probe (prover_a); G1 (prover_b) | `Basic.lean` | prover_b |
-| 1 | G2 rules, G3 law | `Rules.lean`, `Criterion.lean` | prover_a, prover_b |
-| 2 | G4 sharp, G5 rational layer | `Sharp.lean`, `RatModel.lean` | prover_d, prover_c |
+| 1 | G2 rules, G3 law | `Rules.lean`, `Criterion.lean` | prover_c, prover_d |
+| 2 | G4 sharp, G5 rational layer | `Sharp.lean`, `RatModel.lean` | prover_b, prover_c |
 | 3 | G6 instances | `Instances.lean` | prover_c |
 | 4 | closeout: relations node, README/AGENTS, RESULTS.md, verifier | `Relations.lean` + docs | lead |
 

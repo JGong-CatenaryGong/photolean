@@ -108,9 +108,10 @@ the row is decided by `norm_num` on the squared criterion (G5), which `Rat.inBan
 classic band `4/5 ≤ t ≤ 1`.  The verdict is a fact about the printed numbers, and it is
 convention-dependent — see `inst_SrTiO3_conforms_symmetric` for the same triple against `1 ± 1/50`.
 Printed-versus-derived (literature round 1, `LITERATURE.md` §S5.1): the literature's rounded reading of
-*this same triple* is `t = 1.00` (inside the band), and the primary source's own radii give a value
-below `1` — so the verdict of `SrTiO₃` flips with the radius compilation, which is why the triple is
-named here and why the two verdicts are delivered as separate kernel facts. -/
+*this same triple* is `t = 1.00` (inside the band), while the primary source's **own** radius triple
+(`1.27 / 0.64 / 1.32` Å, not the one used here) gives a value below `1` — so the verdict of `SrTiO₃`
+flips with the radius compilation, which is why the triple is named here and why the two verdicts are
+delivered as separate kernel facts (`LITERATURE.md` §S5.1). -/
 theorem inst_SrTiO3_tooLarge_classic :
     ¬ Rat.inBandQ Rat.classicLoQ Rat.classicHiQ rA_Sr rB_Ti rO_shannon := by
   rintro ⟨_, h2⟩

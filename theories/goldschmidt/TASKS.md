@@ -32,9 +32,14 @@
       (**138 declarations**, 0 error, placeholder-only bodies; fidelity checker wired:
       `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt` → 138 not delivered, 0 signature
       differences). Three rows corrected at Sprint 0 before dispatch — plan §3.1
-- [~] **Lead risk probe**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — **owner
-      prover_a, IN FLIGHT, and it does NOT compile yet** (67 errors measured by `prover_d`, 53 by the
-      lead). Honest status: the probe did **not** gate the milestone dispatches (the authority
+- [~] **Sprint-0 risk probe**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — **owner
+      prover_a; it COMPILES: measured raw at the lead's run `proofs/scripts/lake env lean <file>` →
+      exit 0, 0 errors, 35 placeholder warnings, 0 other diagnostics, 819 lines (commits `d96a626` →
+      `3d39dde`), with 105 of the 139 authority rows closed by real proofs and 34 placeholders.** It is
+      **not** an acceptance artifact and never was: `proofs/ENGINE.yml` sets `SOURCE_DIRS="PhotoLean"`,
+      so the file lives outside the gate's scan range by design and no `check.sh --strict` covers it —
+      its status is an artifact claim, and the earlier claim that it was 0-error evidence was wrong
+      (recorded in `proofs/EXPERIENCE.md`). Honest status: the probe did **not** gate the milestone dispatches (the authority
       compiling plus the provers' own kernel work did), and **no row of it may be cited as kernel
       evidence until it reports exit 0 / 0 errors** — plan §1.2. Four FALSE authority rows were caught
       instead by the milestone provers (`chiTol_anti` in G2; the two `r_O` monotonicity rows and
@@ -84,7 +89,8 @@
 
 ## G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_c; delivered, in review)
 
-- [ ] all rows of plan §5 — Rules.lean — prover_c — review — commits `52e204e`/`931e350`,
+- [ ] all rows of plan §5 — Rules.lean — prover_c — review — commits `52e204e`/`931e350` (+ a
+      re-delivery pending the §3.1 item 11 premise drop),
       **18/18**, gates green (build / `check.sh --strict` / 13 of 13 `axioms.sh` both by the owner and
       by the lead / fidelity 18/18 `0 differences`). Milestone delivered — (dispatched in parallel with G1: the
       rules layer does not import the description layer, so it needed no Basic.lean)
@@ -154,5 +160,6 @@
 | batch | scope | verdict | key evidence |
 |---|---|---|---|
 | Run 1 (independent verifier; batch 1 = G1 + the Sprint-0 artifacts) | `PhotoLean/Goldschmidt/Basic.lean` (29 declarations) + authority skeleton, 5 API probes, the off-kernel instance script, contract/lakefile registration, plan/board/experience | **PASS** — 0 HIGH / 6 MEDIUM / 9 LOW | verifier re-ran all four gates (14/14 `axioms.sh`, bare `check.sh --strict` PASS, clean-tree `git archive` re-runs at `65cdd32`/`bdfd681`); 1000-point exact-rational search over the four classifier rows (450 inverted + 100 degenerate bands) with **0 violations**; independent recomputation of all six instance `t²` values, identical to plan §9; all 15 findings were record-layer only and were disposed in `fdb9899` (M1–M3 with `api_researcher`) |
-| Run 2 (independent verifier; batch 2 = G2 + G3) | `Rules.lean` (18) + `Criterion.lean` (24 + 8 `private` helpers), the corrected `r_O` rows and `chiTol_anti` | in flight | — |
+| Run 2 (independent verifier; batch 2 = G2 + G3) | `Rules.lean` (18) + `Criterion.lean` (24 + 8 `private` helpers), the corrected `r_O` rows and `chiTol_anti` | **PASS** (one HIGH, record layer) | verifier re-ran build / `check.sh --strict` / **37/37** `axioms.sh` / fidelity (G2 18/18, G3 24/24, 0 differences) and repeated the fidelity+build+gate runs on clean `git archive` copies of `931e350` and `2ca5f2c` (file md5s identical to the commits); it re-proved all **8 `private` helpers** of `Criterion.lean` independently (8/8 consumed, no dead helper) and adversarially re-derived every corrected row, finding each remaining hypothesis load-bearing with kernel counterexamples (`hB` for the `r_O` rows, `hrB` for the constant row, the direction of `chiTol_anti`, all four premises of `conforms_iff_sq`, `hc ≠ 0`, `rO ≠ 0`). Findings: **H1** — the delivered `Criterion.lean` docstrings repeated the FALSE sentence "at `δ > 1` the band is empty" (record layer; the theorem is unaffected) → fixed in the same round; **M1** — `radiusMatch_comp_ratchet`'s `hr1`/`htau1` are **non-load-bearing** → removed from the authority (plan §3.1 item 11) and re-delivery asked of the owner; M2/M3/M4 + L1–L4 — plan/TASKS table sync, a phantom §5 row, stale board rows and two ownership mismatches → all fixed. |
+| Run 3 (independent verifier; batch 3 = G4 + G5 + G6 + documentation plane + the frozen tree) | `Sharp.lean` (12) + `RatModel.lean` (22) + `Instances.lean` (34), the risk probe, plan/TASKS/LITERATURE/RESULTS/API-NOTES/README/Relations/lakefile | **INCOMPLETE** (code face green, no HIGH) | measured at tree `b3e2e69`: the three modules build, the bare `check.sh --strict` prints `verdict: PASS` with all six theory directories at 5/5, fidelity is 139/139 (G4 12/12, G5 22/22, G6 34/34, 0 differences) and `axioms.sh` is **47/47 PASS** (45 × `[propext, Classical.choice, Quot.sound]`, 2 × `[Quot.sound]` for the charge rows; `sorryAx` 0). It did **not** reach the instance recomputation, the adversarial attempts or the documentation audit (a)–(f), so it declined to give PASS/FAIL. Its two MEDIUM findings are disposed: the acceptance-tree drift (the gates were re-run at `ed4f58066b288deda34027339fb5a434e8343580` by the lead — `build: OK`, `verdict: PASS`) and the risk probe's evidence status (the probe is **outside `SOURCE_DIRS` by design**, so no gate covers it; its raw compile state is now recorded in the Sprint-0 board row). Its LOW (the `SrTiO₃` docstring's "below 1" possibly contradicting the delivered `t > 1`) is fixed by naming the radius compilation in the docstring. A bounded follow-up run for the three un-checked items is dispatched. |
 | Run 3 (independent verifier; batch 3 = G4 + G5 + G6 + documentation plane + the frozen tree) | `Sharp.lean` (12) + `RatModel.lean` (22) + `Instances.lean` (34), the risk probe, plan/TASKS/LITERATURE/RESULTS/API-NOTES/README/Relations/lakefile | in flight | — |
