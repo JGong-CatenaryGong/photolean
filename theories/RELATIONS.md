@@ -1,20 +1,24 @@
-# theories/RELATIONS.md — six theories, one graph: composition, look-alikes and no-edges
+# theories/RELATIONS.md — seven theories, one graph: composition, look-alikes, no-edges, and the first adjudicated conflation
 
-> **Status.** This is the discussion draft of the relation graph of the **six** delivered theories
+> **Status.** This is the discussion draft of the relation graph of the **seven** delivered theories
 > (Marcus inverted region, Hammond postulate, Bell–Evans–Polanyi principle, Kasha's rule, Sabatier
-> principle / volcano plot — the five that share the two-parabola kernel — and the Goldschmidt
-> tolerance factor with Goldschmidt's rules of ionic substitution, which shares no module and no
-> object with them and therefore enters the graph only through the no-edge registry, §2.5/§3 N4).
+> principle / volcano plot — the five of the second-batch graph — the Goldschmidt tolerance factor
+> with Goldschmidt's rules of ionic substitution, which shares no module and no object with them
+> and therefore enters the graph only through the no-edge registry (§2.5/§3 N4), and the
+> **symmetry-factor adjudication** (`SymmetryFactor`, 2026-09-21), which generalizes the kernel's
+> two-parabola object to **unequal curvatures** and enters as the graph's first **adjudicated
+> conflation**, class **A1**, §3bis/§11 of the Lean companion).
 > Its machine-checked companion is `PhotoLean/Relations.lean`
-> (**46 declarations**, measured at the second-batch extension, 2026-09-21, commit `eb5e178`; the
-> sixth-theory registration is a comment-only extension of §10, so the count is unchanged) over
+> (**50 declarations**: 46 at the second batch — measured 2026-09-21, commit `eb5e178` — plus the
+> 4 rows of §11 added by the third batch the same day; the sixth-theory registration had been a
+> comment-only extension of §10) over
 > the shared kernel `PhotoLean/Kernel.lean` (6 definitions + 2 theorems); every claim below that
 > names a Lean theorem is backed by a declaration that compiles and whose `#print axioms` output is
 > `[propext, Classical.choice, Quot.sound]`. It is written in the bilingual style of the
 > `RESULTS.md` deliverables (English original followed by its Chinese rendering); the language
 > policy and the freeze of the historical `.en.md` mirrors are recorded in `README.md`.
 >
-> **Provenance.** Two tasks built this file. The first (2026-09-20) took the bridge inventory of the
+> **Provenance.** Three tasks built this file. The first (2026-09-20) took the bridge inventory of the
 > review record (`review/REVIEW.md` §3.1, 13 rows / 16 theorems) as its input and collected the
 > edges of the three two-parabola theories. The second (2026-09-21) executed `AGENTS.md` iron
 > rule 8 item ② for the two newer theories: the Kasha → Marcus conditional composition (§2.4), the
@@ -22,21 +26,26 @@
 > no-edge registry (§2.5). The statement forms of the new rows were calibrated first in
 > `theories/Marcus/probes/relations-b2-statement-skeleton.lean`; no candidate had to be demoted to
 > prose, and the one failed proof path (a rewrite pattern in the uniqueness half of C2) is recorded
-> in `proofs/EXPERIENCE.md`.
+> in `proofs/EXPERIENCE.md`. The third (2026-09-21, the H1-crossing round of
+> adjudication rows and the two specialization certificates (§3bis, `Relations.lean` §11), plus the
+> seventh node's pairs in the no-edge registry (§2.5).
 >
-> **中文（状态与来源）**：本文件是**六个**已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
-> 原理、Kasha 规则、Sabatier 原则/火山图，以及 Goldschmidt 容忍因子与取代规则——后者经**无边登记**接入）
-> **关系图**的讨论稿。可机器检查的对应物是
-> `PhotoLean/Relations.lean`（**46 条声明**，实测于第二批扩展、2026-09-21、提交 `eb5e178`）与共享内核
+> **中文（状态与来源）**：本文件是**七个**已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
+> 原理、Kasha 规则、Sabatier 原则/火山图，Goldschmidt 容忍因子与取代规则——经**无边登记**接入——以及
+> **对称因子裁决** `SymmetryFactor`，它把内核的双抛物面对象推广到**非等曲率**，以本图第一条
+> **已裁决混同**（A1 类，§3bis / Lean 对应物 §11）的身份接入）**关系图**的讨论稿。可机器检查的对应物是
+> `PhotoLean/Relations.lean`（**50 条声明**：第二批 46 条——实测 2026-09-21、提交 `eb5e178`——加同日
+> 第三批的 §11 四条）与共享内核
 > `PhotoLean/Kernel.lean`（6 定义 + 2 定理）；下文凡点名 Lean 定理之处，均有可编译声明支撑，且其
 > `#print axioms` 输出恰为 `[propext, Classical.choice, Quot.sound]`。本文按各理论 `RESULTS.md` 的
 > 双语排版书写（英文原文后紧跟中文对照）；语言政策与历史 `.en.md` 镜像的冻结见 `README.md`。
-> **来源**：本文件由两次任务建成。第一次（2026-09-20）以审查记录 `review/REVIEW.md` §3.1（13 行 /
+> **来源**：本文件由三次任务建成。第一次（2026-09-20）以审查记录 `review/REVIEW.md` §3.1（13 行 /
 > 16 条定理）为输入，收集三个双抛物面理论的关系边；第二次（2026-09-21）执行 `AGENTS.md` 铁律 8 第 ② 项，
 > 为两个较新的理论登记关系边 —— Kasha → Marcus 条件性组合（§2.4）、Sabatier → BEP 组合（§2.4）、
 > Sabatier ↔ Marcus 形似实异簇（§3 N3）与**无边登记**（§2.5）。新增语句的形态先在
 > `theories/Marcus/probes/relations-b2-statement-skeleton.lean` 中完成标定；本次**没有任何候选被降级**为
-> 正文，唯一失败的证明路径（C2 唯一性半边的一处 `rw` 模式）记录在 `proofs/EXPERIENCE.md`。
+> 正文，唯一失败的证明路径（C2 唯一性半边的一处 `rw` 模式）记录在 `proofs/EXPERIENCE.md`。第三次
+> 两条特化证书（§3bis、`Relations.lean` §11），以及第七节点在无边登记（§2.5）中的各对。
 
 ---
 
@@ -200,20 +209,26 @@ each pair with its dependency fact and its modelling reason.
 | Kasha ↔ Hammond | **none** | branching probabilities vs. the structural coordinate; no row connects them |
 | Sabatier ↔ Hammond | **none** | Sabatier imports `BEP.Basic` only |
 | Sabatier ↔ Kasha | **none** | no shared module and no shared object |
-| Goldschmidt ↔ all five | **none** | the Goldschmidt tree imports `Mathlib` and its own modules only (`Basic`/`Rules` ← `Mathlib`, `Criterion` ← `Basic`, `Sharp` ← `Basic`+`Rules`+`Criterion`, `RatModel` ← `Basic`+`Criterion`+`Rules`, `Instances` ← **four** of them (`Basic`+`Rules`+`Criterion`+`RatModel`; it does not import `Sharp`)); the modelling reason is that its content is *geometric* (ionic radii, a packing ratio, a band on it, three substitution rules) while the five state facts about *energies* on one reaction coordinate — the two vocabularies share no scalar |
+| Goldschmidt ↔ all six | **none** | the Goldschmidt tree imports `Mathlib` and its own modules only (`Basic`/`Rules` ← `Mathlib`, `Criterion` ← `Basic`, `Sharp` ← `Basic`+`Rules`+`Criterion`, `RatModel` ← `Basic`+`Criterion`+`Rules`, `Instances` ← **four** of them (`Basic`+`Rules`+`Criterion`+`RatModel`; it does not import `Sharp`)); the modelling reason is that its content is *geometric* (ionic radii, a packing ratio, a band on it, three substitution rules) while the six state facts about *energies* on one reaction coordinate (SymmetryFactor's scalar is a curvature **pair** `(kr,kp)`, still an energy-model quantity, not a radius) — the two vocabularies share no scalar |
 | Goldschmidt ↔ Sabatier | **none** (a shape look-alike only) | a symmetric band about an ideal value is an absolute-deviation bound in both, and both have a three-way classifier — but the scalars are unrelated (radius ratio vs. binding energy), the sharp conditions differ (Goldschmidt's window equivalence is exact for every band; Sabatier's is `0 < alphaA * alphaB`) and the classifiers decide different propositions — §3 N4 |
+| SymmetryFactor ↔ Marcus, Hammond, BEP | yes, third batch | the seventh theory generalizes the kernel's two-parabola object to unequal curvatures; at the equal-curvature diagonal its coordinate IS `Kernel.tsCoord · 0` and IS `BEP.transfer · 0` (certificates), and its A1 verdict decides the β = 1/2 reading that E1 identifies with the structural coefficient — §3bis, `Relations.lean` §11 |
+| SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt | **none** | the curvature-pair scalar `(kr,kp)` shares no object with the ladder's branching rates, the volcano's descriptor axis, or the ionic radii; dependency fact: `PhotoLean/SymmetryFactor/*` imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.BEP.Criterion` and its own modules only |
 
 **中文（无边登记）**：不存在的边是**被登记的事实**而非疏漏——关系图的完整性取"**每个理论都在图上**"之义。
 登记表位于 `Relations.lean` 末尾（§10），逐对给出依赖图事实与建模理由。有边者为：Marcus ↔ BEP、
 Marcus ↔ Hammond（第一批，§2.1–§2.3）、Marcus ↔ Sabatier（第二批，形似实异簇 §3 N3）、Kasha → Marcus
-（条件性组合，§2.4）、Sabatier → BEP（组合，§2.4）；**无边**者为：Kasha ↔ BEP（Kasha 只消费
+（条件性组合，§2.4）、Sabatier → BEP（组合，§2.4）、SymmetryFactor ↔ Marcus/Hammond/BEP（第三批，A1 裁决 +
+特化证书，§3bis / `Relations.lean` §11）；**无边**者为：Kasha ↔ BEP（Kasha 只消费
 `marcusIC` 里的势垒，阶梯理论没有任何一行提到直线律、缺陷或容差窗口）、Kasha ↔ Hammond（分支概率与结构
 坐标之间没有已证联系）、Sabatier ↔ Hammond（Sabatier 只 import `BEP.Basic`）、Sabatier ↔ Kasha
-（不共享模块、不共享对象）、**Goldschmidt ↔ 全部五个**（Goldschmidt 树只 import `Mathlib` 与自身模块；
-建模理由：它的内容是**几何量**——离子半径、堆积比值、其上的容忍带、三条取代规则——而五个理论说的是
-同一反应坐标上的**能量**事实，两套词汇不共享任何标量）、**Goldschmidt ↔ Sabatier**（只有形状相似、无
+（不共享模块、不共享对象）、**Goldschmidt ↔ 全部六个**（Goldschmidt 树只 import `Mathlib` 与自身模块；
+建模理由：它的内容是**几何量**——离子半径、堆积比值、其上的容忍带、三条取代规则——而六个理论说的是
+同一反应坐标上的**能量**事实（SymmetryFactor 的标量是曲率**对** `(kr,kp)`，仍是能量模型量而非半径），
+两套词汇不共享任何标量）、**Goldschmidt ↔ Sabatier**（只有形状相似、无
 边：两侧的对称带都等价于「偏离理想值的绝对值有界」，也都各有一个三分类器，但标量无关联、锐利条件不同、
-分类器判定的是不同的命题——§3 N4）。
+分类器判定的是不同的命题——§3 N4）、**SymmetryFactor ↔ Kasha/Sabatier/Goldschmidt**（曲率对标量与阶梯分支
+速率、火山描述符轴、离子半径均无共享对象；依赖事实：`PhotoLean/SymmetryFactor/*` 只 import `Mathlib`、
+`PhotoLean.Kernel`、`PhotoLean.BEP.Criterion` 与自身模块）。
 
 ---
 
@@ -329,6 +344,75 @@ plan §3.1 第 2 条）；Sabatier 的 S1 定义 `NearOptimal tol apexD dE := |d
 
 ---
 
+## 3bis. Adjudicated conflation (class A1): the symmetry factor / 已裁决混同（A1 类）：对称因子
+
+**English.** The non-relations of §3 say "similar shape, no edge". Class **A1** says something
+stronger, and it is new with the seventh theory (`PhotoLean.SymmetryFactor`, delivered 2026-09-21):
+**the literature treats two readings as interchangeable, and the kernel decides the identification
+together with its exact validity boundary.** The pair is the electrochemical **symmetry factor** β
+(Butler–Volmer, "usually both taken to be equal to 0.5" — a first-hand practice locus,
+`theories/SymmetryFactor/LITERATURE.md` S1) against the **structural transfer coefficient** of the
+two-parabola model, generalized here to *unequal* force constants `kr, kp`. The thermoneutral
+crossing coordinate is `√kp/(√kr+√kp)`, and the verdict is the sharp equivalence
+
+> `betaHalf_iff_equalForceConstants` : `BetaHalfReading kr kp ↔ kr = kp`  (for `0 < kr, 0 < kp`)
+
+so the conflated reading holds **exactly** on the equal-curvature diagonal. Kernel witnesses:
+`(1,4) ↦ 2/3 ≠ 1/2` (refuted, `betaHalf_falsified_by_unequal`), `(4,1) ↦ 1/3` (the direction
+asymmetry — the crossing sits on the side of the *softer* well, a late transition state at **zero**
+driving force when the product well is stiffer, `tsCoordZero_gt_half_iff_stiffProduct`). The IUPAC
+Technical Report's printed warning — β deviates from 0.5 exactly when the two force constants
+differ, and α "can by no means be assumed" (LITERATURE S2, pp. 255–257) — is thereby turned from
+prose into a decided boundary.
+
+**Why the conflation survives, decided too.** The equal-curvature diagonal is not a corner case but
+the model every textbook draws (and Marcus's own declared *symmetrization* approximation, LITERATURE
+S4). Two certificates tie the seventh node to the shared kernel there:
+`symmetryFactor_tsCoordZero_eq_kernel` (`tsCoordZero lam lam = Kernel.tsCoord lam 0`) and
+`symmetryFactor_tsCoordZero_eq_bepTransfer` (`= BEP.transfer lam 0`, extending the E1 chain), and
+`betaHalf_holds_in_kernel` states that the conflated reading is a **theorem** throughout that
+family. One row packages both halves — `symmetryFactor_conflation_falsified_and_holds_in_kernel`:
+refuted at `(1,4)`, holds for every `0 < lam` on the diagonal. That is the whole adjudication: the
+identification is neither a mistake nor a law, but a **special case with a machine-checked
+boundary**.
+
+**Honest scope.** The verdict is a statement **inside the declared model** (two harmonic surfaces,
+classical crossing, thermoneutral `x = 0`); the *kinetic* reading (a derivative of the barrier at
+general driving force) and the Leffler `α = q‡` identification *under asymmetry* are registered
+non-goals (`theories/SymmetryFactor/plan.md` §1.3), the former needing analysis substrate
+(METHOD.md §7 boundary). The instance rows decide **declared numbers**, not measured electrodes. S1
+is a preprint modelling-review (a practice locus, not an authority recommendation) and is cited as a
+pair with S2, never alone.
+
+**中文（A1：已裁决混同）**：§3 的非关系说的是"形状相似、无边"。**A1** 类说的更强，且随第七个理论
+（`PhotoLean.SymmetryFactor`，2026-09-21 交付）新增：**文献把两种读法当作可互换，而内核对这个等同
+连同其精确有效边界作出裁决**。这一对是电化学**对称因子** β（Butler–Volmer，"通常都取 0.5"——一手
+实践位点，LITERATURE S1）对双抛物面模型的**结构转移系数**（此处推广到**非等**力常数 `kr, kp`）。
+热中性交叉坐标为 `√kp/(√kr+√kp)`，判决是锐利等价
+
+> `betaHalf_iff_equalForceConstants`：`BetaHalfReading kr kp ↔ kr = kp`（`0 < kr, 0 < kp` 下）
+
+即被混同的读法**恰好**在等曲率对角线上成立。内核见证：`(1,4) ↦ 2/3 ≠ 1/2`（被证伪，
+`betaHalf_falsified_by_unequal`）、`(4,1) ↦ 1/3`（方向不对称——交叉点偏向**较软**的势阱，产物阱更硬时
+在**零**驱动力下过渡态就偏晚，`tsCoordZero_gt_half_iff_stiffProduct`）。IUPAC 技术报告的印刷警告
+——两力常数不等时 β 恰好偏离 0.5、α"绝不能被假定"（LITERATURE S2, pp.255–257）——由此从散文变成
+被裁决的边界。
+
+**混同为何长存，也被裁决**：等曲率对角线不是边角情形，而是每本教科书画的那个模型（也是 Marcus 自己
+声明的*对称化*近似，LITERATURE S4）。两条证书把第七节点在該处钉到共享内核：
+`symmetryFactor_tsCoordZero_eq_kernel`（`tsCoordZero lam lam = Kernel.tsCoord lam 0`）与
+`symmetryFactor_tsCoordZero_eq_bepTransfer`（`= BEP.transfer lam 0`，延伸 E1 链），而
+`betaHalf_holds_in_kernel` 说明被混同的读法在整个该家族里是**定理**。一行把两半打包——
+`symmetryFactor_conflation_falsified_and_holds_in_kernel`：在 `(1,4)` 被证伪、在对角线上对每个
+`0 < lam` 成立。这就是整个裁决：这个等同既非错误也非定律，而是**一个带机器检查边界的特例**。
+
+**诚实范围**：判决是**声明模型内部**的陈述（两条谐振面、经典交叉、热中性 `x = 0`）；*动力学*读法
+（一般驱动力下势垒的导数）与非对称下的 Leffler `α = q‡` 等同是登记的非目标（plan §1.3），前者需要
+分析基质（METHOD.md §7 边界）。实例行判决的是**声明的数字**，不是实测电极。S1 是预印本建模综述
+（实践位点，非权威推荐），与 S2 成对引用，绝不单引。
+
+---
+
 ## 4. The quantifier shapes (prose) / 量词形态（正文讨论，非定理）
 
 **English.** The three predicates have three different logical shapes, and this difference is *not*
@@ -433,6 +517,34 @@ therefore four rows: the uniqueness half of C2, C3a, C4 and C5a.
 （C2、C3a、C3b、C4、C5a、C5b），其中 C3b 与 C5b 分别是 C3a 与 C2 的组装。故本批**真正的新数学内容是
 四行**：C2 的唯一性半边、C3a、C4、C5a。
 
+**English (third batch, 2026-09-21 — the H1 crossing).** (x) The seventh theory (`SymmetryFactor`)
+adds the graph's first **adjudicated conflation** (§3bis, class A1): `Relations.lean` grew from 46
+to **50** declarations, and **all four new rows are re-exports/certificates that add no mathematics
+here** — two tie-back certificates (`symmetryFactor_tsCoordZero_eq_kernel`,
+`symmetryFactor_tsCoordZero_eq_bepTransfer`: the equal-curvature specialization to `Kernel.tsCoord`
+and `BEP.transfer`) and two re-exports of the delivered verdict (`symmetryFactor_betaHalf_iff`,
+`symmetryFactor_conflation_falsified_and_holds_in_kernel`). The genuinely new mathematics — the
+closed form `√kp/(√kr+√kp)`, its uniqueness on `[0,1]`, and the sharp verdict
+`BetaHalfReading kr kp ↔ kr = kp` with the witnesses `(1,4) ↦ 2/3`, `(4,1) ↦ 1/3` — lives in
+`PhotoLean/SymmetryFactor/*`, not in the relation module, exactly as the accounting rule requires.
+(xi) The seventh node's remaining pairs are in the no-edge registry (§2.5): edges to
+Marcus/Hammond/BEP, no edge to Kasha/Sabatier/Goldschmidt, with the measured import fact. The
+A1 class is itself the increment: the graph could previously say "these look alike but no edge
+holds" (N-rows); it can now say "**the literature treats these as the same, and here is the kernel's
+boundary of that sameness**" — a negative adjudication with a first-hand practice locus attached.
+
+**中文（第三批增量，2026-09-21——H1 跨越）**：⑩第七个理论（`SymmetryFactor`）新增本图第一条
+**已裁决混同**（§3bis，A1 类）：`Relations.lean` 由 46 条增至 **50** 条，且**四条新增全是不含本模块
+新数学的 re-export/证书**——两条回接证书（`symmetryFactor_tsCoordZero_eq_kernel`、
+`symmetryFactor_tsCoordZero_eq_bepTransfer`：等曲率特化到 `Kernel.tsCoord` 与 `BEP.transfer`）与
+两条已交付判决的 re-export（`symmetryFactor_betaHalf_iff`、
+`symmetryFactor_conflation_falsified_and_holds_in_kernel`）。真正的新数学——闭式 `√kp/(√kr+√kp)`、
+其在 `[0,1]` 上的唯一性、锐利判决 `BetaHalfReading kr kp ↔ kr = kp` 连同见证 `(1,4) ↦ 2/3`、
+`(4,1) ↦ 1/3`——全在 `PhotoLean/SymmetryFactor/*`，不在关系模块内，正如记账规则所要求。⑪第七节点
+其余各对已入无边登记（§2.5）：与 Marcus/Hammond/BEP 有边，与 Kasha/Sabatier/Goldschmidt 无边，附
+实测 import 事实。A1 类本身就是增量：此前图只能说"形似而无边"（N 行），现在能说"**文献把二者当
+同一个，而这是内核对'同一个'的边界判决**"——一条附带一手实践位点的否定性裁决。
+
 ---
 
 ## 6. Honest boundaries / 诚实边界
@@ -441,22 +553,30 @@ therefore four rows: the uniqueness half of C2, C3a, C4 and C5a.
 rate, the Hammond trend, the BEP line law and the compositions of §2.4) is a statement *inside* the
 equal-curvature two-parabola model; the newer theories carry their own declared premises (Kasha: the
 finite ladder, the exponential-race branching, the time-integrated yields; Sabatier: the
-descriptor-axis optimisation with `Ea = max` of two branches). The BEP instance layer actually
+descriptor-axis optimisation with `Ea = max` of two branches; SymmetryFactor: the unequal-curvature
+generalization **at thermoneutrality and in its structural reading** — the kinetic reading is a
+registered non-goal, §3bis). The BEP instance layer actually
 **refutes** four first-hand literature families as equal-curvature two-parabola families while
 their affine slopes conform — the graph is a graph of *declared* models, and it was empirically
 bounded by that theory's own instance work.
 2. **Degenerate curvature.** `lam = 0` values carried by `x / 0 = 0` are a formal convention of the
 model (documented upstream at every occurrence); no relation above depends on it: the certificates
 are body-level, and the substantive equivalences carry their `lam ≠ 0` / `0 < lam` premises
-explicitly. 3. **No theory-equivalence claim.** The edges relate *statements about named models*;
-they are not a claim that the five theories are equivalent as theories, nor that any one of them is
-derivable from another. The composition edges (§2.4) are one-way in that sense too: they use an
-older theory as a component, under a stated premise. 4. **Prose vs theorem.** §4 is explicitly
-prose; the other sections are theorem-backed. 5. **Accounting.** First batch: 28 = 8 certificates +
+explicitly. The seventh theory inherits the same convention with a new face: totalized `Real.sqrt`
+makes `√(negative) = 0`, flagged wherever consumed (and the reason two of its rows are
+premise-free, its plan §3.1). 3. **No theory-equivalence claim.** The edges relate *statements about
+named models*; they are not a claim that the delivered theories are equivalent as theories, nor that
+any one of them is derivable from another — and the A1 row is a verdict about two *readings inside
+one declared model*, not about electrode kinetics. The composition edges (§2.4) are one-way in that
+sense too: they use an older theory as a component, under a stated premise. 4. **Prose vs theorem.**
+§4 is explicitly prose; the other sections are theorem-backed. 5. **Accounting.** First batch: 28 = 8 certificates +
 6 equivalences + 3 entailments + 4 reuse rows + 4 ledger rows + 3 new theorems, with four
 declarations proved in that task (O3 in §2.2 and the three of §3/§6). Second batch:
 46 = 28 + 18, of which 10 verbatim re-exports and 2 certificates add no mathematics and 6 are
-proved here — four rows of genuinely new content, as §5 (ix) records. 6. **Verification record
+proved here — four rows of genuinely new content, as §5 (ix) records. Third batch (the H1 crossing):
+50 = 46 + 4, and **all four** are re-exports/certificates (two equal-curvature tie-backs to
+`Kernel.tsCoord`/`BEP.transfer`, two re-exports of the delivered A1 verdict) — the seventh theory's
+mathematics lives entirely in `PhotoLean/SymmetryFactor/*`, none in the relation module. 6. **Verification record
 (first batch).** The delivered state was independently gated by a read-only verifier: build with
 zero warnings, strict scan `clean`, all 30 declarations of `Kernel.lean` + `Relations.lean` at
 `[propext, Classical.choice, Quot.sound]`, and the additivity audit (the only change inside the
@@ -470,17 +590,21 @@ physical connection between the two phenomena could exist. The reason is recorde
 it can be re-examined.
 
 **中文（诚实边界）**：①**基质的范围**——凡属双抛物面家族的内容（Marcus 速率、Hammond 趋势、BEP 线性律
-与 §2.4 的组合）都是等曲率双抛物模型**内部**的陈述；两个较新的理论各自携带自己的声明前提（Kasha：有限
-阶梯、指数竞争分支、时间积分产额；Sabatier：描述符轴上的优化、`Ea = max` 两支）。BEP 的实例层实测把四个
+与 §2.4 的组合）都是等曲率双抛物模型**内部**的陈述；较新的理论各自携带自己的声明前提（Kasha：有限
+阶梯、指数竞争分支、时间积分产额；Sabatier：描述符轴上的优化、`Ea = max` 两支；SymmetryFactor：
+**热中性、结构读法**下的非等曲率推广——动力学读法是登记的非目标，§3bis）。BEP 的实例层实测把四个
 一手文献族**证伪**为等曲率双抛物族（尽管其仿射斜率符合）——关系图是**声明的模型**之图，其边界由该理论
 自己的实例工作经验性地划定。②**退化曲率**——`lam = 0` 处依赖除零约定 `x / 0 = 0` 的取值是模型的形式
 约定（上游每处均已注明），本文件没有一条关系依赖它：证书是定义体层面的，实质等价全部显式携带
 `lam ≠ 0` / `0 < lam` 前提。③**不声称理论等价**——各条边关联的是**具名模型上的命题**，不是"五个理论
 作为理论等价"，也不是"由谁推出谁"；§2.4 的组合边在此意义上同样是单向的：它们把较老的理论当作组件使用，
-且前提写明。④**正文与定理分工**——§4 明确是正文讨论，其余各节的表格有定理支撑。⑤**记账**——第一批：
+且前提写明。④**正文与定理分工**——§4 明确是正文讨论，其余各节的表格有定理支撑；§3bis 的 A1 裁决
+正文有定理支撑（`betaHalf_iff_equalForceConstants` 等），其"实践位点"是文献记录而非定理。⑤**记账**——第一批：
 28 = 8 证书 + 6 等价 + 3 单向 + 4 复用 + 4 清单行 + 3 新定理，该任务**实际作证** 4 条（§2.2 的 O3 与
 §3/§6 的三条）；第二批：46 = 28 + 18，其中 10 条逐字 re-export 与 2 条证书不含新数学、6 条在本模块证明
-——真正的新内容四行，见 §5 第 (ix) 条。⑥**验证记录（第一批）**——交付状态由只读 verifier 独立跑门：
+——真正的新内容四行，见 §5 第 (ix) 条；第三批（H1 跨越）：50 = 46 + 4，**四条全是** re-export/证书
+（两条等曲率回接到 `Kernel.tsCoord`/`BEP.transfer`、两条 A1 判决的 re-export）——第七个理论的数学全在
+`PhotoLean/SymmetryFactor/*`，关系模块内无新数学。⑥**验证记录（第一批）**——交付状态由只读 verifier 独立跑门：
 零警告构建、严格扫描 `clean`、`Kernel.lean` + `Relations.lean` 全部 30 条声明公理恰为
 `[propext, Classical.choice, Quot.sound]`，加性审计通过（三个理论目录内唯一改动是
 `PhotoLean/Marcus/Barrier.lean` 一个 linter 选项的作用域收窄；剥注释并剔除那三行作用域行后，代码逐字节相同）。
@@ -505,32 +629,42 @@ proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.kashaWithin_one
 proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcus_rate_eq_activity
 proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcusRate_antiVolcanoDescriptor
 proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcus_secant_at_optimum
-# statement calibration probe (placeholders on purpose; exit 0 with warnings)
+# third batch — the A1 adjudicated conflation (§11)
+proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.symmetryFactor_betaHalf_iff
+proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.symmetryFactor_conflation_falsified_and_holds_in_kernel
+proofs/scripts/axioms.sh PhotoLean.SymmetryFactor.Sharp PhotoLean.SymmetryFactor.betaHalf_iff_equalForceConstants
+proofs/scripts/axioms.sh PhotoLean.SymmetryFactor.Instances PhotoLean.SymmetryFactor.inst_conflation_falsified
+# statement calibration probes (placeholders on purpose; exit 0 with warnings)
 proofs/scripts/lake env lean theories/Marcus/probes/relations-b2-statement-skeleton.lean
-# fidelity: 51 / 191 / 102 / 151 / 132 / 139 word-for-word, 0 differences
+proofs/scripts/lake env lean theories/SymmetryFactor/probes/SymmetryFactor-statement-skeleton.lean
+# fidelity: 51 / 191 / 102 / 151 / 132 / 139 / 35 word-for-word, 0 differences
 python3 theories/Marcus/probes/marcus-fidelity.py
 python3 theories/BEP/probes/bep-fidelity.py
 python3 theories/hammond/probes/hammond-fidelity.py
 python3 theories/BEP/probes/bep-fidelity.py --theory kasha
 python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier
 python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt
+python3 theories/BEP/probes/bep-fidelity.py --theory SymmetryFactor
 ```
 
-**English.** The last fidelity line is the sixth theory (Goldschmidt, 139 authority declarations,
-all delivered: the tool prints `delivered, word-for-word: 139`, `not delivered yet: 0`,
-`signature differences: 0`); it is registered through the no-edge registry rather than by a relation
-edge (§2.5, §3 N4). Each `axioms.sh` call must print
-`verdict: PASS (only mathlib infrastructure axioms)`; the six fidelity probes must report 0
-signature differences (51, 191, 102, 151, 132, 139); the calibration probe compiles with
-placeholders and no errors. The whole inventory is in `PhotoLean/Relations.lean` §1–§10.
+**English.** The last fidelity line is the seventh theory (SymmetryFactor, 35 authority
+declarations, all delivered: `delivered, word-for-word: 35`, `not delivered yet: 0`,
+`signature differences: 0`); the sixth (Goldschmidt, 139) is registered through the no-edge
+registry rather than by a relation edge (§2.5, §3 N4), while the seventh enters through the A1
+adjudicated conflation (§3bis, §11). Each `axioms.sh` call must print
+`verdict: PASS (only mathlib infrastructure axioms)`; the seven fidelity probes must report 0
+signature differences (51, 191, 102, 151, 132, 139, 35); the calibration probes compile with
+placeholders and no errors. The whole inventory is in `PhotoLean/Relations.lean` §1–§11.
 (The English half said "five probes" and omitted 139 until the 2026-09-21 review-fix round,
-finding M8 — the Chinese half and the command block above were already correct.)
+finding M8 — the Chinese half and the command block above were already correct; the seventh
+probe, 35, was added with the H1 crossing.)
 
-**中文**：最后一条保真命令是第六个理论（Goldschmidt，权威 139 条声明、全部交付：工具打印
-`delivered, word-for-word: 139`、`not delivered yet: 0`、`signature differences: 0`），它经**无边登记**
-而非关系边接入关系图（§2.5、§3 N4）。上述每条 `axioms.sh` 必须打印
-`verdict: PASS (only mathlib infrastructure axioms)`；六个保真探针必须报告 0 签名差异
-（51 / 191 / 102 / 151 / 132 / 139——Kasha 的 151 是 2026-09-21 评审修正轮之后的权威计数：
+**中文**：最后一条保真命令是第七个理论（SymmetryFactor，权威 35 条声明、全部交付：
+`delivered, word-for-word: 35`、`not delivered yet: 0`、`signature differences: 0`）；第六个
+（Goldschmidt，139 条）经**无边登记**而非关系边接入（§2.5、§3 N4），第七个则经 A1 已裁决混同接入
+（§3bis、§11）。上述每条 `axioms.sh` 必须打印
+`verdict: PASS (only mathlib infrastructure axioms)`；七个保真探针必须报告 0 签名差异
+（51 / 191 / 102 / 151 / 132 / 139 / 35——Kasha 的 151 是 2026-09-21 评审修正轮之后的权威计数：
 `kashaDescriptor_nonvacuous` 语句强化 + 新增 `perLevel_ic_ge_rad_insufficient`，见
 `theories/kasha/plan.md` §3.1）；标定探针以占位编译通过、无 error。
-完整清单见 `PhotoLean/Relations.lean` §1–§10。
+完整清单见 `PhotoLean/Relations.lean` §1–§11。

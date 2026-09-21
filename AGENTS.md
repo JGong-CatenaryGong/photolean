@@ -82,10 +82,13 @@ proofs/scripts/lake build PhotoLean.Smoke     # 单模块
 
 ## 当前状态
 
-**已交付状态的单一真源是 `README.md` 现状节**（六个理论：Marcus 反转区、Hammond 假说、
-BEP 原理、Kasha 规则、Sabatier 原则/火山图，以及 Goldschmidt 容忍因子与取代规则；另加共享内核
-`PhotoLean/Kernel.lean` 与关系图 `PhotoLean/Relations.lean` / `theories/RELATIONS.md`）。各理论的
-进度真源是各自的 `theories/<理论>/TASKS.md`；跨理论关系边的登记状态见 `theories/RELATIONS.md`。
+**已交付状态的单一真源是 `README.md` 现状节**（七个理论：Marcus 反转区、Hammond 假说、
+BEP 原理、Kasha 规则、Sabatier 原则/火山图、Goldschmidt 容忍因子与取代规则，以及对称因子裁决
+SymmetryFactor——本仓库第一条**已裁决混同** A1，把"β=1/2 对称因子"与结构转移系数的等同判为
+`↔ kr=kp`；另加共享内核 `PhotoLean/Kernel.lean` 与关系图 `PhotoLean/Relations.lean` /
+`theories/RELATIONS.md`）。各理论的进度真源是各自的 `theories/<理论>/TASKS.md`；跨理论关系边的
+登记状态见 `theories/RELATIONS.md`。**注**：SymmetryFactor 为作者已跑门、独立 verifier 复核
+PENDING（铁律 6/7，看板行未勾）；两个 Kasha 评审修正行（M1/M3）同样待复核。
 
 **关系边登记已闭环**：铁律 8 第 ② 项对第二批理论（Kasha、Sabatier）的补登记于 2026-09-21 完成——
 `PhotoLean/Relations.lean` §7–§10（Kasha → Marcus 条件性组合边、Sabatier → BEP 组合边、

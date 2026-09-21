@@ -10,7 +10,7 @@ Agent preset 驱动。
 
 - Lean 4.17.0 + mathlib，工具链与缓存已联通（`lake build` 冷启动 ~10s）
 - 验收门脚本可用：`proofs/scripts/check.sh --strict`、`proofs/scripts/axioms.sh`
-- **六个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
+- **七个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
   `propext` / `Classical.choice` / `Quot.sound`）：
   - **Marcus 反转区**（经典马库斯模型）——`PhotoLean/Marcus/`（8 模块：描述层 / 势垒代数 / 速率层 /
     锐利成立条件 / 微观重组能 / ℚ 判定层 / 复合 / 实例判决），**82 条声明**，语句保真 **51/51**
@@ -38,14 +38,26 @@ Agent preset 驱动。
     逐模块分解见 `theories/goldschmidt/RESULTS.md` §8），
     语句保真 **139/139**（`python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt`）；
     该理论是**纯几何**判据（离子半径、堆积比值、其上的容忍带、电荷与电负性规则），与双抛物面家族
-    **不共享任何对象**，因此经**无边登记**接入关系图（`Relations.lean` §10、`RELATIONS.md` §2.5/§3 N4）。
+    **不共享任何对象**，因此经**无边登记**接入关系图（`Relations.lean` §10、`RELATIONS.md` §2.5/§3 N4）；
+  - **对称因子裁决**（H1 跨越，2026-09-21；本仓库第一条**已裁决混同** A1）——把双抛物面模型推广到
+    **非等曲率** `(kr, kp)`，证明热中性交叉坐标 `= √kp/(√kr+√kp)`（`[0,1]` 内唯一、无微积分），从而
+    裁决电化学"转移系数/对称因子 = 1/2"的工作读法：`BetaHalfReading kr kp ↔ kr = kp`——**恰在等曲率
+    时成立**（内核见证 `(1,4) ↦ 2/3 ≠ 1/2`、`(4,1) ↦ 1/3`；等曲率对角线经证书回接 `Kernel.tsCoord`
+    与 `BEP.transfer`）。这解释了混同为何长存：教科书画的对称图正是它成立的区域——
+    `PhotoLean/SymmetryFactor/`（5 模块：描述层 / 定律层 / 判决层 / ℚ 判定层 / 实例判决），
+    **35 条声明**（28 定理 + 7 定义），语句保真 **35/35**
+    （`python3 theories/BEP/probes/bep-fidelity.py --theory SymmetryFactor`）；文献位点成对：一手
+    **实践位点**（"usually both taken to be equal to 0.5"，arXiv:2104.05424 §2.1）+ IUPAC TR 2014
+    的**印刷警告**（pp.255–257），见 `theories/SymmetryFactor/LITERATURE.md`。**作者已跑门、独立
+    verifier 复核 PENDING**（铁律 6/7：看板行未勾）。
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
-- **跨理论关系图**（覆盖全部六个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
+- **跨理论关系图**（覆盖全部七个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
   Sabatier 经**组合边**接入，Sabatier↔Marcus 另有一组"形似实异"非关系边，Goldschmidt 经**无边登记**
-  接入并另有一条"只有形状相似"的 N4 登记，其余理论对**显式登记无边**）：
-  共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（46 条声明：内核证书 /
-  真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记（含 Goldschmidt））、双语讨论稿
-  `theories/RELATIONS.md`
+  接入并另有一条"只有形状相似"的 N4 登记，SymmetryFactor 以**已裁决混同**（A1 类，新边类）接入并与
+  Marcus/Hammond/BEP 有特化证书边，其余理论对**显式登记无边**）：
+  共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（50 条声明：内核证书 /
+  真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记（含 Goldschmidt）/ 已裁决混同（A1））、
+  双语讨论稿 `theories/RELATIONS.md`
 - `PhotoLean/Smoke.lean` 是环境冒烟测试
 - 注：`README.en.md` 是语言政策生效前的英文镜像，按仓库政策**不再扩展**；权威内容以本文件为准
 
@@ -55,10 +67,14 @@ Agent preset 驱动。
 proofs/scripts/check.sh --strict                                   # 全树扫描 + 构建（应 verdict: PASS）
 proofs/scripts/axioms.sh PhotoLean.Marcus.Sharp PhotoLean.Marcus.descriptor_sharp   # 主定理公理检查
 proofs/scripts/lake env lean theories/Marcus/probes/marcus-statement-skeleton.lean           # 语句权威（含抱歉占位，仅编译）
-# 六个理论的语句保真（应各报 0 signature differences）
+# 七个理论的语句保真（应各报 0 signature differences）
 python3 theories/Marcus/probes/marcus-fidelity.py
-python3 theories/BEP/probes/bep-fidelity.py                         # BEP，另支持 --theory kasha|Sabatier|goldschmidt
+python3 theories/BEP/probes/bep-fidelity.py                         # BEP，另支持 --theory kasha|Sabatier|goldschmidt|SymmetryFactor
 python3 theories/hammond/probes/hammond-fidelity.py
+# 第七个理论（SymmetryFactor，H1 跨越 / A1 已裁决混同）的专属复核：判决 iff 与证伪行的公理检查
+proofs/scripts/axioms.sh PhotoLean.SymmetryFactor.Sharp PhotoLean.SymmetryFactor.betaHalf_iff_equalForceConstants
+proofs/scripts/axioms.sh PhotoLean.SymmetryFactor.Instances PhotoLean.SymmetryFactor.inst_conflation_falsified
+python3 theories/BEP/probes/bep-fidelity.py --theory SymmetryFactor  # 35/35, 0 differences
 # 第六个理论（Goldschmidt）的专属复核：主等价式的公理检查 + off-kernel 精确有理实例交叉检查
 proofs/scripts/axioms.sh PhotoLean.Goldschmidt.Criterion PhotoLean.Goldschmidt.conforms_iff_radius_window
 python3 theories/goldschmidt/probes/goldschmidt-instance-check.py   # exit 0, 0 mismatches
