@@ -773,7 +773,7 @@ The per-radius evidence table is `INSTANCE-DATA.md` §T2. Summary:
 | verdict | radii |
 |---|---|
 | **confirmed** against ≥ 1 retrieved first-hand source | `Sr²⁺(XII) = 1.44` · `Ti⁴⁺(VI) = 0.605` · `O²⁻ = 1.40` · `Ba²⁺(XII) = 1.61` · `Ni⁴⁺(VI) = 0.48` · `Ca²⁺(XII) = 1.34` · `La³⁺(XII) = 1.36` · `Na⁺(XII) = 1.39` · `Nb⁵⁺(VI) = 0.64` |
-| **unverified** this round | `Mn³⁺(VI, high spin) = 0.645` |
+| **confirmed second-hand** (round 2, §OUT item 3) | `Mn³⁺(VI, high spin) = 0.645` — a retrieved open-access paper states verbatim that "Mn³⁺ ions in the high spin (HS) state have an identical effective ionic radius (0.645 Å) (Shannon, 1976)" (*Energy Environment Research* **8**(2) (2018), the archived issue PDF at Library and Archives Canada, `epe.lac-bac.gc.ca/100/201/300/energy_environment_research/2018/EER-V8N2-All.pdf`). The primary Shannon table itself remains unretrieved, so the status is **second-hand confirmed** (value + Shannon attribution), not first-hand |
 
 Three sources independently print the **exact triple** `Sr²⁺ 1.44` / `Ti⁴⁺ 0.605` / `O²⁻ 1.40` —
 `S6` (first-hand; with `SrTiO₃ t = 1.00`), `S16` (first-hand; with the CNs spelled out) — and `S6`
@@ -962,8 +962,13 @@ themselves.
    `15 %` numeral. Also read the paywalled `S1` (Naturwissenschaften **14**, 477–485) to record how the
    short version differs from the memoir.
 2. ✅ **DONE — the charge rule's documented example and the chemical rule's wording** (§S3.2, §S3.3).
-3. **`Mn³⁺(VI, high spin) = 0.645`** — the one radius not confirmed first-hand (`INSTANCE-DATA.md`
-   §T2). Any paper that computes a `LaMnO₃` tolerance factor with Shannon radii will print it.
+3. ✅ **DONE (second-hand) — `Mn³⁺(VI, high spin) = 0.645`** — the one radius round 1 could not
+   confirm from a retrievable source. Round 2 retrieved an open-access paper stating verbatim that
+   "Mn³⁺ ions in the high spin (HS) state have an identical effective ionic radius (0.645 Å)
+   (Shannon, 1976)" (*Energy Environment Research* **8**(2) (2018), the archived issue PDF at Library
+   and Archives Canada) — the §S4.2 table is upgraded from *unverified* to **second-hand
+   confirmed**; a first-hand confirmation (Shannon's table itself) remains open behind the paywall,
+   but the value and its Shannon attribution no longer rest on the plan alone.
 4. ✅ **DONE — the 8-fold `r_cation/r_anion ≥ 0.732` statement** was retrieved (`S13`, Pauling's
    radius-ratio table: `1.0–0.732` → 8-fold cubic, `0.732–0.414` → 6-fold octahedral). Update §S1.3
    and `INSTANCE-DATA.md` §T5 to cite `S13` alongside `S8`, and note that `S13` is the source that

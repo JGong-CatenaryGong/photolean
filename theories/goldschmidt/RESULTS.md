@@ -270,9 +270,13 @@ matching* and explicitly folds valence into the apparent radii, so `∑ dz = 0` 
 §S3.2.1, and the delivered ±1 instance pair is labelled a model instance there). (viii) **The chemical
 rule's linearity has no source** (`chiTol = tol0 - k * |Δχ|` is a declared shape; the sources are
 qualitative "field effects" or threshold statements), so only monotonicity in `|Δχ|` is proved. (ix)
-**One printed radius is unverified**: `Mn³⁺(VI, high spin) = 0.645 Å` could not be confirmed from a
-retrievable source in round 1, so the `LaMnO₃` row names the spin state in its docstring and the value
-carries a round-2 to-do in the record — the row's arithmetic is kernel-checked *for the value used*.
+**One printed radius was unverified in round 1 and is second-hand confirmed in round 2**:
+`Mn³⁺(VI, high spin) = 0.645 Å` — a retrieved open-access paper states verbatim that "`Mn³⁺` ions in
+the high spin (HS) state have an identical effective ionic radius (0.645 Å) (Shannon, 1976)"
+(*Energy Environment Research* **8**(2) (2018), archived at Library and Archives Canada), so the
+status is upgraded from *unverified* to **second-hand confirmed** (the primary Shannon table remains
+behind a paywall); the `LaMnO₃` row still names the spin state in its docstring, and the row's
+arithmetic is kernel-checked *for the value used*.
 
 ---
 
