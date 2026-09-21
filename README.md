@@ -85,6 +85,7 @@ proofs/scripts/axioms.sh PhotoLean.Smoke smoke_ring   # 打印定理实际依赖
 | 文件 | 作用 |
 |---|---|
 | `proofs/ENGINE.md` | **引擎契约**：叶子数据面、角色、验收门、迭代循环 |
+| `proofs/METHOD.md` | **可复用形式化模板**（目标③交付物）：方法学五件套、模块骨架的稳定核与变异槽、四种基质的适配模式、关系图五类边、已实测的坑 |
 | `AGENTS.md` | 工作区铁律与工具链坑 |
 | `theories/Marcus/plan.md` | 理论规划（语句、证明草图、里程碑、验收标准） |
 | `theories/Marcus/TASKS.md` | 任务板（状态唯一真源） |
