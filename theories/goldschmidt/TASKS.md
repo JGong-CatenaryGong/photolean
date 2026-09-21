@@ -30,11 +30,14 @@
       (**138 declarations**, 0 error, placeholder-only bodies; fidelity checker wired:
       `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt` → 138 not delivered, 0 signature
       differences). Three rows corrected at Sprint 0 before dispatch — plan §3.1
-- [~] **Lead risk probe**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — proves the
-      critical-path statement forms (window equivalence, squared form, symmetric band, `rO`
-      trichotomy, irrationality row, radius-rule bridge, charge-compensation existence, `ℚ`
-      classifier transfer, instance spot checks); **owner prover_a, in review** (142 declarations;
-      the file is outside `SOURCE_DIRS`, so its placeholder-free completion is evidence, not a gate)
+- [~] **Lead risk probe**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — **owner
+      prover_a, IN FLIGHT, and it does NOT compile yet** (67 errors measured by `prover_d`, 53 by the
+      lead). Honest status: the probe did **not** gate the milestone dispatches (the authority
+      compiling plus the provers' own kernel work did), and **no row of it may be cited as kernel
+      evidence until it reports exit 0 / 0 errors** — plan §1.2. Four FALSE authority rows were caught
+      instead by the milestone provers (`chiTol_anti` in G2; the two `r_O` monotonicity rows and
+      `tolFac_rO_const_iff` in G3 — plan §3.1 items 6–9); the probe is being brought to 0 error
+      against the corrected signatures
 - [~] API calibration (`api_researcher`) → `proofs/API-NOTES.md` § "Goldschmidt theory (2026-09-21)"
       + `theories/goldschmidt/probes/goldschmidt-api-*.lean` (5 probes; the lead independently
       re-ran all five: exit 0 / 0 error each)
@@ -72,11 +75,19 @@
 
 - [ ] all rows of plan §5 — Rules.lean — prover_c — proving — (dispatched in parallel with G1: the
       rules layer does not import the description layer, so it needed no Basic.lean)
+      — author reports **17/18 delivered and all four gates green** (build OK / `check.sh --strict`
+      PASS / 12 of 12 `axioms.sh` PASS / fidelity `signature differences: 0`, `not delivered yet: 1`);
+      the missing row is `chiTol_anti`, FALSE in the authority and corrected in commit `d6821c4`
+      (plan §3.1 item 8; the owner is delivering it in a second commit)
 
 ## G3 — law layer (`PhotoLean/Goldschmidt/Criterion.lean`; owner prover_d; proving)
 
 - [ ] all rows of plan §6 — Criterion.lean — prover_d — proving — (the two headline equivalences
       `conforms_iff_radius_window` and `conforms_iff_sq` are the critical path for G4/G5/G6)
+      — **three of its rows were FALSE in the authority and were corrected before delivery**
+      (`tolFac_mono_rO_of_lt` / `tolFac_anti_rO_of_lt`: the `rO ↦ t` pole at `rO = -rB` means
+      `0 < rO` is not enough — the rows now take `(hB : 0 < rB + rO)`; `tolFac_rO_const_iff`: now takes
+      `(hrB : 0 ≤ rB) (hrO : 0 < rO)`. Kernel counterexamples in plan §3.1 items 6–8)
 
 ## G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_d)
 
