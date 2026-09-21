@@ -278,6 +278,33 @@ status is upgraded from *unverified* to **second-hand confirmed** (the primary S
 behind a paywall); the `LaMnO₃` row still names the spin state in its docstring, and the row's
 arithmetic is kernel-checked *for the value used*.
 
+**中文（诚实边界）**：①**是前提而非定理**——用三个半径描述一个 `ABO₃` 钙钛矿、理想立方几何为
+`rB + rO = a/2`（A–O 距离 `a/√2`）、以及"`t` 上的带是正确的经验判据"，三者都是**声明的建模前提**
+（plan §12），每条陈述都以它们为条件。②**带是参数，且是有意为之**——记录已写明其哪一部分有出处：
+原始文献（round 1 已检索并阅读）逐字印出 `0,8 ≤ t ≤ 1`，故 `classicLo = 4/5` 与 `classicHi = 1` 是对
+Goldschmidt 原文的**转录**；而 `tetragonalHi = 11/10` 是**无印刷带支持的声明边**（文献印的是半开区间
+母题 `t > 1`，且畸变名称有争议；`LITERATURE.md` §T1 枚举了 19 种印刷带约定及其出处，最近的印刷阈值
+`1.1` 说的是*生成*而非四方畸变）。**没有任何带被硬编码**：`lo`、`hi` 处处是假设。③**15% 规则的参照半径
+是文献事实，不是自由约定**——原文印出 "um nicht mehr als etwa 15 % (in Prozenten des kleinsten
+Radius)"，即相对**较小**半径，故交付的 `radiusMatch_min_iff`（`↔ |r - r'| ≤ τ * min r r'`）**就是**有
+出处的那条规则，而 `RadiusMatch tau r r'` 是本理论对它的**参数化拼写**（现代文献在"取大"与"取小"之间
+摇摆，这正是保留参数化的原因）；`inst_radius_convention_Ba_Cs` 证明这一区分不是装饰（一对真实离子的
+判决随参照离子翻转）。每个印刷 `t` 都随其半径三元组一起引用，因为记录里存在三个不同的氧半径
+（`1.40 Å`、`1.35 Å` 与原文自己的 `1.32 Å`）。④**不声称任何关于材料的事实**——印刷半径作为带出处的
+数字进入理论，判决是关于这些数字的陈述，不是关于实测结构的。⑤**未形式化**（有意的范围限定，plan §1.4）：
+无能量模型或生成能预测、无八面体倾转（Glazer `a⁻a⁻a⁻` 体系）、无容忍因子改良（Bartel 的 `τ`）、无八面体
+因子 `μ = rB/rO`、无温度/压力依赖、除所选印刷半径外不建模配位数或自旋态。⑥**15% 这个数字本身**把印刷的
+"etwa 15 %"锐化为声明的 `tauGoldschmidt = 3/20`；被证明的是窗口形式、*棘轮*（两步 15% 漂移
+`(1 + τ)² - 1 = 129/400`，`radiusMatch_comp_ratchet`）与向 `Δt` 的传递。⑦**电荷规则是声明的系统化，
+不是 Goldschmidt 本人的判据**：他的文本要求*化学计量匹配*并把价态折进表观半径，故 `∑ dz = 0` 是后来的
+读法（有印刷增量算术的已记录耦合取代引在 `LITERATURE.md` §S3.2.1，交付的 ±1 实例对在那里被标注为模型
+实例）。⑧**化学规则的线性形状没有出处**（`chiTol = tol0 - k * |Δχ|` 是声明的形状；来源是定性的"场效应"
+或阈值陈述），故只证其对 `|Δχ|` 的单调性。⑨**有一条印刷半径在 round 1 未核实、在 round 2 获得二手确认**：
+`Mn³⁺(VI, 高自旋) = 0.645 Å`——一篇可检索的开放获取论文逐字写明 "`Mn³⁺` ions in the high spin (HS)
+state have an identical effective ionic radius (0.645 Å) (Shannon, 1976)"（*Energy Environment
+Research* **8**(2) (2018)，加拿大图书档案馆存档），状态由*未核实*升为**二手确认**（Shannon 原表仍在付费墙
+后）；`LaMnO₃` 行仍在 docstring 里点明自旋态，且该行算术是**就所用取值**在内核中检查的。
+
 ---
 
 ## 7. The process, and what it found / 过程，以及它发现了什么
