@@ -320,6 +320,18 @@ The honest summary: **every delivered declaration has passed an independent gate
 findings that ever touched a delivered artifact were a false docstring and an over-strong hypothesis
 — both caught by verification, not by luck.**
 
+**中文（验收历史）。** 三个独立 verifier run（均只读、各写自己的探针）：run 1（G1 + Sprint-0 制品）**PASS，
+0 HIGH / 6 MEDIUM / 9 LOW**，全部落在记录层，并自跑四门、反推六个实例值、对四条分类器行做 1000 点精确有理
+搜索（450 倒置带、100 退化带）零违例；run 2（G2+G3）**PASS**，其中一条 HIGH 仍在**交付文件内部**——
+`Criterion.lean` 的 docstring 重复了「δ > 1 时带为空」这句被同一 verifier 内核否证的话——另有一条**真缺陷**：
+`radiusMatch_comp_ratchet` 带了两条该行不需要的前提（三角不等式路径只需 `0 ≤ τ`）；两者都已当轮修复（该行
+现在用最弱前提，plan §3.1 item 11），且该 run 还**独立重证了 `Criterion.lean` 的 8 条 `private` 辅助引理**
+（保真度检查器的盲区）。run 3（G4–G6 + 文档平面）返回 **INCOMPLETE、无 HIGH**：代码面实测全绿（三模块可 build、
+裸门 PASS、139/139、`axioms.sh` 47/47），但因未走到实例重算、对抗轮与文档审计而拒绝给判决；它的两条 MEDIUM
+（验收期间树在移动；Sprint-0 探针按设计位于门的扫描范围之外）已处置，三项未查的受限 follow-up 正在跑。诚实
+总结：**每一条交付声明都过了独立验收门，而历史上唯一触及交付制品的发现是一句假 docstring 和一条过强的前提
+——两者都是被验收抓到的，不是靠运气。**
+
 **中文。** 引擎的纪律是 statement-first，它五次回本：**五条权威语句初稿为假，而全部在交付前被内核抓住**
 （可能来自里程碑工人的自证，也可能来自 lead 的手推；plan §3.1 逐条记录反例）：分类器 `tooLarge` 行（级联
 先测 `t < lo`，倒置带下小 `t` 被判 `tooSmall`，反例 `lo=1, hi=0, t=1/2`）；两条 `rO` 单调行（`0 < rO`
