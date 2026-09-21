@@ -3499,3 +3499,77 @@
      the load-bearing evidence for ticking half the milestones — were parked as bare rows inside a
      task section, so the G7 row that pointed at "the acceptance table below" pointed at a table that
      did not contain them. Verdicts live in the verdict table, or they are gossip.
+
+## 2026-09-21 — External review round 2 (six theories): the M1–M12 disposal, and a vacuity class the six in-repo verifier runs all passed — lead — DONE (fixes; independent verifier re-verification PENDING on the two changed Kasha rows)
+
+- What happened: a second external full-repository review (`review/FULL-REVIEW-2026-09-21.md`,
+  evidence level **reproduced** — full build, `check.sh --strict` PASS, 34 `#print axioms` probes,
+  six fidelity scripts, independent declaration re-count) returned **zero blocking / zero serious /
+  twelve minor** findings (M1–M12). The human directed their disposal. This round fixed them and
+- **The finding that matters (M1) is a new defect class for this bank: a *vacuous* statement that is
+  never *false*, so no mathematical gate flags it.** `kashaDescriptor_nonvacuous : ∃ rad ic,
+  KashaDescriptor rad ic` was delivered, verifier-PASSed across runs 1–9, and is trivially true of
+  **every** ladder: `KashaDescriptor = ∃ N, KashaRule · N` and `KashaRule · · 0` holds
+  unconditionally (`upperYield_zero` — no upper level exists at `N = 0`), so a one-line probe proves
+  `∀ rad ic, KashaDescriptor rad ic`. The row's intended content (a ladder satisfying the rule at a
+  *positive* level) lived only in its witness and docstring, not in its type. Fixed by strengthening
+  the conclusion to `∃ rad ic, RateData rad ic 1 ∧ KashaRule rad ic 1` (the delivered witness already
+  satisfies it — the proof needed one `⟨…, hR, …⟩` reshuffle, no new mathematics).
+  - **Why six verifier runs missed it**: a verifier re-derives *numbers* and hunts *false* statements
+    (divisor-sign sweeps, kernel counterexamples). A statement that is true-but-vacuous passes every
+    such probe. The gate that catches it is a different question — **"could this statement ever
+    FAIL?"** — asked adversarially of every non-vacuity / `∃`-introduction row. This is the same
+    instinct as the weakest-premise standard (iron rule 3) turned 90°: there the target is a
+    hypothesis the proof does not consume; here it is a **conclusion the hypotheses make
+    un-falsifiable**. Both are "the statement is weaker than it looks".
+  - Reusable pattern: for a delivered `∃ x, P x` non-vacuity row, before accepting, kernel-check
+    whether `∀ x, P x` also compiles. If it does, the row is vacuous and must pin the non-degenerate
+    parameter (here: the positive excitation level `N = 1`). The M1 witness had been *constructed* at
+    `N = 1` all along — the type just did not say so.
+- M3 (same review): `perLevel_criterion_insufficient` refutes the *branch-weighted hybrid*
+  `rad i · decay (i-1) ≤ ic i · decay i`, not the *literal* `rad i ≤ ic i` slogan the docstrings and
+  the paper outline quote; the two readings are not equivalent in general. Added the literal-reading
+  sibling `perLevel_ic_ge_rad_insufficient` (same witness `rad ≡ ic ≡ 1`, satisfies the literal
+  condition with equality, still leaks 3/4 against 7/8). Lesson: **a headline that quotes a slogan
+  must cite a row whose statement is that slogan** — the branch-weighted form is the physically right
+  criterion but is not the sentence the paper says.
+- The other ten were documentation/wording (M2, M4–M12), all fixed in place: README Goldschmidt
+  breakdown (M6 — the G1-only "15 definitions" was mis-attached to the whole theory; the correct
+  (M7, actual measured after this round: 12,889) + mixed Smoke convention; RELATIONS.md "five
+  probes" → six (M8, the English half had drifted from the Chinese); Relations.lean header "five
+  delivered theories" → six (M9 — the sixth-theory registration was comment-only in §10 and left the
+  header stale; the *same* status-flip seam as iron rule 8③, now a fifth instance); Σ "fixed by
+  types" → "fixed by certificates, opt-in per theory" (M10 — no signature `structure` exists, the
+  first review's S1 is still unimplemented, and the wording had over-claimed); ENGINE.md
+  "`lake build` 通过即真" → "三层门通过即真" (M11 — a bare build is fooled by placeholders; README
+  M5 was dispositioned as **no change**: the Sabatier regime witnesses are trivial by construction
+  and their docstrings already frame them as verdict-vocabulary non-vacuity, not physics; adding a
+  concrete positive descriptor row was judged not worth the count-sync ripple (the universal law
+  `volcano_descriptor_of_physical` covers the positive side).
+- Tried and failed / worth remembering:
+  1. **A changed statement invalidates every count that quoted it, and the counts are everywhere.**
+     One strengthened Kasha row + one added row moved: the theory total (150→151), the theorem count
+     (110→111), the K3 milestone fidelity (15→16), the unscoped fidelity (150/150→151/151), the
+     whole-repo totals (852→853 excl. Smoke / 854→855 incl.), the theorems (675→676 / 677→678), the
+     Lean line count (12,812→12,889), the authority sha256 (`b645cbfb…`→`8c5ed93b…`), and the
+     per-milestone string (44/22/15/20/29/20 → 44/22/**16**/20/29/20). The last one was found only
+     by re-running the milestone-scoped checker, not by grepping. **After any authority change,
+     re-run the fidelity checker in BOTH scoped and unscoped mode and take the numbers from its
+     output, never from memory or grep.** This is the measurement-after-last-edit rule, applied to
+     counts.
+  2. **Writing a number into a document before measuring it is the Sprint-0 sin in miniature — and I
+     (12,873); the measured value (12,889) replaced it before the commit. The standing rule applies
+     to reviewers too: an artifact may not carry a number its author has not measured after the last
+     edit.
+  3. **The historical acceptance records must NOT be renumbered.** Runs 1–9 were gated against
+     `b645cbfb…` (150); rewriting them to 151 would falsify the evidence chain. The fix is to scope
+     them ("runs 1–9 stand against the pre-revision authority") and record the new state beside them
+     — the "a commit message is a claim about history, do not rewrite it" discipline, applied to
+     verifier records.
+  4. **Iron rule 6 binds the fixer too.** These fixes were written under direct human instruction by
+     the reviewing session, so that session cannot adjudicate them: the two changed Kasha rows are
+     marked **author-gated, independent verifier PASS pending** and stay open `[ ]` board rows. A fix
+     delivered by the reviewer is still a delivery, and still needs the read-only gate.
+- Reusable pattern (for the bank's own next audit): add to the verifier's adversarial checklist a
+  **vacuity pass** distinct from the falsity pass — for each `∃`-row and each "non-vacuity" /
+  "inhabited" / "descriptor holds" claim, attempt the `∀`-form in the kernel; a compile is a finding.
