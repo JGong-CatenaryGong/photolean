@@ -3383,3 +3383,41 @@
   deliverable is prose; that combination invites unbounded searching. When the lead's own sweeps have
   already produced the raw gate evidence, the verifier's marginal value is the **independence of the
   judgement**, so the brief should ask for the judgement first and the depth second.
+
+## 2026-09-21 — G2 re-delivery: `radiusMatch_comp_ratchet`, or "the lint was right, my proof was the detour" — prover_c — DONE
+
+- The independent verifier's adversarial round refuted my own docstring claim that all three
+  hypotheses of `radiusMatch_comp_ratchet` were load-bearing: the triangle route
+  `|r1 - r3| ≤ |r1 - r2| + |r2 - r3| ≤ τ r1 + τ r2 ≤ (2τ + τ²) r1` (last step from `r2 ≤ (1 + τ) r1`,
+  which `RadiusMatch τ r1 r2` gives via `-(r1-r2) ≤ |r1-r2|`, plus `0 ≤ τ`) closes the row with
+  `0 ≤ tau` **alone**, and the verifier proved that form in the kernel. The lead dropped the two
+  premises (plan §3.1 item 11); re-delivered row:
+  `radiusMatch_comp_ratchet {tau r1 r2 r3 : ℝ} (htau : 0 ≤ tau) : RadiusMatch tau r1 r2 →
+  RadiusMatch tau r2 r3 → RadiusMatch ((1 + tau) ^ 2 - 1) r1 r3`. Commit `40d8d09` (only
+  `PhotoLean/Goldschmidt/Rules.lean`, 28 insertions / 35 deletions — the re-delivery is *shorter*).
+- Gates (raw, fresh olean): `lake build PhotoLean.Goldschmidt.Rules` → `Build completed
+  successfully.` (0 warnings); `check.sh --strict` → `clean`, `verdict: PASS`; `axioms.sh` on the
+  re-delivered row **and the other 12 G2 theorems** → 13/13 `verdict: PASS (only mathlib
+  infrastructure axioms)`; `bep-fidelity.py --milestone G2` → `delivered, word-for-word 18`,
+  `delivered, not in authority: 0`, `not delivered yet: 0`, `signature differences: 0`.
+- Tried and failed / worth remembering:
+  1. **I had the right proof first and replaced it with a worse one.** My original delivery of this
+     row used exactly the triangle route and compiled; the `unusedVariables` warning on `hr1`/`htau1`
+     then pushed me to rewrite it as a two-sided-window proof that consumed all three hypotheses —
+     strictly longer, and it made the *statement* look justified. **The warning was evidence about the
+     statement, not an obstacle in the proof.** The correct response to "hypothesis unused" is the
+     report-then-drop sequence of plan §3.1 (items 2, 5, 9, 10, 11 — five instances in one theory),
+     never a proof contortion; a hypothesis I cannot use is a hypothesis the row does not need.
+  2. **The contortion also produced a false docstring.** To justify keeping the two premises I wrote
+     "Proof (all three hypotheses are load-bearing)" — a claim the verifier refuted with the kernel.
+     A warning-driven proof change silently created a false *prose* claim, which is exactly the
+     record-layer defect class this project keeps finding; the re-delivery had to rewrite the
+     docstring as well as the proof. Warning: when a fix is made only to satisfy a tool, re-read every
+     sentence the fix touches.
+  3. Reusable route (the delivered one, re-proved independently by the verifier): `dist_triangle`
+     + `Real.dist_eq` for the composite, `neg_le_abs (r1 - r2)` for the upper half `r2 ≤ (1+τ) r1`,
+     `mul_le_mul_of_nonneg_left hup2 htau`, then `ring` for `τ r1 + τ(1+τ) r1 = ((1+τ)²-1) r1`.
+  4. Cross-check note from the verifier's round worth carrying: it re-proved all 8 `private` helpers
+     of `Criterion.lean` and found them true, non-vacuous and consumed — the G2/G3 rounds came out
+     PASS with record-layer findings only. "The other rows are unchanged" after a re-delivery still
+     needs the fresh `axioms.sh` sweep (I ran 13/13), because the module's olean is rebuilt.
