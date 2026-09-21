@@ -88,7 +88,7 @@ rows = [
 for name, rA, rB in rows:
     s = t2(rA, rB)
     t = sqrt_approx(s)
-    print(f"  {name}: rA+rO = {rA + rO}, rB+rO = {rB + rO}, t^2 = {s} (~{t:.6f}), "
+    print(f"  {name}: rA+rO = {rA + rO}, rB+rO = {rB + rO}, t^2 = {s} (t ~ {t:.6f}), "
           f"t vs 1: {'>' if s > 1 else ('=' if s == 1 else '<')}")
 
 print("\n-- asserted verdicts --")

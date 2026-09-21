@@ -6,7 +6,8 @@
 > tolerance factor with Goldschmidt's rules of ionic substitution, which shares no module and no
 > object with them and therefore enters the graph only through the no-edge registry, §2.5/§3 N4).
 > Its machine-checked companion is `PhotoLean/Relations.lean`
-> (**46 declarations**, measured at the second-batch extension, 2026-09-21, commit `eb5e178`) over
+> (**46 declarations**, measured at the second-batch extension, 2026-09-21, commit `eb5e178`; the
+> sixth-theory registration is a comment-only extension of §10, so the count is unchanged) over
 > the shared kernel `PhotoLean/Kernel.lean` (6 definitions + 2 theorems); every claim below that
 > names a Lean theorem is backed by a declaration that compiles and whose `#print axioms` output is
 > `[propext, Classical.choice, Quot.sound]`. It is written in the bilingual style of the
@@ -23,8 +24,9 @@
 > prose, and the one failed proof path (a rewrite pattern in the uniqueness half of C2) is recorded
 > in `proofs/EXPERIENCE.md`.
 >
-> **中文（状态与来源）**：本文件是**五个**已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
-> 原理、Kasha 规则、Sabatier 原则/火山图）**关系图**的讨论稿。可机器检查的对应物是
+> **中文（状态与来源）**：本文件是**六个**已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
+> 原理、Kasha 规则、Sabatier 原则/火山图，以及 Goldschmidt 容忍因子与取代规则——后者经**无边登记**接入）
+> **关系图**的讨论稿。可机器检查的对应物是
 > `PhotoLean/Relations.lean`（**46 条声明**，实测于第二批扩展、2026-09-21、提交 `eb5e178`）与共享内核
 > `PhotoLean/Kernel.lean`（6 定义 + 2 定理）；下文凡点名 Lean 定理之处，均有可编译声明支撑，且其
 > `#print axioms` 输出恰为 `[propext, Classical.choice, Quot.sound]`。本文按各理论 `RESULTS.md` 的
@@ -198,7 +200,7 @@ each pair with its dependency fact and its modelling reason.
 | Kasha ↔ Hammond | **none** | branching probabilities vs. the structural coordinate; no row connects them |
 | Sabatier ↔ Hammond | **none** | Sabatier imports `BEP.Basic` only |
 | Sabatier ↔ Kasha | **none** | no shared module and no shared object |
-| Goldschmidt ↔ all five | **none** | the Goldschmidt tree imports `Mathlib` and its own modules only (`Basic`/`Rules` ← `Mathlib`, `Criterion` ← `Basic`, `Sharp` ← `Basic`+`Rules`+`Criterion`, `RatModel` ← `Basic`+`Criterion`+`Rules`, `Instances` ← all five); the modelling reason is that its content is *geometric* (ionic radii, a packing ratio, a band on it, three substitution rules) while the five state facts about *energies* on one reaction coordinate — the two vocabularies share no scalar |
+| Goldschmidt ↔ all five | **none** | the Goldschmidt tree imports `Mathlib` and its own modules only (`Basic`/`Rules` ← `Mathlib`, `Criterion` ← `Basic`, `Sharp` ← `Basic`+`Rules`+`Criterion`, `RatModel` ← `Basic`+`Criterion`+`Rules`, `Instances` ← **four** of them (`Basic`+`Rules`+`Criterion`+`RatModel`; it does not import `Sharp`)); the modelling reason is that its content is *geometric* (ionic radii, a packing ratio, a band on it, three substitution rules) while the five state facts about *energies* on one reaction coordinate — the two vocabularies share no scalar |
 | Goldschmidt ↔ Sabatier | **none** (a shape look-alike only) | a symmetric band about an ideal value is an absolute-deviation bound in both, and both have a three-way classifier — but the scalars are unrelated (radius ratio vs. binding energy), the sharp conditions differ (Goldschmidt's window equivalence is exact for every band; Sabatier's is `0 < alphaA * alphaB`) and the classifiers decide different propositions — §3 N4 |
 
 **中文（无边登记）**：不存在的边是**被登记的事实**而非疏漏——关系图的完整性取"**每个理论都在图上**"之义。

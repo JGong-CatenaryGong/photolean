@@ -165,8 +165,9 @@ band-flip row (`inst_BaTiO3_band_flip`): it does **not** lie in `[4/5, 1]` and *
 convention is a parameter of the theory, and the flip is a theorem rather than a footnote.
 **`BaNiO₃`** is the negative row: it is outside even the tetragonal band
 (`inst_BaNiO3_not_tetragonal`), which agrees with the literature's own hexagonal assignment — one
-source prints `t = 1.13` from exactly the radii used here, and the exact value `90601/70688` sits
-`0.032` below the `1.1` edge, a comfortable margin rather than a borderline pass. One
+source prints `t = 1.13` from exactly the radii used here, and the exact value `90601/70688`
+**exceeds** the `1.1` edge by `0.032` (which is precisely why the row fails) — a comfortable margin
+rather than a borderline pass. One
 printed-versus-derived fact is the sharpest in the record: with **our** radius triple `SrTiO₃`'s exact
 `t = 1.00159` is just above `1`, the literature's rounded reading of the *same* triple prints `t = 1.00`
 (inside the band), and the primary text's own radii give a value below `1` — the verdict of `SrTiO₃`
@@ -179,9 +180,14 @@ convention is visible in `inst_radius_convention_Ba_Cs` (`Cs⁺`/`Ba²⁺` is ad
 reference and refused with `Ba²⁺`); a substitution can satisfy the radius rule while the band verdict
 is lost (`inst_radius_ok_but_band_lost`, `Ca²⁺ → Sr²⁺` in `CaTiO₃`), which is the kernel-checked
 statement that the *rule* and the *band criterion* are independent; the coupled pair
-`Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` is charge-balanced while a lone `Na⁺ → Ca²⁺` is not
+`Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` is charge-balanced — a **documented** substitution on the `CaTiO₃`–`NaNbO₃`
+system (Shindhu et al., *Indian J. Pure & Appl. Physics* **63**(1) (2025) 22–33, p. 23; its DOI does not
+resolve, so it is cited by journal/volume/page) — while a lone `Na⁺ → Ca²⁺` is not
 (`inst_charge_coupled`, `inst_charge_single_fails`, `inst_charge_compensating_partner`); and the
-electronegativity term is load-bearing rather than decorative (`inst_chi_load_bearing`: the same radius
+electronegativity term is load-bearing rather than decorative. One negative is registered with the
+charge rows: the charge sum does **not** distinguish families (`Na⁺ + Nb⁵⁺`, `A³⁺ + B³⁺`, the
+single-site `2 Ca²⁺ → A⁺ + Ln³⁺` and the rutile `2 Ti⁴⁺ → B³⁺ + Nb⁵⁺` all balance), so no delivered row
+asserts that a family is forbidden by charge (`inst_chi_load_bearing`: the same radius
 difference is admissible at `Δχ = 0` and refused once the tolerance is dressed with `k = 1/10`,
 `Δχ = 3/2`).
 

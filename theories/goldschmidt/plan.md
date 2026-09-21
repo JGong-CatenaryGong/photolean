@@ -20,7 +20,7 @@
 > was the authority skeleton compiling and the milestone provers' own kernel work. Four FALSE
 > authority rows were found — three of them (`tolFac_mono_rO_of_lt`, `tolFac_anti_rO_of_lt`,
 > `tolFac_rO_const_iff`, §3.1 items 6–8) by `prover_d` in the kernel while proving G3, one
-> (`chiTol_anti`, item 9) by `prover_c` while proving G2. The probe is being brought to 0 error in
+> (`chiTol_anti`, item 8) by `prover_c` while proving G2. The probe is being brought to 0 error in
 > parallel; until it is, no row of it may be cited as kernel evidence anywhere in this repository.
 
 ---
@@ -134,11 +134,15 @@ form, symmetric band, `r_O` trichotomy, irrationality) are this theory's own exa
 - **No claim that the tolerance factor is a theorem of crystallography or of quantum mechanics.** One
   geometric realization is made exact; nothing is said about stability energies, Goldschmidt's own
   "stability field", or DFT formation energies.
-- **No conflating the two criteria.** Goldschmidt's tolerance factor and Pauling's *radius-ratio* rule
+- **No conflating the two criteria.** Goldschmidt's tolerance factor and the *radius-ratio* rule
   (`r_cation/r_anion ≥ 0.732` for 8-fold/cubic, `0.732–0.414` for 6-fold/octahedral) are criteria on
   **different ratios** with different roles; the literature record carries both and warns that one
   widely used table prints the same interval as an *octahedral-factor* interval
-  (`LITERATURE.md` §S1.3, §IMPACT item 5). Only the tolerance factor is formalized here.
+  (`LITERATURE.md` §S1.3, §IMPACT item 5). **The `0.732` ladder is not Pauling's eponym** — the
+  record's attribution audit (Jensen, *J. Chem. Educ.* **87** (2010) 587–588; Hawthorne & Gagné,
+  *Acta Cryst. B* **80** (2024) 326–339) traces it to Hüttig (1920) / Magnus (1922), with the ionic
+  application in the same 1926 Skrifter VII volume, so Pauling 1929 must **not** be cited for it (that
+  paper was not read in round 1). Only the tolerance factor is formalized here.
 - **No continuous-deformation crystallography**: no tilting angles (`a⁻a⁻a⁻` Glazer systems), no
   octahedral rotation groups, no tolerance-factor refinements (Bartel's `τ`, the octahedral factor
   `μ = r_B/r_O`), no temperature/pressure dependence, no ionic-radius dependence on coordination
@@ -199,7 +203,7 @@ difference is a defect**.
 
 ### 3.1 Statement-correction log (the authority changes only through this log)
 
-The authority declares **139 declarations** (Sprint 0). Ten rows were corrected before the milestones were dispatched or while they were being proved (items 1–10 below)
+The authority declares **139 declarations** (Sprint 0). Eleven rows were corrected before the milestones were dispatched or while they were being proved (items 1–11 below)
 *before* the milestones were dispatched — every statement is spot-checked, not only the ones that
 look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-checks them in the kernel.
 
@@ -302,7 +306,8 @@ per-milestone sections to be self-contained will write a file whose statements c
 milestone dispatch therefore has to check each statement's *type names* against the import closure of
 the file being written. The delivered import graph is: `Basic` (Mathlib only) ← `Rules` (Mathlib only),
 `Criterion` (Basic) ← `Sharp` (Basic + Rules + Criterion), `RatModel` (Basic + Criterion + Rules), and
-`Instances` (all five).
+`Instances` (**four** of the five: `Basic` + `Rules` + `Criterion` + `RatModel` — it does **not**
+import `Sharp`, measured on the file's import block).
 
 11. **`radiusMatch_comp_ratchet` — two hypotheses dropped (found by the independent verifier's
    adversarial round on batch 2).** The row carried `(hr1 : 0 < r1)` and `(htau1 : tau ≤ 1)`. Neither is
@@ -425,12 +430,12 @@ Row families (each row is a kernel-checked verdict, with the printed radii cited
 
 | family | rows | content |
 |---|---|---|
-| I1 model | ideal-`A` row, `rA = rB` row (`t = 1/√2`), band-flip row | the model's own positives |
+| I1 model | ideal-`A` row, `rA = rB` row (`t = 1/√2`) | the model's own positives (the band-flip row is registered as I3) |
 | I2 classic band | `SrTiO₃`, `CaTiO₃`, `LaMnO₃`, `NaNbO₃` (Shannon radii) | conformance and zone, decided in `ℚ` by `inBandQ` |
 | I3 band flip | `BaTiO₃` | fails `[4/5, 1]`, conforms to `[1, 11/10]` (tetragonal) — the flip as two theorems |
 | I4 negative | `BaNiO₃` (hexagonal in the literature) | outside every delivered band |
 | I5 radius rule | substitution pairs inside/outside 15 %, and the ratchet row | rule 1 verdicts — the delivered pairs are Shannon-radius rows, and the record now also carries the *primary text's own* isovalent example, the `CaTiO₃ → Sr`/`Ba` A-site substitution (`LITERATURE.md` §S3.3, §IMPACT item 12), so this family is not attested only by modern compilations |
-| I6 charge rule | the isovalent row, the uncompensated heterovalent row, the coupled/compensated pair, the compensating-partner row | rule 2 verdicts — the delivered ±1 pair is a *model* instance: round 1 found that no source prints `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`, while documented coupled substitutions do exist with printed increments (`Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺` in the primary text's plagioclase example; `A²⁺B⁴⁺O₃` heterovalent La/Na pairing; the printed `3 Na⁺ ↔ 1 Sm³⁺` compensation arithmetic — `LITERATURE.md` §S3.2.1), and the row's docstring cites those |
+| I6 charge rule | the isovalent row, the uncompensated heterovalent row, the coupled/compensated pair, the compensating-partner row | rule 2 verdicts — the delivered ±1 pair `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` **is documented**: Shindhu, Ahlawat, Sanghi et al., *Indian J. Pure & Applied Physics* **63**(1) (2025) 22–33, p. 23, on the `CaTiO₃`–`NaNbO₃` system ("Na⁺ is substituted at the Ca²⁺ site … to ensure local level compensation"); that DOI does **not** resolve in Crossref, so the row cites journal/volume/page only. A **reverse-printed** member of the same family is documented independently (Nakatsuka et al., *Sci. Rep.* **11** (2021) 22839, `A²⁺ + Si⁴⁺ ↔ Fe³⁺ + Al³⁺`), so the substitution *direction* is a free parameter of the relation. **Registered negative (must not become a premise):** the charge sum does **not** distinguish families — `Na⁺ + Nb⁵⁺`, `A³⁺ + B³⁺`, the single-site `2 Ca²⁺ → A⁺ + Ln³⁺` and the rutile `2 Ti⁴⁺ → B³⁺ + Nb⁵⁺` all balance, so no row may assert that a family is forbidden by charge |
 | I7 chemical rule | a row where a larger radius difference is admitted only by the electronegativity term | rule 3 verdicts |
 | I8 non-vacuity | one conforming row per zone of the classic band | the classifier is total |
 
@@ -496,9 +501,9 @@ milestone that owns them — because early failure is cheaper.
 | `t = 1 ⟺ r_A + r_O = √2 (r_B + r_O) ⟺ r_A = idealA rB rO` | **theorem** |
 | the band `lo ≤ t ≤ hi` is the right empirical criterion | **declared modelling premise**, and the sources themselves say so — the record carries the printed caveats that license treating the band as *declared* rather than proved ("There is no boundary on the tolerance factor scale that separates perovskites from non-perovskites", and "the tolerance factor is only a rough estimate": `LITERATURE.md` §S2.3, §IMPACT item 6). It has an attested core: the primary source prints `0,8 ≤ t ≤ 1` verbatim (so `classicLo`/`classicHi` are a *transcription*), while `tetragonalHi = 11/10` is **declared with no printed band** (19 printed band conventions are enumerated in `LITERATURE.md` §T1; the nearest printed `1.1` threshold states *formation*, not tetragonal distortion) |
 | `GoldschmidtConforms ↔` radius window / squared form | **theorem** (this theory's own exactification; absent from the literature) |
-| the 15 % radius rule | the **reference ion is a literature fact, not a convention**: the primary text prints "um nicht mehr als etwa 15 % (in Prozenten des kleinsten Radius)", i.e. relative to the **smaller** radius, so `radiusMatch_min_iff`'s min-form *is* the attested rule and `RadiusMatch τ r r'` is this theory's parameterized spelling (the modern literature varies between the larger and the smaller reference — §6 records it). `τ = 3/20` is the declaration that sharpens the printed "etwa 15 %"; the theorem content is the window form, the ratchet, and the transfer to `Δt` |
-| the charge-balance rule | **a declared systematization, and deliberately not attributed to Goldschmidt.** The primary text's condition is *stoichiometric matching* ("in beiden Formeln entsprechende Mengen positiver Bausteine und … negativer Bausteine") and it explicitly refuses valence as an independent criterion ("Der Unterschied der Valenz ist nämlich bereits in unsern Größen der scheinbaren Radien mit einkalkuliert"). The formalized `∑ dz = 0` is the later systematization (the record gives documented coupled-substitution instances with printed increment arithmetic, `LITERATURE.md` §S3.2.1, and an `|Δz| = 1` variant used in the modern literature). The theorem content is the isovalent characterization, the pairing, and the existence of a compensating partner of opposite sign |
-| the electronegativity rule | **declared shape** (`chiTol` linear in `|Δχ|`). The sources are qualitative and phrased as *field effects* rather than electronegativity, and the modern literature gives a *threshold* (`|Δχ| ≳ 0.1`) rather than a linear law; only monotonicity in `|Δχ|` is a theorem (the linearity has no source — recorded as a clean negative) |
+| the 15 % radius rule | the **reference ion is a literature fact, not a convention**: the primary text prints "um nicht mehr als etwa 15 % (in Prozenten des kleinsten Radius)", i.e. relative to the **smaller** radius, so `radiusMatch_min_iff`'s min-form *is* the attested rule and `RadiusMatch τ r r'` is this theory's parameterized spelling (and **four** modern sources agree with the smaller-ion reading (Acta Cryst. B **80** (2024) 182–192 "15 % of the smaller ion"; *Heliyon* **6** (2020) e03497; *Front. Chem.* **8** (2020) 564; *Chem. Sci.* **17** (2026) 16201, the one explicit formula `[(M_a − M_b)/M_b] × 100 %`), while at least one source computes its own figure against the **larger** ion (*ChemSusChem* **18** (2025), `19 %` for Fe³⁺ 0.645 vs In³⁺ 0.80). The first parameter of `RadiusMatch` is therefore **load-bearing, not decoration** — which is exactly why `inst_radius_convention_Ba_Cs` exists). `τ = 3/20` is the declaration that sharpens the printed "etwa 15 %"; the theorem content is the window form, the ratchet, and the transfer to `Δt` |
+| the charge-balance rule | **a declared systematization, and deliberately not attributed to Goldschmidt.** The primary text's condition is *stoichiometric matching* ("in beiden Formeln entsprechende Mengen positiver Bausteine und … negativer Bausteine") and it explicitly refuses valence as an independent criterion ("Der Unterschied der Valenz ist nämlich bereits in unsern Größen der scheinbaren Radien mit einkalkuliert"). The formalized `∑ dz = 0` is the later systematization (the record gives documented coupled-substitution instances with printed increment arithmetic, `LITERATURE.md` §S3.2.1, and an `|Δz| = 1` variant used in the modern literature). The theorem content is the isovalent characterization, the pairing, and the existence of a compensating partner of opposite sign. **Negative registered with it:** the charge sum cannot distinguish substitution families (see the I6 row), so it is never a premise that rules a family out |
+| the electronegativity rule | **declared shape** (`chiTol` linear in `|Δχ|`). The sources are qualitative and phrased as *field effects* rather than electronegativity, and the modern literature gives a *threshold* (`|Δχ| ≳ 0.1`) rather than a linear law; only monotonicity in `|Δχ|` is a theorem (the linearity has no source — recorded as a clean negative). A numeric electronegativity threshold `ΔEN ≤ 0.4` on the Pauling scale *is* printed twice (*Heliyon* **6** (2020) e03497; *Molecules* **30** (2025) 4282), but those sources use it as an **independent** side of a rectangle on the `(|Δχ|, Δr)` plane, not as the moving radius threshold that `chiTol` formalizes — so it evidences that a numeric χ threshold exists, not the trade-off shape |
 | Shannon radii of a named compound | **printed number with provenance** (LITERATURE.md), not a derived quantity |
 | `t` is irrational at rational radii | **theorem** (given `√2 ∉ ℚ`) |
 

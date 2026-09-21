@@ -197,7 +197,8 @@ the small `Ni⁴⁺` radius gives `rB_Ni + rO_shannon = 47/25` and `t² = 90601/
 upper edge of `[1, 11/10]` is violated — the theory's own way of recording the literature's hexagonal
 assignment of `BaNiO₃`: no delivered band contains these printed numbers.  The literature prints
 `t = 1.13` for *this* radius triple and assigns the 2H hexagonal structure, so the margin here is
-`0.032` below the `1.1` edge, not a borderline pass (`LITERATURE.md` §S5.2). -/
+**exceeds** the `1.1` edge by `0.032` (which is why the row fails), not a borderline pass
+(`LITERATURE.md` §S5.2). -/
 theorem inst_BaNiO3_not_tetragonal :
     ¬ Rat.inBandQ Rat.classicHiQ Rat.tetragonalHiQ rA_Ba rB_Ni rO_shannon := by
   rintro ⟨_, h2⟩
@@ -278,12 +279,18 @@ theorem inst_radius_ok_but_band_lost : Rat.radiusMatchQ Rat.tauGoldschmidtQ rA_C
 /-- **A coupled (charge-balanced) substitution** (family I6): a two-site pair with charge increments
 `+1` and `−1` sums to zero over the set.  Charge balance is exact integer arithmetic (G2's
 `ChargeBalanced`), decided here by `Fintype.sum_bool`.
-Provenance (literature round 1, `LITERATURE.md` §S3.2.1): this `(+1, −1)` pair is a **model instance** —
-no source prints `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` — while documented coupled substitutions with printed
-increment arithmetic do exist: the primary text's own plagioclase example `Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺`
-(`(+1, +4) ↔ (+2, +3)`), the heterovalent `A²⁺B⁴⁺O₃` La/Na pairing, and the printed compensation
-arithmetic `3 Na⁺ ↔ 1 Sm³⁺`.  The formalized rule is that later systematization, not Goldschmidt's own
-criterion (plan §12). -/
+Provenance (literature round 1, `LITERATURE.md` §S3.2.1): the pair `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` **is
+documented** — Shindhu, Ahlawat, Sanghi et al., *Indian J. Pure & Applied Physics* **63**(1) (2025)
+22–33, p. 23, on the `CaTiO₃`–`NaNbO₃` system ("Na⁺ is substituted at the Ca²⁺ site … to ensure local
+level compensation"); that DOI does not resolve in Crossref, so it is cited by journal/volume/page.
+The same family is also printed in the **reverse** direction elsewhere (Nakatsuka et al., *Sci. Rep.*
+**11** (2021) 22839, `A²⁺ + Si⁴⁺ ↔ Fe³⁺ + Al³⁺`), together with the primary text's own plagioclase
+example `Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺` and the printed `3 Na⁺ ↔ 1 Sm³⁺` compensation arithmetic — so the
+substitution *direction* is a free parameter of the relation, and the formalized rule is the later
+systematization rather than Goldschmidt's own criterion (plan §12).  **Negative registered with these
+rows:** the charge sum does not distinguish families (`Na⁺ + Nb⁵⁺`, `A³⁺ + B³⁺`, the single-site
+`2 Ca²⁺ → A⁺ + Ln³⁺` and the rutile `2 Ti⁴⁺ → B³⁺ + Nb⁵⁺` all balance), so no premise may rule a
+family out on charge grounds. -/
 theorem inst_charge_coupled : ChargeBalanced (fun b : Bool => if b then (1 : ℤ) else -1) := by
   unfold ChargeBalanced
   rw [Fintype.sum_bool]

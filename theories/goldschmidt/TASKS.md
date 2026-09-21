@@ -111,9 +111,9 @@
       `0 < rO` is not enough — the rows now take `(hB : 0 < rB + rO)`; `tolFac_rO_const_iff`: now takes
       `(hrB : 0 ≤ rB) (hrO : 0 < rO)`. Kernel counterexamples in plan §3.1 items 6–8)
 
-## G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_b; delivered, in review)
+## G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_b; **VERIFIED — verifier runs 3 + follow-up + mechanical run PASS**)
 
-- [ ] all rows of plan §7 (12 theorems: the two edge-failure rows, the point-band row, the
+- [x] all rows of plan §7 (12 theorems: the two edge-failure rows, the point-band row, the
       substitution transfer, the 15 %-rule → Δt bridge, `tolFac_irrational`, and the five witnesses)
       — Sharp.lean — prover_b — **in review**: verifier run 3 measured its gate battery green (build,
       bare gate PASS, fidelity 12/12, `axioms.sh` PASS) with **no HIGH**, but declined a verdict
@@ -125,16 +125,16 @@
       authority dropped it (plan §3.1 item 9) and the row is being re-delivered.
       (verifier run 2 covers G2/G3/G4)
 
-## G5 — rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`; owner prover_c; delivered, in review)
+## G5 — rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`; owner prover_c; **VERIFIED — verifier runs 3 + follow-up + mechanical run PASS**)
 
-- [ ] all rows of plan §8 — RatModel.lean — prover_c — **in review** (same run-3 status: gate battery green, no HIGH,
+- [x] all rows of plan §8 — RatModel.lean — prover_c — **in review** (same run-3 status: gate battery green, no HIGH,
       verdict declined) — commits `65985fe` + `67a58a4`,
       **22/22**, gates green (lead re-ran all 12 `axioms.sh`: 12/12); the second commit drops the two
       unconsumed premises of `inBandQ_ideal_iff` (plan §3.1 item 10)
 
-## G6 — instance verdicts (`PhotoLean/Goldschmidt/Instances.lean`; owner prover_d; delivered, in review)
+## G6 — instance verdicts (`PhotoLean/Goldschmidt/Instances.lean`; owner prover_d; **VERIFIED — verifier runs 3 + follow-up + mechanical run PASS**)
 
-- [ ] all rows of plan §9 (families I1–I8) — Instances.lean — prover_d — **in review** (same run-3 status; its 23 verdicts are additionally
+- [x] all rows of plan §9 (families I1–I8) — Instances.lean — prover_d — **in review** (same run-3 status; its 23 verdicts are additionally
       covered by the off-kernel exact-rational script with 0 mismatches and by run 1's independent
       recomputation of the same numbers) — commit
       `427609b`, **34/34**, gates green (owner-reported build / `check.sh --strict` / 23 of 23
@@ -159,7 +159,11 @@
 - [x] instance docstrings aligned with the literature record (the `SrTiO₃` printed-vs-derived flip, the
       `LaMnO₃` spin state and the unverified `Mn³⁺` radius, the documented coupled-substitution
       citations replacing the undocumented `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`) — lead — todo (comment-only)
-- [ ] final verifier runs recorded in the acceptance table below (runs 2 and 3) — lead — todo
+- [x] final verifier runs recorded in the acceptance table below (runs 1/2/3, the mechanical run, the bounded acceptance run and the batch-3 follow-up) — lead — done
+
+| Mechanical re-run (independent verifier; the five modules' gate battery + an independent recomputation) | `Rules`/`Criterion`/`Sharp`/`RatModel`/`Instances` + the instance layer | **PASS** (2 LOW, record layer) | five modules build; bare `check.sh --strict` PASS with all six theory directories at 5/5; fidelity 139/139 and 12/22/34 per milestone, `0 differences`; `axioms.sh` **47/47** (plus `RatModel` 12/12), no `sorryAx`; **its own recomputation of all 23 instance rows: 23/23 confirmed, 0 contradictions**; source hashes frozen across two measurements; LOW-1 (the statement change was missing from `API-NOTES`) and LOW-2 (duplicate acceptance rows) were both fixed in the follow-up doc round |
+| Batch-3 follow-up (independent verifier; the three items run 3 left unchecked) | G4–G6 gates + the instance recomputation + the adversarial round + the documentation audit | **PASS** (0 HIGH / 0 MEDIUM / 2 LOW) | at `HEAD = 7097e5b`: build, bare gate PASS, fidelity 139/139, `axioms.sh` 47/47; **its own 23-row recomputation: 0 contradictions** (BaNiO₃ margin 0.03212 reproduced); **adversarial round done**: kernel counterexamples proving the named hypotheses load-bearing (`zoneQ_eq_zone` without `0 ≤ rA + rO`, `tolFac_rO_const_iff` without `0 ≤ rB`, `conforms_iff_radius_window` without `0 < rB + rO`), negative-assertion probes that fail to typecheck, and a **248 832-tuple** degenerate-input search (0 violations inside the hypothesis domain, non-vacuity witnesses inside it); counts 139/98 and the 7 RESULTS-quoted signatures verified; LOW-1 (`Relations.lean`'s grep wording) and LOW-2 (the charge-pair phrasing) fixed in the follow-up doc round |
+| Bounded acceptance run (independent verifier; the wrap-up acceptance) | G2–G6 + the documentation plane | **PASS** (0 HIGH / 2 MEDIUM / 8 LOW) | six modules build; bare gate PASS; `axioms.sh` **98/98 public theorems** (so `Sharp`'s 12 and `RatModel`'s 12 are now covered too); fidelity 139/139; the Sprint-0 probe independently re-run (exit 0, 0 errors, 35 placeholders — matching the board); its own recomputation 23/23 with 0 divergence; counts 139/98 verified; `defaultTargets` complete. MEDIUM-1: the "`Instances` ← all five" import fact was **wrong** (it imports four, not `Sharp`) → fixed in plan/Relations/RELATIONS. MEDIUM-2 (with the mechanical run's LOW-1): the statement changes were missing from `API-NOTES` → an index section is appended. LOW-1…LOW-8: the BaNiO₃ margin direction, the instance-script's float label, two plan cross-references, the duplicate acceptance rows, the `Relations.lean` grep wording, the `RELATIONS.md` Chinese count, and the I1/I3 family label → all fixed |
 
 ---
 
@@ -177,10 +181,13 @@
   quoted in `RESULTS.md` §3 verified word-for-word); the post-commit re-runs at `40d8d09`/`ed4f580`
   for the G2 follow-up and the tree-drift finding; the evaluator-route measurement
   (`proofs/EXPERIENCE.md`).
-- **Still open at closeout:** three verifier sessions (a bounded acceptance run, a mechanical gate
-  re-run, and run 3's bounded follow-up) were dispatched for the remaining G4/G5/G6 checks and had
-  not returned when the theory was closed. If any of them returns findings, they are to be disposed
-  of in a follow-up round; the G4/G5/G6 rows stay in review until a verifier issues a verdict.
+- **All five verification lines have since returned:** run 1 **PASS**, run 2 **PASS**, the mechanical
+  re-run **PASS**, run 3's follow-up **PASS**, the bounded acceptance run **PASS** — **zero HIGH findings
+  anywhere**, and the two verifier-issued MID/LOW classes that touched an artifact (the false docstring,
+  the over-strong hypothesis) plus every record-layer finding are disposed. The G4/G5/G6 rows are
+  therefore ticked on verifier verdicts, and the only items left open are documentation-level and
+  registered: the literature round-2 tasks (`LITERATURE.md` §OUT: two citation defects, the OCR page
+  check of Skrifter VII p. 79–83, and pp. 112–117 unread).
 
 ---
 
@@ -194,5 +201,3 @@
 | G2 follow-up (verifier finding M1) | the `radiusMatch_comp_ratchet` premise drop | **fixed and verified** | the owner re-delivered the row in `40d8d09` (triangle route, only `0 ≤ tau`, shorter by 7 lines, no unused-hypothesis lint); the lead re-ran at that commit: build OK, `check.sh --strict` PASS, **13/13** `axioms.sh`, fidelity G2 18/18 `0 differences`; whole-theory fidelity is back to **139/139, 0 differences** |
 | Run 3 (independent verifier; batch 3 = G4 + G5 + G6 + documentation plane + the frozen tree) | `Sharp.lean` (12) + `RatModel.lean` (22) + `Instances.lean` (34), the risk probe, plan/TASKS/LITERATURE/RESULTS/API-NOTES/README/Relations/lakefile | **INCOMPLETE** (code face green, no HIGH) | measured at tree `b3e2e69`: the three modules build, the bare `check.sh --strict` prints `verdict: PASS` with all six theory directories at 5/5, fidelity is 139/139 (G4 12/12, G5 22/22, G6 34/34, 0 differences) and `axioms.sh` is **47/47 PASS** (45 × `[propext, Classical.choice, Quot.sound]`, 2 × `[Quot.sound]` for the charge rows; `sorryAx` 0). It did **not** reach the instance recomputation, the adversarial attempts or the documentation audit (a)–(f), so it declined to give PASS/FAIL. Its two MEDIUM findings are disposed: the acceptance-tree drift (the gates were re-run at `ed4f58066b288deda34027339fb5a434e8343580` by the lead — `build: OK`, `verdict: PASS`) and the risk probe's evidence status (the probe is **outside `SOURCE_DIRS` by design**, so no gate covers it; its raw compile state is now recorded in the Sprint-0 board row). Its LOW (the `SrTiO₃` docstring's "below 1" possibly contradicting the delivered `t > 1`) is fixed by naming the radius compilation in the docstring. A bounded follow-up run for the three un-checked items is dispatched. |
 | Lead-measured audit (recorded as *not* an independent verifier verdict) | the documentation-plane items batch 3 did not reach: (b) the counts and (c) the quoted signatures | **all verified, raw evidence** | (b) mechanical recount from the six sources: `Basic.lean` 14 defs + 1 inductive + 14 theorems = 29, `Rules.lean` 5 + 13 = 18, `Criterion.lean` 24 theorems (+ **8** `private` helpers), `Sharp.lean` 12, `RatModel.lean` 10 + 12 = 22, `Instances.lean` 11 + 23 = 34 → **139 public declarations, 98 public theorems**, exactly as plan §4–§9 and `RESULTS.md` §8 claim; (c) all **7** signatures quoted in `RESULTS.md` §3 match the delivered files word-for-word. Also recorded from the same audit: an evaluator-based second route (`#eval decide`) covers the three `zoneQ` classifier rows but **cannot** cover `inBandQ`/`ChargeBalanced` (Decidable synthesis fails) or `tolFacSq` (`noncomputable`) — `proofs/EXPERIENCE.md`. |
-| G2 follow-up (verifier finding M1) | the `radiusMatch_comp_ratchet` premise drop | **fixed and verified** | the owner re-delivered the row in `40d8d09` (triangle route, only `0 ≤ tau`, shorter by 7 lines, no unused-hypothesis lint); the lead re-ran at that commit: build OK, `check.sh --strict` PASS, **13/13** `axioms.sh`, fidelity G2 18/18 `0 differences`; whole-theory fidelity is back to **139/139, 0 differences** |
-| Run 3 (independent verifier; batch 3 = G4 + G5 + G6 + documentation plane + the frozen tree) | `Sharp.lean` (12) + `RatModel.lean` (22) + `Instances.lean` (34), the risk probe, plan/TASKS/LITERATURE/RESULTS/API-NOTES/README/Relations/lakefile | in flight | — |

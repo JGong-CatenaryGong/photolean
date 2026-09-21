@@ -3901,3 +3901,28 @@ probe before using them): `radiusMatch_iff_window`, `radiusMatch_min_iff`, `radi
 `tolFac_strictMono_rA`-family radius-window rows, `tolFacFifteen_le`,
 `conforms_of_radiusMatch_window`, `inBandQ_ideal_iff`, `radiusMatchQ_*`, `classicLoQ_cast` and the
 other `*_cast` band-constant rows.
+
+### 13. Statement-change index for the Goldschmidt theory (iron rule 2) — lead, 2026-09-21
+
+`AGENTS.md` iron rule 2 and `ENGINE.md` §2 require a statement change to be recorded in this log. The
+Goldschmidt theory's changes live in `theories/goldschmidt/plan.md` §3.1 (with the kernel
+counterexample for each) and are indexed here so that a reader of this file can find them:
+
+| plan §3.1 item | statement touched | change | why |
+|---|---|---|---|
+| 1 | `radiusMatch_refl` | premise `0 ≤ r` **added** | `|r - r| = 0 ≤ τ * r` needs it |
+| 2 | `conforms_symmetric_band_iff` | premise `0 ≤ delta` **removed** | the equivalence holds for every `δ` (kernel-checked) |
+| 3 | `rAMin_le_iff_sq` / `le_rAMax_iff_sq` | moved G4 → G3 | `conforms_iff_sq` is proved from them (import order) |
+| 4 | `goldschmidtZone_eq_tooLarge_iff` | **FALSE as drafted** → exact form `↔ lo ≤ t ∧ hi < t` + new `_of_band` corollary | the `if`-cascade tests `t < lo` first (witness `lo = 1, hi = 0, t = 1/2`) |
+| 5 | `zoneQ_ideal_iff` | four premises **removed** | the row is unconditional (kernel-checked) |
+| 6 | `tolFac_mono_rO_of_lt` / `tolFac_anti_rO_of_lt` | **FALSE as drafted** → premise `0 < rB + rO` replaces `0 < rO` | the pole at `rO = -rB` |
+| 7 | `tolFac_rO_const_iff` | **FALSE as drafted** → `(hrB : 0 ≤ rB) (hrO : 0 < rO)` | the quantifier can hit the pole; `0 < rB + rO` alone is not enough |
+| 8 | `chiTol_anti` | **FALSE as drafted** → hypothesis direction corrected (name kept) | `chiTol` is *antitone* in `|Δχ|` |
+| 9 | `conforms_point_band_iff` | premise `0 < rB + rO` **removed** | the point band is antisymmetry, no division algebra |
+| 10 | `inBandQ_ideal_iff` | two premises **removed** | pure `ℚ` algebra on the squared criterion |
+| 11 | `radiusMatch_comp_ratchet` | `(hr1 : 0 < r1) (htau1 : tau ≤ 1)` **removed** | the triangle route needs only `0 ≤ tau` (kernel-checked) |
+
+Items 4, 6, 7, 8 were **false statements** caught by the kernel before delivery; items 1, 2, 5, 9, 10,
+11 are premise corrections of the "non-load-bearing hypothesis" class that this repository treats as
+findings. None of them was an API-name drift, which is why they were first recorded in the plan's
+correction log; this table is the API-log index required by rule 2.

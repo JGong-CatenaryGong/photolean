@@ -533,10 +533,11 @@ that *every* theory sits on it. The pairs without an edge, and why:
   barrier, no rate, no descriptor axis, no cascade — so there is no object for an edge to be about.
   Dependency fact (measured with `grep -rn '^import' PhotoLean/Goldschmidt`): `Basic` and `Rules`
   import `Mathlib` only; `Criterion` imports `Basic`; `Sharp` imports `Basic + Rules + Criterion`;
-  `RatModel` imports `Basic + Criterion + Rules`; `Instances` imports all five. No module of the
+  `RatModel` imports `Basic + Criterion + Rules`; `Instances` imports **four** of them (`Basic` +
+  `Rules` + `Criterion` + `RatModel` — it does not import `Sharp`). No module of the
   family is imported, and no module of the family mentions `tolFac`, `GoldschmidtConforms` or any
   radius (measured: `grep -rln 'tolFac\|Goldschmidt' PhotoLean/ --include='*.lean'` returns only
-  `PhotoLean/Goldschmidt/*`). Modelling reason: the five delivered theories state facts about
+  `PhotoLean/Goldschmidt/*` plus this registry comment itself, whose prose contains both words). Modelling reason: the five delivered theories state facts about
   *energies* along one reaction coordinate; Goldschmidt's states facts about *lengths* in a crystal,
   and the two vocabularies share no scalar.
 * **Goldschmidt ↔ Sabatier — a look-alike of shape, with no edge.** Two shapes coincide: (i) a
