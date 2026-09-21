@@ -2896,3 +2896,73 @@
   `proofs/scripts/lake env lean .lake/tmp/<Draft>.lean` (~2 s with the cached mathlib oleans). Both
   the 29-declaration draft and the counterexample probe were settled this way; nothing entered
   `PhotoLean/` until it compiled clean.
+
+## 2026-09-21 — Goldschmidt G2: the rules layer (`PhotoLean/Goldschmidt/Rules.lean`, owner prover_c) — DONE (18/18)
+
+- Deliverable: `PhotoLean/Goldschmidt/Rules.lean`, namespace `PhotoLean.Goldschmidt`, `import Mathlib`
+  only (deliberately NOT `PhotoLean.Goldschmidt.Basic` — G2 needs nothing from the description layer).
+  **18 declarations = the 5 G2 definitions (`RadiusMatch`, `chiTol`, `Substitutable`, `ChargeBalanced`,
+  `isovalent`) + the 13 G2 theorems**, exactly the authority's §G2 list and nothing else (0 auxiliary
+  declarations). Two commits: `52e204e` (5 definitions + 12 theorems) and `931e350` (the corrected
+  `chiTol_anti`, after the statement authority was fixed).
+- Gates (raw verdicts, final artifact): `proofs/scripts/lake build PhotoLean.Goldschmidt.Rules` →
+  `Build completed successfully.` with 0 warnings; `proofs/scripts/check.sh --strict
+  PhotoLean.Goldschmidt.Rules` → `verdict: PASS` (`clean`; per-theory leaf plane 6/6 OK);
+  `axioms.sh` on **all 13 theorems** → every one `verdict: PASS (only mathlib infrastructure axioms)`;
+  `bep-fidelity.py --theory goldschmidt --milestone G2` → `delivered, word-for-word 18`,
+  `delivered, not in authority: 0`, `not delivered yet: 0`, `signature differences: 0`.
+- **The authority row `chiTol_anti` was FALSE as first drafted** — the finding of this round. Draft:
+  `(hk : 0 ≤ k) (h : |chi'' - chi| ≤ |chi' - chi|) : chiTol tol0 k chi chi'' ≤ chiTol tol0 k chi chi'`
+  with `chiTol tol0 k chi chi' = tol0 - k * |chi - chi'|`. Kernel-checked refutation (6-line probe):
+  `tol0 = 0, k = 1, chi = 0, chi' = 10, chi'' = 0` makes the hypothesis `0 ≤ 10` true and the
+  conclusion `0 ≤ -10` false. The lead corrected the **hypothesis direction** (plan §3.1 item 8,
+  option B) — keeping the name, because the tolerance IS antitone in `|Δχ|` — and the delivered row is
+  `(h : |chi' - chi| ≤ |chi'' - chi|) : chiTol .. chi chi'' ≤ chiTol .. chi chi'`;
+  `substitutable_mono_chi` (true as drafted, unchanged) consumes it with the two `χ` arguments swapped.
+- Tried and failed / worth remembering:
+  1. **A quantity whose name asserts "anti"/"mono" inverts the hypothesis direction — check the name
+     against the direction, not against the prose in the plan.** plan §5's sketch for `chiTol_anti`
+     (`sub_le_sub_left`) silently required the *reverse* of the stated hypothesis; the mismatch between
+     sketch and statement is what exposed the defect. Standing rule: before proving a row whose name
+     asserts monotonicity/antitonicity, instantiate it numerically (tolerance `0`, `k = 1`, two
+     distances) — one minute, and it catches the sign errors the sketch hides. A false row must be
+     reported, never weakened into a provable one, and a corrected row needs a **correction-log entry
+     plus an authority edit by its owner**, not a local edit by the prover.
+  2. **Do not add `[DecidableEq ι]` to a statement to make a proof easier.** The API probe
+     `theories/goldschmidt/probes/goldschmidt-api-finset-z.lean` claims `exists_compensating_partner`
+     "must" carry `[DecidableEq ι]` ("the statement authority must carry it"). It must not:
+     `Finset.erase` needs decidable equality, and the proof's first tactic `classical` supplies it
+     locally (local instance, signature untouched). The delivered signature is the authority's
+     `[Fintype ι]`-only one, 0 signature differences; the probe comment is a stale trap for the next
+     prover (lead has asked `api_researcher` to fix it). Rule: a typeclass that is not part of the
+     physics belongs in the *proof*, never in the statement.
+  3. **`rw [def]` on a goal that is a conjunction did not unfold the definition** here. On
+     `RadiusMatch τ r r' ∧ RadiusMatch τ r' r`, `rw [RadiusMatch]` + `constructor` left the second goal
+     still headed by `RadiusMatch`, so the next `rw [abs_sub_comm r' r]` failed with "did not find
+     instance of the pattern `|r' - r|`". Working form: `unfold RadiusMatch` (delta + beta) instead of
+     `rw [RadiusMatch]` on the goal; `rw [RadiusMatch] at h1 h2` on hypotheses did work. Related slip
+     of the same round: `rw [min_eq_left hle] at h1` failed because the `min` was in the **goal**, not
+     in `h1` — redirect the rewrite to the side that actually carries the term.
+  4. **`chiTol` writes `|χ - χ'|` while the statements write `|χ' - χ|`** — syntactically different
+     terms, so `linarith` treats them as unrelated atoms and fails. Fix: `rw [abs_sub_comm χ' χ,
+     abs_sub_comm χ'' χ]` first, then `mul_le_mul_of_nonneg_left` + `linarith`/`nlinarith`. Every
+     `abs`-carrying row of this theory must align the argument order before arithmetic.
+  5. **The `unusedVariables` linter fires on unused *theorem hypotheses*** (`radiusMatch_comp_ratchet`
+     warned for `hr1` and `htau1`), and the repo standard is zero warnings. The first working proof
+     (triangle inequality `|r1-r3| ≤ τ r1 + τ r2` with `r2 ≤ (1+τ) r1`) used none of the three
+     hypotheses; the delivered proof reads both sides of the composite window off the individual steps
+     (`r3 ≤ (1+τ) r2 ≤ (1+τ)² r1` and `r3 ≥ (1-τ) r2 ≥ (1-τ)² r1`) and therefore genuinely uses
+     `0 ≤ τ`, `τ ≤ 1` (for `1 - τ ≥ 0`) and `r1 ≥ 0`. **An apparently dispensable hypothesis is a
+     signal to look for the proof that needs it (or to question the hypothesis) — not to leave it
+     unused.**
+  6. Measured names (v4.17.0), lead-requested: **`Finset.sum_bool` and `Finset.sum_unit` do not
+     exist**; the working replacements are the `Fintype`-level `Fintype.sum_bool`
+     (`∑ b : Bool, f b = f true + f false` — note the `true + false` order, so the authority's printed
+     `dz false + dz true = 0` needs one `add_comm`) and `Fintype.sum_unique`. Also measured:
+     `min_cases a b` is a **conjunction** (`a ⊓ b = a ∧ a ≤ b ∨ a ⊓ b = b ∧ b < a`), not the
+     disjunction it looks like — use `le_total` + `min_eq_left`/`min_eq_right`; and no `mul_min`
+     distributivity lemma is needed (`min_le_left`/`min_le_right` + `mul_le_mul_of_nonneg_left`).
+  7. `min`/`⊓` pretty-printing trap: for `ℝ` the same function prints as `min r r'` in one position and
+     `r ⊓ r'` in another, so `min_eq_left` failing once is not evidence that it is the wrong lemma —
+     settle every name question with a 3-line compiling probe (`.lake/tmp/` is untracked and takes
+     `proofs/scripts/lake env lean` ~2 s), not by guessing from the pretty-printer.
