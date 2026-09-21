@@ -138,7 +138,7 @@
       six-theory relation-graph bullet — commit `b5e28d8` — lead — done
 - [x] bilingual `RESULTS.md` (the single human-facing deliverable, English original + Chinese
       rendering per section) — commits `b3e2e69`/`f95a704`/`671b082` — lead — done
-- [ ] literature round 1 incorporated into `plan.md` §1.1/§2/§9/§12 and `RESULTS.md` §6 (the primary
+- [x] literature round 1 incorporated into `plan.md` §1.1/§2/§9/§12 and `RESULTS.md` §6 (the primary
       source retrieved: the factor and the `0.8–1.0` band are Goldschmidt's own, the `[1, 11/10]` band
       is declared with no printed support, the 15 % reference is the *smaller* ion, the charge rule is a
       later systematization) — commits `671b082`/`f95a704` — lead — done
