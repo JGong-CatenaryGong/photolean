@@ -2977,3 +2977,927 @@ error: unknown identifier 'monotoneOn_singleton'        -- it is `Set.monotoneOn
 | S3 `Sharp.lean` (exact conditions, apex uniqueness) | **low/medium** — the `√` apex algebra of §6 is verified in both orientations, but case analysis must respect the `Set.Ioi` fact (§3) and the `lt_trichotomy`-with-explicit-witness house pattern (`PhotoLean/Marcus/Sharp.lean:188–247`, `PhotoLean/Hammond/Sharp.lean:32–59`) |
 | S4 `Compose.lean` (microscopic / cross-theory form) | **low** — `rate`/`barrier` are the delivered `PhotoLean.Marcus` objects; both directions of the barrier↔rate comparison are now kernel-checked (§5), the reverse one being new |
 | S5 `RatModel.lean` / `Instances.lean` (verdicts) | **low** — all transfer recipes of §7 are verified, including a full 6-branch classifier transfer and a `norm_num` verdict row; the only traps are the literal-match issue (§10.10) and `by decide` on `/`-bearing ℚ literals (banned since §kasha §4.4) |
+
+---
+
+## Goldschmidt theory (2026-09-21) — api_researcher — 7 probes, all exit 0 / 0 error / 0 warning
+
+> Body in English (`AGENTS.md` language policy: `proofs/API-NOTES.md` is an English artifact; no
+> mirror copy). Identifiers, `#check` output, errors and warnings are quoted verbatim.
+>
+> **Authority state.** Measured at repository `HEAD = 95dc0ba`. The plan of record is
+> `theories/goldschmidt/plan.md` (Sprint 0); the directory `theories/goldschmidt/probes/` was
+> **empty** at calibration time — `goldschmidt-statement-skeleton.lean` did not exist yet — so every
+> statement form below is derived from plan §2 (symbol table), §4–§9 (row tables) and the dispatch's
+> row list, and stated as the form that compiles today. Nothing under `PhotoLean/` was written or
+> modified by this role; the only files touched are this section and the seven probes.
+>
+> **Standard.** Each delivered probe is a `#check` log **plus** kernel-checked `theorem`/`example`
+> bodies, and each one is required to be *warning-free*, so no deprecated name is `#check`ed inside
+> them (a deprecation is a warning). The verbatim deprecation and `unknown constant` texts are
+> quoted in §9 from a scratch probe.
+>
+> **What is a *settled delivered form* here** (the point of the round): `tolFac_irrational` (§5),
+> `exists_negative_of_pos` / `exists_compensating_partner` (§6), `tolFacSq_cast` / `inBandQ_cast`
+> (§7), `zoneQ_eq_zone` plus the three `goldschmidtZone` characterization rows (§8) — all with
+> complete kernel-checked proofs in the probes, and the six instance verdicts (§10, an independent
+> cross-check of the numbers).
+
+### 1. Deliverables and compile evidence
+
+| Probe | Topics (dispatch letters) | `#check`s | Kernel-checked rows |
+|---|---|---|---|
+| `theories/goldschmidt/probes/goldschmidt-api-sqrt.lean` | (a) `Real.sqrt` bookkeeping | 19 | the 3 identities, `latticeOf_div_sqrt_eq_idealAO`, `contact_iff_tolFac_one`, `idealA_contact` |
+| `theories/goldschmidt/probes/goldschmidt-api-div-mono.lean` | (b) squaring, (c) division/monotonicity, auxiliary lemmas of this entry | 59 | `tolFac_strictMono_rA`, `tolFac_strictAnti_rB`, `conforms_iff_radius_window`, `le_tolFac_iff_sq`, `tolFac_le_iff_sq`, `conforms_iff_sq`, `tolFac_eq_one_iff`, `chiTol_anti_corrected` (+`'`) and the kernel-checked falsification of the plan's sketched `chiTol_anti` direction |
+| `theories/goldschmidt/probes/goldschmidt-api-sqrt2-irrational.lean` | (d) irrationality | 23 | `irrational_ratCast_div_sqrt_two`, two orientations, **`tolFac_irrational` (complete)** |
+| `theories/goldschmidt/probes/goldschmidt-api-finset-z.lean` | (e) `Finset`/`ℤ` charge balance | 17 | `chargeBalanced_single_iff`/`_pair_iff` on the raw sum *and* in the authority's `ChargeBalanced` signatures, **`exists_negative_of_pos`**, **`exists_compensating_partner`** (complete; authority signature, no `DecidableEq`) |
+| `theories/goldschmidt/probes/goldschmidt-api-rat-cast.lean` | (f) ℚ layer and ℚ→ℝ casts | 23 | `tolFacSq_cast` (2 routes), `le_tolFac_iff_sq`, `tolFac_le_iff_sq`, **`inBandQ_cast`**, plus the ℚ-trap examples (`|·|`, `inBandQ` by `norm_num`) |
+| `theories/goldschmidt/probes/goldschmidt-api-classifier.lean` | (g) `if`/`ite` classifier | 12 | `deriving DecidableEq`, **`zoneQ_eq_zone`** (authority signature), **`zoneQ_ideal_iff`**, the four `goldschmidtZone_eq_…_iff` rows, the `norm_num [zoneQ]` verdict recipe, and the two kernel witnesses that the quotient-shaped guard diverges |
+| `theories/goldschmidt/probes/goldschmidt-api-instance-arith.lean` | (h) instance arithmetic | 0 (arithmetic-only) | the six verdicts, classic/tetragonal band membership, `tolFac_gt/lt_one_of_sq_gt/lt`, and the nine authority-radii sum equalities |
+
+Exact command (from the repository root), run once per file:
+
+```
+proofs/scripts/lake env lean theories/goldschmidt/probes/goldschmidt-api-<topic>.lean
+```
+
+Measured in one loop at `HEAD = 95dc0ba` (`<probe>` = `sqrt`, `div-mono`, `sqrt2-irrational`,
+`finset-z`, `rat-cast`, `classifier`, `instance-arith`):
+
+```
+goldschmidt-api-sqrt.lean            exit=0 err=0 warn=0 outlines=19 checks=19
+goldschmidt-api-div-mono.lean        exit=0 err=0 warn=0 outlines=93 checks=59
+goldschmidt-api-sqrt2-irrational.lean exit=0 err=0 warn=0 outlines=23 checks=23
+goldschmidt-api-finset-z.lean        exit=0 err=0 warn=0 outlines=32 checks=17
+goldschmidt-api-rat-cast.lean        exit=0 err=0 warn=0 outlines=25 checks=23
+goldschmidt-api-classifier.lean      exit=0 err=0 warn=0 outlines=14 checks=12
+goldschmidt-api-instance-arith.lean  exit=0 err=0 warn=0 outlines=0  checks=0
+```
+
+(`outlines` counts the probe's stdout lines: `#check` output plus any multi-line signature wrap;
+`instance-arith` is `#check`-free by design — it asserts no API name.)
+
+Every name quoted in this section was `#check`ed in *this* run; the absent ones were measured in a
+scratch probe and are quoted verbatim in §9. No name here is a guess.
+
+### 2. (a) `Real.sqrt` bookkeeping — confirmed signatures (verbatim `#check @`, wraps joined)
+
+```
+@Real.sqrt_pos_of_pos : ∀ {x : ℝ}, 0 < x → 0 < √x
+@Real.sqrt_ne_zero' : ∀ {x : ℝ}, √x ≠ 0 ↔ 0 < x
+@Real.sq_sqrt : ∀ {x : ℝ}, 0 ≤ x → √x ^ 2 = x
+Real.sqrt_sq_eq_abs : ∀ (x : ℝ), √(x ^ 2) = |x|
+@Real.sqrt_mul : ∀ {x : ℝ}, 0 ≤ x → ∀ (y : ℝ), √(x * y) = √x * √y
+@Real.sqrt_mul_self : ∀ {x : ℝ}, 0 ≤ x → √(x * x) = x
+Real.sqrt_mul_self_eq_abs : ∀ (x : ℝ), √(x * x) = |x|
+@Real.sqrt_div : ∀ {x : ℝ}, 0 ≤ x → ∀ (y : ℝ), √(x / y) = √x / √y
+@Real.div_sqrt : ∀ {x : ℝ}, x / √x = √x
+@Real.mul_self_sqrt : ∀ {x : ℝ}, 0 ≤ x → √x * √x = x
+Real.sqrt_inv : ∀ (x : ℝ), √x⁻¹ = (√x)⁻¹
+@Real.sqrt_div_self' : ∀ {x : ℝ}, √x / x = 1 / √x
+@Real.sqrt_pos : ∀ {x : ℝ}, 0 < √x ↔ 0 < x
+Real.sqrt_nonneg : ∀ (x : ℝ), 0 ≤ √x
+@Real.sqrt_le_sqrt : ∀ {x y : ℝ}, x ≤ y → √x ≤ √y
+@Real.sqrt_lt_sqrt : ∀ {x y : ℝ}, 0 ≤ x → x < y → √x < √y
+@Real.sqrt_le_sqrt_iff : ∀ {x y : ℝ}, 0 ≤ y → (√x ≤ √y ↔ x ≤ y)
+@Real.sqrt_lt_sqrt_iff : ∀ {x y : ℝ}, 0 ≤ x → (√x < √y ↔ x < y)
+@Real.sqrt_eq_zero_of_nonpos : ∀ {x : ℝ}, x ≤ 0 → √x = 0
+```
+
+**The three bookkeeping identities — exact tactic lines (all kernel-checked in the probe):**
+
+| identity | recipe that compiled |
+|---|---|
+| `2 / Real.sqrt 2 = Real.sqrt 2` | `Real.div_sqrt` — **one term, no tactic**. `Real.div_sqrt` is *unconditional* (`x / √x = √x`, also at `x = 0` because `0/0 = 0 = √0`), so nothing about positivity is needed |
+| `Real.sqrt 2 * (1 / Real.sqrt 2) = 1` | `rw [one_div, mul_inv_cancel₀ ((Real.sqrt_ne_zero').mpr (by norm_num))]` |
+| `(1 / Real.sqrt 2) * Real.sqrt 2 = 1` | `rw [one_div, inv_mul_cancel₀ ((Real.sqrt_ne_zero').mpr (by norm_num))]` (note: `inv_mul_cancel₀`, the reversed factor order) |
+| `Real.sqrt 2 * (Real.sqrt 2)⁻¹ = 1` | `mul_inv_cancel₀ ((Real.sqrt_ne_zero').mpr (by norm_num))` — the `⁻¹` form without `one_div` |
+| `Real.sqrt 2 * Real.sqrt 2 = 2` | `Real.mul_self_sqrt (by norm_num)` (the `*` version) |
+| `Real.sqrt 2 ^ 2 = 2` | `Real.sq_sqrt (by norm_num)` (the `^` version; note `√x ^ 2` parses as `(√x)^2`) |
+| `2 * (rB + rO) / √2 = √2 * (rB + rO)` | `rw [show 2 * x / Real.sqrt 2 = (2 / Real.sqrt 2) * x by ring, Real.div_sqrt]` — the `ring` rearrangement is *needed* (a bare `ring` does close `2*x/√2 = (2/√2)*x`, but not the second step) |
+| `Real.sqrt 2 ≠ 0` | `(Real.sqrt_ne_zero').mpr (by norm_num)` — **not** `Real.sqrt_ne_zero_of_pos` (§9) |
+| `0 < Real.sqrt 2` | `Real.sqrt_pos_of_pos (by norm_num)` — there is no `Real.sqrt_two_pos` (§9) |
+
+Two G1 rows are kernel-checked on the same probe over the plan §2 mirrors
+(`latticeOf rB rO = 2*(rB+rO)`, `idealAO rB rO = √2*(rB+rO)`, `tolFac rA rB rO = (rA+rO)/(√2*(rB+rO))`):
+
+* `latticeOf_div_sqrt_eq_idealAO : latticeOf rB rO / √2 = idealAO rB rO` —
+  `have h : … = (2 / √2) * (rB + rO) := by unfold latticeOf; ring`, then `rw [h]; unfold idealAO; rw [Real.div_sqrt]`.
+  **Trap:** a trailing `rfl` after those rewrites is `error: no goals to be solved` — `rw` already
+  closes a goal that becomes reflexive.
+* `contact_iff_tolFac_one : rA + rO = idealAO rB rO ↔ tolFac rA rB rO = 1` —
+  `unfold tolFac idealAO; rw [div_eq_one_iff_eq (mul_ne_zero sqrt_two_ne_zero hB)]`, and **stop**:
+  the `rw` closes the `↔` by itself (appending `constructor` is `no goals to be solved`).
+
+### 3. (b) squaring equivalences and (c) division/monotonicity — the two G3 headlines
+
+**(b) confirmed signatures (verbatim `#check @`, wraps joined).** `sq_le_sq'`, `sq_le_sq`,
+`sq_lt_sq`, `sq_lt_sq'`, `sq_le_sq₀`, `sq_lt_sq₀`, `pow_le_pow_left₀`, `pow_lt_pow_left₀`,
+`abs_le`, `abs_sub_le_iff`, `sq_nonneg`, `Real.sqrt_le_sqrt`, `Real.sqrt_le_sqrt_iff`:
+
+```
+@sq_le_sq' : ∀ {α : Type u_1} [inst : LinearOrderedRing α] {a b : α}, -b ≤ a → a ≤ b → a ^ 2 ≤ b ^ 2
+@sq_le_sq : ∀ {α : Type u_1} [inst : LinearOrderedRing α] {a b : α}, a ^ 2 ≤ b ^ 2 ↔ |a| ≤ |b|
+@sq_lt_sq : ∀ {α : Type u_1} [inst : LinearOrderedRing α] {a b : α}, a ^ 2 < b ^ 2 ↔ |a| < |b|
+@sq_lt_sq' : ∀ {α : Type u_1} [inst : LinearOrderedRing α] {a b : α}, -b < a → a < b → a ^ 2 < b ^ 2
+@sq_le_sq₀ : ∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] [inst_1 : LinearOrder M₀] [inst_2 : ZeroLEOneClass M₀]
+  [inst_3 : PosMulStrictMono M₀] [inst_4 : MulPosStrictMono M₀] {a b : M₀}, 0 ≤ a → 0 ≤ b → (a ^ 2 ≤ b ^ 2 ↔ a ≤ b)
+@sq_lt_sq₀ : ∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] [inst_1 : LinearOrder M₀] [inst_2 : ZeroLEOneClass M₀]
+  [inst_3 : PosMulStrictMono M₀] [inst_4 : MulPosStrictMono M₀] {a b : M₀}, 0 ≤ a → 0 ≤ b → (a ^ 2 < b ^ 2 ↔ a < b)
+@pow_le_pow_left₀ : ∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] [inst_1 : Preorder M₀] {a b : M₀}
+  [inst_2 : ZeroLEOneClass M₀] [inst_3 : PosMulMono M₀] [inst_4 : MulPosMono M₀],
+  0 ≤ a → a ≤ b → ∀ (n : ℕ), a ^ n ≤ b ^ n
+@pow_lt_pow_left₀ : ∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] [inst_1 : PartialOrder M₀] {a b : M₀}
+  [inst_2 : ZeroLEOneClass M₀] [inst_3 : PosMulStrictMono M₀] [inst_4 : MulPosStrictMono M₀],
+  a < b → 0 ≤ a → ∀ {n : ℕ}, n ≠ 0 → a ^ n < b ^ n
+@abs_le : ∀ {α : Type u_1} [inst : LinearOrderedAddCommGroup α] {a b : α}, |a| ≤ b ↔ -b ≤ a ∧ a ≤ b
+@abs_sub_le_iff : ∀ {α : Type u_1} [inst : LinearOrderedAddCommGroup α] {a b c : α}, |a - b| ≤ c ↔ a - b ≤ c ∧ b - a ≤ c
+@sq_nonneg : ∀ {α : Type u_1} [inst : Semiring α] [inst_1 : LinearOrder α] [inst_2 : IsRightCancelAdd α]
+  [inst_3 : ZeroLEOneClass α] [inst_4 : ExistsAddOfLE α] [inst_5 : PosMulMono α] [inst_6 : AddLeftStrictMono α] (a : α),
+  0 ≤ a ^ 2
+@Real.sqrt_le_sqrt : ∀ {x y : ℝ}, x ≤ y → √x ≤ √y
+@Real.sqrt_le_sqrt_iff : ∀ {x y : ℝ}, 0 ≤ y → (√x ≤ √y ↔ x ≤ y)
+```
+
+**The recipe the dispatch asked for** (`0 ≤ a → 0 ≤ b → a^2 ≤ b^2 ↔ a ≤ b` in v4.17.0) is exactly
+`sq_le_sq₀ ha hb` — hypotheses first, no `abs`. The `abs`-flavoured `sq_le_sq` (`↔ |a| ≤ |b|`) is a
+different statement; the strict twin is `sq_lt_sq₀ ha hb`. `sq_le_sq'` / `sq_lt_sq'` are the
+*hypothesis-shaped* implications (`-b ≤ a → a ≤ b → …`) and need no nonnegativity.
+
+**(c) confirmed signatures (wraps joined).**
+
+```
+@div_lt_div_of_pos_right : … {a b c : G₀} [MulPosStrictMono G₀], a < b → 0 < c → a / c < b / c
+@div_lt_div_of_pos_left : … 0 < a → 0 < c → c < b → a / b < a / c
+@div_lt_div_iff_of_pos_right : … 0 < c → (a / c < b / c ↔ a < b)
+@div_lt_div_iff_of_pos_left : … 0 < a → 0 < b → 0 < c → (a / b < a / c ↔ c < b)
+@div_le_div_of_nonneg_left : … 0 ≤ a → 0 < c → c ≤ b → a / b ≤ a / c
+@div_le_div_of_nonneg_right : … a ≤ b → 0 ≤ c → a / c ≤ b / c
+@div_le_div_iff_of_pos_right : … 0 < c → (a / c ≤ b / c ↔ a ≤ b)
+@div_le_div_iff_of_pos_left : … 0 < a → 0 < b → 0 < c → (a / b ≤ a / c ↔ c ≤ b)
+@div_le_iff₀ : … 0 < c → (b / c ≤ a ↔ b ≤ a * c)
+@le_div_iff₀ : … 0 < c → (a ≤ b / c ↔ a * c ≤ b)
+@div_lt_iff₀ : … 0 < c → (b / c < a ↔ b < a * c)
+@lt_div_iff₀ : … 0 < c → (a < b / c ↔ a * c < b)
+@div_eq_one_iff_eq : ∀ {G₀} [GroupWithZero G₀] {a b : G₀}, b ≠ 0 → (a / b = 1 ↔ a = b)
+@div_eq_div_iff : ∀ {G₀} [CommGroupWithZero G₀] {a b c d : G₀}, b ≠ 0 → d ≠ 0 → (a / b = c / d ↔ a * d = c * b)
+@div_eq_iff : … b ≠ 0 → (a / b = c ↔ a = c * b)      @eq_div_iff : … b ≠ 0 → (c = a / b ↔ c * b = a)
+@one_div : ∀ {G} [DivInvMonoid G] (a : G), 1 / a = a⁻¹
+@inv_mul_cancel₀ : ∀ {G₀} [GroupWithZero G₀] {a : G₀}, a ≠ 0 → a⁻¹ * a = 1
+@div_add_div_same : ∀ {K} [DivisionSemiring K] (a b c : K), a / c + b / c = (a + b) / c
+@add_div : ∀ {K} [DivisionSemiring K] (a b c : K), (a + b) / c = a / c + b / c
+@div_sub_div_same : ∀ {K} [DivisionRing K] (a b c : K), a / c - b / c = (a - b) / c
+@sub_div : ∀ {K} [DivisionRing K] (a b c : K), (a - b) / c = a / c - b / c
+```
+
+**The `₀` question (the drift the dispatch anticipated):** `div_le_iff` and `le_div_iff` **exist but
+are deprecated** (warning, not error) — the working names are `div_le_iff₀` / `le_div_iff₀`;
+`div_lt_iff` / `lt_div_iff` were already recorded as drifted to `div_lt_iff₀` / `lt_div_iff₀` in the
+Marcus round and are re-confirmed here (no `div_le_iff₀`-style trap: the `₀` forms are exactly the
+old statements). `div_add_div` exists but needs `Field`-style hypotheses, so for the theory's
+uniform denominators `div_add_div_same` / `add_div` are the ones to use.
+
+**Two usage forms kernel-checked on the theory's own denominator `√2 * (rB + rO)`:**
+
+* `tolFac_strictMono_rA` (plan §6): `unfold tolFac; exact div_lt_div_of_pos_right (by linarith) hd`
+  with `hd : 0 < √2 * (rB + rO)`.
+* `tolFac_strictAnti_rB` (plan §6): the monotone denominator goes through
+  `div_lt_div_of_pos_left hA hd hlt` where **the last argument is the *denominator* inequality
+  `hd : √2*(rB+rO) < √2*(rB'+rO)`** (the lemma states `0 < a → 0 < c → c < b → a / b < a / c`, so
+  the "smaller denominator" comes last and the conclusion is written in the reversed order).
+
+**The two G3 headline rows, kernel-checked end to end** (`goldschmidt-api-div-mono.lean` and
+`goldschmidt-api-rat-cast.lean`).
+
+* `conforms_iff_radius_window` — the un-squared window:
+  `(lo ≤ t ∧ t ≤ hi) ↔ (lo * (√2*(rB+rO)) ≤ rA+rO ∧ rA+rO ≤ hi * (√2*(rB+rO)))`,
+  proved by `rw [tolFac]; exact and_congr (le_div_iff₀ hd) (div_le_iff₀ hd)` (no squaring at all).
+* `conforms_iff_sq` — the `√2`-free headline, halves:
+  `le_tolFac_iff_sq hlo hB hA : lo ≤ t ↔ 2*lo^2*(rB+rO)^2 ≤ (rA+rO)^2` and
+  `tolFac_le_iff_sq hhi hB hA : t ≤ hi ↔ (rA+rO)^2 ≤ 2*hi^2*(rB+rO)^2`, assembled by `and_congr`.
+  Each half is **two steps**:
+  `rw [tolFac, le_div_iff₀ hd, ← hsq]` then `exact (sq_le_sq₀ … ).symm`, where
+  `hsq : (lo * (√2*(rB+rO)))^2 = 2*lo^2*(rB+rO)^2` is proved by
+  `rw [mul_pow, mul_pow, Real.sq_sqrt (by norm_num)]; ring`.
+  **Direction trap:** the goal after the rewrites is `a ≤ b ↔ a^2 ≤ b^2`, i.e. the *reverse* of
+  `sq_le_sq₀`, so the `.symm` is mandatory (`exact sq_le_sq₀ …` is a type mismatch — measured).
+* `tolFac_eq_one_iff` (G1): `unfold tolFac; rw [div_eq_one_iff_eq (mul_ne_zero sqrt_two_ne_zero hB)]`
+  — the two side conditions are `√2 ≠ 0` (`Real.sqrt_ne_zero'`) and `rB + rO ≠ 0`.
+
+**The G2 `chiTol_anti` direction (statement fact, kernel-checked).** Plan §2 defines
+`chiTol tol₀ k χ χ' = tol₀ - k * |χ - χ'|`, and plan §5 sketches the row as
+`|χ'' - χ| ≤ |χ' - χ| → 0 ≤ k → chiTol tol₀ k χ χ'' ≤ chiTol tol₀ k χ χ'`. With the plan's own
+definition of `chiTol` that conclusion is **inverted**: `chiTol` is antitone in `|Δχ|`, so the
+*closer* `χ''` gets the **larger** tolerance, and the true row is
+`chiTol tol₀ k χ χ' ≤ chiTol tol₀ k χ χ''`. `goldschmidt-api-div-mono.lean` contains both
+
+```lean
+theorem chiTol_anti_corrected {tol0 k chi chi' chi'' : ℝ}
+    (h : |chi - chi''| ≤ |chi - chi'|) (hk : 0 ≤ k) :
+    chiTol tol0 k chi chi' ≤ chiTol tol0 k chi chi'' := by
+  unfold chiTol
+  exact sub_le_sub_left (mul_le_mul_of_nonneg_left h hk) tol0
+```
+
+(and the same row re-spelled in the plan's `|χ'' - χ| ≤ |χ' - χ|` hypothesis order via
+`abs_sub_comm`), and a **kernel-checked falsification of the sketched direction**
+(`chiTol_anti_sketch_counterexample`) at `χ = 0`, `χ' = 1`, `χ'' = 0`, where the hypothesis holds and
+`chiTol 0 1 0 0 = 0 > -1 = chiTol 0 1 0 1`. The tool is
+
+```
+@sub_le_sub_left : ∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LE α] [inst_2 : AddLeftMono α]
+  [inst_3 : AddRightMono α] {a b : α}, a ≤ b → ∀ (c : α), c - b ≤ c - a
+```
+
+i.e. subtracting reverses the order (`a ≤ b → c - b ≤ c - a`). This is the same class of defect as
+the S1/Hammond "tautology trap" and the BEP statement corrections: the *name* `_anti` and the
+conclusion must agree, and here they do not.
+
+### 4. (d) `Irrational` — the drift is severe, and the row is settled
+
+**Nothing in the dispatch's candidate family `Irrational.mul_ratCast` / `div_ratCast` /
+`add_ratCast` / `ratCast_mul` / `ratCast_div` / `of_ratCast_mul` / `of_ratCast_add` /
+`of_ratCast_div` / `sub_ratCast` / `of_ratCast_sub` / `of_ratCast_inv` exists in v4.17.0.** The
+whole closure family is spelled with a bare `rat` / `int` / `nat`. Confirmed signatures:
+
+```
+Irrational : ℝ → Prop
+irrational_sqrt_two : Irrational √2
+@Irrational.inv : ∀ {x : ℝ}, Irrational x → Irrational x⁻¹
+@Irrational.ne_rat : ∀ {x : ℝ}, Irrational x → ∀ (q : ℚ), x ≠ ↑q
+@Irrational.ne_zero : ∀ {x : ℝ}, Irrational x → x ≠ 0
+@Irrational.rat_mul : ∀ {x : ℝ}, Irrational x → ∀ {q : ℚ}, q ≠ 0 → Irrational (↑q * x)
+@Irrational.mul_rat : ∀ {x : ℝ}, Irrational x → ∀ {q : ℚ}, q ≠ 0 → Irrational (x * ↑q)
+Irrational.of_mul_rat : ∀ (q : ℚ) {x : ℝ}, Irrational (x * ↑q) → Irrational x
+Irrational.rat_add : ∀ (q : ℚ) {x : ℝ}, Irrational x → Irrational (↑q + x)
+Irrational.add_rat : ∀ (q : ℚ) {x : ℝ}, Irrational x → Irrational (x + ↑q)
+Irrational.of_rat_add : ∀ (q : ℚ) {x : ℝ}, Irrational (↑q + x) → Irrational x
+Irrational.rat_sub : ∀ (q : ℚ) {x : ℝ}, Irrational x → Irrational (↑q - x)
+Irrational.sub_rat : ∀ (q : ℚ) {x : ℝ}, Irrational x → Irrational (x - ↑q)
+@Irrational.rat_div : ∀ {x : ℝ}, Irrational x → ∀ {q : ℚ}, q ≠ 0 → Irrational (↑q / x)
+@Irrational.div_rat : ∀ {x : ℝ}, Irrational x → ∀ {q : ℚ}, q ≠ 0 → Irrational (x / ↑q)
+Irrational.of_div_rat : ∀ (q : ℚ) {x : ℝ}, Irrational (x / ↑q) → Irrational x
+Irrational.of_rat_div : ∀ (q : ℚ) {x : ℝ}, Irrational (↑q / x) → Irrational x
+@Irrational.mul_int : ∀ {x : ℝ}, Irrational x → ∀ {m : ℤ}, m ≠ 0 → Irrational (x * ↑m)
+@Irrational.of_mul_self : ∀ {x : ℝ}, Irrational (x * x) → Irrational x
+@Irrational.of_one_div : ∀ {x : ℝ}, Irrational (1 / x) → Irrational x
+Rat.not_irrational : ∀ (q : ℚ), ¬Irrational ↑q
+@irrational_sqrt_natCast_iff : ∀ {n : ℕ}, Irrational √↑n ↔ ¬IsSquare n
+@Nat.Prime.irrational_sqrt : ∀ {p : ℕ}, Nat.Prime p → Irrational √↑p
+```
+
+Note the binder shapes: in `Irrational.mul_rat` / `rat_mul` / `div_rat` / `rat_div` the rational is
+an **implicit** `{q : ℚ}` followed by the explicit `q ≠ 0`, whereas in `Irrational.of_mul_rat` /
+`of_div_rat` / `of_rat_div` / `rat_add` / `rat_sub` the rational is an **explicit first argument**.
+
+**Settled statement of `tolFac_irrational` (plan §7 G4).** The plan writes the row on rational radii
+while `tolFac : ℝ → ℝ → ℝ → ℝ`; the form that compiles — and that keeps the plan's `tolFac` shape
+verbatim, so no definition is specialized — quantifies `ℚ` and casts inside the conclusion:
+
+```lean
+theorem tolFac_irrational (rA rB rO : ℚ) (hA : rA + rO ≠ 0) (hB : rB + rO ≠ 0) :
+    Irrational (tolFac (rA : ℝ) (rB : ℝ) (rO : ℝ))
+```
+
+Both hypotheses are **necessary**, not cosmetic: `rB + rO = 0` or `rA + rO = 0` each make
+`tolFac = 0` (rational). The proof is a complete, kernel-checked three-step argument
+(`goldschmidt-api-sqrt2-irrational.lean`, no placeholder):
+
+```lean
+theorem irrational_ratCast_div_sqrt_two (q : ℚ) (hq : q ≠ 0) :
+    Irrational ((q : ℝ) / Real.sqrt 2) := by
+  have h : Irrational ((q : ℝ) * (Real.sqrt 2)⁻¹) :=
+    (irrational_sqrt_two.inv).rat_mul hq          -- Irrational.inv, then Irrational.rat_mul
+  simpa only [div_eq_mul_inv] using h
+
+theorem tolFac_irrational (rA rB rO : ℚ) (hA : rA + rO ≠ 0) (hB : rB + rO ≠ 0) :
+    Irrational (tolFac (rA : ℝ) (rB : ℝ) (rO : ℝ)) := by
+  have hq : (rA + rO) / (rB + rO) ≠ 0 := div_ne_zero hA hB
+  have key : tolFac (rA : ℝ) (rB : ℝ) (rO : ℝ)
+      = ((rA + rO) / (rB + rO) : ℚ) / Real.sqrt 2 := by
+    have h2 : (Real.sqrt 2 : ℝ) ≠ 0 := (Real.sqrt_ne_zero').mpr (by norm_num)
+    have hb : ((rB + rO : ℚ) : ℝ) ≠ 0 := by exact_mod_cast hB
+    unfold tolFac
+    push_cast
+    field_simp
+    ring
+  rw [key]
+  exact irrational_ratCast_div_sqrt_two _ hq
+```
+
+Three things the prover must not improvise:
+
+1. the algebraic identity `key` is closed by **`push_cast` → `field_simp` → `ring`**. The two
+   context hypotheses (`√2 ≠ 0`, `↑(rB+rO) ≠ 0`) are what `field_simp` consumes.
+2. **`ring_nf` does NOT close `key`** — it leaves `unsolved goals` (verbatim in §9). `field_simp`
+   with `ring` is the working tail; `push_cast; ring_nf` is the failing route.
+3. all three statement orientations of the denominator are available and kernel-checked:
+   `Irrational (↑q / √2)`, `Irrational ((√2)⁻¹ * ↑q)` (`simpa only [mul_comm]`), and
+   `Irrational (↑q * (√2)⁻¹)` (straight from `Irrational.rat_mul`). The plan's phrasing
+   "`Irrational (Real.sqrt 2)` scaled by the rational ratio" maps onto the **`↑q / √2`** form; the
+   other two are recorded as equivalent spellings, not as different rows.
+
+A concrete instance (`rA = rB = 1/2`, `rO = 3/2`, so `t = 1/√2`) is also kernel-checked, and
+`Irrational.ne_rat` (`h.ne_rat q : x ≠ ↑q`) plus `Rat.not_irrational` are exercised as the
+contradiction-side tools.
+
+### 5. (e) `Finset`/`ℤ` charge balance — the toolkit, and two complete proofs
+
+**Confirmed signatures (verbatim `#check @`, wraps joined):**
+
+```
+@Finset.sum_eq_zero_iff_of_nonneg : ∀ {ι : Type u_1} {N : Type u_2} [inst : OrderedAddCommMonoid N] {f : ι → N}
+  {s : Finset ι}, (∀ i ∈ s, 0 ≤ f i) → (∑ i ∈ s, f i = 0 ↔ ∀ i ∈ s, f i = 0)
+@Finset.sum_eq_zero_iff_of_nonpos : ∀ {ι : Type u_1} {N : Type u_2} [inst : OrderedAddCommMonoid N] {f : ι → N}
+  {s : Finset ι}, (∀ i ∈ s, f i ≤ 0) → (∑ i ∈ s, f i = 0 ↔ ∀ i ∈ s, f i = 0)
+@Finset.sum_erase_add : ∀ {α : Type u_1} {β : Type u_2} [inst : AddCommMonoid β] [inst_1 : DecidableEq α] (s : Finset α)
+  (f : α → β) {a : α}, a ∈ s → ∑ x ∈ s.erase a, f x + f a = ∑ x ∈ s, f x
+@Finset.sum_erase_eq_sub : ∀ {α : Type u_1} {β : Type u_2} {s : Finset α} {f : α → β} [inst : AddCommGroup β]
+  [inst_1 : DecidableEq α] {a : α}, a ∈ s → ∑ x ∈ s.erase a, f x = ∑ x ∈ s, f x - f a
+@Finset.sum_pos' : ∀ {ι : Type u_1} {M : Type u_2} [inst : OrderedCancelAddCommMonoid M] {f : ι → M} {s : Finset ι},
+  (∀ i ∈ s, 0 ≤ f i) → (∃ i ∈ s, 0 < f i) → 0 < ∑ i ∈ s, f i
+@Finset.sum_pos : ∀ {ι : Type u_1} {M : Type u_2} [inst : OrderedCancelAddCommMonoid M] {f : ι → M} {s : Finset ι},
+  (∀ i ∈ s, 0 < f i) → s.Nonempty → 0 < ∑ i ∈ s, f i
+@Finset.sum_nonneg : ∀ {ι : Type u_1} {N : Type u_2} [inst : OrderedAddCommMonoid N] {f : ι → N} {s : Finset ι},
+  (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∑ i ∈ s, f i
+@Finset.sum_le_sum : ∀ {ι : Type u_1} {N : Type u_2} [inst : OrderedAddCommMonoid N] {f g : ι → N} {s : Finset ι},
+  (∀ i ∈ s, f i ≤ g i) → ∑ i ∈ s, f i ≤ ∑ i ∈ s, g i
+@Finset.sum_lt_sum : ∀ {ι : Type u_1} {M : Type u_2} [inst : OrderedCancelAddCommMonoid M] {f g : ι → M} {s : Finset ι},
+  (∀ i ∈ s, f i ≤ g i) → (∃ i ∈ s, f i < g i) → ∑ i ∈ s, f i < ∑ i ∈ s, g i
+@Finset.sum_sub_distrib : ∀ {α : Type u_1} {β : Type u_2} {s : Finset α} {f g : α → β} [inst : SubtractionCommMonoid β],
+  ∑ x ∈ s, (f x - g x) = ∑ x ∈ s, f x - ∑ x ∈ s, g x
+@Finset.sum_neg_distrib : ∀ {α : Type u_1} {β : Type u_2} {s : Finset α} {f : α → β} [inst : SubtractionCommMonoid β],
+  ∑ x ∈ s, -f x = -∑ x ∈ s, f x
+@Finset.sum_eq_zero_iff : ∀ {ι : Type u_1} {M : Type u_2} [inst : OrderedAddCommMonoid M]
+  [inst_1 : CanonicallyOrderedAdd M] {f : ι → M} {s : Finset ι}, ∑ x ∈ s, f x = 0 ↔ ∀ x ∈ s, f x = 0
+@Finset.sum_eq_single : ∀ {α : Type u_1} {β : Type u_2} [inst : AddCommMonoid β] {s : Finset α} {f : α → β} (a : α),
+  (∀ b ∈ s, b ≠ a → f b = 0) → (a ∉ s → f a = 0) → ∑ x ∈ s, f x = f a
+@Finset.sum_singleton : ∀ {α : Type u_1} {β : Type u_2} [inst : AddCommMonoid β] (f : α → β) (a : α),
+  ∑ x ∈ {a}, f x = f a
+@Finset.univ_unique : ∀ {α : Type u_1} [inst : Fintype α] [inst_1 : Unique α], Finset.univ = {default}
+@Fintype.sum_unique : ∀ {α : Type u_1} {β : Type u_2} [inst : AddCommMonoid β] [inst_1 : Unique α] [inst_2 : Fintype α]
+  (f : α → β), ∑ x : α, f x = f default
+@Fintype.sum_bool : ∀ {α : Type u_1} [inst : AddCommMonoid α] (f : Bool → α), ∑ b : Bool, f b = f true + f false
+```
+
+**`Finset.sum_bool` and `Finset.sum_unit` do not exist** (§9). Replacements are the `Fintype`-level
+`Fintype.sum_bool` (`∑ b : Bool, f b = f true + f false`) and `Fintype.sum_unique`
+(`∑ x : α, f x = f default`, which covers `Unit`). Two usage traps measured:
+
+* the sum order of `Fintype.sum_bool` is **`f true + f false`**; the plan's `chargeBalanced_pair_iff`
+  is printed as `dz false + dz true = 0`, so either state the row in the `true + false` order or add
+  `rw [Fintype.sum_bool, add_comm]` (both variants are kernel-checked in the probe).
+* `Finset.sum_erase_add`'s membership proof is **explicit**: `Finset.sum_erase_add _ _ (Finset.mem_univ i)`
+  (`_ _` are the `Finset`/function arguments). Its `=`-form twin `Finset.sum_erase_eq_sub` is the one
+  the compensating-partner proof uses.
+
+**Settled row `exists_negative_of_pos` (complete proof, no `DecidableEq`):**
+
+```lean
+theorem exists_negative_of_pos {ι : Type*} [Fintype ι] (dz : ι → ℤ)
+    (hsum : ∑ i, dz i = 0) (hpos : ∃ i, 0 < dz i) : ∃ j, dz j < 0 := by
+  by_contra h
+  have hnonneg : ∀ i ∈ (Finset.univ : Finset ι), 0 ≤ dz i :=
+    fun i _ => le_of_not_gt (fun hlt => h ⟨i, hlt⟩)
+  have hz := (Finset.sum_eq_zero_iff_of_nonneg hnonneg).mp hsum
+  obtain ⟨i, hi⟩ := hpos
+  have := hz i (Finset.mem_univ i)
+  omega
+```
+
+* The plan's route (`Finset.sum_eq_zero_iff_of_nonneg` contrapositive) works **verbatim**; the
+  finisher is `omega` (on `ℤ`; `linarith` also closes it).
+* A shorter alternative with the same statement: `Finset.sum_pos' hnonneg ⟨i, Finset.mem_univ i, hi⟩`
+  gives `0 < ∑ i, dz i`, contradicting `hsum` — also kernel-checked, and the preferred engine when
+  the index set is *not* `Finset.univ`.
+* The `ℚ` variant (plan §8 `chargeBalancedQ`) is kernel-checked identically, with `linarith` as the
+  finisher.
+
+**Settled row `exists_compensating_partner` (complete proof; the delivered signature carries NO
+`DecidableEq`):**
+
+```lean
+theorem exists_compensating_partner {ι : Type*} [Fintype ι] (dz : ι → ℤ)
+    (hsum : ∑ i, dz i = 0) (i : ι) (hi : 0 < dz i) : ∃ j, j ≠ i ∧ dz j < 0 := by
+  classical
+  by_contra h
+  have hnn : ∀ j ∈ (Finset.univ : Finset ι).erase i, 0 ≤ dz j := by
+    intro j hj
+    rw [Finset.mem_erase] at hj
+    exact le_of_not_gt (fun hlt => h ⟨j, hj.1, hlt⟩)
+  have hsum_erase : ∑ j ∈ (Finset.univ : Finset ι).erase i, dz j = -dz i := by
+    rw [Finset.sum_erase_eq_sub (Finset.mem_univ i), hsum]
+    ring
+  have hnn' := Finset.sum_nonneg hnn
+  rw [hsum_erase] at hnn'
+  omega
+```
+
+* **The recipe for the authority's exact signature** (`[Fintype ι]` only): put `classical` as the
+  first tactic. Internally the proof needs `DecidableEq ι` (the split uses
+  `Finset.sum_erase_eq_sub (Finset.mem_univ i)` over `univ.erase i`, and `Finset.erase` requires it),
+  and `classical` supplies it **locally** — the instance does not escape into the statement. That is
+  the delivered shape; the probe deliberately contains **no** `DecidableEq`-carrying variant, so no
+  prover can pick one up by mistake (independently re-confirmed by `prover_c` on this toolchain during
+  G2: the authority's signature is deliverable as-is with `classical` inside the proof).
+* `rw [Finset.mem_erase] at hj` turns `j ∈ univ.erase i` into `j ≠ i ∧ j ∈ univ`; `hj.1` is the
+  `j ≠ i` needed by the negated witness `h`.
+* `by_contra` + `le_of_not_gt` is enough — no `push_neg` is needed, because the raw negated
+  existential `h : ¬ ∃ j, j ≠ i ∧ dz j < 0` can be applied directly as `h ⟨j, hj.1, hlt⟩`.
+* `Finset.sum_nonneg hnn : 0 ≤ ∑_{univ.erase i} dz j`, then `rw [hsum_erase]` makes it `0 ≤ -dz i`,
+  and `omega` closes against `hi : 0 < dz i`.
+
+### 6. (f) the ℚ layer — cast push-through, `tolFacSq_cast`, `inBandQ_cast`
+
+**All 23 `Rat.cast_*` names of the dispatch exist** (verbatim `#check @`, wraps joined):
+
+```
+@Rat.cast_pow : ∀ {α : Type u_1} [inst : DivisionRing α] (p : ℚ) (n : ℕ), ↑(p ^ n) = ↑p ^ n
+@Rat.cast_div : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] (p q : ℚ), ↑(p / q) = ↑p / ↑q
+@Rat.cast_mul : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] (p q : ℚ), ↑(p * q) = ↑p * ↑q
+@Rat.cast_add : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] (p q : ℚ), ↑(p + q) = ↑p + ↑q
+@Rat.cast_sub : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] (p q : ℚ), ↑(p - q) = ↑p - ↑q
+@Rat.cast_inv : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] (p : ℚ), ↑p⁻¹ = (↑p)⁻¹
+@Rat.cast_le : ∀ {p q : ℚ} {K : Type u_1} [inst : LinearOrderedField K], ↑p ≤ ↑q ↔ p ≤ q
+@Rat.cast_lt : ∀ {p q : ℚ} {K : Type u_1} [inst : LinearOrderedField K], ↑p < ↑q ↔ p < q
+@Rat.cast_nonneg : ∀ {q : ℚ} {K : Type u_1} [inst : LinearOrderedField K], 0 ≤ ↑q ↔ 0 ≤ q
+@Rat.cast_eq_zero : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] {p : ℚ}, ↑p = 0 ↔ p = 0
+@Rat.cast_ne_zero : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] {p : ℚ}, ↑p ≠ 0 ↔ p ≠ 0
+@Rat.cast_pos : ∀ {q : ℚ} {K : Type u_1} [inst : LinearOrderedField K], 0 < ↑q ↔ 0 < q
+@Rat.cast_neg : ∀ {α : Type u_1} [inst : DivisionRing α] (q : ℚ), ↑(-q) = -↑q
+@Rat.cast_one : ∀ {α : Type u_1} [inst : DivisionRing α], ↑1 = 1
+@Rat.cast_zero : ∀ {α : Type u_1} [inst : DivisionRing α], ↑0 = 0
+@Rat.cast_ofNat : ∀ {α : Type u_1} [inst : DivisionRing α] (n : ℕ) [inst_1 : n.AtLeastTwo],
+  ↑(OfNat.ofNat n) = OfNat.ofNat n
+@Rat.cast_natCast : ∀ {α : Type u_1} [inst : DivisionRing α] (n : ℕ), ↑↑n = ↑n
+@Rat.cast_intCast : ∀ {α : Type u_1} [inst : DivisionRing α] (n : ℤ), ↑↑n = ↑n
+@Rat.cast_inj : ∀ {α : Type u_1} [inst : DivisionRing α] [inst_1 : CharZero α] {p q : ℚ}, ↑p = ↑q ↔ p = q
+@Rat.cast_abs : ∀ {K : Type u_1} [inst : LinearOrderedField K] (q : ℚ), ↑|q| = |↑q|
+@Rat.cast_max : ∀ {K : Type u_1} [inst : LinearOrderedField K] (p q : ℚ), ↑(p ⊔ q) = ↑p ⊔ ↑q
+@Rat.cast_min : ∀ {K : Type u_1} [inst : LinearOrderedField K] (p q : ℚ), ↑(p ⊓ q) = ↑p ⊓ ↑q
+@Rat.cast_sum : ∀ {ι : Type u_1} {α : Type u_2} [inst : DivisionRing α] [inst_1 : CharZero α] (s : Finset ι)
+  (f : ι → ℚ), ↑(∑ i ∈ s, f i) = ∑ i ∈ s, ↑(f i)
+```
+
+Note `Rat.cast_pow` needs only `DivisionRing` while the additive/multiplicative/division lemmas need
+`CharZero` as well; `Rat.cast_le` / `cast_lt` / `cast_nonneg` / `cast_pos` need `LinearOrderedField`
+and are **iff**s (the field must be pinned as `(Rat.cast_lt (K := ℝ))` when the goal is ambiguous).
+
+**Settled recipe for pushing a cast through `(rA + rO)^2 / (2 * (rB + rO)^2)` — `tolFacSq_cast`
+(complete, kernel-checked):**
+
+```lean
+theorem tolFacSq_cast (rA rB rO : ℚ) :
+    ((tolFacSq rA rB rO : ℚ) : ℝ) = (tolFac (rA : ℝ) (rB : ℝ) (rO : ℝ)) ^ 2 := by
+  unfold tolFacSq tolFac
+  push_cast
+  rw [div_pow, mul_pow, Real.sq_sqrt (by norm_num)]
+```
+
+Two kernel-checked routes, and the trap that distinguishes them: route B above needs **no trailing
+`ring`** (`rw` closes the reflexive goal; appending `ring` gives `no goals to be solved`); route A
+(`push_cast; field_simp; rw [mul_pow, Real.sq_sqrt (by norm_num)]`) also closes with no trailing
+`ring`. What does **not** work is `push_cast; ring_nf` — see §9.
+
+**Settled row `inBandQ_cast`** (plan §8 G5, the correctness theorem of the ℚ layer), with the two
+definitions this probe proposes:
+
+```lean
+def GoldschmidtConforms (lo hi rA rB rO : ℝ) : Prop :=
+  lo ≤ tolFac rA rB rO ∧ tolFac rA rB rO ≤ hi
+
+def inBandQ (lo hi rA rB rO : ℚ) : Prop :=
+  2 * lo ^ 2 * (rB + rO) ^ 2 ≤ (rA + rO) ^ 2 ∧
+    (rA + rO) ^ 2 ≤ 2 * hi ^ 2 * (rB + rO) ^ 2
+
+theorem inBandQ_cast (lo hi rA rB rO : ℚ) (hlo : 0 ≤ lo) (hhi : 0 ≤ hi)
+    (hB : 0 < rB + rO) (hA : 0 ≤ rA + rO) :
+    inBandQ lo hi rA rB rO ↔
+      GoldschmidtConforms (lo : ℝ) (hi : ℝ) (rA : ℝ) (rB : ℝ) (rO : ℝ)
+```
+
+i.e. `inBandQ` is literally the right-hand side of `conforms_iff_sq`, and the transfer is that
+equivalence plus the cast alignment. The four side conditions are exactly the physical premises;
+the cast-alignment recipe is
+
+```lean
+have hcast1 : (2 * lo ^ 2 * (rB + rO) ^ 2 ≤ (rA + rO) ^ 2) ↔
+    (2 * (lo : ℝ) ^ 2 * ((rB : ℝ) + (rO : ℝ)) ^ 2 ≤ ((rA : ℝ) + (rO : ℝ)) ^ 2) := by
+  rw [(Rat.cast_le (K := ℝ)).symm]
+  push_cast
+  rfl
+```
+
+— `rw [(Rat.cast_le (K := ℝ)).symm]` rewrites the *ℚ* comparison into its ℝ cast, `push_cast`
+distributes the casts over `*`, `^`, `+`, and `rfl` finishes. The final assembly is
+`unfold inBandQ GoldschmidtConforms; rw [le_tolFac_iff_sq …, tolFac_le_iff_sq …]; exact and_congr hcast1 hcast2`.
+`exact_mod_cast` discharges each numeric side condition (`hlo' : (0:ℝ) ≤ (lo:ℝ)` etc.).
+
+**The `float`-free cross-checks the dispatch asked for** (`goldschmidt-api-rat-cast.lean`):
+`example : 2 * (3/20 : ℚ)^2 * (401/200)^2 ≤ (71/25)^2 := by norm_num` and
+`example : (322624 : ℚ) > 321602 := by norm_num` both compile; `norm_num` also closes
+`(71/25 : ℚ)^2 > 2 * (401/200)^2`.
+
+**`decide` domain on ℚ (measured, table is the answer to the dispatch's last sub-question):**
+
+| goal | `norm_num` | `decide` |
+|---|---|---|
+| `2 * (3/20 : ℚ)^2 * (401/200)^2 ≤ (71/25)^2` | **closes** | fails |
+| `(322624 : ℚ) > 321602` | closes | **closes** |
+| `(322624 : ℚ)/40000 > (321602 : ℚ)/40000` | closes | fails |
+| `(2 : ℚ) * 3 = 6` | closes | fails |
+| `(71/25 : ℚ)^2 > 2 * (401/200)^2` | **closes** | fails |
+
+`decide` is reliable **only on a comparison of integer literals**; any `/`, `*` or `^` in `ℚ` leaves
+`Rat.instDecidableLt` stuck at `Rat.blt` (verbatim text in §9). The `decide`-after-rewriting route
+that *does* work is to clear the division first:
+
+```lean
+example : (322624 : ℚ) / 40000 > (321602 : ℚ) / 40000 := by
+  show (321602 : ℚ) / 40000 < (322624 : ℚ) / 40000
+  rw [div_lt_div_iff_of_pos_right (by norm_num : (0 : ℚ) < 40000)]
+  decide
+```
+
+**Trap:** `rw [div_lt_div_iff_of_pos_right …]` does **not** fire on a goal written with `>` (`a > b`
+is `GT.gt`, not literally `b < a`): the rewrite fails with
+`did not find instance of the pattern in the target expression / ?m / 40000 < ?m / 40000`. Insert the
+`show` first. For the instance layer, `norm_num` remains the recommended tool — it needs no `show`.
+
+### 7. (g) the computable classifier — `deriving DecidableEq` and `zoneQ_eq_zone`
+
+**The `if`/`ite` layer (verbatim `#check @`, wraps joined):**
+
+```
+@if_pos : ∀ {c : Prop} {h : Decidable c}, c → ∀ {α : Sort u_1} {t e : α}, (if c then t else e) = t
+@if_neg : ∀ {c : Prop} {h : Decidable c}, ¬c → ∀ {α : Sort u_1} {t e : α}, (if c then t else e) = e
+@ite_eq_iff : ∀ {α : Sort u_1} {P : Prop} [inst : Decidable P] {a b c : α},
+  (if P then a else b) = c ↔ P ∧ a = c ∨ ¬P ∧ b = c
+@ite_eq_iff' : ∀ {α : Sort u_1} {P : Prop} [inst : Decidable P] {a b c : α},
+  (if P then a else b) = c ↔ (P → a = c) ∧ (¬P → b = c)
+@lt_trichotomy : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a < b ∨ a = b ∨ b < a
+@lt_or_ge : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a < b ∨ a ≥ b
+@le_or_lt : ∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a ≤ b ∨ b < a
+@lt_or_gt_of_ne : ∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ≠ b → a < b ∨ a > b
+@lt_iff_not_ge : ∀ {α : Type u_1} [inst : LinearOrder α] (x y : α), x < y ↔ ¬x ≥ y
+@le_iff_lt_or_eq : ∀ {α : Type u_1} [inst : PartialOrder α] {a b : α}, a ≤ b ↔ a < b ∨ a = b
+@Bool.rec : {motive : Bool → Sort u_1} → motive false → motive true → (t : Bool) → motive t
+decide : (p : Prop) → [h : Decidable p] → Bool
+```
+
+**`lt_iff_le_not_ge` does not exist** (§9) — the name is `lt_iff_not_ge`
+(`x < y ↔ ¬x ≥ y`). `if_pos` / `if_neg` are the goal-side splitters; `split_ifs with h1 … hn` is the
+hypothesis-side tool, with the branch bookkeeping already recorded in the Sabatier section §8.
+
+**The classifier shape settled by this probe** (the plan fixes the *names* and the three-way
+behaviour but not the bodies):
+
+```lean
+inductive GoldschmidtZone where
+  | tooSmall
+  | ideal
+  | tooLarge
+  deriving DecidableEq
+
+def goldschmidtZone (lo hi t : ℝ) : GoldschmidtZone :=
+  if t < lo then GoldschmidtZone.tooSmall
+  else if t ≤ hi then GoldschmidtZone.ideal
+  else GoldschmidtZone.tooLarge
+
+def zoneQ (lo hi rA rB rO : ℚ) : GoldschmidtZone :=
+  if (rA + rO) ^ 2 < 2 * lo ^ 2 * (rB + rO) ^ 2 then GoldschmidtZone.tooSmall
+  else if (rA + rO) ^ 2 ≤ 2 * hi ^ 2 * (rB + rO) ^ 2 then GoldschmidtZone.ideal
+  else GoldschmidtZone.tooLarge
+```
+
+**This is the authority's body verbatim** (`goldschmidt-statement-skeleton.lean:402`, delivered at
+`PhotoLean/Goldschmidt/RatModel.lean`). i.e. **`ideal` is the in-band branch** (`lo ≤ t ∧ t ≤ hi`),
+which is what makes the transfer row and the plan §9 I8 non-vacuity family ("one conforming row per
+zone of the classic band") consistent. `deriving DecidableEq` on the 3-constructor inductive compiles
+and is *used*: every constructor mismatch in the characterization rows is discharged by `by decide`
+(constructor disjointness), not by `noConfusion` gymnastics.
+
+> **⚠ Do NOT use a quotient-shaped guard.** The tempting reformulation
+> `if tolFacSq rA rB rO < lo^2 then .tooSmall else …` with
+> `tolFacSq = (rA+rO)^2 / (2*(rB+rO)^2)` is **not equivalent** to the authority's body: it agrees
+> only under `rB + rO ≠ 0`, because at `rB + rO = 0` the quotient is `x / 0 = 0` in `ℚ` and the first
+> guard degenerates to `0 < lo^2`. Kernel witnesses (in `goldschmidt-api-classifier.lean`,
+> definitions `zoneQ` vs `zoneQQuotientForm`):
+> * `zoneQ 1 1 0 (-1) 1 = .tooLarge` while `zoneQQuotientForm 1 1 0 (-1) 1 = .tooSmall`;
+> * with the quotient form the authority's unconditional `zoneQ_ideal_iff` becomes **false**:
+>   `zoneQQuotientForm 0 1 0 (-1) 1 = .ideal` while `¬ inBandQ 0 1 0 (-1) 1`.
+>
+> The difference was found by the batch-1 verifier and re-verified here; the quotient definition is
+> present in the probe only as `zoneQQuotientForm`, explicitly marked DO NOT USE.
+
+**Settled row `zoneQ_eq_zone` (complete, kernel-checked):**
+
+```lean
+theorem zoneQ_eq_zone {lo hi rA rB rO : ℚ} (hlo : 0 ≤ lo) (hhi : 0 ≤ hi) (hB : 0 < rB + rO)
+    (hA : 0 ≤ rA + rO) : zoneQ lo hi rA rB rO =
+      goldschmidtZone (lo : ℝ) (hi : ℝ) (tolFac (rA : ℝ) (rB : ℝ) (rO : ℝ))
+```
+
+The radii are **implicit** `{…}` and the declared hypothesis order is `hlo hhi hB hA` — exactly the
+authority's signature, so a fidelity check passes; call sites should name the radii
+(`zoneQ_eq_zone (lo := 4/5) (hi := 1) … (by norm_num) …`), otherwise the first positional argument
+binds to `hlo` (measured elaboration error).
+
+Four steps, all in the probe:
+
+1. `hlo'`, `hhi'`, `hB'`, `hA'` by `exact_mod_cast`;
+2. the two ℝ↔ℚ **squared halves** `le_tolFac_iff_sq` / `tolFac_le_iff_sq`, plus the strict half
+   `lt_tolFac_iff_sq` (`t < lo ↔ (rA+rO)^2 < 2 lo^2 (rB+rO)^2`, obtained by
+   `rw [← not_le, le_tolFac_iff_sq …, not_le]`);
+3. the two **guard equivalences** for the authority's inlined ℚ guards (the `inBandQ_cast`-style
+   facts), each one `rw`/`push_cast`/`rfl`:
+
+```lean
+have h1iff : ((rA + rO) ^ 2 < 2 * lo ^ 2 * (rB + rO) ^ 2) ↔
+    (tolFac (rA : ℝ) (rB : ℝ) (rO : ℝ) < (lo : ℝ)) := by
+  rw [lt_tolFac_iff_sq hlo' hB' hA', (Rat.cast_lt (K := ℝ)).symm]
+  push_cast
+  rfl
+```
+
+   (and the `≤` twin via `tolFac_le_iff_sq` / `Rat.cast_le`);
+
+4. `unfold zoneQ goldschmidtZone`, then two nested `by_cases` with
+   `rw [if_pos h1, if_pos (h1iff.mp h1)]` and, on the negative side,
+   `rw [if_neg h1, if_neg (fun hc => h1 (h1iff.mpr hc))]`.
+
+**Do not reach for `norm_cast` here**: the Hammond/Sabatier trick `unfold zoneQ zone; norm_cast` works
+only when the ℚ guard *is* the cast of the ℝ guard; here the ℚ side is
+`(rA+rO)^2 < 2 lo^2 (rB+rO)^2` and the ℝ side is `t < ↑lo`, so a guard equivalence must be built
+first (the ℝ halves provide it). With `h1iff`/`h2iff` in hand the branch alignment is three rewrites
+and no automation.
+
+**Bonus row, also kernel-checked:** `zoneQ_ideal_iff (lo hi rA rB rO : ℚ) : zoneQ lo hi rA rB rO =
+.ideal ↔ inBandQ lo hi rA rB rO` (authority line 449) — the classifier's `ideal` branch *is* the
+band predicate. Its recipe is `unfold zoneQ inBandQ`, `by_cases` on the two guards, `rw` the `if`,
+and only **then** `by decide` for the constructor mismatches (`by decide` before the `if` is
+resolved would hit the ℚ-comparison stall of §9.1).
+
+**The characterization rows (plan §4 G1), kernel-checked — the authority's exact forms**
+(`goldschmidt-statement-skeleton.lean:134/138/143/147`, delivered at
+`PhotoLean/Goldschmidt/Basic.lean`):
+
+* `goldschmidtZone_eq_tooSmall_iff (lo hi t : ℝ) : goldschmidtZone lo hi t = .tooSmall ↔ t < lo`
+  — unconditional;
+* `goldschmidtZone_eq_ideal_iff (lo hi t : ℝ) : … = .ideal ↔ lo ≤ t ∧ t ≤ hi` — unconditional;
+* `goldschmidtZone_eq_tooLarge_iff (lo hi t : ℝ) : … = .tooLarge ↔ lo ≤ t ∧ hi < t` — unconditional,
+  the **conjunction**;
+* `goldschmidtZone_eq_tooLarge_iff_of_band (lo hi t : ℝ) (h : lo ≤ hi) : … ↔ hi < t` — the
+  *reduced* corollary for a non-empty band.
+
+The conjunct `lo ≤ t` in the `tooLarge` row is load-bearing: the classifier tests `t < lo` first, so
+for an inverted band with `hi < t < lo` it returns `tooSmall` while `hi < t` holds — kernel witness
+`lo = 1, hi = 0, t = 1/2` (plan §3.1 item 4; `goldschmidtZone_tooLarge_dropped_conjunct_false` in the
+probe). **An earlier draft of this entry said the authority "must carry `lo ≤ hi`" on the row; that
+was stale — the authority carries the unconditional conjunction plus the `_of_band` corollary, and
+only the `↔ hi < t` reduction needs `lo ≤ hi`.**
+
+The proof pattern for each row (both `by_cases`/`rw [if_pos/if_neg …]` and the shorter
+`unfold goldschmidtZone; split_ifs with h1 h2` used by the delivered file work; the probe uses
+`split_ifs` for the two `tooLarge` rows) is then
+`exact iff_of_true rfl ⟨…⟩` / `iff_of_false (by decide) ⟨…⟩`, with the arithmetic of the inverted
+cases done by `not_le.mpr` / `not_le.mp` / `not_lt.mpr`.
+
+### 8. (h) the six instance verdicts — independent cross-check of the numbers
+
+Criterion: `t ⋚ 1` ⟺ `(rA+rO)^2 ⋚ 2 (rB+rO)^2`. All numbers below are `norm_num` facts **in `ℚ`,
+with no `Real.sqrt`**, and each is paired with the ℝ verdict via the kernel-checked transfer
+`tolFac_gt_one_of_sq_gt` / `tolFac_lt_one_of_sq_lt` (the `rO := 0` normalization, under which
+`tolFac nA nB 0 = nA / (√2 nB)` exactly).
+
+| row | `rA + rO` | `rB + rO` | ℚ comparison (`norm_num`) | verdict | `t` |
+|---|---|---|---|---|---|
+| `SrTiO₃` | `71/25` | `401/200` | `2*(401/200)^2 < (71/25)^2` | **`t > 1`** | `1.00159` |
+| `CaTiO₃` | `137/50` | `401/200` | `(137/50)^2 < 2*(401/200)^2` | **`t < 1`** | `0.96632` |
+| `BaTiO₃` | `301/100` | `401/200` | `2*(401/200)^2 < (301/100)^2` | **`t > 1`** | `1.06154` |
+| `LaMnO₃` | `69/25` | `409/200` | `(69/25)^2 < 2*(409/200)^2` | **`t < 1`** | `0.95434` |
+| `NaNbO₃` | `279/100` | `51/25` | `(279/100)^2 < 2*(51/25)^2` | **`t < 1`** | `0.96707` |
+| `BaNiO₃` | `301/100` | `47/25` | `2*(47/25)^2 < (301/100)^2` | **`t > 1`** | `1.13212` |
+
+`t = 1` occurs for **no** row. The common denominators show the hand-checkable forms: the `SrTiO₃`
+`1`-edge test is `(71/25)^2 = 322624/40000` vs `2·(401/200)^2 = 321602/40000`, i.e. exactly the
+`322624 > 321602` comparison of the dispatch.
+
+**⚠ One number in the dispatch's brief is WRONG and is corrected here (disagreement reported
+loudly).** The brief gave the `BaNiO₃` row as `rB + rO = 47/50`; the authority's Shannon radii
+(`rB_Ni = 12/25 = 0.48 Å`, `rO_shannon = 7/5 = 1.40 Å`, `goldschmidt-statement-skeleton.lean` G6) give
+`rB + rO = 47/25 = 1.88 Å`, and `47/50 = 0.94 Å` is *smaller than `rO` itself*, i.e. it would force
+`rB < 0`. The correct row is `47/25`, `t ≈ 1.13212`, `t² = 90601/70688` — this matches plan §9 and
+the verifier's independent recomputation. The verdict *direction* is unaffected (both readings give
+`t > 1` and outside the tetragonal band), so **no plan claim flips**; only the magnitude was wrong
+(`2.26425` was the `47/50` artefact). The other five rows are exactly the authority's
+`rA_X + rO_shannon` / `rB_Y + rO_shannon`, kernel-checked in the probe's final section
+(`rA_Sr = 36/25`, `rA_Ca = 67/50`, `rA_Ba = 161/100`, `rA_La = 34/25`, `rA_Na = 139/100`,
+`rB_Ti = 121/200`, `rB_Mn = 129/200`, `rB_Nb = 16/25`, `rB_Ni = 12/25`, `rO_shannon = 7/5`).
+
+**Cross-check against the plan's own claims — agreement, no disagreement found (after the `BaNiO₃`
+number correction above):**
+
+* plan §1.1 (`SrTiO₃` above the classic `1.0` edge) — **agrees**: `srTiO3_gt_one`,
+  `srTiO3_not_classic` (`¬ (4/5 ≤ t ∧ t ≤ 1)`), and `srTiO3_tetragonal_conforms` (it is inside
+  `[1, 11/10]`, `t ≈ 1.0016`).
+* plan §9 I3 (`BaTiO₃` fails `[4/5, 1]`, conforms to `[1, 11/10]`) — **agrees**:
+  `baTiO3_not_classic` and `baTiO3_tetragonal_conforms`.
+* plan §9 I4 / §1.1 (`BaNiO₃` outside every delivered band) — **agrees**: `BaNiO3_gt_one` and
+  `BaNiO3_not_tetragonal` (`¬ t ≤ 11/10`).
+* plan §9 I2 (`CaTiO₃`, `LaMnO₃`, `NaNbO₃` with the classic band) — **agrees**: all three satisfy
+  `4/5 ≤ t ∧ t ≤ 1` (`caTiO3_classic_conforms`, `laMnO3_classic_conforms`, `NaNbO3_classic_conforms`).
+
+The independent exact-rational recomputation of these numbers (outside Lean) reproduces all six
+verdicts; no label or direction invert was found.
+
+### 9. Failures and drift (names that do NOT exist, verbatim errors, working replacement)
+
+Verbatim from a scratch probe (the failing names are deliberately **not** `#check`ed in the delivered
+probes, so that those stay at 0 error / 0 warning):
+
+```
+error: unknown constant 'Real.sqrt_ne_zero_of_pos'
+error: unknown constant 'Real.sqrt_two_pos'
+error: unknown constant 'Real.inv_sqrt'
+error: unknown constant 'Real.sqrt_two_lt_two'
+error: unknown identifier 'sq_lt_sq_iff'
+warning: `pow_le_pow_left` has been deprecated: use `pow_le_pow_left₀` instead
+warning: `div_le_iff` has been deprecated: use `div_le_iff₀` instead
+warning: `le_div_iff` has been deprecated: use `le_div_iff₀` instead
+error: unknown constant 'Irrational.mul_ratCast'
+error: unknown constant 'Irrational.div_ratCast'
+error: unknown constant 'Irrational.add_ratCast'
+error: unknown constant 'Irrational.ratCast_mul'
+error: unknown constant 'Irrational.ratCast_div'
+error: unknown constant 'Irrational.of_ratCast_mul'
+error: unknown constant 'Irrational.of_ratCast_add'
+error: unknown constant 'Irrational.of_ratCast_div'
+error: unknown constant 'Irrational.sub_ratCast'
+error: unknown constant 'Irrational.of_ratCast_sub'
+error: unknown constant 'Irrational.of_ratCast_inv'
+error: unknown constant 'Finset.sum_bool'
+error: unknown constant 'Finset.sum_unit'
+error: unknown constant 'Fintype.sum_unit'
+error: unknown constant 'Finset.sum_univ_unique'
+error: unknown constant 'Finset.sum_univ_eq_single'
+error: unknown constant 'Finset.sum_pos_iff_of_nonneg'
+error: unknown identifier 'lt_iff_le_not_ge'
+```
+
+| banned (does not exist in v4.17.0) | verified replacement (usage form that compiled) |
+|---|---|
+| `Real.sqrt_ne_zero_of_pos` | `(Real.sqrt_ne_zero').mpr (by norm_num)` — `sqrt_ne_zero' : √x ≠ 0 ↔ 0 < x` |
+| `Real.sqrt_two_pos` | `Real.sqrt_pos_of_pos (by norm_num : (0:ℝ) < 2)` |
+| `Real.inv_sqrt` | `Real.sqrt_inv : √x⁻¹ = (√x)⁻¹` (the reverse direction), or `one_div` + `inv_mul_cancel₀` |
+| `Real.sqrt_two_lt_two` | nothing needed; for a numeric bound use `Real.sqrt_lt_sqrt` / `nlinarith` |
+| `sq_lt_sq_iff` | `sq_lt_sq` (already the `↔ \|a\| < \|b\|`), or `sq_lt_sq₀ ha hb` |
+| `pow_le_pow_left` (deprecated) | `pow_le_pow_left₀` |
+| `div_le_iff` / `le_div_iff` (deprecated) | `div_le_iff₀` / `le_div_iff₀` |
+| the entire `Irrational.*_ratCast` family | `Irrational.rat_mul`, `Irrational.mul_rat`, `Irrational.rat_div`, `Irrational.div_rat`, `Irrational.rat_add`, `Irrational.add_rat`, `Irrational.rat_sub`, `Irrational.sub_rat`, `Irrational.of_mul_rat`, `Irrational.of_div_rat`, `Irrational.of_rat_div`, `Irrational.inv`, `Irrational.mul_int` (bare `rat`/`int`, **not** `ratCast`) |
+| `Finset.sum_bool` | `Fintype.sum_bool : ∑ b : Bool, f b = f true + f false` (note the `true + false` order) |
+| `Finset.sum_unit` | `Fintype.sum_unique : ∑ x : α, f x = f default` (covers `Unit`); or `Finset.univ_unique` + `Finset.sum_singleton` |
+| `Fintype.sum_unit` | `Fintype.sum_unique` |
+| `Finset.sum_univ_unique` / `Finset.sum_univ_eq_single` | `Fintype.sum_unique` / `Finset.sum_eq_single` |
+| `Finset.sum_pos_iff_of_nonneg` | `Finset.sum_pos'` (`(∀ i ∈ s, 0 ≤ f i) → (∃ i ∈ s, 0 < f i) → 0 < ∑ i ∈ s, f i`) |
+| `lt_iff_le_not_ge` | `lt_iff_not_ge : x < y ↔ ¬x ≥ y`, or `not_le` (`¬a ≤ b ↔ b < a`) |
+
+**Two tactic-level failures measured in this round** (verbatim):
+
+```
+error: unsolved goals
+rA rB rO : ℚ
+⊢ ↑rA * (↑rO * √2 + √2 * ↑rB)⁻¹ + ↑rO * (↑rO * √2 + √2 * ↑rB)⁻¹ =
+    ↑rA * (↑rO + ↑rB)⁻¹ * (√2)⁻¹ + ↑rO * (↑rO + ↑rB)⁻¹ * (√2)⁻¹
+```
+
+— the `push_cast; ring_nf` route on the `tolFac` cast identity of §4 step 1. The working tail is
+`push_cast; field_simp; ring` (with `√2 ≠ 0` and `↑(rB+rO) ≠ 0` in context). **This is the recipe the
+`tolFac_irrational` prover must use.**
+
+```
+error: tactic 'decide' failed for proposition
+  (71 / 25) ^ 2 > 2 * (401 / 200) ^ 2
+since its 'Decidable' instance
+  (2 * (401 / 200) ^ 2).instDecidableLt ((71 / 25) ^ 2)
+did not reduce to 'isTrue' or 'isFalse'.
+
+After unfolding the instances 'instDecidableEqBool', 'Bool.decEq', 'Int.decLt', 'Rat.instDecidableLt' and 'Int.decNonneg✝', reduction got stuck at the 'Decidable' instance
+  match (2 * (401 / 200) ^ 2).blt ((71 / 25) ^ 2), true with
+```
+
+— `decide` on ℚ literals with `/`, `*`, `^` (§6 table). Use `norm_num`, or clear the division and
+`show` the `<` orientation first.
+
+**Two rewrite failures measured** (both in §2/§6): a trailing `rfl` after a closing `rw` is
+`error: no goals to be solved`; and `rw [div_lt_div_iff_of_pos_right …]` on a `>`-shaped goal is
+`error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression / ?m / 40000 < ?m / 40000`.
+
+### 9.1 Measured traps on `ℚ` (kernel facts, not name facts)
+
+All of the following were re-measured on this toolchain in `goldschmidt-api-rat-cast.lean` /
+`goldschmidt-api-classifier.lean` (positive forms are `example`s in those probes; the failing forms
+are quoted here verbatim and are deliberately absent from the probes).
+
+1. **An unannotated `ℚ`-intended goal silently elaborates in `ℕ`.** The bare goal
+
+   ```lean
+   example : 2 / 3 ≤ 1 / 2 := by norm_num          -- COMPILES (ℕ reading: 0 ≤ 0)
+   example : (2 / 3 : ℚ) ≤ 1 / 2 := by norm_num    -- error: unsolved goals ⊢ False
+   example : 157 / 100 > 1 := by norm_num          -- error: unsolved goals ⊢ False (ℕ: 1 > 1)
+   ```
+
+   `ℕ` division is integer division, so the first line is a *true `ℕ`* proposition and `norm_num`
+   closes it although the intended `ℚ` reading is false; the same shape with a false `ℕ` reading
+   leaves the absurd `⊢ False`. **Rule for G5/G6:** state the instance layer through the
+   `ℚ`-parameterized definitions (`inBandQ`, `zoneQ`, `tolFacSq`, `radiusMatchQ`) or annotate every
+   literal — never deliver a bare literal comparison as a row, and never trust a bare `example`.
+2. **`norm_num` and `|·|` on `ℚ`.** On a *closed literal* argument `norm_num` does evaluate `|·|`:
+   `example : |(3 : ℚ) - 5| = 2 := by norm_num` compiles. On a *variable* it stalls at the side
+   condition:
+
+   ```lean
+   example (q : ℚ) (hq : 0 ≤ q) : |q| = q := by norm_num
+   -- error: unsolved goals  q : ℚ  hq : 0 ≤ q  ⊢ 0 ≤ q
+   example (q : ℚ) (hq : 0 ≤ q) : |q| = q := by norm_num [abs_of_nonneg]
+   -- error: unsolved goals  q : ℚ  hq : 0 ≤ q  ⊢ 0 ≤ q      (the bare lemma is not enough)
+   example (q : ℚ) (hq : 0 ≤ q) : |q| = q := by norm_num [abs_of_nonneg hq]   -- COMPILES
+   ```
+
+   So the recipe is `norm_num [abs_of_nonneg hq]` **with the nonnegativity hypothesis supplied**
+   (`rw [abs_of_nonneg hq]` is the plain alternative; `norm_num [abs_of_nonneg (sq_nonneg q)]` for
+   `|q^2| = q^2`). The dispatch's phrasing "`norm_num [abs_of_nonneg]`" is not sufficient by itself.
+3. **`norm_num` decides the concrete classifier / ℚ-band facts; `decide` does not.**
+   `norm_num [inBandQ]` closes the concrete `CaTiO₃` classic-band conjunction, and
+   `norm_num [zoneQ]` closes the classifier verdicts
+   (`SrTiO₃` at `[4/5, 1]` ↦ `tooLarge`, `CaTiO₃` ↦ `ideal`). `decide` fails on both (verbatim
+   `Decidable` stall above). `norm_num` is the G6 evaluator of record.
+4. **The evaluator depends on the classifier body, and only the authority's body may be used.**
+   With the authority's inlined `zoneQ` (guards `(rA+rO)^2 ⋚ 2 lo^2 (rB+rO)^2`), plain
+   `norm_num [zoneQ]` closes the concrete verdicts (`SrTiO₃` ↦ `tooLarge`, `CaTiO₃` ↦ `ideal`).
+   With a body that *delegates* to `tolFacSq`, `norm_num [zoneQ]` leaves the guard folded
+   (verbatim goal
+   `⊢ (if tolFacSq (91 / 50) (197 / 200) (51 / 50) < 16 / 25 then … else …) = GoldschmidtZone.tooLarge`)
+   and one must write `norm_num [zoneQ, tolFacSq]` — **but that body is not equivalent to the
+   authority's at `rB + rO = 0` anyway (§7), so it must not be used**; with the authority's body the
+   extra `tolFacSq` in the simp set is simply unnecessary.
+5. **`ring_nf` fails where `field_simp` + `ring` succeeds** (§9, first quoted failure) — the single
+   most important recipe-level fact of this round, because it is on the `tolFac_irrational` critical
+   path.
+6. **A trailing `rfl`/`ring` after a closing `rw` is `error: no goals to be solved`** (§9) — measured
+   twice, on `latticeOf_div_sqrt_eq_idealAO` and on `tolFacSq_cast` route B.
+
+### 10. Plan-sketch corrections found while calibrating
+
+| # | plan location | plan sketch | what the API/statement reality forces |
+|---|---|---|---|
+| 1 | §5 G2 `exists_compensating_partner` | no `DecidableEq` mentioned; proof "sum over `erase i` is non-positive" | the statement **keeps** `[Fintype ι]` only; `classical` supplies `DecidableEq ι` locally for `Finset.erase`. The probe carries the exact delivered signature and proof (no `DecidableEq` in the signature). |
+| 2 | §7 G4 `tolFac_irrational` | "for rational `rA rB rO` with `rB + rO ≠ 0` and `rA + rO ≠ 0`, `Irrational (tolFac rA rB rO)`" | the two hypotheses are right and both necessary; the *statement* must quantify `ℚ` and cast (`Irrational (tolFac (↑rA) (↑rB) (↑rO))`), because `tolFac` is a function of `ℝ`. Equivalent spellings `↑q / √2`, `(√2)⁻¹ * ↑q`, `↑q * (√2)⁻¹` are all provable; `↑q / √2` is the delivered one. |
+| 3 | §4 G1 `goldschmidtZone_eq_tooLarge_iff` | `… = tooLarge ↔ hi < t` | the delivered exact row is the **conjunction** `… = tooLarge ↔ lo ≤ t ∧ hi < t` (unconditional; authority line 143 / `Basic.lean:179`), with the reduced `↔ hi < t` as the separate corollary `goldschmidtZone_eq_tooLarge_iff_of_band (h : lo ≤ hi)`. The dropped-conjunct form is false (kernel witness `lo = 1, hi = 0, t = 1/2`); plan §3.1 item 4 already records the fix. |
+| 4 | §5 G2 `chargeBalanced_pair_iff` | `ChargeBalanced (dz : Bool → ℤ) ↔ dz false + dz true = 0` | the authority keeps exactly this order; since `Finset.sum_bool` does not exist and `Fintype.sum_bool` unfolds the sum as `dz true + dz false`, the proof needs one extra `add_comm`: `rw [ChargeBalanced, Fintype.sum_bool, add_comm]` (kernel-checked in the probe, in the authority's exact signature). |
+| 5 | §8 G5 `inBandQ` / `zoneQ` | names fixed, bodies not written | bodies now **match the authority exactly**: `inBandQ lo hi rA rB rO := 2*lo^2*(rB+rO)^2 ≤ (rA+rO)^2 ∧ (rA+rO)^2 ≤ 2*hi^2*(rB+rO)^2`; `zoneQ` uses the **inlined squares** (not `tolFacSq`, which the verifier showed is non-equivalent at `rB + rO = 0` — see §7); `goldschmidtZone`'s `ideal` branch is the in-band one. |
+| 6 | §11 risks ("`Irrational` closure API for `q * √2` may be missing") | — | the closure family **is** missing under the `ratCast` spelling; the bare-`rat` spelling exists and is sufficient. Recorded above. |
+| 7 | §7 G4 `conforms_iff_sq` sketch "`sq_le_sq'`" | `sq_le_sq'` suggested | `sq_le_sq'` is the hypothesis-shaped implication; the working equivalence is `sq_le_sq₀ ha hb`, applied **with `.symm`** after the `le_div_iff₀` step. Both are in §3. |
+| 9 | §9 G6 `BaNiO₃` numbers (dispatch brief) | `rB + rO = 47/50`, `t ≈ 2.26425` | **the brief's number is wrong**: the authority's Shannon radii give `rB_Ni + rO_shannon = 12/25 + 7/5 = 47/25`, `t ≈ 1.13212`. `47/50 < rO` would make `rB` negative. Verdict direction unchanged (`t > 1`, outside `[1, 11/10]`); probe and table corrected. See §8. |
+| 8 | §5 G2 `chiTol_anti` | `|χ'' - χ| ≤ |χ' - χ| → 0 ≤ k → chiTol tol₀ k χ χ'' ≤ chiTol tol₀ k χ χ'` | **the sketched direction was false** (a statement defect, not an API one): with §2's `chiTol = tol₀ - k|Δχ|` the closer `χ''` must get the **larger** tolerance. The authority fixed it by swapping the hypothesis instead of the conclusion — its row is `(hk : 0 ≤ k) (h : |χ' - χ| ≤ |χ'' - χ|) : chiTol tol₀ k χ χ'' ≤ chiTol tol₀ k χ χ'` (line 216). Both spellings are kernel-checked in `goldschmidt-api-div-mono.lean` (`chiTol_anti_corrected`, `chiTol_anti_corrected'`, `chiTol_anti_authority`), together with a kernel counterexample to the plan sketch; tool: `sub_le_sub_left` (`a ≤ b → c - b ≤ c - a`). See §3. |
+
+### 11. API-risk list per Goldschmidt milestone (post-calibration)
+
+| Milestone (plan §10) | Risk after this round |
+|---|---|
+| **G1** `PhotoLean/Goldschmidt/Basic.lean` (definitions, classifier, `contact_iff_tolFac_one`, zone characterization rows) | **low** — every `Real.sqrt`/`div_eq_one_iff_eq` name is confirmed (§2, §3); the classifier shape, the authority's four characterization rows and `deriving DecidableEq` are kernel-checked (§7); the `tooLarge` conjunct correction is already folded into the authority (correction #3) |
+| **G2** `Rules.lean` (`RadiusMatch` window, `ChargeBalanced` unit/Bool rows, compensating partner, `chiTol` monotonicity) | **low**, with one **statement correction** — `abs_le`/`abs_sub_le_iff` confirmed (§3), the two `Finset` charge rows and both existence theorems are **complete** (§5), and `chiTol_anti` is calibrated with its corrected direction plus a counterexample to the plan's sketch (§3, correction #8); the prover must use the corrected statement, not the plan's |
+| **G3** `Criterion.lean` (the two headline equivalences, strict monotonicity, `rO` trichotomy) | **low/medium** — `conforms_iff_radius_window` and `conforms_iff_sq` are kernel-verified end to end (§3), as are `tolFac_strictMono_rA` / `tolFac_strictAnti_rB`. Residual risk is the `rO` trichotomy, which needs the *exact* `Real.sqrt` algebra of §2 plus `div_lt_div_of_pos_left`'s reversed denominator order |
+| **G4** `Sharp.lean` (`tolFac_irrational`, band sharpness, `Δt` bound, inverted-band emptiness) | **low** — `tolFac_irrational` is settled with a complete proof (§4); the sharpness rows are pure order algebra over §3. The one trap is that the identity step must use `field_simp; ring`, **never** `ring_nf` (§9) |
+| **G5** `RatModel.lean` (`tolFacSq`, `inBandQ`, `zoneQ`, all cast transfers) | **low** — `tolFacSq_cast`, `inBandQ_cast`, `zoneQ_eq_zone` are all kernel-verified with the recipe spelled out (§6, §7); the `decide` domain is tabulated (§6) and the ℕ-elaboration trap is pinned (§9.1) so the instance evaluator cannot be mis-chosen |
+| **G6** `Instances.lean` (model rows, six Shannon rows, rule verdicts) | **low** — all six verdicts plus the classic/tetragonal band memberships are `norm_num`-kernel-checked and cross-checked against the plan's claims (§8); the evaluator of record is `norm_num` (`norm_num [inBandQ]` / `norm_num [zoneQ]`, §9.1), `decide` is banned on `/`-bearing ℚ literals, and every delivered row must be `ℚ`-annotated or routed through the ℚ-typed definitions (§9.1 item 1) |
+
+### 12. Authority cross-check (statement skeleton), measured before commit
+
+`theories/goldschmidt/probes/goldschmidt-statement-skeleton.lean` did not exist when this round
+started (the probe directory was empty) and landed in parallel during it. Every settled form above
+was therefore re-read against the authority and the probes were realigned where they differed. State
+at the commit below:
+
+| authority declaration (skeleton line) | probe state |
+|---|---|
+| `GoldschmidtZone` + `deriving DecidableEq` (80) | verbatim |
+| `goldschmidtZone` body (87) | verbatim |
+| `Rat.zoneQ` body, **inlined squares** (402) | verbatim — the earlier quotient-shaped body was removed and is kept only as `zoneQQuotientForm` DO-NOT-USE plus two kernel witnesses of the divergence at `rB + rO = 0` (M2 of the verifier audit) |
+| `Rat.inBandQ` body (389) | verbatim |
+| `zoneQ_eq_zone` (444): implicit `{lo hi rA rB rO}`, hypotheses `hlo hhi hB hA` | identical (order and implicitness matched); proof complete |
+| `zoneQ_ideal_iff` (449): explicit radii | identical; proof complete |
+| `goldschmidtZone_eq_tooSmall_iff` / `_ideal_iff` (134/138) | verbatim, unconditional, proofs complete |
+| `goldschmidtZone_eq_tooLarge_iff` (143) = `lo ≤ t ∧ hi < t`, and `_of_band` (147) | both rows delivered with complete proofs; the entry's earlier "needs `lo ≤ hi` on the row" phrasing is corrected (M1) |
+| `tolFac_irrational {rA rB rO : ℚ} (hB) (hA)` (350) | same statement; the probe writes the hypotheses in the other order `(hA) (hB)` (argument order is immaterial for the proof); complete proof |
+| `ChargeBalanced` (170) | delivered; both existence theorems also delivered in the authority's `ChargeBalanced` signatures (implicit `dz`/`i`, no `DecidableEq`) |
+| `chiTol_anti` (216) with the swapped hypothesis | delivered as `chiTol_anti_authority`, complete proof, plus the plan-spelling and the counterexample |
+| G6 Shannon radii (`rA_Sr` … `rO_shannon`) | the nine contact sums are kernel-checked equal to the table's `rA+rO` / `rB+rO`; the `BaNiO₃` brief number is corrected to `47/25` (M3) |
+
+**Not calibrated in this round** (outside the dispatch's (a)–(h) scope; a prover should ask for a
+probe before using them): `radiusMatch_iff_window`, `radiusMatch_min_iff`, `radiusMatch_refl`,
+`radiusMatch_mono_tau`, `radiusMatch_fifteen_window`, `radiusMatch_comp_ratchet`,
+`substitutable_mono_chi`, `substitutable_iff_window`, `rAMin`/`rAMax`/`idealA`/`idealAO`/`gapA` rows,
+`tolFac_strictMono_rA`-family radius-window rows, `tolFacFifteen_le`,
+`conforms_of_radiusMatch_window`, `inBandQ_ideal_iff`, `radiusMatchQ_*`, `classicLoQ_cast` and the
+other `*_cast` band-constant rows.
