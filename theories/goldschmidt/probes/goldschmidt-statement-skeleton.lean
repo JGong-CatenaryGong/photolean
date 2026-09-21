@@ -213,7 +213,7 @@ theorem exists_compensating_partner {ι : Type*} [Fintype ι] {dz : ι → ℤ} 
     {i : ι} (hi : 0 < dz i) : ∃ j, j ≠ i ∧ dz j < 0 := by
   sorry
 
-theorem chiTol_anti {tol0 k chi chi' chi'' : ℝ} (hk : 0 ≤ k) (h : |chi'' - chi| ≤ |chi' - chi|) :
+theorem chiTol_anti {tol0 k chi chi' chi'' : ℝ} (hk : 0 ≤ k) (h : |chi' - chi| ≤ |chi'' - chi|) :
     chiTol tol0 k chi chi'' ≤ chiTol tol0 k chi chi' := by
   sorry
 
@@ -237,15 +237,15 @@ theorem tolFac_strictAnti_rB {rA rB rB' rO : ℝ} (h : 0 < rB + rO) (hA : 0 < rA
     (hlt : rB < rB') : tolFac rA rB' rO < tolFac rA rB rO := by
   sorry
 
-theorem tolFac_mono_rO_of_lt {rA rB rO rO' : ℝ} (h : rA < rB) (hrO : 0 < rO) (hlt : rO < rO') :
-    tolFac rA rB rO < tolFac rA rB rO' := by
+theorem tolFac_mono_rO_of_lt {rA rB rO rO' : ℝ} (hB : 0 < rB + rO) (h : rA < rB)
+    (hlt : rO < rO') : tolFac rA rB rO < tolFac rA rB rO' := by
   sorry
 
-theorem tolFac_anti_rO_of_lt {rA rB rO rO' : ℝ} (h : rB < rA) (hrO : 0 < rO) (hlt : rO < rO') :
-    tolFac rA rB rO' < tolFac rA rB rO := by
+theorem tolFac_anti_rO_of_lt {rA rB rO rO' : ℝ} (hB : 0 < rB + rO) (h : rB < rA)
+    (hlt : rO < rO') : tolFac rA rB rO' < tolFac rA rB rO := by
   sorry
 
-theorem tolFac_rO_const_iff {rA rB rO : ℝ} (hrO : 0 < rO) :
+theorem tolFac_rO_const_iff {rA rB rO : ℝ} (hrB : 0 ≤ rB) (hrO : 0 < rO) :
     (∀ rO' : ℝ, 0 < rO' → tolFac rA rB rO' = tolFac rA rB rO) ↔ rA = rB := by
   sorry
 

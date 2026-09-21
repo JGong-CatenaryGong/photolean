@@ -14,8 +14,14 @@
 > **Statement authority**: `theories/goldschmidt/probes/goldschmidt-statement-skeleton.lean` —
 > delivered signatures must match it word for word (check: `python3 theories/BEP/probes/bep-fidelity.py
 > --theory goldschmidt [--milestone G<k>]`).
-> **Sprint-0 kernel evidence**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` (0 error)
-> proves the critical-path statement forms BEFORE the milestones are dispatched.
+> **Sprint-0 kernel evidence**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — in
+> flight (owner `prover_a`). Status recorded honestly: at the time the milestones were dispatched the
+> probe did **not** compile, so it is **not** the evidence that gated them; what gated the dispatches
+> was the authority skeleton compiling and the milestone provers' own kernel work. Four FALSE
+> authority rows were found — three of them (`tolFac_mono_rO_of_lt`, `tolFac_anti_rO_of_lt`,
+> `tolFac_rO_const_iff`, §3.1 items 6–8) by `prover_d` in the kernel while proving G3, one
+> (`chiTol_anti`, item 9) by `prover_c` while proving G2. The probe is being brought to 0 error in
+> parallel; until it is, no row of it may be cited as kernel evidence anywhere in this repository.
 
 ---
 
@@ -218,6 +224,44 @@ look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-check
    `2*hi^2*(rB+rO)^2`; none of the four premises is used, so all four are removed rather than retained
    as non-load-bearing hypotheses. `zoneQ_eq_zone` (the transfer to the real classifier) genuinely
    needs them and keeps them.
+
+6. **`tolFac_mono_rO_of_lt` / `tolFac_anti_rO_of_lt` — FALSE as first drafted, hypothesis replaced
+   (caught by `prover_d` in the kernel, with counterexamples; before delivery).** Both drafts carried
+   `(hrO : 0 < rO)`, which does **not** imply `0 < rB + rO`: the map `rO ↦ t` has a pole at
+   `rO = -rB`, so it is monotone on each side of the pole but not across it. Kernel counterexamples:
+   `rA = -2, rB = -1, rO = 1/2, rO' = 2` satisfies all three old premises and yet
+   `t(rO') = 0 < 3/√2 = t(rO)` (the "increasing" row's conclusion fails); `rA = -1, rB = -2,
+   rO = 1/2, rO' = 3` likewise refutes the "decreasing" row. Both rows now take
+   `(hB : 0 < rB + rO)` — the premise the two denominators actually need — and `0 < rO` is dropped
+   as non-load-bearing (item 2's discipline). The corrected rows are open on `[rO, rO')` only when
+   the pole is unreachable, which is exactly what `0 < rB + rO` encodes, and their cross-multiplied
+   residual `(rA - rB) * (rO - rO')` has a fixed sign.
+7. **`tolFac_rO_const_iff` — FALSE as first drafted, hypothesis added.** The draft's
+   `(hrO : 0 < rO)` does not make the pole unreachable in the **backward** direction: with
+   `rA = rB = -1` the right side holds, while the quantified left side fails at `rO' = 2`
+   (`t = 1/√2` at `rO = 1` versus `0/0 = 0` at the pole). Replacing `0 < rO` by `0 < rB + rO` is **not
+   enough** (the quantifier ranges over positive `rO'` that can still hit the pole), so the delivered
+   row takes `(hrB : 0 ≤ rB) (hrO : 0 < rO)`: with a nonnegative B radius every admissible `rO'`
+   gives `rB + rO' > 0`, and the forward direction cancels through `rO' = rO + 1`. Both hypotheses are
+   load-bearing (the backward direction needs `hrB` to keep `rA + rO' ≠ 0`).
+8. **`chiTol_anti` — FALSE as first drafted, hypothesis orientation corrected (caught by `prover_c`
+   in the kernel, with a counterexample).** The draft read
+   `(h : |χ'' - χ| ≤ |χ' - χ|) : chiTol … χ'' ≤ chiTol … χ'`, i.e. it put the *closer* electronegativity
+   on the smaller side of the conclusion while `chiTol = tol₀ - k|Δχ|` is **antitone** in `|Δχ|`
+   (counterexample: `k = 1, χ = 0, χ' = 10, χ'' = 0` satisfies the draft's hypothesis and gives
+   `0 ≤ -10`). The name says "antitone", so the delivered row keeps the name and fixes the direction
+   of the hypothesis: `(h : |χ' - χ| ≤ |χ'' - χ|) : chiTol … χ'' ≤ chiTol … χ'` — "the nearer chemical
+   character has the larger tolerance". This is also the direction `substitutable_mono_chi` consumes
+   (that row was TRUE as drafted and is unchanged); its proof instantiates this row with the two
+   `χ` arguments swapped, which is a one-liner.
+
+Item 9 sits in G2, items 6–8 in G3; all four were caught by the milestone provers **before** the rows
+were delivered, so no delivered declaration was ever invalidated. Process note, recorded because it
+is the same failure class as items 1–5: the Sprint-0 risk probe was supposed to catch exactly these
+rows before dispatch, and it did not, because the probe itself still had errors at that moment
+(§1.2's honest status). The lesson is in `proofs/EXPERIENCE.md`: **a probe's "0 error" claim is an
+artifact claim like any other — it must be measured after the last edit, not assumed from the
+absence of a complaint.**
 
 The instance layer's numbers were fixed by an **off-kernel exact-rational cross-check** before any
 row was dispatched (see §9 and `theories/goldschmidt/probes/goldschmidt-instance-check.py`); its run
