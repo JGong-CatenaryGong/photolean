@@ -321,17 +321,21 @@ G4–G6 + the documentation plane) returned **INCOMPLETE with no HIGH**: the cod
 (three modules build, the bare gate `PASS`, fidelity 139/139, `axioms.sh` 47/47), but it declined a
 verdict because it had not reached the instance recomputation, the adversarial round or the document
 audit; its two MEDIUM findings (the tree moved under it; the Sprint-0 probe sits outside the gate's
-scan range by design) are disposed, and a bounded follow-up for the three un-checked items is running.
-The honest summary: **every delivered declaration has passed an independent gate, and the only
-findings that ever touched a delivered artifact were a false docstring and an over-strong hypothesis
-— both caught by verification, not by luck.** One boundary is stated rather than smoothed over: for
-milestones G4–G6 the independent run measured the whole gate battery green (build, bare gate, fidelity
-12/22/34, `axioms.sh` 47/47) with **no HIGH**, but stopped short of the instance recomputation, the
-adversarial round and the documentation audit, so it declined a verdict; those three items are covered
-by *other* routes (the kernel proofs, the off-kernel exact-rational script with 0 mismatches, run 1's
-independent recomputation of the same numbers, and a lead-measured documentation audit recorded as
-such), and the board keeps G4–G6 in *review* under that accounting rather than ticking them on
-non-verifier evidence.
+scan range by design) are disposed, and a bounded follow-up for the three un-checked items was
+dispatched (it returned **PASS** — see below). The honest summary: **every delivered declaration has
+passed an independent gate, and the only findings that ever touched a delivered artifact were a false
+docstring and an over-strong hypothesis — both caught by verification, not by luck.** The G4–G6
+boundary is now **closed** rather than smoothed over: run 3's declined verdict was superseded by
+three further independent runs, all **PASS** and all zero-HIGH — a mechanical re-run (the five
+modules' gate battery plus its own 23/23 instance recomputation), the batch-3 follow-up that
+completed exactly the three items run 3 left unchecked (its own 23-row recomputation with 0
+contradictions; an **adversarial round** with kernel counterexamples proving the named hypotheses
+load-bearing — `zoneQ_eq_zone` without `0 ≤ rA + rO`, `tolFac_rO_const_iff` without `0 ≤ rB`,
+`conforms_iff_radius_window` without `0 < rB + rO` — negative-assertion probes that fail to
+typecheck, and a **248 832-tuple** degenerate-input search with 0 violations; the documentation
+audit), and a bounded acceptance run whose `axioms.sh` sweep covers **98/98 public theorems**. All
+five verification lines have therefore returned **PASS**, and the board ticks G4–G6 on those
+verifier verdicts.
 
 **中文（验收历史）。** 三个独立 verifier run（均只读、各写自己的探针）：run 1（G1 + Sprint-0 制品）**PASS，
 0 HIGH / 6 MEDIUM / 9 LOW**，全部落在记录层，并自跑四门、反推六个实例值、对四条分类器行做 1000 点精确有理
@@ -341,12 +345,15 @@ non-verifier evidence.
 现在用最弱前提，plan §3.1 item 11），且该 run 还**独立重证了 `Criterion.lean` 的 8 条 `private` 辅助引理**
 （保真度检查器的盲区）。run 3（G4–G6 + 文档平面）返回 **INCOMPLETE、无 HIGH**：代码面实测全绿（三模块可 build、
 裸门 PASS、139/139、`axioms.sh` 47/47），但因未走到实例重算、对抗轮与文档审计而拒绝给判决；它的两条 MEDIUM
-（验收期间树在移动；Sprint-0 探针按设计位于门的扫描范围之外）已处置，三项未查的受限 follow-up 正在跑。诚实
-总结：**每一条交付声明都过了独立验收门，而历史上唯一触及交付制品的发现是一句假 docstring 和一条过强的前提
-——两者都是被验收抓到的，不是靠运气。**有一条边界我们写出来而不是抹平：G4–G6 的独立 run 实测**整个门组全绿**
-（build、裸门、保真 12/22/34、`axioms.sh` 47/47）且**无 HIGH**，但因未走到实例重算、对抗轮与文档审计而拒绝给
-判决；这三项由**其它路线**覆盖（内核证明、off-kernel 精确有理脚本 0 mismatch、run 1 对同一批数字的独立重算、
-以及明确标注为 lead-measured 的文档审计），任务板据此把 G4–G6 留在 *review*，**不用非 verifier 的证据打勾**。
+（验收期间树在移动；Sprint-0 探针按设计位于门的扫描范围之外）已处置，三项未查的受限 follow-up 已派发
+（其结果见下）。诚实总结：**每一条交付声明都过了独立验收门，而历史上唯一触及交付制品的发现是一句假
+docstring 和一条过强的前提——两者都是被验收抓到的，不是靠运气。**G4–G6 的边界如今是**已关闭**而非被抹平：
+run 3 的拒判随后被三个独立 run 全部 **PASS**、零 HIGH 地取代——机械重跑（五模块门组 + 自算 23/23 实例）、
+补齐 run 3 三项未查内容的 batch-3 follow-up（自算 23 行重算 0 矛盾；**对抗轮**：内核反例证明具名前提承载——
+`zoneQ_eq_zone` 缺 `0 ≤ rA + rO`、`tolFac_rO_const_iff` 缺 `0 ≤ rB`、`conforms_iff_radius_window` 缺
+`0 < rB + rO`——以及应无法 typecheck 的负断言探针与 **248 832 元组**退化输入搜索 0 违例；文档审计）、以及
+`axioms.sh` 覆盖 **98/98 公开定理**的有界验收 run。至此五条验证线全部返回 **PASS**，任务板据这些 verifier
+判决为 G4–G6 打勾。
 
 **中文。** 引擎的纪律是 statement-first，它五次回本：**五条权威语句初稿为假，而全部在交付前被内核抓住**
 （可能来自里程碑工人的自证，也可能来自 lead 的手推；plan §3.1 逐条记录反例）：分类器 `tooLarge` 行（级联
