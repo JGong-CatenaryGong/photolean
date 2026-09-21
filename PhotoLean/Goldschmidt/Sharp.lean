@@ -31,13 +31,12 @@
   turns them into exact rational comparisons for `norm_num` (no `Real.sqrt` algebra anywhere), and
   `witness_ideal_packing` reuses G3's `conforms_at_idealA_classic`.
 
-  Premise note.  The authority's `conforms_point_band_iff` carries `(h : 0 < rB + rO)`, which the row
-  does **not** consume: `GoldschmidtConforms lo lo rA rB rO` unfolds to `lo ≤ t ∧ t ≤ lo` and
-  `le_antisymm` closes it for every real `t`, including a vanishing denominator.  The premise is kept
-  verbatim for signature fidelity (it is part of the description layer's standing physical premises)
-  and the unused-variable linter is disabled locally, so that a warning-free build still surfaces any
-  real warning elsewhere in the file.  Flagged to the lead as a possible statement-correction item of
-  the plan §3.1 kind; no other G4 row has a non-load-bearing hypothesis.
+  Statement correction (plan §3.1 item 9).  The first draft of `conforms_point_band_iff` carried
+  `(h : 0 < rB + rO)`, which the row does not consume: `GoldschmidtConforms lo lo rA rB rO` unfolds to
+  `lo ≤ t ∧ t ≤ lo`, pure antisymmetry for the *number* `tolFac rA rB rO`, with no division algebra in
+  sight.  The premise is dropped in the authority (found during G4; the draft's own warning
+  `unused variable h` is the measurement), so the file needs no local lint suppression and every
+  hypothesis of every G4 row below is consumed.  No other G4 row had a non-load-bearing hypothesis.
 -/
 import PhotoLean.Goldschmidt.Basic
 import PhotoLean.Goldschmidt.Rules
@@ -62,15 +61,15 @@ theorem not_conforms_of_band_empty {lo hi rA rB rO : ℝ} (h : hi < lo) :
   rintro ⟨h1, h2⟩
   linarith
 
--- See the file header: the authority carries the physical premise `0 < rB + rO` on this row, but the
--- proof does not consume it (a point band is the equation `t = lo` for every real `t`).
-set_option linter.unusedVariables false in
 /-- The **point band** `[lo, lo]` is exactly the ideal-type equation `t = lo`: the two-sided band
 predicate `lo ≤ t ∧ t ≤ lo` collapses by antisymmetry. This is the sharp form behind the model's ideal
 case at `lo = 1` (plan §7, §9 family I1).
 
-The premise `0 < rB + rO` is authority-carried but not consumed by this row — see the file header. -/
-theorem conforms_point_band_iff {lo rA rB rO : ℝ} (h : 0 < rB + rO) :
+No physical premise is needed and none is carried: the equivalence is antisymmetry of the order on the
+*number* `tolFac rA rB rO`, so it holds for every band edge and every triple, including a vanishing
+denominator. The authority's first draft carried `0 < rB + rO`; it was dropped as non-load-bearing
+(plan §3.1 item 9). -/
+theorem conforms_point_band_iff (lo rA rB rO : ℝ) :
     GoldschmidtConforms lo lo rA rB rO ↔ tolFac rA rB rO = lo := by
   unfold GoldschmidtConforms InBand
   exact ⟨fun hk => le_antisymm hk.2 hk.1, fun hk => ⟨hk.ge, hk.le⟩⟩
