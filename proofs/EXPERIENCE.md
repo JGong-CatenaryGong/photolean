@@ -3445,3 +3445,57 @@
   (the Python `fractions` script, which the theory has) or by a *different prover* (the verifier's
   independent recomputation), not by the same kernel in a different mode. Recording this prevents a
   future round from burning time on a route that cannot cover the layer.
+
+## 2026-09-21 — Goldschmidt disposal + literature round-1 addendum (backfilled record; the rounds landed in `d27cf2b`/`948251e` without their experience entries) — lead — DONE
+
+- What the rounds did: disposed every verifier finding of the three returned runs (mechanical re-run,
+  batch-3 follow-up, bounded acceptance run — all PASS, zero HIGH) and landed the literature addendum:
+  the charge pair `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` is now **documented** (Shindhu et al., IJPAP 63(1) (2025)
+  22–33, p. 23), the `0.732` ladder is **not** Pauling's eponym (traced to Hüttig 1920 / Magnus 1922),
+  the 15 % **smaller-ion** basis gained four modern confirmations plus one dissenting denominator
+  (ChemSusChem 18 (2025), whose own arithmetic implies the larger ion), and a new **negative** was
+  registered (charge sums cannot distinguish substitution families, so no row may use charge as an
+  excluding premise).
+- Tried and failed / worth remembering:
+  1. **A DOI that does not resolve in Crossref is not a dead source** — cite journal/volume/page and
+     say so in the record; the alternative (dropping the pair back to "model instance") would have
+     weakened the record to protect a citation format.
+  2. **The commit message of `948251e` over-claims**: it says "the control-plane wording
+     (Relations/RELATIONS/README seams) is synced", but README was **not** touched in that commit (the
+     only "README" match in its stat is the commit message itself). Recorded here rather than by
+     history rewrite: a commit message is a claim about history, and this one is wrong about README.
+     The README needed no change in substance — which makes the inaccurate claim purely cosmetic, and
+     still worth recording.
+  3. The three in-flight verifier sessions of the earlier closeout: **two reports were lost to an
+     abort** (already recorded above, `Verification dispatch` entry) — the replacement dispatches are
+     what returned as the mechanical re-run / batch-3 follow-up / bounded acceptance run. When a
+     session is interrupted, the report is the only artifact that mattered; ask for it **before**
+     interrupting.
+
+## 2026-09-21 — The verification-flip sync round (review → done has a downstream, and it was not on any checklist) — lead — DONE
+
+- What this round fixed (all found by an independent re-review of the disposal commits): `RESULTS.md`
+  §7 still said "the board keeps G4–G6 in *review* … rather than ticking them on non-verifier
+  evidence" and "a bounded follow-up … is running" while the board had already ticked G4–G6 on three
+  returned PASS verdicts; the G4/G5/G6 row **bodies** still said "in review" under VERIFIED headers;
+  the headers cited "verifier runs 3 … PASS" although run 3 **declined** its verdict (the PASS basis
+  is the mechanical re-run + batch-3 follow-up + bounded acceptance run); the three new runs sat in a
+  headerless table inside the G7 section instead of the acceptance records table; one duplicate
+  "Lead-measured audit" row remained; one G7 row was ticked `[x]` with a "todo" note.
+- Root cause and the fix: this is the **fourth instance of the same seam** (README module count,
+  theory count, Marcus-era documents, now the verification-status text) — the flip action (ticking a
+  milestone) had no downstream-sync checklist. `AGENTS.md` iron rule 8 now carries item ③: a
+  review → done flip must sync the RESULTS status paragraphs, the TASKS row bodies and the acceptance
+  table (new runs recorded inside the table, duplicates removed, bodies consistent with headers).
+- Tried and failed / worth remembering:
+  1. **A comment-stripping comparison must track block-comment depth across lines.** The first
+     version of the strip-diff reset `depth` per line, so every line *inside* a multi-line `/-- -/`
+     docstring was counted as code and the tool reported the declaration plane of `Instances.lean` as
+     DIFFERING after the disposal commit — a false alarm that would have escalated a comment-only
+     change into a suspected statement change. Same lesson class as "an artifact's 0-error must be
+     measured after the last edit": **a measurement tool's own correctness must be checked before its
+     verdict is believed** — here, by re-running it on a known-identical pair.
+  2. **A headerless markdown table is invisible to the reader's schema.** Three verifier verdicts —
+     the load-bearing evidence for ticking half the milestones — were parked as bare rows inside a
+     task section, so the G7 row that pointed at "the acceptance table below" pointed at a table that
+     did not contain them. Verdicts live in the verdict table, or they are gossip.
