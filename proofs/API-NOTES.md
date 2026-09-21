@@ -3926,3 +3926,48 @@ Items 4, 6, 7, 8 were **false statements** caught by the kernel before delivery;
 11 are premise corrections of the "non-load-bearing hypothesis" class that this repository treats as
 findings. None of them was an API-name drift, which is why they were first recorded in the plan's
 correction log; this table is the API-log index required by rule 2.
+
+## SymmetryFactor theory (2026-09-21) — lead-as-api_researcher — 6 probe rounds, all delivered routes kernel-verified end to end
+
+Scope: the F0-b API round of `theories/SymmetryFactor/plan.md` (the β = 1/2 adjudication over the
+unequal-curvature two-parabola model). Probe files: `theories/SymmetryFactor/probes/
+SymmetryFactor-api-probe.lean` (committed; rounds 2–6 ran as throwaway `/tmp` files inside single
+shell invocations — `/tmp` does not persist across invocations in this environment, a measured
+fact worth knowing before scheduling probe work).
+
+**Refuted guesses (iron rule 4 paid for itself; none of these reached a delivered file):**
+
+| guessed name | verdict | working replacement (kernel-checked) |
+|---|---|---|
+| `Real.sqrt_four` | **does not exist** in this toolchain | `show (4:ℝ) = 2^2 by norm_num` + `Real.sqrt_sq (by norm_num : (0:ℝ) ≤ 2)` |
+| `sq_eq_sq_iff_eq_or_eq` | **unknown identifier** | `sq_eq_sq_iff_abs_eq_abs : a^2 = b^2 ↔ |a| = |b|` + `abs_of_nonneg` (the nonnegativity side-conditions are exactly what the `[0,1]` interval supplies) |
+| `BEP.transfer_thermoneutral` in `BEP.Basic` | lives in **`BEP.Criterion`** (line 83), and is **unconditional** (`transfer lam 0 = 1/2` holds even at `lam = 0` through totalized division) | import `PhotoLean.BEP.Criterion` |
+| bare `norm_num` on `Real.sqrt` of perfect squares | **fails** (`Real.sqrt 4 = 2` not reduced) — same family as the thrice-measured "`decide` does not reduce `/`-literals" boundary | the `sqrt_sq` route above |
+| `pos_iff_ne_zero` on ℝ | **fails**: needs `CanonicallyOrderedAdd ℝ`, which ℝ is not | `lt_of_le_of_ne (add_nonneg …) (Ne.symm hd)` |
+| `ratCast_inj` | **unknown identifier** | `Rat.cast_inj : (↑p : α) = ↑q ↔ p = q` (also `Rat.cast_injective`) |
+| `norm_cast` / `exact_mod_cast` across `(1/2 : ℝ)` | **type mismatch** (measured twice): the ℝ numeral `1/2` does not present as `↑(1/2 : ℚ)` to mod_cast in these goals | explicit numeral lemma `((1/2:ℚ):ℝ) = 1/2` (`norm_num`) + `Rat.cast_inj.mp` |
+| bare `field_simp` on `√lam/(√lam+√lam) = 1/2` and `lam/(2·lam) = 1/2` | **unsolved goals** even with the `ne'` hints | `div_eq_iff (mul_ne_zero two_ne_zero hne)` + `ring` (deterministic) |
+
+**Confirmed API (all `#check`ed or used in delivered proofs):** `Real.sqrt_one`, `Real.sqrt_sq`,
+`Real.sq_sqrt`, `Real.sqrt_inj`, `Real.sqrt_lt_sqrt (0 ≤ x → x < y → √x < √y)`,
+`Real.sqrt_lt_sqrt_iff (0 ≤ x → …)`, `Real.sqrt_pos`, `Real.sqrt_nonneg`, `Real.sqrt_mul_self`,
+`div_eq_iff (b ≠ 0 → (a/b = c ↔ a = c·b))`, `eq_div_iff`, `div_lt_one`, `lt_div_iff₀`,
+`div_lt_iff₀`, **`div_lt_div_iff₀` (LEFT denominator positivity first — the deprecated
+`div_lt_div_iff` still resolves but warns; the house zero-warning standard requires the `_₀`
+forms)**, `mul_lt_mul_of_pos_right/left`, `add_pos_of_pos_of_nonneg`, `lt_add_of_pos_left`,
+`le_add_of_nonneg_left/right`, `Rat.cast_div`, `Rat.cast_add`, `Rat.cast_pos`, `sq_eq_sq_iff_abs_eq_abs`,
+`abs_of_nonneg`, `mul_pow`, `div_zero`, `div_nonneg`.
+
+**Proof-route patterns worth reusing (each kernel-verified as a probe example before delivery):**
+1. *Crossing uniqueness without calculus*: from `kr·q² = kp·(q−1)²` with `q ∈ [0,1]`, the two
+   nonnegative quantities `√kr·q` and `√kp·(1−q)` have equal squares (`mul_pow` + `sq_sqrt` +
+   `show (1−q)² = (q−1)² by ring`), hence are equal (`sq_eq_sq_iff_abs_eq_abs` + `abs_of_nonneg`);
+   a linear solve (`eq_div_iff` + `calc`/`ring`) gives the closed form.
+2. *Verdict-iff shape* `b/(a+b) = 1/2 ↔ a = b`: `div_eq_iff` (denominator positive) then
+   `linarith` on the two atoms; back direction `rw [h]; ring`.
+3. *ℚ shadow at perfect-square curvatures*: `Real.sqrt_mul_self` erases the roots, `Rat.cast_div`/
+   `Rat.cast_add` move the arithmetic to ℚ — the Goldschmidt squared-criterion pattern transfers
+   verbatim to a √-quotient.
+4. *Monotonicity of `b/(a+b)`*: `div_lt_div_iff₀` (LEFT first!) + `mul_add` both sides +
+   `mul_lt_mul_of_pos_right/left` + `linarith` with an explicit `mul_comm` witness where the atom
+   order differs between the two sides.
