@@ -300,6 +300,26 @@ adversarial probes — batch 1 (G1 + the Sprint-0 artifacts) returned **PASS wit
 including a 1000-point exact-rational search over the four classifier rows (450 inverted bands, 100
 degenerate bands) with 0 violations, and an independent recomputation of all six instance values.
 
+**Verification history (independent verifier runs, each read-only and writing its own probes).**
+Run 1 (milestone G1 + the Sprint-0 artifacts): **PASS, 0 HIGH / 6 MEDIUM / 9 LOW**, all findings in
+the record layer; the run re-ran the four gates itself, reverse-engineered the six instance values,
+and searched the four classifier rows over 1000 exact-rational triples (450 inverted bands, 100
+degenerate ones) with 0 violations. Run 2 (milestones G2 + G3): **PASS**, with one HIGH that was again
+*record-layer but inside a delivered file* — `Criterion.lean`'s docstrings repeated the sentence
+"at `δ > 1` the band is empty", which the same verifier refuted in the kernel — and one genuine
+defect: `radiusMatch_comp_ratchet` carried two hypotheses (`0 < r1`, `τ ≤ 1`) that the row does not
+need (the triangle-inequality proof closes it with `0 ≤ τ` alone). Both were fixed the same round
+(the row now has the weakest premise, plan §3.1 item 11); that run also re-proved the eight `private`
+helpers of `Criterion.lean` independently — the blind spot of the fidelity checker. Run 3 (milestones
+G4–G6 + the documentation plane) returned **INCOMPLETE with no HIGH**: the code face was measured green
+(three modules build, the bare gate `PASS`, fidelity 139/139, `axioms.sh` 47/47), but it declined a
+verdict because it had not reached the instance recomputation, the adversarial round or the document
+audit; its two MEDIUM findings (the tree moved under it; the Sprint-0 probe sits outside the gate's
+scan range by design) are disposed, and a bounded follow-up for the three un-checked items is running.
+The honest summary: **every delivered declaration has passed an independent gate, and the only
+findings that ever touched a delivered artifact were a false docstring and an over-strong hypothesis
+— both caught by verification, not by luck.**
+
 **中文。** 引擎的纪律是 statement-first，它五次回本：**五条权威语句初稿为假，而全部在交付前被内核抓住**
 （可能来自里程碑工人的自证，也可能来自 lead 的手推；plan §3.1 逐条记录反例）：分类器 `tooLarge` 行（级联
 先测 `t < lo`，倒置带下小 `t` 被判 `tooSmall`，反例 `lo=1, hi=0, t=1/2`）；两条 `rO` 单调行（`0 < rO`
