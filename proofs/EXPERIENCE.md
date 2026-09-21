@@ -3421,3 +3421,27 @@
      of `Criterion.lean` and found them true, non-vacuous and consumed — the G2/G3 rounds came out
      PASS with record-layer findings only. "The other rows are unchanged" after a re-delivery still
      needs the fresh `axioms.sh` sweep (I ran 13/13), because the module's olean is rebuilt.
+
+## 2026-09-21 — An independent evaluation route for the instance layer, and where it stops — lead — MEASURED
+
+- Goal: check the 23 delivered instance verdicts by a route that is *mechanically different* from the
+  tactic proofs — the kernel's compiled evaluator (`#eval decide …`) instead of `norm_num` tactics.
+- What works: `#eval decide (Rat.zoneQ lo hi rA rB rO = GoldschmidtZone.<ctor>)` prints `true` for the
+  three classifier rows (`SrTiO₃ = tooLarge`, `CaTiO₃ = ideal`, `BaNiO₃ = tooLarge` under the
+  respective bands). The `if`-cascade reasons with the computable `ℚ` comparison instances at
+  definition time, so `zoneQ` genuinely has executable code and the constructor equality goes through
+  `DecidableEq`.
+- What does NOT work, measured verbatim:
+  * `#eval decide (Rat.inBandQ …)` → `failed to synthesize Decidable (Rat.inBandQ …)`. The same-shaped
+    comparisons that are decidable *inside* `zoneQ`'s body are not synthesizable for a `Prop`-valued
+    `def` used from outside, in this file context (no `open Classical` at the call site).
+  * `#eval decide (ChargeBalanced …)` → `failed to synthesize Decidable (ChargeBalanced …)` (a
+    `∑ = 0` proposition over `Finset`), so the charge rows cannot be evaluated either.
+  * `#eval Rat.tolFacSq …` → `failed to compile definition … depends on 'Rat.tolFacSq', and it does
+    not have executable code`: `tolFacSq` was declared `noncomputable`, although `ℚ` division *is*
+    computable — a small wart in the authority (recorded, not worth a signature churn now).
+- Consequence for the engine: an "evaluator" second route is available but only for the *classifier*
+  rows; the rest of the instance layer has to be cross-checked either by a *different toolchain*
+  (the Python `fractions` script, which the theory has) or by a *different prover* (the verifier's
+  independent recomputation), not by the same kernel in a different mode. Recording this prevents a
+  future round from burning time on a route that cannot cover the layer.
