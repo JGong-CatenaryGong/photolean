@@ -17,22 +17,19 @@ Every physical premise is an explicit hypothesis (engine rule 3): `radiusMatch_r
 `radiusMatch_comp_ratchet` carries `0 < r1`, `0 ≤ tau`, `tau ≤ 1`.
 
 Statement authority: `theories/goldschmidt/probes/goldschmidt-statement-skeleton.lean` § G2; every
-signature below is identical to its authority row, and the mechanical check
-`python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G2` reports 17 of the
-18 G2 declarations word-for-word, 0 signature differences and 1 row not delivered (see below).
+signature below is identical to its authority row. The mechanical check
+`python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G2` reports all 18 G2
+declarations word-for-word and 0 signature differences.
 
-**One G2 row is not delivered here, because the authority's version of it is false.** The authority's
-`chiTol_anti` reads
-
-  `(hk : 0 ≤ k) (h : |chi'' - chi| ≤ |chi' - chi|) : chiTol tol0 k chi chi'' ≤ chiTol tol0 k chi chi'`
-
-with `chiTol tol0 k chi chi' = tol0 - k * |chi - chi'|`, which is *decreasing* in the distance for
-`k > 0`. It is refuted at `tol0 = 0`, `k = 1`, `chi = 0`, `chi' = 10`, `chi'' = 0`: the hypothesis
-holds (`0 ≤ 10`) and the conclusion is `0 ≤ -10` (kernel-checked counterexample, recorded in
-`proofs/EXPERIENCE.md`, 2026-09-21, G2). The true direction is the flipped conclusion
-`chiTol .. chi chi' ≤ chiTol .. chi chi''` — exactly the inequality `substitutable_mono_chi` below
-consumes — but changing the authority is a statement-correction-log action (plan §3.1), not a
-prover's, so the row is left undelivered rather than weakened or silently replaced in place.
+**A statement defect found and corrected during this milestone.** The authority's `chiTol_anti` was
+first drafted with the hypothesis `|chi'' - chi| ≤ |chi' - chi|` and the conclusion
+`chiTol .. chi chi'' ≤ chiTol .. chi chi'`; that row is false, because
+`chiTol tol0 k chi chi' = tol0 - k * |chi - chi'|` is *decreasing* in the distance for `k > 0`. It is
+refuted at `tol0 = 0`, `k = 1`, `chi = 0`, `chi' = 10`, `chi'' = 0`, where the hypothesis holds
+(`0 ≤ 10`) and the conclusion is `0 ≤ -10` (kernel-checked counterexample, `proofs/EXPERIENCE.md`,
+2026-09-21, G2). The statement-correction log (plan §3.1 item 8) flipped the *hypothesis* direction —
+keeping the name, because `chiTol` is antitone in `|Δχ|` — and the delivered `chiTol_anti` below is
+the corrected row; `substitutable_mono_chi` consumes it with the two `χ` arguments swapped.
 
 This module deliberately does not import `PhotoLean.Goldschmidt.Basic`: nothing in G2 needs the
 description layer, and the two layers are independent (plan §5). It declares no `DecidableEq`
@@ -230,27 +227,36 @@ theorem exists_compensating_partner {ι : Type*} [Fintype ι] {dz : ι → ℤ} 
   monotonicity in the electronegativity difference, and that monotonicity transported to
   `Substitutable`. -/
 
+/-- Antitonicity of the electronegativity-dressed tolerance in the electronegativity difference (the
+**corrected** authority row, plan §3.1 item 8 — see the statement-defect note in this module's
+header): if `χ'` is at least as close to the reference chemistry `χ` as `χ''` is, then the tolerance
+at `χ''` is at most the tolerance at `χ'`, i.e. the nearer chemical character tolerates the larger
+radius difference (Goldschmidt's rule 3).
+
+Proof: the conclusion is `tol0 - k |χ - χ''| ≤ tol0 - k |χ - χ'|`, so it is exactly the distance
+inequality `|χ - χ'| ≤ |χ - χ''|` multiplied by `0 ≤ k`; the two `abs_sub_comm` rewrites align the
+argument order of `chiTol` (which writes `|χ - χ'|`) with the statement's `|χ' - χ|`. -/
+theorem chiTol_anti {tol0 k chi chi' chi'' : ℝ} (hk : 0 ≤ k) (h : |chi' - chi| ≤ |chi'' - chi|) :
+    chiTol tol0 k chi chi'' ≤ chiTol tol0 k chi chi' := by
+  have hmul : k * |chi - chi'| ≤ k * |chi - chi''| := by
+    have h' : |chi' - chi| ≤ |chi'' - chi| := h
+    rw [abs_sub_comm chi' chi, abs_sub_comm chi'' chi] at h'
+    exact mul_le_mul_of_nonneg_left h' hk
+  rw [chiTol, chiTol]
+  linarith
+
 /-- Goldschmidt's chemical rule (rule 3): the closer the electronegativities, the more substitutions
 are tolerated — a substitution accepted at `χ'` is still accepted at a `χ''` that is at least as
-close to the reference chemistry `χ`.
-
-Proof: the tolerance inequality `chiTol .. χ' ≤ chiTol .. χ''` is `tol0 - k |χ - χ'| ≤
-tol0 - k |χ - χ''|`, i.e. it is the *reversed* distance inequality multiplied by `0 ≤ k` (the two
-`abs_sub_comm` rewrites align the argument order of `chiTol`, which writes `|χ - χ'|`, with the
-statement's `|χ' - χ|`); `radiusMatch_mono_tau` then pushes the tolerance through the radius rule,
-which is where `0 ≤ r` is needed. -/
+close to the reference chemistry `χ`. Proof: `chiTol_anti` instantiated with the two `χ` arguments
+swapped supplies the tolerance inequality `chiTol .. χ' ≤ chiTol .. χ''`, and `radiusMatch_mono_tau`
+pushes it through the radius rule (this is where `0 ≤ r` is needed). -/
 theorem substitutable_mono_chi {tol0 k chi chi' chi'' r r' : ℝ} (hk : 0 ≤ k) (hr : 0 ≤ r)
     (h : |chi'' - chi| ≤ |chi' - chi|) :
     Substitutable tol0 k chi chi' r r' → Substitutable tol0 k chi chi'' r r' := by
   intro hsub
   rw [Substitutable] at hsub ⊢
   refine radiusMatch_mono_tau ?_ hr hsub
-  have hmul : k * |chi - chi''| ≤ k * |chi - chi'| := by
-    have h' : |chi'' - chi| ≤ |chi' - chi| := h
-    rw [abs_sub_comm chi'' chi, abs_sub_comm chi' chi] at h'
-    exact mul_le_mul_of_nonneg_left h' hk
-  rw [chiTol, chiTol]
-  linarith
+  exact chiTol_anti (chi := chi) (chi' := chi'') (chi'' := chi') hk h
 
 /-- The composed chemical + radius rule in window form: `Substitutable` is the radius rule with the
 electronegativity-dressed tolerance `chiTol` in place of `τ`. -/
