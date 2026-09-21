@@ -3108,3 +3108,67 @@
   `norm_num [constants]` decides in one line; the milestone's own irrationality row is the exact dual
   of that choice (it is *why* comparing `t` cannot be the decision route), so `tolFac_irrational` and
   the `witness_*` family should be read together.
+
+## 2026-09-21 — Goldschmidt G5: the rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`, owner prover_c) — DONE (22/22)
+
+- Deliverable: `PhotoLean/Goldschmidt/RatModel.lean`, nested `namespace Rat` inside
+  `PhotoLean.Goldschmidt`, **22 declarations = the 10 G5 definitions** (`tolFacSq`, `inBandQ`,
+  `radiusMatchQ`, `chiTolQ`, `substitutableQ`, `zoneQ`, `classicLoQ`, `classicHiQ`, `tetragonalHiQ`,
+  `tauGoldschmidtQ`) **+ the 12 G5 theorems**, exactly the authority's §G5 list and nothing else
+  (0 auxiliary declarations). Commit `65985fe`.
+- Gates (raw verdicts): `lake build PhotoLean.Goldschmidt.RatModel` →
+  `✔ [6311/6311] Built PhotoLean.Goldschmidt.RatModel` / `Build completed successfully.`
+  (0 warnings); `check.sh --strict` → `sorry / custom axiom scan … clean`, `build: OK`,
+  `verdict: PASS`; `axioms.sh` on **all 12 theorems** (qualified `PhotoLean.Goldschmidt.Rat.<thm>`)
+  → each `verdict: PASS (only mathlib infrastructure axioms)`; `bep-fidelity.py --milestone G5` →
+  `delivered, word-for-word 22`, `delivered, not in authority: 0`, `not delivered yet: 0`,
+  `signature differences: 0`.
+- **Import prerequisite the dispatch did not list**: `Criterion.lean` imports only `Basic.lean`, so
+  `RadiusMatch` (declared in G2's `Rules.lean`) is **not** in scope, while the authority's G5 row
+  `radiusMatchQ_cast` is stated in terms of it. `RatModel.lean` therefore imports
+  `PhotoLean.Goldschmidt.Rules` as well. Lesson: a milestone section of the statement authority is
+  **not** self-contained — check every type name of every row against the import closure before
+  writing the file, and record the extra import in the report.
+- Tried and failed / worth remembering:
+  1. **The API log's alternative `zoneQ` shape is NOT equivalent to the authority's, and following it
+     would have made the unconditional `zoneQ_ideal_iff` FALSE.** `proofs/API-NOTES.md` had recorded a
+     `zoneQ` built on `tolFacSq … < lo^2` (a quotient comparison). At the degenerate point
+     `rB + rO = 0` the two shapes disagree — kernel facts of the independent verifier's finding M2:
+     the authority's squared-window form gives `zoneQ 1 1 0 (-1) 1 = tooLarge`, the log form gives
+     `tooSmall`; and for the log form `zoneQ 0 1 0 (-1) 1 = ideal` while `¬ inBandQ 0 1 0 (-1) 1`,
+     which refutes the log form's version of `zoneQ_ideal_iff` (unconditional in the authority).
+     Lesson: **the API log is a name/shape calibration, not an authority**; a shape variant proposed
+     there must be shown equivalent — degenerate points included — before use, and the statement
+     authority wins every conflict. Delivered `zoneQ` is verbatim the authority's, comparing
+     `(rA + rO) ^ 2` against `2 * lo ^ 2 * (rB + rO) ^ 2` and `2 * hi ^ 2 * (rB + rO) ^ 2` (never a
+     quotient); the unconditional `zoneQ_ideal_iff` then closes by `split_ifs` + trichotomy.
+  2. **`rw [h]` fired on only one occurrence in these goals, and the cast push-through recipe that
+     works for a single inequality fails on a conjunction.** Measured: the sprint-0-verified
+     `rw [(Rat.cast_le (K := ℝ)).symm]; push_cast; rfl` closes a single `ℚ`-vs-`ℝ` inequality
+     (`radiusMatchQ_cast`, and both `hcast` alignments inside `inBandQ_cast`), but on
+     `A₁ ∧ A₂ ↔ B₁ ∧ B₂` it rewrote only the first conjunct, so the trailing `rfl` failed with
+     `(1 - ↑tau) * ↑r ≤ ↑r' ∧ ↑r' ≤ (1 + ↑tau) * ↑r` vs `… ∧ r' ≤ (1 + tau) * r`; the same
+     single-occurrence behaviour hit `rw [← not_le]` on a `↔` whose two sides are `ℚ`- and
+     `ℝ`-typed. Working replacements: (a) for a conjunction, `constructor` + `exact_mod_cast` per
+     conjunct (`radiusMatchQ_iff_window`); (b) for a mixed-type `↔`, hoist the cast alignment into a
+     single-occurrence `have hcastLt : (ℚ ineq) ↔ (ℝ ineq)` and then chain
+     `rw [hcastLt, ← not_le, ← hle, not_le]` — pre-rewriting the `ℚ` side into the `ℝ` form first is
+     what makes the later `← not_le` / `← hle` steps fire on the intended side (`zoneQ_eq_zone`'s two
+     branch bridges). Same family as the G2 `rw [def]` note: **when a rewrite "does nothing", first
+     ask which occurrence it matched, and only then doubt the lemma.**
+  3. **Cast-literal mismatch**: `inBandQ_cast (lo := 1) (hi := 1) …` yields
+     `GoldschmidtConforms ↑1 ↑1 ↑rA ↑rB ↑rO` (a cast of the `ℚ` literal), which does not unify with
+     `conforms_iff_sq (lo := 1) …`'s `GoldschmidtConforms 1 1 …` (the `ℝ` literal); the failure text
+     is `did not find instance of the pattern … GoldschmidtConforms 1 1 ↑rA ↑rB ↑rO`. Fix:
+     `push_cast` immediately after the `ℚ`-side rewrite to normalise the cast literals, then apply the
+     law-layer row.
+  4. **A `ℚ` row whose premises are not needed for its truth** (`inBandQ_ideal_iff`): the statement is
+     pure `ℚ` algebra, yet the authority carries the two physical premises — and
+     `linter.unusedVariables` fires on unused theorem hypotheses (G2 entry, item 5; the repo standard
+     is 0 warnings). Delivered proof route: go *through* the layer's correctness theorem
+     (`inBandQ_cast` with band edges `1`, `1`, then `conforms_iff_sq`), which consumes both premises
+     and doubles as a cross-check of the layer. Non-load-bearing hypotheses stay a *finding* for the
+     lead (same class as plan §3.1 items 2 and 5) — a prover may not silently drop them.
+  5. `linarith` handles `ℚ` with variables (used in `radiusMatchQ_fifteen` and in the `1`-band row),
+     so the "clear the denominator through by 20" fallback was not needed; the four constant cast rows
+     close by `unfold` + `norm_num`, as measured.
