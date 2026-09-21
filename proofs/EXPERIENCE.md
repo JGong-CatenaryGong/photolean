@@ -3573,3 +3573,55 @@
 - Reusable pattern (for the bank's own next audit): add to the verifier's adversarial checklist a
   **vacuity pass** distinct from the falsity pass — for each `∃`-row and each "non-vacuity" /
   "inhabited" / "descriptor holds" claim, attempt the `∀`-form in the kernel; a compile is a finding.
+
+## 2026-09-21 — SymmetryFactor delivered end-to-end in one session (the H1 crossing: first adjudicated conflation, class A1) — lead — DONE (author-gated; independent verifier dispatched, verdict PENDING)
+
+  literature-recorded conflation. Delivered: `theories/SymmetryFactor/` (five leaves) +
+  `PhotoLean/SymmetryFactor/` (five modules, 35 declarations = 28 theorems + 7 definitions),
+  `Relations.lean` §11 (4 rows, 46→50, class A1), registry/README/RELATIONS.md synced (iron rule 8
+  ①②), contract extended (`THEORIES` + five `<LEAF>_SymmetryFactor` vars), lakefile gained 5
+  targets. Author-side gates: build 0 warnings; `check.sh --strict` leaf plane **7/7** + `clean` +
+  `verdict: PASS`; fidelity **35/35** unscoped and **15/10/5/5** per milestone, 0 differences;
+  `axioms.sh` **28/28** theorems + 4 §11 rows all `[propext, Classical.choice, Quot.sound]`.
+- What made the one-session delivery possible (reusable): the H1 plan pre-derived the mathematics
+  (closed form, uniqueness route, witnesses) and pre-registered the literature decision rule, so
+  execution was calibration, not research. L1 **succeeded at the first fetched full text**
+  (arXiv:2104.05424 §2.1, "usually both taken to be equal to 0.5" — a practice locus; paired with
+  the already-first-hand IUPAC TR warning, S2). The plan's kill-criteria/decision-rule design meant
+  no post-hoc relabelling was needed.
+- Tried and failed (each became an API-NOTES §symmetryFactor row or a plan §3.1 item):
+  1. **Four guessed API names were false** (`Real.sqrt_four`, `sq_eq_sq_iff_eq_or_eq`,
+     `transfer_thermoneutral`@Basic — it lives in `BEP.Criterion`, `ratCast_inj` — the name is
+     `Rat.cast_inj`); bare `norm_num` does **not** evaluate `Real.sqrt` of perfect squares (the
+     `sqrt_sq` route works). The probe round caught all of them **before** any delivered line — the
+     iron-rule-4 discipline paying for itself a fourth time.
+  2. **`norm_cast`/`exact_mod_cast` rejected (measured twice)** for the ℚ→ℝ reading bridge: the
+     numeral `(1/2 : ℝ)` does not present as `↑(1/2 : ℚ)` to mod_cast in these goals; the
+     deterministic replacement is an explicit `((1/2:ℚ):ℝ) = 1/2` numeral lemma + `Rat.cast_inj.mp`.
+  3. **`pos_iff_ne_zero` does not work on ℝ** (needs `CanonicallyOrderedAdd`); `div_lt_div_iff` is
+     deprecated (zero-warning standard forces the `_₀` forms); bare `field_simp` does **not** close
+     `√lam/(√lam+√lam) = 1/2` even with the `ne'` hints — `div_eq_iff` + `ring` does.
+  4. **The fidelity checker cannot bridge camelCase theory names**: `_first_existing` tries
+     THEORY/lower/capitalize/upper, and `"symmetryFactor".capitalize() = "Symmetryfactor"` ≠
+     `SymmetryFactor`. Fixed by **naming consistently** (`theories/SymmetryFactor` +
+     `--theory SymmetryFactor`, first-candidate exact match) instead of patching the shared checker —
+     a tool used by six verified theories is not patched for one new theory's naming taste.
+  5. **`/tmp` does not persist across shell invocations in this harness** — a probe written in one
+     call is gone in the next; write-and-run must happen in the same invocation.
+  6. **Two decorative premises caught by the warning, not by a verifier**: the first drafts of
+     `tsCoordZero_nonneg`/`tsCoordZero_le_one` carried `0 ≤ kr, 0 ≤ kp`, which totalized
+     `Real.sqrt` makes unnecessary — the unusedVariables warnings were read as statement evidence
+     (the G2 "lint was right" lesson, applied first-time) and both premises were dropped
+     (plan §3.1 items 1–2). The M1 vacuity lesson was also applied **prospectively**: no bare
+     `∃`-non-vacuity row; `inst_nonvacuous_both_readings` pins both readings at concrete positive
+     curvatures, and `BetaHalfReading 0 0` is false under the totalized convention (0 ≠ 1/2), so no
+     degenerate free pass exists.
+  7. **A bilingual block-ordering slip**: the third-batch accounting was first inserted *between*
+     the second batch's English and Chinese halves, breaking the [English block → Chinese block]
+     pairing; caught on re-read and re-placed. Bilingual files have a block grammar, not just a
+     translation duty.
+- Standing for the next round: board rows are **open at `review`** (iron rules 6/7 — the writer does
+  not tick); a bounded independent verifier was dispatched with the report-first rule (the
+  lost-report lesson) covering the gates, the B1–B5 adversarial probes (including the vacuity pass)
+  and the two open Kasha rows M1/M3. Closeout (ticks + acceptance record + status flips) happens
+  only on its PASS.
