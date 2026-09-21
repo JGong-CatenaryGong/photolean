@@ -128,24 +128,20 @@ theorem inBandQ_cast {lo hi rA rB rO : ℚ} (hlo : 0 ≤ lo) (hhi : 0 ≤ hi) (h
 /-- The **point band** `[1, 1]` on `ℚ`: the squared criterion is the ideal-packing equation
 `(rA + rO)² = 2 (rB + rO)²`, i.e. `t² = 1`.
 
-The two physical premises are the authority's; the row is a pure `ℚ` statement about the squared
-criterion, and it is proved through the layer's correctness theorem (`inBandQ_cast` with the band
-edges `1`, `1`, then `conforms_iff_sq`), which is where they are consumed. -/
-theorem inBandQ_ideal_iff {rA rB rO : ℚ} (hB : 0 < rB + rO) (hA : 0 ≤ rA + rO) :
+The row is the direct `ℚ` argument `S ≤ X ∧ X ≤ S ↔ X = S` (with `S = 2 (rB + rO)²` and
+`X = (rA + rO)²`, after `1² = 1`); it therefore needs **no** physical premise, and the two premises
+of the first draft were dropped as non-load-bearing (plan §3.1 item 10). The `ℚ ↔ ℝ` bridge for this
+shape is certified by `inBandQ_cast`, which instantiates the same squared criterion with the band
+edges `1`, `1`; the equality itself needs no transfer, so the row is deliberately *not* routed
+through the bridge. -/
+theorem inBandQ_ideal_iff (rA rB rO : ℚ) :
     inBandQ 1 1 rA rB rO ↔ (rA + rO) ^ 2 = 2 * (rB + rO) ^ 2 := by
-  have hB' : (0 : ℝ) < (rB : ℝ) + (rO : ℝ) := by exact_mod_cast hB
-  have hA' : (0 : ℝ) ≤ (rA : ℝ) + (rO : ℝ) := by exact_mod_cast hA
-  have hcast : ((rA + rO) ^ 2 = 2 * (rB + rO) ^ 2 : Prop) ↔
-      (((rA : ℝ) + (rO : ℝ)) ^ 2 = 2 * ((rB : ℝ) + (rO : ℝ)) ^ 2) := by
-    constructor <;> intro h <;> exact_mod_cast h
-  rw [inBandQ_cast (lo := 1) (hi := 1) (by norm_num) (by norm_num) hB hA]
-  push_cast
-  rw [conforms_iff_sq (lo := 1) (hi := 1) (by norm_num) (by norm_num) hB' hA', hcast]
+  unfold inBandQ
   constructor
   · rintro ⟨h1, h2⟩
     linarith
   · intro h
-    constructor <;> linarith
+    constructor <;> (rw [h]; norm_num)
 
 /-- The `ℚ` radius rule is the `ℝ` radius rule under the cast: the cast pushes through the absolute
 value, the subtraction and the product. -/
