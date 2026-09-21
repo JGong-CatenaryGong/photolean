@@ -164,7 +164,15 @@ band-flip row (`inst_BaTiO3_band_flip`): it does **not** lie in `[4/5, 1]` and *
 `[1, 11/10]`, which matches the experimentally tetragonal (ferroelectric) structure — the band
 convention is a parameter of the theory, and the flip is a theorem rather than a footnote.
 **`BaNiO₃`** is the negative row: it is outside even the tetragonal band
-(`inst_BaNiO3_not_tetragonal`), which agrees with the literature's own hexagonal assignment. The rule
+(`inst_BaNiO3_not_tetragonal`), which agrees with the literature's own hexagonal assignment — one
+source prints `t = 1.13` from exactly the radii used here, and the exact value `90601/70688` sits
+`0.032` below the `1.1` edge, a comfortable margin rather than a borderline pass. One
+printed-versus-derived fact is the sharpest in the record: with **our** radius triple `SrTiO₃`'s exact
+`t = 1.00159` is just above `1`, the literature's rounded reading of the *same* triple prints `t = 1.00`
+(inside the band), and the primary text's own radii give a value below `1` — the verdict of `SrTiO₃`
+flips with the radius compilation. That is why `inst_SrTiO3_tooLarge_classic` and
+`inst_SrTiO3_conforms_symmetric` are two kernel facts about *one named triple*, and why every instance
+docstring names its radii. The rule
 rows decide: `Sr²⁺`/`Ca²⁺` and `Sr²⁺`/`Ba²⁺` are radius-rule admissible while `Ca²⁺`/`Ba²⁺` is not
 (`inst_radius_Sr_Ca`, `inst_radius_Sr_Ba`, `inst_radius_Ca_Ba_fails`); the *reference-radius*
 convention is visible in `inst_radius_convention_Ba_Cs` (`Cs⁺`/`Ba²⁺` is admissible with `Cs⁺` as the
@@ -227,33 +235,38 @@ axioms)`（公理表 `[propext, Classical.choice, Quot.sound]`）；保真检查
 **English.** (i) **Premises, not theorems.** That an `ABO₃` perovskite is described by three radii,
 that the ideal cubic geometry is `rB + rO = a/2` with A–O distance `a/√2`, and that a **band on `t`** is
 the right empirical criterion are *declared modelling premises*; every statement is conditional on
-them (plan §12). (ii) **The band is a parameter, deliberately.** The literature does not single out one
-band, so no band is hard-coded: `lo` and `hi` are hypotheses everywhere, and the classic `[4/5, 1]`,
-the tetragonal `[1, 11/10]` and the symmetric `1 ± δ` conventions are *instances*
-(`theories/goldschmidt/LITERATURE.md` records the conventions found, with sources). (iii) **The
-reference radius of the 15 % rule is ambiguous in the literature** and the formalization exposes the
-ambiguity instead of hiding it: `RadiusMatch tau r r'` is *not* symmetric, and
-`inst_radius_convention_Ba_Cs` exhibits a real pair whose verdict depends on which ion is taken as
-reference. (iv) **Nothing is claimed about materials.** The printed radii enter as numbers with
+them (plan §12). (ii) **The band is a parameter, deliberately** — and the record now says exactly which part of it is
+attested: the primary source (retrieved and read in round 1) prints `0,8 ≤ t ≤ 1` verbatim, so
+`classicLo = 4/5` and `classicHi = 1` are a *transcription* of Goldschmidt's own text, while
+`tetragonalHi = 11/10` is a **declared** edge with no printed band behind it (the literature prints the
+half-open motif `t > 1` with a contested distortion name; 19 printed band conventions are enumerated in
+`LITERATURE.md` §T1 with sources, and the nearest printed `1.1` threshold states *formation*, not
+tetragonal distortion). No band is hard-coded: `lo` and `hi` are hypotheses everywhere.
+(iii) **The reference radius of the 15 % rule is a literature fact, not a free convention.** The
+primary text prints "um nicht mehr als etwa 15 % (in Prozenten des kleinsten Radius)" — relative to the
+**smaller** radius — so the delivered `radiusMatch_min_iff` (`↔ |r - r'| ≤ τ * min r r'`) *is* the
+attested rule, and `RadiusMatch tau r r'` is this theory's **parameterized spelling** of it. The modern
+literature varies between the larger and the smaller reference, which is why the parameterization is
+kept; and `inst_radius_convention_Ba_Cs` shows the distinction is not cosmetic (a real pair whose
+verdict flips with the reference ion). Every printed `t` is quoted with its radius triple, because the
+record carries three different oxygen radii (`1.40 Å`, `1.35 Å`, and the primary text's own `1.32 Å`).
+(iv) **Nothing is claimed about materials.** The printed radii enter as numbers with
 provenance; the verdicts are statements about those numbers, not about measured structures. (v) **Not
 formalized** (deliberate scope limits, plan §1.4): no energy model or formation-energy prediction, no
 octahedral tilting (`a⁻a⁻a⁻` Glazer systems), no tolerance-factor refinement (Bartel's `τ`), no
 octahedral factor `μ = rB/rO`, no temperature or pressure dependence, no coordination-number or
-spin-state modelling beyond the choice of the printed radius. (vi) **The 15 % figure itself** is a
-declared rule (`tauGoldschmidt = 3/20`); what is proved is its window form, its *ratchet* (two chained
-15 % steps drift by `(1 + τ)² - 1 = 129/400`, `radiusMatch_comp_ratchet`), and its transfer to `Δt`.
-
-**中文。** (i) **是前提不是定理**：`ABO₃` 钙钛矿由三个半径描述、理想立方几何是 `rB + rO = a/2` 且 A–O
-距离为 `a/√2`、以及「`t` 上的**带**是正确的经验判据」，这三条是**声明的建模前提**，所有语句都以它们为条件
-（plan §12）。(ii) **带是刻意的参数**：文献并未唯一指定一条带，因此不硬编码任何带：`lo`/`hi` 处处是假设，
-经典 `[4/5, 1]`、四方 `[1, 11/10]` 与对称 `1 ± δ` 都只是**实例**（`LITERATURE.md` 记录所找到的约定及出处）。
-(iii) **15% 规则的参照半径在文献里有歧义**，形式化把它**暴露**而非掩盖：`RadiusMatch` 不对称，而
-`inst_radius_convention_Ba_Cs` 给出一对真实离子、其判决取决于以谁为参照。(iv) **不声称关于材料的事实**：
-印刷半径以带出处的数字进入，判决是关于这些数字的，不是关于实测结构的。(v) **未形式化**（刻意的范围限制，
-plan §1.4）：没有能量模型或生成能预测，没有八面体倾斜（Glazer 记号），没有容忍因子精化（Bartel 的 `τ`），
-没有八面体因子 `μ = rB/rO`，没有温度/压力依赖，除了印刷半径的选择之外没有配位数或自旋态建模。
-(vi) **15% 这个数字本身**是声明的规则（`tauGoldschmidt = 3/20`）；被证明的是它的窗口形式、它的**棘轮**
-（两个连乘 15% 步长最多漂移 `(1+τ)² - 1 = 129/400`）以及它向 `Δt` 的传递。
+spin-state modelling beyond the choice of the printed radius. (vi) **The 15 % figure itself** sharpens the printed "etwa 15 %" into the declared
+`tauGoldschmidt = 3/20`; what is proved is the window form, the *ratchet* (two chained 15 % steps drift
+by `(1 + τ)² - 1 = 129/400`, `radiusMatch_comp_ratchet`), and the transfer to `Δt`. (vii) **The charge
+rule is a declared systematization, not Goldschmidt's own criterion**: his text requires *stoichiometric
+matching* and explicitly folds valence into the apparent radii, so `∑ dz = 0` is a later reading
+(documented coupled substitutions with printed increment arithmetic are cited in `LITERATURE.md`
+§S3.2.1, and the delivered ±1 instance pair is labelled a model instance there). (viii) **The chemical
+rule's linearity has no source** (`chiTol = tol0 - k * |Δχ|` is a declared shape; the sources are
+qualitative "field effects" or threshold statements), so only monotonicity in `|Δχ|` is proved. (ix)
+**One printed radius is unverified**: `Mn³⁺(VI, high spin) = 0.645 Å` could not be confirmed from a
+retrievable source in round 1, so the `LaMnO₃` row names the spin state in its docstring and the value
+carries a round-2 to-do in the record — the row's arithmetic is kernel-checked *for the value used*.
 
 ---
 
