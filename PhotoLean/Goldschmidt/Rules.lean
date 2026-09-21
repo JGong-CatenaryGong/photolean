@@ -12,9 +12,12 @@ the two-step ratchet, the isovalent characterization and the compensating-partne
 charge rule, and the monotonicity of the electronegativity-dressed tolerance. In particular the
 *linear shape* of `chiTol` is a declared modelling choice, not a theorem (plan §12).
 
-Every physical premise is an explicit hypothesis (engine rule 3): `radiusMatch_refl` carries both
-`0 ≤ tau` and `0 ≤ r` (with a negative reference radius the statement is false), and
-`radiusMatch_comp_ratchet` carries `0 < r1`, `0 ≤ tau`, `tau ≤ 1`.
+Every physical premise is an explicit hypothesis (engine rule 3), and every delivered hypothesis is
+load-bearing: `radiusMatch_refl` carries both `0 ≤ tau` and `0 ≤ r` (with a negative reference radius
+the statement is false), while `radiusMatch_comp_ratchet` needs `0 ≤ tau` **alone** — its first draft
+also carried `0 < r1` and `tau ≤ 1`, which the independent verifier's adversarial round showed to be
+non-load-bearing (triangle-inequality proof), and the statement-correction log removed them
+(plan §3.1 item 11).
 
 Statement authority: `theories/goldschmidt/probes/goldschmidt-statement-skeleton.lean` § G2; every
 signature below is identical to its authority row. The mechanical check
@@ -132,44 +135,34 @@ theorem radiusMatch_fifteen_window {r r' : ℝ} :
   · rintro ⟨h1, h2⟩
     constructor <;> linarith
 
-/-- The **ratchet** of the radius rule: two chained `τ`-steps drift by more than `τ`. With
-`0 < r1`, `0 ≤ τ ≤ 1` and both steps inside `τ`, the composite substitution is inside the widened
-tolerance `(1 + τ)² - 1` (at the printed `τ = 3/20` that is `129/400 = 32.25 %`, more than the
-15 % of either single step — which is why the rule is one-step).
+/-- The **ratchet** of the radius rule: two chained `τ`-steps drift by more than `τ`. With `0 ≤ τ`
+and both steps inside `τ`, the composite substitution is inside the widened tolerance
+`(1 + τ)² - 1` (at the printed `τ = 3/20` that is `129/400 = 32.25 %`, more than the 15 % of either
+single step — which is why the rule is one-step).
 
-Proof (all three hypotheses are load-bearing): `abs_le` splits the goal into the two sides of the
-composite window, and each side is read off the *two-sided* bounds of the individual steps. The
-upper side uses `r3 ≤ (1 + τ) r2 ≤ (1 + τ)² r1` (needs `0 ≤ τ`); the lower side uses
-`r3 ≥ (1 - τ) r2 ≥ (1 - τ)² r1`, which needs `τ ≤ 1` (so that `1 - τ ≥ 0` carries the second
-multiplication) and `r1 ≥ 0` (to compare `(1 - τ)² r1` with `r1`). -/
-theorem radiusMatch_comp_ratchet {tau r1 r2 r3 : ℝ} (hr1 : 0 < r1) (htau : 0 ≤ tau)
-    (htau1 : tau ≤ 1) : RadiusMatch tau r1 r2 → RadiusMatch tau r2 r3 →
+The row needs **only** `0 ≤ τ` (plan §3.1 item 11): the triangle inequality gives
+`|r1 - r3| ≤ |r1 - r2| + |r2 - r3| ≤ τ r1 + τ r2`, and the upper half `r2 ≤ (1 + τ) r1` of the first
+step — a consequence of `-(r1 - r2) ≤ |r1 - r2|` — upgrades `r2`, so
+`τ r1 + τ r2 ≤ τ r1 + τ (1 + τ) r1 = (2τ + τ²) r1 = ((1 + τ)² - 1) r1`. The two hypotheses of the
+first draft (`0 < r1`, `τ ≤ 1`) were non-load-bearing and are removed rather than kept for a
+longer detour. -/
+theorem radiusMatch_comp_ratchet {tau r1 r2 r3 : ℝ} (htau : 0 ≤ tau) :
+    RadiusMatch tau r1 r2 → RadiusMatch tau r2 r3 →
       RadiusMatch ((1 + tau) ^ 2 - 1) r1 r3 := by
   intro h12 h23
   unfold RadiusMatch at h12 h23 ⊢
-  have htau1' : 0 ≤ 1 - tau := by linarith
+  have htri : |r1 - r3| ≤ tau * r1 + tau * r2 := by
+    have h := dist_triangle r1 r2 r3
+    rw [Real.dist_eq, Real.dist_eq, Real.dist_eq] at h
+    linarith
   have hup2 : r2 ≤ (1 + tau) * r1 := by
     have h := neg_le_abs (r1 - r2)
     linarith
-  have hlow2 : (1 - tau) * r1 ≤ r2 := by
-    have h := le_abs_self (r1 - r2)
-    linarith
-  have hup3 : r3 ≤ (1 + tau) * r2 := by
-    have h := neg_le_abs (r2 - r3)
-    linarith
-  have hlow3 : (1 - tau) * r2 ≤ r3 := by
-    have h := le_abs_self (r2 - r3)
-    linarith
-  rw [abs_le]
-  constructor
-  · have hm : (1 + tau) * r2 ≤ (1 + tau) * ((1 + tau) * r1) :=
-      mul_le_mul_of_nonneg_left hup2 (by linarith)
-    linarith
-  · have hm : (1 - tau) * ((1 - tau) * r1) ≤ (1 - tau) * r2 :=
-      mul_le_mul_of_nonneg_left hlow2 htau1'
-    have hm2 : (1 - tau) * ((1 - tau) * r1) ≤ r3 := le_trans hm hlow3
-    have hsq : 0 ≤ tau ^ 2 * r1 := mul_nonneg (sq_nonneg tau) (le_of_lt hr1)
-    nlinarith
+  calc |r1 - r3| ≤ tau * r1 + tau * r2 := htri
+    _ ≤ tau * r1 + tau * ((1 + tau) * r1) := by
+        have hm : tau * r2 ≤ tau * ((1 + tau) * r1) := mul_le_mul_of_nonneg_left hup2 htau
+        linarith
+    _ = ((1 + tau) ^ 2 - 1) * r1 := by ring
 
 /-! ## G2 charge-rule rows (plan §5) -/
 
