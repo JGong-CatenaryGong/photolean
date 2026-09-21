@@ -1,12 +1,14 @@
 /-
 PhotoLean.Relations — the single home of the cross-theory relations of the delivered theories.
 
-Six theories are delivered, and they sit on the shared kernel in three different ways: the three
+Seven theories are delivered, and they sit on the shared kernel in four different ways: the three
 two-parabola theories (Marcus, Hammond, BEP) are readings of one equal-curvature quadratic object,
 defined once in `PhotoLean.Kernel`; the two second-batch theories (Kasha, Sabatier) join through
 **composition** edges (§7–§8) rather than by sharing that object; the sixth (Goldschmidt) shares no
-module and no scalar with the others and is registered through the **no-edge** registry (§10). The
-relation inventory of all six is collected here, organised by edge type:
+module and no scalar with the others and is registered through the **no-edge** registry (§10); the
+seventh (SymmetryFactor) generalizes the kernel's two-parabola object to **unequal curvatures** and
+enters as the graph's first **adjudicated conflation** (§11, class A1). The relation inventory of
+all seven is collected here, organised by edge type:
 
 * §1 **kernel certificates** (definitional, `rfl`): each theory's copy of the barrier, the
   transition-state coordinate, the transfer coefficient and the two surfaces is *literally* the
@@ -36,11 +38,17 @@ relation inventory of all six is collected here, organised by edge type:
 * §10 **the no-edge registry**: the theory pairs that carry no relation, with the reason, so that
   the graph is complete in the sense that *every* theory sits on it (an absent edge is a
   registered fact, not an oversight).
+* §11 **adjudicated conflation** (class A1, the seventh theory): a reading the literature takes as
+  a universal working value — the β = 1/2 symmetry factor — decided by the kernel against the
+  structural transfer coefficient, with its **exact validity boundary** (`↔ kr = kp`) and its
+  tie-back certificates to `Kernel.tsCoord` and `BEP.transfer`. An N-row says "similar shape, no
+  edge"; an A-row says "treated as the same, here is the kernel's boundary of that sameness".
 
-The re-exports of §1–§5 and §7–§8 add no mathematics — they are certificates and a ledger, and their
-value is the compile-time pin: every statement below is written out in full, so a statement drift
-anywhere upstream makes this module fail to compile. The declarations proved here rather than reused
-are the last one of §3, the three of §6, the kernel certificate of §7, and the seven of §9. Every
+The re-exports of §1–§5, §7–§8 and §11 add no mathematics — they are certificates and a ledger, and
+their value is the compile-time pin: every statement below is written out in full, so a statement
+drift anywhere upstream makes this module fail to compile. The declarations proved here rather than
+reused are the last one of §3, the three of §6, the kernel certificate of §7, and the seven of §9;
+§11 re-exports the A1 verdict rows (their mathematics lives in `PhotoLean.SymmetryFactor`). Every
 declaration is fully proved: no unproved placeholder, no custom axiomatic declaration.
 -/
 import PhotoLean.Kernel
@@ -54,6 +62,7 @@ import PhotoLean.BEP.Sharp
 import PhotoLean.Kasha.Compose
 import PhotoLean.Sabatier.Compose
 import PhotoLean.Sabatier.Criterion
+import PhotoLean.SymmetryFactor.Sharp
 
 namespace PhotoLean
 
@@ -529,18 +538,19 @@ that *every* theory sits on it. The pairs without an edge, and why:
   imports `PhotoLean.BEP.Basic` only.
 * **Sabatier ↔ Kasha — no edge.** The two second-batch theories share no module and no object: one
   is a descriptor-axis optimisation, the other an excited-state cascade.
-* **Goldschmidt ↔ all five — no edge.** The Goldschmidt theory (`theories/goldschmidt/`,
+* **Goldschmidt ↔ all six — no edge.** The Goldschmidt theory (`theories/goldschmidt/`,
   `PhotoLean/Goldschmidt/*`) formalizes a *geometric* criterion: the tolerance factor
   `t = (rA + rO) / (√2 * (rB + rO))` of an `ABO₃` perovskite, its band verdict, and Goldschmidt's
   three rules of ionic substitution. It has no energy model at all — no potential-energy surface, no
-  barrier, no rate, no descriptor axis, no cascade — so there is no object for an edge to be about.
+  barrier, no rate, no descriptor axis, no cascade, no curvature pair — so there is no object for an
+  edge to be about.
   Dependency fact (measured with `grep -rn '^import' PhotoLean/Goldschmidt`): `Basic` and `Rules`
   import `Mathlib` only; `Criterion` imports `Basic`; `Sharp` imports `Basic + Rules + Criterion`;
   `RatModel` imports `Basic + Criterion + Rules`; `Instances` imports **four** of them (`Basic` +
   `Rules` + `Criterion` + `RatModel` — it does not import `Sharp`). No module of the
   family is imported, and no module of the family mentions `tolFac`, `GoldschmidtConforms` or any
   radius (measured: `grep -rln 'tolFac\|Goldschmidt' PhotoLean/ --include='*.lean'` returns only
-  `PhotoLean/Goldschmidt/*` plus this registry comment itself, whose prose contains both words). Modelling reason: the five delivered theories state facts about
+  `PhotoLean/Goldschmidt/*` plus this registry comment itself, whose prose contains both words). Modelling reason: the six delivered theories state facts about
   *energies* along one reaction coordinate; Goldschmidt's states facts about *lengths* in a crystal,
   and the two vocabularies share no scalar.
 * **Goldschmidt ↔ Sabatier — a look-alike of shape, with no edge.** Two shapes coincide: (i) a
@@ -558,9 +568,63 @@ that *every* theory sits on it. The pairs without an edge, and why:
   headline `epBounds_iff_no_inverted_direction`, the definitional aliases).
 * **Marcus ↔ Sabatier — §9.** The look-alike pair: one shared functional form and predicate, three
   non-relations.
+* **SymmetryFactor ↔ Marcus, Hammond, BEP — §11 (yes, A1 + specialization).** The seventh theory
+  generalizes the kernel's two-parabola object to unequal curvatures; at the equal-curvature
+  diagonal its coordinate IS `Kernel.tsCoord · 0` and IS `BEP.transfer · 0` (certificates below),
+  and its A1 verdict decides the β = 1/2 reading that the E1 chain identifies with the structural
+  coefficient. Dependency fact: `Sharp` imports `PhotoLean.Kernel` and `PhotoLean.BEP.Criterion`.
+* **SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt — no edge.** The curvature-pair scalar `(kr, kp)`
+  of the seventh theory shares no object with the ladder's branching rates, the volcano's
+  descriptor axis, or the ionic radii. Dependency fact (measured with `grep -rn '^import'
+  PhotoLean/SymmetryFactor`): `Basic` imports `Mathlib` only; `Criterion` imports `Basic`; `Sharp`
+  imports `Criterion + Kernel + BEP.Criterion` (`Basic` transitively); `RatModel` imports `Basic`;
+  `Instances` imports `RatModel + Sharp`. No Kasha/Sabatier/Goldschmidt module is imported by any
+  of them.
 
 Re-derive the dependency facts with
-`grep -rn '^import' PhotoLean/Kasha PhotoLean/Sabatier PhotoLean/Hammond PhotoLean/Goldschmidt`. -/
+`grep -rn '^import' PhotoLean/Kasha PhotoLean/Sabatier PhotoLean/Hammond PhotoLean/Goldschmidt PhotoLean/SymmetryFactor`. -/
+
+/-! ## 11. Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient
+
+The first row of a new registration class. An N-row (§6, §9) says "similar shape, no edge"; an
+A-row says something stronger: **the literature treats two readings as interchangeable, and the
+kernel decides the identification with its exact validity boundary**. The practice locus is
+first-hand on record (`theories/SymmetryFactor/LITERATURE.md` S1: the charge-transfer coefficient
+"usually both taken to be equal to 0.5", with no force-constant condition); the warning record is
+IUPAC TR 2014, printed pp. 255–257 (S2: the value "can by no means be assumed"; β deviates from
+0.5 exactly when the two force constants differ). The seventh theory
+(`PhotoLean/SymmetryFactor`) turns the warning into the verdict `BetaHalfReading kr kp ↔ kr = kp`
+over the unequal-curvature two-parabola model, with kernel-checked witnesses `(1,4) ↦ 2/3 ≠ 1/2`
+and `(4,1) ↦ 1/3`, and — the persistence half — `BetaHalfReading lam lam` throughout the
+equal-curvature family, the regime of the delivered kernel and of every textbook picture. The four
+rows below are two tie-back certificates and two re-exports; the mathematics lives in
+`PhotoLean.SymmetryFactor.*`, none of it here. -/
+
+/-- A1 certificate: at equal curvature the seventh theory's thermoneutral coordinate is the
+kernel's transition-state coordinate. -/
+theorem symmetryFactor_tsCoordZero_eq_kernel {lam : ℝ} (hlam : 0 < lam) :
+    SymmetryFactor.tsCoordZero lam lam = Kernel.tsCoord lam 0 :=
+  SymmetryFactor.tsCoordZero_eq_kernel_thermoneutral hlam
+
+/-- A1 certificate: at equal curvature it is the delivered BEP transfer coefficient at
+thermoneutrality — extending the E1 chain (`transfer = tsCoord`) to the seventh node. -/
+theorem symmetryFactor_tsCoordZero_eq_bepTransfer {lam : ℝ} (hlam : 0 < lam) :
+    SymmetryFactor.tsCoordZero lam lam = BEP.transfer lam 0 :=
+  SymmetryFactor.betaHalf_eq_transfer_thermoneutral hlam
+
+/-- A1 verdict (re-export): the β = 1/2 reading holds exactly when the two force constants agree. -/
+theorem symmetryFactor_betaHalf_iff {kr kp : ℝ} (hkr : 0 < kr) (hkp : 0 < kp) :
+    SymmetryFactor.BetaHalfReading kr kp ↔ kr = kp :=
+  SymmetryFactor.betaHalf_iff_equalForceConstants hkr hkp
+
+/-- A1 falsification-and-persistence (re-export): the conflated reading is refuted at a
+kernel-checked unequal pair, and holds throughout the equal-curvature family — the two halves of
+the adjudication in one row. -/
+theorem symmetryFactor_conflation_falsified_and_holds_in_kernel :
+    ¬ SymmetryFactor.BetaHalfReading 1 4 ∧
+      ∀ lam : ℝ, 0 < lam → SymmetryFactor.BetaHalfReading lam lam :=
+  ⟨SymmetryFactor.betaHalf_falsified_by_unequal,
+   fun _ hlam => SymmetryFactor.betaHalf_holds_in_kernel hlam⟩
 
 end Relations
 
