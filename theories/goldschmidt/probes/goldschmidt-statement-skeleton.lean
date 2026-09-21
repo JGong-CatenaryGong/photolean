@@ -192,8 +192,8 @@ theorem radiusMatch_fifteen_window {r r' : ℝ} :
     RadiusMatch (3 / 20) r r' ↔ 17 * r ≤ 20 * r' ∧ 20 * r' ≤ 23 * r := by
   sorry
 
-theorem radiusMatch_comp_ratchet {tau r1 r2 r3 : ℝ} (hr1 : 0 < r1) (htau : 0 ≤ tau)
-    (htau1 : tau ≤ 1) : RadiusMatch tau r1 r2 → RadiusMatch tau r2 r3 →
+theorem radiusMatch_comp_ratchet {tau r1 r2 r3 : ℝ} (htau : 0 ≤ tau) :
+    RadiusMatch tau r1 r2 → RadiusMatch tau r2 r3 →
       RadiusMatch ((1 + tau) ^ 2 - 1) r1 r3 := by
   sorry
 
