@@ -73,14 +73,18 @@ proofs/scripts/lake build PhotoLean.Smoke     # 单模块
 
 ## 当前状态
 
-**已交付状态的单一真源是 `README.md` 现状节**（五个理论：Marcus 反转区、Hammond 假说、
-BEP 原理、Kasha 规则、Sabatier 原则/火山图；另加共享内核 `PhotoLean/Kernel.lean` 与关系图
-`PhotoLean/Relations.lean` / `theories/RELATIONS.md`）。各理论的进度真源是各自的
-`theories/<理论>/TASKS.md`；跨理论关系边的登记状态见 `theories/RELATIONS.md`。
+**已交付状态的单一真源是 `README.md` 现状节**（六个理论：Marcus 反转区、Hammond 假说、
+BEP 原理、Kasha 规则、Sabatier 原则/火山图，以及 Goldschmidt 容忍因子与取代规则；另加共享内核
+`PhotoLean/Kernel.lean` 与关系图 `PhotoLean/Relations.lean` / `theories/RELATIONS.md`）。各理论的
+进度真源是各自的 `theories/<理论>/TASKS.md`；跨理论关系边的登记状态见 `theories/RELATIONS.md`。
 
-**关系边登记已闭环**：铁律 8 第 ② 项对两个第二批理论（Kasha、Sabatier）的补登记已于 2026-09-21
-完成——`PhotoLean/Relations.lean` §7–§10（Kasha → Marcus 条件性组合边、Sabatier → BEP 组合边、
-Sabatier ↔ Marcus 形似实异簇、无边登记），讨论稿见 `theories/RELATIONS.md` §2.4–§2.5 与 §3 N3。
+**关系边登记已闭环**：铁律 8 第 ② 项对第二批理论（Kasha、Sabatier）的补登记于 2026-09-21 完成——
+`PhotoLean/Relations.lean` §7–§10（Kasha → Marcus 条件性组合边、Sabatier → BEP 组合边、
+Sabatier ↔ Marcus 形似实异簇、无边登记），讨论稿见 `theories/RELATIONS.md` §2.4–§2.5 与 §3 N3；
+对第六个理论（Goldschmidt，2026-09-21）的登记为**无边 + 形状相似**：`Relations.lean` §10 的
+Goldschmidt 段与 `theories/RELATIONS.md` §2.5 / §3 N4——它是纯几何判据（离子半径与堆积），与
+双抛物面家族不共享模块、不共享对象，故**显式登记无边**，并另记一条"只有形状相似"的登记（对称带 =
+绝对偏差界、三分类器）以免把"同样的语句形状"误读成"同样的语句"。
 
 **开工前必须先读目标理论 `TASKS.md` 的属主列与"验收记录"表** —— 该表记录了各里程碑的
 verifier 判决、已关闭的缺陷、以及若干**已实测的坑**（并发窗口内的门判定、
