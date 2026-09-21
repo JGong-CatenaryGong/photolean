@@ -3500,7 +3500,7 @@
      task section, so the G7 row that pointed at "the acceptance table below" pointed at a table that
      did not contain them. Verdicts live in the verdict table, or they are gossip.
 
-## 2026-09-21 — External review round 2 (six theories): the M1–M12 disposal, and a vacuity class the six in-repo verifier runs all passed — lead — DONE (fixes; independent verifier re-verification PENDING on the two changed Kasha rows)
+## 2026-09-21 — External review round 2 (six theories): the M1–M12 disposal, and a vacuity class the six in-repo verifier runs all passed — lead — DONE (fixes; both changed Kasha rows independently verified PASS 2026-09-21 — SymmetryFactor run 1 batch C)
 
 - What happened: a second external full-repository review (`review/FULL-REVIEW-2026-09-21.md`,
   evidence level **reproduced** — full build, `check.sh --strict` PASS, 34 `#print axioms` probes,
@@ -3574,7 +3574,7 @@
   **vacuity pass** distinct from the falsity pass — for each `∃`-row and each "non-vacuity" /
   "inhabited" / "descriptor holds" claim, attempt the `∀`-form in the kernel; a compile is a finding.
 
-## 2026-09-21 — SymmetryFactor delivered end-to-end in one session (the H1 crossing: first adjudicated conflation, class A1) — lead — DONE (author-gated; independent verifier dispatched, verdict PENDING)
+## 2026-09-21 — SymmetryFactor delivered end-to-end in one session (the H1 crossing: first adjudicated conflation, class A1) — lead — DONE (verifier run 1 PASS; theory closed)
 
   literature-recorded conflation. Delivered: `theories/SymmetryFactor/` (five leaves) +
   `PhotoLean/SymmetryFactor/` (five modules, 35 declarations = 28 theorems + 7 definitions),
@@ -3620,8 +3620,14 @@
      the second batch's English and Chinese halves, breaking the [English block → Chinese block]
      pairing; caught on re-read and re-placed. Bilingual files have a block grammar, not just a
      translation duty.
-- Standing for the next round: board rows are **open at `review`** (iron rules 6/7 — the writer does
-  not tick); a bounded independent verifier was dispatched with the report-first rule (the
-  lost-report lesson) covering the gates, the B1–B5 adversarial probes (including the vacuity pass)
-  and the two open Kasha rows M1/M3. Closeout (ticks + acceptance record + status flips) happens
-  only on its PASS.
+- Outcome (same day): the bounded verifier returned **PASS** (2 LOW, none repo-blocking) — gates
+  re-run green (35/0/0, 15/10/5/5, 28+4 axioms clean), B1–B5 adversarial probes all as expected
+  (the vacuity pass proved both directions from scratch and recomputed 2/3 in both layers), the
+  premise-drops confirmed sound by instantiation at negative inputs, and — the part that repays the
+  M1 lesson twice over — the verifier **positively refuted** the trivial universal behind the Kasha
+  M1 row in-probe (equal-rates ladder + `not_kashaRule_of_rad_pos`), upgrading "not provable by me"
+  to "false". Closeout executed on the verdict: rows ticked (iron rule 7), run 1 recorded on the
+  board, downstream PENDING wording flipped across Kasha TASKS/RESULTS, SymmetryFactor
+  plan/RESULTS, README, AGENTS.md and the paper outline (iron rule 8③ — the flip sweep is now a
+  grep for `pending|PENDING|await` across the status-carrying files, which is how every one of the
+  nine sites above was found).

@@ -298,7 +298,9 @@ full gate set with `#print axioms` clean. **This is the review process catching 
 in-repo verifier runs did not** — the row was never *false* (so no mathematical verifier would flag
 it) but *vacuous*, a distinction only an adversarial reader asking "could this statement ever fail?"
 surfaces. The verification status of the two changed rows is **author-gated, independent verifier
-re-verification pending**; the board carries them as open rows until a verifier PASS.
+re-verification PASS 2026-09-21** (independent read-only verifier, recorded in
+`theories/SymmetryFactor/TASKS.md` run 1 batch C: the trivial universal behind M1 was positively
+refuted in-probe and M3's literal condition confirmed); the board rows are ticked on that verdict.
 
 **Independent verification.** The read-only `verifier` role ran the acceptance gate itself and, rather
 than trusting the files, re-derived the headline numbers in its own kernel probes. Its run 1
@@ -380,7 +382,8 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 **字面** `rad i ≤ ic i` 读法。两项均已记入 `plan.md` §3.1（M1 语句强化、M3 权威扩行），改动行全门通过、
 `#print axioms` 干净。**这是外部审查抓到的、六轮仓内 verifier 未抓到的缺陷**——该行从不**假**（数学
 verifier 无从报警）而是**空洞**，只有"这条语句有没有可能失败？"的对抗性阅读才能暴露。两条改动行的验收
-状态为**作者已跑门、独立 verifier 复核 PENDING**，看板保留未勾行直至 verifier PASS。
+状态为**作者已跑门、独立 verifier 复核 PASS（2026-09-21）**（判决记录见
+`theories/SymmetryFactor/TASKS.md` run 1 batch C：M1 的平凡全称被探针**正面反驳**、M3 的字面条件获确认）；看板两行已据判决打勾。
 
 ---
 
@@ -421,7 +424,7 @@ verifier 无从报警）而是**空洞**，只有"这条语句有没有可能失
    quotes — finding M3). No delivered theorem was refuted; the acceptance runs 1–7 stand as recorded
    against the pre-revision authority `b645cbfb…` (150 declarations). The revised rows are
    author-gated (build / strict scan / `#print axioms` / fidelity 151/151) with **independent
-   verifier re-verification pending**; the board keeps them as open rows until a verifier PASS, and
+   verifier re-verification PASS (2026-09-21)**; the board rows are ticked on that verdict, and
    the counts in this file are the post-revision state.
 
 **限制（中文）**：模型为选择而非推导（有限阶梯、每通道单一标量速率、时间积分产额；不建模振动/电子结构、
@@ -437,7 +440,7 @@ Marcus 型内转换速率（`kashaWithin_one_marcus` 导入 `PhotoLean.Marcus.Ba
 `kashaDescriptor_nonvacuous` 被**强化**（交付形式对任意阶梯平凡为真，plan §3.1、外部审查发现 M1）、
 新增 `perLevel_ic_ge_rad_insufficient`（论文提纲引用的字面逐层读法，发现 M3）。没有任何已交付定理被推翻；
 验收 run 1–7 按原样对修订前权威 `b645cbfb…`（150 条声明）成立。修订行已过作者侧全门（构建/严格扫描/
-`#print axioms`/保真 151/151），**独立 verifier 复核 PENDING**；看板保留未勾行直至 verifier PASS，
+`#print axioms`/保真 151/151），**独立 verifier 复核 PASS（2026-09-21）**；看板两行已据判决打勾，
 本文件的计数为修订后状态。
 
 ---

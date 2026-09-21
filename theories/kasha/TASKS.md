@@ -16,8 +16,8 @@
   review-fix round), **151 declarations** (111 theorems + 37 definitions + 3 structures/inductives).
   Acceptance runs 1–9 below were gated against the pre-revision authority
   `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17` (150 declarations); the two
-  revised rows (plan §3.1, external-review findings M1/M3) carry open board rows and await an
-  independent verifier PASS.
+  revised rows (plan §3.1, external-review findings M1/M3) were independently verified **PASS**
+  (2026-09-21, recorded in `theories/SymmetryFactor/TASKS.md` run 1 batch C) and are ticked.
 - Theory direction: **Kasha's rule in a finite excited-state cascade model**, human request of
   2026-09-20 (three parts: formal description / proof and validity conditions / instance verdicts).
 - Deliverable module prefix: `PhotoLean.Kasha`; sources under `PhotoLean/Kasha/`
@@ -31,8 +31,9 @@
   every ladder), one row added (`perLevel_ic_ge_rad_insufficient` — the literal per-level reading);
   the authority is revised to
   `8c5ed93b14d96c2d08e4c6e59da587972841373d65d3d2db4f7d85dea9232853` (151 declarations); both rows
-  are author-gated and **open below pending independent verification** — the theory's closure stands
-  for the pre-revision state, and re-closes when a verifier PASS lands on the two open rows.
+  were author-gated and have now been **independently verified PASS** (verdict: SymmetryFactor run 1,
+  batch C — the trivial universal behind M1 was positively refuted in-probe, and M3's literal
+  condition confirmed); the two board rows are ticked on that verdict and the theory is re-closed.
 - Literature rows: **in the skeleton** (I10, I11, I11-alt, I11-alt2, I11t, I15 — appended 2026-09-20,
   literals transcribed from `theories/kasha/LITERATURE.md` §R1.6, never guessed); sketched row I12 is
   **absent by decision** (the literature round found no second anti-Kasha molecule with first-hand
@@ -168,7 +169,7 @@
 - [x] `kashaRule_iff_vavilovUpTo` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 - [x] `not_kasha_universal` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 - [x] `kashaDescriptor_nonvacuous` — Criterion.lean — prover_a — done — skeleton `b645cbfb` (original statement `∃ rad ic, KashaDescriptor rad ic`, verified in the delivery runs)
-- [ ] `kashaDescriptor_nonvacuous` (**strengthened statement** `∃ rad ic, RateData rad ic 1 ∧ KashaRule rad ic 1`) — Criterion.lean — review-fix — review — 2026-09-21 plan §3.1 / review M1: the original form was trivially true of every ladder (`KashaRule · · 0` via `upperYield_zero`); author-gated (build OK, strict `clean`, `axioms.sh` `[propext, Classical.choice, Quot.sound]`, fidelity 151/151); **independent verifier PASS pending — do not tick before**
+- [x] `kashaDescriptor_nonvacuous` (**strengthened statement** `∃ rad ic, RateData rad ic 1 ∧ KashaRule rad ic 1`) — Criterion.lean — review-fix — done — 2026-09-21 plan §3.1 / review M1: the original form was trivially true of every ladder (`KashaRule · · 0` via `upperYield_zero`); author-gated (build OK, strict `clean`, `axioms.sh` `[propext, Classical.choice, Quot.sound]`, fidelity 151/151); **verifier re-check PASS 2026-09-21** (SymmetryFactor run 1 batch C: the trivial universal was positively refuted in-probe; delivered type confirmed strengthened)
 - [x] `kashaWithin_of_kashaRule` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 - [x] `upperYield_le_sum_radBranch` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 
@@ -185,7 +186,7 @@
 - [x] `not_kashaWithin_one_of_ratio_lt` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `kashaThreshold_attained` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `perLevel_criterion_insufficient` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
-- [ ] `perLevel_ic_ge_rad_insufficient` — Sharp.lean — review-fix — review — added 2026-09-21 (plan §6.2 #13b, §3.1 / review M3): the *literal* per-level reading `rad i ≤ ic i`, which #13's branch-weighted hybrid does not formalize; same witness `rad ≡ ic ≡ 1`; author-gated (build OK, strict `clean`, `axioms.sh` clean, fidelity 151/151, milestone K3 16/16); **independent verifier PASS pending — do not tick before**
+- [x] `perLevel_ic_ge_rad_insufficient` — Sharp.lean — review-fix — done — added 2026-09-21 (plan §6.2 #13b, §3.1 / review M3): the *literal* per-level reading `rad i ≤ ic i`, which #13's branch-weighted hybrid does not formalize; same witness `rad ≡ ic ≡ 1`; author-gated (build OK, strict `clean`, `axioms.sh` clean, fidelity 151/151, milestone K3 16/16); **verifier re-check PASS 2026-09-21** (SymmetryFactor run 1 batch C: the trivial universal was positively refuted in-probe; delivered type confirmed strengthened)
 - [x] `vavilov_premise_necessary` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `kashaWithin_one_sharp_boundary` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `leak_le_of_radBranch_le` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
@@ -487,7 +488,7 @@ verdict-flipping): this record supersedes the "Run 8 — pending" placeholder, a
 could cite the hash directly (done above).**
 **The documentation plane now matches the tree: the theory is closed.**
 
-### Review-fix round — 2026-09-21 — external review M1/M3 statement fixes — **author-gated; independent verifier PASS pending** (NOT a verifier run)
+### Review-fix round — 2026-09-21 — external review M1/M3 statement fixes — author-gated, then **independently verified PASS** (verdict recorded in `theories/SymmetryFactor/TASKS.md` run 1, batch C, 2026-09-21)
 
 Actor: the second external full-repository review (`review/FULL-REVIEW-2026-09-21.md`, findings M1–M12;
 the two Kasha items are M1 and M3), executed under direct human instruction. This block is an

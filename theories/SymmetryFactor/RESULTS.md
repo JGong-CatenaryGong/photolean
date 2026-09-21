@@ -1,8 +1,10 @@
 # theories/SymmetryFactor/RESULTS.md — the symmetry-factor adjudication (human-facing answers, bilingual)
 
 > The contract's only bilingual file: each section gives the English original followed by its
-> Chinese rendering. Status: **delivered 2026-09-21, author-gated; independent verifier PASS
-> pending** — the board rows stand at `review` until the verdict lands (iron rules 6/7).
+> Chinese rendering. Status: **delivered and verified 2026-09-21** — author-gated first, then the
+> independent read-only verifier returned **PASS** (run 1 on the board: all gate batches green,
+> adversarial probes B1–B5 as expected, 2 LOW findings, neither repo-blocking); the board rows are
+> ticked on that verdict and the theory is closed (iron rules 6/7/8).
 
 ## 1. Executive summary
 
@@ -89,8 +91,12 @@ explicit numeral lemma route replaced it. Vacuity discipline (the M1 lesson) was
 prospectively: the theory has no bare `∃`-non-vacuity row; `inst_nonvacuous_both_readings` pins
 both readings at concrete positive curvatures, and under the totalized convention
 `BetaHalfReading 0 0` is **false** (0 ≠ 1/2), so no degenerate parameter satisfies the reading for
-free. **Independent verification is pending**; per iron rule 6 this section is an author-side
-record, not a verdict.
+free. **Independent verification returned PASS** (run 1 on the board, 2026-09-21): the verifier
+re-ran every gate (35/0/0 fidelity, 28+4 axioms clean), proved both verdict directions from
+scratch, recomputed `2/3` independently in both layers, refuted the trivial universal behind the
+vacuity check in-probe, and instantiated the two premise-free rows at negative inputs to confirm
+the drops were sound. Per iron rule 6 the author-side record above stood until that verdict; the
+theory is closed on it.
 
 **中文（证据与门）**：作者侧门（原始结果）：五模块与全树构建 exit 0、**零警告**；
 `check.sh --strict` → 叶数据面 7/7、扫描 `clean`、`verdict: PASS`；权威以占位编译 0 error；保真
@@ -100,8 +106,11 @@ record, not a verdict.
 **实测被拒**（`(1/2:ℝ)` 不以 `Rat.cast` 形态呈现，type mismatch），改走 `Rat.cast_inj` + 显式
 数字引理的确定性路线。空洞性纪律（M1 教训）**前置执行**：本理论没有裸 `∃` 非空洞行；
 `inst_nonvacuous_both_readings` 把两种读法钉在具体正曲率上，且在totalized约定下
-`BetaHalfReading 0 0` 为**假**（0 ≠ 1/2）——不存在白拿的退化参数。**独立验证 PENDING**；按
-铁律 6，本节是作者侧记录而非判决。
+`BetaHalfReading 0 0` 为**假**（0 ≠ 1/2）——不存在白拿的退化参数。**独立验证已返回 PASS**
+（看板 run 1，2026-09-21）：verifier 重跑了全部门（保真 35/0/0、28+4 条公理干净）、从零证明判决
+两个方向、在两层独立重算 `2/3`、以探针**正面反驳**了空洞性检查背后的平凡全称、并把两条无前提行
+实例化到负输入以确认前提删除是 sound 的。按铁律 6，上面的作者侧记录在该判决前不构成验收；理论据此
+关闭。
 
 ## 4. Limits and honesty
 

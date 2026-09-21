@@ -1,6 +1,7 @@
 # theories/SymmetryFactor/plan.md — PhotoLean formalization plan: the symmetry-factor adjudication (F1–F4)
 
-> Status: **delivered (2026-09-21, same-day), pending independent verification** — F1–F4, five
+> Status: **delivered and independently verified (2026-09-21, same-day; verifier run 1 PASS on the
+> board)** — F1–F4, five
 > modules, 35 declarations, author-gated (build / strict scan / `#print axioms` / fidelity 35/35).
 > The statement authority
 > `theories/SymmetryFactor/probes/SymmetryFactor-statement-skeleton.lean` (sha256 recorded on the

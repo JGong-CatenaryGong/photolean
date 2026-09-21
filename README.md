@@ -48,8 +48,8 @@ Agent preset 驱动。
     **35 条声明**（28 定理 + 7 定义），语句保真 **35/35**
     （`python3 theories/BEP/probes/bep-fidelity.py --theory SymmetryFactor`）；文献位点成对：一手
     **实践位点**（"usually both taken to be equal to 0.5"，arXiv:2104.05424 §2.1）+ IUPAC TR 2014
-    的**印刷警告**（pp.255–257），见 `theories/SymmetryFactor/LITERATURE.md`。**作者已跑门、独立
-    verifier 复核 PENDING**（铁律 6/7：看板行未勾）。
+    的**印刷警告**（pp.255–257），见 `theories/SymmetryFactor/LITERATURE.md`。**独立 verifier 复核 PASS**
+    （2026-09-21，run 1 记于其看板；理论已按铁律 8 关闭）。
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
 - **跨理论关系图**（覆盖全部七个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
   Sabatier 经**组合边**接入，Sabatier↔Marcus 另有一组"形似实异"非关系边，Goldschmidt 经**无边登记**
