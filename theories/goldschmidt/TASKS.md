@@ -30,39 +30,53 @@
       (**138 declarations**, 0 error, placeholder-only bodies; fidelity checker wired:
       `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt` → 138 not delivered, 0 signature
       differences). Three rows corrected at Sprint 0 before dispatch — plan §3.1
-- [ ] **Lead risk probe**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — proves the
-      critical-path statement forms *before* planning (window equivalence, squared form, symmetric
-      band, `rO` trichotomy, irrationality row, radius-rule bridge, charge-compensation existence,
-      `ℚ` classifier transfer, instance spot checks)
-- [ ] API calibration (`api_researcher`) → `proofs/API-NOTES.md` § "Goldschmidt theory (2026-09-21)"
-      + `theories/goldschmidt/probes/goldschmidt-api-*.lean`
-- [ ] Literature survey (`literature_researcher`) → `theories/goldschmidt/LITERATURE.md` +
+- [~] **Lead risk probe**: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` — proves the
+      critical-path statement forms (window equivalence, squared form, symmetric band, `rO`
+      trichotomy, irrationality row, radius-rule bridge, charge-compensation existence, `ℚ`
+      classifier transfer, instance spot checks); **owner prover_a, in review** (142 declarations;
+      the file is outside `SOURCE_DIRS`, so its placeholder-free completion is evidence, not a gate)
+- [~] API calibration (`api_researcher`) → `proofs/API-NOTES.md` § "Goldschmidt theory (2026-09-21)"
+      + `theories/goldschmidt/probes/goldschmidt-api-*.lean` (5 probes; the lead independently
+      re-ran all five: exit 0 / 0 error each)
+- [~] Literature survey (`literature_researcher`) → `theories/goldschmidt/LITERATURE.md` +
       `theories/goldschmidt/literature/INSTANCE-DATA.md`
 - [x] Plan landed: `theories/goldschmidt/plan.md` §1–§14
 - [x] **Off-kernel exact-rational instance cross-check**:
       `theories/goldschmidt/probes/goldschmidt-instance-check.py` → exit 0, 0 mismatches; exact `t²`
       values and verdicts recorded in plan §9
-- [ ] `lakefile.toml` `defaultTargets` extended with `PhotoLean.Goldschmidt.Basic` (one line per
-      module, in the same commit as the module)
+- [x] `lakefile.toml` `defaultTargets` extended with `PhotoLean.Goldschmidt.Basic` (commit `bdfd681`;
+      the remaining five modules are registered one line per module as they land)
 - [x] Human confirmation of the design (2026-09-21: directory `theories/goldschmidt/`, full scope
       ①+②+③, module layout G1–G6)
 
-## G1 — description layer (`PhotoLean/Goldschmidt/Basic.lean`; owner lead)
+## G1 — description layer (`PhotoLean/Goldschmidt/Basic.lean`; owner prover_b; delivered)
+
+> Delivered commit `65cdd32` (213 lines, 29 declarations = 15 definitions + 14 theorems), all
+> word-for-word against the corrected authority. Gates reported by the owner and independently
+> re-run by the lead: `lake build` OK (0 warning) / `check.sh --strict` `verdict: PASS` /
+> `axioms.sh` **14/14** `PASS (only mathlib infrastructure axioms)` / fidelity **29/29**,
+> `signature differences: 0`. Owner side-effect: the authority's `goldschmidtZone_eq_tooLarge_iff`
+> draft was FALSE on an inverted band and was corrected before delivery (plan §3.1 item 4).
 
 - [ ] definitions `tolFac` / `latticeOf` / `idealAO` / `idealA` / `rAMin` / `rAMax` / `InBand` /
       `GoldschmidtConforms` / `GoldschmidtZone` / `goldschmidtZone` / band constants / `gapA`
-      — Basic.lean — lead — todo — plan §4
-- [ ] `tolFac_pos`, `tolFac_eq_distRatio`, `contact_iff_tolFac_one`, `idealA_eq`, `idealA_tolFac`,
-      `gapA_pos_iff`, the three `goldschmidtZone_eq_*_iff` rows, `rAMin_one` / `rAMax_one`
-      — Basic.lean — lead — todo — plan §4
+      — Basic.lean — prover_b — review — plan §4
+- [ ] `tolFac_pos`, `two_div_sqrtTwo`, `latticeOf_div_sqrtTwo`, `tolFac_eq_distRatio`,
+      `contact_iff_tolFac_one`, `idealA_eq`, `idealA_tolFac`, `gapA_pos_iff`,
+      `goldschmidtZone_eq_tooSmall_iff`, `goldschmidtZone_eq_ideal_iff`,
+      `goldschmidtZone_eq_tooLarge_iff` (exact form), `goldschmidtZone_eq_tooLarge_iff_of_band`,
+      `rAMin_one`, `rAMax_one` — Basic.lean — prover_b — review — plan §4
+      (verifier run 1: batch 1 = G1 + Sprint-0 artifacts)
 
-## G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_a)
+## G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_c; proving)
 
-- [ ] all rows of plan §5 — Rules.lean — prover_a — todo
+- [ ] all rows of plan §5 — Rules.lean — prover_c — proving — (dispatched in parallel with G1: the
+      rules layer does not import the description layer, so it needed no Basic.lean)
 
-## G3 — law layer (`PhotoLean/Goldschmidt/Criterion.lean`; owner prover_b)
+## G3 — law layer (`PhotoLean/Goldschmidt/Criterion.lean`; owner prover_d; proving)
 
-- [ ] all rows of plan §6 — Criterion.lean — prover_b — todo
+- [ ] all rows of plan §6 — Criterion.lean — prover_d — proving — (the two headline equivalences
+      `conforms_iff_radius_window` and `conforms_iff_sq` are the critical path for G4/G5/G6)
 
 ## G4 — sharp conditions (`PhotoLean/Goldschmidt/Sharp.lean`; owner prover_d)
 
