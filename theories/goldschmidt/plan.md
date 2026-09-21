@@ -39,10 +39,18 @@ normalized by the ideal one, is the **tolerance factor**
 t = (r_A + r_O) / (√2 (r_B + r_O))     ("ideal" ⟺ t = 1 ⟺ both contacts hold simultaneously).
 ```
 
-The empirical reading of `t` is a **band**: goldschmidtite-type work uses `0.8 ≤ t ≤ 1.0` for the
-cubic (or pseudo-cubic) perovskite, above which the structure distorts (tetragonal/ferroelectric,
-`1.0 < t < 1.1`) and below which it collapses into other structure types (hexagonal, ilmenite,
-corundum, …). Alongside the factor, Goldschmidt's **rules of substitution** say when one ion may
+The empirical reading of `t` is a **band**, and the primary source has now been retrieved and read
+(`theories/goldschmidt/LITERATURE.md` §S1.1b, §S1.1c, with the OCR-corroboration boundary stated
+there): Goldschmidt's own memoir prints the factor as `R_A + R_X = t * √2 * (R_B + R_X)` — so `tolFac`
+is *his* object, not a modern abbreviation — and prints the band `0,8 ≤ t ≤ 1` verbatim ("durchwegs
+zwischen 0,8 und 1"), with `t < 0.8` collapsing to the corundum type and `t > 1` being replaced
+"durch die Aragonitstruktur". What the literature does **not** print is a `[1, 11/10]`
+*tetragonal/ferroelectric* band: what is printed is the half-open motif `t > 1`, and the name of the
+distortion at `t > 1` is contested across sources (tetragonal in some, hexagonal in others, aragonite
+in the primary text), with at least one source placing tetragonal below 1. The band edges are
+therefore **parameters** of this theory (§12): `classicLo = 4/5` and `classicHi = 1` transcribe the
+primary source, while `tetragonalHi = 11/10` is a *declared* edge with no printed band behind it (the
+nearest printed threshold is the rejection sentence `t ≥ 1.1`). Alongside the factor, Goldschmidt's **rules of substitution** say when one ion may
 replace another in a lattice: (i) *radius rule* — the radii must differ by less than about 15 %;
 (ii) *charge rule* — an isovalent substitution needs no other change, a heterovalent one must be
 accompanied by a compensating partner so that the total charge stays balanced; (iii) *chemical
@@ -155,7 +163,8 @@ convention and the tetragonal `1`–`11/10` convention are separate *instances*.
 | — | `InBand lo hi t := lo ≤ t ∧ t ≤ hi` | band predicate on the factor |
 | — | `GoldschmidtConforms lo hi rA rB rO := InBand lo hi (tolFac ..)` | instance-level verdict |
 | — | `GoldschmidtZone` / `goldschmidtZone lo hi t` | three-way classifier (`tooSmall`/`ideal`/`tooLarge`) |
-| `τ` | `RadiusMatch τ r r' := |r - r'| ≤ τ * r` | radius rule (`τ = 3/20` is the 15 % rule) |
+| `τ` | `RadiusMatch τ r r' := |r - r'| ≤ τ * r` | radius rule. The primary text's reference is the **smaller** radius, so `radiusMatch_min_iff` is the attested form and this is the parameterized spelling; `τ = 3/20` |
+| `rO` | `rO : ℝ` | the oxygen radius is a *printed* number: the record carries three conventions (`1.40 Å` Shannon 1976, `1.35 Å` in one widely used table, and the primary text's own `1.32 Å`), so every printed `t` is quoted **with its radius triple** and two `t` values from different triples are different numbers (`LITERATURE.md` §S4.2) |
 | `dz` | `ChargeBalanced dz := ∑ i, dz i = 0` | charge-balance rule (integer increments) |
 | `χ` | `chiTol tol₀ k χ χ' = tol₀ - k * |χ - χ'|` | electronegativity-dressed radius tolerance |
 | — | `Substitutable tol₀ k χ χ' r r'` | chemical rule + radius rule, composed |
@@ -403,7 +412,7 @@ Row families (each row is a kernel-checked verdict, with the printed radii cited
 | I3 band flip | `BaTiO₃` | fails `[4/5, 1]`, conforms to `[1, 11/10]` (tetragonal) — the flip as two theorems |
 | I4 negative | `BaNiO₃` (hexagonal in the literature) | outside every delivered band |
 | I5 radius rule | substitution pairs inside/outside 15 %, and the ratchet row | rule 1 verdicts |
-| I6 charge rule | the isovalent row, the uncompensated heterovalent row, the coupled/compensated pair (`Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`), the compensating-partner row | rule 2 verdicts |
+| I6 charge rule | the isovalent row, the uncompensated heterovalent row, the coupled/compensated pair, the compensating-partner row | rule 2 verdicts — the delivered ±1 pair is a *model* instance: round 1 found that no source prints `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`, while documented coupled substitutions do exist with printed increments (`Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺` in the primary text's plagioclase example; `A²⁺B⁴⁺O₃` heterovalent La/Na pairing; the printed `3 Na⁺ ↔ 1 Sm³⁺` compensation arithmetic — `LITERATURE.md` §S3.2.1), and the row's docstring cites those |
 | I7 chemical rule | a row where a larger radius difference is admitted only by the electronegativity term | rule 3 verdicts |
 | I8 non-vacuity | one conforming row per zone of the classic band | the classifier is total |
 
@@ -467,11 +476,11 @@ milestone that owns them — because early failure is cheaper.
 | `t = (r_A + r_O) / (√2 (r_B + r_O))` | **definition** of the formalized object |
 | `t` is the ratio of the `A`–`O` contact distance to the ideal cuboctahedral one | **theorem** (`tolFac_eq_distRatio`) given the modelling premise "ideal cubic geometry" |
 | `t = 1 ⟺ r_A + r_O = √2 (r_B + r_O) ⟺ r_A = idealA rB rO` | **theorem** |
-| the band `lo ≤ t ≤ hi` is the right empirical criterion | **declared modelling premise** (the band edges are parameters; the literature's several conventions are instances) |
+| the band `lo ≤ t ≤ hi` is the right empirical criterion | **declared modelling premise**, now with an attested core: the primary source prints `0,8 ≤ t ≤ 1` verbatim (so `classicLo`/`classicHi` are a *transcription*), while `tetragonalHi = 11/10` is **declared with no printed band** (19 printed band conventions are enumerated in `LITERATURE.md` §T1; the nearest printed `1.1` threshold states *formation*, not tetragonal distortion) |
 | `GoldschmidtConforms ↔` radius window / squared form | **theorem** (this theory's own exactification; absent from the literature) |
-| the 15 % radius rule | **declared rule** (`τ = 3/20`); the theorem content is its window form, its ratchet, and its transfer to `Δt` |
-| the charge-balance rule | **declared rule**; the theorem content is the isovalent characterization, the pairing, and the existence of a compensating partner of opposite sign |
-| the electronegativity rule | **declared shape** (`chiTol` linear in `|Δχ|`); the theorem content is monotonicity in `|Δχ|` |
+| the 15 % radius rule | the **reference ion is a literature fact, not a convention**: the primary text prints "um nicht mehr als etwa 15 % (in Prozenten des kleinsten Radius)", i.e. relative to the **smaller** radius, so `radiusMatch_min_iff`'s min-form *is* the attested rule and `RadiusMatch τ r r'` is this theory's parameterized spelling (the modern literature varies between the larger and the smaller reference — §6 records it). `τ = 3/20` is the declaration that sharpens the printed "etwa 15 %"; the theorem content is the window form, the ratchet, and the transfer to `Δt` |
+| the charge-balance rule | **a declared systematization, and deliberately not attributed to Goldschmidt.** The primary text's condition is *stoichiometric matching* ("in beiden Formeln entsprechende Mengen positiver Bausteine und … negativer Bausteine") and it explicitly refuses valence as an independent criterion ("Der Unterschied der Valenz ist nämlich bereits in unsern Größen der scheinbaren Radien mit einkalkuliert"). The formalized `∑ dz = 0` is the later systematization (the record gives documented coupled-substitution instances with printed increment arithmetic, `LITERATURE.md` §S3.2.1, and an `|Δz| = 1` variant used in the modern literature). The theorem content is the isovalent characterization, the pairing, and the existence of a compensating partner of opposite sign |
+| the electronegativity rule | **declared shape** (`chiTol` linear in `|Δχ|`). The sources are qualitative and phrased as *field effects* rather than electronegativity, and the modern literature gives a *threshold* (`|Δχ| ≳ 0.1`) rather than a linear law; only monotonicity in `|Δχ|` is a theorem (the linearity has no source — recorded as a clean negative) |
 | Shannon radii of a named compound | **printed number with provenance** (LITERATURE.md), not a derived quantity |
 | `t` is irrational at rational radii | **theorem** (given `√2 ∉ ℚ`) |
 
