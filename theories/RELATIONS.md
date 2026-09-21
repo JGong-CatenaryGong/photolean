@@ -1,8 +1,11 @@
-# theories/RELATIONS.md — five theories, one graph: composition, look-alikes and no-edges
+# theories/RELATIONS.md — six theories, one graph: composition, look-alikes and no-edges
 
-> **Status.** This is the discussion draft of the relation graph of the **five** delivered theories
+> **Status.** This is the discussion draft of the relation graph of the **six** delivered theories
 > (Marcus inverted region, Hammond postulate, Bell–Evans–Polanyi principle, Kasha's rule, Sabatier
-> principle / volcano plot). Its machine-checked companion is `PhotoLean/Relations.lean`
+> principle / volcano plot — the five that share the two-parabola kernel — and the Goldschmidt
+> tolerance factor with Goldschmidt's rules of ionic substitution, which shares no module and no
+> object with them and therefore enters the graph only through the no-edge registry, §2.5/§3 N4).
+> Its machine-checked companion is `PhotoLean/Relations.lean`
 > (**46 declarations**, measured at the second-batch extension, 2026-09-21, commit `eb5e178`) over
 > the shared kernel `PhotoLean/Kernel.lean` (6 definitions + 2 theorems); every claim below that
 > names a Lean theorem is backed by a declaration that compiles and whose `#print axioms` output is
@@ -195,6 +198,8 @@ each pair with its dependency fact and its modelling reason.
 | Kasha ↔ Hammond | **none** | branching probabilities vs. the structural coordinate; no row connects them |
 | Sabatier ↔ Hammond | **none** | Sabatier imports `BEP.Basic` only |
 | Sabatier ↔ Kasha | **none** | no shared module and no shared object |
+| Goldschmidt ↔ all five | **none** | the Goldschmidt tree imports `Mathlib` and its own modules only (`Basic`/`Rules` ← `Mathlib`, `Criterion` ← `Basic`, `Sharp` ← `Basic`+`Rules`+`Criterion`, `RatModel` ← `Basic`+`Criterion`+`Rules`, `Instances` ← all five); the modelling reason is that its content is *geometric* (ionic radii, a packing ratio, a band on it, three substitution rules) while the five state facts about *energies* on one reaction coordinate — the two vocabularies share no scalar |
+| Goldschmidt ↔ Sabatier | **none** (a shape look-alike only) | a symmetric band about an ideal value is an absolute-deviation bound in both, and both have a three-way classifier — but the scalars are unrelated (radius ratio vs. binding energy), the sharp conditions differ (Goldschmidt's window equivalence is exact for every band; Sabatier's is `0 < alphaA * alphaB`) and the classifiers decide different propositions — §3 N4 |
 
 **中文（无边登记）**：不存在的边是**被登记的事实**而非疏漏——关系图的完整性取"**每个理论都在图上**"之义。
 登记表位于 `Relations.lean` 末尾（§10），逐对给出依赖图事实与建模理由。有边者为：Marcus ↔ BEP、
@@ -202,7 +207,11 @@ Marcus ↔ Hammond（第一批，§2.1–§2.3）、Marcus ↔ Sabatier（第二
 （条件性组合，§2.4）、Sabatier → BEP（组合，§2.4）；**无边**者为：Kasha ↔ BEP（Kasha 只消费
 `marcusIC` 里的势垒，阶梯理论没有任何一行提到直线律、缺陷或容差窗口）、Kasha ↔ Hammond（分支概率与结构
 坐标之间没有已证联系）、Sabatier ↔ Hammond（Sabatier 只 import `BEP.Basic`）、Sabatier ↔ Kasha
-（不共享模块、不共享对象）。
+（不共享模块、不共享对象）、**Goldschmidt ↔ 全部五个**（Goldschmidt 树只 import `Mathlib` 与自身模块；
+建模理由：它的内容是**几何量**——离子半径、堆积比值、其上的容忍带、三条取代规则——而五个理论说的是
+同一反应坐标上的**能量**事实，两套词汇不共享任何标量）、**Goldschmidt ↔ Sabatier**（只有形状相似、无
+边：两侧的对称带都等价于「偏离理想值的绝对值有界」，也都各有一个三分类器，但标量无关联、锐利条件不同、
+分类器判定的是不同的命题——§3 N4）。
 
 ---
 
@@ -284,6 +293,37 @@ Marcus 速率**就是** Sabatier 活性泛函作用于内核势垒再乘 `A`；C
 同一个 `λ` 对一切可采纳的 `A`、`k_BT` 都最优），而 Sabatier 顶点在斜率不变、只改偏移量时就会移动
 （`sabatier_apex_moves_with_offsets`）。与 §2.5 的无边登记合读，这是 N1/N2 同一教训的第二批形态：
 **共享谓词不等于共享机制**，而且差异是定理，不是免责声明。
+
+
+**N4 — the Goldschmidt tolerance band and the Sabatier volcano: the same *shape*, no edge**
+(sixth theory, 2026-09-21). Two shapes coincide and the coincidence is registered rather than
+monetised into an edge. (i) *Symmetric band = absolute-deviation bound.* Goldschmidt's G3 row
+`conforms_symmetric_band_iff` proves
+`GoldschmidtConforms (1 - delta) (1 + delta) rA rB rO ↔ |rA - idealA rB rO| ≤ delta * idealAO rB rO`
+for every `delta` (no `0 ≤ delta` premise — plan §3.1 item 2); Sabatier's S1 definition
+`NearOptimal tol apexD dE := |dE - apexD| ≤ tol` is the same shape read on a descriptor axis. (ii)
+*Three-way classifier of a scalar against a band.* `GoldschmidtZone` with `goldschmidtZone lo hi t` (the
+exact characterization of its `tooLarge` branch being `lo ≤ t ∧ hi < t`, because the cascade tests
+`t < lo` first) versus `Sabatier.SZone` with `sabatierZone apexD dE`. What does **not** transfer, and
+why the registry says "no edge": the scalars are unrelated — a ratio of ionic radii against a binding
+free energy — and no map between them is delivered anywhere in the repository; the sharp conditions
+have different contents (Goldschmidt's is an exact *radius window* for every band, Sabatier's is the
+product condition `0 < alphaA * alphaB` on the two BEP slopes); and the two classifiers decide
+different propositions, one by comparing squares of rationals (`Rat.zoneQ`) and the other by
+comparing reals through `√2`. The lesson of N1/N2 repeats a third time in a new form: **the same
+statement shape is not the same statement.**
+
+**中文（N4：同样的"形状"，没有边）**：两个形状重合，本文件把它**登记**而非变现成一条边。(i) *对称带 =
+偏离理想的绝对值有界*：Goldschmidt 的 G3 行 `conforms_symmetric_band_iff` 对**任意** `delta` 证明
+`GoldschmidtConforms (1-δ) (1+δ) rA rB rO ↔ |rA - idealA rB rO| ≤ δ * idealAO rB rO`（无需 `0 ≤ δ`，
+plan §3.1 第 2 条）；Sabatier 的 S1 定义 `NearOptimal tol apexD dE := |dE - apexD| ≤ tol` 是同一形状在
+描述符轴上的读法。(ii) *标量对带的三分类器*：`GoldschmidtZone` 的 `goldschmidtZone lo hi t`（其
+`tooLarge` 支的**精确**刻画是 `lo ≤ t ∧ hi < t`，因为级联先测 `t < lo`）对 `Sabatier.SZone` 的
+`sabatierZone apexD dE`。**不传递**的原因恰好也是登记"无边"的理由：标量互不相关——离子半径之比对结合
+自由能——且仓库里没有任何已交付的映射把两者连起来；锐利条件内容不同（Goldschmidt 是对任意带都精确的
+**半径窗口**，Sabatier 是两条 BEP 斜率上的乘积条件 `0 < alphaA * alphaB`）；两个分类器判定的是不同的
+命题，一个比较有理数的平方（`Rat.zoneQ`），另一个经 `√2` 比较实数。N1/N2 的教训以新形态第三次出现：
+**同样的语句形状不等于同样的语句。**
 
 ---
 
@@ -459,13 +499,20 @@ python3 theories/BEP/probes/bep-fidelity.py
 python3 theories/hammond/probes/hammond-fidelity.py
 python3 theories/BEP/probes/bep-fidelity.py --theory kasha
 python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier
+python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt
 ```
 
-**English.** Each `axioms.sh` call must print
+**English.** The last fidelity line is the sixth theory (Goldschmidt, 139 authority declarations,
+all delivered: the tool prints `delivered, word-for-word: 139`, `not delivered yet: 0`,
+`signature differences: 0`); it is registered through the no-edge registry rather than by a relation
+edge (§2.5, §3 N4). Each `axioms.sh` call must print
 `verdict: PASS (only mathlib infrastructure axioms)`; the five fidelity probes must report 0
 signature differences (51, 191, 102, 150, 132); the calibration probe compiles with placeholders
 and no errors. The whole inventory is in `PhotoLean/Relations.lean` §1–§10.
 
-**中文**：上述每条 `axioms.sh` 必须打印 `verdict: PASS (only mathlib infrastructure axioms)`；
-五个保真探针必须报告 0 签名差异（51 / 191 / 102 / 150 / 132）；标定探针以占位编译通过、无 error。
+**中文**：最后一条保真命令是第六个理论（Goldschmidt，权威 139 条声明、全部交付：工具打印
+`delivered, word-for-word: 139`、`not delivered yet: 0`、`signature differences: 0`），它经**无边登记**
+而非关系边接入关系图（§2.5、§3 N4）。上述每条 `axioms.sh` 必须打印
+`verdict: PASS (only mathlib infrastructure axioms)`；六个保真探针必须报告 0 签名差异
+（51 / 191 / 102 / 150 / 132 / 139）；标定探针以占位编译通过、无 error。
 完整清单见 `PhotoLean/Relations.lean` §1–§10。

@@ -3259,3 +3259,35 @@
   row — all ended with the premise removed or genuinely consumed, the G2 prover going *through* a
   correctness theorem rather than suppressing the warning). Suppression is a stop-gap for a delivery
   window, not a design decision.
+
+## 2026-09-21 — G5 follow-up: the `inBandQ_ideal_iff` premises were dropped, not merely consumed — prover_c — DONE
+
+- Resolution of the premise note in my G5 entry above (and the closing precedent for the G4 addendum's
+  list): the lead accepted the non-load-bearing finding and amended the authority (plan §3.1 item 10).
+  The delivered row is now `inBandQ_ideal_iff (rA rB rO : ℚ) : inBandQ 1 1 rA rB rO ↔ (rA + rO) ^ 2 =
+  2 * (rB + rO) ^ 2` with **no** hypothesis — the direct `ℚ` antisymmetry `S ≤ X ∧ X ≤ S ↔ X = S`
+  (`1² = 1`), 5 lines instead of the 14-line detour through `inBandQ_cast` + `conforms_iff_sq`. The
+  row's docstring notes that the `ℚ ↔ ℝ` bridge for this shape is still certified by `inBandQ_cast`
+  itself. Commit `67a58a4` (only `PhotoLean/Goldschmidt/RatModel.lean`).
+- Re-delivery gates (raw): `lake build PhotoLean.Goldschmidt.RatModel` → `Build completed
+  successfully.` (0 warnings); `check.sh --strict` → `clean`, `verdict: PASS`; `axioms.sh` on the
+  re-delivered row → `verdict: PASS (only mathlib infrastructure axioms)` with
+  `[propext, Classical.choice, Quot.sound]`, and all 11 other G5 theorems re-probed unchanged (12/12);
+  `bep-fidelity.py --milestone G5` → `delivered, word-for-word 22`, `delivered, not in authority: 0`,
+  `not delivered yet: 0`, `signature differences: 0`.
+- Tried and failed / worth remembering:
+  1. **Consuming a non-load-bearing hypothesis is not the same as resolving it.** My first delivery
+     made the two premises *used* by routing the equality through the layer's correctness theorem: the
+     lint was silenced and the statement stayed as the authority had it, but the defect (premises the
+     row does not need) was still inside a delivered statement, and the proof was three times longer
+     than the mathematics. The correct sequence — now demonstrated twice in this theory (items 5, 9,
+     10) — is: **report the finding, let the statement owner drop the hypothesis, then prove the
+     shorter row.** "Route it through a bigger theorem so it type-checks" is a valid *stop-gap for a
+     delivery window*, exactly like the G4 `set_option` suppression; it is not the resolution.
+  2. **A re-delivery that changes only the binder style is still a signature change.** `{rA rB rO : ℚ}`
+     → `(rA rB rO : ℚ)` is visible to the fidelity checker (the signature string keeps the binder
+     style), so re-run the fidelity gate after *every* authority-driven re-delivery, not only after
+     the ones that look substantive.
+  3. **Re-probing the whole theorem list after a one-row change is cheap and is the only honest way to
+     claim "the other rows are unchanged"**: the module's olean is rebuilt, so a probe from before the
+     edit is not evidence. 12 `axioms.sh` invocations in a loop took well under a minute.

@@ -526,13 +526,37 @@ that *every* theory sits on it. The pairs without an edge, and why:
   imports `PhotoLean.BEP.Basic` only.
 * **Sabatier ↔ Kasha — no edge.** The two second-batch theories share no module and no object: one
   is a descriptor-axis optimisation, the other an excited-state cascade.
+* **Goldschmidt ↔ all five — no edge.** The Goldschmidt theory (`theories/goldschmidt/`,
+  `PhotoLean/Goldschmidt/*`) formalizes a *geometric* criterion: the tolerance factor
+  `t = (rA + rO) / (√2 * (rB + rO))` of an `ABO₃` perovskite, its band verdict, and Goldschmidt's
+  three rules of ionic substitution. It has no energy model at all — no potential-energy surface, no
+  barrier, no rate, no descriptor axis, no cascade — so there is no object for an edge to be about.
+  Dependency fact (measured with `grep -rn '^import' PhotoLean/Goldschmidt`): `Basic` and `Rules`
+  import `Mathlib` only; `Criterion` imports `Basic`; `Sharp` imports `Basic + Rules + Criterion`;
+  `RatModel` imports `Basic + Criterion + Rules`; `Instances` imports all five. No module of the
+  family is imported, and no module of the family mentions `tolFac`, `GoldschmidtConforms` or any
+  radius (measured: `grep -rln 'tolFac\|Goldschmidt' PhotoLean/ --include='*.lean'` returns only
+  `PhotoLean/Goldschmidt/*`). Modelling reason: the five delivered theories state facts about
+  *energies* along one reaction coordinate; Goldschmidt's states facts about *lengths* in a crystal,
+  and the two vocabularies share no scalar.
+* **Goldschmidt ↔ Sabatier — a look-alike of shape, with no edge.** Two shapes coincide: (i) a
+  symmetric band about an ideal value *is* an absolute-deviation bound —
+  `GoldschmidtConforms (1 - delta) (1 + delta) rA rB rO ↔ |rA - idealA rB rO| ≤ delta * idealAO rB rO`
+  versus `Sabatier.NearOptimal tol apexD dE := |dE - apexD| ≤ tol` and its band reading; (ii) a
+  three-way classifier of a scalar against a band — `GoldschmidtZone`/`goldschmidtZone` versus
+  `Sabatier.SZone`/`sabatierZone`. No theorem transfers across it: the scalars are unrelated (a
+  radius ratio versus a binding energy, with no delivered map between them), Goldschmidt's window
+  equivalence is exact for *every* band (no nonemptiness premise) while Sabatier's sharp condition is
+  the product condition `0 < alphaA * alphaB`, and the two classifiers decide different propositions
+  (squares of rationals versus reals compared through `√2`). Registering the coincidence is the
+  honest move: it is a shape, not an edge.
 * **Marcus ↔ BEP and Marcus ↔ Hammond — first batch.** Registered in §2–§5 (true equivalences, the
   headline `epBounds_iff_no_inverted_direction`, the definitional aliases).
 * **Marcus ↔ Sabatier — §9.** The look-alike pair: one shared functional form and predicate, three
   non-relations.
 
 Re-derive the dependency facts with
-`grep -rn '^import' PhotoLean/Kasha PhotoLean/Sabatier PhotoLean/Hammond`. -/
+`grep -rn '^import' PhotoLean/Kasha PhotoLean/Sabatier PhotoLean/Hammond PhotoLean/Goldschmidt`. -/
 
 end Relations
 
