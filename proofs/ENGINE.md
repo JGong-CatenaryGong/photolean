@@ -21,7 +21,7 @@
 |---|---|---|
 | **AlphaEvolve** | 候选**种群** + 变异 + 选择压力 | 一个 lemma 的多条战术路径作为候选；`workflow` 并发探索后择优 |
 | **Hyra-1.0** | **经验库**（Experience Bank）+ producer-consumer，评估器与解**共进化** | `EXPERIENCE.md` 为经验库；`workflow`/`ralph` 为 producer |
-| **关键简化** | 评估器可能被 reward hacking，故需外层循环精炼 | **Lean 内核不可 hack**：`lake build` 通过即真。两层循环坍缩为单层，只需积累经验，无需进化评估器 |
+| **关键简化** | 评估器可能被 reward hacking，故需外层循环精炼 | **Lean 内核不可 hack**：**三层门**（build + 严格扫描 + `#print axioms`）通过即真——注意裸 `lake build` 会被占位证明骗过（占位也返回 0），终止判据是门的组合而非单一 build（与 README「复核方式」同口径；2026-09-21 评审修正轮 M11 修订本行措辞）。两层循环坍缩为单层，只需积累经验，无需进化评估器 |
 
 这个化简是本引擎相对通用科学发现 agent 的结构性优势：**终止判据是可信的**，
 不存在"分数涨了但解是假的"这一类失效。

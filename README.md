@@ -20,7 +20,9 @@ Agent preset 驱动。
   - **Bell–Evans–Polanyi 原理**（线性自由能关系的精确缺陷律）——`PhotoLean/BEP/`（6 模块），
     **191 条声明**，语句保真 **191/191**；
   - **Kasha 规则**（发光只来自该多重度的最低激发态）——`PhotoLean/Kasha/`（6 模块：描述层 / 定律层 /
-    锐利容差条件 / 复合与 Marcus 桥 / ℚ 判定层 / 实例判决），**150 条声明**，语句保真 **150/150**
+    锐利容差条件 / 复合与 Marcus 桥 / ℚ 判定层 / 实例判决），**151 条声明**，语句保真 **151/151**
+    （2026-09-21 评审修正轮后：`kashaDescriptor_nonvacuous` 语句强化 + 新增
+    `perLevel_ic_ge_rad_insufficient`，见 `theories/kasha/plan.md` §3.1）
     （`python3 theories/BEP/probes/bep-fidelity.py --theory kasha --milestone <K1…K5b>`；该检查器
     亦服务其余理论，并支持按里程碑分级）；
   - **Sabatier 原则 / 火山图**（有效势垒在顶点取唯一全局最小 ⟺ 两支 BEP 斜率同号非零）——
@@ -31,7 +33,9 @@ Agent preset 驱动。
   - **Goldschmidt 容忍因子与取代规则**（钙钛矿几何：`t = (r_A + r_O) / (√2 (r_B + r_O))`，其带判决、
     理想堆积 `t = 1` 的等价刻画、三条离子取代规则，以及 Shannon 半径实例的内核判决）——
     `PhotoLean/Goldschmidt/`（6 模块：描述层 / 规则层 / 定律层 / 锐利条件 / ℚ 判定层 / 实例判决），
-    **139 条公开声明**（含 15 条定义与 1 个归纳类型；另有 8 条 private 辅助引理），
+    **139 条公开声明**（98 定理 + 40 定义 + 1 归纳类型；另有 8 条 private 辅助引理。2026-09-21 评审
+    修正 M6：原括注"含 15 条定义与 1 个归纳类型"把 G1 `Basic.lean` 一层的定义级计数误挂到了全理论，
+    逐模块分解见 `theories/goldschmidt/RESULTS.md` §8），
     语句保真 **139/139**（`python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt`）；
     该理论是**纯几何**判据（离子半径、堆积比值、其上的容忍带、电荷与电负性规则），与双抛物面家族
     **不共享任何对象**，因此经**无边登记**接入关系图（`Relations.lean` §10、`RELATIONS.md` §2.5/§3 N4）。

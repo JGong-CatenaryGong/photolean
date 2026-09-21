@@ -1,9 +1,12 @@
 /-
-PhotoLean.Relations — the single home of the cross-theory relations of the two-parabola family.
+PhotoLean.Relations — the single home of the cross-theory relations of the delivered theories.
 
-The five delivered theories share one mathematical substrate (the equal-curvature two-parabola
-model, now defined once in `PhotoLean.Kernel`), and their relation inventory is collected here,
-organised by edge type:
+Six theories are delivered, and they sit on the shared kernel in three different ways: the three
+two-parabola theories (Marcus, Hammond, BEP) are readings of one equal-curvature quadratic object,
+defined once in `PhotoLean.Kernel`; the two second-batch theories (Kasha, Sabatier) join through
+**composition** edges (§7–§8) rather than by sharing that object; the sixth (Goldschmidt) shares no
+module and no scalar with the others and is registered through the **no-edge** registry (§10). The
+relation inventory of all six is collected here, organised by edge type:
 
 * §1 **kernel certificates** (definitional, `rfl`): each theory's copy of the barrier, the
   transition-state coordinate, the transfer coefficient and the two surfaces is *literally* the

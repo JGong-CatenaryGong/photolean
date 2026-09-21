@@ -367,12 +367,17 @@ Three honest corollaries of the table:
 
 ## 5. What the extraction and the collection gained / 抽取与收集的增量
 
-**English.** (i) The shared signature `Σ = {lam, x}` is now fixed **by types and kernel-level
-certificates** rather than by naming discipline: the barrier/coordinate identity of the three
+**English.** (i) The shared signature `Σ = {lam, x}` is now fixed **by kernel-level certificates**
+rather than by naming discipline alone: the barrier/coordinate identity of the three
 theories is a `rfl` certificate over one definition, so "same physical quantity, two names" is
 mechanically decidable instead of conventional — a future theory that reuses the name `lam` with a
 different meaning must fail to close its own certificate, and the check is one line rather than an
-audit.
+audit. **Scope of the mechanism (wording corrected 2026-09-21, review finding M10):** the pin is
+mechanical for every theory that *writes* its certificates against the kernel; writing them is
+itself still a discipline — there is no signature *type* (the first review's S1, an explicit
+`structure` fixing Σ, is not implemented), and nothing forces a future theory to register a
+certificate at all. "Fixed by types" would over-claim; "fixed by certificates, opt-in per theory"
+is what is delivered.
 (ii) The two *substantive* identities (E1, E2) were already proved rather than definitional, and
 E3–E6 give the cross-theory content; E7 states the co-extensiveness of the two sharp conditions
 (composition of two delivered theorems, counted as such). (iii) The non-relations N1–N2 are now
@@ -385,10 +390,13 @@ glob only `PhotoLean/<Theory>/*.lean`, so they do **not** cover `Kernel.lean` or
 the statement authority of the two new modules is the compile-time re-export pin above (every
 statement written out verbatim) plus the module docstrings, not a skeleton probe.
 
-**中文（增量）**：①共享签名 `Σ = {lam, x}` 由**类型与内核级证书**固定，而不再靠命名纪律：三个理论的
+**中文（增量）**：①共享签名 `Σ = {lam, x}` 由**内核级证书**固定，而不再仅靠命名纪律：三个理论的
 势垒/坐标同一性是"一份定义上的 `rfl` 证书"，因此"同一物理量两个名字"从约定变为**可机械判定**——未来的
-第四个理论若复用 `lam` 名字却赋不同含义，将无法闭合自己的证书（这正是 S1 建议的"从纪律升级为类型"，
-现在检查成本是一行而非一次审计）。②两条**实质**同一性（E1、E2）本来就被刻意做成"可证明而非定义性"，
+第四个理论若复用 `lam` 名字却赋不同含义，将无法闭合自己的证书（检查成本是一行而非一次审计）。
+**机制的适用范围（2026-09-21 评审修正轮 M10 修订措辞）**：钉合对**写了证书**的理论是机械的，而
+"写证书"本身仍是纪律——仓库中不存在签名**类型**（首轮审查的 S1 建议、固定 Σ 的显式 `structure`
+未实现），也没有任何机制强迫未来的理论登记证书。"由类型固定"是过度声称；"由证书固定、逐理论
+自愿登记"才是已交付的事实。②两条**实质**同一性（E1、E2）本来就被刻意做成"可证明而非定义性"，
 E3–E6 给出跨理论内容，E7 把两个锐利条件的同外延性写成命题（是两条已交付定理的**复合**，按复合记账）。
 ③"非关系" N1–N2 成为定理：关系图不仅登记三者在哪里一致，也登记它们在哪里分道扬镳。④`Relations.lean`
 中 §1、§2、§4、§5 的复用条目**不含新数学**——按审查的记账规则，它们不得计为新结果；其价值在编译期
@@ -406,7 +414,9 @@ look-alike cluster N3 is the second-batch form of the accounting rule: one share
 as theorems. (viii) The **no-edge registry** (§2.5) makes the graph complete in the "every theory
 sits on it" sense — the checkable form of `AGENTS.md` iron rule 8 item ②. (ix) **Accounting of the
 second batch**: `Relations.lean` grew from 28 to 46 declarations; of the 18 new rows, 10 are
-verbatim re-exports (K1–K3, S1–S4) and 2 are certificates (`kernel_marcusIC`, C1) — twelve rows
+verbatim re-exports (K1–K3, S1–S4 — counting declarations, S2 and S4 carry two each — and the
+supporting row `marcusIC_pos`, which the enumeration in the first draft of this sentence omitted;
+the count of 10 was already correct) and 2 are certificates (`kernel_marcusIC`, C1) — twelve rows
 that add no mathematics — while 6 are proved here (C2, C3a, C3b, C4, C5a, C5b), of which C3b and
 C5b are assemblies of C3a and C2 respectively. The batch's genuinely new mathematical content is
 therefore four rows: the uniqueness half of C2, C3a, C4 and C5a.
@@ -417,7 +427,9 @@ therefore four rows: the uniqueness half of C2, C3a, C4 and C5a.
 谓词（`Sabatier.AntiVolcanoDescriptor`）在 Marcus 速率上的实例化，加上三条以定理形式陈述的差异。
 ⑧**无边登记**（§2.5）使关系图在"每个理论都在图上"的意义下完整——这正是 `AGENTS.md` 铁律 8 第 ② 项的
 可检查形态。⑨**第二批记账**：`Relations.lean` 由 28 条增至 46 条；18 条新增中 10 条是逐字 re-export
-（K1–K3、S1–S4）、2 条是证书（`kernel_marcusIC`、C1），共 12 条不含新数学；6 条在本模块证明
+（K1–K3、S1–S4——按声明计 S2 与 S4 各含两条——及支撑行 `marcusIC_pos`；本句初稿的枚举漏掉了
+`marcusIC_pos` 之名，总数 10 原本就对，2026-09-21 评审修正轮补名）、2 条是证书
+（`kernel_marcusIC`、C1），共 12 条不含新数学；6 条在本模块证明
 （C2、C3a、C3b、C4、C5a、C5b），其中 C3b 与 C5b 分别是 C3a 与 C2 的组装。故本批**真正的新数学内容是
 四行**：C2 的唯一性半边、C3a、C4、C5a。
 
@@ -495,7 +507,7 @@ proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcusRate_anti
 proofs/scripts/axioms.sh PhotoLean.Relations PhotoLean.Relations.marcus_secant_at_optimum
 # statement calibration probe (placeholders on purpose; exit 0 with warnings)
 proofs/scripts/lake env lean theories/Marcus/probes/relations-b2-statement-skeleton.lean
-# fidelity: 51 / 191 / 102 / 150 / 132 word-for-word, 0 differences
+# fidelity: 51 / 191 / 102 / 151 / 132 / 139 word-for-word, 0 differences
 python3 theories/Marcus/probes/marcus-fidelity.py
 python3 theories/BEP/probes/bep-fidelity.py
 python3 theories/hammond/probes/hammond-fidelity.py
@@ -508,13 +520,17 @@ python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt
 all delivered: the tool prints `delivered, word-for-word: 139`, `not delivered yet: 0`,
 `signature differences: 0`); it is registered through the no-edge registry rather than by a relation
 edge (§2.5, §3 N4). Each `axioms.sh` call must print
-`verdict: PASS (only mathlib infrastructure axioms)`; the five fidelity probes must report 0
-signature differences (51, 191, 102, 150, 132); the calibration probe compiles with placeholders
-and no errors. The whole inventory is in `PhotoLean/Relations.lean` §1–§10.
+`verdict: PASS (only mathlib infrastructure axioms)`; the six fidelity probes must report 0
+signature differences (51, 191, 102, 151, 132, 139); the calibration probe compiles with
+placeholders and no errors. The whole inventory is in `PhotoLean/Relations.lean` §1–§10.
+(The English half said "five probes" and omitted 139 until the 2026-09-21 review-fix round,
+finding M8 — the Chinese half and the command block above were already correct.)
 
 **中文**：最后一条保真命令是第六个理论（Goldschmidt，权威 139 条声明、全部交付：工具打印
 `delivered, word-for-word: 139`、`not delivered yet: 0`、`signature differences: 0`），它经**无边登记**
 而非关系边接入关系图（§2.5、§3 N4）。上述每条 `axioms.sh` 必须打印
 `verdict: PASS (only mathlib infrastructure axioms)`；六个保真探针必须报告 0 签名差异
-（51 / 191 / 102 / 150 / 132 / 139）；标定探针以占位编译通过、无 error。
+（51 / 191 / 102 / 151 / 132 / 139——Kasha 的 151 是 2026-09-21 评审修正轮之后的权威计数：
+`kashaDescriptor_nonvacuous` 语句强化 + 新增 `perLevel_ic_ge_rad_insufficient`，见
+`theories/kasha/plan.md` §3.1）；标定探针以占位编译通过、无 error。
 完整清单见 `PhotoLean/Relations.lean` §1–§10。

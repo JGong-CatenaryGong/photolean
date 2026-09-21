@@ -101,7 +101,11 @@ def rO_shannon : ℚ := 7 / 5
 
 /-! ## G6 instance verdicts (plan §9, families I1–I8) -/
 
-/-- **`SrTiO₃` fails the classic cubic band** (family I2, and this theory's negative headline).  With
+/-- **`SrTiO₃` fails the classic cubic band** (family I2, and this theory's negative headline).  The
+statement is the out-of-band negation `¬ inBandQ` itself; the **direction** of the failure
+(`tooLarge`, above the upper edge `t = 1`) is pinned by the companion classifier row
+`inst_SrTiO3_zone_tooLarge` below, not by this row's type (scoped in the 2026-09-21 review-fix
+round, finding M4 of `review/FULL-REVIEW-2026-09-21.md`).  With
 Shannon's printed radii `rA_Sr + rO_shannon = 71/25` and `rB_Ti + rO_shannon = 401/200`, the squared
 factor is `t² = 161312/160801 > 1`, so the upper half of `Rat.inBandQ classicLoQ classicHiQ` fails;
 the row is decided by `norm_num` on the squared criterion (G5), which `Rat.inBandQ_cast` carries to the

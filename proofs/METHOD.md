@@ -38,7 +38,9 @@ expect to **mutate the middle** and keep the core.
    statement with placeholder bodies and must compile before any proof work. Delivery replaces the
    bodies verbatim; a fidelity checker compares the delivered signatures to the authority word for
    word (`python3 theories/BEP/probes/bep-fidelity.py --theory <t> [--milestone <M>]`, one checker for
-   all six theories, 51/102/191/150/132/139 as of this writing). **Five Goldschmidt authority rows
+   all six theories, 51/102/191/151/132/139 as of the 2026-09-21 review-fix round — Kasha's
+   authority grew by one row and one statement was strengthened there, see its plan §3.1).
+   **Five Goldschmidt authority rows
    were FALSE as first drafted and were caught by the kernel — every one before delivery**; the log
    lives in the theory's `plan.md` §3.1, and the corrections are part of the deliverable's honesty,
    not an embarrassment to hide.
