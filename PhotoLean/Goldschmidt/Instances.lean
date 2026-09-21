@@ -106,7 +106,11 @@ Shannon's printed radii `rA_Sr + rO_shannon = 71/25` and `rB_Ti + rO_shannon = 4
 factor is `t² = 161312/160801 > 1`, so the upper half of `Rat.inBandQ classicLoQ classicHiQ` fails;
 the row is decided by `norm_num` on the squared criterion (G5), which `Rat.inBandQ_cast` carries to the
 classic band `4/5 ≤ t ≤ 1`.  The verdict is a fact about the printed numbers, and it is
-convention-dependent — see `inst_SrTiO3_conforms_symmetric` for the same triple against `1 ± 1/50`. -/
+convention-dependent — see `inst_SrTiO3_conforms_symmetric` for the same triple against `1 ± 1/50`.
+Printed-versus-derived (literature round 1, `LITERATURE.md` §S5.1): the literature's rounded reading of
+*this same triple* is `t = 1.00` (inside the band), and the primary source's own radii give a value
+below `1` — so the verdict of `SrTiO₃` flips with the radius compilation, which is why the triple is
+named here and why the two verdicts are delivered as separate kernel facts. -/
 theorem inst_SrTiO3_tooLarge_classic :
     ¬ Rat.inBandQ Rat.classicLoQ Rat.classicHiQ rA_Sr rB_Ti rO_shannon := by
   rintro ⟨_, h2⟩
@@ -172,7 +176,11 @@ theorem inst_BaTiO3_band_flip : Rat.inBandQ Rat.classicHiQ Rat.tetragonalHiQ rA_
   ⟨inst_BaTiO3_conforms_tetragonal, inst_BaTiO3_not_classic⟩
 
 /-- **`LaMnO₃` conforms to the classic cubic band** (family I2), with the high-spin 6-coordinate
-`Mn³⁺` radius: `rA_La + rO_shannon = 69/25`, `rB_Mn + rO_shannon = 409/200`, `t² = 152352/167281`. -/
+`Mn³⁺` radius: `rA_La + rO_shannon = 69/25`, `rB_Mn + rO_shannon = 409/200`, `t² = 152352/167281`.
+The spin state is part of the row because the radius depends on it (a low-spin `Mn³⁺` would be a
+different number and a different row).  Record note (literature round 1, `LITERATURE.md` §S4.2): the
+value `Mn³⁺(VI, high spin) = 0.645 Å` could not be confirmed from a retrievable source in round 1 —
+it carries a round-2 to-do — while the arithmetic below is kernel-checked *for the value used*. -/
 theorem inst_LaMnO3_classic : Rat.inBandQ Rat.classicLoQ Rat.classicHiQ rA_La rB_Mn rO_shannon := by
   unfold Rat.inBandQ Rat.classicLoQ Rat.classicHiQ rA_La rB_Mn rO_shannon
   norm_num
@@ -186,7 +194,9 @@ theorem inst_NaNbO3_classic : Rat.inBandQ Rat.classicLoQ Rat.classicHiQ rA_Na rB
 /-- **`BaNiO₃` is outside even the tetragonal band** (family I4): `rA_Ba + rO_shannon = 301/100` with
 the small `Ni⁴⁺` radius gives `rB_Ni + rO_shannon = 47/25` and `t² = 90601/70688 > 121/100`, so the
 upper edge of `[1, 11/10]` is violated — the theory's own way of recording the literature's hexagonal
-assignment of `BaNiO₃`: no delivered band contains these printed numbers. -/
+assignment of `BaNiO₃`: no delivered band contains these printed numbers.  The literature prints
+`t = 1.13` for *this* radius triple and assigns the 2H hexagonal structure, so the margin here is
+`0.032` below the `1.1` edge, not a borderline pass (`LITERATURE.md` §S5.2). -/
 theorem inst_BaNiO3_not_tetragonal :
     ¬ Rat.inBandQ Rat.classicHiQ Rat.tetragonalHiQ rA_Ba rB_Ni rO_shannon := by
   rintro ⟨_, h2⟩
@@ -264,9 +274,15 @@ theorem inst_radius_ok_but_band_lost : Rat.radiusMatchQ Rat.tauGoldschmidtQ rA_C
     norm_num [abs_of_nonneg],
    inst_SrTiO3_tooLarge_classic⟩
 
-/-- **A coupled (charge-balanced) substitution** (family I6): the `Na⁺`/`Nb⁵⁺ ↔ Ca²⁺`-style pair has
-charge increments `+1` and `−1`, whose sum over the two-site set is zero.  Charge balance is exact
-integer arithmetic (G2's `ChargeBalanced`), decided here by `Fintype.sum_bool`. -/
+/-- **A coupled (charge-balanced) substitution** (family I6): a two-site pair with charge increments
+`+1` and `−1` sums to zero over the set.  Charge balance is exact integer arithmetic (G2's
+`ChargeBalanced`), decided here by `Fintype.sum_bool`.
+Provenance (literature round 1, `LITERATURE.md` §S3.2.1): this `(+1, −1)` pair is a **model instance** —
+no source prints `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺` — while documented coupled substitutions with printed
+increment arithmetic do exist: the primary text's own plagioclase example `Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺`
+(`(+1, +4) ↔ (+2, +3)`), the heterovalent `A²⁺B⁴⁺O₃` La/Na pairing, and the printed compensation
+arithmetic `3 Na⁺ ↔ 1 Sm³⁺`.  The formalized rule is that later systematization, not Goldschmidt's own
+criterion (plan §12). -/
 theorem inst_charge_coupled : ChargeBalanced (fun b : Bool => if b then (1 : ℤ) else -1) := by
   unfold ChargeBalanced
   rw [Fintype.sum_bool]
