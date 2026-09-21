@@ -272,6 +272,24 @@ absence of a complaint.**
    warned `unused variable h`). Removed rather than retained with a lint suppression, following items 2
    and 5. The other eleven G4 rows have no unconsumed premise.
 
+10. **`inBandQ_ideal_iff` — hypotheses dropped (found by `prover_c` in G5).** The draft carried
+   `0 < rB + rO` and `0 ≤ rA + rO`. The row is pure `ℚ` algebra about the *squared* criterion at
+   `lo = hi = 1` (`inBandQ 1 1 ↔ X = S` is `S ≤ X ∧ X ≤ S ↔ X = S`), so neither premise is needed for
+   its truth. The owner had made them *consumed* by routing the proof through `inBandQ_cast` →
+   `conforms_iff_sq` (which avoids a lint warning but leaves a statement stronger than necessary);
+   following items 2, 5 and 9 the premises are removed and the row becomes the short direct proof. Its
+   incidental role as a cross-check of the `ℚ ↔ ℝ` bridge is not lost: `inBandQ_cast` itself is the
+   bridge row, and the instance layer exercises it on real numbers.
+
+**Import closure is part of the statement (found by `prover_c`, item ① of the G5 report).** The
+authority's `## G5` section uses `RadiusMatch`, which is defined in G2, but `Criterion.lean` imports
+only `Basic.lean` — so `RatModel.lean` must import `Rules.lean` as well, and a prover who trusts the
+per-milestone sections to be self-contained will write a file whose statements cannot elaborate. Every
+milestone dispatch therefore has to check each statement's *type names* against the import closure of
+the file being written. The delivered import graph is: `Basic` (Mathlib only) ← `Rules` (Mathlib only),
+`Criterion` (Basic) ← `Sharp` (Basic + Rules + Criterion), `RatModel` (Basic + Criterion + Rules), and
+`Instances` (all five).
+
 The instance layer's numbers were fixed by an **off-kernel exact-rational cross-check** before any
 row was dispatched (see §9 and `theories/goldschmidt/probes/goldschmidt-instance-check.py`); its run
 reproduced every asserted verdict with 0 mismatches, including the three rows a reader is most likely

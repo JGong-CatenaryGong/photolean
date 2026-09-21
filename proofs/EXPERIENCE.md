@@ -3172,3 +3172,90 @@
   5. `linarith` handles `ℚ` with variables (used in `radiusMatchQ_fifteen` and in the `1`-band row),
      so the "clear the denominator through by 20" fallback was not needed; the four constant cast rows
      close by `unfold` + `norm_num`, as measured.
+
+## 2026-09-21 — goldschmidt Sprint-0 risk probe: "0 error" was claimed before it was measured (owner prover_a) — DONE (compiles; 36 of 139 rows left as placeholders)
+
+- Deliverable: `theories/goldschmidt/probes/goldschmidt-risk-probe.lean` (803 lines, standalone
+  `import Mathlib`, no `PhotoLean.*`). Command
+  `proofs/scripts/lake env lean theories/goldschmidt/probes/goldschmidt-risk-probe.lean`
+  → **exit 0, 0 errors, 41 placeholder warnings, 0 other warnings**; commit `d96a626`.
+- Measured accounting: the file mirrors **all 139** authority declarations with **0 signature
+  differences** (verified by an independent strip-comments/whitespace-collapse comparison against
+  `goldschmidt-statement-skeleton.lean`). **103 rows are closed by a real proof; 36 are placeholders.**
+  The placeholders are the rows the authority itself corrected while the probe was in flight plus the
+  `Finset`/`ℚ`-cast-algebra rows: G1 2 (`goldschmidtZone_eq_tooLarge_iff{,_of_band}` — the first is
+  the form the authority corrected in item 4), G2 2 (`exists_compensating_partner`,
+  `substitutable_mono_chi`), G3 11, G4 5, G5 7, G6 9.
+  **Correction recorded by the lead (2026-09-21) to this entry's first draft.** The draft additionally
+  claimed as "authority still uncorrected" that (i) `substitutable_mono_chi` carries the inverted
+  `|χ''-χ| ≤ |χ'-χ|` hypothesis, (ii) `rAMin_le_iff_sq` lacks `0 ≤ lo` and `le_rAMax_iff_sq` lacks
+  `0 ≤ hi`, (iii) `conforms_symmetric_band_iff` needs `0 ≤ delta`, (iv) the un-negated second conjunct
+  of `inst_chi_load_bearing` is true. All four are **refuted by the kernel, not by argument**: the
+  claimed witness for (i) does not satisfy the hypothesis at all (it needs `|1 - 0| ≤ |0 - 0|`,
+  i.e. `1 ≤ 0`, which the lead's probe `/.lake/tmp/lead-audit-prover_a.lean` proves false), and the row
+  itself is *delivered and gate-clean* in `Rules.lean` (commit `931e350`, 18/18, axioms clean) — a
+  false statement cannot carry a placeholder-free, axiom-free proof; (ii) both premises are present in
+  the authority (`hlo : 0 ≤ lo`, `hhi : 0 ≤ hi`, skeleton lines 284/288); (iii) the `delta`-free row is
+  the one the independent verifier kernel-proved for **every** `delta` (plan §3.1 item 2), and at
+  `δ < 0` both sides are false; (iv) the un-negated form is FALSE (`|67/50 - 153/100| ≤ 0` is
+  `19/100 ≤ 0`), so the authority's negation is the true one. **Standing rule for the bank: a claimed
+  counterexample is only a counterexample once the kernel has checked BOTH halves — that its instance
+  satisfies every hypothesis, and that the negated conclusion holds.** A witness that fails the
+  hypotheses refutes nothing, and a row that is already delivered and gate-clean is true by
+  construction.
+- **The causal lesson (the part worth keeping).** The probe was recorded in plan §1/TASKS as Sprint-0
+  kernel evidence *before it had ever been compiled*; it in fact produced 53–67 errors and never ran.
+  The three FALSE rows it existed to catch (`tolFac_mono_rO_of_lt`, `tolFac_anti_rO_of_lt`,
+  `tolFac_rO_const_iff` — the `rO ↦ t` map has a pole at `rO = -rB`, so `0 < rO` alone is not enough)
+  were instead caught by the **milestone provers**, in the kernel, after the probe had been announced
+  as the thing that would catch them. Its one real catch (`goldschmidtZone_eq_tooLarge_iff` is false on
+  an inverted band) was also found independently by the G1 prover. Standing rule: **an artifact may not
+  be cited as evidence in a plan or board before its gate command has been run and its raw output
+  recorded** — the same "coverage is a claim that must be measured" lesson as the `check.sh` directory
+  sweep, applied to a *deliverable* rather than to a checker.
+- Tried and failed (each with its working replacement):
+  1. `nlinarith` on `(rA+rO')*(rB+rO) < (rA+rO)*(rB+rO')` from `rA < rB`, `rO < rO'` → "linarith failed"
+     (it does not expand the products into a polynomial, even after `ring_nf`). Also failed:
+     `ring` and `ring_nf` directly on the subtraction identity
+     `(a+b)*(c+d) - (a+d)*(c+b) = (c-a)*(d-b)` ("ring failed, ring expressions not equal"), and
+     `linear_combination (norm := ring_nf) 0`. Working recipes: state the *expanded*
+     `have e : (rA+rO')*(rB+rO) - (rA+rO)*(rB+rO') = -(rB-rA)*(rO'-rO)` and then `linarith [e, ...]`,
+     or (for the two `rO`-monotonicity rows) `rw [div_lt_div_iff₀ hD1 hD2]` and close with `nlinarith`
+     plus the *squared* form of the `√2` bookkeeping (`Real.sq_sqrt`).
+  2. `Finset.ne_of_mem_erase hj` inside `fun j hj => …` fails with "application type mismatch" because
+     `hj : j ∈ Finset.univ.erase j` — the lambda binder shadows the outer index. It also fails on
+     `∑ x ∈ s.erase i` when `s` is not a named `Finset` (metavariable mismatch on the erased set).
+     Working replacement: `obtain ⟨hj1, hj2⟩ := Finset.mem_erase.mp hj` (or bind the set first with
+     `set s := (Finset.univ : Finset ι)`).
+  3. `sorry` left in a **helper** that a proved row consumes: the consuming row still compiles but
+     emits a second placeholder warning, so the "rows closed" count must be computed from the
+     *helper* dependency graph, not by grepping the row's own body.
+  4. `norm_num` alone does **not** evaluate `|·|` on `ℚ` ("unsolved goals `⊢ |1/10| ≤ 27/125`") and
+     `decide` does **not** reduce `ℚ` comparisons ("did not reduce to isTrue/isFalse"). Working
+     recipe: `norm_num [abs_of_nonneg]` (or `rw [abs_of_nonneg (by norm_num : (0:ℚ) ≤ …)]` first).
+  5. Measuring the gate: `proofs/scripts/lake env lean <file>` returns **1** on errors and **0** on
+     warnings-only (measured both ways on this toolchain), so the raw exit status is the only
+     trustworthy signal — a shell pipeline (`… | grep -c error`) reports grep's status, not Lean's.
+     Also do not count errors with a bare `grep -c error`: the word also appears in Lean's own
+     suggestions ("Try this: …") and in docstrings; anchor the pattern to the file prefix
+     (`grep -cE '^<file>:[0-9]+:[0-9]+: error'`).
+
+## 2026-09-21 — G4 addendum: the `conforms_point_band_iff` premise was dropped, not suppressed — prover_b — DONE
+
+- Resolution of the premise note in the G4 entry above. The lead accepted the finding and amended the
+  authority (plan §3.1 item 9), so the delivered row is now
+  `conforms_point_band_iff (lo rA rB rO : ℝ) : GoldschmidtConforms lo lo rA rB rO ↔ tolFac rA rB rO = lo`
+  with **no** hypothesis. The local `set_option linter.unusedVariables false in` suppression and the
+  header note are gone from `PhotoLean/Goldschmidt/Sharp.lean`, and every hypothesis of every G4 row is
+  consumed. Re-delivery gates (raw): `lake build PhotoLean.Goldschmidt.Sharp` exit 0 "Build completed
+  successfully."; direct `lake env lean PhotoLean/Goldschmidt/Sharp.lean` → 0 lines of output, exit 0;
+  `check.sh --strict` → `clean`, `verdict: PASS`; `axioms.sh` on all 12 rows → 12/12 `PASS (only
+  mathlib infrastructure axioms)` `[propext, Classical.choice, Quot.sound]`; `bep-fidelity.py
+  --milestone G4` → 12/12 word-for-word, `signature differences: 0`. Commit `af9429a`.
+- Reusable lesson, the one worth carrying across theories: **a lint suppression is not a resolution.**
+  `set_option linter.unusedVariables false in` keeps the zero-warning standard green while leaving a
+  non-load-bearing hypothesis inside a *delivered statement*; the repo's rule is to report it as a
+  finding of the plan §3.1 kind (the precedents — items 2, 5 and 9, plus the G2 `inBandQ_ideal_iff`
+  row — all ended with the premise removed or genuinely consumed, the G2 prover going *through* a
+  correctness theorem rather than suppressing the warning). Suppression is a stop-gap for a delivery
+  window, not a design decision.

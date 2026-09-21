@@ -425,7 +425,7 @@ theorem inBandQ_cast {lo hi rA rB rO : ℚ} (hlo : 0 ≤ lo) (hhi : 0 ≤ hi) (h
       GoldschmidtConforms (lo : ℝ) (hi : ℝ) (rA : ℝ) (rB : ℝ) (rO : ℝ) := by
   sorry
 
-theorem inBandQ_ideal_iff {rA rB rO : ℚ} (hB : 0 < rB + rO) (hA : 0 ≤ rA + rO) :
+theorem inBandQ_ideal_iff (rA rB rO : ℚ) :
     inBandQ 1 1 rA rB rO ↔ (rA + rO) ^ 2 = 2 * (rB + rO) ^ 2 := by
   sorry
 
