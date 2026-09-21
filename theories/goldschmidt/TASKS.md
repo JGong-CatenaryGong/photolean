@@ -115,7 +115,10 @@
 
 - [ ] all rows of plan §7 (12 theorems: the two edge-failure rows, the point-band row, the
       substitution transfer, the 15 %-rule → Δt bridge, `tolFac_irrational`, and the five witnesses)
-      — Sharp.lean — prover_b — review — commits `cd09ef1` + `af9429a` (the point-band row
+      — Sharp.lean — prover_b — **in review**: verifier run 3 measured its gate battery green (build,
+      bare gate PASS, fidelity 12/12, `axioms.sh` PASS) with **no HIGH**, but declined a verdict
+      because the batch's entity-recomputation/adversarial/doc items were unfinished; see the
+      acceptance table's accounting — commits `cd09ef1` + `af9429a` (the point-band row
       re-delivered after the authority dropped its unconsumed premise, plan §3.1 item 9); owner-reported gates: build OK /
       `check.sh --strict` PASS / 12 of 12 `axioms.sh` PASS / fidelity 12/12 `0 differences`.
       Owner finding: `conforms_point_band_iff`'s `0 < rB + rO` premise is never consumed → the
@@ -124,13 +127,16 @@
 
 ## G5 — rational decision layer (`PhotoLean/Goldschmidt/RatModel.lean`; owner prover_c; delivered, in review)
 
-- [ ] all rows of plan §8 — RatModel.lean — prover_c — review — commits `65985fe` + `67a58a4`,
+- [ ] all rows of plan §8 — RatModel.lean — prover_c — **in review** (same run-3 status: gate battery green, no HIGH,
+      verdict declined) — commits `65985fe` + `67a58a4`,
       **22/22**, gates green (lead re-ran all 12 `axioms.sh`: 12/12); the second commit drops the two
       unconsumed premises of `inBandQ_ideal_iff` (plan §3.1 item 10)
 
 ## G6 — instance verdicts (`PhotoLean/Goldschmidt/Instances.lean`; owner prover_d; delivered, in review)
 
-- [ ] all rows of plan §9 (families I1–I8) — Instances.lean — prover_d — review — commit
+- [ ] all rows of plan §9 (families I1–I8) — Instances.lean — prover_d — **in review** (same run-3 status; its 23 verdicts are additionally
+      covered by the off-kernel exact-rational script with 0 mismatches and by run 1's independent
+      recomputation of the same numbers) — commit
       `427609b`, **34/34**, gates green (owner-reported build / `check.sh --strict` / 23 of 23
       `axioms.sh` / fidelity 34/34; the lead re-ran the 23-row `axioms.sh` sweep: 23/23); the
       off-kernel exact-rational cross-check exits 0 with 0 mismatches. Owner finding: the strict scan
@@ -150,10 +156,31 @@
       source retrieved: the factor and the `0.8–1.0` band are Goldschmidt's own, the `[1, 11/10]` band
       is declared with no printed support, the 15 % reference is the *smaller* ion, the charge rule is a
       later systematization) — commits `671b082`/`f95a704` — lead — done
-- [ ] instance docstrings aligned with the literature record (the `SrTiO₃` printed-vs-derived flip, the
+- [x] instance docstrings aligned with the literature record (the `SrTiO₃` printed-vs-derived flip, the
       `LaMnO₃` spin state and the unverified `Mn³⁺` radius, the documented coupled-substitution
       citations replacing the undocumented `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`) — lead — todo (comment-only)
 - [ ] final verifier runs recorded in the acceptance table below (runs 2 and 3) — lead — todo
+
+---
+
+## Verification boundary at closeout (what is verifier-issued and what is lead-measured)
+
+- **Verifier-issued (independent role, read-only, own probes):** run 1 — G1 + the Sprint-0 artifacts,
+  **PASS**, 0 HIGH; run 2 — G2 + G3, **PASS**, one record-layer HIGH and one real defect (both fixed
+  in the same round), plus an independent re-proof of the 8 `private` helpers of `Criterion.lean`.
+  Those are the ticks above.
+- **Verifier-measured but verdict-declined:** run 3 — the gate battery of G4/G5/G6 (three modules
+  build, bare `check.sh --strict` PASS, fidelity 12/22/34 with 0 differences, `axioms.sh` **47/47**)
+  came back green with **no HIGH**; the run declined PASS/FAIL because three items were unfinished.
+- **Lead-measured (recorded as such, not as independent verification):** the documentation audit
+  (counts 139 public declarations / 98 public theorems recomputed from the sources; all 7 signatures
+  quoted in `RESULTS.md` §3 verified word-for-word); the post-commit re-runs at `40d8d09`/`ed4f580`
+  for the G2 follow-up and the tree-drift finding; the evaluator-route measurement
+  (`proofs/EXPERIENCE.md`).
+- **Still open at closeout:** three verifier sessions (a bounded acceptance run, a mechanical gate
+  re-run, and run 3's bounded follow-up) were dispatched for the remaining G4/G5/G6 checks and had
+  not returned when the theory was closed. If any of them returns findings, they are to be disposed
+  of in a follow-up round; the G4/G5/G6 rows stay in review until a verifier issues a verdict.
 
 ---
 

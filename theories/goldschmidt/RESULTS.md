@@ -318,7 +318,14 @@ audit; its two MEDIUM findings (the tree moved under it; the Sprint-0 probe sits
 scan range by design) are disposed, and a bounded follow-up for the three un-checked items is running.
 The honest summary: **every delivered declaration has passed an independent gate, and the only
 findings that ever touched a delivered artifact were a false docstring and an over-strong hypothesis
-— both caught by verification, not by luck.**
+— both caught by verification, not by luck.** One boundary is stated rather than smoothed over: for
+milestones G4–G6 the independent run measured the whole gate battery green (build, bare gate, fidelity
+12/22/34, `axioms.sh` 47/47) with **no HIGH**, but stopped short of the instance recomputation, the
+adversarial round and the documentation audit, so it declined a verdict; those three items are covered
+by *other* routes (the kernel proofs, the off-kernel exact-rational script with 0 mismatches, run 1's
+independent recomputation of the same numbers, and a lead-measured documentation audit recorded as
+such), and the board keeps G4–G6 in *review* under that accounting rather than ticking them on
+non-verifier evidence.
 
 **中文（验收历史）。** 三个独立 verifier run（均只读、各写自己的探针）：run 1（G1 + Sprint-0 制品）**PASS，
 0 HIGH / 6 MEDIUM / 9 LOW**，全部落在记录层，并自跑四门、反推六个实例值、对四条分类器行做 1000 点精确有理
@@ -330,7 +337,10 @@ findings that ever touched a delivered artifact were a false docstring and an ov
 裸门 PASS、139/139、`axioms.sh` 47/47），但因未走到实例重算、对抗轮与文档审计而拒绝给判决；它的两条 MEDIUM
 （验收期间树在移动；Sprint-0 探针按设计位于门的扫描范围之外）已处置，三项未查的受限 follow-up 正在跑。诚实
 总结：**每一条交付声明都过了独立验收门，而历史上唯一触及交付制品的发现是一句假 docstring 和一条过强的前提
-——两者都是被验收抓到的，不是靠运气。**
+——两者都是被验收抓到的，不是靠运气。**有一条边界我们写出来而不是抹平：G4–G6 的独立 run 实测**整个门组全绿**
+（build、裸门、保真 12/22/34、`axioms.sh` 47/47）且**无 HIGH**，但因未走到实例重算、对抗轮与文档审计而拒绝给
+判决；这三项由**其它路线**覆盖（内核证明、off-kernel 精确有理脚本 0 mismatch、run 1 对同一批数字的独立重算、
+以及明确标注为 lead-measured 的文档审计），任务板据此把 G4–G6 留在 *review*，**不用非 verifier 的证据打勾**。
 
 **中文。** 引擎的纪律是 statement-first，它五次回本：**五条权威语句初稿为假，而全部在交付前被内核抓住**
 （可能来自里程碑工人的自证，也可能来自 lead 的手推；plan §3.1 逐条记录反例）：分类器 `tooLarge` 行（级联
