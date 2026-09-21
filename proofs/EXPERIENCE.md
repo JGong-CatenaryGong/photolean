@@ -3357,3 +3357,29 @@
   instantiated. That keeps the file exactly the authority's declaration list with zero auxiliaries, and
   it makes every "the verdict depends on the convention" claim a pair of kernel facts rather than a
   prose caveat.
+
+## 2026-09-21 — Verification dispatch: three long-running verifier sessions and the abort that lost two reports — lead — LESSON
+
+- What happened: milestones G2–G6 were ready for their independent gate, so the lead dispatched two
+  verifier sessions (batch 2 = G2+G3, batch 3 = G4+G5+G6+docs). Both ran for several goal rounds without
+  returning a report. The lead then dispatched a third, time-boxed acceptance session, and — after
+  another round with no report — applied `interrupt_agent` to the two oldest, followed by `send_message`
+  asking for a compact report from the state they already held. **Outcome: one session finished with an
+  EMPTY closing message and the other was reported "stopped before it finished"; both reports were
+  lost.** A later `send_message` restarted both sessions, but the accumulated findings were no longer
+  guaranteed to be recoverable.
+- What the engine should do instead (the reusable rule): **when a worker has been running long past its
+  useful horizon, ask it to report FIRST and only then decide whether to interrupt.** `interrupt_agent`
+  cancels the turn that would have written the report; a follow-up message starts a *new* turn, which
+  may or may not still be able to reconstruct the verdict. Interrupting is safe only for work whose
+  result is already on disk (a file, a commit) — for an *analysis* whose whole deliverable is the final
+  message, interrupting destroys the deliverable.
+- Second reusable rule: **dispatch the bounded, mechanical re-run in parallel from the start.** The
+  acceptance the engine actually needs is mechanical (build / `check.sh --strict` / `axioms.sh` per
+  theorem / fidelity / an independent recomputation). A brief that names the exact commands and forbids
+  exploration returns far sooner than an open-ended "adversarially audit everything" brief, and the two
+  can run side by side: the mechanical run provides the verdict line, the open-ended one provides depth.
+- Third observation, recorded because it cost three rounds: a verifier's *role* is read-only and its
+  deliverable is prose; that combination invites unbounded searching. When the lead's own sweeps have
+  already produced the raw gate evidence, the verifier's marginal value is the **independence of the
+  judgement**, so the brief should ask for the judgement first and the depth second.
