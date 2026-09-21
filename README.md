@@ -10,7 +10,7 @@ Agent preset 驱动。
 
 - Lean 4.17.0 + mathlib，工具链与缓存已联通（`lake build` 冷启动 ~10s）
 - 验收门脚本可用：`proofs/scripts/check.sh --strict`、`proofs/scripts/axioms.sh`
-- **五个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
+- **六个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
   `propext` / `Classical.choice` / `Quot.sound`）：
   - **Marcus 反转区**（经典马库斯模型）——`PhotoLean/Marcus/`（8 模块：描述层 / 势垒代数 / 速率层 /
     锐利成立条件 / 微观重组能 / ℚ 判定层 / 复合 / 实例判决），**82 条声明**，语句保真 **51/51**
@@ -27,12 +27,21 @@ Agent preset 驱动。
     `PhotoLean/Sabatier/`（6 模块：描述层 / 定律层 / 锐利条件 / 双抛物面跨理论形式 / ℚ 判定层 /
     实例判决），**134 条公开声明**（107 定理 + 27 定义/归纳类型；另有 36 条 private 辅助引理），
     语句保真 **132/132**（`python3 theories/BEP/probes/bep-fidelity.py --theory Sabatier`；
-    2 条描述层辅助定理在权威之外，已登记）。
+    2 条描述层辅助定理在权威之外，已登记）；
+  - **Goldschmidt 容忍因子与取代规则**（钙钛矿几何：`t = (r_A + r_O) / (√2 (r_B + r_O))`，其带判决、
+    理想堆积 `t = 1` 的等价刻画、三条离子取代规则，以及 Shannon 半径实例的内核判决）——
+    `PhotoLean/Goldschmidt/`（6 模块：描述层 / 规则层 / 定律层 / 锐利条件 / ℚ 判定层 / 实例判决），
+    **139 条公开声明**（含 15 条定义与 1 个归纳类型；另有 8 条 private 辅助引理），
+    语句保真 **139/139**（`python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt`）；
+    该理论是**纯几何**判据（离子半径、堆积比值、其上的容忍带、电荷与电负性规则），与双抛物面家族
+    **不共享任何对象**，因此经**无边登记**接入关系图（`Relations.lean` §10、`RELATIONS.md` §2.5/§3 N4）。
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
-- **跨理论关系图**（覆盖全部五个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
-  Sabatier 经**组合边**接入，Sabatier↔Marcus 另有一组"形似实异"非关系边，其余理论对**显式登记无边**）：
+- **跨理论关系图**（覆盖全部六个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
+  Sabatier 经**组合边**接入，Sabatier↔Marcus 另有一组"形似实异"非关系边，Goldschmidt 经**无边登记**
+  接入并另有一条"只有形状相似"的 N4 登记，其余理论对**显式登记无边**）：
   共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（46 条声明：内核证书 /
-  真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记）、双语讨论稿 `theories/RELATIONS.md`
+  真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记（含 Goldschmidt））、双语讨论稿
+  `theories/RELATIONS.md`
 - `PhotoLean/Smoke.lean` 是环境冒烟测试
 - 注：`README.en.md` 是语言政策生效前的英文镜像，按仓库政策**不再扩展**；权威内容以本文件为准
 
