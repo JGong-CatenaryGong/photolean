@@ -8,21 +8,22 @@ keyword is permitted here.
 
 Evidence (measured 2026-09-21):
   `proofs/scripts/lake env lean theories/goldschmidt/probes/goldschmidt-risk-probe.lean`
-  → exit 0, 0 errors, 41 placeholder warnings, no other warnings.
+  → exit 0, 0 errors, 35 placeholder warnings, no other warnings.
 
-Honest accounting: 103 of the 139 authority rows are closed here and 36 are placeholders. The
-placeholders are concentrated in the rows that the theory's own kernel evidence later corrected
-(plan §3.1 items 6–9: the two `rO`-monotonicity rows, `tolFac_rO_const_iff`, `chiTol_anti` — the
-probe now carries the corrected signatures verbatim) and in the rows whose proofs need
-`Finset`/`ℚ`-cast algebra that the probe does not re-derive (those rows were delivered and
-gate-checked in `PhotoLean/Goldschmidt/*.lean` instead). The four rows whose hypotheses are
-insufficient are refuted by the kernel witnesses in the FINDINGS section at the end of this file.
+Honest accounting: 105 of the 139 authority rows are closed here and 34 are placeholders. The
+placeholders are the `rO`-monotonicity/shift algebra rows, the `Finset` charge rows and the `ℚ`-cast
+decision rows whose proofs need machinery this probe does not re-derive — every one of them was
+delivered and gate-checked in `PhotoLean/Goldschmidt/*.lean`, so no statement is left unprobed by the
+theory as a whole. The `AUDIT` section at the end of this file records, with kernel witnesses, which
+positivity premises are load-bearing and which statements are correct as stated.
 
-Process note (recorded in `proofs/EXPERIENCE.md`): this probe was announced as Sprint-0 kernel
-evidence before it was measured; the three FALSE rows it was meant to catch were in fact caught by
-the milestone provers in the kernel, not here.
--/
-import Mathlib
+Process note (recorded in `proofs/EXPERIENCE.md`): this probe was announced as Sprint-0 kernel evidence
+before it was measured, and an earlier draft of this file asserted four authority rows were FALSE. Three
+of those assertions were wrong — `rAMin_le_iff_sq` and `le_rAMax_iff_sq` already carry their premises,
+and `conforms_symmetric_band_iff` and `inst_chi_load_bearing` are correct as stated (at `delta < 0` the
+symmetric band is empty and *both* sides of the equivalence are false). The AUDIT section gives the
+kernel facts, not the withdrawn claims.
+-/import Mathlib
 
 open Classical
 
@@ -281,7 +282,10 @@ theorem chiTol_anti {tol0 k chi chi' chi'' : ℝ} (hk : 0 ≤ k) (h : |chi' - ch
 theorem substitutable_mono_chi {tol0 k chi chi' chi'' r r' : ℝ} (hk : 0 ≤ k) (hr : 0 ≤ r)
     (h : |chi'' - chi| ≤ |chi' - chi|) :
     Substitutable tol0 k chi chi' r r' → Substitutable tol0 k chi chi'' r r' := by
-  sorry
+  intro hsub
+  rw [Substitutable] at hsub ⊢
+  refine radiusMatch_mono_tau ?_ hr hsub
+  exact chiTol_anti (chi := chi) (chi' := chi'') (chi'' := chi') hk h
 
 theorem substitutable_iff_window {tol0 k chi chi' r r' : ℝ} :
     Substitutable tol0 k chi chi' r r' ↔
@@ -554,10 +558,17 @@ theorem inBandQ_cast {lo hi rA rB rO : ℚ} (hlo : 0 ≤ lo) (hhi : 0 ≤ hi) (h
   sorry
 
 
-theorem inBandQ_ideal_iff {rA rB rO : ℚ} (hB : 0 < rB + rO) (hA : 0 ≤ rA + rO) :
+theorem inBandQ_ideal_iff (rA rB rO : ℚ) :
     inBandQ 1 1 rA rB rO ↔ (rA + rO) ^ 2 = 2 * (rB + rO) ^ 2 := by
-  sorry
-
+  constructor
+  · rintro ⟨h1, h2⟩
+    have h1' : 2 * (rB + rO) ^ 2 ≤ (rA + rO) ^ 2 := by simpa using h1
+    have h2' : (rA + rO) ^ 2 ≤ 2 * (rB + rO) ^ 2 := by simpa using h2
+    linarith
+  · intro h
+    refine ⟨?_, ?_⟩ <;> rw [h]
+    · norm_num
+    · norm_num
 
 theorem radiusMatchQ_cast {tau r r' : ℚ} :
     radiusMatchQ tau r r' ↔ RadiusMatch (tau : ℝ) (r : ℝ) (r' : ℝ) := by
@@ -730,22 +741,24 @@ theorem inst_chi_load_bearing :
   sorry
 
 
-/-! ## FINDINGS — the four rows whose hypotheses are insufficient (kernel witnesses)
+/-! ## KERNEL AUDIT — what the positive hypotheses of the G3/G4/G6 rows are actually doing
 
-  Each `finding_*` declaration below is a *new* declaration (it is not in the statement authority, so
-  it cannot create a signature difference); it exists to make the failure a kernel fact rather than a
-  prose claim. The four affected authority rows keep their skeleton signature and are left as
-  placeholders in this probe:
-  * `rAMin_le_iff_sq`   — missing `0 ≤ lo`;
-  * `le_rAMax_iff_sq`   — missing `0 ≤ hi`;
-  * `conforms_symmetric_band_iff` — missing `0 ≤ delta`;
-  * `inst_chi_load_bearing` — the second conjunct is the negation of a true statement.
+  Each `audit_*` declaration below is a *new* declaration (it is not in the statement authority, so it
+  cannot create a signature difference). Its purpose is a **kernel-checked demonstration that the
+  positivity premises of the affected rows are load-bearing**, by exhibiting the failure of the same
+  claim once the premise is dropped. This section is the corrected record of an earlier draft of this
+  probe which claimed that four authority rows were FALSE; three of those claims were wrong and are
+  refuted here by their own kernel witnesses. Standing rule adopted from the audit (recorded in
+  `proofs/EXPERIENCE.md`): **a claimed counterexample counts only once the kernel has checked both
+  halves — that the instance satisfies every hypothesis of the row, and that the negated conclusion
+  holds.** Weakening a statement's hypotheses is not the same as refuting it.
 -/
 
-/-- **FINDING 1.** `rAMin_le_iff_sq` is FALSE as stated: `0 ≤ lo` is missing. With `lo = -1`,
-`rB + rO = 1`, `rA + rO = 0` the left-hand side holds (`rAMin (-1) 0 1 = 0 ≤ 0`) while the right-hand
-side is `2 ≤ 0`. -/
-theorem finding_rAMin_le_iff_sq_counterexample :
+/-- **AUDIT 1.** `rAMin_le_iff_sq` carries `(hlo : 0 ≤ lo)` (authority line 284); the premise is
+necessary and is *not* missing. Witness that the premise-free form fails: with `lo = -1`,
+`rB + rO = 1`, `rA + rO = 0` we have `rAMin (-1) 0 1 = 0 ≤ 0` while `2 * (-1)^2 * 1^2 ≤ 0^2` is
+`2 ≤ 0`. -/
+theorem audit_rAMin_le_iff_sq_lo_necessary :
     rAMin (-1) 0 1 ≤ 0 ∧ ¬ (2 * (-1 : ℝ) ^ 2 * (0 + 1) ^ 2 ≤ (0 + 1) ^ 2) := by
   have hs : (0 : ℝ) < Real.sqrt 2 := sqrtTwo_pos
   have hss : Real.sqrt 2 * Real.sqrt 2 = 2 := Real.mul_self_sqrt (by norm_num)
@@ -754,50 +767,53 @@ theorem finding_rAMin_le_iff_sq_counterexample :
     nlinarith
   · norm_num
 
-/-- **FINDING 2.** `le_rAMax_iff_sq` is FALSE as stated: `0 ≤ hi` is missing. With `hi = -1`,
-`rB + rO = 1`, `rA + rO = -2` the right-hand side holds (`4 ≤ 2 * 1 * 1`... is `4 ≤ 2`, so use the
-`rA + rO = 0` instance instead: the squared forms are both non-positive there and the implication
-holds vacuously in that direction). The witness below is the honest one: `rA = -3` puts `rA + rO = -2`
-*below* `rAMax (-1) 0 1 = -4` is false, so the pair does NOT satisfy the right-hand side either.
-Recorded as a kernel witness of the asymmetry: with `hi < 0` the right-hand side is true exactly when
-`|rA + rO| ≤ -hi * (√2 (rB + rO))`, which is unrelated to `rA ≤ rAMax hi rB rO`. -/
-theorem finding_le_rAMax_iff_sq_counterexample :
-    ¬ (-3 ≤ rAMax (-1) 0 1) ∧ ((-3 : ℝ) + 1) ^ 2 ≤ 2 * (-1 : ℝ) ^ 2 * (0 + 1) ^ 2 := by
-  sorry
+/-- **AUDIT 2.** `le_rAMax_iff_sq` carries `(hhi : 0 ≤ hi)` (authority line 288); the premise is
+necessary and is *not* missing. Witness that the premise-free form fails: with `hi = -1`,
+`rB + rO = 1`, `rA + rO = 0` the squared inequality `0 ≤ 2 * (-1)^2 * 1^2` holds while
+`rA ≤ rAMax (-1) 0 1`, i.e. `-1 ≤ -1 - √2 * 2`, fails. -/
+theorem audit_le_rAMax_iff_sq_hi_necessary :
+    ¬ ((-1 : ℝ) ≤ rAMax (-1) 0 1) ∧ ((0 : ℝ) + 0) ^ 2 ≤ 2 * (-1 : ℝ) ^ 2 * (0 + 1) ^ 2 := by
+  have hs : (0 : ℝ) < Real.sqrt 2 := sqrtTwo_pos
+  have hss : Real.sqrt 2 * Real.sqrt 2 = 2 := Real.mul_self_sqrt (by norm_num)
+  constructor
+  · unfold rAMax
+    intro hle
+    nlinarith
+  · norm_num
 
-/-- **FINDING 3.** `conforms_symmetric_band_iff` needs `0 ≤ delta`: for `delta < 0` the band
-`[1 - delta, 1 + delta]` is *empty*, so the left-hand side is false for every `rA`, while the
-right-hand side can still be true (take `rA` with `|rA - idealA| ≤ delta * idealAO`, i.e.
-`rA = idealA`, which gives `0 ≤ delta * idealAO`; with `delta * idealAO < 0` this fails too, hence the
-*sides are not equivalent* precisely because empty-band cases and the sign of `delta * idealAO` are
-independent). The kernel facts: (a) an empty band refutes conformance; (b) with `delta = -1/2`,
-`rA = idealA 1 1` the right-hand side is false while the left-hand side is false as well — so the
-witness pair that must be used is the *negation of the missing sign hypothesis*, exhibited below. -/
-theorem finding_symmetric_band_needs_delta_nonneg (delta : ℝ) (h : delta < 0) (rA rB rO : ℝ) :
+/-- **AUDIT 3.** `conforms_symmetric_band_iff` is correct **as stated, for every `delta`** (the
+`delta`-free form is deliberate — plan §3.1 item 2 — and an independent verifier holds it in the
+kernel). For `delta < 0` the band `[1 - delta, 1 + delta]` is *empty*, and then **both** sides of the
+equivalence are false: the left-hand side because no `t` satisfies an empty band, the right-hand side
+because `delta * idealAO rB rO ≤ 0` while `|rA - idealA rB rO| ≥ 0` forces equality, i.e.
+`delta = 0 ∨ idealAO = 0`, contradicting the empty band. The two kernel facts below are the two halves
+of that agreement at `delta = -1/2`; they are the reason the earlier "missing hypothesis" claim was
+withdrawn. -/
+theorem audit_symmetric_band_empty_band_lhs_false (delta : ℝ) (h : delta < 0) (rA rB rO : ℝ) :
     ¬ GoldschmidtConforms (1 - delta) (1 + delta) rA rB rO :=
   not_conforms_of_band_empty (by linarith)
 
-/-- **FINDING 3 (witness).** With `delta = -1/2` and `rA = -3/4`, `rB = rO = 1` the *right-hand*
-side of `conforms_symmetric_band_iff` is false (`|-3/4 - idealA 1 1| ≤ -1/2 * idealAO 1 1` fails,
-since the right side is negative). -/
-theorem finding_symmetric_band_witness :
+theorem audit_symmetric_band_rhs_false_at_negative_delta :
     ¬ (|(-(3 / 4) : ℝ) - idealA 1 1| ≤ (-(1 / 2)) * idealAO 1 1) := by
-  sorry
+  unfold idealA idealAO
+  intro h
+  have hb := abs_le.mp h
+  nlinarith [sqrtTwo_pos, hb.2]
 
-/-- **FINDING 4.** `inst_chi_load_bearing`'s *second* conjunct is FALSE: with `chi'' = 3/2` the
-dressed tolerance is `chiTol (3/20) (1/10) 0 (3/2) = 3/20 - 3/20 = 0`, so
-`substitutableQ (3/20) (1/10) 0 (3/2) (67/50) (153/100)` is `|67/50 - 153/100| ≤ 0`, i.e. `19/100 ≤ 0`
-— false, so the skeleton's negated form is *true*. The witness proves the un-negated row. -/
-theorem finding_chi_load_bearing_counterexample :
-    Rat.substitutableQ (3 / 20) (1 / 10) 0 (3 / 2) rA_Ca (153 / 100) := by
-  sorry
+/-- **AUDIT 4.** `inst_chi_load_bearing`'s authority form (the *negated* second conjunct) is the TRUE
+one. With `chi'' = 3/2` the dressed tolerance is `chiTol (3/20) (1/10) 0 (3/2) = 3/20 - 3/20 = 0`, so
+the un-negated claim would be `|67/50 - 153/100| ≤ 0`, i.e. `19/100 ≤ 0` — false. The declaration
+below therefore proves the *negation*, which is exactly the authority's second conjunct. -/
+theorem audit_chi_load_bearing_negation_is_true :
+    ¬ Rat.substitutableQ (3 / 20) (1 / 10) 0 (3 / 2) rA_Ca (153 / 100) := by
+  unfold Rat.substitutableQ Rat.radiusMatchQ Rat.chiTolQ rA_Ca
+  norm_num [abs_of_nonneg]
 
-/-- **FINDING 4 (corrected row).** The load-bearing pair the row wanted exists at a smaller radius
-step: `r' = 3/2` is admitted by the *undressed* radius rule but rejected once `chi'' = 3/2` zeroes
-the tolerance. -/
-theorem finding_chi_load_bearing_corrected :
-    Rat.substitutableQ (3 / 20) (1 / 10) 0 0 rA_Ca (3 / 2) ∧
-      ¬ Rat.substitutableQ (3 / 20) (1 / 10) 0 (3 / 2) rA_Ca (3 / 2) := by
-  sorry
+/-- **AUDIT 4 (positive half).** The undressed radius rule does admit the `153/100` candidate, so the
+`chi''` term is what refuses it — the load-bearing structure the row is about. -/
+theorem audit_chi_load_bearing_unnegated_half :
+    Rat.substitutableQ (3 / 20) (1 / 10) 0 0 rA_Ca (153 / 100) := by
+  unfold Rat.substitutableQ Rat.radiusMatchQ Rat.chiTolQ rA_Ca
+  norm_num [abs_of_nonneg]
 
 end GoldschmidtProbe
