@@ -2966,3 +2966,92 @@
      `r ⊓ r'` in another, so `min_eq_left` failing once is not evidence that it is the wrong lemma —
      settle every name question with a 3-line compiling probe (`.lake/tmp/` is untracked and takes
      `proofs/scripts/lake env lean` ~2 s), not by guessing from the pretty-printer.
+
+## 2026-09-21 — G3 Goldschmidt law layer: window/squared equivalences and the corrected `rO` trichotomy — prover_d — DONE
+
+- Task: `PhotoLean/Goldschmidt/Criterion.lean` (milestone G3, the law layer of the tolerance factor).
+  Delivered **24 declarations** — every row of plan §6 / skeleton § G3 — plus **8 `private` helpers**
+  (`sqrtTwo_pos`, `sqrtTwo_ne`, `sqrtTwo_sq`, `denom_pos`, `rAMin_eq`, `rAMax_eq`, `denom_sq`,
+  `tolFac_self`; all eight are reachable from the public rows, so the axiom gate on the 24 covers them).
+  The file imports `PhotoLean.Goldschmidt.Basic` (G1) and declares nothing else; the fidelity checker
+  sees exactly 24 declarations with 0 extras, because its declaration regex does not match a line that
+  starts with `private`. Commit `2ca5f2c` (one file, 434 insertions; `git add` of that path only).
+- Gates, raw: `proofs/scripts/lake build PhotoLean.Goldschmidt.Criterion` → exit 0, "Build completed
+  successfully.", 0 warnings (re-measured after deleting the olean);
+  `proofs/scripts/check.sh --strict PhotoLean.Goldschmidt.Criterion` → `sorry / custom axiom scan` =
+  `clean`, `build: OK`, `verdict: PASS`; `proofs/scripts/axioms.sh
+  PhotoLean.Goldschmidt.Criterion PhotoLean.Goldschmidt.<theorem>` on **all 24 theorems** → each exit 0
+  with `verdict: PASS (only mathlib infrastructure axioms)`, the list being
+  `[propext, Classical.choice, Quot.sound]`; `python3 theories/BEP/probes/bep-fidelity.py --theory
+  goldschmidt --milestone G3` → `skeleton declarations: 24`, `delivered, word-for-word: 24`,
+  `delivered, not in authority: 0`, `not delivered yet: 0`, `signature differences: 0` (exit 0).
+- **Three authority rows were FALSE as stated; the kernel caught them before delivery.** The corrected
+  signatures are what shipped (plan §3.1 items 6–8 is the statement-correction log; the three rows and
+  their witnesses, compactly: `tolFac_mono_rO_of_lt` with the old `(hrO : 0 < rO)`, refuted by
+  `rA = -2, rB = -1, rO = 1/2, rO' = 2` giving `t(rO) = 3/√2 > 0 = t(rO')`;
+  `tolFac_anti_rO_of_lt` likewise, refuted by `rA = -1, rB = -2, rO = 1/2, rO' = 3` giving
+  `t(rO') = √2 > 1/(3√2) = t(rO)`; and `tolFac_rO_const_iff` with the old `(hrO : 0 < rO)` only,
+  refuted by `rA = rB = -1, rO = 1, rO' = 2`, where the right side holds and the left gives
+  `1/√2 ≠ 0/0 = 0`). The one-line cause: the drafted hypothesis `0 < rO` does not
+  imply `0 < rB + rO`, and `rO ↦ t` has a pole at `rO = -rB`, so `t` is monotone in `rO` only on each
+  side of the pole; in `tolFac_rO_const_iff` the quantifier `∀ rO' > 0` itself reaches the pole, so
+  even the plan's `0 < rB + rO` variant is false and the shipped row carries `0 ≤ rB` instead. The
+  refutations were three `example : ¬ (∀ …, <old signature as a Π-type>)` terms importing the delivered
+  `Basic.tolFac`, checked with `proofs/scripts/lake env lean /tmp/g3/findings.lean` → exit 0, no output;
+  each witness satisfies the old hypotheses by `norm_num` and contradicts the old conclusion.
+  Process lesson for a dispatched prover: **a recipe can be internally coherent and still not
+  typecheck.** The dispatch said "cross-multiply with `div_lt_div_iff₀` using the two positive
+  denominators" — correct algebra, but the drafted hypotheses could not produce those two positive
+  denominators at all, and no amount of tactic search can repair that. Check which hypothesis carries
+  the sign before proving a monotonicity row.
+- **The Sprint-0 risk probe that was supposed to catch exactly these rows did not compile, and its
+  "0 error" claim was cited as kernel evidence until it was measured.** `proofs/scripts/lake env lean
+  theories/goldschmidt/probes/goldschmidt-risk-probe.lean` → exit 1, 67 errors (53 on the lead's
+  re-measure), with the errors sitting precisely on the three refuted rows (`:327`/`:328`, `:333`/`:334`,
+  `:341`–`:346`, every one of them "linarith failed to find a contradiction" against the unprovable
+  subgoal `0 < rB + rO` or `0 < rB + rO'`). Causal chain worth keeping: *a false row entered the
+  authority because the probe that gated it was never measured after its last edit* — the probe file
+  was also untracked, so nothing in the committed state contradicted the claim. Same failure class as
+  the earlier "coverage must be verified, not assumed" lesson: **"0 error" is an artifact claim, and an
+  artifact claim is only evidence when it is produced after the last edit** (the lead has since made
+  plan §1's record honest and handed the probe to `prover_a`).
+- Tried and failed (each replaced by a working route):
+  1. `nlinarith [sqrtTwo_pos]` after the `div_lt_div_iff₀` cross-multiplication in both trichotomy
+     rows → `linarith failed to find a contradiction` / `case h … a✝ : (rA + rO) * (√2 * (rB + rO')) ≥
+     (rA + rO') * (√2 * (rB + rO)) ⊢ False`. nlinarith does not multiply the two hypotheses
+     (`rA < rB`, `rO < rO'`) by the positive factor on its own in this shape. Working route:
+     `rw [div_lt_div_iff₀ …, ← sub_pos]`, then rewrite the *difference* with an explicit ring identity
+     and close by `mul_pos sqrtTwo_pos (mul_pos (by linarith) (by linarith))`. Reusable: when a product
+     sign is what is needed, supply the factored identity, not a sign hint.
+  2. A trailing `ring` after a tactic that had already closed the goal — `rw [mul_pow, sqrtTwo_sq]`
+     (`denom_sq`), `field_simp` in the two `tolFac_ratio_form` side goals and in `field_simp
+     [mul_ne_zero sqrtTwo_ne hB0]` → `no goals to be solved`. Remedy: delete the `ring` (4 occurrences
+     in one build round). A `no goals to be solved` error is a *success signal from the previous
+     tactic*, not a defect of the statement — do not restructure the proof on the strength of it.
+  3. `rw [div_eq_div_iff …]` while the goal was still written through the `tolFac` wrapper →
+     `tactic 'rewrite' failed, did not find instance of the pattern … ⊢ tolFac rB rB rO = 1 / √2`.
+     `rw` does not unfold a definition to expose the division. Working route: `unfold tolFac` (or
+     `unfold tolFac at h`) first, then the same rewrite — needed both for the goal and for the
+     hypothesis in `tolFac_rO_const_iff`.
+  4. `rw [← contact_iff_tolFac_one h]` in `conforms_iff_ideal_packing` → failed: in the goal
+     `1 ≤ t ∧ t ≤ 1 ↔ rA + rO = idealAO rB rO` the occurrence to rewrite sits on the *right* of the
+     iff, so the forward direction is the one to use (`rw [contact_iff_tolFac_one h]`), then
+     `le_antisymm` / `⟨hk.ge, hk.le⟩` split the point band.
+  5. Exact-value lemmas for the counterexample file: `field_simp; ring` leaves `2 = √2 ^ 2` unsolved
+     when the target is `√2`; working route `rw [show … = 2 / Real.sqrt 2 by norm_num]; exact
+     Real.div_sqrt`, i.e. land on mathlib's unconditional `x / √x = √x`.
+  6. `linarith` cannot see through the two spellings `lo * √2 * (2)` and `lo * (2 * √2)` in the
+     non-vacuity rows (`exists_conforming`); working route: normalize each edge with an explicit
+     `show rAMin lo 1 1 = … by unfold rAMin; ring` and finish with `nlinarith [sqrtTwo_pos, h]`.
+  7. `nlinarith [sqrtTwo_pos, hlt, h]` was expected to close the trichotomy residuals directly (the
+     dispatch's recipe); it is the *only* place in the file where the sign chain has to be assembled
+     by hand, so the two rows above are the reusable exception to "nlinarith finishes the algebra".
+- Reusable patterns: (a) keep every auxiliary `private` — the fidelity report then shows exactly the
+  authority's 24 rows with 0 "not in authority" entries, so no auxiliary has to be argued about;
+  (b) the headline equivalences (`conforms_iff_radius_window`, then
+  `rw [conforms_iff_radius_window h, rAMin_le_iff_sq hlo h hA, le_rAMax_iff_sq hhi h hA]` for
+  `conforms_iff_sq`) need no squaring and no band-non-emptiness premise — the window row is exact for
+  every band including inverted ones, and the per-edge rows carry the polarity premises (`0 ≤ lo`,
+  `0 ≤ hi`, `0 ≤ rA + rO`) that squaring requires; (c) a trichotomy row is delivered as two branch rows
+  with the pole-excluding premise plus one constant row whose quantifier cannot reach the pole, and the
+  docstring should name which hypothesis carries the row.
