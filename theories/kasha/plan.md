@@ -5,12 +5,17 @@
 > theory of this repository (after `Marcus`, `hammond` and `BEP`).
 > Target system: Lean 4.17.0 + mathlib v4.17.0 (`MODULE_PREFIX=PhotoLean`, contract
 > `proofs/ENGINE.yml`).
-> Status: **delivered (2026-09-20) — K1–K5, six modules, 150 declarations, all verified.** The
+> Status: **delivered (2026-09-20) — K1–K5, six modules, 150 declarations, all verified**; revised
+> (2026-09-21) by the external-review fix round to **151 declarations** (§3.1, findings M1/M3 of
+> `review/FULL-REVIEW-2026-09-21.md`: one statement strengthened, one row added — the two changed
+> rows await independent verifier re-verification). The
 > authority `theories/kasha/probes/kasha-statement-skeleton.lean` (sha256
-> `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, 150 declarations) is the
-> **frozen** state every delivered signature matches word for word; §3.1 records the three statement
-> corrections (with kernel counterexamples) and the plan-sketch reconciliation; §12 carries measured
-> values, not targets.
+> `8c5ed93b14d96c2d08e4c6e59da587972841373d65d3d2db4f7d85dea9232853`, 151 declarations; the
+> delivery-phase authority was `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`,
+> 150 declarations, against which verifier runs 1–9 were gated) is the
+> state every delivered signature matches word for word; §3.1 records the statement
+> corrections (with kernel counterexamples), the plan-sketch reconciliation and the 2026-09-21
+> revision; §12 carries measured values, not targets.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/kasha/TASKS.md`; experience bank
 > `proofs/EXPERIENCE.md`; literature `theories/kasha/LITERATURE.md`.
 > Human request (2026-09-20): ① turn Kasha's rule into a formal description; ② prove the theory or
@@ -233,11 +238,11 @@ b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`, `lake env lea
 |---|---|---|
 | K1 | `PhotoLean/Kasha/Basic.lean` | 17 definitions + 2 structures/inductives + 25 theorems = **44** |
 | K2 | `PhotoLean/Kasha/Criterion.lean` | 22 theorems (laws) = **22** |
-| K3 | `PhotoLean/Kasha/Sharp.lean` | 15 theorems (sharp conditions + necessity witnesses) = **15** |
+| K3 | `PhotoLean/Kasha/Sharp.lean` | 16 theorems (sharp conditions + necessity witnesses; 15 at delivery + `perLevel_ic_ge_rad_insufficient` added 2026-09-21, §3.1) = **16** |
 | K4 | `PhotoLean/Kasha/Compose.lean` | 4 definitions + 16 theorems = **20** |
 | K5a | `PhotoLean/Kasha/RatModel.lean` | 16 definitions + 1 inductive + 12 theorems = **29** |
 | K5b | `PhotoLean/Kasha/Instances.lean` | 14 model-constructed rows (I1–I9 with their sub-rows, I13, I14) + 6 literature rows (I10, I11, I11-alt, I11-alt2, I11t, I15) = **20** |
-| **total** | | **150 declarations** (110 theorems + 37 definitions + 3 structures/inductives); I12 was dropped by the literature round's negative result (§8.2) |
+| **total** | | **151 declarations** (111 theorems + 37 definitions + 3 structures/inductives); I12 was dropped by the literature round's negative result (§8.2); +1 theorem (`perLevel_ic_ge_rad_insufficient`, K3) from the 2026-09-21 review-fix round (§3.1). Delivery-phase authority was 150 (110 theorems). |
 
 The literature rows (I10–I12) are **deliberately absent** from the Sprint-0 skeleton: their Lean
 literals must be transcribed from `theories/kasha/LITERATURE.md` and may not be guessed. Appending
@@ -334,6 +339,8 @@ declaration of `Basic.lean`, definitions included in §4.1.)
 | 2026-09-20 | K3 #2 `kashaWithin_one_iff_ratio` | as first handed over (no premise on the sign of `decay rad ic 1`) the row is **false**: the rate-form criterion of the sibling row #1 is equivalent to the ratio form only after multiplying by the *positive* factor `decay 1`; if `decay 1 < 0` the cross multiplication flips the inequality, and `funnelRatio` can be negative while the rule holds | added `(h1 : 0 < decay rad ic 1)`, matching sibling row #1 | kernel counterexample in `theories/kasha/probes/kasha-risk-probe.lean` (`risk_kashaWithin_one_iff_ratio_refuted`, witness `rad = (1,1,0,…)`, `ic = (1,-3,0,…)`, `tol = 1/2`), raised by prover_b's Sprint-0 risk probe |
 | 2026-09-20 | K3 #9 `not_kashaWithin_one_of_ratio_lt` | it is the strict side of the same (false) equivalence, so it fails on the same witness | added `(h1 : 0 < decay rad ic 1)` in the same pass | same probe file |
 | 2026-09-20 | K5a `kashaWithinQ_iff_funnelRatioQ` | the ℚ twin of K3 #2, with the same defect found **independently** | added `(h1 : 0 < decayQ rad ic 1)` | kernel counterexample in `theories/kasha/probes/kasha-rat-probe.lean` (`probe_criterion_premises_insufficient`, witness `rad = twoRad 1 1`, `ic = twoIc 0 (-1)`, `tol = 1/2`), raised by prover_c |
+| 2026-09-21 | K2 #20 `kashaDescriptor_nonvacuous` | **trivial as stated** (external review finding M1, `review/FULL-REVIEW-2026-09-21.md`): `KashaDescriptor rad ic = ∃ N, KashaRule rad ic N` and `KashaRule · · 0` holds **unconditionally** (`upperYield_zero`: no upper level exists at `N = 0`), so the delivered conclusion `∃ rad ic, KashaDescriptor rad ic` is true of *every* ladder — a one-line kernel probe proves `∀ rad ic, KashaDescriptor rad ic`. The row could not fail; the intended content (a ladder satisfying the rule at a *positive* excitation level) lived only in the witness and the docstring. Same failure class as the Hammond Sprint-0 tautology (`EXPERIENCE.md` 2026-09-20): a non-vacuity row whose statement is vacuously satisfiable — masked here because the theory-level non-vacuity is carried by sibling rows (`not_kasha_universal`, `kashaThreshold_attained`, I1/I3) | conclusion strengthened to `∃ rad ic, RateData rad ic 1 ∧ KashaRule rad ic 1` (admissibility **and** the exact rule pinned at the positive level `N = 1`); the delivered witness is unchanged and satisfies the stronger form as proved; skeleton authority synced word-for-word; `KashaDescriptor` is still realized (via `⟨1, ·⟩`, noted in the docstring) | author-gated 2026-09-21: build OK, `check.sh --strict` `clean`/`PASS`, `axioms.sh` `[propext, Classical.choice, Quot.sound]`, fidelity 151/151 word-for-word 0 differences; triviality probe kernel-checked during the review; **independent verifier re-verification pending** |
+| 2026-09-21 | K3 #13b `perLevel_ic_ge_rad_insufficient` (**new row**, authority extended) | gap found by external review (finding M3): #13 formalizes the per-level slogan as the branch-weighted hybrid `rad i · decay (i-1) ≤ ic i · decay i`, **not** the literal `ic i ≥ rad i` reading that the docstrings and the paper outline quote; the two readings are not equivalent in general, so the literal headline had no theorem | added #13b with the literal condition `∀ i, 1 ≤ i → i ≤ 2 → rad i ≤ ic i`; the #13 witness `rad ≡ ic ≡ 1` satisfies the literal reading with equality, so the same ladder refutes both readings at `tol = 1/2` | author-gated 2026-09-21: same gate set as the row above, `axioms.sh` PASS on the new row; **independent verifier re-verification pending** |
 
 | 2026-09-20 | plan §5.1 #12, §5.2 #21, §7.2 #8/#9/#11/#12/#13/#14 | **plan-sketch ↔ authority reconciliation** (found by verifier run 2, finding 2): **eight** rows of the plan's sketches differ from the delivered signatures — **seven strengthened**, **one weakened by dropping an unneeded premise** (`hN : 0 < N` in K2 #12, true at `N = 0` too). The seven additions: `htol : 0 ≤ tol` (K2 #21), `hpos` (K4 #8), `h0 : 0 < decay rad ic 0` (K4 #9, #11), `hr0 : 0 < rad 0` (K4 #12, #13, #14 — genuinely needed for the `Real.log` step); six of the eight rows are K4 rows. None of the seven is a mathematical defect: the authority is the source of truth and was proved as delivered | the plan's tables are corrected in place to the delivered signatures, and a **second pass** (found by verifier run 6) brought five more rows into literal agreement — §4.2 #20 `specFrac_sum` and #21 `kashaWithin_iff_specFrac` now carry the delivered `(h : RateData rad ic N)`, §6.2 #14 `vavilov_premise_necessary` carries its delivered fourth conjunct `¬ KashaRule rad ic N`, #17 `leak_le_of_radBranch_le` carries `(h : RateData rad ic N)` in place of the sketch's `hN : 0 < N`, and #18 `kashaWithin_of_uniform_branch` carries the delivered binder names `h`/`hθ`/`hsum` — and verifier run 7, comparing the plan's numbered table rows literally, found the two last non-literal rows (§6.1 #6 `kashaWithin_mono_tol`, §7.2 #15 `kashaGapThreshold_pos`), which are corrected in this third pass. **The claim of agreement is scoped to the rows this log names**: every row named here was compared literally, and the five rows spot-checked by run 7 outside this list (§4.2 #13, §5.1 #1, §5.2 #21, §6.1 #3, §6.1 #5) matched as well; the `Compose.lean` header's claim of "nothing added" is replaced by a pointer to this entry | verifier run 2 report (batch K2/K4/K5a), reproduced in the board's acceptance record |
 
@@ -379,7 +386,7 @@ Vavilov's rule (§5.2).
 | 17 | `vavilovUpTo_iff_rad_zero (h : RateData rad ic N) (h1 : ∀ i, i < N → fluoYield rad ic i < 1) : VavilovUpTo rad ic N ↔ ∀ i, i < N → rad (i+1) = 0` | 16, `∀ i < N` reindexing |
 | 18 | **`kashaRule_iff_vavilovUpTo`** `(h : RateData rad ic N) (hloss : 0 < ic 0) : KashaRule rad ic N ↔ VavilovUpTo rad ic N` | 14, 17, 12 — the **Kasha–Vavilov equivalence**; `hloss` makes every `fluoYield i < 1` |
 | 19 | `not_kasha_universal : ∃ rad ic N, RateData rad ic N ∧ ¬ KashaRule rad ic N` | witness `rad 0 = 1, rad 1 = 1, ic 0 = 1, ic 1 = 1`, `N = 1` — **the rule is not a theorem of the model** |
-| 20 | `kashaDescriptor_nonvacuous : ∃ rad ic, KashaDescriptor rad ic` | witness `rad 0 = 1`, `rad n = 0` (`n ≥ 1`), `ic n = 1` |
+| 20 | `kashaDescriptor_nonvacuous : ∃ rad ic, RateData rad ic 1 ∧ KashaRule rad ic 1` — **statement strengthened 2026-09-21** (§3.1: the `KashaDescriptor`-only form was trivially true of every ladder via `N = 0`) | witness `rad 0 = 1`, `rad n = 0` (`n ≥ 1`), `ic n = 1` — admissible at `N = 1` and satisfying the exact rule there; `KashaDescriptor` follows via `⟨1, ·⟩` |
 | 21 | `kashaWithin_of_kashaRule (h : RateData rad ic N) (htol : 0 ≤ tol) (hK : KashaRule rad ic N) : KashaWithin rad ic tol N` | 18, `0 ≤ tol·fluoYield`; the delivered row carries the two premises the draft left implicit (reconciled in §3.1) |
 | 22 | `upperYield_le_sum_radBranch (h : RateData rad ic N) : upperYield rad ic N ≤ ∑ i ∈ Finset.Icc 1 N, radBranch rad ic i` | 12 |
 
@@ -412,6 +419,7 @@ positivity premises explicitly.
 | 11 | ~~`kashaWithin_one_witness`~~ — **not in the authority**: its content landed in K5b as row I1 (same constants); the sketch row is kept here as the plan's provenance and marked as carried by I1 | `norm_num`-style two-level computation (funnel ratio `= 100 ≥ 99`) |
 | 12 | ~~`kashaWithin_one_negative`~~ — **not in the authority**: its content landed in K5b as row I2 (same constants), and I3b carries the below-threshold variant | funnel ratio `= 10 < 99` |
 | 13 | **`perLevel_criterion_insufficient`** `: ∃ rad ic, RateData rad ic 2 ∧ (∀ i, 1 ≤ i → i ≤ 2 → rad i * decay rad ic (i-1) ≤ ic i * decay rad ic i) ∧ ¬ KashaWithin rad ic (1/2) 2` | witness `rad = fun n => 1`, `ic = fun n => 1` — **the levelwise "k_IC ≥ k_rad" criterion is false**; the general criterion is the aggregate one of K4 |
+| 13b | **`perLevel_ic_ge_rad_insufficient`** `: ∃ rad ic, RateData rad ic 2 ∧ (∀ i, 1 ≤ i → i ≤ 2 → rad i ≤ ic i) ∧ ¬ KashaWithin rad ic (1/2) 2` — **added 2026-09-21** (§3.1, review M3): the *literal* per-level reading, which #13's hybrid condition does not formalize | the same witness `rad = fun n => 1`, `ic = fun n => 1` satisfies `rad i ≤ ic i` with equality at both upper levels and still leaks `3/4` against `fluoYield = 7/8`, failing at `tol = 1/2` — the row the paper outline's literal headline cites |
 | 14 | `vavilov_premise_necessary : ∃ (rad ic : ℕ → ℝ) (N : ℕ), RateData rad ic N ∧ rad (N+1) ≠ 0 ∧ VavilovAt rad ic N ∧ ¬ KashaRule rad ic N` | witness `rad = fun n => 1`, `ic = fun n => 0` — with no loss channel `fluoYield ≡ 1` and Vavilov holds trivially while Kasha fails |
 | 15 | ~~`exact_rule_only_at_zero_rad`~~ — **dropped from the sketch**: it is a re-export of K2 #14 in the sharp layer's narrative and the authority does not carry it (no duplicate statements across modules) | K2 #14 is where the content lives |
 | 16 | `kashaWithin_one_sharp_boundary (h0 : 0 < tol) (h1 : tol < 1) : ∃ rad ic, funnelRatio rad ic = (1 - tol) / tol ∧ KashaWithin rad ic tol 1` | the boundary case of 2 is attained (equality ⇒ conformance) |

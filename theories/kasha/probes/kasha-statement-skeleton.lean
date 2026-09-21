@@ -363,8 +363,11 @@ theorem not_kasha_universal :
     ∃ (rad ic : ℕ → ℝ) (N : ℕ), RateData rad ic N ∧ ¬ KashaRule rad ic N := by
   sorry
 
-/-- Plan §5.2 #20 — non-vacuity of the description. -/
-theorem kashaDescriptor_nonvacuous : ∃ rad ic : ℕ → ℝ, KashaDescriptor rad ic := by
+/-- Plan §5.2 #20 — non-vacuity of the description **at a positive excitation level** (statement
+strengthened 2026-09-21, plan §3.1: the `KashaDescriptor`-only form was trivially true of every
+ladder via `N = 0`, since `KashaRule · · 0` holds unconditionally). -/
+theorem kashaDescriptor_nonvacuous :
+    ∃ rad ic : ℕ → ℝ, RateData rad ic 1 ∧ KashaRule rad ic 1 := by
   sorry
 
 /-- Plan §5.2 #21. -/
@@ -451,6 +454,18 @@ the emitted photons come from those levels. -/
 theorem perLevel_criterion_insufficient :
     ∃ rad ic : ℕ → ℝ, RateData rad ic 2 ∧
       (∀ i, 1 ≤ i → i ≤ 2 → rad i * decay rad ic (i - 1) ≤ ic i * decay rad ic i) ∧
+      ¬ KashaWithin rad ic (1 / 2) 2 := by
+  sorry
+
+/-- Plan §6.2 #13b (added 2026-09-21, review-fix round M3) — **the literal per-level reading is
+insufficient too**: the pointwise condition `rad i ≤ ic i` ("internal conversion at least as fast
+as radiation at every upper level", the literal reading of the slogan) is not equivalent to the
+branch-weighted hybrid form of #13, and it does not make the ladder Kasha-pure either: the same
+witness `rad ≡ 1`, `ic ≡ 1` satisfies it with equality at both upper levels and still fails the
+tolerance form at `tol = 1/2`. -/
+theorem perLevel_ic_ge_rad_insufficient :
+    ∃ rad ic : ℕ → ℝ, RateData rad ic 2 ∧
+      (∀ i, 1 ≤ i → i ≤ 2 → rad i ≤ ic i) ∧
       ¬ KashaWithin rad ic (1 / 2) 2 := by
   sorry
 

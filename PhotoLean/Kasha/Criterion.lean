@@ -396,15 +396,25 @@ theorem not_kasha_universal :
   intro hK
   have hrad := (kashaRule_iff_rad_zero hR).mp hK 1 (by norm_num) (by norm_num)
   norm_num at hrad
-/-- Plan §5.2 #20 — non-vacuity of the description: the ladder with `rad 0 = 1`, `rad n = 0` for
-`n ≥ 1`, `ic ≡ 1` satisfies the exact rule at excitation level `1` (K1's
-`kashaRule_of_rad_zero`). -/
-theorem kashaDescriptor_nonvacuous : ∃ rad ic : ℕ → ℝ, KashaDescriptor rad ic := by
+/-- Plan §5.2 #20 — non-vacuity of the description **at a positive excitation level**: the ladder
+with `rad 0 = 1`, `rad n = 0` for `n ≥ 1`, `ic ≡ 1` is admissible at `N = 1` and satisfies the
+exact rule there (K1's `kashaRule_of_rad_zero`), so the description `KashaDescriptor` is realized
+at a positive level (via `⟨1, ·⟩`).
+
+Statement strengthened in the 2026-09-21 review-fix round (plan §3.1; review finding M1 of
+`review/FULL-REVIEW-2026-09-21.md`): the delivered form `∃ rad ic, KashaDescriptor rad ic` was
+**trivially true of every ladder** — `KashaRule · · 0` holds unconditionally (`upperYield_zero`:
+at excitation level `0` there is no upper level to leak), so `N = 0` witnessed the description
+for arbitrary rates and the row, as stated, could not fail. The strengthened conclusion pins
+admissibility and the exact rule at the positive excitation level `N = 1` that the witness below
+always delivered; the witness itself is unchanged. -/
+theorem kashaDescriptor_nonvacuous :
+    ∃ rad ic : ℕ → ℝ, RateData rad ic 1 ∧ KashaRule rad ic 1 := by
   have hR : RateData (fun n : ℕ => if n = 0 then (1 : ℝ) else 0) (fun _ : ℕ => 1) 1 := by
     refine ⟨fun n hn => ?_, fun n => ?_, fun n => by norm_num⟩
     · interval_cases n <;> norm_num [decay]
     · split_ifs <;> norm_num
-  refine ⟨fun n : ℕ => if n = 0 then (1 : ℝ) else 0, fun _ : ℕ => 1, 1, ?_⟩
+  refine ⟨fun n : ℕ => if n = 0 then (1 : ℝ) else 0, fun _ : ℕ => 1, hR, ?_⟩
   refine kashaRule_of_rad_zero hR ?_
   intro i hi1 hiN
   have hi : i = 1 := by omega

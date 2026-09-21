@@ -381,6 +381,60 @@ theorem perLevel_criterion_insufficient :
     rw [KashaWithin, hU2, hF2] at hcon
     norm_num at hcon
 
+/-- Plan §6.2 #13b (added 2026-09-21, review-fix round M3 of
+`review/FULL-REVIEW-2026-09-21.md`) — **the literal per-level reading is insufficient too**: the
+pointwise condition `rad i ≤ ic i` ("internal conversion at least as fast as radiation at every
+upper level" — the *literal* reading of the slogan, which #13 formalizes as the branch-weighted
+hybrid `rad i · decay (i-1) ≤ ic i · decay i` instead; the two readings are not equivalent in
+general) does not make the ladder Kasha-pure either. The same kernel-checked witness `rad ≡ 1`,
+`ic ≡ 1` satisfies the literal condition with equality at both upper levels and still leaks
+`upperYield 2 = 3/4 > (1/2) · (7/8) = (1/2) · fluoYield 2`, failing the tolerance form at
+`tol = 1/2`. This row is what the paper outline's headline ("per-level `k_IC ≥ k_rad`, yet 6/7 of
+the photons leak" — the fraction is this row's `3/4` over #I6's `7/8`) cites literally. -/
+
+theorem perLevel_ic_ge_rad_insufficient :
+    ∃ rad ic : ℕ → ℝ, RateData rad ic 2 ∧
+      (∀ i, 1 ≤ i → i ≤ 2 → rad i ≤ ic i) ∧
+      ¬ KashaWithin rad ic (1 / 2) 2 := by
+  have hR1 : RateData (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 1 :=
+    ⟨fun n _ => by norm_num [decay], fun n => by norm_num, fun n => by norm_num⟩
+  have hR2 : RateData (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 2 :=
+    ⟨fun n _ => by norm_num [decay], fun n => by norm_num, fun n => by norm_num⟩
+  have hU1 : upperYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 1 = 1 / 2 := by
+    have hh := upperYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 0) hR1
+    rw [upperYield_zero] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  have hU2 : upperYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 2 = 3 / 4 := by
+    have hh := upperYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 1) hR2
+    rw [hU1] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  have hF0 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 0 = 1 / 2 := by
+    rw [fluoYield_zero]
+    norm_num [radBranch, decay]
+  have hF1 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 1 = 3 / 4 := by
+    have hh := fluoYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 0) hR1
+    rw [hF0] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  have hF2 : fluoYield (fun _ : ℕ => (1 : ℝ)) (fun _ : ℕ => (1 : ℝ)) 2 = 7 / 8 := by
+    have hh := fluoYield_succ (rad := fun _ : ℕ => (1 : ℝ)) (ic := fun _ : ℕ => (1 : ℝ))
+      (N := 1) hR2
+    rw [hF1] at hh
+    norm_num [radBranch, icBranch, decay] at hh
+    exact hh
+  refine ⟨fun _ : ℕ => (1 : ℝ), fun _ : ℕ => (1 : ℝ), hR2, ?_, ?_⟩
+  · intro i hi1 hi2
+    have h12 : i = 1 ∨ i = 2 := by omega
+    rcases h12 with rfl | rfl <;> norm_num
+  · intro hcon
+    rw [KashaWithin, hU2, hF2] at hcon
+    norm_num at hcon
+
 /-- Plan §6.2 #14 — **the loss premise of the Kasha–Vavilov equivalence is necessary**: in the
 loss-free ladder `rad ≡ 1`, `ic ≡ 0` no current is lost to the ground state, so the total yield is
 exactly `1` at every excitation level — `VavilovAt` holds at `N = 1` trivially, while

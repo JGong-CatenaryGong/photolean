@@ -24,16 +24,21 @@
 `Criterion.lean` (K2, laws), `Sharp.lean` (K3, exact tolerance conditions and their sharpness),
 `Compose.lean` (K4, composition, the effective two-level reduction and the Marcus bridge),
 `RatModel.lean` (K5a, computable rational verdict layer) and `Instances.lean` (K5b, instance
-verdicts) — containing **150 declarations: 110 theorems, 37 definitions and 3
-structures/inductives** (2,360 lines), all completely proved: **zero unproved placeholders, zero
+verdicts) — containing **151 declarations: 111 theorems, 37 definitions and 3
+structures/inductives** (2,430 lines; 150 declarations / 2,360 lines at delivery — the 2026-09-21
+review-fix round strengthened one statement and added one row, plan §3.1), all completely proved:
+**zero unproved placeholders, zero
 custom axioms**. Every statement was calibrated before proof work and the delivered signatures match
-the statement authority `theories/kasha/probes/kasha-statement-skeleton.lean` **150/150 word for
-word** (`signature differences: 0`, no declaration outside the authority). Delivery discipline:
-**99 commits touch `PhotoLean/Kasha/`** — 92 `feat(...)` + 7 `docs(...)`; one commit per lemma holds
+the statement authority `theories/kasha/probes/kasha-statement-skeleton.lean` **151/151 word for
+word** (`signature differences: 0`, no declaration outside the authority). Delivery-phase
+discipline: **99 delivery commits touched `PhotoLean/Kasha/`** — 92 `feat(...)` + 7 `docs(...)`;
+one commit per lemma holds
 literally for K1–K4 (28/22/15/20 `feat` commits on the four modules), while K5a (29 declarations)
 and K5b (20 rows) are delivered in grouped `feat` commits — **file-scoped**: 4 touch
 `RatModel.lean`, 3 touch `Instances.lean` (one further `feat(K5b)` commit appends the statement
-authority and touches no source file) — **registered as a deviation** on the board.
+authority and touches no source file) — **registered as a deviation** on the board. The 2026-09-21
+review-fix round adds `fix(...)` commits on top of that delivery-phase count (board, review-fix
+record); the `feat` breakdown above refers to the delivery phase.
 
 **The one-sentence result.** In a finite excited-state ladder whose levels decay with a radiative
 rate `rad n` and a nonradiative rate `ic n`, Kasha's rule ("the emission comes from the lowest
@@ -55,12 +60,14 @@ independent routes), and the same azulene data *conforms* at a 10 % tolerance, w
 verdict is reported as tolerance-relative.
 
 **摘要（交付概况）**：`PhotoLean/Kasha/` 下六个 Lean 模块（K1 描述层、K2 定律层、K3 精确容差条件与锐利性、
-K4 复合/有效两层归约/Marcus 桥、K5a 可计算有理判决层、K5b 实例判决层）共 **150 条声明：110 条定理、
-37 个定义、3 个结构/归纳类型**（2,360 行），全部完整证明：**零占位证明、零自定义公理**。所有语句在动证明前
-先标定，交付签名与语句权威 `theories/kasha/probes/kasha-statement-skeleton.lean` **逐字一致 150/150**
-（签名差异 0、权威外声明 0）。提交纪律：`PhotoLean/Kasha/` 共 **99 个提交**（92 个 `feat(...)` + 7 个 `docs(...)`）；"每定理一个提交"在
+K4 复合/有效两层归约/Marcus 桥、K5a 可计算有理判决层、K5b 实例判决层）共 **151 条声明：111 条定理、
+37 个定义、3 个结构/归纳类型**（2,430 行；交付时为 150 条 / 2,360 行——2026-09-21 评审修正轮强化了一条
+语句并新增一行，见 plan §3.1），全部完整证明：**零占位证明、零自定义公理**。所有语句在动证明前
+先标定，交付签名与语句权威 `theories/kasha/probes/kasha-statement-skeleton.lean` **逐字一致 151/151**
+（签名差异 0、权威外声明 0）。提交纪律（交付阶段）：`PhotoLean/Kasha/` 共 **99 个交付提交**（92 个 `feat(...)` + 7 个 `docs(...)`）；"每定理一个提交"在
 K1–K4 上字面成立（四个模块各 28/22/15/20 个 `feat` 提交），而 K5a（29 条声明）与 K5b（20 行）按分组 `feat`
-提交（4 与 3 个），已作为**偏差**登记在看板。**一句话结论**：在有限激发态阶梯模型（每级有辐射速率 `rad n` 与非辐射速率 `ic n`）中，
+提交（4 与 3 个），已作为**偏差**登记在看板；2026-09-21 评审修正轮的 `fix(...)` 提交叠加在该交付阶段计数之上
+（看板"评审修正轮"记录），上面的 `feat` 分解仅指交付阶段。**一句话结论**：在有限激发态阶梯模型（每级有辐射速率 `rad n` 与非辐射速率 `ic n`）中，
 Kasha 规则**不是模型定理**：它**等价于**所有上级辐射速率全为零；其容差形式（来自最低态之上的发射占比不超过
 `tol`）**等价于**锐利速率判据 **漏斗比 ≥ (1−tol)/tol**（1% 纯度要求即内转换/辐射比须超过 **99**）。N 级阶梯
 **精确归约**为有效分支数据下的两层模型，故判据检验的是**总体量**；直觉的逐层不等式 `k_IC ≥ k_rad` **不充分**
@@ -271,9 +278,27 @@ I12 因文献轮找不到第二个有一手数字的反 Kasha 分子而**删除*
 **Gates.** Every delivered module passes the contract's three layers — `lake build` (success), the
 strict scan (`clean`, `verdict: PASS`) and `#print axioms` (only `propext`, `Classical.choice`,
 `Quot.sound`; no placeholder axiom, no custom axiom) — and the milestone-scoped fidelity report
-(`bep-fidelity.py --theory kasha --milestone <K1…K5b>`) shows **44/22/15/20/29/20 of 44/22/15/20/29/20
-word for word**. A bare `proofs/scripts/check.sh --strict` covers all six modules plus the
+(`bep-fidelity.py --theory kasha --milestone <K1…K5b>`) shows **44/22/16/20/29/20 of 44/22/16/20/29/20
+word for word** (K3 grew from 15 to 16 in the 2026-09-21 review-fix round, which added
+`perLevel_ic_ge_rad_insufficient`; the unscoped report is **151/151**, 0 differences). A bare
+`proofs/scripts/check.sh --strict` covers all six modules plus the
 literature-authored `Kernel`/`Relations` modules and returns PASS.
+
+**The 2026-09-21 review-fix round (external review M1/M3, `review/FULL-REVIEW-2026-09-21.md`).** An
+independent full-repository review found that `kashaDescriptor_nonvacuous`, as delivered, was
+**trivially true of every ladder**: `KashaDescriptor rad ic = ∃ N, KashaRule rad ic N` and
+`KashaRule · · 0` holds unconditionally (`upperYield_zero` — at excitation level `0` there is no
+upper level to leak), so a one-line kernel probe proves `∀ rad ic, KashaDescriptor rad ic`; the row's
+intended content (a ladder satisfying the rule at a *positive* level) lived only in its witness and
+docstring, not in its type. The same review noted that `perLevel_criterion_insufficient` refutes the
+*branch-weighted hybrid* per-level condition, not the *literal* `rad i ≤ ic i` reading that the
+docstrings and the paper outline quote. Both are recorded as statement-correction items in
+`plan.md` §3.1 (the M1 correction and the M3 authority extension), and both changed rows pass the
+full gate set with `#print axioms` clean. **This is the review process catching a defect the six
+in-repo verifier runs did not** — the row was never *false* (so no mathematical verifier would flag
+it) but *vacuous*, a distinction only an adversarial reader asking "could this statement ever fail?"
+surfaces. The verification status of the two changed rows is **author-gated, independent verifier
+re-verification pending**; the board carries them as open rows until a verifier PASS.
 
 **Independent verification.** The read-only `verifier` role ran the acceptance gate itself and, rather
 than trusting the files, re-derived the headline numbers in its own kernel probes. Its run 1
@@ -332,7 +357,8 @@ admissible random ladders, the effective two-level reduction over 825 (ladder, t
 counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all pass.
 
 **证据（中文）**：每个交付模块都通过三层门（构建 / `--strict` 扫描 `clean` / `#print axioms` 仅
-`propext, Classical.choice, Quot.sound`），里程碑保真报告为 44/22/15/20/29/20 逐字一致；裸跑 `check.sh --strict`
+`propext, Classical.choice, Quot.sound`），里程碑保真报告为 44/22/16/20/29/20 逐字一致（K3 由 15 变 16：
+2026-09-21 评审修正轮新增 `perLevel_ic_ge_rad_insufficient`；未限定作用域的总报告为 **151/151**、0 差异）；裸跑 `check.sh --strict`
 覆盖全部六个模块（审计者移走 `Instances.olean` 后由裸跑重建，实测覆盖无遗漏）并 PASS。只读 verifier 独立复核并
 **自行在内核重推**头条数字：三轮分别覆盖 K1 + Sprint-0 探针、K2/K4/K5a、K3/K5b 与全树：前两轮 **36** 个内核闭合算例，第三轮另有
 **56** 个（其自建探针）并独立重证 K3 四行（有效两层归约在 6 组自选阶梯上、N 级阈值与 `kashaMargin`、
@@ -345,6 +371,16 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 **流程在交付前抓住三条假语句**（plan §3.1 订正日志），三者是同一错误的三副面孔：**前提没有携带证明所需除数的符号**
 （`tol` 的符号、`decay 1` 的符号），其中 K3 那条被 ℝ 与 ℚ 两侧**独立两次**抓到。每条订正都有内核反例文件；
 另有一条与内核无关的精确有理数交叉核验通路（193 组随机阶梯、825 组有效归约对、400 组 Marcus 参数）全部通过。
+
+**2026-09-21 评审修正轮（外部审查 M1/M3，`review/FULL-REVIEW-2026-09-21.md`）**：全仓独立审查发现
+`kashaDescriptor_nonvacuous` 按交付语句**对任意阶梯平凡为真**——`KashaRule · · 0` 无条件成立
+（`upperYield_zero`：激发层级 `0` 没有上级可泄漏），一行内核探针即证 `∀ rad ic, KashaDescriptor rad ic`；
+该行的本意（在**正**激发层级满足规则的阶梯）只活在见证与 docstring 里，没有进入语句类型。同一审查指出
+`perLevel_criterion_insufficient` 反驳的是**分支加权混合式**逐层条件，而非 docstring 与论文提纲引用的
+**字面** `rad i ≤ ic i` 读法。两项均已记入 `plan.md` §3.1（M1 语句强化、M3 权威扩行），改动行全门通过、
+`#print axioms` 干净。**这是外部审查抓到的、六轮仓内 verifier 未抓到的缺陷**——该行从不**假**（数学
+verifier 无从报警）而是**空洞**，只有"这条语句有没有可能失败？"的对抗性阅读才能暴露。两条改动行的验收
+状态为**作者已跑门、独立 verifier 复核 PENDING**，看板保留未勾行直至 verifier PASS。
 
 ---
 
@@ -378,6 +414,15 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
    `PhotoLean.Kernel`. Its single, *conditional* bridge to that family is the Marcus-form
    internal-conversion rate of §3.5 (`kashaWithin_one_marcus`), which imports
    `PhotoLean.Marcus.Basic`'s `barrier` — a dependency of one hypothesis, not an identity.
+9. **Post-acceptance statement revision (2026-09-21 review-fix round).** Two rows changed after the
+   theory's verifier-gated acceptance: `kashaDescriptor_nonvacuous` was **strengthened** (the
+   delivered form was trivially true of every ladder — plan §3.1, external review finding M1) and
+   `perLevel_ic_ge_rad_insufficient` was **added** (the literal per-level reading the paper outline
+   quotes — finding M3). No delivered theorem was refuted; the acceptance runs 1–7 stand as recorded
+   against the pre-revision authority `b645cbfb…` (150 declarations). The revised rows are
+   author-gated (build / strict scan / `#print axioms` / fidelity 151/151) with **independent
+   verifier re-verification pending**; the board keeps them as open rows until a verifier PASS, and
+   the counts in this file are the post-revision state.
 
 **限制（中文）**：模型为选择而非推导（有限阶梯、每通道单一标量速率、时间积分产额；不建模振动/电子结构、
 温度、溶剂、分子间过程）；分支概率来自竞争指数钟是**声明式前提**（表述可行、完整有界证明未建，记为负结果）；
@@ -388,7 +433,12 @@ counterexample's `6/7`, and the Marcus algebra over 400 parameter sets — all p
 **在仓库中的位置**：本理论刻意**不在** `theories/RELATIONS.md` / `PhotoLean/Relations.lean` 的双抛物关系图内 ——
 其模型是电子能级阶梯而非一对势能抛物线，与 `PhotoLean.Kernel` 不共享定义；它与该族**唯一**的联系是 §3.5 的
 Marcus 型内转换速率（`kashaWithin_one_marcus` 导入 `PhotoLean.Marcus.Basic` 的 `barrier`），那是**一条假设**的依赖，
-不是同一性。
+不是同一性。**验收后的语句修订（2026-09-21 评审修正轮）**：两行在本理论的 verifier 验收之后改动——
+`kashaDescriptor_nonvacuous` 被**强化**（交付形式对任意阶梯平凡为真，plan §3.1、外部审查发现 M1）、
+新增 `perLevel_ic_ge_rad_insufficient`（论文提纲引用的字面逐层读法，发现 M3）。没有任何已交付定理被推翻；
+验收 run 1–7 按原样对修订前权威 `b645cbfb…`（150 条声明）成立。修订行已过作者侧全门（构建/严格扫描/
+`#print axioms`/保真 151/151），**独立 verifier 复核 PENDING**；看板保留未勾行直至 verifier PASS，
+本文件的计数为修订后状态。
 
 ---
 

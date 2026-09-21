@@ -118,8 +118,14 @@ theorem I6_fluoYield_two : fluoYieldQ (threeRad 1 1 1) (threeIc 1 1 1) 2 = 7 / 8
     Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top, Finset.sum_singleton,
     Finset.prod_Icc_succ_top, Finset.Icc_self, Finset.prod_singleton]
 
-/-- Plan §8.2 row I7 — **the equal-rates counterexample**: every level above the lowest satisfies
-`ic ≥ rad` and yet `upperYield / fluoYield = 6/7 > 1/2`. -/
+/-- Plan §8.2 row I7 — **the equal-rates counterexample, the leak value**: this row proves
+`upperYieldQ = 3/4` at `N = 2`; with I6's `fluoYieldQ = 7/8` the leaked fraction is
+`(3/4)/(7/8) = 6/7 > 1/2` (the composed reading — the fraction itself is not this row's type).
+The per-level facts of the slogan are carried on the ℝ side by `perLevel_ic_ge_rad_insufficient`
+(the literal `rad i ≤ ic i` reading, with equality on this witness) and
+`perLevel_criterion_insufficient` (the branch-weighted hybrid form), and I7b below pins the
+tolerance violation of the same ladder. (Docstring scoped to the statement in the 2026-09-21
+review-fix round, finding M2 of `review/FULL-REVIEW-2026-09-21.md`.) -/
 theorem I7_equalRates_leak_two : upperYieldQ (threeRad 1 1 1) (threeIc 1 1 1) 2 = 3 / 4 := by
   norm_num [upperYieldQ, emitYieldQ, radBranchQ, icBranchQ, cascadeQ, decayQ, threeRad, threeIc,
     Finset.sum_range_succ, Finset.sum_range_one, Finset.sum_Icc_succ_top, Finset.sum_singleton,

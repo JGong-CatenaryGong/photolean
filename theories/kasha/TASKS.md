@@ -12,15 +12,27 @@
 - Plan and milestone statements: `theories/kasha/plan.md`.
 - **Statement authority**: `theories/kasha/probes/kasha-statement-skeleton.lean`
   (compiles at 0 error with `proofs/scripts/lake env lean`, Sprint-0 gate; sha256
-  `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17`), **150 declarations** (110 theorems + 37 definitions + 3 structures/inductives).
+  `8c5ed93b14d96c2d08e4c6e59da587972841373d65d3d2db4f7d85dea9232853` since the 2026-09-21
+  review-fix round), **151 declarations** (111 theorems + 37 definitions + 3 structures/inductives).
+  Acceptance runs 1–9 below were gated against the pre-revision authority
+  `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17` (150 declarations); the two
+  revised rows (plan §3.1, external-review findings M1/M3) carry open board rows and await an
+  independent verifier PASS.
 - Theory direction: **Kasha's rule in a finite excited-state cascade model**, human request of
   2026-09-20 (three parts: formal description / proof and validity conditions / instance verdicts).
 - Deliverable module prefix: `PhotoLean.Kasha`; sources under `PhotoLean/Kasha/`
   (`SOURCE_DIRS` is global and covers them — `theories/kasha/` is outside the strict scan range).
-- Status of this theory: **delivered and verified** — six modules, 150 declarations, every row on
+- Status of this theory: **delivered and verified** (runs 1–9, against the pre-revision authority
+  `b645cbfb…`, 150 declarations) — six modules, every delivery-phase row on
   this board ticked; the verifier's runs are recorded below (three for the mathematics — K1+probes,
-  K2/K4/K5a, K3/K5b+whole tree — followed by the documentation re-audits); the authority is frozen at
-  `b645cbfbf61ecf08a7c5dbe3a5e5f8f8874e50cbc806e994ea53823dbf63aa17` (150 declarations).
+  K2/K4/K5a, K3/K5b+whole tree — followed by the documentation re-audits). **2026-09-21 review-fix
+  round** (external review `review/FULL-REVIEW-2026-09-21.md`, findings M1/M3, plan §3.1): one
+  statement strengthened (`kashaDescriptor_nonvacuous` — the delivered form was trivially true of
+  every ladder), one row added (`perLevel_ic_ge_rad_insufficient` — the literal per-level reading);
+  the authority is revised to
+  `8c5ed93b14d96c2d08e4c6e59da587972841373d65d3d2db4f7d85dea9232853` (151 declarations); both rows
+  are author-gated and **open below pending independent verification** — the theory's closure stands
+  for the pre-revision state, and re-closes when a verifier PASS lands on the two open rows.
 - Literature rows: **in the skeleton** (I10, I11, I11-alt, I11-alt2, I11t, I15 — appended 2026-09-20,
   literals transcribed from `theories/kasha/LITERATURE.md` §R1.6, never guessed); sketched row I12 is
   **absent by decision** (the literature round found no second anti-Kasha molecule with first-hand
@@ -155,7 +167,8 @@
 - [x] `vavilovUpTo_iff_rad_zero` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 - [x] `kashaRule_iff_vavilovUpTo` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 - [x] `not_kasha_universal` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
-- [x] `kashaDescriptor_nonvacuous` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
+- [x] `kashaDescriptor_nonvacuous` — Criterion.lean — prover_a — done — skeleton `b645cbfb` (original statement `∃ rad ic, KashaDescriptor rad ic`, verified in the delivery runs)
+- [ ] `kashaDescriptor_nonvacuous` (**strengthened statement** `∃ rad ic, RateData rad ic 1 ∧ KashaRule rad ic 1`) — Criterion.lean — review-fix — review — 2026-09-21 plan §3.1 / review M1: the original form was trivially true of every ladder (`KashaRule · · 0` via `upperYield_zero`); author-gated (build OK, strict `clean`, `axioms.sh` `[propext, Classical.choice, Quot.sound]`, fidelity 151/151); **independent verifier PASS pending — do not tick before**
 - [x] `kashaWithin_of_kashaRule` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 - [x] `upperYield_le_sum_radBranch` — Criterion.lean — prover_a — done — skeleton `b645cbfb`
 
@@ -172,6 +185,7 @@
 - [x] `not_kashaWithin_one_of_ratio_lt` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `kashaThreshold_attained` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `perLevel_criterion_insufficient` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
+- [ ] `perLevel_ic_ge_rad_insufficient` — Sharp.lean — review-fix — review — added 2026-09-21 (plan §6.2 #13b, §3.1 / review M3): the *literal* per-level reading `rad i ≤ ic i`, which #13's branch-weighted hybrid does not formalize; same witness `rad ≡ ic ≡ 1`; author-gated (build OK, strict `clean`, `axioms.sh` clean, fidelity 151/151, milestone K3 16/16); **independent verifier PASS pending — do not tick before**
 - [x] `vavilov_premise_necessary` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `kashaWithin_one_sharp_boundary` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
 - [x] `leak_le_of_radBranch_le` — Sharp.lean — prover_b — done — skeleton `b645cbfb`
@@ -472,3 +486,22 @@ scan `clean` / `build: OK` / `verdict: PASS` (exit 0); `axioms.sh … I11t_azule
 verdict-flipping): this record supersedes the "Run 8 — pending" placeholder, and run 7's closure
 could cite the hash directly (done above).**
 **The documentation plane now matches the tree: the theory is closed.**
+
+### Review-fix round — 2026-09-21 — external review M1/M3 statement fixes — **author-gated; independent verifier PASS pending** (NOT a verifier run)
+
+Actor: the second external full-repository review (`review/FULL-REVIEW-2026-09-21.md`, findings M1–M12;
+the two Kasha items are M1 and M3), executed under direct human instruction. This block is an
+**author-side gate record**, not a verifier verdict — per iron rule 6 the writer of a fix does not
+adjudicate it; the two open board rows above stay unticked until an independent verifier re-runs the
+gates.
+
+| item | change | gates re-run by the author (raw results) |
+|---|---|---|
+| M1 | `kashaDescriptor_nonvacuous` statement **strengthened** to `∃ rad ic, RateData rad ic 1 ∧ KashaRule rad ic 1` (delivered form was trivially true of every ladder: `KashaRule · · 0` holds via `upperYield_zero`; kernel probe `∀ rad ic, KashaDescriptor rad ic` compiled during the review). Witness unchanged; skeleton authority synced word-for-word; plan §3.1 + §5.2 #20 updated | `lake build PhotoLean.Kasha.Criterion` → `Build completed successfully.`; `axioms.sh` → `[propext, Classical.choice, Quot.sound]` / `verdict: PASS` |
+| M3 | `perLevel_ic_ge_rad_insufficient` **added** (plan §6.2 #13b; the literal `rad i ≤ ic i` reading that the paper outline's headline quotes; same witness `rad ≡ ic ≡ 1`, leak `3/4` vs `(1/2)·(7/8)`) | `lake build PhotoLean.Kasha.Sharp` → OK; `axioms.sh` → `[propext, Classical.choice, Quot.sound]` / `verdict: PASS` |
+| M2 | `I7_equalRates_leak_two` docstring scoped to its statement (the `6/7` fraction is I6+I7 composed; the per-level facts are the Sharp rows) — comment-only | strict scan `clean` (the scan reads comments; no forbidden keyword introduced) |
+| — | whole-tree re-gate after all Kasha edits | `lake build` → exit 0; `check.sh --strict` → `clean` / `verdict: PASS`; fidelity unscoped **151/151**, `signature differences: 0`; milestone scope **44/22/16/20/29/20**; skeleton compiles at 0 error; new authority sha256 `8c5ed93b…` |
+
+Counts after the round: **151 declarations** (111 theorems + 37 definitions + 3
+structures/inductives), 2,430 lines. Runs 1–9 above stand as recorded against `b645cbfb…` (150);
+no delivered theorem was refuted — one statement was strengthened, one row added.
