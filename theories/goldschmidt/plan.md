@@ -197,6 +197,28 @@ look risky (the Kasha/Hammond/BEP lesson); the Sprint-0 risk probe then re-check
    original placement would have inverted the dependency order. They now sit immediately above
    `conforms_iff_sq` in the G3 section; plan §7's table loses those two rows and §6 gains them.
 
+4. **`goldschmidtZone_eq_tooLarge_iff` — FALSE as first drafted, corrected to the exact form
+   (caught by `prover_b` in the kernel, before delivery).** The draft claimed
+   `goldschmidtZone lo hi t = tooLarge ↔ hi < t`. FALSE: the classifier tests `t < lo` *first*, so on
+   an inverted band (`hi < lo`) a small `t` is classified `tooSmall` even though `hi < t` holds — the
+   kernel witness is `lo = 1, hi = 0, t = 1/2`. The other two rows (`…_tooSmall_iff ↔ t < lo`,
+   `…_ideal_iff ↔ lo ≤ t ∧ t ≤ hi`) are true unconditionally (they are the trichotomy rows). The
+   authority now carries the **exact unconditional** characterization
+   `… = tooLarge ↔ lo ≤ t ∧ hi < t`, plus the degenerate form the band verdict actually uses,
+   `goldschmidtZone_eq_tooLarge_iff_of_band (h : lo ≤ hi) : … = tooLarge ↔ hi < t`. This is the same
+   pattern as `conforms_iff_radius_window` (exact, no band-nonemptiness premise) followed by its
+   degenerate instances — the exact row is the authority, the band form is a corollary.
+   `goldschmidtZone_ideal_iff_conforms` (G3) is unaffected: the *ideal* characterization is
+   unconditional.
+
+5. **`zoneQ_ideal_iff` — hypotheses dropped (same class as item 2, caught by hand before
+   dispatch).** The draft carried `0 ≤ lo`, `0 ≤ hi`, `0 < rB + rO`, `0 ≤ rA + rO`. The row is a
+   statement about the *squared* criterion alone (`zoneQ = ideal ↔ inBandQ`), and the three branches of
+   the `ℚ` classifier are discharged by the trichotomy on `(rA+rO)^2` versus `2*lo^2*(rB+rO)^2` and
+   `2*hi^2*(rB+rO)^2`; none of the four premises is used, so all four are removed rather than retained
+   as non-load-bearing hypotheses. `zoneQ_eq_zone` (the transfer to the real classifier) genuinely
+   needs them and keeps them.
+
 The instance layer's numbers were fixed by an **off-kernel exact-rational cross-check** before any
 row was dispatched (see §9 and `theories/goldschmidt/probes/goldschmidt-instance-check.py`); its run
 reproduced every asserted verdict with 0 mismatches, including the three rows a reader is most likely
@@ -223,7 +245,8 @@ Theorems:
 | `idealA_eq` | `idealA rB rO = √2 * rB + (√2 - 1) * rO` | `ring` |
 | `idealA_tolFac` | `0 < rB + rO → tolFac (idealA rB rO) rB rO = 1` | from `contact_iff_tolFac_one` |
 | `gapA_pos_iff` | `0 < rB + rO → (0 < gapA rA rB rO ↔ tolFac rA rB rO < 1)` | affine rearrangement |
-| `goldschmidtZone_eq_tooSmall_iff` / `…_ideal_iff` / `…_tooLarge_iff` | the classifier's three characterization rows | `if` splitting + `lt_or_ge` trichotomy |
+| `goldschmidtZone_eq_tooSmall_iff` / `…_ideal_iff` / `…_tooLarge_iff` | the classifier's three characterization rows — `t < lo`, `lo ≤ t ∧ t ≤ hi`, and the **exact** `lo ≤ t ∧ hi < t` (§3.1 item 4) | `if` splitting + `lt_or_ge` trichotomy |
+| `goldschmidtZone_eq_tooLarge_iff_of_band` | the physically used degenerate form `lo ≤ hi → (… = tooLarge ↔ hi < t)` | from the exact row |
 | `rAMin_one` / `rAMax_one` | `rAMin 1 rB rO = idealA rB rO` / `rAMax 1 rB rO = idealA rB rO` | `ring` |
 
 ## 5. G2 — rules layer (`PhotoLean/Goldschmidt/Rules.lean`; owner prover_a; Sprint 1)

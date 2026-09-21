@@ -141,6 +141,10 @@ theorem goldschmidtZone_eq_ideal_iff (lo hi t : ℝ) :
   sorry
 
 theorem goldschmidtZone_eq_tooLarge_iff (lo hi t : ℝ) :
+    goldschmidtZone lo hi t = GoldschmidtZone.tooLarge ↔ lo ≤ t ∧ hi < t := by
+  sorry
+
+theorem goldschmidtZone_eq_tooLarge_iff_of_band (lo hi t : ℝ) (h : lo ≤ hi) :
     goldschmidtZone lo hi t = GoldschmidtZone.tooLarge ↔ hi < t := by
   sorry
 
@@ -442,8 +446,8 @@ theorem zoneQ_eq_zone {lo hi rA rB rO : ℚ} (hlo : 0 ≤ lo) (hhi : 0 ≤ hi) (
       goldschmidtZone (lo : ℝ) (hi : ℝ) (tolFac (rA : ℝ) (rB : ℝ) (rO : ℝ)) := by
   sorry
 
-theorem zoneQ_ideal_iff {lo hi rA rB rO : ℚ} (hlo : 0 ≤ lo) (hhi : 0 ≤ hi) (hB : 0 < rB + rO)
-    (hA : 0 ≤ rA + rO) : zoneQ lo hi rA rB rO = GoldschmidtZone.ideal ↔ inBandQ lo hi rA rB rO := by
+theorem zoneQ_ideal_iff (lo hi rA rB rO : ℚ) :
+    zoneQ lo hi rA rB rO = GoldschmidtZone.ideal ↔ inBandQ lo hi rA rB rO := by
   sorry
 
 theorem classicLoQ_cast : (classicLoQ : ℝ) = classicLo := by
