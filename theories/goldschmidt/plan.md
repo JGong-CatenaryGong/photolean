@@ -134,6 +134,11 @@ form, symmetric band, `r_O` trichotomy, irrationality) are this theory's own exa
 - **No claim that the tolerance factor is a theorem of crystallography or of quantum mechanics.** One
   geometric realization is made exact; nothing is said about stability energies, Goldschmidt's own
   "stability field", or DFT formation energies.
+- **No conflating the two criteria.** Goldschmidt's tolerance factor and Pauling's *radius-ratio* rule
+  (`r_cation/r_anion ≥ 0.732` for 8-fold/cubic, `0.732–0.414` for 6-fold/octahedral) are criteria on
+  **different ratios** with different roles; the literature record carries both and warns that one
+  widely used table prints the same interval as an *octahedral-factor* interval
+  (`LITERATURE.md` §S1.3, §IMPACT item 5). Only the tolerance factor is formalized here.
 - **No continuous-deformation crystallography**: no tilting angles (`a⁻a⁻a⁻` Glazer systems), no
   octahedral rotation groups, no tolerance-factor refinements (Bartel's `τ`, the octahedral factor
   `μ = r_B/r_O`), no temperature/pressure dependence, no ionic-radius dependence on coordination
@@ -411,7 +416,7 @@ Row families (each row is a kernel-checked verdict, with the printed radii cited
 | I2 classic band | `SrTiO₃`, `CaTiO₃`, `LaMnO₃`, `NaNbO₃` (Shannon radii) | conformance and zone, decided in `ℚ` by `inBandQ` |
 | I3 band flip | `BaTiO₃` | fails `[4/5, 1]`, conforms to `[1, 11/10]` (tetragonal) — the flip as two theorems |
 | I4 negative | `BaNiO₃` (hexagonal in the literature) | outside every delivered band |
-| I5 radius rule | substitution pairs inside/outside 15 %, and the ratchet row | rule 1 verdicts |
+| I5 radius rule | substitution pairs inside/outside 15 %, and the ratchet row | rule 1 verdicts — the delivered pairs are Shannon-radius rows, and the record now also carries the *primary text's own* isovalent example, the `CaTiO₃ → Sr`/`Ba` A-site substitution (`LITERATURE.md` §S3.3, §IMPACT item 12), so this family is not attested only by modern compilations |
 | I6 charge rule | the isovalent row, the uncompensated heterovalent row, the coupled/compensated pair, the compensating-partner row | rule 2 verdicts — the delivered ±1 pair is a *model* instance: round 1 found that no source prints `Na⁺ + Nb⁵⁺ ↔ Ca²⁺ + Ti⁴⁺`, while documented coupled substitutions do exist with printed increments (`Na⁺ + Si⁴⁺ ↔ Ca²⁺ + Al³⁺` in the primary text's plagioclase example; `A²⁺B⁴⁺O₃` heterovalent La/Na pairing; the printed `3 Na⁺ ↔ 1 Sm³⁺` compensation arithmetic — `LITERATURE.md` §S3.2.1), and the row's docstring cites those |
 | I7 chemical rule | a row where a larger radius difference is admitted only by the electronegativity term | rule 3 verdicts |
 | I8 non-vacuity | one conforming row per zone of the classic band | the classifier is total |
@@ -476,7 +481,7 @@ milestone that owns them — because early failure is cheaper.
 | `t = (r_A + r_O) / (√2 (r_B + r_O))` | **definition** of the formalized object |
 | `t` is the ratio of the `A`–`O` contact distance to the ideal cuboctahedral one | **theorem** (`tolFac_eq_distRatio`) given the modelling premise "ideal cubic geometry" |
 | `t = 1 ⟺ r_A + r_O = √2 (r_B + r_O) ⟺ r_A = idealA rB rO` | **theorem** |
-| the band `lo ≤ t ≤ hi` is the right empirical criterion | **declared modelling premise**, now with an attested core: the primary source prints `0,8 ≤ t ≤ 1` verbatim (so `classicLo`/`classicHi` are a *transcription*), while `tetragonalHi = 11/10` is **declared with no printed band** (19 printed band conventions are enumerated in `LITERATURE.md` §T1; the nearest printed `1.1` threshold states *formation*, not tetragonal distortion) |
+| the band `lo ≤ t ≤ hi` is the right empirical criterion | **declared modelling premise**, and the sources themselves say so — the record carries the printed caveats that license treating the band as *declared* rather than proved ("There is no boundary on the tolerance factor scale that separates perovskites from non-perovskites", and "the tolerance factor is only a rough estimate": `LITERATURE.md` §S2.3, §IMPACT item 6). It has an attested core: the primary source prints `0,8 ≤ t ≤ 1` verbatim (so `classicLo`/`classicHi` are a *transcription*), while `tetragonalHi = 11/10` is **declared with no printed band** (19 printed band conventions are enumerated in `LITERATURE.md` §T1; the nearest printed `1.1` threshold states *formation*, not tetragonal distortion) |
 | `GoldschmidtConforms ↔` radius window / squared form | **theorem** (this theory's own exactification; absent from the literature) |
 | the 15 % radius rule | the **reference ion is a literature fact, not a convention**: the primary text prints "um nicht mehr als etwa 15 % (in Prozenten des kleinsten Radius)", i.e. relative to the **smaller** radius, so `radiusMatch_min_iff`'s min-form *is* the attested rule and `RadiusMatch τ r r'` is this theory's parameterized spelling (the modern literature varies between the larger and the smaller reference — §6 records it). `τ = 3/20` is the declaration that sharpens the printed "etwa 15 %"; the theorem content is the window form, the ratchet, and the transfer to `Δt` |
 | the charge-balance rule | **a declared systematization, and deliberately not attributed to Goldschmidt.** The primary text's condition is *stoichiometric matching* ("in beiden Formeln entsprechende Mengen positiver Bausteine und … negativer Bausteine") and it explicitly refuses valence as an independent criterion ("Der Unterschied der Valenz ist nämlich bereits in unsern Größen der scheinbaren Radien mit einkalkuliert"). The formalized `∑ dz = 0` is the later systematization (the record gives documented coupled-substitution instances with printed increment arithmetic, `LITERATURE.md` §S3.2.1, and an `|Δz| = 1` variant used in the modern literature). The theorem content is the isovalent characterization, the pairing, and the existence of a compensating partner of opposite sign |
