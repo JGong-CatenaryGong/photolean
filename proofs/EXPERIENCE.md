@@ -3291,3 +3291,69 @@
   3. **Re-probing the whole theorem list after a one-row change is cheap and is the only honest way to
      claim "the other rows are unchanged"**: the module's olean is rebuilt, so a probe from before the
      edit is not evidence. 12 `axioms.sh` invocations in a loop took well under a minute.
+
+## 2026-09-21 — G6 Goldschmidt instance/verdict layer: Shannon-radius perovskite verdicts, the band flip, the rule rows — prover_d — DONE
+
+- Task: `PhotoLean/Goldschmidt/Instances.lean` (milestone G6, the final content milestone). Delivered
+  **34 declarations** = the 11 printed-radius constants (`rA_Sr`, `rA_Ca`, `rA_Ba`, `rA_Cs`, `rA_La`,
+  `rA_Na`, `rB_Ti`, `rB_Mn`, `rB_Nb`, `rB_Ni`, `rO_shannon`) + the 23 verdict theorems, exactly the
+  authority's `## G6`, and **no auxiliary declaration at all** (every proof is a closed tactic block or
+  a one-line reference to a row already in the file), so the whole file is authority content.
+  Commit `427609b` (`git add` of that one path; 308 insertions).
+- Gates, raw: `proofs/scripts/lake build PhotoLean.Goldschmidt.Instances` → exit 0, "Build completed
+  successfully.", 0 warnings (re-measured on a fresh olean); `proofs/scripts/check.sh --strict
+  PhotoLean.Goldschmidt.Instances` → `sorry / custom axiom scan` = `clean`, `build: OK`, `verdict:
+  PASS` (after the prose fix below); `proofs/scripts/axioms.sh PhotoLean.Goldschmidt.Instances
+  PhotoLean.Goldschmidt.<thm>` on **all 23 theorems** → each exit 0 with `verdict: PASS (only mathlib
+  infrastructure axioms)`, the list `[propext, Classical.choice, Quot.sound]`;
+  `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G6` → `skeleton
+  declarations: 34`, `delivered, word-for-word: 34`, `delivered, not in authority: 0`, `not delivered
+  yet: 0`, `signature differences: 0`; extra `python3
+  theories/goldschmidt/probes/goldschmidt-instance-check.py` → exit 0, "every asserted number
+  reproduced exactly (0 mismatches)".
+- **No `norm_num` refusal anywhere**: all 23 rows closed on the first build, on the published squared
+  values (SrTiO₃ `161312/160801 > 1`, CaTiO₃ `150152/160801`, BaTiO₃ `181202/160801`,
+  LaMnO₃ `152352/167281`, NaNbO₃ `8649/9248`, BaNiO₃ `90601/70688 > 1.21`). Worth recording as a
+  positive result: the numbers were certified off-kernel (the instance cross-check script, the
+  verifier's recomputation, the authority) before dispatch, and the kernel round was then pure
+  bookkeeping — the milestone-riskiest thing in it turned out to be a docstring (next bullet).
+- **The only defect was in my own prose, and the detector was `check.sh --strict`.** The gate failed
+  with `PhotoLean/Goldschmidt/Instances.lean:20: constant is hidden inside a definition.` — the header
+  sentence wrapped so that a *comment line began with the word* `constant`, which the scan's pattern
+  `^[[:space:]]*(private[[:space:]]+|protected[[:space:]]+)?(axiom|constant)([[:space:]]|$)` matches
+  (`constant` declares an axiom in Lean 4, so it is matched alongside `axiom`). Nothing at that line
+  number was unsound; the fix was a rewording so that no comment line starts with `constant`/`axiom`.
+  Reusable: **the strict scan is a line-oriented grep over all of `SOURCE_DIRS`, comments included —
+  keep `sorry`, `admit`, `axiom`, `constant` out of prose too, or a green proof round reports FAIL.**
+- Tried and failed (each replaced by a working route):
+  1. `norm_num` alone on the `Rat.radiusMatchQ` / `Rat.substitutableQ` rows → `unsolved goals
+     ⊢ |1 / 10| ≤ 27 / 125` (positive row) and `⊢ 201 / 1000 < |27 / 100|` (negative row): `norm_num`
+     does **not** evaluate `|·|` on `ℚ`. Working route: `unfold …; norm_num [abs_of_nonneg]` (the hint
+     proves `0 ≤ 27/100` and rewrites the absolute value). This is the one recipe that had to be
+     applied verbatim; every neighbouring numeric row is fine with plain `norm_num`. (`decide` also
+     fails on `ℚ` comparisons — nothing to fall back on there.)
+  2. `unfold Rat.inBandQ Rat.classicLoQ Rat.classicHiQ … at h2` in the negative `inBandQ` rows →
+     `tactic 'unfold' failed to unfold 'Rat.inBandQ'`: after `rintro ⟨h1, h2⟩` the conjunction has been
+     destructed, so `inBandQ` no longer occurs, and `classicLoQ` is absent too (for SrTiO₃, BaTiO₃ and
+     BaNiO₃ it is the *upper* half that fails). Working route: unfold **exactly the constants still
+     present in that hypothesis** (`unfold Rat.classicHiQ rA_Sr rB_Ti rO_shannon at h2`), then
+     `norm_num at h2`. Generalization: `unfold … at h` is not stable across a `rintro` that destructs a
+     definition — unfold after destructing, and only the names that survive.
+  3. `decide` / bare `norm_num` on the charge rows: `ChargeBalanced` is a `Finset` sum, so the sum has
+     to be computed before the arithmetic is visible. Working route: `unfold ChargeBalanced; rw
+     [Fintype.sum_bool]` (two-site) resp. `rw [Fintype.sum_unique]` (single-site), then `norm_num`; the
+     compensating-partner row is `⟨false, by decide, by norm_num⟩`.
+  4. Arithmetic for `tolFac 1 1 1 = 1/√2` via `field_simp; ring` detours through `(√2)² = 2`; one-step
+     route: `unfold tolFac; rw [div_eq_div_iff (by positivity) (by positivity)]; ring` (both side
+     conditions are closed by `positivity`).
+  5. The ℕ-pinning trap of the dispatch was avoided rather than hit: every row here is pinned by
+     `Rat.inBandQ : ℚ → …` (or by an explicit `ℚ`/`ℝ` annotation), so no `157/100` could elaborate in
+     ℕ. The one place to watch it is helper `example`s with no pinned numeric type — there, a false
+     proposition can appear "proved" and leaves an absurd `⊢ False` goal; the probe file for this
+     milestone therefore used the real definitions instead of bare `example`s.
+- Reusable pattern: **an instance layer should be composed from rows already delivered, not re-derived**
+  — `inst_BaTiO3_band_flip` is the conjunction of its two halves, `inst_radius_ok_but_band_lost` reuses
+  `inst_SrTiO3_tooLarge_classic`, and `inst_ideal_row_classic` is `conforms_at_idealA_classic` (G3)
+  instantiated. That keeps the file exactly the authority's declaration list with zero auxiliaries, and
+  it makes every "the verdict depends on the convention" claim a pair of kernel facts rather than a
+  prose caveat.

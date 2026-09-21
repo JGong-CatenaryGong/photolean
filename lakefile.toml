@@ -32,6 +32,7 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.Goldschmidt.Criterion",
                   "PhotoLean.Goldschmidt.Sharp",
                   "PhotoLean.Goldschmidt.RatModel",
+                  "PhotoLean.Goldschmidt.Instances",
                   "PhotoLean.Sabatier.Basic", "PhotoLean.Sabatier.Criterion",
                   "PhotoLean.Sabatier.Sharp", "PhotoLean.Sabatier.Compose",
                   "PhotoLean.Sabatier.RatModel", "PhotoLean.Sabatier.Instances"]
