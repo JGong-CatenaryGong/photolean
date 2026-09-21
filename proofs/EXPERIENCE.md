@@ -2836,3 +2836,63 @@
   as theorems. Two of the three differences needed no new analysis at all — the Sabatier one-sided
   secant rows and `Marcus.barrier_at_lam` were already delivered; assembling them into one contrast
   is what makes the non-relation checkable.
+
+## 2026-09-21 — G1 Goldschmidt description layer: tolerance factor, ideal packing, band classifier — prover_b — DONE
+
+- Task: `PhotoLean/Goldschmidt/Basic.lean` (milestone G1; the dispatch assigned the file to prover_b,
+  the board row still names the lead, who owns the tick). Delivered **29 declarations** = 15
+  definitions (`tolFac`, `latticeOf`, `idealAO`, `idealA`, `rAMin`, `rAMax`, `InBand`,
+  `GoldschmidtConforms`, the inductive `GoldschmidtZone` with `deriving DecidableEq`,
+  `goldschmidtZone`, `gapA`, `classicLo`, `classicHi`, `tetragonalHi`, `tauGoldschmidt`) plus 14
+  theorems (`tolFac_pos`, `two_div_sqrtTwo`, `latticeOf_div_sqrtTwo`, `tolFac_eq_distRatio`,
+  `contact_iff_tolFac_one`, `idealA_eq`, `idealA_tolFac`, `gapA_pos_iff`,
+  `goldschmidtZone_eq_tooSmall_iff`, `goldschmidtZone_eq_ideal_iff`,
+  `goldschmidtZone_eq_tooLarge_iff`, `goldschmidtZone_eq_tooLarge_iff_of_band`, `rAMin_one`,
+  `rAMax_one`). Every signature matches the authority word for word (the authority's own row was
+  amended first, see below); every docstring carries its plan locus. Commit `65cdd32`.
+- Gates, raw: `proofs/scripts/lake build PhotoLean.Goldschmidt.Basic` → exit 0, "Build completed
+  successfully." (0 warnings); `proofs/scripts/check.sh --strict PhotoLean.Goldschmidt.Basic` → exit
+  0, `sorry / custom axiom scan` = `clean`, `verdict: PASS`; `proofs/scripts/axioms.sh
+  PhotoLean.Goldschmidt.Basic PhotoLean.Goldschmidt.<theorem>` on **all 14 theorems** → each exit 0
+  with `verdict: PASS (only mathlib infrastructure axioms)`, the list being
+  `[propext, Classical.choice, Quot.sound]`; `python3 theories/BEP/probes/bep-fidelity.py --theory
+  goldschmidt --milestone G1` → `skeleton declarations: 29`, `delivered, word-for-word: 29`,
+  `delivered, not in authority: 0`, `not delivered yet: 0`, `signature differences: 0` (exit 0).
+- **The statement-first rule earned its keep on a statement, not on an API name.** The authority's
+  first draft of `goldschmidtZone_eq_tooLarge_iff` read `goldschmidtZone lo hi t =
+  GoldschmidtZone.tooLarge ↔ hi < t`. That is FALSE: the classifier is an `if`-cascade whose first
+  test is `t < lo`, so on an inverted band the first branch wins. Kernel counterexample
+  (`lo = 1`, `hi = 0`, `t = 1/2`): `t < lo` holds, hence `goldschmidtZone 1 0 (1/2) =
+  GoldschmidtZone.tooSmall`, while `hi < t` holds — `False ↔ True`. Repaired by the lead through the
+  authority's statement-correction log (plan §3.1 item 4): the exact unconditioned row
+  `↔ lo ≤ t ∧ hi < t` plus the `lo ≤ hi` corollary (band non-emptiness is a standing physical
+  premise, plan §2). The lesson generalizes: **an `if`-cascade's characterization rows are rows
+  about the ORDER of the tests, not about the predicates they test; probe every such row on an
+  inverted or otherwise ill-ordered input before proving it.** `goldschmidtZone_eq_tooSmall_iff`
+  (`↔ t < lo`) and `goldschmidtZone_eq_ideal_iff` (`↔ lo ≤ t ∧ t ≤ hi`) survive that probe
+  unconditioned; the `tooLarge` row does not.
+- Tried and failed (each replaced by a working route):
+  1. `Real.sqrt_ne_zero_of_pos` / `Real.sqrt_two_pos` → `unknown constant` in v4.17.0 (my own probe;
+     the API probe records the same drift). Working names: `Real.sqrt_ne_zero'` (`.mpr`) and
+     `Real.sqrt_pos_of_pos`.
+  2. `two_div_sqrtTwo` via `Real.sq_sqrt` + `rw [div_eq_iff hne]` + `rw [← sq]` does work but needs
+     the nonnegativity side condition and the `sq` shuffle; `exact Real.div_sqrt` closes it in one
+     step **unconditionally** (`∀ {x}, x / √x = √x`), including `x = 0`.
+  3. `simp [h1, h2]` does **not** close the classifier's branch-mismatch goals: after `unfold
+     goldschmidtZone` the branch goals `¬ GoldschmidtZone.tooSmall = GoldschmidtZone.tooLarge` are
+     reported as `unsolved goals` even though the inductive has `deriving DecidableEq` (no simp rule
+     for constructor disjointness fires here). Working route: `split_ifs with h1 h2` (branch
+     bookkeeping: in branch `i` the earlier hypotheses arrive negated) plus `iff_of_true rfl …` /
+     `iff_of_false (by decide) …`.
+  4. Trying to close the false row by `by_cases`/`simp` never terminates on the branch
+     `t < lo ∧ hi < t`: `norm_num` on the concrete instance reduces the goal to
+     `¬ GoldschmidtZone.tooSmall = GoldschmidtZone.tooLarge` — i.e. it shows the FIRST branch fired,
+     which is exactly the counterexample. A concrete-term probe is the cheap way to settle such a row
+     before spending proof effort.
+  5. `norm_num` alone leaves the constructor-mismatch goal open (`by decide` closes it):
+     constructor distinctness is not arithmetic.
+- Reusable pattern: a draft of a whole milestone file can be type-checked **before** the module is
+  registered with lake by writing it to `.lake/tmp/<Draft>.lean` and running
+  `proofs/scripts/lake env lean .lake/tmp/<Draft>.lean` (~2 s with the cached mathlib oleans). Both
+  the 29-declaration draft and the counterexample probe were settled this way; nothing entered
+  `PhotoLean/` until it compiled clean.
