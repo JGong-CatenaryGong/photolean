@@ -95,6 +95,29 @@ theorem crossoverWitness_verdict :
   · unfold fpZoneQ
     norm_num
 
+/-- **The negative result, finalized (Phase 3, plan §3.1 entry 4 / §4 row FP-I4)**: the first
+frozen form of FP-C5's second half is refuted at the witness `kF = 0, kIC = 0, kISC = 1,
+kISC' = 2, kP = 1, kNR = 1` — there both `FPData` bundles are admissible (`s1Decay = 1` and `2`
+respectively), yet `phiP` takes the value `kP/(kP+kNR) = 1/2` at BOTH `kISC` values, so the
+strict inequality fails. This witness is why the re-frozen row carries the load-bearing premise
+`0 < kF + kIC` (the live non-triplet S₁ channel). -/
+theorem fpC5_firstForm_refuted :
+    ¬ (∀ (kF kISC kISC' kIC kP kNR : ℝ), FPData kF kISC kIC kP kNR →
+        FPData kF kISC' kIC kP kNR → 0 < kP → kISC < kISC' →
+          phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR) := by
+  intro h
+  have h1 : FPData 0 1 0 1 1 := by
+    refine ⟨by norm_num, by norm_num, by norm_num, by norm_num, by norm_num, ?_, ?_⟩
+    · unfold s1Decay; norm_num
+    · norm_num
+  have h2 : FPData 0 2 0 1 1 := by
+    refine ⟨by norm_num, by norm_num, by norm_num, by norm_num, by norm_num, ?_, ?_⟩
+    · unfold s1Decay; norm_num
+    · norm_num
+  have hv := h 0 1 2 0 1 1 h1 h2 (by norm_num) (by norm_num)
+  unfold phiP iscBranch t1BranchP s1Decay at hv
+  norm_num at hv
+
 end FluorPhos
 
 end PhotoLean

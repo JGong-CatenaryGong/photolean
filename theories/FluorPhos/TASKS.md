@@ -26,7 +26,7 @@
 - [x] **Statement skeleton compiles** (the Sprint-0 gate):
       `theories/FluorPhos/probes/FluorPhos-statement-skeleton.lean` — **29 declarations**
       (16 theorems + 13 definitions/structures/inductives),
-      `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `b116adddea484896f7068c00141989d70871db4f51fe36749a2dbc44e24f4480`
+      `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `2a717f1f51fd0f263513675945694b55a9034bb1e6b1299489d630ac7f96e7f4`
 - [x] API calibration probe: `theories/FluorPhos/probes/FluorPhos-api-probe.lean` (exit 0)
 - [x] Literature leaf populated: `theories/FluorPhos/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
@@ -76,7 +76,7 @@ with the four targets in `defaultTargets`.
 
 `phiP_strictMono_isc` was re-frozen with the load-bearing premise `0 < kF + kIC`: the first frozen
 form is FALSE at `kF = kIC = 0` (kernel-checked counterexample at `kISC = 1 → 2`, both sides `1/2`;
-probe `.lake/tmp/lead_fp_c5_probe.lean`, exit 0). New authority sha256 `b116adddea484896f7068c00141989d70871db4f51fe36749a2dbc44e24f4480`.
+probe `.lake/tmp/lead_fp_c5_probe.lean`, exit 0). New authority sha256 `2a717f1f51fd0f263513675945694b55a9034bb1e6b1299489d630ac7f96e7f4`.
 
 ---
 
@@ -115,3 +115,10 @@ Findings and resolution:
 * Premise residue (F3 of the verifier's own list): `crossover_isc`'s `hkF`/`hkP`,
   `crossover_isc_threshold`'s and `fpZoneQ_*`'s `hkF`, `hso_zero_no_phosphorescence`'s `h`, and
   FP-C5b's `h'` — queued for the Phase-3 premise audit with the verifier's stripped-form proofs.
+
+## Phase-3 additions (2026-09-23)
+
+- `fpC5_firstForm_refuted` (FP-I4, negative-result finalization): the first frozen FP-C5 second
+  half refuted at `kF = kIC = 0, kISC = 1 → 2` (both yields `1/2`). Authority sha256 `2a717f1f51fd0f263513675945694b55a9034bb1e6b1299489d630ac7f96e7f4`.
+- Five premise trims (crossover_isc, crossover_isc_threshold, hso_zero_no_phosphorescence,
+  fpZoneQ_phosphorDominant_iff, phiP_strictMono_isc) — plan §3.1 entry 3.

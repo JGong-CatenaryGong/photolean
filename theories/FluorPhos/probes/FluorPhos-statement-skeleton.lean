@@ -227,6 +227,17 @@ theorem crossoverWitness_verdict :
     fpZoneQ 1 2 (1 / 2) 1 1 = .balanced ∧ fpZoneQ 1 3 (1 / 2) 1 1 = .phosphorDominant := by
   sorry
 
+/-- **The negative result, finalized (Phase 3)**: the FIRST frozen form of FP-C5's second half
+is refuted by the kernel — without the premise `0 < kF + kIC` the phosphorescence yield is
+independent of `kISC` when the S₁ state decays only into the triplet (`kF = kIC = 0`), so the
+strict monotonicity fails. Plan section 4, row FP-I4 (added in the Phase-3 negative-result
+finalization; §3.1 entry 4). -/
+theorem fpC5_firstForm_refuted :
+    ¬ (∀ (kF kISC kISC' kIC kP kNR : ℝ), FPData kF kISC kIC kP kNR →
+        FPData kF kISC' kIC kP kNR → 0 < kP → kISC < kISC' →
+          phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR) := by
+  sorry
+
 end FluorPhos
 
 end PhotoLean
