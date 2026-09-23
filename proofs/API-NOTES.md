@@ -4087,6 +4087,7 @@ in the theory plans' §3.1 but not here).
 | 4 | ICvsISC | FC-I2 instance barrier `1/16` (plan draft, question-marked) → `1/32` | probe recompute; the ISC barrier is strictly lower | `theories/ICvsISC/probes/ICvsISC-api-probe.lean` | plan §3.1 (recorded at Phase 1 as an arithmetic recompute) |
 | 5 | EnergyGapLaw | EG-I3 tangent defect `-20` → `-5`
 | 6 | Forster | plan §4 text: `frameKappa : ℚ`, `FO-I1 = 64/729`, `FO-C4 fretEff6_eq`, FO-C10's spare binder | plan text synchronised to the frozen authority (ℤ-valued frame + two-step average; `64/793`; `fretEff_eq`; binder dropped); no delivered statement ever differed | probe recompute + verifier run 3 | plan §3.1 entries 1–2 |; EG-S4 drops the unconsumable `0 < A`; EG-C4 corollary stated as an iff | probe recompute + weakest-premise + "exactly when" wording | `theories/EnergyGapLaw/probes/EnergyGapLaw-api-probe.lean` | plan §3.1 entries 1–3 |
+| 7 | FluorPhos | `phiP_strictMono_isc` gains `0 < kF + kIC` | the first frozen form is FALSE at `kF = kIC = 0` (`phiP` independent of `kISC`) | kernel counterexample at `kISC = 1 → 2`, `.lake/tmp/lead_fp_c5_probe.lean` | plan §3.1 entry 2; board re-freeze note |
 
 **Registered for the Phase-3 authority revision (not yet changed)**: `SternVolmer.mixed_witness`'s
 third conjunct is a tautology (`0 < 1`, no model object — verifier M3); `Einstein.radFactor_not_rational`

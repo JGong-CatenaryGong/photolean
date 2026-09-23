@@ -96,10 +96,19 @@ theorem phiF_strictAnti_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC
   sorry
 
 /-- Plan §4, FP-C5 (second half). The heavy-atom direction on phosphorescence: more intersystem
-crossing, more phosphorescence. Route: `phiP_eq` both sides, then `div_lt_div_iff` with the
-positivity fields. -/
+crossing, more phosphorescence. Route: `phiP_eq` both sides, clear the positive denominators, and
+reduce to `kP·(kISC' − kISC)·(kF + kIC) > 0`.
+
+**Re-frozen 2026-09-23 (plan §3.1 entry 2; counterexample found by the lead while the row resisted
+proof).** The first frozen form carried only `FPData`, `0 < kP` and `kISC < kISC'`, and it is
+**FALSE**: at `kF = 0, kIC = 0` (an admissible bundle: the S₁ state is populated only into the
+triplet) the yield collapses to `kP/(kP+kNR)`, independent of `kISC` — kernel-checked counterexample
+at `kISC = 1 → 2` (both sides `1/2`). The load-bearing premise is exactly `0 < kF + kIC` (the
+non-triplet S₁ decay channel): with it the map `kISC ↦ phiP` is strictly increasing, without it it
+is constant. The premise is added; nothing else changes. -/
 theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (h' : FPData kF kISC' kIC kP kNR) (hkP : 0 < kP) (hlt : kISC < kISC') :
+    (h' : FPData kF kISC' kIC kP kNR) (hkP : 0 < kP) (h0 : 0 < kF + kIC)
+    (hlt : kISC < kISC') :
     phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR := by
   sorry
 

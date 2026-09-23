@@ -3999,3 +3999,65 @@ reinstated: **a premise is "decorative" only when a kernel-checked counterexampl
 statement without it survives — verify by attempting the stripped form, never by reading the
 proof.** (`linarith`-provable warnings are evidence of non-consumption in the PROOF, not of
 non-essentiality in the STATEMENT.)
+
+## 2026-09-23 — Photophysics batch Phase 2, wave 2: FluorPhos (prover_c) — DONE-PARTIAL (28/29 declarations)
+
+Delivered `PhotoLean/FluorPhos/{Basic,Criterion,RatModel,Instances}.lean` (FP-B1–FP-B6,
+FP-C1–FP-C4, FP-C6–FP-C8, FP-R1–FP-R2, FP-I1–FP-I3). Gates: four per-module builds exit 0;
+`check.sh --strict` (whole tree) PASS; `axioms.sh` PASS for all 15 theorems (each
+`[propext, Classical.choice, Quot.sound]`); fidelity 28/29 word-for-word, 0 signature
+differences, 1 not delivered (`phiP_strictMono_isc`, NEEDS-LARGE-MODEL).
+
+**Failure of record — FP-C5 (second half) `phiP_strictMono_isc` (NOT delivered; the statement was
+never changed).** The row is true and its mathematical ingredients were all verified:
+(a) the S₁→T₁ branch `kISC / (kF + kISC + kIC)` is strictly increasing in `kISC` when `kF + kIC > 0`
+— route `a/(a+s) < b/(b+s)` for `0 < a < b`, `0 < s` closes by `div_lt_div_iff₀` + `nlinarith`
+(measured, reused in the probe); (b) `t1BranchP kP kNR` is a positive constant in `kISC`, so
+`mul_lt_mul_of_pos_right` finishes. Every one of five routes stalled on ONE local step:
+`0 < kF + kIC` from `h : 0 < kF + kISC + kIC` and `hb : 0 ≤ kISC`. Routes tried and their exact
+outcomes:
+1. `linarith` / `nlinarith [h, hb]` — **fails** on the bare shape
+   `example {a b : ℝ} (h : 0 < a + b) (hb : 0 ≤ b) : 0 < a` (measured; `linarith` closes the
+   unrelated `example {a b : ℝ} (h : 0 < b) (ha : 0 ≤ a) : 0 < a + b`, so the failure is specific
+   to this sum shape / atom ordering, not to `linarith` being broken).
+2. `have hb' : b ≤ a + b := by linarith` then `lt_of_add_lt_add_right` — **fails**: `linarith`
+   cannot prove `b ≤ a + b` in this shape either.
+3. `pos_of_add_pos_of_nonneg` — **the lemma does not exist** in mathlib v4.17.0 (unknown
+   identifier; confirmed by `#check`).
+4. Rewriting `a = (a + b) - b` then `linarith` — **fails** at the same residual.
+5. Cross-multiplied algebraic identities for the `phiP` half (`B - A` in various factorisations):
+   repeatedly produced **wrong identities that `ring` correctly refused to close**; the correct
+   identity is `B - A = kP·(kP+kNR)·(kISC'-kISC)·(kISC + kISC' - kF - kIC)`, whose sign needs the
+   same `kF + kIC`-type positivity fact.
+WHAT A FRESH ATTEMPT SHOULD DO: derive `kF + kIC > 0` from `h` and `hb` **without `linarith`**
+(e.g. by exhibiting the two positive summands: with `t := kISC ≥ 0` write
+`kF + kIC = (kF + kISC + kIC) + (-kISC)` and use `add_pos_of_pos_of_nonneg` with a `neg`-rewrite),
+then replay route (a)+(b) which are already verified. Budget spent: ~5 h wall, 5 routes.
+
+**Algebra lessons that cost the most time this round (all measured):**
+- `ring` does NOT unfold the opaque definition `s1Decay`; every row that rewrites a common
+  denominator into the plain rate sum must spell the unfolding (`rw [s1Decay]` or
+  `simp only [s1Decay]`) BEFORE `ring`. Measured: `ring` on
+  `s1Decay kF kISC kIC * (kP + kNR) * kNR = ...` leaves the goal open, the same goal after
+  `rw [s1Decay]` closes.
+- `field_simp` can CLOSE a goal while the following `ring` then errors "no goals to be solved";
+  the same tactic sequence inside a `have` in a larger proof can behave differently than at top
+  level. Detect by removing the trailing tactic, not by adding one.
+- A `no goals to be solved` error at line N is reported at the tactic AFTER the one that closed
+  the goal; do not trust the line number alone.
+- **Hand-derived algebraic identities must be checked by the kernel or by a CAS before being
+  written as a `ring` lemma.** Three separate factorisations of the same expression were wrong and
+  each cost a build cycle; `python3 -c "import sympy; ..."` settled them in seconds. Cheap
+  discipline: verify every non-obvious `ring` identity symbolically FIRST.
+
+**Scratch-file placement (cross-cutting, reported by the lead this round):** a scratch buffer
+written under `PhotoLean/` is inside `SOURCE_DIRS` and its unproved placeholder bodies break the
+whole-tree `check.sh --strict` gate for every worker. Keep scratch under
+`theories/<Theory>/probes/` (the delivered calibration probe is
+`theories/FluorPhos/probes/scratch-prover_c.lean`, which is kernel-checked and scan-clean).
+
+**Statement-incident check (SV-R1 class): NEGATIVE for this theory.** The `Rat.*` cast rows were
+`#print`-checked under their prefixed names; the printed right-hand sides are
+`PhotoLean.FluorPhos.phiF` / `...phiP` (not the `Rat` shadows), so `Rat.phiF_cast` /
+`Rat.phiP_cast` are the intended bridges and not vacuous identities. The FluorPhos authority
+already carried fully-qualified right-hand sides.
