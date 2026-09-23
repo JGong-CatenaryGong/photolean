@@ -3720,3 +3720,71 @@
   Named-binder arguments are mandatory for the delivered `Kasha.not_kashaRule_of_rad_pos`
   (`(i := 1) hR ...`): writing the index positionally binds `h1 : 1 ≤ i` instead and the
   elab error is "numerals are data in Lean, but the expected type is a proposition".
+
+## 2026-09-22 — Photophysics batch Phase 2, wave 1 (StokesShift / SternVolmer / KashaVavilov / Einstein delivered; D1 and D2 cores proved) — lead + prover_a/b/c/d — PARTIAL DONE
+
+- Delivered and board-set to `review` (92 of the batch's 180 theorems): StokesShift 23/23 (4 modules),
+  SternVolmer 27/27 (4 modules, D1 core), KashaVavilov 20/20 (3 modules, D2 core), Einstein 22/22
+  (4 modules). Wave 2 dispatched: EnergyGapLaw (prover_a), QuantumYield (prover_b), FluorPhos
+  (prover_c), Forster (prover_d). Verifier run on the wave-1 four dispatched the same round.
+- **Two defects in the shared fidelity checker (`theories/BEP/probes/bep-fidelity.py`), both found by
+  workers and fixed by the lead** — each fix was regression-tested by re-running all 16 theories and
+  requiring the seven earlier theories' reports to stay byte-identical:
+  1. Bare-name signature keying: a nested `namespace Rat` shadowed same-named outer rows, producing
+     five FALSE differences on verbatim copies (Einstein, StokesShift) and a wrong declaration count
+     (28 instead of 33). Fix in `7f24a1c`: exact qualified keying with a unique-bare-name fallback —
+     the fallback is what keeps the seven old theories matching, since their authorities declare at
+     top level while their delivered modules sit in `namespace PhotoLean.<Theory>` (measured: Marcus
+     51/51 before and after).
+  2. Dotted declaration names (`theorem Rat.foo_cast`) were truncated at the dot, so every `Rat.*` row
+     of a theory collapsed into one key (SternVolmer reported 39 keys for 46 authority declarations;
+     the four cast rows were invisible to the checker). Fixed by widening the capture to
+     `[A-Za-z_][\w'.]*` in both parsers; SternVolmer then reads 46/46 with 0 differences.
+- **Statement incident SV-R1 (found while proving, re-frozen by the lead — plan §3.1 entry 1)**: the
+  authority's four cast-coherence rows were VACUOUS. A `Rat.`-prefixed declaration elaborates its own
+  type inside namespace `Rat`, so the unqualified right-hand side `svRatioDyn` resolved to the ℚ
+  shadow and each row became the identity `↑x = ↑x`, closable by `rfl` — contradicting the row's own
+  docstring, the plan and the Phase-1 api probe (which measured the shape in an unnamed `example`,
+  i.e. in the outer namespace, hence the intended reading). Fix: fully-qualified right-hand sides;
+  `#print` after the fix shows the real bridge. **Cross-cutting pitfall for every `Namespace.`-prefixed
+  declaration name** — now in all wave-2 dispatch prompts with the instruction to `#print`-check and
+  report rather than silently `rfl`-close. Lesson: a statement authority's TEXT is not its MEANING;
+  cast-coherence rows must be probed under the declaration's own (prefixed) name, not under a bare
+  `example`.
+- Plan-text gap fixed: Einstein §4's EB-C6 middle conjunct printed `= A / K`, which is false
+  (`K = 2, A = 1` gives `1 = 1/2`); the authority and the delivered proof carried the correct `= A`.
+  §3.1 entry 1 added. Lesson: when a worker cites a plan entry that does not exist, the plan text of
+  record is the thing to repair — statement-first held (the authority was followed), but the plan
+  drift was invisible until Phase 2.
+- Tried and failed (measured; each from a worker report or the lead's own edit work):
+  1. `push_cast` does not normalize `↑(0 : ℚ)` to `(0 : ℝ)`; a `rw [.._cast]` then leaves `↑0` and
+     `0` side by side and fails. Route that works: unfold both bodies to the bottom, then `norm_cast`
+     (it closes the goal; a following `ring` errors "no goals to be solved").
+  2. Bare `norm_num` can succeed WITHOUT progressing (goal not a top-level numeric relation): it
+     reports no error while the goal is unchanged. Always inspect the goal after `norm_num`; if it did
+     not move, switch to `unfold`+`norm_cast`/`ring`.
+  3. `decide` re-measured for the third time: fine on integer-literal ℚ (and on `Fin`-indexed ℤ sums,
+     see Forster's frame average), stuck on division-bearing literals (`Rat.instDecidableLt`); the
+     three-way classifier correctness rows are cleanest as `unfold ...; split_ifs with h1 h2` +
+     `iff_of_true`/`iff_of_false`.
+  4. `unfold f g h` with several names fails when unfolding an earlier name removes a later name's
+     occurrence ("failed to unfold"); one `unfold` per line.
+  5. `field_simp` ALONE closes the one-factor linearity shape `(k0 + kq*q)/k0 = 1 + (kq/k0)*q` (a
+     following `ring` errors "no goals"), while the two-factor combined shape needs `field_simp` THEN
+     `ring`. Monotonicity rows: `div_lt_div_iff_of_pos_right` (never the deprecated form).
+  6. `#print`ing a delivered row is the only way to catch the vacuous-cast defect class; build success
+     and a green fidelity report are both blind to it (the vacuous row matches its vacuous authority).
+  7. Long-lived scratch state is unreliable: `/tmp` does not persist across shell resets, and a patch
+     written in one invocation was lost by a mid-round shell reset (the file read back unchanged, git
+     status clean). Write-and-verify in ONE invocation, and commit as soon as a green state exists.
+  8. Scripted text edits must be bounded by markers that cannot bracket other declarations: an edit
+     whose end-anchor sat past the shadow definitions silently deleted them (twice, on
+     `SternVolmer/RatModel.lean`); the working protocol is restore-from-git + one anchored edit per
+     step + a declaration-count assertion after every step.
+- Premise residue registered for the Phase-3 audit (frozen authority, linter-visible): Einstein
+  `yield_radiative` (`hA`, `hkNR` unconsumed — `mul_one_div` is unconditional), SternVolmer `SV-C8`'s
+  `hk0` and `SV-C10`'s `hkq`, and `tauRatioStat`'s unused `Ka`/`q` parameters. Weakest-premise
+  trimming is an authority change and is batched there.
+- Commit granularity: the contract's one-commit-per-lemma was executed as one commit per module by all
+  four owners (registered deviation; the precedent is the delivered Goldschmidt/SymmetryFactor
+  practice — retroactive splitting would need history rewriting, which the workspace forbids).
