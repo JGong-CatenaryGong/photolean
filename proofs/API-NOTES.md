@@ -4092,3 +4092,52 @@ third conjunct is a tautology (`0 < 1`, no model object — verifier M3); `Einst
 states `Irrational Real.pi` without mentioning `radFactor` (verifier M4; the intended
 `Irrational (radFactor 1 1 1)` is provable); the non-load-bearing premises of wave-1 (verifier M6,
 list in `proofs/EXPERIENCE.md`). Each needs the same re-freeze procedure as rows 1–5.
+
+## §photobatch/Forster — Phase-2 proof calibration (prover_d, 2026-09-23)
+
+Measured against mathlib v4.17.0 while proving FO-B1–FO-B6, FO-C1–FO-C11, FO-R1–FO-R3 and
+FO-I1–FO-I3. Nothing was guessed: every name below was `#check`ed (the Phase-1 probe
+`theories/Forster/probes/Forster-api-probe.lean` plus `.lake/tmp` probes in this round).
+
+Confirmed present and used in the delivered proofs:
+* `Real.sqrt_le_sqrt`, `Real.sqrt_sq_eq_abs`, `Real.sq_sqrt`, `sq_abs`, `sq_le_sq`,
+  `sq_le_sq'`, `sq_nonneg`, `le_of_sq_le_sq`, `abs_sub`, `abs_mul`, `abs_of_nonneg`,
+  `abs_nonneg`, `mul_le_mul_of_nonneg_left`, `Real.abs_cos_le_one`, `Real.sin_sq_add_cos_sq`,
+  `Real.cos_sq_le_one`, `Real.sin_pi_div_two`, `Real.cos_pi_div_two`, `Real.sin_zero`,
+  `Real.cos_zero`, `div_lt_div_iff₀`, `div_le_iff₀`, `div_nonneg`, `div_pos`, `zero_div`,
+  `div_div_div_cancel_right₀`, `div_eq_div_iff`, `pow_pos`, `pow_ne_zero`, `ne_of_gt`,
+  `Set.mem_Ioi`, `Set.mem_Icc.mpr`, `StrictMonoOn`.
+
+**Route correction for FO-C2 (`kappaSq_le_four`) — the plan's fallback was NOT needed.**
+The Phase-1 plan §5 sketch closes "`|x| ≤ 4` hence `x² ≤ 4`" through `sq_le_sq`/`abs_le`. That
+closing step is **invalid**: `|x| ≤ 4` yields only `x² ≤ 16`. Measured: after
+`have := sq_le_sq.mpr h_abs_le` and `simpa [show (2:ℝ)^2 = 4]`, `linarith` reports
+`linarith failed to find a contradiction … a✝ : x ^ 2 > 4`. The delivered finish is the
+square-root form, which is what the two-step route actually needs:
+`h_tri : |x| ≤ p` (triangle + `|cosφ| ≤ 1`), `h_cs : p^2 ≤ (sin²θD+4cos²θD)(sin²θA+cos²θA)`
+(`nlinarith [sq_nonneg (x₁y₂ − x₂y₁)]` with `sq_abs` hints), then
+`p^2 ≤ 2^2` from `sin²θA+cos²θA ≤ 1` and `sin²θD+4cos²θD ≤ 4`, then
+`Real.sqrt_le_sqrt h_p2` with `Real.sqrt_sq_eq_abs` / `abs_of_nonneg hp0` to get `|x| ≤ 2`, and
+`x^2 = |x|^2` by `sq_abs`. **Statement unchanged, bound unchanged (4), no §3.1 fallback entry
+needed.**
+* Related trap: `p^2`'s Cauchy–Schwarz step needs the *other* factor's nonnegativity as an
+  explicit `have` (`0 ≤ sin²θA + cos²θA`) before `nlinarith` can multiply the two bounds; and
+  the first triangle summand's `|cosφ| ≤ 1` fold needs the associativity stated explicitly
+  (`simp only [abs_mul]` into `(|sinθD|*|sinθA|)*|cosφ|`), since `rw [abs_mul, abs_mul]` leaves
+  `|sinθD|*|sinθA|*|cosφ|` and the `calc` step then does not match.
+
+Measured tactic boundaries (this round):
+* `first | ring | skip` trips both linter.unreachableTactic and linter.unusedTactic; plain tactics
+  are what the lint-clean build wants.
+* A multi-rewrite `rw [abs_mul, abs_mul, abs_of_nonneg …]` can **close** the goal, so a following
+  `ring` errors "no goals to be solved"; split the rewrite into two `rw` lines.
+* An application error at argument *n* of a `StrictMonoOn` proof may be caused by argument
+  *< n*: `hS h1 h2 hr h` with `h1 : 0 < κ₁` (not the membership `κ₁ ∈ Set.Ioi 0`) reports
+  "argument `hr` has type … but is expected to have type `κ₁ < κ₂`". Typing the membership first
+  (`have hp1 : (0:ℝ) < … := by rw [r0six]; positivity`) and passing `hS hp1 hp2 hr h` fixes it.
+  The `intro a ha b hb hab` proof shape takes `ha`, `hb`, `hab` **in that order**.
+* `positivity` has no fact about a variable constrained only by `κ₁ < κ₂`; add `have hk2 : 0 < κ₂
+  := by linarith` first.
+* `field_simp` on nested quotients of wrapped definitions (`r0six … / r0six …`) leaves an
+  `n⁻¹^4 * (… )⁻¹` residue; `rw [r0six, r0six]` then `div_div_div_cancel_right₀` twice is the
+  robust route (this also clears the FO-C7 ratio row in one line each).
