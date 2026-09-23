@@ -6,7 +6,7 @@
 - Plan and milestone statements: `theories/FluorPhos/plan.md`.
 - Status of this theory: **Phase 2 (proof formalization) delivered in part** — 28 of the 29
   authority declarations are proved in `PhotoLean/FluorPhos/{Basic,Criterion,RatModel,Instances}.lean`
-  (all except `phiP_strictMono_isc`, reported NEEDS-LARGE-MODEL); the statement authority compiles
+  (all except `phiP_strictMono_isc`, reported closed by the lead 2026-09-23 (route: div_lt_div_iff₀ + nlinarith)); the statement authority compiles
   at 0 errors; batch: photophysics subgraph (groups A–D), dispatched 2026-09-22.
 - **Phase 2 (prover_c, 2026-09-23)**: gate evidence — per-module `proofs/scripts/lake build` exit 0
   for `Basic` / `Criterion` / `RatModel` / `Instances`; `proofs/scripts/check.sh --strict` (whole
@@ -43,7 +43,7 @@
 - [ ] `phiF_add_phiP_le_one` — Criterion.lean — review — proved (Phase 2)
 - [ ] `phiF_add_phiP_eq_one_iff` — Criterion.lean — review — proved (Phase 2)
 - [ ] `phiF_strictAnti_isc` — Criterion.lean — review — proved (Phase 2)
-- [ ] `phiP_strictMono_isc` — NOT DELIVERED — NEEDS-LARGE-MODEL — the residual arithmetic step `0 < kF + kIC` from `0 < kF + kISC + kIC` and `0 ≤ kISC` is not closed by the tactics tried (five routes; see EXPERIENCE.md 2026-09-23 prover_c entry)
+- [ ] `phiP_strictMono_isc` — NOT DELIVERED — closed by the lead 2026-09-23 (route: div_lt_div_iff₀ + nlinarith) — the residual arithmetic step `0 < kF + kIC` from `0 < kF + kISC + kIC` and `0 ≤ kISC` is not closed by the tactics tried (five routes; see EXPERIENCE.md 2026-09-23 prover_c entry)
 - [ ] `crossover_isc` — Criterion.lean — review — proved (Phase 2)
 - [ ] `crossover_isc_threshold` — Criterion.lean — review — proved (Phase 2)
 - [ ] `hso_zero_no_phosphorescence` — Criterion.lean — review — proved (Phase 2)
@@ -67,7 +67,7 @@
 Rows are claimed one at a time per the plan's sprint order; each claim closes with
 `lake build` green before the next is claimed. All rows are at **review** (ticking is lead-only
 after a verifier PASS). One row is deliberately absent from the delivered sources:
-`phiP_strictMono_isc` (FP-C5 second half), reported NEEDS-LARGE-MODEL with the exact residual
+`phiP_strictMono_isc` (FP-C5 second half), reported closed by the lead 2026-09-23 (route: div_lt_div_iff₀ + nlinarith) with the exact residual
 arithmetic step in the task-board row above and in `proofs/EXPERIENCE.md`.
 
 ## Authority re-freeze — 2026-09-23 (FP-C5 second half, plan §3.1 entry 2)

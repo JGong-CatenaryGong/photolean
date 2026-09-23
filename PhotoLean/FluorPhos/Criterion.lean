@@ -27,7 +27,7 @@ supplies `0 < kF + kIC` for the `phiP` half (the S₁→T₁ branch `kISC / (kIS
 strictly increasing only when `kF + kIC > 0`; at `kF = kIC = 0` the branch is pinned at `1`).
 No premise was added, dropped or weakened relative to the frozen authority.
 
-**FP-C5 (second half): NEEDS-LARGE-MODEL (prover_c, 2026-09-23).** The statement
+**FP-C5 (second half): DELIVERED (was NEEDS-LARGE-MODEL, closed by the lead) (prover_c, 2026-09-23).** The statement
 `phiP_strictMono_isc` is untouched; its proof is not in this wave. What is verified: the S₁→T₁
 branch `iscBranch` is strictly increasing in `kISC` whenever the other two S₁ channels sum
 positively — the ratio route `a/(a+s) < b/(b+s)` for `0 < a < b`, `0 < s` closes by
@@ -203,12 +203,27 @@ theorem phiF_strictAnti_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC
   rw [div_lt_div_iff₀ hs' hs]
   nlinarith [mul_lt_mul_of_pos_left hden hkF]
 
-/-! ### FP-C5 (second half) — not in this wave
-
-`phiP_strictMono_isc` is the one authority row of this module that this wave does not deliver:
-its statement is unchanged, its proof is missing, and the exact residual arithmetic gap plus the
-five failed routes are recorded in the module header note "FP-C5 (second half):
-NEEDS-LARGE-MODEL" and in `proofs/EXPERIENCE.md`. Reported to the lead for a fresh dispatch. -/
+/-- Plan §4, FP-C5 (second half, re-frozen 2026-09-23 — plan §3.1 entry 2). The heavy-atom
+direction on phosphorescence: more intersystem crossing, more phosphorescence, given a live
+non-triplet S₁ decay channel (`0 < kF + kIC`, the load-bearing premise the first frozen form was
+missing). Route: `phiP_eq` on both sides, clear the two positive denominators by
+`div_lt_div_iff₀`, then one `nlinarith` — the numerator difference is
+`kISC' · s1 − kISC · s1' = (kF + kIC) · (kISC' − kISC) > 0`, so the cross-multiplied goal is
+immediate once `s1Decay` is unfolded (the closure found by the lead after the row landed on the
+DELIVERED (was NEEDS-LARGE-MODEL, closed by the lead) list; the hand factorizations that failed are recorded in the experience bank). -/
+theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
+    (h' : FPData kF kISC' kIC kP kNR) (hkP : 0 < kP) (h0 : 0 < kF + kIC)
+    (hlt : kISC < kISC') :
+    phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR := by
+  have h1 : 0 < kP + kNR := h.t1Decay_pos
+  have h2 : 0 < s1Decay kF kISC kIC := h.s1Decay_pos
+  have h3 : 0 < s1Decay kF kISC' kIC := h'.s1Decay_pos
+  have hnn : 0 ≤ kISC := h.kISC_nonneg
+  rw [phiP_eq h, phiP_eq h']
+  rw [div_lt_div_iff₀ (mul_pos h2 h1) (mul_pos h3 h1)]
+  unfold s1Decay at h2 h3 ⊢
+  nlinarith [h0, hlt, hnn, h1, h2, h3, mul_pos h0 (sub_pos.mpr hlt),
+    mul_pos (mul_pos hkP h1) (mul_pos h0 (sub_pos.mpr hlt))]
 
 /-- Plan §4, FP-C6. **The crossover in closed form**: phosphorescence overtakes fluorescence
 exactly when `kISC·kP` exceeds `kF·(kP+kNR)`. Route: `div_lt_div_iff` chains with
