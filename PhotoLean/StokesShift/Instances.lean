@@ -76,6 +76,19 @@ theorem invertedCorner :
     ssZoneQ 2 2 = .zeroPhoton ∧ ssZoneQ 3 2 = .invertedEmission := by
   constructor <;> decide
 
+/-- **The negative result, finalized (Phase 3, plan §3.1 entry 1 / §4 row SS-I4)**: the first
+frozen form of SS-C9 — `e00 < lam ↔ Marcus.InvertedRegion lam e00` — is refuted by the kernel at
+the witness `lam = 1, e00 = 2` (there `2 < 1` is false while `InvertedRegion 1 2` — i.e. `1 < 2` —
+is true, so the iff fails). The corrected row `emEnergy_pos_iff_inverted` identifies the OPEN
+emission window with the inverted region; this witness registers WHY the first form could not be
+repaired in place. -/
+theorem invertedCorner_firstForm_refuted :
+    ¬ (∀ lam e00 : ℝ, (e00 < lam ↔ PhotoLean.Marcus.InvertedRegion lam e00)) := by
+  intro h
+  have hiff := h 1 2
+  unfold PhotoLean.Marcus.InvertedRegion at hiff
+  norm_num at hiff
+
 end StokesShift
 
 end PhotoLean

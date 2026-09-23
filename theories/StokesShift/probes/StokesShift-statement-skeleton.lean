@@ -242,6 +242,15 @@ theorem invertedCorner :
     ssZoneQ 2 2 = .zeroPhoton ∧ ssZoneQ 3 2 = .invertedEmission := by
   sorry
 
+/-- **The negative result, finalized (Phase 3)**: the FIRST frozen form of SS-C9 is refuted by
+the kernel — the plan's §3.1 entry 1 records that `e00 < lam ↔ Marcus.InvertedRegion lam e00`
+unfolds to `e00 < lam ↔ lam < e00`, which is false; this row delivers that refutation as a
+theorem with its parameter witness (`lam = 1, e00 = 2`: `2 < 1` false, `InvertedRegion 1 2`
+true). Plan section 4, row SS-I4 (added in the Phase-3 negative-result finalization). -/
+theorem invertedCorner_firstForm_refuted :
+    ¬ (∀ lam e00 : ℝ, (e00 < lam ↔ PhotoLean.Marcus.InvertedRegion lam e00)) := by
+  sorry
+
 end StokesShift
 
 end PhotoLean

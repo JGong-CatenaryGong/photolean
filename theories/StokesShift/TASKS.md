@@ -20,7 +20,7 @@
 - [x] **Statement skeleton compiles** (the Sprint-0 gate):
       `theories/StokesShift/probes/StokesShift-statement-skeleton.lean` — **35 declarations**
       (23 theorems + 12 definitions/structures/inductives),
-      `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `d5b88990db19a20b36c0e638ea9deb83366e2a9fbf81281e0d969f9aa0ba3c0a`
+      `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `c2372a2e7cd57e5e0e5ee8deaa3da113f4cdaa3a55d6dc9f49e19ebf697f0f8e`
 - [x] API calibration probe: `theories/StokesShift/probes/StokesShift-api-probe.lean` (exit 0)
 - [x] Literature leaf populated: `theories/StokesShift/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
@@ -103,3 +103,8 @@ Findings carried to the Phase-3 audit and to the lead (recorded here as the sing
 * L1–L7 low findings: record hygiene, commit granularity (registered deviation), suppressions
   hiding one real unused premise, an empty commit whose correction never landed (relaunched by the
   lead 2026-09-23), and the naming-bridge caveat on `emEnergy_pos_iff_inverted`.
+
+## Phase-3 additions (2026-09-23)
+
+- `invertedCorner_firstForm_refuted` (SS-I4, the negative-result finalization): the first frozen
+  form of SS-C9 refuted at the kernel witness `lam = 1, e00 = 2`. Authority sha256 now `c2372a2e7cd57e5e0e5ee8deaa3da113f4cdaa3a55d6dc9f49e19ebf697f0f8e`.
