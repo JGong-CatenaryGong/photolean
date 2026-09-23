@@ -74,8 +74,8 @@ theorem eglTangent_defect {A lam kB T xStar x : ℝ} (hA : 0 < A) (hlam : lam �
     (hkT : 0 < kB * T) :
     lnRate A lam kB T x
       = eglTangent A lam kB T xStar x - (x - xStar) ^ 2 / (4 * lam * (kB * T)) := by
-  have h1 := lnRate_eq hA hlam hkT (x := x)
-  have h2 := lnRate_eq hA hlam hkT (x := xStar)
+  have h1 := lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := x)
+  have h2 := lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := xStar)
   unfold eglTangent
   rw [h1, h2]
   field_simp
@@ -127,9 +127,9 @@ theorem lnRate_second_difference {A lam kB T p q : ℝ} (hA : 0 < A) (hlam : lam
     (hkT : 0 < kB * T) :
     lnRate A lam kB T p - 2 * lnRate A lam kB T ((p + q) / 2) + lnRate A lam kB T q
       = -((p - q) ^ 2) / (2 * (4 * lam * (kB * T))) := by
-  have h1 := lnRate_eq hA hlam hkT (x := p)
-  have h2 := lnRate_eq hA hlam hkT (x := q)
-  have h3 := lnRate_eq hA hlam hkT (x := (p + q) / 2)
+  have h1 := lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := p)
+  have h2 := lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := q)
+  have h3 := lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := (p + q) / 2)
   rw [h1, h2, h3]
   field_simp
   ring

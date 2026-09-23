@@ -108,7 +108,7 @@ theorem tangentWitness {A : ℝ} (hA : 0 < A) :
       lnRate A (1 / 2) 1 (1 / 40) x
         = Real.log A - (1 / 2 - x) ^ 2 / (4 * (1 / 2) * (1 * (1 / 40))) := by
     intro x
-    exact lnRate_eq hA (by norm_num) (by norm_num) (x := x)
+    exact lnRate_eq (lam := 1 / 2) (kB := 1) (T := 1 / 40) hA (x := x)
   unfold eglTangent
   rw [key 2, key (3 / 2)]
   ring

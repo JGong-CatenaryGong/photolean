@@ -98,7 +98,7 @@ Plan section 4, row EG-C1. Weakest-premise standard (plan §4): `lam ≠ 0` suff
 algebra — positivity is needed only where the *order* matters. Proof route (plan §5):
 `Real.log_mul` (`A ≠ 0` from `hA`, `Real.exp_ne_zero`), `Real.log_exp`, then `field_simp` +
 `ring` (dry-run in the api-probe). -/
-theorem lnRate_eq {A lam kB T x : ℝ} (hA : 0 < A) (hlam : lam ≠ 0) (hkT : 0 < kB * T) :
+theorem lnRate_eq {A lam kB T x : ℝ} (hA : 0 < A) :
     lnRate A lam kB T x = Real.log A - (lam - x) ^ 2 / (4 * lam * (kB * T)) := by
   sorry
 

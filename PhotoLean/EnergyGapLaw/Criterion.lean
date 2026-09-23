@@ -65,12 +65,20 @@ Plan section 4, row EG-C1. Weakest-premise standard (plan §4): `lam ≠ 0` suff
 algebra — positivity is needed only where the *order* matters. Proof route (plan §5):
 `Real.log_mul` (`A ≠ 0` from `hA`, `Real.exp_ne_zero`), `Real.log_exp`, then `field_simp` +
 `ring` (dry-run in the api-probe). -/
-theorem lnRate_eq {A lam kB T x : ℝ} (hA : 0 < A) (hlam : lam ≠ 0) (hkT : 0 < kB * T) :
+theorem lnRate_eq {A lam kB T x : ℝ} (hA : 0 < A) :
     lnRate A lam kB T x = Real.log A - (lam - x) ^ 2 / (4 * lam * (kB * T)) := by
   unfold lnRate nrRate nrBarrier
-  rw [Real.log_mul (ne_of_gt hA) (Real.exp_ne_zero _), Real.log_exp]
-  field_simp
-  ring
+  by_cases hd : 4 * lam * (kB * T) = 0
+  · rcases mul_eq_zero.mp hd with h4 | hk
+    · have hl : lam = 0 := by linarith
+      subst hl
+      simp
+    · rw [hk]
+      simp
+  · obtain ⟨h4, hk⟩ := mul_ne_zero_iff.mp hd
+    rw [Real.log_mul (ne_of_gt hA) (Real.exp_ne_zero _), Real.log_exp]
+    field_simp [h4, hk]
+    ring
 
 /-- **The gap-law direction**: within the inverted region the log-rate strictly decreases in the
 gap. Plan section 4, row EG-C2. Proof route (plan §5): rewrite by EG-C1; the quadratic comparison
@@ -90,7 +98,7 @@ theorem lnRate_strictAnti_on_inverted {A lam kB T x₁ x₂ : ℝ} (hA : 0 < A) 
   have h3 : (lam - x₁) ^ 2 / (4 * lam * (kB * T))
       < (lam - x₂) ^ 2 / (4 * lam * (kB * T)) :=
     div_lt_div_of_pos_right hsq hden
-  rw [lnRate_eq hA hne hkT (x := x₂), lnRate_eq hA hne hkT (x := x₁)]
+  rw [lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := x₂), lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := x₁)]
   linarith
 
 /-- **The reversal**: within the normal region the log-rate strictly *increases* in the gap —
@@ -111,7 +119,7 @@ theorem lnRate_strictMono_on_normal {A lam kB T x₁ x₂ : ℝ} (hA : 0 < A) (h
   have h3 : (lam - x₂) ^ 2 / (4 * lam * (kB * T))
       < (lam - x₁) ^ 2 / (4 * lam * (kB * T)) :=
     div_lt_div_of_pos_right hsq hden
-  rw [lnRate_eq hA hne hkT (x := x₁), lnRate_eq hA hne hkT (x := x₂)]
+  rw [lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := x₁), lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := x₂)]
   linarith
 
 /-- The secant slope of the log-rate is the midpoint form. Plan section 4, row EG-C4.
@@ -120,7 +128,7 @@ theorem secant_slope_exact {A lam kB T x₁ x₂ : ℝ} (hA : 0 < A) (hlam : lam
     (hkT : 0 < kB * T) (h : x₁ ≠ x₂) :
     (lnRate A lam kB T x₂ - lnRate A lam kB T x₁) / (x₂ - x₁)
       = (2 * lam - x₁ - x₂) / (4 * lam * (kB * T)) := by
-  rw [lnRate_eq hA hlam hkT (x := x₂), lnRate_eq hA hlam hkT (x := x₁)]
+  rw [lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := x₂), lnRate_eq (lam := lam) (kB := kB) (T := T) hA (x := x₁)]
   have hxy : x₂ - x₁ ≠ 0 := sub_ne_zero.mpr (Ne.symm h)
   have hd : 4 * lam * (kB * T) ≠ 0 :=
     mul_ne_zero (mul_ne_zero (by norm_num) hlam) (ne_of_gt hkT)
