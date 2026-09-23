@@ -95,9 +95,9 @@ theorem rateData_mono {rad ic : ℕ → ℝ} {M N : ℕ} (h : Kasha.RateData rad
 /-- Plan section 4, row KV-B4 — under the exact Kasha rule the lowest level carries the whole
 normalized spectrum. The premise `0 < fluoYield` is load-bearing: `specFrac` is totalized division
 (plan §8). Proof route: `Kasha.kashaRule_iff_rad_zero` + `radBranch = 0` + `div_self`. The
-`RateData` bundle is part of the authority's signature and is not consumed by this proof (the
-index split KV-B2 and the nonzero denominator suffice); it is kept verbatim for statement
-fidelity. -/
+`RateData` bundle was dropped in the Phase-3 premise audit (plan §3.1 entry 2, 2026-09-23): it
+was never consumed — the index split KV-B2 and the nonzero denominator suffice; the stripped form
+was re-proved before the edit. -/
 theorem specFrac_zero_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ}
     (hK : Kasha.KashaRule rad ic N) (hpos : 0 < Kasha.fluoYield rad ic N) :
     Kasha.specFrac rad ic 0 N = 1 := by

@@ -127,3 +127,9 @@ Findings and resolution:
 
 Phase-3 revision (plan §3.1 entries 3–4): five premise trims + the `fpC5_firstForm_refuted` negative-result row (FP-I4). All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+### Phase-3 additions
+
+- [x] `fpC5_firstForm_refuted` — delivered — Phase 3 — done — `PhotoLean/FluorPhos/Instances.lean` (FP-I4, the negative-result finalization; verifier final audit PASS 2026-09-23)
+
+Rows FP-I1..I3 and this addition: Phase-3 additions (FP-I4) ticked after the final audit.

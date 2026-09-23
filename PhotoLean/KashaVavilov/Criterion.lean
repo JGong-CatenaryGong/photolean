@@ -208,9 +208,10 @@ theorem d2_verdict :
 /-- Plan section 4, row KV-C5 — positivity of the cascade is exactly the positivity of every
 nonradiative rate above level `i`. Both directions are product algebra: a positive product has
 positive factors (`Finset.mul_prod_erase` on an otherwise nonnegative product), and a product of
-positive factors is positive (`Finset.prod_pos`). The premise `hi : i ≤ N` is part of the
-authority's signature and is not consumed by the proof (the product's own membership hypothesis
-supplies `j ≤ N`); it is kept verbatim for statement fidelity. -/
+positive factors is positive (`Finset.prod_pos`). The premise `hi : i ≤ N` was dropped in the
+Phase-3 premise audit (plan §3.1 entry 2, 2026-09-23): the product's own membership hypothesis
+supplies `j ≤ N`, and for `i > N` the row degenerates consistently (empty product `1 > 0`,
+vacuous right-hand side); the stripped form was re-proved before the edit. -/
 theorem cascade_pos_iff {rad ic : ℕ → ℝ} {N i : ℕ} (h : Kasha.RateData rad ic N) :
     (0 < Kasha.cascade rad ic i N ↔ ∀ j, i + 1 ≤ j → j ≤ N → 0 < ic j) := by
   unfold Kasha.cascade

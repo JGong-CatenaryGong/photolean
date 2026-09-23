@@ -113,3 +113,9 @@ Findings carried to the Phase-3 audit and to the lead (recorded here as the sing
 
 Phase-3 revision (plan §3.1 entry 2): the `invertedCorner_firstForm_refuted` negative-result row (SS-I4). All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+### Phase-3 additions
+
+- [x] `invertedCorner_firstForm_refuted` — delivered — Phase 3 — done — `PhotoLean/StokesShift/Instances.lean` (SS-I4, the negative-result finalization; verifier final audit PASS 2026-09-23)
+
+Rows SS-I1..I3 and this addition: Phase-3 additions (SS-I4) ticked after the final audit.
