@@ -4061,3 +4061,51 @@ whole-tree `check.sh --strict` gate for every worker. Keep scratch under
 `PhotoLean.FluorPhos.phiF` / `...phiP` (not the `Rat` shadows), so `Rat.phiF_cast` /
 `Rat.phiP_cast` are the intended bridges and not vacuous identities. The FluorPhos authority
 already carried fully-qualified right-hand sides.
+
+## 2026-09-23 — Phase-2 input list for the Phase-3 authority revision (consolidated; the lead owns it)
+
+Collected from verifier runs 1–4 and the deliveries. Each item is a **statement-layer or
+authority-hygiene** item that Phase 3 must resolve by the re-freeze procedure (authority edit +
+plan §3.1 + API-NOTES statement-change index + fidelity re-run + verifier re-check of the changed
+rows). Nothing here is a proof defect: every delivered theorem is true as stated.
+
+**A. Vacuity / mis-naming (statements should be strengthened or re-named)**
+1. `SternVolmer.mixed_witness` (SV-I4) — the third conjunct is `0 < 1`, a tautology mentioning no
+   model object; the plan's intent (second difference `= 1 > 0` tied to `svRatioBoth`) is not in the
+   row (verifier run 1, M3).
+2. `Einstein.radFactor_not_rational` — states `Irrational Real.pi` without mentioning `radFactor`;
+   the intended `Irrational (radFactor 1 1 1)` is provable (verifier's probe) (run 1, M4).
+3. `ICvsISC.hsoZeroWitness` — `(0:ℚ)^2 * AS = 0` is `zero_mul`; no `iscRate`, no barrier, no `HSO`
+   premise; the plan's FC-I3 description is wider than the row (run 4, F3).
+4. `Forster.fretRate` — a representation-layer definition with no law row (by design, but readers
+   should not read it as a proved claim) (run 3, F8).
+
+**B. Premise audit (weakest-premise standard, iron rule 3) — verified non-load-bearing premises**
+5. `SternVolmer.lifetimeTracks_iff_dyn`'s `hk0 : 0 < k0` (the iff holds at `k0 = 0` — verifier run 1
+   proved it); `d1_verdict`'s `hkq : 0 < kq` (unconsumed); `tauRatioStat`'s decorative parameters
+   `Ka`, `q` (both ℝ and ℚ copies).
+6. `Einstein.yield_radiative`'s `hA`, `hkNR` (`mul_one_div` is unconditional).
+7. `KashaVavilov.specFrac_zero_of_kashaRule`'s `h : RateData` and `cascade_pos_iff`'s `hi : i ≤ N`
+   (both linter-suppressed in the delivery; docstrings admit non-consumption).
+8. `EnergyGapLaw.secant_slope_neg_iff`'s `x₁ ≠ x₂` — the OPPOSITE case: it IS load-bearing (the
+   first delivery note said decorative and was corrected; see the M1 correction entry above).
+   `EG-C1`'s `lam ≠ 0` / `0 < kB*T` are proof-consumed but not statement-necessary.
+9. `QuantumYield.yieldOf_eq_mul_tauOf`'s and the third `Fin.cons` row's `QYData` premise (the third
+   row provably survives without it).
+10. `ICvsISC` field-level: `FCData.posLamI`/`posLamS` decorative along the whole Criterion line;
+    `posAS` decorative on FC-C4/FC-C7; `hH : HSO = 1` decorative at statement level (consumed in the
+    proof). Note the contrast: `posAI`/`posAS`/`poskBT` ARE load-bearing on FC-C3 (kernel
+    counterexamples) — do not mark them.
+11. `Forster.fret_blind_spot`'s `0 < R` and `fretEff6_mono_kappa`'s `0 < κ₁` (verifier run 3, F4).
+12. `FluorPhos` residues: `crossover_isc`'s `hkF`/`hkP` and one further `h` (linter, run recorded at
+    the Phase-2 close-out).
+
+**C. Process/hygiene findings already fixed or registered**
+13. Fixed: the shared fidelity checker's two defects (bare-name keying, dotted-name capture).
+14. Fixed: SV-R1's vacuous cast rows (re-freeze), FP-C5's false frozen form (re-freeze — the
+    kernel counterexample is `.lake/tmp/lead_fp_c5_probe.lean`), the Forster plan-text drift, the
+    ICvsISC plan §3.1 gap, the EG "decorative premise" mis-statement, the stale RESULTS texts.
+15. Registered deviations: module-granular commits (all owners); FO3/FO4 sources landed inside a
+    lead `docs(phase2)` commit; the empty commit `ee89b78` whose correction was later landed.
+16. Evidence hygiene: a whole-tree gate claim is only meaningful with the tree state (and ideally
+    the HEAD sha) it was taken at — mid-phase WIP files of one theory can fail the gate for all.
