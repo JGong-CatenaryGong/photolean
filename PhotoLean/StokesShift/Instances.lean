@@ -36,6 +36,7 @@ Acceptance (contract `proofs/ENGINE.yml`):
   proofs/scripts/axioms.sh PhotoLean.StokesShift.Instances PhotoLean.StokesShift.mirrorDye
 -/
 import PhotoLean.StokesShift.RatModel
+import PhotoLean.Marcus.Basic
 
 set_option autoImplicit false
 
