@@ -44,7 +44,15 @@ Namespace `PhotoLean.ICvsISC`; rational layer `PhotoLean.ICvsISC.Rat`.
 ## 3. Statement authority and inventory
 
 The authority is `probes/ICvsISC-statement-skeleton.lean` (Phase-1 placeholder bodies; sha256 on
-the board once compiling). Correction log §3.1 starts empty.
+the board once compiling).
+
+### 3.1 Statement-correction log
+
+* **Entry 1 (FC-I2 instance barrier, 2026-09-22, probe recompute; plan-text sync 2026-09-23 after
+  verifier run 4 finding F1)** — the §4 draft questioned `1/16`; the probe recomputed the ISC
+  barrier as `1/32` (`fcBarrier 2 (3/2) = (2 − 3/2)²/(4·2) = 1/32`), so the pure-FC race is
+  `1/32 < 1/16` and ISC wins. The authority and the delivered row carry `1/32`; this entry records
+  the plan-text sync.
 
 ## 4. Statement inventory
 
@@ -109,7 +117,7 @@ Module plan (Phase 2): `Basic.lean` (FC-B), `Criterion.lean` (FC-C), `RatModel.l
   barriers `1/16` vs `1/8` — the ISC barrier is *higher*, the spin discount makes the win
   harder; verdict computed at the barrier level (`decide`) + the FC-C4 direction registered.
 * FC-I2 `elSayedFavoredLike` (HSO = 1, AI = AS, lamI = 1, xI = 3/2, lamS = 2, xS = 3/2): pure
-  barrier race, ISC barrier `1/16` < IC barrier `1/16`? — recompute in the probe; the row states
+  barrier race, ISC barrier `1/32` < IC barrier `1/16` (probe-recomputed — §3.1 entry 1); the row states
   the exact rational comparison and the FC-C7 verdict.
 * FC-I3 `hsoZeroWitness` (HSO = 0, arbitrary gaps): ISC absent (FC-C5), decided at ℚ on the
   prefactor side.
