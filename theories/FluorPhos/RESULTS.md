@@ -9,9 +9,18 @@
 
 ## 1. Status / 现状
 
-**English.** Phase 2 complete for the proof layer: the statement authority is frozen and every
-registered declaration is proved (per-row status and the verifier record are on the board). The
-results narrative is written at the Phase-3 close-out.
+**English.** Delivered and verified; the Phase-3 authority revision is recorded in plan §3.1.
 
-**中文。** 阶段二证明层已完成：陈述权威已冻结，全部登记声明均有证明（逐行状态与 verifier 记录见任务板）。
-结果叙事在阶段三收尾时撰写。
+**中文。** 已交付并验证；阶段三权威修订记录于 plan §3.1。
+
+## 2. What the theory claims / 理论主张
+
+**English.** the fluorescence/phosphorescence competition: the balance `φP/φF = (kISC/kF)·(kP/(kP+kNR))`, the crossover `kF·(kP+kNR) < kISC·kP`, the losslessness boundary `φF + φP = 1 ↔ kIC = 0 ∧ (kISC = 0 ∨ kNR = 0)` (design-time corrected: the naive form is too strong), and the heavy-atom monotonicity with its exactly load-bearing premise `0 < kF + kIC` — whose absence in the first frozen form is now a kernel-checked refutation theorem (`fpC5_firstForm_refuted`).
+
+**中文。**荧光/磷光竞争：平衡 `φP/φF = (kISC/kF)·(kP/(kP+kNR))`、交叉点 `kF·(kP+kNR) < kISC·kP`、无损边界 `φF + φP = 1 ↔ kIC = 0 ∧ (kISC = 0 ∨ kNR = 0)`（设计期修正：朴素形式过强）、以及带恰好承载前提 `0 < kF + kIC` 的重原子单调性——其初式的缺失已成为内核反例定理 （`fpC5_firstForm_refuted`）。
+
+## 3. Machine anchors / 机器锚点
+
+**English.** `PhotoLean.FluorPhos.phiP_div_phiF`, `crossover_isc`, `phiF_add_phiP_eq_one_iff`, `Relations.phiP_eq_yieldOf_cascade`; all with `#print axioms` = `[propext, Classical.choice, Quot.sound]`.
+
+**中文。** `PhotoLean.FluorPhos.phiP_div_phiF`, `crossover_isc`, `phiF_add_phiP_eq_one_iff`, `Relations.phiP_eq_yieldOf_cascade`；全部 `#print axioms` = `[propext, Classical.choice, Quot.sound]`。

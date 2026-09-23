@@ -5,10 +5,18 @@
 > `#print axioms` within the allowed infrastructure, fidelity 0 differences. The bilingual results
 > body below is completed at the Phase-3 close-out.## 1. Status / 现状
 
-**English.** Phase 2 complete for the proof layer: the statement authority is frozen and the
-delivered modules prove every registered declaration (see the board for the per-row status and the
-verifier record). The results narrative (what the theory claims, how it is read physically, and its
-relations to the other nodes) is written at the Phase-3 close-out.
+**English.** Delivered and verified; the Phase-3 authority revision is recorded in plan §3.1.
 
-**中文。** 阶段二证明层已完成：陈述权威已冻结，交付模块逐条证明全部登记声明（逐行状态与
-verifier 记录见任务板）。结果叙述（理论主张、物理解读、与其他节点的关系）在阶段三收尾时撰写。
+**中文。** 已交付并验证；阶段三权威修订记录于 plan §3.1。
+
+## 2. What the theory claims / 理论主张
+
+**English.** the Englman–Jortner energy-gap law in the classical two-parabola model: the exact log-rate law is quadratic (`lnRate_eq`, unconditional in `lam` and `kB·T` after the Phase-3 trim — the degenerate inputs totalize consistently), the decrease direction holds exactly in the inverted region and reverses in the normal region, the textbook affine form is the tangent with the exact quadratic defect `−(x−x*)²/(4λk_BT)` and no affine law is exact on any window (`not_affine_on_window`).
+
+**中文。**经典双抛物面模型中的 Englman–Jortner 能隙律：精确对数速率律是二次的（`lnRate_eq`，阶段三修剪后在 `lam` 与 `kB·T` 上无条件——退化输入在全化除法下自洽），下降方向恰在反转区 成立且在正常区反转，教科书仿射形式是带精确二次亏量 `−(x−x*)²/(4λk_BT)` 的切线，且任何 仿射律在任何窗口上都不精确（`not_affine_on_window`）。
+
+## 3. Machine anchors / 机器锚点
+
+**English.** `PhotoLean.EnergyGapLaw.lnRate_eq`, `lnRate_strictAnti_on_inverted`, `eglTangent_overestimates`, `Relations.eg_barrier_eq_kernel`; all with `#print axioms` = `[propext, Classical.choice, Quot.sound]`.
+
+**中文。** `PhotoLean.EnergyGapLaw.lnRate_eq`, `lnRate_strictAnti_on_inverted`, `eglTangent_overestimates`, `Relations.eg_barrier_eq_kernel`；全部 `#print axioms` = `[propext, Classical.choice, Quot.sound]`。
