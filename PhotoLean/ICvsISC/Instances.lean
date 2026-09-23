@@ -100,11 +100,21 @@ theorem elSayedFavoredLike :
   · rw [Rat.barrierOrderQ, decide_eq_true_eq]
     norm_num [Rat.fcBarrier]
 
-/-- The zero-coupling witness (`HSO = 0`, arbitrary gaps): the ISC prefactor vanishes at ℚ for
-any base prefactor `AS` — the FC-C5 boundary decided on the prefactor side (no gap data enters).
-Plan section 4, row FC-I3. Proof route: `simp` / `mul_zero` at ℚ. -/
-theorem hsoZeroWitness (AS : ℚ) : (0 : ℚ) ^ 2 * AS = 0 := by
-  simp
+/-- **The spin discount trumps a Franck–Condon advantage** — FC-I3 made concrete at the
+El-Sayed-favored barrier pair: the pure barrier race is won by ISC (`fcBarrier 2 (3/2) = 1/32 <
+1/16 = fcBarrier 1 (3/2)`, decided at ℚ), yet with the spin-orbit coupling shut (`HSO = 0`) the
+ISC rate is identically zero — no triplet channel, whatever the barriers.
+Re-frozen 2026-09-23 (plan §3.1 entry 2; Phase-3 vacuity audit, verifier run 4 finding F3): the
+first frozen form was the tautology `(0 : ℚ) ^ 2 * AS = 0` (`zero_mul`, no model object); this
+form carries both halves of the intended witness.
+Plan section 4, row FC-I3. -/
+theorem hsoZeroWitness :
+    Rat.barrierOrderQ 1 (3 / 2) 2 (3 / 2) = true ∧ iscRate (0 : ℝ) 1 2 1 1 (3 / 2) = 0 := by
+  refine ⟨?_, ?_⟩
+  · rw [Rat.barrierOrderQ, decide_eq_true_eq]
+    norm_num [Rat.fcBarrier]
+  · unfold iscRate
+    ring
 
 end ICvsISC
 

@@ -123,7 +123,7 @@ Plan section 4, row FC-C5.
 Proof route: the first conjunct by the zero prefactor; the second from `0 ≤ icRate`, discharged
 from `0 < AI` and `Real.exp_pos` via `mul_nonneg` (row FC-C5 note). -/
 theorem hso_zero_isc_absent {AI AS lamI lamS kB T : ℝ} (h : FCData AI AS lamI lamS kB T)
-    (xI xS HSO : ℝ) (h0 : HSO = 0) :
+    (xI xS : ℝ) :
     iscRate 0 AS lamS kB T xS = 0 ∧ ¬ (icRate AI lamI kB T xI < iscRate 0 AS lamS kB T xS) := by
   sorry
 
@@ -140,7 +140,7 @@ ordering — the comparison the rational decision layer decides (no `exp` evalua
 instance). Plan section 4, row FC-C7.
 Proof route: `Real.exp_lt_exp` cancellation + the unit prefactors. -/
 theorem equal_prefactors_decision {AI AS lamI lamS kB T : ℝ} (h : FCData AI AS lamI lamS kB T)
-    (xI xS HSO : ℝ) (hA : AI = AS) (hH : HSO = 1) :
+    (xI xS : ℝ) (hA : AI = AS) :
     (icRate AI lamI kB T xI < iscRate 1 AS lamS kB T xS ↔
       fcBarrier lamS xS < fcBarrier lamI xI) := by
   sorry
@@ -207,7 +207,8 @@ theorem elSayedFavoredLike :
 /-- The zero-coupling witness (`HSO = 0`, arbitrary gaps): the ISC prefactor vanishes at ℚ for
 any base prefactor `AS` — the FC-C5 boundary decided on the prefactor side (no gap data enters).
 Plan section 4, row FC-I3. Proof route: `simp` / `mul_zero` at ℚ. -/
-theorem hsoZeroWitness (AS : ℚ) : (0 : ℚ) ^ 2 * AS = 0 := by
+theorem hsoZeroWitness :
+    Rat.barrierOrderQ 1 (3 / 2) 2 (3 / 2) = true ∧ iscRate (0 : ℝ) 1 2 1 1 (3 / 2) = 0 := by
   sorry
 
 end ICvsISC

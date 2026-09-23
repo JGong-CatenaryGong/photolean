@@ -181,7 +181,7 @@ Plan section 4, row FC-C5.
 Proof route: the first conjunct by the zero prefactor; the second from `0 ≤ icRate`, discharged
 from `0 < AI` and `Real.exp_pos` via `mul_nonneg` (row FC-C5 note). -/
 theorem hso_zero_isc_absent {AI AS lamI lamS kB T : ℝ} (h : FCData AI AS lamI lamS kB T)
-    (xI xS HSO : ℝ) (h0 : HSO = 0) :
+    (xI xS : ℝ) :
     iscRate 0 AS lamS kB T xS = 0 ∧ ¬ (icRate AI lamI kB T xI < iscRate 0 AS lamS kB T xS) := by
   have hzero : iscRate 0 AS lamS kB T xS = 0 := by
     unfold iscRate
@@ -210,13 +210,11 @@ ordering — the comparison the rational decision layer decides (no `exp` evalua
 instance). Plan section 4, row FC-C7.
 Proof route: `Real.exp_lt_exp` cancellation + the unit prefactors. -/
 theorem equal_prefactors_decision {AI AS lamI lamS kB T : ℝ} (h : FCData AI AS lamI lamS kB T)
-    (xI xS HSO : ℝ) (hA : AI = AS) (hH : HSO = 1) :
+    (xI xS : ℝ) (hA : AI = AS) :
     (icRate AI lamI kB T xI < iscRate 1 AS lamS kB T xS ↔
       fcBarrier lamS xS < fcBarrier lamI xI) := by
-  rw [← hH]
-  have hisc : iscRate HSO AS lamS kB T xS = AS * Real.exp (-(fcBarrier lamS xS) / (kB * T)) := by
+  have hisc : iscRate 1 AS lamS kB T xS = AS * Real.exp (-(fcBarrier lamS xS) / (kB * T)) := by
     unfold iscRate
-    rw [hH]
     ring
   have hic : icRate AI lamI kB T xI = AI * Real.exp (-(fcBarrier lamI xI) / (kB * T)) := by
     unfold icRate
