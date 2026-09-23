@@ -76,7 +76,7 @@
       (`φF = 11/20`), axioms PASS
 - [x] `inst_quenchDilution_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — done —
       proved (`φF = 18/29`), axioms PASS
-- [ ] `inst_quenchDilution_sternVolmer` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 —
+- [x] `inst_quenchDilution_sternVolmer` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 —
       review — proved (ratio `29/20`), axioms PASS
 
 ## Sprint 1 — proof formalization (Phase 2): delivery record (prover_b, 2026-09-23)
