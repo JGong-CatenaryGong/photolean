@@ -3631,3 +3631,49 @@
   plan/RESULTS, README, AGENTS.md and the paper outline (iron rule 8③ — the flip sweep is now a
   grep for `pending|PENDING|await` across the status-carrying files, which is how every one of the
   nine sites above was found).
+
+## 2026-09-22 — Photophysics batch Phase 1 (statement formalization, nine theories) — lead — DONE (statement layer)
+
+- Goal: the photophysics subgraph (groups A/B/C + adjudications D1/D2) at statement level.
+  Delivered: 9 theory leaves (`theories/{KashaVavilov,SternVolmer,QuantumYield,FluorPhos,
+  EnergyGapLaw,StokesShift,ICvsISC,Forster,Einstein}`), 9 statement skeletons compiling at
+  0 errors (279 registered declarations total, placeholder bodies outside the strict scan),
+  9 api probes (sorry-free, exit 0), 9 boards with sha256, 9 literature leaves (three
+  literature_researcher runs; seed corrections recorded in the files), plan §3.1 logs with the
+  round's corrections. Strict gate: PASS (16/16 leaf planes, delivered tree untouched).
+- **Orchestration failure and recovery**: the 9-agent `workflow` fan-out was killed mid-flight
+  by an API-key failure — all 9 return values came back `null`, but the filesystem held partial
+  output (6 skeletons, 5 probes, none compile-verified, no boards). Lesson: **never trust the
+  workflow return value alone; always verify the filesystem** — half the work was salvageable.
+  Recovery: lead direct authorship of the missing pieces + one role-tool dispatch (prover_a,
+  which worked fine — the failure was specific to the workflow's agent lane).
+- Tried and failed (each now a probe-tested fact):
+  1. `by decide` does not reduce ℚ division/multiplication (re-measured; the
+     `Marcus.RatModel` lines 15-16 boundary). New: `norm_num [Fin.ext_iff]` on `Fin 3`
+     numeral-`if` sums overflows `maxRecDepth`. Working route for FO-R2: ℤ-valued frame factor
+     (`decide` the ℤ sum), then `norm_num` for the ℚ average.
+  2. `Fin.sum_univ_cons` does NOT exist in mathlib v4.17.0. The cons-sum route:
+     `rw [Fin.sum_univ_succ, Fin.cons_zero]` + `simp only [Fin.cons_succ]` (an `exact
+     Finset.sum_congr ... (Fin.cons_succ ...)` attempt fails on a stuck `AddCommMonoid`
+     metavariable). `![a,b,c] i` numerals need `Matrix.cons_val_zero/one/two` in the
+     `norm_num` set.
+  3. `field_simp` on `1 - (1/(kD+kF))/(1/kD) = (kF/kD)/(kF/kD+1)` leaves the clearance side
+     condition `True ∨ kF = 0` — close with `ring_nf` then `exact Or.inl trivial` (bare `ring`
+     leaves the side goal).
+  4. Structure-valued premise bundles (`Kasha.RateData`) introduce their binders through the
+     anonymous-constructor lambdas — a surplus `intro n` afterwards fails with "insufficient
+     number of binders" (KV api-probe fix).
+  5. Probes referencing `PhotoLean.Kasha.*` must open `namespace PhotoLean` — otherwise every
+     `Kasha.foo` is an unknown identifier (KV api-probe, 54 errors, one-line fix).
+  6. Bare `norm_num` does not close linear identities containing a `Real.log A` atom
+     (prover_a, EG-I3 dry run); `ring` does.
+  7. **Statement-level catches at Sprint 0 (zero delivered-line cost)**: StokesShift SS-C9 was
+     drafted backwards (`e00 < lam ↔ InvertedRegion lam e00` is false; the true row is
+     `0 < emEnergy lam e00 ↔ InvertedRegion lam e00` — the open emission window IS the
+     inverted region at the gap); Forster FO-C10b's unpremised form is false under totalized
+     division at `r6 = −R⁶` (probe-proved counterexample; premise `0 ≤ r6` added). Both went
+     to the plans' §3.1 logs — the statement-first discipline paying for itself again.
+  8. Plan-guessed constants are unreliable even at arithmetic level: EG-I3's `−20` and
+     FO-I1's `64/729` were both wrong (probe-recomputed: `−5`, `64/793`). Every numeric
+     instance value must be probe-recomputed before it enters a statement (the plans already
+     demanded this; the demand was vindicated twice).
