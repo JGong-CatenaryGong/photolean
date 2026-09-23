@@ -22,12 +22,12 @@ division (the repository's thrice-measured rule), so `svZoneQ_dynLike`/`statLike
 route (exercised in `Instances.mixed_witness`); `norm_cast` moves the cast through `+`, `*` and `/`
 on ℚ → ℝ.
 
-**Statement incident found while proving SV-R1 (see the docstring of `Rat.svRatioDyn_cast`).** The
-authority's four cast-coherence rows are degenerate as written: the `Rat.`-prefixed declaration
-name opens the `Rat` namespace for the elaboration of the type, so the unqualified right-hand
-`svRatioDyn`/`tauRatioDyn`/`svRatioStat`/`tauRatioStat` resolves to the ℚ shadow and the delivered
-type is `↑x = ↑x`. Kept verbatim (frozen authority, textual fidelity), with the intended bridges
-delivered as `rat_*_cast_real` right below them and reported to the lead for a §3.1 re-freeze.
+**Statement incident found while proving SV-R1, re-frozen 2026-09-22 (plan §3.1 entry 1).** The
+authority's four cast-coherence rows were degenerate as first frozen: the `Rat.`-prefixed
+declaration name elaborates its type inside the `Rat` namespace, so the unqualified right-hand
+side resolved to the ℚ shadow and each row was the vacuous identity `↑x = ↑x`. The authority is
+re-frozen with fully-qualified right-hand sides and the rows now deliver the intended cast
+bridges.
 
 Statement authority: `theories/SternVolmer/probes/SternVolmer-statement-skeleton.lean` § SV-R;
 every signature below is identical to its authority row. There is no unproved placeholder and no
@@ -61,91 +61,48 @@ def Rat.svRatioStat (Ka q : ℚ) : ℚ := 1 + Ka * q
 def Rat.tauRatioStat (Ka q : ℚ) : ℚ := 1
 
 /-- Cast coherence (SV-R1): the ℚ shadow computes the real dynamic intensity ratio.
-Plan section 4, row SV-R1. Proof route: unfold both bodies; `push_cast`/`norm_cast` with
-`Rat.cast_div`, `Rat.cast_add`, `Rat.cast_mul`.
+Plan section 4, row SV-R1. Proof route: `unfold` the two bodies with fully-qualified names (an
+unqualified identifier inside a `Rat.`-prefixed declaration resolves to the ℚ shadow) and close by
+`norm_cast`.
 
-**STATEMENT-INCIDENT (SV-R1, found in SV3, 2026-09-22).** This signature is transcribed verbatim
-from the statement authority, and in that authority the right-hand `svRatioDyn` does **not**
-denote the real ratio: because the declaration's own `Rat.`-prefixed name opens the `Rat`
-namespace for the elaboration of its type, the unqualified identifier resolves to
-`PhotoLean.SternVolmer.Rat.svRatioDyn` (the ℚ shadow), so the delivered type is the degenerate
-identity `↑(Rat.svRatioDyn a b q) = ↑(Rat.svRatioDyn a b q)` — vacuous, not the cast bridge
-described by the authority's own docstring ("the ℚ shadow computes the real dynamic intensity
-ratio"), by plan §4/§5, and by the API probe's measured shape (which used an unnamed `example`,
-hence the outer namespace, hence the intended reading). Evidence: this row closes by `rfl`, and
-`#print PhotoLean.SternVolmer.Rat.svRatioDyn_cast` shows `@Rat.cast
-(PhotoLean.SternVolmer.Rat.svRatioDyn a b q)` on both sides.
-
-The row is kept verbatim here (the statement authority is frozen and the fidelity checker compares
-signatures textually); the **intended** bridge is delivered as `rat_svRatioDyn_cast_real`
-immediately after the four rows. Recommended re-freeze of the authority: qualify the right-hand
-side as `PhotoLean.SternVolmer.svRatioDyn a b q`, or drop the `Rat.` prefix from the four theorem
-names. -/
+**Statement incident, re-frozen 2026-09-22 (plan §3.1 entry 1).** The first frozen form left the
+right-hand side unqualified; the `Rat.`-prefixed name elaborates the type inside the `Rat`
+namespace, so it resolved to the ℚ shadow and the row was the vacuous identity `↑x = ↑x`
+(closable by `rfl`; detected while proving, reported by prover_c). The authority is re-frozen with
+fully-qualified right-hand sides; the four rows now carry their intended bridges. -/
 theorem Rat.svRatioDyn_cast (a b q : ℚ) :
-    (Rat.svRatioDyn a b q : ℝ) = svRatioDyn a b q := by
-  rfl
+    (Rat.svRatioDyn a b q : ℝ) = PhotoLean.SternVolmer.svRatioDyn (a : ℝ) (b : ℝ) (q : ℝ) := by
+  unfold PhotoLean.SternVolmer.Rat.svRatioDyn
+  unfold PhotoLean.SternVolmer.svRatioDyn
+  unfold PhotoLean.SternVolmer.dynDecay
+  norm_cast
 
 /-- Cast coherence (SV-R1): the ℚ shadow computes the real dynamic lifetime ratio.
 Plan section 4, row SV-R1. Proof route: as `Rat.svRatioDyn_cast`.
-Statement-incident as documented on `Rat.svRatioDyn_cast`: the authority's right-hand
-`tauRatioDyn` resolves to the ℚ shadow, so the delivered type is degenerate. -/
+Re-frozen 2026-09-22 (plan §3.1 entry 1): fully-qualified right-hand side. -/
 theorem Rat.tauRatioDyn_cast (a b q : ℚ) :
-    (Rat.tauRatioDyn a b q : ℝ) = tauRatioDyn a b q := by
-  rfl
+    (Rat.tauRatioDyn a b q : ℝ) = PhotoLean.SternVolmer.tauRatioDyn (a : ℝ) (b : ℝ) (q : ℝ) := by
+  unfold PhotoLean.SternVolmer.Rat.tauRatioDyn
+  unfold PhotoLean.SternVolmer.tauRatioDyn
+  unfold PhotoLean.SternVolmer.dynDecay
+  norm_cast
 
 /-- Cast coherence (SV-R1): the ℚ shadow computes the real static intensity ratio.
 Plan section 4, row SV-R1. Proof route: as `Rat.svRatioDyn_cast`.
-Statement-incident as documented on `Rat.svRatioDyn_cast`: the authority's right-hand
-`svRatioStat` resolves to the ℚ shadow, so the delivered type is degenerate. -/
+Re-frozen 2026-09-22 (plan §3.1 entry 1): fully-qualified right-hand side. -/
 theorem Rat.svRatioStat_cast (a q : ℚ) :
-    (Rat.svRatioStat a q : ℝ) = svRatioStat a q := by
-  rfl
+    (Rat.svRatioStat a q : ℝ) = PhotoLean.SternVolmer.svRatioStat (a : ℝ) (q : ℝ) := by
+  unfold PhotoLean.SternVolmer.Rat.svRatioStat
+  unfold PhotoLean.SternVolmer.svRatioStat
+  norm_cast
 
 /-- Cast coherence (SV-R1): the ℚ shadow computes the real static lifetime ratio.
 Plan section 4, row SV-R1. Proof route: as `Rat.svRatioDyn_cast`.
-Statement-incident as documented on `Rat.svRatioDyn_cast`: the authority's right-hand
-`tauRatioStat` resolves to the ℚ shadow, so the delivered type is degenerate. -/
+Re-frozen 2026-09-22 (plan §3.1 entry 1): fully-qualified right-hand side. -/
 theorem Rat.tauRatioStat_cast (a q : ℚ) :
-    (Rat.tauRatioStat a q : ℝ) = tauRatioStat a q := by
-  rfl
-
-/-! ### SV-R1 incident workaround — the intended cast bridges
-
-The four rows below carry the content the authority's SV-R1 docstrings and plan §4 actually
-describe (the ℚ shadow computes the real `ℝ` ratio), with the right-hand side disambiguated by
-explicit arguments so that `svRatioDyn`/`tauRatioDyn`/`svRatioStat`/`tauRatioStat` resolve to
-`PhotoLean.SternVolmer` and not to their ℚ shadows. They are deliberately **not** named `Rat.*`,
-so that the file's `Rat`-keyed signature (the fidelity checker collapses every `Rat.`-prefixed
-declaration to one key) stays identical to the authority. -/
-
-/-- The intended SV-R1 bridge, dynamic intensity ratio: disambiguated right-hand side. -/
-theorem rat_svRatioDyn_cast_real (a b q : ℚ) :
-    (Rat.svRatioDyn a b q : ℝ) = svRatioDyn (a : ℝ) (b : ℝ) (q : ℝ) := by
-  unfold Rat.svRatioDyn
-  unfold svRatioDyn
-  unfold dynDecay
-  norm_cast
-
-/-- The intended SV-R1 bridge, dynamic lifetime ratio: disambiguated right-hand side. -/
-theorem rat_tauRatioDyn_cast_real (a b q : ℚ) :
-    (Rat.tauRatioDyn a b q : ℝ) = tauRatioDyn (a : ℝ) (b : ℝ) (q : ℝ) := by
-  unfold Rat.tauRatioDyn
-  unfold tauRatioDyn
-  unfold dynDecay
-  norm_cast
-
-/-- The intended SV-R1 bridge, static intensity ratio: disambiguated right-hand side. -/
-theorem rat_svRatioStat_cast_real (a q : ℚ) :
-    (Rat.svRatioStat a q : ℝ) = svRatioStat (a : ℝ) (q : ℝ) := by
-  unfold Rat.svRatioStat
-  unfold svRatioStat
-  norm_cast
-
-/-- The intended SV-R1 bridge, static lifetime ratio: disambiguated right-hand side. -/
-theorem rat_tauRatioStat_cast_real (a q : ℚ) :
-    (Rat.tauRatioStat a q : ℝ) = tauRatioStat (a : ℝ) (q : ℝ) := by
-  unfold Rat.tauRatioStat
-  unfold tauRatioStat
+    (Rat.tauRatioStat a q : ℝ) = PhotoLean.SternVolmer.tauRatioStat (a : ℝ) (q : ℝ) := by
+  unfold PhotoLean.SternVolmer.Rat.tauRatioStat
+  unfold PhotoLean.SternVolmer.tauRatioStat
   norm_cast
 
 /-- The four verdict zones of a measured slope pair. Plan section 4, row SV-R2.

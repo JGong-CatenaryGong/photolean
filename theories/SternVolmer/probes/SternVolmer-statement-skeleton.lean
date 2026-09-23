@@ -228,25 +228,25 @@ def Rat.tauRatioStat (Ka q : ℚ) : ℚ := 1
 Plan section 4, row SV-R1. Proof route: unfold both bodies; `push_cast`/`norm_cast` with
 `Rat.cast_div`, `Rat.cast_add`, `Rat.cast_mul`. -/
 theorem Rat.svRatioDyn_cast (a b q : ℚ) :
-    (Rat.svRatioDyn a b q : ℝ) = svRatioDyn a b q := by
+    (Rat.svRatioDyn a b q : ℝ) = PhotoLean.SternVolmer.svRatioDyn (a : ℝ) (b : ℝ) (q : ℝ) := by
   sorry
 
 /-- Cast coherence (SV-R1): the ℚ shadow computes the real dynamic lifetime ratio.
 Plan section 4, row SV-R1. Proof route: as `Rat.svRatioDyn_cast`. -/
 theorem Rat.tauRatioDyn_cast (a b q : ℚ) :
-    (Rat.tauRatioDyn a b q : ℝ) = tauRatioDyn a b q := by
+    (Rat.tauRatioDyn a b q : ℝ) = PhotoLean.SternVolmer.tauRatioDyn (a : ℝ) (b : ℝ) (q : ℝ) := by
   sorry
 
 /-- Cast coherence (SV-R1): the ℚ shadow computes the real static intensity ratio.
 Plan section 4, row SV-R1. Proof route: as `Rat.svRatioDyn_cast`. -/
 theorem Rat.svRatioStat_cast (a q : ℚ) :
-    (Rat.svRatioStat a q : ℝ) = svRatioStat a q := by
+    (Rat.svRatioStat a q : ℝ) = PhotoLean.SternVolmer.svRatioStat (a : ℝ) (q : ℝ) := by
   sorry
 
 /-- Cast coherence (SV-R1): the ℚ shadow computes the real static lifetime ratio.
 Plan section 4, row SV-R1. Proof route: as `Rat.svRatioDyn_cast`. -/
 theorem Rat.tauRatioStat_cast (a q : ℚ) :
-    (Rat.tauRatioStat a q : ℝ) = tauRatioStat a q := by
+    (Rat.tauRatioStat a q : ℝ) = PhotoLean.SternVolmer.tauRatioStat (a : ℝ) (q : ℝ) := by
   sorry
 
 /-- The four verdict zones of a measured slope pair. Plan section 4, row SV-R2.
