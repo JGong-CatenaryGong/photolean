@@ -4109,3 +4109,54 @@ rows). Nothing here is a proof defect: every delivered theorem is true as stated
     lead `docs(phase2)` commit; the empty commit `ee89b78` whose correction was later landed.
 16. Evidence hygiene: a whole-tree gate claim is only meaningful with the tree state (and ideally
     the HEAD sha) it was taken at — mid-phase WIP files of one theory can fail the gate for all.
+
+## 2026-09-23 — Photophysics batch Phase 2 CLOSED (all nine theories delivered and independently verified) — lead + prover_a/b/c/d — DONE
+
+- **Result**: nine theories, 279/279 authority declarations delivered word-for-word (fidelity 0
+  differences, 0 missing, 0 extras across the whole batch), all theorem rows proved, boards fully
+  ticked. Independent verifier runs 1–5 (one per wave / per theory): **all PASS, no blocking
+  findings**. Consolidated axiom sweep over every delivered theorem AND auxiliary row:
+  **191/191 PASS** (only `propext Classical.choice Quot.sound`). Whole-tree `check.sh --strict`
+  PASS at a quiescent tree, with all 36 new modules in `lakefile.toml` `defaultTargets` (the
+  scan-vs-build acceptance hole closed as each theory landed). Delivered theories: KashaVavilov
+  (D2), SternVolmer (D1), QuantumYield, FluorPhos, EnergyGapLaw, StokesShift, ICvsISC, Forster,
+  Einstein.
+- **NEEDS-LARGE-MODEL list: one entry, and it was closed.** `FluorPhos.phiP_strictMono_isc` sat on
+  the list after the prover's budget was exhausted — but the row's *statement itself* was the
+  problem (see below), and once re-frozen it closed in one `nlinarith`. Lesson: when a prover
+  stalls, first re-examine the STATEMENT (the frozen form may be false or missing a premise); the
+  stall is evidence about the statement, not only about the proof.
+- **The three statement incidents of the batch (all resolved, never silently weakened)**:
+  1. `SternVolmer` SV-R1: four cast-coherence rows were VACUOUS (a `Rat.`-prefixed declaration
+     elaborates its type inside `Rat`, so unqualified right-hand sides resolve to the ℚ shadow —
+     `↑x = ↑x`). Re-frozen with fully-qualified right-hand sides; the class-wide pitfall is now a
+     standing cross-check in every dispatch prompt (`#print` the row, never silent `rfl`).
+  2. `FluorPhos` FP-C5b: the frozen `phiP_strictMono_isc` was FALSE (at `kF = kIC = 0`, `phiP`
+     collapses to `kP/(kP+kNR)`); re-frozen with the exactly load-bearing premise `0 < kF + kIC`
+     (kernel counterexample `.lake/tmp/lead_fp_c5_probe.lean`; verifier run 5 confirmed the premise
+     is necessary AND sufficient). Closing route, for reuse: `phiP_eq` both sides,
+     `div_lt_div_iff₀` on the two positive denominators, `unfold s1Decay`, then ONE `nlinarith` on
+     the numerator difference `kISC'·s1 − kISC·s1' = (kF+kIC)·(kISC'−kISC) > 0` — no hand
+     factorisation needed (the prover's three candidate identities were all rejected by `ring`;
+     substituting the *difference* variable and letting `nlinarith` see the goal is the robust move).
+  3. `EnergyGapLaw` EG-C4: the delivery note called a premise decorative; the kernel refuted the
+     rationale (`x₁ = x₂ = 2, lam = 1` gives a false iff). Corrected, with the general rule:
+     *decorative means the stripped STATEMENT survives, verified by proving the stripped form —
+     never inferred from a linter warning or from the proof's consumption.*
+- **Tooling**: two real defects in the shared fidelity checker were found by workers and fixed by
+  the lead, each regression-tested against all 16 theories (byte-identical reports for the seven
+  earlier ones): bare-name signature keying (nested-namespace shadowing) and dotted-name capture
+  (`theorem Rat.foo` truncated at the dot, hiding every `Rat.*` row). A third, subtler blind spot
+  is now documented: the checker compares signatures up to the first `:=`, so **definition bodies
+  are not covered** — verifiers covered them manually for the batch and found no drift.
+- **Process lessons** (all measured): a whole-tree gate claim is only meaningful with the tree
+  state (HEAD + status) it was taken at — mid-phase WIP of one theory fails the gate for all, and
+  one prover's scratch file inside `SOURCE_DIRS` did exactly that; working files belong in
+  `theories/<T>/probes/` or `.lake/tmp/`. Engine-level leaves (`EXPERIENCE.md`, `API-NOTES.md`)
+  stayed single-writer (the lead) to avoid concurrent `git add` clobbering — workers handed their
+  entries over as text, which is the protocol to keep.
+- **Phase-3 input** (see the consolidated list above): three vacuity/mis-naming re-freezes
+  (SternVolmer `mixed_witness`, Einstein `radFactor_not_rational`, ICvsISC `hsoZeroWitness`), the
+  field-level premise audit (about a dozen non-load-bearing premises with verifier-supplied
+  stripped-form proofs), the relations registration for the nine new nodes, and the D1/D2
+  adjudication reports.
