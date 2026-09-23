@@ -3941,3 +3941,42 @@
   the four targets. Separately, the whole-tree strict gate currently fails on
   `PhotoLean/FluorPhos/Scratch.lean` (unproved placeholders at lines 25/26/28/29), which is not a
   Forster file.
+
+## 2026-09-23 — ICvsISC Phase 2 (proof layer, FC1–FC4) — prover_a — DONE (proof layer)
+
+- Delivered `PhotoLean/ICvsISC/{Basic,Criterion,RatModel,Instances}.lean`: 20/20 authority
+  declarations word for word (fidelity 20/20, 0 extras, 0 missing, 0 signature differences), all 14
+  authority theorems proved. Four module builds exit 0; `check.sh --strict` PASS per module with scan
+  `clean`; `#print axioms` PASS on all 14 rows (only propext / Classical.choice / Quot.sound).
+  Commits `4af2c74` (FC1) `b84844e` (FC2) `0a84dea` (FC3) `2d3578f` (FC4) + `1d064da` (board).
+- Routes that held, with four measured fixes:
+  1. `Real.exp_sub` used BACKWARD (`rw [← Real.exp_sub]; congr 1; ring`) is the whole exp-merge step;
+     no positivity needed.
+  2. `div_mul_div_comm` factors `(A*eS)/(B*eI)` into `(A/B)*(eS/eI)` in one rewrite with no nonzero
+     hypotheses (totalized division) — no `field_simp` needed.
+  3. `Real.log_mul` cannot see `HSO^2 * AS / AI` as a product (it parses as `(HSO^2 * AS)/AI`), so
+     `mul_div_assoc` must come BEFORE `Real.log_mul`; then `Real.log_pow` + `norm_num` finish it.
+  4. `neg_lt_iff_lt_add` does NOT exist in mathlib v4.17.0 (the nearest names have non-matching
+     shapes); normalize to a single quotient (`field_simp` under `kB*T ≠ 0`, or
+     `div_pos_iff_of_pos_right`) then `linarith`. Also `rw [← div_lt_iff₀ hd]` needs the positive
+     denominator as the RIGHT factor — insert `mul_comm` first when the goal has it on the left.
+- Tried and failed (measured, new):
+  1. `set_option linter.unusedVariables false in` placed AFTER the docstring is a syntax error; the
+     option command must precede the `/-- … -/` docstring.
+  2. `subst` on a decorative hypothesis does NOT silence the unused-variable linter — it is not a way
+     to "consume" a premise for lint purposes.
+  3. A literal-consuming rewrite is how a decorative naming hypothesis is made load-bearing (FC-C7's
+     `hH : HSO = 1` is consumed by `rw [← hH]`); for FC-C5 the trick is impossible (three `0`s, one
+     of them the right-hand side).
+- Premise audit (Phase-3 candidates, statements untouched): FC-C1's `FCData` bundle and FC-C5's
+  `h0 : HSO = 0` are decorative; FC-C7's `hH : HSO = 1` is the same family but IS consumed.
+- Cross-cutting check: `Rat.fcBarrier_cast` was `#print`ed before delivery — the proof term carries
+  `Rat.cast_div`/`cast_pow`/`cast_sub` (real bridge, not the SV-R1 vacuity class).
+- **Process lesson (gate time-sensitivity)**: the first whole-tree `check.sh --strict` FAILED on a
+  single hit, `PhotoLean/FluorPhos/Criterion.lean:224` — ANOTHER prover's uncommitted work in
+  progress — and PASSed on re-run. Corollary: a whole-tree gate result is only meaningful together
+  with the tree state (commit or at least the `git status`) it was taken in; the final Phase-2/3
+  gate must be run at a quiescent point when no prover is mid-edit. This is the same class as the
+  earlier "scratch file inside the scanned tree" incident (a scratch buffer under `PhotoLean/` also
+  fails the gate): working files belong in `theories/<T>/probes/` or `.lake/tmp/`, never in the
+  scanned source tree.

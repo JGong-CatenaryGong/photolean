@@ -84,12 +84,12 @@ private theorem add_common {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP
     unfold phiP iscBranch t1BranchP
     field_simp
     ring
-  unfold phiF
-  rw [show kF / s1Decay kF kISC kIC
-        = kF * (kP + kNR) / (s1Decay kF kISC kIC * (kP + kNR)) from by
+  have hF : kF / s1Decay kF kISC kIC
+      = kF * (kP + kNR) / (s1Decay kF kISC kIC * (kP + kNR)) := by
     field_simp
-    ring]
-  rw [hP, div_add_div_same]
+    ring
+  unfold phiF
+  rw [hF, hP, div_add_div_same]
   congr 1
   ring
 
@@ -98,7 +98,7 @@ from the common denominator is the nonnegative quantity `kIC·(kP+kNR) + kISC·k
 identity behind the design-time correction (plan §3.1 entry 0) — with `kISC = 0` the triplet is
 never populated, so only `kIC` can leak. Not a statement of the authority. -/
 private theorem exhaust_residue {kF kISC kIC kP kNR : ℝ}
-    (h : FPData kF kISC kIC kP kNR) :
+    (_h : FPData kF kISC kIC kP kNR) :
     s1Decay kF kISC kIC * (kP + kNR) - (kISC * kP + kF * (kP + kNR))
       = kIC * (kP + kNR) + kISC * kNR := by
   rw [s1Decay]
@@ -140,7 +140,6 @@ theorem phiP_eq {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR) :
   have ht : kP + kNR ≠ 0 := ne_of_gt h.t1Decay_pos
   unfold phiP iscBranch t1BranchP
   field_simp
-  ring
 
 /-- Plan §4, FP-C2. **The competition law**: the phosphorescence-to-fluorescence ratio is the
 intersystem-crossing odds times the triplet radiative branch. Route: `field_simp` + `ring`. -/
@@ -211,29 +210,34 @@ theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC
   have ht : 0 < kP + kNR := h.t1Decay_pos
   have hden : 0 < s1Decay kF kISC kIC * (kP + kNR) := mul_pos hs ht
   have hden' : 0 < s1Decay kF kISC' kIC * (kP + kNR) := mul_pos hs' ht
-  have key : (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR))
-      - (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR))
-      = kISC * kP * (kISC' - kISC) * (kF + kIC) * (kP + kNR) := by
-    rw [s1Decay, s1Decay]
+  have hs1 : 0 < kF + kISC + kIC := by
+    have hsc : s1Decay kF kISC kIC = kF + kISC + kIC := rfl
+    rwa [hsc] at hs
+  have hposISC : 0 < kISC := lt_of_le_of_lt h.kISC_nonneg hlt
+  have hgate : 0 < kISC + kISC' - kF - kIC := by
+    by_contra hle
+    push_neg at hle
+    have h2 : 2 * kISC < kF + kIC := by linarith
+    have h3 : 4 * (kISC * kISC) < (kF + kIC) * (kF + kIC) := by nlinarith
+    have h4 : kISC * kISC < (kF + kIC) * kISC := by nlinarith
+    nlinarith [mul_pos hs1 hposISC]
+  have hkey : kISC' * kP * ((kF + kISC' + kIC) * (kP + kNR))
+      = kISC * kP * ((kF + kISC + kIC) * (kP + kNR))
+        + (kISC' - kISC) * (kISC + kISC' - kF - kIC) * kP * (kP + kNR) := by
     ring
   have h1 : 0 < kISC' - kISC := by linarith
-  have h2 : 0 < kF + kIC := by
-    have hs1 := h.s1Decay_pos
-    rw [s1Decay] at hs1
-    have hkISC := h.kISC_nonneg
-    linarith
-  have hpos : 0 < (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR))
-      - (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR)) := by
-    rw [key]
-    exact mul_pos (mul_pos (mul_pos (mul_pos h.kISC_nonneg hkP) h1) h2) ht
+  have hpos : 0 < (kISC' - kISC) * (kISC + kISC' - kF - kIC) * kP * (kP + kNR) :=
+    mul_pos (mul_pos (mul_pos h1 hgate) hkP) ht
   rw [phiP_eq h, phiP_eq h']
   rw [show kISC * kP / (s1Decay kF kISC kIC * (kP + kNR))
         < kISC' * kP / (s1Decay kF kISC' kIC * (kP + kNR))
       ↔ (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR))
         < (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR)) from
-    div_lt_div_iff₀ hden hden']
-  rw [mul_lt_mul_iff_of_pos_right hden']
-  exact mul_lt_mul_of_pos_right hlt hkP
+    div_lt_div_iff₀ (a := kISC * kP) (b := s1Decay kF kISC kIC * (kP + kNR))
+      (c := kISC' * kP) (d := s1Decay kF kISC' kIC * (kP + kNR)) hden hden']
+  rw [show s1Decay kF kISC kIC = kF + kISC + kIC from rfl,
+    show s1Decay kF kISC' kIC = kF + kISC' + kIC from rfl]
+  linarith
 
 /-- Plan §4, FP-C6. **The crossover in closed form**: phosphorescence overtakes fluorescence
 exactly when `kISC·kP` exceeds `kF·(kP+kNR)`. Route: `div_lt_div_iff` chains with

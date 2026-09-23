@@ -53,7 +53,9 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.EnergyGapLaw.Sharp", "PhotoLean.EnergyGapLaw.RatModel",
                   "PhotoLean.EnergyGapLaw.Instances",
                   "PhotoLean.Forster.Basic", "PhotoLean.Forster.Criterion",
-                  "PhotoLean.Forster.RatModel", "PhotoLean.Forster.Instances"]
+                  "PhotoLean.Forster.RatModel", "PhotoLean.Forster.Instances",
+                  "PhotoLean.ICvsISC.Basic", "PhotoLean.ICvsISC.Criterion",
+                  "PhotoLean.ICvsISC.RatModel", "PhotoLean.ICvsISC.Instances"]
 
 [[require]]
 name = "mathlib"

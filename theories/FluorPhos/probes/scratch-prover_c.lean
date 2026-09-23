@@ -1,19 +1,11 @@
 import Mathlib
 
-def s1Decay (kF kISC kIC : ℝ) : ℝ := kF + kISC + kIC
-
-example (kF kISC kIC kP kNR : ℝ) (hs : s1Decay kF kISC kIC ≠ 0) (ht : kP + kNR ≠ 0) :
-    kF / s1Decay kF kISC kIC + kISC * kP / (s1Decay kF kISC kIC * (kP + kNR))
-      = (kISC * kP + kF * (kP + kNR)) / (s1Decay kF kISC kIC * (kP + kNR)) := by
-  field_simp [s1Decay]
-  ring
-
-example (kF kISC kIC kP kNR : ℝ) (hs : s1Decay kF kISC kIC ≠ 0) (ht : kP + kNR ≠ 0) :
-    kF / s1Decay kF kISC kIC + kISC * kP / (s1Decay kF kISC kIC * (kP + kNR))
-      = (kISC * kP + kF * (kP + kNR)) / (s1Decay kF kISC kIC * (kP + kNR)) := by
-  rw [show kF / s1Decay kF kISC kIC = kF * (kP + kNR) / (s1Decay kF kISC kIC * (kP + kNR)) from by
-    field_simp
-    ring]
-  rw [div_add_div_same]
-  congr 1
-  ring
+private lemma gate_core {kISC kISC' kF kIC : ℝ} (hs1 : 0 < kF + kISC + kIC)
+    (hkISC : 0 ≤ kISC) (hlt : kISC < kISC') : 0 < kISC + kISC' - kF - kIC := by
+  by_contra hle
+  push_neg at hle
+  have hs' : 0 < kISC := lt_of_le_of_lt hkISC hlt
+  have h2 : 2 * kISC < kF + kIC := by linarith
+  have h3 : 4 * (kISC * kISC) < (kF + kIC) * (kF + kIC) := by nlinarith
+  have h4 : kISC * kISC < (kF + kIC) * kISC := by nlinarith
+  nlinarith [mul_pos hs1 hs']
