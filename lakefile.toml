@@ -57,7 +57,13 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.ICvsISC.Basic", "PhotoLean.ICvsISC.Criterion",
                   "PhotoLean.ICvsISC.RatModel", "PhotoLean.ICvsISC.Instances",
                   "PhotoLean.FluorPhos.Basic", "PhotoLean.FluorPhos.Criterion",
-                  "PhotoLean.FluorPhos.RatModel", "PhotoLean.FluorPhos.Instances"]
+                  "PhotoLean.FluorPhos.RatModel", "PhotoLean.FluorPhos.Instances",
+                  "PhotoLean.RACI.TwoState", "PhotoLean.RACI.Branching",
+                  "PhotoLean.RACI.Accessibility", "PhotoLean.RACI.Torsion",
+                  "PhotoLean.RACI.Barrier", "PhotoLean.RACI.LandauZener",
+                  "PhotoLean.RACI.Jablonski", "PhotoLean.RACI.JablonskiRatios",
+                  "PhotoLean.RACI.Main", "PhotoLean.RACI.Seam",
+                  "PhotoLean.RACI.GeometricPhase"]
 
 [[require]]
 name = "mathlib"

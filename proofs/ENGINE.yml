@@ -103,7 +103,7 @@ COMMIT_TEMPLATE="feat(<area>): <lemma>"
 # 理论根目录：check.sh 的第二遍遍历扫 <THEORIES_DIR>/*/。
 # English: Theories root: the second pass of check.sh sweeps <THEORIES_DIR>/*/.
 THEORIES_DIR="theories"
-THEORIES="Marcus hammond BEP kasha Sabatier goldschmidt SymmetryFactor KashaVavilov SternVolmer QuantumYield FluorPhos EnergyGapLaw StokesShift ICvsISC Forster Einstein"
+THEORIES="Marcus hammond BEP kasha Sabatier goldschmidt SymmetryFactor KashaVavilov SternVolmer QuantumYield FluorPhos EnergyGapLaw StokesShift ICvsISC Forster Einstein RACI"
 PLAN_Marcus="theories/Marcus/plan.md"
 TASKS_Marcus="theories/Marcus/TASKS.md"
 LITERATURE_Marcus="theories/Marcus/LITERATURE.md"
@@ -197,3 +197,11 @@ TASKS_Einstein="theories/Einstein/TASKS.md"
 LITERATURE_Einstein="theories/Einstein/LITERATURE.md"
 PROBES_Einstein="theories/Einstein/probes"
 RESULT_Einstein="theories/Einstein/RESULTS.md"
+# ── 第十七个理论（RACI，2026-09-23，自独立 ChemLean 仓库纳管；锥形交叉受限 ⇒ 聚集诱导发射）──
+# English: the seventeenth theory (RACI, 2026-09-23, integrated from the independent ChemLean
+# English: repository: restricted access to a conical intersection implies aggregation-induced emission)
+PLAN_RACI="theories/RACI/plan.md"
+TASKS_RACI="theories/RACI/TASKS.md"
+LITERATURE_RACI="theories/RACI/LITERATURE.md"
+PROBES_RACI="theories/RACI/probes"
+RESULT_RACI="theories/RACI/RESULTS.md"
