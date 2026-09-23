@@ -3881,3 +3881,63 @@
   stayed `clean`). The lead must append
   `"PhotoLean.EnergyGapLaw.Basic" … "PhotoLean.EnergyGapLaw.Instances"` to `defaultTargets` before
   the verifier's whole-tree build is evidence for this theory.
+
+## 2026-09-23 — Forster Phase 2 (FO1–FO4, the κ² convention analysis) — prover_d — DONE (proof layer)
+
+- Delivered `PhotoLean/Forster/{Basic,Criterion,RatModel,Instances}.lean`: 32/32 authority
+  declarations word for word (bep-fidelity: 0 signature differences, 0 undelivered), all 22
+  theorems proved. Gates: four module builds green; `check.sh --strict <module>` PASS on each
+  (scan `clean`); `#print axioms` PASS on all 22 (only propext / Classical.choice / Quot.sound).
+  **The batch's highest-risk row `kappaSq_le_four` closed on the plan's own route — no fallback
+  (`kappaSq_le_eight`) and no statement change.** The SV-R1 vacuity pitfall was checked on
+  `Rat.fretEff6_cast`: `#print` shows `↑(Rat.fretEff6 r6 R) = fretEff6 ↑r6 ↑R`, i.e. the real
+  bridge; it is usable (instantiated at `1, 3/2` it yields the value `64/793`).
+- Tried and failed (each is a measured fact; the FO-C2 one is now in `proofs/API-NOTES.md`):
+  1. **The invalid closing of `kappaSq_le_four`.** The triangle step gives `|x| ≤ 4` with
+     `x := sinθD·sinθA·cosφ − 2cosθD·cosθA`. Closing "`|x| ≤ 4` hence `x^2 ≤ 4`" by
+     `sq_le_sq`/`le_of_sq_le_sq` is **mathematically wrong** — the correct consequence is only
+     `x^2 ≤ 16`, and the kernel rejects it (measured: after `sq_le_sq.mpr h_abs_le` and
+     `simpa [show (2:ℝ)^2 = 4]`, `linarith` reports "failed to find a contradiction" on
+     `x^2 > 4`). The working finish takes the square-root form:
+     `Real.sqrt_le_sqrt` on the squared Cauchy–Schwarz bound, then `Real.sqrt_sq_eq_abs` for
+     `sqrt (p^2) = p` (`p ≥ 0`) and `x^2 = |x|^2` by `sq_abs`. Cost: ~4 rewrite cycles.
+  2. **`p^2 ≤ 2^2` is not an `abs`-free `nlinarith`.** Two derived fact families are needed on
+     top of the Cauchy–Schwarz square (`h_cs_sq`): `sin²θD + 4cos²θD ≤ 4` from
+     `Real.cos_sq_le_one` + `Real.sin_sq_add_cos_sq`, and *positivity of the other factor*
+     (`0 ≤ sin²θA + cos²θA`) before `nlinarith` can multiply the two bounds. Without the explicit
+     `have hy0 : 0 ≤ sin²θA + cos²θA` the product step is not reachable.
+  3. **Tactic lints fire on defensive `first`.** `first | ring | skip` produces both
+     "this tactic is never executed" and "'skip' tactic does nothing"; replacing `first | ring`
+     around the *last* closing step with the plain tactic is what the lint-clean build wants.
+  4. **Decomposition of a `have` by `rw` can close it.** In
+     `have h3 : |2*cos θD*cos θA| = 2*|cos θD|*|cos θA| := by rw [abs_mul, abs_mul, abs_of_nonneg …]`,
+     the three-rewrite `rw` **already closes the goal** (the two sides are syntactically equal
+     after `abs_of_nonneg`), so a following `ring` errors with "no goals to be solved". Splitting
+     into two `rw` lines (`rw [abs_mul, abs_mul]` then `rw [abs_of_nonneg …]`) is the fix — the
+     same class as the earlier "the rewrite finished my proof and the next tactic had no goals".
+  5. **`strictMonoOn` applications: the membership arguments must be *typed* as memberships.**
+     With `hS := fretEff6_strictMono_r6 R hR`, the call `hS h1 h2 hr h` where
+     `h1 : 0 < κ₁` and `h2 : κ₂ ∈ Set.Ioi 0` failed with a misleading "argument `hr` has type
+     `r0six … < r0six …` but is expected to have type `κ₁ < κ₂`". The real defect was the
+     **first** argument's type: `h1` is syntactically `0 < κ₁`, not the membership
+     `κ₁ ∈ Set.Ioi 0`, and the elaborator reports the mismatch at a later position. Fix:
+     materialise the membership proofs first (`have hp1 : (0:ℝ) < r0six C κ₁ Φ J n := by
+     rw [r0six]; positivity`) and pass *those*: `hS hp1 hp2 hr h`. Lesson: when an
+     application error points at argument *n*, suspect arguments *< n* (the elaborator's
+     position report is not the offending position).
+  6. **`positivity` cannot see `κ₂ > 0` from `κ₁ < κ₂`.** Inside `have hp2 : 0 < r0six C κ₂ Φ J n`,
+     `rw [r0six]; positivity` fails ("failed to prove positivity/nonnegativity/nonzeroness")
+     because the positivity database has no fact about `κ₂`. The working form adds the explicit
+     `have hk2 : (0:ℝ) < κ₂ := by linarith` before `positivity`.
+- Positive patterns worth reusing: `div_div_div_cancel_right₀` twice (once per denominator `n^4`,
+  once for `C*(2/3)*Φ*J`) collapses the FO-C7 ratio `r0six … / r0six …` to a two-factor quotient
+  in one step — much more robust than `field_simp` on nested quotients, whose normalization left a
+  `n⁻¹^4 * (r0six …)⁻¹` residue. And the FO-R2 two-step (ℤ-valued `frameKappa` decided by
+  `decide`, the ℚ average by `norm_num`) delivered exactly as the probe predicted.
+- **Coordination gap (same class as the EnergyGapLaw entry above)**: the four
+  `PhotoLean.Forster.*` modules are not in `lakefile.toml`'s `defaultTargets`, and this task's
+  ownership excludes that file, so a bare `check.sh --strict` builds the other theories but not
+  these. Per-module `check.sh --strict PhotoLean.Forster.<Module>` is PASS; the lead must append
+  the four targets. Separately, the whole-tree strict gate currently fails on
+  `PhotoLean/FluorPhos/Scratch.lean` (unproved placeholders at lines 25/26/28/29), which is not a
+  Forster file.

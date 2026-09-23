@@ -215,7 +215,6 @@ theorem fretEff6_mono_kappa {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0
     rw [div_lt_div_iff₀ h4 h4]
     have hC4 : (0 : ℝ) < C * Φ * J := by positivity
     nlinarith [mul_lt_mul_of_pos_right h hC4]
-  have h2 : κ₂ ∈ Set.Ioi (0 : ℝ) := Set.mem_Ioi.mpr (by linarith)
   have hS := fretEff6_strictMono_r6 R hR
   have hp1 : (0 : ℝ) < r0six C κ₁ Φ J n := by rw [r0six]; positivity
   have hp2 : (0 : ℝ) < r0six C κ₂ Φ J n := by

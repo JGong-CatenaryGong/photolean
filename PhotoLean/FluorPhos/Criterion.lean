@@ -85,8 +85,12 @@ private theorem add_common {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP
     field_simp
     ring
   unfold phiF
-  rw [hP]
-  field_simp
+  rw [show kF / s1Decay kF kISC kIC
+        = kF * (kP + kNR) / (s1Decay kF kISC kIC * (kP + kNR)) from by
+    field_simp
+    ring]
+  rw [hP, div_add_div_same]
+  congr 1
   ring
 
 /-- Auxiliary arithmetic for the corrected FP-C4 boundary: the defect of the exhaustion numerator
@@ -160,6 +164,8 @@ theorem phiF_add_phiP_le_one {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC 
     add_nonneg (mul_nonneg h.kIC_nonneg (le_of_lt h.t1Decay_pos))
       (mul_nonneg h.kISC_nonneg h.kNR_nonneg)
   have hlex : kISC * kP + kF * (kP + kNR) ≤ s1Decay kF kISC kIC * (kP + kNR) := by
+    have h1 : 0 ≤ kISC * kNR := mul_nonneg h.kISC_nonneg h.kNR_nonneg
+    have h2 : 0 ≤ kIC * (kP + kNR) := mul_nonneg h.kIC_nonneg (le_of_lt h.t1Decay_pos)
     linarith
   rw [add_common h]
   exact (div_le_one hd0).mpr hlex
@@ -205,18 +211,29 @@ theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC
   have ht : 0 < kP + kNR := h.t1Decay_pos
   have hden : 0 < s1Decay kF kISC kIC * (kP + kNR) := mul_pos hs ht
   have hden' : 0 < s1Decay kF kISC' kIC * (kP + kNR) := mul_pos hs' ht
-  have key : (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR))
-      - (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR))
-      = kISC * kP * (kISC - kISC') * (kF + kIC) * (kP + kNR) := by
+  have key : (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR))
+      - (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR))
+      = kISC * kP * (kISC' - kISC) * (kF + kIC) * (kP + kNR) := by
     rw [s1Decay, s1Decay]
     ring
+  have h1 : 0 < kISC' - kISC := by linarith
+  have h2 : 0 < kF + kIC := by
+    have hs1 := h.s1Decay_pos
+    rw [s1Decay] at hs1
+    have hkISC := h.kISC_nonneg
+    linarith
+  have hpos : 0 < (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR))
+      - (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR)) := by
+    rw [key]
+    exact mul_pos (mul_pos (mul_pos (mul_pos h.kISC_nonneg hkP) h1) h2) ht
   rw [phiP_eq h, phiP_eq h']
   rw [show kISC * kP / (s1Decay kF kISC kIC * (kP + kNR))
         < kISC' * kP / (s1Decay kF kISC' kIC * (kP + kNR))
       ↔ (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR))
         < (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR)) from
     div_lt_div_iff₀ hden hden']
-  exact mul_lt_mul_of_pos_right (mul_lt_mul_of_pos_right hlt hkP) hden
+  rw [mul_lt_mul_iff_of_pos_right hden']
+  exact mul_lt_mul_of_pos_right hlt hkP
 
 /-- Plan §4, FP-C6. **The crossover in closed form**: phosphorescence overtakes fluorescence
 exactly when `kISC·kP` exceeds `kF·(kP+kNR)`. Route: `div_lt_div_iff` chains with
@@ -267,7 +284,7 @@ theorem nonvacuous_competition :
   refine ⟨1, 1, 1, 1, 1, ?_, ?_, ?_⟩
   · constructor <;> norm_num [s1Decay]
   · norm_num [phiF, s1Decay]
-  · norm_num [phiP, iscBranch, t1BranchP]
+  · norm_num [phiP, iscBranch, t1BranchP, s1Decay]
 
 end FluorPhos
 
