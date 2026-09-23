@@ -154,9 +154,14 @@ theorem intensity_curve_coincidence {k0 kq Ka : ℝ} (hk0 : k0 ≠ 0) (hK : KSV 
 mechanism exactly. Weakest-premise note (plan §4): no hypothesis on `kq` — at `kq = 0` the
 dynamic plot is flat and tracking still holds; `0 < Ka` is load-bearing — at `Ka = 0` the
 static plot is flat and tracking holds there too. Plan section 4, row SV-C8.
+**Re-frozen 2026-09-23 (plan §3.1 entry 2; Phase-3 premise audit, verifier run 1).** The premise
+`0 < k0` is dropped: the delivered proof never consumed it (the dynamic side tracks
+definitionally by SV-C1; the static refutation uses only `0 < Ka`), and the iff survives at
+`k0 = 0` — under totalized division the dynamic side's two ratios agree there. Scratch probe:
+`.lake/tmp/prover_c_phase3_svc8_probe.lean` (exit 0).
 Proof route: cases on `m`; `LifetimeTracks Mech.dyn` holds by SV-C1; `¬ LifetimeTracks Mech.stat`
 instantiates the universal at `q = 1` and refutes by `stat_lifetime_separates` (plan §5). -/
-theorem lifetimeTracks_iff_dyn {k0 kq Ka : ℝ} (hk0 : 0 < k0) (hKa : 0 < Ka) :
+theorem lifetimeTracks_iff_dyn {k0 kq Ka : ℝ} (hKa : 0 < Ka) :
     ∀ m : Mech, (LifetimeTracks m k0 kq Ka ↔ m = Mech.dyn) := by
   sorry
 

@@ -131,7 +131,7 @@ Plan section 4, row QY-C6, fourth form. -/
 theorem yieldOf_cons_succ_factor {n : ℕ} {k : Fin n → ℝ} (h : QYData k) (c : ℝ) (i : Fin n) :
     yieldOf (Fin.cons c k) i.succ = yieldOf k i * (totalRate k / (c + totalRate k)) := by
   -- Proof route (plan §5): `yieldOf_cons_succ` + field algebra with `h.total_pos.ne'`.
-  rw [yieldOf_cons_succ h c i]
+  rw [yieldOf_cons_succ c i]
   unfold yieldOf
   by_cases hc : c + totalRate k = 0
   · simp [hc]

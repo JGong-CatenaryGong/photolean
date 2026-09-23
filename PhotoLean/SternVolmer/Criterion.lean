@@ -12,7 +12,9 @@ inference. Three delivered facts pin the boundary exactly.
 * **D1b — the boundary (SV-C8).** Within that model space the discriminating channel is the
   lifetime ratio: `LifetimeTracks m k0 kq Ka ↔ m = Mech.dyn`, with `0 < Ka` load-bearing (at
   `Ka = 0` the static plot is flat and tracking holds there too) and *no* hypothesis on `kq` — at
-  `kq = 0` the dynamic plot is flat and tracking still holds (weakest-premise standard, plan §4).
+  `kq = 0` the dynamic plot is flat and tracking still holds — and *no* hypothesis on `k0`
+  either (the premise was dropped in the Phase-3 re-freeze, plan §3.1 entry 2: the iff survives
+  at `k0 = 0` under totalized division). Weakest-premise standard, plan §4.
 * **D1c — coexistence (SV-C9).** The combined mechanism curves upward: its second difference is
   the constant `2·KSV·Ka·h² > 0`, while each single mechanism has vanishing second difference, so
   curvature is a positive witness of coexistence.
@@ -124,9 +126,14 @@ theorem intensity_curve_coincidence {k0 kq Ka : ℝ} (hk0 : k0 ≠ 0) (hK : KSV 
 mechanism exactly. Weakest-premise note (plan §4): no hypothesis on `kq` — at `kq = 0` the
 dynamic plot is flat and tracking still holds; `0 < Ka` is load-bearing — at `Ka = 0` the
 static plot is flat and tracking holds there too. Plan section 4, row SV-C8.
+**Re-frozen 2026-09-23 (plan §3.1 entry 2; Phase-3 premise audit, verifier run 1).** The premise
+`0 < k0` is dropped: this proof never consumed it (the dynamic side tracks definitionally by
+SV-C1; the static refutation uses only `0 < Ka`), and the iff survives at `k0 = 0` — under
+totalized division the dynamic side's two ratios agree there. Scratch probe:
+`.lake/tmp/prover_c_phase3_svc8_probe.lean` (exit 0).
 Proof route: cases on `m`; `LifetimeTracks Mech.dyn` holds by SV-C1; `¬ LifetimeTracks Mech.stat`
 instantiates the universal at `q = 1` and refutes by `stat_lifetime_separates` (plan §5). -/
-theorem lifetimeTracks_iff_dyn {k0 kq Ka : ℝ} (hk0 : 0 < k0) (hKa : 0 < Ka) :
+theorem lifetimeTracks_iff_dyn {k0 kq Ka : ℝ} (hKa : 0 < Ka) :
     ∀ m : Mech, (LifetimeTracks m k0 kq Ka ↔ m = Mech.dyn) := by
   intro m
   cases m with
@@ -203,7 +210,7 @@ theorem d1_verdict {k0 kq Ka : ℝ} (hk0 : 0 < k0) (hkq : 0 < kq) (hKa : 0 < Ka)
   · intro q
     exact intensity_curve_coincidence (k0 := k0) (kq := kq) (Ka := KSV k0 kq)
       (ne_of_gt hk0) rfl q
-  · exact lifetimeTracks_iff_dyn hk0 hKa
+  · exact lifetimeTracks_iff_dyn hKa
 
 end SternVolmer
 
