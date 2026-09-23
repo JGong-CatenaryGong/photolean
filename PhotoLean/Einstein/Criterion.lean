@@ -149,7 +149,7 @@ theorem f_pos_iff_a_pos {Cf g1 g2 : ℝ} (hCf : 0 < Cf) (hg1 : 0 < g1) (hg2 : 0 
 QuantumYield edge anchor (corrected at design time, superseding the trivial `fluorescence_lifetime`;
 trivial as algebra, stated so the edge has a home). Plan section 4, row EB-C8. Proof route:
 `mul_one_div`. -/
-theorem yield_radiative {A kNR : ℝ} (hA : 0 < A) (hkNR : 0 ≤ kNR) :
+theorem yield_radiative {A kNR : ℝ} :
     A * (1 / (A + kNR)) = A / (A + kNR) := by
   rw [mul_one_div]
 

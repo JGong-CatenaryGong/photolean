@@ -133,7 +133,7 @@ theorem f_pos_iff_a_pos {Cf g1 g2 : ℝ} (hCf : 0 < Cf) (hg1 : 0 < g1) (hg2 : 0 
 QuantumYield edge anchor (corrected at design time, superseding the trivial `fluorescence_lifetime`;
 trivial as algebra, stated so the edge has a home). Plan section 4, row EB-C8. Proof route:
 `mul_one_div`. -/
-theorem yield_radiative {A kNR : ℝ} (hA : 0 < A) (hkNR : 0 ≤ kNR) :
+theorem yield_radiative {A kNR : ℝ} :
     A * (1 / (A + kNR)) = A / (A + kNR) := by
   sorry
 
@@ -206,7 +206,7 @@ theorem rat_roundtrip_verdicts :
 The ℚ layer therefore tests the algebra at rational surrogate constants only and says nothing about
 the physical constants (plan §2, §8). Plan section 4, row EB-R2 (honesty). Proof route: mathlib's
 irrationality of `π` (`irrational_pi`, calibrated in the API probe). -/
-theorem radFactor_not_rational : Irrational Real.pi := by
+theorem radFactor_not_rational : Irrational (radFactor 1 1 1) := by
   sorry
 
 /-! ## EB-I — named instances (`PhotoLean/Einstein/Instances.lean`) -/

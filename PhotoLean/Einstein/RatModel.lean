@@ -104,8 +104,12 @@ theorem rat_roundtrip_verdicts :
 The ℚ layer therefore tests the algebra at rational surrogate constants only and says nothing about
 the physical constants (plan §2, §8). Plan section 4, row EB-R2 (honesty). Proof route: mathlib's
 irrationality of `π` (`irrational_pi`, calibrated in the API probe). -/
-theorem radFactor_not_rational : Irrational Real.pi := by
-  exact irrational_pi
+theorem radFactor_not_rational : Irrational (radFactor 1 1 1) := by
+  have hrw : radFactor 1 1 1 = (8 : ℤ) * Real.pi := by
+    unfold radFactor
+    norm_num
+  rw [hrw]
+  exact irrational_int_mul_iff.mpr ⟨by norm_num, irrational_pi⟩
 
 end Einstein
 
