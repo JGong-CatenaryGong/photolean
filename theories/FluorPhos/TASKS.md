@@ -122,3 +122,8 @@ Findings and resolution:
   half refuted at `kF = kIC = 0, kISC = 1 → 2` (both yields `1/2`). Authority sha256 `2a717f1f51fd0f263513675945694b55a9034bb1e6b1299489d630ac7f96e7f4`.
 - Five premise trims (crossover_isc, crossover_isc_threshold, hso_zero_no_phosphorescence,
   fpZoneQ_phosphorDominant_iff, phiP_strictMono_isc) — plan §3.1 entry 3.
+
+### Phase-3 authority revision (2026-09-23)
+
+Phase-3 revision (plan §3.1 entries 3–4): five premise trims + the `fpC5_firstForm_refuted` negative-result row (FP-I4). All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
+differences (see the final verifier run's record).

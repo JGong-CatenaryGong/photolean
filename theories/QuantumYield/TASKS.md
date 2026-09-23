@@ -138,3 +138,8 @@ premise notes; **no delivered form broke**.
 Findings: L2 board staleness (fixed 2026-09-23: `defaultTargets` and the literature row);
 L3 `RESULTS.md` still Phase-1 text (fixed); L6 premise residue on QY-C2 / QY-C6-third-form
 (carried to the Phase-3 premise audit).
+
+### Phase-3 authority revision (2026-09-23)
+
+Phase-3 revision (plan §3.1 entries 1–2): `yieldOf_eq_mul_tauOf` and the third cons row dropped their `QYData` premises (definition-level identities); the two linter suppressions were removed with them. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
+differences (see the final verifier run's record).

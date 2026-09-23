@@ -108,3 +108,8 @@ Findings carried to the Phase-3 audit and to the lead (recorded here as the sing
 
 - `invertedCorner_firstForm_refuted` (SS-I4, the negative-result finalization): the first frozen
   form of SS-C9 refuted at the kernel witness `lam = 1, e00 = 2`. Authority sha256 now `c2372a2e7cd57e5e0e5ee8deaa3da113f4cdaa3a55d6dc9f49e19ebf697f0f8e`.
+
+### Phase-3 authority revision (2026-09-23)
+
+Phase-3 revision (plan §3.1 entry 2): the `invertedCorner_firstForm_refuted` negative-result row (SS-I4). All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
+differences (see the final verifier run's record).

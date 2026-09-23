@@ -107,3 +107,8 @@ Findings and their resolution:
 * L4 (plan §4 EG-I3 body printed the draft `-20`) — fixed by the lead 2026-09-23.
 * L6 premise residue (EG-C1's `lam ≠ 0` / `0 < kB*T` are proof-consumed but not statement-necessary)
   — carried to the Phase-3 premise audit.
+
+### Phase-3 authority revision (2026-09-23)
+
+Phase-3 revision (plan §3.1 entry 5): `lnRate_eq` dropped `lam ≠ 0` and `0 < kB*T` (degenerate inputs totalize consistently); ten call sites adapted. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
+differences (see the final verifier run's record).

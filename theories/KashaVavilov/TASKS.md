@@ -129,3 +129,8 @@ authority (29 declarations) and the fidelity report: **KV-Criterion = 9 authorit
 authority declarations (20 theorems + 9 definitions), 29/29 axioms rows clean. Commit-message
 history cannot be rewritten; this board entry is the record of record. (The earlier empty commit
 `ee89b78` claimed this correction but contained no file change; this note lands it.)
+
+### Phase-3 authority revision (2026-09-23)
+
+Phase-3 revision (plan §3.1 entry 2): `specFrac_zero_of_kashaRule` dropped `RateData`, `cascade_pos_iff` dropped `i ≤ N`; the empty suppressions removed, the `d2_verdict` suppression kept with an accurate binder-noise comment. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
+differences (see the final verifier run's record).

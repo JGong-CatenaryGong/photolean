@@ -162,3 +162,8 @@ Findings carried to the Phase-3 audit and to the lead (recorded here as the sing
 * L1–L7 low findings: record hygiene, commit granularity (registered deviation), suppressions
   hiding one real unused premise, an empty commit whose correction never landed (relaunched by the
   lead 2026-09-23), and the naming-bridge caveat on `emEnergy_pos_iff_inverted`.
+
+### Phase-3 authority revision (2026-09-23)
+
+Phase-3 revision (plan §3.1 entries 2–4): `lifetimeTracks_iff_dyn` dropped `hk0`; `d1_verdict` dropped `hkq` and weakened `hk0` to `k0 ≠ 0`; `mixed_witness` re-frozen to the model-tied second difference. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
+differences (see the final verifier run's record).
