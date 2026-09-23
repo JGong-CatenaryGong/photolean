@@ -4000,3 +4000,42 @@ Measured tactic boundaries (probes, this round):
 * Structure-valued premise bundles introduce binders through the anonymous-constructor
   lambdas; a surplus `intro` fails with "insufficient number of binders" (KashaVavilov
   api-probe).
+
+## §photobatch/KashaVavilov — Phase-2 proof calibration (prover_b, 2026-09-23)
+
+Measured against mathlib v4.17.0 while proving KV-B1–KV-B7, KV-C1–KV-C7 and KV-I1–KV-I5.
+
+Absent (guessed names that do NOT exist — do not use):
+* `Finset.pos_of_prod_pos` — absent. Extract a single positive factor from a positive
+  product as: `Finset.mul_prod_erase s f hmem` to factor out the chosen index, plus
+  `Finset.prod_nonneg` for the erased part, plus `mul_nonpos_of_nonpos_of_nonneg` and
+  `linarith` for the contradiction. (`Finset.prod_ne_zero_iff` is an alternative if the
+  factors are only nonnegative: `prod ≠ 0` at the chosen index then rules the factor out.)
+* `Finset.single_le_prod` — absent (its additive sibling `Finset.single_le_sum` does exist).
+
+Confirmed present and used:
+* `Finset.mul_prod_erase`, `Finset.prod_erase_mul`, `Finset.prod_ne_zero_iff`,
+  `Finset.prod_nonneg`, `Finset.prod_pos`, `Finset.prod_eq_one`, `Finset.sum_pos'`,
+  `Finset.single_le_sum`, `Finset.exists_max_image`, `Finset.max'_mem`, `Finset.le_max'`,
+  `Finset.mem_filter`, `Finset.filter_nonempty_iff`;
+* `div_pos_iff_of_pos_right`, `mul_pos_iff_of_pos_left`, `pos_of_mul_pos_left`,
+  `pos_of_mul_pos_right`, `div_ne_zero`, `div_self`, `zero_div`, `one_div`.
+
+Measured tactic boundaries (probes, this round):
+* `mul_pos_iff` is **not** usable as a rewriting rule: `rw [mul_pos_iff]` on `0 < a * b`
+  rewrites it to the *disjunction* `0 < a ∧ 0 < b ∨ a < 0 ∧ b < 0`, which does not match a
+  conjunction-shaped right-hand side. Working route for `(0 < a * b) ↔ (0 < a ∧ 0 < b)` with
+  `0 ≤ a`, `0 ≤ b`: forward by `pos_of_mul_pos_left hp hb` / `pos_of_mul_pos_right hp ha`,
+  backward by `mul_pos`.
+* `unfold` with several definitions for a nested noncomputable chain can print an
+  over-precise target whose `let`-bound `decay` hides the projection structure ("invalid
+  projection, structure expected" on `hp.1`). Working route: state the definitional equation
+  as a `have ... := rfl` and `rw` it in, then destructure the conjunction with an explicit
+  `⟨fun hp => ..., fun hp => ...⟩`.
+* **Import-order shadowing (unexplained, measured)**: in a file importing both
+  `PhotoLean.Kasha.Basic` and `PhotoLean.Kasha.Criterion`, the declarations of
+  `PhotoLean.KashaVavilov.Basic` are *not* visible when `PhotoLean.Kasha.Criterion` is the
+  last import (`unknown identifier 'PhotoLean.KashaVavilov.rateData_mono'`, while
+  `#check` resolves it if `PhotoLean.Kasha.Criterion` is not imported). Ordering the theory's
+  own module first — `import PhotoLean.KashaVavilov.Basic` before the Kasha modules —
+  restores resolution. Root cause not identified; the ordering fix is what is delivered.

@@ -3677,3 +3677,46 @@
      FO-I1's `64/729` were both wrong (probe-recomputed: `−5`, `64/793`). Every numeric
      instance value must be probe-recomputed before it enters a statement (the plans already
      demanded this; the demand was vindicated twice).
+
+## 2026-09-23 — KashaVavilov Phase 2 (D2 adjudication proofs, KV1–KV3) — prover_b — DONE (proof layer)
+
+- Delivered `PhotoLean/KashaVavilov/{Basic,Criterion,Instances}.lean`: 29/29 authority
+  declarations word for word (fidelity diff 0), all 20 theorems proved, 10 auxiliary rows.
+  Gates: three module builds green; `check.sh --strict` on the whole tree PASS (scan clean);
+  `#print axioms` PASS on every one of the 29 declarations (only propext / Classical.choice /
+  Quot.sound). D2 headline `d2_verdict` closes from the three component rows plus the delivered
+  `Kasha.kashaRule_iff_vavilovUpTo`; the anti-Kasha boundary `antiKasha_observable_iff` needed
+  the max-emitter argument and closed on `Finset.exists_max_image` over
+  `{j ∈ Finset.Icc 1 N | 0 < rad j}`.
+- Tried and failed (each is now a measured fact, logged in `proofs/API-NOTES.md` §photobatch):
+  1. `Finset.pos_of_prod_pos` does not exist (neither does `Finset.single_le_prod`). Extracting
+     one positive factor from a positive product has no one-liner in this mathlib; the working
+     route is `Finset.mul_prod_erase` + `Finset.prod_nonneg` + `mul_nonpos_of_nonpos_of_nonneg`
+     + `linarith`. Cost: one rewrite cycle of the KV-C5 proof.
+  2. `rw [mul_pos_iff]` is a trap: it rewrites `0 < a * b` to the **disjunction**
+     `0 < a ∧ 0 < b ∨ a < 0 ∧ b < 0`, so it cannot be used to turn a product-positivity goal
+     into a conjunction goal. The conjunction form (`pos_of_mul_pos_left/right` forward,
+     `mul_pos` backward) is what compiles.
+  3. `unfold` across a nested noncomputable definition chains prints an over-precise target
+     with a `let`-bound `Kasha.decay`, and anonymous-constructor destructuring then fails with
+     "invalid projection, structure expected" on `hp.1`. Same class as the delivered `let`
+     phenomenon in `Kasha.Criterion` (the `mul_one` rewrite that silently rewrote `rad j` to
+     `0`): **do not read `let`-bearing goals as if the `let` were unfolded**. Workaround: state
+     the definitional equation as `have ... := rfl`, `rw` it in, then give the two directions
+     of the iff as explicit lambdas.
+  4. **Import-order shadowing (new, unexplained)**: with `import PhotoLean.Kasha.Basic` and
+     `import PhotoLean.Kasha.Criterion` present and `PhotoLean.Kasha.Criterion` last, the
+     declarations of `PhotoLean.KashaVavilov.Basic` become invisible
+     (`unknown identifier 'PhotoLean.KashaVavilov.rateData_mono'`), although the olean
+     contains them and `#check` resolves them as soon as the module is imported last. Fix
+     delivered: order the theory's own import first. Impact for fresh agents: when adding a
+     module to an existing theory, put `import <Theory>.<OwnModule>` **before** the upstream
+     theory's modules it depends on. This cost three build cycles; it is worth a `#check` probe
+     in the module before writing proofs against it.
+- Positive pattern worth reusing: the literal-witness route delivered exactly as the plan
+  predicted — witness admissibility by `interval_cases n <;> norm_num [Kasha.decay]`, verdict
+  values by one `norm_num [Kasha.fluoYield, ..., Finset.prod_Icc_succ_top]` call, and the
+  existential rows assembled by `refine ⟨..., witness, ..., ?_, ?_, ?_⟩` with named binders.
+  Named-binder arguments are mandatory for the delivered `Kasha.not_kashaRule_of_rad_pos`
+  (`(i := 1) hR ...`): writing the index positionally binds `h1 : 1 ≤ i` instead and the
+  elab error is "numerals are data in Lean, but the expected type is a proposition".
