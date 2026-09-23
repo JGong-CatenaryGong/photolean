@@ -4,9 +4,11 @@
 - Ticking (`[x]`) happens only after a verifier PASS and is done by the lead.
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/ICvsISC/plan.md`.
-- Status of this theory: **Phase 1 (statement formalization) complete** — the statement
-  authority compiles at 0 errors with placeholder theorem bodies; batch: photophysics subgraph
-  (groups A–D), dispatched 2026-09-22.
+- Status of this theory: **Phase 1 (statement formalization) complete**; **Phase 2 (proof layer)
+  delivered 2026-09-23 by prover_a** — all four modules (`Basic`, `Criterion`, `RatModel`,
+  `Instances`) build, the board rows below are at `review`, and the batch awaits an independent
+  verifier run. The Phase-1 statement layer is unchanged (no statement edit was needed).
+  Batch: photophysics subgraph (groups A–D), dispatched 2026-09-22.
 
 ## Sprint 0 — environment, statements, plan (Phase 1 deliverable)
 
@@ -20,30 +22,96 @@
 - [ ] Literature leaf populated: `theories/ICvsISC/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 
-### Declaration board (all `stmt`; ticking is lead-only after verifier PASS)
+### Declaration board (all rows at `review` after the Phase-2 delivery; ticking is lead-only after
+### verifier PASS)
 
-- [ ] `fcBarrier` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `cert_fcBarrier` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `icRate` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `cert_icRate` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `iscRate` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `FCData` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `rate_ratio_eq` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `log_rate_ratio` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `isc_dominates_iff` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `spin_discount` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `hso_zero_isc_absent` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `barrier_diff_closed_form` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `equal_prefactors_decision` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `fcBarrier` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `fcBarrier_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `barrierOrderQ` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `barrierOrderQ_correct` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `aromaticCarbonylLike` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `elSayedFavoredLike` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `hsoZeroWitness` — skeleton — Phase 1 — stmt — placeholder body registered
+- [ ] `fcBarrier` — `Basic.lean` — Phase 2 — review — FC-B1; body verbatim from the authority
+- [ ] `cert_fcBarrier` — `Basic.lean` — Phase 2 — review — FC-B1; `rfl`; build + strict + axioms PASS
+- [ ] `icRate` — `Basic.lean` — Phase 2 — review — FC-B2; body verbatim from the authority
+- [ ] `cert_icRate` — `Basic.lean` — Phase 2 — review — FC-B2; `unfold` + `rfl`; gates PASS
+- [ ] `iscRate` — `Basic.lean` — Phase 2 — review — FC-B3; explicit `HSO ^ 2` prefactor
+- [ ] `FCData` — `Basic.lean` — Phase 2 — review — FC-B4; five positivity fields, transcribed
+- [ ] `rate_ratio_eq` — `Criterion.lean` — Phase 2 — review — FC-C1; `div_mul_div_comm` +
+      `Real.exp_sub`; gates PASS. **Decorative-premise note:** the `FCData` hypothesis is not
+      consumed (the factorization holds for totalized division unconditionally); kept verbatim,
+      local linter option, registered for the Phase-3 premise audit
+- [ ] `log_rate_ratio` — `Criterion.lean` — Phase 2 — review — FC-C2; `Real.log_mul` +
+      `mul_div_assoc` + `Real.log_pow` + `Real.log_exp`; gates PASS
+- [ ] `isc_dominates_iff` — `Criterion.lean` — Phase 2 — review — FC-C3; `Real.log_lt_log_iff` +
+      FC-C2 + `div_pos_iff_of_pos_right`; gates PASS
+- [ ] `spin_discount` — `Criterion.lean` — Phase 2 — review — FC-C4; FC-C3 + `Real.log_neg`;
+      gates PASS
+- [ ] `hso_zero_isc_absent` — `Criterion.lean` — Phase 2 — review — FC-C5; gates PASS.
+      **Decorative-premise note:** `h0 : HSO = 0` does not occur in the frozen conclusion (the row
+      writes the literal `0` in the `HSO` slot); kept verbatim, local linter option, registered for
+      the Phase-3 premise audit
+- [ ] `barrier_diff_closed_form` — `Criterion.lean` — Phase 2 — review — FC-C6; `field_simp` +
+      `ring` on the two nonzero-curvature premises; gates PASS
+- [ ] `equal_prefactors_decision` — `Criterion.lean` — Phase 2 — review — FC-C7; unit coupling
+      consumed by rewriting the literal `1` back to `HSO`, then `mul_lt_mul_iff_of_pos_left` +
+      `Real.exp_lt_exp` + `div_lt_div_iff_of_pos_right`; gates PASS
+- [ ] `fcBarrier` — `RatModel.lean` (`Rat.fcBarrier`) — Phase 2 — review — FC-R1; ℚ shadow,
+      verbatim
+- [ ] `fcBarrier_cast` — `RatModel.lean` — Phase 2 — review — FC-R1; `push_cast` + `ring`;
+      gates PASS; **`#print`-verified non-vacuous** (the printed type is
+      `PhotoLean.ICvsISC.fcBarrier ↑lam ↑x = ↑(PhotoLean.ICvsISC.Rat.fcBarrier lam x)` and the proof
+      term carries `Rat.cast_div` / `Rat.cast_pow` / `Rat.cast_sub` — the SV-R1 namespace-shadowing
+      pitfall was checked before delivery, not closed by `rfl`)
+- [ ] `barrierOrderQ` — `RatModel.lean` (`Rat.barrierOrderQ`) — Phase 2 — review — FC-R2;
+      `decide` on the ℚ barrier order, verbatim
+- [ ] `barrierOrderQ_correct` — `RatModel.lean` — Phase 2 — review — FC-R2;
+      `decide_eq_true_eq` + two `fcBarrier_cast` rewrites + `Rat.cast_lt`; gates PASS
+- [ ] `aromaticCarbonylLike` — `Instances.lean` — Phase 2 — review — FC-I1; barriers `1/16` vs
+      `1/8`, verdict `false`; `norm_num` / `decide_eq_false_iff_not`; gates PASS
+- [ ] `elSayedFavoredLike` — `Instances.lean` — Phase 2 — review — FC-I2; barriers `1/16` vs
+      **`1/32`** (the probe-recomputed value, plan §3.1 / API-NOTES statement-change index row 4),
+      verdict `true`; gates PASS
+- [ ] `hsoZeroWitness` — `Instances.lean` — Phase 2 — review — FC-I3; `simp` at ℚ; gates PASS
 
-## Sprint 1+ — proof formalization (Phase 2, not started)
+## Sprint 1 — proof formalization (Phase 2, delivered by prover_a 2026-09-23)
 
-Rows are claimed one at a time per the plan's sprint order; each claim closes with
-`lake build` green before the next is claimed.
+Delivered modules (all under `PhotoLean/ICvsISC/`, none of them touching the statement layer):
+
+| module | rows | commit |
+|---|---|---|
+| `Basic.lean` | FC-B1..FC-B4 (6 declarations) | `4af2c74` |
+| `Criterion.lean` | FC-C1..FC-C7 (7 theorems) | `b84844e` |
+| `RatModel.lean` | FC-R1..FC-R2 (4 declarations) | `0a84dea` |
+| `Instances.lean` | FC-I1..FC-I3 (3 theorems) | `2d3578f` |
+
+Raw gate evidence (prover_a run, 2026-09-23):
+
+- `proofs/scripts/lake build PhotoLean.ICvsISC.{Basic,Criterion,RatModel,Instances}` — exit 0
+  (four separate builds).
+- `proofs/scripts/check.sh --strict <module>` — exit 0, scan `clean`, `verdict: PASS` for each of
+  the four modules.
+- `proofs/scripts/axioms.sh` on all **14** authority theorems
+  (`cert_fcBarrier`, `cert_icRate`, `rate_ratio_eq`, `log_rate_ratio`, `isc_dominates_iff`,
+  `spin_discount`, `hso_zero_isc_absent`, `barrier_diff_closed_form`, `equal_prefactors_decision`,
+  `Rat.fcBarrier_cast`, `Rat.barrierOrderQ_correct`, `aromaticCarbonylLike`, `elSayedFavoredLike`,
+  `hsoZeroWitness`) — every row `depends on axioms: [propext, Classical.choice, Quot.sound]`,
+  `verdict: PASS (only mathlib infrastructure axioms)`.
+- `python3 theories/BEP/probes/bep-fidelity.py --theory ICvsISC` — skeleton declarations 20,
+  delivered word-for-word **20**, delivered-not-in-authority 0, not delivered yet 0, signature
+  differences **0**; exit 0.
+- Whole-tree `proofs/scripts/check.sh --strict` at the time of delivery — `verdict: FAIL (strict)`
+  with a **single** scan hit: `PhotoLean/FluorPhos/Criterion.lean:224` (an uncommitted
+  work-in-progress edit by another prover, outside this theory's ownership). The whole-tree *build*
+  was OK; every `PhotoLean/ICvsISC/*.lean` file scanned clean. The gate must be re-run after the
+  FluorPhos edit lands.
+- **Delivery gap for the lead**: the four new modules are not in `lakefile.toml` `defaultTargets`
+  (this task's ownership excludes `lakefile.toml`), so the whole-tree `check.sh --strict` PASS does
+  not *build* them. The lead must append
+  `"PhotoLean.ICvsISC.Basic" … "PhotoLean.ICvsISC.Instances"` before the verifier's whole-tree
+  build counts as evidence for this theory.
+
+Statement layer: **unchanged** — no API drift, no statement edit, no re-freeze. The one arithmetic
+correction of this theory (FC-I2's ISC barrier `1/16` → `1/32`) was made in Phase 1 and is already
+carried by the frozen authority; it is re-recorded in `proofs/API-NOTES.md` §photobatch
+statement-change index row 4.
+
+Premise observations registered for the Phase-3 audit (statements untouched): FC-C1's `FCData`
+bundle and FC-C5's `h0 : HSO = 0` are decorative — the frozen conclusions do not mention the
+parameter they constrain. Both rows keep the authority's signature verbatim with a local
+`linter.unusedVariables` option (the precedent of `PhotoLean/BEP/Sharp.lean` and
+`PhotoLean/EnergyGapLaw/Criterion.lean`) rather than a silent repair.
