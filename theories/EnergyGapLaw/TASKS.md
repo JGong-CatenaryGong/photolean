@@ -54,32 +54,32 @@
 
 | # | Plan row | Declaration | Kind | Status |
 |---|----------|-------------|------|--------|
-| 1 | EG-B1 | `nrBarrier` | def | `review` |
-| 2 | EG-B1 | `cert_nrBarrier` | theorem | `review` |
-| 3 | EG-B2 | `nrRate` | def | `review` |
-| 4 | EG-B2 | `cert_nrRate` | theorem | `review` |
-| 5 | EG-B3 | `InvertedGap` | def | `review` |
-| 6 | EG-B3 | `cert_invertedGap` | theorem | `review` |
-| 7 | EG-B4 | `lnRate` | def | `review` |
-| 8 | EG-C1 | `lnRate_eq` | theorem | `review` |
-| 9 | EG-C2 | `lnRate_strictAnti_on_inverted` | theorem | `review` |
-| 10 | EG-C3 | `lnRate_strictMono_on_normal` | theorem | `review` |
-| 11 | EG-C4 | `secant_slope_exact` | theorem | `review` |
+| 1 | EG-B1 | `nrBarrier` | def | `done` |
+| 2 | EG-B1 | `cert_nrBarrier` | theorem | `done` |
+| 3 | EG-B2 | `nrRate` | def | `done` |
+| 4 | EG-B2 | `cert_nrRate` | theorem | `done` |
+| 5 | EG-B3 | `InvertedGap` | def | `done` |
+| 6 | EG-B3 | `cert_invertedGap` | theorem | `done` |
+| 7 | EG-B4 | `lnRate` | def | `done` |
+| 8 | EG-C1 | `lnRate_eq` | theorem | `done` |
+| 9 | EG-C2 | `lnRate_strictAnti_on_inverted` | theorem | `done` |
+| 10 | EG-C3 | `lnRate_strictMono_on_normal` | theorem | `done` |
+| 11 | EG-C4 | `secant_slope_exact` | theorem | `done` |
 | 12 | EG-C4 (corollary) | `secant_slope_neg_iff` | theorem | `review` |
-| 13 | EG-S1 | `eglTangent` | def | `review` |
-| 14 | EG-S2 | `eglTangent_overestimates` | theorem | `review` |
+| 13 | EG-S1 | `eglTangent` | def | `done` |
+| 14 | EG-S2 | `eglTangent_overestimates` | theorem | `done` |
 | 15 | EG-S2a | `eglTangent_defect` | theorem | `review` |
-| 16 | EG-S3 | `not_affine_on_window` | theorem | `review` |
-| 17 | EG-S4 | `eglTangent_slope_strictAnti` | theorem | `review` |
-| 18 | EG-R1 | `Rat.nrBarrier` | def | `review` |
+| 16 | EG-S3 | `not_affine_on_window` | theorem | `done` |
+| 17 | EG-S4 | `eglTangent_slope_strictAnti` | theorem | `done` |
+| 18 | EG-R1 | `Rat.nrBarrier` | def | `done` |
 | 19 | EG-R1 (cast row; name assigned in Sprint 0) | `Rat.nrBarrier_cast` | theorem | `review` |
-| 20 | EG-R2 | `EGZone` | inductive | `review` |
-| 21 | EG-R2 | `egZoneQ` | def | `review` |
+| 20 | EG-R2 | `EGZone` | inductive | `done` |
+| 21 | EG-R2 | `egZoneQ` | def | `done` |
 | 22 | EG-R2 (correctness row) | `egZoneQ_eq_inverted_iff` | theorem | `review` |
-| 23 | EG-R3 | `nrRate_decidable_order` | def | `review` |
-| 24 | EG-I1 | `aromaticSeries` | theorem | `review` |
-| 25 | EG-I2 | `normalRegionCounter` | theorem | `review` |
-| 26 | EG-I3 | `tangentWitness` | theorem | `review` |
+| 23 | EG-R3 | `nrRate_decidable_order` | def | `done` |
+| 24 | EG-I1 | `aromaticSeries` | theorem | `done` |
+| 25 | EG-I2 | `normalRegionCounter` | theorem | `done` |
+| 26 | EG-I3 | `tangentWitness` | theorem | `done` |
 
 ---
 
