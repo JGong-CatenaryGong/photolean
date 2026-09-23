@@ -63,6 +63,28 @@ import PhotoLean.Kasha.Compose
 import PhotoLean.Sabatier.Compose
 import PhotoLean.Sabatier.Criterion
 import PhotoLean.SymmetryFactor.Sharp
+import PhotoLean.KashaVavilov.Basic
+import PhotoLean.KashaVavilov.Criterion
+import PhotoLean.KashaVavilov.Instances
+import PhotoLean.SternVolmer.Basic
+import PhotoLean.SternVolmer.Criterion
+import PhotoLean.QuantumYield.Basic
+import PhotoLean.QuantumYield.Criterion
+import PhotoLean.FluorPhos.Basic
+import PhotoLean.FluorPhos.Criterion
+import PhotoLean.EnergyGapLaw.Basic
+import PhotoLean.EnergyGapLaw.Criterion
+import PhotoLean.EnergyGapLaw.Sharp
+import PhotoLean.StokesShift.Basic
+import PhotoLean.StokesShift.Criterion
+import PhotoLean.ICvsISC.Basic
+import PhotoLean.ICvsISC.Criterion
+import PhotoLean.ICvsISC.RatModel
+import PhotoLean.Forster.Basic
+import PhotoLean.Forster.Criterion
+import PhotoLean.Einstein.Basic
+import PhotoLean.Einstein.Criterion
+import PhotoLean.Marcus.Basic
 
 namespace PhotoLean
 
@@ -625,6 +647,328 @@ theorem symmetryFactor_conflation_falsified_and_holds_in_kernel :
       ∀ lam : ℝ, 0 < lam → SymmetryFactor.BetaHalfReading lam lam :=
   ⟨SymmetryFactor.betaHalf_falsified_by_unequal,
    fun _ hlam => SymmetryFactor.betaHalf_holds_in_kernel hlam⟩
+
+
+/-! ## 12. Kernel certificates of the photophysics batch (definitional pins)
+
+The photophysics subgraph (nine theories, 2026-09-22/23) joins the graph through the same
+`rfl`-certificate discipline as §1: the two-parabola theories of group B carry their own copies of
+the kernel objects, and the rows below pin each copy to `PhotoLean.Kernel` / `PhotoLean.Marcus`
+definitionally. A failing `rfl` here is a regression alarm, exactly as in §1.
+
+Accounting: every row in §12–§15 is either a certificate re-export (no new mathematics) or a new
+composition/adjudication row proved here; the four adjudication re-exports of §13/§14 add no
+mathematics either (the theorems live in the theories). -/
+
+/-- Batch certificate: the energy-gap-law barrier is the kernel barrier. -/
+theorem eg_barrier_eq_kernel (lam x : ℝ) : EnergyGapLaw.nrBarrier lam x = Kernel.barrier lam x :=
+  EnergyGapLaw.cert_nrBarrier lam x
+
+/-- Batch certificate: the energy-gap-law rate is the Marcus rate. -/
+theorem eg_rate_eq_marcus (A lam kB T x : ℝ) :
+    EnergyGapLaw.nrRate A lam kB T x = Marcus.rate A lam kB T x :=
+  EnergyGapLaw.cert_nrRate A lam kB T x
+
+/-- Batch certificate: the energy-gap-law inverted-gap predicate is the Marcus inverted region. -/
+theorem eg_invertedGap_iff_marcus (lam x : ℝ) :
+    EnergyGapLaw.InvertedGap lam x ↔ Marcus.InvertedRegion lam x :=
+  EnergyGapLaw.cert_invertedGap lam x
+
+/-- Batch certificate: the Stokes-shift ground surface is the kernel reactant surface. -/
+theorem ss_s0Surface_eq_kernel (lam q : ℝ) :
+    StokesShift.s0Surface lam q = Kernel.reactantSurface lam q :=
+  StokesShift.cert_s0Surface lam q
+
+/-- Batch certificate: the Stokes-shift excited surface is the kernel product surface. -/
+theorem ss_s1Surface_eq_kernel (lam e00 q : ℝ) :
+    StokesShift.s1Surface lam e00 q = Kernel.productSurface lam e00 q :=
+  StokesShift.cert_s1Surface lam e00 q
+
+/-- Batch certificate: the IC-vs-ISC Franck–Condon barrier is the kernel barrier. -/
+theorem icvscic_barrier_eq_kernel (lam x : ℝ) :
+    ICvsISC.fcBarrier lam x = Kernel.barrier lam x :=
+  ICvsISC.cert_fcBarrier
+
+/-- Batch certificate: the IC-vs-ISC internal-conversion rate is the Marcus rate. -/
+theorem icvscic_icRate_eq_marcus (AI lamI kB T xI : ℝ) :
+    ICvsISC.icRate AI lamI kB T xI = Marcus.rate AI lamI kB T xI :=
+  ICvsISC.cert_icRate
+
+/-! ## 13. The D2 adjudication (class A2: adjudicated independence) — Kasha vs Kasha–Vavilov
+
+The eighth theory (`PhotoLean/KashaVavilov`) adjudicates the pair of rules the literature runs
+together. An A1 row (§11) decides a *conflation* (two readings used interchangeably, with an exact
+validity boundary); an **A2 row decides an independence claim**: the two rules are *not* the same
+statement — each has admissible witnesses where it holds and the other fails, at positive
+excitation levels inside the lossy regime — and they coincide exactly under the closed
+quantification with a loss channel at the lowest level (the boundary re-uses the delivered
+`Kasha.kashaRule_iff_vavilovUpTo`), while the lossless corner separates the closed forms. The
+persistence half (why the identification survives in practice): every ordinary lossy fluorophore
+sits in the regime where the closed forms coincide, so the two rules are never seen to differ
+except in the degenerate lossless model and in single-step readings. -/
+
+/-- **D2 verdict (re-export)**: the four-part adjudication — pointwise independence both
+directions (witnesses at `N = 1`, `ic 0 = 1 > 0`), the closed-form coincidence boundary, and the
+lossless separation that makes the loss premise load-bearing. -/
+theorem kv_d2_verdict :
+    (∃ rad ic : ℕ → ℝ, Kasha.RateData rad ic 2 ∧ Kasha.KashaRule rad ic 1 ∧
+        ¬ Kasha.VavilovAt rad ic 1 ∧ 0 < ic 0) ∧
+      (∃ rad ic : ℕ → ℝ, Kasha.RateData rad ic 2 ∧ Kasha.VavilovAt rad ic 1 ∧
+        ¬ Kasha.KashaRule rad ic 1 ∧ 0 < ic 0) ∧
+      (∀ (rad ic : ℕ → ℝ) (N : ℕ), Kasha.RateData rad ic N → 0 < ic 0 →
+        (Kasha.KashaRule rad ic N ↔ Kasha.VavilovUpTo rad ic N)) ∧
+      (∃ rad ic : ℕ → ℝ, Kasha.RateData rad ic 1 ∧ ic 0 = 0 ∧
+        Kasha.VavilovUpTo rad ic 1 ∧ ¬ Kasha.KashaRule rad ic 1) :=
+  KashaVavilov.d2_verdict
+
+/-- **D2 boundary (re-export)**: a violation of Kasha's rule is always an observable anti-Kasha
+emission under `RateData` — the maximal-emitter argument. -/
+theorem kv_antiKasha_boundary {rad ic : ℕ → ℝ} {N : ℕ} (h : Kasha.RateData rad ic N) :
+    (0 < Kasha.upperYield rad ic N ↔ ¬ Kasha.KashaRule rad ic N) :=
+  KashaVavilov.antiKasha_observable_iff h
+
+/-! ## 14. The D1 adjudication (class A3: identifiability) — static vs dynamic quenching
+
+The second theory of group A (`PhotoLean/SternVolmer`) adjudicates the Stern–Volmer
+identifiability question. An **A3 row decides an identifiability claim**: two mechanisms that a
+single observable cannot distinguish (the intensity-only Stern–Volmer plot is linear for both, and
+matched parameters give pointwise-identical curves at every concentration), with the discriminating
+observable (the lifetime channel) as the exact boundary: within the two-mechanism model space,
+lifetime-tracking holds **iff** the mechanism is dynamic. The persistence half: routine practice
+measures intensity only — lifetime resolution is a separate experiment — so the conflation survives
+in the literature; upward curvature (the second difference `2·KSV·Ka·h²`) is the positive witness
+that *both* mechanisms are present. -/
+
+/-- **D1 verdict (re-export)**: the three-part adjudication — both plots linear, the intensity
+coincidence (non-injectivity of the intensity-only observation map), and the lifetime-tracking
+boundary. Weakest premises after the Phase-3 audit: `k0 ≠ 0`, `0 < Ka`. -/
+theorem sv_d1_verdict {k0 kq Ka : ℝ} (hk0 : k0 ≠ 0) (hKa : 0 < Ka) :
+    (∀ q, SternVolmer.svRatioDyn k0 kq q = 1 + SternVolmer.KSV k0 kq * q ∧
+        SternVolmer.svRatioStat Ka q = 1 + Ka * q) ∧
+      (∀ q, SternVolmer.svRatioDyn k0 kq q = SternVolmer.svRatioStat (SternVolmer.KSV k0 kq) q) ∧
+        ∀ m : SternVolmer.Mech,
+          (SternVolmer.LifetimeTracks m k0 kq Ka ↔ m = SternVolmer.Mech.dyn) :=
+  SternVolmer.d1_verdict hk0 hKa
+
+/-- **D1 boundary (re-export)**: the identifiability boundary alone — `0 < Ka` load-bearing, no
+hypothesis on `k0` or `kq`. -/
+theorem sv_identifiability_boundary {k0 kq Ka : ℝ} (hKa : 0 < Ka) :
+    ∀ m : SternVolmer.Mech, (SternVolmer.LifetimeTracks m k0 kq Ka ↔ m = SternVolmer.Mech.dyn) :=
+  SternVolmer.lifetimeTracks_iff_dyn hKa
+
+/-! ## 15. Composition edges of the batch (proved here)
+
+The photophysics subgraph's own composition edges: the algebraic spine is `QuantumYield` (the
+parallel-channel calculus), and the four rate-level theories reduce to it — the Stern–Volmer
+dilution, the fluorescence/phosphorescence cascade, the FRET added-donor channel, and the Einstein
+radiative-rate anchor. The two-parabola theories compose through the kernel (§12) and through two
+new rows: the energy-gap ordering of the Kasha internal-conversion rates (extending §7), and the
+Stokes/emission-window boundary of the EGL barrier. The IC→EG certificate is definitional. Two
+shape rows register the look-alikes with machine content: the SV/FO shared `1 + control` form and
+the EG/Hammond boundary identification. -/
+
+/-- QY ↔ Kasha: the ladder's radiative branch is the two-channel quantum yield. -/
+theorem kasha_radBranch_eq_yieldOf (rad ic : ℕ → ℝ) (n : ℕ) :
+    Kasha.radBranch rad ic n = QuantumYield.yieldOf ![rad n, ic n] 0 := by
+  unfold Kasha.radBranch Kasha.decay QuantumYield.yieldOf QuantumYield.totalRate
+  norm_num [Fin.sum_univ_succ, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+
+/-- SV → QY: dynamic quenching is exactly quantum-yield dilution — the unquenched yield is the
+quenched yield times the Stern–Volmer ratio (true for every rate vector with positive total and a
+nonnegative quench channel; the `kr = 0` corner is consistent under totalized division, both sides
+vanishing). -/
+theorem sv_quench_dilutes_yield (kr knr kq q : ℝ) (hpos : 0 < kr + knr) (hq : 0 ≤ kq * q) :
+    QuantumYield.yieldOf ![kr, knr] 0 =
+      QuantumYield.yieldOf ![kr, knr + kq * q] 0 * SternVolmer.svRatioDyn (kr + knr) kq q := by
+  have hpq : 0 < kr + knr + kq * q := by linarith
+  have hy0 : QuantumYield.yieldOf ![kr, knr] 0 = kr / (kr + knr) := by
+    unfold QuantumYield.yieldOf QuantumYield.totalRate
+    rw [Fin.sum_univ_succ]
+    norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+  have hyq : QuantumYield.yieldOf ![kr, knr + kq * q] 0 = kr / (kr + (knr + kq * q)) := by
+    unfold QuantumYield.yieldOf QuantumYield.totalRate
+    rw [Fin.sum_univ_succ]
+    norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+  rw [hy0, hyq, SternVolmer.svRatioDyn, SternVolmer.dynDecay]
+  rw [show kr + (knr + kq * q) = kr + knr + kq * q from by ring]
+  field_simp [ne_of_gt hpos, ne_of_gt hpq]
+
+/-- FP → QY (1): the fluorescence yield is the three-channel quantum yield. -/
+theorem phiF_eq_yieldOf (kF kISC kIC : ℝ) :
+    FluorPhos.phiF kF kISC kIC = QuantumYield.yieldOf ![kF, kISC, kIC] 0 := by
+  unfold FluorPhos.phiF FluorPhos.s1Decay QuantumYield.yieldOf QuantumYield.totalRate
+  norm_num [Fin.sum_univ_three, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two]
+
+/-- FP → QY (2): the phosphorescence yield is the cascade product of two quantum yields. -/
+theorem phiP_eq_yieldOf_cascade (kF kISC kIC kP kNR : ℝ) :
+    FluorPhos.phiP kF kISC kIC kP kNR =
+      QuantumYield.yieldOf ![kF, kISC, kIC] 1 * QuantumYield.yieldOf ![kP, kNR] 0 := by
+  have hs3 : QuantumYield.totalRate ![kF, kISC, kIC] = kF + kISC + kIC := by
+    unfold QuantumYield.totalRate
+    rw [Fin.sum_univ_three]
+    norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two]
+  have hs2 : QuantumYield.totalRate ![kP, kNR] = kP + kNR := by
+    unfold QuantumYield.totalRate
+    rw [Fin.sum_univ_succ]
+    norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+  unfold FluorPhos.phiP FluorPhos.iscBranch FluorPhos.t1BranchP FluorPhos.s1Decay
+    QuantumYield.yieldOf
+  rw [hs3, hs2]
+  field_simp
+
+/-- EB → QY: the fluorescence yield of the two-channel decay with radiative rate `A` is the
+QuantumYield of the pair — the Einstein-side anchor of the radiative channel. -/
+theorem einstein_yield_via_qy (A kNR : ℝ) :
+    A * Einstein.tauR (A + kNR) = QuantumYield.yieldOf ![A, kNR] 0 := by
+  have hy : QuantumYield.yieldOf ![A, kNR] 0 = A / (A + kNR) := by
+    unfold QuantumYield.yieldOf QuantumYield.totalRate
+    rw [Fin.sum_univ_succ]
+    norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+  rw [hy, Einstein.tauR, mul_one_div]
+
+/-- FO → QY: the FRET efficiency is one minus the donor yield of the channel-added model —
+the "FRET is an added donor channel" composition. -/
+theorem fretEff6_eq_one_sub_yieldOf (kD r6 R : ℝ) (hkD : 0 < kD) (hr6 : 0 ≤ r6) (hR : R ≠ 0) :
+    Forster.fretEff6 r6 R = 1 - QuantumYield.yieldOf ![kD, kD * (r6 / R ^ 6)] 0 := by
+  have hR2 : (0 : ℝ) < R ^ 2 := sq_pos_of_ne_zero hR
+  have hR6 : (0 : ℝ) < R ^ 6 := by
+    rw [show R ^ 6 = (R ^ 2) ^ 3 from by ring]
+    exact pow_pos hR2 3
+  have hsum : (0 : ℝ) < kD + kD * (r6 / R ^ 6) := by
+    have : (0 : ℝ) ≤ kD * (r6 / R ^ 6) :=
+      mul_nonneg (le_of_lt hkD) (div_nonneg hr6 (le_of_lt hR6))
+    linarith
+  unfold Forster.fretEff6 QuantumYield.yieldOf QuantumYield.totalRate
+  rw [Fin.sum_univ_succ]
+  simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+  field_simp
+  ring
+
+/-- EG → Kasha (extends §7): in the inverted region a bigger gap slows the Marcus-form
+internal-conversion rate — the energy-gap-law rationale of the Kasha funnel. -/
+theorem marcusIC_strictAnti_on_inverted_gaps {A lam kB T x₁ x₂ : ℝ} (hA : 0 < A)
+    (hlam : 0 < lam) (hkT : 0 < kB * T) (hx1 : lam < x₁) (hx : x₁ < x₂) :
+    Kasha.marcusIC A lam kB T x₂ < Kasha.marcusIC A lam kB T x₁ := by
+  unfold Kasha.marcusIC PhotoLean.Marcus.barrier
+  have hsq : (lam - x₁) ^ 2 < (lam - x₂) ^ 2 := by nlinarith [hx1, hx, hlam]
+  have hdiv : (lam - x₁) ^ 2 / (4 * lam) < (lam - x₂) ^ 2 / (4 * lam) := by
+    apply div_lt_div_of_pos_right hsq
+    linarith
+  have hexp : Real.exp (-((lam - x₂) ^ 2 / (4 * lam)) / (kB * T))
+      < Real.exp (-((lam - x₁) ^ 2 / (4 * lam)) / (kB * T)) := by
+    apply Real.exp_strictMono
+    have hkT' : 0 < kB * T := hkT
+    rw [neg_div, neg_div, neg_lt_neg_iff]
+    exact div_lt_div_of_pos_right hdiv hkT'
+  exact mul_lt_mul_of_pos_left hexp hA
+
+/-- SS → EG: the EGL barrier vanishes at the gap exactly when the Stokes emission window closes. -/
+theorem egBarrier_zero_iff_emEnergy_zero {lam e00 : ℝ} (hlam : lam ≠ 0) :
+    EnergyGapLaw.nrBarrier lam e00 = 0 ↔ StokesShift.emEnergy lam e00 = 0 := by
+  unfold EnergyGapLaw.nrBarrier StokesShift.emEnergy StokesShift.s1Surface StokesShift.s0Surface
+  constructor
+  · intro h
+    have h4 : (4 : ℝ) * lam ≠ 0 := mul_ne_zero (by norm_num) hlam
+    have hsq : (lam - e00) ^ 2 = 0 := by
+      rcases div_eq_zero_iff.mp h with h' | h'
+      · exact h'
+      · exact absurd h' h4
+    have := sq_eq_zero_iff.mp hsq
+    linarith
+  · intro h
+    have : lam - e00 = 0 := by linarith
+    rw [this]
+    norm_num
+
+/-- IC → EG certificate: the IC rate IS the energy-gap-law rate. -/
+theorem icvscic_icRate_eq_eg_nrRate (A lam kB T x : ℝ) :
+    ICvsISC.icRate A lam kB T x = EnergyGapLaw.nrRate A lam kB T x := by
+  unfold ICvsISC.icRate EnergyGapLaw.nrRate ICvsISC.fcBarrier EnergyGapLaw.nrBarrier
+  rfl
+
+/-- SV ↔ FP (composition): dynamic quenching of S₁ does not move the
+fluorescence/phosphorescence balance — the ratio is invariant. -/
+theorem fpRatio_invariant_under_quench {kF kISC kIC kP kNR kq q : ℝ}
+    (hkF : 0 < kF) (hs1 : 0 < FluorPhos.s1Decay kF kISC kIC)
+    (hs1q : 0 < FluorPhos.s1Decay kF kISC (kIC + kq * q)) (ht1 : 0 < kP + kNR) :
+    FluorPhos.phiP kF kISC (kIC + kq * q) kP kNR / FluorPhos.phiF kF kISC (kIC + kq * q) =
+      FluorPhos.phiP kF kISC kIC kP kNR / FluorPhos.phiF kF kISC kIC := by
+  unfold FluorPhos.phiP FluorPhos.phiF FluorPhos.iscBranch FluorPhos.t1BranchP
+  field_simp [ne_of_gt hkF, ne_of_gt hs1, ne_of_gt hs1q, ne_of_gt ht1]
+  ring
+
+/-- SV ↔ FO look-alike, machine face: the FRET inverse-efficiency is a `1 + control` law with
+the sixth-power distance control, the same shape as the Stern–Volmer ratio's
+`1 + slope·[Q]` concentration control. -/
+theorem fretEff6_inv_eq_one_plus {r6 R : ℝ} (hr6 : 0 < r6) (hR : R ≠ 0) :
+    (Forster.fretEff6 r6 R)⁻¹ = 1 + R ^ 6 / r6 := by
+  have hR2 : (0 : ℝ) < R ^ 2 := sq_pos_of_ne_zero hR
+  have h6 : (0 : ℝ) < R ^ 6 := by
+    rw [show R ^ 6 = (R ^ 2) ^ 3 from by ring]
+    exact pow_pos hR2 3
+  unfold Forster.fretEff6
+  rw [inv_div]
+  field_simp
+
+/-- EG ↔ Hammond boundary row: the EGL regime boundary `x = lam` is exactly the Hammond
+coordinate leaving the reactant interval. -/
+theorem eg_boundary_eq_tsCoord_zero {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+    Kernel.tsCoord lam x = 0 ↔ lam = x := by
+  unfold Kernel.tsCoord
+  constructor
+  · intro h
+    have h2 : (2 : ℝ) * lam ≠ 0 := mul_ne_zero (by norm_num) hlam
+    have := div_eq_zero_iff.mp h
+    rcases this with h' | h'
+    · linarith
+    · exact absurd h' h2
+  · intro h
+    rw [h, sub_self, zero_div]
+
+/-! ## 16. The extended no-edge registry (documentation, not theorems)
+
+The nine new nodes and the seven earlier ones make sixteen; the pairs WITHOUT an edge, and why
+(an absent edge is a registered fact, not an oversight). Machine content lives in §12–§15; every
+pair below states what would be needed and why it is not there.
+
+* **KashaVavilov ↔ Marcus / Hammond / BEP — no edge.** The D2 layer is about branching laws of
+  the ladder, not barriers or coordinates; its only contact with the two-parabola family runs
+  through Kasha's §7 composition (`Kasha.marcusIC`), which the EG row of §15 now sharpens.
+* **KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge.** No shared scalar: the
+  D2 predicates speak about yields and ladders; the volcano, the ionic radii and the curvature
+  pairs share none of them.
+* **SternVolmer ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge.**
+  The SV model has no energy surface, no descriptor axis, no geometry: it is a rate-parameter
+  model over a concentration variable. Its contacts all run through QuantumYield (§15).
+* **QuantumYield ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge.**
+  The parallel-channel calculus is purely algebraic; the energy-side theories enter only through
+  the specific rates that fill its channels (the Einstein `A`, the IC/ISC rates), which §15
+  registers as the composition edges instead.
+* **FluorPhos ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor / StokesShift /
+  EnergyGapLaw / Forster / Einstein — no edge except through QuantumYield.** The competition
+  layer's objects are branch probabilities; its two composition edges (§15: `phiF_eq_yieldOf`,
+  `phiP_eq_yieldOf_cascade`) and its quench-invariance edge to SV exhaust its contacts.
+* **StokesShift ↔ Kasha / KashaVavilov / SternVolmer / QuantumYield / FluorPhos / ICvsISC /
+  Forster / Einstein — no edge** (positions of band maxima vs rates/ladders/geometries; the
+  Einstein mirror-symmetry look-alike is a shape note in the StokesShift plan §10, no theorem
+  transfers: detailed balance is about intensities, the mirror rule about positions).
+* **ICvsISC ↔ Kasha / KashaVavilov / SternVolmer / QuantumYield / Forster / Einstein — no edge.**
+  The spin-discount competition's contacts are the kernel/EG certificates (§12/§15) and the
+  premise-level link to FluorPhos's `kISC` (registered in both plans as a modelling premise, not
+  a Lean row).
+* **Forster ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / SymmetryFactor /
+  StokesShift / EnergyGapLaw / ICvsISC — no edge.** The transfer geometry shares no scalar with
+  the energy-surface family. Two shape registrations carry machine content: the SV look-alike
+  (`fretEff6_inv_eq_one_plus`, §15) and the Goldschmidt look-alike (two geometric threshold
+  criteria, no shared scalar — registered in the Forster plan §10, no row).
+* **Einstein ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / Goldschmidt /
+  SymmetryFactor / StokesShift / Forster — no edge.** The radiative conversions' only machine
+  contact is the QuantumYield anchor (§15); the `J`-integral link to Förster is a modelling
+  premise (registered in both plans).
+
+Dependency facts (measured): every photophysics module imports only `Mathlib` plus its own
+theory's earlier modules plus (for the group-B theories) `PhotoLean.Kernel` / `PhotoLean.Marcus.Basic`;
+`PhotoLean/Relations.lean` is the only module importing across the batch. -/
 
 end Relations
 
