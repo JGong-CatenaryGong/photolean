@@ -74,11 +74,7 @@ theorem largeRelaxation :
 verdicts decided by `decide`. -/
 theorem invertedCorner :
     ssZoneQ 2 2 = .zeroPhoton ∧ ssZoneQ 3 2 = .invertedEmission := by
-  constructor
-  · unfold ssZoneQ
-    rw [if_neg (by norm_num), if_neg (by norm_num)]
-  · unfold ssZoneQ
-    rw [if_neg (by norm_num), if_pos (by norm_num)]
+  constructor <;> decide
 
 end StokesShift
 
