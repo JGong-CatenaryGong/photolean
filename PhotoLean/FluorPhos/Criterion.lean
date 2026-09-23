@@ -20,24 +20,24 @@ delivered row is the corrected row of the authority. The delivered proof reduces
 nonnegative defect `kIC·(kP+kNR) + kISC·kNR` (see `exhaust_residue`), which is exactly the
 nonnegativity split the row's docstring prescribes.
 
-**FP-C5 premise note.** Both halves consume the primed bundle `h' : FPData kF kISC' kIC kP kNR`.
-The prime-side bookkeeping is load-bearing: without it the monotonicity rows would speak about a
-non-physical parameter region, and `h.s1Decay_pos` together with `h.kISC_nonneg` is exactly what
-supplies `0 < kF + kIC` for the `phiP` half (the S₁→T₁ branch `kISC / (kISC + (kF + kIC))` is
-strictly increasing only when `kF + kIC > 0`; at `kF = kIC = 0` the branch is pinned at `1`).
-No premise was added, dropped or weakened relative to the frozen authority.
+**FP-C5 premise note (corrected 2026-09-23, verifier run 5 finding F3).** The first version of this
+note claimed that `h.s1Decay_pos` together with `h.kISC_nonneg` supplies `0 < kF + kIC` and that no
+premise differed from the authority. Both claims were wrong: the implication is refutable
+(`kF = kIC = 0, kISC = 1` satisfies `FPData` with `s1Decay = 1 > 0` yet `kF + kIC = 0`), and the
+`phiP` half's authority row now carries the added, exactly load-bearing premise
+`(h0 : 0 < kF + kIC)` — see plan §3.1 entry 2 and the API-NOTES statement-change index (row 7).
+The prime-side bundle `h' : FPData kF kISC' kIC kP kNR` is an explicit premise and is *derivable*
+from the rest (verifier run 5 proved the stripped form), so it is conservative rather than
+load-bearing.
 
-**FP-C5 (second half): DELIVERED (was NEEDS-LARGE-MODEL, closed by the lead) (prover_c, 2026-09-23).** The statement
-`phiP_strictMono_isc` is untouched; its proof is not in this wave. What is verified: the S₁→T₁
-branch `iscBranch` is strictly increasing in `kISC` whenever the other two S₁ channels sum
-positively — the ratio route `a/(a+s) < b/(b+s)` for `0 < a < b`, `0 < s` closes by
-`div_lt_div_iff₀` + `nlinarith`, and the T₁ factor `t1BranchP kP kNR` is a positive constant in
-`kISC`, so `mul_lt_mul_of_pos_right` finishes. The residual gap is one local arithmetic step:
-`0 < kF + kIC` from `0 < kF + kISC + kIC` together with `0 ≤ kISC`. In this toolchain `linarith`
-does not close that step (measured on the bare shape `example {a b : ℝ} (h : 0 < a + b)
-(hb : 0 ≤ b) : 0 < a`), so five proof routes were tried and each stalled there (see
-`proofs/EXPERIENCE.md`). A fresh attempt should establish `kF + kIC ≥ s1Decay - kISC > 0`
-directly rather than by `linarith`.
+**FP-C5 (second half): DELIVERED 2026-09-23 — `phiP_strictMono_isc`, closed by the lead after the
+prover's budget was exhausted (the row spent a day on the NEEDS-LARGE-MODEL list).** The first
+frozen statement was FALSE (see the premise note above); the re-frozen row carries
+`(h0 : 0 < kF + kIC)` and is proved by `phiP_eq` on both sides, `div_lt_div_iff₀` on the two
+positive denominators, `unfold s1Decay`, and one `nlinarith` on the numerator difference
+`kISC'·s1 − kISC·s1' = (kF + kIC)·(kISC' − kISC) > 0`. The hand factorisations the prover tried
+(three candidate identities, each rejected by `ring`) are superseded by this route and recorded in
+the experience bank.
 
 Measured tactic boundary (this module, mathlib v4.17.0): the `ring` tactic does **not** unfold the
 opaque definition `s1Decay`, so each auxiliary row below spells the unfolding as `rw [s1Decay]`
@@ -46,7 +46,7 @@ opaque definition `s1Decay`, so each auxiliary row below spells the unfolding as
 
 Statement authority: every theorem signature below is taken word for word from
 `theories/FluorPhos/probes/FluorPhos-statement-skeleton.lean` (the frozen Phase-1 authority,
-sha256 `2aa08f1c153b6494c09fd9848c76644ab0b7a59c2a3f46d32a25db7a8d3223bb`, 29 declarations),
+sha256 `b116adddea484896f7068c00141989d70871db4f51fe36749a2dbc44e24f4480` (re-frozen 2026-09-23; Phase-1 hash `2aa08f1c153b6494…`)`, 29 declarations),
 which transcribes `theories/FluorPhos/plan.md` §4; fidelity is checked by
 `python3 theories/BEP/probes/bep-fidelity.py --theory FluorPhos`. The only departure from the
 authority text is the proof bodies, which the authority leaves unfinished on purpose (Phase 1).
@@ -209,8 +209,8 @@ non-triplet S₁ decay channel (`0 < kF + kIC`, the load-bearing premise the fir
 missing). Route: `phiP_eq` on both sides, clear the two positive denominators by
 `div_lt_div_iff₀`, then one `nlinarith` — the numerator difference is
 `kISC' · s1 − kISC · s1' = (kF + kIC) · (kISC' − kISC) > 0`, so the cross-multiplied goal is
-immediate once `s1Decay` is unfolded (the closure found by the lead after the row landed on the
-DELIVERED (was NEEDS-LARGE-MODEL, closed by the lead) list; the hand factorizations that failed are recorded in the experience bank). -/
+immediate once `s1Decay` is unfolded (the closure found by the lead after the row sat on the NEEDS-LARGE-MODEL list; the hand
+factorisations that failed against `ring` are recorded in the experience bank). -/
 theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
     (h' : FPData kF kISC' kIC kP kNR) (hkP : 0 < kP) (h0 : 0 < kF + kIC)
     (hlt : kISC < kISC') :

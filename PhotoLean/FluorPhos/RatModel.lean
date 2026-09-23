@@ -19,7 +19,7 @@ statement change was needed.
 
 Statement authority: every definition body, theorem signature and inductive clause below is taken
 word for word from `theories/FluorPhos/probes/FluorPhos-statement-skeleton.lean` (the frozen
-Phase-1 authority, sha256 `2aa08f1c153b6494c09fd9848c76644ab0b7a59c2a3f46d32a25db7a8d3223bb`,
+Phase-1 authority, sha256 `b116adddea484896f7068c00141989d70871db4f51fe36749a2dbc44e24f4480` (re-frozen 2026-09-23; Phase-1 hash `2aa08f1c153b6494…`)`,
 29 declarations), which transcribes `theories/FluorPhos/plan.md` §4; fidelity is checked by
 `python3 theories/BEP/probes/bep-fidelity.py --theory FluorPhos`.
 

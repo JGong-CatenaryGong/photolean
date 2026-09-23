@@ -43,7 +43,29 @@ Rates `kF kISC kIC kP kNR : ℝ`; `s1Decay := kF + kISC + kIC`; `t1Decay := kP +
 ## 3. Statement authority and inventory
 
 The authority is `probes/FluorPhos-statement-skeleton.lean` (Phase-1 placeholder bodies; sha256
-on the board once compiling). Correction log §3.1 starts empty.
+on the board once compiling).
+
+### 3.1 Statement-correction log
+
+* **Entry 0 (FP-C4, design time)** — the losslessness boundary is `kIC = 0 ∧ (kISC = 0 ∨ kNR = 0)`,
+  not the naive `kIC = 0 ∧ kNR = 0`: at `kISC = 0` the triplet is never populated and no loss can
+  pass through it. Carried by the inventory from the start.
+* **Entry 1 (literature note, 2026-09-22, no statement change)** — the named instances are zone
+  representatives (the literature's `kISC/kF` for naphthalene is ≈ 3–4, while `naphthaleneLike`
+  uses 1); docstrings must say so (LITERATURE.md).
+* **Entry 2 (FP-C5 second half, 2026-09-23, re-freeze by the lead; verifier run 5 PASS)** — the
+  first frozen form of `phiP_strictMono_isc` (premises `FPData` both sides, `0 < kP`,
+  `kISC < kISC'`) is **FALSE**: at `kF = 0, kIC = 0` the bundle is admissible and `phiP` collapses
+  to `kP/(kP+kNR)`, independent of `kISC` (kernel counterexample at `kISC = 1 → 2`, both sides
+  `1/2`; probe `.lake/tmp/lead_fp_c5_probe.lean`, exit 0). The authority now carries the exactly
+  load-bearing premise `0 < kF + kIC` (necessary — the strict inequality cannot be relaxed to
+  `0 ≤`; sufficient — the numerator difference is `(kF + kIC)·(kISC' − kISC) > 0`; verifier run 5
+  confirmed both halves with its own grid). Authority sha256: Phase-1 `2aa08f1c…` → re-frozen
+  `b116addd…`. The row was closed by the lead after the prover's budget was exhausted.
+* **Entry 3 (premise residue, verifier run 5)** — `crossover_isc`'s `hkF`/`hkP`,
+  `crossover_isc_threshold`'s and `fpZoneQ_phosphorDominant_iff`'s `hkF`, and
+  `hso_zero_no_phosphorescence`'s `h` are non-load-bearing (the verifier produced stripped-form
+  proofs); FP-C5b's prime-side bundle `h'` is derivable. Queued for the Phase-3 premise audit.
 
 ## 4. Statement inventory
 
@@ -73,9 +95,12 @@ Module plan (Phase 2): `Basic.lean` (FP-B), `Criterion.lean` (FP-C), `RatModel.l
   `phiF + phiP = 1 ↔ kISC·kNR + kIC·(kP+kNR) = 0`, and the nonnegativity splits the sum.)
 * FP-C5 `phiF_strictAnti_isc (h : FPData ...) (hkF : 0 < kF) (h' : kISC < kISC')
   (the other rates fixed, bundle at kISC' ) : phiF kF kISC' kIC < phiF kF kISC kIC`;
-  `phiP_strictMono_isc (h : FPData ...) (hkP : 0 < kP) (h' : kISC < kISC') ... :
+  `phiP_strictMono_isc (h : FPData kF kISC kIC kP kNR) (h' : FPData kF kISC' kIC kP kNR)
+  (hkP : 0 < kP) (h0 : 0 < kF + kIC) (hlt : kISC < kISC') :
   phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR` — the heavy-atom direction, both halves.
-  (Exact binder lists fixed in the skeleton; the prime-side `FPData` is an explicit premise.)
+  **The `0 < kF + kIC` premise was added in the §3.1 entry 2 re-freeze** (the first frozen form,
+  without it, is false at `kF = kIC = 0`). The prime-side `FPData` is an explicit premise (the
+  verifier showed it is derivable from the rest, so it is conservative, not load-bearing).
 * FP-C6 `crossover_isc (h : FPData ...) (hkF : 0 < kF) (hkP : 0 < kP) :
   (phiF kF kISC kIC < phiP kF kISC kIC kP kNR ↔ kF * (kP + kNR) < kISC * kP)` — the crossover in
   closed form; with `hkP` the equivalent threshold form `kF * (kP + kNR) / kP < kISC` is the
