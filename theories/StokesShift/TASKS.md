@@ -7,6 +7,11 @@
 - Status of this theory: **Phase 1 (statement formalization) complete** — the statement
   authority compiles at 0 errors with placeholder theorem bodies; batch: photophysics subgraph
   (groups A–D), dispatched 2026-09-22.
+- Status of Phase 2: **delivered, in `review`** — all 35 declarations are proved in
+  `PhotoLean/StokesShift/{Basic,Criterion,RatModel,Instances}.lean` by prover_a (2026-09-22);
+  independent verification is pending and ticking stays lead-only (iron rule 7). The corrected
+  SS-C9 row (`emEnergy_pos_iff_inverted`) is delivered exactly as carried by the statement
+  authority (plan §3.1 entry 1).
 
 ## Sprint 0 — environment, statements, plan (Phase 1 deliverable)
 
@@ -20,45 +25,54 @@
 - [ ] Literature leaf populated: `theories/StokesShift/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 
-### Declaration board (all `stmt`; ticking is lead-only after verifier PASS)
+### Declaration board (all `review`; ticking is lead-only after verifier PASS)
 
-- [ ] `s0Surface` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `cert_s0Surface` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `s1Surface` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `cert_s1Surface` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `absEnergy` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `emEnergy` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `stokesShift` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `absEnergy_eq` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `emEnergy_eq` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `stokesShift_eq_two_lam` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `stokesShift_pos_iff` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `emEnergy_pos_iff` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `mirror_midpoint` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `abs_sub_e00_eq_e00_sub_em` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `emission_window_closes` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `inverted_corner` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `emEnergy_pos_iff_inverted` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `s0Surface` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `s1Surface` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `absEnergy` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `emEnergy` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `stokesShift` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `s0Surface_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `s1Surface_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `absEnergy_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `emEnergy_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `stokesShift_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `SSZone` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `ssZoneQ` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `ssZoneQ_eq_normalEmission_iff` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `ssZoneQ_eq_zeroPhoton_iff` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `ssZoneQ_eq_invertedEmission_iff` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `mirrorDye` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `largeRelaxation` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `invertedCorner` — skeleton — Phase 1 — stmt — placeholder body registered
+- [ ] `s0Surface` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Basic.lean` (SS-B1)
+- [ ] `cert_s0Surface` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Basic.lean` (SS-B1)
+- [ ] `s1Surface` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Basic.lean` (SS-B2)
+- [ ] `cert_s1Surface` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Basic.lean` (SS-B2)
+- [ ] `absEnergy` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Basic.lean` (SS-B3)
+- [ ] `emEnergy` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Basic.lean` (SS-B4)
+- [ ] `stokesShift` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Basic.lean` (SS-B5)
+- [ ] `absEnergy_eq` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C1)
+- [ ] `emEnergy_eq` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C2)
+- [ ] `stokesShift_eq_two_lam` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C3)
+- [ ] `stokesShift_pos_iff` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C4)
+- [ ] `emEnergy_pos_iff` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C5)
+- [ ] `mirror_midpoint` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C6)
+- [ ] `abs_sub_e00_eq_e00_sub_em` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C7)
+- [ ] `emission_window_closes` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C8)
+- [ ] `inverted_corner` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C8)
+- [ ] `emEnergy_pos_iff_inverted` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Criterion.lean` (SS-C9, corrected form)
+- [ ] `s0Surface` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1, ℚ shadow)
+- [ ] `s1Surface` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1, ℚ shadow)
+- [ ] `absEnergy` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1, ℚ shadow)
+- [ ] `emEnergy` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1, ℚ shadow)
+- [ ] `stokesShift` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1, ℚ shadow)
+- [ ] `s0Surface_cast` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1)
+- [ ] `s1Surface_cast` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1)
+- [ ] `absEnergy_cast` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1)
+- [ ] `emEnergy_cast` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1)
+- [ ] `stokesShift_cast` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R1)
+- [ ] `SSZone` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R2)
+- [ ] `ssZoneQ` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R2)
+- [ ] `ssZoneQ_eq_normalEmission_iff` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R2)
+- [ ] `ssZoneQ_eq_zeroPhoton_iff` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R2)
+- [ ] `ssZoneQ_eq_invertedEmission_iff` — delivered — Phase 2 — review — `PhotoLean/StokesShift/RatModel.lean` (SS-R2)
+- [ ] `mirrorDye` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Instances.lean` (SS-I1)
+- [ ] `largeRelaxation` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Instances.lean` (SS-I2)
+- [ ] `invertedCorner` — delivered — Phase 2 — review — `PhotoLean/StokesShift/Instances.lean` (SS-I3)
 
-## Sprint 1+ — proof formalization (Phase 2, not started)
+## Sprint 1+ — proof formalization (Phase 2, delivered; awaiting independent verification)
 
-Rows are claimed one at a time per the plan's sprint order; each claim closes with
-`lake build` green before the next is claimed.
+Sprints SS1–SS4 were delivered in order (Basic → Criterion → RatModel → Instances), each closing
+with `proofs/scripts/lake build PhotoLean.StokesShift.<Module>` green before the next was
+claimed. Author-measured gate evidence (not an independent verdict):
+`proofs/scripts/lake build` exit 0 for each of the four modules; `proofs/scripts/axioms.sh` run
+on all 23 delivered theorems prints only `propext, Classical.choice, Quot.sound`;
+`proofs/scripts/check.sh --strict` verdict PASS (`clean` scan); and
+`python3 theories/BEP/probes/bep-fidelity.py --theory StokesShift` reports 35/35 word-for-word,
+0 not delivered, 0 signature differences.
+
+No statement was changed in Phase 2; the delivered declarations are the authority's rows
+verbatim. No row needed a large-model escalation and no statement incident occurred.
