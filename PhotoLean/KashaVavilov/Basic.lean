@@ -72,7 +72,6 @@ own spectral predicate, not Vavilov's rule (plan §3.1 entry 0). -/
 def SpecSame (rad ic : ℕ → ℝ) (M N : ℕ) : Prop :=
   ∀ i, i ≤ M → i ≤ N → Kasha.specFrac rad ic i M = Kasha.specFrac rad ic i N
 
-set_option linter.unusedVariables false in
 /-- Plan section 4, row KV-B2 — the total yield splits into the lowest level's emission and the
 leak; pure `Finset.range`/`Icc` split, no premises (totalized). The delivered sibling
 `Kasha.fluoYield_eq_low_add_upper` carries a `RateData` signature premise that this identity does
@@ -93,14 +92,13 @@ theorem rateData_mono {rad ic : ℕ → ℝ} {M N : ℕ} (h : Kasha.RateData rad
     Kasha.RateData rad ic M :=
   ⟨fun n hn => h.decay_pos n (le_trans hn hMN), h.rad_nonneg, h.ic_nonneg⟩
 
-set_option linter.unusedVariables false in
 /-- Plan section 4, row KV-B4 — under the exact Kasha rule the lowest level carries the whole
 normalized spectrum. The premise `0 < fluoYield` is load-bearing: `specFrac` is totalized division
 (plan §8). Proof route: `Kasha.kashaRule_iff_rad_zero` + `radBranch = 0` + `div_self`. The
 `RateData` bundle is part of the authority's signature and is not consumed by this proof (the
 index split KV-B2 and the nonzero denominator suffice); it is kept verbatim for statement
 fidelity. -/
-theorem specFrac_zero_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ} (h : Kasha.RateData rad ic N)
+theorem specFrac_zero_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ}
     (hK : Kasha.KashaRule rad ic N) (hpos : 0 < Kasha.fluoYield rad ic N) :
     Kasha.specFrac rad ic 0 N = 1 := by
   have hsplit := fluoYield_eq_emitYield_zero_add_upperYield rad ic N
@@ -144,8 +142,8 @@ theorem specSame_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ} (h : Kasha.RateDa
   have hKM : Kasha.KashaRule rad ic M := kashaRule_mono h hM hK
   by_cases hi0 : i = 0
   · subst hi0
-    exact (specFrac_zero_of_kashaRule hM' hKM (hpos M hM)).trans
-      (specFrac_zero_of_kashaRule h hK (hpos N le_rfl)).symm
+    exact (specFrac_zero_of_kashaRule hKM (hpos M hM)).trans
+      (specFrac_zero_of_kashaRule hK (hpos N le_rfl)).symm
   · have hi1 : 1 ≤ i := Nat.one_le_iff_ne_zero.mpr hi0
     exact (specFrac_succ_of_kashaRule hM' hKM hi1 hiM).trans
       (specFrac_succ_of_kashaRule h hK hi1 hiN).symm

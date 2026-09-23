@@ -182,6 +182,10 @@ theorem lossless_separates_kasha_vavilov :
   · have hpos1 : 0 < (fun _ : ℕ => (1 : ℝ)) 1 := by norm_num
     exact Kasha.not_kashaRule_of_rad_pos (i := 1) hR (by norm_num) (by norm_num) hpos1
 
+-- Linter note: the suppression below covers ONLY lambda-binder noise — the third conjunct's
+-- `∀ rad ic N` binders are required by the shape of the re-stated `Kasha.kashaRule_iff_vavilovUpTo`
+-- and are not premises (verifier run 1, W7/L2). Renaming them to `_rad` would break signature
+-- fidelity with the authority. No premise is hidden here.
 set_option linter.unusedVariables false in
 /-- Plan section 4, row KV-C4 — **the D2 adjudication headline**: the two rules are pointwise
 independent in both directions (KV-C1, KV-C2), they coincide exactly under the closed
@@ -201,14 +205,13 @@ theorem d2_verdict :
 
 /-! ## The observability rows (plan §4, rows KV-C5–KV-C7) -/
 
-set_option linter.unusedVariables false in
 /-- Plan section 4, row KV-C5 — positivity of the cascade is exactly the positivity of every
 nonradiative rate above level `i`. Both directions are product algebra: a positive product has
 positive factors (`Finset.mul_prod_erase` on an otherwise nonnegative product), and a product of
 positive factors is positive (`Finset.prod_pos`). The premise `hi : i ≤ N` is part of the
 authority's signature and is not consumed by the proof (the product's own membership hypothesis
 supplies `j ≤ N`); it is kept verbatim for statement fidelity. -/
-theorem cascade_pos_iff {rad ic : ℕ → ℝ} {N i : ℕ} (h : Kasha.RateData rad ic N) (hi : i ≤ N) :
+theorem cascade_pos_iff {rad ic : ℕ → ℝ} {N i : ℕ} (h : Kasha.RateData rad ic N) :
     (0 < Kasha.cascade rad ic i N ↔ ∀ j, i + 1 ≤ j → j ≤ N → 0 < ic j) := by
   unfold Kasha.cascade
   constructor

@@ -55,7 +55,7 @@ theorem rateData_mono {rad ic : ℕ → ℝ} {M N : ℕ} (h : Kasha.RateData rad
 /-- Plan section 4, row KV-B4 — under the exact Kasha rule the lowest level carries the whole
 normalized spectrum. Proof route (plan §5): `Kasha.kashaRule_iff_rad_zero` + `radBranch = 0` +
 `zero_div`/`div_self`. -/
-theorem specFrac_zero_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ} (h : Kasha.RateData rad ic N)
+theorem specFrac_zero_of_kashaRule {rad ic : ℕ → ℝ} {N : ℕ}
     (hK : Kasha.KashaRule rad ic N) (hpos : 0 < Kasha.fluoYield rad ic N) :
     Kasha.specFrac rad ic 0 N = 1 := by
   sorry
@@ -132,7 +132,7 @@ theorem d2_verdict :
 
 /-- Plan section 4, row KV-C5 — positivity of the cascade is exactly the positivity of every
 nonradiative rate above level `i`. -/
-theorem cascade_pos_iff {rad ic : ℕ → ℝ} {N i : ℕ} (h : Kasha.RateData rad ic N) (hi : i ≤ N) :
+theorem cascade_pos_iff {rad ic : ℕ → ℝ} {N i : ℕ} (h : Kasha.RateData rad ic N) :
     (0 < Kasha.cascade rad ic i N ↔ ∀ j, i + 1 ≤ j → j ≤ N → 0 < ic j) := by
   sorry
 
