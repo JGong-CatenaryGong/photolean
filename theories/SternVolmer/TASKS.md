@@ -23,7 +23,7 @@
 - [ ] Literature leaf populated: `theories/SternVolmer/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 
-### Declaration board (all `stmt`; ticking is lead-only after verifier PASS)
+### Declaration board (all 46 authority declarations now `review`; ticking is lead-only after verifier PASS)
 
 - [ ] `dynDecay` — delivered — review — signature verbatim, real body delivered (Sprint 1+)
 - [ ] `svRatioDyn` — delivered — review — signature verbatim, real body delivered (Sprint 1+)
