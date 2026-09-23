@@ -200,16 +200,15 @@ parameters, paired pointwise under one universal), the coincidence (SV-C7 at `Ka
 instantiated by `refl`/the hypothesis chain), and the boundary (SV-C8).
 Plan section 4, row SV-C10. The persistence explanation is prose in RESULTS (Phase 3): routine
 practice measures intensity only; lifetime resolution is a separate experiment. -/
-theorem d1_verdict {k0 kq Ka : ℝ} (hk0 : 0 < k0) (hkq : 0 < kq) (hKa : 0 < Ka) :
+theorem d1_verdict {k0 kq Ka : ℝ} (hk0 : k0 ≠ 0) (hKa : 0 < Ka) :
     (∀ q, svRatioDyn k0 kq q = 1 + KSV k0 kq * q ∧ svRatioStat Ka q = 1 + Ka * q) ∧
       (∀ q, svRatioDyn k0 kq q = svRatioStat (KSV k0 kq) q) ∧
         ∀ m : Mech, (LifetimeTracks m k0 kq Ka ↔ m = Mech.dyn) := by
   refine ⟨?_, ?_, ?_⟩
   · intro q
-    exact ⟨svRatioDyn_linear k0 kq q (ne_of_gt hk0), svRatioStat_linear Ka q⟩
+    exact ⟨svRatioDyn_linear k0 kq q hk0, svRatioStat_linear Ka q⟩
   · intro q
-    exact intensity_curve_coincidence (k0 := k0) (kq := kq) (Ka := KSV k0 kq)
-      (ne_of_gt hk0) rfl q
+    exact intensity_curve_coincidence (k0 := k0) (kq := kq) (Ka := KSV k0 kq) hk0 rfl q
   · exact lifetimeTracks_iff_dyn hKa
 
 end SternVolmer

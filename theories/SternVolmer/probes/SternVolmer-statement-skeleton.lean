@@ -207,7 +207,7 @@ parameters, paired pointwise under one universal), the coincidence (SV-C7 at `Ka
 instantiated by `refl`/the hypothesis chain), and the boundary (SV-C8).
 Plan section 4, row SV-C10. The persistence explanation is prose in RESULTS (Phase 3): routine
 practice measures intensity only; lifetime resolution is a separate experiment. -/
-theorem d1_verdict {k0 kq Ka : ℝ} (hk0 : 0 < k0) (hkq : 0 < kq) (hKa : 0 < Ka) :
+theorem d1_verdict {k0 kq Ka : ℝ} (hk0 : k0 ≠ 0) (hKa : 0 < Ka) :
     (∀ q, svRatioDyn k0 kq q = 1 + KSV k0 kq * q ∧ svRatioStat Ka q = 1 + Ka * q) ∧
       (∀ q, svRatioDyn k0 kq q = svRatioStat (KSV k0 kq) q) ∧
         ∀ m : Mech, (LifetimeTracks m k0 kq Ka ↔ m = Mech.dyn) := by
@@ -317,7 +317,7 @@ theorem conflation_witness : ∀ q : ℝ, svRatioDyn 2 2 q = svRatioStat 1 q := 
 Plan section 4, row SV-I4. -/
 theorem mixed_witness :
     svZoneQ (1 / 2 + 1) (1 / 2) = SVZone.mixedLike ∧
-      2 * ((1 : ℚ) / 2) * 1 * (1 : ℚ) ^ 2 = 1 ∧ (0 : ℚ) < 1 := by
+      svRatioBoth 2 1 1 (0 + 1) - 2 * svRatioBoth 2 1 1 0 + svRatioBoth 2 1 1 (0 - 1) = 1 := by
   sorry
 
 end SternVolmer

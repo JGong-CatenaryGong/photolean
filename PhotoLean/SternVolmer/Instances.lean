@@ -59,21 +59,24 @@ theorem conflation_witness : ∀ q : ℝ, svRatioDyn 2 2 q = svRatioStat 1 q := 
   ring
 
 /-- The mixed witness: at `k0 = 2, kq = 1, Ka = 1` the exact slopes are
-`(slopeI, slopeTau) = (KSV + Ka, KSV) = (1/2 + 1, 1/2)`, which `svZoneQ` classifies
-`mixedLike`, and the second difference at `(x, h) = (0, 1)` is `2·KSV·Ka·h² = 1 > 0`
-(decide at ℚ) — upward curvature positively witnesses coexistence (SV-C9).
+`(slopeI, slopeTau) = (KSV + Ka, KSV) = (1/2 + 1, 1/2)`, which `svZoneQ` classifies `mixedLike`,
+and the combined ratio's second difference at `(x, h) = (0, 1)` is exactly `1` — the positive
+value `2·KSV·Ka·h²` of SV-C9 at the instance, read off the model object `svRatioBoth` itself.
+Re-frozen 2026-09-23 (plan §3.1 entry 3; Phase-3 vacuity audit, verifier run 1 finding M3): the
+first frozen form's third conjunct was the tautology `0 < 1` with no model object; it is replaced
+by the second difference of `svRatioBoth` at the instance parameters.
 Plan section 4, row SV-I4. -/
 theorem mixed_witness :
     svZoneQ (1 / 2 + 1) (1 / 2) = SVZone.mixedLike ∧
-      2 * ((1 : ℚ) / 2) * 1 * (1 : ℚ) ^ 2 = 1 ∧ (0 : ℚ) < 1 := by
-  refine ⟨?_, ?_, ?_⟩
+      svRatioBoth 2 1 1 (0 + 1) - 2 * svRatioBoth 2 1 1 0 + svRatioBoth 2 1 1 (0 - 1) = 1 := by
+  refine ⟨?_, ?_⟩
   · have c1 : ¬ (0 < (1 / 2 + 1 : ℚ) ∧ (1 / 2 : ℚ) = 1 / 2 + 1) := by norm_num
     have c2 : ¬ (0 < (1 / 2 + 1 : ℚ) ∧ (1 / 2 : ℚ) = 0) := by norm_num
     have c3 : 0 < (1 / 2 : ℚ) ∧ (1 / 2 : ℚ) < 1 / 2 + 1 := by norm_num
     unfold svZoneQ
     rw [if_neg c1, if_neg c2, if_pos c3]
-  · norm_num
-  · norm_num
+  · unfold svRatioBoth svRatioDyn svRatioStat dynDecay
+    norm_num
 
 end SternVolmer
 
