@@ -3820,3 +3820,64 @@
   for the Phase-3 premise audit.
 - Ownership note: the plan listed prover_c for this theory; the lead reassigned it to prover_b
   (prover_c took FluorPhos). The board's Phase-2 record notes the reassignment.
+
+## 2026-09-23 — EnergyGapLaw Phase 2 (proof layer, EG1–EG5) — prover_a — DONE (proof layer)
+
+- Delivered `PhotoLean/EnergyGapLaw/{Basic,Criterion,Sharp,RatModel,Instances}.lean`: 26/26
+  authority declarations word for word (fidelity diff 0, `not delivered yet 0`), all **17**
+  authority theorems proved plus the auxiliary row `lnRate_second_difference` (18/18 theorem
+  rows). Five module builds exit 0; `check.sh --strict` (five targets, and the whole tree) = PASS
+  with scan `clean`; `#print axioms` PASS on all 18 rows (only propext / Classical.choice /
+  Quot.sound). Commits `7d1f9b7` (EG1) `dd370a5` (EG2) `f82b3a8` (EG3) `002a6ae` (EG4)
+  `cc32666` (EG5). The batch's registered deviation was applied: one commit per module, not per
+  lemma.
+- The API routes the Sprint-0 probe calibrated held for EG-B (the three certificates: `unfold` +
+  `rfl` / `Iff.rfl`), EG-C1 (`Real.log_mul` + `Real.log_exp` + `field_simp` + `ring`), EG-R2
+  (`Rat.cast_lt` + `by_cases` + `EGZone.noConfusion`) and EG-I3 (`ring` after two EG-C1
+  rewrites). No API-drift blocker.
+- **Tried and failed (each is now a measured fact; the second and third are new)**:
+  1. `ring` is weak on the *whole* goal after `field_simp` splits a single denominator into a
+     product of factors: for EG-S3's second-difference identity Lean left the goal in normal form
+     (`lam^3 * kB^3 * T^3 * … 256 = …`) and reported only `Try this: ring_nf`; `ring_nf` did not
+     close it either. The route that does close it is to keep the transport at the level where the
+     denominator is one **atom**: `unfold`/`rw` the definitional equations and then
+     `field_simp; ring` (as EG-C1 does). Do not fight the normal form — restructure which equality
+     carries the division.
+  2. **A sign trap in the midpoint second difference**: the three-point second difference of the
+     exact quadratic law is `p - 2·m + q = -(p-q)²/(2·d)` with `d = 4·lam·kB·T` — *negative*. The
+     plausible-looking `+ (p-q)²/d` is a false statement, and `ring` refuses it (the residual goal
+     after `field_simp` is `4pq - 2p² - 2q² = 8pq - 4p² - 4q²`, i.e. `2(p-q)² = 4(p-q)²`). Two
+     hand-derivations got the factor of 2 wrong before `sympy` settled it; the lesson is that a
+     midpoint second difference must be *recomputed symbolically*, not read off the factor pattern
+     of the endpoint formula.
+  3. `linarith` in this mathlib v4.17.0 **fails on the most elementary comparison** when the goal
+     is `p - q = 0`/`< 0` from a hypothesis about `p` and `q`: `example {p q : ℝ} (hpq : p < q) :
+     p - q < 0 := by linarith` fails with `a✝ : p - q < 0 ⊢ False` (the same comparison negated
+     twice). `linarith [sub_neg.mpr hpq]`, `nlinarith` and an explicit `have h : p - q < 0 :=
+     sub_neg.mpr hpq` all fail the same way; only the hypothesis-free rewrite `sub_neg.mpr` inside
+     a `calc`/`exact` works. Consequence for all provers: when a goal needs `¬ (p - q = 0)`, do
+     **not** reach for `linarith` — use `sub_ne_zero.mpr (ne_of_lt h)` (as EG-S3's contradiction
+     does).
+  4. `div_neg_iff` is a trap for sign goals: it rewrites `a / b < 0` to a disjunction, and in this
+     version the anonymous-constructor destructuring of the two disjuncts produced hypotheses
+     whose types did not match the printed statement of the lemma. The route that works for
+     "sign of a quotient with positive denominator" is `div_lt_iff₀ hden` followed by
+     `rw [zero_mul]` (EG-C4's corollary), or the explicit `div_lt_div_of_pos_right` for
+     "compare two quotients by the same positive denominator" (EG-C2/C3).
+  5. A "decorative premise" caught by proof inspection rather than by the linter:
+     EG-C4's `secant_slope_neg_iff` carries the authority's `x₁ ≠ x₂`, but the equivalence after
+     `secant_slope_exact` is *independent* of it (the degenerate window makes both sides false).
+     Verified by hand before delivery; kept for signature fidelity with a local
+     `set_option linter.unusedVariables false in`, and reported on the board for the Phase-3
+     premise audit.
+- Cross-cutting pitfall checked (SV-R1, namespace shadowing): `Rat.nrBarrier_cast` was probed with
+  a scratch `#print` before it was committed and shows the cast-division/cast-power/cast-sub chain
+  (`Eq.trans (Rat.cast_div …) (Rat.cast_pow …)` …) — the non-vacuous bridge. Using the fully
+  qualified `PhotoLean.EnergyGapLaw.nrBarrier` on the right-hand side, exactly as the authority
+  writes it, is what keeps the row non-vacuous from the start.
+- Delivery gap for the lead: the five new modules are **not** in `lakefile.toml` `defaultTargets`,
+  and this task's ownership excludes `lakefile.toml`, so the whole-tree `check.sh --strict` PASS
+  above does not *build* them (the scan does cover `PhotoLean/**/*.lean`, which is why the scan
+  stayed `clean`). The lead must append
+  `"PhotoLean.EnergyGapLaw.Basic" … "PhotoLean.EnergyGapLaw.Instances"` to `defaultTargets` before
+  the verifier's whole-tree build is evidence for this theory.
