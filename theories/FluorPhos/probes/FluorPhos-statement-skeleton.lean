@@ -107,30 +107,28 @@ at `kISC = 1 → 2` (both sides `1/2`). The load-bearing premise is exactly `0 <
 non-triplet S₁ decay channel): with it the map `kISC ↦ phiP` is strictly increasing, without it it
 is constant. The premise is added; nothing else changes. -/
 theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (h' : FPData kF kISC' kIC kP kNR) (hkP : 0 < kP) (h0 : 0 < kF + kIC)
-    (hlt : kISC < kISC') :
+    (hkP : 0 < kP) (h0 : 0 < kF + kIC) (hlt : kISC < kISC') :
     phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR := by
   sorry
 
 /-- Plan §4, FP-C6. **The crossover in closed form**: phosphorescence overtakes fluorescence
 exactly when `kISC·kP` exceeds `kF·(kP+kNR)`. Route: `div_lt_div_iff` chains with
 `h.s1Decay_pos`, `h.t1Decay_pos`, `hkF`, `hkP`. -/
-theorem crossover_isc {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (hkF : 0 < kF) (hkP : 0 < kP) :
+theorem crossover_isc {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR) :
     phiF kF kISC kIC < phiP kF kISC kIC kP kNR ↔ kF * (kP + kNR) < kISC * kP := by
   sorry
 
 /-- Plan §4, FP-C6 (threshold form). The same crossover solved for `kISC`. Route: FP-C6's
 statement divided through by `kP` (`lt_div_iff` with `hkP`). -/
 theorem crossover_isc_threshold {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (hkF : 0 < kF) (hkP : 0 < kP) :
+    (hkP : 0 < kP) :
     phiF kF kISC kIC < phiP kF kISC kIC kP kNR ↔ kF * (kP + kNR) / kP < kISC := by
   sorry
 
 /-- Plan §4, FP-C7. **The El-Sayed boundary as a model row**: with the intersystem channel shut
 there is no phosphorescence, whatever the triplet rates. Route: `iscBranch` vanishes at
 `kISC = 0` (`zero_div`). -/
-theorem hso_zero_no_phosphorescence {kF kIC kP kNR : ℝ} (h : FPData kF 0 kIC kP kNR) :
+theorem hso_zero_no_phosphorescence {kF kIC kP kNR : ℝ} :
     phiP kF 0 kIC kP kNR = 0 := by
   sorry
 
@@ -191,8 +189,7 @@ def fpZoneQ (kF kISC kIC kP kNR : ℚ) : FPZone :=
 ℝ-side crossover inequality at cast parameters. Route: unfold `fpZoneQ`, split the ifs, and
 close by FP-C6 with `Rat.cast_lt` (the cast preserves the strict order). -/
 theorem fpZoneQ_phosphorDominant_iff {kF kISC kIC kP kNR : ℚ}
-    (h : FPData (kF : ℝ) (kISC : ℝ) (kIC : ℝ) (kP : ℝ) (kNR : ℝ))
-    (hkF : 0 < (kF : ℝ)) (hkP : 0 < (kP : ℝ)) :
+    (h : FPData (kF : ℝ) (kISC : ℝ) (kIC : ℝ) (kP : ℝ) (kNR : ℝ)) :
     fpZoneQ kF kISC kIC kP kNR = .phosphorDominant ↔
       phiF (kF : ℝ) (kISC : ℝ) (kIC : ℝ) < phiP (kF : ℝ) (kISC : ℝ) (kIC : ℝ) (kP : ℝ) (kNR : ℝ) := by
   sorry

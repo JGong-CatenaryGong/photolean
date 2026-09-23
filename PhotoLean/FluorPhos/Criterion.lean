@@ -212,13 +212,18 @@ missing). Route: `phiP_eq` on both sides, clear the two positive denominators by
 immediate once `s1Decay` is unfolded (the closure found by the lead after the row sat on the NEEDS-LARGE-MODEL list; the hand
 factorisations that failed against `ring` are recorded in the experience bank). -/
 theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (h' : FPData kF kISC' kIC kP kNR) (hkP : 0 < kP) (h0 : 0 < kF + kIC)
-    (hlt : kISC < kISC') :
+    (hkP : 0 < kP) (h0 : 0 < kF + kIC) (hlt : kISC < kISC') :
     phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR := by
+  have hnn : 0 ≤ kISC := h.kISC_nonneg
+  have h3 : 0 < s1Decay kF kISC' kIC := by
+    unfold s1Decay
+    have hle : kISC ≤ kISC' := le_of_lt hlt
+    nlinarith
+  have hkISC' : 0 ≤ kISC' := le_trans hnn (le_of_lt hlt)
+  have h' : FPData kF kISC' kIC kP kNR :=
+    ⟨h.kF_nonneg, hkISC', h.kIC_nonneg, h.kP_nonneg, h.kNR_nonneg, h3, h.t1Decay_pos⟩
   have h1 : 0 < kP + kNR := h.t1Decay_pos
   have h2 : 0 < s1Decay kF kISC kIC := h.s1Decay_pos
-  have h3 : 0 < s1Decay kF kISC' kIC := h'.s1Decay_pos
-  have hnn : 0 ≤ kISC := h.kISC_nonneg
   rw [phiP_eq h, phiP_eq h']
   rw [div_lt_div_iff₀ (mul_pos h2 h1) (mul_pos h3 h1)]
   unfold s1Decay at h2 h3 ⊢
@@ -228,8 +233,7 @@ theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC
 /-- Plan §4, FP-C6. **The crossover in closed form**: phosphorescence overtakes fluorescence
 exactly when `kISC·kP` exceeds `kF·(kP+kNR)`. Route: `div_lt_div_iff` chains with
 `h.s1Decay_pos`, `h.t1Decay_pos`, `hkF`, `hkP`. -/
-theorem crossover_isc {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (hkF : 0 < kF) (hkP : 0 < kP) :
+theorem crossover_isc {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR) :
     phiF kF kISC kIC < phiP kF kISC kIC kP kNR ↔ kF * (kP + kNR) < kISC * kP := by
   have hs : 0 < s1Decay kF kISC kIC := h.s1Decay_pos
   have ht : 0 < kP + kNR := h.t1Decay_pos
@@ -245,9 +249,9 @@ theorem crossover_isc {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
 /-- Plan §4, FP-C6 (threshold form). The same crossover solved for `kISC`. Route: FP-C6's
 statement divided through by `kP` (`lt_div_iff` with `hkP`). -/
 theorem crossover_isc_threshold {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (hkF : 0 < kF) (hkP : 0 < kP) :
+    (hkP : 0 < kP) :
     phiF kF kISC kIC < phiP kF kISC kIC kP kNR ↔ kF * (kP + kNR) / kP < kISC := by
-  rw [crossover_isc h hkF hkP]
+  rw [crossover_isc h]
   constructor
   · intro hlt
     rw [div_lt_iff₀ hkP]
@@ -259,7 +263,7 @@ theorem crossover_isc_threshold {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC k
 /-- Plan §4, FP-C7. **The El-Sayed boundary as a model row**: with the intersystem channel shut
 there is no phosphorescence, whatever the triplet rates. Route: `iscBranch` vanishes at
 `kISC = 0` (`zero_div`). -/
-theorem hso_zero_no_phosphorescence {kF kIC kP kNR : ℝ} (h : FPData kF 0 kIC kP kNR) :
+theorem hso_zero_no_phosphorescence {kF kIC kP kNR : ℝ} :
     phiP kF 0 kIC kP kNR = 0 := by
   unfold phiP iscBranch
   rw [zero_div, zero_mul]

@@ -95,11 +95,10 @@ def fpZoneQ (kF kISC kIC kP kNR : ℚ) : FPZone :=
 ℝ-side crossover inequality at cast parameters. Route: unfold `fpZoneQ`, split the ifs, and
 close by FP-C6 with `Rat.cast_lt` (the cast preserves the strict order). -/
 theorem fpZoneQ_phosphorDominant_iff {kF kISC kIC kP kNR : ℚ}
-    (h : FPData (kF : ℝ) (kISC : ℝ) (kIC : ℝ) (kP : ℝ) (kNR : ℝ))
-    (hkF : 0 < (kF : ℝ)) (hkP : 0 < (kP : ℝ)) :
+    (h : FPData (kF : ℝ) (kISC : ℝ) (kIC : ℝ) (kP : ℝ) (kNR : ℝ)) :
     fpZoneQ kF kISC kIC kP kNR = .phosphorDominant ↔
       phiF (kF : ℝ) (kISC : ℝ) (kIC : ℝ) < phiP (kF : ℝ) (kISC : ℝ) (kIC : ℝ) (kP : ℝ) (kNR : ℝ) := by
-  rw [crossover_isc h hkF hkP]
+  rw [crossover_isc h]
   unfold fpZoneQ
   by_cases h1 : kISC * kP = kF * (kP + kNR)
   · rw [if_pos h1]
