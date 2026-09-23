@@ -4090,7 +4090,25 @@ in the theory plans' §3.1 but not here).
 | 5b | EnergyGapLaw | EG-S4 drops the unconsumable `0 < A`; the EG-C4 corollary is stated as an iff | probe recompute + weakest-premise + "exactly when" wording | `theories/EnergyGapLaw/probes/EnergyGapLaw-api-probe.lean` | plan §3.1 entries 1–3 |
 | 7 | FluorPhos | `phiP_strictMono_isc` gains `0 < kF + kIC` | the first frozen form is FALSE at `kF = kIC = 0` (`phiP` independent of `kISC`) | kernel counterexample at `kISC = 1 → 2`, `.lake/tmp/lead_fp_c5_probe.lean` | plan §3.1 entry 2; board re-freeze note |
 
-**Registered for the Phase-3 authority revision (not yet changed)**: `SternVolmer.mixed_witness`'s
+**Phase-3 authority revision — EXECUTED 2026-09-23** (every row below followed the full re-freeze
+procedure: stripped form re-proved in a probe first, authority + module edited together, gates +
+fidelity re-run; plan §3.1 carries the per-theory entries):
+
+| # | theory | row | change | evidence | log locus |
+|---|---|---|---|---|---|
+| 8 | QuantumYield | `yieldOf_eq_mul_tauOf`, `yieldOf_cons_succ` | `QYData` premise dropped (definition-level identities) | verifier run 2 stripped-form probes | plan §3.1 entries 1–2 |
+| 9 | KashaVavilov | `specFrac_zero_of_kashaRule`, `cascade_pos_iff` | `RateData` / `i ≤ N` premises dropped (proofs never consumed them) | verifier run 1 W4/W5 | plan §3.1 entry 2 |
+| 10 | SternVolmer | `mixed_witness` | tautological conjunct `0 < 1` → model-tied `svRatioBoth` second difference `= 1` | verifier run 1 M3 | plan §3.1 entry 3 |
+| 11 | SternVolmer | `d1_verdict` | `hkq` dropped; `hk0 : 0 < k0` weakened to `k0 ≠ 0` | verifier run 1 W1/W2 | plan §3.1 entry 4 |
+| 12 | FluorPhos | `crossover_isc`, `crossover_isc_threshold`, `hso_zero_no_phosphorescence`, `fpZoneQ_phosphorDominant_iff`, `phiP_strictMono_isc` | five non-load-bearing premises/bundles dropped (`h'` now derived locally) | verifier run 5 stripped-form proofs | plan §3.1 entry 3 |
+| 13 | EnergyGapLaw | `lnRate_eq` | `lam ≠ 0`, `0 < kB*T` dropped (degenerate inputs totalize consistently); proof case-splits | verifier run 2 attack table | plan §3.1 entry 5 |
+| 14 | ICvsISC | `hso_zero_isc_absent`, `equal_prefactors_decision` | decorative `HSO` hypotheses + binders dropped; `hsoZeroWitness` re-frozen to the spin-discount witness | verifier run 4 F2/F3 | plan §3.1 entries 2–3 |
+| 15 | Forster | `fret_blind_spot`, `fretEff6_mono_kappa` | `hR` dropped; `0 < κ₁` weakened to `0 ≤ κ₁` (zero-case split) | verifier run 3 F4 | plan §3.1 entry 4 |
+| 16 | Einstein | `yield_radiative`, `radFactor_not_rational` | premises dropped (`mul_one_div` unconditional); row re-frozen to `Irrational (radFactor 1 1 1)` via `irrational_int_mul_iff` | verifier run 1 W6/M4 | plan §3.1 entries 2–3 |
+| 17 | StokesShift | `invertedCorner_firstForm_refuted` (NEW SS-I4) | the SS-C9 first-form refutation delivered as a counterexample-witness theorem (`lam = 1, e00 = 2`) | api-probe witness + kernel | plan §3.1 entry 2 |
+| 18 | FluorPhos | `fpC5_firstForm_refuted` (NEW FP-I4) | the FP-C5 first-form refutation delivered as a counterexample-witness theorem (`kF = kIC = 0, kISC = 1 → 2`) | `.lake/tmp/lead_fp_c5_probe.lean` | plan §3.1 entry 4 |
+
+**Registered for the Phase-3 authority revision (not yet changed)** — all items above were executed; the remaining registered item is the `FCData` field-level finding (ICvsISC `posLamI`/`posLamS` decorative along the Criterion line), recorded as an honesty note only (restructuring the shared bundle is out of scope): `SternVolmer.mixed_witness`'s
 third conjunct is a tautology (`0 < 1`, no model object — verifier M3); `Einstein.radFactor_not_rational`
 states `Irrational Real.pi` without mentioning `radFactor` (verifier M4; the intended
 `Irrational (radFactor 1 1 1)` is provable); the non-load-bearing premises of wave-1 (verifier M6,
