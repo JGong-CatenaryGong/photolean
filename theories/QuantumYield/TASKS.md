@@ -16,7 +16,7 @@
       `theories/QuantumYield/probes/QuantumYield-statement-skeleton.lean` — **29 declarations**
       (19 theorems + 10 definitions/structures/inductives),
       `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `967a11a1c788096d8fef39c90e62fd7e4cb5a2747efd3eb7e6621d2ca7b46a90`
-- [x] API calibration probe: **missing** (to be supplied in Phase 2)
+- [x] API calibration probe: `theories/QuantumYield/probes/QuantumYield-api-probe.lean` (exit 0)
 - [ ] Literature leaf populated: `theories/QuantumYield/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 

@@ -46,7 +46,14 @@ stimulated-emission coefficient. Namespace `PhotoLean.Einstein`; rational layer
 ## 3. Statement authority and inventory
 
 The authority is `probes/Einstein-statement-skeleton.lean` (Phase-1 placeholder bodies; sha256
-on the board once compiling). Correction log §3.1 starts empty.
+on the board once compiling).
+
+### 3.1 Statement-correction log
+
+* **Entry 1 (EB-C6, 2026-09-22, detected at Phase 2 by prover_d)** — the §4 text's middle conjunct
+  printed `aOfB K (aOfB K A / K) / K = A / K`; the correct identity is `= A`
+  (`K·(K·A/K)/K = A`). The statement authority and the delivered proof carry the correct `= A`;
+  this entry fixes the plan text of record.
 
 ## 4. Statement inventory
 
@@ -78,10 +85,12 @@ Module plan (Phase 2): `Basic.lean` (EB-B), `Criterion.lean` (EB-C), `RatModel.l
 * EB-C5 `int_roundtrip (hCi : Ci ≠ 0) (I : ℝ) : aOfInt Ci I / Ci = I` and forward — the
   Strickler–Berg leg.
 * EB-C6 `full_chain_roundtrip (hK : K ≠ 0) (hg1 : 0 < g1) (hg2 : 0 < g2) (hCf : Cf ≠ 0)
-  (A : ℝ) : fOfA Cf g1 g2 A / (Cf * (g2 / g1)) = A ∧
-  aOfB K (aOfB K A / K) / K = A / K ∧ b12OfB21 g2 g1 (b12OfB21 g1 g2 B21) = B21` — the chain
+  (A B21 : ℝ) : fOfA Cf g1 g2 A / (Cf * (g2 / g1)) = A ∧
+  aOfB K (aOfB K A / K) / K = A ∧ b12OfB21 g2 g1 (b12OfB21 g1 g2 B21) = B21` — the chain
   closes around every leg (stated as the conjunction of the legs at shared premises; the point
-  is one row naming the whole cycle).
+  is one row naming the whole cycle). **Corrected at Phase 2** (§3.1 entry 1): the middle conjunct
+  was printed `= A / K`, which is false (`K = 2, A = 1` gives `1 = 1/2`); `K·(K·A/K)/K = A` is the
+  identity the row needs. The statement authority and the delivered proof already carried `= A`.
 * EB-C7 `f_pos_iff_a_pos (hCf : 0 < Cf) (hg1 : 0 < g1) (hg2 : 0 < g2) (A : ℝ) :
   (0 < fOfA Cf g1 g2 A ↔ 0 < A)`.
 * EB-C8 `fluorescence_lifetime (A kNR : ℝ) : 1 / (A + kNR) = 1 / (A + kNR)`… **corrected at

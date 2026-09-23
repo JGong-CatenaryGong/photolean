@@ -21,7 +21,7 @@
       `theories/StokesShift/probes/StokesShift-statement-skeleton.lean` — **35 declarations**
       (23 theorems + 12 definitions/structures/inductives),
       `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `d5b88990db19a20b36c0e638ea9deb83366e2a9fbf81281e0d969f9aa0ba3c0a`
-- [x] API calibration probe: **missing** (to be supplied in Phase 2)
+- [x] API calibration probe: `theories/StokesShift/probes/StokesShift-api-probe.lean` (exit 0)
 - [ ] Literature leaf populated: `theories/StokesShift/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 

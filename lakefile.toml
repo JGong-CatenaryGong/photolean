@@ -38,7 +38,15 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.Sabatier.RatModel", "PhotoLean.Sabatier.Instances",
                   "PhotoLean.SymmetryFactor.Basic", "PhotoLean.SymmetryFactor.Criterion",
                   "PhotoLean.SymmetryFactor.Sharp", "PhotoLean.SymmetryFactor.RatModel",
-                  "PhotoLean.SymmetryFactor.Instances"]
+                  "PhotoLean.SymmetryFactor.Instances",
+                  "PhotoLean.StokesShift.Basic", "PhotoLean.StokesShift.Criterion",
+                  "PhotoLean.StokesShift.RatModel", "PhotoLean.StokesShift.Instances",
+                  "PhotoLean.SternVolmer.Basic", "PhotoLean.SternVolmer.Criterion",
+                  "PhotoLean.SternVolmer.RatModel", "PhotoLean.SternVolmer.Instances",
+                  "PhotoLean.KashaVavilov.Basic", "PhotoLean.KashaVavilov.Criterion",
+                  "PhotoLean.KashaVavilov.Instances",
+                  "PhotoLean.Einstein.Basic", "PhotoLean.Einstein.Criterion",
+                  "PhotoLean.Einstein.RatModel", "PhotoLean.Einstein.Instances"]
 
 [[require]]
 name = "mathlib"
