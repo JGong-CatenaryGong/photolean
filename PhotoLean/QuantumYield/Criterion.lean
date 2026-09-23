@@ -56,19 +56,13 @@ theorem sum_yieldOf_eq_one {n : ℕ} {k : Fin n → ℝ} (h : QYData k) :
   rw [← Finset.sum_div]
   exact div_self (ne_of_gt h.total_pos)
 
--- Note on `set_option linter.unusedVariables false in` (rows QY-C2 and QY-C6, third form): the
--- premise `h : QYData k` of these two rows is not consumed by their proofs — both identities are
--- definitional in the totalized-division model and hold at every rate vector. The premise stays in
--- the signatures (it belongs to the law family and keeps signature fidelity with the statement
--- authority, the repository's standing treatment of a frozen decorative premise); the
--- unused-variable linter is disabled locally so a warning-free build still surfaces any real
--- warning elsewhere in the file.
-set_option linter.unusedVariables false in
 /-- The common-lifetime law: every yield is its rate times the shared lifetime.
-Plan section 4, row QY-C2. -/
-theorem yieldOf_eq_mul_tauOf {n : ℕ} {k : Fin n → ℝ} (h : QYData k) (i : Fin n) :
+Plan section 4, row QY-C2. Re-frozen 2026-09-23 (plan §3.1 entry 1): the `QYData` premise was
+dropped — the identity is definition-level under totalized division and consumes no premise
+(weakest-premise standard, iron rule 3). -/
+theorem yieldOf_eq_mul_tauOf {n : ℕ} {k : Fin n → ℝ} (i : Fin n) :
     yieldOf k i = k i * tauOf k := by
-  -- Proof route (plan §5): unfold `tauOf`; field algebra with `h.total_pos.ne'`.
+  -- Proof route: unfold `yieldOf`/`tauOf`; `div_eq_mul_inv` + `one_div` (no premises).
   unfold yieldOf tauOf
   rw [div_eq_mul_inv, one_div]
 
@@ -122,14 +116,12 @@ theorem yieldOf_cons_zero {n : ℕ} (c : ℝ) (k : Fin n → ℝ) :
   unfold yieldOf
   rw [Fin.cons_zero, totalRate_cons]
 
--- Second linter-disabled row; the rationale is the note above (QY-C2). The premise is decorative
--- here as well: the identity holds at every rate vector.
-set_option linter.unusedVariables false in
 /-- An existing channel's yield after a channel is added at index `0`.
-Plan section 4, row QY-C6, third form. -/
-theorem yieldOf_cons_succ {n : ℕ} {k : Fin n → ℝ} (h : QYData k) (c : ℝ) (i : Fin n) :
+Plan section 4, row QY-C6, third form. Re-frozen 2026-09-23 (plan §3.1 entry 2): the `QYData`
+premise was dropped — the identity is definitional under totalized division and holds at every
+rate vector (independent verifier run 2; stripped form re-proved before this edit). -/
+theorem yieldOf_cons_succ {n : ℕ} {k : Fin n → ℝ} (c : ℝ) (i : Fin n) :
     yieldOf (Fin.cons c k) i.succ = k i / (c + totalRate k) := by
-  -- Proof route (plan §5, API-calibrated): unfold; `Fin.cons_succ` + `Fin.sum_cons`.
   unfold yieldOf
   rw [Fin.cons_succ, totalRate_cons]
 

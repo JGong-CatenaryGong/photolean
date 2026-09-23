@@ -30,8 +30,10 @@
 - [x] `QYData` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — done — QY-B4, build exit 0
 - [x] `sum_yieldOf_eq_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [x] `yieldOf_eq_mul_tauOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
-      axioms PASS
+- [ ] `yieldOf_eq_mul_tauOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 3 re-freeze
+      (plan §3.1 entry 1) — **review** — `QYData` premise dropped (verifier run 2: non-load-bearing;
+      stripped form re-proved by prover_b 2026-09-23; build + axioms + fidelity PASS on the changed
+      row); awaits verifier re-check of the re-frozen row
 - [x] `yieldOf_nonneg` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
 - [x] `yieldOf_le_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,

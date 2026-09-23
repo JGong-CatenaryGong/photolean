@@ -19,7 +19,9 @@ channel rescales every existing yield by the same dilution factor `Σk / (Σk + 
 algebraic spine underneath Stern–Volmer quenching and fluorescence/phosphorescence competition;
 QY-C7 is its strict form). All channels share one lifetime `τ = 1/Σk` (QY-C2). The premise
 bundle `QYData` (nonnegative rates + positive total) is an explicit hypothesis of every physical
-row, never hidden in a definition (iron rule 3); QY-C8 shows `total_pos` is load-bearing.
+row whose proof consumes it, never hidden in a definition (iron rule 3, weakest-premise
+standard); QY-C8 shows `total_pos` is load-bearing. The Phase-3 premise audit (plan §3.1
+entries 1–2) dropped the unconsumed `QYData` premise of QY-C2 and of the QY-C6 third form.
 
 API calibration for this skeleton (iron rule 4):
 `theories/QuantumYield/probes/QuantumYield-api-probe.lean`. Two findings affect proof routes
@@ -69,10 +71,12 @@ theorem sum_yieldOf_eq_one {n : ℕ} {k : Fin n → ℝ} (h : QYData k) :
   sorry
 
 /-- The common-lifetime law: every yield is its rate times the shared lifetime.
-Plan section 4, row QY-C2. -/
-theorem yieldOf_eq_mul_tauOf {n : ℕ} {k : Fin n → ℝ} (h : QYData k) (i : Fin n) :
+Plan section 4, row QY-C2. Re-frozen 2026-09-23 (plan §3.1 entry 1): the `QYData` premise was
+dropped — the identity is definition-level under totalized division and consumes no premise
+(independent verifier run 2; stripped form re-proved by prover_b before this edit). -/
+theorem yieldOf_eq_mul_tauOf {n : ℕ} {k : Fin n → ℝ} (i : Fin n) :
     yieldOf k i = k i * tauOf k := by
-  -- Proof route (plan §5): unfold `tauOf`; field algebra with `h.total_pos.ne'`.
+  -- Proof route: unfold `yieldOf`/`tauOf`; `div_eq_mul_inv` + `one_div` (no premises).
   sorry
 
 /-- Yields are nonnegative.
@@ -119,7 +123,7 @@ theorem yieldOf_cons_zero {n : ℕ} (c : ℝ) (k : Fin n → ℝ) :
 
 /-- An existing channel's yield after a channel is added at index `0`.
 Plan section 4, row QY-C6, third form. -/
-theorem yieldOf_cons_succ {n : ℕ} {k : Fin n → ℝ} (h : QYData k) (c : ℝ) (i : Fin n) :
+theorem yieldOf_cons_succ {n : ℕ} {k : Fin n → ℝ} (c : ℝ) (i : Fin n) :
     yieldOf (Fin.cons c k) i.succ = k i / (c + totalRate k) := by
   -- Proof route (plan §5, API-calibrated): unfold; `Fin.cons_succ` + `Fin.sum_cons`.
   sorry
