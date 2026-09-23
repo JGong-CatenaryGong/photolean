@@ -68,6 +68,13 @@ sha256 recorded on the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 2 (KV-B4/KV-C5, 2026-09-23, Phase-3 premise audit, verifier run 1
+  findings W4/W5)** — the `RateData` premise of `specFrac_zero_of_kashaRule` and the `i ≤ N`
+  premise of `cascade_pos_iff` were dropped: neither proof consumed them (the split identity is
+  premise-free; the cascade iff degenerates consistently for `i > N`, both sides trivially
+  true). The now-empty linter suppressions were removed; the `d2_verdict` suppression stays with
+  an accurate comment (it covers lambda-binder noise, not a premise).
+
 * **Entry 0 (2026-09-22, literature note — no statement change)** — the canonical Vavilov rule
   quantifies over the quantum YIELD only (LITERATURE S3, Birks p. 392); the spectral form
   `SpecSame` is this theory's own predicate and must not be attributed to Vavilov in

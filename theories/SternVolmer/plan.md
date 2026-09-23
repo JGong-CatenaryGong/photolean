@@ -60,6 +60,16 @@ sha256 recorded on the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 3 (SV-I4, 2026-09-23, Phase-3 vacuity audit, verifier run 1 finding
+  M3)** — `mixed_witness` was re-frozen: the tautological third conjunct `0 < 1` (no model
+  object) is replaced by the model-tied second difference
+  `svRatioBoth 2 1 1 (0 + 1) - 2 * svRatioBoth 2 1 1 0 + svRatioBoth 2 1 1 (0 - 1) = 1` — the
+  SV-C9 value `2·KSV·Ka·h² = 1` read off the model object itself.
+* **Entry 4 (SV-C10, 2026-09-23, Phase-3 premise audit)** — `d1_verdict` drops the unconsumed
+  `hkq : 0 < kq` and weakens `hk0 : 0 < k0` to `hk0 : k0 ≠ 0` (the coincidence and linearity
+  conjuncts need exactly `k0 ≠ 0` under totalized division; the boundary conjunct needs nothing
+  on `k0` after entry 2).
+
 * **Entry 1 (SV-R1, 2026-09-22, found while proving; re-freeze executed by the lead)** — the four
   cast-coherence rows were **vacuous as first frozen**: a `Rat.`-prefixed declaration elaborates
   its type inside the `Rat` namespace, so the unqualified right-hand side (`svRatioDyn` etc.)

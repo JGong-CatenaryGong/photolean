@@ -46,6 +46,13 @@ sha256 on the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 1 (QY-C2, 2026-09-23, Phase-3 premise audit)** — the `QYData` premise of
+  `yieldOf_eq_mul_tauOf` was dropped: the identity `k i / totalRate k = k i * (1 / totalRate k)` is
+  definition-level under totalized division and consumes no premise (verifier run 2; stripped form
+  re-proved before the edit). **Entry 2 (QY-C6 third form)** — same treatment for
+  `yieldOf_cons_succ`: the cons-sum identity holds at every rate vector; the local linter
+  suppressions for both rows were removed with the premises.
+
 * **Entry 0 (2026-09-22, literature note — no statement change)** — the literature's current
   best quantum yields are fluorescein ≈ 0.95 (0.1 M NaOH) and quinine ≈ 0.546
   (0.5 M H₂SO₄); the named instances `9/10` and `11/20` are order-of-magnitude representatives,

@@ -59,6 +59,14 @@ sha256 on the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 5 (EG-C1, 2026-09-23, Phase-3 premise audit)** — the premises `lam ≠ 0` and
+  `0 < kB * T` of `lnRate_eq` were dropped: the statement survives at both degenerate inputs
+  (`lam = 0`, `kB * T = 0`) because totalized division collapses both sides to `Real.log A`
+  (verifier run 2's attack table; the delivered proof now case-splits on
+  `4 * lam * (kB * T) = 0`, the degenerate branches closing by `simp`, the non-degenerate branch
+  keeping the old `field_simp` route). `0 < A` stays (at `A = 0` the equation fails:
+  `0 ≠ -1/4`). All ten downstream call sites now pass the implicits explicitly.
+
 * **Entry 1 (EG-I3, 2026-09-22, probe recompute)** — the tangent-defect witness value is
   `-5` (`((2 − 3/2)²/(4·(1/2)·(1/40))) = 5` by `norm_num`); the inventory's draft `-20` was
   wrong (the literature round's arithmetic note confirmed the probe). The skeleton carries

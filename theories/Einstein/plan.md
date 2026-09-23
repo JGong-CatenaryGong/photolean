@@ -50,6 +50,15 @@ on the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 2 (EB-C8 first form, 2026-09-23, Phase-3 premise audit)** — the premises
+  `hA : 0 < A` and `hkNR : 0 ≤ kNR` of `yield_radiative` were dropped: `A * (1 / (A + kNR)) =
+  A / (A + kNR)` is `mul_one_div`, unconditional under totalized division (verifier run 1, W6).
+* **Entry 3 (EB-R2, 2026-09-23, Phase-3 vacuity/mis-naming audit, verifier run 1 finding M4)** —
+  `radFactor_not_rational` was re-frozen from `Irrational Real.pi` (a row that does not mention
+  `radFactor` — a re-export of `irrational_pi`) to `Irrational (radFactor 1 1 1)`: the physical
+  radiation factor at unit parameters is `8π`, irrational by `irrational_int_mul_iff`
+  (`radFactor 1 1 1 = (8 : ℤ) * Real.pi`, probe-verified).
+
 * **Entry 1 (EB-C6, 2026-09-22, detected at Phase 2 by prover_d)** — the §4 text's middle conjunct
   printed `aOfB K (aOfB K A / K) / K = A / K`; the correct identity is `= A`
   (`K·(K·A/K)/K = A`). The statement authority and the delivered proof carry the correct `= A`;

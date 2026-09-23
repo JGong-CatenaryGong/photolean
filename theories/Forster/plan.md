@@ -56,6 +56,12 @@ the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 4 (FO-C8/FO-C9, 2026-09-23, Phase-3 premise audit, verifier run 3 finding
+  F4)** — `fret_blind_spot` drops `hR : 0 < R` (both conjuncts survive at `R = 0` under totalized
+  division — the second via `0 ≤ R ^ 6` instead of strict positivity);
+  `fretEff6_mono_kappa` weakens `0 < κ₁` to `0 ≤ κ₁` (the `κ₁ = 0` case closes by the zero route:
+  LHS `= 0`, RHS `> 0`; the positive case keeps the strictMono route).
+
 * **Entry 1 (FO-R2/FO-C10b/FO-I1, 2026-09-22, probe calibration)** — `frameKappa` is ℤ-valued (every
   axis-aligned pair gives 0, 1 or 4) and the isotropic-average row is two-step (`decide` the ℤ sum,
   then `norm_num` the ℚ average): `decide` does not reduce ℚ division, and `norm_num [Fin.ext_iff]`

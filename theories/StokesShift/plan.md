@@ -47,6 +47,12 @@ sha256 on the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 2 (SS-I4, 2026-09-23, Phase-3 negative-result finalization)** — the
+  refutation of the SS-C9 first form (entry 1) is now delivered as a theorem with its parameter
+  witness: `invertedCorner_firstForm_refuted : ¬ (∀ lam e00, (e00 < lam ↔
+  Marcus.InvertedRegion lam e00))`, refuted at `lam = 1, e00 = 2` (`2 < 1` false,
+  `InvertedRegion 1 2` true). An authority ADDITION (row SS-I4); sha256 updated on the board.
+
 * **Entry 1 (SS-C9, 2026-09-22, Sprint-0 calibration)** — the first form
   `e00 < lam ↔ PhotoLean.Marcus.InvertedRegion lam e00` unfolds to `e00 < lam ↔ lam < e00`,
   which is **false** (kernel-checked counterexample `lam = 1, e00 = 2` in

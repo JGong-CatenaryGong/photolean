@@ -47,6 +47,17 @@ on the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 3 (five rows, 2026-09-23, Phase-3 premise audit, verifier run 5)** —
+  `crossover_isc` drops `hkF`/`hkP`; `crossover_isc_threshold` drops `hkF` (keeps `hkP` — the
+  division needs it); `hso_zero_no_phosphorescence` drops the whole `FPData` bundle (the identity
+  is `zero_div` + `zero_mul`); `fpZoneQ_phosphorDominant_iff` drops `hkF`/`hkP`;
+  `phiP_strictMono_isc` drops the derivable prime-side bundle `h'` (reconstructed locally from
+  `h0`, `hlt` and the nonnegativity fields).
+* **Entry 4 (FP-I4, 2026-09-23, Phase-3 negative-result finalization)** — the refutation of the
+  FP-C5 first form (entry 2) is delivered as a theorem with its parameter witness:
+  `fpC5_firstForm_refuted`, refuted at `kF = kIC = 0, kISC = 1 → 2` (both yields `1/2`). An
+  authority ADDITION (row FP-I4); sha256 updated on the board.
+
 * **Entry 0 (FP-C4, design time)** — the losslessness boundary is `kIC = 0 ∧ (kISC = 0 ∨ kNR = 0)`,
   not the naive `kIC = 0 ∧ kNR = 0`: at `kISC = 0` the triplet is never populated and no loss can
   pass through it. Carried by the inventory from the start.

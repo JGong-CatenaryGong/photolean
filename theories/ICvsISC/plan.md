@@ -48,6 +48,17 @@ the board once compiling).
 
 ### 3.1 Statement-correction log
 
+* **Entry 2 (FC-C5/FC-C7, 2026-09-23, Phase-3 premise audit)** — the hypothesis
+  `h0 : HSO = 0` of `hso_zero_isc_absent` and `hH : HSO = 1` of `equal_prefactors_decision` were
+  dropped together with their now-unused `HSO` binders: both conclusions bake the literal
+  (`iscRate 0 …`, `iscRate 1 …`), so the hypotheses were decorative at the statement level
+  (verifier run 4, F2); the primed proof of FC-C7 now works on the literal directly.
+* **Entry 3 (FC-I3, 2026-09-23, Phase-3 vacuity audit, verifier run 4 finding F3)** —
+  `hsoZeroWitness` was re-frozen from the tautology `(0 : ℚ) ^ 2 * AS = 0` (`zero_mul`, no model
+  object) to the spin-discount witness: `Rat.barrierOrderQ 1 (3/2) 2 (3/2) = true ∧
+  iscRate (0 : ℝ) 1 2 1 1 (3/2) = 0` — the pure barrier race is won by ISC (`1/32 < 1/16`) yet
+  with the coupling shut the ISC rate vanishes.
+
 * **Entry 1 (FC-I2 instance barrier, 2026-09-22, probe recompute; plan-text sync 2026-09-23 after
   verifier run 4 finding F1)** — the §4 draft questioned `1/16`; the probe recomputed the ISC
   barrier as `1/32` (`fcBarrier 2 (3/2) = (2 − 3/2)²/(4·2) = 1/32`), so the pure-FC race is
