@@ -91,9 +91,12 @@ Module plan (Phase 2): `Basic.lean` (SS-B), `Criterion.lean` (SS-C), `RatModel.l
 * SS-C8 `emission_window_closes (lam : ℝ) : emEnergy lam lam = 0` — the window's edge; and
   `inverted_corner (h : e00 < lam) : emEnergy lam e00 < 0` — beyond it the vertical emission is
   negative (no photon): the model's own boundary.
-* SS-C9 `inverted_corner_iff_marcus (lam e00 : ℝ) :
-  e00 < lam ↔ PhotoLean.Marcus.InvertedRegion lam e00` — the no-vertical-emission zone *is* the
-  Marcus inverted region read at the gap (`Iff.rfl`; imports `PhotoLean.Marcus.Basic`).
+* SS-C9 `emEnergy_pos_iff_inverted (lam e00 : ℝ) :
+  0 < emEnergy lam e00 ↔ PhotoLean.Marcus.InvertedRegion lam e00` — the **open** emission window
+  (a positive vertical photon) *is* the Marcus inverted region read at the gap; both sides reduce
+  to `lam < e00` (imports `PhotoLean.Marcus.Basic`). **Amended at Sprint 0** (§3.1 entry 1): the
+  first form `e00 < lam ↔ InvertedRegion lam e00` is false (counterexample `lam = 1, e00 = 2` in
+  the api probe).
 
 **SS-R (rational decision layer):**
 
@@ -114,7 +117,8 @@ Module plan (Phase 2): `Basic.lean` (SS-B), `Criterion.lean` (SS-C), `RatModel.l
 
 ## 5. Proof routes
 
-SS-C1..C8 are `unfold` + `ring`/`linarith` (SS-C4/C5 after rewriting by SS-C3/C2); SS-C9 is
+SS-C1..C8 are `unfold` + `ring`/`linarith` (SS-C4/C5 after rewriting by SS-C3/C2); SS-C9 (the amended
+`emEnergy_pos_iff_inverted`) is
 `Iff.rfl` (check `Marcus.InvertedRegion`'s body first — it is `lam < x`, so the iff is
 `e00 < lam ↔ lam < e00` up to commutativity of the flipped order: state exactly
 `PhotoLean.Marcus.InvertedRegion lam e00 ↔ e00 < lam` — one `Iff.rfl` or
@@ -135,7 +139,9 @@ Owner: prover_a (group B block).
 ## 8. Risks and mitigations
 
 * SS-C9's direction conventions (`InvertedRegion lam x := lam < x`) must be checked against the
-  delivered body before freezing the skeleton — a sign slip here inverts the physics.
+  delivered body before freezing the skeleton — a sign slip here inverts the physics. **It happened**:
+  the first frozen direction was inverted; see §3.1 entry 1 (the amendment was caught at Sprint 0 by
+  the api probe, before any proof work).
 * The `2 * lam` vs `lam * 2` normal form is fixed by `ring`; no risk.
 
 ## 9. Honesty table

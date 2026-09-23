@@ -4072,3 +4072,23 @@ Absent / unusable (do not reach for these):
   but both tactics leave it (Lean only suggests `ring_nf`). Route that closes it: keep the
   transport at the level where the denominator is one atom (`field_simp; ring` on the
   definitional equations, as EG-C1 does).
+
+## §photobatch — statement-change index (iron rule 2)
+
+Every statement change of the photophysics batch, with its authority, its evidence and its log
+locus. Appended 2026-09-23 by the lead after verifier run 1 (finding M1: the re-freezes were logged
+in the theory plans' §3.1 but not here).
+
+| # | theory | row | change | evidence | log locus |
+|---|---|---|---|---|---|
+| 1 | StokesShift | `inverted_corner_iff_marcus` → `emEnergy_pos_iff_inverted` | the first form `e00 < lam ↔ Marcus.InvertedRegion lam e00` is false (unfolds to `e00 < lam ↔ lam < e00`); the corrected row identifies the OPEN emission window with the inverted region | kernel counterexample `lam = 1, e00 = 2` in `theories/StokesShift/probes/StokesShift-api-probe.lean` | plan §3.1 entry 1; skeleton docstring |
+| 2 | SternVolmer | the four `Rat.*_cast` rows | vacuous as first frozen (`Rat.`-prefixed declaration elaborates its type inside `Rat`, so the unqualified right-hand side resolved to the ℚ shadow: `↑x = ↑x`); re-frozen with fully-qualified right-hand sides | `#print` before: `@Rat.cast (Rat.svRatioDyn a b q)` on both sides; after: `↑(Rat.svRatioDyn a b q) = PhotoLean.SternVolmer.svRatioDyn ↑a ↑b ↑q` | plan §3.1 entry 1; commit `edccefc` |
+| 3 | Einstein | plan text §4 EB-C6 middle conjunct `= A / K` → `= A` | the printed form is false (`K = 2, A = 1` gives `1 = 1/2`); `K·(K·A/K)/K = A` | arithmetic; the authority and the delivered proof always carried `= A` | plan §3.1 entry 1 |
+| 4 | ICvsISC | FC-I2 instance barrier `1/16` (plan draft, question-marked) → `1/32` | probe recompute; the ISC barrier is strictly lower | `theories/ICvsISC/probes/ICvsISC-api-probe.lean` | plan §3.1 (recorded at Phase 1 as an arithmetic recompute) |
+| 5 | EnergyGapLaw | EG-I3 tangent defect `-20` → `-5`; EG-S4 drops the unconsumable `0 < A`; EG-C4 corollary stated as an iff | probe recompute + weakest-premise + "exactly when" wording | `theories/EnergyGapLaw/probes/EnergyGapLaw-api-probe.lean` | plan §3.1 entries 1–3 |
+
+**Registered for the Phase-3 authority revision (not yet changed)**: `SternVolmer.mixed_witness`'s
+third conjunct is a tautology (`0 < 1`, no model object — verifier M3); `Einstein.radFactor_not_rational`
+states `Irrational Real.pi` without mentioning `radFactor` (verifier M4; the intended
+`Irrational (radFactor 1 1 1)` is provable); the non-load-bearing premises of wave-1 (verifier M6,
+list in `proofs/EXPERIENCE.md`). Each needs the same re-freeze procedure as rows 1–5.
