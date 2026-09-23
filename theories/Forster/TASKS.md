@@ -81,10 +81,14 @@ Module map and row counts:
 | `PhotoLean/Forster/RatModel.lean` | FO-R1..FO-R3 | the ℚ twins + cast coherence, `frameKappa`/`frame_sum_eq_six`/`iso_frame_avg`, the decision-layer rows |
 | `PhotoLean/Forster/Instances.lean` | FO-I1..FO-I3 | `cy3cy5Like_verdict` (64/793), the blind-spot and maximal-κ² geometries |
 
-Open coordination item for the lead: the four `PhotoLean.Forster.*` targets are **not yet in
-`lakefile.toml`'s `defaultTargets`**, so a bare `check.sh --strict` builds the other theories but
-not these modules while its scan still covers them (the acceptance hole ENGINE.md §1.1 warns
-about). Per-module builds and `check.sh --strict <module>` are green.
+Coordination items, both resolved by the lead on 2026-09-23 (commit `d343833`):
+* the four `PhotoLean.Forster.*` targets were **not** in `lakefile.toml`'s `defaultTargets`
+  (so a bare `check.sh --strict` built the other theories but not these modules while its scan
+  already covered them — the acceptance hole ENGINE.md §1.1 warns about). The four targets are
+  now appended; a bare `proofs/scripts/check.sh --strict` builds them.
+* the whole-tree strict gate had been failing on another prover's
+  `PhotoLean/FluorPhos/Scratch.lean` (unproved placeholders); that scratch file has been
+  relocated out of the scanned tree.
 
-Known whole-tree strict-gate failure outside Forster (not this theory's rows):
-`PhotoLean/FluorPhos/Scratch.lean` carries unproved placeholders at lines 25/26/28/29.
+Whole-tree evidence after that commit (prover_d, 2026-09-23):
+`proofs/scripts/check.sh --strict` → build OK, scan `clean`, verdict **PASS**.
