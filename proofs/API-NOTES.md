@@ -4039,3 +4039,36 @@ Measured tactic boundaries (probes, this round):
   `#check` resolves it if `PhotoLean.Kasha.Criterion` is not imported). Ordering the theory's
   own module first — `import PhotoLean.KashaVavilov.Basic` before the Kasha modules —
   restores resolution. Root cause not identified; the ordering fix is what is delivered.
+
+## §photobatch/EnergyGapLaw — Phase-2 proof calibration (prover_a, 2026-09-23)
+
+Measured against mathlib v4.17.0 while proving EG-B1–EG-B4, EG-C1–EG-C4, EG-S1–EG-S4,
+EG-R1–EG-R3 and EG-I1–EG-I3.
+
+Confirmed present and used:
+* `Real.log_mul` (two `≠` premises), `Real.log_exp`, `Real.exp_ne_zero`, `Real.exp_pos`;
+* `div_lt_div_iff₀` (two positive denominators), `div_lt_div_of_pos_right`,
+  `div_lt_iff₀` (+ `zero_mul`), `div_eq_zero_iff`, `div_nonneg`, `mul_nonneg`, `mul_pos`;
+* `sq_eq_zero_iff`, `sub_eq_zero`, `sub_ne_zero`, `pow_ne_zero`, `ne_of_lt`, `not_lt_of_gt`;
+* `Rat.cast_lt`, `push_cast`, `EGZone.noConfusion` (a derived-`DecidableEq` inductive);
+* `decide_eq_true_eq` + `norm_num [def]` for ℚ-literal `Bool` verdicts (the ICvsISC route).
+
+Absent / unusable (do not reach for these):
+* `div_neg_iff_of_pos` — **does not exist** in this version. `div_neg_iff` exists but rewrites
+  `a / b < 0` to a *disjunction*; destructuring its two disjuncts under `rintro (⟨ha, hb⟩ | …)`
+  produced hypotheses whose types did not match the lemma's printed statement (measured twice in
+  EG-C4). Working route for a quotient-sign goal with a positive denominator:
+  `rw [div_lt_iff₀ hden, zero_mul]`, or use `div_lt_div_of_pos_right` when comparing two
+  quotients over the same positive denominator.
+* `linarith` on `p - q` against a hypothesis about `p` and `q` — **fails**:
+  `example {p q : ℝ} (hpq : p < q) : p - q < 0 := by linarith` reports
+  `linarith failed to find a contradiction … a✝ : p - q < 0 ⊢ False`. Adding the same comparison
+  as an explicit hypothesis (`have h : p - q < 0 := sub_neg.mpr hpq`) does not help, and
+  `nlinarith` fails identically; only the hypothesis-free rewrite `sub_neg.mpr hpq` inside a
+  `calc`/`exact` works. For `¬ (p - q = 0)` the working route is
+  `sub_ne_zero.mpr (ne_of_lt hpq)`.
+* `ring` / `ring_nf` on a goal whose `field_simp`-cleared denominator was split into a product of
+  factors: the residual normal form (`lam^3 * kB^3 * T^3 * p * q * 256 = …`) is a true identity,
+  but both tactics leave it (Lean only suggests `ring_nf`). Route that closes it: keep the
+  transport at the level where the denominator is one atom (`field_simp; ring` on the
+  definitional equations, as EG-C1 does).

@@ -4,8 +4,33 @@
 - Ticking (`[x]`) happens only after a verifier PASS and is done by the lead.
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/EnergyGapLaw/plan.md`.
-- Status of this theory: **Phase 1 (statement formalization) in progress** — batch:
-  photophysics subgraph (groups A–D), dispatched 2026-09-22.
+- Status of this theory: **Phase 2 (proof layer) delivered** — all 26 Sprint-0 declarations proved,
+  every row moved `stmt` -> `review` (verifier adjudication pending, so no box is ticked);
+  batch: photophysics subgraph (groups A–D), dispatched 2026-09-22.
+
+### Sprint-0/Phase-2 delivery record (prover_a)
+
+- Delivered modules (owner prover_a; one commit per module, the batch-registered deviation from
+  one-commit-per-lemma):
+  `PhotoLean/EnergyGapLaw/{Basic,Criterion,Sharp,RatModel,Instances}.lean`.
+- Build evidence (exit 0 each): `proofs/scripts/lake build PhotoLean.EnergyGapLaw.<Module>` for
+  all five modules; `proofs/scripts/check.sh --strict` with the five modules as targets = PASS
+  (scan `clean`), and the whole-tree `proofs/scripts/check.sh --strict` = PASS.
+- Axiom evidence: `proofs/scripts/axioms.sh <Module> <qualified name>` = PASS for all **17**
+  authority theorems plus the one auxiliary row `lnRate_second_difference` (18/18); every one
+  depends on at most `propext, Classical.choice, Quot.sound`.
+- Fidelity: `python3 theories/BEP/probes/bep-fidelity.py --theory EnergyGapLaw` reports
+  `skeleton declarations 26`, `delivered, word-for-word 26`, `not delivered yet 0`,
+  `signature differences 0`; the single "not in authority" entry is the auxiliary row.
+- Statement discipline: all 26 signatures are transcribed verbatim from the authority, including
+  the three §3.1 corrections (EG-I3 defect magnitude `-5`, EG-S4 without the unconsumable
+  `0 < A`, EG-C4 corollary as the iff). No statement was changed and no statement incident arose;
+  the `Rat.nrBarrier_cast` row was checked against the SV-R1 shadowing pitfall with a scratch
+  `#print` and is a real (non-vacuous) bridge.
+- Premise note for the verifier: EG-C4's `secant_slope_neg_iff` carries the authority's premise
+  `x₁ ≠ x₂`, which is decorative — the proof does not consume it, and the sign equivalence is
+  independent of it (at `x₁ = x₂` both sides are false under `0 < lam`). Kept for signature
+  fidelity, with the unused-variable linter disabled locally (the BEP `Sharp.lean` precedent).
 
 ## Sprint 0 — environment, statements, plan
 
@@ -28,29 +53,29 @@
 
 | # | Plan row | Declaration | Kind | Status |
 |---|----------|-------------|------|--------|
-| 1 | EG-B1 | `nrBarrier` | def | `stmt` |
-| 2 | EG-B1 | `cert_nrBarrier` | theorem | `stmt` |
-| 3 | EG-B2 | `nrRate` | def | `stmt` |
-| 4 | EG-B2 | `cert_nrRate` | theorem | `stmt` |
-| 5 | EG-B3 | `InvertedGap` | def | `stmt` |
-| 6 | EG-B3 | `cert_invertedGap` | theorem | `stmt` |
-| 7 | EG-B4 | `lnRate` | def | `stmt` |
-| 8 | EG-C1 | `lnRate_eq` | theorem | `stmt` |
-| 9 | EG-C2 | `lnRate_strictAnti_on_inverted` | theorem | `stmt` |
-| 10 | EG-C3 | `lnRate_strictMono_on_normal` | theorem | `stmt` |
-| 11 | EG-C4 | `secant_slope_exact` | theorem | `stmt` |
-| 12 | EG-C4 (corollary) | `secant_slope_neg_iff` | theorem | `stmt` |
-| 13 | EG-S1 | `eglTangent` | def | `stmt` |
-| 14 | EG-S2 | `eglTangent_overestimates` | theorem | `stmt` |
-| 15 | EG-S2a | `eglTangent_defect` | theorem | `stmt` |
-| 16 | EG-S3 | `not_affine_on_window` | theorem | `stmt` |
-| 17 | EG-S4 | `eglTangent_slope_strictAnti` | theorem | `stmt` |
-| 18 | EG-R1 | `Rat.nrBarrier` | def | `stmt` |
-| 19 | EG-R1 (cast row; name assigned in Sprint 0) | `Rat.nrBarrier_cast` | theorem | `stmt` |
-| 20 | EG-R2 | `EGZone` | inductive | `stmt` |
-| 21 | EG-R2 | `egZoneQ` | def | `stmt` |
-| 22 | EG-R2 (correctness row) | `egZoneQ_eq_inverted_iff` | theorem | `stmt` |
-| 23 | EG-R3 | `nrRate_decidable_order` | def | `stmt` |
-| 24 | EG-I1 | `aromaticSeries` | theorem | `stmt` |
-| 25 | EG-I2 | `normalRegionCounter` | theorem | `stmt` |
-| 26 | EG-I3 | `tangentWitness` | theorem | `stmt` |
+| 1 | EG-B1 | `nrBarrier` | def | `review` |
+| 2 | EG-B1 | `cert_nrBarrier` | theorem | `review` |
+| 3 | EG-B2 | `nrRate` | def | `review` |
+| 4 | EG-B2 | `cert_nrRate` | theorem | `review` |
+| 5 | EG-B3 | `InvertedGap` | def | `review` |
+| 6 | EG-B3 | `cert_invertedGap` | theorem | `review` |
+| 7 | EG-B4 | `lnRate` | def | `review` |
+| 8 | EG-C1 | `lnRate_eq` | theorem | `review` |
+| 9 | EG-C2 | `lnRate_strictAnti_on_inverted` | theorem | `review` |
+| 10 | EG-C3 | `lnRate_strictMono_on_normal` | theorem | `review` |
+| 11 | EG-C4 | `secant_slope_exact` | theorem | `review` |
+| 12 | EG-C4 (corollary) | `secant_slope_neg_iff` | theorem | `review` |
+| 13 | EG-S1 | `eglTangent` | def | `review` |
+| 14 | EG-S2 | `eglTangent_overestimates` | theorem | `review` |
+| 15 | EG-S2a | `eglTangent_defect` | theorem | `review` |
+| 16 | EG-S3 | `not_affine_on_window` | theorem | `review` |
+| 17 | EG-S4 | `eglTangent_slope_strictAnti` | theorem | `review` |
+| 18 | EG-R1 | `Rat.nrBarrier` | def | `review` |
+| 19 | EG-R1 (cast row; name assigned in Sprint 0) | `Rat.nrBarrier_cast` | theorem | `review` |
+| 20 | EG-R2 | `EGZone` | inductive | `review` |
+| 21 | EG-R2 | `egZoneQ` | def | `review` |
+| 22 | EG-R2 (correctness row) | `egZoneQ_eq_inverted_iff` | theorem | `review` |
+| 23 | EG-R3 | `nrRate_decidable_order` | def | `review` |
+| 24 | EG-I1 | `aromaticSeries` | theorem | `review` |
+| 25 | EG-I2 | `normalRegionCounter` | theorem | `review` |
+| 26 | EG-I3 | `tangentWitness` | theorem | `review` |
