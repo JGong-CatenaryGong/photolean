@@ -10,7 +10,7 @@ Agent preset 驱动。
 
 - Lean 4.17.0 + mathlib，工具链与缓存已联通（`lake build` 冷启动 ~10s）
 - 验收门脚本可用：`proofs/scripts/check.sh --strict`、`proofs/scripts/axioms.sh`
-- **七个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
+- **十六个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
   `propext` / `Classical.choice` / `Quot.sound`）：
   - **Marcus 反转区**（经典马库斯模型）——`PhotoLean/Marcus/`（8 模块：描述层 / 势垒代数 / 速率层 /
     锐利成立条件 / 微观重组能 / ℚ 判定层 / 复合 / 实例判决），**82 条声明**，语句保真 **51/51**
@@ -49,14 +49,38 @@ Agent preset 驱动。
     （`python3 theories/BEP/probes/bep-fidelity.py --theory SymmetryFactor`）；文献位点成对：一手
     **实践位点**（"usually both taken to be equal to 0.5"，arXiv:2104.05424 §2.1）+ IUPAC TR 2014
     的**印刷警告**（pp.255–257），见 `theories/SymmetryFactor/LITERATURE.md`。**独立 verifier 复核 PASS**
-    （2026-09-21，run 1 记于其看板；理论已按铁律 8 关闭）。
+    （2026-09-21，run 1 记于其看板；理论已按铁律 8 关闭）；
+  - **光物理批次（2026-09-22/23，九个理论，A/B/C 三组）**——全部交付并经独立 verifier 复核
+    （run 1–5 PASS + 阶段三终审），阶段三完成了权威修订（16 行前提修剪、3 行空泛化重冻结、
+    2 条负结果定理）与关系图登记（`Relations.lean` §12–§16，23 条新行）：
+    - **Kasha–Vavilov 独立性**（D2 裁定，A2 类新边类）——`PhotoLean/KashaVavilov/`（3 模块），
+      **29 条声明**，保真 **29/29**；双向逐点独立见证 + 闭合量化 iff 边界 + 无损角分离；
+    - **Stern–Volmer 可辨识性**（D1 裁定，A3 类新边类）——`PhotoLean/SternVolmer/`（4 模块），
+      **46 条声明**，保真 **46/46**；强度观测非单射 + 寿命通道 iff 判别 + 二阶差分共存见证；
+    - **量子产率可加性**（并行通道演算，批次的代数脊柱）——`PhotoLean/QuantumYield/`（4 模块），
+      **29 条声明**，保真 **29/29**；
+    - **荧光/磷光竞争**——`PhotoLean/FluorPhos/`（4 模块），**30 条声明**（含负结果行
+      `fpC5_firstForm_refuted`），保真 **30/30**；
+    - **能隙律**（Englman–Jortner 形式，经典极限）——`PhotoLean/EnergyGapLaw/`（5 模块），
+      **26 条声明**，保真 **26/26**；
+    - **Stokes 位移规则**——`PhotoLean/StokesShift/`（4 模块），**36 条声明**（含负结果行
+      `invertedCorner_firstForm_refuted`），保真 **36/36**；
+    - **内转换 vs 系间窜越**（FC 竞争 + 自旋折扣）——`PhotoLean/ICvsISC/`（4 模块），
+      **20 条声明**，保真 **20/20**；
+    - **Förster 共振能量转移**（含 κ² 紧界 4 与 2/3 标架平均）——`PhotoLean/Forster/`（4 模块），
+      **32 条声明**，保真 **32/32**；
+    - **Einstein A/B 系数等价链**——`PhotoLean/Einstein/`（4 模块），**33 条声明**，
+      保真 **33/33**；
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
-- **跨理论关系图**（覆盖全部七个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
+- **跨理论关系图**（覆盖全部十六个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
   Sabatier 经**组合边**接入，Sabatier↔Marcus 另有一组"形似实异"非关系边，Goldschmidt 经**无边登记**
-  接入并另有一条"只有形状相似"的 N4 登记，SymmetryFactor 以**已裁决混同**（A1 类，新边类）接入并与
-  Marcus/Hammond/BEP 有特化证书边，其余理论对**显式登记无边**）：
-  共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（50 条声明：内核证书 /
-  真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记（含 Goldschmidt）/ 已裁决混同（A1））、
+  接入并另有一条"只有形状相似"的 N4 登记，SymmetryFactor 以**已裁决混同**（A1 类）接入并与
+  Marcus/Hammond/BEP 有特化证书边；光物理九理论经 §12 内核证书 / §13 D2 裁定（A2 类：
+  已裁决独立性）/ §14 D1 裁定（A3 类：可辨识性）/ §15 组合边（全部经过 QuantumYield 代数脊柱）
+  接入，其余理论对**显式登记无边**于 §16）：
+  共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（**73 条声明**：内核证书 /
+  真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记（含 Goldschmidt）/ 已裁决混同（A1）/
+  批次内核证书（§12）/ D2 裁定（§13）/ D1 裁定（§14）/ 批次组合边与形似（§15）/ 扩展无边登记（§16））、
   双语讨论稿 `theories/RELATIONS.md`
 - `PhotoLean/Smoke.lean` 是环境冒烟测试
 - 注：`README.en.md` 是语言政策生效前的英文镜像，按仓库政策**不再扩展**；权威内容以本文件为准
