@@ -103,7 +103,7 @@ COMMIT_TEMPLATE="feat(<area>): <lemma>"
 # 理论根目录：check.sh 的第二遍遍历扫 <THEORIES_DIR>/*/。
 # English: Theories root: the second pass of check.sh sweeps <THEORIES_DIR>/*/.
 THEORIES_DIR="theories"
-THEORIES="Marcus hammond BEP kasha Sabatier goldschmidt SymmetryFactor"
+THEORIES="Marcus hammond BEP kasha Sabatier goldschmidt SymmetryFactor KashaVavilov SternVolmer QuantumYield FluorPhos EnergyGapLaw StokesShift ICvsISC Forster Einstein"
 PLAN_Marcus="theories/Marcus/plan.md"
 TASKS_Marcus="theories/Marcus/TASKS.md"
 LITERATURE_Marcus="theories/Marcus/LITERATURE.md"
@@ -139,3 +139,61 @@ TASKS_SymmetryFactor="theories/SymmetryFactor/TASKS.md"
 LITERATURE_SymmetryFactor="theories/SymmetryFactor/LITERATURE.md"
 PROBES_SymmetryFactor="theories/SymmetryFactor/probes"
 RESULT_SymmetryFactor="theories/SymmetryFactor/RESULTS.md"
+# ── 光物理批次的九个理论（2026-09-22，阶段一：陈述形式化）─────────────────────
+# English: the nine theories of the photophysics batch (2026-09-22, Phase 1: statement formalization)
+# A 组（速率级联基底，复用 Kasha）：KashaVavilov（D2 裁定所在）、SternVolmer（D1 裁定所在）、
+# English: group A (rate-cascade basis, reusing Kasha): KashaVavilov (home of adjudication D2),
+# English:   SternVolmer (home of adjudication D1), QuantumYield, FluorPhos
+# QuantumYield、FluorPhos；B 组（双抛物面基底，复用 Marcus 内核）：EnergyGapLaw、StokesShift、
+# English: group B (two-parabola basis, reusing the Marcus kernel): EnergyGapLaw, StokesShift, ICvsISC
+# ICvsISC；C 组（几何/谱学基底，Goldschmidt 模式）：Forster、Einstein。
+# English: group C (geometric/spectroscopic basis, Goldschmidt pattern): Forster, Einstein.
+# 模块目录一律用首字母大写的驼峰（theories/<Name> 与 PhotoLean/<Name> 同名）——
+# English: module directories use capitalized camelCase throughout (theories/<Name> matches PhotoLean/<Name>) —
+# bep-fidelity.py 的首候选精确命中依赖这一点（见 EXPERIENCE.md 2026-09-21 SymmetryFactor 条目第 4 条）。
+# English: the first-candidate exact match of bep-fidelity.py depends on it (EXPERIENCE.md 2026-09-21, SymmetryFactor entry, item 4).
+PLAN_KashaVavilov="theories/KashaVavilov/plan.md"
+TASKS_KashaVavilov="theories/KashaVavilov/TASKS.md"
+LITERATURE_KashaVavilov="theories/KashaVavilov/LITERATURE.md"
+PROBES_KashaVavilov="theories/KashaVavilov/probes"
+RESULT_KashaVavilov="theories/KashaVavilov/RESULTS.md"
+PLAN_SternVolmer="theories/SternVolmer/plan.md"
+TASKS_SternVolmer="theories/SternVolmer/TASKS.md"
+LITERATURE_SternVolmer="theories/SternVolmer/LITERATURE.md"
+PROBES_SternVolmer="theories/SternVolmer/probes"
+RESULT_SternVolmer="theories/SternVolmer/RESULTS.md"
+PLAN_QuantumYield="theories/QuantumYield/plan.md"
+TASKS_QuantumYield="theories/QuantumYield/TASKS.md"
+LITERATURE_QuantumYield="theories/QuantumYield/LITERATURE.md"
+PROBES_QuantumYield="theories/QuantumYield/probes"
+RESULT_QuantumYield="theories/QuantumYield/RESULTS.md"
+PLAN_FluorPhos="theories/FluorPhos/plan.md"
+TASKS_FluorPhos="theories/FluorPhos/TASKS.md"
+LITERATURE_FluorPhos="theories/FluorPhos/LITERATURE.md"
+PROBES_FluorPhos="theories/FluorPhos/probes"
+RESULT_FluorPhos="theories/FluorPhos/RESULTS.md"
+PLAN_EnergyGapLaw="theories/EnergyGapLaw/plan.md"
+TASKS_EnergyGapLaw="theories/EnergyGapLaw/TASKS.md"
+LITERATURE_EnergyGapLaw="theories/EnergyGapLaw/LITERATURE.md"
+PROBES_EnergyGapLaw="theories/EnergyGapLaw/probes"
+RESULT_EnergyGapLaw="theories/EnergyGapLaw/RESULTS.md"
+PLAN_StokesShift="theories/StokesShift/plan.md"
+TASKS_StokesShift="theories/StokesShift/TASKS.md"
+LITERATURE_StokesShift="theories/StokesShift/LITERATURE.md"
+PROBES_StokesShift="theories/StokesShift/probes"
+RESULT_StokesShift="theories/StokesShift/RESULTS.md"
+PLAN_ICvsISC="theories/ICvsISC/plan.md"
+TASKS_ICvsISC="theories/ICvsISC/TASKS.md"
+LITERATURE_ICvsISC="theories/ICvsISC/LITERATURE.md"
+PROBES_ICvsISC="theories/ICvsISC/probes"
+RESULT_ICvsISC="theories/ICvsISC/RESULTS.md"
+PLAN_Forster="theories/Forster/plan.md"
+TASKS_Forster="theories/Forster/TASKS.md"
+LITERATURE_Forster="theories/Forster/LITERATURE.md"
+PROBES_Forster="theories/Forster/probes"
+RESULT_Forster="theories/Forster/RESULTS.md"
+PLAN_Einstein="theories/Einstein/plan.md"
+TASKS_Einstein="theories/Einstein/TASKS.md"
+LITERATURE_Einstein="theories/Einstein/LITERATURE.md"
+PROBES_Einstein="theories/Einstein/probes"
+RESULT_Einstein="theories/Einstein/RESULTS.md"
