@@ -4160,3 +4160,60 @@ rows). Nothing here is a proof defect: every delivered theorem is true as stated
   field-level premise audit (about a dozen non-load-bearing premises with verifier-supplied
   stripped-form proofs), the relations registration for the nine new nodes, and the D1/D2
   adjudication reports.
+
+## 2026-09-23 — Photophysics batch Phase 3 (verification and adjudication) — lead — DONE (pending final verifier)
+
+- **Executed the full Phase-3 mandate** after the four re-freeze workers were killed mid-flight by
+  a second API-key outage (the Phase-1 lesson held: the filesystem state was authoritative — two
+  workers' landed edits were salvaged, the rest was executed by the lead directly, one row at a
+  time, stripped form re-proved in a probe BEFORE every authority edit):
+  1. **Premise trims (16 rows across 9 theories)** — QY-C2/QY-C6-third, KV-B4/KV-C5, SV-C8 (by
+     the worker)/SV-C10, FP ×5, EG-C1, IC ×2, FO ×2, EB-C8. Every trimmed statement was
+     re-proved first; every authority+module pair edited together; fidelity re-run per theory
+     (0 differences throughout).
+  2. **Vacuity re-freezes (3)** — `mixed_witness` (the `0 < 1` tautology → the `svRatioBoth`
+     second difference `= 1`), `radFactor_not_rational` (`Irrational Real.pi` →
+     `Irrational (radFactor 1 1 1)`, a row that names what it proves), `hsoZeroWitness`
+     (`zero_mul` → the spin-discount witness: barrier race won by ISC at `1/32 < 1/16` yet
+     `iscRate 0 … = 0`).
+  3. **Negative results finalized (2)** — `invertedCorner_firstForm_refuted` (SS-C9's first form,
+     witness `lam = 1, e00 = 2`) and `fpC5_firstForm_refuted` (FP-C5's first form, witness
+     `kF = kIC = 0, kISC = 1 → 2`) delivered as authority rows + theorems.
+  4. **Relations §12–§16 (23 rows)** — kernel certificates; the D2 adjudication (class A2:
+     adjudicated independence) and the D1 adjudication (class A3: identifiability) as re-export
+     sections with the three-part structure (boundary + witnesses + persistence in the
+     docstrings); ten composition/shape rows PROVED in Relations (the QuantumYield algebraic
+     spine: Kasha radBranch, SV dilution, FP cascade ×2, Einstein anchor, FRET added-channel;
+     EG→Kasha gap ordering; SS→EG barrier/window; IC→EG definitional cert; SV↔FP quench
+     invariance; SV↔FO `1 + control` shape); the extended no-edge registry.
+  5. **Bilingual deliverables** — D1/D2 three-part adjudication reports in RESULTS (the
+     headline), compact results bodies for the other seven, the RELATIONS.md batch section.
+- **Tried and failed (measured this phase)**:
+  1. `norm_num` evaluates a `Fin 2` matrix-literal sum into RIGHT-associative shape
+     (`kr + (knr + kq*q)`), so a `have` whose stated type is left-associative leaves exactly an
+     associativity goal; state the `have` in the evaluated (right-assoc) shape and bridge the
+     associativity where the OTHER side needs it — or the `field_simp` nonzero facts will not
+     match the denominator's shape.
+  2. `field_simp`'s cleared-denominator residual can be pure associativity; appending `ring`
+     then errors "no goals" when field_simp already closed it. Inspect the residual before
+     choosing the closer.
+  3. The semicolon trap, again, in a term position: `by have … := by positivity; linarith` binds
+     the `;` to the INNER `by` — the outer goal stays open and `linarith` reports "no goals".
+     Always break nested `by` blocks into lines.
+  4. `Irrational.mul_nat_cast` does NOT exist; the working name is `irrational_int_mul_iff`
+     (`Irrational (m * x) ↔ m ≠ 0 ∧ Irrational x`) — `radFactor 1 1 1 = (8 : ℤ) * Real.pi` first,
+     then the iff.
+  5. Implicit-argument drift on premise trims: dropping a premise that previously PINNED an
+     implicit (`hlam : lam ≠ 0` pinned `lam`) breaks every caller with "don't know how to
+     synthesize implicit argument"; the callers must pass `(lam := lam)` explicitly — ten call
+     sites in EnergyGapLaw alone.
+  6. `phiF_common` (a private auxiliary) is invisible outside its module: a probe must re-derive
+     such steps inline; the module's own edit can keep using it.
+  7. The `Matrix.vecHead (Matrix.vecTail …)` residue: a `Fin.sum_univ_succ` rewrite on a
+     matrix literal leaves the `Fin 1` tail sum unevaluated; evaluate each finite sum in its own
+     `have` (with `Fin.sum_univ_three` / `Fin.sum_univ_succ` + the `Matrix.cons_val_*` set)
+     BEFORE the main rewrite.
+- **Process**: the re-freeze procedure held end-to-end (probe → authority → module → build →
+  axioms → fidelity per row); the import-order workaround (batch modules before the Kasha
+  modules) held for Relations.lean; the `Rat.`-prefix vacuity class did not recur (the Phase-2
+  cross-check made it a standing dispatch item).
