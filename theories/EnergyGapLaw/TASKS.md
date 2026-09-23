@@ -65,17 +65,17 @@
 | 9 | EG-C2 | `lnRate_strictAnti_on_inverted` | theorem | `done` |
 | 10 | EG-C3 | `lnRate_strictMono_on_normal` | theorem | `done` |
 | 11 | EG-C4 | `secant_slope_exact` | theorem | `done` |
-| 12 | EG-C4 (corollary) | `secant_slope_neg_iff` | theorem | `review` |
+| 12 | EG-C4 (corollary) | `secant_slope_neg_iff` | theorem | `done` |
 | 13 | EG-S1 | `eglTangent` | def | `done` |
 | 14 | EG-S2 | `eglTangent_overestimates` | theorem | `done` |
-| 15 | EG-S2a | `eglTangent_defect` | theorem | `review` |
+| 15 | EG-S2a | `eglTangent_defect` | theorem | `done` |
 | 16 | EG-S3 | `not_affine_on_window` | theorem | `done` |
 | 17 | EG-S4 | `eglTangent_slope_strictAnti` | theorem | `done` |
 | 18 | EG-R1 | `Rat.nrBarrier` | def | `done` |
-| 19 | EG-R1 (cast row; name assigned in Sprint 0) | `Rat.nrBarrier_cast` | theorem | `review` |
+| 19 | EG-R1 (cast row; name assigned in Sprint 0) | `Rat.nrBarrier_cast` | theorem | `done` |
 | 20 | EG-R2 | `EGZone` | inductive | `done` |
 | 21 | EG-R2 | `egZoneQ` | def | `done` |
-| 22 | EG-R2 (correctness row) | `egZoneQ_eq_inverted_iff` | theorem | `review` |
+| 22 | EG-R2 (correctness row) | `egZoneQ_eq_inverted_iff` | theorem | `done` |
 | 23 | EG-R3 | `nrRate_decidable_order` | def | `done` |
 | 24 | EG-I1 | `aromaticSeries` | theorem | `done` |
 | 25 | EG-I2 | `normalRegionCounter` | theorem | `done` |
