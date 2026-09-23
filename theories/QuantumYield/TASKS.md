@@ -4,9 +4,11 @@
 - Ticking (`[x]`) happens only after a verifier PASS and is done by the lead.
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/QuantumYield/plan.md`.
-- Status of this theory: **Phase 1 (statement formalization) complete** — the statement
-  authority compiles at 0 errors with placeholder theorem bodies; batch: photophysics subgraph
-  (groups A–D), dispatched 2026-09-22.
+- Status of this theory: **Phase 2 (proof formalization) delivered by prover_b, awaiting independent
+  verifier judgement** — all 29 authority declarations transcribed verbatim into
+  `PhotoLean/QuantumYield/{Basic,Criterion,RatModel,Instances}.lean`, 19/19 theorems proved, no
+  unproved placeholder and no custom axiomatic declaration anywhere in the delivered tree. Batch:
+  photophysics subgraph (groups A–D), dispatched 2026-09-22; Phase-2 run 2026-09-23.
 
 ## Sprint 0 — environment, statements, plan (Phase 1 deliverable)
 
@@ -20,39 +22,100 @@
 - [ ] Literature leaf populated: `theories/QuantumYield/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 
-### Declaration board (all `stmt`; ticking is lead-only after verifier PASS)
+### Declaration board (all `review`; ticking is lead-only after verifier PASS)
 
-- [ ] `totalRate` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `tauOf` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `QYData` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `sum_yieldOf_eq_one` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_eq_mul_tauOf` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_nonneg` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_le_one` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_pos_iff` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_div_yieldOf` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `totalRate_cons` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_cons_zero` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_cons_succ` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_cons_succ_factor` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_cons_lt` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `totalRate_zero_counterexample` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `nonvacuous_all_channels_live` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `totalRate` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `QYData` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `totalRate_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `yieldOf_cast` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `fluoresceinS1` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `quinineLike` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `quenchDilution` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `inst_fluoresceinS1_phiF` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `inst_quinineLike_phiF` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `inst_quenchDilution_phiF` — skeleton — Phase 1 — stmt — placeholder body registered
-- [ ] `inst_quenchDilution_sternVolmer` — skeleton — Phase 1 — stmt — placeholder body registered
+- [ ] `totalRate` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B1, build exit 0
+- [ ] `yieldOf` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B2, build exit 0
+- [ ] `tauOf` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B3, build exit 0
+- [ ] `QYData` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B4, build exit 0
+- [ ] `sum_yieldOf_eq_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_eq_mul_tauOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_nonneg` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_le_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_pos_iff` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_div_yieldOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `totalRate_cons` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_cons_zero` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_cons_succ` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `yieldOf_cons_succ_factor` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review —
+      proved, axioms PASS
+- [ ] `yieldOf_cons_lt` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+      axioms PASS
+- [ ] `totalRate_zero_counterexample` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review —
+      proved, axioms PASS
+- [ ] `nonvacuous_all_channels_live` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review —
+      proved, axioms PASS
+- [ ] `Rat.totalRate` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — QY-R1, build
+      exit 0
+- [ ] `Rat.yieldOf` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — QY-R1, build
+      exit 0
+- [ ] `Rat.QYData` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — QY-R1 incl. the
+      `Decidable` instance, build exit 0
+- [ ] `Rat.totalRate_cast` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — proved,
+      axioms PASS, `#print`-inspected (real bridge, not the shadow identity)
+- [ ] `Rat.yieldOf_cast` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — proved,
+      axioms PASS, `#print`-inspected (real bridge, not the shadow identity)
+- [ ] `fluoresceinS1` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — QY-I1, build
+      exit 0
+- [ ] `quinineLike` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — QY-I2, build
+      exit 0
+- [ ] `quenchDilution` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — QY-I3, build
+      exit 0
+- [ ] `inst_fluoresceinS1_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review —
+      proved (`φF = 9/10`), axioms PASS
+- [ ] `inst_quinineLike_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — proved
+      (`φF = 11/20`), axioms PASS
+- [ ] `inst_quenchDilution_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review —
+      proved (`φF = 18/29`), axioms PASS
+- [ ] `inst_quenchDilution_sternVolmer` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 —
+      review — proved (ratio `29/20`), axioms PASS
 
-## Sprint 1+ — proof formalization (Phase 2, not started)
+## Sprint 1 — proof formalization (Phase 2): delivery record (prover_b, 2026-09-23)
 
-Rows are claimed one at a time per the plan's sprint order; each claim closes with
-`lake build` green before the next is claimed.
+Area ownership for this run: `PhotoLean/QuantumYield/*.lean` and this board (the lead dispatched
+the QuantumYield proofs to prover_b; plan §6 names prover_c — the dispatch supersedes the plan's
+sprint-order line, recorded here for traceability).
+
+Gates re-runnable as-is (raw results of the delivery run):
+
+| gate | command | result |
+|---|---|---|
+| build | `proofs/scripts/lake build PhotoLean.QuantumYield.{Basic,Criterion,RatModel,Instances}` | exit 0 each, zero warnings |
+| axioms | `proofs/scripts/axioms.sh <module> <namespace-qualified theorem>` | PASS on all 19 theorems; only `propext Classical.choice Quot.sound` |
+| strict gate | `proofs/scripts/check.sh --strict` (whole tree) | exit 0, scan clean, 16/16 leaf planes |
+| fidelity | `python3 theories/BEP/probes/bep-fidelity.py --theory QuantumYield` | 29/29 word-for-word, 0 signature differences, 0 declarations outside the authority |
+| commits | — | `5daa642` (QY1 Basic), `5865874` (QY2 Criterion), `08c3bbf` (QY3 RatModel), `4dff991` (QY4 Instances) |
+
+Statement-incident check (the batch's namespace-shadowing pitfall, SV-R1): a `Rat.`-prefixed
+declaration elaborates its own *type* inside the `Rat` namespace, so an unqualified right-hand side
+would silently collapse the cast row to `↑x = ↑x`. Both `Rat` cast rows were `#print`-inspected in a
+scratch probe after proving: the printed types carry the fully-qualified
+`PhotoLean.QuantumYield.totalRate` / `.yieldOf` on the right, i.e. the intended bridges. **No
+statement incident for this theory** — the authority's right-hand sides are already fully qualified.
+
+Recorded premise notes (statement layer untouched, signatures verbatim):
+* QY-C2 (`yieldOf_eq_mul_tauOf`) and QY-C6 third form (`yieldOf_cons_succ`) carry the frozen premise
+  `h : QYData k` that their proofs do not consume — both identities are definitional in the
+  totalized-division model. The premise stays (signature fidelity; frozen Phase-1 statement) and the
+  `unusedVariables` linter is disabled locally on exactly those two rows, in the repository's
+  established style, so the build stays warning-free without hiding any other warning.
+
+Lead action outside this area (not written by prover_b — file not owned): `lakefile.toml`
+`defaultTargets` does not list the four `PhotoLean.QuantumYield.*` modules (ENGINE.md §1.1: the scan
+covers the whole directory while a bare `check.sh --strict` build does not). Add the four lines
+before this theory is closed; the per-module builds above are green meanwhile.
+
+## Sprint 1+ — verifier judgement (pending)
+
+Rows above move `review → done` only on an independent verifier PASS, by the lead. A verifier is
+asked to re-run the four gates of the table, plus the `#print` inspection of the two `Rat` cast rows
+and the load-bearing-premise row QY-C8 (`totalRate_zero_counterexample`).
