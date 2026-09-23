@@ -4085,7 +4085,8 @@ in the theory plans' §3.1 but not here).
 | 2 | SternVolmer | the four `Rat.*_cast` rows | vacuous as first frozen (`Rat.`-prefixed declaration elaborates its type inside `Rat`, so the unqualified right-hand side resolved to the ℚ shadow: `↑x = ↑x`); re-frozen with fully-qualified right-hand sides | `#print` before: `@Rat.cast (Rat.svRatioDyn a b q)` on both sides; after: `↑(Rat.svRatioDyn a b q) = PhotoLean.SternVolmer.svRatioDyn ↑a ↑b ↑q` | plan §3.1 entry 1; commit `edccefc` |
 | 3 | Einstein | plan text §4 EB-C6 middle conjunct `= A / K` → `= A` | the printed form is false (`K = 2, A = 1` gives `1 = 1/2`); `K·(K·A/K)/K = A` | arithmetic; the authority and the delivered proof always carried `= A` | plan §3.1 entry 1 |
 | 4 | ICvsISC | FC-I2 instance barrier `1/16` (plan draft, question-marked) → `1/32` | probe recompute; the ISC barrier is strictly lower | `theories/ICvsISC/probes/ICvsISC-api-probe.lean` | plan §3.1 (recorded at Phase 1 as an arithmetic recompute) |
-| 5 | EnergyGapLaw | EG-I3 tangent defect `-20` → `-5`; EG-S4 drops the unconsumable `0 < A`; EG-C4 corollary stated as an iff | probe recompute + weakest-premise + "exactly when" wording | `theories/EnergyGapLaw/probes/EnergyGapLaw-api-probe.lean` | plan §3.1 entries 1–3 |
+| 5 | EnergyGapLaw | EG-I3 tangent defect `-20` → `-5`
+| 6 | Forster | plan §4 text: `frameKappa : ℚ`, `FO-I1 = 64/729`, `FO-C4 fretEff6_eq`, FO-C10's spare binder | plan text synchronised to the frozen authority (ℤ-valued frame + two-step average; `64/793`; `fretEff_eq`; binder dropped); no delivered statement ever differed | probe recompute + verifier run 3 | plan §3.1 entries 1–2 |; EG-S4 drops the unconsumable `0 < A`; EG-C4 corollary stated as an iff | probe recompute + weakest-premise + "exactly when" wording | `theories/EnergyGapLaw/probes/EnergyGapLaw-api-probe.lean` | plan §3.1 entries 1–3 |
 
 **Registered for the Phase-3 authority revision (not yet changed)**: `SternVolmer.mixed_witness`'s
 third conjunct is a tautology (`0 < 1`, no model object — verifier M3); `Einstein.radFactor_not_rational`
@@ -4109,22 +4110,16 @@ Confirmed present and used in the delivered proofs:
   `Set.mem_Ioi`, `Set.mem_Icc.mpr`, `StrictMonoOn`.
 
 **Route correction for FO-C2 (`kappaSq_le_four`) — the plan's fallback was NOT needed.**
-The Phase-1 plan §5 sketch closes "`|x| ≤ 4` hence `x² ≤ 4`" through `sq_le_sq`/`abs_le`. That
-closing step is **invalid**: `|x| ≤ 4` yields only `x² ≤ 16`. Measured: after
-`have := sq_le_sq.mpr h_abs_le` and `simpa [show (2:ℝ)^2 = 4]`, `linarith` reports
-`linarith failed to find a contradiction … a✝ : x ^ 2 > 4`. The delivered finish is the
-square-root form, which is what the two-step route actually needs:
-`h_tri : |x| ≤ p` (triangle + `|cosφ| ≤ 1`), `h_cs : p^2 ≤ (sin²θD+4cos²θD)(sin²θA+cos²θA)`
-(`nlinarith [sq_nonneg (x₁y₂ − x₂y₁)]` with `sq_abs` hints), then
-`p^2 ≤ 2^2` from `sin²θA+cos²θA ≤ 1` and `sin²θD+4cos²θD ≤ 4`, then
-`Real.sqrt_le_sqrt h_p2` with `Real.sqrt_sq_eq_abs` / `abs_of_nonneg hp0` to get `|x| ≤ 2`, and
-`x^2 = |x|^2` by `sq_abs`. **Statement unchanged, bound unchanged (4), no §3.1 fallback entry
-needed.**
-* Related trap: `p^2`'s Cauchy–Schwarz step needs the *other* factor's nonnegativity as an
-  explicit `have` (`0 ≤ sin²θA + cos²θA`) before `nlinarith` can multiply the two bounds; and
-  the first triangle summand's `|cosφ| ≤ 1` fold needs the associativity stated explicitly
-  (`simp only [abs_mul]` into `(|sinθD|*|sinθA|)*|cosφ|`), since `rw [abs_mul, abs_mul]` leaves
-  `|sinθD|*|sinθA|*|cosφ|` and the `calc` step then does not match.
+**CORRECTED 2026-09-23 (verifier run 3, finding F3).** The first version of this note claimed the
+plan's Phase-1 closing step was invalid. That was wrong: the plan's own route — `(|a|+|b|)² ≤ 4`
+then `sq_le_sq` — compiles; the verifier rebuilt it independently
+(`.lake/tmp/verifier_Forster_planroute.lean`, exit 0). The delivered proof merely chose an
+alternative, equally sound closing via `Real.sqrt_le_sqrt` + `Real.sqrt_sq_eq_abs`. Measured
+boundary that IS real (and worth keeping): `|x| ≤ 4 ⇒ x² ≤ 4` as a *bare* step is invalid (it gives
+only `x² ≤ 16`) — but the plan never performs that step; the square-root and the `sq_le_sq` closings
+are two valid ways to finish the same two-step argument. No statement was affected: the delivered
+row is word-for-word `kappaSq_le_four : ∀ θD θA φ, kappaSq θD θA φ ≤ 4`, independently confirmed
+sharp (bound 4 attained; no smaller uniform bound exists — verifier's kernel certificate).
 
 Measured tactic boundaries (this round):
 * `first | ring | skip` trips both linter.unreachableTactic and linter.unusedTactic; plain tactics

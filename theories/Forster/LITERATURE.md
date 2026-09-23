@@ -13,7 +13,7 @@
 > the plan's FO-B1 is the standard form, since `cosθ_T − 3cosθ_D cosθ_A` rewrites as
 > `sinθ_D sinθ_A cosφ − 2cosθ_D cosθ_A` by exactly that identity.
 
-**STATEMENT-IMPACT FLAGS (read first):** none against the frozen statement inventory
+**STATEMENT-IMPACT (see the note at the end of this file) FLAGS (read first):** none against the frozen statement inventory
 (`theories/Forster/plan.md` §4) — every statement checked against the verified sources is
 consistent. One **prose-level** observation on plan §1.1 (not a statement): the clause
 "overestimates `R₀⁶` by at most a factor `6` (at `κ² = 4`)" has the direction backwards in
@@ -110,3 +110,12 @@ correct; see the statement-impact summary.
 * FO-C7 (misestimate ratio ∈ [0,6]) and FO-C8 (blind spot): confirmed as the formalized content of the "κ² problem" (F2/F4/F7). No change.
 * FO-R2 (frame average = 2/3): the literature's continuous dynamic-isotropic average is `2/3` (F5); the frame average **agrees exactly** (`6/9`), for the structural reason recorded in F5 (κ² quadratic in direction cosines). The continuous average stays a registered non-goal (no measure theory). No change.
 * **Prose-level observation (no statement impact)**: plan §1.1's clause "overestimates `R₀⁶` by at most a factor `6` (at `κ² = 4`)" reads with the direction backwards in words — at `κ² = 4` the convention *under*estimates the true `R₀⁶` by the factor `6`; the unbounded *over*estimate is the blind-spot direction (`κ² → 0`). FO-C7's frozen statement (ratio `true/convention ∈ Icc 0 6`) is direction-neutral and correct; a one-line prose fix in §1.1 is recommended at the lead's next plan edit, but the statement authority is untouched.
+
+---
+
+**Correction (lead, 2026-09-23; verifier run 3 finding F6).** The statement-impact flag above
+claiming that plan §1.1's over/under-estimate direction is "backwards in words" is a FALSE POSITIVE:
+the frozen plan text is correct — the unbounded overestimate in ratio is at the blind spot
+(`κ² → 0`), and at `κ² = 4` the convention *underestimates* the true `R₀⁶` by at most a factor 6
+(which is what the plan says). No plan change was needed; the earlier wording amendment recorded in
+the plan's §3.1 entry 4 predates this flag and remains as documentation of the sentence fix.

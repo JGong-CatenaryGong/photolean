@@ -52,7 +52,22 @@ Namespace `PhotoLean.Forster`; rational layer `PhotoLean.Forster.Rat`.
 ## 3. Statement authority and inventory
 
 The authority is `probes/Forster-statement-skeleton.lean` (Phase-1 placeholder bodies; sha256 on
-the board once compiling). Correction log §3.1 starts empty.
+the board once compiling).
+
+### 3.1 Statement-correction log
+
+* **Entry 1 (FO-R2/FO-C10b/FO-I1, 2026-09-22, probe calibration)** — `frameKappa` is ℤ-valued (every
+  axis-aligned pair gives 0, 1 or 4) and the isotropic-average row is two-step (`decide` the ℤ sum,
+  then `norm_num` the ℚ average): `decide` does not reduce ℚ division, and `norm_num [Fin.ext_iff]`
+  overflows the recursion depth (both measured in the api probe). FO-C10b carries the load-bearing
+  premise `0 ≤ r6` (the unpremised form is false at `r6 = −R⁶` under totalized division —
+  probe-proved counterexample). FO-I1's exact efficiency is `64/793`, not the inventory's printed
+  `64/729` (that value is the reciprocal-shaped `1/(3/2)⁶`).
+* **Entry 2 (FO-C2 route, 2026-09-23, verifier run 3)** — the delivery note's claim that the plan's
+  Phase-1 closing step (`|x| ≤ 4 ⇒ x² ≤ 4`) is invalid was FALSE: the plan's actual route
+  (`(|a|+|b|)² ≤ 4` then `sq_le_sq`) compiles — the verifier rebuilt it
+  (`verifier_Forster_planroute.lean`, exit 0). The delivered proof simply uses an alternative and
+  equally sound square-root closing. No statement change; the documentation was corrected.
 
 ## 4. Statement inventory
 
@@ -89,7 +104,7 @@ Module plan (Phase 2): `Basic.lean` (FO-B), `Criterion.lean` (FO-C), `RatModel.l
   `kappaSq_eq_four_witness : ∃ θD θA φ, kappaSq θD θA φ = 4` — e.g. `θD = θA = 0` (both dipoles
   along the separation). Both witnessed at closed values (`Real.sin_pi_div_two`,
   `Real.sin_zero`, `Real.cos_zero`).
-* FO-C4 `fretEff6_eq (h : 0 < R0) (R : ℝ) : fretEff R0 R = fretEff6 (R0 ^ 6) R` — the
+* FO-C4 `fretEff_eq (R0 R : ℝ) (hR0 : 0 < R0) : fretEff R0 R = fretEff6 (R0 ^ 6) R` — the
   certificate between the radius form and the `R⁶`-space form (field algebra; `(R/R0)^6` to
   `R^6/R0^6` needs `div_pow` and `h.ne'`).
 * FO-C5 `fretEff_self (hR0 : 0 < R0) : fretEff R0 R0 = 1 / 2` — the meaning of `R₀`.
@@ -110,7 +125,7 @@ Module plan (Phase 2): `Basic.lean` (FO-B), `Criterion.lean` (FO-C), `RatModel.l
 * FO-C9 `fretEff6_mono_kappa (hC hΦ hJ hn : 0 < …) (hR : 0 < R) {κ₁ κ₂ : ℝ} (h1 : 0 < κ₁)
   (h : κ₁ < κ₂) : fretEff6 (r0six C κ₁ Φ J n) R < fretEff6 (r0six C κ₂ Φ J n) R` — the
   efficiency strictly increases in the orientation factor (the observable's κ² dependency).
-* FO-C10 `fretEff_via_lifetime (hkD : 0 < kD) (kF R : ℝ) (hkF : 0 ≤ kF) :
+* FO-C10 `fretEff_via_lifetime (hkD : 0 < kD) (kF : ℝ) (hkF : 0 ≤ kF) :
   1 - (1 / (kD + kF)) / (1 / kD) = (kF / kD) / (kF / kD + 1)` and
   `fretEff_via_lifetime' (hkD : 0 < kD) (hR : 0 < R) (r6 : ℝ) :
   1 - (1 / (kD + kD * (r6 / R^6))) / (1 / kD) = fretEff6 r6 R` — the lifetime reading of the
@@ -121,16 +136,17 @@ Module plan (Phase 2): `Basic.lean` (FO-B), `Criterion.lean` (FO-C), `RatModel.l
 **FO-R (rational decision layer):**
 
 * FO-R1 `Rat.fretEff6`, `Rat.r0six`, `Rat.fretRate` over `ℚ` + cast coherence.
-* FO-R2 `frameKappa (i j k : Fin 3) : ℚ := ((if i = j then 1 else 0) -
+* FO-R2 `frameKappa (i j k : Fin 3) : ℤ := ((if i = j then 1 else 0) -
   3 * (if i = k then 1 else 0) * (if j = k then 1 else 0)) ^ 2` — the orientation factor on the
   orthonormal frame (dipoles along axes `i, j`, separation along axis `k`);
-  `iso_frame_avg : (∑ i : Fin 3, ∑ j : Fin 3, frameKappa i j 2) / 9 = 2 / 3` — **the `2/3`
+  `frame_sum_eq_six : (∑ i : Fin 3, ∑ j : Fin 3, frameKappa i j 2) = 6` then
+  `iso_frame_avg : ((∑ i : Fin 3, ∑ j : Fin 3, frameKappa i j 2 : ℤ) : ℚ) / 9 = 2 / 3` — **the `2/3`
   convention, kernel-computed as the exact frame average** (`decide`).
 * FO-R3 `Rat` zone rows for the named instances (efficiency verdicts at ℚ, `decide`).
 
 **FO-I (named instances, representative rational models):**
 
-* FO-I1 `cy3cy5Like` (r6 = 1, R = 3/2): E = `1/(1 + (3/2)⁶) = 64/729`… (recompute in the probe;
+* FO-I1 `cy3cy5Like` (r6 = 1, R = 3/2): E = `1/(1 + (3/2)⁶) = 64/793` (probe-recomputed;
   the row states the exact rational efficiency).
 * FO-I2 `blindSpotGeometry`: the FO-C3 zero witness instantiated (`θD = π/2, θA = 0`) with the
   convention comparison — the dependency-analysis instance.

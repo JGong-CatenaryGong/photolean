@@ -27,6 +27,18 @@ supplies `0 < kF + kIC` for the `phiP` half (the S₁→T₁ branch `kISC / (kIS
 strictly increasing only when `kF + kIC > 0`; at `kF = kIC = 0` the branch is pinned at `1`).
 No premise was added, dropped or weakened relative to the frozen authority.
 
+**FP-C5 (second half): NEEDS-LARGE-MODEL (prover_c, 2026-09-23).** The statement
+`phiP_strictMono_isc` is untouched; its proof is not in this wave. What is verified: the S₁→T₁
+branch `iscBranch` is strictly increasing in `kISC` whenever the other two S₁ channels sum
+positively — the ratio route `a/(a+s) < b/(b+s)` for `0 < a < b`, `0 < s` closes by
+`div_lt_div_iff₀` + `nlinarith`, and the T₁ factor `t1BranchP kP kNR` is a positive constant in
+`kISC`, so `mul_lt_mul_of_pos_right` finishes. The residual gap is one local arithmetic step:
+`0 < kF + kIC` from `0 < kF + kISC + kIC` together with `0 ≤ kISC`. In this toolchain `linarith`
+does not close that step (measured on the bare shape `example {a b : ℝ} (h : 0 < a + b)
+(hb : 0 ≤ b) : 0 < a`), so five proof routes were tried and each stalled there (see
+`proofs/EXPERIENCE.md`). A fresh attempt should establish `kF + kIC ≥ s1Decay - kISC > 0`
+directly rather than by `linarith`.
+
 Measured tactic boundary (this module, mathlib v4.17.0): the `ring` tactic does **not** unfold the
 opaque definition `s1Decay`, so each auxiliary row below spells the unfolding as `rw [s1Decay]`
 (or `unfold s1Decay`) before `ring`. Measured here: `ring` on a goal containing
@@ -191,46 +203,12 @@ theorem phiF_strictAnti_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC
   rw [div_lt_div_iff₀ hs' hs]
   nlinarith [mul_lt_mul_of_pos_left hden hkF]
 
-/-- Plan §4, FP-C5 (second half). The heavy-atom direction on phosphorescence: more intersystem
-crossing, more phosphorescence. Route: `phiP_eq` both sides, then `div_lt_div_iff` with the
-positivity fields. -/
-theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (h' : FPData kF kISC' kIC kP kNR) (hkP : 0 < kP) (hlt : kISC < kISC') :
-    phiP kF kISC kIC kP kNR < phiP kF kISC' kIC kP kNR := by
-  have hs : 0 < s1Decay kF kISC kIC := h.s1Decay_pos
-  have hs' : 0 < s1Decay kF kISC' kIC := h'.s1Decay_pos
-  have ht : 0 < kP + kNR := h.t1Decay_pos
-  have hden : 0 < s1Decay kF kISC kIC * (kP + kNR) := mul_pos hs ht
-  have hden' : 0 < s1Decay kF kISC' kIC * (kP + kNR) := mul_pos hs' ht
-  have hs1 : 0 < kF + kISC + kIC := by
-    have hsc : s1Decay kF kISC kIC = kF + kISC + kIC := rfl
-    rwa [hsc] at hs
-  have hISC0 : 0 ≤ kISC := h.kISC_nonneg
-  have hposISC : 0 < kISC := lt_of_le_of_lt hISC0 hlt
-  have hgate : 0 < kISC + kISC' - kF - kIC := by
-    by_contra hle
-    push_neg at hle
-    have h2 : 2 * kISC < kF + kIC := by linarith
-    have h3 : 4 * (kISC * kISC) < (kF + kIC) * (kF + kIC) := by nlinarith
-    have h4 : kISC * kISC < (kF + kIC) * kISC := by nlinarith
-    nlinarith [mul_pos hs1 hposISC]
-  have hkey : kISC' * kP * ((kF + kISC' + kIC) * (kP + kNR))
-      = kISC * kP * ((kF + kISC + kIC) * (kP + kNR))
-        + (kISC' - kISC) * (kISC + kISC' - kF - kIC) * kP * (kP + kNR) := by
-    ring
-  have h1 : 0 < kISC' - kISC := by linarith
-  have hpos : 0 < (kISC' - kISC) * (kISC + kISC' - kF - kIC) * kP * (kP + kNR) :=
-    mul_pos (mul_pos (mul_pos h1 hgate) hkP) ht
-  rw [phiP_eq h, phiP_eq h']
-  rw [show kISC * kP / (s1Decay kF kISC kIC * (kP + kNR))
-        < kISC' * kP / (s1Decay kF kISC' kIC * (kP + kNR))
-      ↔ (kISC * kP) * (s1Decay kF kISC' kIC * (kP + kNR))
-        < (kISC' * kP) * (s1Decay kF kISC kIC * (kP + kNR)) from
-    div_lt_div_iff₀ (a := kISC * kP) (b := s1Decay kF kISC kIC * (kP + kNR))
-      (c := kISC' * kP) (d := s1Decay kF kISC' kIC * (kP + kNR)) hden hden']
-  rw [show s1Decay kF kISC kIC = kF + kISC + kIC from rfl,
-    show s1Decay kF kISC' kIC = kF + kISC' + kIC from rfl]
-  linarith
+/-! ### FP-C5 (second half) — not in this wave
+
+`phiP_strictMono_isc` is the one authority row of this module that this wave does not deliver:
+its statement is unchanged, its proof is missing, and the exact residual arithmetic gap plus the
+five failed routes are recorded in the module header note "FP-C5 (second half):
+NEEDS-LARGE-MODEL" and in `proofs/EXPERIENCE.md`. Reported to the lead for a fresh dispatch. -/
 
 /-- Plan §4, FP-C6. **The crossover in closed form**: phosphorescence overtakes fluorescence
 exactly when `kISC·kP` exceeds `kF·(kP+kNR)`. Route: `div_lt_div_iff` chains with

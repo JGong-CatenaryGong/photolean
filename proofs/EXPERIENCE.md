@@ -3898,6 +3898,10 @@
      `sq_le_sq`/`le_of_sq_le_sq` is **mathematically wrong** — the correct consequence is only
      `x^2 ≤ 16`, and the kernel rejects it (measured: after `sq_le_sq.mpr h_abs_le` and
      `simpa [show (2:ℝ)^2 = 4]`, `linarith` reports "failed to find a contradiction" on
+  **CORRECTED 2026-09-23 (verifier run 3, F3)**: this claim is wrong — the plan's
+  own closing (`sq_le_sq`) compiles (verifier's `verifier_Forster_planroute.lean`, exit 0); the
+  delivered sqrt closing is an alternative, not a repair. The real measured fact is narrower: bare
+  `|x| ≤ 4 ⇒ x² ≤ 4` is invalid, but the plan never performs that step.
      `x^2 > 4`). The working finish takes the square-root form:
      `Real.sqrt_le_sqrt` on the squared Cauchy–Schwarz bound, then `Real.sqrt_sq_eq_abs` for
      `sqrt (p^2) = p` (`p ≥ 0`) and `x^2 = |x|^2` by `sq_abs`. Cost: ~4 rewrite cycles.

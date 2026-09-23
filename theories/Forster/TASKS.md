@@ -28,43 +28,43 @@
       (22 theorems + 10 definitions/structures/inductives),
       `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `b3f3c3b18966545032e231a8a99ed17aeb949072c309d6afbfaed28c6cc0e661`
 - [x] API calibration probe: `theories/Forster/probes/Forster-api-probe.lean` (exit 0)
-- [ ] Literature leaf populated: `theories/Forster/LITERATURE.md` (literature_researcher, batch
+- [x] Literature leaf populated: `theories/Forster/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 
 ### Declaration board (all `stmt`; ticking is lead-only after verifier PASS)
 
-- [ ] `kappaSq` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretRate` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff6` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `r0six` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `kappaConvention` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `kappaSq_nonneg` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `kappaSq_le_four` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `kappaSq_eq_zero_witness` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `kappaSq_eq_four_witness` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff_eq` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff_self` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff6_strictMono_r6` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `r0six_ratio` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `r0six_ratio_mem` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fret_blind_spot` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff6_mono_kappa` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff_via_lifetime` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff_via_lifetime'` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff_at_twoR0` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff6` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `r0six` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretRate` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `fretEff6_cast` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `frameKappa` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `frame_sum_eq_six` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `iso_frame_avg` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `rat_blind_spot` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `rat_max_bias` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `cy3cy5Like_verdict` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `blindSpotGeometry_verdict` — skeleton — Phase 2 — review — proved (prover_d)
-- [ ] `maxGeometry_verdict` — skeleton — Phase 2 — review — proved (prover_d)
+- [x] `kappaSq` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretRate` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff6` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `r0six` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `kappaConvention` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `kappaSq_nonneg` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `kappaSq_le_four` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `kappaSq_eq_zero_witness` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `kappaSq_eq_four_witness` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff_eq` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff_self` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff6_strictMono_r6` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `r0six_ratio` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `r0six_ratio_mem` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fret_blind_spot` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff6_mono_kappa` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff_via_lifetime` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff_via_lifetime'` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff_at_twoR0` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff6` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `r0six` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretRate` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `fretEff6_cast` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `frameKappa` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `frame_sum_eq_six` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `iso_frame_avg` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `rat_blind_spot` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `rat_max_bias` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `cy3cy5Like_verdict` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `blindSpotGeometry_verdict` — skeleton — Phase 2 — done — proved (prover_d)
+- [x] `maxGeometry_verdict` — skeleton — Phase 2 — done — proved (prover_d)
 
 ## Sprint 1+ — proof formalization (Phase 2, delivered by prover_d 2026-09-23)
 
@@ -92,3 +92,37 @@ Coordination items, both resolved by the lead on 2026-09-23 (commit `d343833`):
 
 Whole-tree evidence after that commit (prover_d, 2026-09-23):
 `proofs/scripts/check.sh --strict` → build OK, scan `clean`, verdict **PASS**.
+
+---
+
+## Verifier run 3 — 2026-09-23 (independent, read-only)
+
+**Verdict: PASS, 0 blocking.** Evidence: four modules rebuilt and re-elaborated from source with zero
+diagnostics; whole-tree `check.sh --strict` PASS with scan `clean` (the four Forster targets appear in
+the bare `lake build` plan since `d343833`); `#print axioms` 22/22 PASS; fidelity 32/32 with 0
+differences, confirmed by an independent comparator script; `Rat.fretEff6_cast` `#print`-checked as a
+real bridge.
+
+**`kappaSq_le_four` — the batch's highest-risk row — independently confirmed as TRUE, NON-VACUOUS and
+with the SHARP bound 4**: the verifier searched 721³ angle grid points, 4·10⁶ random unit-vector
+triples and 1764 exact-rational configurations (max value exactly 4, none above), produced its own
+kernel certificate that no smaller uniform bound exists (`¬ ∃ b < 4, ∀ …`), and checked the delivered
+statement is word-for-word the authority's `≤ 4` (`kappaSq_le_eight` does not exist in the sources).
+
+Findings and their resolution:
+* **F2 (fixed 2026-09-23 by the lead)** — plan §4 still printed superseded forms (`frameKappa : ℚ`,
+  `FO-I1 = 64/729`, the `fretEff6_eq` name, FO-C10's spare binder) and the plan had no §3.1 section
+  although §3 promised one; the API-NOTES statement-change index had no Forster row. All synced.
+* **F3 (corrected 2026-09-23)** — the delivery note claimed the plan's Phase-1 closing step was
+  invalid. The verifier showed the PLAN ROUTE ITSELF compiles (`sq_le_sq` closing, its own probe
+  `verifier_Forster_planroute.lean`, exit 0); the delivered proof simply chose a different (also
+  sound) square-root closing. The overstated claim is corrected in `proofs/API-NOTES.md` and
+  `proofs/EXPERIENCE.md`.
+* **F1 (registered deviation)** — FO3/FO4's proof sources landed inside the lead's `docs(phase2)`
+  commit (no `feat(FO3)`/`feat(FO4)` commits exist); history cannot be rewritten, so the delivery
+  locus is recorded here instead of in `git log`.
+* **F4 (Phase-3 premise audit)** — `fret_blind_spot`'s `0 < R` and `fretEff6_mono_kappa`'s
+  `0 < κ₁` are proof-consumed but the statements are provable without them (verifier probes).
+* F5 `RESULTS.md` Phase-1 text — synced 2026-09-23; F6 the LITERATURE false-positive flag —
+  corrected 2026-09-23; F7/F8 informational (all-tree warnings come from other theories;
+  `fretRate` is a representation-layer definition with no law row, by design).
