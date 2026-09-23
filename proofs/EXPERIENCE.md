@@ -3980,3 +3980,18 @@
   earlier "scratch file inside the scanned tree" incident (a scratch buffer under `PhotoLean/` also
   fails the gate): working files belong in `theories/<T>/probes/` or `.lake/tmp/`, never in the
   scanned source tree.
+
+### 2026-09-23 — CORRECTION to the EnergyGapLaw delivery note (verifier run 2, finding M1)
+
+The EnergyGapLaw board/commit noted that `secant_slope_neg_iff`'s premise `x₁ ≠ x₂` is "decorative"
+and that its local `unusedVariables` disable was the BEP precedent. **Both claims are wrong** and
+are retracted here because they were recorded as measured facts: at the degenerate window
+(`x₁ = x₂ = 2`, `lam = 1`) the left side is `0/0 < 0` (false) while the right side `1 < (2+2)/2` is
+true, so the iff FAILS without the premise — it is load-bearing, and the proof consumes it (the
+stripped file emits no unused-variable warning at all, i.e. the disable suppressed nothing). The
+delivered theorem was always sound (the premise is present in the authority); the defect was on the
+documentation/premise-audit plane and would have polluted the Phase-3 premise audit. General rule
+reinstated: **a premise is "decorative" only when a kernel-checked counterexample-free form of the
+statement without it survives — verify by attempting the stripped form, never by reading the
+proof.** (`linarith`-provable warnings are evidence of non-consumption in the PROOF, not of
+non-essentiality in the STATEMENT.)

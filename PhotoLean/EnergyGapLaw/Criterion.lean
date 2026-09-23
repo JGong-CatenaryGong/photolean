@@ -127,17 +127,20 @@ theorem secant_slope_exact {A lam kB T x₁ x₂ : ℝ} (hA : 0 < A) (hlam : lam
   field_simp
   ring
 
-/- The premise `h : x₁ ≠ x₂` is decorative for this row: `secant_slope_exact` consumes it, but
-after the rewrite the sign equivalence holds for every window (the degenerate case `x₁ = x₂` has
-both sides false, because `0 < lam` is a hypothesis). It is kept for signature fidelity with the
-frozen authority and the unused-variable linter is disabled locally, as `PhotoLean/BEP/Sharp.lean`
-does for its decorative premises. -/
-set_option linter.unusedVariables false in
 /-- The secant is negative exactly when the window midpoint is inverted. Plan section 4,
 row EG-C4 (corollary; the iff the plan's "negative exactly when" wording fixes — the sketch's
 midpoint premise `hx` is the iff's right side). Proof route: rewrite by `secant_slope_exact`;
 the denominator is positive under `hlam`, `hkT`, so the sign is the numerator's; field-order
-lemmas + `linarith`. -/
+lemmas + `linarith`.
+
+**Premise status (corrected 2026-09-23, verifier run 2 finding M1).** The first delivery's comment
+called `h : x₁ ≠ x₂` decorative and disabled the unused-variable linter locally. That rationale was
+arithmetically WRONG: at the degenerate window (`x₁ = x₂ = 2`, `lam = 1`) the left side is
+`0/0 < 0` — false — while the right side `1 < (2+2)/2` is true, so `¬ (LHS ↔ RHS)`; the premise is
+therefore load-bearing for the statement (and it IS consumed by the proof's rewrite
+`secant_slope_exact … h`, which is why the stripped file emits no warning at all and the local
+disable suppressed nothing). The disable is removed; the premise stays for signature fidelity with
+the authority, which carries it. -/
 theorem secant_slope_neg_iff {A lam kB T x₁ x₂ : ℝ} (hA : 0 < A) (hlam : 0 < lam)
     (hkT : 0 < kB * T) (h : x₁ ≠ x₂) :
     (lnRate A lam kB T x₂ - lnRate A lam kB T x₁) / (x₂ - x₁) < 0

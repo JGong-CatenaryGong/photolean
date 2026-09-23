@@ -19,62 +19,62 @@
       (19 theorems + 10 definitions/structures/inductives),
       `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `967a11a1c788096d8fef39c90e62fd7e4cb5a2747efd3eb7e6621d2ca7b46a90`
 - [x] API calibration probe: `theories/QuantumYield/probes/QuantumYield-api-probe.lean` (exit 0)
-- [ ] Literature leaf populated: `theories/QuantumYield/LITERATURE.md` (literature_researcher, batch
+- [x] Literature leaf populated: `theories/QuantumYield/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory
 
 ### Declaration board (all `review`; ticking is lead-only after verifier PASS)
 
-- [ ] `totalRate` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B1, build exit 0
-- [ ] `yieldOf` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B2, build exit 0
-- [ ] `tauOf` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B3, build exit 0
-- [ ] `QYData` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — review — QY-B4, build exit 0
-- [ ] `sum_yieldOf_eq_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `totalRate` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — done — QY-B1, build exit 0
+- [x] `yieldOf` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — done — QY-B2, build exit 0
+- [x] `tauOf` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — done — QY-B3, build exit 0
+- [x] `QYData` — `PhotoLean/QuantumYield/Basic.lean` — Phase 2 — done — QY-B4, build exit 0
+- [x] `sum_yieldOf_eq_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_eq_mul_tauOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_eq_mul_tauOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_nonneg` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_nonneg` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_le_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_le_one` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_pos_iff` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_pos_iff` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_div_yieldOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_div_yieldOf` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `totalRate_cons` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `totalRate_cons` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_cons_zero` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_cons_zero` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_cons_succ` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_cons_succ` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `yieldOf_cons_succ_factor` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review —
+- [x] `yieldOf_cons_succ_factor` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done —
       proved, axioms PASS
-- [ ] `yieldOf_cons_lt` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review — proved,
+- [x] `yieldOf_cons_lt` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done — proved,
       axioms PASS
-- [ ] `totalRate_zero_counterexample` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review —
+- [x] `totalRate_zero_counterexample` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done —
       proved, axioms PASS
-- [ ] `nonvacuous_all_channels_live` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — review —
+- [x] `nonvacuous_all_channels_live` — `PhotoLean/QuantumYield/Criterion.lean` — Phase 2 — done —
       proved, axioms PASS
-- [ ] `Rat.totalRate` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — QY-R1, build
+- [x] `Rat.totalRate` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — done — QY-R1, build
       exit 0
-- [ ] `Rat.yieldOf` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — QY-R1, build
+- [x] `Rat.yieldOf` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — done — QY-R1, build
       exit 0
-- [ ] `Rat.QYData` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — QY-R1 incl. the
+- [x] `Rat.QYData` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — done — QY-R1 incl. the
       `Decidable` instance, build exit 0
-- [ ] `Rat.totalRate_cast` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — proved,
+- [x] `Rat.totalRate_cast` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — done — proved,
       axioms PASS, `#print`-inspected (real bridge, not the shadow identity)
-- [ ] `Rat.yieldOf_cast` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — review — proved,
+- [x] `Rat.yieldOf_cast` — `PhotoLean/QuantumYield/RatModel.lean` — Phase 2 — done — proved,
       axioms PASS, `#print`-inspected (real bridge, not the shadow identity)
-- [ ] `fluoresceinS1` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — QY-I1, build
+- [x] `fluoresceinS1` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — done — QY-I1, build
       exit 0
-- [ ] `quinineLike` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — QY-I2, build
+- [x] `quinineLike` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — done — QY-I2, build
       exit 0
-- [ ] `quenchDilution` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — QY-I3, build
+- [x] `quenchDilution` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — done — QY-I3, build
       exit 0
-- [ ] `inst_fluoresceinS1_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review —
+- [x] `inst_fluoresceinS1_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — done —
       proved (`φF = 9/10`), axioms PASS
-- [ ] `inst_quinineLike_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review — proved
+- [x] `inst_quinineLike_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — done — proved
       (`φF = 11/20`), axioms PASS
-- [ ] `inst_quenchDilution_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — review —
+- [x] `inst_quenchDilution_phiF` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 — done —
       proved (`φF = 18/29`), axioms PASS
 - [ ] `inst_quenchDilution_sternVolmer` — `PhotoLean/QuantumYield/Instances.lean` — Phase 2 —
       review — proved (ratio `29/20`), axioms PASS
@@ -119,3 +119,20 @@ before this theory is closed; the per-module builds above are green meanwhile.
 Rows above move `review → done` only on an independent verifier PASS, by the lead. A verifier is
 asked to re-run the four gates of the table, plus the `#print` inspection of the two `Rat` cast rows
 and the load-bearing-premise row QY-C8 (`totalRate_zero_counterexample`).
+
+---
+
+## Verifier run 2 — 2026-09-23 (independent, read-only)
+
+**Verdict: PASS, 0 blocking.** Evidence: four modules rebuilt from source, zero diagnostics;
+whole-tree `check.sh --strict` PASS with scan `clean` (targets in `defaultTargets` since `d4d34e9`);
+`#print axioms` 19/19 PASS; fidelity 29/29, 0 differences; the two `Rat.*_cast` rows `#print`-checked
+as real bridges; instance verdicts recomputed independently (φ = 9/10, 11/20, 18/29; SV ratio 29/20);
+attacks: removing `total_pos`/`QYData` broke exactly the rows the plan says need them
+(`sum_yieldOf_eq_one`, `yieldOf_cons_succ_factor`, `yieldOf_cons_lt`), while `yieldOf_cons_succ`
+survives without the bundle (definitional under totalized division) — matching the authority's
+premise notes; **no delivered form broke**.
+
+Findings: L2 board staleness (fixed 2026-09-23: `defaultTargets` and the literature row);
+L3 `RESULTS.md` still Phase-1 text (fixed); L6 premise residue on QY-C2 / QY-C6-third-form
+(carried to the Phase-3 premise audit).

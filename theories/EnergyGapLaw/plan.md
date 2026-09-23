@@ -148,9 +148,15 @@ Module plan (Phase 2): `Basic.lean` (EG-B: copies, certificates, predicates), `C
 * EG-I2 `normalRegionCounter`: `lam = 2`, gaps `x ∈ {1/2, 1}` (normal) — barriers decrease, so
   the rate *increases* with the gap: the refuting instance for a regime-free gap law (pins the
   EG-C2 premise as load-bearing).
-* EG-I3 `tangentWitness`: `lam = 1/2`, `kB·T = 1/40`, `x* = 3/2`, evaluated at `x = 2`: the
-  defect is `-(1/2)²/(4·(1/2)·(1/40)) = -20`... (recompute in the skeleton probe; the row states
-  the exact rational defect value and `lnRate 2 = eglTangent 2 - 20` as an equation).
+* EG-I3 `tangentWitness`: `lam = 1/2`, `kB = 1`, `T = 1/40`, `x* = 3/2`, evaluated at `x = 2`: the
+  defect is `-((2 - 3/2)²/(4·(1/2)·(1/40))) = -5` (probe-recomputed; the inventory's draft `-20` was
+  wrong — §3.1 entry 1). The row states the exact rational defect and the equation
+  `lnRate 2 = eglTangent 2 - 5`.
+* **Instance-layer rate readings (M2, verifier run 2).** The instance rows are stated on the
+  **barrier side** (rational comparisons, kernel-decided); their docstrings' rate-side readings
+  ("hence the rate decreases/increases") are prose justified by the delivered EG-C2/EG-C3, not
+  separate rows. `Rat.nrRate_decidable_order` likewise decides barrier order only — no `Real.exp`
+  evaluation enters the rational layer (hard constraint 3).
 
 ## 5. Proof routes
 

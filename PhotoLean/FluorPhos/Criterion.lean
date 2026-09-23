@@ -78,19 +78,32 @@ private theorem add_common {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP
     phiF kF kISC kIC + phiP kF kISC kIC kP kNR =
       (kISC * kP + kF * (kP + kNR)) /
         (s1Decay kF kISC kIC * (kP + kNR)) := by
-  have hs : s1Decay kF kISC kIC ≠ 0 := ne_of_gt h.s1Decay_pos
-  have ht : kP + kNR ≠ 0 := ne_of_gt h.t1Decay_pos
   have hP : phiP kF kISC kIC kP kNR = kISC * kP / (s1Decay kF kISC kIC * (kP + kNR)) := by
     unfold phiP iscBranch t1BranchP
     field_simp
-    ring
   have hF : kF / s1Decay kF kISC kIC
-      = kF * (kP + kNR) / (s1Decay kF kISC kIC * (kP + kNR)) := by
-    field_simp
-    ring
+      = kF * (kP + kNR) / (s1Decay kF kISC kIC * (kP + kNR)) := phiF_common h
   unfold phiF
-  rw [hF, hP, div_add_div_same]
-  congr 1
+  rw [hF, hP]
+  exact (div_add_div_same _ _ _).trans (by congr 1; ring)
+
+theorem phiP_eq {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR) :
+    phiP kF kISC kIC kP kNR = kISC * kP / (s1Decay kF kISC kIC * (kP + kNR)) := by
+  have hs : s1Decay kF kISC kIC ≠ 0 := ne_of_gt h.s1Decay_pos
+  have ht : kP + kNR ≠ 0 := ne_of_gt h.t1Decay_pos
+  unfold phiP iscBranch t1BranchP
+  field_simp
+
+/-- Plan §4, FP-C2. **The competition law**: the phosphorescence-to-fluorescence ratio is the
+intersystem-crossing odds times the triplet radiative branch. Route: `field_simp` + `ring`. -/
+theorem phiP_div_phiF {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
+    (hkF : 0 < kF) :
+    phiP kF kISC kIC kP kNR / phiF kF kISC kIC = (kISC / kF) * t1BranchP kP kNR := by
+  have hs : s1Decay kF kISC kIC ≠ 0 := ne_of_gt h.s1Decay_pos
+  have ht : kP + kNR ≠ 0 := ne_of_gt h.t1Decay_pos
+  have hkF' : kF ≠ 0 := ne_of_gt hkF
+  unfold phiP phiF iscBranch t1BranchP
+  field_simp
   ring
 
 /-- Auxiliary arithmetic for the corrected FP-C4 boundary: the defect of the exhaustion numerator
@@ -131,27 +144,6 @@ private theorem exhaust_zero_iff {kF kISC kIC kP kNR : ℝ}
         rw [hkIC, h5]
         ring
       linarith
-
-/-- Plan §4, FP-C1. The phosphorescence yield as a single fraction. Route: `field_simp` + `ring`.
--/
-theorem phiP_eq {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR) :
-    phiP kF kISC kIC kP kNR = kISC * kP / (s1Decay kF kISC kIC * (kP + kNR)) := by
-  have hs : s1Decay kF kISC kIC ≠ 0 := ne_of_gt h.s1Decay_pos
-  have ht : kP + kNR ≠ 0 := ne_of_gt h.t1Decay_pos
-  unfold phiP iscBranch t1BranchP
-  field_simp
-
-/-- Plan §4, FP-C2. **The competition law**: the phosphorescence-to-fluorescence ratio is the
-intersystem-crossing odds times the triplet radiative branch. Route: `field_simp` + `ring`. -/
-theorem phiP_div_phiF {kF kISC kIC kP kNR : ℝ} (h : FPData kF kISC kIC kP kNR)
-    (hkF : 0 < kF) :
-    phiP kF kISC kIC kP kNR / phiF kF kISC kIC = (kISC / kF) * t1BranchP kP kNR := by
-  have hs : s1Decay kF kISC kIC ≠ 0 := ne_of_gt h.s1Decay_pos
-  have ht : kP + kNR ≠ 0 := ne_of_gt h.t1Decay_pos
-  have hkF' : kF ≠ 0 := ne_of_gt hkF
-  unfold phiP phiF iscBranch t1BranchP
-  field_simp
-  ring
 
 /-- Plan §4, FP-C3. The two luminescence yields never exceed unity in total. Route:
 `div_add_div` normal form, `div_le_one`, the nonnegativity fields of `FPData`. -/
@@ -213,7 +205,8 @@ theorem phiP_strictMono_isc {kF kISC kISC' kIC kP kNR : ℝ} (h : FPData kF kISC
   have hs1 : 0 < kF + kISC + kIC := by
     have hsc : s1Decay kF kISC kIC = kF + kISC + kIC := rfl
     rwa [hsc] at hs
-  have hposISC : 0 < kISC := lt_of_le_of_lt h.kISC_nonneg hlt
+  have hISC0 : 0 ≤ kISC := h.kISC_nonneg
+  have hposISC : 0 < kISC := lt_of_le_of_lt hISC0 hlt
   have hgate : 0 < kISC + kISC' - kF - kIC := by
     by_contra hle
     push_neg at hle

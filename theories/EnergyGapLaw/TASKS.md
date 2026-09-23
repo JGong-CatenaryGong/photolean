@@ -27,18 +27,19 @@
   `0 < A`, EG-C4 corollary as the iff). No statement was changed and no statement incident arose;
   the `Rat.nrBarrier_cast` row was checked against the SV-R1 shadowing pitfall with a scratch
   `#print` and is a real (non-vacuous) bridge.
-- Premise note for the verifier: EG-C4's `secant_slope_neg_iff` carries the authority's premise
-  `x₁ ≠ x₂`, which is decorative — the proof does not consume it, and the sign equivalence is
-  independent of it (at `x₁ = x₂` both sides are false under `0 < lam`). Kept for signature
-  fidelity, with the unused-variable linter disabled locally (the BEP `Sharp.lean` precedent).
+- Premise note for the verifier (CORRECTED 2026-09-23, verifier run 2 finding M1): EG-C4's
+  `secant_slope_neg_iff` carries the authority's premise `x₁ ≠ x₂`. The first note called it
+  decorative — that was arithmetically wrong: at `x₁ = x₂ = 2, lam = 1` the left side is `0/0 < 0`
+  (false) while the right side is true, so `¬ (LHS ↔ RHS)`. The premise is load-bearing and IS
+  consumed by the proof; the local unused-variable disable was a no-op and has been removed.
 
 ## Sprint 0 — environment, statements, plan
 
-- [ ] Statement skeleton `theories/EnergyGapLaw/probes/EnergyGapLaw-statement-skeleton.lean` compiles at 0 errors
+- [x] Statement skeleton `theories/EnergyGapLaw/probes/EnergyGapLaw-statement-skeleton.lean` compiles at 0 errors
       (`proofs/scripts/lake env lean`) — placeholder theorem bodies on purpose
-- [ ] Plan landed: `theories/EnergyGapLaw/plan.md` (statement inventory, sprint order, honesty table,
+- [x] Plan landed: `theories/EnergyGapLaw/plan.md` (statement inventory, sprint order, honesty table,
       edge candidates)
-- [ ] Literature leaf: `theories/EnergyGapLaw/LITERATURE.md` (sources with formalizable implications)
+- [x] Literature leaf: `theories/EnergyGapLaw/LITERATURE.md` (sources with formalizable implications)
 
 ### Sprint-0 declaration board (26 declarations: 9 definitions incl. 1 inductive, 17 theorems)
 
@@ -79,3 +80,30 @@
 | 24 | EG-I1 | `aromaticSeries` | theorem | `review` |
 | 25 | EG-I2 | `normalRegionCounter` | theorem | `review` |
 | 26 | EG-I3 | `tangentWitness` | theorem | `review` |
+
+---
+
+## Verifier run 2 — 2026-09-23 (independent, read-only)
+
+**Verdict: PASS, 0 blocking.** Evidence: nine modules (this theory's five) rebuilt from source with
+zero diagnostics; whole-tree `check.sh --strict` PASS with scan `clean` (the five EnergyGapLaw
+targets are in `defaultTargets` since `ec74c92`); `#print axioms` 18/18 PASS (only
+`propext Classical.choice Quot.sound`); fidelity 26/26 with 0 differences; `Rat.nrBarrier_cast`
+`#print`-checked as a real bridge; instance arithmetic independently recomputed (barrier chain
+`1/8, 1/2, 9/8`, normal-region counter `9/32 < 1/8`, defect `5`); adversarial attacks against every
+premise-removed form broke as expected while **no delivered form broke** (edge inputs `x = lam`,
+`x = x*`, far inputs, midpoint at `lam` all discharged); `not_affine_on_window` instantiated on the
+concrete window `[0,1]` with second difference `-1/8 ≠ 0`.
+
+Findings and their resolution:
+* **M1 (fixed 2026-09-23 by the lead)** — the delivery comment called `h : x₁ ≠ x₂` of
+  `secant_slope_neg_iff` decorative and disabled the unused-variable linter locally. Wrong: at
+  `x₁ = x₂ = 2, lam = 1` the left side is `0/0 < 0` (false) while the right side is true, so the
+  premise is load-bearing; the disable suppressed nothing (the stripped file emits no warning).
+  The comment is corrected and the no-op `set_option` removed.
+* **M2 (documented 2026-09-23)** — the instance rows are barrier-side; their rate-side readings are
+  prose justified by EG-C2/EG-C3 (plan §4 note added; the verifier confirmed the rate-level chains
+  compile through the delivered rows).
+* L4 (plan §4 EG-I3 body printed the draft `-20`) — fixed by the lead 2026-09-23.
+* L6 premise residue (EG-C1's `lam ≠ 0` / `0 < kB*T` are proof-consumed but not statement-necessary)
+  — carried to the Phase-3 premise audit.
