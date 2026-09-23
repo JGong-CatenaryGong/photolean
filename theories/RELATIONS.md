@@ -668,3 +668,42 @@ probe, 35, was added with the H1 crossing.)
 `kashaDescriptor_nonvacuous` 语句强化 + 新增 `perLevel_ic_ge_rad_insufficient`，见
 `theories/kasha/plan.md` §3.1）；标定探针以占位编译通过、无 error。
 完整清单见 `PhotoLean/Relations.lean` §1–§11。
+
+---
+
+## 8. The photophysics batch (2026-09-22/23): nine nodes, two new adjudication classes / 光物理批次：九个节点、两个新裁定类
+
+**English.** The fourth batch adds nine theories in three groups — the rate-cascade group
+(KashaVavilov, SternVolmer, QuantumYield, FluorPhos) reusing the Kasha ladder by import, the
+two-parabola group (EnergyGapLaw, StokesShift, ICvsISC) carrying kernel-pinned copies, and the
+geometric/spectroscopic group (Forster, Einstein). Its machine-checked companion is
+`PhotoLean/Relations.lean` §12–§16 (23 new rows). The graph gains two adjudication classes
+beyond A1: **A2 (adjudicated independence)** — Kasha vs Kasha–Vavilov: pointwise independent in
+both directions (witnesses inside the lossy regime), coinciding exactly under the closed
+quantification with a loss channel, separated in the lossless corner (§13); and **A3
+(identifiability)** — static vs dynamic quenching: the intensity-only Stern–Volmer observation is
+non-injective on the two-mechanism space (matched parameters give pointwise-identical curves at
+every concentration), the lifetime channel is the exact discriminator, and upward curvature is
+the positive coexistence witness (§14). The batch's compositions all run through one algebraic
+spine — QuantumYield (§15): the ladder's `radBranch`, the Stern–Volmer dilution, the
+fluorescence/phosphorescence cascade, the FRET added-donor channel and the Einstein radiative
+anchor are all quantum-yield identities; the two-parabola group composes through the kernel
+certificates (§12) plus two new rows (the energy-gap ordering of the Kasha IC rates; the
+Stokes/EGL barrier–window boundary). The refuted first forms of SS-C9 and FP-C5 are delivered as
+counterexample-witness theorems in their theories (`invertedCorner_firstForm_refuted`,
+`fpC5_firstForm_refuted`) — negative results as first-class citizens. Every remaining pair is
+registered in the extended no-edge registry (§16) with its reason.
+
+**中文。** 第四批以三组加入九个理论——速率级联组（KashaVavilov、SternVolmer、QuantumYield、
+FluorPhos）以导入复用 Kasha 阶梯；双抛物面组（EnergyGapLaw、StokesShift、ICvsISC）携带内核
+钉住的副本；几何/谱学组（Forster、Einstein）。其机器检查对应物是
+`PhotoLean/Relations.lean` §12–§16（23 条新行）。图在 A1 之外获得两个新裁定类：
+**A2（已裁决独立性）**——Kasha 对 Kasha–Vavilov：双向逐点独立（见证在有损区内）、闭合量化
+加损失通道下恰重合、无损角分离（§13）；**A3（可辨识性）**——静态对动态猝灭：仅强度的
+Stern–Volmer 观测在两机制空间上非单射（匹配参数下曲线在每个浓度逐点相同）、寿命通道是精确
+判别器、向上弯曲是共存正见证（§14）。批次的组合边都经过同一条代数脊柱——QuantumYield（§15）：
+阶梯的 `radBranch`、Stern–Volmer 稀释、荧光/磷光级联、FRET 加通道与 Einstein 辐射锚都是量子
+产额恒等式；双抛物面组经内核证书（§12）加两条新行（Kasha IC 速率的能隙排序；Stokes/EGL
+势垒–窗口边界）组合。SS-C9 与 FP-C5 的被反驳初式以反例见证定理交付于各自理论
+（`invertedCorner_firstForm_refuted`、`fpC5_firstForm_refuted`）——负结果是一等公民。
+其余全部配对登记于扩展的无边注册表（§16），各附理由。
