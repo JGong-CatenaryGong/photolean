@@ -120,7 +120,7 @@ theorem r0six_ratio_mem {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J
 while the `2/3` convention predicts transfer — the convention's silent failure, witnessed.
 Route (probed): `zero_div` and `div_pos`. -/
 theorem fret_blind_spot {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J) (hn : 0 < n)
-    (R : ℝ) (hR : 0 < R) :
+    (R : ℝ) :
     fretEff6 (r0six C 0 Φ J n) R = 0 ∧ 0 < fretEff6 (r0six C (2 / 3) Φ J n) R := by
   sorry
 
@@ -128,7 +128,7 @@ theorem fret_blind_spot {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J
 orientation factor. Route: `r0six` is strictly monotone in `κ²` (linear, `C·Φ·J/n⁴ > 0`), then
 FO-C6. -/
 theorem fretEff6_mono_kappa {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J) (hn : 0 < n)
-    (R : ℝ) (hR : 0 < R) {κ₁ κ₂ : ℝ} (h1 : 0 < κ₁) (h : κ₁ < κ₂) :
+    (R : ℝ) (hR : 0 < R) {κ₁ κ₂ : ℝ} (h1 : 0 ≤ κ₁) (h : κ₁ < κ₂) :
     fretEff6 (r0six C κ₁ Φ J n) R < fretEff6 (r0six C κ₂ Φ J n) R := by
   sorry
 

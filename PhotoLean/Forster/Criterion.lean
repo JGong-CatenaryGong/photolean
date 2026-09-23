@@ -188,7 +188,7 @@ theorem r0six_ratio_mem {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J
 while the `2/3` convention predicts transfer — the convention's silent failure, witnessed.
 Route (probed): `zero_div` and `div_pos`. -/
 theorem fret_blind_spot {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J) (hn : 0 < n)
-    (R : ℝ) (hR : 0 < R) :
+    (R : ℝ) :
     fretEff6 (r0six C 0 Φ J n) R = 0 ∧ 0 < fretEff6 (r0six C (2 / 3) Φ J n) R := by
   have hzero : r0six C 0 Φ J n = 0 := by
     rw [r0six]
@@ -200,28 +200,41 @@ theorem fret_blind_spot {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J
   · rw [hzero, fretEff6, zero_div]
   · rw [fretEff6]
     exact div_pos hpos (by
-      have hR6 : (0 : ℝ) < R ^ 6 := by positivity
+      have hR6 : (0 : ℝ) ≤ R ^ 6 := by positivity
       linarith)
 
 /-- Plan §4, FO-C9. The observable's κ² dependency: the efficiency strictly increases in the
 orientation factor. Route: `r0six` is strictly monotone in `κ²` (linear, `C·Φ·J/n⁴ > 0`), then
 FO-C6. -/
 theorem fretEff6_mono_kappa {C Φ J n : ℝ} (hC : 0 < C) (hΦ : 0 < Φ) (hJ : 0 < J) (hn : 0 < n)
-    (R : ℝ) (hR : 0 < R) {κ₁ κ₂ : ℝ} (h1 : 0 < κ₁) (h : κ₁ < κ₂) :
+    (R : ℝ) (hR : 0 < R) {κ₁ κ₂ : ℝ} (h1 : 0 ≤ κ₁) (h : κ₁ < κ₂) :
     fretEff6 (r0six C κ₁ Φ J n) R < fretEff6 (r0six C κ₂ Φ J n) R := by
-  have hr : r0six C κ₁ Φ J n < r0six C κ₂ Φ J n := by
-    simp only [r0six]
-    have h4 : (0 : ℝ) < n ^ 4 := by positivity
-    rw [div_lt_div_iff₀ h4 h4]
-    have hC4 : (0 : ℝ) < C * Φ * J := by positivity
-    nlinarith [mul_lt_mul_of_pos_right h hC4]
-  have hS := fretEff6_strictMono_r6 R hR
-  have hp1 : (0 : ℝ) < r0six C κ₁ Φ J n := by rw [r0six]; positivity
-  have hp2 : (0 : ℝ) < r0six C κ₂ Φ J n := by
+  by_cases hκ : κ₁ = 0
+  · subst hκ
     have hk2 : (0 : ℝ) < κ₂ := by linarith
-    rw [r0six]
-    positivity
-  exact hS hp1 hp2 hr
+    have hz : r0six C 0 Φ J n = 0 := by rw [r0six]; ring
+    have hp2 : (0 : ℝ) < r0six C κ₂ Φ J n := by rw [r0six]; positivity
+    have hL : fretEff6 (r0six C 0 Φ J n) R = 0 := by rw [hz, fretEff6, zero_div]
+    rw [hL, fretEff6]
+    exact div_pos hp2 (by
+      have hR6 : (0 : ℝ) ≤ R ^ 6 := by positivity
+      linarith)
+  · have hr : r0six C κ₁ Φ J n < r0six C κ₂ Φ J n := by
+      simp only [r0six]
+      have h4 : (0 : ℝ) < n ^ 4 := by positivity
+      rw [div_lt_div_iff₀ h4 h4]
+      have hC4 : (0 : ℝ) < C * Φ * J := by positivity
+      nlinarith [mul_lt_mul_of_pos_right h hC4]
+    have hS := fretEff6_strictMono_r6 R hR
+    have hp1 : (0 : ℝ) < r0six C κ₁ Φ J n := by
+      have hk1 : (0 : ℝ) < κ₁ := lt_of_le_of_ne h1 (fun hh => hκ hh.symm)
+      rw [r0six]
+      positivity
+    have hp2 : (0 : ℝ) < r0six C κ₂ Φ J n := by
+      have hk2 : (0 : ℝ) < κ₂ := by linarith
+      rw [r0six]
+      positivity
+    exact hS hp1 hp2 hr
 
 /-- Plan §4, FO-C10 (first lifetime form). Route (probed): `field_simp`, `ring_nf`, then the
 trivial clearance side condition `Or.inl trivial`. -/
