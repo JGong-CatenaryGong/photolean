@@ -3971,3 +3971,32 @@ forms)**, `mul_lt_mul_of_pos_right/left`, `add_pos_of_pos_of_nonneg`, `lt_add_of
 4. *Monotonicity of `b/(a+b)`*: `div_lt_div_iff₀` (LEFT first!) + `mul_add` both sides +
    `mul_lt_mul_of_pos_right/left` + `linarith` with an explicit `mul_comm` witness where the atom
    order differs between the two sides.
+
+## §photobatch — Phase-1 calibration findings (2026-09-22)
+
+Confirmed present (mathlib v4.17.0), used by the new skeletons' proof routes:
+`Real.log_mul` (two `≠` premises), `Real.log_exp`, `Real.exp_pos`, `Real.exp_ne_zero`,
+`Real.exp_lt_exp`, `Real.exp_strictMono`, `Real.pi_pos`, `irrational_pi`,
+`Real.sin_sq_add_cos_sq`, `Real.cos_sq_le_one`, `Real.sin_pi_div_two`, `div_pow`,
+`div_lt_div_iff₀` (the zero-anchored form — the deprecated `div_lt_div_iff` stays banned),
+`Finset.max'`, `Finset.exists_max_image`, `Fin.sum_univ_succ`, `Fin.cons_zero`,
+`Fin.cons_succ`, `Fin.sum_univ_three`, `Matrix.cons_val_zero`, `Matrix.cons_val_one`,
+`Matrix.cons_val_two`, `Rat.cast_div`, `Rat.cast_mul`, `Rat.cast_add`, `Rat.cast_lt`,
+`Rat.cast_inj`, `map_sum`.
+
+Absent / drifted:
+* `Fin.sum_univ_cons` — does NOT exist. Cons-sum route: `rw [Fin.sum_univ_succ,
+  Fin.cons_zero]` then `simp only [Fin.cons_succ]` (a direct `Finset.sum_congr` +
+  `Fin.cons_succ` term fails on a stuck `AddCommMonoid` metavariable).
+
+Measured tactic boundaries (probes, this round):
+* `decide` still does not reduce ℚ division (the `Marcus.RatModel` boundary); additionally
+  `norm_num [Fin.ext_iff]` on `Fin 3` numeral-`if` sums overflows `maxRecDepth`. Working
+  pattern: ℤ-valued finite sums by `decide`, ℚ quotients by `norm_num` (Forster FO-R2).
+* `field_simp` on nested-ratio identities can leave a `True ∨ kF = 0` clearance side
+  condition: close with `ring_nf` then `exact Or.inl trivial` (Forster FO-C10 dry run).
+* Bare `norm_num` does not close linear identities containing a `Real.log A` atom; `ring`
+  does (EnergyGapLaw EG-I3 dry run, prover_a).
+* Structure-valued premise bundles introduce binders through the anonymous-constructor
+  lambdas; a surplus `intro` fails with "insufficient number of binders" (KashaVavilov
+  api-probe).
