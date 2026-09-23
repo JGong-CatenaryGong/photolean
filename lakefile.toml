@@ -46,7 +46,9 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.KashaVavilov.Basic", "PhotoLean.KashaVavilov.Criterion",
                   "PhotoLean.KashaVavilov.Instances",
                   "PhotoLean.Einstein.Basic", "PhotoLean.Einstein.Criterion",
-                  "PhotoLean.Einstein.RatModel", "PhotoLean.Einstein.Instances"]
+                  "PhotoLean.Einstein.RatModel", "PhotoLean.Einstein.Instances",
+                  "PhotoLean.QuantumYield.Basic", "PhotoLean.QuantumYield.Criterion",
+                  "PhotoLean.QuantumYield.RatModel", "PhotoLean.QuantumYield.Instances"]
 
 [[require]]
 name = "mathlib"

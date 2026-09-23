@@ -3788,3 +3788,35 @@
 - Commit granularity: the contract's one-commit-per-lemma was executed as one commit per module by all
   four owners (registered deviation; the precedent is the delivered Goldschmidt/SymmetryFactor
   practice — retroactive splitting would need history rewriting, which the workspace forbids).
+
+### 2026-09-23 — Phase-2 wave 2, QuantumYield (prover_b) — DONE (19/19, no incident) — measured API notes
+
+- Delivered `PhotoLean/QuantumYield/{Basic,Criterion,RatModel,Instances}.lean` (19/19 authority
+  theorems, 11 definitions), boards to `review`; gates: build 4/4, axioms 19/19 + 11 definition rows,
+  whole-tree strict PASS, fidelity 29/29 with 0 differences. The two `Rat.*_cast` rows were
+  `#print`-checked as genuine bridges (the SV-R1 vacuity pitfall did not fire — the authority's
+  right-hand sides were already fully qualified).
+- Tried and failed (measured, reusable):
+  1. `Finset.sum_div` in this mathlib pushes the division INTO the sum
+     (`(∑ f)/a = ∑ f/a`); closing `∑ k i / T = 1` needs the reverse `rw [← Finset.sum_div]` — the
+     direction intuition is the trap.
+  2. `norm_cast` does not move a cast through a finite sum: `↑(∑ i, kq i) = ∑ i, ↑(kq i)` is left
+     open. The working route is an explicit `rw [Rat.cast_sum]` (measured signature:
+     `↑(∑ i ∈ s, f i) = ∑ i ∈ s, ↑(f i)`).
+  3. `field_simp` needs the `≠ 0` facts handed to it explicitly (`field_simp [h.total_pos.ne']`);
+     with them it can close the goal outright (a following `ring` then errors "no goals to be
+     solved"), and it cannot clear a denominator whose positivity is not derivable (`c + totalRate k`
+     with `c` unconstrained requires a case split first).
+  4. `decide` does not even close ℚ-indexed applications (`quenchDilution 1 = 18` fails with a
+     metavariable mismatch); one `norm_num` with the full simp set
+     (`Rat.yieldOf, Rat.totalRate, Fin.sum_univ_succ, Fin.cons_zero/succ, Fin.sum_univ_three,
+     Matrix.cons_val_zero/one/two`) closes it.
+  5. Reusable positives: the probe's cons-sum route holds exactly (`unfold totalRate;
+     rw [Fin.sum_univ_succ, Fin.cons_zero]` then a MANDATORY `simp only [Fin.cons_succ]` — the
+     rewrite alone does not close); witnesses close by `refine ⟨…⟩` + `fin_cases`/`norm_num`.
+- Premise residue (frozen authority): QY-C2's `QYData` premise and QY-C6's third row premise are
+  unconsumed under totalized division; kept (signature fidelity) with a local
+  `set_option linter.unusedVariables false in` per the repository's Hammond precedent — registered
+  for the Phase-3 premise audit.
+- Ownership note: the plan listed prover_c for this theory; the lead reassigned it to prover_b
+  (prover_c took FluorPhos). The board's Phase-2 record notes the reassignment.
