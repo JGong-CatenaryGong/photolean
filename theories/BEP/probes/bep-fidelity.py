@@ -130,7 +130,12 @@ def signatures(path):
     src = strip_comments(open(path).read())
     out = {}
     for m in re.finditer(
-            r'^(?:noncomputable\s+)?(?:theorem|def|inductive|structure)\s+([A-Za-z_][\w\']*)(.*?)(?=:=\s*by|:=\s*$|:=|\n\n)',
+            # Dotted declaration names are captured whole: `theorem Rat.foo` is ONE
+            # declaration (keyed `PhotoLean.<T>.Rat.foo`). The earlier bare capture
+            # truncated at the dot and collapsed every `Rat.*` row of a theory into a
+            # single key (measured 2026-09-22 on SternVolmer: 39 keys for 46 authority
+            # declarations, the four cast rows invisible).
+            r'^(?:noncomputable\s+)?(?:theorem|def|inductive|structure)\s+([A-Za-z_][\w\'.]*)(.*?)(?=:=\s*by|:=\s*$|:=|\n\n)',
             src, re.M | re.S):
         name = m.group(1)
         sig = re.sub(r'\s+', ' ', (m.group(2) or '')).strip()
@@ -179,7 +184,7 @@ if MS:
         if m:
             cur = m.group(1).rstrip('.')
             continue
-        m = re.match(r'^(?:noncomputable\s+)?(?:theorem|def|inductive|structure)\s+([A-Za-z_][\w\']*)', line)
+        m = re.match(r'^(?:noncomputable\s+)?(?:theorem|def|inductive|structure)\s+([A-Za-z_][\w\'.]*)', line)
         if m and cur and (cur == MS or cur.startswith(MS)):
             ns = '.'.join(name for kind, name in stack if kind == 'ns')
             names.add(f"{ns}.{m.group(1)}" if ns else m.group(1))
