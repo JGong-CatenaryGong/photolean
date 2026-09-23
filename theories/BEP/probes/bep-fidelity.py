@@ -85,9 +85,40 @@ def strip_comments(src):
     return ''.join(out)
 
 
+def _ns_stack_at(src, pos):
+    """Namespace path enclosing `pos`, tracked line by line.
+
+    Added 2026-09-22 (photobatch): the checker used to key signatures by BARE declaration name,
+    so a nested `namespace Rat` shadowed same-named outer rows — the photobatch authorities
+    declare e.g. `aOfB` twice (once over ℝ, once over ℚ) and the report showed five FALSE
+    signature differences on verbatim copies (found by prover_d on `--theory Einstein`;
+    measured: Einstein and StokesShift each reported 5). Keying by the namespace path fixes it
+    and is behaviour-preserving for the seven earlier theories (they have no same-named rows in
+    a nested namespace — re-run evidence in the experience bank entry of 2026-09-22). `section`
+    is tracked so that a bare `end` of a section does not pop a namespace.
+    """
+    stack = []
+    for line in src[:pos].splitlines():
+        t = line.strip()
+        m = re.match(r'namespace\s+([A-Za-z_][\w\'.]*)', t)
+        if m:
+            stack.append(('ns', m.group(1)))
+            continue
+        m = re.match(r'section(\s+[A-Za-z_][\w\'.]*)?$', t)
+        if m:
+            stack.append(('sec', ''))
+            continue
+        m = re.match(r'end(\s+[A-Za-z_][\w\'.]*)?$', t)
+        if m:
+            if stack:
+                stack.pop()
+            continue
+    return '.'.join(name for kind, name in stack if kind == 'ns')
+
+
 def signatures(path):
-    """name -> normalized signature (comments stripped, whitespace collapsed, up to the
-    first `:=`), including `noncomputable def`, plain `def`, `inductive`, `structure` and
+    """qualified name -> normalized signature (comments stripped, whitespace collapsed, up to
+    the first `:=`), including `noncomputable def`, plain `def`, `inductive`, `structure` and
     `theorem`.
 
     `structure` was added when the kasha theory introduced `RateData` (a Prop-valued bundle
@@ -103,7 +134,8 @@ def signatures(path):
             src, re.M | re.S):
         name = m.group(1)
         sig = re.sub(r'\s+', ' ', (m.group(2) or '')).strip()
-        out[name] = sig
+        ns = _ns_stack_at(src, m.start())
+        out[f"{ns}.{name}" if ns else name] = sig
     return out
 
 
@@ -125,16 +157,32 @@ skel = skel_all
 MS = _arg('--milestone', None)
 if MS:
     src = strip_comments(open(SKEL).read())
-    names, cur = set(), None
+    names, cur, stack = set(), None, []
     # declarations of a section carry their own `theorem`/`def` line; headers are `/-! ## <token>`.
+    # Names are collected namespace-qualified (same tracking as `signatures`, added 2026-09-22).
     for line in open(SKEL).read().splitlines():
+        t = line.strip()
+        m = re.match(r'namespace\s+([A-Za-z_][\w\'.]*)', t)
+        if m:
+            stack.append(('ns', m.group(1)))
+            continue
+        m = re.match(r'section(\s+[A-Za-z_][\w\'.]*)?$', t)
+        if m:
+            stack.append(('sec', ''))
+            continue
+        m = re.match(r'end(\s+[A-Za-z_][\w\'.]*)?$', t)
+        if m:
+            if stack:
+                stack.pop()
+            continue
         m = re.match(r'\s*/-! #*\s*(\S+)', line)
         if m:
             cur = m.group(1).rstrip('.')
             continue
         m = re.match(r'^(?:noncomputable\s+)?(?:theorem|def|inductive|structure)\s+([A-Za-z_][\w\']*)', line)
         if m and cur and (cur == MS or cur.startswith(MS)):
-            names.add(m.group(1))
+            ns = '.'.join(name for kind, name in stack if kind == 'ns')
+            names.add(f"{ns}.{m.group(1)}" if ns else m.group(1))
     if not names:
         print(f"!! no declarations found for milestone '{MS}' — check the section title in the authority")
         sys.exit(2)
@@ -142,21 +190,40 @@ if MS:
 
 diff, same, extra, met = [], 0, [], set()
 
+def _resolve(name, skel):
+    """Resolve a delivered (possibly namespace-qualified) name to an authority key.
+
+    Exact qualified match first; otherwise fall back to a BARE-name match **only when exactly
+    one authority key carries that bare name**. The fallback preserves the behaviour of the
+    seven earlier theories, whose authorities declare at top level while the delivered modules
+    sit in `namespace PhotoLean.<Theory>` (measured 2026-09-22: Marcus 51/51 both before and
+    after this change). The exact branch fixes the photobatch's nested-`Rat` shadowing, where
+    the same bare name appears twice in the authority (once over ℝ, once over ℚ)."""
+    if name in skel:
+        return name
+    bare = name.rsplit('.', 1)[-1]
+    cands = [k for k in skel if k.rsplit('.', 1)[-1] == bare]
+    if len(cands) == 1:
+        return cands[0]
+    return None
+
+
 for f in DELIVERED:
     got = signatures(f)
     for name, sig in got.items():
-        if name not in skel:
+        key = _resolve(name, skel)
+        if key is None:
             # outside the milestone scope: not a difference, not an extra (report separately)
-            if MS and name in skel_all:
+            if MS and _resolve(name, skel_all) is not None:
                 continue
             extra.append(f"{os.path.basename(f)}::{name}")
             continue
-        met.add(name)
-        a = re.sub(r'\s+', ' ', skel[name]).strip()
+        met.add(key)
+        a = re.sub(r'\s+', ' ', skel[key]).strip()
         if a == sig:
             same += 1
         else:
-            diff.append((os.path.basename(f), name, a, sig))
+            diff.append((os.path.basename(f), key, a, sig))
 
 missing = sorted(set(skel) - met)
 
