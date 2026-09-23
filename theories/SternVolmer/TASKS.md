@@ -15,10 +15,14 @@
 
 - [x] Plan landed: `theories/SternVolmer/plan.md` (statement inventory, sprint order, honesty table,
       edge candidates) — lead-authored 2026-09-22
+- [x] **Statement authority re-frozen 2026-09-22** (plan §3.1 entry 1): the four SV-R1
+      cast-coherence rows carried a vacuous right-hand side (the unqualified identifier resolved to
+      the ℚ shadow); the authority now carries fully-qualified right-hand sides, the delivered rows
+      are the real bridges (`#print` evidence), fidelity 46/46 with 0 differences.
 - [x] **Statement skeleton compiles** (the Sprint-0 gate):
       `theories/SternVolmer/probes/SternVolmer-statement-skeleton.lean` — **46 declarations**
       (27 theorems + 19 definitions/structures/inductives),
-      `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `811e34c0bf02d2b2a0479f613a73eb0db601a57cf331537750ca48706085cfa5`
+      `proofs/scripts/lake env lean` exit 0 (placeholder-body warnings only), sha256 `d4b129c125254d8e9a9c26243a3d6596183942086136fae97a6fc98735aa0baf`
 - [x] API calibration probe: `theories/SternVolmer/probes/SternVolmer-api-probe.lean` (exit 0)
 - [ ] Literature leaf populated: `theories/SternVolmer/LITERATURE.md` (literature_researcher, batch
       round 2026-09-22) — statement-impact summary: none against the frozen inventory

@@ -56,7 +56,21 @@ constant; `q` concentration. `KSV k0 kq := kq / k0` — the Stern–Volmer const
 ## 3. Statement authority and inventory
 
 The authority is `probes/SternVolmer-statement-skeleton.lean` (Phase-1 placeholder bodies;
-sha256 recorded on the board once compiling). Statement-correction log §3.1 starts empty.
+sha256 recorded on the board once compiling).
+
+### 3.1 Statement-correction log
+
+* **Entry 1 (SV-R1, 2026-09-22, found while proving; re-freeze executed by the lead)** — the four
+  cast-coherence rows were **vacuous as first frozen**: a `Rat.`-prefixed declaration elaborates
+  its type inside the `Rat` namespace, so the unqualified right-hand side (`svRatioDyn` etc.)
+  resolved to the ℚ shadow and each row became the identity `↑x = ↑x`, closable by `rfl` —
+  contradicting the row's own docstring, the §4 text and the Phase-1 api probe (which measured the
+  shape in an unnamed `example`, i.e. in the outer namespace, hence the intended reading).
+  Evidence: `#print` before the fix showed `@Rat.cast (Rat.svRatioDyn a b q)` on both sides.
+  **Fix**: fully-qualified right-hand sides (`PhotoLean.SternVolmer.svRatioDyn (a : ℝ) (b : ℝ)
+  (q : ℝ)` etc.), delivered proofs by fully-qualified `unfold` + `norm_cast`; `#print` after the
+  fix shows the real bridge; the transitional `rat_*_cast_real` workaround rows were removed.
+  Authority sha256 is now `d4b129c125254d8e9a9c26243a3d6596183942086136fae97a6fc98735aa0baf`.
 
 ## 4. Statement inventory
 
