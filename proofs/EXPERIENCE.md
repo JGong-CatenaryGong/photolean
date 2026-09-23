@@ -4161,7 +4161,7 @@ rows). Nothing here is a proof defect: every delivered theorem is true as stated
   stripped-form proofs), the relations registration for the nine new nodes, and the D1/D2
   adjudication reports.
 
-## 2026-09-23 — Photophysics batch Phase 3 (verification and adjudication) — lead — DONE (pending final verifier)
+## 2026-09-23 — Photophysics batch Phase 3 (verification and adjudication) — lead — DONE (final verifier PASS; one LOW finding fixed)
 
 - **Executed the full Phase-3 mandate** after the four re-freeze workers were killed mid-flight by
   a second API-key outage (the Phase-1 lesson held: the filesystem state was authoritative — two
@@ -4217,3 +4217,20 @@ rows). Nothing here is a proof defect: every delivered theorem is true as stated
   axioms → fidelity per row); the import-order workaround (batch modules before the Kasha
   modules) held for Relations.lean; the `Rat.`-prefix vacuity class did not recur (the Phase-2
   cross-check made it a standing dispatch item).
+
+
+### Phase-3 final verifier run (2026-09-23, second attempt — the first verifier was killed by the second API-key outage mid-flight) — **PASS, nothing blocks close-out**
+
+Raw outcomes (its report): whole-tree `check.sh --strict` PASS (leaf plane 16/16, scan zero hits
+independently re-run with the script's own pattern); fidelity 9/9 photophysics theories with
+0 signature differences and 0 not-delivered (counts 29/46/29/30/26/36/20/32/33 — StokesShift and
+FluorPhos grown by the negative-result rows, as expected); the 21 changed rows named in the
+statement-change index all `[propext, Classical.choice, Quot.sound]`, plus a 6-row sample of the
+new Relations rows; adversarial probes confirmed the weakened premises at work (`lnRate_eq` at
+`lam = 0` and `kB*T = 0`, `d1_verdict` at a NEGATIVE `k0`, `fretEff6_mono_kappa` at `κ₁ = 0`),
+independently re-derived the SS-C9 refutation witness, recomputed two composition rows
+numerically against their theorems, and re-closed the §12 certificates by `rfl`; the two vacuity
+re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barrierOrderQ` +
+`iscRate` in `hsoZeroWitness`). One LOW finding (two stale docstrings claiming dropped premises
+"kept verbatim") was fixed in the close-out commit `e7d274f`. One cosmetic note (the brief said
+"22 changed rows", the index names 21 + `lifetimeTracks_iff_dyn` — the count wording).
