@@ -4317,3 +4317,38 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   like `discr diag(1,2) = 4` gets simplified by `norm_num` to `False` and the tactic fails with
   an opaque unsolved-goals message; independently recomputing the expected value first
   (`discr = 1`, not 4) is what catches it. Recompute expected constants before asserting them.
+
+### 2026-09-23 — consolidated graph report (`theories/GRAPH-REPORT.md`): the incremental draft, reassembled — lead
+
+- **Trigger**: the human noted that `theories/RELATIONS.md` is *incremental* (three batch layers
+  §1–§7 / §8 / §9 over seventeen nodes) and asked for a summary report. A five-layer prose file is
+  not a graph the reader can hold in one pass; the fix is a consolidation, not more appending.
+- **Decision (kept)**: RELATIONS.md keeps its incremental shape (it is the per-batch discussion
+  draft with provenance and review-finding history) and the new `theories/GRAPH-REPORT.md` is the
+  non-incremental view: node inventory (17 rows: modules / authority count / delivered count /
+  entry mode), family taxonomy (F1 kernel readings, F1′ unequal-curvature generalization, F1″
+  kernel-carrying batch nodes, F2 rate cascade, F3 geometry/spectroscopy, F4 nonadiabatic
+  kinetics), edge inventory by § with the module's own accounting, the three adjudication classes
+  A1/A2/A3, the composition spine diagram, the consolidated no-edge registry (four classes), the
+  negative-result list, the weakest-premise ledger, boundaries, verification record, and an
+  onboarding checklist for an eighteenth node. Both prose files cite `PhotoLean/Relations.lean` as
+  the single machine-checked source, so neither can drift out of checkable content.
+- **Measured for the report (this round, at HEAD `5af10d1` + doc edits)**: whole-tree
+  `check.sh --strict` → `build: OK`, scan `clean`, 17/17 leaf planes `OK`, verdict PASS; all **17**
+  fidelity probes → `0 signature differences`, `not delivered yet: 0`
+  (51/102/191/151/132/139/35/29/46/29/30/26/36/20/32/33/71); `PhotoLean/Relations.lean` = **78
+  declarations** in 17 sections (8/6/3/4/4/3/5/6/7/0/4/7/2/2/12/0/5); 92 theory modules
+  (95 `.lean` with Kernel/Relations/Smoke); authority total **1153**, public delivered **1203**.
+  Residue unchanged: 5 `unused variable` warning lines at three pre-existing sites
+  (SternVolmer/Basic:65, SternVolmer/RatModel:61, FluorPhos/RatModel:89) — the strict scan is
+  `clean` because it scans placeholder/axiom keywords, not linter warnings.
+- **Refuted-draft count, measured not remembered**: 9 rows whose name marks a refutation or
+  falsification (`fpC5_firstForm_refuted`, `invertedCorner_firstForm_refuted`,
+  `inst_I11_F1/F2/F3/F5_not_model_consistent`, `inst_I12_affine_conforms_model_refuted`,
+  `betaHalf_falsified_by_unequal`, `inst_conflation_falsified`) — the earlier draft of the report
+  said "four", which was a recollection; `grep -rhoE '^(theorem|lemma) .*(refut|falsif)'` is the
+  cheap check. Rule: count negative results from the tree, never from prose.
+- **Failed path (recorded)**: a scripted `edit` that anchored a span including a trailing newline
+  silently joined two markdown lines (§0's Chinese paragraph); caught by re-reading the file after
+  the edit. Same class as the earlier anchored-span deletions: after every scripted edit of a
+  prose file, re-read the edited region.

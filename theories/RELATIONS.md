@@ -28,7 +28,19 @@
 > prose, and the one failed proof path (a rewrite pattern in the uniqueness half of C2) is recorded
 > in `proofs/EXPERIENCE.md`. The third (2026-09-21, the H1-crossing round of
 > adjudication rows and the two specialization certificates (§3bis, `Relations.lean` §11), plus the
-> seventh node's pairs in the no-edge registry (§2.5).
+> seventh node's pairs in the no-edge registry (§2.5). The fourth (2026-09-22/23) added the
+> photophysics batch (§8) and the fifth (2026-09-23) the seventeenth node RACI (§9).
+>
+> **Consolidated view.** This file keeps its incremental shape on purpose. The non-incremental
+> summary of the same graph — all seventeen nodes in one pass: node inventory, edge inventory, the
+> three adjudication classes A1/A2/A3, one consolidated no-edge registry and one verification record
+> — is `theories/GRAPH-REPORT.md`. The Lean edge inventory remains single-sourced in
+> `PhotoLean/Relations.lean`; the two prose files cite it and cannot drift out of checkable content.
+>
+> **中文（总结版）**：本文件**刻意保持增量形态**（第四批 2026-09-22/23 为 §8 光物理批次，第五批
+> 2026-09-23 为 §9 第十七个节点 RACI）。同一张图的**非增量总结**——17 个节点一次成型，含节点清单、
+> 边清单、三个裁定类 A1/A2/A3、合并版无边登记与复核记录——见 `theories/GRAPH-REPORT.md`。可检查的边
+> 清单仍**单一真源**于 `PhotoLean/Relations.lean`，两份正文文件都引用它，不会漂移出可检查内容。
 >
 > **中文（状态与来源）**：本文件是**七个**已交付理论（Marcus 反转区、Hammond 假说、Bell–Evans–Polanyi
 > 原理、Kasha 规则、Sabatier 原则/火山图，Goldschmidt 容忍因子与取代规则——经**无边登记**接入——以及
