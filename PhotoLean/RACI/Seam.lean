@@ -6,27 +6,27 @@ namespace PhotoLean
 
 
 /-!
-# RACI M1* — 全局 CI seam 的余维 2 子流形（反函数定理层）
+# RACI M1* — the global CI seam as a codimension-2 submanifold (the inverse-function-theorem layer)
 
-来源：plan.md §11（M1* 预览）、§4.5 风险回退。
-状态：M1–M4 完成后新增。把 M1.3 的线性层结论升级为局部几何结论：
-非退化锥形交叉点附近，`conicalSet` 经局部同胚对应 `ker F × {0}` 切片
-（mathlib 隐函数定理 `ImplicitFunctionData`），即局部上是余维 2 的子流形。
+Upstream provenance: the ChemLean RACI plan §11 (M1* preview) and §4.5 risk fallback (integration record: theories/RACI/plan.md §3.1).
+Status: added after M1–M4. It upgrades the linear-layer result of M1.3 to a local geometric statement:
+near a non-degenerate conical intersection, `conicalSet` corresponds, through a local homeomorphism, to the `ker F × {0}` slice
+(mathlib's implicit function theorem `ImplicitFunctionData`) — locally a codimension-2 submanifold.
 
-内容：
-1. `TwoState.degeneracyMap`：简并条件映射（与 `Branching.F` 的 fderiv 定义 defeq）。
-2. `degeneracyMap_hasStrictFDerivAt_of_contDiffAt`：H 在 x 处 C¹ ⇒ G 在 x 处严格可微、导数为 F。
-3. `conicalSet_locally_slice`：主定理（局部 rectification）。
-4. `conicalSet_local_codim_two`：结合 M1.3 的 `finrank_branching_eq_two` 给出余维数 2。
+Contents:
+1. `TwoState.degeneracyMap`: the degeneracy-condition map (definitionally equal to the fderiv definition of `Branching.F`).
+2. `degeneracyMap_hasStrictFDerivAt_of_contDiffAt`: `H` of class C¹ at `x` ⇒ `G` is strictly differentiable at `x` with derivative `F`.
+3. `conicalSet_locally_slice`: the main theorem (local rectification).
+4. `conicalSet_local_codim_two`: combined with `finrank_branching_eq_two` of M1.3, this gives codimension 2.
 
-属主：prover_m1（M1* 归属 M1 线）。
+Upstream owner: prover_m1 (M1* belongs to the M1 line).
 -/
 
 open Module
 
 namespace TwoState
 
-/-- 简并条件映射 G(y) = (a(y) - d(y), b(y))（与 `Branching.F` 的 fderiv 定义 defeq） -/
+/-- The degeneracy-condition map `G(y) = (a(y) - d(y), b(y))` (definitionally equal to the fderiv definition of `Branching.F`). -/
 def degeneracyMap {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (M : TwoState X) (y : X) : ℝ × ℝ :=
   (a M y - d M y, b M y)
@@ -39,8 +39,10 @@ variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
 open TwoState
 
-/-- M1*.1：三个独立矩阵元在 x 处 C¹ ⇒ 简并映射 G 在 x 处严格可微，导数为 F
-    （plan §4.5 的 fderiv 链接；矩阵本身在 mathlib 无规范范数实例，故前提取分量元组） -/
+/-- M1*.1: the three independent matrix entries of class C¹ at `x` ⇒ the degeneracy map `G` is
+    strictly differentiable at `x` with derivative `F` (the fderiv link of upstream §4.5; matrices
+    themselves carry no canonical norm instance in mathlib, so the premise is taken on the entry
+    tuple). -/
 theorem degeneracyMap_hasStrictFDerivAt_of_contDiffAt
     (M : TwoState X) {x : X}
     (hH : ContDiffAt ℝ 1 (fun y : X => (M.H y 0 0, M.H y 0 1, M.H y 1 1)) x) :
@@ -67,8 +69,9 @@ theorem degeneracyMap_hasStrictFDerivAt_of_contDiffAt
     exact (hG'.hasFDerivAt.differentiableAt.hasFDerivAt).unique hG'.hasFDerivAt
   simpa [hF_eq] using hG'
 
-/-- M1*.2 主定理：非退化 CI 附近，conicalSet 局部同胚于 (ℝ × ℝ) × ker F 的 {0} × ker F 切片
-    （ker F 的参数化方向即 seam；用 mathlib 隐函数定理 `ImplicitFunctionData`） -/
+/-- M1*.2 main theorem: near a non-degenerate CI, `conicalSet` is locally homeomorphic to the
+    `{0} × ker F` slice of `(ℝ × ℝ) × ker F` (the parametrizing directions of `ker F` are the
+    seam; via mathlib's implicit function theorem `ImplicitFunctionData`). -/
 theorem conicalSet_locally_slice
     {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X] [CompleteSpace X]
     (M : TwoState X) {x : X}
@@ -148,7 +151,7 @@ theorem conicalSet_locally_slice
     rw [φ.toPartialHomeomorph_apply]
     simp [φ, TwoState.conicalSet, TwoState.degeneracyMap, sub_eq_zero]
 
-/-- M1*.3 推论：非退化 CI 附近的 seam 切片余维数为 2（结合 M1.3 的 finrank_branching_eq_two） -/
+/-- M1*.3 corollary: the seam slice near a non-degenerate CI has codimension 2 (combined with `finrank_branching_eq_two` of M1.3). -/
 theorem conicalSet_local_codim_two
     {X : Type*} [NormedAddCommGroup X] [InnerProductSpace ℝ X] [FiniteDimensional ℝ X]
     [CompleteSpace X]

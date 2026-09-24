@@ -5,23 +5,23 @@ namespace PhotoLean
 
 
 /-!
-# RACI M2 — Torsion：扭转角模型与路径阻断定理
+# RACI M2 — Torsion: the torsion-angle model and the path-blocking theorem
 
-来源：plan.md §5.1–§5.4。
-状态：**SKELETON** —— 语句从 plan.md 转写；与草稿的差异：
-`torsion_blocks_ci` 中 FC 作为 `Set ℝ` 变量（plan §5.1 说 FC 具体定义在使用处给出；
-M2.3 实例里 FC 不参与）。
-属主：prover_m2（独占文件）。
+Upstream provenance: the ChemLean RACI plan §5.1–§5.4 (integration record: theories/RACI/plan.md §3.1).
+Status note (upstream header, preserved): the statements were transcribed from the upstream plan; the deviation from the draft:
+in `torsion_blocks_ci`, FC is a `Set ℝ` variable (upstream §5.1 leaves FC to its use site;
+in the M2.3 instance FC does not participate).
+Upstream owner: prover_m2 (exclusive file).
 -/
 
 open TwoState
 
 namespace RACI
 
-/-- 允许构型：|θ| ≥ δ（聚集相；CI 位于 θ=0，plan §5.1） -/
+/-- The allowed configurations: `|θ| ≥ δ` (the aggregate phase; the CI sits at `θ = 0`, upstream plan §5.1). -/
 def Allowed (δ : ℝ) : Set ℝ := {θ | δ ≤ |θ|}
 
-/-- M2.1：IVT 穿越引理 —— 从 θ≥θ0 连续走到 0 必经过 |θ| < δ（plan §5.2） -/
+/-- M2.1: the IVT crossing lemma — a continuous walk from `θ ≥ θ0` down to `0` must pass through `|θ| < δ` (upstream plan §5.2). -/
 theorem exists_cross_forbidden
     {δ θ0 : ℝ} (hδ : 0 < δ) (hθ : δ < θ0)
     {γ : ℝ → ℝ} (hγ : Continuous γ)
@@ -47,7 +47,7 @@ theorem exists_cross_forbidden
   rw [ht_eq, abs_of_pos hc_pos]
   exact hc_lt
 
-/-- M2.2：torsion 约束阻断所有 FC→CI 路径（对所有 ε 成立；plan §5.3） -/
+/-- M2.2: the torsion constraint blocks every FC→CI path (for every ε; upstream plan §5.3). -/
 theorem torsion_blocks_ci
     {M : TwoState ℝ} {FC : Set ℝ} {δ θ0 : ℝ}
     (hδ : 0 < δ) (hθ : δ < θ0)
@@ -62,17 +62,17 @@ theorem torsion_blocks_ci
   have hstay : δ ≤ |A.path t| := A.stays_allowed t
   linarith
 
-/-- M2.3：对角 torsion Hamiltonian：H(θ) = diag(θ, -θ)，CI 在 θ=0，能隙 2|θ|（plan §5.4） -/
+/-- M2.3: the diagonal torsion Hamiltonian `H(θ) = diag(θ, −θ)`: the CI at `θ = 0`, the gap `2|θ|` (upstream plan §5.4). -/
 def torsionH (θ : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
   !![θ, 0; 0, -θ]
 
-/-- M2.3：torsionH 的对称性（逐分量；plan §5.4） -/
+/-- M2.3: `torsionH` is symmetric (entrywise; upstream plan §5.4). -/
 theorem torsionH_symm : ∀ θ, Matrix.IsSymm (torsionH θ) := by
   intro θ
   ext i j
   fin_cases i <;> fin_cases j <;> simp [torsionH, Matrix.transpose]
 
-/-- M2.3：torsionH 的连续性（分量是恒等与负恒等；plan §5.4） -/
+/-- M2.3: `torsionH` is continuous (the entries are the identity and its negative; upstream plan §5.4). -/
 theorem torsionH_cont : Continuous torsionH := by
   refine continuous_matrix (fun i j => ?_)
   fin_cases i <;> fin_cases j
@@ -81,7 +81,7 @@ theorem torsionH_cont : Continuous torsionH := by
   · simpa [torsionH] using (continuous_const : Continuous fun a : ℝ => (0 : ℝ))
   · simpa [torsionH] using (continuous_neg : Continuous fun a : ℝ => -a)
 
-/-- M2.3：torsionH 的 CI 集恰为 {0}（plan §5.4） -/
+/-- M2.3: the CI set of `torsionH` is exactly `{0}` (upstream plan §5.4). -/
 theorem torsionH_conicalSet :
     TwoState.conicalSet (⟨torsionH, torsionH_symm, torsionH_cont⟩ : TwoState ℝ) = {0} := by
   ext θ

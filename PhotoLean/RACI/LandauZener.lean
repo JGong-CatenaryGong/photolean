@@ -4,21 +4,21 @@ namespace PhotoLean
 
 
 /-!
-# RACI M3 — LandauZener：LZ 概率单调性
+# RACI M3 — LandauZener: monotonicity of the LZ probability
 
-来源：plan.md §6.1、§6.2、§6.4。
-状态：**SKELETON** —— 语句从 plan.md 转写；与草稿的差异：
-§6.2 按 plan 证明步骤的要求把 `0 < c0` 写成显式前提（骨架已加入 `(hc0 : 0 < c0)`）。
-属主：prover_m3（独占文件）。
+Upstream provenance: the ChemLean RACI plan §6.1, §6.2, §6.4 (integration record: theories/RACI/plan.md §3.1).
+Status note (upstream header, preserved): the statements were transcribed from the upstream plan; the deviation from the draft:
+per the upstream proof steps, §6.2 states `0 < c0` as an explicit premise (this file carries `(hc0 : 0 < c0)`).
+Upstream owner: prover_m3 (exclusive file).
 -/
 
 namespace RACI
 
-/-- Landau-Zener 型概率：P = exp(-(c * a))（常数已吸收进 c；plan §6.1） -/
+/-- The Landau–Zener-type probability `P = exp(−(c·a))` (the constants are absorbed into `c`; upstream plan §6.1). -/
 noncomputable def lzProbability (c a : ℝ) : ℝ :=
   Real.exp (-(c * a))
 
-/-- M3.1：抽象指数函数反单调（`Real.exp_strictMono`；plan §6.1，API-NOTES 记录 8） -/
+/-- M3.1: the abstract exponential is antitone (`Real.exp_strictMono`; upstream plan §6.1, upstream API-NOTES item 8). -/
 theorem lz_antitone (hc : 0 < c) {a b : ℝ} (hab : a < b) :
     lzProbability c b < lzProbability c a := by
   have h1 : c * a < c * b := mul_lt_mul_of_pos_left hab hc
@@ -26,7 +26,7 @@ theorem lz_antitone (hc : 0 < c) {a b : ℝ} (hab : a < b) :
   have h3 := Real.exp_strictMono h2
   simpa [lzProbability] using h3
 
-/-- M3.2：LZ 概率关于能隙平方反单调（plan §6.2；`0 < c0` 为显式前提） -/
+/-- M3.2: the LZ probability is antitone in the squared gap (upstream plan §6.2; `0 < c0` is an explicit premise). -/
 theorem lz_probability_antitone_in_gap
     {Δ1 Δ2 v F c0 : ℝ}
     (hv : 0 < v) (hF : 0 < F) (hc0 : 0 < c0)
@@ -38,7 +38,7 @@ theorem lz_probability_antitone_in_gap
     simpa [abs_of_nonneg hΔ0, abs_of_pos (lt_of_le_of_lt hΔ0 hΔ)] using hΔ
   exact lz_antitone (div_pos hc0 (mul_pos hv hF)) hsq
 
-/-- M3.4（可选）：FGR 洛伦兹线型关于能隙的反单调（plan §6.4） -/
+/-- M3.4 (optional): the FGR Lorentzian line shape is antitone in the gap (upstream plan §6.4). -/
 noncomputable def lorentzian (σ x : ℝ) : ℝ :=
   1 / (1 + (x / σ) ^ 2)
 

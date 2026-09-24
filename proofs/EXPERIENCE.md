@@ -4282,3 +4282,38 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   2001, not Tang, and the RACI terminology is Peng et al. 2016 / Li & Blancafort 2013 — both
   corrected at the top of the file; RESULTS.md bilingual; probes with the authority), README
   seventeenth theory, RELATIONS.md §9.
+
+### 2026-09-23 — RACI close-out audit (verifier run 1): PASS, five MINOR findings all resolved — lead
+
+- **Verdict**: PASS on all five gates (leaf plane 17/17; scan clean independently re-run; 13 RACI
+  modules in `defaultTargets` checked against disk; fidelity 71/71 with 0 differences and the
+  verifier's own declaration counters (71 = 46 thm + 23 def + 2 structure; 88 delivered = 59 thm +
+  29 defs); `#print axioms` 59/59 with only the allowed infrastructure axioms; the §17 five rows
+  5/5 clean). Scientific re-derivations all matched: the torsion CI algebra (729-point grid, 0
+  counterexamples), the enhancement rebuilt through `accessGap_lt` + `barrierRate_antitone` with
+  both yields computed (`Φ_free = 1/2`, `Φ_agg = 1/(1+exp(−1))`), the non-model, the ℚ classifier
+  (8/8), the adversarial set (`hδ` and `hkr_pos` load-bearing; no delivered form broke at
+  δ = 1/1000 or (1e6, 7, 42)), the near-miss (`hlam` load-bearing on the Marcus crossing row),
+  and `loop_gap = 2`.
+- Findings and resolutions (all MINOR, all in the close-out commit):
+  1. **Process order (F1)**: the board's 88 rows had been ticked before the audit ran — final
+     state consistent (the audit PASSed), but the order violated iron rule 7; recorded on the
+     board and in RESULTS' validation history. Discipline note: tick only after the verdict, even
+     when the verdict is a formality.
+  2. **sha256 prefix off by one character (F2)**: the recorded prefix `de0af9457ecd204…` was
+     missing its first character; the full hashes are now recorded (and the skeleton's hash
+     changed twice in the close-out anyway: the term-mode fix below).
+  3. **Skeleton placeholder count (F3)**: two term-mode theorem bodies survived the extractor
+     (44/46 placeholders — the count check had flagged it but the fix was not applied); both are
+     now `sorry` and the skeleton emits exactly 46 placeholder warnings. Lesson: a flagged
+     count discrepancy is a TODO, not a note.
+  4. **Language policy (F4)**: ≈149 Chinese comment lines across 11 ported modules (plus
+     cross-references to the ChemLean plan) — all translated to English in one comments-only
+     commit, identifiers/notation verbatim, provenance kept in each header; fidelity and the
+     whole-tree gate unchanged (comments are stripped by both).
+  5. **Commit granularity (F5)**: theory-granular `feat(RACI)` commits — the established
+     repository practice; registered in the integration record.
+- **Verifier's own new measured boundary** (carried into this bank at its request): a FALSE goal
+  like `discr diag(1,2) = 4` gets simplified by `norm_num` to `False` and the tactic fails with
+  an opaque unsolved-goals message; independently recomputing the expected value first
+  (`discr = 1`, not 4) is what catches it. Recompute expected constants before asserting them.

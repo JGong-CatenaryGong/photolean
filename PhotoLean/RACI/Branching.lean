@@ -5,14 +5,14 @@ namespace PhotoLean
 
 
 /-!
-# RACI M1 — Branching：branching space、余维 2（线性层）、线性劈裂
+# RACI M1 — Branching: the branching space, codimension 2 (linear layer), the linearized splitting
 
-来源：plan.md §4.3、§4.4。
-状态：**SKELETON** —— 语句从 plan.md 转写；两处与草稿的有意差异：
-1. `finrank_branching_eq_two` 中 `F` 按 plan §4.5 风险回退"先作为任意连续线性映射陈述"（fderiv 版保留）。
-2. plan §4.4 草稿把 `eigenRoots` 直接用于矩阵；骨架引入 `eigenRootsMat`（矩阵级对应），
-   语义等价（TwoState.eigenRoots 是其在 (H x) 上的特例）。
-属主：prover_m1（独占文件）。
+Upstream provenance: the ChemLean RACI plan §4.3, §4.4 (integration record: theories/RACI/plan.md §3.1).
+Status note (upstream header, preserved): the statements were transcribed from the upstream plan; two deliberate deviations from the draft:
+1. In `finrank_branching_eq_two`, `F` follows the upstream §4.5 risk fallback "state it first as an arbitrary continuous linear map" (the fderiv version is kept too).
+2. The upstream §4.4 draft used `eigenRoots` directly on matrices; this file introduces `eigenRootsMat` (the matrix-level counterpart),
+   semantically equivalent (`TwoState.eigenRoots` is its special case on `H x`).
+Upstream owner: prover_m1 (exclusive file).
 -/
 
 open TwoState
@@ -20,14 +20,17 @@ open Module
 
 variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
-/-- 简并条件映射 F(x) = (a(x) - d(x), b(x)) 的 fderiv -/
+/-- The fderiv of the degeneracy-condition map `F(x) = (a(x) - d(x), b(x))`. -/
 noncomputable def F (M : TwoState X) (x : X) : X →L[ℝ] (ℝ × ℝ) :=
   fderiv ℝ (fun y => (TwoState.a M y - TwoState.d M y, TwoState.b M y)) x
 
-/-- M1.3：branching space（ker F 的正交补）维数为 2（线性层的余维 2；plan §4.3）
-    plan §4.5 风险回退：把 F 作为任意连续线性映射陈述（`F' : Y →L[ℝ] (ℝ × ℝ)`）；
-    `ᗮ` 正交补需要 `[InnerProductSpace ℝ Y]`，故在 Y 上以 `InnerProductSpace` 提供范数结构，
-    避免与 `[NormedSpace ℝ Y]` 的实例菱形。fderiv 版（上方 `F`）保留，Sprint 5 单独证 `F = fderiv ...`。 -/
+/-- M1.3: the branching space (the orthogonal complement of `ker F`) has dimension 2 (codimension 2
+    of the linear layer; upstream plan §4.3). Upstream §4.5 risk fallback: `F` is stated as an
+    arbitrary continuous linear map (`F' : Y →L[ℝ] (ℝ × ℝ)`); the orthogonal complement `ᗮ`
+    requires `[InnerProductSpace ℝ Y]`, so the norm structure on `Y` is provided through
+    `InnerProductSpace`, avoiding the instance diamond with `[NormedSpace ℝ Y]`. The fderiv
+    version (the `F` above) is kept; the identification `F = fderiv ...` belongs to the upstream
+    Sprint 5. -/
 theorem finrank_branching_eq_two
     {Y : Type*} [NormedAddCommGroup Y] [InnerProductSpace ℝ Y] [FiniteDimensional ℝ Y]
     (F' : Y →L[ℝ] (ℝ × ℝ)) (hreg : Function.Surjective F') :
@@ -52,9 +55,10 @@ theorem finrank_branching_eq_two
     _ = finrank ℝ (ℝ × ℝ) := hfin1
     _ = 2 := hfin2
 
-/-- M1.3 显式二维实例：线性化模型（t=1）的简并映射 `v ↦ (2·v 0, v 1)`。
-    定义域用 `EuclideanSpace ℝ (Fin 2)`（≃ ℝ²），其范数结构由 `InnerProductSpace` 唯一派生，
-    避免 ℝ×ℝ 的 `NormedSpace`/`InnerProductSpace` 实例菱形（plan §4.3 验收） -/
+/-- M1.3 explicit two-dimensional instance: the degeneracy map of the linearized model
+    (`t = 1`), `v ↦ (2·v 0, v 1)`. The domain is `EuclideanSpace ℝ (Fin 2)` (≃ ℝ²), whose norm
+    structure is uniquely derived from `InnerProductSpace`, avoiding the
+    `NormedSpace`/`InnerProductSpace` instance diamond of ℝ×ℝ (upstream §4.3 acceptance). -/
 noncomputable def Fex : (EuclideanSpace ℝ (Fin 2)) →L[ℝ] (ℝ × ℝ) where
   toFun := fun v => (2 * v 0, v 1)
   map_add' := by
@@ -65,28 +69,28 @@ noncomputable def Fex : (EuclideanSpace ℝ (Fin 2)) →L[ℝ] (ℝ × ℝ) wher
     ext <;> simp [mul_assoc, mul_left_comm, mul_comm, Pi.smul_apply]
   cont := by fun_prop
 
-/-- M1.3：Fex 满射（plan §4.3 验收的 hreg） -/
+/-- M1.3: `Fex` is surjective (the `hreg` of the upstream §4.3 acceptance). -/
 theorem Fex_surjective : Function.Surjective Fex := by
   intro q
   refine ⟨![q.1 / 2, q.2], ?_⟩
   ext <;> simp [Fex]
   field_simp
 
-/-- M1.3 显式实例：branching space 余维 2 在二维 Euclidean 空间上成立（plan §4.3 验收） -/
+/-- M1.3 explicit instance: codimension 2 of the branching space holds on the two-dimensional Euclidean space (upstream §4.3 acceptance). -/
 theorem finrank_branching_eq_two_explicit :
     finrank ℝ (LinearMap.ker Fex)ᗮ = 2 := by
   exact finrank_branching_eq_two Fex Fex_surjective
 
-/-- 线性化两态矩阵：g 方向对角差，h 方向耦合（plan §4.4） -/
+/-- The linearized two-state matrix: diagonal difference along the g direction, coupling along h (upstream plan §4.4). -/
 def linearized (gv hv t : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
   !![t * gv, t * hv; t * hv, -(t * gv)]
 
-/-- 矩阵版本的判别式本征值对（plan §4.4 草稿将 eigenRoots 用于矩阵；见文件头注 2） -/
+/-- The matrix-level discriminant eigenvalue pair (the upstream §4.4 draft applied `eigenRoots` to matrices; see header note 2). -/
 noncomputable def eigenRootsMat (M : Matrix (Fin 2) (Fin 2) ℝ) : ℝ × ℝ :=
   (((M 0 0 + M 1 1) + Real.sqrt ((M 0 0 - M 1 1) ^ 2 + 4 * (M 0 1) ^ 2)) / 2,
    ((M 0 0 + M 1 1) - Real.sqrt ((M 0 0 - M 1 1) ^ 2 + 4 * (M 0 1) ^ 2)) / 2)
 
-/-- M1.4：线性化矩阵的判别式恒等式（纯多项式，ring_nf；plan §4.4） -/
+/-- M1.4: the discriminant identity of the linearized matrix (a pure polynomial; closed by `ring_nf`; upstream plan §4.4). -/
 theorem linearized_discr (gv hv t : ℝ) :
     (linearized gv hv t 0 0 - linearized gv hv t 1 1) ^ 2
       + 4 * (linearized gv hv t 0 1) ^ 2
@@ -94,7 +98,7 @@ theorem linearized_discr (gv hv t : ℝ) :
   simp [linearized]
   ring
 
-/-- M1.4：沿 branching 方向的能级劈裂（plan §4.4；sqrt (t^2) = |t|） -/
+/-- M1.4: the level splitting along the branching direction (upstream plan §4.4; `sqrt (t^2) = |t|`). -/
 theorem linearized_gap (gv hv t : ℝ) :
     let e := eigenRootsMat (linearized gv hv t)
     e.1 - e.2 = 2 * |t| * Real.sqrt (gv ^ 2 + hv ^ 2) := by
@@ -111,7 +115,7 @@ theorem linearized_gap (gv hv t : ℝ) :
   rw [hdiscr, hsq]
   ring
 
-/-- M1.4 推论：非零 t 与非零劈裂方向下能隙为正（M6 几何相位前置；plan §4.4） -/
+/-- M1.4 corollary: at nonzero `t` and a nonzero splitting direction the gap is positive (the prerequisite of the M6 geometric-phase work; upstream plan §4.4). -/
 theorem linearized_gap_pos (gv hv t : ℝ) (ht : t ≠ 0) (hgh : gv ^ 2 + hv ^ 2 ≠ 0) :
     0 < 2 * |t| * Real.sqrt (gv ^ 2 + hv ^ 2) := by
   have ht' : 0 < |t| := abs_pos.mpr ht

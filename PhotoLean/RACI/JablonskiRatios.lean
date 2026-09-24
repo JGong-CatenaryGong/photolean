@@ -5,16 +5,16 @@ namespace PhotoLean
 
 
 /-!
-# RACI M4+ — 广义发射增强判据
+# RACI M4+ — the generalized emission-enhancement criterion
 
-AIE 只需要证明 `Φ_agg > Φ_sol`，不必强加 `kr_agg = kr_free`。
-本文件把 M4 的等 kr 版本推广为 **knr/kr 比值判据**：
+AIE only needs `Φ_agg > Φ_sol`; the equality `kr_agg = kr_free` need not be imposed.
+This file generalizes the equal-kr version of M4 to the **knr/kr ratio criterion**:
 `Φ_agg > Φ_sol ⟺ knr_agg/kr_agg < knr_sol/kr_sol`。
 -/
 
 namespace RACI
 
-/-- 量子产率差值恒等式（分母正时） -/
+/-- The quantum-yield difference identity (at positive denominators). -/
 theorem quantumYield_sub_eq
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
@@ -27,7 +27,7 @@ theorem quantumYield_sub_eq
   field_simp [hd1, hd2]
   ring
 
-/-- 广义主判据：Φ_agg > Φ_sol ⟺ knr_agg/kr_agg < knr_sol/kr_sol -/
+/-- The generalized main criterion: `Φ_agg > Φ_sol ⟺ knr_agg/kr_agg < knr_sol/kr_sol`. -/
 theorem quantumYield_gt_iff_ratio_lt
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
@@ -52,7 +52,7 @@ theorem quantumYield_gt_iff_ratio_lt
       exact (div_pos_iff_of_pos_right hden).mpr hnum
     exact sub_pos.mp hq
 
-/-- 单向版本：knr/kr 下降 ⇒ Φ 上升 -/
+/-- The one-way version: a drop in `knr/kr` implies a rise in Φ. -/
 theorem quantumYield_gt_of_ratio_lt
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
@@ -61,7 +61,7 @@ theorem quantumYield_gt_of_ratio_lt
     quantumYield kr2 knr2 > quantumYield kr1 knr1 :=
   (quantumYield_gt_iff_ratio_lt hkr1 hkr2 hknr1 hknr2).mpr h
 
-/-- 充分条件：辐射速率不降（kr_agg ≥ kr_sol）且无辐射速率下降 ⇒ Φ_agg > Φ_sol -/
+/-- Sufficient condition: the radiative rate does not drop (`kr_agg ≥ kr_sol`) and the nonradiative rate drops ⇒ `Φ_agg > Φ_sol`. -/
 theorem quantumYield_gt_of_knr_lt_of_kr_le
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
@@ -73,7 +73,7 @@ theorem quantumYield_gt_of_knr_lt_of_kr_le
   have h2 : knr1 / kr2 ≤ knr1 / kr1 := div_le_div_of_nonneg_left hknr1 hkr1 hkr_le
   exact lt_of_lt_of_le h1 h2
 
-/-- 广义 RACI 模板：只要求 knr/kr 比值下降，不要求 kr 相等 -/
+/-- The generalized RACI template: only a drop of the `knr/kr` ratio is required, not `kr` equality. -/
 theorem raci_emission_enhancement_general
     {kr_free kr_agg knr_free knr_agg : ℝ}
     (hkr_free : 0 < kr_free) (hkr_agg : 0 < kr_agg)
@@ -83,16 +83,16 @@ theorem raci_emission_enhancement_general
   quantumYield_gt_of_ratio_lt hkr_free hkr_agg hknr_free hknr_agg hratio
 
 
-/-- 竞争比：无辐射/辐射速率比，决定发光分支比 -/
+/-- The competition ratio: the nonradiative-over-radiative rate ratio that fixes the emission branching. -/
 noncomputable def competitionRatio (kr knr : ℝ) : ℝ := knr / kr
 
-/-- Φ = 1 / (1 + competitionRatio)（kr ≠ 0 时） -/
+/-- `Φ = 1 / (1 + competitionRatio)` (for `kr ≠ 0`). -/
 theorem quantumYield_eq_inv_one_add_competitionRatio {kr knr : ℝ} (hkr : kr ≠ 0) :
     quantumYield kr knr = 1 / (1 + competitionRatio kr knr) := by
   unfold quantumYield competitionRatio
   field_simp [hkr]
 
-/-- knr/kr 下降 ⟺ Φ 上升（与 quantumYield_gt_iff_ratio_lt 同义） -/
+/-- A drop in `knr/kr` ⟺ a rise in Φ (synonym of `quantumYield_gt_iff_ratio_lt`). -/
 theorem quantumYield_gt_iff_competitionRatio_lt
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
@@ -101,15 +101,15 @@ theorem quantumYield_gt_iff_competitionRatio_lt
       competitionRatio kr2 knr2 < competitionRatio kr1 knr1 := by
   simpa [competitionRatio] using quantumYield_gt_iff_ratio_lt hkr1 hkr2 hknr1 hknr2
 
-/-- 无辐射通道分解：knr = kCI + kOther -/
+/-- The nonradiative channel decomposition: `knr = kCI + kOther`. -/
 theorem competitionRatio_add {kr kCI kOther : ℝ} (hkr : kr ≠ 0) :
     competitionRatio kr (kCI + kOther) = kCI / kr + kOther / kr := by
   unfold competitionRatio
   field_simp [hkr]
 
-/-- 通道竞争形式：即使 kr_agg < kr_sol，只要 CI 通道比值下降得足够多、
-    其他无辐射通道比值不升高，则发光仍增强。
-    这里没有任何 kr_agg/kr_sol > 1 的假设。 -/
+/-- Channel-competition form: even when `kr_agg < kr_sol`, emission is still enhanced as long as
+    the CI channel's ratio drops sufficiently and the other nonradiative channels' ratios do not
+    rise. No assumption `kr_agg/kr_sol > 1` is made here. -/
 theorem quantumYield_gt_of_channel_ratios
     {kr1 kr2 kCI1 kCI2 kOther1 kOther2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
@@ -127,9 +127,9 @@ theorem quantumYield_gt_of_channel_ratios
     (by simpa [competitionRatio] using htotal)
 
 
-/-- 先验 AIE 判据（乘法形式，不含任何统计/实验项）：
-    Φ_agg > Φ_sol ⟺ knr_agg * kr_sol < knr_sol * kr_agg。
-    这是二态 Jablonski 模型内的**充要条件**。 -/
+/-- The a-priori AIE criterion (multiplicative form, with no statistical or experimental term):
+    `Φ_agg > Φ_sol ⟺ knr_agg * kr_sol < knr_sol * kr_agg`.
+    This is the **necessary and sufficient condition** within the two-state Jablonski model. -/
 theorem aie_iff_mul
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
@@ -152,9 +152,9 @@ theorem aie_iff_mul
       exact (div_pos_iff_of_pos_right hden).mpr hnum
     exact sub_pos.mp hq
 
-/-- 抑制因子形式：设 c = knr_agg/knr_sol，d = kr_agg/kr_sol。
-    AIE 成立 ⟺ 无辐射抑制因子小于辐射抑制因子：c < d。
-    注意：**不要求 kr_agg ≥ kr_sol**。 -/
+/-- Suppression-factor form: with `c = knr_agg/knr_sol` and `d = kr_agg/kr_sol`, AIE holds
+    ⟺ the nonradiative suppression factor is smaller than the radiative one, `c < d`.
+    Note: **`kr_agg ≥ kr_sol` is NOT required.** -/
 theorem aie_iff_knr_suppression_lt_kr_suppression
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)

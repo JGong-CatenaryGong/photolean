@@ -4,20 +4,20 @@ namespace PhotoLean
 
 
 /-!
-# RACI M4 — Jablonski：量子产率代数
+# RACI M4 — Jablonski: the quantum-yield algebra
 
-来源：plan.md §7.1、§7.2。
-状态：**SKELETON** —— 语句从 plan.md 转写。
-属主：prover_m4（独占文件）。
+Upstream provenance: the ChemLean RACI plan §7.1, §7.2 (integration record: theories/RACI/plan.md §3.1).
+Status note (upstream header, preserved): the statements were transcribed from the upstream plan.
+Upstream owner: prover_m4 (exclusive file).
 -/
 
 namespace RACI
 
-/-- 量子产率：kr / (kr + knr)（plan §2.3） -/
+/-- The quantum yield `kr / (kr + knr)` (upstream plan §2.3). -/
 noncomputable def quantumYield (kr knr : ℝ) : ℝ :=
   kr / (kr + knr)
 
-/-- M4.1：量子产率关于 k_nr 严格反单调（plan §7.1） -/
+/-- M4.1: the quantum yield is strictly antitone in `k_nr` (upstream plan §7.1). -/
 theorem quantumYield_strictMono_of_knr_lt
     {kr1 kr2 knr1 knr2 : ℝ}
     (hkr_pos : 0 < kr1)
@@ -38,7 +38,7 @@ theorem quantumYield_strictMono_of_knr_lt
     exact div_pos (mul_pos hkr_pos (sub_pos.mpr hknr)) (mul_pos hden2 hden1)
   linarith
 
-/-- M4.2：RACI 模板定理（plan §7.2；hknr 是显式前提，不是公理） -/
+/-- M4.2: the RACI template theorem (upstream plan §7.2; `hknr` is an explicit premise, not an axiom). -/
 theorem raci_emission_enhancement
     {kr_free kr_agg knr_free knr_agg : ℝ}
     (hkr : kr_agg = kr_free)

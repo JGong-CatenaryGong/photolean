@@ -4,20 +4,20 @@ namespace PhotoLean
 
 
 /-!
-# RACI M3 — Barrier：势垒型无辐射速率单调性
+# RACI M3 — Barrier: monotonicity of the barrier-type nonradiative rate
 
-来源：plan.md §6.3。
-状态：**SKELETON** —— 语句从 plan.md 转写。
-属主：prover_m3（独占文件）。
+Upstream provenance: the ChemLean RACI plan §6.3 (integration record: theories/RACI/plan.md §3.1).
+Status note (upstream header, preserved): the statements were transcribed from the upstream plan.
+Upstream owner: prover_m3 (exclusive file).
 -/
 
 namespace RACI
 
-/-- 势垒型无辐射速率：k_nr = A exp(-β B)（plan §6.3） -/
+/-- The barrier-type nonradiative rate: `k_nr = A·exp(−β·B)` (upstream plan §6.3). -/
 noncomputable def barrierRate (A β B : ℝ) : ℝ :=
   A * Real.exp (-(β * B))
 
-/-- M3.3：势垒型无辐射速率反单调（plan §6.3；复刻 M3.1 的指数步骤后乘正数 A） -/
+/-- M3.3: the barrier-type nonradiative rate is antitone (upstream plan §6.3; the M3.1 exponential step, then multiplication by the positive `A`). -/
 theorem barrierRate_antitone
     (hA : 0 < A) (hβ : 0 < β) {B1 B2 : ℝ}
     (hB : B1 < B2) :

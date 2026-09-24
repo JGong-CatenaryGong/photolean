@@ -4,18 +4,18 @@ namespace PhotoLean
 
 
 /-!
-# RACI M1 — TwoState：2×2 实对称 Hamiltonian 的 CI 代数
+# RACI M1 — TwoState: the CI algebra of the 2×2 real symmetric Hamiltonian
 
-来源：plan.md §2.2、§4.1、§4.2。
-状态：**DONE** —— M1.1/M1.2 四条定理已证明（Sprint 2），无占位证明、无自定义 axiom。
-属主：prover_m1（独占文件）。
-纪律：本文件交付的定理不得含占位证明 / 自定义 `axiom`；
-API 名漂移不猜测，交给 api_researcher 校准（记录于 proofs/API-NOTES.md）。
+Upstream provenance: the ChemLean RACI plan §2.2, §4.1, §4.2 (integration record: theories/RACI/plan.md §3.1).
+Status: **DONE** — the four M1.1/M1.2 theorems are proved (upstream Sprint 2): no placeholder proof, no custom axiom.
+Upstream owner: prover_m1 (exclusive file).
+Discipline: the delivered theorems of this file carry no placeholder proof and no custom `axiom`;
+API names are never guessed — they are calibrated by api_researcher (recorded in the upstream proofs/API-NOTES.md).
 -/
 
 variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
 
-/-- 两态绝热 Hamiltonian（核构型空间 X 上的 2×2 实对称矩阵族） -/
+/-- Two-state adiabatic Hamiltonian (a 2×2 real symmetric matrix family over the nuclear configuration space `X`). -/
 structure TwoState (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] where
   H : X → Matrix (Fin 2) (Fin 2) ℝ
   h_symm : ∀ x, Matrix.IsSymm (H x)
@@ -23,33 +23,33 @@ structure TwoState (X : Type*) [NormedAddCommGroup X] [NormedSpace ℝ X] where
 
 namespace TwoState
 
-/-- 矩阵元记号：a = H00, b = H01, d = H11 -/
+/-- Matrix-entry notation: `a = H00`, `b = H01`, `d = H11`. -/
 def a (M : TwoState X) (x : X) : ℝ := M.H x 0 0
 
-/-- 矩阵元记号：b = H01（耦合） -/
+/-- Matrix-entry notation: `b = H01` (the coupling). -/
 def b (M : TwoState X) (x : X) : ℝ := M.H x 0 1
 
-/-- 矩阵元记号：d = H11 -/
+/-- Matrix-entry notation: `d = H11`. -/
 def d (M : TwoState X) (x : X) : ℝ := M.H x 1 1
 
-/-- 简并判别式：(a-d)^2 + 4 b^2 -/
+/-- The degeneracy discriminant: `(a - d) ^ 2 + 4 * b ^ 2`. -/
 def discr (M : TwoState X) (x : X) : ℝ :=
   (a M x - d M x) ^ 2 + 4 * (b M x) ^ 2
 
-/-- 锥形交叉集合（2×2 实对称矩阵的两个等价简并条件） -/
+/-- The conical-intersection set (the two equivalent degeneracy conditions of a 2×2 real symmetric matrix). -/
 def conicalSet (M : TwoState X) : Set X :=
   {x | a M x = d M x ∧ b M x = 0}
 
-/-- 判别式形式的锥形交叉集合（与 conicalSet 等价，见 discr_eq_zero_iff_ci） -/
+/-- The conical-intersection set in discriminant form (equivalent to `conicalSet`, see `discr_eq_zero_iff_ci`). -/
 def conicalSet' (M : TwoState X) : Set X :=
   {x | discr M x = 0}
 
-/-- 2×2 实对称矩阵的两个本征值（判别式形式） -/
+/-- The two eigenvalues of a 2×2 real symmetric matrix (discriminant form). -/
 noncomputable def eigenRoots (M : TwoState X) (x : X) : ℝ × ℝ :=
   (((a M x + d M x) + Real.sqrt (discr M x)) / 2,
    ((a M x + d M x) - Real.sqrt (discr M x)) / 2)
 
-/-- M1.1：判别式零 ⇔ CI 条件（plan §4.1，验收清单 §4.5 第 1 项） -/
+/-- M1.1: vanishing discriminant ⇔ the CI condition (upstream plan §4.1; acceptance item 1 of upstream §4.5). -/
 theorem discr_eq_zero_iff_ci (M : TwoState X) (x : X) :
     discr M x = 0 ↔ a M x = d M x ∧ b M x = 0 := by
   unfold discr
@@ -68,13 +68,13 @@ theorem discr_eq_zero_iff_ci (M : TwoState X) (x : X) :
   · rintro ⟨had, hb⟩
     simp [had, hb]
 
-/-- M1.2：判别式非负（plan §4.2） -/
+/-- M1.2: the discriminant is nonnegative (upstream plan §4.2). -/
 theorem discr_nonneg (M : TwoState X) (x : X) : 0 ≤ discr M x := by
   unfold discr
   exact add_nonneg (sq_nonneg (a M x - d M x))
     (mul_nonneg (by norm_num : (0 : ℝ) ≤ 4) (sq_nonneg (b M x)))
 
-/-- M1.2：本征值简并 ⇔ 判别式为零（plan §4.2） -/
+/-- M1.2: eigenvalue degeneracy ⇔ vanishing discriminant (upstream plan §4.2). -/
 theorem degenerate_iff_discr_zero (M : TwoState X) (x : X) :
     (eigenRoots M x).1 = (eigenRoots M x).2 ↔ discr M x = 0 := by
   unfold eigenRoots
@@ -90,7 +90,7 @@ theorem degenerate_iff_discr_zero (M : TwoState X) (x : X) :
     rw [hs]
     ring
 
-/-- M1.2：CI ⇔ 本征值简并（plan §4.2） -/
+/-- M1.2: CI ⇔ eigenvalue degeneracy (upstream plan §4.2). -/
 theorem ci_iff_degenerate (M : TwoState X) (x : X) :
     x ∈ conicalSet M ↔ (eigenRoots M x).1 = (eigenRoots M x).2 := by
   rw [degenerate_iff_discr_zero, discr_eq_zero_iff_ci]

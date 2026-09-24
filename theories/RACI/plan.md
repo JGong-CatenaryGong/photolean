@@ -88,8 +88,16 @@ only), sha256 recorded on the board.
    rows are `PhotoLean.RACI.*` and the TwoState-algebra rows are `PhotoLean.TwoState.*`; the
    Branching rows sit at `PhotoLean.*` (their upstream top-level layout, kept verbatim).
 4. **Upstream status headers**: several ported files carry a stale `SKELETON` header from the
-   upstream repo although the content is fully proved; the headers are preserved verbatim
-   (comments are not scanned content) and the real status is this plan + the board.
+   upstream repo although the content is fully proved; the headers were preserved through the
+   port and reworded in the close-out translation (below), and the real status is this plan + the
+   board.
+5. **Language policy (close-out audit finding F4)**: the ported modules originally carried
+   Chinese comments and cross-references to the ChemLean plan (≈149 lines across 11 files). The
+   close-out commit translated every comment to English (Lean identifiers and mathematical
+   notation verbatim; the upstream plan references now read "the ChemLean RACI plan §N" with the
+   integration record pointer), and each module header keeps its ChemLean provenance. The
+   comments-only change leaves every signature untouched (fidelity 71/71 unchanged, whole-tree
+   gate PASS).
 
 ## 4. Milestones and module plan
 
