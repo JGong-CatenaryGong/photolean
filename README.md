@@ -10,7 +10,7 @@ Agent preset 驱动。
 
 - Lean 4.17.0 + mathlib，工具链与缓存已联通（`lake build` 冷启动 ~10s）
 - 验收门脚本可用：`proofs/scripts/check.sh --strict`、`proofs/scripts/axioms.sh`
-- **十六个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
+- **十七个理论已交付**（`PhotoLean/` 均零占位证明、零自定义公理，`#print axioms` 只含
   `propext` / `Classical.choice` / `Quot.sound`）：
   - **Marcus 反转区**（经典马库斯模型）——`PhotoLean/Marcus/`（8 模块：描述层 / 势垒代数 / 速率层 /
     锐利成立条件 / 微观重组能 / ℚ 判定层 / 复合 / 实例判决），**82 条声明**，语句保真 **51/51**
@@ -71,6 +71,13 @@ Agent preset 驱动。
       **32 条声明**，保真 **32/32**；
     - **Einstein A/B 系数等价链**——`PhotoLean/Einstein/`（4 模块），**33 条声明**，
       保真 **33/33**；
+  - **RACI（受限锥形交叉 ⇒ 聚集诱导发射；第十七个理论，自独立 ChemLean 仓库纳管，同一
+    Lean 4.17.0 / mathlib v4.17.0 工具链）**——`PhotoLean/RACI/`（13 模块：M1 CI 代数 /
+    M1 branching 余维 2 / M2 可达性与扭转阻断 / M3 势垒与 Landau–Zener 单调性 / M4 RACI
+    定理与通道比推广 / M1\* CI seam 局部余维 2 子流形 / M6 Longuet–Higgins 符号定理 /
+    纳管新增的实例层与 ℚ 决策层），**88 条声明**（59 定理 + 29 定义/结构/归纳类型），
+    保真 **71/71**（权威自交付签名提取；经 `Relations.lean` §17 接入关系图：QY 组合证书、
+    能隙律链接、ICvsISC 注记、Marcus 形似注、无边登记）。
 - 每个理论的规划 / 任务板 / 文献 / 面向人类提问的答复：`theories/<理论>/{plan,TASKS,LITERATURE,RESULTS}.md`
 - **跨理论关系图**（覆盖全部十六个理论：三个双抛物面"原理"是同一二次对象的三种读法，Kasha 与
   Sabatier 经**组合边**接入，Sabatier↔Marcus 另有一组"形似实异"非关系边，Goldschmidt 经**无边登记**
@@ -78,9 +85,9 @@ Agent preset 驱动。
   Marcus/Hammond/BEP 有特化证书边；光物理九理论经 §12 内核证书 / §13 D2 裁定（A2 类：
   已裁决独立性）/ §14 D1 裁定（A3 类：可辨识性）/ §15 组合边（全部经过 QuantumYield 代数脊柱）
   接入，其余理论对**显式登记无边**于 §16）：
-  共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（**73 条声明**：内核证书 /
+  共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（**78 条声明**：内核证书 /
   真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记（含 Goldschmidt）/ 已裁决混同（A1）/
-  批次内核证书（§12）/ D2 裁定（§13）/ D1 裁定（§14）/ 批次组合边与形似（§15）/ 扩展无边登记（§16））、
+  批次内核证书（§12）/ D2 裁定（§13）/ D1 裁定（§14）/ 批次组合边与形似（§15）/ 扩展无边登记（§16）/ RACI 接入（§17））、
   双语讨论稿 `theories/RELATIONS.md`
 - `PhotoLean/Smoke.lean` 是环境冒烟测试
 - 注：`README.en.md` 是语言政策生效前的英文镜像，按仓库政策**不再扩展**；权威内容以本文件为准

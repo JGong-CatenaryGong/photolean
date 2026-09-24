@@ -707,3 +707,32 @@ Stern–Volmer 观测在两机制空间上非单射（匹配参数下曲线在�
 势垒–窗口边界）组合。SS-C9 与 FP-C5 的被反驳初式以反例见证定理交付于各自理论
 （`invertedCorner_firstForm_refuted`、`fpC5_firstForm_refuted`）——负结果是一等公民。
 其余全部配对登记于扩展的无边注册表（§16），各附理由。
+
+
+---
+
+## 9. The seventeenth node: RACI (integration of the ChemLean work) / 第十七个节点：RACI（纳管 ChemLean 工作）
+
+**English.** The seventeenth theory — Restricted Access to a Conical Intersection (RACI), the
+accepted mechanism of aggregation-induced emission — is ported from the independent ChemLean
+repository (same Lean 4.17.0 / mathlib v4.17.0 toolchain) and enters the graph through
+`Relations.lean` §17. Its machine edges: the composition certificate `RACI.quantumYield =
+QuantumYield.yieldOf ![kr, knr] 0` (the enhancement is the dilution theorem run backwards); the
+energy-gap-law link (`log (barrierRate A β B) = log A − β·B`, the affine gap law exactly); the
+ICvsISC composition note (`fcBarrier lam lam = 0`, the maximal-rate point of the FC competition);
+and the Marcus look-alike (the classical surfaces really cross at `tsCoord` — a single-condition
+degeneracy, the classical model having no coupling coordinate — vs the CI's two-condition
+codimension-2 degeneracy; different objects, the registry records why no theorem transfers). The
+named admissible model (`torsionH`) and the named non-model (`nonModelNoCI`, an everywhere-empty
+conical set) sit in `PhotoLean/RACI/Instances.lean`, with the ℚ discriminant decision layer in
+`RatModel.lean`. All remaining pairs are in the §17 no-edge registry with reasons.
+
+**中文.** 第十七个理论——受限锥形交叉（RACI，聚集诱导发射的公认机制）——自独立的 ChemLean
+仓库（同一 Lean 4.17.0 / mathlib v4.17.0 工具链）移植，经 `Relations.lean` §17 接入关系图。
+其机器边：组合证书 `RACI.quantumYield = QuantumYield.yieldOf ![kr, knr] 0`（增强即稀释定理
+的反向读法）；能隙律链接（`log (barrierRate A β B) = log A − β·B`，恰为仿射能隙律）；
+ICvsISC 组合注记（`fcBarrier lam lam = 0`，FC 竞争的最大速率点）；以及 Marcus 形似注
+（经典两曲面在 `tsCoord` 真实相交——单条件简并，经典模型无耦合坐标——而 CI 是双条件余维 2
+简并；对象不同，登记处记录为何无定理迁移）。命名容许模型（`torsionH`）与命名非模型
+（`nonModelNoCI`，锥形集处处为空）位于 `PhotoLean/RACI/Instances.lean`，ℚ 判别式决策层在
+`RatModel.lean`。其余全部配对在 §17 无边登记中附理由登记。
