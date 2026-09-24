@@ -115,6 +115,12 @@ python3 theories/goldschmidt/probes/goldschmidt-instance-check.py   # exit 0, 0 
 **`lake build` 返回 0 不是验收**：零占位证明与自定义公理都会返回 0，必须三层齐备
 （构建 + 扫描 + `#print axioms`），且由不写证明的角色独立执行。
 
+**独立审查**：`review/REVIEW-PROMPT.md` 是一份可整段粘贴给任意 LLM 全新 session 的**审查指令**
+（只读交付内容、实验只在 `.lake/tmp/` 副本里做）：十二条审查轴（门是否咬人、全仓库 `#print axioms`
+扫描、保真探针自身盲区、语句级非空泛/前提承重/退化角落、关系图 136 对配对、文档计数重数、文献出处、
+语言政策……）、过度声称分类 O1–O7、严重级别 S1–S3、以及必须产出的三张表（发现表 / 断言账 / 覆盖账）。
+其中每条配方都在本仓库实测过，括号内是实测结果（见 `proofs/EXPERIENCE.md` 同日条目）。
+
 ## 快速开始
 
 ```bash

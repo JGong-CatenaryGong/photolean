@@ -42,7 +42,7 @@ non-injective, lifetime channel is the exact discriminator) — and (v) a **no-e
 *every* pair of nodes either carries a registered edge or a registered reason for its absence. Every
 first form the kernel refuted — StokesShift's SS-C9 direction, FluorPhos's FP-C5 corner, the four
 literature families of BEP's instance layer, and the A1 conflation witness — is delivered as a
-counterexample-witness theorem, never deleted (9 rows, §7).
+counterexample-witness theorem, never deleted (10 rows, §7).
 **中文**：仓库交付 **17 个理论**、**92 个理论模块**（含 `Kernel.lean`、`Relations.lean`、`Smoke.lean`
 共 95 个 `.lean`）；语句权威共 **1153 条声明**，全部逐字交付（17/17 探针 0 差异），每个理论的任务板
 都有独立 verifier PASS 记录。它们由 `PhotoLean/Relations.lean` 接成**一张图**：17 个小节、**78 条
@@ -54,7 +54,7 @@ RACI 经五行）；（iv）**三个裁定类**——**A1** 已裁决混同（�
 **A3** 可辨识性（静态对动态 Stern–Volmer：仅强度观测非单射，寿命通道是精确判别器）；（v）**无边
 登记**，使**任意**两节点之间要么有已登记边、要么有已登记的缺席理由。内核证伪过的每个初式——StokesShift
 的 SS-C9 方向、FluorPhos 的 FP-C5 角落、BEP 实例层的四个文献族、以及 A1 的证伪见证——都以反例见证
-定理交付，绝不删除（共 9 行，见 §7）。
+定理交付，绝不删除（共 10 行，见 §7）。
 
 ---
 
@@ -346,8 +346,14 @@ weakened silently or deleted. The consolidated list:
 | `Rat.*_cast` bridge rows (4 rows, Stern–Volmer R1) | vacuous `↑x = ↑x` (name elaborated inside `namespace Rat`, shadowing the RHS) | re-frozen with fully qualified RHS; `#print` confirmed a real bridge |
 | three vacuity re-freezes of the Phase-3 audit (existentials whose universal form was trivially true) | universal-form witnesses | statements strengthened, re-frozen, re-delivered |
 
-**Measured count / 实测计数**: 9 rows whose name marks a refutation or a falsification
-(`*refuted*` / `*falsified*` / `*not_model_consistent`), plus the 3 vacuity re-freezes and the
+**Measured count / 实测计数**: **10** rows whose name marks a refutation, a falsification or a
+not-model-consistent verdict — `grep -rhoE '^(theorem|lemma) [A-Za-z_][A-Za-z0-9_.]*(refut|falsif|not_model_consistent)[A-Za-z0-9_.]*' PhotoLean/ | sort -u`
+yields: `fpC5_firstForm_refuted`, `invertedCorner_firstForm_refuted`,
+`inst_I11_F1/F2/F3/F5_not_model_consistent`, `inst_I12_affine_conforms_model_refuted`,
+`betaHalf_falsified_by_unequal`, `inst_conflation_falsified`, and
+`symmetryFactor_conflation_falsified_and_holds_in_kernel` (this last one packs **both** halves — the
+refutation at `(1,4)` and the persistence theorem on the equal-curvature diagonal — so it is a
+refutation row *and* a holds-row; counted once here). Plus the 3 vacuity re-freezes and the
 `Rat.*_cast` re-freeze, which are statement revisions registered in the plans' §3.1 logs.
 
 **中文**：本仓库把负结果当一等公民：内核一旦证伪草拟语句，语句就**连同反例见证定理一起重冻结**，而不是
@@ -359,8 +365,10 @@ FP-C5 在 `kF = kIC = 0` 处为假（见证 `kISC = 1 → 2`，两侧 φ_P 都�
 被"看似可删"的 `lam ≠ 0` 实为承重（`lam = 0, x = 1` 处为假）、EG-C4 把 `x₁ ≠ x₂` 误记为装饰性前提
 （实为承重；判据规则重述为"**去掉前提后语句仍能证明**才算装饰"）、Stern–Volmer 四条 `Rat.*_cast`
 因 `Rat.` 前缀在 `namespace Rat` 内取到遮蔽 RHS 而成为空泛的 `↑x = ↑x`（重冻结并 `#print` 复核）、以及
-阶段三审计中三处存在量词空泛化重冻结。**实测计数**：名字标记证伪的共 **9 行**
-（`*refuted*` / `*falsified*` / `*not_model_consistent`），另有 3 处空泛化重冻结与 1 处 `Rat.*_cast`
+阶段三审计中三处存在量词空泛化重冻结。**实测计数**：名字标记证伪的共 **10 行**
+（`*refuted*` / `*falsified*` / `*not_model_consistent`；其中
+`symmetryFactor_conflation_falsified_and_holds_in_kernel` 一行同时打包"证伪"与"在对角线上成立"两半，
+只计一次），另有 3 处空泛化重冻结与 1 处 `Rat.*_cast`
 重冻结属语句修订，记于各理论 plan 的 §3.1 日志。
 
 ---

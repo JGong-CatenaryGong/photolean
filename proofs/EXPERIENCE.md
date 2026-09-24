@@ -4352,3 +4352,40 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   silently joined two markdown lines (§0's Chinese paragraph); caught by re-reading the file after
   the edit. Same class as the earlier anchored-span deletions: after every scripted edit of a
   prose file, re-read the edited region.
+
+### 2026-09-23 — `review/REVIEW-PROMPT.md`: audit instructions, and the four measurements behind them — lead
+
+- **Deliverable**: a paste-able adversarial-audit prompt for a fresh LLM session (no conversation
+  context): mission, ground rules (read-only on delivered content; experiments in a gitignored scratch
+  copy), the trust model (which claims are kernel-checked vs discipline-only), twelve audit axes A–L,
+  the overclaim taxonomy O1–O7, a calibrated list of the twelve defect classes this repository has
+  actually produced, the required report format (findings + claim ledger + coverage ledger + `git
+  status`), a severity scale, and verified recipes.
+- **Every recipe in it was executed before being written down** (measured 2026-09-23):
+  1. **Scratch copy**: `rsync -a --exclude .lake` + symlink `.lake/packages` (4.7 GB prebuilt mathlib —
+     never copy; `.toolchain` is itself a symlink and copies fine) → gate replays in ~1 s with the
+     copied `.lake/build`, clean build 43 s. `/tmp` on this machine is volatile (a copy there vanished
+     between two shell calls) and `$HOME` is read-only → the scratch belongs in `.lake/tmp/`.
+  2. **Gate-biting**: `sorry` → exit 1 with `!! found sorry/axiom occurrences`; `axiom` → same; a
+     statement change → `build: FAILED`; **but a brand-new file `PhotoLean/HoleProbe.lean` with a type
+     error → gate PASSES** (bare gate builds `defaultTargets` only), and dropping a module from
+     `defaultTargets` while breaking it also passes. The lakefile comment warning about this acceptance
+     hole is accurate; the audit must verify `defaultTargets` ⊆ = the disk module set (currently
+     95 = 95, no diff).
+  3. **Fidelity checker is signature-only, and resolves its root from its own path**: replacing a
+     delivered definition *body* by `0` leaves the probe at `29/29, signature differences 0` (blind
+     spot, documented in its docstring: "up to the first `:=`"); renaming an authority declaration →
+     `27/1 diff`; adding a premise → `28/1 diff`; adding an auxiliary → `not in authority` 10 → 11.
+     **Trap measured the hard way**: invoking the *original* script by absolute path from inside the
+     scratch audits the original tree and reports 0 differences for every mutation — the first version
+     of two experiments was invalidated by exactly this and had to be redone.
+  4. **Exhaustive `#print axioms` sweep** (the project's records sweep per row by hand): namespace-stack
+     extractor + one Lean batch file → 95 files, 1313 names, **1278 rows, 0 outside
+     `[propext, Classical.choice, Quot.sound]`**, 18 unknown constants (extraction noise), ~2.5–5 min.
+     Excluding `private` in the extractor cut the noise 66 → 18; `#print axioms` output wraps, so a
+     whitespace-flattening regex is required (a line-based parse keeps only ~10 % of rows).
+- **Defect found in the repository's own new report by writing this prompt**: the negative-result count
+  in `theories/GRAPH-REPORT.md` was **9**, from a grep whose pattern omitted `not_model_consistent`;
+  the honest count is **10** (`symmetryFactor_conflation_falsified_and_holds_in_kernel` also matches).
+  Fixed in §0/§7, and the prompt now tells the auditor to recount every count in every document —
+  recollected counts are the single most productive defect class in this repository (5+ instances).
