@@ -84,6 +84,11 @@ import PhotoLean.Forster.Basic
 import PhotoLean.Forster.Criterion
 import PhotoLean.Einstein.Basic
 import PhotoLean.Einstein.Criterion
+import PhotoLean.RACI.Main
+import PhotoLean.RACI.Barrier
+import PhotoLean.RACI.Jablonski
+import PhotoLean.RACI.TwoState
+import PhotoLean.RACI.Torsion
 import PhotoLean.Marcus.Basic
 
 namespace PhotoLean
@@ -969,6 +974,93 @@ pair below states what would be needed and why it is not there.
 Dependency facts (measured): every photophysics module imports only `Mathlib` plus its own
 theory's earlier modules plus (for the group-B theories) `PhotoLean.Kernel` / `PhotoLean.Marcus.Basic`;
 `PhotoLean/Relations.lean` is the only module importing across the batch. -/
+
+/-! ## 17. The seventeenth node: RACI (Restricted Access to a Conical Intersection)
+
+The RACI theory — ported from the independent ChemLean repository (`[local path removed]
+ChemLean`, same Lean 4.17.0 / mathlib v4.17.0 toolchain) — formalizes the accepted mechanism of
+aggregation-induced emission: a geometric constraint on the torsion angle raises the minimal
+accessible energy gap to the conical intersection, the nonradiative rate drops, and with the
+radiative rate (approximately) unchanged the fluorescence quantum yield rises. Its contact with
+the graph is one certificate, one algebraic composition, one rate-form composition, one
+composition note, and one look-alike, plus the no-edge registrations below. The integration's own
+instances layer (`PhotoLean/RACI/Instances.lean`, `RatModel.lean`) carries the named admissible
+model (the delivered `torsionH` with its enhancement verdict) and the named non-model
+(`nonModelNoCI`, an everywhere-empty conical set — the premise chain is uninstantiable there,
+kernel-checked). -/
+
+/-- RACI ↔ QuantumYield (composition certificate): the RACI quantum yield is the two-channel
+QuantumYield. -/
+theorem raci_qy_eq_yieldOf_two_channel (kr knr : ℝ) :
+    RACI.quantumYield kr knr = QuantumYield.yieldOf ![kr, knr] 0 := by
+  unfold RACI.quantumYield QuantumYield.yieldOf QuantumYield.totalRate
+  rw [Fin.sum_univ_succ]
+  norm_num [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+
+/-- The RACI enhancement is the two-channel strict-antitone-in-`knr` reading of the QY layer —
+the dilution theorem run backwards (removing a nonradiative channel strictly enhances the
+remaining yield). -/
+theorem qy_two_channel_strictAnti_of_nr_lt {kr knr₁ knr₂ : ℝ} (hkr : 0 < kr)
+    (h1 : 0 ≤ knr₁) (h2 : 0 ≤ knr₂) (h : knr₂ < knr₁) :
+    QuantumYield.yieldOf ![kr, knr₂] 0 > QuantumYield.yieldOf ![kr, knr₁] 0 := by
+  rw [← raci_qy_eq_yieldOf_two_channel, ← raci_qy_eq_yieldOf_two_channel]
+  exact RACI.quantumYield_strictMono_of_knr_lt hkr h1 h2 rfl h
+
+/-- RACI → EnergyGapLaw (composition): the M3 barrier rate's log is exactly the affine
+energy-gap law with slope `-β` (the EGL tangent shape; the Marcus-lnRate is quadratic and its
+tangent is the affine form — the shape note of the plan). -/
+theorem log_barrierRate_eq {A β B : ℝ} (hA : 0 < A) :
+    Real.log (RACI.barrierRate A β B) = Real.log A - β * B := by
+  unfold RACI.barrierRate
+  rw [Real.log_mul (ne_of_gt hA) (Real.exp_ne_zero _), Real.log_exp]
+  ring
+
+/-- RACI ↔ ICvsISC (composition note with machine row): at a conical intersection the
+two-parabola FC barrier vanishes — the maximal-rate point of the IC/ISC competition. -/
+theorem icvsisc_barrier_zero_at_crossing {lam : ℝ} :
+    ICvsISC.fcBarrier lam lam = 0 := by
+  unfold ICvsISC.fcBarrier
+  rw [sub_self]
+  norm_num
+
+/-- RACI ↔ Marcus (look-alike, machine note): the classical two-parabola model has a real
+surface crossing at the transition-state coordinate — a single-condition degeneracy (the
+classical model has no coupling coordinate); the RACI CI is the two-condition degeneracy of the
+two-state Hamiltonian. Different objects; the row pins the Marcus side. -/
+theorem kernel_surfaces_cross_at_tsCoord {lam x : ℝ} (hlam : lam ≠ 0) :
+    Kernel.reactantSurface lam (Kernel.tsCoord lam x) =
+      Kernel.productSurface lam (-x) (Kernel.tsCoord lam x) := by
+  unfold Kernel.reactantSurface Kernel.productSurface Kernel.tsCoord
+  field_simp
+  ring
+
+/- The no-edge registrations of the seventeenth node (the pairs without an edge, with reasons):
+
+* **RACI ↔ Hammond / BEP / Sabatier — no edge.** RACI is a nonadiabatic kinetics theory about a
+  topological degeneracy; the three two-parabola "principle" theories are structural readings of
+  one equal-curvature object. No shared scalar.
+* **RACI ↔ Goldschmidt — no edge.** Ionic radii vs conical intersections: no object in common.
+* **RACI ↔ SymmetryFactor — no edge.** The curvature-pair scalar (kr, kp) of the seventh theory
+  shares nothing with the two-state Hamiltonian family.
+* **RACI ↔ Kasha / KashaVavilov — shape note (no machine row).** Both stories make the IC rate
+  decide emission dominance, at opposite ends: RACI blocks the lowest state's nonradiative
+  escape, the ladder funnels population through fast upper-state conversion. Registered as a
+  shape, not an edge.
+* **RACI ↔ SternVolmer — look-alike note (opposite trend).** Aggregation quenching (SV) and
+  aggregation-induced emission (RACI) are opposite environment-dependencies of the fluorescence
+  yield; no theorem transfers between the two mechanisms (one is a concentration model of an
+  added decay channel, the other an accessibility model of a removed one).
+* **RACI ↔ FluorPhos — no edge.** The CI-mediated IC competes for the same S₁ population as the
+  ISC channel of FluorPhos, but the two models share no rate object (registered premise-level).
+* **RACI ↔ StokesShift — no edge.** The Stokes surfaces are single-mode displaced parabolas;
+  the RACI surfaces are a two-state Hamiltonian family. The "emission window closes" row of
+  StokesShift is a vertical-transition fact, not a nonadiabatic-crossing fact.
+* **RACI ↔ Forster — no edge.** Transfer geometry vs nonadiabatic kinetics: no shared scalar.
+* **RACI ↔ Einstein — no edge.** The radiative conversions enter RACI only as the parameter `kr`
+  (the A coefficient of the S₁ → S₀ transition); no Lean row beyond the plan's registered
+  premise-level note.
+* **RACI ↔ QuantumYield / EnergyGapLaw / ICvsISC / Marcus — see the five machine rows above.**
+-/
 
 end Relations
 
