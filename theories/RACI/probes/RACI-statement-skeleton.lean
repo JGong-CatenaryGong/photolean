@@ -354,8 +354,8 @@ theorem quantumYield_gt_of_ratio_lt
     (hkr1 : 0 < kr1) (hkr2 : 0 < kr2)
     (hknr1 : 0 ≤ knr1) (hknr2 : 0 ≤ knr2)
     (h : knr2 / kr2 < knr1 / kr1) :
-    quantumYield kr2 knr2 > quantumYield kr1 knr1 :=
-  (quantumYield_gt_iff_ratio_lt hkr1 hkr2 hknr1 hknr2).mpr h
+    quantumYield kr2 knr2 > quantumYield kr1 knr1 := by
+  sorry
 
 /-- 充分条件：辐射速率不降（kr_agg ≥ kr_sol）且无辐射速率下降 ⇒ Φ_agg > Φ_sol -/
 theorem quantumYield_gt_of_knr_lt_of_kr_le
@@ -371,8 +371,8 @@ theorem raci_emission_enhancement_general
     (hkr_free : 0 < kr_free) (hkr_agg : 0 < kr_agg)
     (hknr_free : 0 ≤ knr_free) (hknr_agg : 0 ≤ knr_agg)
     (hratio : knr_agg / kr_agg < knr_free / kr_free) :
-    quantumYield kr_agg knr_agg > quantumYield kr_free knr_free :=
-  quantumYield_gt_of_ratio_lt hkr_free hkr_agg hknr_free hknr_agg hratio
+    quantumYield kr_agg knr_agg > quantumYield kr_free knr_free := by
+  sorry
 
 
 /-- 竞争比：无辐射/辐射速率比，决定发光分支比 -/

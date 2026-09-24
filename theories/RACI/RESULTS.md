@@ -6,7 +6,9 @@
 
 ## 1. Status / 现状
 
-**English.** Integrated and verified: the RACI (Restricted Access to a Conical Intersection)
+**English.** Integrated and verified — **independent verifier run 1 (2026-09-23): PASS** (leaf
+plane 17/17, fidelity 71/71, axioms 59/59, adversarial instantiations all clean; findings F1–F5
+all MINOR and resolved in the close-out). The RACI (Restricted Access to a Conical Intersection)
 work, ported from the independent ChemLean repository (same Lean 4.17.0 / mathlib v4.17.0
 toolchain), is PhotoLean's seventeenth theory — 11 modules building on the first pass, strict
 scan clean, 59/59 theorems (46 upstream + 13 integration additions) with
@@ -14,7 +16,8 @@ scan clean, 59/59 theorems (46 upstream + 13 integration additions) with
 differences, registered on the relation graph at `Relations.lean` §17, and independently audited
 by the final verifier (PASS).
 
-**中文.** 已纳管并验证：RACI（受限锥形交叉）工作自独立的 ChemLean 仓库（同一 Lean 4.17.0 /
+**中文.** 已纳管并验证——**独立 verifier run 1（2026-09-23）：PASS**（叶面 17/17、保真
+71/71、公理 59/59、对抗实例化全部干净；F1–F5 均为 MINOR 且已在收尾中解决）。RACI（受限锥形交叉）工作自独立的 ChemLean 仓库（同一 Lean 4.17.0 /
 mathlib v4.17.0 工具链）移植，成为 PhotoLean 第十七个理论——11 个模块一次构建通过、严格扫描
 干净、59/59 定理（46 上游 + 13 纳管新增）的 `#print axioms` 恰为
 `[propext, Classical.choice, Quot.sound]`、保真 71/71 逐字零差异、已登记进关系图
