@@ -4234,3 +4234,51 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
 `iscRate` in `hsoZeroWitness`). One LOW finding (two stale docstrings claiming dropped premises
 "kept verbatim") was fixed in the close-out commit `e7d274f`. One cosmetic note (the brief said
 "22 changed rows", the index names 21 + `lifetimeTracks_iff_dyn` — the count wording).
+
+## 2026-09-23 — RACI integrated as the seventeenth theory (port of the independent ChemLean work) — lead — DONE (pending final verifier)
+
+- **What landed**: the independent RACI work (`[local path removed]`, M1–M4 + M1* +
+  M6: the conical-intersection algebra, accessibility, monotone nonradiative rates, the
+  aggregation-induced-emission template theorem, the seam's local codimension-2 slice, and the
+  Longuet–Higgins sign theorem) ported into `PhotoLean/RACI/` as the seventeenth theory — 11
+  modules, all building on the first pass against the repository's mathlib (same Lean 4.17.0 /
+  mathlib v4.17.0 toolchain as the upstream workspace — the toolchain match was checked FIRST,
+  before any edit), strict scan clean, 46/46 upstream theorems with `#print axioms` =
+  `[propext, Classical.choice, Quot.sound]`, the statement authority extracted from the delivered
+  signatures (71 declarations) with fidelity 71/71 and 0 differences.
+- **PhotoLean-standard additions** (the integration's own layer): `Instances.lean` — the named
+  admissible model (`torsionH` + its enhancement verdict at concrete parameters) and the named
+  non-model (`nonModelNoCI`, a constant diagonal Hamiltonian with an everywhere-empty conical set
+  — the premise chain is uninstantiable there, kernel-checked); `RatModel.lean` — the ℚ
+  discriminant's `conical | gapped` zone classifier with correctness rows and cast coherence
+  (decisions never evaluate `exp` or `sqrt`, the EnergyGapLaw precedent); `Relations.lean` §17 —
+  five machine rows (the QY certificate, the enhancement as dilution-backwards, the EGL affine
+  link, the ICvsISC crossing note, the Marcus look-alike) plus the no-edge registry.
+- **Integration record (plan §3.1, deliberately kept deviations)**: the upstream files keep the
+  default `autoImplicit` (free variables in definitions are auto-bound — changing them would
+  alter the delivered text; the PhotoLean `set_option autoImplicit false` is NOT applied to the
+  ported modules, and the two NEW additions carry it); the upstream `RACI/Rates/` subdirectory is
+  flattened (the fidelity checker's delivered-file glob is non-recursive — measured: the two
+  Rates modules were invisible to the checker until flattened, 64→71 word-for-word); the
+  namespaces are wrapped (`PhotoLean.RACI.*` / `PhotoLean.TwoState.*`); several upstream files
+  carry a stale `SKELETON` header though fully proved — comments, preserved verbatim.
+- **Tried and failed (measured)**:
+  1. `set_option autoImplicit false` on the ported code: breaks every auto-bound definition
+     (`barrierRate` uses free `A β`); the option belongs only to the new additions.
+  2. `decide` on the ℚ discriminant with `^2` and `*`: gets stuck like every ℚ division-bearing
+     decision (the measured boundary); `norm_num [ciZoneQ, discrQ]` closes the verdict rows.
+  3. The LINTER-DRIVEN trim trap (the EG secant lesson, second occurrence): removing the
+     "unused" `hlam` from `kernel_surfaces_cross_at_tsCoord` made the row FALSE at `lam = 0`
+     (`reactantSurface 0 = 0` everywhere but `productSurface 0 dG = dG` — they cross only at
+     `x = 0`); the build caught it. Rule, third time: premise necessity is decided by the
+     statement (with a counterexample probe at the boundary), never by proof consumption.
+  4. `rw [sub_self, zero_pow, zero_div]`: `zero_pow` carries the `n ≠ 0` side condition —
+     `norm_num` after `sub_self` discharges it in one step.
+  5. Term-mode theorem bodies (`:= someTerm` without `by`) in the skeleton extractor: the
+     `:= by` match misses them — the count check (46 expected vs 44 placeholders emitted) caught
+     it; verify declaration counts after any mechanical transformation.
+- **Boards/leaves**: five leaves complete (plan.md, TASKS.md with the 88-row declaration board,
+  LITERATURE.md with verified sources and the seed corrections — the AIE discovery is Luo et al.
+  2001, not Tang, and the RACI terminology is Peng et al. 2016 / Li & Blancafort 2013 — both
+  corrected at the top of the file; RESULTS.md bilingual; probes with the authority), README
+  seventeenth theory, RELATIONS.md §9.
