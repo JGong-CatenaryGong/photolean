@@ -112,3 +112,10 @@ Findings and their resolution:
 
 Phase-3 revision (plan §3.1 entry 5): `lnRate_eq` dropped `lam ≠ 0` and `0 < kB*T` (degenerate inputs totalize consistently); ten call sites adapted. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/EnergyGapLaw/probes/EnergyGapLaw-statement-skeleton.lean` recomputed 2026-09-24:
+
+- `5158987` (Phase-1 freeze): `2294c38f6040337ba9ef172b00ce6ffa7a78f1f36547234778690871b1480a64` — the skeleton value quoted earlier in this file (the `52e843a4…` value there is the api-probe's, a different artifact, unaffected)
+- `4810930` (Phase-3 authority revision, 2026-09-23): `d217e8e99b965af9b3889e8735f6f6d5927f3f5f341c5957f7448ba67c9555e3` — **current**

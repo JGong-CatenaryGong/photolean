@@ -195,26 +195,49 @@ if MS:
 
 diff, same, extra, met = [], 0, [], set()
 
+# Parsed once: the delivered signatures and the set of namespaces they occupy. The namespace
+# set feeds the fallback guard in `_resolve` (added 2026-09-24).
+_DELIVERED_SIGS = [(f, signatures(f)) for f in DELIVERED]
+_DELIV_NS = {n.rsplit('.', 1)[0] if '.' in n else ''
+             for _f, got in _DELIVERED_SIGS for n in got}
+fallback_rows = {}
+
+
 def _resolve(name, skel):
     """Resolve a delivered (possibly namespace-qualified) name to an authority key.
 
     Exact qualified match first; otherwise fall back to a BARE-name match **only when exactly
-    one authority key carries that bare name**. The fallback preserves the behaviour of the
-    seven earlier theories, whose authorities declare at top level while the delivered modules
-    sit in `namespace PhotoLean.<Theory>` (measured 2026-09-22: Marcus 51/51 both before and
-    after this change). The exact branch fixes the photobatch's nested-`Rat` shadowing, where
-    the same bare name appears twice in the authority (once over ℝ, once over ℚ)."""
+    one authority key carries that bare name** AND the authority key lives in a namespace that
+    the delivered modules do not occupy. The fallback preserves the behaviour of the earlier
+    theories, whose authorities declare outside the delivered namespace: Marcus's authority sits
+    in `PhotoLean.Marcus.Skeleton` while the delivered modules sit in `PhotoLean.Marcus` (the
+    pre-photobatch authorities declare at top level; measured 2026-09-22: Marcus 51/51 both
+    before and after this change). The exact branch fixes the photobatch's nested-`Rat`
+    shadowing, where the same bare name appears twice in the authority (once over ℝ, once over ℚ).
+
+    Guard added 2026-09-24 (adversarial audit finding F1, `review/AUDIT-2026-09-24.md`):
+    the fallback used to accept a row that had merely been *moved deeper* into a namespace the
+    authority does not use — moving `PhotoLean.KashaVavilov.rateData_mono` into
+    `PhotoLean.KashaVavilov.Sub` still reported 29/29 word-for-word, because uniqueness was
+    checked on the authority side only, so the stranger silently satisfied the authority row.
+    Requiring the authority key's namespace to be absent from the delivered namespace set closes
+    that false PASS: if the authority namespace **is** live in the delivered tree, the row must
+    match there exactly, and a bare-name hit elsewhere is reported as `not delivered yet` (the
+    stranger shows up as an auxiliary) instead of being counted word-for-word. The measured
+    effect on the current tree is nil — Marcus is the only theory that uses the fallback (51
+    rows) and every other theory matches exactly."""
     if name in skel:
         return name
     bare = name.rsplit('.', 1)[-1]
     cands = [k for k in skel if k.rsplit('.', 1)[-1] == bare]
     if len(cands) == 1:
-        return cands[0]
+        a_ns = cands[0].rsplit('.', 1)[0] if '.' in cands[0] else ''
+        if a_ns not in _DELIV_NS:
+            return cands[0]
     return None
 
 
-for f in DELIVERED:
-    got = signatures(f)
+for f, got in _DELIVERED_SIGS:
     for name, sig in got.items():
         key = _resolve(name, skel)
         if key is None:
@@ -224,6 +247,10 @@ for f in DELIVERED:
             extra.append(f"{os.path.basename(f)}::{name}")
             continue
         met.add(key)
+        if name != key:
+            # resolved by the bare-name fallback: record which authority rows rest on it, so the
+            # report's scope is explicit rather than implied (audit finding F1).
+            fallback_rows[key] = name
         a = re.sub(r'\s+', ' ', skel[key]).strip()
         if a == sig:
             same += 1
@@ -238,6 +265,7 @@ print(f"milestone scope            : {MS if MS else '(whole theory)'}")
 print(f"skeleton declarations      : {len(skel)}")
 print(f"delivered, word-for-word   : {same}")
 print(f"delivered, not in authority: {len(extra)} (auxiliary declarations, not a difference)")
+print(f"  of which exact-match / bare-name fallback: {same - len(fallback_rows)} / {len(fallback_rows)}")
 print(f"not delivered yet          : {len(missing)}")
 print(f"signature differences      : {len(diff)}")
 if diff:
@@ -248,4 +276,6 @@ if '--verbose' in sys.argv:
         print("  (extra)", e)
     for m_ in missing:
         print("  (missing)", m_)
+    for k, n in sorted(fallback_rows.items()):
+        print("  (fallback)", f"{k} <- {n}")
 sys.exit(1 if diff else 0)

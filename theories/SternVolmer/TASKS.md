@@ -167,3 +167,14 @@ Findings carried to the Phase-3 audit and to the lead (recorded here as the sing
 
 Phase-3 revision (plan §3.1 entries 2–4): `lifetimeTracks_iff_dyn` dropped `hk0`; `d1_verdict` dropped `hkq` and weakened `hk0` to `k0 ≠ 0`; `mixed_witness` re-frozen to the model-tied second difference. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/SternVolmer/probes/SternVolmer-statement-skeleton.lean` recomputed 2026-09-24;
+every superseded value is recoverable from git (`git show <rev>:<path> | sha256sum`):
+
+- `5158987` (Phase-1 freeze): `811e34c0bf02d2b2a0479f613a73eb0db601a57cf331537750ca48706085cfa5` — never recorded on this board
+- `edccefc` (cast-coherence re-freeze, 2026-09-22): `d4b129c125254d8e9a9c26243a3d6596183942086136fae97a6fc98735aa0baf` — the value quoted earlier in this file; correct for that revision, so the "authority sha256 updated on this board" note of the cast-coherence entry was true when written
+- `fdbef08` (Phase-3 authority revision, 2026-09-23): `4c44e22a415e62e0e82411f0017b51bc4545642f05955554f8ea71697a29294d` — **current**
+
+The stale gap was created by the Phase-3 revision, after which the quoted value was not refreshed.

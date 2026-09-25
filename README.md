@@ -54,7 +54,8 @@ Agent preset 驱动。
     （run 1–5 PASS + 阶段三终审），阶段三完成了权威修订（16 行前提修剪、3 行空泛化重冻结、
     2 条负结果定理）与关系图登记（`Relations.lean` §12–§16，23 条新行）：
     - **Kasha–Vavilov 独立性**（D2 裁定，A2 类新边类）——`PhotoLean/KashaVavilov/`（3 模块），
-      **29 条声明**，保真 **29/29**；双向逐点独立见证 + 闭合量化 iff 边界 + 无损角分离；
+      **39 条声明**（29 权威 + 10 权威外辅助，已登记于其看板），保真 **29/29**；
+      双向逐点独立见证 + 闭合量化 iff 边界 + 无损角分离；
     - **Stern–Volmer 可辨识性**（D1 裁定，A3 类新边类）——`PhotoLean/SternVolmer/`（4 模块），
       **46 条声明**，保真 **46/46**；强度观测非单射 + 寿命通道 iff 判别 + 二阶差分共存见证；
     - **量子产率可加性**（并行通道演算，批次的代数脊柱）——`PhotoLean/QuantumYield/`（4 模块），
@@ -62,7 +63,7 @@ Agent preset 驱动。
     - **荧光/磷光竞争**——`PhotoLean/FluorPhos/`（4 模块），**30 条声明**（含负结果行
       `fpC5_firstForm_refuted`），保真 **30/30**；
     - **能隙律**（Englman–Jortner 形式，经典极限）——`PhotoLean/EnergyGapLaw/`（5 模块），
-      **26 条声明**，保真 **26/26**；
+      **27 条声明**（26 权威 + 1 权威外辅助 `lnRate_second_difference`），保真 **26/26**；
     - **Stokes 位移规则**——`PhotoLean/StokesShift/`（4 模块），**36 条声明**（含负结果行
       `invertedCorner_firstForm_refuted`），保真 **36/36**；
     - **内转换 vs 系间窜越**（FC 竞争 + 自旋折扣）——`PhotoLean/ICvsISC/`（4 模块），
@@ -84,7 +85,9 @@ Agent preset 驱动。
   接入并另有一条"只有形状相似"的 N4 登记，SymmetryFactor 以**已裁决混同**（A1 类）接入并与
   Marcus/Hammond/BEP 有特化证书边；光物理九理论经 §12 内核证书 / §13 D2 裁定（A2 类：
   已裁决独立性）/ §14 D1 裁定（A3 类：可辨识性）/ §15 组合边（全部经过 QuantumYield 代数脊柱）
-  接入，其余理论对**显式登记无边**于 §16；RACI 经 §17 五行接入并登记其余无边）：
+  接入，其余理论对**显式登记无边**于 §16（§16 另含 2026-09-24 的**补录段**：逐理论 `plan.md` §10
+  的缺席草稿/未交付候选项转录为 26 条登记，加上模块内交付、未在关系清单 re-export 的 SS-C9
+  边，使 136 对节点配对全部有账）；RACI 经 §17 五行接入并登记其余无边）：
   共享内核 `PhotoLean/Kernel.lean`、可检查的关系清单 `PhotoLean/Relations.lean`（**78 条声明**：内核证书 /
   真等价 / 单向蕴含 / 定义复用 / 组合边 / 非关系 / 无边登记（含 Goldschmidt）/ 已裁决混同（A1）/
   批次内核证书（§12）/ D2 裁定（§13）/ D1 裁定（§14）/ 批次组合边与形似（§15）/ 扩展无边登记（§16）/ RACI 接入（§17））、
@@ -167,6 +170,17 @@ hammond / BEP 的 `RESULTS.md` 即按此格式书写，两者从一开始就没�
 这正是"双份维护必然漂移"的反向证据，所以读镜像时**以"当前维护版本"列为准**；
 此外 Marcus 时代的产物（`plan` / `TASKS` / `LITERATURE` / `EXPERIENCE` / `API-NOTES`）实际是中文主体，
 英文在镜像里 —— 政策晚于这批文件，此处如实登记为既有例外，不再回译。
+
+**政策前的 Lean 源码例外（登记，2026-09-24）**：Marcus 时代的 8 个交付模块
+（`PhotoLean/Marcus/{Basic,Barrier,Reorg,Rate,Compose,RatModel,Sharp,Instances}.lean`）与
+`PhotoLean/Smoke.lean` 的**注释与 docstring** 为中文主体（经嵌套/字符串感知扫描：**代码与字符串
+字面量中无中文**）。这与上表同属政策前产物，如实登记为既有例外、**不计划回译**——回译会改动已由
+verifier 记录在案的模块 blob，须重跑验收，属独立的一轮工作；2026-09-23 起纳入的新理论（RACI）已按
+政策写英文。
+
+**跨理论文档（登记，2026-09-24）**：`theories/RELATIONS.md` 与 `theories/GRAPH-REPORT.md` 是
+**双语**产物（英文段 + 中文对照），不在上表冻结镜像之列、也不属于"一个产物写一次"的英文单语产物——
+它们是仓库登记的双语总结性文档，已在 `AGENTS.md` 语言表中显式登记。
 
 | 历史镜像（冻结） | 当前维护版本（漂移时以此为准） |
 |---|---|

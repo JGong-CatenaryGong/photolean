@@ -971,9 +971,62 @@ pair below states what would be needed and why it is not there.
   contact is the QuantumYield anchor (§15); the `J`-integral link to Förster is a modelling
   premise (registered in both plans).
 
+* **Completion rows (added 2026-09-24; provenance: the adversarial audit's finding F8).** The
+  bullets above left 26 of the 136 node pairs without a row here, although this section's opening
+  reserves a row for *every* pair; the audit enumerated the C(17,2) pairs and reported the gap.
+  Every pair below already carries an absence draft (or an undelivered candidate) in the
+  corresponding theory's `plan.md` §10 — these rows transcribe those drafts into the register of
+  record and add no mathematics. With the one in-module edge noted first, §16 now accounts for
+  every pair of the sixteen-node graph.
+* **StokesShift ↔ Marcus — edge, delivered inside the theory module (not re-exported here).**
+  `PhotoLean.StokesShift.emEnergy_pos_iff_inverted (lam e00) : 0 < emEnergy lam e00 ↔
+  PhotoLean.Marcus.InvertedRegion lam e00` (`PhotoLean/StokesShift/Criterion.lean`, row SS-C9,
+  amended form); the two §12 StokesShift rows pin only the surfaces. Registered here because the
+  machine edge inventory of this file does not re-export it.
+* **EnergyGapLaw ↔ BEP — no edge (a registered shape edge).** The barrier profile the two share
+  **is** the kernel object, already pinned (§12); BEP's own content (the affine line and its defect
+  law on the transfer coefficient, the Evans–Polanyi window) occurs in no EnergyGapLaw row, and the
+  plan registers the relation as a *shape* — the same second-difference engine transplanted from the
+  barrier to its logarithm (`theories/EnergyGapLaw/plan.md` §10). No theorem transfers.
+* **EnergyGapLaw ↔ Sabatier / Goldschmidt / SymmetryFactor / KashaVavilov / SternVolmer /
+  QuantumYield / Einstein — no edge.** The delivered EnergyGapLaw links are exactly the kernel and
+  Marcus pins (§12), the Kasha ordering row, the Hammond boundary row, and the StokesShift and
+  ICvsISC rows (§15); none of the partner scalars (a descriptor axis, ionic radii, a curvature pair,
+  a ladder, a concentration axis, a yield algebra, radiative conversions) occurs in
+  `nrBarrier`/`nrRate`/`lnRate`/`egZoneQ`. Plan §10 carries the absence drafts (KashaVavilov
+  appears there as an undelivered composition candidate alongside Kasha).
+* **StokesShift ↔ Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge.** The
+  surfaces are §12 kernel copies and the content is band positions (`absEnergy`, `emEnergy`, the
+  emission window); no rate, line law, descriptor, curvature pair or radius occurs in a StokesShift
+  row. Plan §10 carries the absence drafts.
+* **ICvsISC ↔ Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge.** The delivered
+  ICvsISC links are the §12 kernel/Marcus pins, the EnergyGapLaw rate identity (§15) and the RACI
+  row (§17); its FC-barrier/spin-discount content names none of the partner scalars. Plan §10
+  carries the absence drafts.
+* **FluorPhos ↔ Kasha / KashaVavilov — no edge (undelivered candidate compositions).** The
+  competition layer's machine contacts are the QuantumYield compositions and the SternVolmer quench
+  invariance (§15); the plan's `{S₁, T₁}`-projection candidates were not carried into rows.
+* **FluorPhos ↔ ICvsISC — the premise-level `kISC` identification** (registered in both plans as a
+  modelling premise, not a Lean row) — the complement of the FluorPhos clause of the ICvsISC
+  bullet above.
+* **KashaVavilov ↔ SternVolmer / QuantumYield — undelivered candidate compositions.** The
+  KashaVavilov plan registers the SternVolmer quench as an added level-0 loss and `radBranch` as a
+  two-channel yield; the delivered contacts of both sides run through Kasha's §7 edge and the
+  QuantumYield spine (§15).
+* **Kasha ↔ SternVolmer — no edge (registered candidate, not delivered).** The SternVolmer plan
+  registers dynamic quenching as an addition to the ladder's level-0 loss; no delivered row relates
+  the two, and each side's delivered contacts run through the QuantumYield spine (§15).
+* **Einstein ↔ SternVolmer — no edge.** Both reach the batch only through QuantumYield (§15); the
+  Einstein plan registers the pair as "via QuantumYield only".
+* **Forster ↔ Goldschmidt — no edge (look-alike, no machine row).** Two purely geometric threshold
+  criteria — transfer geometry versus ionic radii — sharing no scalar; the Forster plan §10
+  registers the shape and `GRAPH-REPORT` §6.3 states the same as a look-alike without an edge.
+
 Dependency facts (measured): every photophysics module imports only `Mathlib` plus its own
 theory's earlier modules plus (for the group-B theories) `PhotoLean.Kernel` / `PhotoLean.Marcus.Basic`;
-`PhotoLean/Relations.lean` is the only module importing across the batch. -/
+`PhotoLean/Relations.lean` is the only module importing across the batch. The one cross-theory
+content row carried by a batch module itself is StokesShift's SS-C9 above (it imports
+`PhotoLean.Marcus.Basic`, an earlier theory). -/
 
 /-! ## 17. The seventeenth node: RACI (Restricted Access to a Conical Intersection)
 

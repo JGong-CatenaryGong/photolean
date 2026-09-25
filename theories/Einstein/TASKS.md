@@ -129,3 +129,10 @@ Findings carried to the Phase-3 audit and to the lead (recorded here as the sing
 
 Phase-3 revision (plan §3.1 entries 2–3): `yield_radiative` unconditional; `radFactor_not_rational` re-frozen to `Irrational (radFactor 1 1 1)`. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/Einstein/probes/Einstein-statement-skeleton.lean` recomputed 2026-09-24:
+
+- `5158987` (Phase-1 freeze): `de13f5b3850513efdc7fa5f46de1371386a07c574364c425a5967ed619be286d` — the value quoted earlier in this file
+- `76fc8bc` (Phase-3 authority revision, 2026-09-23): `eb8226a4b07df31522615f63484f38e54a2e3ca798a598067a9bc9ccef81446c` — **current**

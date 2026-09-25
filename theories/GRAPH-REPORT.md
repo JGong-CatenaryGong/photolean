@@ -92,11 +92,11 @@ and the family is what determines *how* a node can touch the graph:
 | 5 | Sabatier / volcano | `PhotoLean/Sabatier/` (6) | 132 | 134 (107 thm + 27 def; +36 private) | composition S1–S4 over BEP; look-alike cluster C1–C5 with Marcus |
 | 6 | Goldschmidt | `PhotoLean/Goldschmidt/` (6) | 139 | 139 (98 thm + 40 def + 1 inductive; +8 private) | **no-edge** to all six of the then-graph; N4 shape registration with Sabatier |
 | 7 | Symmetry factor | `PhotoLean/SymmetryFactor/` (5) | 35 | 35 (28 thm + 7 def) | **A1** adjudicated conflation + specialization certificates to `Kernel.tsCoord`, `BEP.transfer` |
-| 8 | Kasha–Vavilov | `PhotoLean/KashaVavilov/` (3) | 29 | 29 | **A2** adjudicated independence (§13) |
+| 8 | Kasha–Vavilov | `PhotoLean/KashaVavilov/` (3) | 29 | 39 (29 authority + 10 auxiliary) | **A2** adjudicated independence (§13) |
 | 9 | Stern–Volmer | `PhotoLean/SternVolmer/` (4) | 46 | 46 | **A3** identifiability (§14) + QY dilution composition |
 | 10 | QuantumYield | `PhotoLean/QuantumYield/` (4) | 29 | 29 | **the batch's algebraic spine** (§15): every group-A/B/C contact runs through it |
 | 11 | FluorPhos | `PhotoLean/FluorPhos/` (4) | 30 | 30 (incl. negative row `fpC5_firstForm_refuted`) | cascade compositions into QY; quench invariance into SV |
-| 12 | EnergyGapLaw | `PhotoLean/EnergyGapLaw/` (5) | 26 | 26 | kernel copies (§12) + EGL/Kasha ordering row + Hammond boundary row |
+| 12 | EnergyGapLaw | `PhotoLean/EnergyGapLaw/` (5) | 26 | 27 (26 authority + 1 auxiliary) | kernel copies (§12) + EGL/Kasha ordering row + Hammond boundary row |
 | 13 | StokesShift | `PhotoLean/StokesShift/` (4) | 36 | 36 (incl. `invertedCorner_firstForm_refuted`) | kernel copies (§12) + emission-window boundary row |
 | 14 | ICvsISC | `PhotoLean/ICvsISC/` (4) | 20 | 20 | kernel copies (§12) + IC/ISC rate identification row; RACI's §17 note |
 | 15 | Förster (FRET) | `PhotoLean/Forster/` (4) | 32 | 32 | QY composition (`1 − Φ_D`) + SV look-alike (`fretEff6_inv_eq_one_plus`) |
@@ -105,10 +105,16 @@ and the family is what determines *how* a node can touch the graph:
 
 Totals / 合计: modules **92** (95 `.lean` with `Kernel.lean` + `Relations.lean` + `Smoke.lean`);
 statement authority **1153** declarations, all delivered word-for-word; public delivered
-declarations **1203** (private helpers excluded; e.g. Sabatier 36, Goldschmidt 8).
+declarations **1214** (private helpers and `instance` declarations excluded — the counts are the
+fidelity probe's `word-for-word + not-in-authority` totals, so the authority-external auxiliaries
+are included: e.g. KashaVavilov 10, EnergyGapLaw 1, Sabatier 2, RACI 17, Marcus 31; the private
+helpers e.g. Sabatier 36, Goldschmidt 8, and the single delivered `instance` — QuantumYield's
+`instDecidableQYData` — are not counted, which is why QuantumYield reads 29 rather than 30).
 **中文（合计）**：模块 **92**（加 `Kernel.lean` + `Relations.lean` + `Smoke.lean` 共 95 个 `.lean`）；
-语句权威 **1153** 条声明，全部逐字交付；公开交付声明 **1203** 条（不含 private 辅助引理，如 Sabatier 36 条、
-Goldschmidt 8 条）。
+语句权威 **1153** 条声明，全部逐字交付；公开交付声明 **1214** 条（不含 private 辅助引理与 `instance`
+声明——计数口径即保真探针的 `word-for-word + not-in-authority`，故权威外辅助行计入：KashaVavilov 10、
+EnergyGapLaw 1、Sabatier 2、RACI 17、Marcus 31；private 辅助（Sabatier 36、Goldschmidt 8）与唯一交付的
+`instance`（QuantumYield 的 `instDecidableQYData`）不计，故 QuantumYield 记 **29** 而非 30）。
 
 **Entry-mode legend / 接入方式图例**: *certificates* are definitional `rfl`/unfold pins (regression
 alarms, no new mathematics); *equivalences* are two-way theorems; *entailments* are one-way;
@@ -127,12 +133,21 @@ with its dependency fact and modelling reason.
 graph, and holds **6 definitions + 2 theorems**: `reactantSurface`, `productSurface`, `barrier`,
 `reverseBarrier`, `tsCoord`, `transfer` (and the two barrier–rate algebra theorems). Every
 kernel-reading theory keeps its **own copy** of the needed objects, and a `rfl` certificate binds
-copy and kernel body-level: if a delivered definition drifts, its certificate stops being `rfl` and
-the relation module fails to compile — the **regression alarm**.
+copy and kernel body-level: if a delivered definition drifts, its nearest certificate stops being
+`rfl` and the build fails at that pin — the **regression alarm**. Measured (2026-09-24): perturbing
+`Kernel.barrier` fails inside `PhotoLean/Kernel.lean` itself (the algebra theorem
+`reverseBarrier_eq_barrier_neg`), and perturbing `Kernel.reactantSurface` fails in the theory module
+that keeps the copy (`PhotoLean/StokesShift/Basic.lean`, `cert_s0Surface`) — in both cases *before*
+`PhotoLean/Relations.lean` is reached, so the alarm is layered (kernel theorem → theory certificate →
+relation-module certificate) rather than a property of the relation module alone.
 **中文**：`PhotoLean/Kernel.lean` 只 `import Mathlib`，处在依赖图底部，含 **6 定义 + 2 定理**：
 `reactantSurface`、`productSurface`、`barrier`、`reverseBarrier`、`tsCoord`、`transfer`（以及两条
 势垒–速率代数定理）。每个"内核读法"理论都保留所需对象的**自带副本**，而 `rfl` 证书在定义体层面把副本与
-内核绑定：一旦某个已交付定义漂移，它的证书就不再是 `rfl`，关系模块随即编译失败——这就是**回归报警器**。
+内核绑定：一旦某个已交付定义漂移，**最近的**证书就不再是 `rfl`，构建在该钉住点失败——这就是**回归报警器**。
+实测（2026-09-24）：扰动 `Kernel.barrier` 在 `PhotoLean/Kernel.lean` 内部失败（代数定理
+`reverseBarrier_eq_barrier_neg`）；扰动 `Kernel.reactantSurface` 在保留副本的**理论模块**里失败
+（`PhotoLean/StokesShift/Basic.lean` 的 `cert_s0Surface`）——两次都在到达 `PhotoLean/Relations.lean`
+**之前**，故报警是多层的（内核定理 → 理论证书 → 关系模块证书），而非关系模块一处的性质。
 
 **Delivered `rfl` certificates / 已交付 `rfl` 证书 (15)**:
 §1 — `kernel_barrier_eq_marcus`, `kernel_barrier_eq_hammond`, `kernel_barrier_eq_bep`,
@@ -294,11 +309,16 @@ edge above or a row here. The consolidated classes:
 
 1. **Pure-vocabulary separations.** Kasha ↔ BEP; Kasha ↔ Hammond; Sabatier ↔ Hammond;
    Sabatier ↔ Kasha (first batch); the batch nodes against the two-parabola family
-   (KashaVavilov, SternVolmer, QuantumYield, FluorPhos, StokesShift, ICvsISC, Forster, Einstein
-   each with their listed partners); RACI ↔ Hammond/BEP/Sabatier/Goldschmidt/SymmetryFactor/
-   FluorPhos/StokesShift/Forster/Einstein (seventeenth node). Reason pattern: no shared scalar — a
-   cascade of yields, a concentration-axis rate model, band positions, transfer geometry or a
-   two-state Hamiltonian shares nothing with a barrier profile, a descriptor axis or ionic radii.
+   (KashaVavilov, SternVolmer, QuantumYield, FluorPhos, EnergyGapLaw, StokesShift, ICvsISC,
+   Forster, Einstein each with their listed partners); RACI ↔ Hammond/BEP/Sabatier/Goldschmidt/
+   SymmetryFactor/FluorPhos/StokesShift/Forster/Einstein (seventeenth node). Reason pattern: no
+   shared scalar — a cascade of yields, a concentration-axis rate model, band positions, transfer
+   geometry or a two-state Hamiltonian shares nothing with a barrier profile, a descriptor axis or
+   ionic radii. (Coverage note, 2026-09-24: `Relations.lean` §16 carries a *completion* block that
+   registers the 26 pairs the earlier bullets left out — all of them absences or undelivered
+   candidates whose drafts live in the per-theory `plan.md` §10 — plus the one edge delivered
+   in-module rather than re-exported, StokesShift's SS-C9 `emEnergy_pos_iff_inverted` to
+   `Marcus.InvertedRegion`. §16 therefore now accounts for every one of the 136 node pairs.)
 2. **Contact only through the spine.** SternVolmer, QuantumYield, FluorPhos, Einstein: their
    contacts to the energy-side theories are exactly the §15 composition rows through `QuantumYield`.
 3. **Shape look-alikes registered without edge.** N4 (Goldschmidt symmetric band ≡ absolute-deviation

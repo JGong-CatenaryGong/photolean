@@ -5,7 +5,9 @@
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/Forster/plan.md`.
 - Status of this theory: **Phase 2 (proof formalization) complete — all rows at `review`**;
-  the statement authority is unchanged (still the Sprint-0 frozen sha256 recorded below) and every
+  the Sprint-0 freeze was later revised by the Phase-3 authority audit (plan §3.1 entry 4), so the
+  "unchanged" wording that stood here no longer described the file: both the Sprint-0 hash and the
+  current one are recorded in the *Authority hash record* at the end of this board, and every
   authority declaration is delivered verbatim (bep-fidelity: 32/32 word-for-word, 0 differences,
   0 undelivered). The rows below are moved `stmt` → `review` by prover_d; ticking (`[x]`) is
   lead-only after verifier PASS. Batch: photophysics subgraph (groups A–D), dispatched 2026-09-22.
@@ -131,3 +133,10 @@ Findings and their resolution:
 
 Phase-3 revision (plan §3.1 entry 4): `fret_blind_spot` dropped `hR`; `fretEff6_mono_kappa` weakened to `0 ≤ κ₁`. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/Forster/probes/Forster-statement-skeleton.lean` recomputed 2026-09-24:
+
+- `5158987` (Phase-1 freeze): `b3f3c3b18966545032e231a8a99ed17aeb949072c309d6afbfaed28c6cc0e661` — the value quoted earlier in this file
+- `fce3c3d` (Phase-3 authority revision, 2026-09-23): `cb9be602b7e3a57f9e4698eeff4e8d6f2b9cc313f72e027364c0a026d03f61d7` — **current**

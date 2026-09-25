@@ -45,14 +45,19 @@
 | 仓库内一切**证明过程产物**的 markdown：`theories/Marcus/plan.md`、`theories/Marcus/TASKS.md`、`proofs/EXPERIENCE.md`、`proofs/API-NOTES.md`、`theories/Marcus/LITERATURE.md` | **English** |
 | Lean 代码注释与 docstring、commit message、分支名、任务板行 | **English** |
 | 与人类的对话：答复、提问、解释、计划、状态汇报、判决摘要 | **中文** |
-| `theories/Marcus/RESULTS.md`（面向人类提问的答复） | **双语**：每节英文原文 + 中文对照 |
+| `theories/<理论>/RESULTS.md`（面向人类提问的答复） | **双语**：每节英文原文 + 中文对照 |
+| 跨理论总结性文档 `theories/RELATIONS.md`（增量讨论稿）、`theories/GRAPH-REPORT.md`（总结报告） | **双语**：英文段 + 中文对照（登记于 2026-09-24 审查修正轮） |
 | Lean 标识符、定理名、mathlib 名、命令原始输出 | **原样**，不翻译 |
+
+**政策前的 Lean 源码例外（登记）**：Marcus 时代的 8 个交付模块与 `PhotoLean/Smoke.lean` 的注释/
+docstring 为中文主体（代码与字符串字面量中无中文）。属政策前产物，**登记为例外、不回译**（回译会改动
+已由 verifier 记录在案的模块 blob，须另起一轮验收）；2026-09-23 起纳入的新理论按英文写。
 
 **控制面文件例外**：`AGENTS.md`、`proofs/ENGINE.md`、`proofs/ENGINE.yml` 是
 工作区规则与契约本身（人类维护、agent 读取），继续用中文写。
 
 **禁止镜像副本**：不要维护 `.en.md` / `-en.md` / `.zh.md` 一类的翻译副本。
-一个产物写一次、写英文；双语只用于 `theories/Marcus/RESULTS.md` 这一个文件。
+一个产物写一次、写英文；双语只用于 `RESULTS.md` 类面向人类的答复与上表登记的两份跨理论文档。
 （现存 `.en.md` 文件是在本政策之前生成的，保留但不再扩展。）
 
 ## 工具链（易踩坑，务必遵守）

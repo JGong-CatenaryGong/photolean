@@ -143,3 +143,10 @@ L3 `RESULTS.md` still Phase-1 text (fixed); L6 premise residue on QY-C2 / QY-C6-
 
 Phase-3 revision (plan §3.1 entries 1–2): `yieldOf_eq_mul_tauOf` and the third cons row dropped their `QYData` premises (definition-level identities); the two linter suppressions were removed with them. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/QuantumYield/probes/QuantumYield-statement-skeleton.lean` recomputed 2026-09-24:
+
+- `5158987` (Phase-1 freeze): `967a11a1c788096d8fef39c90e62fd7e4cb5a2747efd3eb7e6621d2ca7b46a90` — the value quoted earlier in this file
+- `ea3eabd` (Phase-3 authority revision, 2026-09-23): `d8305be36f01f4f778a59331848f42d4192f7efec1342a6a956e138208b5d849` — **current**

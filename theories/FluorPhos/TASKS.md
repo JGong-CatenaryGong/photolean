@@ -5,10 +5,18 @@
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/FluorPhos/plan.md`.
 - Status of this theory: **Phase 2 (proof formalization) complete and independently verified
-  (verifier run 5, 2026-09-23 PASS)** — 29 of the 29
+  (verifier run 5, 2026-09-23 PASS), plus the Phase-3 negative-result addition** — **30 of the 30**
   authority declarations are proved in `PhotoLean/FluorPhos/{Basic,Criterion,RatModel,Instances}.lean`
-  (all except `phiP_strictMono_isc`, reported closed by the lead 2026-09-23 (route: div_lt_div_iff₀ + nlinarith)); the statement authority compiles
+  (`phiP_strictMono_isc`, absent at Phase 2, was delivered and verified by run 5; the Phase-3 row
+  `fpC5_firstForm_refuted` was ticked after the final audit); the statement authority compiles
   at 0 errors; batch: photophysics subgraph (groups A–D), dispatched 2026-09-22.
+- **Count history (2026-09-24, audit fix F4)**: the Sprint-0 / Phase-2 / verifier-run-5 records
+  *below* read "29 of 29" — that was the authority as frozen at Sprint 0 and re-frozen for FP-C5b
+  (16 theorems + 13 definitions/structures/inductives). The Phase-3 negative-result row
+  `fpC5_firstForm_refuted` (FP-I4, the 30th declaration, 17th theorem) was added afterwards, so the
+  current totals are **30 of 30** (fidelity probe 2026-09-24: `skeleton declarations 30`,
+  `word-for-word 30`, `not delivered 0`, `signature differences 0`). The historical lines are kept
+  as written rather than rewritten.
 - **Phase 2 (prover_c, 2026-09-23)**: gate evidence — per-module `proofs/scripts/lake build` exit 0
   for `Basic` / `Criterion` / `RatModel` / `Instances`; `proofs/scripts/check.sh --strict` (whole
   tree) verdict PASS (scan clean); `proofs/scripts/axioms.sh` PASS for all 15 delivered theorems
@@ -133,3 +141,27 @@ differences (see the final verifier run's record).
 - [x] `fpC5_firstForm_refuted` — delivered — Phase 3 — done — `PhotoLean/FluorPhos/Instances.lean` (FP-I4, the negative-result finalization; verifier final audit PASS 2026-09-23)
 
 Rows FP-I1..I3 and this addition: Phase-3 additions (FP-I4) ticked after the final audit.
+
+## Linter residue (registered 2026-09-24, audit fix F6c)
+
+- `PhotoLean/FluorPhos/RatModel.lean:89`'s `fpZoneQ (kF kISC kIC kP kNR : ℚ)` keeps the binder
+  `kIC` although the classifier body never uses it: the verdict compares `kISC * kP` with
+  `kF * (kP + kNR)`, and `kIC` cancels in the φ_P/φ_F ratio, so the binder is part of the uniform
+  five-rate interface rather than a premise. The build therefore prints `unused variable 'kIC'`
+  by design, and no `set_option linter.unusedVariables false` is added (a code edit to a delivered
+  module would void its recorded verification; the warning itself reaches no gate — the strict scan
+  looks for placeholder/axiom keywords, and no delivered row consumes the binder). The other two
+  residue sites (SternVolmer's ℝ and ℚ `tauRatioStat`) are registered on
+  `theories/SternVolmer/TASKS.md`.
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/FluorPhos/probes/FluorPhos-statement-skeleton.lean` recomputed 2026-09-24; the
+blob at each revision is recoverable from git (`git show <rev>:<path> | sha256sum`). The delivered
+modules' docstrings cite the value of the FP-C5b re-freeze, which is one revision behind the
+current file — recorded here so the citation is traceable rather than stale-looking:
+
+- `5158987` (Phase-1 freeze): `2aa08f1c153b6494…` (never recorded on this board)
+- `488f51d` (FP-C5b re-freeze, 2026-09-22): `b116adddea484896f7068c00141989d70871db4f51fe36749a2dbc44e24f4480` — **the value cited in `PhotoLean/FluorPhos/*` docstrings**
+- `ba1dfa4` (Phase-3 premise trims): `38f5bc0a906a727e…`
+- `45f60b5` (FP-I4 negative-result row, 2026-09-23): `2a717f1f51fd0f263513675945694b55a9034bb1e6b1299489d630ac7f96e7f4` — **current** (recorded at the Sprint-0 block, the re-freeze section and the Phase-3 section above)

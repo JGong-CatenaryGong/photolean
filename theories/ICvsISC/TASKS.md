@@ -149,3 +149,10 @@ Findings and their resolution:
 
 Phase-3 revision (plan §3.1 entries 2–3): `hso_zero_isc_absent` and `equal_prefactors_decision` dropped their decorative `HSO` hypotheses; `hsoZeroWitness` re-frozen to the spin-discount witness. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/ICvsISC/probes/ICvsISC-statement-skeleton.lean` recomputed 2026-09-24:
+
+- `5158987` (Phase-1 freeze): `07d1201c31dfd81ba373706b441ecbd7cafaa193b1404ce05c7029944475977e` — the value quoted earlier in this file
+- `a7437e9` (Phase-3 authority revision, 2026-09-23): `43c1824acae752c7820a90c2f76965205d99982320116d954603434e7b3df57e` — **current**

@@ -704,7 +704,12 @@ certificates (§12) plus two new rows (the energy-gap ordering of the Kasha IC r
 Stokes/EGL barrier–window boundary). The refuted first forms of SS-C9 and FP-C5 are delivered as
 counterexample-witness theorems in their theories (`invertedCorner_firstForm_refuted`,
 `fpC5_firstForm_refuted`) — negative results as first-class citizens. Every remaining pair is
-registered in the extended no-edge registry (§16) with its reason.
+registered in the extended no-edge registry (§16) with its reason. (Coverage note, 2026-09-24: an
+adversarial audit enumerated the C(17,2) pairs and found 26 of them without a §16 row — the
+concentrated group-B and cross-cascade pairs; §16 now carries a completion block that registers
+them from the per-theory `plan.md` §10 absence drafts, plus the one edge delivered inside a
+theory module rather than re-exported, StokesShift's SS-C9 `emEnergy_pos_iff_inverted` to
+`Marcus.InvertedRegion`. The sentence above is therefore true at the 2026-09-24 state.)
 
 **中文。** 第四批以三组加入九个理论——速率级联组（KashaVavilov、SternVolmer、QuantumYield、
 FluorPhos）以导入复用 Kasha 阶梯；双抛物面组（EnergyGapLaw、StokesShift、ICvsISC）携带内核
@@ -718,7 +723,11 @@ Stern–Volmer 观测在两机制空间上非单射（匹配参数下曲线在�
 产额恒等式；双抛物面组经内核证书（§12）加两条新行（Kasha IC 速率的能隙排序；Stokes/EGL
 势垒–窗口边界）组合。SS-C9 与 FP-C5 的被反驳初式以反例见证定理交付于各自理论
 （`invertedCorner_firstForm_refuted`、`fpC5_firstForm_refuted`）——负结果是一等公民。
-其余全部配对登记于扩展的无边注册表（§16），各附理由。
+其余全部配对登记于扩展的无边注册表（§16），各附理由。（补录注，2026-09-24：对抗性审查枚举
+C(17,2)=136 对后发现 **26 对**在 §16 无登记——集中在双抛物面组与跨级联配对；§16 现含一段
+**补录块**，把逐理论 `plan.md` §10 的缺席草稿转录为登记，并登记了一条"在理论模块内交付、
+未 re-export"的边——StokesShift 的 SS-C9 `emEnergy_pos_iff_inverted` ↔ `Marcus.InvertedRegion`。
+上句在 2026-09-24 的树状态下为真。）
 
 
 ---

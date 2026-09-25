@@ -134,3 +134,10 @@ history cannot be rewritten; this board entry is the record of record. (The earl
 
 Phase-3 revision (plan §3.1 entry 2): `specFrac_zero_of_kashaRule` dropped `RateData`, `cascade_pos_iff` dropped `i ≤ N`; the empty suppressions removed, the `d2_verdict` suppression kept with an accurate binder-noise comment. All rows re-verified after the revision: build green, `#print axioms` clean, fidelity 0
 differences (see the final verifier run's record).
+
+## Authority hash record (2026-09-24, audit fix F5)
+
+`sha256sum theories/KashaVavilov/probes/KashaVavilov-statement-skeleton.lean` recomputed 2026-09-24:
+
+- `5158987` (Phase-1 freeze): `5a51614d80d8340d76b605657802152f6574ad40c31aa6eb9e8d373d65dfdb15` — the value quoted earlier in this file (and in the delivered modules' docstrings)
+- `2bf0ab8` (Phase-3 authority revision, 2026-09-23): `2e8bdca363d888e62f8a17131a99923f02dfb435b5b517f2b71e26515ff13710` — **current**
