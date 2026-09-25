@@ -1,0 +1,4 @@
+# Python requirements for the analysis tooling (census + figures).
+# The gate scripts and the fidelity probes use the standard library only.
+matplotlib>=3.8
+numpy>=1.24

@@ -1,0 +1,23 @@
+# Repository-wide file handling.
+* text=auto eol=lf
+
+# Lean sources: keep LF, let GitHub count them as Lean.
+*.lean text linguist-language=Lean
+lakefile.toml text
+lean-toolchain text
+*.yml text
+*.yaml text
+*.cff text
+Makefile text
+
+# Binary artifacts (figures, archives) — never diff them as text.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.bundle binary
+
+# Generated census output is tracked on purpose (it is the manuscript's number source),
+# but it must not be marked as documentation prose by linguist.
+tools/claims.json linguist-generated=true
+paper/figures/*.pdf linguist-generated=true
+paper/figures/*.png linguist-generated=true

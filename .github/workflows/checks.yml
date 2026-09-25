@@ -1,0 +1,44 @@
+name: checks
+
+# Fast, dependency-light checks that need no Lean toolchain: they run on every push and pull
+# request. The full kernel-side gate lives in `lean-gate.yml` (manual dispatch, ~10 min + mathlib
+# cache download).
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  text-and-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Statement fidelity (17 probes, stdlib only)
+        run: |
+          set -e
+          for T in Marcus Hammond BEP Kasha Sabatier Goldschmidt SymmetryFactor KashaVavilov \
+                   SternVolmer QuantumYield FluorPhos EnergyGapLaw StokesShift ICvsISC Forster \
+                   Einstein RACI; do
+            out=$(python3 theories/BEP/probes/bep-fidelity.py --theory "$T")
+            echo "$out" | grep -q 'signature differences *: 0' || { echo "$out"; exit 1; }
+            echo "$out" | grep -q 'not delivered yet *: 0' || { echo "$out"; exit 1; }
+            echo "probe OK: $T"
+          done
+
+      - name: Strict source scan (placeholder / custom-axiom keywords)
+        run: python3 .github/scripts/strict_scan.py
+
+      - name: defaultTargets equals the disk module set
+        run: python3 .github/scripts/default_targets.py
+
+      - name: Census (quoted vs computed; skips the Lean-only steps)
+        run: |
+          if [ -f tools/counts.py ]; then
+            python3 tools/counts.py --md --no-lean
+          else
+            echo "tools/counts.py not present yet — skipped"
+          fi

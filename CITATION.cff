@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use PhotoLean, please cite both the software and the accompanying manuscript."
+title: "PhotoLean: a machine-checked genealogy of photochemical theory"
+abstract: >-
+  A Lean 4 formalization of seventeen phenomenological photochemistry / photophysics theories over a
+  shared kernel, with a machine-checked relation module that registers equivalences, one-way
+  entailments, composition edges, definitional certificates, look-alikes whose differences are
+  theorems, a complete registry of pairs without an edge (136/136 pairs accounted for), and three
+  adjudications of literature conflations with iff boundaries and witnesses.
+type: software
+version: 1.0.0
+date-released: 2026-09-25
+license: MIT
+repository-code: "TODO_REPOSITORY_URL"
+url: "TODO_REPOSITORY_URL"
+keywords:
+  - Lean 4
+  - formalization
+  - photochemistry
+  - photophysics
+  - knowledge graph
+  - mechanized reasoning
+  - symmetry factor
+  - Kasha's rule
+  - Stern-Volmer
+authors:
+  - family-names: Gong
+    given-names: Junyi
+    affiliation: "Faculty of Chemistry, Shenzhen MSU-BIT University, Shenzhen 518172, China"
+    orcid: ""
+  - family-names: Qiu
+    given-names: Zijie
+    affiliation: "School of Science and Engineering, Shenzhen Institute of Aggregate Science and Technology, The Chinese University of Hong Kong, Shenzhen (CUHK-SZ), Shenzhen 518172, China"
+    orcid: ""
+  - family-names: Tang
+    given-names: Ben Zhong
+    affiliation: "School of Science and Engineering, The Chinese University of Hong Kong, Shenzhen (CUHK-SZ), Shenzhen 518172, China; Department of Chemistry, The Hong Kong University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong, China"
+    orcid: ""
+preferred-citation:
+  type: article
+  title: "The Same and Not the Same: A Machine-Checked Genealogy of Photochemical Theory"
+  authors:
+    - family-names: Gong
+      given-names: Junyi
+    - family-names: Qiu
+      given-names: Zijie
+    - family-names: Tang
+      given-names: Ben Zhong
+  year: 2026
+  journal: "Manuscript in preparation"
+  notes: >-
+    The manuscript's claims are mapped to Lean declarations and commands in
+    paper/CLAIMS.md; the printed version should be updated here once the paper is accepted.

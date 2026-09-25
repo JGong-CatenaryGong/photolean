@@ -1,0 +1,62 @@
+name: lean-gate
+
+# The full acceptance gate. Expensive: it downloads the prebuilt mathlib v4.17.0 cache (~4.7 GB) and
+# builds the whole project. Run it manually (Actions -> lean-gate -> Run workflow) before a release,
+# or enable it on tags once a mathlib cache mirror is available in CI.
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install elan (Lean 4.17.0 from lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Fetch the prebuilt mathlib cache
+        run: lake exe cache get
+
+      - name: Make the repository's lake wrapper work in CI
+        run: |
+          mkdir -p .toolchain/lean-4.17.0-linux/bin
+          printf '#!/usr/bin/env bash\nexec lake "$@"\n' > .toolchain/lean-4.17.0-linux/bin/lake
+          chmod +x .toolchain/lean-4.17.0-linux/bin/lake
+          printf '#!/usr/bin/env bash\nexec lean "$@"\n' > .toolchain/lean-4.17.0-linux/bin/lean
+          chmod +x .toolchain/lean-4.17.0-linux/bin/lean
+
+      - name: Whole-tree gate (build + strict scan + leaf data planes)
+        run: ./proofs/scripts/check.sh --strict
+
+      - name: Statement fidelity (17 probes)
+        run: |
+          set -e
+          for T in Marcus Hammond BEP Kasha Sabatier Goldschmidt SymmetryFactor KashaVavilov \
+                   SternVolmer QuantumYield FluorPhos EnergyGapLaw StokesShift ICvsISC Forster \
+                   Einstein RACI; do
+            out=$(python3 theories/BEP/probes/bep-fidelity.py --theory "$T")
+            echo "$out" | grep -q 'signature differences *: 0' || { echo "$out"; exit 1; }
+            echo "$out" | grep -q 'not delivered yet *: 0' || { echo "$out"; exit 1; }
+          done
+
+      - name: Exhaustive axiom sweep
+        run: python3 tools/counts.py --axioms
+
+      - name: Upload census + figures
+        uses: actions/upload-artifact@v4
+        with:
+          name: census-and-figures
+          path: |
+            tools/claims.json
+            paper/figures/*.pdf
+            paper/figures/*.png
+          if-no-files-found: warn

@@ -1,0 +1,13 @@
+# Documentation and manuscript license / 文档与论文许可
+
+**English.** The **text and figures** of this repository — every `*.md` file, the documents under
+`paper/` and `docs/`, and the generated figures under `paper/figures/` — are licensed under the
+**Creative Commons Attribution 4.0 International License (CC BY 4.0)**,
+<https://creativecommons.org/licenses/by/4.0/>. The **Lean source and tooling** (everything under
+`PhotoLean/`, `proofs/`, `tools/`, and the scripts) are licensed under the MIT License; see
+`LICENSE`.
+
+**中文。** 本仓库的**文字与图件**——所有 `*.md`、`paper/` 与 `docs/` 下的文档、以及
+`paper/figures/` 下生成的图——采用 **知识共享 署名 4.0 国际（CC BY 4.0）** 许可，
+<https://creativecommons.org/licenses/by/4.0/>。**Lean 源码与工具**（`PhotoLean/`、`proofs/`、
+`tools/` 及脚本）采用 MIT 许可，见 `LICENSE`。
