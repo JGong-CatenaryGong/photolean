@@ -1470,4 +1470,13 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    try:
+        code = main()
+        sys.stdout.flush()
+        sys.exit(code)
+    except BrokenPipeError:
+        # Piping the census into `head`/`less` closes stdout early; leave without the
+        # interpreter's final flush (which would raise the same error again at shutdown).
+        devnull = os.open(os.devnull, os.O_WRONLY)
+        os.dup2(devnull, sys.stdout.fileno())
+        os._exit(0)

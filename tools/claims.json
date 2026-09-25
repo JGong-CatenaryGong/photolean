@@ -1333,27 +1333,11 @@
     ],
     "tree_state": {
       "git_status_short": [
-        "M AGENTS.md",
-        " M README.en.md",
-        " M README.md",
-        "R  paper/main.tex -> paper/drafts/2026-09-22-seven-theory-draft.tex",
-        "?? .gitattributes",
-        "?? .github/",
-        "?? the archive-metadata file (removed)",
-        "?? CITATION.cff",
-        "?? CONTRIBUTING.md",
-        "?? LICENSE",
-        "?? LICENSE-DOCS",
-        "?? Makefile",
-        "?? docs/",
-        "?? paper/AVAILABILITY.md",
-        "?? paper/CLAIMS.md",
-        "?? paper/README.md",
-        "?? paper/figures/",
-        "?? requirements.txt",
-        "?? tools/"
+        "M tools/README.md",
+        " M tools/claims.json",
+        " M tools/counts.py"
       ],
-      "head": "240308c0bac7752d53546aa7c8214a34d4ea06af"
+      "head": "d4fbad3047c830396c71c100e9cfa00b07c1dd5d"
     }
   },
   "negative_results": {
@@ -2731,6 +2715,67 @@
         }
       ]
     },
+    "classification_decisions": [
+      {
+        "alternative": "edge (the row is one of the five machine rows §17 registers)",
+        "decision": "absence (registered shape look-alike with a machine note)",
+        "pair": [
+          "Marcus",
+          "RACI"
+        ],
+        "reason": "both the manuscript §5.7 and the Fig. 1 caption list \"the classical surface crossing versus the codimension-2 conical intersection of RACI\" among the shape look-alikes registered WITHOUT an edge; the row kernel_surfaces_cross_at_tsCoord pins the classical side only. Any text that states 27 edges + 109 absences is off by this single judgment."
+      },
+      {
+        "alternative": "absence (no direct row exists)",
+        "decision": "edge, transitively only",
+        "pair": [
+          "Hammond",
+          "SymmetryFactor"
+        ],
+        "reason": "no Relations.lean row names both theories. The edge rests on §10's registry line \"SymmetryFactor ↔ Marcus, Hammond, BEP — §11 (yes, A1 + specialization)\" plus §11's tie-backs to Kernel.tsCoord / BEP.transfer and §1's kernel certificates kernel_tsCoord_eq_hammond / kernel_transfer_eq_bep. It must not be read as a direct row."
+      },
+      {
+        "decision": "each pair assigned once, to the absence set, with both bullets cited",
+        "item": "registry double-listings",
+        "pairs": [
+          [
+            "FluorPhos",
+            "StokesShift"
+          ],
+          [
+            "Forster",
+            "StokesShift"
+          ],
+          [
+            "Forster",
+            "ICvsISC"
+          ],
+          [
+            "Einstein",
+            "StokesShift"
+          ]
+        ],
+        "reason": "the registry lists these four pairs under two bullets each (§16 FluorPhos bullet, §16 StokesShift bullet, §16 Forster bullet, §16 ICvsISC bullet); the duplication is harmless for coverage but is reported so the registry can be de-duplicated."
+      },
+      {
+        "alternative": "all four rows adjudication (that is reconstruction B above, which drops the bridge count to 20)",
+        "decision": "mixed section: the two tie-back certificates → equivalence/entailment/bridge; the A1 verdict and the falsification-plus-persistence row → adjudication",
+        "item": "Relations.lean §11",
+        "reason": "the rows' own docstrings label them \"A1 certificate\" vs \"A1 verdict\"."
+      },
+      {
+        "alternative": "other (the section is titled \"Non-relations and shape differences\")",
+        "decision": "equivalence/entailment/bridge",
+        "item": "Relations.lean §6",
+        "reason": "the three rows are proved cross-theory content (an exactness/failure contrast, a co-extensiveness composition, a predicate-strength row); the alternative reading would give bridge 19 / other 3."
+      },
+      {
+        "alternative": "other (the section is the look-alike/non-relation pair, C1–C5)",
+        "decision": "composition (the section is an edge-section of the graph)",
+        "item": "Relations.lean §9",
+        "reason": "the choice is the crux of the Fig. 3 caption gap: moving §9 out of composition is what any caption-faithful mapping must do (see relations_module.reconciliation)."
+      }
+    ],
     "complete": true,
     "completion_block_in_module_edge": {
       "cite": "§16 completion block: \"StokesShift ↔ Marcus — edge, delivered inside the theory module\"",
@@ -3382,7 +3427,36 @@
         "equivalence/entailment/bridge": 22,
         "other": 2
       },
-      "reading": "The quoted composition count is 4 lower than the primary mapping; the quoted adjudication count is 2 higher and the quoted \"other\" count is 2 higher. A consistent reconstruction exists: count §9 (the look-alike section, 7 rows) as 3 composition + 2 adjudication + 2 other, everything else as in the primary mapping. Under that reconstruction all six quoted numbers (15/22/26/8/5/2) and the total 78 hold. Which four of §9's rows move cannot be recovered from the repository: §9's own labels are C1 (certificate), C2 (shared predicate), C3a/C3b, C4, C5a/C5b (non-relations), and the class list has no \"non-relation\" class."
+      "reading": "The quoted composition count is 4 lower than the primary mapping; the quoted adjudication count is 2 higher and the quoted \"other\" count is 2 higher. A consistent reconstruction exists: count §9 (the look-alike section, 7 rows) as 3 composition + 2 adjudication + 2 other, everything else as in the primary mapping. Under that reconstruction all six quoted numbers (15/22/26/8/5/2) and the total 78 hold. Which four of §9's rows move cannot be recovered from the repository: §9's own labels are C1 (certificate), C2 (shared predicate), C3a/C3b, C4, C5a/C5b (non-relations), and the class list has no \"non-relation\" class.",
+      "recommendation": "Update the Fig. 3 caption to the recomputed split 15/22/30/6/5/0: the section markers of Relations.lean do not support 15/22/26/8/5/2, and both reconstructions that reach the caption rest on assignments the module text does not license.",
+      "reconstructions": [
+        {
+          "name": "A (§15 shape rows out of composition)",
+          "rule": "§11 splits 2 bridge / 2 adjudication (as in the primary mapping), §9 is all composition, and §15 splits 8 composition / 2 adjudication / 2 other, where the two \"other\" rows are the two rows §15's own prose calls \"shape rows\": fretEff6_inv_eq_one_plus and eg_boundary_eq_tsCoord_zero",
+          "totals": {
+            "RACI": 5,
+            "adjudication": 8,
+            "certificate": 15,
+            "composition": 26,
+            "equivalence/entailment/bridge": 22,
+            "other": 2
+          },
+          "weakness": "no §15 row carries an A-label, so the two rows that would move to adjudication have no textual support (candidates: the D-adjacent rows sv_quench_dilutes_yield and kasha_radBranch_eq_yieldOf)"
+        },
+        {
+          "name": "B (§9 look-alike rows out of composition)",
+          "rule": "§11 counts wholly as adjudication (4 rows, all A1), §15 is all composition, and §9's seven rows split 3 composition / 2 bridge / 2 other",
+          "totals": {
+            "RACI": 5,
+            "adjudication": 8,
+            "certificate": 15,
+            "composition": 26,
+            "equivalence/entailment/bridge": 22,
+            "other": 2
+          },
+          "weakness": "cannot read §11 wholly as adjudication while keeping the two tie-back rows available to reach 22 bridge rows, and §9's own labels (C1 certificate, C2 shared predicate, C3–C5 non-relations) do not produce a 3/2/2 split"
+        }
+      ]
     },
     "rfl_certificate_count": 15,
     "rfl_certificate_rows": [

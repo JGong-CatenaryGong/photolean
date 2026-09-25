@@ -14,10 +14,14 @@ never consults a stored tally: it reads the tree, runs the probes, runs the gate
 python3 tools/counts.py                        # human-readable census (source-level + gates)
 python3 tools/counts.py --md                   # the same census as markdown
 python3 tools/counts.py --json tools/claims.json   # machine-readable census (this is the file of record)
-python3 tools/counts.py --axioms               # + the #print axioms sweep (~3 min)
+python3 tools/counts.py --axioms               # + the #print axioms sweep (~4 min)
 python3 tools/counts.py --no-lean              # skip every Lean-toolchain step (CI without Lean)
 ```
 
+* The checked-in `tools/claims.json` was produced by
+  `python3 tools/counts.py --axioms --json tools/claims.json` (≈4 min, dominated by the
+  `#print axioms` sweep); a source-level run reproduces every other field in seconds and is
+  byte-identical to itself across runs.
 * `--json [PATH]` writes the census (default `tools/claims.json`). The output has sorted keys and
   contains no run-dependent timestamp; `meta.tree_state` records the observed `HEAD` sha and the
   `git status --short` lines, so a diff of two runs shows what the tree movement was.
@@ -28,8 +32,10 @@ python3 tools/counts.py --no-lean              # skip every Lean-toolchain step 
 * The script is pure Python 3 (standard library only), needs no network, and **does not write
   inside the repository except** for its two scratch files under
   `.lake/tmp/counts-scratch/` (`env-census.lean`, `axioms-sweep.lean`) and the file named by
-  `--json`. `git status --short` must show only `tools/counts.py`, `tools/claims.json`,
-  `tools/README.md` after a run.
+  `--json`. A run adds no path beyond `tools/counts.py`, `tools/claims.json` and
+  `tools/README.md`: `git status --short` may still list other agents' in-flight edits, which the
+  script neither creates nor touches (measured: the three census files are the only paths the
+  tool's own runs ever change).
 
 ## Definitions — exactly what every number counts
 
@@ -78,7 +84,11 @@ elaborator auxiliaries) that has no source line, and it **cannot see `private` d
 imported modules** (they are renamed `_private.…`, so both the root filter and the import boundary
 exclude them; the source scan therefore counts 48 private rows that no importer can observe). The
 source scan stays the primary definition; the environment figure is the independent check that
-nothing in the scan is imaginary.
+nothing in the scan is imaginary. Measured at the reported tree state: **2,393** non-private
+`PhotoLean` constants (`thmInfo` 1,321, `defnInfo` 968, `inductInfo` 21, `ctorInfo` 61, `recInfo`
+21, `axiomInfo` 1, `quotInfo`/`opaqueInfo` 0) against 1,303 source-scan public rows; the per-theory
+side-by-side is `per_theory` in `claims.json`, and every name the source scan extracts is
+namespace-aware and resolved by the `--axioms` sweep (1,303 requested, 1,303 resolved).
 
 ### 3. Statement authority (per theory)
 
@@ -238,9 +248,25 @@ Produced by `python3 tools/counts.py --axioms --json tools/claims.json`; the ver
 | 22 | 17/17 leaf planes OK | §5.8 | 17/17 | MATCH |
 | 23 | verdict PASS | §2.1, §5.8 | `build: OK`, scan `clean`, `verdict: PASS` | MATCH |
 | 24 | five unused-variable warnings in three files | §5.9/§5.10 | 5 in `SternVolmer/Basic.lean`, `SternVolmer/RatModel.lean`, `FluorPhos/RatModel.lean` | MATCH |
-| 25 | `#print axioms` never exceeds `[propext, Classical.choice, Quot.sound]` | §5.8 | 1,288 printed + 15 axiom-free = 1,303; 0 footprints outside | MATCH |
-| 26 | "7 genuine equivalences (E1–E7) and 3 one-way implications (O1–O3)" | §2.3 bullet | §2 has 6 rows, §3 has 3 | NOTE |
-| 27 | "`#print axioms` reports **exactly** the three Mathlib axioms" | §5.8 | 1,205 rows report all three; 78 report `[propext]`, 5 report `[propext, Quot.sound]`, 15 report none | NOTE |
+| 25 | `#print axioms` never exceeds `[propext, Classical.choice, Quot.sound]` **[a]** | §5.8 | 1,288 printed + 15 axiom-free = 1,303; 0 footprints outside | MATCH |
+| 26 | exactly one auxiliary axiom constant, no user-declared axiom | METHOD NOTE, §5.8 | 1 (`PhotoLean.RACI.nonModelNoCI._elambda_1`) | MATCH |
+| 27 | "7 genuine equivalences (E1–E7) and 3 one-way implications (O1–O3)" | §2.3 bullet | §2 has 6 rows, §3 has 3 | NOTE |
+
+**[a]** The claim id `axiom_footprints` also carries the paper's stronger wording "reports
+**exactly** the three Mathlib axioms". The discipline half is exact (no footprint outside the
+allowed set); the "exactly three" half is an upper bound that 83 rows do not meet — 1,205 rows
+report all three axioms, 78 report `[propext]` alone, 5 report `[propext, Quot.sound]` and 15
+report none. See the Discrepancies section.
+
+Claim-id map (the `id` field of every entry of `claims.json`): 1 `theories`; 2 `theory_modules`;
+3 `lean_files`; 4 `statement_authority_total`; 5 `statement_authority_per_theory`;
+6 `fidelity_probes`; 7 `public_delivered_total`; 8 `relations_declarations_sections` and
+`relations_module_rows`; 9 `rfl_kernel_certificates`; 10–16 `fig3_class_certificate`,
+`fig3_class_equivalence_entailment_bridge`, `fig3_class_composition`, `fig3_class_adjudication`,
+`fig3_class_RACI`, `fig3_class_other`, `fig3_class_total`; 17 `pair_coverage`;
+18 `completion_block_pairs`; 19 `stokes_shift_in_module_edge`; 20 `refutation_rows`;
+21 `kernel_contents`; 22 `leaf_planes`; 23 `gate_verdict`; 24 `unused_variable_warnings`;
+25 `axiom_footprints`; 26 `auxiliary_axiom_constants`; 27 `equivalences_entailments`.
 
 ## Discrepancies, and the counting rule that would produce the quoted value
 
