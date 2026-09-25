@@ -1,0 +1,3979 @@
+{
+  "axioms": {
+    "allowed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "command": "proofs/scripts/lake env lean .lake/tmp/counts-scratch/axioms-sweep.lean",
+    "declarations_accounted_for": 1303,
+    "declarations_printed": 1288,
+    "declarations_requested": 1303,
+    "declarations_without_axioms": 15,
+    "distinct_footprints": [
+      [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      [
+        "Quot.sound",
+        "propext"
+      ],
+      [
+        "propext"
+      ]
+    ],
+    "exit_code": 0,
+    "footprint_histogram": {
+      "Classical.choice, Quot.sound, propext": 1205,
+      "Quot.sound, propext": 5,
+      "propext": 78
+    },
+    "footprints_outside_allowed": 0,
+    "outside_detail": [],
+    "requested_per_file": {
+      "PhotoLean/BEP/Basic.lean": 33,
+      "PhotoLean/BEP/Compose.lean": 13,
+      "PhotoLean/BEP/Criterion.lean": 28,
+      "PhotoLean/BEP/Instances.lean": 48,
+      "PhotoLean/BEP/RatModel.lean": 37,
+      "PhotoLean/BEP/Sharp.lean": 32,
+      "PhotoLean/Einstein/Basic.lean": 6,
+      "PhotoLean/Einstein/Criterion.lean": 13,
+      "PhotoLean/Einstein/Instances.lean": 2,
+      "PhotoLean/Einstein/RatModel.lean": 12,
+      "PhotoLean/EnergyGapLaw/Basic.lean": 7,
+      "PhotoLean/EnergyGapLaw/Criterion.lean": 5,
+      "PhotoLean/EnergyGapLaw/Instances.lean": 3,
+      "PhotoLean/EnergyGapLaw/RatModel.lean": 6,
+      "PhotoLean/EnergyGapLaw/Sharp.lean": 6,
+      "PhotoLean/FluorPhos/Basic.lean": 6,
+      "PhotoLean/FluorPhos/Criterion.lean": 10,
+      "PhotoLean/FluorPhos/Instances.lean": 6,
+      "PhotoLean/FluorPhos/RatModel.lean": 8,
+      "PhotoLean/Forster/Basic.lean": 6,
+      "PhotoLean/Forster/Criterion.lean": 14,
+      "PhotoLean/Forster/Instances.lean": 3,
+      "PhotoLean/Forster/RatModel.lean": 9,
+      "PhotoLean/Goldschmidt/Basic.lean": 29,
+      "PhotoLean/Goldschmidt/Criterion.lean": 24,
+      "PhotoLean/Goldschmidt/Instances.lean": 34,
+      "PhotoLean/Goldschmidt/RatModel.lean": 22,
+      "PhotoLean/Goldschmidt/Rules.lean": 18,
+      "PhotoLean/Goldschmidt/Sharp.lean": 12,
+      "PhotoLean/Hammond/Basic.lean": 32,
+      "PhotoLean/Hammond/Compose.lean": 4,
+      "PhotoLean/Hammond/Criterion.lean": 15,
+      "PhotoLean/Hammond/Instances.lean": 29,
+      "PhotoLean/Hammond/RatModel.lean": 16,
+      "PhotoLean/Hammond/Sharp.lean": 6,
+      "PhotoLean/ICvsISC/Basic.lean": 6,
+      "PhotoLean/ICvsISC/Criterion.lean": 7,
+      "PhotoLean/ICvsISC/Instances.lean": 3,
+      "PhotoLean/ICvsISC/RatModel.lean": 4,
+      "PhotoLean/Kasha/Basic.lean": 44,
+      "PhotoLean/Kasha/Compose.lean": 20,
+      "PhotoLean/Kasha/Criterion.lean": 22,
+      "PhotoLean/Kasha/Instances.lean": 20,
+      "PhotoLean/Kasha/RatModel.lean": 29,
+      "PhotoLean/Kasha/Sharp.lean": 16,
+      "PhotoLean/KashaVavilov/Basic.lean": 7,
+      "PhotoLean/KashaVavilov/Criterion.lean": 11,
+      "PhotoLean/KashaVavilov/Instances.lean": 21,
+      "PhotoLean/Kernel.lean": 8,
+      "PhotoLean/Marcus/Barrier.lean": 9,
+      "PhotoLean/Marcus/Basic.lean": 12,
+      "PhotoLean/Marcus/Compose.lean": 2,
+      "PhotoLean/Marcus/Instances.lean": 31,
+      "PhotoLean/Marcus/RatModel.lean": 6,
+      "PhotoLean/Marcus/Rate.lean": 6,
+      "PhotoLean/Marcus/Reorg.lean": 7,
+      "PhotoLean/Marcus/Sharp.lean": 9,
+      "PhotoLean/QuantumYield/Basic.lean": 4,
+      "PhotoLean/QuantumYield/Criterion.lean": 13,
+      "PhotoLean/QuantumYield/Instances.lean": 7,
+      "PhotoLean/QuantumYield/RatModel.lean": 6,
+      "PhotoLean/RACI/Accessibility.lean": 2,
+      "PhotoLean/RACI/Barrier.lean": 2,
+      "PhotoLean/RACI/Branching.lean": 10,
+      "PhotoLean/RACI/GeometricPhase.lean": 6,
+      "PhotoLean/RACI/Instances.lean": 7,
+      "PhotoLean/RACI/Jablonski.lean": 3,
+      "PhotoLean/RACI/JablonskiRatios.lean": 12,
+      "PhotoLean/RACI/LandauZener.lean": 5,
+      "PhotoLean/RACI/Main.lean": 8,
+      "PhotoLean/RACI/RatModel.lean": 10,
+      "PhotoLean/RACI/Seam.lean": 4,
+      "PhotoLean/RACI/Torsion.lean": 7,
+      "PhotoLean/RACI/TwoState.lean": 12,
+      "PhotoLean/Relations.lean": 78,
+      "PhotoLean/Sabatier/Basic.lean": 32,
+      "PhotoLean/Sabatier/Compose.lean": 13,
+      "PhotoLean/Sabatier/Criterion.lean": 19,
+      "PhotoLean/Sabatier/Instances.lean": 38,
+      "PhotoLean/Sabatier/RatModel.lean": 21,
+      "PhotoLean/Sabatier/Sharp.lean": 11,
+      "PhotoLean/Smoke.lean": 2,
+      "PhotoLean/SternVolmer/Basic.lean": 11,
+      "PhotoLean/SternVolmer/Criterion.lean": 17,
+      "PhotoLean/SternVolmer/Instances.lean": 4,
+      "PhotoLean/SternVolmer/RatModel.lean": 14,
+      "PhotoLean/StokesShift/Basic.lean": 7,
+      "PhotoLean/StokesShift/Criterion.lean": 10,
+      "PhotoLean/StokesShift/Instances.lean": 4,
+      "PhotoLean/StokesShift/RatModel.lean": 15,
+      "PhotoLean/SymmetryFactor/Basic.lean": 6,
+      "PhotoLean/SymmetryFactor/Criterion.lean": 9,
+      "PhotoLean/SymmetryFactor/Instances.lean": 5,
+      "PhotoLean/SymmetryFactor/RatModel.lean": 5,
+      "PhotoLean/SymmetryFactor/Sharp.lean": 10
+    },
+    "unknown_identifiers": []
+  },
+  "claims": [
+    {
+      "computed": 17,
+      "id": "theories",
+      "note": "",
+      "quoted": 17,
+      "source": "paper §2.1, §3.1 Table 1",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 92,
+      "id": "theory_modules",
+      "note": "",
+      "quoted": 92,
+      "source": "paper §2.1, Fig. 3 caption",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 95,
+      "id": "lean_files",
+      "note": "",
+      "quoted": 95,
+      "source": "paper §2.1, Fig. 3 caption",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 1153,
+      "id": "statement_authority_total",
+      "note": "Σ probe \"skeleton declarations\" over the 17 theories",
+      "quoted": 1153,
+      "source": "paper §2.1, Fig. 1/3 captions",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": [
+        51,
+        102,
+        191,
+        151,
+        132,
+        139,
+        35,
+        29,
+        46,
+        29,
+        30,
+        26,
+        36,
+        20,
+        32,
+        33,
+        71
+      ],
+      "id": "statement_authority_per_theory",
+      "note": "",
+      "quoted": [
+        51,
+        102,
+        191,
+        151,
+        132,
+        139,
+        35,
+        29,
+        46,
+        29,
+        30,
+        26,
+        36,
+        20,
+        32,
+        33,
+        71
+      ],
+      "source": "paper Fig. 3 / Table 1",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "17/17 zero signature differences, 17/17 zero undelivered, not delivered total 0",
+      "id": "fidelity_probes",
+      "note": "",
+      "quoted": "17/17 probes passed, 0 signature discrepancies, 0 undelivered",
+      "source": "paper §2.1",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "1214 = Σ_theory (delivered, word-for-word 1153 + delivered, not in authority 61)",
+      "id": "public_delivered_total",
+      "note": "source-scan cross-check: public declarations in PhotoLean/<Theory>/*.lean excluding private = 1215; excluding instance = 1214",
+      "quoted": 1214,
+      "source": "paper §2.1 and §5.2 (\"1214 public declarations delivered in total …\")",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "78 declarations in 17 sections",
+      "id": "relations_declarations_sections",
+      "note": "",
+      "quoted": "78 declarations in 17 sections",
+      "source": "paper §2.3, Fig. 1 caption",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 15,
+      "id": "fig3_class_certificate",
+      "note": "tools/counts.py CLASS_OF_SECTION/CLASS_OF_ROW mapping",
+      "quoted": 15,
+      "source": "paper Fig. 3 caption (15/22/26/8/5/2 = 78)",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 22,
+      "id": "fig3_class_equivalence_entailment_bridge",
+      "note": "tools/counts.py CLASS_OF_SECTION/CLASS_OF_ROW mapping",
+      "quoted": 22,
+      "source": "paper Fig. 3 caption (15/22/26/8/5/2 = 78)",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 30,
+      "id": "fig3_class_composition",
+      "note": "tools/counts.py CLASS_OF_SECTION/CLASS_OF_ROW mapping",
+      "quoted": 26,
+      "source": "paper Fig. 3 caption (15/22/26/8/5/2 = 78)",
+      "verdict": "DIFF"
+    },
+    {
+      "computed": 6,
+      "id": "fig3_class_adjudication",
+      "note": "tools/counts.py CLASS_OF_SECTION/CLASS_OF_ROW mapping",
+      "quoted": 8,
+      "source": "paper Fig. 3 caption (15/22/26/8/5/2 = 78)",
+      "verdict": "DIFF"
+    },
+    {
+      "computed": 5,
+      "id": "fig3_class_RACI",
+      "note": "tools/counts.py CLASS_OF_SECTION/CLASS_OF_ROW mapping",
+      "quoted": 5,
+      "source": "paper Fig. 3 caption (15/22/26/8/5/2 = 78)",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 0,
+      "id": "fig3_class_other",
+      "note": "tools/counts.py CLASS_OF_SECTION/CLASS_OF_ROW mapping",
+      "quoted": 2,
+      "source": "paper Fig. 3 caption (15/22/26/8/5/2 = 78)",
+      "verdict": "DIFF"
+    },
+    {
+      "computed": 78,
+      "id": "fig3_class_total",
+      "note": "Σ of my classes = 78 of 78 rows",
+      "quoted": 78,
+      "source": "paper Fig. 3 caption",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 15,
+      "id": "rfl_kernel_certificates",
+      "note": "§1 (8 rows, literal `:= rfl`) + §12 (7 rows, in-module `cert_*` rfl certificates)",
+      "quoted": 15,
+      "source": "paper §2.1, §2.3, §5.3, Fig. 3",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "136 covered = 26 edge pairs + 110 absence pairs; edge∩absence=0; unaccounted=0",
+      "id": "pair_coverage",
+      "note": "",
+      "quoted": 136,
+      "source": "paper §3.1 bullet and §5.7",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 26,
+      "id": "completion_block_pairs",
+      "note": "",
+      "quoted": 26,
+      "source": "paper §3.1 bullet, §5.7",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "in-module edge Marcus–StokesShift (SS-C9)",
+      "id": "stokes_shift_in_module_edge",
+      "note": "PhotoLean/StokesShift/Criterion.lean emEnergy_pos_iff_inverted",
+      "quoted": "one edge of SS delivered within the theory module",
+      "source": "paper §3.1 bullet, §5.7",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": 10,
+      "id": "refutation_rows",
+      "note": "comment-aware scan; raw grep cross-check = 10",
+      "quoted": 10,
+      "source": "paper §5.6",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "6 definitions, 2 theorems",
+      "id": "kernel_contents",
+      "note": "",
+      "quoted": "six definitions (reactantSurface, productSurface, barrier, reverseBarrier, tsCoord, transfer) and two barrier-rate algebra theorems",
+      "source": "paper §5.3",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "78 declarations, 17 sections",
+      "id": "relations_module_rows",
+      "note": "",
+      "quoted": "Relations.lean: 78 declarations, 17 sections",
+      "source": "paper §2.3",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "§2 has 6 rows, §3 has 3 rows (9 rows in the F1 core)",
+      "id": "equivalences_entailments",
+      "note": "Relations.lean §2–§3 carries 6 equivalences + 3 one-way rows; the tenth E/O row is not identifiable from the module alone",
+      "quoted": "7 genuine equivalences (E1-E7) and 3 one-way implications (O1-O3)",
+      "source": "paper §2.3 edge-vocabulary bullet",
+      "verdict": "NOTE"
+    },
+    {
+      "computed": "17/17",
+      "id": "leaf_planes",
+      "note": "",
+      "quoted": "17/17 leaf planes OK",
+      "source": "paper §5.8",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "PASS",
+      "id": "gate_verdict",
+      "note": "build OK, scan clean",
+      "quoted": "verdict PASS",
+      "source": "paper §2.1, §5.8",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "5 warnings in 3 files (PhotoLean/FluorPhos/RatModel.lean, PhotoLean/SternVolmer/Basic.lean, PhotoLean/SternVolmer/RatModel.lean); check.sh output 0, lake traces 5",
+      "id": "unused_variable_warnings",
+      "note": "primary source: lake build traces",
+      "quoted": "five unused variable linter warnings in three files",
+      "source": "paper §5.9/§5.10",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "1 axiom constant(s): PhotoLean.RACI.nonModelNoCI._elambda_1",
+      "id": "auxiliary_axiom_constants",
+      "note": "the constant is the elaborator auxiliary PhotoLean.RACI.nonModelNoCI._elambda_1; no user-declared axiom exists",
+      "quoted": "the tree has exactly one auxiliary axiom constant and no user-declared axiom",
+      "source": "METHOD NOTE / paper §5.8 (\"No delivered row contains sorry or a custom axiom\")",
+      "verdict": "MATCH"
+    },
+    {
+      "computed": "1288/1303 declarations printed (+15 without axioms); 0 footprints outside ALLOWED_AXIOMS; distinct footprints [('Classical.choice', 'Quot.sound', 'propext'), ('Quot.sound', 'propext'), ('propext',)]",
+      "id": "axiom_footprints",
+      "note": "no footprint exceeds ALLOWED_AXIOMS, but the footprint is an upper bound, not a constant: histogram {'Classical.choice, Quot.sound, propext': 1205, 'propext': 78, 'Quot.sound, propext': 5}",
+      "quoted": "for every named row cited in the text, #print axioms reports exactly [propext, Classical.choice, Quot.sound]",
+      "source": "paper §5.8",
+      "verdict": "MATCH"
+    }
+  ],
+  "declarations": {
+    "kinds": {
+      "abbrev": 0,
+      "class": 0,
+      "def": 291,
+      "example": 0,
+      "inductive": 14,
+      "instance": 1,
+      "lemma": 0,
+      "structure": 7,
+      "theorem": 990
+    },
+    "per_theory": {
+      "(top-level)": {
+        "a_public_excluding_private": 88,
+        "all_rows": 88,
+        "b_public_excluding_instance": 88,
+        "c_public_theorem_lemma_def_abbrev": 88,
+        "d_private": 0
+      },
+      "BEP": {
+        "a_public_excluding_private": 191,
+        "all_rows": 191,
+        "b_public_excluding_instance": 191,
+        "c_public_theorem_lemma_def_abbrev": 189,
+        "d_private": 0
+      },
+      "Einstein": {
+        "a_public_excluding_private": 33,
+        "all_rows": 33,
+        "b_public_excluding_instance": 33,
+        "c_public_theorem_lemma_def_abbrev": 33,
+        "d_private": 0
+      },
+      "EnergyGapLaw": {
+        "a_public_excluding_private": 27,
+        "all_rows": 27,
+        "b_public_excluding_instance": 27,
+        "c_public_theorem_lemma_def_abbrev": 26,
+        "d_private": 0
+      },
+      "FluorPhos": {
+        "a_public_excluding_private": 30,
+        "all_rows": 34,
+        "b_public_excluding_instance": 30,
+        "c_public_theorem_lemma_def_abbrev": 28,
+        "d_private": 4
+      },
+      "Forster": {
+        "a_public_excluding_private": 32,
+        "all_rows": 32,
+        "b_public_excluding_instance": 32,
+        "c_public_theorem_lemma_def_abbrev": 32,
+        "d_private": 0
+      },
+      "Goldschmidt": {
+        "a_public_excluding_private": 139,
+        "all_rows": 147,
+        "b_public_excluding_instance": 139,
+        "c_public_theorem_lemma_def_abbrev": 138,
+        "d_private": 8
+      },
+      "Hammond": {
+        "a_public_excluding_private": 102,
+        "all_rows": 102,
+        "b_public_excluding_instance": 102,
+        "c_public_theorem_lemma_def_abbrev": 101,
+        "d_private": 0
+      },
+      "ICvsISC": {
+        "a_public_excluding_private": 20,
+        "all_rows": 20,
+        "b_public_excluding_instance": 20,
+        "c_public_theorem_lemma_def_abbrev": 19,
+        "d_private": 0
+      },
+      "Kasha": {
+        "a_public_excluding_private": 151,
+        "all_rows": 151,
+        "b_public_excluding_instance": 151,
+        "c_public_theorem_lemma_def_abbrev": 148,
+        "d_private": 0
+      },
+      "KashaVavilov": {
+        "a_public_excluding_private": 39,
+        "all_rows": 39,
+        "b_public_excluding_instance": 39,
+        "c_public_theorem_lemma_def_abbrev": 39,
+        "d_private": 0
+      },
+      "Marcus": {
+        "a_public_excluding_private": 82,
+        "all_rows": 82,
+        "b_public_excluding_instance": 82,
+        "c_public_theorem_lemma_def_abbrev": 81,
+        "d_private": 0
+      },
+      "QuantumYield": {
+        "a_public_excluding_private": 30,
+        "all_rows": 30,
+        "b_public_excluding_instance": 29,
+        "c_public_theorem_lemma_def_abbrev": 27,
+        "d_private": 0
+      },
+      "RACI": {
+        "a_public_excluding_private": 88,
+        "all_rows": 88,
+        "b_public_excluding_instance": 88,
+        "c_public_theorem_lemma_def_abbrev": 85,
+        "d_private": 0
+      },
+      "Sabatier": {
+        "a_public_excluding_private": 134,
+        "all_rows": 170,
+        "b_public_excluding_instance": 134,
+        "c_public_theorem_lemma_def_abbrev": 133,
+        "d_private": 36
+      },
+      "SternVolmer": {
+        "a_public_excluding_private": 46,
+        "all_rows": 46,
+        "b_public_excluding_instance": 46,
+        "c_public_theorem_lemma_def_abbrev": 44,
+        "d_private": 0
+      },
+      "StokesShift": {
+        "a_public_excluding_private": 36,
+        "all_rows": 36,
+        "b_public_excluding_instance": 36,
+        "c_public_theorem_lemma_def_abbrev": 35,
+        "d_private": 0
+      },
+      "SymmetryFactor": {
+        "a_public_excluding_private": 35,
+        "all_rows": 35,
+        "b_public_excluding_instance": 35,
+        "c_public_theorem_lemma_def_abbrev": 35,
+        "d_private": 0
+      }
+    },
+    "per_theory_totals_all": 1303,
+    "per_theory_totals_theory_dirs": 1215,
+    "per_top_level_file": {
+      "PhotoLean/Kernel.lean": {
+        "kinds": [
+          [
+            "def",
+            "reactantSurface"
+          ],
+          [
+            "def",
+            "productSurface"
+          ],
+          [
+            "def",
+            "barrier"
+          ],
+          [
+            "def",
+            "reverseBarrier"
+          ],
+          [
+            "def",
+            "tsCoord"
+          ],
+          [
+            "def",
+            "transfer"
+          ],
+          [
+            "theorem",
+            "reverseBarrier_eq_barrier_neg"
+          ],
+          [
+            "theorem",
+            "transfer_eq_tsCoord"
+          ]
+        ],
+        "rows": 8
+      },
+      "PhotoLean/Relations.lean": {
+        "kinds": [
+          [
+            "theorem",
+            "kernel_barrier_eq_marcus"
+          ],
+          [
+            "theorem",
+            "kernel_barrier_eq_hammond"
+          ],
+          [
+            "theorem",
+            "kernel_barrier_eq_bep"
+          ],
+          [
+            "theorem",
+            "kernel_reverseBarrier_eq_hammond"
+          ],
+          [
+            "theorem",
+            "kernel_tsCoord_eq_hammond"
+          ],
+          [
+            "theorem",
+            "kernel_transfer_eq_bep"
+          ],
+          [
+            "theorem",
+            "kernel_reactantSurface_eq_hammond"
+          ],
+          [
+            "theorem",
+            "kernel_productSurface_eq_hammond"
+          ],
+          [
+            "theorem",
+            "transfer_eq_tsCoord_bridge"
+          ],
+          [
+            "theorem",
+            "secSlope_eq_lefflerSecant"
+          ],
+          [
+            "theorem",
+            "epBounds_iff_no_inverted_direction"
+          ],
+          [
+            "theorem",
+            "tsCoord_lt_zero_iff_inverted"
+          ],
+          [
+            "theorem",
+            "lefflerSecant_neg_iff_inverted"
+          ],
+          [
+            "theorem",
+            "hammondZoneQ_beyondReactant_iff_inverted"
+          ],
+          [
+            "theorem",
+            "epBounds_of_reactionRegion"
+          ],
+          [
+            "theorem",
+            "epBounds_of_marcus_normal"
+          ],
+          [
+            "theorem",
+            "hammondDescriptor_of_epConformsOnWindow"
+          ],
+          [
+            "theorem",
+            "hammond_descriptor_of_inner"
+          ],
+          [
+            "theorem",
+            "hammond_descriptor_of_microscopic"
+          ],
+          [
+            "theorem",
+            "hammond_descriptor_of_nonoverlap"
+          ],
+          [
+            "theorem",
+            "exists_reactionRegion_of_microscopic"
+          ],
+          [
+            "theorem",
+            "bep_eact_eq_marcus_barrier"
+          ],
+          [
+            "theorem",
+            "bep_rate_eq_exp_neg_eact"
+          ],
+          [
+            "theorem",
+            "hammond_barrier_eq_gapReactant"
+          ],
+          [
+            "theorem",
+            "marcus_rat_zoneQ_inverted_iff"
+          ],
+          [
+            "theorem",
+            "hammond_trend_exact_bep_law_inexact"
+          ],
+          [
+            "theorem",
+            "hammond_sharp_iff_marcus_sharp"
+          ],
+          [
+            "theorem",
+            "rate_predicate_satisfiable_without_positive_curvature"
+          ],
+          [
+            "theorem",
+            "kernel_marcusIC"
+          ],
+          [
+            "theorem",
+            "kashaWithin_one_marcus"
+          ],
+          [
+            "theorem",
+            "not_kashaWithin_of_gap_far"
+          ],
+          [
+            "theorem",
+            "kashaWindow_halfWidth"
+          ],
+          [
+            "theorem",
+            "marcusIC_pos"
+          ],
+          [
+            "theorem",
+            "linearVolcano_eq_bepTangent"
+          ],
+          [
+            "theorem",
+            "bepLine_le_eact"
+          ],
+          [
+            "theorem",
+            "linearVolcano_le_parabolic"
+          ],
+          [
+            "theorem",
+            "parabolic_descriptor"
+          ],
+          [
+            "theorem",
+            "apexPar_self"
+          ],
+          [
+            "theorem",
+            "linearVolcano_apex_exact"
+          ],
+          [
+            "theorem",
+            "marcus_rate_eq_activity"
+          ],
+          [
+            "theorem",
+            "marcusRate_antiVolcanoDescriptor"
+          ],
+          [
+            "theorem",
+            "apexBarrier_reference_nonzero"
+          ],
+          [
+            "theorem",
+            "optimal_barrier_height_contrast"
+          ],
+          [
+            "theorem",
+            "marcus_secant_at_optimum"
+          ],
+          [
+            "theorem",
+            "sabatier_apex_moves_with_offsets"
+          ],
+          [
+            "theorem",
+            "marcus_optimum_fixed_by_curvature"
+          ],
+          [
+            "theorem",
+            "symmetryFactor_tsCoordZero_eq_kernel"
+          ],
+          [
+            "theorem",
+            "symmetryFactor_tsCoordZero_eq_bepTransfer"
+          ],
+          [
+            "theorem",
+            "symmetryFactor_betaHalf_iff"
+          ],
+          [
+            "theorem",
+            "symmetryFactor_conflation_falsified_and_holds_in_kernel"
+          ],
+          [
+            "theorem",
+            "eg_barrier_eq_kernel"
+          ],
+          [
+            "theorem",
+            "eg_rate_eq_marcus"
+          ],
+          [
+            "theorem",
+            "eg_invertedGap_iff_marcus"
+          ],
+          [
+            "theorem",
+            "ss_s0Surface_eq_kernel"
+          ],
+          [
+            "theorem",
+            "ss_s1Surface_eq_kernel"
+          ],
+          [
+            "theorem",
+            "icvscic_barrier_eq_kernel"
+          ],
+          [
+            "theorem",
+            "icvscic_icRate_eq_marcus"
+          ],
+          [
+            "theorem",
+            "kv_d2_verdict"
+          ],
+          [
+            "theorem",
+            "kv_antiKasha_boundary"
+          ],
+          [
+            "theorem",
+            "sv_d1_verdict"
+          ],
+          [
+            "theorem",
+            "sv_identifiability_boundary"
+          ],
+          [
+            "theorem",
+            "kasha_radBranch_eq_yieldOf"
+          ],
+          [
+            "theorem",
+            "sv_quench_dilutes_yield"
+          ],
+          [
+            "theorem",
+            "phiF_eq_yieldOf"
+          ],
+          [
+            "theorem",
+            "phiP_eq_yieldOf_cascade"
+          ],
+          [
+            "theorem",
+            "einstein_yield_via_qy"
+          ],
+          [
+            "theorem",
+            "fretEff6_eq_one_sub_yieldOf"
+          ],
+          [
+            "theorem",
+            "marcusIC_strictAnti_on_inverted_gaps"
+          ],
+          [
+            "theorem",
+            "egBarrier_zero_iff_emEnergy_zero"
+          ],
+          [
+            "theorem",
+            "icvscic_icRate_eq_eg_nrRate"
+          ],
+          [
+            "theorem",
+            "fpRatio_invariant_under_quench"
+          ],
+          [
+            "theorem",
+            "fretEff6_inv_eq_one_plus"
+          ],
+          [
+            "theorem",
+            "eg_boundary_eq_tsCoord_zero"
+          ],
+          [
+            "theorem",
+            "raci_qy_eq_yieldOf_two_channel"
+          ],
+          [
+            "theorem",
+            "qy_two_channel_strictAnti_of_nr_lt"
+          ],
+          [
+            "theorem",
+            "log_barrierRate_eq"
+          ],
+          [
+            "theorem",
+            "icvsisc_barrier_zero_at_crossing"
+          ],
+          [
+            "theorem",
+            "kernel_surfaces_cross_at_tsCoord"
+          ]
+        ],
+        "rows": 78
+      },
+      "PhotoLean/Smoke.lean": {
+        "kinds": [
+          [
+            "theorem",
+            "smoke_ring"
+          ],
+          [
+            "theorem",
+            "smoke_pos"
+          ]
+        ],
+        "rows": 2
+      }
+    },
+    "totals": {
+      "a_public_excluding_private": 1303,
+      "all_rows": 1351,
+      "b_public_excluding_instance": 1302,
+      "c_public_theorem_lemma_def_abbrev": 1281,
+      "d_private": 48
+    }
+  },
+  "environment": {
+    "auxiliary_axiom_constants": [
+      "PhotoLean.RACI.nonModelNoCI._elambda_1"
+    ],
+    "modules": 95,
+    "ok": true,
+    "per_module_ns": {
+      "<top>": {
+        "axiom": 0,
+        "ctor": 0,
+        "defn": 6,
+        "induct": 0,
+        "instance": 0,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 0,
+        "structure": 0,
+        "thm": 93,
+        "total": 99
+      },
+      "BEP": {
+        "axiom": 0,
+        "ctor": 15,
+        "defn": 107,
+        "induct": 2,
+        "instance": 6,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 2,
+        "structure": 0,
+        "thm": 197,
+        "total": 323
+      },
+      "Einstein": {
+        "axiom": 0,
+        "ctor": 0,
+        "defn": 22,
+        "induct": 0,
+        "instance": 0,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 0,
+        "structure": 0,
+        "thm": 33,
+        "total": 55
+      },
+      "EnergyGapLaw": {
+        "axiom": 0,
+        "ctor": 3,
+        "defn": 35,
+        "induct": 1,
+        "instance": 2,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 1,
+        "structure": 0,
+        "thm": 29,
+        "total": 69
+      },
+      "FluorPhos": {
+        "axiom": 0,
+        "ctor": 4,
+        "defn": 66,
+        "induct": 2,
+        "instance": 3,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 2,
+        "structure": 1,
+        "thm": 35,
+        "total": 109
+      },
+      "Forster": {
+        "axiom": 0,
+        "ctor": 0,
+        "defn": 46,
+        "induct": 0,
+        "instance": 0,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 0,
+        "structure": 0,
+        "thm": 32,
+        "total": 78
+      },
+      "Goldschmidt": {
+        "axiom": 0,
+        "ctor": 3,
+        "defn": 132,
+        "induct": 1,
+        "instance": 2,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 1,
+        "structure": 0,
+        "thm": 122,
+        "total": 259
+      },
+      "Hammond": {
+        "axiom": 0,
+        "ctor": 7,
+        "defn": 55,
+        "induct": 1,
+        "instance": 3,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 1,
+        "structure": 0,
+        "thm": 104,
+        "total": 168
+      },
+      "ICvsISC": {
+        "axiom": 0,
+        "ctor": 1,
+        "defn": 14,
+        "induct": 1,
+        "instance": 0,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 1,
+        "structure": 1,
+        "thm": 22,
+        "total": 39
+      },
+      "Kasha": {
+        "axiom": 0,
+        "ctor": 7,
+        "defn": 99,
+        "induct": 3,
+        "instance": 2,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 3,
+        "structure": 1,
+        "thm": 161,
+        "total": 273
+      },
+      "KashaVavilov": {
+        "axiom": 0,
+        "ctor": 0,
+        "defn": 27,
+        "induct": 0,
+        "instance": 0,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 0,
+        "structure": 0,
+        "thm": 41,
+        "total": 68
+      },
+      "Marcus": {
+        "axiom": 0,
+        "ctor": 3,
+        "defn": 40,
+        "induct": 1,
+        "instance": 3,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 1,
+        "structure": 0,
+        "thm": 82,
+        "total": 127
+      },
+      "QuantumYield": {
+        "axiom": 0,
+        "ctor": 2,
+        "defn": 44,
+        "induct": 2,
+        "instance": 1,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 2,
+        "structure": 2,
+        "thm": 31,
+        "total": 81
+      },
+      "RACI": {
+        "axiom": 1,
+        "ctor": 4,
+        "defn": 106,
+        "induct": 3,
+        "instance": 5,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 3,
+        "structure": 2,
+        "thm": 113,
+        "total": 230
+      },
+      "Sabatier": {
+        "axiom": 0,
+        "ctor": 3,
+        "defn": 50,
+        "induct": 1,
+        "instance": 3,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 1,
+        "structure": 0,
+        "thm": 119,
+        "total": 174
+      },
+      "SternVolmer": {
+        "axiom": 0,
+        "ctor": 6,
+        "defn": 65,
+        "induct": 2,
+        "instance": 3,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 2,
+        "structure": 0,
+        "thm": 37,
+        "total": 112
+      },
+      "StokesShift": {
+        "axiom": 0,
+        "ctor": 3,
+        "defn": 45,
+        "induct": 1,
+        "instance": 2,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 1,
+        "structure": 0,
+        "thm": 35,
+        "total": 85
+      },
+      "SymmetryFactor": {
+        "axiom": 0,
+        "ctor": 0,
+        "defn": 9,
+        "induct": 0,
+        "instance": 0,
+        "opaque": 0,
+        "quot": 0,
+        "rec": 0,
+        "structure": 0,
+        "thm": 35,
+        "total": 44
+      }
+    },
+    "stderr": [],
+    "total": {
+      "axiom": 1,
+      "ctor": 61,
+      "defn": 968,
+      "induct": 21,
+      "instance": 35,
+      "opaque": 0,
+      "quot": 0,
+      "rec": 21,
+      "structure": 7,
+      "thm": 1321,
+      "total": 2393
+    }
+  },
+  "files": {
+    "lean_files_total": 95,
+    "per_theory_modules": {
+      "BEP": 6,
+      "Einstein": 4,
+      "EnergyGapLaw": 5,
+      "FluorPhos": 4,
+      "Forster": 4,
+      "Goldschmidt": 6,
+      "Hammond": 6,
+      "ICvsISC": 4,
+      "Kasha": 6,
+      "KashaVavilov": 3,
+      "Marcus": 8,
+      "QuantumYield": 4,
+      "RACI": 13,
+      "Sabatier": 6,
+      "SternVolmer": 4,
+      "StokesShift": 4,
+      "SymmetryFactor": 5
+    },
+    "theory_directories": 17,
+    "theory_directories_names": [
+      "BEP",
+      "Einstein",
+      "EnergyGapLaw",
+      "FluorPhos",
+      "Forster",
+      "Goldschmidt",
+      "Hammond",
+      "ICvsISC",
+      "Kasha",
+      "KashaVavilov",
+      "Marcus",
+      "QuantumYield",
+      "RACI",
+      "Sabatier",
+      "SternVolmer",
+      "StokesShift",
+      "SymmetryFactor"
+    ],
+    "theory_modules": 92,
+    "top_level_modules": [
+      "Kernel.lean",
+      "Relations.lean",
+      "Smoke.lean"
+    ]
+  },
+  "gates": {
+    "build": "OK",
+    "command": "proofs/scripts/check.sh --strict",
+    "exit_code": 0,
+    "leaf_planes": [
+      "theories/BEP",
+      "theories/Einstein",
+      "theories/EnergyGapLaw",
+      "theories/FluorPhos",
+      "theories/Forster",
+      "theories/goldschmidt",
+      "theories/hammond",
+      "theories/ICvsISC",
+      "theories/kasha",
+      "theories/KashaVavilov",
+      "theories/Marcus",
+      "theories/QuantumYield",
+      "theories/RACI",
+      "theories/Sabatier",
+      "theories/SternVolmer",
+      "theories/StokesShift",
+      "theories/SymmetryFactor"
+    ],
+    "leaf_planes_expected": 17,
+    "leaf_planes_ok": 17,
+    "output_tail": [
+      "==> sorry / custom axiom scan (PhotoLean/**/*.lean)",
+      "clean",
+      "==> summary",
+      "build: OK",
+      "allowed axioms: propext Classical.choice Quot.sound",
+      "verdict: PASS"
+    ],
+    "scan": "clean",
+    "unused_variable_files": [
+      "PhotoLean/FluorPhos/RatModel.lean",
+      "PhotoLean/SternVolmer/Basic.lean",
+      "PhotoLean/SternVolmer/RatModel.lean"
+    ],
+    "unused_variable_rows": [
+      {
+        "column": 32,
+        "file": "PhotoLean/SternVolmer/Basic.lean",
+        "line": 65,
+        "source": "trace",
+        "variable": "Ka"
+      },
+      {
+        "column": 35,
+        "file": "PhotoLean/SternVolmer/Basic.lean",
+        "line": 65,
+        "source": "trace",
+        "variable": "q"
+      },
+      {
+        "column": 22,
+        "file": "PhotoLean/SternVolmer/RatModel.lean",
+        "line": 61,
+        "source": "trace",
+        "variable": "Ka"
+      },
+      {
+        "column": 25,
+        "file": "PhotoLean/SternVolmer/RatModel.lean",
+        "line": 61,
+        "source": "trace",
+        "variable": "q"
+      },
+      {
+        "column": 21,
+        "file": "PhotoLean/FluorPhos/RatModel.lean",
+        "line": 89,
+        "source": "trace",
+        "variable": "kIC"
+      }
+    ],
+    "unused_variable_source": "lake build traces",
+    "unused_variable_warnings": 5,
+    "unused_variable_warnings_check_sh": 0,
+    "unused_variable_warnings_traces": 5,
+    "verdict": "PASS"
+  },
+  "meta": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "contract": "proofs/ENGINE.yml",
+    "flags": {
+      "axioms": true,
+      "md": true,
+      "no_lean": false
+    },
+    "script": "tools/counts.py",
+    "theories": [
+      "Marcus",
+      "Hammond",
+      "BEP",
+      "Kasha",
+      "Sabatier",
+      "Goldschmidt",
+      "SymmetryFactor",
+      "KashaVavilov",
+      "SternVolmer",
+      "QuantumYield",
+      "FluorPhos",
+      "EnergyGapLaw",
+      "StokesShift",
+      "ICvsISC",
+      "Forster",
+      "Einstein",
+      "RACI"
+    ],
+    "tree_state": {
+      "git_status_short": [
+        "M AGENTS.md",
+        " M README.en.md",
+        " M README.md",
+        "R  paper/main.tex -> paper/drafts/2026-09-22-seven-theory-draft.tex",
+        "?? .gitattributes",
+        "?? .github/",
+        "?? the archive-metadata file (removed)",
+        "?? CITATION.cff",
+        "?? CONTRIBUTING.md",
+        "?? LICENSE",
+        "?? LICENSE-DOCS",
+        "?? Makefile",
+        "?? docs/",
+        "?? paper/AVAILABILITY.md",
+        "?? paper/CLAIMS.md",
+        "?? paper/README.md",
+        "?? paper/figures/",
+        "?? requirements.txt",
+        "?? tools/"
+      ],
+      "head": "240308c0bac7752d53546aa7c8214a34d4ea06af"
+    }
+  },
+  "negative_results": {
+    "count": 10,
+    "pattern": "^(theorem|lemma) [A-Za-z_][A-Za-z0-9_.]*(refut|falsif|not_model_consistent)[A-Za-z0-9_.]*",
+    "raw_grep_count": 10,
+    "raw_grep_rows": [
+      "PhotoLean/BEP/Instances.lean:357:theorem inst_I11_F1_not_model_consistent :",
+      "PhotoLean/BEP/Instances.lean:405:theorem inst_I11_F2_not_model_consistent :",
+      "PhotoLean/BEP/Instances.lean:453:theorem inst_I11_F3_not_model_consistent :",
+      "PhotoLean/BEP/Instances.lean:505:theorem inst_I11_F5_not_model_consistent :",
+      "PhotoLean/BEP/Instances.lean:532:theorem inst_I12_affine_conforms_model_refuted :",
+      "PhotoLean/Relations.lean:650:theorem symmetryFactor_conflation_falsified_and_holds_in_kernel :",
+      "PhotoLean/SymmetryFactor/Sharp.lean:74:theorem betaHalf_falsified_by_unequal : ¬ BetaHalfReading 1 4 := by",
+      "PhotoLean/SymmetryFactor/Instances.lean:70:theorem inst_conflation_falsified :",
+      "PhotoLean/StokesShift/Instances.lean:86:theorem invertedCorner_firstForm_refuted :",
+      "PhotoLean/FluorPhos/Instances.lean:104:theorem fpC5_firstForm_refuted :"
+    ],
+    "rows": [
+      {
+        "file": "PhotoLean/BEP/Instances.lean",
+        "kind": "theorem",
+        "line": 357,
+        "name": "inst_I11_F1_not_model_consistent"
+      },
+      {
+        "file": "PhotoLean/BEP/Instances.lean",
+        "kind": "theorem",
+        "line": 405,
+        "name": "inst_I11_F2_not_model_consistent"
+      },
+      {
+        "file": "PhotoLean/BEP/Instances.lean",
+        "kind": "theorem",
+        "line": 453,
+        "name": "inst_I11_F3_not_model_consistent"
+      },
+      {
+        "file": "PhotoLean/BEP/Instances.lean",
+        "kind": "theorem",
+        "line": 505,
+        "name": "inst_I11_F5_not_model_consistent"
+      },
+      {
+        "file": "PhotoLean/BEP/Instances.lean",
+        "kind": "theorem",
+        "line": 532,
+        "name": "inst_I12_affine_conforms_model_refuted"
+      },
+      {
+        "file": "PhotoLean/FluorPhos/Instances.lean",
+        "kind": "theorem",
+        "line": 104,
+        "name": "fpC5_firstForm_refuted"
+      },
+      {
+        "file": "PhotoLean/Relations.lean",
+        "kind": "theorem",
+        "line": 650,
+        "name": "symmetryFactor_conflation_falsified_and_holds_in_kernel"
+      },
+      {
+        "file": "PhotoLean/StokesShift/Instances.lean",
+        "kind": "theorem",
+        "line": 86,
+        "name": "invertedCorner_firstForm_refuted"
+      },
+      {
+        "file": "PhotoLean/SymmetryFactor/Instances.lean",
+        "kind": "theorem",
+        "line": 70,
+        "name": "inst_conflation_falsified"
+      },
+      {
+        "file": "PhotoLean/SymmetryFactor/Sharp.lean",
+        "kind": "theorem",
+        "line": 74,
+        "name": "betaHalf_falsified_by_unequal"
+      }
+    ]
+  },
+  "pair_coverage": {
+    "absence_count": 110,
+    "absences": [
+      {
+        "cite": "§16 \"Einstein ↔ Marcus / … — no edge\"",
+        "pair": [
+          "BEP",
+          "Einstein"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ BEP — no edge (a registered shape edge)\"",
+        "pair": [
+          "BEP",
+          "EnergyGapLaw"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "pair": [
+          "BEP",
+          "FluorPhos"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ Marcus / … — no edge\"",
+        "pair": [
+          "BEP",
+          "Forster"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "pair": [
+          "BEP",
+          "Goldschmidt"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 completion \"ICvsISC ↔ … / BEP / … — no edge\"",
+        "pair": [
+          "BEP",
+          "ICvsISC"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§10 \"Kasha ↔ BEP — no edge\"",
+        "pair": [
+          "BEP",
+          "Kasha"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"KashaVavilov ↔ Marcus / Hammond / BEP — no edge\"",
+        "pair": [
+          "BEP",
+          "KashaVavilov"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "pair": [
+          "BEP",
+          "QuantumYield"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Hammond / BEP / Sabatier — no edge\"",
+        "pair": [
+          "BEP",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "pair": [
+          "BEP",
+          "SternVolmer"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"StokesShift ↔ … / BEP / … — no edge\"",
+        "pair": [
+          "BEP",
+          "StokesShift"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ … / Einstein — no edge\"",
+        "pair": [
+          "Einstein",
+          "EnergyGapLaw"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … / Forster / Einstein — no edge\"",
+        "pair": [
+          "Einstein",
+          "FluorPhos"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ … / Forster — no edge\"",
+        "pair": [
+          "Einstein",
+          "Forster"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ … / Goldschmidt / … — no edge\"",
+        "pair": [
+          "Einstein",
+          "Goldschmidt"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Einstein",
+          "Hammond"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"ICvsISC ↔ … / Forster / Einstein — no edge\"",
+        "pair": [
+          "Einstein",
+          "ICvsISC"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ … / Kasha / … — no edge\"",
+        "pair": [
+          "Einstein",
+          "Kasha"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ … / KashaVavilov / … — no edge\"",
+        "pair": [
+          "Einstein",
+          "KashaVavilov"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Einstein",
+          "Marcus"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Einstein — no edge\"",
+        "pair": [
+          "Einstein",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ … / Sabatier / … — no edge\"",
+        "pair": [
+          "Einstein",
+          "Sabatier"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"Einstein ↔ SternVolmer — no edge\"",
+        "pair": [
+          "Einstein",
+          "SternVolmer"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ … / StokesShift / Forster — no edge\"",
+        "pair": [
+          "Einstein",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Einstein ↔ … / SymmetryFactor / … — no edge\"",
+        "pair": [
+          "Einstein",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … / EnergyGapLaw / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "FluorPhos"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ … / EnergyGapLaw / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "Forster"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ … / Goldschmidt / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "Goldschmidt"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ … / KashaVavilov / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "KashaVavilov"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ … / QuantumYield / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "QuantumYield"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ Sabatier / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "Sabatier"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ … / SternVolmer / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "SternVolmer"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"EnergyGapLaw ↔ … / SymmetryFactor / … — no edge\"",
+        "pair": [
+          "EnergyGapLaw",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … / Forster / Einstein — no edge\"",
+        "pair": [
+          "FluorPhos",
+          "Forster"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "pair": [
+          "FluorPhos",
+          "Goldschmidt"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "pair": [
+          "FluorPhos",
+          "Hammond"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"FluorPhos ↔ ICvsISC — the premise-level kISC identification (registered in both plans as a modelling premise, not a Lean row)\"",
+        "pair": [
+          "FluorPhos",
+          "ICvsISC"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"FluorPhos ↔ Kasha / KashaVavilov — no edge (undelivered candidate compositions)\"",
+        "pair": [
+          "FluorPhos",
+          "Kasha"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 completion \"FluorPhos ↔ Kasha / KashaVavilov — no edge\"",
+        "pair": [
+          "FluorPhos",
+          "KashaVavilov"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "pair": [
+          "FluorPhos",
+          "Marcus"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ FluorPhos — no edge\"",
+        "pair": [
+          "FluorPhos",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "pair": [
+          "FluorPhos",
+          "Sabatier"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"StokesShift ↔ … / FluorPhos / … — no edge\" (also listed under the FluorPhos bullet)",
+        "pair": [
+          "FluorPhos",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "pair": [
+          "FluorPhos",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"Forster ↔ Goldschmidt — no edge (look-alike, no machine row)\"",
+        "pair": [
+          "Forster",
+          "Goldschmidt"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Forster",
+          "Hammond"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ … / ICvsISC — no edge\" (also listed under the ICvsISC bullet)",
+        "pair": [
+          "Forster",
+          "ICvsISC"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ … / Kasha / … — no edge\"",
+        "pair": [
+          "Forster",
+          "Kasha"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ … / KashaVavilov / … — no edge\"",
+        "pair": [
+          "Forster",
+          "KashaVavilov"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Forster",
+          "Marcus"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Forster — no edge\"",
+        "pair": [
+          "Forster",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ … / Sabatier / … — no edge\"",
+        "pair": [
+          "Forster",
+          "Sabatier"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 Forster bullet: \"Two shape registrations carry machine content: the SV look-alike (fretEff6_inv_eq_one_plus, §15)\" — shape registered, no edge (paper §3 \"edge construction refused\")",
+        "pair": [
+          "Forster",
+          "SternVolmer"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ … / StokesShift / … — no edge\" (also listed under the FluorPhos bullet)",
+        "pair": [
+          "Forster",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"Forster ↔ … / SymmetryFactor / … — no edge\"",
+        "pair": [
+          "Forster",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "Hammond"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 completion \"ICvsISC ↔ … / Goldschmidt / … — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "ICvsISC"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "Kasha"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "KashaVavilov"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "Marcus"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "QuantumYield"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Goldschmidt — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§10 \"Goldschmidt ↔ all six — no edge\" + \"Goldschmidt ↔ Sabatier — look-alike of shape\"",
+        "pair": [
+          "Goldschmidt",
+          "Sabatier"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "SternVolmer"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"StokesShift ↔ … / Goldschmidt / … — no edge\"",
+        "pair": [
+          "Goldschmidt",
+          "StokesShift"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§10 \"Goldschmidt ↔ all six\" and \"SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt — no edge\" (listed twice)",
+        "pair": [
+          "Goldschmidt",
+          "SymmetryFactor"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 completion \"ICvsISC ↔ Hammond / … — no edge\"",
+        "pair": [
+          "Hammond",
+          "ICvsISC"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§10 \"Kasha ↔ Hammond — no edge\"",
+        "pair": [
+          "Hammond",
+          "Kasha"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"KashaVavilov ↔ Marcus / Hammond / BEP — no edge\"",
+        "pair": [
+          "Hammond",
+          "KashaVavilov"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Hammond",
+          "QuantumYield"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Hammond / BEP / Sabatier — no edge\"",
+        "pair": [
+          "Hammond",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§10 \"Sabatier ↔ Hammond — no edge\"",
+        "pair": [
+          "Hammond",
+          "Sabatier"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Hammond",
+          "SternVolmer"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"StokesShift ↔ Hammond / … — no edge\"",
+        "pair": [
+          "Hammond",
+          "StokesShift"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"ICvsISC ↔ Kasha / KashaVavilov / … — no edge\"",
+        "pair": [
+          "ICvsISC",
+          "Kasha"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"ICvsISC ↔ Kasha / KashaVavilov / … — no edge\"",
+        "pair": [
+          "ICvsISC",
+          "KashaVavilov"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"ICvsISC ↔ … / QuantumYield / … — no edge\"",
+        "pair": [
+          "ICvsISC",
+          "QuantumYield"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"ICvsISC ↔ … / Sabatier / … — no edge\"",
+        "pair": [
+          "ICvsISC",
+          "Sabatier"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"ICvsISC ↔ … / SternVolmer / QuantumYield / … — no edge\"",
+        "pair": [
+          "ICvsISC",
+          "SternVolmer"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"StokesShift ↔ … / ICvsISC / … — no edge\"",
+        "pair": [
+          "ICvsISC",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"ICvsISC ↔ … / SymmetryFactor — no edge\"",
+        "pair": [
+          "ICvsISC",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Kasha / KashaVavilov — shape note (no machine row)\"",
+        "pair": [
+          "Kasha",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§10 \"Sabatier ↔ Kasha — no edge\"",
+        "pair": [
+          "Kasha",
+          "Sabatier"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 completion \"Kasha ↔ SternVolmer — no edge (registered candidate, not delivered)\"",
+        "pair": [
+          "Kasha",
+          "SternVolmer"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"StokesShift ↔ Kasha / … — no edge\"",
+        "pair": [
+          "Kasha",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§10 \"SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt — no edge\"",
+        "pair": [
+          "Kasha",
+          "SymmetryFactor"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"KashaVavilov ↔ Marcus / Hammond / BEP — no edge\"",
+        "pair": [
+          "KashaVavilov",
+          "Marcus"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"KashaVavilov ↔ … / QuantumYield — undelivered candidate compositions\"",
+        "pair": [
+          "KashaVavilov",
+          "QuantumYield"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Kasha / KashaVavilov — shape note (no machine row)\"",
+        "pair": [
+          "KashaVavilov",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§16 \"KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge\"",
+        "pair": [
+          "KashaVavilov",
+          "Sabatier"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"KashaVavilov ↔ SternVolmer / QuantumYield — undelivered candidate compositions\"",
+        "pair": [
+          "KashaVavilov",
+          "SternVolmer"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§16 \"StokesShift ↔ Kasha / KashaVavilov / … — no edge\"",
+        "pair": [
+          "KashaVavilov",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge\"",
+        "pair": [
+          "KashaVavilov",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Marcus",
+          "QuantumYield"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 kernel_surfaces_cross_at_tsCoord — \"RACI ↔ Marcus (look-alike, machine note)\"; paper §3 lists \"RACI versus Marcus … real crossing vs. codimension-2 degeneracy\" among the shape look-alikes with edge construction refused (the row pins the Marcus side and asserts no edge)",
+        "pair": [
+          "Marcus",
+          "RACI"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Marcus",
+          "SternVolmer"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "pair": [
+          "QuantumYield",
+          "Sabatier"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"StokesShift ↔ … / QuantumYield / … — no edge\"",
+        "pair": [
+          "QuantumYield",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "pair": [
+          "QuantumYield",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ Hammond / BEP / Sabatier — no edge\"",
+        "pair": [
+          "RACI",
+          "Sabatier"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ SternVolmer — look-alike note (opposite trend)\"",
+        "pair": [
+          "RACI",
+          "SternVolmer"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ StokesShift — no edge\"",
+        "pair": [
+          "RACI",
+          "StokesShift"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§17 \"RACI ↔ SymmetryFactor — no edge\"",
+        "pair": [
+          "RACI",
+          "SymmetryFactor"
+        ],
+        "registry": "§17 (no-edge registrations of the seventeenth node)"
+      },
+      {
+        "cite": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "pair": [
+          "Sabatier",
+          "SternVolmer"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"StokesShift ↔ … / Sabatier / … — no edge\"",
+        "pair": [
+          "Sabatier",
+          "StokesShift"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      },
+      {
+        "cite": "§10 \"SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt — no edge\"",
+        "pair": [
+          "Sabatier",
+          "SymmetryFactor"
+        ],
+        "registry": "§10 (no-edge registry, first seven theories)"
+      },
+      {
+        "cite": "§16 \"StokesShift ↔ … / SternVolmer / … — no edge\"",
+        "pair": [
+          "SternVolmer",
+          "StokesShift"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "pair": [
+          "SternVolmer",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 (extended no-edge registry, per-theory bullets)"
+      },
+      {
+        "cite": "§16 completion \"StokesShift ↔ … / SymmetryFactor — no edge\"",
+        "pair": [
+          "StokesShift",
+          "SymmetryFactor"
+        ],
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)"
+      }
+    ],
+    "ambiguous_pairs": [
+      {
+        "absence_reading": "§17 row kernel_surfaces_cross_at_tsCoord is labelled \"look-alike, machine note\", and paper §3 lists \"RACI versus Marcus … real crossing vs. codimension-2 degeneracy\" among the shape look-alikes registered with edge construction refused",
+        "counted_as": "absence",
+        "edge_reading": "§17 last bullet groups \"RACI ↔ QuantumYield / EnergyGapLaw / ICvsISC / Marcus — see the five machine rows above\"",
+        "effect_on_coverage": "none (the pair is covered either way); counting it as an edge would give 27 edges + 109 absences",
+        "pair": [
+          "Marcus",
+          "RACI"
+        ]
+      }
+    ],
+    "both_edge_and_absence": [],
+    "citation_check": {
+      "edges_with_resolved_row": 26,
+      "edges_without_resolved_row": [],
+      "resolved": [
+        {
+          "cite": "§2 tsCoord_lt_zero_iff_inverted, lefflerSecant_neg_iff_inverted; §4; §5 hammond_barrier_eq_gapReactant; §6 hammond_sharp_iff_marcus_sharp",
+          "pair": [
+            "Marcus",
+            "Hammond"
+          ],
+          "rows": [
+            "a",
+            "b",
+            "barrier",
+            "barrier_eq_gapReactant",
+            "d",
+            "eact",
+            "gapReactant",
+            "hammond_barrier_eq_gapReactant",
+            "hammond_sharp",
+            "hammond_sharp_iff_marcus_sharp",
+            "lefflerSecant",
+            "lefflerSecant_neg_iff_inverted",
+            "tsCoord",
+            "tsCoord_lt_zero_iff_inverted"
+          ]
+        },
+        {
+          "cite": "§2 epBounds_iff_no_inverted_direction; §3 epBounds_of_marcus_normal; §5 bep_eact_eq_marcus_barrier, bep_rate_eq_exp_neg_eact",
+          "pair": [
+            "Marcus",
+            "BEP"
+          ],
+          "rows": [
+            "a",
+            "b",
+            "barrier",
+            "bep_eact_eq_marcus_barrier",
+            "bep_rate_eq_exp_neg_eact",
+            "d",
+            "eact",
+            "epBounds_iff_no_inverted_direction",
+            "epBounds_of_marcus_normal",
+            "rate",
+            "rate_eq_exp_neg_eact"
+          ]
+        },
+        {
+          "cite": "§2 transfer_eq_tsCoord_bridge, secSlope_eq_lefflerSecant; §3 epBounds_of_reactionRegion, hammondDescriptor_of_epConformsOnWindow; §6 hammond_trend_exact_bep_law_inexact",
+          "pair": [
+            "Hammond",
+            "BEP"
+          ],
+          "rows": [
+            "a",
+            "b",
+            "d",
+            "eact",
+            "epBounds_of_reactionRegion",
+            "hammondDescriptor_of_epConformsOnWindow",
+            "hammond_trend_exact_bep_law_inexact",
+            "lefflerSecant",
+            "secSlope",
+            "secSlope_eq_lefflerSecant",
+            "transfer",
+            "transfer_eq_tsCoord",
+            "transfer_eq_tsCoord_bridge",
+            "tsCoord"
+          ]
+        },
+        {
+          "cite": "§9 marcus_rate_eq_activity (C1), marcusRate_antiVolcanoDescriptor (C2)",
+          "pair": [
+            "Marcus",
+            "Sabatier"
+          ],
+          "rows": [
+            "VolcanoDescriptor",
+            "a",
+            "activity",
+            "marcusRate_antiVolcanoDescriptor",
+            "marcus_rate_eq_activity",
+            "rate"
+          ]
+        },
+        {
+          "cite": "§8 six rows (linearVolcano_eq_bepTangent … linearVolcano_apex_exact)",
+          "pair": [
+            "Sabatier",
+            "BEP"
+          ],
+          "rows": [
+            "a",
+            "apex",
+            "b",
+            "linearVolcano_apex_exact",
+            "linearVolcano_eq_bepTangent"
+          ]
+        },
+        {
+          "cite": "§7 five rows (kernel_marcusIC, kashaWithin_one_marcus, not_kashaWithin_of_gap_far, kashaWindow_halfWidth, marcusIC_pos)",
+          "pair": [
+            "Kasha",
+            "Marcus"
+          ],
+          "rows": [
+            "a",
+            "d",
+            "kashaWindow_halfWidth",
+            "kashaWithin_one_marcus",
+            "kernel_marcusIC",
+            "marcusIC",
+            "marcusIC_pos",
+            "not_kashaWithin_of_gap_far"
+          ]
+        },
+        {
+          "cite": "§11 symmetryFactor_tsCoordZero_eq_kernel, symmetryFactor_betaHalf_iff; §10 registry \"SymmetryFactor ↔ Marcus, Hammond, BEP — §11\"",
+          "pair": [
+            "SymmetryFactor",
+            "Marcus"
+          ],
+          "rows": [
+            "F",
+            "a",
+            "b",
+            "d",
+            "symmetryFactor_betaHalf_iff",
+            "symmetryFactor_tsCoordZero_eq_kernel",
+            "tsCoord",
+            "tsCoordZero"
+          ]
+        },
+        {
+          "cite": "§11 symmetryFactor_tsCoordZero_eq_bepTransfer",
+          "pair": [
+            "SymmetryFactor",
+            "BEP"
+          ],
+          "rows": [
+            "F",
+            "a",
+            "b",
+            "d",
+            "symmetryFactor_tsCoordZero_eq_bepTransfer",
+            "tsCoord",
+            "tsCoordZero"
+          ]
+        },
+        {
+          "cite": "§10 registry \"SymmetryFactor ↔ Marcus, Hammond, BEP — §11\" (via §1 kernel certificate Kernel.tsCoord = Hammond.tsCoord)",
+          "pair": [
+            "SymmetryFactor",
+            "Hammond"
+          ],
+          "rows": [
+            "F",
+            "a",
+            "d",
+            "tsCoord"
+          ]
+        },
+        {
+          "cite": "§13 kv_d2_verdict, kv_antiKasha_boundary (both over Kasha.RateData / Kasha.KashaRule)",
+          "pair": [
+            "KashaVavilov",
+            "Kasha"
+          ],
+          "rows": [
+            "KashaRule",
+            "RateData",
+            "a",
+            "b",
+            "d",
+            "d2_verdict",
+            "kv_antiKasha_boundary",
+            "kv_d2_verdict"
+          ]
+        },
+        {
+          "cite": "§12 eg_rate_eq_marcus, eg_invertedGap_iff_marcus",
+          "pair": [
+            "EnergyGapLaw",
+            "Marcus"
+          ],
+          "rows": [
+            "a",
+            "d",
+            "eg_invertedGap_iff_marcus",
+            "eg_rate_eq_marcus",
+            "rate"
+          ]
+        },
+        {
+          "cite": "§12 icvscic_icRate_eq_marcus",
+          "pair": [
+            "ICvsISC",
+            "Marcus"
+          ],
+          "rows": [
+            "a",
+            "icRate",
+            "icvscic_icRate_eq_marcus"
+          ]
+        },
+        {
+          "cite": "§15 kasha_radBranch_eq_yieldOf",
+          "pair": [
+            "Kasha",
+            "QuantumYield"
+          ],
+          "rows": [
+            "a",
+            "d",
+            "kasha_radBranch_eq_yieldOf",
+            "radBranch",
+            "yieldOf"
+          ]
+        },
+        {
+          "cite": "§15 sv_quench_dilutes_yield",
+          "pair": [
+            "SternVolmer",
+            "QuantumYield"
+          ],
+          "rows": [
+            "d",
+            "sv_quench_dilutes_yield"
+          ]
+        },
+        {
+          "cite": "§15 phiF_eq_yieldOf, phiP_eq_yieldOf_cascade",
+          "pair": [
+            "FluorPhos",
+            "QuantumYield"
+          ],
+          "rows": [
+            "F",
+            "a",
+            "cascade",
+            "d",
+            "phiF",
+            "phiF_eq_yieldOf",
+            "phiP",
+            "phiP_eq",
+            "phiP_eq_yieldOf_cascade",
+            "yieldOf"
+          ]
+        },
+        {
+          "cite": "§15 einstein_yield_via_qy",
+          "pair": [
+            "Einstein",
+            "QuantumYield"
+          ],
+          "rows": [
+            "a",
+            "d",
+            "einstein_yield_via_qy"
+          ]
+        },
+        {
+          "cite": "§15 fretEff6_eq_one_sub_yieldOf",
+          "pair": [
+            "Forster",
+            "QuantumYield"
+          ],
+          "rows": [
+            "b",
+            "d",
+            "fretEff",
+            "fretEff6",
+            "fretEff6_eq_one_sub_yieldOf",
+            "yieldOf"
+          ]
+        },
+        {
+          "cite": "§15 marcusIC_strictAnti_on_inverted_gaps",
+          "pair": [
+            "Kasha",
+            "EnergyGapLaw"
+          ],
+          "rows": [
+            "a",
+            "d",
+            "marcusIC",
+            "marcusIC_strictAnti_on_inverted_gaps"
+          ]
+        },
+        {
+          "cite": "§15 egBarrier_zero_iff_emEnergy_zero",
+          "pair": [
+            "StokesShift",
+            "EnergyGapLaw"
+          ],
+          "rows": [
+            "a",
+            "egBarrier_zero_iff_emEnergy_zero",
+            "emEnergy"
+          ]
+        },
+        {
+          "cite": "§15 icvscic_icRate_eq_eg_nrRate",
+          "pair": [
+            "ICvsISC",
+            "EnergyGapLaw"
+          ],
+          "rows": [
+            "a",
+            "icRate",
+            "icvscic_icRate_eq_eg_nrRate",
+            "nrRate"
+          ]
+        },
+        {
+          "cite": "§15 fpRatio_invariant_under_quench",
+          "pair": [
+            "SternVolmer",
+            "FluorPhos"
+          ],
+          "rows": [
+            "a",
+            "d",
+            "fpRatio_invariant_under_quench"
+          ]
+        },
+        {
+          "cite": "§15 eg_boundary_eq_tsCoord_zero (the \"Hammond boundary row\")",
+          "pair": [
+            "EnergyGapLaw",
+            "Hammond"
+          ],
+          "rows": [
+            "a",
+            "b",
+            "d",
+            "eg_boundary_eq_tsCoord_zero",
+            "tsCoord",
+            "tsCoord_zero"
+          ]
+        },
+        {
+          "cite": "in-module edge: PhotoLean/StokesShift/Criterion.lean emEnergy_pos_iff_inverted (row SS-C9), noted in §16 completion block",
+          "pair": [
+            "Marcus",
+            "StokesShift"
+          ],
+          "rows": [
+            "a",
+            "b",
+            "d",
+            "emEnergy",
+            "emEnergy_pos_iff",
+            "emEnergy_pos_iff_inverted"
+          ]
+        },
+        {
+          "cite": "§17 raci_qy_eq_yieldOf_two_channel, qy_two_channel_strictAnti_of_nr_lt",
+          "pair": [
+            "RACI",
+            "QuantumYield"
+          ],
+          "rows": [
+            "a",
+            "d",
+            "qy_two_channel_strictAnti_of_nr_lt",
+            "raci_qy_eq_yieldOf_two_channel",
+            "yieldOf"
+          ]
+        },
+        {
+          "cite": "§17 log_barrierRate_eq",
+          "pair": [
+            "RACI",
+            "EnergyGapLaw"
+          ],
+          "rows": [
+            "a",
+            "b",
+            "barrier",
+            "barrierRate",
+            "log_barrierRate_eq"
+          ]
+        },
+        {
+          "cite": "§17 icvsisc_barrier_zero_at_crossing",
+          "pair": [
+            "RACI",
+            "ICvsISC"
+          ],
+          "rows": [
+            "a",
+            "b",
+            "barrier",
+            "icvsisc_barrier_zero_at_crossing"
+          ]
+        }
+      ]
+    },
+    "complete": true,
+    "completion_block_in_module_edge": {
+      "cite": "§16 completion block: \"StokesShift ↔ Marcus — edge, delivered inside the theory module\"",
+      "pair": [
+        "Marcus",
+        "StokesShift"
+      ]
+    },
+    "completion_block_pairs": 26,
+    "covered_total": 136,
+    "edge_absence_alternative": {
+      "absences": 109,
+      "edges": 27
+    },
+    "edge_count": 26,
+    "edges": [
+      {
+        "cite": "§2 transfer_eq_tsCoord_bridge, secSlope_eq_lefflerSecant; §3 epBounds_of_reactionRegion, hammondDescriptor_of_epConformsOnWindow; §6 hammond_trend_exact_bep_law_inexact",
+        "pair": [
+          "BEP",
+          "Hammond"
+        ]
+      },
+      {
+        "cite": "§2 epBounds_iff_no_inverted_direction; §3 epBounds_of_marcus_normal; §5 bep_eact_eq_marcus_barrier, bep_rate_eq_exp_neg_eact",
+        "pair": [
+          "BEP",
+          "Marcus"
+        ]
+      },
+      {
+        "cite": "§8 six rows (linearVolcano_eq_bepTangent … linearVolcano_apex_exact)",
+        "pair": [
+          "BEP",
+          "Sabatier"
+        ]
+      },
+      {
+        "cite": "§11 symmetryFactor_tsCoordZero_eq_bepTransfer",
+        "pair": [
+          "BEP",
+          "SymmetryFactor"
+        ]
+      },
+      {
+        "cite": "§15 einstein_yield_via_qy",
+        "pair": [
+          "Einstein",
+          "QuantumYield"
+        ]
+      },
+      {
+        "cite": "§15 eg_boundary_eq_tsCoord_zero (the \"Hammond boundary row\")",
+        "pair": [
+          "EnergyGapLaw",
+          "Hammond"
+        ]
+      },
+      {
+        "cite": "§15 icvscic_icRate_eq_eg_nrRate",
+        "pair": [
+          "EnergyGapLaw",
+          "ICvsISC"
+        ]
+      },
+      {
+        "cite": "§15 marcusIC_strictAnti_on_inverted_gaps",
+        "pair": [
+          "EnergyGapLaw",
+          "Kasha"
+        ]
+      },
+      {
+        "cite": "§12 eg_rate_eq_marcus, eg_invertedGap_iff_marcus",
+        "pair": [
+          "EnergyGapLaw",
+          "Marcus"
+        ]
+      },
+      {
+        "cite": "§17 log_barrierRate_eq",
+        "pair": [
+          "EnergyGapLaw",
+          "RACI"
+        ]
+      },
+      {
+        "cite": "§15 egBarrier_zero_iff_emEnergy_zero",
+        "pair": [
+          "EnergyGapLaw",
+          "StokesShift"
+        ]
+      },
+      {
+        "cite": "§15 phiF_eq_yieldOf, phiP_eq_yieldOf_cascade",
+        "pair": [
+          "FluorPhos",
+          "QuantumYield"
+        ]
+      },
+      {
+        "cite": "§15 fpRatio_invariant_under_quench",
+        "pair": [
+          "FluorPhos",
+          "SternVolmer"
+        ]
+      },
+      {
+        "cite": "§15 fretEff6_eq_one_sub_yieldOf",
+        "pair": [
+          "Forster",
+          "QuantumYield"
+        ]
+      },
+      {
+        "cite": "§2 tsCoord_lt_zero_iff_inverted, lefflerSecant_neg_iff_inverted; §4; §5 hammond_barrier_eq_gapReactant; §6 hammond_sharp_iff_marcus_sharp",
+        "pair": [
+          "Hammond",
+          "Marcus"
+        ]
+      },
+      {
+        "cite": "§10 registry \"SymmetryFactor ↔ Marcus, Hammond, BEP — §11\" (via §1 kernel certificate Kernel.tsCoord = Hammond.tsCoord)",
+        "pair": [
+          "Hammond",
+          "SymmetryFactor"
+        ]
+      },
+      {
+        "cite": "§12 icvscic_icRate_eq_marcus",
+        "pair": [
+          "ICvsISC",
+          "Marcus"
+        ]
+      },
+      {
+        "cite": "§17 icvsisc_barrier_zero_at_crossing",
+        "pair": [
+          "ICvsISC",
+          "RACI"
+        ]
+      },
+      {
+        "cite": "§13 kv_d2_verdict, kv_antiKasha_boundary (both over Kasha.RateData / Kasha.KashaRule)",
+        "pair": [
+          "Kasha",
+          "KashaVavilov"
+        ]
+      },
+      {
+        "cite": "§7 five rows (kernel_marcusIC, kashaWithin_one_marcus, not_kashaWithin_of_gap_far, kashaWindow_halfWidth, marcusIC_pos)",
+        "pair": [
+          "Kasha",
+          "Marcus"
+        ]
+      },
+      {
+        "cite": "§15 kasha_radBranch_eq_yieldOf",
+        "pair": [
+          "Kasha",
+          "QuantumYield"
+        ]
+      },
+      {
+        "cite": "§9 marcus_rate_eq_activity (C1), marcusRate_antiVolcanoDescriptor (C2)",
+        "pair": [
+          "Marcus",
+          "Sabatier"
+        ]
+      },
+      {
+        "cite": "in-module edge: PhotoLean/StokesShift/Criterion.lean emEnergy_pos_iff_inverted (row SS-C9), noted in §16 completion block",
+        "pair": [
+          "Marcus",
+          "StokesShift"
+        ]
+      },
+      {
+        "cite": "§11 symmetryFactor_tsCoordZero_eq_kernel, symmetryFactor_betaHalf_iff; §10 registry \"SymmetryFactor ↔ Marcus, Hammond, BEP — §11\"",
+        "pair": [
+          "Marcus",
+          "SymmetryFactor"
+        ]
+      },
+      {
+        "cite": "§17 raci_qy_eq_yieldOf_two_channel, qy_two_channel_strictAnti_of_nr_lt",
+        "pair": [
+          "QuantumYield",
+          "RACI"
+        ]
+      },
+      {
+        "cite": "§15 sv_quench_dilutes_yield",
+        "pair": [
+          "QuantumYield",
+          "SternVolmer"
+        ]
+      }
+    ],
+    "node_count": 17,
+    "nodes": [
+      "Marcus",
+      "Hammond",
+      "BEP",
+      "Kasha",
+      "Sabatier",
+      "Goldschmidt",
+      "SymmetryFactor",
+      "KashaVavilov",
+      "SternVolmer",
+      "QuantumYield",
+      "FluorPhos",
+      "EnergyGapLaw",
+      "StokesShift",
+      "ICvsISC",
+      "Forster",
+      "Einstein",
+      "RACI"
+    ],
+    "pairs_total": 136,
+    "registry_double_listings": [
+      {
+        "pair": [
+          "FluorPhos",
+          "StokesShift"
+        ],
+        "registries": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ]
+      },
+      {
+        "pair": [
+          "Forster",
+          "StokesShift"
+        ],
+        "registries": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ]
+      },
+      {
+        "pair": [
+          "Forster",
+          "ICvsISC"
+        ],
+        "registries": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ]
+      },
+      {
+        "pair": [
+          "Einstein",
+          "StokesShift"
+        ],
+        "registries": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ]
+      }
+    ],
+    "unaccounted": []
+  },
+  "per_theory": [
+    {
+      "env_constants_total": 127,
+      "env_instances": 3,
+      "env_minus_source": 45,
+      "env_structures": 0,
+      "modules": 8,
+      "probe_authority": 51,
+      "probe_auxiliaries": 31,
+      "probe_delivered_total": 82,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 51,
+      "source_private": 0,
+      "source_public_excluding_instance": 82,
+      "source_public_excluding_private": 82,
+      "source_public_theorem_lemma_def_abbrev": 81,
+      "theory": "Marcus"
+    },
+    {
+      "env_constants_total": 168,
+      "env_instances": 3,
+      "env_minus_source": 66,
+      "env_structures": 0,
+      "modules": 6,
+      "probe_authority": 102,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 102,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 102,
+      "source_private": 0,
+      "source_public_excluding_instance": 102,
+      "source_public_excluding_private": 102,
+      "source_public_theorem_lemma_def_abbrev": 101,
+      "theory": "Hammond"
+    },
+    {
+      "env_constants_total": 323,
+      "env_instances": 6,
+      "env_minus_source": 132,
+      "env_structures": 0,
+      "modules": 6,
+      "probe_authority": 191,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 191,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 191,
+      "source_private": 0,
+      "source_public_excluding_instance": 191,
+      "source_public_excluding_private": 191,
+      "source_public_theorem_lemma_def_abbrev": 189,
+      "theory": "BEP"
+    },
+    {
+      "env_constants_total": 273,
+      "env_instances": 2,
+      "env_minus_source": 122,
+      "env_structures": 1,
+      "modules": 6,
+      "probe_authority": 151,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 151,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 151,
+      "source_private": 0,
+      "source_public_excluding_instance": 151,
+      "source_public_excluding_private": 151,
+      "source_public_theorem_lemma_def_abbrev": 148,
+      "theory": "Kasha"
+    },
+    {
+      "env_constants_total": 174,
+      "env_instances": 3,
+      "env_minus_source": 40,
+      "env_structures": 0,
+      "modules": 6,
+      "probe_authority": 132,
+      "probe_auxiliaries": 2,
+      "probe_delivered_total": 134,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 132,
+      "source_private": 36,
+      "source_public_excluding_instance": 134,
+      "source_public_excluding_private": 134,
+      "source_public_theorem_lemma_def_abbrev": 133,
+      "theory": "Sabatier"
+    },
+    {
+      "env_constants_total": 259,
+      "env_instances": 2,
+      "env_minus_source": 120,
+      "env_structures": 0,
+      "modules": 6,
+      "probe_authority": 139,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 139,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 139,
+      "source_private": 8,
+      "source_public_excluding_instance": 139,
+      "source_public_excluding_private": 139,
+      "source_public_theorem_lemma_def_abbrev": 138,
+      "theory": "Goldschmidt"
+    },
+    {
+      "env_constants_total": 44,
+      "env_instances": 0,
+      "env_minus_source": 9,
+      "env_structures": 0,
+      "modules": 5,
+      "probe_authority": 35,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 35,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 35,
+      "source_private": 0,
+      "source_public_excluding_instance": 35,
+      "source_public_excluding_private": 35,
+      "source_public_theorem_lemma_def_abbrev": 35,
+      "theory": "SymmetryFactor"
+    },
+    {
+      "env_constants_total": 68,
+      "env_instances": 0,
+      "env_minus_source": 29,
+      "env_structures": 0,
+      "modules": 3,
+      "probe_authority": 29,
+      "probe_auxiliaries": 10,
+      "probe_delivered_total": 39,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 29,
+      "source_private": 0,
+      "source_public_excluding_instance": 39,
+      "source_public_excluding_private": 39,
+      "source_public_theorem_lemma_def_abbrev": 39,
+      "theory": "KashaVavilov"
+    },
+    {
+      "env_constants_total": 112,
+      "env_instances": 3,
+      "env_minus_source": 66,
+      "env_structures": 0,
+      "modules": 4,
+      "probe_authority": 46,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 46,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 46,
+      "source_private": 0,
+      "source_public_excluding_instance": 46,
+      "source_public_excluding_private": 46,
+      "source_public_theorem_lemma_def_abbrev": 44,
+      "theory": "SternVolmer"
+    },
+    {
+      "env_constants_total": 81,
+      "env_instances": 1,
+      "env_minus_source": 51,
+      "env_structures": 2,
+      "modules": 4,
+      "probe_authority": 29,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 29,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 29,
+      "source_private": 0,
+      "source_public_excluding_instance": 29,
+      "source_public_excluding_private": 30,
+      "source_public_theorem_lemma_def_abbrev": 27,
+      "theory": "QuantumYield"
+    },
+    {
+      "env_constants_total": 109,
+      "env_instances": 3,
+      "env_minus_source": 79,
+      "env_structures": 1,
+      "modules": 4,
+      "probe_authority": 30,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 30,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 30,
+      "source_private": 4,
+      "source_public_excluding_instance": 30,
+      "source_public_excluding_private": 30,
+      "source_public_theorem_lemma_def_abbrev": 28,
+      "theory": "FluorPhos"
+    },
+    {
+      "env_constants_total": 69,
+      "env_instances": 2,
+      "env_minus_source": 42,
+      "env_structures": 0,
+      "modules": 5,
+      "probe_authority": 26,
+      "probe_auxiliaries": 1,
+      "probe_delivered_total": 27,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 26,
+      "source_private": 0,
+      "source_public_excluding_instance": 27,
+      "source_public_excluding_private": 27,
+      "source_public_theorem_lemma_def_abbrev": 26,
+      "theory": "EnergyGapLaw"
+    },
+    {
+      "env_constants_total": 85,
+      "env_instances": 2,
+      "env_minus_source": 49,
+      "env_structures": 0,
+      "modules": 4,
+      "probe_authority": 36,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 36,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 36,
+      "source_private": 0,
+      "source_public_excluding_instance": 36,
+      "source_public_excluding_private": 36,
+      "source_public_theorem_lemma_def_abbrev": 35,
+      "theory": "StokesShift"
+    },
+    {
+      "env_constants_total": 39,
+      "env_instances": 0,
+      "env_minus_source": 19,
+      "env_structures": 1,
+      "modules": 4,
+      "probe_authority": 20,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 20,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 20,
+      "source_private": 0,
+      "source_public_excluding_instance": 20,
+      "source_public_excluding_private": 20,
+      "source_public_theorem_lemma_def_abbrev": 19,
+      "theory": "ICvsISC"
+    },
+    {
+      "env_constants_total": 78,
+      "env_instances": 0,
+      "env_minus_source": 46,
+      "env_structures": 0,
+      "modules": 4,
+      "probe_authority": 32,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 32,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 32,
+      "source_private": 0,
+      "source_public_excluding_instance": 32,
+      "source_public_excluding_private": 32,
+      "source_public_theorem_lemma_def_abbrev": 32,
+      "theory": "Forster"
+    },
+    {
+      "env_constants_total": 55,
+      "env_instances": 0,
+      "env_minus_source": 22,
+      "env_structures": 0,
+      "modules": 4,
+      "probe_authority": 33,
+      "probe_auxiliaries": 0,
+      "probe_delivered_total": 33,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 33,
+      "source_private": 0,
+      "source_public_excluding_instance": 33,
+      "source_public_excluding_private": 33,
+      "source_public_theorem_lemma_def_abbrev": 33,
+      "theory": "Einstein"
+    },
+    {
+      "env_constants_total": 230,
+      "env_instances": 5,
+      "env_minus_source": 142,
+      "env_structures": 2,
+      "modules": 13,
+      "probe_authority": 71,
+      "probe_auxiliaries": 17,
+      "probe_delivered_total": 88,
+      "probe_signature_differences": 0,
+      "probe_undelivered": 0,
+      "probe_word_for_word": 71,
+      "source_private": 0,
+      "source_public_excluding_instance": 88,
+      "source_public_excluding_private": 88,
+      "source_public_theorem_lemma_def_abbrev": 85,
+      "theory": "RACI"
+    }
+  ],
+  "relations_module": {
+    "class_of_row": {
+      "symmetryFactor_betaHalf_iff": "adjudication",
+      "symmetryFactor_conflation_falsified_and_holds_in_kernel": "adjudication",
+      "symmetryFactor_tsCoordZero_eq_bepTransfer": "equivalence/entailment/bridge",
+      "symmetryFactor_tsCoordZero_eq_kernel": "equivalence/entailment/bridge"
+    },
+    "class_of_section": {
+      "1": "certificate",
+      "10": null,
+      "11": null,
+      "12": "certificate",
+      "13": "adjudication",
+      "14": "adjudication",
+      "15": "composition",
+      "16": null,
+      "17": "RACI",
+      "2": "equivalence/entailment/bridge",
+      "3": "equivalence/entailment/bridge",
+      "4": "equivalence/entailment/bridge",
+      "5": "equivalence/entailment/bridge",
+      "6": "equivalence/entailment/bridge",
+      "7": "composition",
+      "8": "composition",
+      "9": "composition"
+    },
+    "class_totals": {
+      "RACI": 5,
+      "adjudication": 6,
+      "certificate": 15,
+      "composition": 30,
+      "equivalence/entailment/bridge": 22,
+      "other": 0
+    },
+    "class_totals_sum": 78,
+    "class_verdicts": {
+      "RACI": "MATCH",
+      "adjudication": "DIFF",
+      "certificate": "MATCH",
+      "composition": "DIFF",
+      "equivalence/entailment/bridge": "MATCH",
+      "other": "DIFF"
+    },
+    "declaration_count": 78,
+    "quoted_class_totals": {
+      "RACI": 5,
+      "adjudication": 8,
+      "certificate": 15,
+      "composition": 26,
+      "equivalence/entailment/bridge": 22,
+      "other": 2
+    },
+    "reconciliation": {
+      "delta_quoted_minus_primary": {
+        "RACI": 0,
+        "adjudication": 2,
+        "certificate": 0,
+        "composition": -4,
+        "equivalence/entailment/bridge": 0,
+        "other": 2
+      },
+      "fig3_total_primary": 78,
+      "fig3_total_quoted": 78,
+      "primary_class_totals": {
+        "RACI": 5,
+        "adjudication": 6,
+        "certificate": 15,
+        "composition": 30,
+        "equivalence/entailment/bridge": 22,
+        "other": 0
+      },
+      "quoted_class_totals": {
+        "RACI": 5,
+        "adjudication": 8,
+        "certificate": 15,
+        "composition": 26,
+        "equivalence/entailment/bridge": 22,
+        "other": 2
+      },
+      "reading": "The quoted composition count is 4 lower than the primary mapping; the quoted adjudication count is 2 higher and the quoted \"other\" count is 2 higher. A consistent reconstruction exists: count §9 (the look-alike section, 7 rows) as 3 composition + 2 adjudication + 2 other, everything else as in the primary mapping. Under that reconstruction all six quoted numbers (15/22/26/8/5/2) and the total 78 hold. Which four of §9's rows move cannot be recovered from the repository: §9's own labels are C1 (certificate), C2 (shared predicate), C3a/C3b, C4, C5a/C5b (non-relations), and the class list has no \"non-relation\" class."
+    },
+    "rfl_certificate_count": 15,
+    "rfl_certificate_rows": [
+      "eg_barrier_eq_kernel",
+      "eg_invertedGap_iff_marcus",
+      "eg_rate_eq_marcus",
+      "icvscic_barrier_eq_kernel",
+      "icvscic_icRate_eq_marcus",
+      "kernel_barrier_eq_bep",
+      "kernel_barrier_eq_hammond",
+      "kernel_barrier_eq_marcus",
+      "kernel_productSurface_eq_hammond",
+      "kernel_reactantSurface_eq_hammond",
+      "kernel_reverseBarrier_eq_hammond",
+      "kernel_transfer_eq_bep",
+      "kernel_tsCoord_eq_hammond",
+      "ss_s0Surface_eq_kernel",
+      "ss_s1Surface_eq_kernel"
+    ],
+    "section_count": 17,
+    "sections": [
+      {
+        "class": "certificate",
+        "end_line": 136,
+        "line": 98,
+        "number": 1,
+        "row_names": [
+          "kernel_barrier_eq_marcus",
+          "kernel_barrier_eq_hammond",
+          "kernel_barrier_eq_bep",
+          "kernel_reverseBarrier_eq_hammond",
+          "kernel_tsCoord_eq_hammond",
+          "kernel_transfer_eq_bep",
+          "kernel_reactantSurface_eq_hammond",
+          "kernel_productSurface_eq_hammond"
+        ],
+        "rows": 8,
+        "rows_by_class": {
+          "certificate": [
+            "kernel_barrier_eq_bep",
+            "kernel_barrier_eq_hammond",
+            "kernel_barrier_eq_marcus",
+            "kernel_productSurface_eq_hammond",
+            "kernel_reactantSurface_eq_hammond",
+            "kernel_reverseBarrier_eq_hammond",
+            "kernel_transfer_eq_bep",
+            "kernel_tsCoord_eq_hammond"
+          ]
+        },
+        "title": "Kernel certificates (definitional — the regression certificates of the extraction)"
+      },
+      {
+        "class": "equivalence/entailment/bridge",
+        "end_line": 180,
+        "line": 137,
+        "number": 2,
+        "row_names": [
+          "transfer_eq_tsCoord_bridge",
+          "secSlope_eq_lefflerSecant",
+          "epBounds_iff_no_inverted_direction",
+          "tsCoord_lt_zero_iff_inverted",
+          "lefflerSecant_neg_iff_inverted",
+          "hammondZoneQ_beyondReactant_iff_inverted"
+        ],
+        "rows": 6,
+        "rows_by_class": {
+          "equivalence/entailment/bridge": [
+            "epBounds_iff_no_inverted_direction",
+            "hammondZoneQ_beyondReactant_iff_inverted",
+            "lefflerSecant_neg_iff_inverted",
+            "secSlope_eq_lefflerSecant",
+            "transfer_eq_tsCoord_bridge",
+            "tsCoord_lt_zero_iff_inverted"
+          ]
+        },
+        "title": "True equivalences (non-definitional; reused verbatim)"
+      },
+      {
+        "class": "equivalence/entailment/bridge",
+        "end_line": 208,
+        "line": 181,
+        "number": 3,
+        "row_names": [
+          "epBounds_of_reactionRegion",
+          "epBounds_of_marcus_normal",
+          "hammondDescriptor_of_epConformsOnWindow"
+        ],
+        "rows": 3,
+        "rows_by_class": {
+          "equivalence/entailment/bridge": [
+            "epBounds_of_marcus_normal",
+            "epBounds_of_reactionRegion",
+            "hammondDescriptor_of_epConformsOnWindow"
+          ]
+        },
+        "title": "One-way entailments"
+      },
+      {
+        "class": "equivalence/entailment/bridge",
+        "end_line": 240,
+        "line": 209,
+        "number": 4,
+        "row_names": [
+          "hammond_descriptor_of_inner",
+          "hammond_descriptor_of_microscopic",
+          "hammond_descriptor_of_nonoverlap",
+          "exists_reactionRegion_of_microscopic"
+        ],
+        "rows": 4,
+        "rows_by_class": {
+          "equivalence/entailment/bridge": [
+            "exists_reactionRegion_of_microscopic",
+            "hammond_descriptor_of_inner",
+            "hammond_descriptor_of_microscopic",
+            "hammond_descriptor_of_nonoverlap"
+          ]
+        },
+        "title": "Definitional reuse (Hammond's composition over the Marcus reorganization energy)"
+      },
+      {
+        "class": "equivalence/entailment/bridge",
+        "end_line": 266,
+        "line": 241,
+        "number": 5,
+        "row_names": [
+          "bep_eact_eq_marcus_barrier",
+          "bep_rate_eq_exp_neg_eact",
+          "hammond_barrier_eq_gapReactant",
+          "marcus_rat_zoneQ_inverted_iff"
+        ],
+        "rows": 4,
+        "rows_by_class": {
+          "equivalence/entailment/bridge": [
+            "bep_eact_eq_marcus_barrier",
+            "bep_rate_eq_exp_neg_eact",
+            "hammond_barrier_eq_gapReactant",
+            "marcus_rat_zoneQ_inverted_iff"
+          ]
+        },
+        "title": "Remaining ledger rows of the bridge inventory"
+      },
+      {
+        "class": "equivalence/entailment/bridge",
+        "end_line": 324,
+        "line": 267,
+        "number": 6,
+        "row_names": [
+          "hammond_trend_exact_bep_law_inexact",
+          "hammond_sharp_iff_marcus_sharp",
+          "rate_predicate_satisfiable_without_positive_curvature"
+        ],
+        "rows": 3,
+        "rows_by_class": {
+          "equivalence/entailment/bridge": [
+            "hammond_sharp_iff_marcus_sharp",
+            "hammond_trend_exact_bep_law_inexact",
+            "rate_predicate_satisfiable_without_positive_curvature"
+          ]
+        },
+        "title": "Non-relations and shape differences (new theorems of this module)"
+      },
+      {
+        "class": "composition",
+        "end_line": 386,
+        "line": 325,
+        "number": 7,
+        "row_names": [
+          "kernel_marcusIC",
+          "kashaWithin_one_marcus",
+          "not_kashaWithin_of_gap_far",
+          "kashaWindow_halfWidth",
+          "marcusIC_pos"
+        ],
+        "rows": 5,
+        "rows_by_class": {
+          "composition": [
+            "kashaWindow_halfWidth",
+            "kashaWithin_one_marcus",
+            "kernel_marcusIC",
+            "marcusIC_pos",
+            "not_kashaWithin_of_gap_far"
+          ]
+        },
+        "title": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier"
+      },
+      {
+        "class": "composition",
+        "end_line": 439,
+        "line": 387,
+        "number": 8,
+        "row_names": [
+          "linearVolcano_eq_bepTangent",
+          "bepLine_le_eact",
+          "linearVolcano_le_parabolic",
+          "parabolic_descriptor",
+          "apexPar_self",
+          "linearVolcano_apex_exact"
+        ],
+        "rows": 6,
+        "rows_by_class": {
+          "composition": [
+            "apexPar_self",
+            "bepLine_le_eact",
+            "linearVolcano_apex_exact",
+            "linearVolcano_eq_bepTangent",
+            "linearVolcano_le_parabolic",
+            "parabolic_descriptor"
+          ]
+        },
+        "title": "Composition edge: the Sabatier volcano over the BEP two-parabola model"
+      },
+      {
+        "class": "composition",
+        "end_line": 548,
+        "line": 440,
+        "number": 9,
+        "row_names": [
+          "marcus_rate_eq_activity",
+          "marcusRate_antiVolcanoDescriptor",
+          "apexBarrier_reference_nonzero",
+          "optimal_barrier_height_contrast",
+          "marcus_secant_at_optimum",
+          "sabatier_apex_moves_with_offsets",
+          "marcus_optimum_fixed_by_curvature"
+        ],
+        "rows": 7,
+        "rows_by_class": {
+          "composition": [
+            "apexBarrier_reference_nonzero",
+            "marcusRate_antiVolcanoDescriptor",
+            "marcus_optimum_fixed_by_curvature",
+            "marcus_rate_eq_activity",
+            "marcus_secant_at_optimum",
+            "optimal_barrier_height_contrast",
+            "sabatier_apex_moves_with_offsets"
+          ]
+        },
+        "title": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate"
+      },
+      {
+        "class": null,
+        "end_line": 613,
+        "line": 549,
+        "number": 10,
+        "row_names": [],
+        "rows": 0,
+        "rows_by_class": {},
+        "title": "The no-edge registry (documentation, not theorems)"
+      },
+      {
+        "class": null,
+        "end_line": 656,
+        "line": 614,
+        "number": 11,
+        "row_names": [
+          "symmetryFactor_tsCoordZero_eq_kernel",
+          "symmetryFactor_tsCoordZero_eq_bepTransfer",
+          "symmetryFactor_betaHalf_iff",
+          "symmetryFactor_conflation_falsified_and_holds_in_kernel"
+        ],
+        "rows": 4,
+        "rows_by_class": {
+          "adjudication": [
+            "symmetryFactor_betaHalf_iff",
+            "symmetryFactor_conflation_falsified_and_holds_in_kernel"
+          ],
+          "equivalence/entailment/bridge": [
+            "symmetryFactor_tsCoordZero_eq_bepTransfer",
+            "symmetryFactor_tsCoordZero_eq_kernel"
+          ]
+        },
+        "title": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient"
+      },
+      {
+        "class": "certificate",
+        "end_line": 701,
+        "line": 657,
+        "number": 12,
+        "row_names": [
+          "eg_barrier_eq_kernel",
+          "eg_rate_eq_marcus",
+          "eg_invertedGap_iff_marcus",
+          "ss_s0Surface_eq_kernel",
+          "ss_s1Surface_eq_kernel",
+          "icvscic_barrier_eq_kernel",
+          "icvscic_icRate_eq_marcus"
+        ],
+        "rows": 7,
+        "rows_by_class": {
+          "certificate": [
+            "eg_barrier_eq_kernel",
+            "eg_invertedGap_iff_marcus",
+            "eg_rate_eq_marcus",
+            "icvscic_barrier_eq_kernel",
+            "icvscic_icRate_eq_marcus",
+            "ss_s0Surface_eq_kernel",
+            "ss_s1Surface_eq_kernel"
+          ]
+        },
+        "title": "Kernel certificates of the photophysics batch (definitional pins)"
+      },
+      {
+        "class": "adjudication",
+        "end_line": 734,
+        "line": 702,
+        "number": 13,
+        "row_names": [
+          "kv_d2_verdict",
+          "kv_antiKasha_boundary"
+        ],
+        "rows": 2,
+        "rows_by_class": {
+          "adjudication": [
+            "kv_antiKasha_boundary",
+            "kv_d2_verdict"
+          ]
+        },
+        "title": "The D2 adjudication (class A2: adjudicated independence) — Kasha vs Kasha–Vavilov"
+      },
+      {
+        "class": "adjudication",
+        "end_line": 763,
+        "line": 735,
+        "number": 14,
+        "row_names": [
+          "sv_d1_verdict",
+          "sv_identifiability_boundary"
+        ],
+        "rows": 2,
+        "rows_by_class": {
+          "adjudication": [
+            "sv_d1_verdict",
+            "sv_identifiability_boundary"
+          ]
+        },
+        "title": "The D1 adjudication (class A3: identifiability) — static vs dynamic quenching"
+      },
+      {
+        "class": "composition",
+        "end_line": 932,
+        "line": 764,
+        "number": 15,
+        "row_names": [
+          "kasha_radBranch_eq_yieldOf",
+          "sv_quench_dilutes_yield",
+          "phiF_eq_yieldOf",
+          "phiP_eq_yieldOf_cascade",
+          "einstein_yield_via_qy",
+          "fretEff6_eq_one_sub_yieldOf",
+          "marcusIC_strictAnti_on_inverted_gaps",
+          "egBarrier_zero_iff_emEnergy_zero",
+          "icvscic_icRate_eq_eg_nrRate",
+          "fpRatio_invariant_under_quench",
+          "fretEff6_inv_eq_one_plus",
+          "eg_boundary_eq_tsCoord_zero"
+        ],
+        "rows": 12,
+        "rows_by_class": {
+          "composition": [
+            "egBarrier_zero_iff_emEnergy_zero",
+            "eg_boundary_eq_tsCoord_zero",
+            "einstein_yield_via_qy",
+            "fpRatio_invariant_under_quench",
+            "fretEff6_eq_one_sub_yieldOf",
+            "fretEff6_inv_eq_one_plus",
+            "icvscic_icRate_eq_eg_nrRate",
+            "kasha_radBranch_eq_yieldOf",
+            "marcusIC_strictAnti_on_inverted_gaps",
+            "phiF_eq_yieldOf",
+            "phiP_eq_yieldOf_cascade",
+            "sv_quench_dilutes_yield"
+          ]
+        },
+        "title": "Composition edges of the batch (proved here)"
+      },
+      {
+        "class": null,
+        "end_line": 1030,
+        "line": 933,
+        "number": 16,
+        "row_names": [],
+        "rows": 0,
+        "rows_by_class": {},
+        "title": "The extended no-edge registry (documentation, not theorems)"
+      },
+      {
+        "class": "RACI",
+        "end_line": 1121,
+        "line": 1031,
+        "number": 17,
+        "row_names": [
+          "raci_qy_eq_yieldOf_two_channel",
+          "qy_two_channel_strictAnti_of_nr_lt",
+          "log_barrierRate_eq",
+          "icvsisc_barrier_zero_at_crossing",
+          "kernel_surfaces_cross_at_tsCoord"
+        ],
+        "rows": 5,
+        "rows_by_class": {
+          "RACI": [
+            "icvsisc_barrier_zero_at_crossing",
+            "kernel_surfaces_cross_at_tsCoord",
+            "log_barrierRate_eq",
+            "qy_two_channel_strictAnti_of_nr_lt",
+            "raci_qy_eq_yieldOf_two_channel"
+          ]
+        },
+        "title": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)"
+      }
+    ]
+  },
+  "statement_authority": {
+    "authority_total": 1153,
+    "auxiliary_total": 61,
+    "delivered_public_total": 1214,
+    "not_delivered_total": 0,
+    "per_theory": [
+      {
+        "delivered, not in authority": 31,
+        "delivered, word-for-word": 51,
+        "delivered_total (word-for-word + not in authority)": 82,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 51,
+        "theory": "Marcus"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 102,
+        "delivered_total (word-for-word + not in authority)": 102,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 102,
+        "theory": "Hammond"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 191,
+        "delivered_total (word-for-word + not in authority)": 191,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 191,
+        "theory": "BEP"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 151,
+        "delivered_total (word-for-word + not in authority)": 151,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 151,
+        "theory": "Kasha"
+      },
+      {
+        "delivered, not in authority": 2,
+        "delivered, word-for-word": 132,
+        "delivered_total (word-for-word + not in authority)": 134,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 132,
+        "theory": "Sabatier"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 139,
+        "delivered_total (word-for-word + not in authority)": 139,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 139,
+        "theory": "Goldschmidt"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 35,
+        "delivered_total (word-for-word + not in authority)": 35,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 35,
+        "theory": "SymmetryFactor"
+      },
+      {
+        "delivered, not in authority": 10,
+        "delivered, word-for-word": 29,
+        "delivered_total (word-for-word + not in authority)": 39,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 29,
+        "theory": "KashaVavilov"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 46,
+        "delivered_total (word-for-word + not in authority)": 46,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 46,
+        "theory": "SternVolmer"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 29,
+        "delivered_total (word-for-word + not in authority)": 29,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 29,
+        "theory": "QuantumYield"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 30,
+        "delivered_total (word-for-word + not in authority)": 30,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 30,
+        "theory": "FluorPhos"
+      },
+      {
+        "delivered, not in authority": 1,
+        "delivered, word-for-word": 26,
+        "delivered_total (word-for-word + not in authority)": 27,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 26,
+        "theory": "EnergyGapLaw"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 36,
+        "delivered_total (word-for-word + not in authority)": 36,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 36,
+        "theory": "StokesShift"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 20,
+        "delivered_total (word-for-word + not in authority)": 20,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 20,
+        "theory": "ICvsISC"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 32,
+        "delivered_total (word-for-word + not in authority)": 32,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 32,
+        "theory": "Forster"
+      },
+      {
+        "delivered, not in authority": 0,
+        "delivered, word-for-word": 33,
+        "delivered_total (word-for-word + not in authority)": 33,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 33,
+        "theory": "Einstein"
+      },
+      {
+        "delivered, not in authority": 17,
+        "delivered, word-for-word": 71,
+        "delivered_total (word-for-word + not in authority)": 88,
+        "exit_code": 0,
+        "not delivered yet": 0,
+        "signature differences": 0,
+        "skeleton declarations": 71,
+        "theory": "RACI"
+      }
+    ],
+    "signature_differences_total": 0,
+    "theories_reporting_zero_signature_differences": 17,
+    "theories_reporting_zero_undelivered": 17,
+    "word_for_word_total": 1153
+  }
+}
