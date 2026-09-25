@@ -95,9 +95,10 @@ statements, and `#print axioms` audits trust.
 | statement fidelity / 语句保真 | `python3 theories/BEP/probes/bep-fidelity.py --theory <T>` | 17/17 probes: `0` undelivered, `0` signature differences; authority **1153**, delivered **1214** |
 | axiom audit / 公理审计 | `proofs/scripts/axioms.sh <Module> <fully.qualified.name>` | `verdict: PASS (only mathlib infrastructure axioms)` |
 
-Exhaustive variant of the third gate (the manuscript's Methods cite it): `review/REVIEW-PROMPT.md`
-§10.4 — measured 2026-09-24 at 95 files / 1313 names / **1278 rows, 0 footprints outside the
-allowed triple**. Five pre-existing `unused variable` warning lines in three files are registered
+Exhaustive variant of the third gate (the manuscript's Methods cite it): `python3 tools/counts.py
+--axioms` — 1,303 public declarations, 1,288 axiom footprints printed + 15 axiom-free, **0
+footprints outside the allowed triple** (the earlier manual sweep of 2026-09-24 is recorded in
+`review/REVIEW-PROMPT.md` §10.4). Five pre-existing `unused variable` warning lines in three files are registered
 residue; the strict scan is clean.
 
 ## 4. The corpus / 语料

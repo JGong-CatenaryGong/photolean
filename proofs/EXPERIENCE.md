@@ -4389,3 +4389,52 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   the honest count is **10** (`symmetryFactor_conflation_falsified_and_holds_in_kernel` also matches).
   Fixed in §0/§7, and the prompt now tells the auditor to recount every count in every document —
   recollected counts are the single most productive defect class in this repository (5+ instances).
+
+### 2026-09-25 — GitHub submission packaging: bilingual README, census, figures, CI — lead
+
+  Genealogy of Photochemical Theory", 17 theories / 136 pairs / three adjudications) needs its code
+  and tooling organised for a public repository, with a bilingual README, and a backup taken first.
+- **Backup before any edit** (the tree carried a concurrent session's uncommitted audit fixes):
+  `.lake/tmp/backups/photolean-src-2026-09-25-pre-github.tar.gz` (source, 6.4 MB),
+  `…-git-allrefs-2026-09-25.bundle` (all refs, 2.7 MB), `…-worktree-since-5ffc08b.patch`, copies of
+  both audit reports, a copy under `/tmp/photolean-backup/`, and the tag `pre-submission-2026-09-25`.
+  Measured environment fact: only `/tmp` (volatile) and the repository itself are writable here —
+  `[local path removed]` and `$HOME` are read-only, so repo-local backups under the gitignored
+  `.lake/tmp/` are the only durable option.
+- **The pending audit fixes were committed first** (`240308c`) after lead verification: gate PASS,
+  17/17 probes (authority 1153, auxiliaries 61, delivered 1214), `Relations.lean` declaration set
+  identical to HEAD (78/78) and byte-identical after comment stripping.
+- **Delivered** (`5da2036`, `6f760b4`, `b58d2c3`): bilingual `README.md` (English section + Chinese
+  rendering; `README.en.md` reduced to a pointer and registered in `AGENTS.md`); MIT `LICENSE` +
+  CC BY 4.0 `LICENSE-DOCS`; `CITATION.cff` / `the archive-metadata file (removed)`; `docs/REPRODUCE.md`;
+  `CONTRIBUTING.md` (the eighteenth-node onboarding protocol); `paper/{README,CLAIMS,AVAILABILITY}.md`
+  and `paper/drafts/` (the earlier seven-theory draft moved with `git mv`); `Makefile`;
+  `.gitattributes`; `.github/workflows/{checks,lean-gate}.yml` with
+  `.github/scripts/{strict_scan,default_targets}.py`; `tools/counts.py` + `tools/claims.json` +
+  `tools/README.md`; `paper/figures/{make_figures.py,README.md}` + six artifacts.
+- **Census (the manuscript's number source of record)**: recomputes 27 quoted claims — 24 MATCH,
+  3 DIFF, 2 NOTE. The DIFFs are all one item: the Fig. 3 class composition caption
+  (26/8/2) is not reproducible from the section markers (30/6/0); one consistent redistribution
+  (§9's seven rows as 3 composition + 2 adjudication + 2 other) reproduces the caption exactly and is
+  recorded as a reconstruction, never applied. NOTEs: "7 equivalences E1–E7" counts 6 rows in §2
+  (the tenth row is unidentifiable from the module); "`#print axioms` reports exactly the three
+  axioms" holds as an upper bound, not a constant (1,205 rows all three, 78 `propext` only,
+  5 `propext+Quot.sound`, 15 axiom-free).
+- **Pair-register judgment call (recorded, changed once)**: `RACI ↔ Marcus` carries a machine row
+  (`kernel_surfaces_cross_at_tsCoord`) that pins the classical side; the manuscript's §5.7 and the
+  Fig. 1 caption both classify it as a shape look-alike *without* an edge, so the register counts
+  **26 edges + 110 registered absences** (not 27/109 as an earlier fix report stated). Lesson: when
+  two sources disagree on a count, take the classification from the manuscript's own prose and
+  record the alternative reading in the tool's "Classification decisions" section.
+- **Measured this round**: whole-tree `check.sh --strict` PASS (build OK, scan clean, 17/17 leaf
+  planes, 5 unused-variable warning lines); `.github/scripts/*.py` reproduce the shell gate's checks
+  without Lean (95 files scanned, `defaultTargets` 95 = disk 95); exhaustive axiom sweep 1,303
+  declarations / 1,288 printed + 15 axiom-free / 0 outside the allowed triple; figures deterministic
+  (byte-identical reruns, 180 mm vector PDFs); **fresh-clone test**: `git clone . … && make check &&
+  python3 tools/counts.py --md --no-lean && python3 paper/figures/make_figures.py` all succeed with
+  Python alone (no Lean toolchain), and the census reports the clone's tree state as clean.
+- **Failed path (recorded)**: a scripted multi-edit patch asserted on an anchor containing a literal
+  `§`/`—` that the file stored as escapes, aborting after two of three replacements — safe only
+  because the write happened last; and an inserted helper's first version referenced `claims` outside
+  its scope, which the figure script caught at run time. Rule: after scripted edits to a generated
+  artifact's source, always re-run the artifact once and read its manifest.
