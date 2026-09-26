@@ -47,6 +47,8 @@
 | 与人类的对话：答复、提问、解释、计划、状态汇报、判决摘要 | **中文** |
 | `theories/<理论>/RESULTS.md`（面向人类提问的答复） | **双语**：每节英文原文 + 中文对照 |
 | 跨理论总结性文档 `theories/RELATIONS.md`（增量讨论稿）、`theories/GRAPH-REPORT.md`（总结报告） | **双语**：英文段 + 中文对照（登记于 2026-09-24 审查修正轮） |
+| 仓库门面 `README.md`（GitHub 入口；每节英文在前、中文对照紧跟） | **双语**（登记于 2026-09-25 发布打包轮） |
+| 复现与分析产物 `figures/**`（含 `README.md`）、`docs/{CLAIMS,REPRODUCE}.md`、`tools/README.md`、`.github/**` | **English**（面向外部读者；图件脚注与命令原样） |
 | Lean 标识符、定理名、mathlib 名、命令原始输出 | **原样**，不翻译 |
 
 **政策前的 Lean 源码例外（登记）**：Marcus 时代的 8 个交付模块与 `PhotoLean/Smoke.lean` 的注释/

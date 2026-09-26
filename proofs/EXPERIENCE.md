@@ -3506,6 +3506,7 @@
   evidence level **reproduced** — full build, `check.sh --strict` PASS, 34 `#print axioms` probes,
   six fidelity scripts, independent declaration re-count) returned **zero blocking / zero serious /
   twelve minor** findings (M1–M12). The human directed their disposal. This round fixed them and
+  drafted the H1-crossing milestone plan (planning notes, held outside the repository).
 - **The finding that matters (M1) is a new defect class for this bank: a *vacuous* statement that is
   never *false*, so no mathematical gate flags it.** `kashaDescriptor_nonvacuous : ∃ rad ic,
   KashaDescriptor rad ic` was delivered, verifier-PASSed across runs 1–9, and is trivially true of
@@ -3535,6 +3536,7 @@
   criterion but is not the sentence the paper says.
 - The other ten were documentation/wording (M2, M4–M12), all fixed in place: README Goldschmidt
   breakdown (M6 — the G1-only "15 definitions" was mis-attached to the whole theory; the correct
+  theory-level split is 98 theorems + 40 defs + 1 inductive); the outline notes' stale 12,773 line count
   (M7, actual measured after this round: 12,889) + mixed Smoke convention; RELATIONS.md "five
   probes" → six (M8, the English half had drifted from the Chinese); Relations.lean header "five
   delivered theories" → six (M9 — the sixth-theory registration was comment-only in §10 and left the
@@ -3542,6 +3544,8 @@
   types" → "fixed by certificates, opt-in per theory" (M10 — no signature `structure` exists, the
   first review's S1 is still unimplemented, and the wording had over-claimed); ENGINE.md
   "`lake build` 通过即真" → "三层门通过即真" (M11 — a bare build is fooled by placeholders; README
+  already said so, the contract line did not); the paper-outline notes were re-scoped to reader-facing content and are no longer part of the
+  repository (the writing red-line disposal).
   M5 was dispositioned as **no change**: the Sabatier regime witnesses are trivial by construction
   and their docstrings already frame them as verdict-vocabulary non-vacuity, not physics; adding a
   concrete positive descriptor row was judged not worth the count-sync ripple (the universal law
@@ -3558,6 +3562,7 @@
      output, never from memory or grep.** This is the measurement-after-last-edit rule, applied to
      counts.
   2. **Writing a number into a document before measuring it is the Sprint-0 sin in miniature — and I
+     nearly repeated it.** The outline header was first edited with a *guessed* line count
      (12,873); the measured value (12,889) replaced it before the commit. The standing rule applies
      to reviewers too: an artifact may not carry a number its author has not measured after the last
      edit.
@@ -3576,6 +3581,7 @@
 
 ## 2026-09-21 — SymmetryFactor delivered end-to-end in one session (the H1 crossing: first adjudicated conflation, class A1) — lead — DONE (verifier run 1 PASS; theory closed)
 
+- Goal: execute the H1-crossing plan (planning notes, held outside the repository) — cross the H1 existence threshold by adjudicating a
   literature-recorded conflation. Delivered: `theories/SymmetryFactor/` (five leaves) +
   `PhotoLean/SymmetryFactor/` (five modules, 35 declarations = 28 theorems + 7 definitions),
   `Relations.lean` §11 (4 rows, 46→50, class A1), registry/README/RELATIONS.md synced (iron rule 8
@@ -4390,14 +4396,15 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   Fixed in §0/§7, and the prompt now tells the auditor to recount every count in every document —
   recollected counts are the single most productive defect class in this repository (5+ instances).
 
-### 2026-09-25 — GitHub submission packaging: bilingual README, census, figures, CI — lead
+### 2026-09-25 — GitHub release packaging: bilingual README, census, figures, CI — lead
 
+- **Trigger**: the manuscript draft ("The Same and Not the Same: A Machine-Checked
   Genealogy of Photochemical Theory", 17 theories / 136 pairs / three adjudications) needs its code
   and tooling organised for a public repository, with a bilingual README, and a backup taken first.
 - **Backup before any edit** (the tree carried a concurrent session's uncommitted audit fixes):
   `.lake/tmp/backups/photolean-src-2026-09-25-pre-github.tar.gz` (source, 6.4 MB),
   `…-git-allrefs-2026-09-25.bundle` (all refs, 2.7 MB), `…-worktree-since-5ffc08b.patch`, copies of
-  both audit reports, a copy under `/tmp/photolean-backup/`, and the tag `pre-submission-2026-09-25`.
+  both audit reports, a copy under `/tmp/photolean-backup/`, and the tag `pre-release-2026-09-25`.
   Measured environment fact: only `/tmp` (volatile) and the repository itself are writable in the
   development sandbox — the repository's parent directory and `$HOME` are read-only, so repo-local
   backups under the gitignored `.lake/tmp/` are the only durable option.

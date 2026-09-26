@@ -8,6 +8,7 @@ BEFORE any proof work starts; delivery replaces the bodies verbatim and
 `python3 theories/BEP/probes/bep-fidelity.py --theory symmetryFactor` compares the delivered
 signatures to this file word for word.
 
+Plan: `theories/SymmetryFactor/plan.md`.
 Milestones: F1 (Basic + Criterion), F2 (Sharp), F3 (RatModel), F4 (Instances).
 
 The theory adjudicates the β = 1/2 symmetry-factor reading against the structural transfer

@@ -87,6 +87,7 @@ plt.rcParams.update(
 
 PDF_METADATA = {"CreationDate": None}  # no timestamp -> byte-stable output
 
+# Journal geometry: the manuscript's journal template requires figures at
 # included at the full text width of 180 mm.  All three figures are laid out at that
 # width (7.0866 in); the 300-dpi PNG previews are 2126 px wide.
 FIGW_IN = 180.0 / 25.4
@@ -1343,6 +1344,7 @@ def main() -> None:
     os.makedirs(outdir, exist_ok=True)
 
     note("all", "figure width", "180 mm (7.0866 in)",
+         "journal template requirement (full text width); FIGW_IN in make_figures.py")
     note("all", "PNG preview resolution", "300 dpi",
          "savefig(dpi=300) in make_figures.py")
 

@@ -2,6 +2,7 @@
 PhotoLean.SymmetryFactor.Basic — milestone F1, the description layer.
 
 The theory: the **symmetry-factor adjudication** of the unequal-curvature two-parabola model
+(plan `theories/SymmetryFactor/plan.md`).
 
 The equal-curvature two-parabola model of `PhotoLean.Kernel` (curvature `2*lam` on BOTH surfaces)
 is the picture every textbook draws, and in it the thermoneutral crossing coordinate is `1/2` —

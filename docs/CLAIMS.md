@@ -109,7 +109,7 @@ All `#print axioms` of the named theorems are exactly
 
 ---
 
-## 7. Known manuscript-side items to resolve before submission
+## 7. Known manuscript-side items to resolve before the manuscript is finalised
 
 Produced by `python3 tools/counts.py --axioms` (the full reconciliation table is in `tools/README.md`;
 27 checked claims: 24 MATCH, 3 DIFF, 2 NOTE). Nothing on this list is a defect in the repository — each

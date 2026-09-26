@@ -27,6 +27,7 @@
 > `theories/Marcus/probes/relations-b2-statement-skeleton.lean`; no candidate had to be demoted to
 > prose, and the one failed proof path (a rewrite pattern in the uniqueness half of C2) is recorded
 > in `proofs/EXPERIENCE.md`. The third (2026-09-21, the H1-crossing round of
+> the H1-crossing plan notes, held outside the repository) delivered the seventh theory and registered its edges: the A1
 > adjudication rows and the two specialization certificates (§3bis, `Relations.lean` §11), plus the
 > seventh node's pairs in the no-edge registry (§2.5). The fourth (2026-09-22/23) added the
 > photophysics batch (§8) and the fifth (2026-09-23) the seventeenth node RACI (§9).
@@ -57,6 +58,7 @@
 > Sabatier ↔ Marcus 形似实异簇（§3 N3）与**无边登记**（§2.5）。新增语句的形态先在
 > `theories/Marcus/probes/relations-b2-statement-skeleton.lean` 中完成标定；本次**没有任何候选被降级**为
 > 正文，唯一失败的证明路径（C2 唯一性半边的一处 `rw` 模式）记录在 `proofs/EXPERIENCE.md`。第三次
+> （2026-09-21 的 H1 跨越轮，计划笔记存放于仓库外）交付第七个理论并登记其关系边：A1 裁决行与
 > 两条特化证书（§3bis、`Relations.lean` §11），以及第七节点在无边登记（§2.5）中的各对。
 
 ---

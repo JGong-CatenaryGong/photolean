@@ -6,7 +6,8 @@
 > The statement authority
 > `theories/SymmetryFactor/probes/SymmetryFactor-statement-skeleton.lean` (sha256 recorded on the
 > board) is the state every delivered signature matches word for word; §3.1 records the two
-> review, 2026-09-21) under direct human instruction; the H1 goal and the pre-registered
+> Sprint-0 statement corrections. Adopted from the H1-crossing plan (its planning notes are held
+> outside the repository) under direct human instruction; the H1 goal and the pre-registered
 > literature decision rule are inherited verbatim from that plan.
 > Authority: contract `proofs/ENGINE.yml`; board `theories/SymmetryFactor/TASKS.md`; experience
 > bank `proofs/EXPERIENCE.md`; literature `theories/SymmetryFactor/LITERATURE.md`.

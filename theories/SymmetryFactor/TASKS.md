@@ -14,7 +14,8 @@
   **35 declarations** = 28 theorems + 7 definitions). Two Sprint-0 statement corrections are
   logged in `plan.md` §3.1 (both premise-drops under the weakest-premise standard).
 - Theory direction: **the β = 1/2 symmetry-factor reading vs the structural transfer coefficient of
-  the unequal-curvature two-parabola model**, human request of 2026-09-21 (execute
+  the unequal-curvature two-parabola model**, human request of 2026-09-21 (execute the
+  H1-crossing plan, held outside the repository; the repo's first **adjudicated conflation**, class A1).
 - Deliverable module prefix: `PhotoLean.SymmetryFactor`; sources under `PhotoLean/SymmetryFactor/`
   (`SOURCE_DIRS` is global and covers them).
 - Literature: S1 (practice locus, arXiv 2104.05424 §2.1, **first-hand read**), S2 (IUPAC TR 2014
