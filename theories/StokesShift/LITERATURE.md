@@ -12,6 +12,7 @@
 
 | field | content |
 |---|---|
+| source | J. R. Lakowicz, *Principles of Fluorescence Spectroscopy*, **3rd ed.**, Springer US, 2006; eBook ISBN 978-0-387-46312-4, DOI `10.1007/978-0-387-46312-4` [verified: NIMS Library catalog record read 2026-09-23 — author, edition, publisher, year, ISBN/DOI all match]. Locus: Chapter 1 (Introduction to Fluorescence), the Stokes-shift and mirror-image-rule sections [page-level locus **not** verified — the chapter full text is paywalled (Springer IdP redirect), so the chapter attribution is graded `bibliographic-only`]. |
 | claim (as used) | Absorption and emission are vertical (Franck–Condon) transitions on a configuration-coordinate diagram; relaxation in the excited state makes emission emerge at lower energy than absorption (the Stokes shift); for similar ground/excited geometries the emission spectrum is an approximate **mirror image** of the absorption spectrum (the mirror-image rule). |
 | **formalizable implication** | *Explicit Lean premises:* remarkably few — the SS-C rows are unconditional polynomial identities (`ring`-level); the physical reading needs `0 < lam` exactly where the shift's *positivity* is claimed, and SS-C4 (`0 < stokesShift lam e00 ↔ 0 < lam`) already makes this an exact iff — the literature licenses the "positive shift = physical curvature" reading, the kernel discharges the iff. *Declared approximations (never proved):* single-mode equal-curvature harmonic surfaces; vertical transitions at the two minima (`q = 0`, `q = 1`); `λ` collects *all* relaxation (inner + solvent) — plan §9 row 2. *Not expressible over installed mathlib:* band **envelopes/intensities** — the textbook mirror-image rule is a statement about spectral shapes (FC envelope progression), and this theory formalizes only band **positions** (maxima); plan §1.3 "No lineshape widths — maxima only" is exactly the right cut, and plan §10 already registers the intensity-level mirror symmetry as a look-alike (N-class) edge toward Einstein, not a theorem. |
 | impact on plan statements | **None.** One wording discipline the source forces on docstrings (not on statements): every use of "mirror symmetry" in this theory must read as *mirror symmetry of the vertical transition energies* (SS-C6/C7), never of the spectra — the literature's mirror-image rule is the stronger, unformalized intensity claim. |
@@ -41,6 +42,7 @@
 
 | source | status | note |
 |---|---|---|
+| Lakowicz 3rd ed. Chapter 1 page-level locus | `bibliographic-only` | Springer chapter full text paywalled (IdP redirect); edition/ISBN/DOI verified via NIMS catalog (S1). |
 | Per-dye experimental Stokes-shift values (any fluorescence handbook table) | `not accessed` | deliberately unused: SS-I1..I3 are **representative rational models**, not fitted dyes (plan §9 row 3); no instance row may cite a measured shift. |
 | Original mirror-image-rule literature (pre-textbook) | `not accessed` | the textbook-level locus (S1/S2) suffices for the model frame; the intensity-level rule is out of scope anyway. |
 

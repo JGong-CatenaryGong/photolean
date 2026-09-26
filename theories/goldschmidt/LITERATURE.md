@@ -44,6 +44,7 @@ repeating them — see `S20`'s DOI-less status, `S19`'s E3 DOI caveat, and `S24`
 
 | id | source | DOI / locus | status | used for |
 |---|---|---|---|---|
+| `S1` | V. M. Goldschmidt, *Die Gesetze der Krystallochemie*, Die Naturwissenschaften **14** (21), 477–485 (1926-05) | `10.1007/BF01507527` | **bibliographic-only** (Springer paywall; no abstract) | provenance of the factor and of the rules (§S1, §NOT) |
 | `S2` | R. D. Shannon, *Revised effective ionic radii and systematic studies of interatomic distances in halides and chalcogenides*, Acta Cryst. A **32** (5), 751–767 (1976-09-01) | `10.1107/S0567739476001551` | **bibliographic-only** (IUCr HTTP 403; not in PMC) | the radius table's *existence and coordinate-number convention* (§S4) |
 | `S3` | W. Travis, E. N. K. Glover, H. Bronstein, D. O. Scanlon, R. G. Palgrave, *On the application of the tolerance factor to inorganic and hybrid halide perovskites: a revised system*, Chem. Sci. **7**, 4548–4556 (2016) | `10.1039/c5sc04845a` (CC-BY, `PMC6016328`) | **first-hand** | the `0.8 ≤ t ≤ 1` band, the octahedral factor `μ`, the "no boundary" caveat (§S2, §S3, §S6) |
 | `S4` | band sources `S4a`–`S4e` (Kim 2023; Yentekakis 2022; Vu 2023; Rogalski 2024; Lê 2023) | `10.3390/ma16186317`; `10.3390/nano12071042`; `10.1021/acs.inorgchem.3c02798`; `10.3390/ma17164029`; `10.1186/s40580-023-00395-1` | **second-reader** (delegate, full text retrieved and grepped) | the spread of printed bands and the multi-band tables (§S2) |
@@ -79,7 +80,9 @@ repeating them — see `S20`'s DOI-less status, `S19`'s E3 DOI caveat, and `S24`
   477–485, May 1926**, DOI `10.1007/BF01507527`. Crossref-verified first-hand: single author
   `Goldschmidt`, journal `Die Naturwissenschaften`, ISSN `0028-1042` / `1432-1904`, volume `14`,
   issue `21`, pages `477-485`, `published-print 1926-05`, type `journal-article`, copyright
+  "1926 Verlag von Julius Springer".
 - **Conclusion.** The article exists at exactly this locus and is the canonical citation for
+  "the laws of crystal chemistry". **I did not read it.** Springer serves a paywall page
   (`Access this article` / `Buy article`), the PDF endpoint returns the HTML paywall, and no free
   scan was reachable from this host (archive.org, HathiTrust and Wikipedia were all unreachable from
   this host). **Therefore this round does NOT claim what *this* article says.**

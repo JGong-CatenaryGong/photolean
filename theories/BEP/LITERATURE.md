@@ -54,6 +54,7 @@ cross-referenced here, not duplicated.
 
 Read first-hand in this pass: the **publisher's version of record** of the IUPAC glossary (182 printed
 pages, full text extracted and grepped), the JATS full text of *Chem. Sci.* **16**(37):17494 (OA), one
+Springer textbook chapter (text layer, two extraction modes cross-checked), and one Durham doctoral
 thesis (full text). Retrieved at bibliographic level only: the IUPAC Gold Book transfer-coefficient
 entries and two *Chemistry International* notes (all Cloudflare-blocked bodies). The Brønsted 1924 and
 1928 bodies and the Leffler 1953 body are reported in §R1.4/§R1.5.
@@ -487,6 +488,7 @@ lives in its companion Technical Report (source A).
 
 **Textbook cross-check (independent of IUPAC)**: Inzelt, G., "Kinetics of Electrochemical Reactions"
 (Chapter I.3), in F. Scholz (ed.), *Electroanalytical Methods — Guide to Experiments and Applications*,
+2nd revised and extended edition, Springer (2010), ISBN 978-3-642-02914-1, e-ISBN 978-3-642-02915-8,
 DOI `10.1007/978-3-642-02915-8` — **status** `first-hand` (text layer, two extraction modes agree), **locus**
 printed p. **36**:
 > "where αa and αc are the anodic and cathodic transfer or symmetry coefficients, respectively. In general,
@@ -845,6 +847,7 @@ vs 63.0; water `19(2)` → 65.345 vs 65.3; PE `10` → 44.394 vs 44.4).
 > **model-side naming convention**. **No source read in this survey states `0 ≤ α ≤ 1` as a law of chemical
 > families.** The literature analogues are:
 > 1. the **electrochemical** transfer coefficient, where the bound *is* printed — Inzelt, in Scholz (ed.),
+>    *Electroanalytical Methods*, 2nd ed., Springer (2010), `10.1007/978-3-642-02915-8`, **printed p. 36**:
 >    "For a symmetric barrier, `αa = αc = 0.5`, but, in general, `0 ≤ α ≤ 1` and, for a simple reaction
 >    `αa + αc = 1`" (§R1.6.2, read first-hand) — with the IUPAC Technical Report 2014 (p. 249) adding that
 >    the sum rule holds "only if the forward and backward electrode reactions are characterized by the same

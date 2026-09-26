@@ -66,6 +66,7 @@
 
 | field | content |
 |---|---|
+| source | J. R. Lakowicz, *Principles of Fluorescence Spectroscopy*, 3rd ed., Springer (2006), book DOI `10.1007/978-0-387-46312-4` (Crossref-verified here; chapter 1 Jablonski scheme; body not read) — the seed's "Lakowicz or Turro" baseline for naphthalene/eosin representative photophysics |
 | claim as used | The two-multiplicity Jablonski scheme the model truncates to: S₁ branches {fluorescence kF, IC kIC, ISC kISC}, T₁ branches {phosphorescence kP, nonradiative kNR}; the competition law φP/φF = (kISC/kF)·(kP/(kP+kNR)) is the direct product-of-branches reading of that scheme. |
 | **formalizable implication** | This is the definitional license for FP-B1..B5 and the physical reading of FP-C1/FP-C2: **the model is the textbook scheme with totalized division**, and the competition law is a *theorem of the model* (declared approximation: first-order branching, no reverse ISC, no delayed fluorescence — plan §9 row 1). Positivity premises (`0 < s1Decay`, `0 < kP + kNR`, `0 < kF`/`0 < kP` on the ratio rows) are the explicit form of "these denominators are physical rates". Nothing exceeds installed mathlib (field algebra over ℝ only). |
 | status | `bibliographic-only` |

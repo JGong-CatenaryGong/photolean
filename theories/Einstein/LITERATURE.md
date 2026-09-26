@@ -65,6 +65,7 @@ honesty content, not as a statement defect.
 
 | source | status | note |
 |---|---|---|
+| J. R. Lakowicz, *Principles of Fluorescence Spectroscopy*, 3rd ed., Springer 2006 (the A/B/oscillator-strength chain and the radiative-lifetime definition) | `bibliographic-only` | The seed's alternative textbook locus ("Lakowicz or Hilborn"). Hilborn (E3) was verified first-hand and carries the whole chain, so Lakowicz is not load-bearing; not opened here (not open access). |
 | D. ter Haar, *The Old Quantum Theory* (Pergamon, 1967), pp. 167–183 | `bibliographic-only` | The reprinted English translation of E1; widely cataloged, not opened here. The CPAE Vol. 6 Doc. 38 translation locus is independently attested by E2's reference list. |
 | Einstein 1916, "Strahlungs-Emission und -Absorption nach der Quantentheorie", *Verh. Dtsch. Phys. Ges.* **18**, 318–323 (CPAE Vol. 6, Doc. 34) | `bibliographic-only` | The predecessor note with the first A/B derivation; not needed for the statement layer, registered for completeness. |
 

@@ -76,6 +76,7 @@ correct; see the statement-impact summary.
 
 | field | content |
 |---|---|
+| source | D. I. Cherny, I. C. Eperon & C. R. Bagshaw, "Probing complexes with single fluorophores: factors contributing to dispersion of FRET in DNA/RNA duplexes", *Eur. Biophys. J.* **38**(4), 395–405 (2009); DOI `10.1007/s00249-008-0383-z`; Supplementary Information §3 (PDF served at Springer static content host) |
 | locus | SI §3 read first-hand: the orientation factor is computed from the dipole unit vectors **f**_D, **f**_A and the separation direction **r** via the dot-product identity `κ = (f_A·f_D) − 3(f_A·r̂)(f_D·r̂)` (typeset in the SI as `(fAfD) 3(fAr)(fDr)`), with the polar decompositions of the two dipoles around **r** — the same spherical geometry as F5's (2.8), used for a concrete Cy3/Cy5-on-DNA geometry. |
 | claim as used | Peer-reviewed working evidence that the three-angle (polar + azimuthal) parametrization of the point-dipole coupling is the practitioners' standard form, not an idiosyncrasy of one textbook. |
 | **formalizable implication** | Confirms the *geometric reading* behind FO-C2's proof route: `κ` is `(unit dipoles) · (I − 3 r̂ r̂ᵀ) · (unit dipole)`, so the bound `κ² ≤ 4` is a statement about unit vectors — the plan's elementary route (triangle inequality + ℝ² Cauchy–Schwarz, no rotations, no eigenvalues) is mathematically sufficient because only unit-vector algebra is involved. The **point-dipole approximation itself is a declared physical approximation, never a Lean premise to be discharged** (cf. F7). |
@@ -95,6 +96,7 @@ correct; see the statement-impact summary.
 
 | source | status | note |
 |---|---|---|
+| J. R. Lakowicz, *Principles of Fluorescence Spectroscopy*, 3rd ed., Springer 2006, Ch. 13 ("Energy Transfer") | `bibliographic-only` | The seed's canonical textbook locus for the κ² discussion (the `2/3` convention, the `0–4` range, the azimuthal form). Not opened here (not open access); its content is corroborated by F5 (which reproduces it) and F7. Not load-bearing. |
 | van der Meer, Coker & Chen, *Resonance Energy Transfer: Theory and Data*, VCH 1994 | `bibliographic-only` | The standard data-book statement of the azimuthal κ² form; cited in F4's deposited reference list. Not accessed. |
 | Förster 1949, *Z. Naturforsch.* **4a**, 321 | `bibliographic-only` | Companion experimental-theoretical paper; DOI `10.1515/zna-1949-0501` (De Gruyter page exists); not read. |
 | IUPAC Gold Book entry "Förster-resonance-energy transfer" (FT07381) | `not accessed` | `goldbook.iupac.org` returned HTTP 403 to this environment — same measurement as the hammond round's attempt (AGENTS.md-registered behavior). Not used as a locus. |

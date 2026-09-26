@@ -4453,7 +4453,7 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
 - **Applied**: `paper/` dissolved — `paper/figures/**` → `figures/**` (sources + the six generated
   artifacts, kept because they are data/figures, not manuscript text), `paper/CLAIMS.md` →
   `docs/CLAIMS.md`, and `paper/{README,AVAILABILITY}.md` + `paper/drafts/2026-09-22-seven-theory-draft.tex`
-  + `the archive-metadata file (removed)` deleted. `CITATION.cff` lost its `related_identifiers` (manuscript-DOI TODO) and the
+  + the archive-metadata file deleted. `CITATION.cff` lost its `related_identifiers` (manuscript-DOI TODO) and the
   note's path was fixed; README §8/§11 rewritten (figures + claim map; push checklist instead of the
   archival/DOI release flow); paths updated in `Makefile`, `.gitattributes`,
   `.github/workflows/lean-gate.yml`, `docs/REPRODUCE.md`, `LICENSE-DOCS`, `AGENTS.md`, and the figure
