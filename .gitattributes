@@ -19,5 +19,5 @@ Makefile text
 # Generated census output is tracked on purpose (it is the manuscript's number source),
 # but it must not be marked as documentation prose by linguist.
 tools/claims.json linguist-generated=true
-paper/figures/*.pdf linguist-generated=true
-paper/figures/*.png linguist-generated=true
+figures/*.pdf linguist-generated=true
+figures/*.png linguist-generated=true

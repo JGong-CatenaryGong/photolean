@@ -57,6 +57,6 @@ jobs:
           name: census-and-figures
           path: |
             tools/claims.json
-            paper/figures/*.pdf
-            paper/figures/*.png
+            figures/*.pdf
+            figures/*.png
           if-no-files-found: warn

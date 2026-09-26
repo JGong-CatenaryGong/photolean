@@ -11,7 +11,7 @@ help:
 	@echo "make gate      - whole-tree gate: build + strict scan + leaf data planes"
 	@echo "make probes    - the 17 statement-fidelity probes"
 	@echo "make counts    - census: every number quoted by the manuscript, quoted vs computed"
-	@echo "make figures   - regenerate paper/figures/fig1..3 (pdf + png)"
+	@echo "make figures   - regenerate figures/fig1..3 (pdf + png)"
 	@echo "make axioms    - exhaustive #print axioms sweep (minutes, needs Lean)"
 	@echo "make check     - fast dependency-light checks (no Lean): CI parity"
 	@echo "make all       - gate + probes + counts + figures"
@@ -29,7 +29,7 @@ counts:
 	python3 tools/counts.py --md
 
 figures:
-	python3 paper/figures/make_figures.py
+	python3 figures/make_figures.py
 
 axioms:
 	python3 tools/counts.py --axioms

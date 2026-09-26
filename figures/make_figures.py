@@ -4,9 +4,9 @@
 Usage (from the repository root; any cwd works because the repo root is located
 by walking up to the directory that holds `proofs/ENGINE.yml`):
 
-    python3 paper/figures/make_figures.py [--outdir paper/figures]
+    python3 figures/make_figures.py [--outdir figures]
 
-Output (default `paper/figures/`): for each of the three figures a vector PDF
+Output (default `figures/`): for each of the three figures a vector PDF
 and a 300-dpi PNG preview.
 
     fig1_relation_graph.{pdf,png}   the 17-theory relation graph + shared kernel
@@ -20,7 +20,7 @@ source.  The script prints a manifest: for every figure, each numeric value and
 its provenance.  A value the script cannot recompute is printed with the label
 `(manuscript constant, not recomputed)`.
 
-No network access.  Writes only `--outdir` (default `paper/figures/`).
+No network access.  Writes only `--outdir` (default `figures/`).
 
 Design notes for reproducibility:
 * No random numbers anywhere: the graph layout is a hand-placed coordinate
@@ -1336,8 +1336,8 @@ def verify_outputs(outdir: str) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--outdir", default=os.path.join("paper", "figures"),
-                    help="output directory (default: paper/figures)")
+    ap.add_argument("--outdir", default="figures",
+                    help="output directory (default: figures)")
     args = ap.parse_args()
     outdir = args.outdir if os.path.isabs(args.outdir) else os.path.join(ROOT, args.outdir)
     os.makedirs(outdir, exist_ok=True)
@@ -1428,7 +1428,7 @@ def main() -> None:
     print("\nlabels used in this output:")
     print("  (manuscript constant, not recomputed) — a value the script could not recompute")
     print("  probes: python3 theories/BEP/probes/bep-fidelity.py --theory <T>  (17 runs)")
-    print("\ndone. Regenerate with: python3 paper/figures/make_figures.py")
+    print("\ndone. Regenerate with: python3 figures/make_figures.py")
 
 
 if __name__ == "__main__":

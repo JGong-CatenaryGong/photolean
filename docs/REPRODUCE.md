@@ -100,10 +100,10 @@ gate results; the linter-warning count.
 ## 3. Figures
 
 ```bash
-python3 paper/figures/make_figures.py        # vector PDF + 300-dpi PNG, with a provenance manifest
+python3 figures/make_figures.py        # vector PDF + 300-dpi PNG, with a provenance manifest
 ```
 
-`paper/figures/README.md` documents, per figure, which command or file each plotted number came from.
+`figures/README.md` documents, per figure, which command or file each plotted number came from.
 Values the script cannot recompute are labelled `(manuscript constant, not recomputed)` in its output.
 
 ---

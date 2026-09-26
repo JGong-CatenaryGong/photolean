@@ -1,4 +1,4 @@
-# paper/CLAIMS.md — manuscript claim → deciding artifact
+# docs/CLAIMS.md — manuscript claim → deciding artifact
 
 **Purpose.** Every quantitative or named claim in the manuscript
 (*The Same and Not the Same: A Machine-Checked Genealogy of Photochemical Theory*) resolves to one of
@@ -103,7 +103,7 @@ All `#print axioms` of the named theorems are exactly
 
 | claim | artifact |
 |---|---|
-| Fig. 3 left: per-theory authority footprint, 1,153 over 92 modules; 1,214 delivered | `[C]` `python3 paper/figures/make_figures.py` prints every value with provenance; `tools/counts.py` recomputes them |
+| Fig. 3 left: per-theory authority footprint, 1,153 over 92 modules; 1,214 delivered | `[C]` `python3 figures/make_figures.py` prints every value with provenance; `tools/counts.py` recomputes them |
 | Fig. 3 right: 15 certificates / 22 equivalence-entailment-bridge / 26 composition / 8 adjudication / 5 RACI / 2 other = 78 | `[C]`/`[V]` the section→class mapping is explicit in `tools/counts.py`; the manuscript's split is cross-checked there and any disagreement is printed rather than forced |
 | Figure 2 panels: closed form `x*`, the two witnesses, the four-conjunct verdict, the linear/non-injective/lifetime-discriminating statements | `[D]` as in §3 above; the figure script transcribes the formulas from the Lean sources and prints its sources |
 

@@ -50,4 +50,4 @@ preferred-citation:
   journal: "Manuscript in preparation"
   notes: >-
     The manuscript's claims are mapped to Lean declarations and commands in
-    paper/CLAIMS.md; the printed version should be updated here once the paper is accepted.
+    docs/CLAIMS.md; the printed version should be updated here once the paper is accepted.

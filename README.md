@@ -44,7 +44,8 @@ theory means adding a directory and its leaf files, not rewriting the pipeline.
 | `theories/RELATIONS.md` | bilingual relation discussion draft (grows batch by batch) | 双语关系讨论稿（按批次增量） |
 | `theories/GRAPH-REPORT.md` | bilingual consolidated graph report (all 17 nodes in one pass) | 双语总结报告（17 节点一次成型） |
 | `proofs/` | the engine contract, gates, experience bank, API calibration log | 引擎契约、验收门、经验库、API 校准日志 |
-| `paper/` | manuscript assets: figure sources, claim map, drop-in point for the LaTeX source | 论文资产：图件源、断言映射、正文源落点 |
+| `figures/` | figure sources + the generated Figures 1–3 (vector PDF and PNG) | 图件源与生成的图 1–3（矢量 PDF 与 PNG） |
+| `docs/CLAIMS.md` | claim map: every quantitative or named claim → the declaration or command that decides it | 断言映射：每条定量/具名断言 → 判定它的声明或命令 |
 | `tools/` | the census: every number the manuscript quotes, recomputed from the tree | 普查工具：论文引用的每个数字都从树里重算 |
 | `docs/REPRODUCE.md` | command-by-command reproduction guide | 逐命令复现指南 |
 | `review/` | review prompt + the two completed adversarial audit rounds | 审查 prompt + 两轮已完成的对抗性审查 |
@@ -77,7 +78,7 @@ python3 -m pip install -r requirements.txt
 ```bash
 proofs/scripts/check.sh --strict          # whole-tree gate / 全树验收门
 python3 tools/counts.py --md              # census: quoted vs computed / 普查：论文值 vs 重算值
-python3 paper/figures/make_figures.py     # regenerate Figures 1-3 / 重新生成图 1-3
+python3 figures/make_figures.py           # regenerate Figures 1-3 / 重新生成图 1-3
 ```
 
 ## 3. Acceptance gates / 验收门
@@ -194,17 +195,24 @@ decorative if and only if the statement without it still proves**.
 一行打包 A1 的证伪与成立两半），另有三次存在量词空泛化重冻结与一次命名空间遮蔽修复，记于各理论的
 §3.1 修正日志。前提审计后采用的判据是：**去掉该前提后语句仍能证明，才是装饰性前提**。
 
-## 8. The manuscript / 论文
+## 8. Figures and the claim map / 图件与断言映射
 
-**English.** `paper/CLAIMS.md` maps every quantitative or named claim in the manuscript to a Lean
-declaration, a command, or a registered convention. `paper/figures/make_figures.py` regenerates
-Nature LaTeX source goes into `paper/manuscript/` (not committed here); the compiled draft PDF of an
-unpublished manuscript is deliberately not committed.
+**English.** `docs/CLAIMS.md` maps every quantitative or named claim of the accompanying manuscript
+to a Lean declaration, a command, or a registered convention, and lists the small number of places
+where the draft's wording is looser than the tree (the figure caption's class split, the E1–E7 tally,
+and the "exactly the three axioms" phrasing). `figures/make_figures.py` regenerates Figures 1–3 from
+repository data (vector PDF, 300-dpi PNG) and prints the provenance of every number it draws; Lean
+formulas transcribed into a panel are guarded verbatim against their source file, so a moved
+definition aborts the run instead of drawing a stale formula. No manuscript source or manuscript PDF
+is kept in this repository.
 
-**中文。** `paper/CLAIMS.md` 把论文中每一条定量或具名断言映射到 Lean 声明、命令或已登记约定；
-的 LaTeX 正文源放在 `paper/manuscript/`（不随本仓库提交）；未发表手稿的编译 PDF 有意不入库。
+**中文。** `docs/CLAIMS.md` 把配套论文中每一条定量或具名断言映射到 Lean 声明、命令或已登记约定，并列出
+草稿措辞比代码树"更松"的少数几处（图 3 的分类拆分、E1–E7 的计数、"恰好三条公理"的表述）。
+`figures/make_figures.py` 从仓库数据重生成图 1–3（矢量 PDF + 300 dpi PNG）并打印其所绘每个数字的出处；
+转录进面板的 Lean 公式都有对照原文的守卫——定义一改就中止运行，而不是画出过时公式。本仓库**不保存**
+论文源文件与论文 PDF。
 
-## 9. Reproducibility and auditing / 可复现与审查
+## 9.## 9. Reproducibility and auditing / 可复现与审查
 
 **English.** Reproduce everything with `docs/REPRODUCE.md`. Every number quoted anywhere in the
 repository or the manuscript is recomputed by `python3 tools/counts.py --md`, which prints quoted vs
@@ -241,18 +249,20 @@ module's completeness claim is about the *graph* (edges and registered absences)
 
 ## 11. Citation, licenses, and pre-push checklist / 引用、许可与推送前清单
 
-**English.** Cite the software via `CITATION.cff` and the manuscript via `paper/CLAIMS.md`'s
-preferred citation; the the archive service metadata is in `the archive-metadata file (removed)`. Code is MIT (`LICENSE`); text and
-figures are CC BY 4.0 (`LICENSE-DOCS`).
+**English.** Cite the software via `CITATION.cff` (fill `TODO_REPOSITORY_URL` and the author ORCIDs
+first). Code is MIT (`LICENSE`); text and figures are CC BY 4.0 (`LICENSE-DOCS`).
 
-**中文。** 软件引用见 `CITATION.cff`，论文引用见 `paper/CLAIMS.md` 的 preferred citation；the archive service
-元数据在 `the archive-metadata file (removed)`。代码采用 MIT（`LICENSE`），文字与图件采用 CC BY 4.0（`LICENSE-DOCS`）。
+**中文。** 软件引用见 `CITATION.cff`（推送前先填 `TODO_REPOSITORY_URL` 与作者 ORCID）；代码采用 MIT
+（`LICENSE`），文字与图件采用 CC BY 4.0（`LICENSE-DOCS`）。
 
-**Before the first push / 首次推送前**：replace `TODO_REPOSITORY_URL` in `CITATION.cff` and
-`the archive-metadata file (removed)`, and set the author ORCIDs in `CITATION.cff`; drop the manuscript LaTeX source into
-`paper/manuscript/`; then tag `v1.0.0` and archive on the archive service.
+**Before the first push / 首次推送前**：fill `TODO_REPOSITORY_URL` in `CITATION.cff`; then
 
-## 12. Language policy / 语言政策
+```bash
+git remote add origin <your-repository-url>
+git push -u origin master:main          # or keep the branch name `master`
+```
+
+## 12.## 12. Language policy / 语言政策
 
 **English.** Repository artifacts are written in English; this README and the three cross-theory
 documents (`theories/RELATIONS.md`, `theories/GRAPH-REPORT.md`, all `theories/<T>/RESULTS.md`) are

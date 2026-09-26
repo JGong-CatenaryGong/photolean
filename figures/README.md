@@ -1,12 +1,12 @@
-# paper/figures/ — figure sources and provenance
+# figures/ — figure sources and provenance
 
 This directory holds the three manuscript figures, the one script that regenerates them, and this
 provenance note. The manuscript includes the **vector PDFs**; the PNGs are 300-dpi previews for
 screens and for a first visual check.
 
 ```bash
-python3 paper/figures/make_figures.py                  # writes paper/figures/{fig1,fig2,fig3}_{...}.{pdf,png}
-python3 paper/figures/make_figures.py --outdir /tmp/x   # optional output directory
+python3 figures/make_figures.py                  # writes figures/{fig1,fig2,fig3}_{...}.{pdf,png}
+python3 figures/make_figures.py --outdir /tmp/x   # optional output directory
 ```
 
 The script runs in a few seconds, needs only `matplotlib` and `numpy` (plus the standard library),

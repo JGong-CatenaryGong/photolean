@@ -4438,3 +4438,28 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   because the write happened last; and an inserted helper's first version referenced `claims` outside
   its scope, which the figure script caught at run time. Rule: after scripted edits to a generated
   artifact's source, always re-run the artifact once and read its manifest.
+
+### 2026-09-25 — push package: no LaTeX, no manuscript, no archive metadata — lead
+
+- **Request**: prepare the pushed package without the manuscript LaTeX source and without the
+  manuscript itself, and without archive metadata; then push.
+- **Applied**: `paper/` dissolved — `paper/figures/**` → `figures/**` (sources + the six generated
+  artifacts, kept because they are data/figures, not manuscript text), `paper/CLAIMS.md` →
+  `docs/CLAIMS.md`, and `paper/{README,AVAILABILITY}.md` + `paper/drafts/2026-09-22-seven-theory-draft.tex`
+  + `the archive-metadata file (removed)` deleted. `CITATION.cff` lost its `related_identifiers` (manuscript-DOI TODO) and the
+  note's path was fixed; README §8/§11 rewritten (figures + claim map; push checklist instead of the
+  archival/DOI release flow); paths updated in `Makefile`, `.gitattributes`,
+  `.github/workflows/lean-gate.yml`, `docs/REPRODUCE.md`, `LICENSE-DOCS`, `AGENTS.md`, and the figure
+  script's default `--outdir` (`paper/figures` → `figures`). Historical records
+  (`proofs/EXPERIENCE.md` earlier entries, `theories/*/LITERATURE.md` notes about `zenodo.org` being
+  unreachable during a survey, `review/AUDIT-*.md`) were left verbatim.
+- **Failed path (recorded)**: my path-rewrite pass fixed docstrings and the `--help` text but missed
+  `argparse`'s `default=os.path.join("paper", "figures")`, so the first regeneration silently
+  **recreated** `paper/figures/` and wrote there while the tracked files under `figures/` kept their
+  old mtimes — caught by comparing mtimes, not by the script's own "done" line. Rule: after moving a
+  generated artifact's directory, assert on file mtimes (or diff the artifact) rather than trusting the
+  tool's success message.
+- **Push**: `git push` cannot be executed from this session — the sandbox has no network (git/curl to
+  github.com time out), the repository has no remote configured, and no `gh` credentials exist. The
+  package is therefore delivered as a push-ready `git bundle` plus a one-command script; the human
+  performs the network step.
