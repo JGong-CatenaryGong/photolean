@@ -5,8 +5,8 @@
 - Contract and role definitions: `proofs/ENGINE.yml`, `proofs/ENGINE.md`.
 - Plan and milestone statements: `theories/RACI/plan.md`.
 - Status of this theory: **ported, gated, and ticked** — the RACI (Restricted Access to a Conical
-  Intersection ⇒ aggregation-induced emission) work is integrated from the independent ChemLean
-  repository (`[local path removed]`, same Lean 4.17.0 / mathlib v4.17.0 toolchain) as
+  Intersection ⇒ aggregation-induced emission) work is integrated from an independent companion
+  development (`ChemLean`, same Lean 4.17.0 / mathlib v4.17.0 toolchain) as
   PhotoLean's 17th theory, following the repository's standards. The 11 ported modules build on
   the first pass; the statement authority (extracted from the delivered signatures, sha256 on
   record below) compiles at 0 errors; fidelity 71/71 word-for-word with 0 differences; 46/46

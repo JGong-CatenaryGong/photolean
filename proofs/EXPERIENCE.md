@@ -4237,7 +4237,7 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
 
 ## 2026-09-23 — RACI integrated as the seventeenth theory (port of the independent ChemLean work) — lead — DONE (pending final verifier)
 
-- **What landed**: the independent RACI work (`[local path removed]`, M1–M4 + M1* +
+- **What landed**: the independent RACI work (a companion development, M1–M4 + M1* +
   M6: the conical-intersection algebra, accessibility, monotone nonradiative rates, the
   aggregation-induced-emission template theorem, the seam's local codimension-2 slice, and the
   Longuet–Higgins sign theorem) ported into `PhotoLean/RACI/` as the seventeenth theory — 11
@@ -4398,9 +4398,9 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   `.lake/tmp/backups/photolean-src-2026-09-25-pre-github.tar.gz` (source, 6.4 MB),
   `…-git-allrefs-2026-09-25.bundle` (all refs, 2.7 MB), `…-worktree-since-5ffc08b.patch`, copies of
   both audit reports, a copy under `/tmp/photolean-backup/`, and the tag `pre-submission-2026-09-25`.
-  Measured environment fact: only `/tmp` (volatile) and the repository itself are writable here —
-  `[local path removed]` and `$HOME` are read-only, so repo-local backups under the gitignored
-  `.lake/tmp/` are the only durable option.
+  Measured environment fact: only `/tmp` (volatile) and the repository itself are writable in the
+  development sandbox — the repository's parent directory and `$HOME` are read-only, so repo-local
+  backups under the gitignored `.lake/tmp/` are the only durable option.
 - **The pending audit fixes were committed first** (`240308c`) after lead verification: gate PASS,
   17/17 probes (authority 1153, auxiliaries 61, delivered 1214), `Relations.lean` declaration set
   identical to HEAD (78/78) and byte-identical after comment stripping.

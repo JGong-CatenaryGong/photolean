@@ -2,8 +2,8 @@
 RACI-statement-skeleton.lean — the STATEMENT AUTHORITY of the RACI theory (integration).
 
 This authority records the delivered signatures of the RACI work ported from the independent
-ChemLean repository (`[local path removed]`, same Lean 4.17.0 / mathlib v4.17.0
-toolchain) into `PhotoLean/RACI/`. Every declaration below is taken verbatim from its delivered
+companion development (`ChemLean`, same Lean 4.17.0 / mathlib v4.17.0 toolchain) into
+`PhotoLean/RACI/`. Every declaration below is taken verbatim from its delivered
 module (structures and definitions with their full bodies; theorems with placeholder proof bodies
 per the skeleton convention). It must compile at 0 errors
 (`proofs/scripts/lake env lean theories/RACI/probes/RACI-statement-skeleton.lean`); delivery

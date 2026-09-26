@@ -1,7 +1,7 @@
 # theories/RACI/plan.md — PhotoLean formalization plan: RACI — Restricted Access to a Conical Intersection (integration of the ChemLean work)
 
 > Status: **delivered (ported) and gated** — the RACI modules are integrated from the independent
-> ChemLean repository (`[local path removed]`) and registered as PhotoLean's 17th
+> companion development (`ChemLean`) and registered as PhotoLean's 17th
 > theory. All eleven modules build against the repository's mathlib v4.17.0, the strict scan is
 > clean, 46/46 theorems pass `#print axioms` with the allowed infrastructure axioms, and the
 > statement authority's fidelity report is 71/71 word-for-word with 0 differences.

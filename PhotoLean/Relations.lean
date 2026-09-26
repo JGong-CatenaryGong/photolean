@@ -1030,8 +1030,8 @@ content row carried by a batch module itself is StokesShift's SS-C9 above (it im
 
 /-! ## 17. The seventeenth node: RACI (Restricted Access to a Conical Intersection)
 
-The RACI theory — ported from the independent ChemLean repository (`[local path removed]
-ChemLean`, same Lean 4.17.0 / mathlib v4.17.0 toolchain) — formalizes the accepted mechanism of
+The RACI theory — ported from an independent companion development (`ChemLean`, same Lean 4.17.0 /
+mathlib v4.17.0 toolchain, not distributed here) — formalizes the accepted mechanism of
 aggregation-induced emission: a geometric constraint on the torsion angle raises the minimal
 accessible energy gap to the conical intersection, the nonradiative rate drops, and with the
 radiative rate (approximately) unchanged the fluorescence quantum yield rises. Its contact with
