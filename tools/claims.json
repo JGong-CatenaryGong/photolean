@@ -1,136 +1,4 @@
 {
-  "axioms": {
-    "allowed_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-    ],
-    "command": "proofs/scripts/lake env lean .lake/tmp/counts-scratch/axioms-sweep.lean",
-    "declarations_accounted_for": 1303,
-    "declarations_printed": 1288,
-    "declarations_requested": 1303,
-    "declarations_without_axioms": 15,
-    "distinct_footprints": [
-      [
-        "Classical.choice",
-        "Quot.sound",
-        "propext"
-      ],
-      [
-        "Quot.sound",
-        "propext"
-      ],
-      [
-        "propext"
-      ]
-    ],
-    "exit_code": 0,
-    "footprint_histogram": {
-      "Classical.choice, Quot.sound, propext": 1205,
-      "Quot.sound, propext": 5,
-      "propext": 78
-    },
-    "footprints_outside_allowed": 0,
-    "outside_detail": [],
-    "requested_per_file": {
-      "PhotoLean/BEP/Basic.lean": 33,
-      "PhotoLean/BEP/Compose.lean": 13,
-      "PhotoLean/BEP/Criterion.lean": 28,
-      "PhotoLean/BEP/Instances.lean": 48,
-      "PhotoLean/BEP/RatModel.lean": 37,
-      "PhotoLean/BEP/Sharp.lean": 32,
-      "PhotoLean/Einstein/Basic.lean": 6,
-      "PhotoLean/Einstein/Criterion.lean": 13,
-      "PhotoLean/Einstein/Instances.lean": 2,
-      "PhotoLean/Einstein/RatModel.lean": 12,
-      "PhotoLean/EnergyGapLaw/Basic.lean": 7,
-      "PhotoLean/EnergyGapLaw/Criterion.lean": 5,
-      "PhotoLean/EnergyGapLaw/Instances.lean": 3,
-      "PhotoLean/EnergyGapLaw/RatModel.lean": 6,
-      "PhotoLean/EnergyGapLaw/Sharp.lean": 6,
-      "PhotoLean/FluorPhos/Basic.lean": 6,
-      "PhotoLean/FluorPhos/Criterion.lean": 10,
-      "PhotoLean/FluorPhos/Instances.lean": 6,
-      "PhotoLean/FluorPhos/RatModel.lean": 8,
-      "PhotoLean/Forster/Basic.lean": 6,
-      "PhotoLean/Forster/Criterion.lean": 14,
-      "PhotoLean/Forster/Instances.lean": 3,
-      "PhotoLean/Forster/RatModel.lean": 9,
-      "PhotoLean/Goldschmidt/Basic.lean": 29,
-      "PhotoLean/Goldschmidt/Criterion.lean": 24,
-      "PhotoLean/Goldschmidt/Instances.lean": 34,
-      "PhotoLean/Goldschmidt/RatModel.lean": 22,
-      "PhotoLean/Goldschmidt/Rules.lean": 18,
-      "PhotoLean/Goldschmidt/Sharp.lean": 12,
-      "PhotoLean/Hammond/Basic.lean": 32,
-      "PhotoLean/Hammond/Compose.lean": 4,
-      "PhotoLean/Hammond/Criterion.lean": 15,
-      "PhotoLean/Hammond/Instances.lean": 29,
-      "PhotoLean/Hammond/RatModel.lean": 16,
-      "PhotoLean/Hammond/Sharp.lean": 6,
-      "PhotoLean/ICvsISC/Basic.lean": 6,
-      "PhotoLean/ICvsISC/Criterion.lean": 7,
-      "PhotoLean/ICvsISC/Instances.lean": 3,
-      "PhotoLean/ICvsISC/RatModel.lean": 4,
-      "PhotoLean/Kasha/Basic.lean": 44,
-      "PhotoLean/Kasha/Compose.lean": 20,
-      "PhotoLean/Kasha/Criterion.lean": 22,
-      "PhotoLean/Kasha/Instances.lean": 20,
-      "PhotoLean/Kasha/RatModel.lean": 29,
-      "PhotoLean/Kasha/Sharp.lean": 16,
-      "PhotoLean/KashaVavilov/Basic.lean": 7,
-      "PhotoLean/KashaVavilov/Criterion.lean": 11,
-      "PhotoLean/KashaVavilov/Instances.lean": 21,
-      "PhotoLean/Kernel.lean": 8,
-      "PhotoLean/Marcus/Barrier.lean": 9,
-      "PhotoLean/Marcus/Basic.lean": 12,
-      "PhotoLean/Marcus/Compose.lean": 2,
-      "PhotoLean/Marcus/Instances.lean": 31,
-      "PhotoLean/Marcus/RatModel.lean": 6,
-      "PhotoLean/Marcus/Rate.lean": 6,
-      "PhotoLean/Marcus/Reorg.lean": 7,
-      "PhotoLean/Marcus/Sharp.lean": 9,
-      "PhotoLean/QuantumYield/Basic.lean": 4,
-      "PhotoLean/QuantumYield/Criterion.lean": 13,
-      "PhotoLean/QuantumYield/Instances.lean": 7,
-      "PhotoLean/QuantumYield/RatModel.lean": 6,
-      "PhotoLean/RACI/Accessibility.lean": 2,
-      "PhotoLean/RACI/Barrier.lean": 2,
-      "PhotoLean/RACI/Branching.lean": 10,
-      "PhotoLean/RACI/GeometricPhase.lean": 6,
-      "PhotoLean/RACI/Instances.lean": 7,
-      "PhotoLean/RACI/Jablonski.lean": 3,
-      "PhotoLean/RACI/JablonskiRatios.lean": 12,
-      "PhotoLean/RACI/LandauZener.lean": 5,
-      "PhotoLean/RACI/Main.lean": 8,
-      "PhotoLean/RACI/RatModel.lean": 10,
-      "PhotoLean/RACI/Seam.lean": 4,
-      "PhotoLean/RACI/Torsion.lean": 7,
-      "PhotoLean/RACI/TwoState.lean": 12,
-      "PhotoLean/Relations.lean": 78,
-      "PhotoLean/Sabatier/Basic.lean": 32,
-      "PhotoLean/Sabatier/Compose.lean": 13,
-      "PhotoLean/Sabatier/Criterion.lean": 19,
-      "PhotoLean/Sabatier/Instances.lean": 38,
-      "PhotoLean/Sabatier/RatModel.lean": 21,
-      "PhotoLean/Sabatier/Sharp.lean": 11,
-      "PhotoLean/Smoke.lean": 2,
-      "PhotoLean/SternVolmer/Basic.lean": 11,
-      "PhotoLean/SternVolmer/Criterion.lean": 17,
-      "PhotoLean/SternVolmer/Instances.lean": 4,
-      "PhotoLean/SternVolmer/RatModel.lean": 14,
-      "PhotoLean/StokesShift/Basic.lean": 7,
-      "PhotoLean/StokesShift/Criterion.lean": 10,
-      "PhotoLean/StokesShift/Instances.lean": 4,
-      "PhotoLean/StokesShift/RatModel.lean": 15,
-      "PhotoLean/SymmetryFactor/Basic.lean": 6,
-      "PhotoLean/SymmetryFactor/Criterion.lean": 9,
-      "PhotoLean/SymmetryFactor/Instances.lean": 5,
-      "PhotoLean/SymmetryFactor/RatModel.lean": 5,
-      "PhotoLean/SymmetryFactor/Sharp.lean": 10
-    },
-    "unknown_identifiers": []
-  },
   "claims": [
     {
       "computed": 17,
@@ -353,44 +221,44 @@
       "verdict": "NOTE"
     },
     {
-      "computed": "17/17",
+      "computed": "skipped (--no-lean)",
       "id": "leaf_planes",
       "note": "",
       "quoted": "17/17 leaf planes OK",
       "source": "paper §5.8",
-      "verdict": "MATCH"
+      "verdict": "NOTE"
     },
     {
-      "computed": "PASS",
+      "computed": "skipped (--no-lean)",
       "id": "gate_verdict",
-      "note": "build OK, scan clean",
+      "note": "",
       "quoted": "verdict PASS",
       "source": "paper §2.1, §5.8",
-      "verdict": "MATCH"
+      "verdict": "NOTE"
     },
     {
-      "computed": "5 warnings in 3 files (PhotoLean/FluorPhos/RatModel.lean, PhotoLean/SternVolmer/Basic.lean, PhotoLean/SternVolmer/RatModel.lean); check.sh output 0, lake traces 5",
+      "computed": "skipped (--no-lean)",
       "id": "unused_variable_warnings",
-      "note": "primary source: lake build traces",
+      "note": "",
       "quoted": "five unused variable linter warnings in three files",
       "source": "paper §5.9/§5.10",
-      "verdict": "MATCH"
+      "verdict": "NOTE"
     },
     {
-      "computed": "1 axiom constant(s): PhotoLean.RACI.nonModelNoCI._elambda_1",
+      "computed": "skipped (--no-lean or environment cross-check unavailable)",
       "id": "auxiliary_axiom_constants",
-      "note": "the constant is the elaborator auxiliary PhotoLean.RACI.nonModelNoCI._elambda_1; no user-declared axiom exists",
+      "note": "",
       "quoted": "the tree has exactly one auxiliary axiom constant and no user-declared axiom",
-      "source": "METHOD NOTE / paper §5.8 (\"No delivered row contains sorry or a custom axiom\")",
-      "verdict": "MATCH"
+      "source": "METHOD NOTE / paper §5.8",
+      "verdict": "NOTE"
     },
     {
-      "computed": "1288/1303 declarations printed (+15 without axioms); 0 footprints outside ALLOWED_AXIOMS; distinct footprints [('Classical.choice', 'Quot.sound', 'propext'), ('Quot.sound', 'propext'), ('propext',)]",
+      "computed": "skipped (run with --axioms)",
       "id": "axiom_footprints",
-      "note": "no footprint exceeds ALLOWED_AXIOMS, but the footprint is an upper bound, not a constant: histogram {'Classical.choice, Quot.sound, propext': 1205, 'propext': 78, 'Quot.sound, propext': 5}",
+      "note": "",
       "quoted": "for every named row cited in the text, #print axioms reports exactly [propext, Classical.choice, Quot.sound]",
       "source": "paper §5.8",
-      "verdict": "MATCH"
+      "verdict": "NOTE"
     }
   ],
   "declarations": {
@@ -912,263 +780,6 @@
       "d_private": 48
     }
   },
-  "environment": {
-    "auxiliary_axiom_constants": [
-      "PhotoLean.RACI.nonModelNoCI._elambda_1"
-    ],
-    "modules": 95,
-    "ok": true,
-    "per_module_ns": {
-      "<top>": {
-        "axiom": 0,
-        "ctor": 0,
-        "defn": 6,
-        "induct": 0,
-        "instance": 0,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 0,
-        "structure": 0,
-        "thm": 93,
-        "total": 99
-      },
-      "BEP": {
-        "axiom": 0,
-        "ctor": 15,
-        "defn": 107,
-        "induct": 2,
-        "instance": 6,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 2,
-        "structure": 0,
-        "thm": 197,
-        "total": 323
-      },
-      "Einstein": {
-        "axiom": 0,
-        "ctor": 0,
-        "defn": 22,
-        "induct": 0,
-        "instance": 0,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 0,
-        "structure": 0,
-        "thm": 33,
-        "total": 55
-      },
-      "EnergyGapLaw": {
-        "axiom": 0,
-        "ctor": 3,
-        "defn": 35,
-        "induct": 1,
-        "instance": 2,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 1,
-        "structure": 0,
-        "thm": 29,
-        "total": 69
-      },
-      "FluorPhos": {
-        "axiom": 0,
-        "ctor": 4,
-        "defn": 66,
-        "induct": 2,
-        "instance": 3,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 2,
-        "structure": 1,
-        "thm": 35,
-        "total": 109
-      },
-      "Forster": {
-        "axiom": 0,
-        "ctor": 0,
-        "defn": 46,
-        "induct": 0,
-        "instance": 0,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 0,
-        "structure": 0,
-        "thm": 32,
-        "total": 78
-      },
-      "Goldschmidt": {
-        "axiom": 0,
-        "ctor": 3,
-        "defn": 132,
-        "induct": 1,
-        "instance": 2,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 1,
-        "structure": 0,
-        "thm": 122,
-        "total": 259
-      },
-      "Hammond": {
-        "axiom": 0,
-        "ctor": 7,
-        "defn": 55,
-        "induct": 1,
-        "instance": 3,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 1,
-        "structure": 0,
-        "thm": 104,
-        "total": 168
-      },
-      "ICvsISC": {
-        "axiom": 0,
-        "ctor": 1,
-        "defn": 14,
-        "induct": 1,
-        "instance": 0,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 1,
-        "structure": 1,
-        "thm": 22,
-        "total": 39
-      },
-      "Kasha": {
-        "axiom": 0,
-        "ctor": 7,
-        "defn": 99,
-        "induct": 3,
-        "instance": 2,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 3,
-        "structure": 1,
-        "thm": 161,
-        "total": 273
-      },
-      "KashaVavilov": {
-        "axiom": 0,
-        "ctor": 0,
-        "defn": 27,
-        "induct": 0,
-        "instance": 0,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 0,
-        "structure": 0,
-        "thm": 41,
-        "total": 68
-      },
-      "Marcus": {
-        "axiom": 0,
-        "ctor": 3,
-        "defn": 40,
-        "induct": 1,
-        "instance": 3,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 1,
-        "structure": 0,
-        "thm": 82,
-        "total": 127
-      },
-      "QuantumYield": {
-        "axiom": 0,
-        "ctor": 2,
-        "defn": 44,
-        "induct": 2,
-        "instance": 1,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 2,
-        "structure": 2,
-        "thm": 31,
-        "total": 81
-      },
-      "RACI": {
-        "axiom": 1,
-        "ctor": 4,
-        "defn": 106,
-        "induct": 3,
-        "instance": 5,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 3,
-        "structure": 2,
-        "thm": 113,
-        "total": 230
-      },
-      "Sabatier": {
-        "axiom": 0,
-        "ctor": 3,
-        "defn": 50,
-        "induct": 1,
-        "instance": 3,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 1,
-        "structure": 0,
-        "thm": 119,
-        "total": 174
-      },
-      "SternVolmer": {
-        "axiom": 0,
-        "ctor": 6,
-        "defn": 65,
-        "induct": 2,
-        "instance": 3,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 2,
-        "structure": 0,
-        "thm": 37,
-        "total": 112
-      },
-      "StokesShift": {
-        "axiom": 0,
-        "ctor": 3,
-        "defn": 45,
-        "induct": 1,
-        "instance": 2,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 1,
-        "structure": 0,
-        "thm": 35,
-        "total": 85
-      },
-      "SymmetryFactor": {
-        "axiom": 0,
-        "ctor": 0,
-        "defn": 9,
-        "induct": 0,
-        "instance": 0,
-        "opaque": 0,
-        "quot": 0,
-        "rec": 0,
-        "structure": 0,
-        "thm": 35,
-        "total": 44
-      }
-    },
-    "stderr": [],
-    "total": {
-      "axiom": 1,
-      "ctor": 61,
-      "defn": 968,
-      "induct": 21,
-      "instance": 35,
-      "opaque": 0,
-      "quot": 0,
-      "rec": 21,
-      "structure": 7,
-      "thm": 1321,
-      "total": 2393
-    }
-  },
   "files": {
     "lean_files_total": 95,
     "per_theory_modules": {
@@ -1217,88 +828,6 @@
       "Smoke.lean"
     ]
   },
-  "gates": {
-    "build": "OK",
-    "command": "proofs/scripts/check.sh --strict",
-    "exit_code": 0,
-    "leaf_planes": [
-      "theories/BEP",
-      "theories/Einstein",
-      "theories/EnergyGapLaw",
-      "theories/FluorPhos",
-      "theories/Forster",
-      "theories/goldschmidt",
-      "theories/hammond",
-      "theories/ICvsISC",
-      "theories/kasha",
-      "theories/KashaVavilov",
-      "theories/Marcus",
-      "theories/QuantumYield",
-      "theories/RACI",
-      "theories/Sabatier",
-      "theories/SternVolmer",
-      "theories/StokesShift",
-      "theories/SymmetryFactor"
-    ],
-    "leaf_planes_expected": 17,
-    "leaf_planes_ok": 17,
-    "output_tail": [
-      "==> sorry / custom axiom scan (PhotoLean/**/*.lean)",
-      "clean",
-      "==> summary",
-      "build: OK",
-      "allowed axioms: propext Classical.choice Quot.sound",
-      "verdict: PASS"
-    ],
-    "scan": "clean",
-    "unused_variable_files": [
-      "PhotoLean/FluorPhos/RatModel.lean",
-      "PhotoLean/SternVolmer/Basic.lean",
-      "PhotoLean/SternVolmer/RatModel.lean"
-    ],
-    "unused_variable_rows": [
-      {
-        "column": 32,
-        "file": "PhotoLean/SternVolmer/Basic.lean",
-        "line": 65,
-        "source": "trace",
-        "variable": "Ka"
-      },
-      {
-        "column": 35,
-        "file": "PhotoLean/SternVolmer/Basic.lean",
-        "line": 65,
-        "source": "trace",
-        "variable": "q"
-      },
-      {
-        "column": 22,
-        "file": "PhotoLean/SternVolmer/RatModel.lean",
-        "line": 61,
-        "source": "trace",
-        "variable": "Ka"
-      },
-      {
-        "column": 25,
-        "file": "PhotoLean/SternVolmer/RatModel.lean",
-        "line": 61,
-        "source": "trace",
-        "variable": "q"
-      },
-      {
-        "column": 21,
-        "file": "PhotoLean/FluorPhos/RatModel.lean",
-        "line": 89,
-        "source": "trace",
-        "variable": "kIC"
-      }
-    ],
-    "unused_variable_source": "lake build traces",
-    "unused_variable_warnings": 5,
-    "unused_variable_warnings_check_sh": 0,
-    "unused_variable_warnings_traces": 5,
-    "verdict": "PASS"
-  },
   "meta": {
     "allowed_axioms": [
       "propext",
@@ -1307,9 +836,9 @@
     ],
     "contract": "proofs/ENGINE.yml",
     "flags": {
-      "axioms": true,
-      "md": true,
-      "no_lean": false
+      "axioms": false,
+      "md": false,
+      "no_lean": true
     },
     "script": "tools/counts.py",
     "theories": [
@@ -1332,12 +861,8 @@
       "RACI"
     ],
     "tree_state": {
-      "git_status_short": [
-        "M tools/README.md",
-        " M tools/claims.json",
-        " M tools/counts.py"
-      ],
-      "head": "d4fbad3047c830396c71c100e9cfa00b07c1dd5d"
+      "git_status_short": [],
+      "head": "0086f0eaaf6d6e34a7b34a54dc43cd1a0a3bf42f"
     }
   },
   "negative_results": {
@@ -3042,10 +2567,10 @@
   },
   "per_theory": [
     {
-      "env_constants_total": 127,
-      "env_instances": 3,
-      "env_minus_source": 45,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 8,
       "probe_authority": 51,
       "probe_auxiliaries": 31,
@@ -3060,10 +2585,10 @@
       "theory": "Marcus"
     },
     {
-      "env_constants_total": 168,
-      "env_instances": 3,
-      "env_minus_source": 66,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 6,
       "probe_authority": 102,
       "probe_auxiliaries": 0,
@@ -3078,10 +2603,10 @@
       "theory": "Hammond"
     },
     {
-      "env_constants_total": 323,
-      "env_instances": 6,
-      "env_minus_source": 132,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 6,
       "probe_authority": 191,
       "probe_auxiliaries": 0,
@@ -3096,10 +2621,10 @@
       "theory": "BEP"
     },
     {
-      "env_constants_total": 273,
-      "env_instances": 2,
-      "env_minus_source": 122,
-      "env_structures": 1,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 6,
       "probe_authority": 151,
       "probe_auxiliaries": 0,
@@ -3114,10 +2639,10 @@
       "theory": "Kasha"
     },
     {
-      "env_constants_total": 174,
-      "env_instances": 3,
-      "env_minus_source": 40,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 6,
       "probe_authority": 132,
       "probe_auxiliaries": 2,
@@ -3132,10 +2657,10 @@
       "theory": "Sabatier"
     },
     {
-      "env_constants_total": 259,
-      "env_instances": 2,
-      "env_minus_source": 120,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 6,
       "probe_authority": 139,
       "probe_auxiliaries": 0,
@@ -3150,10 +2675,10 @@
       "theory": "Goldschmidt"
     },
     {
-      "env_constants_total": 44,
-      "env_instances": 0,
-      "env_minus_source": 9,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 5,
       "probe_authority": 35,
       "probe_auxiliaries": 0,
@@ -3168,10 +2693,10 @@
       "theory": "SymmetryFactor"
     },
     {
-      "env_constants_total": 68,
-      "env_instances": 0,
-      "env_minus_source": 29,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 3,
       "probe_authority": 29,
       "probe_auxiliaries": 10,
@@ -3186,10 +2711,10 @@
       "theory": "KashaVavilov"
     },
     {
-      "env_constants_total": 112,
-      "env_instances": 3,
-      "env_minus_source": 66,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 4,
       "probe_authority": 46,
       "probe_auxiliaries": 0,
@@ -3204,10 +2729,10 @@
       "theory": "SternVolmer"
     },
     {
-      "env_constants_total": 81,
-      "env_instances": 1,
-      "env_minus_source": 51,
-      "env_structures": 2,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 4,
       "probe_authority": 29,
       "probe_auxiliaries": 0,
@@ -3222,10 +2747,10 @@
       "theory": "QuantumYield"
     },
     {
-      "env_constants_total": 109,
-      "env_instances": 3,
-      "env_minus_source": 79,
-      "env_structures": 1,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 4,
       "probe_authority": 30,
       "probe_auxiliaries": 0,
@@ -3240,10 +2765,10 @@
       "theory": "FluorPhos"
     },
     {
-      "env_constants_total": 69,
-      "env_instances": 2,
-      "env_minus_source": 42,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 5,
       "probe_authority": 26,
       "probe_auxiliaries": 1,
@@ -3258,10 +2783,10 @@
       "theory": "EnergyGapLaw"
     },
     {
-      "env_constants_total": 85,
-      "env_instances": 2,
-      "env_minus_source": 49,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 4,
       "probe_authority": 36,
       "probe_auxiliaries": 0,
@@ -3276,10 +2801,10 @@
       "theory": "StokesShift"
     },
     {
-      "env_constants_total": 39,
-      "env_instances": 0,
-      "env_minus_source": 19,
-      "env_structures": 1,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 4,
       "probe_authority": 20,
       "probe_auxiliaries": 0,
@@ -3294,10 +2819,10 @@
       "theory": "ICvsISC"
     },
     {
-      "env_constants_total": 78,
-      "env_instances": 0,
-      "env_minus_source": 46,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 4,
       "probe_authority": 32,
       "probe_auxiliaries": 0,
@@ -3312,10 +2837,10 @@
       "theory": "Forster"
     },
     {
-      "env_constants_total": 55,
-      "env_instances": 0,
-      "env_minus_source": 22,
-      "env_structures": 0,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 4,
       "probe_authority": 33,
       "probe_auxiliaries": 0,
@@ -3330,10 +2855,10 @@
       "theory": "Einstein"
     },
     {
-      "env_constants_total": 230,
-      "env_instances": 5,
-      "env_minus_source": 142,
-      "env_structures": 2,
+      "env_constants_total": null,
+      "env_instances": null,
+      "env_minus_source": null,
+      "env_structures": null,
       "modules": 13,
       "probe_authority": 71,
       "probe_auxiliaries": 17,

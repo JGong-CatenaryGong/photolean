@@ -4470,3 +4470,35 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   github.com time out), the repository has no remote configured, and no `gh` credentials exist. The
   package is therefore delivered as a push-ready `git bundle` plus a one-command script; the human
   performs the network step.
+
+### 2026-09-26 — history rewrite: local paths, paper-planning notes and provenance identifiers removed from every commit — lead
+
+- **Trigger**: after the author asked for the paper-planning/publication-strategy discussion to be
+  removed from the repository, they directed that the removal also cover the history (the cleaned
+  files were already gone from HEAD, but earlier revisions were readable through `git show`).
+- **Backups first** (all under the gitignored `.lake/tmp/backups/`, plus copies off-repo):
+  `photolean-prerewrite-2026-09-26.bundle` (all refs at the pre-rewrite tip), a source tarball of the
+  same state, the two planning documents and the removed blocks (private-notes set), and the three
+  filter rule files.
+- **Tool**: `git-filter-repo` (available at `/home/jgong/psi4conda/bin/git-filter-repo`), three passes:
+  (i) purge seven paths from every commit (the two planning documents, the two review records that
+  carried the strategy discussion — re-introduced afterwards in cleaned form — the archive metadata
+  file, and the manuscript LaTeX sources), rename the two audit reports to model-agnostic names
+  (`review/AUDIT-2026-09-24.md`, `review/REAUDIT-2026-09-24.md`), withhold model/session identifiers,
+  replace local absolute paths, and drop strategy lines; (ii) neutralize archive-metadata mentions;
+  (iii) withhold the session identifier (rule (i) for it had been mis-written: the expression
+  `…===>(text)` leaves an extra `=` in the pattern, because filter-repo splits on the *last* `==>` and
+  the rule file itself contained `===>`; the fix is one `=`).
+- **Verification** (`git log --all -S <token>` over the whole rewritten history): zero commits for the
+  local path, the user name, the two planning-document names, the strategy words, the publisher name
+  as used for the manuscript, the archive-metadata name, the session id, and the two model strings;
+  the only surviving hits are bibliographic usages inside the LITERATURE records (`Springer` textbook
+  citations, a `zenodo.org` fetch note) — restored deliberately after the filter's line-drop rule
+  removed them by accident. Author identities were left untouched by the author's decision. Lean
+  sources are byte-identical to the pre-rewrite state (`diff -rq` against the pre-rewrite bundle);
+  gate PASS, `make check` OK, census regenerated at the new tip.
+- **Consequences recorded**: every commit id changed, so the ids cited in the experience bank and the
+  task boards before this date refer to the pre-rewrite history (kept in the bundle above); re-pointing
+  them is not attempted. The remote was removed by filter-repo and re-added; publishing the rewritten
+  history needs a force push — and for a guaranteed-clean GitHub repository the stronger option is to
+  delete and recreate it, since unreachable objects can remain retrievable by direct SHA for a while.
