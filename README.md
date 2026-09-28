@@ -212,7 +212,7 @@ is kept in this repository.
 转录进面板的 Lean 公式都有对照原文的守卫——定义一改就中止运行，而不是画出过时公式。本仓库**不保存**
 论文源文件与论文 PDF。
 
-## 9.## 9. Reproducibility and auditing / 可复现与审查
+## 9. Reproducibility and auditing / 可复现与审查
 
 **English.** Reproduce everything with `docs/REPRODUCE.md`. Every number quoted anywhere in the
 repository or the manuscript is recomputed by `python3 tools/counts.py --md`, which prints quoted vs
@@ -247,22 +247,18 @@ module's completeness claim is about the *graph* (edges and registered absences)
 无实质行依赖它们。⑥三个文件带 5 条已登记的 `unused variable` 警告。⑦关系图的"完整"是关于**图**的
 （边与已登记缺席），不是关于物理的。
 
-## 11. Citation, licenses, and pre-push checklist / 引用、许可与推送前清单
+## 11. Citation, licenses, and archival / 引用、许可与归档
 
-**English.** Cite the software via `CITATION.cff` (fill `TODO_REPOSITORY_URL` and the author ORCIDs
-first). Code is MIT (`LICENSE`); text and figures are CC BY 4.0 (`LICENSE-DOCS`).
+**English.** Cite the software via `CITATION.cff` (repository URL filled; author ORCIDs to be added).
+Code is MIT (`LICENSE`); text and figures are CC BY 4.0 (`LICENSE-DOCS`). For persistent archival,
+each GitHub release of this repository is archived by [Zenodo](https://zenodo.org), which mints a
+version-specific DOI; cite that DOI together with the accompanying manuscript.
 
-**中文。** 软件引用见 `CITATION.cff`（推送前先填 `TODO_REPOSITORY_URL` 与作者 ORCID）；代码采用 MIT
-（`LICENSE`），文字与图件采用 CC BY 4.0（`LICENSE-DOCS`）。
+**中文。** 软件引用见 `CITATION.cff`（仓库 URL 已填，作者 ORCID 待补）；代码采用 MIT
+（`LICENSE`），文字与图件采用 CC BY 4.0（`LICENSE-DOCS`）。永久归档方面，本仓库的每次 GitHub release
+由 [Zenodo](https://zenodo.org) 自动归档并铸造版本特定的 DOI；引用时请给出该 DOI 与配套论文。
 
-**Before the first push / 首次推送前**：fill `TODO_REPOSITORY_URL` in `CITATION.cff`; then
-
-```bash
-git remote add origin <your-repository-url>
-git push -u origin master:main          # or keep the branch name `master`
-```
-
-## 12.## 12. Language policy / 语言政策
+## 12. Language policy / 语言政策
 
 **English.** Repository artifacts are written in English; this README and the three cross-theory
 documents (`theories/RELATIONS.md`, `theories/GRAPH-REPORT.md`, all `theories/<T>/RESULTS.md`) are

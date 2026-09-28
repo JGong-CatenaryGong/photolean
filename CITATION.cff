@@ -9,10 +9,10 @@ abstract: >-
   adjudications of literature conflations with iff boundaries and witnesses.
 type: software
 version: 1.0.0
-date-released: 2026-09-25
+date-released: 2026-09-28
 license: MIT
-repository-code: "TODO_REPOSITORY_URL"
-url: "TODO_REPOSITORY_URL"
+repository-code: "https://github.com/JGong-CatenaryGong/photolean"
+url: "https://github.com/JGong-CatenaryGong/photolean"
 keywords:
   - Lean 4
   - formalization
@@ -27,15 +27,12 @@ authors:
   - family-names: Gong
     given-names: Junyi
     affiliation: "Faculty of Chemistry, Shenzhen MSU-BIT University, Shenzhen 518172, China"
-    orcid: ""
   - family-names: Qiu
     given-names: Zijie
     affiliation: "School of Science and Engineering, Shenzhen Institute of Aggregate Science and Technology, The Chinese University of Hong Kong, Shenzhen (CUHK-SZ), Shenzhen 518172, China"
-    orcid: ""
   - family-names: Tang
     given-names: Ben Zhong
     affiliation: "School of Science and Engineering, The Chinese University of Hong Kong, Shenzhen (CUHK-SZ), Shenzhen 518172, China; Department of Chemistry, The Hong Kong University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong, China"
-    orcid: ""
 preferred-citation:
   type: article
   title: "The Same and Not the Same: A Machine-Checked Genealogy of Photochemical Theory"
