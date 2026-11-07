@@ -1,0 +1,1348 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "relation-migration-fragment",
+ "scope": "migration-fragment",
+ "sectionRange": {
+  "first": 1,
+  "last": 5
+ },
+ "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+ "leanSource": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+ "leanSourceSha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d",
+ "sourceArtifact": "PhotoLean/Relations.lean",
+ "dispositionsArtifact": "relation_audit/dispositions.json",
+ "dispositionsSchemaVersion": "1.0.0",
+ "queue": {
+  "source": "relation_audit/dispositions.json entries with disposition == \"certificate-required\" and 1 <= section <= 5",
+  "expectedCount": 16,
+  "coveredCount": 16,
+  "declarationIds": [
+   "D-S01-kernel_barrier_eq_hammond",
+   "D-S01-kernel_barrier_eq_bep",
+   "D-S01-kernel_reverseBarrier_eq_hammond",
+   "D-S01-kernel_tsCoord_eq_hammond",
+   "D-S01-kernel_transfer_eq_bep",
+   "D-S01-kernel_reactantSurface_eq_hammond",
+   "D-S01-kernel_productSurface_eq_hammond",
+   "D-S02-transfer_eq_tsCoord_bridge",
+   "D-S02-secSlope_eq_lefflerSecant",
+   "D-S02-tsCoord_lt_zero_iff_inverted",
+   "D-S02-lefflerSecant_neg_iff_inverted",
+   "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+   "D-S03-hammondDescriptor_of_epConformsOnWindow",
+   "D-S05-bep_eact_eq_marcus_barrier",
+   "D-S05-bep_rate_eq_exp_neg_eact",
+   "D-S05-hammond_barrier_eq_gapReactant"
+  ],
+  "outcomeCounts": {
+   "certified": 16,
+   "reclassified": 0
+  }
+ },
+ "outcomeVocabulary": [
+  {
+   "id": "certified",
+   "description": "A kind-correct typed Certificate exists in the section module."
+  },
+  {
+   "id": "reclassified",
+   "description": "No seven-kind certificate is honest; a target category and rationale are recorded."
+  }
+ ],
+ "targetCategoryVocabulary": [],
+ "targetCategoryVocabularyNote": "No row in this fragment is reclassified: every sections 1-5 certificate-required row fits a seven-kind certificate without weakening the statement.",
+ "nonClaims": [
+  "This fragment is not a production registry and does not claim 136/136 or resolved coverage.",
+  "A certified definitionalIdentity is a fresh `DefEq`/`rfl` check, not propositional equality and not a physical-identity claim.",
+  "The §2 value-level bridge rows are certified as observationalEquivalence over an explicit channel; this is not a claim that the two quantities are propositionally equivalent (`↔`), and it is not a definitional identity.",
+  "The kernel pins have empty pairIds and do not claim a cross-theory pair edge.",
+  "No conditionalComposition certificate is created in this fragment; no parent chain is invented.",
+  "Reusing the original theorem does not make the source statement an audit verdict; the certificate records only the declared typed relation."
+ ],
+ "entries": [
+  {
+   "declarationId": "D-S01-kernel_barrier_eq_hammond",
+   "originalDeclaration": "PhotoLean.Relations.kernel_barrier_eq_hammond",
+   "section": 1,
+   "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+   "pairIds": [],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-pin",
+    "rationale": "Definitional rfl pin between the shared-kernel barrier and the Hammond forward gap. It is a kernel-to-theory pin, not a direct Marcus-Hammond pair row: a future certificate should be a definitionalIdentity against the shared kernel, and it must not be flattened into a new cross-theory edge.",
+    "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier; do not treat it as a direct pair row."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Kernel",
+     "statementId": "PhotoLean.Kernel.barrier",
+     "term": "Kernel.barrier lam x",
+     "provenance": "PhotoLean/Kernel.lean#barrier"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.gapReactant",
+     "term": "Hammond.gapReactant lam x",
+     "provenance": "PhotoLean/Hammond/Basic.lean#gapReactant"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Kernel.barrier δ.lam δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Hammond.gapReactant δ.lam δ.x)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§1 kernel_barrier_eq_hammond (line 105)"
+     },
+     {
+      "artifact": "PhotoLean/Kernel.lean",
+      "locator": "barrier"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "locator": "gapReactant"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl`; the certificate re-checks the same definitional equality through `DefEq.refl`. The certificate has empty pairIds: it is a kernel-to-theory regression pin, not a direct Marcus-Hammond pair edge."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§1 kernel_barrier_eq_hammond (line 105)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S01-kernel_barrier_eq_bep",
+   "originalDeclaration": "PhotoLean.Relations.kernel_barrier_eq_bep",
+   "section": 1,
+   "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+   "pairIds": [],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-pin",
+    "rationale": "Definitional rfl pin between the shared-kernel barrier and the BEP activation barrier. This is a kernel-to-theory identity, not a direct Marcus-BEP relation; it needs a definitionalIdentity certificate against the shared kernel only.",
+    "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier; do not infer a pair edge."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Kernel",
+     "statementId": "PhotoLean.Kernel.barrier",
+     "term": "Kernel.barrier lam x",
+     "provenance": "PhotoLean/Kernel.lean#barrier"
+    },
+    "right": {
+     "theory": "PhotoLean.BEP",
+     "statementId": "PhotoLean.BEP.eact",
+     "term": "BEP.eact lam x",
+     "provenance": "PhotoLean/BEP/Basic.lean#eact"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Kernel.barrier δ.lam δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.BEP.eact δ.lam δ.x)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§1 kernel_barrier_eq_bep (line 109)"
+     },
+     {
+      "artifact": "PhotoLean/Kernel.lean",
+      "locator": "barrier"
+     },
+     {
+      "artifact": "PhotoLean/BEP/Basic.lean",
+      "locator": "eact"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl`; the certificate re-checks the same definitional equality through `DefEq.refl`. Empty pairIds: a kernel pin, not a direct Marcus-BEP edge."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§1 kernel_barrier_eq_bep (line 109)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+   "originalDeclaration": "PhotoLean.Relations.kernel_reverseBarrier_eq_hammond",
+   "section": 1,
+   "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+   "pairIds": [],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-pin",
+    "rationale": "Definitional rfl pin between the kernel reverse barrier and the Hammond reverse gap. The row is a kernel-to-Hammond regression pin, not a cross-theory relation between two independent predicates.",
+    "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.reverseBarrier."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Kernel",
+     "statementId": "PhotoLean.Kernel.reverseBarrier",
+     "term": "Kernel.reverseBarrier lam x",
+     "provenance": "PhotoLean/Kernel.lean#reverseBarrier"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.gapProduct",
+     "term": "Hammond.gapProduct lam x",
+     "provenance": "PhotoLean/Hammond/Basic.lean#gapProduct"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Kernel.reverseBarrier δ.lam δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Hammond.gapProduct δ.lam δ.x)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§1 kernel_reverseBarrier_eq_hammond (line 114)"
+     },
+     {
+      "artifact": "PhotoLean/Kernel.lean",
+      "locator": "reverseBarrier"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "locator": "gapProduct"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl`; the certificate re-checks the definitional identity through `DefEq.refl`. Empty pairIds: a kernel-to-theory regression pin."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§1 kernel_reverseBarrier_eq_hammond (line 114)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+   "originalDeclaration": "PhotoLean.Relations.kernel_tsCoord_eq_hammond",
+   "section": 1,
+   "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+   "pairIds": [],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-pin",
+    "rationale": "Definitional rfl pin between the kernel transition-state coordinate and the Hammond coordinate. It is the shared definitional object behind the Marcus-Hammond edge and should remain a kernel pin rather than be counted as a separate direct relation.",
+    "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.tsCoord."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Kernel",
+     "statementId": "PhotoLean.Kernel.tsCoord",
+     "term": "Kernel.tsCoord lam x",
+     "provenance": "PhotoLean/Kernel.lean#tsCoord"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.tsCoord",
+     "term": "Hammond.tsCoord lam x",
+     "provenance": "PhotoLean/Hammond/Basic.lean#tsCoord"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Kernel.tsCoord δ.lam δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Hammond.tsCoord δ.lam δ.x)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§1 kernel_tsCoord_eq_hammond (line 119)"
+     },
+     {
+      "artifact": "PhotoLean/Kernel.lean",
+      "locator": "tsCoord"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "locator": "tsCoord"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl`; the certificate re-checks the definitional identity through `DefEq.refl`. Empty pairIds: the shared object behind the Marcus-Hammond edge, kept as a kernel pin rather than counted as a separate direct relation."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§1 kernel_tsCoord_eq_hammond (line 119)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S01-kernel_transfer_eq_bep",
+   "originalDeclaration": "PhotoLean.Relations.kernel_transfer_eq_bep",
+   "section": 1,
+   "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+   "pairIds": [],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-pin",
+    "rationale": "Definitional rfl pin between the kernel transfer coefficient and the BEP coefficient. It is a shared-kernel identity; the legacy Marcus-BEP edge also cites the non-definitional equivalence transfer_eq_tsCoord_bridge, which must not be conflated with this pin.",
+    "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.transfer."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Kernel",
+     "statementId": "PhotoLean.Kernel.transfer",
+     "term": "Kernel.transfer lam x",
+     "provenance": "PhotoLean/Kernel.lean#transfer"
+    },
+    "right": {
+     "theory": "PhotoLean.BEP",
+     "statementId": "PhotoLean.BEP.transfer",
+     "term": "BEP.transfer lam x",
+     "provenance": "PhotoLean/BEP/Basic.lean#transfer"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Kernel.transfer δ.lam δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.BEP.transfer δ.lam δ.x)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§1 kernel_transfer_eq_bep (line 124)"
+     },
+     {
+      "artifact": "PhotoLean/Kernel.lean",
+      "locator": "transfer"
+     },
+     {
+      "artifact": "PhotoLean/BEP/Basic.lean",
+      "locator": "transfer"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl`; the certificate re-checks the definitional identity through `DefEq.refl`. This pin is not the non-definitional §2 transfer/coordinate bridge; empty pairIds: a kernel pin."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§1 kernel_transfer_eq_bep (line 124)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+   "originalDeclaration": "PhotoLean.Relations.kernel_reactantSurface_eq_hammond",
+   "section": 1,
+   "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+   "pairIds": [],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-pin",
+    "rationale": "Definitional rfl pin between the kernel reactant surface and the Hammond surface. This is a kernel-to-theory regression certificate, not a cross-theory pair relation.",
+    "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.reactantSurface."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_premiseIDs",
+   "sharedContext": "SurfaceCtx = { lam : Real, q : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Kernel",
+     "statementId": "PhotoLean.Kernel.reactantSurface",
+     "term": "Kernel.reactantSurface lam q",
+     "provenance": "PhotoLean/Kernel.lean#reactantSurface"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.reactantSurface",
+     "term": "Hammond.reactantSurface lam q",
+     "provenance": "PhotoLean/Hammond/Basic.lean#reactantSurface"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SurfaceCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SurfaceCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.SurfaceCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SurfaceCtx => PhotoLean.Kernel.reactantSurface δ.lam δ.q)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SurfaceCtx => PhotoLean.Hammond.reactantSurface δ.lam δ.q)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§1 kernel_reactantSurface_eq_hammond (line 129)"
+     },
+     {
+      "artifact": "PhotoLean/Kernel.lean",
+      "locator": "reactantSurface"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "locator": "reactantSurface"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl`; the certificate re-checks the definitional identity through `DefEq.refl`. Empty pairIds: a kernel-to-theory regression certificate, not a cross-theory pair relation."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§1 kernel_reactantSurface_eq_hammond (line 129)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+   "originalDeclaration": "PhotoLean.Relations.kernel_productSurface_eq_hammond",
+   "section": 1,
+   "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+   "pairIds": [],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-pin",
+    "rationale": "Definitional rfl pin between the kernel product surface and the Hammond product surface. It records shared definitions, not a new cross-theory relation.",
+    "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.productSurface."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_premiseIDs",
+   "sharedContext": "ProductSurfaceCtx = { lam : Real, dG : Real, q : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Kernel",
+     "statementId": "PhotoLean.Kernel.productSurface",
+     "term": "Kernel.productSurface lam dG q",
+     "provenance": "PhotoLean/Kernel.lean#productSurface"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.productSurface",
+     "term": "Hammond.productSurface lam dG q",
+     "provenance": "PhotoLean/Hammond/Basic.lean#productSurface"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.ProductSurfaceCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.ProductSurfaceCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.ProductSurfaceCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.ProductSurfaceCtx => PhotoLean.Kernel.productSurface δ.lam δ.dG δ.q)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.ProductSurfaceCtx => PhotoLean.Hammond.productSurface δ.lam δ.dG δ.q)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§1 kernel_productSurface_eq_hammond (line 134)"
+     },
+     {
+      "artifact": "PhotoLean/Kernel.lean",
+      "locator": "productSurface"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "locator": "productSurface"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl`; the certificate re-checks the definitional identity through `DefEq.refl`. Empty pairIds: it records a shared definition, not a new cross-theory relation."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§1 kernel_productSurface_eq_hammond (line 134)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+   "originalDeclaration": "PhotoLean.Relations.transfer_eq_tsCoord_bridge",
+   "section": 2,
+   "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+   "pairIds": [
+    "P-Hammond-BEP"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "direct-equivalence",
+    "rationale": "Genuine non-definitional equivalence between the BEP transfer coefficient and the Hammond transition-state coordinate under the explicit premise lam != 0. This is a direct Hammond-BEP relation and needs a typed equivalence certificate; it is not a definitional identity.",
+    "migrationAction": "Add a typed equivalence certificate with the lam != 0 premise."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+   "relationKind": "observationalEquivalence",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.observationalEquivalence",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge_premiseIDs",
+   "sharedContext": "TransferCtx = { lam : Real }",
+   "premises": [
+    {
+     "id": "bep.lamNeZero",
+     "predicate": "lam ≠ 0",
+     "statement": "The BEP linear-response coefficient is well defined only at nonzero curvature.",
+     "evidence": "explicit",
+     "loadBearing": true,
+     "usedIn": "consumed by `field_simp` in the delivered proof; at lam = 0 the totalised-division bodies disagree"
+    }
+   ],
+   "statement": {
+    "form": "observationalEquivalence",
+    "left": {
+     "theory": "PhotoLean.BEP",
+     "statementId": "PhotoLean.BEP.transfer",
+     "observable": "BEP.transfer lam x",
+     "provenance": "PhotoLean/BEP/Basic.lean#transfer"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.tsCoord",
+     "observable": "Hammond.tsCoord lam x",
+     "provenance": "PhotoLean/Hammond/Basic.lean#tsCoord"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TransferCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TransferCtx => δ"
+    },
+    "premisePredicate": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TransferCtx => δ.lam ≠ 0",
+    "channels": [
+     {
+      "name": "transferCoefficient",
+      "input": "Real",
+      "domain": "Set.univ",
+      "leftObs": "fun δ x => BEP.transfer δ.lam x",
+      "rightObs": "fun δ x => Hammond.tsCoord δ.lam x"
+     }
+    ]
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§2 transfer_eq_tsCoord_bridge (line 144)"
+     },
+     {
+      "artifact": "PhotoLean/BEP/Compose.lean",
+      "locator": "transfer_eq_tsCoord_bridge"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "locator": "tsCoord"
+     }
+    ],
+    "note": "The delivered theorem is a non-definitional equality of two real-valued observables (`field_simp`, not `rfl`), so it cannot be a definitionalIdentity; it is also not a propositional `↔`, so it is not labelled `equivalence`. It is certified as an observationalEquivalence over the declared transferCoefficient channel: at every driving force and every context with lam != 0 the two theory observables agree, which is exactly the delivered statement."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§2 transfer_eq_tsCoord_bridge (line 144)",
+   "kindJustification": "The source theorem proves `BEP.transfer lam x = Hammond.tsCoord lam x` for every `x` when `lam != 0` (by `field_simp`, not `rfl`). The certificate's `transferCoefficient` channel observes BEP.transfer on the left and Hammond.tsCoord on the right over all real driving forces; its `sound` field is exactly the delivered theorem. This is an observational claim about two theory observables, not a propositional equivalence of two predicates and not a definitional identity."
+  },
+  {
+   "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+   "originalDeclaration": "PhotoLean.Relations.secSlope_eq_lefflerSecant",
+   "section": 2,
+   "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+   "pairIds": [
+    "P-Hammond-BEP"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "direct-equivalence",
+    "rationale": "Genuine equivalence between the BEP observable secant slope and the Hammond Leffler secant. The bodies differ in sign convention and pair indexing, so this is a theorem-level equivalence, not an rfl identity; it is a direct Hammond-BEP relation.",
+    "migrationAction": "Add a typed equivalence certificate; do not close it by rfl."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+   "relationKind": "observationalEquivalence",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.observationalEquivalence",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge_premiseIDs",
+   "sharedContext": "SlopeCtx = { lam : Real }",
+   "premises": [],
+   "statement": {
+    "form": "observationalEquivalence",
+    "left": {
+     "theory": "PhotoLean.BEP",
+     "statementId": "PhotoLean.BEP.secSlope",
+     "observable": "BEP.secSlope lam x h",
+     "provenance": "PhotoLean/BEP/Basic.lean#secSlope"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.lefflerSecant",
+     "observable": "Hammond.lefflerSecant lam x (x + h)",
+     "provenance": "PhotoLean/Hammond/Basic.lean#lefflerSecant"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SlopeCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SlopeCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.SlopeCtx => True",
+    "channels": [
+     {
+      "name": "windowSecantSlope",
+      "input": "Real × Real",
+      "domain": "Set.univ",
+      "leftObs": "fun δ p => BEP.secSlope δ.lam p.1 p.2",
+      "rightObs": "fun δ p => Hammond.lefflerSecant δ.lam p.1 (p.1 + p.2)"
+     }
+    ]
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§2 secSlope_eq_lefflerSecant (line 151)"
+     },
+     {
+      "artifact": "PhotoLean/BEP/Compose.lean",
+      "locator": "secSlope_eq_lefflerSecant"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "locator": "lefflerSecant"
+     }
+    ],
+    "note": "The delivered theorem is a non-definitional equality of two real-valued observables (`ring` after unfolding, not `rfl`; the bodies differ in sign convention and pair indexing), so it is not a definitionalIdentity and not a propositional `↔`. It is certified as an observationalEquivalence over the declared windowSecantSlope channel: for every window `(x,h)` the two observables agree, which is exactly the delivered statement. No non-degeneracy premise is needed because both divisions are totalised and the theorem holds at h = 0."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§2 secSlope_eq_lefflerSecant (line 151)",
+   "kindJustification": "The source theorem proves `BEP.secSlope lam x h = Hammond.lefflerSecant lam x (x+h)` for every window `(x,h)` (by `ring`, not `rfl`; the bodies differ in sign convention and pair indexing). The certificate's `windowSecantSlope` channel observes the two window slopes over all `(x,h)`; its `sound` field is exactly the delivered theorem. This is an observational claim about two theory observables, not a propositional equivalence and not a definitional identity."
+  },
+  {
+   "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+   "originalDeclaration": "PhotoLean.Relations.tsCoord_lt_zero_iff_inverted",
+   "section": 2,
+   "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+   "pairIds": [
+    "P-Marcus-Hammond"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "direct-equivalence",
+    "rationale": "Equivalence between the transition state leaving the reactant side and the Marcus inverted region. This is a genuine Marcus-Hammond relation with a positive-curvature premise; it needs a typed equivalence certificate.",
+    "migrationAction": "Add a typed equivalence certificate with the lam > 0 premise."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+   "relationKind": "equivalence",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [
+    {
+     "id": "marcus.curvaturePositive",
+     "predicate": "0 < lam",
+     "statement": "The Marcus curvature is positive.",
+     "evidence": "explicit",
+     "loadBearing": true,
+     "usedIn": "consumed by `div_lt_iff₀` in the delivered proof"
+    }
+   ],
+   "statement": {
+    "form": "equivalence",
+    "left": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.tsCoord",
+     "predicate": "Hammond.tsCoord δ.lam δ.x < 0",
+     "provenance": "PhotoLean/Hammond/Basic.lean#tsCoord"
+    },
+    "right": {
+     "theory": "PhotoLean.Marcus",
+     "statementId": "PhotoLean.Marcus.InvertedRegion",
+     "predicate": "Marcus.InvertedRegion δ.lam δ.x",
+     "provenance": "PhotoLean/Marcus/Basic.lean#InvertedRegion"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => 0 < δ.lam"
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§2 tsCoord_lt_zero_iff_inverted (line 164)"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Criterion.lean",
+      "locator": "tsCoord_lt_zero_iff_inverted"
+     },
+     {
+      "artifact": "PhotoLean/Marcus/Basic.lean",
+      "locator": "InvertedRegion"
+     }
+    ],
+    "note": "The delivered theorem is a genuine non-definitional `↔` under the positive-curvature premise; the certificate reuses it directly in the typed equivalence parent. It is a direct Marcus-Hammond relation (pair P-Marcus-Hammond)."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§2 tsCoord_lt_zero_iff_inverted (line 164)",
+   "kindJustification": "The delivered theorem has the exact shape `Pi -> (P <-> Q)` with the listed premises; the typed equivalence parent reuses that theorem, so the kind is equivalence."
+  },
+  {
+   "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+   "originalDeclaration": "PhotoLean.Relations.lefflerSecant_neg_iff_inverted",
+   "section": 2,
+   "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+   "pairIds": [
+    "P-Marcus-Hammond"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "direct-equivalence",
+    "rationale": "Equivalence between a negative Leffler secant and the Marcus inverted region at the midpoint. It is a theorem-level Marcus-Hammond relation, not a definitional identity, and it needs a typed equivalence certificate with its distinct-point premise.",
+    "migrationAction": "Add a typed equivalence certificate with lam > 0 and x1 != x2."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+   "relationKind": "equivalence",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence_premiseIDs",
+   "sharedContext": "SecantCtx = { lam : Real, x1 : Real, x2 : Real }",
+   "premises": [
+    {
+     "id": "marcus.curvaturePositive",
+     "predicate": "0 < lam",
+     "statement": "The Marcus curvature is positive.",
+     "evidence": "explicit",
+     "loadBearing": true,
+     "usedIn": "consumed by the midpoint rewrite"
+    },
+    {
+     "id": "hammond.distinctDrivingForces",
+     "predicate": "x1 ≠ x2",
+     "statement": "The two driving forces are distinct, so the secant denominator is meaningful.",
+     "evidence": "explicit",
+     "loadBearing": true,
+     "usedIn": "consumed by `lefflerSecant_eq_midpoint`"
+    }
+   ],
+   "statement": {
+    "form": "equivalence",
+    "left": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.lefflerSecant",
+     "predicate": "Hammond.lefflerSecant δ.lam δ.x1 δ.x2 < 0",
+     "provenance": "PhotoLean/Hammond/Basic.lean#lefflerSecant"
+    },
+    "right": {
+     "theory": "PhotoLean.Marcus",
+     "statementId": "PhotoLean.Marcus.InvertedRegion",
+     "predicate": "Marcus.InvertedRegion δ.lam ((δ.x1 + δ.x2) / 2)",
+     "provenance": "PhotoLean/Marcus/Basic.lean#InvertedRegion"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SecantCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SecantCtx => δ"
+    },
+    "premisePredicate": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.SecantCtx => 0 < δ.lam ∧ δ.x1 ≠ δ.x2"
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§2 lefflerSecant_neg_iff_inverted (line 170)"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Criterion.lean",
+      "locator": "lefflerSecant_neg_iff_inverted"
+     },
+     {
+      "artifact": "PhotoLean/Marcus/Basic.lean",
+      "locator": "InvertedRegion"
+     }
+    ],
+    "note": "The delivered theorem is a genuine non-definitional `↔` under the positive-curvature and distinct-point premises; the certificate reuses it directly in the typed equivalence parent. It is a direct Marcus-Hammond relation (pair P-Marcus-Hammond)."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§2 lefflerSecant_neg_iff_inverted (line 170)",
+   "kindJustification": "The delivered theorem has the exact shape `Pi -> (P <-> Q)` with the listed premises; the typed equivalence parent reuses that theorem, so the kind is equivalence."
+  },
+  {
+   "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+   "originalDeclaration": "PhotoLean.Relations.hammondZoneQ_beyondReactant_iff_inverted",
+   "section": 2,
+   "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+   "pairIds": [
+    "P-Marcus-Hammond"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "direct-equivalence",
+    "rationale": "Rational-side agreement between the Hammond deep-exergonic classifier and the Marcus rational inverted-region classifier. It is a cross-theory equivalence over the rationals and needs a typed certificate; it is not the same statement as the real-valued rows.",
+    "migrationAction": "Add a typed equivalence certificate over Q with lam > 0."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+   "relationKind": "equivalence",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence_premiseIDs",
+   "sharedContext": "RatCtx = { lam : Rat, x : Rat }",
+   "premises": [
+    {
+     "id": "marcus.curvaturePositive",
+     "predicate": "0 < lam",
+     "statement": "The rational curvature is positive.",
+     "evidence": "explicit",
+     "loadBearing": true,
+     "usedIn": "consumed by the delivered rational classifier proof"
+    }
+   ],
+   "statement": {
+    "form": "equivalence",
+    "left": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.Rat.hammondZoneQ",
+     "predicate": "Hammond.Rat.hammondZoneQ δ.lam δ.x = Hammond.HZone.beyondReactant",
+     "provenance": "PhotoLean/Hammond/RatModel.lean#hammondZoneQ"
+    },
+    "right": {
+     "theory": "PhotoLean.Marcus",
+     "statementId": "PhotoLean.Marcus.Rat.zoneQ",
+     "predicate": "Marcus.Rat.zoneQ δ.lam δ.x = Marcus.Zone.inverted",
+     "provenance": "PhotoLean/Marcus/RatModel.lean#zoneQ"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.RatCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.RatCtx => δ"
+    },
+    "premisePredicate": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.RatCtx => 0 < δ.lam"
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§2 hammondZoneQ_beyondReactant_iff_inverted (line 176)"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/RatModel.lean",
+      "locator": "hammondZoneQ_beyondReactant_iff_inverted"
+     },
+     {
+      "artifact": "PhotoLean/Marcus/RatModel.lean",
+      "locator": "zoneQ"
+     }
+    ],
+    "note": "The delivered theorem is a genuine non-definitional `↔` over ℚ under the positive-curvature premise; the certificate reuses it directly. It is the rational-side Marcus-Hammond relation and is kept distinct from the real-valued rows."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§2 hammondZoneQ_beyondReactant_iff_inverted (line 176)",
+   "kindJustification": "The delivered theorem has the exact shape `Pi -> (P <-> Q)` with the listed premises; the typed equivalence parent reuses that theorem, so the kind is equivalence."
+  },
+  {
+   "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+   "originalDeclaration": "PhotoLean.Relations.hammondDescriptor_of_epConformsOnWindow",
+   "section": 3,
+   "sectionTitle": "One-way entailments",
+   "pairIds": [
+    "P-Hammond-BEP"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "one-way-entailment",
+    "rationale": "New one-way entailment from BEP window conformance to the structural Hammond descriptor. The proof consumes only the positivity conjunct of EPConformsOnWindow, so the tolerance bound is not load-bearing; a typed implication certificate should record that one-way reading and must not claim the converse.",
+    "migrationAction": "Add a typed implication certificate and document that only the positivity conjunct is consumed."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+   "relationKind": "implication",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.implication",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication_premiseIDs",
+   "sharedContext": "WindowCtx = { lam : Real, tol : Real, a : Real, b : Real }",
+   "premises": [],
+   "statement": {
+    "form": "implication",
+    "left": {
+     "theory": "PhotoLean.BEP",
+     "statementId": "PhotoLean.BEP.EPConformsOnWindow",
+     "predicate": "BEP.EPConformsOnWindow δ.lam δ.tol δ.a δ.b",
+     "provenance": "PhotoLean/BEP/Basic.lean#EPConformsOnWindow"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.HammondDescriptor",
+     "predicate": "Hammond.HammondDescriptor δ.lam",
+     "provenance": "PhotoLean/Hammond/Basic.lean#HammondDescriptor"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.WindowCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.WindowCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.WindowCtx => True"
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§3 hammondDescriptor_of_epConformsOnWindow (line 205)"
+     },
+     {
+      "artifact": "PhotoLean/BEP/Basic.lean",
+      "locator": "EPConformsOnWindow"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Criterion.lean",
+      "locator": "hammond_descriptor_holds"
+     }
+    ],
+    "note": "The delivered theorem is a genuine one-way entailment, certified as `implication`. The antecedent is the full `EPConformsOnWindow` hypothesis and no premise is added. As the R2 disposition records, the delivered proof consumes only the positivity conjunct (the tolerance bound is not load-bearing); the certificate keeps the displayed statement exact and does not claim the converse."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§3 hammondDescriptor_of_epConformsOnWindow (line 205)",
+   "kindJustification": "The delivered theorem has the exact shape `P -> Q` (with the displayed antecedent); the typed implication parent reuses that theorem and does not claim the converse, so the kind is implication."
+  },
+  {
+   "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+   "originalDeclaration": "PhotoLean.Relations.bep_eact_eq_marcus_barrier",
+   "section": 5,
+   "sectionTitle": "Remaining ledger rows of the bridge inventory",
+   "pairIds": [
+    "P-Marcus-BEP"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-alias",
+    "rationale": "Ledger alias: the BEP activation barrier is the delivered Marcus barrier. Both definitions have the same body, so this is a definitionalIdentity candidate; it is a different row from the R1 kernel pin, which pins Kernel.barrier rather than BEP.eact.",
+    "migrationAction": "Add a definitionalIdentity certificate for BEP.eact and Marcus.barrier; do not conflate it with the kernel pin."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.BEP",
+     "statementId": "PhotoLean.BEP.eact",
+     "term": "BEP.eact lam x",
+     "provenance": "PhotoLean/BEP/Basic.lean#eact"
+    },
+    "right": {
+     "theory": "PhotoLean.Marcus",
+     "statementId": "PhotoLean.Marcus.barrier",
+     "term": "Marcus.barrier lam x",
+     "provenance": "PhotoLean/Marcus/Basic.lean#barrier"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.BEP.eact δ.lam δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Marcus.barrier δ.lam δ.x)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§5 bep_eact_eq_marcus_barrier (line 245)"
+     },
+     {
+      "artifact": "PhotoLean/BEP/Compose.lean",
+      "locator": "eact_eq_barrier"
+     },
+     {
+      "artifact": "PhotoLean/Marcus/Basic.lean",
+      "locator": "barrier"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl` (`BEP.eact_eq_barrier`), so the two bodies are definitionally equal; the certificate re-checks this through `DefEq.refl` and is a direct Marcus-BEP definitional alias (pair P-Marcus-BEP). It is not the R1 kernel pin."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§5 bep_eact_eq_marcus_barrier (line 245)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+   "originalDeclaration": "PhotoLean.Relations.bep_rate_eq_exp_neg_eact",
+   "section": 5,
+   "sectionTitle": "Remaining ledger rows of the bridge inventory",
+   "pairIds": [
+    "P-Marcus-BEP"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-alias",
+    "rationale": "Rate rewriting: the delivered Marcus rate written through the BEP activation barrier. Both sides are the same term after unfolding the two definitions, so a definitionalIdentity certificate is appropriate; it is not a new theorem-level edge.",
+    "migrationAction": "Add a definitionalIdentity certificate for the rate rewriting."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_premiseIDs",
+   "sharedContext": "RateCtx = { A : Real, lam : Real, kB : Real, T : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Marcus",
+     "statementId": "PhotoLean.Marcus.rate",
+     "term": "Marcus.rate A lam kB T x",
+     "provenance": "PhotoLean/Marcus/Basic.lean#rate"
+    },
+    "right": {
+     "theory": "PhotoLean.BEP",
+     "statementId": "PhotoLean.BEP.rateViaEact",
+     "term": "A * Real.exp (-(BEP.eact lam x) / (kB * T))",
+     "provenance": "PhotoLean/BEP/Compose.lean#rate_eq_exp_neg_eact"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.RateCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.RateCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.RateCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.RateCtx => PhotoLean.Marcus.rate δ.A δ.lam δ.kB δ.T δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.RateCtx => δ.A * Real.exp (-(PhotoLean.BEP.eact δ.lam δ.x) / (δ.kB * δ.T)))"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§5 bep_rate_eq_exp_neg_eact (line 251)"
+     },
+     {
+      "artifact": "PhotoLean/BEP/Compose.lean",
+      "locator": "rate_eq_exp_neg_eact"
+     },
+     {
+      "artifact": "PhotoLean/Marcus/Basic.lean",
+      "locator": "rate"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl` after unfolding `Marcus.rate` and `BEP.eact`; the certificate re-checks the definitional equality through `DefEq.refl`. It is a rate-rewriting alias (pair P-Marcus-BEP), not a new theorem-level edge."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§5 bep_rate_eq_exp_neg_eact (line 251)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  },
+  {
+   "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+   "originalDeclaration": "PhotoLean.Relations.hammond_barrier_eq_gapReactant",
+   "section": 5,
+   "sectionTitle": "Remaining ledger rows of the bridge inventory",
+   "pairIds": [
+    "P-Marcus-Hammond"
+   ],
+   "intraTheory": false,
+   "r2Ledger": {
+    "disposition": "certificate-required",
+    "relationRole": "definitional-alias",
+    "rationale": "Theory-level alias: the Marcus barrier is literally the Hammond forward gap. It is a definitional alias certificate, not an independent equivalence, and it should be recorded as a definitionalIdentity rather than an rfl-free edge.",
+    "migrationAction": "Add a definitionalIdentity certificate for the Marcus-Hammond barrier alias."
+   },
+   "outcome": "certified",
+   "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+   "relationKind": "definitionalIdentity",
+   "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+   "leanModule": "PhotoLean.RelationAudit.Full.Sections01_05",
+   "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_kind",
+   "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_premiseIDs",
+   "sharedContext": "TwoParabolaCtx = { lam : Real, x : Real }",
+   "premises": [],
+   "statement": {
+    "form": "definitionalIdentity",
+    "left": {
+     "theory": "PhotoLean.Marcus",
+     "statementId": "PhotoLean.Marcus.barrier",
+     "term": "Marcus.barrier lam x",
+     "provenance": "PhotoLean/Marcus/Basic.lean#barrier"
+    },
+    "right": {
+     "theory": "PhotoLean.Hammond",
+     "statementId": "PhotoLean.Hammond.gapReactant",
+     "term": "Hammond.gapReactant lam x",
+     "provenance": "PhotoLean/Hammond/Basic.lean#gapReactant"
+    },
+    "translations": {
+     "left": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ",
+     "right": "fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => δ"
+    },
+    "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => True",
+    "definitionalWitness": {
+     "kind": "DefEq.refl",
+     "functionWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_defeq",
+     "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_source",
+     "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim. The source theorem is reused in `PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_source`."
+    },
+    "rflCheck": {
+     "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Marcus.barrier δ.lam δ.x)",
+     "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections01_05.TwoParabolaCtx => PhotoLean.Hammond.gapReactant δ.lam δ.x)"
+    }
+   },
+   "axiomFootprint": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "statementProvenance": {
+    "kind": "source",
+    "references": [
+     {
+      "artifact": "PhotoLean/Relations.lean",
+      "locator": "§5 hammond_barrier_eq_gapReactant (line 257)"
+     },
+     {
+      "artifact": "PhotoLean/Hammond/Criterion.lean",
+      "locator": "barrier_eq_gapReactant"
+     },
+     {
+      "artifact": "PhotoLean/Marcus/Basic.lean",
+      "locator": "barrier"
+     }
+    ],
+    "note": "The delivered theorem is closed by `rfl` (`Hammond.barrier_eq_gapReactant`); the certificate re-checks the definitional alias through `DefEq.refl`. It is a direct Marcus-Hammond definitional alias (pair P-Marcus-Hammond), not an independent equivalence."
+   },
+   "sourceArtifact": "PhotoLean/Relations.lean",
+   "sourceLocator": "§5 hammond_barrier_eq_gapReactant (line 257)",
+   "kindJustification": "The delivered equality is definitional (its defining-module proof is `rfl`), and the certificate's `same` field is `DefEq.refl`; a fresh kernel elaboration accepts the two translated terms as definitionally equal. The kind is therefore definitionalIdentity, not a propositional-equality relabel."
+  }
+ ]
+}

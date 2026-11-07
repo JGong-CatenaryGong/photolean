@@ -1,0 +1,2320 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "migration-inventory-only",
+  "source": {
+    "scanner": "tools/counts.py",
+    "declarationInventory": "relation_audit/generated/relations_inventory.json",
+    "pairInventory": "relation_audit/generated/pair_inventory.json",
+    "note": "Every entry was authored against the scanned Relations.lean declaration; identifiers are computed from the scanner, not from a second declaration list."
+  },
+  "dispositionVocabulary": [
+    {
+      "id": "pilot-certificate",
+      "description": "Already represented by an R1 pilot certificate or by a direct parent of one; reuse the pilot certificate."
+    },
+    {
+      "id": "certificate-required",
+      "description": "Direct relation row that still needs a typed certificate before it can become an audit record."
+    },
+    {
+      "id": "support-lemma",
+      "description": "Supporting lemma consumed by a certificate or composition; not itself a standalone relation certificate."
+    },
+    {
+      "id": "intra-theory-adjudication",
+      "description": "Intra-theory A1/A2/A3 adjudication or boundary; a legal audit record but never one of the 136 cross-theory pairs."
+    },
+    {
+      "id": "look-alike-non-relation",
+      "description": "Shape resemblance, non-relation, or contrast; must not be flattened into a direct certified edge."
+    },
+    {
+      "id": "metadata-only",
+      "description": "Machine-checkable shape or boundary note used as metadata; no relation certificate and no edge."
+    },
+    {
+      "id": "scoped-relation-documentation",
+      "description": "Scoped, one-sided, or transitive registration documenting how a theory sits on the graph."
+    },
+    {
+      "id": "unresolved-candidate",
+      "description": "Associated only with an undelivered candidate relation; no certificate exists and the candidate remains unresolved."
+    }
+  ],
+  "relationRoleVocabulary": [
+    {
+      "id": "definitional-pin",
+      "description": "Kernel-to-theory definitional rfl pin."
+    },
+    {
+      "id": "definitional-alias",
+      "description": "Two delivered definitions with the same body."
+    },
+    {
+      "id": "direct-equivalence",
+      "description": "Non-definitional cross-theory equivalence."
+    },
+    {
+      "id": "one-way-entailment",
+      "description": "Cross-theory implication in one direction only."
+    },
+    {
+      "id": "conditional-equivalence",
+      "description": "Equivalence under an explicit modelling premise."
+    },
+    {
+      "id": "composition",
+      "description": "Delivered composition or composition-shaped identity."
+    },
+    {
+      "id": "composition-component",
+      "description": "Intermediate lemma consumed by a composition."
+    },
+    {
+      "id": "model-level-composition",
+      "description": "Composition stated at the modelling level, not by a typed parent."
+    },
+    {
+      "id": "support",
+      "description": "Supporting fact with no direct relational content."
+    },
+    {
+      "id": "intra-theory-bridge",
+      "description": "Bridge between two readings inside one theory."
+    },
+    {
+      "id": "intra-theory-adjudication",
+      "description": "Adjudication whose endpoints are one theory."
+    },
+    {
+      "id": "adjudication-verdict",
+      "description": "Verdict row of an A1/A2/A3 adjudication."
+    },
+    {
+      "id": "adjudication-boundary",
+      "description": "Boundary or observable row of an adjudication."
+    },
+    {
+      "id": "look-alike-shared-form",
+      "description": "Shared functional form or predicate, not an edge."
+    },
+    {
+      "id": "look-alike-contrast",
+      "description": "Checkable difference that separates a look-alike."
+    },
+    {
+      "id": "shape-note",
+      "description": "Machine note about a shape or boundary, not an edge."
+    },
+    {
+      "id": "one-sided-note",
+      "description": "Machine note that pins only one side of a pair."
+    },
+    {
+      "id": "transitive-tie-back",
+      "description": "Tie-back certificate whose pair reading is transitive."
+    }
+  ],
+  "entries": [
+    {
+      "declarationId": "D-S01-kernel_barrier_eq_marcus",
+      "name": "kernel_barrier_eq_marcus",
+      "section": 1,
+      "disposition": "pilot-certificate",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [
+        "rec-kernel-pin"
+      ],
+      "pilotQueryIds": [
+        "q-kernel-pin"
+      ],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the shared-kernel barrier and the Marcus barrier. The R1 pilot record rec-kernel-pin certifies exactly this identity as a definitionalIdentity, so the migration should reuse the pilot certificate rather than create a second declaration certificate for the same relation.",
+      "migrationAction": "Reuse pilot record rec-kernel-pin (definitionalIdentity); do not duplicate it.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_barrier_eq_marcus"
+          },
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "kernelBarrierPin and kernelBarrierPin_defeq"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S01-kernel_barrier_eq_hammond",
+      "name": "kernel_barrier_eq_hammond",
+      "section": 1,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the shared-kernel barrier and the Hammond forward gap. It is a kernel-to-theory pin, not a direct Marcus-Hammond pair row: a future certificate should be a definitionalIdentity against the shared kernel, and it must not be flattened into a new cross-theory edge.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier; do not treat it as a direct pair row.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_barrier_eq_hammond"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S01-kernel_barrier_eq_bep",
+      "name": "kernel_barrier_eq_bep",
+      "section": 1,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the shared-kernel barrier and the BEP activation barrier. This is a kernel-to-theory identity, not a direct Marcus-BEP relation; it needs a definitionalIdentity certificate against the shared kernel only.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier; do not infer a pair edge.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_barrier_eq_bep"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+      "name": "kernel_reverseBarrier_eq_hammond",
+      "section": 1,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the kernel reverse barrier and the Hammond reverse gap. The row is a kernel-to-Hammond regression pin, not a cross-theory relation between two independent predicates.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.reverseBarrier.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_reverseBarrier_eq_hammond"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+      "name": "kernel_tsCoord_eq_hammond",
+      "section": 1,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the kernel transition-state coordinate and the Hammond coordinate. It is the shared definitional object behind the Marcus-Hammond edge and should remain a kernel pin rather than be counted as a separate direct relation.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.tsCoord.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_tsCoord_eq_hammond"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S01-kernel_transfer_eq_bep",
+      "name": "kernel_transfer_eq_bep",
+      "section": 1,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the kernel transfer coefficient and the BEP coefficient. It is a shared-kernel identity; the legacy Marcus-BEP edge also cites the non-definitional equivalence transfer_eq_tsCoord_bridge, which must not be conflated with this pin.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.transfer.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_transfer_eq_bep"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+      "name": "kernel_reactantSurface_eq_hammond",
+      "section": 1,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the kernel reactant surface and the Hammond surface. This is a kernel-to-theory regression certificate, not a cross-theory pair relation.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.reactantSurface.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_reactantSurface_eq_hammond"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+      "name": "kernel_productSurface_eq_hammond",
+      "section": 1,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Definitional rfl pin between the kernel product surface and the Hammond product surface. It records shared definitions, not a new cross-theory relation.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.productSurface.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§1 kernel_productSurface_eq_hammond"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+      "name": "transfer_eq_tsCoord_bridge",
+      "section": 2,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Genuine non-definitional equivalence between the BEP transfer coefficient and the Hammond transition-state coordinate under the explicit premise lam != 0. This is a direct Hammond-BEP relation and needs a typed equivalence certificate; it is not a definitional identity.",
+      "migrationAction": "Add a typed equivalence certificate with the lam != 0 premise.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§2 transfer_eq_tsCoord_bridge"
+          },
+          {
+            "artifact": "PhotoLean/BEP/Basic.lean",
+            "locator": "transfer_eq_tsCoord_bridge"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+      "name": "secSlope_eq_lefflerSecant",
+      "section": 2,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Genuine equivalence between the BEP observable secant slope and the Hammond Leffler secant. The bodies differ in sign convention and pair indexing, so this is a theorem-level equivalence, not an rfl identity; it is a direct Hammond-BEP relation.",
+      "migrationAction": "Add a typed equivalence certificate; do not close it by rfl.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§2 secSlope_eq_lefflerSecant"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S02-epBounds_iff_no_inverted_direction",
+      "name": "epBounds_iff_no_inverted_direction",
+      "section": 2,
+      "disposition": "pilot-certificate",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Marcus-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [
+        "rec-composition"
+      ],
+      "pilotQueryIds": [
+        "q-composition"
+      ],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Headline equivalence: the Evans-Polanyi bounds hold exactly when neither direction lies in the Marcus inverted region. The R1 pilot uses this theorem as the parent certificate epBoundsNoInvertedEquivalence of rec-composition, so the migration should reuse the pilot certificate rather than duplicate the relation.",
+      "migrationAction": "Reuse the R1 parent certificate epBoundsNoInvertedEquivalence used by rec-composition.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§2 epBounds_iff_no_inverted_direction"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+      "name": "tsCoord_lt_zero_iff_inverted",
+      "section": 2,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Equivalence between the transition state leaving the reactant side and the Marcus inverted region. This is a genuine Marcus-Hammond relation with a positive-curvature premise; it needs a typed equivalence certificate.",
+      "migrationAction": "Add a typed equivalence certificate with the lam > 0 premise.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§2 tsCoord_lt_zero_iff_inverted"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+      "name": "lefflerSecant_neg_iff_inverted",
+      "section": 2,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Equivalence between a negative Leffler secant and the Marcus inverted region at the midpoint. It is a theorem-level Marcus-Hammond relation, not a definitional identity, and it needs a typed equivalence certificate with its distinct-point premise.",
+      "migrationAction": "Add a typed equivalence certificate with lam > 0 and x1 != x2.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§2 lefflerSecant_neg_iff_inverted"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+      "name": "hammondZoneQ_beyondReactant_iff_inverted",
+      "section": 2,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Rational-side agreement between the Hammond deep-exergonic classifier and the Marcus rational inverted-region classifier. It is a cross-theory equivalence over the rationals and needs a typed certificate; it is not the same statement as the real-valued rows.",
+      "migrationAction": "Add a typed equivalence certificate over Q with lam > 0.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§2 hammondZoneQ_beyondReactant_iff_inverted"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S03-epBounds_of_reactionRegion",
+      "name": "epBounds_of_reactionRegion",
+      "section": 3,
+      "disposition": "pilot-certificate",
+      "relationRole": "one-way-entailment",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [
+        "rec-hammond-bep"
+      ],
+      "pilotQueryIds": [
+        "q-hammond-bep"
+      ],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "One-way entailment from Hammonds conformance region to the Evans-Polanyi bounds. The R1 pilot record rec-hammond-bep certifies exactly this implication, so the migration should reuse it; the converse is not claimed.",
+      "migrationAction": "Reuse pilot record rec-hammond-bep (implication).",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§3 epBounds_of_reactionRegion"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S03-epBounds_of_marcus_normal",
+      "name": "epBounds_of_marcus_normal",
+      "section": 3,
+      "disposition": "pilot-certificate",
+      "relationRole": "one-way-entailment",
+      "pairIds": [
+        "P-Marcus-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [
+        "rec-composition"
+      ],
+      "pilotQueryIds": [
+        "q-composition"
+      ],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "One-way entailment from the Marcus normal region plus reverse thermoneutrality to the Evans-Polanyi bounds. The R1 pilot uses this row as the parent certificate marcusNormalImplication of rec-composition, so the migration should reuse that certificate and keep the one-way direction.",
+      "migrationAction": "Reuse the R1 parent certificate marcusNormalImplication used by rec-composition.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§3 epBounds_of_marcus_normal"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+      "name": "hammondDescriptor_of_epConformsOnWindow",
+      "section": 3,
+      "disposition": "certificate-required",
+      "relationRole": "one-way-entailment",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "New one-way entailment from BEP window conformance to the structural Hammond descriptor. The proof consumes only the positivity conjunct of EPConformsOnWindow, so the tolerance bound is not load-bearing; a typed implication certificate should record that one-way reading and must not claim the converse.",
+      "migrationAction": "Add a typed implication certificate and document that only the positivity conjunct is consumed.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§3 hammondDescriptor_of_epConformsOnWindow"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S04-hammond_descriptor_of_inner",
+      "name": "hammond_descriptor_of_inner",
+      "section": 4,
+      "disposition": "support-lemma",
+      "relationRole": "composition-component",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Definitional-reuse support: the Marcus inner-sphere reorganization energy yields the Hammond descriptor directly. It is an intermediate lemma feeding the Marcus-Hammond composition, not a standalone cross-theory relation certificate.",
+      "migrationAction": "Retain as support for the Marcus-Hammond composition; do not register as a standalone relation.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§4 hammond_descriptor_of_inner"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S04-hammond_descriptor_of_microscopic",
+      "name": "hammond_descriptor_of_microscopic",
+      "section": 4,
+      "disposition": "support-lemma",
+      "relationRole": "composition-component",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Microscopic-premise support: the Pekar and geometric premises on the Marcus outer-sphere term make the total reorganization energy positive and hence the Hammond descriptor holds. This is a support lemma for the Marcus-Hammond edge, not a second edge certificate.",
+      "migrationAction": "Retain as support for the Marcus-Hammond composition.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§4 hammond_descriptor_of_microscopic"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S04-hammond_descriptor_of_nonoverlap",
+      "name": "hammond_descriptor_of_nonoverlap",
+      "section": 4,
+      "disposition": "support-lemma",
+      "relationRole": "composition-component",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Stretch-form support: the geometric premise is derived from non-overlapping spheres, still yielding the Hammond descriptor. It is a variant support lemma for the same Marcus-Hammond composition.",
+      "migrationAction": "Retain as support; do not duplicate the Marcus-Hammond certificate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§4 hammond_descriptor_of_nonoverlap"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S04-exists_reactionRegion_of_microscopic",
+      "name": "exists_reactionRegion_of_microscopic",
+      "section": 4,
+      "disposition": "support-lemma",
+      "relationRole": "support",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Non-vacuity support: the Marcus microscopic premises produce an actual Hammond reaction region. This supports the Hammond edge by exhibiting a witness, but it is not itself a relation certificate between two predicates.",
+      "migrationAction": "Retain as a non-vacuity/support lemma.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§4 exists_reactionRegion_of_microscopic"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+      "name": "bep_eact_eq_marcus_barrier",
+      "section": 5,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-alias",
+      "pairIds": [
+        "P-Marcus-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Ledger alias: the BEP activation barrier is the delivered Marcus barrier. Both definitions have the same body, so this is a definitionalIdentity candidate; it is a different row from the R1 kernel pin, which pins Kernel.barrier rather than BEP.eact.",
+      "migrationAction": "Add a definitionalIdentity certificate for BEP.eact and Marcus.barrier; do not conflate it with the kernel pin.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§5 bep_eact_eq_marcus_barrier"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+      "name": "bep_rate_eq_exp_neg_eact",
+      "section": 5,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-alias",
+      "pairIds": [
+        "P-Marcus-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Rate rewriting: the delivered Marcus rate written through the BEP activation barrier. Both sides are the same term after unfolding the two definitions, so a definitionalIdentity certificate is appropriate; it is not a new theorem-level edge.",
+      "migrationAction": "Add a definitionalIdentity certificate for the rate rewriting.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§5 bep_rate_eq_exp_neg_eact"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+      "name": "hammond_barrier_eq_gapReactant",
+      "section": 5,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-alias",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Theory-level alias: the Marcus barrier is literally the Hammond forward gap. It is a definitional alias certificate, not an independent equivalence, and it should be recorded as a definitionalIdentity rather than an rfl-free edge.",
+      "migrationAction": "Add a definitionalIdentity certificate for the Marcus-Hammond barrier alias.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§5 hammond_barrier_eq_gapReactant"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S05-marcus_rat_zoneQ_inverted_iff",
+      "name": "marcus_rat_zoneQ_inverted_iff",
+      "section": 5,
+      "disposition": "support-lemma",
+      "relationRole": "intra-theory-bridge",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": true,
+      "pairAssociation": "intra-theory",
+      "rationale": "Rational-side bridge inside the Marcus theory: the rational inverted-region decision connects to the real inequality after the delivered transfer rewrites. It supports the Marcus classifier and is intra-theory, so it is not one of the 136 cross-theory pairs and should not be registered as an edge.",
+      "migrationAction": "Keep as intra-theory support; exclude from the 136-pair numerator.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§5 marcus_rat_zoneQ_inverted_iff"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S06-hammond_trend_exact_bep_law_inexact",
+      "name": "hammond_trend_exact_bep_law_inexact",
+      "section": 6,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-contrast",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "Exactness contrast: in one model the Hammond structural trend is exactly affine while the BEP line law is exactly false on every non-degenerate interval. The legacy Hammond-BEP edge cites this row, but it is a shape/difference theorem, not a direct relation between the two predicates; it must not be flattened into a certified edge.",
+      "migrationAction": "Register as a look-alike/difference row; do not create a Hammond-BEP edge certificate from it.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§6 hammond_trend_exact_bep_law_inexact"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+      "name": "hammond_sharp_iff_marcus_sharp",
+      "section": 6,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Co-extensiveness of the Hammond structural descriptor and the Marcus rate descriptor, proved by composing the two delivered sharp characterizations. It is a genuine cross-theory equivalence and needs a typed equivalence certificate; it is not a definitional identity and its content is the co-extensiveness itself.",
+      "migrationAction": "Add a typed equivalence certificate; keep the composition provenance visible.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§6 hammond_sharp_iff_marcus_sharp"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S06-rate_predicate_satisfiable_without_positive_curvature",
+      "name": "rate_predicate_satisfiable_without_positive_curvature",
+      "section": 6,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-contrast",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "Counterexample row: the Marcus rate predicate alone is satisfiable with negative curvature while the Hammond structural descriptor fails. This is an adjudication-style contrast showing the predicates are not equally strong; it is not a direct relation certificate.",
+      "migrationAction": "Register as a non-relation/contrast row; do not create an edge certificate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§6 rate_predicate_satisfiable_without_positive_curvature"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S07-kernel_marcusIC",
+      "name": "kernel_marcusIC",
+      "section": 7,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Kernel pin: the Kasha internal-conversion rate is the kernel barrier inside the Marcus rate law. It is a definitionalIdentity candidate and the definitional core of the Kasha-Marcus edge, not a separate theorem-level relation.",
+      "migrationAction": "Add a definitionalIdentity certificate against the kernel barrier.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§7 kernel_marcusIC"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S07-kashaWithin_one_marcus",
+      "name": "kashaWithin_one_marcus",
+      "section": 7,
+      "disposition": "pilot-certificate",
+      "relationRole": "conditional-equivalence",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [
+        "rec-kasha-marcus"
+      ],
+      "pilotQueryIds": [
+        "q-kasha-marcus"
+      ],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Conditional equivalence under the declared hic modelling premise: Kasha conformance is exactly the explicit window condition on the squared energy gap. The R1 pilot certifies exactly this as rec-kasha-marcus, so it must be reused as a conditional equivalence and must not be relabelled as a composition.",
+      "migrationAction": "Reuse pilot record rec-kasha-marcus (conditional equivalence under hic).",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§7 kashaWithin_one_marcus"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S07-not_kashaWithin_of_gap_far",
+      "name": "not_kashaWithin_of_gap_far",
+      "section": 7,
+      "disposition": "support-lemma",
+      "relationRole": "one-way-entailment",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "One-way consequence of the conditional Kasha-Marcus equivalence: a gap outside the window violates the tolerance. It is a supporting consequence for the window reading, not a standalone certificate and not an anti-Kasha edge.",
+      "migrationAction": "Retain as support for the conditional Kasha-Marcus certificate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§7 not_kashaWithin_of_gap_far"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S07-kashaWindow_halfWidth",
+      "name": "kashaWindow_halfWidth",
+      "section": 7,
+      "disposition": "support-lemma",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Alternate half-width presentation of the same Kasha-Marcus window condition. It is a support/alternative-form lemma, not a new pair relation, and it should not be counted as a second certificate for the pair.",
+      "migrationAction": "Retain as an alternative-form support lemma.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§7 kashaWindow_halfWidth"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S07-marcusIC_pos",
+      "name": "marcusIC_pos",
+      "section": 7,
+      "disposition": "support-lemma",
+      "relationRole": "support",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Positivity of the Marcus-form internal-conversion rate whenever the pre-exponential factor is positive. It is a support fact for the Kasha-Marcus reading, not a relation certificate.",
+      "migrationAction": "Retain as a positivity support fact.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§7 marcusIC_pos"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+      "name": "linearVolcano_eq_bepTangent",
+      "section": 8,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Identity: the Sabatier linear volcano is the maximum of the two BEP tangent lines at thermoneutrality. It is a delivered composition result and needs a typed certificate; it is not a definitional rfl identity.",
+      "migrationAction": "Add a typed composition/equivalence certificate for the Sabatier-BEP volcano identity.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 linearVolcano_eq_bepTangent"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S08-bepLine_le_eact",
+      "name": "bepLine_le_eact",
+      "section": 8,
+      "disposition": "support-lemma",
+      "relationRole": "composition-component",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Pointwise tangent-below-parabola inequality, the geometric reading of the BEP defect law. It is a component of the Sabatier-BEP composition, not a standalone pair certificate.",
+      "migrationAction": "Retain as a composition component.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 bepLine_le_eact"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_le_parabolic",
+      "name": "linearVolcano_le_parabolic",
+      "section": 8,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Pointwise lower bound of the linear volcano by the two-parabola volcano: the linear model underestimates the barrier away from the apex. This is a composition result and needs a typed order/implication certificate, not an edge label alone.",
+      "migrationAction": "Add a typed pointwise-order certificate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 linearVolcano_le_parabolic"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S08-parabolic_descriptor",
+      "name": "parabolic_descriptor",
+      "section": 8,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "The Sabatier volcano descriptor holds in the two-parabola model with no BEP linearization. This is a composition certificate showing the descriptor survives the exact model; it needs a typed certificate.",
+      "migrationAction": "Add a typed composition certificate for the descriptor.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 parabolic_descriptor"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S08-apexPar_self",
+      "name": "apexPar_self",
+      "section": 8,
+      "disposition": "support-lemma",
+      "relationRole": "composition-component",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "A symmetric two-parabola cycle has its apex at the thermoneutral descriptor value. It is a supporting component of the apex comparison, not a standalone relation certificate.",
+      "migrationAction": "Retain as a composition component.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 apexPar_self"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_apex_exact",
+      "name": "linearVolcano_apex_exact",
+      "section": 8,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "At a symmetric cycles apex the tangent-line model and the parabola model agree exactly. This is a composition result about the apex and needs a typed certificate; it does not license a general equivalence of the two models.",
+      "migrationAction": "Add a typed apex-composition certificate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 linearVolcano_apex_exact"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S09-marcus_rate_eq_activity",
+      "name": "marcus_rate_eq_activity",
+      "section": 9,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-shared-form",
+      "pairIds": [
+        "P-Marcus-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "C1: the Marcus rate is the Sabatier activity functional applied to the kernel barrier, scaled by the pre-exponential factor. This is a shared functional form (C1 is a certificate of coincidence, not an edge); the Marcus-Sabatier pair is a look-alike, so the row must not be flattened into a direct edge certificate.",
+      "migrationAction": "Register as a look-alike shared-form row; do not create a Marcus-Sabatier edge.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§9 marcus_rate_eq_activity"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S09-marcusRate_antiVolcanoDescriptor",
+      "name": "marcusRate_antiVolcanoDescriptor",
+      "section": 9,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-shared-form",
+      "pairIds": [
+        "P-Marcus-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "C2: the Marcus rate satisfies the very same Sabatier anti-volcano predicate, with lam as its unique maximizer. This is a shared-predicate look-alike, not a direct relation between the two theories; the uniqueness half is new mathematics but does not create an edge.",
+      "migrationAction": "Register as a look-alike shared-predicate row.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§9 marcusRate_antiVolcanoDescriptor"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S09-apexBarrier_reference_nonzero",
+      "name": "apexBarrier_reference_nonzero",
+      "section": 9,
+      "disposition": "support-lemma",
+      "relationRole": "look-alike-contrast",
+      "pairIds": [],
+      "relatedPairIds": [
+        "P-Marcus-Sabatier"
+      ],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "C3a: the Sabatier reference pass height is 1/2, so a volcano pass is not a barrierless point. It is a supporting component of the C3 contrast, not a cross-theory relation by itself.",
+      "migrationAction": "Retain as a supporting component of the look-alike contrast.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§9 apexBarrier_reference_nonzero"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S09-optimal_barrier_height_contrast",
+      "name": "optimal_barrier_height_contrast",
+      "section": 9,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-contrast",
+      "pairIds": [
+        "P-Marcus-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "C3b: the Marcus optimal barrier is identically zero while the Sabatier reference pass is 1/2. This side-by-side contrast is the checkable content of look-alike but different and is not a direct edge.",
+      "migrationAction": "Register as a look-alike contrast row.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§9 optimal_barrier_height_contrast"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S09-marcus_secant_at_optimum",
+      "name": "marcus_secant_at_optimum",
+      "section": 9,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-contrast",
+      "pairIds": [
+        "P-Marcus-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "C4: the Marcus one-sided secant at the optimum is h/(4*lam), hence vanishes with the step, while the Sabatier volcano legs have step-independent secant slopes. This kink-versus-smooth-optimum contrast is a non-relation, not an edge.",
+      "migrationAction": "Register as a look-alike contrast row.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§9 marcus_secant_at_optimum"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S09-sabatier_apex_moves_with_offsets",
+      "name": "sabatier_apex_moves_with_offsets",
+      "section": 9,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-contrast",
+      "pairIds": [],
+      "relatedPairIds": [
+        "P-Marcus-Sabatier"
+      ],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "C5a: the Sabatier apex moves when only the offsets change with the slopes held fixed. It is a component of the C5 contrast between the two optima, not a cross-theory relation on its own.",
+      "migrationAction": "Register as a look-alike contrast component.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§9 sabatier_apex_moves_with_offsets"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S09-marcus_optimum_fixed_by_curvature",
+      "name": "marcus_optimum_fixed_by_curvature",
+      "section": 9,
+      "disposition": "look-alike-non-relation",
+      "relationRole": "look-alike-contrast",
+      "pairIds": [
+        "P-Marcus-Sabatier"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "look-alike",
+      "rationale": "C5b: the Marcus optimal position is fixed by the curvature alone, whereas C5a shows the Sabatier apex responding to offsets. This is the contrast half of the look-alike pair and must not become an edge certificate.",
+      "migrationAction": "Register as a look-alike contrast row.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§9 marcus_optimum_fixed_by_curvature"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "name": "symmetryFactor_tsCoordZero_eq_kernel",
+      "section": 11,
+      "disposition": "certificate-required",
+      "relationRole": "transitive-tie-back",
+      "pairIds": [
+        "P-Marcus-SymmetryFactor"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "transitive",
+      "rationale": "A1 tie-back certificate: at equal curvature the SymmetryFactor thermoneutral coordinate is the kernel transition-state coordinate. No row names Marcus directly; the Marcus-SymmetryFactor legacy edge is transitive through the shared kernel, so the migration must keep that transitive reading rather than claim a direct row.",
+      "migrationAction": "Add a typed tie-back certificate and record the transitive-via-kernel boundary.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§11 symmetryFactor_tsCoordZero_eq_kernel"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "name": "symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "section": 11,
+      "disposition": "certificate-required",
+      "relationRole": "transitive-tie-back",
+      "pairIds": [
+        "P-BEP-SymmetryFactor"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "transitive",
+      "rationale": "A1 tie-back certificate: at equal curvature the SymmetryFactor coordinate is the delivered BEP transfer coefficient at thermoneutrality, extending the E1 chain. The BEP-SymmetryFactor legacy edge is transitive through the kernel/E1 chain, not a direct two-theory row.",
+      "migrationAction": "Add a typed tie-back certificate and record the transitive boundary.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§11 symmetryFactor_tsCoordZero_eq_bepTransfer"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_betaHalf_iff",
+      "name": "symmetryFactor_betaHalf_iff",
+      "section": 11,
+      "disposition": "pilot-certificate",
+      "relationRole": "intra-theory-adjudication",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [
+        "rec-a1"
+      ],
+      "pilotQueryIds": [
+        "q-a1"
+      ],
+      "intraTheory": true,
+      "pairAssociation": "intra-theory",
+      "rationale": "A1 verdict: the beta = 1/2 reading holds exactly when the two force constants agree. The R1 pilot certifies this as the intra-theory equivalence rec-a1; it is not one of the 136 cross-theory pairs and must not be counted as an edge.",
+      "migrationAction": "Reuse pilot record rec-a1 (intra-theory equivalence).",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§11 symmetryFactor_betaHalf_iff"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_conflation_falsified_and_holds_in_kernel",
+      "name": "symmetryFactor_conflation_falsified_and_holds_in_kernel",
+      "section": 11,
+      "disposition": "intra-theory-adjudication",
+      "relationRole": "adjudication-verdict",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": true,
+      "pairAssociation": "intra-theory",
+      "rationale": "A1 falsification-and-persistence verdict inside SymmetryFactor: the conflated reading is refuted at an unequal pair and holds throughout the equal-curvature family. It is an intra-theory adjudication record, not a cross-theory pair, and it adds no new pair coverage.",
+      "migrationAction": "Keep as an intra-theory adjudication record; exclude from the 136-pair numerator.",
+      "notes": "Related to pilot record rec-a1, which certifies the equivalence half only.",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§11 symmetryFactor_conflation_falsified_and_holds_in_kernel"
+          },
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+            "locator": "betaHalf_falsified_by_unequal and betaHalf_holds_in_kernel"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S12-eg_barrier_eq_kernel",
+      "name": "eg_barrier_eq_kernel",
+      "section": 12,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Batch definitional pin: the EnergyGapLaw barrier is the kernel barrier. It is a kernel-to-theory rfl pin, not a direct EnergyGapLaw-Marcus relation; a definitionalIdentity certificate is required.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 eg_barrier_eq_kernel"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S12-eg_rate_eq_marcus",
+      "name": "eg_rate_eq_marcus",
+      "section": 12,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [
+        "P-Marcus-EnergyGapLaw"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Batch definitional pin: the EnergyGapLaw rate is the Marcus rate. This is a direct EnergyGapLaw-Marcus definitional identity and needs a typed certificate; it is not a theorem-level equivalence.",
+      "migrationAction": "Add a definitionalIdentity certificate for the EnergyGapLaw-Marcus rate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 eg_rate_eq_marcus"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+      "name": "eg_invertedGap_iff_marcus",
+      "section": 12,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-Marcus-EnergyGapLaw"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Batch equivalence: the EnergyGapLaw inverted-gap predicate is the Marcus inverted region. It is a propositional equivalence, not a definitional identity, and it needs a typed equivalence certificate.",
+      "migrationAction": "Add a typed equivalence certificate for the inverted-gap predicate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 eg_invertedGap_iff_marcus"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+      "name": "ss_s0Surface_eq_kernel",
+      "section": 12,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Batch definitional pin: the StokesShift ground surface is the kernel reactant surface. It is a kernel-to-theory rfl pin, not a direct cross-theory pair relation.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.reactantSurface.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 ss_s0Surface_eq_kernel"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+      "name": "ss_s1Surface_eq_kernel",
+      "section": 12,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Batch definitional pin: the StokesShift excited surface is the kernel product surface. It is a kernel-to-theory rfl pin and should remain a definitional certificate rather than an edge.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.productSurface.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 ss_s1Surface_eq_kernel"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+      "name": "icvscic_barrier_eq_kernel",
+      "section": 12,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "none",
+      "rationale": "Batch definitional pin: the ICvsISC Franck-Condon barrier is the kernel barrier. It is a kernel-to-theory rfl pin, not a direct two-theory relation.",
+      "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 icvscic_barrier_eq_kernel"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+      "name": "icvscic_icRate_eq_marcus",
+      "section": 12,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [
+        "P-Marcus-ICvsISC"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Batch definitional pin: the ICvsISC internal-conversion rate is the Marcus rate. This is a direct Marcus-ICvsISC definitional identity and needs a typed certificate; it must not be conflated with the separate EnergyGapLaw rate identity.",
+      "migrationAction": "Add a definitionalIdentity certificate for the Marcus-ICvsISC rate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 icvscic_icRate_eq_marcus"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S13-kv_d2_verdict",
+      "name": "kv_d2_verdict",
+      "section": 13,
+      "disposition": "intra-theory-adjudication",
+      "relationRole": "adjudication-verdict",
+      "pairIds": [],
+      "relatedPairIds": [
+        "P-Kasha-KashaVavilov"
+      ],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": true,
+      "pairAssociation": "intra-theory",
+      "rationale": "A2 four-part adjudication of Kasha rule against Vavilov behavior: pointwise independence both ways, the closed-form coincidence boundary, and the lossless separation. It is an intra-theory adjudication record, not one of the 136 cross-theory pairs; the R1 refutation record overlaps its first conjunct but does not certify the whole verdict.",
+      "migrationAction": "Keep as an intra-theory adjudication record; do not count it as a Kasha-KashaVavilov pair edge.",
+      "notes": "The R1 record rec-kasha-vavilov overlaps the first refutation conjunct only.",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§13 kv_d2_verdict"
+          },
+          {
+            "artifact": "PhotoLean/KashaVavilov/Criterion.lean",
+            "locator": "d2_verdict"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S13-kv_antiKasha_boundary",
+      "name": "kv_antiKasha_boundary",
+      "section": 13,
+      "disposition": "intra-theory-adjudication",
+      "relationRole": "adjudication-boundary",
+      "pairIds": [],
+      "relatedPairIds": [
+        "P-Kasha-KashaVavilov"
+      ],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": true,
+      "pairAssociation": "intra-theory",
+      "rationale": "A2 boundary: under RateData, a violation of Kasha rule is always an observable anti-Kasha emission. It is an intra-theory boundary result, not a cross-theory pair relation.",
+      "migrationAction": "Keep as an intra-theory adjudication boundary.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§13 kv_antiKasha_boundary"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S14-sv_d1_verdict",
+      "name": "sv_d1_verdict",
+      "section": 14,
+      "disposition": "intra-theory-adjudication",
+      "relationRole": "adjudication-verdict",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": true,
+      "pairAssociation": "intra-theory",
+      "rationale": "A3 three-part adjudication inside SternVolmer: both plots are linear, the intensity observation map is non-injective, and lifetime tracking identifies the mechanism. It is an intra-theory adjudication; the R1 pilot certifies the intensity, joint-distinguishability and decoder parts, but the full verdict remains intra-theory.",
+      "migrationAction": "Keep as an intra-theory adjudication record; exclude from the 136-pair numerator.",
+      "notes": "Overlaps pilot records rec-sv-intensity, rec-sv-joint and rec-sv-decoder but is broader.",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§14 sv_d1_verdict"
+          },
+          {
+            "artifact": "PhotoLean/SternVolmer/Criterion.lean",
+            "locator": "d1_verdict"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S14-sv_identifiability_boundary",
+      "name": "sv_identifiability_boundary",
+      "section": 14,
+      "disposition": "pilot-certificate",
+      "relationRole": "adjudication-boundary",
+      "pairIds": [],
+      "relatedPairIds": [],
+      "pilotRecordIds": [
+        "rec-sv-decoder"
+      ],
+      "pilotQueryIds": [
+        "q-sv-decoder"
+      ],
+      "intraTheory": true,
+      "pairAssociation": "intra-theory",
+      "rationale": "A3 identifiability boundary: lifetime tracking holds iff the mechanism is dynamic, with 0 < Ka load-bearing. The R1 decoder certificate rec-sv-decoder derives from the same theory theorem, so the migration should reuse the pilot certificate; this is intra-theory, not a 136 pair.",
+      "migrationAction": "Reuse pilot record rec-sv-decoder (intra-theory decoder).",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§14 sv_identifiability_boundary"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+      "name": "kasha_radBranch_eq_yieldOf",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-Kasha-QuantumYield"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Composition: the Kasha radiative branch is the two-channel quantum yield. It is a delivered composition result and needs a typed certificate; it is not a definitional identity despite the algebraic unfolding.",
+      "migrationAction": "Add a typed composition certificate for the Kasha-QuantumYield link.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 kasha_radBranch_eq_yieldOf"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-sv_quench_dilutes_yield",
+      "name": "sv_quench_dilutes_yield",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-SternVolmer-QuantumYield"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Composition: dynamic quenching is exactly quantum-yield dilution. The theorem consumes both the SternVolmer ratio and the QuantumYield functional, so it is a genuine composition and needs a typed certificate.",
+      "migrationAction": "Add a typed composition certificate for the SternVolmer-QuantumYield link.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 sv_quench_dilutes_yield"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-phiF_eq_yieldOf",
+      "name": "phiF_eq_yieldOf",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-QuantumYield-FluorPhos"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Composition: the FluorPhos fluorescence yield is the three-channel quantum yield. It is a typed composition candidate, not a definitional alias of a shared definition.",
+      "migrationAction": "Add a typed composition certificate for the FluorPhos-QuantumYield link.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 phiF_eq_yieldOf"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+      "name": "phiP_eq_yieldOf_cascade",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-QuantumYield-FluorPhos"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Composition: the FluorPhos phosphorescence yield is a cascade product of two quantum yields. It consumes the QuantumYield layer twice and is a genuine composition, not an edge label alone.",
+      "migrationAction": "Add a typed composition certificate for the phosphorescence cascade.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 phiP_eq_yieldOf_cascade"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-einstein_yield_via_qy",
+      "name": "einstein_yield_via_qy",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-QuantumYield-Einstein"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Composition: the two-channel fluorescence yield with radiative rate A is the Einstein-side anchor of the radiative channel. It is a typed composition candidate between Einstein and QuantumYield.",
+      "migrationAction": "Add a typed composition certificate for the Einstein-QuantumYield anchor.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 einstein_yield_via_qy"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "name": "fretEff6_eq_one_sub_yieldOf",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-QuantumYield-Forster"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Composition: the FRET efficiency is one minus the donor yield of the channel-added model. It is a genuine composition consuming Forster and QuantumYield, not a definitional identity.",
+      "migrationAction": "Add a typed composition certificate for the Forster-QuantumYield link.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 fretEff6_eq_one_sub_yieldOf"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-marcusIC_strictAnti_on_inverted_gaps",
+      "name": "marcusIC_strictAnti_on_inverted_gaps",
+      "section": 15,
+      "disposition": "support-lemma",
+      "relationRole": "composition-component",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "relatedPairIds": [
+        "P-Kasha-EnergyGapLaw"
+      ],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Monotonicity of the Kasha internal-conversion rate in the Marcus inverted gap. It supports the Kasha-Marcus composition and the EnergyGapLaw rationale, but it consumes no EnergyGapLaw declaration, so the legacy Kasha-EnergyGapLaw edge is one-sided and must not be flattened into a K-EGL certificate.",
+      "migrationAction": "Retain as support; do not create an EnergyGapLaw-Kasha certificate from this row.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 marcusIC_strictAnti_on_inverted_gaps"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+      "name": "egBarrier_zero_iff_emEnergy_zero",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "direct-equivalence",
+      "pairIds": [
+        "P-EnergyGapLaw-StokesShift"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Equivalence: the EnergyGapLaw barrier vanishes exactly when the Stokes emission window closes. It is a genuine cross-theory equivalence and needs a typed certificate with the lam != 0 premise.",
+      "migrationAction": "Add a typed equivalence certificate for the emission-window boundary.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 egBarrier_zero_iff_emEnergy_zero"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+      "name": "icvscic_icRate_eq_eg_nrRate",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "definitional-pin",
+      "pairIds": [
+        "P-EnergyGapLaw-ICvsISC"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Definitional pin: the ICvsISC internal-conversion rate is the EnergyGapLaw nonradiative rate. Both bodies coincide after unfolding the barriers, so it is a definitionalIdentity candidate, not a theorem-level equivalence.",
+      "migrationAction": "Add a definitionalIdentity certificate for the ICvsISC-EnergyGapLaw rate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 icvscic_icRate_eq_eg_nrRate"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-fpRatio_invariant_under_quench",
+      "name": "fpRatio_invariant_under_quench",
+      "section": 15,
+      "disposition": "certificate-required",
+      "relationRole": "model-level-composition",
+      "pairIds": [
+        "P-SternVolmer-FluorPhos"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Quench invariance of the fluorescence/phosphorescence ratio. The SternVolmer side is encoded as the added rate kq*q rather than through a SternVolmer declaration, so this is a model-level composition; a typed certificate needs an explicit translation/bridge before it can be a composition record.",
+      "migrationAction": "Add a typed certificate only after declaring the kq*q translation; do not claim a typed parent composition yet.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 fpRatio_invariant_under_quench"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-fretEff6_inv_eq_one_plus",
+      "name": "fretEff6_inv_eq_one_plus",
+      "section": 15,
+      "disposition": "metadata-only",
+      "relationRole": "shape-note",
+      "pairIds": [
+        "P-SternVolmer-Forster"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "FO/SV shape note: the inverse FRET efficiency is a 1 + control law with the sixth-power distance control. Section 16 registers this as a shape with machine content, not an edge; it is metadata only and must not become a SternVolmer-Forster edge certificate.",
+      "migrationAction": "Keep as metadata; do not create a SternVolmer-Forster edge.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 fretEff6_inv_eq_one_plus"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S15-eg_boundary_eq_tsCoord_zero",
+      "name": "eg_boundary_eq_tsCoord_zero",
+      "section": 15,
+      "disposition": "scoped-relation-documentation",
+      "relationRole": "shape-note",
+      "pairIds": [
+        "P-Hammond-EnergyGapLaw"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "EGL/Hammond boundary row: the kernel transition-state coordinate vanishes exactly at lam = x. The legacy census cites this as an EnergyGapLaw-Hammond edge, but the row is a kernel boundary identity, not a direct relation between EnergyGapLaw and Hammond predicates; keep it as scoped documentation.",
+      "migrationAction": "Keep as scoped boundary documentation; do not create a direct EnergyGapLaw-Hammond certificate.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 eg_boundary_eq_tsCoord_zero"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+      "name": "raci_qy_eq_yieldOf_two_channel",
+      "section": 17,
+      "disposition": "certificate-required",
+      "relationRole": "composition",
+      "pairIds": [
+        "P-QuantumYield-RACI"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "direct",
+      "rationale": "Composition certificate: the RACI quantum yield is the two-channel QuantumYield. It consumes the QuantumYield layer and is a genuine composition, not a definitional alias.",
+      "migrationAction": "Add a typed composition certificate for the RACI-QuantumYield link.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§17 raci_qy_eq_yieldOf_two_channel"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S17-qy_two_channel_strictAnti_of_nr_lt",
+      "name": "qy_two_channel_strictAnti_of_nr_lt",
+      "section": 17,
+      "disposition": "support-lemma",
+      "relationRole": "composition-component",
+      "pairIds": [
+        "P-QuantumYield-RACI"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "Supporting row: the RACI enhancement is the two-channel strict-antitone-in-knr reading of the QuantumYield layer. It is a composition component/support lemma, not a standalone pair certificate.",
+      "migrationAction": "Retain as a composition component.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§17 qy_two_channel_strictAnti_of_nr_lt"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S17-log_barrierRate_eq",
+      "name": "log_barrierRate_eq",
+      "section": 17,
+      "disposition": "scoped-relation-documentation",
+      "relationRole": "one-sided-note",
+      "pairIds": [
+        "P-EnergyGapLaw-RACI"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "RACI barrier-rate log is affine in B with slope -beta. This is a one-sided machine note on the RACI side: no EnergyGapLaw declaration is consumed, so the EnergyGapLaw-RACI legacy edge is documentation of a shape, not a typed composition.",
+      "migrationAction": "Keep as scoped one-sided documentation; do not create a typed EnergyGapLaw-RACI composition.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§17 log_barrierRate_eq"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S17-icvsisc_barrier_zero_at_crossing",
+      "name": "icvsisc_barrier_zero_at_crossing",
+      "section": 17,
+      "disposition": "scoped-relation-documentation",
+      "relationRole": "one-sided-note",
+      "pairIds": [
+        "P-ICvsISC-RACI"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "At a conical intersection the ICvsISC Franck-Condon barrier vanishes. The row pins only the ICvsISC side; the RACI side is not consumed, so the RACI-ICvsISC legacy edge is a one-sided machine note, not a composition certificate.",
+      "migrationAction": "Keep as scoped one-sided documentation; do not create a typed RACI-ICvsISC composition.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§17 icvsisc_barrier_zero_at_crossing"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    },
+    {
+      "declarationId": "D-S17-kernel_surfaces_cross_at_tsCoord",
+      "name": "kernel_surfaces_cross_at_tsCoord",
+      "section": 17,
+      "disposition": "metadata-only",
+      "relationRole": "shape-note",
+      "pairIds": [
+        "P-Marcus-RACI"
+      ],
+      "relatedPairIds": [],
+      "pilotRecordIds": [],
+      "pilotQueryIds": [],
+      "intraTheory": false,
+      "pairAssociation": "supporting",
+      "rationale": "RACI/Marcus look-alike machine note: the classical two-parabola model has a real surface crossing at the transition-state coordinate, while the RACI conical intersection is a two-condition degeneracy. The legacy section-17 register counts the pair as an absence/look-alike; keep this as metadata only.",
+      "migrationAction": "Keep as metadata; do not create a Marcus-RACI edge.",
+      "notes": "",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§17 kernel_surfaces_cross_at_tsCoord"
+          }
+        ]
+      },
+      "nonAuditMetadata": true
+    }
+  ]
+}

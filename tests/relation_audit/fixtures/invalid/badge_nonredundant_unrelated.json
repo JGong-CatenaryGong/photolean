@@ -1,0 +1,1087 @@
+{
+  "schemaVersion": "1.2.0",
+  "mode": "pilot",
+  "pairCount": 136,
+  "snapshots": [
+    {
+      "id": "snap-source-7ad25a5",
+      "treeSha": "7ad25a5f03a88acc3af03f65149cf2ac102e7dac",
+      "toolchain": "leanprover/lean4:v4.17.0",
+      "schemaSha256": "90b0f6f450927670792169a0334255f589a5ef73af34b5a1a1b62105fc0774c0",
+      "artifacts": {
+        "PhotoLean/BEP/Basic.lean": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+        "PhotoLean/Einstein/Basic.lean": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+        "PhotoLean/EnergyGapLaw/Basic.lean": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+        "PhotoLean/FluorPhos/Basic.lean": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+        "PhotoLean/Forster/Basic.lean": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+        "PhotoLean/Goldschmidt/Basic.lean": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+        "PhotoLean/Hammond/Basic.lean": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+        "PhotoLean/ICvsISC/Basic.lean": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+        "PhotoLean/Kasha/Basic.lean": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+        "PhotoLean/KashaVavilov/Basic.lean": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+        "PhotoLean/Marcus/Barrier.lean": "b5e02d358fcf4926843a0feeea25283b0c810a69538b2a7afc4733c0c97f804f",
+        "PhotoLean/QuantumYield/Basic.lean": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+        "PhotoLean/RACI/Accessibility.lean": "43fc674f4340ed8ed404f2a636a1b16d7ef6dd6de4858639744ca2fc53be6f74",
+        "PhotoLean/Sabatier/Basic.lean": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+        "PhotoLean/SternVolmer/Basic.lean": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+        "PhotoLean/StokesShift/Basic.lean": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+        "PhotoLean/SymmetryFactor/Basic.lean": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "id": "global",
+      "kind": "global",
+      "description": "Unrestricted comparison context over the shared semantic domain.",
+      "theories": [
+        "Marcus",
+        "Hammond",
+        "BEP",
+        "Kasha",
+        "Sabatier",
+        "Goldschmidt",
+        "SymmetryFactor",
+        "KashaVavilov",
+        "SternVolmer",
+        "QuantumYield",
+        "FluorPhos",
+        "EnergyGapLaw",
+        "StokesShift",
+        "ICvsISC",
+        "Forster",
+        "Einstein",
+        "RACI"
+      ],
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "docs/RELATION-AUDIT-CONTRACT.md",
+            "locator": "section 4"
+          }
+        ],
+        "rationale": "The contract's shared-context Delta is unrestricted in the pilot."
+      }
+    },
+    {
+      "id": "bep-kasha",
+      "kind": "restricted",
+      "description": "Restricted scope covering only the BEP and Kasha statements.",
+      "theories": [
+        "BEP",
+        "Kasha"
+      ],
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "docs/RELATION-AUDIT-CONTRACT.md",
+            "locator": "section 4"
+          }
+        ],
+        "rationale": "A restricted context used by the scope-mutation fixture."
+      }
+    },
+    {
+      "id": "outside-genealogy",
+      "kind": "outOfScope",
+      "description": "Comparisons excluded from the genealogy universe by scope agreement.",
+      "theories": [
+        "RACI",
+        "Einstein"
+      ],
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "docs/RELATION-AUDIT-CONTRACT.md",
+            "locator": "section 7"
+          }
+        ],
+        "rationale": "Scoped exclusion, registered before any relational claim."
+      }
+    }
+  ],
+  "theoryInventory": [
+    "Marcus",
+    "Hammond",
+    "BEP",
+    "Kasha",
+    "Sabatier",
+    "Goldschmidt",
+    "SymmetryFactor",
+    "KashaVavilov",
+    "SternVolmer",
+    "QuantumYield",
+    "FluorPhos",
+    "EnergyGapLaw",
+    "StokesShift",
+    "ICvsISC",
+    "Forster",
+    "Einstein",
+    "RACI"
+  ],
+  "statements": [
+    {
+      "id": "marcus.barrier",
+      "theory": "Marcus",
+      "artifact": "PhotoLean/Marcus/Barrier.lean",
+      "version": "1.0.0",
+      "sha256": "b5e02d358fcf4926843a0feeea25283b0c810a69538b2a7afc4733c0c97f804f",
+      "context": "Marcus statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Marcus",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Marcus/Barrier.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Marcus barrier and reorganization-energy statement surface"
+      }
+    },
+    {
+      "id": "hammond.gap",
+      "theory": "Hammond",
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+      "context": "Hammond statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Hammond",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Hammond/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Hammond forward/reverse gap statement surface"
+      }
+    },
+    {
+      "id": "bep.transfer",
+      "theory": "BEP",
+      "artifact": "PhotoLean/BEP/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+      "context": "BEP statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.BEP",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/BEP/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Bell-Evans-Polanyi transfer coefficient statement surface"
+      }
+    },
+    {
+      "id": "kasha.rate",
+      "theory": "Kasha",
+      "artifact": "PhotoLean/Kasha/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+      "context": "Kasha statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Kasha",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kasha/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Kasha internal-conversion rate statement surface"
+      }
+    },
+    {
+      "id": "sabatier.volcano",
+      "theory": "Sabatier",
+      "artifact": "PhotoLean/Sabatier/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+      "context": "Sabatier statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Sabatier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Sabatier/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Sabatier volcano activity statement surface"
+      }
+    },
+    {
+      "id": "goldschmidt.tolerance",
+      "theory": "Goldschmidt",
+      "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+      "context": "Goldschmidt statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Goldschmidt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Goldschmidt tolerance-factor statement surface"
+      }
+    },
+    {
+      "id": "symmetry.factor",
+      "theory": "SymmetryFactor",
+      "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+      "context": "SymmetryFactor statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "symmetry-factor statement surface"
+      }
+    },
+    {
+      "id": "kashavavilov.shift",
+      "theory": "KashaVavilov",
+      "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+      "context": "KashaVavilov statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Kasha-Vavilov shift statement surface"
+      }
+    },
+    {
+      "id": "sternvolmer.intensity",
+      "theory": "SternVolmer",
+      "artifact": "PhotoLean/SternVolmer/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+      "context": "SternVolmer statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SternVolmer/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Stern-Volmer intensity statement surface"
+      }
+    },
+    {
+      "id": "quantumyield.yield",
+      "theory": "QuantumYield",
+      "artifact": "PhotoLean/QuantumYield/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+      "context": "QuantumYield statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "quantum-yield statement surface"
+      }
+    },
+    {
+      "id": "fluorphos.yield",
+      "theory": "FluorPhos",
+      "artifact": "PhotoLean/FluorPhos/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+      "context": "FluorPhos statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/FluorPhos/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "fluorophore phosphorescence statement surface"
+      }
+    },
+    {
+      "id": "energygap.law",
+      "theory": "EnergyGapLaw",
+      "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+      "context": "EnergyGapLaw statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "energy-gap-law statement surface"
+      }
+    },
+    {
+      "id": "stokes.shift",
+      "theory": "StokesShift",
+      "artifact": "PhotoLean/StokesShift/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+      "context": "StokesShift statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/StokesShift/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Stokes-shift statement surface"
+      }
+    },
+    {
+      "id": "ic.isc",
+      "theory": "ICvsISC",
+      "artifact": "PhotoLean/ICvsISC/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+      "context": "ICvsISC statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/ICvsISC/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "internal-conversion vs intersystem-crossing statement surface"
+      }
+    },
+    {
+      "id": "forster.transfer",
+      "theory": "Forster",
+      "artifact": "PhotoLean/Forster/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+      "context": "Forster statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Forster/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Forster resonance transfer statement surface"
+      }
+    },
+    {
+      "id": "einstein.rate",
+      "theory": "Einstein",
+      "artifact": "PhotoLean/Einstein/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+      "context": "Einstein statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Einstein/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Einstein A/B coefficient statement surface"
+      }
+    },
+    {
+      "id": "raci.branching",
+      "theory": "RACI",
+      "artifact": "PhotoLean/RACI/Accessibility.lean",
+      "version": "1.0.0",
+      "sha256": "43fc674f4340ed8ed404f2a636a1b16d7ef6dd6de4858639744ca2fc53be6f74",
+      "context": "RACI statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RACI/Accessibility.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "RACI branching statement surface"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "q-def",
+      "source": "marcus.barrier",
+      "target": "hammond.gap",
+      "context": "definitional pin between Marcus barrier and Hammond gap",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-impl",
+      "source": "bep.transfer",
+      "target": "hammond.gap",
+      "context": "one-way entailment from BEP transfer to Hammond gap",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-equiv",
+      "source": "symmetry.factor",
+      "target": "bep.transfer",
+      "context": "A1 equivalence between the symmetry factor and the transfer coefficient",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-comp",
+      "source": "kasha.rate",
+      "target": "marcus.barrier",
+      "context": "Kasha-Marcus conditional composition through the hic bridge",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-obs",
+      "source": "sternvolmer.intensity",
+      "target": "stokes.shift",
+      "context": "intensity-channel observational equivalence",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-dist",
+      "source": "sternvolmer.intensity",
+      "target": "ic.isc",
+      "context": "joint-channel distinguishability",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-refu",
+      "source": "hammond.gap",
+      "target": "marcus.barrier",
+      "context": "explicit counterexample refuting an unconditional implication",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-unres",
+      "source": "fluorphos.yield",
+      "target": "energygap.law",
+      "context": "undelivered candidate relation",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-not",
+      "source": "goldschmidt.tolerance",
+      "target": "marcus.barrier",
+      "context": "scoped no-edge registration",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-out",
+      "source": "raci.branching",
+      "target": "einstein.rate",
+      "context": "scope agreement excluding the comparison",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert-def",
+      "kind": "definitionalIdentity",
+      "module": "RelationAuditFixture",
+      "lean": "RelationAuditFixture.certDefId",
+      "kindFunction": "RelationAuditFixture.certificateKind",
+      "constructor": "RelationAuditFixture.CertificateKind.definitionalIdentity",
+      "premises": [],
+      "semantics": {
+        "context": "shared semantic domain Delta over the declared translation.",
+        "translations": {
+          "left": "RelationAuditFixture.translateLeft",
+          "right": "RelationAuditFixture.translateRight"
+        },
+        "premisePredicate": "RelationAuditFixture.premisePredicate",
+        "translation": "Marcus barrier := Hammond forward gap (definitional alias).",
+        "rflWitness": "RelationAuditFixture.rflWitness",
+        "rflWitnessAxiomFootprint": [],
+        "rflCheck": {
+          "lhs": "RelationAuditFixture.certDefId",
+          "rhs": "RelationAuditFixture.aliasDef"
+        }
+      },
+      "axiomFootprint": []
+    },
+    {
+      "id": "cert-impl",
+      "kind": "implication",
+      "module": "RelationAuditFixture",
+      "lean": "RelationAuditFixture.certImpl",
+      "kindFunction": "RelationAuditFixture.certificateKind",
+      "constructor": "RelationAuditFixture.CertificateKind.implication",
+      "premises": [
+        {
+          "id": "p-adj",
+          "statement": "The step is adiabatic in the declared reaction window.",
+          "explicit": true,
+          "signatureName": "hAdj",
+          "signatureDeclaration": "RelationAuditFixture.lemmaImpl"
+        }
+      ],
+      "semantics": {
+        "context": "shared semantic domain Delta over the declared translation.",
+        "translations": {
+          "left": "RelationAuditFixture.translateLeft",
+          "right": "RelationAuditFixture.translateRight"
+        },
+        "premisePredicate": "RelationAuditFixture.premisePredicate",
+        "translation": "Identity translation on the shared context."
+      },
+      "axiomFootprint": []
+    },
+    {
+      "id": "cert-equiv",
+      "kind": "equivalence",
+      "module": "RelationAuditFixture",
+      "lean": "RelationAuditFixture.certEquiv",
+      "kindFunction": "RelationAuditFixture.certificateKind",
+      "constructor": "RelationAuditFixture.CertificateKind.equivalence",
+      "premises": [
+        {
+          "id": "p-pos",
+          "statement": "The reorganization energy is positive.",
+          "explicit": true,
+          "signatureName": "hPos",
+          "signatureDeclaration": "RelationAuditFixture.lemmaEquiv"
+        }
+      ],
+      "semantics": {
+        "context": "shared semantic domain Delta over the declared translation.",
+        "translations": {
+          "left": "RelationAuditFixture.translateLeft",
+          "right": "RelationAuditFixture.translateRight"
+        },
+        "premisePredicate": "RelationAuditFixture.premisePredicate",
+        "translation": "Identity translation on the shared context."
+      },
+      "axiomFootprint": []
+    },
+    {
+      "id": "cert-comp",
+      "kind": "conditionalComposition",
+      "module": "RelationAuditFixture",
+      "lean": "RelationAuditFixture.certComp",
+      "kindFunction": "RelationAuditFixture.certificateKind",
+      "constructor": "RelationAuditFixture.CertificateKind.conditionalComposition",
+      "premises": [
+        {
+          "id": "p-adj",
+          "statement": "The step is adiabatic in the declared reaction window.",
+          "explicit": true,
+          "signatureName": "hAdj",
+          "signatureDeclaration": "RelationAuditFixture.lemmaImpl"
+        },
+        {
+          "id": "p-pos",
+          "statement": "The reorganization energy is positive.",
+          "explicit": true,
+          "signatureName": "hPos",
+          "signatureDeclaration": "RelationAuditFixture.lemmaEquiv"
+        }
+      ],
+      "semantics": {
+        "context": "shared semantic domain Delta over the declared translation.",
+        "translations": {
+          "left": "RelationAuditFixture.translateLeft",
+          "right": "RelationAuditFixture.translateRight"
+        },
+        "premisePredicate": "RelationAuditFixture.premisePredicate",
+        "translation": "Kasha ladder data -> Marcus barrier under hic."
+      },
+      "axiomFootprint": []
+    },
+    {
+      "id": "cert-obs",
+      "kind": "observationalEquivalence",
+      "module": "RelationAuditFixture",
+      "lean": "RelationAuditFixture.certObs",
+      "kindFunction": "RelationAuditFixture.certificateKind",
+      "constructor": "RelationAuditFixture.CertificateKind.observationalEquivalence",
+      "premises": [],
+      "semantics": {
+        "context": "shared semantic domain Delta over the declared translation.",
+        "translations": {
+          "left": "RelationAuditFixture.translateLeft",
+          "right": "RelationAuditFixture.translateRight"
+        },
+        "premisePredicate": "RelationAuditFixture.premisePredicate",
+        "translation": "Identity translation for the Stern-Volmer intensity channel.",
+        "channels": [
+          "intensity",
+          "lifetime"
+        ]
+      },
+      "axiomFootprint": []
+    },
+    {
+      "id": "cert-dist",
+      "kind": "distinguishability",
+      "module": "RelationAuditFixture",
+      "lean": "RelationAuditFixture.certDist",
+      "kindFunction": "RelationAuditFixture.certificateKind",
+      "constructor": "RelationAuditFixture.CertificateKind.distinguishability",
+      "premises": [],
+      "semantics": {
+        "context": "shared semantic domain Delta over the declared translation.",
+        "translations": {
+          "left": "RelationAuditFixture.translateLeft",
+          "right": "RelationAuditFixture.translateRight"
+        },
+        "premisePredicate": "RelationAuditFixture.premisePredicate",
+        "translation": "Joint intensity-lifetime tracking translation.",
+        "form": "identifiabilityDecoder",
+        "witness": "RelationAuditFixture.distWitness",
+        "channels": [
+          "intensity",
+          "lifetime"
+        ]
+      },
+      "axiomFootprint": []
+    },
+    {
+      "id": "cert-refu",
+      "kind": "refutation",
+      "module": "RelationAuditFixture",
+      "lean": "RelationAuditFixture.certRefu",
+      "kindFunction": "RelationAuditFixture.certificateKind",
+      "constructor": "RelationAuditFixture.CertificateKind.refutation",
+      "premises": [],
+      "semantics": {
+        "context": "shared semantic domain Delta over the declared translation.",
+        "translations": {
+          "left": "RelationAuditFixture.translateLeft",
+          "right": "RelationAuditFixture.translateRight"
+        },
+        "premisePredicate": "RelationAuditFixture.premisePredicate",
+        "translation": "Identity translation on the refuted implication.",
+        "counterexample": "RelationAuditFixture.refuWitness",
+        "target": "Unconditional Hammond gap -> Marcus barrier implication."
+      },
+      "axiomFootprint": []
+    }
+  ],
+  "records": [
+    {
+      "id": "rec-def",
+      "queryId": "q-def",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "certified",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Certificate registered from the checked Lean module."
+      },
+      "relationKind": "definitionalIdentity",
+      "certificate": "cert-def",
+      "premises": [],
+      "badges": {}
+    },
+    {
+      "id": "rec-impl",
+      "queryId": "q-impl",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "certified",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Certificate registered from the checked Lean module."
+      },
+      "relationKind": "implication",
+      "certificate": "cert-impl",
+      "premises": [
+        {
+          "id": "p-adj",
+          "statement": "The step is adiabatic in the declared reaction window.",
+          "explicit": true,
+          "signatureName": "hAdj",
+          "signatureDeclaration": "RelationAuditFixture.lemmaImpl"
+        }
+      ],
+      "badges": {
+        "explicit": {
+          "earned": true,
+          "premiseIds": [
+            "p-adj"
+          ],
+          "note": "hAdj is a binder in lemmaImpl."
+        },
+        "nonredundant": {
+          "premiseIds": [
+            "p-adj"
+          ],
+          "byPremise": {
+            "p-adj": {
+              "lean": "RelationAuditFixture.rflWitness",
+              "expectedType": "True"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "rec-equiv",
+      "queryId": "q-equiv",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "certified",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Certificate registered from the checked Lean module."
+      },
+      "relationKind": "equivalence",
+      "certificate": "cert-equiv",
+      "premises": [
+        {
+          "id": "p-pos",
+          "statement": "The reorganization energy is positive.",
+          "explicit": true,
+          "signatureName": "hPos",
+          "signatureDeclaration": "RelationAuditFixture.lemmaEquiv"
+        }
+      ],
+      "badges": {
+        "explicit": {
+          "earned": true,
+          "premiseIds": [
+            "p-pos"
+          ],
+          "note": "hPos is a binder in lemmaEquiv."
+        }
+      }
+    },
+    {
+      "id": "rec-comp",
+      "queryId": "q-comp",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "certified",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Certificate registered from the checked Lean module."
+      },
+      "relationKind": "conditionalComposition",
+      "certificate": "cert-comp",
+      "premises": [
+        {
+          "id": "p-adj",
+          "statement": "The step is adiabatic in the declared reaction window."
+        },
+        {
+          "id": "p-pos",
+          "statement": "The reorganization energy is positive."
+        }
+      ],
+      "badges": {},
+      "composition": {
+        "parents": [
+          "cert-impl",
+          "cert-equiv"
+        ],
+        "mediators": [
+          "marcus.barrier"
+        ],
+        "translations": [
+          {
+            "from": "kasha.rate",
+            "to": "marcus.barrier",
+            "description": "Transport the Kasha ladder statement into the Marcus context."
+          }
+        ],
+        "bridges": [],
+        "discharges": []
+      }
+    },
+    {
+      "id": "rec-obs",
+      "queryId": "q-obs",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "certified",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Certificate registered from the checked Lean module."
+      },
+      "relationKind": "observationalEquivalence",
+      "certificate": "cert-obs",
+      "premises": [],
+      "badges": {}
+    },
+    {
+      "id": "rec-dist",
+      "queryId": "q-dist",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "certified",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Certificate registered from the checked Lean module."
+      },
+      "relationKind": "distinguishability",
+      "certificate": "cert-dist",
+      "premises": [],
+      "badges": {}
+    },
+    {
+      "id": "rec-refu",
+      "queryId": "q-refu",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "certified",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Certificate registered from the checked Lean module."
+      },
+      "relationKind": "refutation",
+      "certificate": "cert-refu",
+      "premises": [],
+      "badges": {}
+    },
+    {
+      "id": "rec-unres",
+      "queryId": "q-unres",
+      "statementVersion": "fluorphos.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Candidate coupling not yet delivered; registered without a certificate."
+      },
+      "rationale": "Candidate coupling not yet delivered; registered without a certificate.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-not",
+      "queryId": "q-not",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "notEstablished",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Scoped no-edge registration; no shared module or object."
+      },
+      "rationale": "Scoped no-edge registration; no shared module or object.",
+      "dependencies": [
+        {
+          "kind": "sourceScan",
+          "reference": "theories/RELATIONS.md",
+          "recompute": "grep -n 'Goldschmidt' theories/RELATIONS.md"
+        }
+      ]
+    },
+    {
+      "id": "rec-out",
+      "queryId": "q-out",
+      "statementVersion": "raci.branching@7ad25a5",
+      "scope": "outside-genealogy",
+      "status": "outOfScope",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Both sides lie outside the agreed genealogy scope."
+      },
+      "rationale": "Both sides lie outside the agreed genealogy scope."
+    }
+  ]
+}

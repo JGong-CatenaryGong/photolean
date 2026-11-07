@@ -1,0 +1,2011 @@
+{
+  "artifactKind": "relation-declaration-inventory",
+  "counts": {
+    "declarations": 78,
+    "documentationOnlySections": [
+      10,
+      16
+    ],
+    "legacyClassTotals": {
+      "RACI": 5,
+      "adjudication": 6,
+      "certificate": 15,
+      "composition": 30,
+      "equivalence/entailment/bridge": 22,
+      "other": 0
+    },
+    "legacyClassTotalsSum": 78,
+    "legacyClassVerdicts": {
+      "RACI": "MATCH",
+      "adjudication": "DIFF",
+      "certificate": "MATCH",
+      "composition": "DIFF",
+      "equivalence/entailment/bridge": "MATCH",
+      "other": "DIFF"
+    },
+    "legacyQuotedClassTotals": {
+      "RACI": 5,
+      "adjudication": 8,
+      "certificate": 15,
+      "composition": 26,
+      "equivalence/entailment/bridge": 22,
+      "other": 2
+    },
+    "rflCertificateRows": 15,
+    "sections": 17,
+    "sectionsWithDeclarations": 15
+  },
+  "declarations": [
+    {
+      "declarationId": "D-S01-kernel_barrier_eq_marcus",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_barrier_eq_marcus",
+      "qualifiedName": "PhotoLean.Relations.kernel_barrier_eq_marcus",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 101,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S01-kernel_barrier_eq_hammond",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_barrier_eq_hammond",
+      "qualifiedName": "PhotoLean.Relations.kernel_barrier_eq_hammond",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 105,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S01-kernel_barrier_eq_bep",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_barrier_eq_bep",
+      "qualifiedName": "PhotoLean.Relations.kernel_barrier_eq_bep",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 109,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_reverseBarrier_eq_hammond",
+      "qualifiedName": "PhotoLean.Relations.kernel_reverseBarrier_eq_hammond",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 114,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_tsCoord_eq_hammond",
+      "qualifiedName": "PhotoLean.Relations.kernel_tsCoord_eq_hammond",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 119,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S01-kernel_transfer_eq_bep",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_transfer_eq_bep",
+      "qualifiedName": "PhotoLean.Relations.kernel_transfer_eq_bep",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 124,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_reactantSurface_eq_hammond",
+      "qualifiedName": "PhotoLean.Relations.kernel_reactantSurface_eq_hammond",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 129,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "kernel_productSurface_eq_hammond",
+      "qualifiedName": "PhotoLean.Relations.kernel_productSurface_eq_hammond",
+      "section": 1,
+      "sectionTitle": "Kernel certificates (definitional — the regression certificates of the extraction)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 134,
+        "section": 1
+      }
+    },
+    {
+      "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "transfer_eq_tsCoord_bridge",
+      "qualifiedName": "PhotoLean.Relations.transfer_eq_tsCoord_bridge",
+      "section": 2,
+      "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 144,
+        "section": 2
+      }
+    },
+    {
+      "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "secSlope_eq_lefflerSecant",
+      "qualifiedName": "PhotoLean.Relations.secSlope_eq_lefflerSecant",
+      "section": 2,
+      "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 151,
+        "section": 2
+      }
+    },
+    {
+      "declarationId": "D-S02-epBounds_iff_no_inverted_direction",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "epBounds_iff_no_inverted_direction",
+      "qualifiedName": "PhotoLean.Relations.epBounds_iff_no_inverted_direction",
+      "section": 2,
+      "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 158,
+        "section": 2
+      }
+    },
+    {
+      "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "tsCoord_lt_zero_iff_inverted",
+      "qualifiedName": "PhotoLean.Relations.tsCoord_lt_zero_iff_inverted",
+      "section": 2,
+      "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 164,
+        "section": 2
+      }
+    },
+    {
+      "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "lefflerSecant_neg_iff_inverted",
+      "qualifiedName": "PhotoLean.Relations.lefflerSecant_neg_iff_inverted",
+      "section": 2,
+      "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 170,
+        "section": 2
+      }
+    },
+    {
+      "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammondZoneQ_beyondReactant_iff_inverted",
+      "qualifiedName": "PhotoLean.Relations.hammondZoneQ_beyondReactant_iff_inverted",
+      "section": 2,
+      "sectionTitle": "True equivalences (non-definitional; reused verbatim)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 176,
+        "section": 2
+      }
+    },
+    {
+      "declarationId": "D-S03-epBounds_of_reactionRegion",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "epBounds_of_reactionRegion",
+      "qualifiedName": "PhotoLean.Relations.epBounds_of_reactionRegion",
+      "section": 3,
+      "sectionTitle": "One-way entailments",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 187,
+        "section": 3
+      }
+    },
+    {
+      "declarationId": "D-S03-epBounds_of_marcus_normal",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "epBounds_of_marcus_normal",
+      "qualifiedName": "PhotoLean.Relations.epBounds_of_marcus_normal",
+      "section": 3,
+      "sectionTitle": "One-way entailments",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 194,
+        "section": 3
+      }
+    },
+    {
+      "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammondDescriptor_of_epConformsOnWindow",
+      "qualifiedName": "PhotoLean.Relations.hammondDescriptor_of_epConformsOnWindow",
+      "section": 3,
+      "sectionTitle": "One-way entailments",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 205,
+        "section": 3
+      }
+    },
+    {
+      "declarationId": "D-S04-hammond_descriptor_of_inner",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammond_descriptor_of_inner",
+      "qualifiedName": "PhotoLean.Relations.hammond_descriptor_of_inner",
+      "section": 4,
+      "sectionTitle": "Definitional reuse (Hammond's composition over the Marcus reorganization energy)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 213,
+        "section": 4
+      }
+    },
+    {
+      "declarationId": "D-S04-hammond_descriptor_of_microscopic",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammond_descriptor_of_microscopic",
+      "qualifiedName": "PhotoLean.Relations.hammond_descriptor_of_microscopic",
+      "section": 4,
+      "sectionTitle": "Definitional reuse (Hammond's composition over the Marcus reorganization energy)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 219,
+        "section": 4
+      }
+    },
+    {
+      "declarationId": "D-S04-hammond_descriptor_of_nonoverlap",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammond_descriptor_of_nonoverlap",
+      "qualifiedName": "PhotoLean.Relations.hammond_descriptor_of_nonoverlap",
+      "section": 4,
+      "sectionTitle": "Definitional reuse (Hammond's composition over the Marcus reorganization energy)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 227,
+        "section": 4
+      }
+    },
+    {
+      "declarationId": "D-S04-exists_reactionRegion_of_microscopic",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "exists_reactionRegion_of_microscopic",
+      "qualifiedName": "PhotoLean.Relations.exists_reactionRegion_of_microscopic",
+      "section": 4,
+      "sectionTitle": "Definitional reuse (Hammond's composition over the Marcus reorganization energy)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 234,
+        "section": 4
+      }
+    },
+    {
+      "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "bep_eact_eq_marcus_barrier",
+      "qualifiedName": "PhotoLean.Relations.bep_eact_eq_marcus_barrier",
+      "section": 5,
+      "sectionTitle": "Remaining ledger rows of the bridge inventory",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 245,
+        "section": 5
+      }
+    },
+    {
+      "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "bep_rate_eq_exp_neg_eact",
+      "qualifiedName": "PhotoLean.Relations.bep_rate_eq_exp_neg_eact",
+      "section": 5,
+      "sectionTitle": "Remaining ledger rows of the bridge inventory",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 251,
+        "section": 5
+      }
+    },
+    {
+      "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammond_barrier_eq_gapReactant",
+      "qualifiedName": "PhotoLean.Relations.hammond_barrier_eq_gapReactant",
+      "section": 5,
+      "sectionTitle": "Remaining ledger rows of the bridge inventory",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 257,
+        "section": 5
+      }
+    },
+    {
+      "declarationId": "D-S05-marcus_rat_zoneQ_inverted_iff",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "marcus_rat_zoneQ_inverted_iff",
+      "qualifiedName": "PhotoLean.Relations.marcus_rat_zoneQ_inverted_iff",
+      "section": 5,
+      "sectionTitle": "Remaining ledger rows of the bridge inventory",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 263,
+        "section": 5
+      }
+    },
+    {
+      "declarationId": "D-S06-hammond_trend_exact_bep_law_inexact",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammond_trend_exact_bep_law_inexact",
+      "qualifiedName": "PhotoLean.Relations.hammond_trend_exact_bep_law_inexact",
+      "section": 6,
+      "sectionTitle": "Non-relations and shape differences (new theorems of this module)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 281,
+        "section": 6
+      }
+    },
+    {
+      "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "hammond_sharp_iff_marcus_sharp",
+      "qualifiedName": "PhotoLean.Relations.hammond_sharp_iff_marcus_sharp",
+      "section": 6,
+      "sectionTitle": "Non-relations and shape differences (new theorems of this module)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 301,
+        "section": 6
+      }
+    },
+    {
+      "declarationId": "D-S06-rate_predicate_satisfiable_without_positive_curvature",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "equivalence/entailment/bridge"
+      },
+      "name": "rate_predicate_satisfiable_without_positive_curvature",
+      "qualifiedName": "PhotoLean.Relations.rate_predicate_satisfiable_without_positive_curvature",
+      "section": 6,
+      "sectionTitle": "Non-relations and shape differences (new theorems of this module)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 314,
+        "section": 6
+      }
+    },
+    {
+      "declarationId": "D-S07-kernel_marcusIC",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "kernel_marcusIC",
+      "qualifiedName": "PhotoLean.Relations.kernel_marcusIC",
+      "section": 7,
+      "sectionTitle": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 339,
+        "section": 7
+      }
+    },
+    {
+      "declarationId": "D-S07-kashaWithin_one_marcus",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "kashaWithin_one_marcus",
+      "qualifiedName": "PhotoLean.Relations.kashaWithin_one_marcus",
+      "section": 7,
+      "sectionTitle": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 347,
+        "section": 7
+      }
+    },
+    {
+      "declarationId": "D-S07-not_kashaWithin_of_gap_far",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "not_kashaWithin_of_gap_far",
+      "qualifiedName": "PhotoLean.Relations.not_kashaWithin_of_gap_far",
+      "section": 7,
+      "sectionTitle": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 359,
+        "section": 7
+      }
+    },
+    {
+      "declarationId": "D-S07-kashaWindow_halfWidth",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "kashaWindow_halfWidth",
+      "qualifiedName": "PhotoLean.Relations.kashaWindow_halfWidth",
+      "section": 7,
+      "sectionTitle": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 371,
+        "section": 7
+      }
+    },
+    {
+      "declarationId": "D-S07-marcusIC_pos",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "marcusIC_pos",
+      "qualifiedName": "PhotoLean.Relations.marcusIC_pos",
+      "section": 7,
+      "sectionTitle": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 384,
+        "section": 7
+      }
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "linearVolcano_eq_bepTangent",
+      "qualifiedName": "PhotoLean.Relations.linearVolcano_eq_bepTangent",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 402,
+        "section": 8
+      }
+    },
+    {
+      "declarationId": "D-S08-bepLine_le_eact",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "bepLine_le_eact",
+      "qualifiedName": "PhotoLean.Relations.bepLine_le_eact",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 409,
+        "section": 8
+      }
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_le_parabolic",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "linearVolcano_le_parabolic",
+      "qualifiedName": "PhotoLean.Relations.linearVolcano_le_parabolic",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 415,
+        "section": 8
+      }
+    },
+    {
+      "declarationId": "D-S08-parabolic_descriptor",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "parabolic_descriptor",
+      "qualifiedName": "PhotoLean.Relations.parabolic_descriptor",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 423,
+        "section": 8
+      }
+    },
+    {
+      "declarationId": "D-S08-apexPar_self",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "apexPar_self",
+      "qualifiedName": "PhotoLean.Relations.apexPar_self",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 430,
+        "section": 8
+      }
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_apex_exact",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "linearVolcano_apex_exact",
+      "qualifiedName": "PhotoLean.Relations.linearVolcano_apex_exact",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 435,
+        "section": 8
+      }
+    },
+    {
+      "declarationId": "D-S09-marcus_rate_eq_activity",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "marcus_rate_eq_activity",
+      "qualifiedName": "PhotoLean.Relations.marcus_rate_eq_activity",
+      "section": 9,
+      "sectionTitle": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 466,
+        "section": 9
+      }
+    },
+    {
+      "declarationId": "D-S09-marcusRate_antiVolcanoDescriptor",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "marcusRate_antiVolcanoDescriptor",
+      "qualifiedName": "PhotoLean.Relations.marcusRate_antiVolcanoDescriptor",
+      "section": 9,
+      "sectionTitle": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 476,
+        "section": 9
+      }
+    },
+    {
+      "declarationId": "D-S09-apexBarrier_reference_nonzero",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "apexBarrier_reference_nonzero",
+      "qualifiedName": "PhotoLean.Relations.apexBarrier_reference_nonzero",
+      "section": 9,
+      "sectionTitle": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 511,
+        "section": 9
+      }
+    },
+    {
+      "declarationId": "D-S09-optimal_barrier_height_contrast",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "optimal_barrier_height_contrast",
+      "qualifiedName": "PhotoLean.Relations.optimal_barrier_height_contrast",
+      "section": 9,
+      "sectionTitle": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 518,
+        "section": 9
+      }
+    },
+    {
+      "declarationId": "D-S09-marcus_secant_at_optimum",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "marcus_secant_at_optimum",
+      "qualifiedName": "PhotoLean.Relations.marcus_secant_at_optimum",
+      "section": 9,
+      "sectionTitle": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 527,
+        "section": 9
+      }
+    },
+    {
+      "declarationId": "D-S09-sabatier_apex_moves_with_offsets",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "sabatier_apex_moves_with_offsets",
+      "qualifiedName": "PhotoLean.Relations.sabatier_apex_moves_with_offsets",
+      "section": 9,
+      "sectionTitle": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 536,
+        "section": 9
+      }
+    },
+    {
+      "declarationId": "D-S09-marcus_optimum_fixed_by_curvature",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "marcus_optimum_fixed_by_curvature",
+      "qualifiedName": "PhotoLean.Relations.marcus_optimum_fixed_by_curvature",
+      "section": 9,
+      "sectionTitle": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 543,
+        "section": 9
+      }
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": null
+      },
+      "name": "symmetryFactor_tsCoordZero_eq_kernel",
+      "qualifiedName": "PhotoLean.Relations.symmetryFactor_tsCoordZero_eq_kernel",
+      "section": 11,
+      "sectionTitle": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 632,
+        "section": 11
+      }
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "kind": "theorem",
+      "legacy": {
+        "class": "equivalence/entailment/bridge",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": null
+      },
+      "name": "symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "qualifiedName": "PhotoLean.Relations.symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "section": 11,
+      "sectionTitle": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 638,
+        "section": 11
+      }
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_betaHalf_iff",
+      "kind": "theorem",
+      "legacy": {
+        "class": "adjudication",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": null
+      },
+      "name": "symmetryFactor_betaHalf_iff",
+      "qualifiedName": "PhotoLean.Relations.symmetryFactor_betaHalf_iff",
+      "section": 11,
+      "sectionTitle": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 643,
+        "section": 11
+      }
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_conflation_falsified_and_holds_in_kernel",
+      "kind": "theorem",
+      "legacy": {
+        "class": "adjudication",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": null
+      },
+      "name": "symmetryFactor_conflation_falsified_and_holds_in_kernel",
+      "qualifiedName": "PhotoLean.Relations.symmetryFactor_conflation_falsified_and_holds_in_kernel",
+      "section": 11,
+      "sectionTitle": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 650,
+        "section": 11
+      }
+    },
+    {
+      "declarationId": "D-S12-eg_barrier_eq_kernel",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "eg_barrier_eq_kernel",
+      "qualifiedName": "PhotoLean.Relations.eg_barrier_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 669,
+        "section": 12
+      }
+    },
+    {
+      "declarationId": "D-S12-eg_rate_eq_marcus",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "eg_rate_eq_marcus",
+      "qualifiedName": "PhotoLean.Relations.eg_rate_eq_marcus",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 673,
+        "section": 12
+      }
+    },
+    {
+      "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "eg_invertedGap_iff_marcus",
+      "qualifiedName": "PhotoLean.Relations.eg_invertedGap_iff_marcus",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 678,
+        "section": 12
+      }
+    },
+    {
+      "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "ss_s0Surface_eq_kernel",
+      "qualifiedName": "PhotoLean.Relations.ss_s0Surface_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 683,
+        "section": 12
+      }
+    },
+    {
+      "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "ss_s1Surface_eq_kernel",
+      "qualifiedName": "PhotoLean.Relations.ss_s1Surface_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 688,
+        "section": 12
+      }
+    },
+    {
+      "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "icvscic_barrier_eq_kernel",
+      "qualifiedName": "PhotoLean.Relations.icvscic_barrier_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 693,
+        "section": 12
+      }
+    },
+    {
+      "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+      "kind": "theorem",
+      "legacy": {
+        "class": "certificate",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": true,
+        "sectionClass": "certificate"
+      },
+      "name": "icvscic_icRate_eq_marcus",
+      "qualifiedName": "PhotoLean.Relations.icvscic_icRate_eq_marcus",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 698,
+        "section": 12
+      }
+    },
+    {
+      "declarationId": "D-S13-kv_d2_verdict",
+      "kind": "theorem",
+      "legacy": {
+        "class": "adjudication",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "adjudication"
+      },
+      "name": "kv_d2_verdict",
+      "qualifiedName": "PhotoLean.Relations.kv_d2_verdict",
+      "section": 13,
+      "sectionTitle": "The D2 adjudication (class A2: adjudicated independence) — Kasha vs Kasha–Vavilov",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 718,
+        "section": 13
+      }
+    },
+    {
+      "declarationId": "D-S13-kv_antiKasha_boundary",
+      "kind": "theorem",
+      "legacy": {
+        "class": "adjudication",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "adjudication"
+      },
+      "name": "kv_antiKasha_boundary",
+      "qualifiedName": "PhotoLean.Relations.kv_antiKasha_boundary",
+      "section": 13,
+      "sectionTitle": "The D2 adjudication (class A2: adjudicated independence) — Kasha vs Kasha–Vavilov",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 731,
+        "section": 13
+      }
+    },
+    {
+      "declarationId": "D-S14-sv_d1_verdict",
+      "kind": "theorem",
+      "legacy": {
+        "class": "adjudication",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "adjudication"
+      },
+      "name": "sv_d1_verdict",
+      "qualifiedName": "PhotoLean.Relations.sv_d1_verdict",
+      "section": 14,
+      "sectionTitle": "The D1 adjudication (class A3: identifiability) — static vs dynamic quenching",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 750,
+        "section": 14
+      }
+    },
+    {
+      "declarationId": "D-S14-sv_identifiability_boundary",
+      "kind": "theorem",
+      "legacy": {
+        "class": "adjudication",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "adjudication"
+      },
+      "name": "sv_identifiability_boundary",
+      "qualifiedName": "PhotoLean.Relations.sv_identifiability_boundary",
+      "section": 14,
+      "sectionTitle": "The D1 adjudication (class A3: identifiability) — static vs dynamic quenching",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 760,
+        "section": 14
+      }
+    },
+    {
+      "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "kasha_radBranch_eq_yieldOf",
+      "qualifiedName": "PhotoLean.Relations.kasha_radBranch_eq_yieldOf",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 776,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-sv_quench_dilutes_yield",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "sv_quench_dilutes_yield",
+      "qualifiedName": "PhotoLean.Relations.sv_quench_dilutes_yield",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 785,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-phiF_eq_yieldOf",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "phiF_eq_yieldOf",
+      "qualifiedName": "PhotoLean.Relations.phiF_eq_yieldOf",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 802,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "phiP_eq_yieldOf_cascade",
+      "qualifiedName": "PhotoLean.Relations.phiP_eq_yieldOf_cascade",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 808,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-einstein_yield_via_qy",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "einstein_yield_via_qy",
+      "qualifiedName": "PhotoLean.Relations.einstein_yield_via_qy",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 826,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "fretEff6_eq_one_sub_yieldOf",
+      "qualifiedName": "PhotoLean.Relations.fretEff6_eq_one_sub_yieldOf",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 836,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-marcusIC_strictAnti_on_inverted_gaps",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "marcusIC_strictAnti_on_inverted_gaps",
+      "qualifiedName": "PhotoLean.Relations.marcusIC_strictAnti_on_inverted_gaps",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 854,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "egBarrier_zero_iff_emEnergy_zero",
+      "qualifiedName": "PhotoLean.Relations.egBarrier_zero_iff_emEnergy_zero",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 871,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "icvscic_icRate_eq_eg_nrRate",
+      "qualifiedName": "PhotoLean.Relations.icvscic_icRate_eq_eg_nrRate",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 889,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-fpRatio_invariant_under_quench",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "fpRatio_invariant_under_quench",
+      "qualifiedName": "PhotoLean.Relations.fpRatio_invariant_under_quench",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 896,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-fretEff6_inv_eq_one_plus",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "fretEff6_inv_eq_one_plus",
+      "qualifiedName": "PhotoLean.Relations.fretEff6_inv_eq_one_plus",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 908,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S15-eg_boundary_eq_tsCoord_zero",
+      "kind": "theorem",
+      "legacy": {
+        "class": "composition",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "composition"
+      },
+      "name": "eg_boundary_eq_tsCoord_zero",
+      "qualifiedName": "PhotoLean.Relations.eg_boundary_eq_tsCoord_zero",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 920,
+        "section": 15
+      }
+    },
+    {
+      "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+      "kind": "theorem",
+      "legacy": {
+        "class": "RACI",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "RACI"
+      },
+      "name": "raci_qy_eq_yieldOf_two_channel",
+      "qualifiedName": "PhotoLean.Relations.raci_qy_eq_yieldOf_two_channel",
+      "section": 17,
+      "sectionTitle": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 1047,
+        "section": 17
+      }
+    },
+    {
+      "declarationId": "D-S17-qy_two_channel_strictAnti_of_nr_lt",
+      "kind": "theorem",
+      "legacy": {
+        "class": "RACI",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "RACI"
+      },
+      "name": "qy_two_channel_strictAnti_of_nr_lt",
+      "qualifiedName": "PhotoLean.Relations.qy_two_channel_strictAnti_of_nr_lt",
+      "section": 17,
+      "sectionTitle": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 1056,
+        "section": 17
+      }
+    },
+    {
+      "declarationId": "D-S17-log_barrierRate_eq",
+      "kind": "theorem",
+      "legacy": {
+        "class": "RACI",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "RACI"
+      },
+      "name": "log_barrierRate_eq",
+      "qualifiedName": "PhotoLean.Relations.log_barrierRate_eq",
+      "section": 17,
+      "sectionTitle": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 1065,
+        "section": 17
+      }
+    },
+    {
+      "declarationId": "D-S17-icvsisc_barrier_zero_at_crossing",
+      "kind": "theorem",
+      "legacy": {
+        "class": "RACI",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "RACI"
+      },
+      "name": "icvsisc_barrier_zero_at_crossing",
+      "qualifiedName": "PhotoLean.Relations.icvsisc_barrier_zero_at_crossing",
+      "section": 17,
+      "sectionTitle": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 1073,
+        "section": 17
+      }
+    },
+    {
+      "declarationId": "D-S17-kernel_surfaces_cross_at_tsCoord",
+      "kind": "theorem",
+      "legacy": {
+        "class": "RACI",
+        "nonAuditMetadata": true,
+        "note": "Legacy Fig. 3/section class from tools/counts.py. It is not an audit relation kind and not an audit status.",
+        "rflCertificateSection": false,
+        "sectionClass": "RACI"
+      },
+      "name": "kernel_surfaces_cross_at_tsCoord",
+      "qualifiedName": "PhotoLean.Relations.kernel_surfaces_cross_at_tsCoord",
+      "section": 17,
+      "sectionTitle": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)",
+      "sourceLocator": {
+        "artifact": "PhotoLean/Relations.lean",
+        "line": 1083,
+        "section": 17
+      }
+    }
+  ],
+  "nonClaims": [
+    "This is a source inventory, not an audit registry.",
+    "Legacy section/class labels are not audit relation kinds or audit statuses.",
+    "No declaration is certified, resolved, or migrated by appearing here."
+  ],
+  "schemaVersion": "1.0.0",
+  "scope": "migration-inventory-only",
+  "sections": [
+    {
+      "declarationCount": 8,
+      "declarationIds": [
+        "D-S01-kernel_barrier_eq_marcus",
+        "D-S01-kernel_barrier_eq_hammond",
+        "D-S01-kernel_barrier_eq_bep",
+        "D-S01-kernel_reverseBarrier_eq_hammond",
+        "D-S01-kernel_tsCoord_eq_hammond",
+        "D-S01-kernel_transfer_eq_bep",
+        "D-S01-kernel_reactantSurface_eq_hammond",
+        "D-S01-kernel_productSurface_eq_hammond"
+      ],
+      "documentationOnly": false,
+      "endLine": 136,
+      "id": "S01",
+      "legacyClass": "certificate",
+      "line": 98,
+      "number": 1,
+      "rowNames": [
+        "kernel_barrier_eq_marcus",
+        "kernel_barrier_eq_hammond",
+        "kernel_barrier_eq_bep",
+        "kernel_reverseBarrier_eq_hammond",
+        "kernel_tsCoord_eq_hammond",
+        "kernel_transfer_eq_bep",
+        "kernel_reactantSurface_eq_hammond",
+        "kernel_productSurface_eq_hammond"
+      ],
+      "title": "Kernel certificates (definitional — the regression certificates of the extraction)"
+    },
+    {
+      "declarationCount": 6,
+      "declarationIds": [
+        "D-S02-transfer_eq_tsCoord_bridge",
+        "D-S02-secSlope_eq_lefflerSecant",
+        "D-S02-epBounds_iff_no_inverted_direction",
+        "D-S02-tsCoord_lt_zero_iff_inverted",
+        "D-S02-lefflerSecant_neg_iff_inverted",
+        "D-S02-hammondZoneQ_beyondReactant_iff_inverted"
+      ],
+      "documentationOnly": false,
+      "endLine": 180,
+      "id": "S02",
+      "legacyClass": "equivalence/entailment/bridge",
+      "line": 137,
+      "number": 2,
+      "rowNames": [
+        "transfer_eq_tsCoord_bridge",
+        "secSlope_eq_lefflerSecant",
+        "epBounds_iff_no_inverted_direction",
+        "tsCoord_lt_zero_iff_inverted",
+        "lefflerSecant_neg_iff_inverted",
+        "hammondZoneQ_beyondReactant_iff_inverted"
+      ],
+      "title": "True equivalences (non-definitional; reused verbatim)"
+    },
+    {
+      "declarationCount": 3,
+      "declarationIds": [
+        "D-S03-epBounds_of_reactionRegion",
+        "D-S03-epBounds_of_marcus_normal",
+        "D-S03-hammondDescriptor_of_epConformsOnWindow"
+      ],
+      "documentationOnly": false,
+      "endLine": 208,
+      "id": "S03",
+      "legacyClass": "equivalence/entailment/bridge",
+      "line": 181,
+      "number": 3,
+      "rowNames": [
+        "epBounds_of_reactionRegion",
+        "epBounds_of_marcus_normal",
+        "hammondDescriptor_of_epConformsOnWindow"
+      ],
+      "title": "One-way entailments"
+    },
+    {
+      "declarationCount": 4,
+      "declarationIds": [
+        "D-S04-hammond_descriptor_of_inner",
+        "D-S04-hammond_descriptor_of_microscopic",
+        "D-S04-hammond_descriptor_of_nonoverlap",
+        "D-S04-exists_reactionRegion_of_microscopic"
+      ],
+      "documentationOnly": false,
+      "endLine": 240,
+      "id": "S04",
+      "legacyClass": "equivalence/entailment/bridge",
+      "line": 209,
+      "number": 4,
+      "rowNames": [
+        "hammond_descriptor_of_inner",
+        "hammond_descriptor_of_microscopic",
+        "hammond_descriptor_of_nonoverlap",
+        "exists_reactionRegion_of_microscopic"
+      ],
+      "title": "Definitional reuse (Hammond's composition over the Marcus reorganization energy)"
+    },
+    {
+      "declarationCount": 4,
+      "declarationIds": [
+        "D-S05-bep_eact_eq_marcus_barrier",
+        "D-S05-bep_rate_eq_exp_neg_eact",
+        "D-S05-hammond_barrier_eq_gapReactant",
+        "D-S05-marcus_rat_zoneQ_inverted_iff"
+      ],
+      "documentationOnly": false,
+      "endLine": 266,
+      "id": "S05",
+      "legacyClass": "equivalence/entailment/bridge",
+      "line": 241,
+      "number": 5,
+      "rowNames": [
+        "bep_eact_eq_marcus_barrier",
+        "bep_rate_eq_exp_neg_eact",
+        "hammond_barrier_eq_gapReactant",
+        "marcus_rat_zoneQ_inverted_iff"
+      ],
+      "title": "Remaining ledger rows of the bridge inventory"
+    },
+    {
+      "declarationCount": 3,
+      "declarationIds": [
+        "D-S06-hammond_trend_exact_bep_law_inexact",
+        "D-S06-hammond_sharp_iff_marcus_sharp",
+        "D-S06-rate_predicate_satisfiable_without_positive_curvature"
+      ],
+      "documentationOnly": false,
+      "endLine": 324,
+      "id": "S06",
+      "legacyClass": "equivalence/entailment/bridge",
+      "line": 267,
+      "number": 6,
+      "rowNames": [
+        "hammond_trend_exact_bep_law_inexact",
+        "hammond_sharp_iff_marcus_sharp",
+        "rate_predicate_satisfiable_without_positive_curvature"
+      ],
+      "title": "Non-relations and shape differences (new theorems of this module)"
+    },
+    {
+      "declarationCount": 5,
+      "declarationIds": [
+        "D-S07-kernel_marcusIC",
+        "D-S07-kashaWithin_one_marcus",
+        "D-S07-not_kashaWithin_of_gap_far",
+        "D-S07-kashaWindow_halfWidth",
+        "D-S07-marcusIC_pos"
+      ],
+      "documentationOnly": false,
+      "endLine": 386,
+      "id": "S07",
+      "legacyClass": "composition",
+      "line": 325,
+      "number": 7,
+      "rowNames": [
+        "kernel_marcusIC",
+        "kashaWithin_one_marcus",
+        "not_kashaWithin_of_gap_far",
+        "kashaWindow_halfWidth",
+        "marcusIC_pos"
+      ],
+      "title": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier"
+    },
+    {
+      "declarationCount": 6,
+      "declarationIds": [
+        "D-S08-linearVolcano_eq_bepTangent",
+        "D-S08-bepLine_le_eact",
+        "D-S08-linearVolcano_le_parabolic",
+        "D-S08-parabolic_descriptor",
+        "D-S08-apexPar_self",
+        "D-S08-linearVolcano_apex_exact"
+      ],
+      "documentationOnly": false,
+      "endLine": 439,
+      "id": "S08",
+      "legacyClass": "composition",
+      "line": 387,
+      "number": 8,
+      "rowNames": [
+        "linearVolcano_eq_bepTangent",
+        "bepLine_le_eact",
+        "linearVolcano_le_parabolic",
+        "parabolic_descriptor",
+        "apexPar_self",
+        "linearVolcano_apex_exact"
+      ],
+      "title": "Composition edge: the Sabatier volcano over the BEP two-parabola model"
+    },
+    {
+      "declarationCount": 7,
+      "declarationIds": [
+        "D-S09-marcus_rate_eq_activity",
+        "D-S09-marcusRate_antiVolcanoDescriptor",
+        "D-S09-apexBarrier_reference_nonzero",
+        "D-S09-optimal_barrier_height_contrast",
+        "D-S09-marcus_secant_at_optimum",
+        "D-S09-sabatier_apex_moves_with_offsets",
+        "D-S09-marcus_optimum_fixed_by_curvature"
+      ],
+      "documentationOnly": false,
+      "endLine": 548,
+      "id": "S09",
+      "legacyClass": "composition",
+      "line": 440,
+      "number": 9,
+      "rowNames": [
+        "marcus_rate_eq_activity",
+        "marcusRate_antiVolcanoDescriptor",
+        "apexBarrier_reference_nonzero",
+        "optimal_barrier_height_contrast",
+        "marcus_secant_at_optimum",
+        "sabatier_apex_moves_with_offsets",
+        "marcus_optimum_fixed_by_curvature"
+      ],
+      "title": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate"
+    },
+    {
+      "declarationCount": 0,
+      "declarationIds": [],
+      "documentationOnly": true,
+      "endLine": 613,
+      "id": "S10",
+      "legacyClass": null,
+      "line": 549,
+      "number": 10,
+      "rowNames": [],
+      "title": "The no-edge registry (documentation, not theorems)"
+    },
+    {
+      "declarationCount": 4,
+      "declarationIds": [
+        "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+        "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+        "D-S11-symmetryFactor_betaHalf_iff",
+        "D-S11-symmetryFactor_conflation_falsified_and_holds_in_kernel"
+      ],
+      "documentationOnly": false,
+      "endLine": 656,
+      "id": "S11",
+      "legacyClass": null,
+      "line": 614,
+      "number": 11,
+      "rowNames": [
+        "symmetryFactor_tsCoordZero_eq_kernel",
+        "symmetryFactor_tsCoordZero_eq_bepTransfer",
+        "symmetryFactor_betaHalf_iff",
+        "symmetryFactor_conflation_falsified_and_holds_in_kernel"
+      ],
+      "title": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient"
+    },
+    {
+      "declarationCount": 7,
+      "declarationIds": [
+        "D-S12-eg_barrier_eq_kernel",
+        "D-S12-eg_rate_eq_marcus",
+        "D-S12-eg_invertedGap_iff_marcus",
+        "D-S12-ss_s0Surface_eq_kernel",
+        "D-S12-ss_s1Surface_eq_kernel",
+        "D-S12-icvscic_barrier_eq_kernel",
+        "D-S12-icvscic_icRate_eq_marcus"
+      ],
+      "documentationOnly": false,
+      "endLine": 701,
+      "id": "S12",
+      "legacyClass": "certificate",
+      "line": 657,
+      "number": 12,
+      "rowNames": [
+        "eg_barrier_eq_kernel",
+        "eg_rate_eq_marcus",
+        "eg_invertedGap_iff_marcus",
+        "ss_s0Surface_eq_kernel",
+        "ss_s1Surface_eq_kernel",
+        "icvscic_barrier_eq_kernel",
+        "icvscic_icRate_eq_marcus"
+      ],
+      "title": "Kernel certificates of the photophysics batch (definitional pins)"
+    },
+    {
+      "declarationCount": 2,
+      "declarationIds": [
+        "D-S13-kv_d2_verdict",
+        "D-S13-kv_antiKasha_boundary"
+      ],
+      "documentationOnly": false,
+      "endLine": 734,
+      "id": "S13",
+      "legacyClass": "adjudication",
+      "line": 702,
+      "number": 13,
+      "rowNames": [
+        "kv_d2_verdict",
+        "kv_antiKasha_boundary"
+      ],
+      "title": "The D2 adjudication (class A2: adjudicated independence) — Kasha vs Kasha–Vavilov"
+    },
+    {
+      "declarationCount": 2,
+      "declarationIds": [
+        "D-S14-sv_d1_verdict",
+        "D-S14-sv_identifiability_boundary"
+      ],
+      "documentationOnly": false,
+      "endLine": 763,
+      "id": "S14",
+      "legacyClass": "adjudication",
+      "line": 735,
+      "number": 14,
+      "rowNames": [
+        "sv_d1_verdict",
+        "sv_identifiability_boundary"
+      ],
+      "title": "The D1 adjudication (class A3: identifiability) — static vs dynamic quenching"
+    },
+    {
+      "declarationCount": 12,
+      "declarationIds": [
+        "D-S15-kasha_radBranch_eq_yieldOf",
+        "D-S15-sv_quench_dilutes_yield",
+        "D-S15-phiF_eq_yieldOf",
+        "D-S15-phiP_eq_yieldOf_cascade",
+        "D-S15-einstein_yield_via_qy",
+        "D-S15-fretEff6_eq_one_sub_yieldOf",
+        "D-S15-marcusIC_strictAnti_on_inverted_gaps",
+        "D-S15-egBarrier_zero_iff_emEnergy_zero",
+        "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "D-S15-fpRatio_invariant_under_quench",
+        "D-S15-fretEff6_inv_eq_one_plus",
+        "D-S15-eg_boundary_eq_tsCoord_zero"
+      ],
+      "documentationOnly": false,
+      "endLine": 932,
+      "id": "S15",
+      "legacyClass": "composition",
+      "line": 764,
+      "number": 15,
+      "rowNames": [
+        "kasha_radBranch_eq_yieldOf",
+        "sv_quench_dilutes_yield",
+        "phiF_eq_yieldOf",
+        "phiP_eq_yieldOf_cascade",
+        "einstein_yield_via_qy",
+        "fretEff6_eq_one_sub_yieldOf",
+        "marcusIC_strictAnti_on_inverted_gaps",
+        "egBarrier_zero_iff_emEnergy_zero",
+        "icvscic_icRate_eq_eg_nrRate",
+        "fpRatio_invariant_under_quench",
+        "fretEff6_inv_eq_one_plus",
+        "eg_boundary_eq_tsCoord_zero"
+      ],
+      "title": "Composition edges of the batch (proved here)"
+    },
+    {
+      "declarationCount": 0,
+      "declarationIds": [],
+      "documentationOnly": true,
+      "endLine": 1030,
+      "id": "S16",
+      "legacyClass": null,
+      "line": 933,
+      "number": 16,
+      "rowNames": [],
+      "title": "The extended no-edge registry (documentation, not theorems)"
+    },
+    {
+      "declarationCount": 5,
+      "declarationIds": [
+        "D-S17-raci_qy_eq_yieldOf_two_channel",
+        "D-S17-qy_two_channel_strictAnti_of_nr_lt",
+        "D-S17-log_barrierRate_eq",
+        "D-S17-icvsisc_barrier_zero_at_crossing",
+        "D-S17-kernel_surfaces_cross_at_tsCoord"
+      ],
+      "documentationOnly": false,
+      "endLine": 1121,
+      "id": "S17",
+      "legacyClass": "RACI",
+      "line": 1031,
+      "number": 17,
+      "rowNames": [
+        "raci_qy_eq_yieldOf_two_channel",
+        "qy_two_channel_strictAnti_of_nr_lt",
+        "log_barrierRate_eq",
+        "icvsisc_barrier_zero_at_crossing",
+        "kernel_surfaces_cross_at_tsCoord"
+      ],
+      "title": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)"
+    }
+  ],
+  "source": {
+    "enumeration": [
+      "tools/counts.py:all_lean_files",
+      "tools/counts.py:scan_file",
+      "tools/counts.py:relations_census"
+    ],
+    "nonAuditMetadata": true,
+    "relations": "PhotoLean/Relations.lean",
+    "relationsSha256": "a50f4bc4c24c95209f3667a65449d1be79799f9e1948a03ea810f6cd8773844b",
+    "scanner": "tools/counts.py",
+    "scannerSha256": "4c9423d3e0742dc5d9234b217e106f66ce7b362177150e69400964127d979cdb"
+  }
+}

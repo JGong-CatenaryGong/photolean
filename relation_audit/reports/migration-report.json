@@ -1,0 +1,2690 @@
+{
+  "artifactKind": "relation-migration-report",
+  "certificates": [
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+      "declarationId": "D-S01-kernel_barrier_eq_hammond",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.kernel_barrier_eq_hammond",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 1
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+      "declarationId": "D-S01-kernel_barrier_eq_bep",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.kernel_barrier_eq_bep",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 1
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+      "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.kernel_reverseBarrier_eq_hammond",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 1
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+      "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.kernel_tsCoord_eq_hammond",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 1
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+      "declarationId": "D-S01-kernel_transfer_eq_bep",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.kernel_transfer_eq_bep",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 1
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+      "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.kernel_reactantSurface_eq_hammond",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 1
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+      "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.kernel_productSurface_eq_hammond",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 1
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+      "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.transfer_eq_tsCoord_bridge",
+      "premiseIDs": [
+        "bep.lamNeZero"
+      ],
+      "relationKind": "observationalEquivalence",
+      "section": 2
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+      "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.secSlope_eq_lefflerSecant",
+      "premiseIDs": [],
+      "relationKind": "observationalEquivalence",
+      "section": 2
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+      "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.tsCoord_lt_zero_iff_inverted",
+      "premiseIDs": [
+        "marcus.curvaturePositive"
+      ],
+      "relationKind": "equivalence",
+      "section": 2
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+      "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.lefflerSecant_neg_iff_inverted",
+      "premiseIDs": [
+        "marcus.curvaturePositive",
+        "hammond.distinctDrivingForces"
+      ],
+      "relationKind": "equivalence",
+      "section": 2
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+      "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.hammondZoneQ_beyondReactant_iff_inverted",
+      "premiseIDs": [
+        "marcus.curvaturePositive"
+      ],
+      "relationKind": "equivalence",
+      "section": 2
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+      "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.hammondDescriptor_of_epConformsOnWindow",
+      "premiseIDs": [],
+      "relationKind": "implication",
+      "section": 3
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+      "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.bep_eact_eq_marcus_barrier",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 5
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+      "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.bep_rate_eq_exp_neg_eact",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 5
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+      "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "originalDeclaration": "PhotoLean.Relations.hammond_barrier_eq_gapReactant",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 5
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+      "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "originalDeclaration": "PhotoLean.Relations.hammond_sharp_iff_marcus_sharp",
+      "premiseIDs": [
+        "hammondMarcusSharp.preExponentialPositive",
+        "hammondMarcusSharp.boltzmannPositive",
+        "hammondMarcusSharp.temperaturePositive"
+      ],
+      "relationKind": "equivalence",
+      "section": 6
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+      "declarationId": "D-S07-kernel_marcusIC",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "originalDeclaration": "PhotoLean.Relations.kernel_marcusIC",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 7
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+      "declarationId": "D-S12-eg_barrier_eq_kernel",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.eg_barrier_eq_kernel",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 12
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+      "declarationId": "D-S12-eg_rate_eq_marcus",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.eg_rate_eq_marcus",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 12
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+      "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.eg_invertedGap_iff_marcus",
+      "premiseIDs": [],
+      "relationKind": "equivalence",
+      "section": 12
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+      "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.ss_s0Surface_eq_kernel",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 12
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+      "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.ss_s1Surface_eq_kernel",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 12
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+      "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.icvscic_barrier_eq_kernel",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 12
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+      "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.icvscic_icRate_eq_marcus",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 12
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+      "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.egBarrier_zero_iff_emEnergy_zero",
+      "premiseIDs": [
+        "energyGapLaw.lamNonzero"
+      ],
+      "relationKind": "equivalence",
+      "section": 15
+    },
+    {
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+      "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_premiseIDs",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.icvscic_icRate_eq_eg_nrRate",
+      "premiseIDs": [],
+      "relationKind": "definitionalIdentity",
+      "section": 15
+    }
+  ],
+  "counts": {
+    "certified": 27,
+    "conditionalCompositionCertificates": 0,
+    "declarations": 41,
+    "definitionalIdentityCertificates": 18,
+    "fragments": 3,
+    "kindCounts": {
+      "definitionalIdentity": 18,
+      "equivalence": 6,
+      "implication": 1,
+      "observationalEquivalence": 2
+    },
+    "reclassified": 14,
+    "reclassifiedShare": 0.3415,
+    "targetCategoryCounts": {
+      "model-level-composition": 4,
+      "scoped-relation-documentation": 2,
+      "support-lemma": 8
+    }
+  },
+  "fragments": [
+    {
+      "certified": 16,
+      "declarations": 16,
+      "declaredLeanSourceSha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d",
+      "hashMatches": true,
+      "kindCounts": {
+        "definitionalIdentity": 10,
+        "equivalence": 3,
+        "implication": 1,
+        "observationalEquivalence": 2
+      },
+      "leanSource": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+      "leanSourceSha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d",
+      "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+      "name": "sections01_05",
+      "path": "relation_audit/migration/sections01_05.json",
+      "reclassified": 0,
+      "sectionRange": {
+        "first": 1,
+        "last": 5
+      },
+      "targetCategoryCounts": {}
+    },
+    {
+      "certified": 2,
+      "declarations": 6,
+      "declaredLeanSourceSha256": null,
+      "hashMatches": null,
+      "kindCounts": {
+        "definitionalIdentity": 1,
+        "equivalence": 1
+      },
+      "leanSource": "PhotoLean/RelationAudit/Full/Sections06_10.lean",
+      "leanSourceSha256": "c1885380b4dd0777b4dc3d34d94e4ed856367a5c2749692ddb4424faebf3a72b",
+      "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "name": "sections06_10",
+      "path": "relation_audit/migration/sections06_10.json",
+      "reclassified": 4,
+      "sectionRange": {
+        "first": 6,
+        "last": 10
+      },
+      "targetCategoryCounts": {
+        "model-level-composition": 4
+      }
+    },
+    {
+      "certified": 9,
+      "declarations": 19,
+      "declaredLeanSourceSha256": "862cb935a839afe218a3aa2724dee51606598d7773d8869062ae8b6f10ce05a9",
+      "hashMatches": true,
+      "kindCounts": {
+        "definitionalIdentity": 7,
+        "equivalence": 2
+      },
+      "leanSource": "PhotoLean/RelationAudit/Full/Sections11_17.lean",
+      "leanSourceSha256": "862cb935a839afe218a3aa2724dee51606598d7773d8869062ae8b6f10ce05a9",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "name": "sections11_17",
+      "path": "relation_audit/migration/sections11_17.json",
+      "reclassified": 10,
+      "sectionRange": {
+        "first": 11,
+        "last": 17
+      },
+      "targetCategoryCounts": {
+        "scoped-relation-documentation": 2,
+        "support-lemma": 8
+      }
+    }
+  ],
+  "gates": {
+    "axiomFootprints": "DECLARED_IN_FRAGMENTS_AND_CHECKED_BY_LEAN_COMMAND",
+    "certificateShape": "PASS",
+    "generatedLeanSource": "GENERATED",
+    "leanElaboration": "SEPARATE_VERIFICATION_COMMAND",
+    "leanVerificationCommand": "python3 tools/relation_audit_migration.py --check --lean",
+    "queueCoverage": "PASS",
+    "reclassificationShape": "PASS"
+  },
+  "generatedChecks": {
+    "commandCount": 222,
+    "compositionProjections": "emitted per composition row when relationKind == conditionalComposition",
+    "import": "PhotoLean.RelationAudit.Full",
+    "path": "relation_audit/reports/migration-lean-checks.lean",
+    "sha256": "9de0d85d48cc5b13ae9ce10a2cf5fa15d6e43cc81c25c6e9ead3b608207236b1",
+    "specs": [
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 15,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 16,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 17,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 18,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 19,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_defeq",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 20,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_defeq",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 21,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_source",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 22,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_hammond.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_source",
+        "declarationId": "D-S01-kernel_barrier_eq_hammond",
+        "line": 23,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 24,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 25,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 26,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 27,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 28,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_defeq",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 29,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_defeq",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 30,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_source",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 31,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S01-kernel_barrier_eq_bep.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_source",
+        "declarationId": "D-S01-kernel_barrier_eq_bep",
+        "line": 32,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 33,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 34,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 35,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 36,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 37,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_defeq",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 38,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_defeq",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 39,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_source",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 40,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S01-kernel_reverseBarrier_eq_hammond.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_source",
+        "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+        "line": 41,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 42,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 43,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 44,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 45,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 46,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_defeq",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 47,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_defeq",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 48,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_source",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 49,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S01-kernel_tsCoord_eq_hammond.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_source",
+        "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+        "line": 50,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 51,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 52,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 53,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 54,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 55,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_defeq",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 56,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_defeq",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 57,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_source",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 58,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S01-kernel_transfer_eq_bep.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_source",
+        "declarationId": "D-S01-kernel_transfer_eq_bep",
+        "line": 59,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 60,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 61,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 62,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 63,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 64,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_defeq",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 65,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_defeq",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 66,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_source",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 67,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S01-kernel_reactantSurface_eq_hammond.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_source",
+        "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+        "line": 68,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 69,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 70,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 71,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 72,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 73,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_defeq",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 74,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_defeq",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 75,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_source",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 76,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S01-kernel_productSurface_eq_hammond.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_source",
+        "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+        "line": 77,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S02-transfer_eq_tsCoord_bridge.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+        "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+        "line": 78,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S02-transfer_eq_tsCoord_bridge.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+        "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+        "line": 79,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S02-transfer_eq_tsCoord_bridge.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+        "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+        "line": 80,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S02-transfer_eq_tsCoord_bridge.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+        "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+        "line": 81,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S02-transfer_eq_tsCoord_bridge.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+        "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+        "line": 82,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S02-secSlope_eq_lefflerSecant.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+        "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+        "line": 83,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S02-secSlope_eq_lefflerSecant.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+        "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+        "line": 84,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S02-secSlope_eq_lefflerSecant.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+        "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+        "line": 85,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S02-secSlope_eq_lefflerSecant.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+        "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+        "line": 86,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S02-secSlope_eq_lefflerSecant.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+        "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+        "line": 87,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S02-tsCoord_lt_zero_iff_inverted.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+        "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+        "line": 88,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S02-tsCoord_lt_zero_iff_inverted.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+        "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+        "line": 89,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S02-tsCoord_lt_zero_iff_inverted.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+        "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+        "line": 90,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S02-tsCoord_lt_zero_iff_inverted.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+        "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+        "line": 91,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S02-tsCoord_lt_zero_iff_inverted.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+        "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+        "line": 92,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S02-lefflerSecant_neg_iff_inverted.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+        "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+        "line": 93,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S02-lefflerSecant_neg_iff_inverted.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+        "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+        "line": 94,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S02-lefflerSecant_neg_iff_inverted.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+        "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+        "line": 95,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S02-lefflerSecant_neg_iff_inverted.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+        "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+        "line": 96,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S02-lefflerSecant_neg_iff_inverted.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+        "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+        "line": 97,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+        "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+        "line": 98,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+        "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+        "line": 99,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+        "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+        "line": 100,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+        "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+        "line": 101,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+        "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+        "line": 102,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S03-hammondDescriptor_of_epConformsOnWindow.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+        "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+        "line": 103,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S03-hammondDescriptor_of_epConformsOnWindow.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+        "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+        "line": 104,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S03-hammondDescriptor_of_epConformsOnWindow.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+        "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+        "line": 105,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S03-hammondDescriptor_of_epConformsOnWindow.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+        "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+        "line": 106,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S03-hammondDescriptor_of_epConformsOnWindow.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+        "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+        "line": 107,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 108,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 109,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 110,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 111,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 112,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_defeq",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 113,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_defeq",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 114,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_source",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 115,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S05-bep_eact_eq_marcus_barrier.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_source",
+        "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+        "line": 116,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 117,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 118,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 119,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 120,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 121,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_defeq",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 122,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_defeq",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 123,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_source",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 124,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S05-bep_rate_eq_exp_neg_eact.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_source",
+        "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+        "line": 125,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 126,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 127,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 128,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 129,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 130,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_defeq",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 131,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_defeq",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 132,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_source",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 133,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S05-hammond_barrier_eq_gapReactant.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_source",
+        "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+        "line": 134,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S06-hammond_sharp_iff_marcus_sharp.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+        "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+        "line": 135,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S06-hammond_sharp_iff_marcus_sharp.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+        "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+        "line": 136,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S06-hammond_sharp_iff_marcus_sharp.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+        "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+        "line": 137,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S06-hammond_sharp_iff_marcus_sharp.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+        "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+        "line": 138,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S06-hammond_sharp_iff_marcus_sharp.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+        "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+        "line": 139,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 140,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 141,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 142,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 143,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 144,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_defeq",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 145,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_defeq",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 146,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_rfl",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 147,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S07-kernel_marcusIC.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_rfl",
+        "declarationId": "D-S07-kernel_marcusIC",
+        "line": 148,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 149,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 150,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 151,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 152,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 153,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_defeq",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 154,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_defeq",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 155,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernel_rfl",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 156,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernel_rfl",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 157,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_original",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 158,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S12-eg_barrier_eq_kernel.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_original",
+        "declarationId": "D-S12-eg_barrier_eq_kernel",
+        "line": 159,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 160,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 161,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 162,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 163,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 164,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_defeq",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 165,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_defeq",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 166,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcus_rfl",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 167,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcus_rfl",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 168,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_original",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 169,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S12-eg_rate_eq_marcus.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_original",
+        "declarationId": "D-S12-eg_rate_eq_marcus",
+        "line": 170,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S12-eg_invertedGap_iff_marcus.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+        "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+        "line": 171,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S12-eg_invertedGap_iff_marcus.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+        "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+        "line": 172,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S12-eg_invertedGap_iff_marcus.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+        "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+        "line": 173,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S12-eg_invertedGap_iff_marcus.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+        "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+        "line": 174,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S12-eg_invertedGap_iff_marcus.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+        "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+        "line": 175,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 176,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 177,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 178,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 179,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 180,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_defeq",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 181,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_defeq",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 182,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernel_rfl",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 183,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernel_rfl",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 184,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_original",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 185,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S12-ss_s0Surface_eq_kernel.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_original",
+        "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+        "line": 186,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 187,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 188,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 189,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 190,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 191,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_defeq",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 192,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_defeq",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 193,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernel_rfl",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 194,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernel_rfl",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 195,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_original",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 196,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S12-ss_s1Surface_eq_kernel.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_original",
+        "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+        "line": 197,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 198,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 199,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 200,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 201,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 202,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_defeq",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 203,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_defeq",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 204,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernel_rfl",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 205,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernel_rfl",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 206,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_original",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 207,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S12-icvscic_barrier_eq_kernel.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_original",
+        "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+        "line": 208,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 209,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 210,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 211,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 212,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 213,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_defeq",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 214,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_defeq",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 215,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcus_rfl",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 216,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcus_rfl",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 217,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_original",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 218,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S12-icvscic_icRate_eq_marcus.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_original",
+        "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+        "line": 219,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S15-egBarrier_zero_iff_emEnergy_zero.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+        "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+        "line": 220,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-egBarrier_zero_iff_emEnergy_zero.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+        "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+        "line": 221,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S15-egBarrier_zero_iff_emEnergy_zero.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+        "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+        "line": 222,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S15-egBarrier_zero_iff_emEnergy_zero.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+        "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+        "line": 223,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S15-egBarrier_zero_iff_emEnergy_zero.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+        "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+        "line": 224,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 225,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.exists",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 226,
+        "role": "exists"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.kind",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 227,
+        "role": "kind"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.premises",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 228,
+        "role": "premises"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 229,
+        "role": "axioms"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.defeq",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_defeq",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 230,
+        "role": "defeq"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.defeq_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_defeq",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 231,
+        "role": "defeq_axioms"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.pointwise",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLaw_rfl",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 232,
+        "role": "pointwise"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.pointwise_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLaw_rfl",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 233,
+        "role": "pointwise_axioms"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.source",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_original",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 234,
+        "role": "source"
+      },
+      {
+        "checkId": "D-S15-icvscic_icRate_eq_eg_nrRate.source_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_original",
+        "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+        "line": 235,
+        "role": "source_axioms"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_eq_bepTangent.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_eq_bepTangent",
+        "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+        "line": 244,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_eq_bepTangent.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_eq_bepTangent",
+        "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+        "line": 245,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_eq_bepTangent.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_eq_bepTangent",
+        "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+        "line": 246,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_le_parabolic.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_le_parabolic",
+        "declarationId": "D-S08-linearVolcano_le_parabolic",
+        "line": 247,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_le_parabolic.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_le_parabolic",
+        "declarationId": "D-S08-linearVolcano_le_parabolic",
+        "line": 248,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_le_parabolic.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_le_parabolic",
+        "declarationId": "D-S08-linearVolcano_le_parabolic",
+        "line": 249,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S08-parabolic_descriptor.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_parabolic_descriptor",
+        "declarationId": "D-S08-parabolic_descriptor",
+        "line": 250,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S08-parabolic_descriptor.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_parabolic_descriptor",
+        "declarationId": "D-S08-parabolic_descriptor",
+        "line": 251,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S08-parabolic_descriptor.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_parabolic_descriptor",
+        "declarationId": "D-S08-parabolic_descriptor",
+        "line": 252,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_apex_exact.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_apex_exact",
+        "declarationId": "D-S08-linearVolcano_apex_exact",
+        "line": 253,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_apex_exact.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_apex_exact",
+        "declarationId": "D-S08-linearVolcano_apex_exact",
+        "line": 254,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S08-linearVolcano_apex_exact.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_apex_exact",
+        "declarationId": "D-S08-linearVolcano_apex_exact",
+        "line": 255,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqKernel_evidence",
+        "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+        "line": 256,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqKernel_evidence",
+        "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+        "line": 257,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqKernel_evidence",
+        "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+        "line": 258,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqBepTransfer_evidence",
+        "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+        "line": 259,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqBepTransfer_evidence",
+        "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+        "line": 260,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqBepTransfer_evidence",
+        "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+        "line": 261,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S15-kasha_radBranch_eq_yieldOf.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.kashaRadBranchEqYieldOf_evidence",
+        "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+        "line": 262,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-kasha_radBranch_eq_yieldOf.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.kashaRadBranchEqYieldOf_evidence",
+        "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+        "line": 263,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S15-kasha_radBranch_eq_yieldOf.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.kashaRadBranchEqYieldOf_evidence",
+        "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+        "line": 264,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S15-sv_quench_dilutes_yield.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.svQuenchDilutesYield_evidence",
+        "declarationId": "D-S15-sv_quench_dilutes_yield",
+        "line": 265,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-sv_quench_dilutes_yield.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.svQuenchDilutesYield_evidence",
+        "declarationId": "D-S15-sv_quench_dilutes_yield",
+        "line": 266,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S15-sv_quench_dilutes_yield.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.svQuenchDilutesYield_evidence",
+        "declarationId": "D-S15-sv_quench_dilutes_yield",
+        "line": 267,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S15-phiF_eq_yieldOf.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.phiFEqYieldOf_evidence",
+        "declarationId": "D-S15-phiF_eq_yieldOf",
+        "line": 268,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-phiF_eq_yieldOf.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.phiFEqYieldOf_evidence",
+        "declarationId": "D-S15-phiF_eq_yieldOf",
+        "line": 269,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S15-phiF_eq_yieldOf.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.phiFEqYieldOf_evidence",
+        "declarationId": "D-S15-phiF_eq_yieldOf",
+        "line": 270,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S15-phiP_eq_yieldOf_cascade.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.phiPEqYieldOfCascade_evidence",
+        "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+        "line": 271,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-phiP_eq_yieldOf_cascade.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.phiPEqYieldOfCascade_evidence",
+        "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+        "line": 272,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S15-phiP_eq_yieldOf_cascade.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.phiPEqYieldOfCascade_evidence",
+        "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+        "line": 273,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S15-einstein_yield_via_qy.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.einsteinYieldViaQY_evidence",
+        "declarationId": "D-S15-einstein_yield_via_qy",
+        "line": 274,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-einstein_yield_via_qy.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.einsteinYieldViaQY_evidence",
+        "declarationId": "D-S15-einstein_yield_via_qy",
+        "line": 275,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S15-einstein_yield_via_qy.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.einsteinYieldViaQY_evidence",
+        "declarationId": "D-S15-einstein_yield_via_qy",
+        "line": 276,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S15-fretEff6_eq_one_sub_yieldOf.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.fretEff6EqOneSubYieldOf_evidence",
+        "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+        "line": 277,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-fretEff6_eq_one_sub_yieldOf.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.fretEff6EqOneSubYieldOf_evidence",
+        "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+        "line": 278,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S15-fretEff6_eq_one_sub_yieldOf.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.fretEff6EqOneSubYieldOf_evidence",
+        "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+        "line": 279,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S15-fpRatio_invariant_under_quench.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.fpRatioInvariantUnderQuench_evidence",
+        "declarationId": "D-S15-fpRatio_invariant_under_quench",
+        "line": 280,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S15-fpRatio_invariant_under_quench.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.fpRatioInvariantUnderQuench_evidence",
+        "declarationId": "D-S15-fpRatio_invariant_under_quench",
+        "line": 281,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S15-fpRatio_invariant_under_quench.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.fpRatioInvariantUnderQuench_evidence",
+        "declarationId": "D-S15-fpRatio_invariant_under_quench",
+        "line": 282,
+        "role": "evidence_axioms"
+      },
+      {
+        "checkId": "D-S17-raci_qy_eq_yieldOf_two_channel.comment",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.raciQyEqYieldOfTwoChannel_evidence",
+        "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+        "line": 283,
+        "role": "comment"
+      },
+      {
+        "checkId": "D-S17-raci_qy_eq_yieldOf_two_channel.evidence",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.raciQyEqYieldOfTwoChannel_evidence",
+        "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+        "line": 284,
+        "role": "evidence"
+      },
+      {
+        "checkId": "D-S17-raci_qy_eq_yieldOf_two_channel.evidence_axioms",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.raciQyEqYieldOfTwoChannel_evidence",
+        "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+        "line": 285,
+        "role": "evidence_axioms"
+      }
+    ]
+  },
+  "nonClaims": [
+    "This report is not a production full registry and does not claim 136/136 or resolved coverage.",
+    "The queue covers exactly the 41 R2 certificate-required declarations, not all 78 scanned declarations and not the 136-pair universe.",
+    "Reclassified rows are not certified relations; their Lean names are evidence re-exports only and deliberately are not Certificate values.",
+    "No conditionalComposition certificate is created in R3; the generator supports its canonical projections but emits none for these fragments.",
+    "A definitionalIdentity certificate is a fresh DefEq/rfl check, not propositional equality and not a physical-identity claim.",
+    "An observationalEquivalence certificate records agreement on the declared channels and is not a propositional equivalence.",
+    "A generated #print axioms footprint check covers only the named declarations; it is not a whole-repository proof or audit verdict.",
+    "The R1 pilot, R2 inventory, original theory modules, dispositions, schema and manuscript are unchanged by this integration round."
+  ],
+  "queue": {
+    "coveredCount": 41,
+    "declarationIds": [
+      "D-S01-kernel_barrier_eq_hammond",
+      "D-S01-kernel_barrier_eq_bep",
+      "D-S01-kernel_reverseBarrier_eq_hammond",
+      "D-S01-kernel_tsCoord_eq_hammond",
+      "D-S01-kernel_transfer_eq_bep",
+      "D-S01-kernel_reactantSurface_eq_hammond",
+      "D-S01-kernel_productSurface_eq_hammond",
+      "D-S02-transfer_eq_tsCoord_bridge",
+      "D-S02-secSlope_eq_lefflerSecant",
+      "D-S02-tsCoord_lt_zero_iff_inverted",
+      "D-S02-lefflerSecant_neg_iff_inverted",
+      "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+      "D-S03-hammondDescriptor_of_epConformsOnWindow",
+      "D-S05-bep_eact_eq_marcus_barrier",
+      "D-S05-bep_rate_eq_exp_neg_eact",
+      "D-S05-hammond_barrier_eq_gapReactant",
+      "D-S06-hammond_sharp_iff_marcus_sharp",
+      "D-S07-kernel_marcusIC",
+      "D-S08-linearVolcano_eq_bepTangent",
+      "D-S08-linearVolcano_le_parabolic",
+      "D-S08-parabolic_descriptor",
+      "D-S08-linearVolcano_apex_exact",
+      "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "D-S12-eg_barrier_eq_kernel",
+      "D-S12-eg_rate_eq_marcus",
+      "D-S12-eg_invertedGap_iff_marcus",
+      "D-S12-ss_s0Surface_eq_kernel",
+      "D-S12-ss_s1Surface_eq_kernel",
+      "D-S12-icvscic_barrier_eq_kernel",
+      "D-S12-icvscic_icRate_eq_marcus",
+      "D-S15-kasha_radBranch_eq_yieldOf",
+      "D-S15-sv_quench_dilutes_yield",
+      "D-S15-phiF_eq_yieldOf",
+      "D-S15-phiP_eq_yieldOf_cascade",
+      "D-S15-einstein_yield_via_qy",
+      "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "D-S15-egBarrier_zero_iff_emEnergy_zero",
+      "D-S15-icvscic_icRate_eq_eg_nrRate",
+      "D-S15-fpRatio_invariant_under_quench",
+      "D-S17-raci_qy_eq_yieldOf_two_channel"
+    ],
+    "expectedCount": 41,
+    "source": "dispositions.json entries with disposition == 'certificate-required'",
+    "uniqueDeclarationIds": 41
+  },
+  "reclassifications": [
+    {
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_eq_bepTangent",
+      "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "originalDeclaration": "PhotoLean.Relations.linearVolcano_eq_bepTangent",
+      "rationale": "The proof is `unfold` followed by `ring` rewrites; a direct `rfl` probe fails, so this is a propositional term identity, not a definitional one. It is not a statement-level implication or equivalence between two theory predicates either: both sides are composite real-valued model functionals. It is also not a ConditionalComposition: no typed parent certificate is consumed, and the identity is closed by arithmetic. The seven certified kinds have no constructor for pointwise functional equality, so a certificate would require inventing a statement pair.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "certificationBlockers": [
+        "pointwise-order-inequality",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S08-linearVolcano_le_parabolic",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_le_parabolic",
+      "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "originalDeclaration": "PhotoLean.Relations.linearVolcano_le_parabolic",
+      "rationale": "The statement is a pointwise order inequality between two composite model functionals. It is derived from the tangent-below-parabola inequality `bepLine_le_eact` on each branch plus `max_le`, so it is a mathematical composition of inequalities, not a relation between two theory predicates. The certified taxonomy has no order/inequality constructor; an implication reading would need a consequent statement that the inequality entails, which the delivered theorem does not have.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "certificationBlockers": [
+        "single-model-property",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S08-parabolic_descriptor",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_parabolic_descriptor",
+      "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "originalDeclaration": "PhotoLean.Relations.parabolic_descriptor",
+      "rationale": "The statement asserts that the Sabatier descriptor holds for the BEP-instantiated composite barrier. It is a property of one model functional (a unique global minimizer), not a relation between two theory predicates: the Sabatier side supplies the descriptor and the BEP side supplies the parabolic barrier definition, but no BEP statement entails the descriptor. The proof is the crossing/monotonicity argument, not typed-parent consumption. Certifying it would require inventing a BEP-side statement for the positivity hypotheses.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "certificationBlockers": [
+        "pointwise-value-identity",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S08-linearVolcano_apex_exact",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_apex_exact",
+      "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "originalDeclaration": "PhotoLean.Relations.linearVolcano_apex_exact",
+      "rationale": "The statement is a pointwise value identity at the symmetric apex (lam1 = lam2 = lam, dE = 0). The proof rewrites through `BEP.bepLine_at_zero` and `BEP.eact_at_zero`, so a direct `rfl` probe fails: it is not a definitional identity. It is a local evaluation identity, not an implication/equivalence between two theory predicates and not a typed-parent composition. The row explicitly does not license a general equivalence of the two models, so promoting it to an equivalence would overstate the delivered content.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "certificationBlockers": [
+        "numeric-tie-back",
+        "not-definitional",
+        "not-statement-level-implication-or-equivalence",
+        "transitive-only-pair"
+      ],
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqKernel_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.symmetryFactor_tsCoordZero_eq_kernel",
+      "rationale": "The row states a numeric equality of real-valued coordinate functions at the equal-curvature diagonal, `SymmetryFactor.tsCoordZero lam lam = Kernel.tsCoord lam 0`, under the explicit premise `0 < lam`. Its proof goes through `Real.sqrt` algebra and a division identity, so the two sides are not definitionally equal and `DefEq.refl` rejects; nor is the row an implication or equivalence between two theory predicates. The legacy Marcus-SymmetryFactor pair is transitive through the shared kernel object, and no delivered row names Marcus directly. Reclassified as a scoped transitive-via-kernel registration; certifying it as a direct Marcus-SymmetryFactor relation would overstate the delivered content.",
+      "section": 11,
+      "targetCategory": "scoped-relation-documentation"
+    },
+    {
+      "certificationBlockers": [
+        "numeric-tie-back",
+        "not-definitional",
+        "not-statement-level-implication-or-equivalence",
+        "transitive-only-pair"
+      ],
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqBepTransfer_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "rationale": "The row states the numeric equality `SymmetryFactor.tsCoordZero lam lam = BEP.transfer lam 0` at the equal-curvature diagonal under `0 < lam`, proved from the delivered thermoneutral tie-back. It is a specialization equality of real-valued coordinate functions, not a definitional identity (the sides are not defeq) and not a propositional implication or equivalence between two theory statements. The legacy BEP-SymmetryFactor pair is transitive through the kernel/E1 chain, so the row is retained as a scoped transitive registration rather than a direct seven-kind certificate.",
+      "section": 11,
+      "targetCategory": "scoped-relation-documentation"
+    },
+    {
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.kashaRadBranchEqYieldOf_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.kasha_radBranch_eq_yieldOf",
+      "rationale": "The theorem is a pointwise algebraic identity between `Kasha.radBranch` and a two-channel `QuantumYield.yieldOf`, proved by unfolding the definitions and normalizing a `Fin 2` sum with `Fin.sum_univ_succ`; the elaborator rejects `DefEq.refl` for the two sides, so it is not a definitional identity. It also has no parent predicate, mediating endpoint, or typed parent certificate, so it is not a conditional composition under the proof-relevant contract. Reclassified as a support lemma for the Kasha-QuantumYield reading; no seven-kind certificate is manufactured.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S15-sv_quench_dilutes_yield",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.svQuenchDilutesYield_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.sv_quench_dilutes_yield",
+      "rationale": "The theorem is a conditional algebraic identity between `QuantumYield.yieldOf` and `SternVolmer.svRatioDyn`, requiring `0 < kr + knr` and `0 ≤ kq * q`. It is not a definitional identity (`DefEq.refl` fails), and it does not compose two typed parent certificates: the Stern-Volmer side is the two-parameter function `svRatioDyn (kr + knr) kq q`, not an implication or equivalence parent with a mediating predicate. Reclassified as an algebraic support lemma; the explicit positivity premises are retained in the fragment.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S15-phiF_eq_yieldOf",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.phiFEqYieldOf_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.phiF_eq_yieldOf",
+      "rationale": "The theorem is a pointwise algebraic identity between `FluorPhos.phiF` and a three-channel `QuantumYield.yieldOf`, proved by unfolding definitions and normalizing a `Fin 3` sum. The sides are not definitionally equal, and there is no typed parent or middle endpoint to consume; the row is an algebraic bridge/support fact, not a seven-kind relation. Reclassified as a support lemma.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "certificationBlockers": [
+        "product-of-yields",
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.phiPEqYieldOfCascade_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.phiP_eq_yieldOf_cascade",
+      "rationale": "The theorem is a pointwise algebraic factorization of `FluorPhos.phiP` as the product of two `QuantumYield.yieldOf` values. The product is not a transitive implication/equivalence chain, so `ConditionalComposition` cannot represent it without inventing parent predicates; `DefEq.refl` also rejects the two sides. Reclassified as a support lemma recording the cascade factorization; this does not claim a typed composition.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S15-einstein_yield_via_qy",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.einsteinYieldViaQY_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.einstein_yield_via_qy",
+      "rationale": "The theorem is a pointwise algebraic identity between `A * Einstein.tauR (A + kNR)` and a two-channel `QuantumYield.yieldOf`. It succeeds by unfolding and a field rewrite, not by `rfl`, and it has no typed parent or middle predicate. It is an algebraic support fact for the Einstein-QuantumYield anchor, not a seven-kind certificate. Reclassified as a support lemma.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.fretEff6EqOneSubYieldOf_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.fretEff6_eq_one_sub_yieldOf",
+      "rationale": "The theorem is a conditional algebraic identity between `Forster.fretEff6` and `1 - QuantumYield.yieldOf` for the channel-added donor model, requiring `0 < kD`, `0 ≤ r6`, and `R ≠ 0`. It is not definitional (the proof uses `field_simp`/`ring`), and it has no typed parent certificates; the FRET side is a geometry-level efficiency, not a parent implication or equivalence. Reclassified as a support lemma.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "certificationBlockers": [
+        "model-level-identity",
+        "stern-volmer-side-is-added-rate",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S15-fpRatio_invariant_under_quench",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.fpRatioInvariantUnderQuench_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.fpRatio_invariant_under_quench",
+      "rationale": "The theorem states that the fluorescence/phosphorescence ratio is invariant when the S1 internal-conversion channel is increased by `kq * q`, under explicit positivity premises. The Stern-Volmer side is encoded as the added rate `kq * q`, not as a delivered `SternVolmer` declaration, so there is no typed Stern-Volmer parent to consume; the row is a model-level identity rather than a conditional composition. The R2 ledger already required a translation/bridge before any composition claim. Reclassified as a support lemma with the model-level-composition boundary recorded.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+      "evidenceLeanName": "PhotoLean.RelationAudit.Full.Sections11_17.raciQyEqYieldOfTwoChannel_evidence",
+      "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "originalDeclaration": "PhotoLean.Relations.raci_qy_eq_yieldOf_two_channel",
+      "rationale": "The theorem is a pointwise algebraic identity between `RACI.quantumYield` and a two-channel `QuantumYield.yieldOf`, proved by unfolding and normalizing the finite sum. The sides are not definitionally equal, and the row has no typed parent or mediating endpoint; it is an algebraic support fact for the RACI-QuantumYield link, not a conditional composition. Reclassified as a support lemma; no undelivered RACI candidate is invented.",
+      "section": 17,
+      "targetCategory": "support-lemma"
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "scope": "migration-fragment-integration",
+  "sourceOfTruth": {
+    "dispositions": "relation_audit/dispositions.json",
+    "fragments": [
+      "relation_audit/migration/sections01_05.json",
+      "relation_audit/migration/sections06_10.json",
+      "relation_audit/migration/sections11_17.json"
+    ],
+    "generator": "tools/relation_audit/migration.py",
+    "leanImport": "PhotoLean.RelationAudit.Full",
+    "note": "Every certificate name below is read from the fragments; there is no second list.",
+    "relationSource": "PhotoLean/Relations.lean"
+  },
+  "status": "FRAGMENTS_VALIDATED"
+}

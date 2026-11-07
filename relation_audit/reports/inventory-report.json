@@ -1,0 +1,756 @@
+{
+  "ambiguousCases": [
+    {
+      "absenceReading": "§17 row kernel_surfaces_cross_at_tsCoord is labelled \"look-alike, machine note\", and paper §3 lists \"RACI versus Marcus … real crossing vs. codimension-2 degeneracy\" among the shape look-alikes registered with edge construction refused",
+      "countedAs": "absence",
+      "edgeReading": "§17 last bullet groups \"RACI ↔ QuantumYield / EnergyGapLaw / ICvsISC / Marcus — see the five machine rows above\"",
+      "effectOnCoverage": "none (the pair is covered either way); counting it as an edge would give 27 edges + 109 absences",
+      "pairId": "P-Marcus-RACI",
+      "theories": [
+        "Marcus",
+        "RACI"
+      ]
+    }
+  ],
+  "counts": {
+    "ambiguousPairs": 1,
+    "bothEdgeAndAbsencePairs": 0,
+    "completionBlockPairs": 26,
+    "declarations": 78,
+    "declarationsWithPairIds": 57,
+    "declarationsWithoutPairIds": 21,
+    "dispositionEntries": 78,
+    "documentationOnlySections": [
+      10,
+      16
+    ],
+    "duplicateRegistryRows": 4,
+    "intraTheoryDeclarations": 7,
+    "legacyClassTotals": {
+      "RACI": 5,
+      "adjudication": 6,
+      "certificate": 15,
+      "composition": 30,
+      "equivalence/entailment/bridge": 22,
+      "other": 0
+    },
+    "legacyClassVerdicts": {
+      "RACI": "MATCH",
+      "adjudication": "DIFF",
+      "certificate": "MATCH",
+      "composition": "DIFF",
+      "equivalence/entailment/bridge": "MATCH",
+      "other": "DIFF"
+    },
+    "legacyCoveredPairs": 136,
+    "legacyEdges": 26,
+    "legacyQuotedClassTotals": {
+      "RACI": 5,
+      "adjudication": 8,
+      "certificate": 15,
+      "composition": 26,
+      "equivalence/entailment/bridge": 22,
+      "other": 2
+    },
+    "legacyRawAbsenceRegistryRows": 114,
+    "legacyUniqueAbsences": 110,
+    "pairs": 136,
+    "pilotMappedDeclarations": 7,
+    "sections": 17,
+    "sectionsWithDeclarations": 15,
+    "unaccountedPairs": 0,
+    "unresolvedCandidateDeclarations": 0
+  },
+  "coverage": {
+    "fullRegistryCreated": false,
+    "fullRegistryPassClaimed": false,
+    "note": "The 136-pair list is the legacy census universe, not resolved audit coverage. No production registry.json and no 136/136 resolved-coverage claim are made.",
+    "registryPath": null,
+    "resolvedCoverageClaimed": false
+  },
+  "dispositionCounts": {
+    "certificate-required": 41,
+    "intra-theory-adjudication": 4,
+    "look-alike-non-relation": 8,
+    "metadata-only": 2,
+    "pilot-certificate": 7,
+    "scoped-relation-documentation": 3,
+    "support-lemma": 13,
+    "unresolved-candidate": 0
+  },
+  "duplicateRegistryRows": [
+    {
+      "alsoListedIn": [
+        "§16 (extended no-edge registry, per-theory bullets)",
+        "§16 (extended no-edge registry, per-theory bullets)"
+      ],
+      "pairId": "P-FluorPhos-StokesShift",
+      "theories": [
+        "FluorPhos",
+        "StokesShift"
+      ]
+    },
+    {
+      "alsoListedIn": [
+        "§16 (extended no-edge registry, per-theory bullets)",
+        "§16 (extended no-edge registry, per-theory bullets)"
+      ],
+      "pairId": "P-StokesShift-Forster",
+      "theories": [
+        "StokesShift",
+        "Forster"
+      ]
+    },
+    {
+      "alsoListedIn": [
+        "§16 (extended no-edge registry, per-theory bullets)",
+        "§16 (extended no-edge registry, per-theory bullets)"
+      ],
+      "pairId": "P-StokesShift-Einstein",
+      "theories": [
+        "StokesShift",
+        "Einstein"
+      ]
+    },
+    {
+      "alsoListedIn": [
+        "§16 (extended no-edge registry, per-theory bullets)",
+        "§16 (extended no-edge registry, per-theory bullets)"
+      ],
+      "pairId": "P-ICvsISC-Forster",
+      "theories": [
+        "ICvsISC",
+        "Forster"
+      ]
+    }
+  ],
+  "exceptionalClassifications": {
+    "adjudication": [
+      "P-Kasha-KashaVavilov"
+    ],
+    "composition": [
+      "P-BEP-Sabatier",
+      "P-Kasha-QuantumYield",
+      "P-SternVolmer-QuantumYield",
+      "P-QuantumYield-FluorPhos",
+      "P-QuantumYield-Forster",
+      "P-QuantumYield-Einstein",
+      "P-QuantumYield-RACI"
+    ],
+    "conditional-premise": [
+      "P-Marcus-Kasha"
+    ],
+    "definitional": [
+      "P-Marcus-EnergyGapLaw",
+      "P-Marcus-ICvsISC",
+      "P-EnergyGapLaw-ICvsISC"
+    ],
+    "in-module": [
+      "P-Marcus-StokesShift"
+    ],
+    "look-alike": [
+      "P-Marcus-Sabatier",
+      "P-Marcus-RACI",
+      "P-Sabatier-Goldschmidt",
+      "P-Goldschmidt-Forster",
+      "P-SternVolmer-Forster"
+    ],
+    "model-level-composition": [
+      "P-SternVolmer-FluorPhos"
+    ],
+    "one-sided": [
+      "P-Kasha-EnergyGapLaw",
+      "P-EnergyGapLaw-RACI",
+      "P-ICvsISC-RACI"
+    ],
+    "predicate-equivalence": [
+      "P-EnergyGapLaw-StokesShift"
+    ],
+    "premise-level": [
+      "P-FluorPhos-ICvsISC"
+    ],
+    "shape": [
+      "P-Hammond-EnergyGapLaw",
+      "P-BEP-EnergyGapLaw"
+    ],
+    "transitive-registry-only": [
+      "P-Hammond-SymmetryFactor"
+    ],
+    "transitive-via-kernel": [
+      "P-Marcus-SymmetryFactor",
+      "P-BEP-SymmetryFactor"
+    ],
+    "undelivered-candidate": [
+      "P-Kasha-SternVolmer",
+      "P-Kasha-FluorPhos",
+      "P-KashaVavilov-SternVolmer",
+      "P-KashaVavilov-QuantumYield",
+      "P-KashaVavilov-FluorPhos",
+      "P-KashaVavilov-EnergyGapLaw"
+    ]
+  },
+  "generatedArtifacts": {
+    "declarations": "relation_audit/generated/relations_inventory.json",
+    "declarationsSha256": "1502226c82ab558fb4d9a4e24bb9b5e7b191bda7d1086eff7b5f88563452627e",
+    "pairs": "relation_audit/generated/pair_inventory.json",
+    "pairsSha256": "049b12814540118cbb3f9c1323b85eec7a2a64cc0a01bfe73aa8d4e5ee935224"
+  },
+  "intraTheoryDeclarations": [
+    {
+      "declarationId": "D-S05-marcus_rat_zoneQ_inverted_iff",
+      "name": "marcus_rat_zoneQ_inverted_iff",
+      "relationRole": "intra-theory-bridge"
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_betaHalf_iff",
+      "name": "symmetryFactor_betaHalf_iff",
+      "relationRole": "intra-theory-adjudication"
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_conflation_falsified_and_holds_in_kernel",
+      "name": "symmetryFactor_conflation_falsified_and_holds_in_kernel",
+      "relationRole": "adjudication-verdict"
+    },
+    {
+      "declarationId": "D-S13-kv_d2_verdict",
+      "name": "kv_d2_verdict",
+      "relationRole": "adjudication-verdict"
+    },
+    {
+      "declarationId": "D-S13-kv_antiKasha_boundary",
+      "name": "kv_antiKasha_boundary",
+      "relationRole": "adjudication-boundary"
+    },
+    {
+      "declarationId": "D-S14-sv_d1_verdict",
+      "name": "sv_d1_verdict",
+      "relationRole": "adjudication-verdict"
+    },
+    {
+      "declarationId": "D-S14-sv_identifiability_boundary",
+      "name": "sv_identifiability_boundary",
+      "relationRole": "adjudication-boundary"
+    }
+  ],
+  "legacyPairCensus": {
+    "bothEdgeAndAbsence": 0,
+    "covered": 136,
+    "edges": 26,
+    "legacyCensusComplete": true,
+    "note": "This is historical edge/absence census completeness, not audit coverage.",
+    "pairs": 136,
+    "rawAbsenceRegistryRows": 114,
+    "scope": "legacy-census-only",
+    "unaccounted": 0,
+    "uniqueAbsences": 110
+  },
+  "legacySubtypeCounts": {
+    "adjudication": 1,
+    "composition": 7,
+    "conditional-premise": 1,
+    "definitional": 3,
+    "direct": 3,
+    "in-module": 1,
+    "look-alike": 5,
+    "model-level-composition": 1,
+    "one-sided": 3,
+    "predicate-equivalence": 1,
+    "premise-level": 1,
+    "registered-absence": 98,
+    "shape": 2,
+    "transitive-registry-only": 1,
+    "transitive-via-kernel": 2,
+    "undelivered-candidate": 6
+  },
+  "nonClaims": [
+    "This inventory is not a production full registry; relation_audit/registry.json is not created.",
+    "No 136/136 resolved-coverage claim is made; the pair list is a legacy census universe.",
+    "Legacy edge/absence labels are not audit judgments and are not mapped to certified/notEstablished/outOfScope.",
+    "No new Lean certificate wrapper is added and no legacy edge is claimed migrated.",
+    "Undelivered candidates are migration items only; they are not audit `unresolved` records.",
+    "An inventory --check exit code 0 means the artifacts are consistent with tools/counts.py, not that the relation audit passed.",
+    "The census remains a report, not an acceptance gate."
+  ],
+  "pairAssociationCounts": {
+    "direct": 32,
+    "intra-theory": 7,
+    "look-alike": 8,
+    "none": 12,
+    "supporting": 17,
+    "transitive": 2
+  },
+  "pilotMappedDeclarations": [
+    {
+      "declarationId": "D-S01-kernel_barrier_eq_marcus",
+      "name": "kernel_barrier_eq_marcus",
+      "pilotQueryIds": [
+        "q-kernel-pin"
+      ],
+      "pilotRecordIds": [
+        "rec-kernel-pin"
+      ]
+    },
+    {
+      "declarationId": "D-S02-epBounds_iff_no_inverted_direction",
+      "name": "epBounds_iff_no_inverted_direction",
+      "pilotQueryIds": [
+        "q-composition"
+      ],
+      "pilotRecordIds": [
+        "rec-composition"
+      ]
+    },
+    {
+      "declarationId": "D-S03-epBounds_of_reactionRegion",
+      "name": "epBounds_of_reactionRegion",
+      "pilotQueryIds": [
+        "q-hammond-bep"
+      ],
+      "pilotRecordIds": [
+        "rec-hammond-bep"
+      ]
+    },
+    {
+      "declarationId": "D-S03-epBounds_of_marcus_normal",
+      "name": "epBounds_of_marcus_normal",
+      "pilotQueryIds": [
+        "q-composition"
+      ],
+      "pilotRecordIds": [
+        "rec-composition"
+      ]
+    },
+    {
+      "declarationId": "D-S07-kashaWithin_one_marcus",
+      "name": "kashaWithin_one_marcus",
+      "pilotQueryIds": [
+        "q-kasha-marcus"
+      ],
+      "pilotRecordIds": [
+        "rec-kasha-marcus"
+      ]
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_betaHalf_iff",
+      "name": "symmetryFactor_betaHalf_iff",
+      "pilotQueryIds": [
+        "q-a1"
+      ],
+      "pilotRecordIds": [
+        "rec-a1"
+      ]
+    },
+    {
+      "declarationId": "D-S14-sv_identifiability_boundary",
+      "name": "sv_identifiability_boundary",
+      "pilotQueryIds": [
+        "q-sv-decoder"
+      ],
+      "pilotRecordIds": [
+        "rec-sv-decoder"
+      ]
+    }
+  ],
+  "reportKind": "relation-audit-migration-inventory-report",
+  "roleCounts": {
+    "adjudication-boundary": 2,
+    "adjudication-verdict": 3,
+    "composition": 11,
+    "composition-component": 7,
+    "conditional-equivalence": 1,
+    "definitional-alias": 3,
+    "definitional-pin": 16,
+    "direct-equivalence": 10,
+    "intra-theory-adjudication": 1,
+    "intra-theory-bridge": 1,
+    "look-alike-contrast": 7,
+    "look-alike-shared-form": 2,
+    "model-level-composition": 1,
+    "one-sided-note": 2,
+    "one-way-entailment": 4,
+    "shape-note": 3,
+    "support": 2,
+    "transitive-tie-back": 2
+  },
+  "schemaVersion": "1.0.0",
+  "scope": "inventory-only",
+  "sectionStats": [
+    {
+      "declarationCount": 8,
+      "dispositions": {
+        "certificate-required": 7,
+        "declarations": 8,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 1,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "certificate",
+      "number": 1,
+      "title": "Kernel certificates (definitional — the regression certificates of the extraction)"
+    },
+    {
+      "declarationCount": 6,
+      "dispositions": {
+        "certificate-required": 5,
+        "declarations": 6,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 1,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "equivalence/entailment/bridge",
+      "number": 2,
+      "title": "True equivalences (non-definitional; reused verbatim)"
+    },
+    {
+      "declarationCount": 3,
+      "dispositions": {
+        "certificate-required": 1,
+        "declarations": 3,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 2,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "equivalence/entailment/bridge",
+      "number": 3,
+      "title": "One-way entailments"
+    },
+    {
+      "declarationCount": 4,
+      "dispositions": {
+        "certificate-required": 0,
+        "declarations": 4,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 4,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "equivalence/entailment/bridge",
+      "number": 4,
+      "title": "Definitional reuse (Hammond's composition over the Marcus reorganization energy)"
+    },
+    {
+      "declarationCount": 4,
+      "dispositions": {
+        "certificate-required": 3,
+        "declarations": 4,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 1,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "equivalence/entailment/bridge",
+      "number": 5,
+      "title": "Remaining ledger rows of the bridge inventory"
+    },
+    {
+      "declarationCount": 3,
+      "dispositions": {
+        "certificate-required": 1,
+        "declarations": 3,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 2,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "equivalence/entailment/bridge",
+      "number": 6,
+      "title": "Non-relations and shape differences (new theorems of this module)"
+    },
+    {
+      "declarationCount": 5,
+      "dispositions": {
+        "certificate-required": 1,
+        "declarations": 5,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 1,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 3,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "composition",
+      "number": 7,
+      "title": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier"
+    },
+    {
+      "declarationCount": 6,
+      "dispositions": {
+        "certificate-required": 4,
+        "declarations": 6,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 2,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "composition",
+      "number": 8,
+      "title": "Composition edge: the Sabatier volcano over the BEP two-parabola model"
+    },
+    {
+      "declarationCount": 7,
+      "dispositions": {
+        "certificate-required": 0,
+        "declarations": 7,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 6,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 1,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "composition",
+      "number": 9,
+      "title": "Look-alike but different: the Sabatier volcano predicate and the Marcus rate"
+    },
+    {
+      "declarationCount": 0,
+      "dispositions": {
+        "certificate-required": 0,
+        "declarations": 0,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": true,
+      "legacyClass": null,
+      "number": 10,
+      "title": "The no-edge registry (documentation, not theorems)"
+    },
+    {
+      "declarationCount": 4,
+      "dispositions": {
+        "certificate-required": 2,
+        "declarations": 4,
+        "intra-theory-adjudication": 1,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 1,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": null,
+      "number": 11,
+      "title": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient"
+    },
+    {
+      "declarationCount": 7,
+      "dispositions": {
+        "certificate-required": 7,
+        "declarations": 7,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "certificate",
+      "number": 12,
+      "title": "Kernel certificates of the photophysics batch (definitional pins)"
+    },
+    {
+      "declarationCount": 2,
+      "dispositions": {
+        "certificate-required": 0,
+        "declarations": 2,
+        "intra-theory-adjudication": 2,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "adjudication",
+      "number": 13,
+      "title": "The D2 adjudication (class A2: adjudicated independence) — Kasha vs Kasha–Vavilov"
+    },
+    {
+      "declarationCount": 2,
+      "dispositions": {
+        "certificate-required": 0,
+        "declarations": 2,
+        "intra-theory-adjudication": 1,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 1,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "adjudication",
+      "number": 14,
+      "title": "The D1 adjudication (class A3: identifiability) — static vs dynamic quenching"
+    },
+    {
+      "declarationCount": 12,
+      "dispositions": {
+        "certificate-required": 9,
+        "declarations": 12,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 1,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 1,
+        "support-lemma": 1,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "composition",
+      "number": 15,
+      "title": "Composition edges of the batch (proved here)"
+    },
+    {
+      "declarationCount": 0,
+      "dispositions": {
+        "certificate-required": 0,
+        "declarations": 0,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 0,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 0,
+        "support-lemma": 0,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": true,
+      "legacyClass": null,
+      "number": 16,
+      "title": "The extended no-edge registry (documentation, not theorems)"
+    },
+    {
+      "declarationCount": 5,
+      "dispositions": {
+        "certificate-required": 1,
+        "declarations": 5,
+        "intra-theory-adjudication": 0,
+        "look-alike-non-relation": 0,
+        "metadata-only": 1,
+        "pilot-certificate": 0,
+        "scoped-relation-documentation": 2,
+        "support-lemma": 1,
+        "unresolved-candidate": 0
+      },
+      "documentationOnly": false,
+      "legacyClass": "RACI",
+      "number": 17,
+      "title": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)"
+    }
+  ],
+  "sourceOfTruth": {
+    "dispositionSchema": "relation_audit/dispositions.schema.json",
+    "dispositions": "relation_audit/dispositions.json",
+    "dispositionsSha256": "d9d2c7a4f9d470be0358451cae693cd11a18eec12bf940b5520d4de247942291",
+    "functions": [
+      "tools/counts.py:ABSENCE_REGISTRIES",
+      "tools/counts.py:EDGES",
+      "tools/counts.py:THEORIES",
+      "tools/counts.py:all_lean_files",
+      "tools/counts.py:pair_census",
+      "tools/counts.py:relations_census",
+      "tools/counts.py:scan_file"
+    ],
+    "pilot": "relation_audit/pilot.json",
+    "pilotSha256": "a7988a97cb7c1ff84ea992d04313bdf758da9990c1898c5ff09fa3ec1e506d3c",
+    "relations": "PhotoLean/Relations.lean",
+    "relationsSha256": "a50f4bc4c24c95209f3667a65449d1be79799f9e1948a03ea810f6cd8773844b",
+    "scanner": "tools/counts.py",
+    "scannerSha256": "4c9423d3e0742dc5d9234b217e106f66ce7b362177150e69400964127d979cdb"
+  },
+  "status": "INVENTORY_ONLY",
+  "undeliveredCandidates": [
+    {
+      "pairId": "P-Kasha-SternVolmer",
+      "reason": "Section 16: 'Kasha against SternVolmer - no edge (registered candidate, not delivered)'.",
+      "theories": [
+        "Kasha",
+        "SternVolmer"
+      ]
+    },
+    {
+      "pairId": "P-Kasha-FluorPhos",
+      "reason": "Section 16: 'FluorPhos against Kasha / KashaVavilov - no edge (undelivered candidate compositions)'.",
+      "theories": [
+        "Kasha",
+        "FluorPhos"
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-SternVolmer",
+      "reason": "Section 16: 'KashaVavilov against SternVolmer / QuantumYield - undelivered candidate compositions'.",
+      "theories": [
+        "KashaVavilov",
+        "SternVolmer"
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-QuantumYield",
+      "reason": "Section 16: 'KashaVavilov against SternVolmer / QuantumYield - undelivered candidate compositions'.",
+      "theories": [
+        "KashaVavilov",
+        "QuantumYield"
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-FluorPhos",
+      "reason": "Section 16: 'FluorPhos against Kasha / KashaVavilov - no edge (undelivered candidate compositions)'.",
+      "theories": [
+        "KashaVavilov",
+        "FluorPhos"
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-EnergyGapLaw",
+      "reason": "Section 16 completion block: EnergyGapLaw against KashaVavilov is registered as a no-edge pair, and the EnergyGapLaw bullet calls KashaVavilov an undelivered composition candidate.",
+      "theories": [
+        "KashaVavilov",
+        "EnergyGapLaw"
+      ]
+    }
+  ]
+}

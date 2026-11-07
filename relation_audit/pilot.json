@@ -1,0 +1,1350 @@
+{
+  "schemaVersion": "1.2.0",
+  "mode": "pilot",
+  "description": "Production pilot of the PhotoLean certified relation audit. It covers all seven certified kinds, both composition parents, Kasha-Marcus as a conditional equivalence, both Stern-Volmer distinguishability forms, one genuine unresolved candidate and one scoped notEstablished no-edge record.",
+  "pairCount": 136,
+  "snapshots": [
+    {
+      "id": "snap-relation-audit-2026-10-31",
+      "treeSha": "7ad25a5f03a88acc3af03f65149cf2ac102e7dac",
+      "toolchain": "leanprover/lean4:v4.17.0",
+      "schemaSha256": "5280f3d2b89870939802e12e52644562637b45d139d6747f5de06e9dbc28f501",
+      "dirty": true,
+      "createdAt": "2026-10-31T00:57:47+08:00",
+      "note": "The relation-audit layer is uncommitted in the isolated checkout; artifact hashes are matched against the working tree at the recorded commit.",
+      "artifacts": {
+        "PhotoLean/BEP/Basic.lean": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+        "PhotoLean/BEP/Compose.lean": "bcc062b6a153a47782f034e6dbe9c9ce5be670fd1f03f5accb7be083f4da513b",
+        "PhotoLean/Goldschmidt/Basic.lean": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+        "PhotoLean/Hammond/Basic.lean": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+        "PhotoLean/Kasha/Basic.lean": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+        "PhotoLean/Kasha/Compose.lean": "76e93ddf2d951c237efe334c4c9535aa4761245e1a6840737f53668ba45fd352",
+        "PhotoLean/Kernel.lean": "41157719961c4c1b8373712e7700c34def44162a3bb2e07766eefa5366f75335",
+        "PhotoLean/Marcus/Basic.lean": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+        "PhotoLean/RelationAudit.lean": "a6c594d4961ae2cced0ce9997ca5d416b303f63f3b2ce029761573737b13a616",
+        "PhotoLean/RelationAudit/Defs.lean": "505b964e5700ad902b7a55921232580d903c4baff25e7c6063269b8a75749c14",
+        "PhotoLean/RelationAudit/Pilot.lean": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2",
+        "PhotoLean/Relations.lean": "a50f4bc4c24c95209f3667a65449d1be79799f9e1948a03ea810f6cd8773844b",
+        "PhotoLean/SternVolmer/Basic.lean": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+        "PhotoLean/SymmetryFactor/Sharp.lean": "63d684c49b78b52c343d17c31416bf9f0146551d80bafd3d29e617ee550b08c5",
+        "theories/RELATIONS.md": "59060826e5334b29ca14fcc5cf2d8afdf8b55420ebc862987e4b48d39b6ef619"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "id": "global",
+      "kind": "global",
+      "dimension": "both",
+      "description": "Unrestricted comparison context over the shared semantic domain of the relation audit pilot.",
+      "theories": [
+        "Marcus",
+        "Hammond",
+        "BEP",
+        "Kasha",
+        "Sabatier",
+        "Goldschmidt",
+        "SymmetryFactor",
+        "KashaVavilov",
+        "SternVolmer",
+        "QuantumYield",
+        "FluorPhos",
+        "EnergyGapLaw",
+        "StokesShift",
+        "ICvsISC",
+        "Forster",
+        "Einstein",
+        "RACI"
+      ],
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "docs/RELATION-AUDIT-CONTRACT.md",
+            "locator": "section 4 (shared context Delta)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "goldschmidt-marcus",
+      "kind": "restricted",
+      "dimension": "relation",
+      "description": "Restricted scope covering only the registered Goldschmidt/Marcus no-edge pair.",
+      "boundary": "The Goldschmidt theory is geometric (ionic radii and a packing ratio) and imports only Mathlib and its own modules; the Marcus normal region is an energy-model predicate on one reaction coordinate. No shared object or module exists between the two.",
+      "theories": [
+        "Goldschmidt",
+        "Marcus"
+      ],
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "section 10 (Goldschmidt <-> all six no edge)"
+          }
+        ]
+      }
+    }
+  ],
+  "theoryInventory": [
+    "Marcus",
+    "Hammond",
+    "BEP",
+    "Kasha",
+    "Sabatier",
+    "Goldschmidt",
+    "SymmetryFactor",
+    "KashaVavilov",
+    "SternVolmer",
+    "QuantumYield",
+    "FluorPhos",
+    "EnergyGapLaw",
+    "StokesShift",
+    "ICvsISC",
+    "Forster",
+    "Einstein",
+    "RACI"
+  ],
+  "statements": [
+    {
+      "id": "marcus.kernelBarrier",
+      "theory": "Marcus",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Kernel.lean",
+      "sha256": "41157719961c4c1b8373712e7700c34def44162a3bb2e07766eefa5366f75335",
+      "context": "BarrierCtx",
+      "declaration": "PhotoLean.Kernel.barrier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "barrier (shared kernel definition)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "marcus.barrier",
+      "theory": "Marcus",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Marcus/Basic.lean",
+      "sha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+      "context": "BarrierCtx",
+      "declaration": "PhotoLean.Marcus.barrier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Marcus/Basic.lean",
+            "locator": "barrier (Marcus theory definition)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "marcus.normalRegion",
+      "theory": "Marcus",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Marcus/Basic.lean",
+      "sha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+      "context": "BarrierCtx",
+      "declaration": "PhotoLean.Marcus.NormalRegion",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Marcus/Basic.lean",
+            "locator": "NormalRegion (normal-region predicate)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bep.epBounds",
+      "theory": "BEP",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/BEP/Basic.lean",
+      "sha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+      "context": "BarrierCtx",
+      "declaration": "PhotoLean.BEP.EPBounds",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/BEP/Basic.lean",
+            "locator": "EPBounds (Evans-Polanyi bounds)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bep.noInvertedDirection",
+      "theory": "BEP",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/BEP/Compose.lean",
+      "sha256": "bcc062b6a153a47782f034e6dbe9c9ce5be670fd1f03f5accb7be083f4da513b",
+      "context": "BarrierCtx",
+      "declaration": "PhotoLean.BEP.epBounds_iff_no_inverted_direction",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/BEP/Compose.lean",
+            "locator": "epBounds_iff_no_inverted_direction (composed no-inverted-direction statement)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hammond.reactionRegion",
+      "theory": "Hammond",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "sha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+      "context": "BarrierCtx",
+      "declaration": "PhotoLean.Hammond.ReactionRegion",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Hammond/Basic.lean",
+            "locator": "ReactionRegion (Hammond reaction region)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "symmetry.betaHalfReading",
+      "theory": "SymmetryFactor",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+      "sha256": "63d684c49b78b52c343d17c31416bf9f0146551d80bafd3d29e617ee550b08c5",
+      "context": "CurvatureCtx",
+      "declaration": "PhotoLean.SymmetryFactor.BetaHalfReading",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+            "locator": "BetaHalfReading (the beta = 1/2 symmetry-factor reading)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "symmetry.equalForceConstants",
+      "theory": "SymmetryFactor",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+      "sha256": "63d684c49b78b52c343d17c31416bf9f0146551d80bafd3d29e617ee550b08c5",
+      "context": "CurvatureCtx",
+      "declaration": "PhotoLean.SymmetryFactor.betaHalf_iff_equalForceConstants",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+            "locator": "betaHalf_iff_equalForceConstants (the A1 verdict)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kasha.kashaWithin",
+      "theory": "Kasha",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Kasha/Basic.lean",
+      "sha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+      "context": "KashaMarcusCtx",
+      "declaration": "PhotoLean.Kasha.KashaWithin",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kasha/Basic.lean",
+            "locator": "KashaWithin (tolerance form of Kasha's rule)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "marcus.window",
+      "theory": "Marcus",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Kasha/Compose.lean",
+      "sha256": "76e93ddf2d951c237efe334c4c9535aa4761245e1a6840737f53668ba45fd352",
+      "context": "KashaMarcusCtx",
+      "declaration": "PhotoLean.Kasha.kashaWithin_one_marcus",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kasha/Compose.lean",
+            "locator": "kashaWithin_one_marcus (the explicit Marcus window at the gap x)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sternvolmer.intensityDyn",
+      "theory": "SternVolmer",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/SternVolmer/Basic.lean",
+      "sha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+      "context": "SVIntensityCtx",
+      "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SternVolmer/Basic.lean",
+            "locator": "svRatioDyn (dynamic intensity ratio)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sternvolmer.intensityStat",
+      "theory": "SternVolmer",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/SternVolmer/Basic.lean",
+      "sha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+      "context": "SVIntensityCtx",
+      "declaration": "PhotoLean.SternVolmer.svRatioStat",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SternVolmer/Basic.lean",
+            "locator": "svRatioStat (static intensity ratio)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kasha.kashaRule",
+      "theory": "Kasha",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Kasha/Basic.lean",
+      "sha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+      "context": "KVCtx",
+      "declaration": "PhotoLean.Kasha.KashaRule",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kasha/Basic.lean",
+            "locator": "KashaRule (exact Kasha rule)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kashavavilov.vavilovAt",
+      "theory": "KashaVavilov",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Kasha/Basic.lean",
+      "sha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+      "context": "KVCtx",
+      "declaration": "PhotoLean.Kasha.VavilovAt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kasha/Basic.lean",
+            "locator": "VavilovAt (Vavilov rule at one step)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "goldschmidt.conformance",
+      "theory": "Goldschmidt",
+      "version": "1.0.0",
+      "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+      "sha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+      "context": "ToleranceCtx",
+      "declaration": "PhotoLean.Goldschmidt.GoldschmidtConforms",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+            "locator": "GoldschmidtConforms (tolerance-factor band predicate)"
+          }
+        ]
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "q-kernel-pin",
+      "source": "marcus.kernelBarrier",
+      "target": "marcus.barrier",
+      "context": "BarrierCtx",
+      "question": "Is the shared-kernel barrier definitionally the Marcus barrier?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "barrier = Marcus.barrier (definitional pin)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-hammond-bep",
+      "source": "hammond.reactionRegion",
+      "target": "bep.epBounds",
+      "context": "BarrierCtx",
+      "question": "Does Hammond's reaction region entail the Evans-Polanyi bounds?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/BEP/Compose.lean",
+            "locator": "epBounds_of_reactionRegion"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-a1",
+      "source": "symmetry.betaHalfReading",
+      "target": "symmetry.equalForceConstants",
+      "context": "CurvatureCtx",
+      "question": "Does the beta = 1/2 symmetry-factor reading coincide exactly with equal force constants?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+            "locator": "betaHalf_iff_equalForceConstants"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-kasha-marcus",
+      "source": "kasha.kashaWithin",
+      "target": "marcus.window",
+      "context": "KashaMarcusCtx",
+      "question": "Under the declared hic identification, is Kasha conformance equivalent to the Marcus window?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kasha/Compose.lean",
+            "locator": "kashaWithin_one_marcus"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-composition",
+      "source": "marcus.normalRegion",
+      "target": "bep.noInvertedDirection",
+      "context": "BarrierCtx",
+      "question": "Does the Marcus normal region entail the absence of an inverted direction, through the Evans-Polanyi bounds?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/BEP/Compose.lean",
+            "locator": "epBounds_of_marcus_normal and epBounds_iff_no_inverted_direction"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-sv-intensity",
+      "source": "sternvolmer.intensityDyn",
+      "target": "sternvolmer.intensityStat",
+      "context": "SVIntensityCtx",
+      "question": "Do the dynamic and static intensity channels coincide under matched parameters?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SternVolmer/Criterion.lean",
+            "locator": "intensity_curve_coincidence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-sv-joint",
+      "source": "sternvolmer.intensityDyn",
+      "target": "sternvolmer.intensityStat",
+      "context": "SVIntensityCtx",
+      "question": "Does the joint intensity-lifetime channel separate the two mechanisms at an explicit witness?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SternVolmer/Criterion.lean",
+            "locator": "lifetimeTracks_iff_dyn and stat_lifetime_separates"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-sv-decoder",
+      "source": "sternvolmer.intensityDyn",
+      "target": "sternvolmer.intensityStat",
+      "context": "SVDecoderCtx",
+      "question": "Does the joint observation admit a decoder that recovers the mechanism tag?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "svJointDecoderWitness"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-kasha-vavilov",
+      "source": "kasha.kashaRule",
+      "target": "kashavavilov.vavilovAt",
+      "context": "KVCtx",
+      "question": "Does Kasha's rule imply Vavilov's rule?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/KashaVavilov/Criterion.lean",
+            "locator": "kashaRule_not_implies_vavilovAt"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-kasha-sternvolmer-candidate",
+      "source": "kasha.kashaRule",
+      "target": "sternvolmer.intensityDyn",
+      "context": "KashaSternVolmerCtx",
+      "question": "Is there a delivered relation between the Kasha ladder and the Stern-Volmer intensity channel?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "section 16: Kasha <-> SternVolmer no edge (registered candidate, not delivered)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q-goldschmidt-marcus",
+      "source": "goldschmidt.conformance",
+      "target": "marcus.normalRegion",
+      "context": "GoldschmidtMarcusCtx",
+      "question": "Is there a relation between the Goldschmidt tolerance band and the Marcus normal region?",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "section 10: Goldschmidt <-> all six no edge"
+          }
+        ]
+      }
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert-kernel-pin",
+      "kind": "definitionalIdentity",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.kernelBarrierPin",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "premises": [],
+      "semantics": {
+        "context": "BarrierCtx = { lam : Real, x : Real }",
+        "translations": {
+          "left": "fun \u03b4 : BarrierCtx => \u03b4",
+          "right": "fun \u03b4 : BarrierCtx => \u03b4"
+        },
+        "premisePredicate": "fun _ : BarrierCtx => True",
+        "rflWitness": "PhotoLean.RelationAudit.kernelBarrierPin_defeq",
+        "rflWitnessAxiomFootprint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "translation": "fun \u03b4 : BarrierCtx => \u03b4",
+        "rflCheck": {
+          "lhs": "(fun \u03b4 : PhotoLean.RelationAudit.BarrierCtx => PhotoLean.Kernel.barrier \u03b4.lam \u03b4.x)",
+          "rhs": "(fun \u03b4 : PhotoLean.RelationAudit.BarrierCtx => PhotoLean.Marcus.barrier \u03b4.lam \u03b4.x)"
+        }
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-hammond-bep",
+      "kind": "implication",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.epBoundsImplication",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.implication",
+      "premises": [
+        {
+          "id": "barrier.positiveCurvature",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        }
+      ],
+      "semantics": {
+        "context": "BarrierCtx = { lam : Real, x : Real }",
+        "translations": {
+          "left": "fun \u03b4 : BarrierCtx => \u03b4",
+          "right": "fun \u03b4 : BarrierCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : BarrierCtx => 0 < \u03b4.lam"
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-a1",
+      "kind": "equivalence",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.betaHalfEquivalence",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+      "premises": [
+        {
+          "id": "symmetryFactor.positiveForceConstants",
+          "statement": "0 < kr and 0 < kp: both force constants are positive."
+        }
+      ],
+      "semantics": {
+        "context": "CurvatureCtx = { kr : Real, kp : Real }",
+        "translations": {
+          "left": "fun \u03b4 : CurvatureCtx => \u03b4",
+          "right": "fun \u03b4 : CurvatureCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : CurvatureCtx => 0 < \u03b4.kr \u2227 0 < \u03b4.kp"
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-kasha-marcus",
+      "kind": "equivalence",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.kashaMarcusEquivalence",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+      "premises": [
+        {
+          "id": "kasha.rateData",
+          "statement": "Kasha.RateData rad ic 1: the ladder is admissible at level 1."
+        },
+        {
+          "id": "kasha.tolerancePositive",
+          "statement": "0 < tol: the tolerance is positive."
+        },
+        {
+          "id": "kasha.toleranceBelowOne",
+          "statement": "tol < 1: the tolerance is below one."
+        },
+        {
+          "id": "kasha.preExponentialPositive",
+          "statement": "0 < A: the Marcus pre-exponential factor is positive."
+        },
+        {
+          "id": "marcus.curvaturePositive",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        },
+        {
+          "id": "thermal.energyPositive",
+          "statement": "0 < kB * T: the thermal energy is positive."
+        },
+        {
+          "id": "kasha.radZeroPositive",
+          "statement": "0 < rad 0: the lowest-state radiative rate is positive."
+        },
+        {
+          "id": "kasha.radOnePositive",
+          "statement": "0 < rad 1: the next-state radiative rate is positive."
+        },
+        {
+          "id": "kashaMarcus.icIdentification",
+          "statement": "ic 1 = Kasha.marcusIC A lam kB T x: the declared hic modelling premise identifies the S2 -> S1 internal-conversion rate with the Marcus rate at the gap."
+        }
+      ],
+      "semantics": {
+        "context": "KashaMarcusCtx = { rad ic : Nat -> Real, A lam kB T x tol : Real }",
+        "translations": {
+          "left": "fun \u03b4 : KashaMarcusCtx => \u03b4",
+          "right": "fun \u03b4 : KashaMarcusCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : KashaMarcusCtx => \u2200 p \u2208 PhotoLean.RelationAudit.kashaMarcusPremises, p.predicate \u03b4"
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-composition-parent-normal",
+      "kind": "implication",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.marcusNormalImplication",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.implication",
+      "premises": [
+        {
+          "id": "barrier.positiveCurvature",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        },
+        {
+          "id": "marcus.reverseNotInverted",
+          "statement": "-lam <= x: the reverse direction is not inverted."
+        }
+      ],
+      "semantics": {
+        "context": "BarrierCtx = { lam : Real, x : Real }",
+        "translations": {
+          "left": "fun \u03b4 : BarrierCtx => \u03b4",
+          "right": "fun \u03b4 : BarrierCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : BarrierCtx => 0 < \u03b4.lam \u2227 -\u03b4.lam \u2264 \u03b4.x"
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-composition-parent-epbounds",
+      "kind": "equivalence",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.epBoundsNoInvertedEquivalence",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+      "premises": [
+        {
+          "id": "barrier.positiveCurvature",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        }
+      ],
+      "semantics": {
+        "context": "BarrierCtx = { lam : Real, x : Real }",
+        "translations": {
+          "left": "fun \u03b4 : BarrierCtx => \u03b4",
+          "right": "fun \u03b4 : BarrierCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : BarrierCtx => 0 < \u03b4.lam"
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-composition",
+      "kind": "conditionalComposition",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.marcusNormalNoInvertedComposition",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.conditionalComposition",
+      "premises": [
+        {
+          "id": "barrier.positiveCurvature",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        },
+        {
+          "id": "marcus.reverseNotInverted",
+          "statement": "-lam <= x: the reverse direction is not inverted."
+        }
+      ],
+      "semantics": {
+        "context": "BarrierCtx = { lam : Real, x : Real }",
+        "translations": {
+          "left": "fun \u03b4 : BarrierCtx => \u03b4",
+          "right": "fun \u03b4 : BarrierCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : BarrierCtx => 0 < \u03b4.lam \u2227 -\u03b4.lam \u2264 \u03b4.x",
+        "translation": "fun \u03b4 : BarrierCtx => \u03b4",
+        "conclusionKind": "implication"
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-sv-intensity",
+      "kind": "observationalEquivalence",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.svIntensityObservationalEquivalence",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.observationalEquivalence",
+      "premises": [
+        {
+          "id": "sternVolmer.k0Nonzero",
+          "statement": "k0 != 0: the intrinsic decay rate is nonzero."
+        },
+        {
+          "id": "sternVolmer.matchedKSV",
+          "statement": "SternVolmer.KSV k0 kq = Ka: the dynamic Stern-Volmer constant equals the static association constant."
+        }
+      ],
+      "semantics": {
+        "context": "SVIntensityCtx = { k0 kq Ka : Real }",
+        "translations": {
+          "left": "fun \u03b4 : SVIntensityCtx => \u03b4",
+          "right": "fun \u03b4 : SVIntensityCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : SVIntensityCtx => \u03b4.k0 \u2260 0 \u2227 SternVolmer.KSV \u03b4.k0 \u03b4.kq = \u03b4.Ka",
+        "channels": [
+          "sternVolmer.intensity"
+        ],
+        "channelSpecs": [
+          {
+            "id": "sternVolmer.intensity",
+            "domain": "Real",
+            "leftObservable": "fun q \u03b4 => SternVolmer.svRatioDyn \u03b4.k0 \u03b4.kq q",
+            "rightObservable": "fun q \u03b4 => SternVolmer.svRatioStat \u03b4.Ka q"
+          }
+        ]
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-sv-joint",
+      "kind": "distinguishability",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.svJointDistinguishability",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.distinguishability",
+      "premises": [
+        {
+          "id": "sternVolmer.k0Nonzero",
+          "statement": "k0 != 0: the intrinsic decay rate is nonzero."
+        },
+        {
+          "id": "sternVolmer.matchedKSV",
+          "statement": "SternVolmer.KSV k0 kq = Ka: the dynamic Stern-Volmer constant equals the static association constant."
+        }
+      ],
+      "semantics": {
+        "context": "SVIntensityCtx = { k0 kq Ka : Real }",
+        "translations": {
+          "left": "fun \u03b4 : SVIntensityCtx => \u03b4",
+          "right": "fun \u03b4 : SVIntensityCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : SVIntensityCtx => \u03b4.k0 \u2260 0 \u2227 SternVolmer.KSV \u03b4.k0 \u03b4.kq = \u03b4.Ka",
+        "form": "separatingObservation",
+        "witness": "PhotoLean.RelationAudit.svJointSeparationWitness",
+        "witnessContext": "PhotoLean.RelationAudit.svJointWitness",
+        "channelID": "sternVolmer.jointIntensityLifetime",
+        "input": "1",
+        "channels": [
+          "sternVolmer.jointIntensityLifetime"
+        ]
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-sv-decoder",
+      "kind": "distinguishability",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.svJointIdentifiability",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.distinguishability",
+      "premises": [
+        {
+          "id": "sternVolmer.decoderK0Positive",
+          "statement": "0 < k0: the intrinsic decay rate is positive."
+        },
+        {
+          "id": "sternVolmer.decoderKqNonzero",
+          "statement": "kq != 0: the dynamic quenching constant is nonzero."
+        },
+        {
+          "id": "sternVolmer.decoderQPositive",
+          "statement": "0 < q: the concentration is positive."
+        }
+      ],
+      "semantics": {
+        "context": "SVDecoderCtx = { k0 kq Ka q : Real, m : SternVolmer.Mech }",
+        "translations": {
+          "left": "fun \u03b4 : SVDecoderCtx => \u03b4",
+          "right": "fun \u03b4 : SVDecoderCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : SVDecoderCtx => 0 < \u03b4.k0 \u2227 \u03b4.kq \u2260 0 \u2227 0 < \u03b4.q",
+        "form": "identifiabilityDecoder",
+        "witness": "PhotoLean.RelationAudit.svJointDecoderWitness",
+        "decoderStatement": "PhotoLean.RelationAudit.svDecoder",
+        "channels": [
+          "sternVolmer.jointIntensityLifetime"
+        ]
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    },
+    {
+      "id": "cert-kv-refutation",
+      "kind": "refutation",
+      "module": "PhotoLean.RelationAudit.Pilot",
+      "lean": "PhotoLean.RelationAudit.kvRefutation",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "constructor": "PhotoLean.RelationAudit.RelationKind.refutation",
+      "premises": [
+        {
+          "id": "kashaVavilov.rateData",
+          "statement": "Kasha.RateData rad ic 2: the ladder is admissible at excitation level 2."
+        },
+        {
+          "id": "kashaVavilov.icZeroPositive",
+          "statement": "0 < ic 0: the lossy regime, not the degenerate lossless corner."
+        }
+      ],
+      "semantics": {
+        "context": "KVCtx = { rad ic : Nat -> Real }",
+        "translations": {
+          "left": "fun \u03b4 : KVCtx => \u03b4",
+          "right": "fun \u03b4 : KVCtx => \u03b4"
+        },
+        "premisePredicate": "fun \u03b4 : KVCtx => Kasha.RateData \u03b4.rad \u03b4.ic 2 \u2227 0 < \u03b4.ic 0",
+        "counterexample": "PhotoLean.RelationAudit.kvRefutationCounterexample",
+        "target": "Kasha.KashaRule rad ic 1 -> Kasha.VavilovAt rad ic 1"
+      },
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "sourcePath": "PhotoLean/RelationAudit/Pilot.lean",
+      "sourceSha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec-kernel-pin",
+      "queryId": "q-kernel-pin",
+      "statementVersion": "marcus.kernelBarrier@1.0.0|marcus.barrier@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "definitionalIdentity",
+      "certificate": "cert-kernel-pin",
+      "premises": [],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-kernel-pin"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-hammond-bep",
+      "queryId": "q-hammond-bep",
+      "statementVersion": "hammond.reactionRegion@1.0.0|bep.epBounds@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "implication",
+      "certificate": "cert-hammond-bep",
+      "premises": [
+        {
+          "id": "barrier.positiveCurvature",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-hammond-bep"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-a1",
+      "queryId": "q-a1",
+      "statementVersion": "symmetry.betaHalfReading@1.0.0|symmetry.equalForceConstants@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "equivalence",
+      "certificate": "cert-a1",
+      "premises": [
+        {
+          "id": "symmetryFactor.positiveForceConstants",
+          "statement": "0 < kr and 0 < kp: both force constants are positive."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-a1"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-kasha-marcus",
+      "queryId": "q-kasha-marcus",
+      "statementVersion": "kasha.kashaWithin@1.0.0|marcus.window@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "equivalence",
+      "certificate": "cert-kasha-marcus",
+      "premises": [
+        {
+          "id": "kasha.rateData",
+          "statement": "Kasha.RateData rad ic 1: the ladder is admissible at level 1."
+        },
+        {
+          "id": "kasha.tolerancePositive",
+          "statement": "0 < tol: the tolerance is positive."
+        },
+        {
+          "id": "kasha.toleranceBelowOne",
+          "statement": "tol < 1: the tolerance is below one."
+        },
+        {
+          "id": "kasha.preExponentialPositive",
+          "statement": "0 < A: the Marcus pre-exponential factor is positive."
+        },
+        {
+          "id": "marcus.curvaturePositive",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        },
+        {
+          "id": "thermal.energyPositive",
+          "statement": "0 < kB * T: the thermal energy is positive."
+        },
+        {
+          "id": "kasha.radZeroPositive",
+          "statement": "0 < rad 0: the lowest-state radiative rate is positive."
+        },
+        {
+          "id": "kasha.radOnePositive",
+          "statement": "0 < rad 1: the next-state radiative rate is positive."
+        },
+        {
+          "id": "kashaMarcus.icIdentification",
+          "statement": "ic 1 = Kasha.marcusIC A lam kB T x: the declared hic modelling premise identifies the S2 -> S1 internal-conversion rate with the Marcus rate at the gap."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-kasha-marcus"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-composition",
+      "queryId": "q-composition",
+      "statementVersion": "marcus.normalRegion@1.0.0|bep.noInvertedDirection@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "conditionalComposition",
+      "certificate": "cert-composition",
+      "premises": [
+        {
+          "id": "barrier.positiveCurvature",
+          "statement": "0 < lam: the Marcus curvature is positive."
+        },
+        {
+          "id": "marcus.reverseNotInverted",
+          "statement": "-lam <= x: the reverse direction is not inverted."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-composition"
+          }
+        ],
+        "note": "Lean certificate reference."
+      },
+      "composition": {
+        "parents": [
+          "cert-composition-parent-normal",
+          "cert-composition-parent-epbounds"
+        ],
+        "mediators": [
+          "bep.epBounds"
+        ],
+        "translations": [
+          {
+            "from": "marcus.normalRegion",
+            "to": "bep.epBounds",
+            "description": "The Marcus-normal parent concludes the Evans-Polanyi bounds at the same (lam, x)."
+          },
+          {
+            "from": "bep.epBounds",
+            "to": "bep.noInvertedDirection",
+            "description": "The second parent turns the Evans-Polanyi bounds into the absence of an inverted direction."
+          }
+        ],
+        "bridges": [],
+        "discharges": [],
+        "conclusionKind": "implication"
+      }
+    },
+    {
+      "id": "rec-sv-intensity",
+      "queryId": "q-sv-intensity",
+      "statementVersion": "sternvolmer.intensityDyn@1.0.0|sternvolmer.intensityStat@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "observationalEquivalence",
+      "certificate": "cert-sv-intensity",
+      "premises": [
+        {
+          "id": "sternVolmer.k0Nonzero",
+          "statement": "k0 != 0: the intrinsic decay rate is nonzero."
+        },
+        {
+          "id": "sternVolmer.matchedKSV",
+          "statement": "SternVolmer.KSV k0 kq = Ka: the dynamic Stern-Volmer constant equals the static association constant."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-sv-intensity"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-sv-joint",
+      "queryId": "q-sv-joint",
+      "statementVersion": "sternvolmer.intensityDyn@1.0.0|sternvolmer.intensityStat@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "distinguishability",
+      "certificate": "cert-sv-joint",
+      "premises": [
+        {
+          "id": "sternVolmer.k0Nonzero",
+          "statement": "k0 != 0: the intrinsic decay rate is nonzero."
+        },
+        {
+          "id": "sternVolmer.matchedKSV",
+          "statement": "SternVolmer.KSV k0 kq = Ka: the dynamic Stern-Volmer constant equals the static association constant."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-sv-joint"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-sv-decoder",
+      "queryId": "q-sv-decoder",
+      "statementVersion": "sternvolmer.intensityDyn@1.0.0|sternvolmer.intensityStat@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "distinguishability",
+      "certificate": "cert-sv-decoder",
+      "premises": [
+        {
+          "id": "sternVolmer.decoderK0Positive",
+          "statement": "0 < k0: the intrinsic decay rate is positive."
+        },
+        {
+          "id": "sternVolmer.decoderKqNonzero",
+          "statement": "kq != 0: the dynamic quenching constant is nonzero."
+        },
+        {
+          "id": "sternVolmer.decoderQPositive",
+          "statement": "0 < q: the concentration is positive."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-sv-decoder"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-kasha-vavilov",
+      "queryId": "q-kasha-vavilov",
+      "statementVersion": "kasha.kashaRule@1.0.0|kashavavilov.vavilovAt@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "certified",
+      "relationKind": "refutation",
+      "certificate": "cert-kv-refutation",
+      "premises": [
+        {
+          "id": "kashaVavilov.rateData",
+          "statement": "Kasha.RateData rad ic 2: the ladder is admissible at excitation level 2."
+        },
+        {
+          "id": "kashaVavilov.icZeroPositive",
+          "statement": "0 < ic 0: the lossy regime, not the degenerate lossless corner."
+        }
+      ],
+      "badges": {},
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "cert-kv-refutation"
+          }
+        ],
+        "note": "Lean certificate reference."
+      }
+    },
+    {
+      "id": "rec-kasha-sternvolmer-unresolved",
+      "queryId": "q-kasha-sternvolmer-candidate",
+      "statementVersion": "kasha.kashaRule@1.0.0|sternvolmer.intensityDyn@1.0.0",
+      "scope": "global",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "unresolved",
+      "candidate": "implication",
+      "rationale": "The relation ledger registers Kasha <-> SternVolmer as a candidate composition/entailment that has not been delivered: the SternVolmer plan reaches the Kasha ladder only through the shared intensity ratio, and no Lean theorem connects Kasha.RateData to the Stern-Volmer channels. A candidate implication is registered here without a certificate; this is not a negative result.",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "section 16: Kasha <-> SternVolmer no edge (registered candidate, not delivered)"
+          }
+        ],
+        "rationale": "The relation ledger registers Kasha <-> SternVolmer as a candidate composition/entailment that has not been delivered: the SternVolmer plan reaches the Kasha ladder only through the shared intensity ratio, and no Lean theorem connects Kasha.RateData to the Stern-Volmer channels. A candidate implication is registered here without a certificate; this is not a negative result."
+      }
+    },
+    {
+      "id": "rec-goldschmidt-marcus-noedge",
+      "queryId": "q-goldschmidt-marcus",
+      "statementVersion": "goldschmidt.conformance@1.0.0|marcus.normalRegion@1.0.0",
+      "scope": "goldschmidt-marcus",
+      "snapshot": "snap-relation-audit-2026-10-31",
+      "status": "notEstablished",
+      "rationale": "Scoped no-edge registration: the Goldschmidt tolerance band is a geometric predicate on ionic radii and a packing ratio, while the Marcus normal region is an energy-model predicate on one reaction coordinate. The delivered Goldschmidt modules import only Mathlib and their own modules, and no shared scalar or theorem exists. This is a registered absence of a delivered relation, not logical non-existence.",
+      "dependencies": [
+        {
+          "kind": "sourceScan",
+          "reference": "PhotoLean/Relations.lean",
+          "recompute": "grep -n 'Goldschmidt \u2194 all six' PhotoLean/Relations.lean",
+          "sha256": "a50f4bc4c24c95209f3667a65449d1be79799f9e1948a03ea810f6cd8773844b",
+          "summary": "The delivered Relations.lean registers Goldschmidt against all six energy theories as no edge, with the dependency and modelling reasons."
+        },
+        {
+          "kind": "sourceScan",
+          "reference": "theories/RELATIONS.md",
+          "recompute": "grep -n 'Goldschmidt \u2194 all six' theories/RELATIONS.md",
+          "sha256": "59060826e5334b29ca14fcc5cf2d8afdf8b55420ebc862987e4b48d39b6ef619",
+          "summary": "The bilingual relation ledger carries the same no-edge registration for Goldschmidt against the six energy theories."
+        }
+      ],
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "section 10 (Goldschmidt <-> all six no edge)"
+          }
+        ],
+        "rationale": "Scoped no-edge registration: the Goldschmidt tolerance band is a geometric predicate on ionic radii and a packing ratio, while the Marcus normal region is an energy-model predicate on one reaction coordinate. The delivered Goldschmidt modules import only Mathlib and their own modules, and no shared scalar or theorem exists. This is a registered absence of a delivered relation, not logical non-existence."
+      }
+    }
+  ]
+}

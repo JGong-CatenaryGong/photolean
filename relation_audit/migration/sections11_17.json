@@ -1,0 +1,1619 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "relation-migration-fragment",
+  "scope": "migration-fragment",
+  "sectionRange": {
+    "first": 11,
+    "last": 17
+  },
+  "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+  "leanSource": "PhotoLean/RelationAudit/Full/Sections11_17.lean",
+  "leanSourceSha256": "862cb935a839afe218a3aa2724dee51606598d7773d8869062ae8b6f10ce05a9",
+  "sourceArtifact": "PhotoLean/Relations.lean",
+  "dispositionsArtifact": "relation_audit/dispositions.json",
+  "dispositionsSchemaVersion": "1.0.0",
+  "queue": {
+    "source": "relation_audit/dispositions.json entries with disposition == \"certificate-required\" and 11 <= section <= 17",
+    "expectedCount": 19,
+    "coveredCount": 19,
+    "declarationIds": [
+      "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "D-S12-eg_barrier_eq_kernel",
+      "D-S12-eg_rate_eq_marcus",
+      "D-S12-eg_invertedGap_iff_marcus",
+      "D-S12-ss_s0Surface_eq_kernel",
+      "D-S12-ss_s1Surface_eq_kernel",
+      "D-S12-icvscic_barrier_eq_kernel",
+      "D-S12-icvscic_icRate_eq_marcus",
+      "D-S15-kasha_radBranch_eq_yieldOf",
+      "D-S15-sv_quench_dilutes_yield",
+      "D-S15-phiF_eq_yieldOf",
+      "D-S15-phiP_eq_yieldOf_cascade",
+      "D-S15-einstein_yield_via_qy",
+      "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "D-S15-egBarrier_zero_iff_emEnergy_zero",
+      "D-S15-icvscic_icRate_eq_eg_nrRate",
+      "D-S15-fpRatio_invariant_under_quench",
+      "D-S17-raci_qy_eq_yieldOf_two_channel"
+    ],
+    "outcomeCounts": {
+      "certified": 9,
+      "reclassified": 10
+    }
+  },
+  "outcomeVocabulary": [
+    {
+      "id": "certified",
+      "description": "A kind-correct typed Certificate exists in the section module."
+    },
+    {
+      "id": "reclassified",
+      "description": "No seven-kind certificate is honest; a target category and rationale are recorded."
+    }
+  ],
+  "targetCategoryVocabulary": [
+    {
+      "id": "scoped-relation-documentation",
+      "source": "relation_audit/dispositions.json#dispositionVocabulary",
+      "description": "Scoped or transitive registration documenting how a theory sits on the graph; no direct relation certificate."
+    },
+    {
+      "id": "support-lemma",
+      "source": "relation_audit/dispositions.json#dispositionVocabulary",
+      "description": "Supporting algebraic or model-level lemma; not itself a standalone seven-kind relation certificate."
+    }
+  ],
+  "targetCategoryVocabularyNote": "The fragment uses the R2 disposition vocabulary for reclassification targets; both categories are non-certificate migration outcomes.",
+  "nonClaims": [
+    "This fragment is not a production registry and does not claim 136/136 or resolved coverage.",
+    "Reclassified rows are not certified relations; they are preserved as evidence only.",
+    "A certified definitionalIdentity is a fresh DefEq/rfl check, not propositional equality and not a physical-identity claim.",
+    "No conditionalComposition certificate is created in this fragment: none of the delivered rows supplies two typed parent certificates plus a mediating endpoint.",
+    "The section-11 tie-backs remain transitive-via-kernel registrations; no direct Marcus-SymmetryFactor or BEP-SymmetryFactor relation is claimed.",
+    "No undelivered candidate is promoted, and no RACI-adjacent row outside the 19-entry queue is processed.",
+    "Rows carrying R2 relationRole `composition` or `model-level-composition` are not relabeled as observationalEquivalence: no typed parent chain is delivered, so they are reclassified as support evidence rather than certified as compositions.",
+    "Rows carrying R2 relationRole `transitive-tie-back` remain transitive registrations; no direct Marcus-SymmetryFactor or BEP-SymmetryFactor relation is claimed."
+  ],
+  "entries": [
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "originalDeclaration": "PhotoLean.Relations.symmetryFactor_tsCoordZero_eq_kernel",
+      "section": 11,
+      "sectionTitle": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient",
+      "pairIds": [
+        "P-Marcus-SymmetryFactor"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "transitive-tie-back",
+        "rationale": "A1 tie-back certificate: at equal curvature the SymmetryFactor thermoneutral coordinate is the kernel transition-state coordinate. No row names Marcus directly; the Marcus-SymmetryFactor legacy edge is transitive through the shared kernel, so the migration must keep that transitive reading rather than claim a direct row.",
+        "migrationAction": "Add a typed tie-back certificate and record the transitive-via-kernel boundary."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [
+        {
+          "id": "symmetryFactor.lamPositive",
+          "predicate": "0 < lam",
+          "statement": "0 < lam",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the `Real.sqrt`/division tie-back proof; the equality is only stated at positive curvature"
+        }
+      ],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§11 symmetryFactor_tsCoordZero_eq_kernel (line 632)"
+          },
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+            "locator": "tsCoordZero_eq_kernel_thermoneutral"
+          },
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+            "locator": "tsCoordZero (definition)"
+          },
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "tsCoord (shared kernel definition)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§11 symmetryFactor_tsCoordZero_eq_kernel (PhotoLean/Relations.lean:632)",
+      "targetCategory": "scoped-relation-documentation",
+      "rationale": "The row states a numeric equality of real-valued coordinate functions at the equal-curvature diagonal, `SymmetryFactor.tsCoordZero lam lam = Kernel.tsCoord lam 0`, under the explicit premise `0 < lam`. Its proof goes through `Real.sqrt` algebra and a division identity, so the two sides are not definitionally equal and `DefEq.refl` rejects; nor is the row an implication or equivalence between two theory predicates. The legacy Marcus-SymmetryFactor pair is transitive through the shared kernel object, and no delivered row names Marcus directly. Reclassified as a scoped transitive-via-kernel registration; certifying it as a direct Marcus-SymmetryFactor relation would overstate the delivered content.",
+      "certificationBlockers": [
+        "numeric-tie-back",
+        "not-definitional",
+        "not-statement-level-implication-or-equivalence",
+        "transitive-only-pair"
+      ],
+      "statement": {
+        "form": "numeric-tie-back",
+        "leanStatement": "forall (lam : Real), 0 < lam -> SymmetryFactor.tsCoordZero lam lam = Kernel.tsCoord lam 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqKernel_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "originalDeclaration": "PhotoLean.Relations.symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "section": 11,
+      "sectionTitle": "Adjudicated conflation (class A1): the β = 1/2 symmetry factor vs the structural transfer coefficient",
+      "pairIds": [
+        "P-BEP-SymmetryFactor"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "transitive-tie-back",
+        "rationale": "A1 tie-back certificate: at equal curvature the SymmetryFactor coordinate is the delivered BEP transfer coefficient at thermoneutrality, extending the E1 chain. The BEP-SymmetryFactor legacy edge is transitive through the kernel/E1 chain, not a direct two-theory row.",
+        "migrationAction": "Add a typed tie-back certificate and record the transitive boundary."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [
+        {
+          "id": "symmetryFactor.lamPositive",
+          "predicate": "0 < lam",
+          "statement": "0 < lam",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the `Real.sqrt`/division tie-back proof; the equality is only stated at positive curvature"
+        }
+      ],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§11 symmetryFactor_tsCoordZero_eq_bepTransfer (line 638)"
+          },
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+            "locator": "betaHalf_eq_transfer_thermoneutral"
+          },
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+            "locator": "tsCoordZero (definition)"
+          },
+          {
+            "artifact": "PhotoLean/BEP/Basic.lean",
+            "locator": "transfer (BEP transfer coefficient)"
+          },
+          {
+            "artifact": "PhotoLean/BEP/Criterion.lean",
+            "locator": "transfer_thermoneutral"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§11 symmetryFactor_tsCoordZero_eq_bepTransfer (PhotoLean/Relations.lean:638)",
+      "targetCategory": "scoped-relation-documentation",
+      "rationale": "The row states the numeric equality `SymmetryFactor.tsCoordZero lam lam = BEP.transfer lam 0` at the equal-curvature diagonal under `0 < lam`, proved from the delivered thermoneutral tie-back. It is a specialization equality of real-valued coordinate functions, not a definitional identity (the sides are not defeq) and not a propositional implication or equivalence between two theory statements. The legacy BEP-SymmetryFactor pair is transitive through the kernel/E1 chain, so the row is retained as a scoped transitive registration rather than a direct seven-kind certificate.",
+      "certificationBlockers": [
+        "numeric-tie-back",
+        "not-definitional",
+        "not-statement-level-implication-or-equivalence",
+        "transitive-only-pair"
+      ],
+      "statement": {
+        "form": "numeric-tie-back",
+        "leanStatement": "forall (lam : Real), 0 < lam -> SymmetryFactor.tsCoordZero lam lam = BEP.transfer lam 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.symmetryFactorTsCoordZeroEqBepTransfer_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S12-eg_barrier_eq_kernel",
+      "originalDeclaration": "PhotoLean.Relations.eg_barrier_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "pairIds": [],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Batch definitional pin: the EnergyGapLaw barrier is the kernel barrier. It is a kernel-to-theory rfl pin, not a direct EnergyGapLaw-Marcus relation; a definitionalIdentity certificate is required.",
+        "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.EGKernelCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 eg_barrier_eq_kernel (line 669)"
+          },
+          {
+            "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+            "locator": "nrBarrier and cert_nrBarrier"
+          },
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "barrier (shared kernel definition)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§12 eg_barrier_eq_kernel (PhotoLean/Relations.lean:669)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.EnergyGapLaw",
+          "statementId": "PhotoLean.EnergyGapLaw.nrBarrier",
+          "term": "PhotoLean.EnergyGapLaw.nrBarrier lam x",
+          "provenance": "PhotoLean/EnergyGapLaw/Basic.lean#nrBarrier"
+        },
+        "right": {
+          "theory": "PhotoLean.Kernel",
+          "statementId": "PhotoLean.Kernel.barrier",
+          "term": "PhotoLean.Kernel.barrier lam x",
+          "provenance": "PhotoLean/Kernel.lean#barrier"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGKernelCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGKernelCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.EGKernelCtx => True",
+        "rflCheck": {
+          "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGKernelCtx => PhotoLean.EnergyGapLaw.nrBarrier δ.lam δ.x)",
+          "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGKernelCtx => PhotoLean.Kernel.barrier δ.lam δ.x)"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernel_rfl",
+          "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_original",
+          "note": "The certificate field `same` is `DefEq.refl`; a fresh kernel elaboration accepts the two translated functions as definitionally equal. This is a definitional check, not propositional equality and not a physical-identity claim."
+        }
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S12-eg_rate_eq_marcus",
+      "originalDeclaration": "PhotoLean.Relations.eg_rate_eq_marcus",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "pairIds": [
+        "P-Marcus-EnergyGapLaw"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Batch definitional pin: the EnergyGapLaw rate is the Marcus rate. This is a direct EnergyGapLaw-Marcus definitional identity and needs a typed certificate; it is not a theorem-level equivalence.",
+        "migrationAction": "Add a definitionalIdentity certificate for the EnergyGapLaw-Marcus rate."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.EGRateCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 eg_rate_eq_marcus (line 673)"
+          },
+          {
+            "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+            "locator": "nrRate and cert_nrRate"
+          },
+          {
+            "artifact": "PhotoLean/Marcus/Basic.lean",
+            "locator": "rate (Marcus rate definition)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§12 eg_rate_eq_marcus (PhotoLean/Relations.lean:673)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.EnergyGapLaw",
+          "statementId": "PhotoLean.EnergyGapLaw.nrRate",
+          "term": "PhotoLean.EnergyGapLaw.nrRate A lam kB T x",
+          "provenance": "PhotoLean/EnergyGapLaw/Basic.lean#nrRate"
+        },
+        "right": {
+          "theory": "PhotoLean.Marcus",
+          "statementId": "PhotoLean.Marcus.rate",
+          "term": "PhotoLean.Marcus.rate A lam kB T x",
+          "provenance": "PhotoLean/Marcus/Basic.lean#rate"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGRateCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGRateCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.EGRateCtx => True",
+        "rflCheck": {
+          "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGRateCtx => PhotoLean.EnergyGapLaw.nrRate δ.A δ.lam δ.kB δ.T δ.x)",
+          "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGRateCtx => PhotoLean.Marcus.rate δ.A δ.lam δ.kB δ.T δ.x)"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcus_rfl",
+          "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_original",
+          "note": "The certificate field `same` is `DefEq.refl` after delta reduction of both definitions; the delivered propositional equality is only a reuse witness."
+        }
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+      "originalDeclaration": "PhotoLean.Relations.eg_invertedGap_iff_marcus",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "pairIds": [
+        "P-Marcus-EnergyGapLaw"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "direct-equivalence",
+        "rationale": "Batch equivalence: the EnergyGapLaw inverted-gap predicate is the Marcus inverted region. It is a propositional equivalence, not a definitional identity, and it needs a typed equivalence certificate.",
+        "migrationAction": "Add a typed equivalence certificate for the inverted-gap predicate."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+      "relationKind": "equivalence",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.EGInvertedCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 eg_invertedGap_iff_marcus (line 678)"
+          },
+          {
+            "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+            "locator": "InvertedGap and cert_invertedGap"
+          },
+          {
+            "artifact": "PhotoLean/Marcus/Basic.lean",
+            "locator": "InvertedRegion"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§12 eg_invertedGap_iff_marcus (PhotoLean/Relations.lean:678)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "equivalence",
+        "left": {
+          "theory": "PhotoLean.EnergyGapLaw",
+          "statementId": "PhotoLean.EnergyGapLaw.InvertedGap",
+          "predicate": "PhotoLean.EnergyGapLaw.InvertedGap lam x",
+          "provenance": "PhotoLean/EnergyGapLaw/Basic.lean#InvertedGap"
+        },
+        "right": {
+          "theory": "PhotoLean.Marcus",
+          "statementId": "PhotoLean.Marcus.InvertedRegion",
+          "predicate": "PhotoLean.Marcus.InvertedRegion lam x",
+          "provenance": "PhotoLean/Marcus/Basic.lean#InvertedRegion"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGInvertedCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGInvertedCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.EGInvertedCtx => True"
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+      "originalDeclaration": "PhotoLean.Relations.ss_s0Surface_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "pairIds": [],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Batch definitional pin: the StokesShift ground surface is the kernel reactant surface. It is a kernel-to-theory rfl pin, not a direct cross-theory pair relation.",
+        "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.reactantSurface."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.SSGroundCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 ss_s0Surface_eq_kernel (line 683)"
+          },
+          {
+            "artifact": "PhotoLean/StokesShift/Basic.lean",
+            "locator": "s0Surface and cert_s0Surface"
+          },
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "reactantSurface (shared kernel definition)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§12 ss_s0Surface_eq_kernel (PhotoLean/Relations.lean:683)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.StokesShift",
+          "statementId": "PhotoLean.StokesShift.s0Surface",
+          "term": "PhotoLean.StokesShift.s0Surface lam q",
+          "provenance": "PhotoLean/StokesShift/Basic.lean#s0Surface"
+        },
+        "right": {
+          "theory": "PhotoLean.Kernel",
+          "statementId": "PhotoLean.Kernel.reactantSurface",
+          "term": "PhotoLean.Kernel.reactantSurface lam q",
+          "provenance": "PhotoLean/Kernel.lean#reactantSurface"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSGroundCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSGroundCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.SSGroundCtx => True",
+        "rflCheck": {
+          "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSGroundCtx => PhotoLean.StokesShift.s0Surface δ.lam δ.q)",
+          "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSGroundCtx => PhotoLean.Kernel.reactantSurface δ.lam δ.q)"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernel_rfl",
+          "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_original",
+          "note": "Kernel-to-theory definitional pin; the StokesShift definition is literally the kernel body."
+        }
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+      "originalDeclaration": "PhotoLean.Relations.ss_s1Surface_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "pairIds": [],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Batch definitional pin: the StokesShift excited surface is the kernel product surface. It is a kernel-to-theory rfl pin and should remain a definitional certificate rather than an edge.",
+        "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.productSurface."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.SSExcitedCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 ss_s1Surface_eq_kernel (line 688)"
+          },
+          {
+            "artifact": "PhotoLean/StokesShift/Basic.lean",
+            "locator": "s1Surface and cert_s1Surface"
+          },
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "productSurface (shared kernel definition)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§12 ss_s1Surface_eq_kernel (PhotoLean/Relations.lean:688)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.StokesShift",
+          "statementId": "PhotoLean.StokesShift.s1Surface",
+          "term": "PhotoLean.StokesShift.s1Surface lam e00 q",
+          "provenance": "PhotoLean/StokesShift/Basic.lean#s1Surface"
+        },
+        "right": {
+          "theory": "PhotoLean.Kernel",
+          "statementId": "PhotoLean.Kernel.productSurface",
+          "term": "PhotoLean.Kernel.productSurface lam e00 q",
+          "provenance": "PhotoLean/Kernel.lean#productSurface"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSExcitedCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSExcitedCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.SSExcitedCtx => True",
+        "rflCheck": {
+          "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSExcitedCtx => PhotoLean.StokesShift.s1Surface δ.lam δ.e00 δ.q)",
+          "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.SSExcitedCtx => PhotoLean.Kernel.productSurface δ.lam δ.e00 δ.q)"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernel_rfl",
+          "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_original",
+          "note": "Kernel-to-theory definitional pin; the StokesShift definition is literally the kernel body."
+        }
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+      "originalDeclaration": "PhotoLean.Relations.icvscic_barrier_eq_kernel",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "pairIds": [],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Batch definitional pin: the ICvsISC Franck-Condon barrier is the kernel barrier. It is a kernel-to-theory rfl pin, not a direct two-theory relation.",
+        "migrationAction": "Add a definitionalIdentity certificate against PhotoLean.Kernel.barrier."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.ICBarrierCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 icvscic_barrier_eq_kernel (line 693)"
+          },
+          {
+            "artifact": "PhotoLean/ICvsISC/Basic.lean",
+            "locator": "fcBarrier and cert_fcBarrier"
+          },
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "barrier (shared kernel definition)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§12 icvscic_barrier_eq_kernel (PhotoLean/Relations.lean:693)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.ICvsISC",
+          "statementId": "PhotoLean.ICvsISC.fcBarrier",
+          "term": "PhotoLean.ICvsISC.fcBarrier lam x",
+          "provenance": "PhotoLean/ICvsISC/Basic.lean#fcBarrier"
+        },
+        "right": {
+          "theory": "PhotoLean.Kernel",
+          "statementId": "PhotoLean.Kernel.barrier",
+          "term": "PhotoLean.Kernel.barrier lam x",
+          "provenance": "PhotoLean/Kernel.lean#barrier"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICBarrierCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICBarrierCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.ICBarrierCtx => True",
+        "rflCheck": {
+          "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICBarrierCtx => PhotoLean.ICvsISC.fcBarrier δ.lam δ.x)",
+          "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICBarrierCtx => PhotoLean.Kernel.barrier δ.lam δ.x)"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernel_rfl",
+          "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_original",
+          "note": "Kernel-to-theory definitional pin; the ICvsISC Franck-Condon barrier is literally the kernel barrier."
+        }
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+      "originalDeclaration": "PhotoLean.Relations.icvscic_icRate_eq_marcus",
+      "section": 12,
+      "sectionTitle": "Kernel certificates of the photophysics batch (definitional pins)",
+      "pairIds": [
+        "P-Marcus-ICvsISC"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Batch definitional pin: the ICvsISC internal-conversion rate is the Marcus rate. This is a direct Marcus-ICvsISC definitional identity and needs a typed certificate; it must not be conflated with the separate EnergyGapLaw rate identity.",
+        "migrationAction": "Add a definitionalIdentity certificate for the Marcus-ICvsISC rate."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.ICRateCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§12 icvscic_icRate_eq_marcus (line 698)"
+          },
+          {
+            "artifact": "PhotoLean/ICvsISC/Basic.lean",
+            "locator": "icRate and cert_icRate"
+          },
+          {
+            "artifact": "PhotoLean/Marcus/Basic.lean",
+            "locator": "rate (Marcus rate definition)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§12 icvscic_icRate_eq_marcus (PhotoLean/Relations.lean:698)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.ICvsISC",
+          "statementId": "PhotoLean.ICvsISC.icRate",
+          "term": "PhotoLean.ICvsISC.icRate AI lamI kB T xI",
+          "provenance": "PhotoLean/ICvsISC/Basic.lean#icRate"
+        },
+        "right": {
+          "theory": "PhotoLean.Marcus",
+          "statementId": "PhotoLean.Marcus.rate",
+          "term": "PhotoLean.Marcus.rate AI lamI kB T xI",
+          "provenance": "PhotoLean/Marcus/Basic.lean#rate"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICRateCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICRateCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.ICRateCtx => True",
+        "rflCheck": {
+          "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICRateCtx => PhotoLean.ICvsISC.icRate δ.AI δ.lamI δ.kB δ.T δ.xI)",
+          "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.ICRateCtx => PhotoLean.Marcus.rate δ.AI δ.lamI δ.kB δ.T δ.xI)"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcus_rfl",
+          "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_original",
+          "note": "Direct ICvsISC-Marcus definitional pin; `DefEq.refl` accepts the unfolded bodies."
+        }
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+      "originalDeclaration": "PhotoLean.Relations.kasha_radBranch_eq_yieldOf",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-Kasha-QuantumYield"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Composition: the Kasha radiative branch is the two-channel quantum yield. It is a delivered composition result and needs a typed certificate; it is not a definitional identity despite the algebraic unfolding.",
+        "migrationAction": "Add a typed composition certificate for the Kasha-QuantumYield link."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 kasha_radBranch_eq_yieldOf (line 776)"
+          },
+          {
+            "artifact": "PhotoLean/Kasha/Basic.lean",
+            "locator": "radBranch and decay"
+          },
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "yieldOf and totalRate"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 kasha_radBranch_eq_yieldOf (PhotoLean/Relations.lean:776)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem is a pointwise algebraic identity between `Kasha.radBranch` and a two-channel `QuantumYield.yieldOf`, proved by unfolding the definitions and normalizing a `Fin 2` sum with `Fin.sum_univ_succ`; the elaborator rejects `DefEq.refl` for the two sides, so it is not a definitional identity. It also has no parent predicate, mediating endpoint, or typed parent certificate, so it is not a conditional composition under the proof-relevant contract. Reclassified as a support lemma for the Kasha-QuantumYield reading; no seven-kind certificate is manufactured.",
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "pointwise-functional-identity",
+        "leanStatement": "forall (rad ic : Nat -> Real) (n : Nat), Kasha.radBranch rad ic n = QuantumYield.yieldOf ![rad n, ic n] 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.kashaRadBranchEqYieldOf_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S15-sv_quench_dilutes_yield",
+      "originalDeclaration": "PhotoLean.Relations.sv_quench_dilutes_yield",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-SternVolmer-QuantumYield"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Composition: dynamic quenching is exactly quantum-yield dilution. The theorem consumes both the SternVolmer ratio and the QuantumYield functional, so it is a genuine composition and needs a typed certificate.",
+        "migrationAction": "Add a typed composition certificate for the SternVolmer-QuantumYield link."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [
+        {
+          "id": "quantumYield.totalPositive",
+          "predicate": "0 < kr + knr",
+          "statement": "0 < kr + knr",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity to keep the unquenched total nonzero"
+        },
+        {
+          "id": "sternVolmer.quenchNonnegative",
+          "predicate": "0 ≤ kq * q",
+          "statement": "0 ≤ kq * q",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity for the quenched channel"
+        }
+      ],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 sv_quench_dilutes_yield (line 785)"
+          },
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "yieldOf and totalRate"
+          },
+          {
+            "artifact": "PhotoLean/SternVolmer/Basic.lean",
+            "locator": "svRatioDyn and dynDecay"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 sv_quench_dilutes_yield (PhotoLean/Relations.lean:785)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem is a conditional algebraic identity between `QuantumYield.yieldOf` and `SternVolmer.svRatioDyn`, requiring `0 < kr + knr` and `0 ≤ kq * q`. It is not a definitional identity (`DefEq.refl` fails), and it does not compose two typed parent certificates: the Stern-Volmer side is the two-parameter function `svRatioDyn (kr + knr) kq q`, not an implication or equivalence parent with a mediating predicate. Reclassified as an algebraic support lemma; the explicit positivity premises are retained in the fragment.",
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "conditional-pointwise-functional-identity",
+        "leanStatement": "forall (kr knr kq q : Real), 0 < kr + knr -> 0 <= kq * q -> QuantumYield.yieldOf ![kr, knr] 0 = QuantumYield.yieldOf ![kr, knr + kq * q] 0 * SternVolmer.svRatioDyn (kr + knr) kq q"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.svQuenchDilutesYield_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S15-phiF_eq_yieldOf",
+      "originalDeclaration": "PhotoLean.Relations.phiF_eq_yieldOf",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-QuantumYield-FluorPhos"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Composition: the FluorPhos fluorescence yield is the three-channel quantum yield. It is a typed composition candidate, not a definitional alias of a shared definition.",
+        "migrationAction": "Add a typed composition certificate for the FluorPhos-QuantumYield link."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 phiF_eq_yieldOf (line 802)"
+          },
+          {
+            "artifact": "PhotoLean/FluorPhos/Basic.lean",
+            "locator": "phiF and s1Decay"
+          },
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "yieldOf and totalRate"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 phiF_eq_yieldOf (PhotoLean/Relations.lean:802)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem is a pointwise algebraic identity between `FluorPhos.phiF` and a three-channel `QuantumYield.yieldOf`, proved by unfolding definitions and normalizing a `Fin 3` sum. The sides are not definitionally equal, and there is no typed parent or middle endpoint to consume; the row is an algebraic bridge/support fact, not a seven-kind relation. Reclassified as a support lemma.",
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "pointwise-functional-identity",
+        "leanStatement": "forall (kF kISC kIC : Real), FluorPhos.phiF kF kISC kIC = QuantumYield.yieldOf ![kF, kISC, kIC] 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.phiFEqYieldOf_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+      "originalDeclaration": "PhotoLean.Relations.phiP_eq_yieldOf_cascade",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-QuantumYield-FluorPhos"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Composition: the FluorPhos phosphorescence yield is a cascade product of two quantum yields. It consumes the QuantumYield layer twice and is a genuine composition, not an edge label alone.",
+        "migrationAction": "Add a typed composition certificate for the phosphorescence cascade."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 phiP_eq_yieldOf_cascade (line 808)"
+          },
+          {
+            "artifact": "PhotoLean/FluorPhos/Basic.lean",
+            "locator": "phiP, iscBranch, t1BranchP, s1Decay"
+          },
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "yieldOf and totalRate"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 phiP_eq_yieldOf_cascade (PhotoLean/Relations.lean:808)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem is a pointwise algebraic factorization of `FluorPhos.phiP` as the product of two `QuantumYield.yieldOf` values. The product is not a transitive implication/equivalence chain, so `ConditionalComposition` cannot represent it without inventing parent predicates; `DefEq.refl` also rejects the two sides. Reclassified as a support lemma recording the cascade factorization; this does not claim a typed composition.",
+      "certificationBlockers": [
+        "product-of-yields",
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "pointwise-functional-identity",
+        "leanStatement": "forall (kF kISC kIC kP kNR : Real), FluorPhos.phiP kF kISC kIC kP kNR = QuantumYield.yieldOf ![kF, kISC, kIC] 1 * QuantumYield.yieldOf ![kP, kNR] 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.phiPEqYieldOfCascade_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S15-einstein_yield_via_qy",
+      "originalDeclaration": "PhotoLean.Relations.einstein_yield_via_qy",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-QuantumYield-Einstein"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Composition: the two-channel fluorescence yield with radiative rate A is the Einstein-side anchor of the radiative channel. It is a typed composition candidate between Einstein and QuantumYield.",
+        "migrationAction": "Add a typed composition certificate for the Einstein-QuantumYield anchor."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 einstein_yield_via_qy (line 826)"
+          },
+          {
+            "artifact": "PhotoLean/Einstein/Basic.lean",
+            "locator": "tauR"
+          },
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "yieldOf and totalRate"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 einstein_yield_via_qy (PhotoLean/Relations.lean:826)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem is a pointwise algebraic identity between `A * Einstein.tauR (A + kNR)` and a two-channel `QuantumYield.yieldOf`. It succeeds by unfolding and a field rewrite, not by `rfl`, and it has no typed parent or middle predicate. It is an algebraic support fact for the Einstein-QuantumYield anchor, not a seven-kind certificate. Reclassified as a support lemma.",
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "pointwise-functional-identity",
+        "leanStatement": "forall (A kNR : Real), A * Einstein.tauR (A + kNR) = QuantumYield.yieldOf ![A, kNR] 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.einsteinYieldViaQY_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "originalDeclaration": "PhotoLean.Relations.fretEff6_eq_one_sub_yieldOf",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-QuantumYield-Forster"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Composition: the FRET efficiency is one minus the donor yield of the channel-added model. It is a genuine composition consuming Forster and QuantumYield, not a definitional identity.",
+        "migrationAction": "Add a typed composition certificate for the Forster-QuantumYield link."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [
+        {
+          "id": "forster.kdPositive",
+          "predicate": "0 < kD",
+          "statement": "0 < kD",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity to make the donor rate positive"
+        },
+        {
+          "id": "forster.r6Nonnegative",
+          "predicate": "0 ≤ r6",
+          "statement": "0 ≤ r6",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity for the `R^6` channel"
+        },
+        {
+          "id": "forster.RNonzero",
+          "predicate": "R ≠ 0",
+          "statement": "R ≠ 0",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity to make `R^6` nonzero"
+        }
+      ],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 fretEff6_eq_one_sub_yieldOf (line 836)"
+          },
+          {
+            "artifact": "PhotoLean/Forster/Basic.lean",
+            "locator": "fretEff6"
+          },
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "yieldOf and totalRate"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 fretEff6_eq_one_sub_yieldOf (PhotoLean/Relations.lean:836)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem is a conditional algebraic identity between `Forster.fretEff6` and `1 - QuantumYield.yieldOf` for the channel-added donor model, requiring `0 < kD`, `0 ≤ r6`, and `R ≠ 0`. It is not definitional (the proof uses `field_simp`/`ring`), and it has no typed parent certificates; the FRET side is a geometry-level efficiency, not a parent implication or equivalence. Reclassified as a support lemma.",
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "conditional-pointwise-functional-identity",
+        "leanStatement": "forall (kD r6 R : Real), 0 < kD -> 0 <= r6 -> R != 0 -> Forster.fretEff6 r6 R = 1 - QuantumYield.yieldOf ![kD, kD * (r6 / R ^ 6)] 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.fretEff6EqOneSubYieldOf_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+      "originalDeclaration": "PhotoLean.Relations.egBarrier_zero_iff_emEnergy_zero",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-EnergyGapLaw-StokesShift"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "direct-equivalence",
+        "rationale": "Equivalence: the EnergyGapLaw barrier vanishes exactly when the Stokes emission window closes. It is a genuine cross-theory equivalence and needs a typed certificate with the lam != 0 premise.",
+        "migrationAction": "Add a typed equivalence certificate for the emission-window boundary."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+      "relationKind": "equivalence",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.EGStokesCtx",
+      "premises": [
+        {
+          "id": "energyGapLaw.lamNonzero",
+          "predicate": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGStokesCtx => δ.lam ≠ 0",
+          "statement": "lam ≠ 0",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered `egBarrier_zero_iff_emEnergy_zero` proof (division by `4*lam`); at `lam = 0` the equivalence is not asserted"
+        }
+      ],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 egBarrier_zero_iff_emEnergy_zero (line 871)"
+          },
+          {
+            "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+            "locator": "nrBarrier"
+          },
+          {
+            "artifact": "PhotoLean/StokesShift/Basic.lean",
+            "locator": "emEnergy, s0Surface, s1Surface"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 egBarrier_zero_iff_emEnergy_zero (PhotoLean/Relations.lean:871)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "equivalence",
+        "left": {
+          "theory": "PhotoLean.EnergyGapLaw",
+          "statementId": "PhotoLean.EnergyGapLaw.nrBarrier_eq_zero",
+          "predicate": "PhotoLean.EnergyGapLaw.nrBarrier lam e00 = 0",
+          "provenance": "PhotoLean/EnergyGapLaw/Basic.lean#nrBarrier"
+        },
+        "right": {
+          "theory": "PhotoLean.StokesShift",
+          "statementId": "PhotoLean.StokesShift.emEnergy_eq_zero",
+          "predicate": "PhotoLean.StokesShift.emEnergy lam e00 = 0",
+          "provenance": "PhotoLean/StokesShift/Basic.lean#emEnergy"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGStokesCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGStokesCtx => δ"
+        },
+        "premisePredicate": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGStokesCtx => δ.lam ≠ 0"
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+      "originalDeclaration": "PhotoLean.Relations.icvscic_icRate_eq_eg_nrRate",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-EnergyGapLaw-ICvsISC"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Definitional pin: the ICvsISC internal-conversion rate is the EnergyGapLaw nonradiative rate. Both bodies coincide after unfolding the barriers, so it is a definitionalIdentity candidate, not a theorem-level equivalence.",
+        "migrationAction": "Add a definitionalIdentity certificate for the ICvsISC-EnergyGapLaw rate."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_premiseIDs",
+      "sharedContext": "PhotoLean.RelationAudit.Full.Sections11_17.EGICRateCtx",
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 icvscic_icRate_eq_eg_nrRate (line 889)"
+          },
+          {
+            "artifact": "PhotoLean/ICvsISC/Basic.lean",
+            "locator": "icRate and fcBarrier"
+          },
+          {
+            "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+            "locator": "nrRate and nrBarrier"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 icvscic_icRate_eq_eg_nrRate (PhotoLean/Relations.lean:889)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections11_17",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.ICvsISC",
+          "statementId": "PhotoLean.ICvsISC.icRate",
+          "term": "PhotoLean.ICvsISC.icRate A lam kB T x",
+          "provenance": "PhotoLean/ICvsISC/Basic.lean#icRate"
+        },
+        "right": {
+          "theory": "PhotoLean.EnergyGapLaw",
+          "statementId": "PhotoLean.EnergyGapLaw.nrRate",
+          "term": "PhotoLean.EnergyGapLaw.nrRate A lam kB T x",
+          "provenance": "PhotoLean/EnergyGapLaw/Basic.lean#nrRate"
+        },
+        "translations": {
+          "left": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGICRateCtx => δ",
+          "right": "fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGICRateCtx => δ"
+        },
+        "premisePredicate": "fun _ : PhotoLean.RelationAudit.Full.Sections11_17.EGICRateCtx => True",
+        "rflCheck": {
+          "lhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGICRateCtx => PhotoLean.ICvsISC.icRate δ.A δ.lam δ.kB δ.T δ.x)",
+          "rhs": "(fun δ : PhotoLean.RelationAudit.Full.Sections11_17.EGICRateCtx => PhotoLean.EnergyGapLaw.nrRate δ.A δ.lam δ.kB δ.T δ.x)"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLaw_rfl",
+          "sourceTheorem": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_original",
+          "note": "Direct ICvsISC-EnergyGapLaw definitional pin; the certificate uses a fresh `DefEq.refl`."
+        }
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S15-fpRatio_invariant_under_quench",
+      "originalDeclaration": "PhotoLean.Relations.fpRatio_invariant_under_quench",
+      "section": 15,
+      "sectionTitle": "Composition edges of the batch (proved here)",
+      "pairIds": [
+        "P-SternVolmer-FluorPhos"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "model-level-composition",
+        "rationale": "Quench invariance of the fluorescence/phosphorescence ratio. The SternVolmer side is encoded as the added rate kq*q rather than through a SternVolmer declaration, so this is a model-level composition; a typed certificate needs an explicit translation/bridge before it can be a composition record.",
+        "migrationAction": "Add a typed certificate only after declaring the kq*q translation; do not claim a typed parent composition yet."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [
+        {
+          "id": "fluorPhos.kfPositive",
+          "predicate": "0 < kF",
+          "statement": "0 < kF",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity for the S1 branching ratio"
+        },
+        {
+          "id": "fluorPhos.s1DecayPositive",
+          "predicate": "0 < FluorPhos.s1Decay kF kISC kIC",
+          "statement": "0 < FluorPhos.s1Decay kF kISC kIC",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity for the unquenched S1 denominator"
+        },
+        {
+          "id": "fluorPhos.s1DecayQuenchedPositive",
+          "predicate": "0 < FluorPhos.s1Decay kF kISC (kIC + kq * q)",
+          "statement": "0 < FluorPhos.s1Decay kF kISC (kIC + kq * q)",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity for the quenched S1 denominator"
+        },
+        {
+          "id": "fluorPhos.t1DecayPositive",
+          "predicate": "0 < kP + kNR",
+          "statement": "0 < kP + kNR",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by the delivered field identity for the T1 denominator"
+        }
+      ],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§15 fpRatio_invariant_under_quench (line 896)"
+          },
+          {
+            "artifact": "PhotoLean/FluorPhos/Basic.lean",
+            "locator": "phiP, phiF, iscBranch, t1BranchP, s1Decay"
+          },
+          {
+            "artifact": "PhotoLean/SternVolmer/Basic.lean",
+            "locator": "svRatioDyn/dynDecay (the SV side is encoded as kq*q)"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§15 fpRatio_invariant_under_quench (PhotoLean/Relations.lean:896)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem states that the fluorescence/phosphorescence ratio is invariant when the S1 internal-conversion channel is increased by `kq * q`, under explicit positivity premises. The Stern-Volmer side is encoded as the added rate `kq * q`, not as a delivered `SternVolmer` declaration, so there is no typed Stern-Volmer parent to consume; the row is a model-level identity rather than a conditional composition. The R2 ledger already required a translation/bridge before any composition claim. Reclassified as a support lemma with the model-level-composition boundary recorded.",
+      "certificationBlockers": [
+        "model-level-identity",
+        "stern-volmer-side-is-added-rate",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "model-level-pointwise-functional-identity",
+        "leanStatement": "forall (kF kISC kIC kP kNR kq q : Real), 0 < kF -> 0 < FluorPhos.s1Decay kF kISC kIC -> 0 < FluorPhos.s1Decay kF kISC (kIC + kq * q) -> 0 < kP + kNR -> FluorPhos.phiP kF kISC (kIC + kq * q) kP kNR / FluorPhos.phiF kF kISC (kIC + kq * q) = FluorPhos.phiP kF kISC kIC kP kNR / FluorPhos.phiF kF kISC kIC"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.fpRatioInvariantUnderQuench_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+      "originalDeclaration": "PhotoLean.Relations.raci_qy_eq_yieldOf_two_channel",
+      "section": 17,
+      "sectionTitle": "The seventeenth node: RACI (Restricted Access to a Conical Intersection)",
+      "pairIds": [
+        "P-QuantumYield-RACI"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Composition certificate: the RACI quantum yield is the two-channel QuantumYield. It consumes the QuantumYield layer and is a genuine composition, not a definitional alias.",
+        "migrationAction": "Add a typed composition certificate for the RACI-QuantumYield link."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "certificateConstructor": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "leanKindWitness": null,
+      "leanPremiseWitness": null,
+      "sharedContext": null,
+      "premises": [],
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§17 raci_qy_eq_yieldOf_two_channel (line 1047)"
+          },
+          {
+            "artifact": "PhotoLean/RACI/Jablonski.lean",
+            "locator": "quantumYield"
+          },
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "yieldOf and totalRate"
+          }
+        ]
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§17 raci_qy_eq_yieldOf_two_channel (PhotoLean/Relations.lean:1047)",
+      "targetCategory": "support-lemma",
+      "rationale": "The theorem is a pointwise algebraic identity between `RACI.quantumYield` and a two-channel `QuantumYield.yieldOf`, proved by unfolding and normalizing the finite sum. The sides are not definitionally equal, and the row has no typed parent or mediating endpoint; it is an algebraic support fact for the RACI-QuantumYield link, not a conditional composition. Reclassified as a support lemma; no undelivered RACI candidate is invented.",
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "no-typed-parent",
+        "no-seven-kind-constructor"
+      ],
+      "statement": {
+        "form": "pointwise-functional-identity",
+        "leanStatement": "forall (kr knr : Real), RACI.quantumYield kr knr = QuantumYield.yieldOf ![kr, knr] 0"
+      },
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections11_17.raciQyEqYieldOfTwoChannel_evidence",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    }
+  ],
+  "migrationPolicy": {
+    "certifyWhen": "The delivered theorem supplies a definitional kernel pin (fresh DefEq.refl) or a direct propositional equivalence between the two theory predicates.",
+    "reclassifyWhen": "The row is a numeric tie-back, an algebraic value identity, a model-level identity without a delivered translation, or a composition without typed parent certificates.",
+    "compositionRule": "No row whose R2 relationRole is `composition` or `model-level-composition` is relabeled as observationalEquivalence or conditionalComposition; without two typed parent certificates and a mediating endpoint it is reclassified as evidence.",
+    "transitiveRule": "Rows whose R2 pair association is transitive remain scoped transitive registrations; no direct pair relation is claimed."
+  }
+}

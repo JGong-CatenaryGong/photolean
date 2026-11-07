@@ -1,0 +1,5313 @@
+{
+  "schemaVersion": "1.2.0",
+  "mode": "full",
+  "pairCount": 136,
+  "snapshots": [
+    {
+      "id": "snap-source-7ad25a5",
+      "treeSha": "7ad25a5f03a88acc3af03f65149cf2ac102e7dac",
+      "toolchain": "leanprover/lean4:v4.17.0",
+      "schemaSha256": "90b0f6f450927670792169a0334255f589a5ef73af34b5a1a1b62105fc0774c0",
+      "artifacts": {
+        "PhotoLean/BEP/Basic.lean": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+        "PhotoLean/Einstein/Basic.lean": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+        "PhotoLean/EnergyGapLaw/Basic.lean": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+        "PhotoLean/FluorPhos/Basic.lean": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+        "PhotoLean/Forster/Basic.lean": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+        "PhotoLean/Goldschmidt/Basic.lean": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+        "PhotoLean/Hammond/Basic.lean": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+        "PhotoLean/ICvsISC/Basic.lean": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+        "PhotoLean/Kasha/Basic.lean": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+        "PhotoLean/KashaVavilov/Basic.lean": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+        "PhotoLean/Marcus/Barrier.lean": "b5e02d358fcf4926843a0feeea25283b0c810a69538b2a7afc4733c0c97f804f",
+        "PhotoLean/QuantumYield/Basic.lean": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+        "PhotoLean/RACI/Accessibility.lean": "43fc674f4340ed8ed404f2a636a1b16d7ef6dd6de4858639744ca2fc53be6f74",
+        "PhotoLean/Sabatier/Basic.lean": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+        "PhotoLean/SternVolmer/Basic.lean": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+        "PhotoLean/StokesShift/Basic.lean": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+        "PhotoLean/SymmetryFactor/Basic.lean": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "id": "global",
+      "kind": "global",
+      "description": "Unrestricted comparison context over the shared semantic domain.",
+      "theories": [
+        "Marcus",
+        "Hammond",
+        "BEP",
+        "Kasha",
+        "Sabatier",
+        "Goldschmidt",
+        "SymmetryFactor",
+        "KashaVavilov",
+        "SternVolmer",
+        "QuantumYield",
+        "FluorPhos",
+        "EnergyGapLaw",
+        "StokesShift",
+        "ICvsISC",
+        "Forster",
+        "Einstein",
+        "RACI"
+      ],
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "docs/RELATION-AUDIT-CONTRACT.md",
+            "locator": "section 4"
+          }
+        ],
+        "rationale": "The contract's shared-context Delta is unrestricted in the pilot."
+      }
+    }
+  ],
+  "theoryInventory": [
+    "Marcus",
+    "Hammond",
+    "BEP",
+    "Kasha",
+    "Sabatier",
+    "Goldschmidt",
+    "SymmetryFactor",
+    "KashaVavilov",
+    "SternVolmer",
+    "QuantumYield",
+    "FluorPhos",
+    "EnergyGapLaw",
+    "StokesShift",
+    "ICvsISC",
+    "Forster",
+    "Einstein",
+    "RACI"
+  ],
+  "statements": [
+    {
+      "id": "marcus.barrier",
+      "theory": "Marcus",
+      "artifact": "PhotoLean/Marcus/Barrier.lean",
+      "version": "1.0.0",
+      "sha256": "b5e02d358fcf4926843a0feeea25283b0c810a69538b2a7afc4733c0c97f804f",
+      "context": "Marcus statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Marcus",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Marcus/Barrier.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Marcus barrier and reorganization-energy statement surface"
+      }
+    },
+    {
+      "id": "hammond.gap",
+      "theory": "Hammond",
+      "artifact": "PhotoLean/Hammond/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+      "context": "Hammond statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Hammond",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Hammond/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Hammond forward/reverse gap statement surface"
+      }
+    },
+    {
+      "id": "bep.transfer",
+      "theory": "BEP",
+      "artifact": "PhotoLean/BEP/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+      "context": "BEP statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.BEP",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/BEP/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Bell-Evans-Polanyi transfer coefficient statement surface"
+      }
+    },
+    {
+      "id": "kasha.rate",
+      "theory": "Kasha",
+      "artifact": "PhotoLean/Kasha/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+      "context": "Kasha statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Kasha",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Kasha/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Kasha internal-conversion rate statement surface"
+      }
+    },
+    {
+      "id": "sabatier.volcano",
+      "theory": "Sabatier",
+      "artifact": "PhotoLean/Sabatier/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+      "context": "Sabatier statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Sabatier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Sabatier/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Sabatier volcano activity statement surface"
+      }
+    },
+    {
+      "id": "goldschmidt.tolerance",
+      "theory": "Goldschmidt",
+      "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+      "context": "Goldschmidt statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Goldschmidt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Goldschmidt tolerance-factor statement surface"
+      }
+    },
+    {
+      "id": "symmetry.factor",
+      "theory": "SymmetryFactor",
+      "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+      "context": "SymmetryFactor statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "symmetry-factor statement surface"
+      }
+    },
+    {
+      "id": "kashavavilov.shift",
+      "theory": "KashaVavilov",
+      "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+      "context": "KashaVavilov statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Kasha-Vavilov shift statement surface"
+      }
+    },
+    {
+      "id": "sternvolmer.intensity",
+      "theory": "SternVolmer",
+      "artifact": "PhotoLean/SternVolmer/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+      "context": "SternVolmer statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/SternVolmer/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Stern-Volmer intensity statement surface"
+      }
+    },
+    {
+      "id": "quantumyield.yield",
+      "theory": "QuantumYield",
+      "artifact": "PhotoLean/QuantumYield/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+      "context": "QuantumYield statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/QuantumYield/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "quantum-yield statement surface"
+      }
+    },
+    {
+      "id": "fluorphos.yield",
+      "theory": "FluorPhos",
+      "artifact": "PhotoLean/FluorPhos/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+      "context": "FluorPhos statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/FluorPhos/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "fluorophore phosphorescence statement surface"
+      }
+    },
+    {
+      "id": "energygap.law",
+      "theory": "EnergyGapLaw",
+      "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+      "context": "EnergyGapLaw statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "energy-gap-law statement surface"
+      }
+    },
+    {
+      "id": "stokes.shift",
+      "theory": "StokesShift",
+      "artifact": "PhotoLean/StokesShift/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+      "context": "StokesShift statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/StokesShift/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Stokes-shift statement surface"
+      }
+    },
+    {
+      "id": "ic.isc",
+      "theory": "ICvsISC",
+      "artifact": "PhotoLean/ICvsISC/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+      "context": "ICvsISC statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/ICvsISC/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "internal-conversion vs intersystem-crossing statement surface"
+      }
+    },
+    {
+      "id": "forster.transfer",
+      "theory": "Forster",
+      "artifact": "PhotoLean/Forster/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+      "context": "Forster statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Forster/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Forster resonance transfer statement surface"
+      }
+    },
+    {
+      "id": "einstein.rate",
+      "theory": "Einstein",
+      "artifact": "PhotoLean/Einstein/Basic.lean",
+      "version": "1.0.0",
+      "sha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+      "context": "Einstein statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Einstein/Basic.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "Einstein A/B coefficient statement surface"
+      }
+    },
+    {
+      "id": "raci.branching",
+      "theory": "RACI",
+      "artifact": "PhotoLean/RACI/Accessibility.lean",
+      "version": "1.0.0",
+      "sha256": "43fc674f4340ed8ed404f2a636a1b16d7ef6dd6de4858639744ca2fc53be6f74",
+      "context": "RACI statement context at source snapshot 7ad25a5",
+      "declaration": "PhotoLean.RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/RACI/Accessibility.lean",
+            "locator": "statement surface"
+          }
+        ],
+        "rationale": "RACI branching statement surface"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "q-full-00-01",
+      "source": "marcus.barrier",
+      "target": "hammond.gap",
+      "context": "full registry Marcus / Hammond",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-02",
+      "source": "marcus.barrier",
+      "target": "bep.transfer",
+      "context": "full registry Marcus / BEP",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-03",
+      "source": "marcus.barrier",
+      "target": "kasha.rate",
+      "context": "full registry Marcus / Kasha",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-04",
+      "source": "marcus.barrier",
+      "target": "sabatier.volcano",
+      "context": "full registry Marcus / Sabatier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-05",
+      "source": "marcus.barrier",
+      "target": "goldschmidt.tolerance",
+      "context": "full registry Marcus / Goldschmidt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-06",
+      "source": "marcus.barrier",
+      "target": "symmetry.factor",
+      "context": "full registry Marcus / SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-07",
+      "source": "marcus.barrier",
+      "target": "kashavavilov.shift",
+      "context": "full registry Marcus / KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-08",
+      "source": "marcus.barrier",
+      "target": "sternvolmer.intensity",
+      "context": "full registry Marcus / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-09",
+      "source": "marcus.barrier",
+      "target": "quantumyield.yield",
+      "context": "full registry Marcus / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-10",
+      "source": "marcus.barrier",
+      "target": "fluorphos.yield",
+      "context": "full registry Marcus / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-11",
+      "source": "marcus.barrier",
+      "target": "energygap.law",
+      "context": "full registry Marcus / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-12",
+      "source": "marcus.barrier",
+      "target": "stokes.shift",
+      "context": "full registry Marcus / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-13",
+      "source": "marcus.barrier",
+      "target": "ic.isc",
+      "context": "full registry Marcus / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-14",
+      "source": "marcus.barrier",
+      "target": "forster.transfer",
+      "context": "full registry Marcus / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-15",
+      "source": "marcus.barrier",
+      "target": "einstein.rate",
+      "context": "full registry Marcus / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-00-16",
+      "source": "marcus.barrier",
+      "target": "raci.branching",
+      "context": "full registry Marcus / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-02",
+      "source": "hammond.gap",
+      "target": "bep.transfer",
+      "context": "full registry Hammond / BEP",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-03",
+      "source": "hammond.gap",
+      "target": "kasha.rate",
+      "context": "full registry Hammond / Kasha",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-04",
+      "source": "hammond.gap",
+      "target": "sabatier.volcano",
+      "context": "full registry Hammond / Sabatier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-05",
+      "source": "hammond.gap",
+      "target": "goldschmidt.tolerance",
+      "context": "full registry Hammond / Goldschmidt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-06",
+      "source": "hammond.gap",
+      "target": "symmetry.factor",
+      "context": "full registry Hammond / SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-07",
+      "source": "hammond.gap",
+      "target": "kashavavilov.shift",
+      "context": "full registry Hammond / KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-08",
+      "source": "hammond.gap",
+      "target": "sternvolmer.intensity",
+      "context": "full registry Hammond / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-09",
+      "source": "hammond.gap",
+      "target": "quantumyield.yield",
+      "context": "full registry Hammond / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-10",
+      "source": "hammond.gap",
+      "target": "fluorphos.yield",
+      "context": "full registry Hammond / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-11",
+      "source": "hammond.gap",
+      "target": "energygap.law",
+      "context": "full registry Hammond / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-12",
+      "source": "hammond.gap",
+      "target": "stokes.shift",
+      "context": "full registry Hammond / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-13",
+      "source": "hammond.gap",
+      "target": "ic.isc",
+      "context": "full registry Hammond / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-14",
+      "source": "hammond.gap",
+      "target": "forster.transfer",
+      "context": "full registry Hammond / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-15",
+      "source": "hammond.gap",
+      "target": "einstein.rate",
+      "context": "full registry Hammond / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-01-16",
+      "source": "hammond.gap",
+      "target": "raci.branching",
+      "context": "full registry Hammond / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-03",
+      "source": "bep.transfer",
+      "target": "kasha.rate",
+      "context": "full registry BEP / Kasha",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-04",
+      "source": "bep.transfer",
+      "target": "sabatier.volcano",
+      "context": "full registry BEP / Sabatier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-05",
+      "source": "bep.transfer",
+      "target": "goldschmidt.tolerance",
+      "context": "full registry BEP / Goldschmidt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-06",
+      "source": "bep.transfer",
+      "target": "symmetry.factor",
+      "context": "full registry BEP / SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-07",
+      "source": "bep.transfer",
+      "target": "kashavavilov.shift",
+      "context": "full registry BEP / KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-08",
+      "source": "bep.transfer",
+      "target": "sternvolmer.intensity",
+      "context": "full registry BEP / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-09",
+      "source": "bep.transfer",
+      "target": "quantumyield.yield",
+      "context": "full registry BEP / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-10",
+      "source": "bep.transfer",
+      "target": "fluorphos.yield",
+      "context": "full registry BEP / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-11",
+      "source": "bep.transfer",
+      "target": "energygap.law",
+      "context": "full registry BEP / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-12",
+      "source": "bep.transfer",
+      "target": "stokes.shift",
+      "context": "full registry BEP / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-13",
+      "source": "bep.transfer",
+      "target": "ic.isc",
+      "context": "full registry BEP / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-14",
+      "source": "bep.transfer",
+      "target": "forster.transfer",
+      "context": "full registry BEP / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-15",
+      "source": "bep.transfer",
+      "target": "einstein.rate",
+      "context": "full registry BEP / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-02-16",
+      "source": "bep.transfer",
+      "target": "raci.branching",
+      "context": "full registry BEP / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-04",
+      "source": "kasha.rate",
+      "target": "sabatier.volcano",
+      "context": "full registry Kasha / Sabatier",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-05",
+      "source": "kasha.rate",
+      "target": "goldschmidt.tolerance",
+      "context": "full registry Kasha / Goldschmidt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-06",
+      "source": "kasha.rate",
+      "target": "symmetry.factor",
+      "context": "full registry Kasha / SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-07",
+      "source": "kasha.rate",
+      "target": "kashavavilov.shift",
+      "context": "full registry Kasha / KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-08",
+      "source": "kasha.rate",
+      "target": "sternvolmer.intensity",
+      "context": "full registry Kasha / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-09",
+      "source": "kasha.rate",
+      "target": "quantumyield.yield",
+      "context": "full registry Kasha / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-10",
+      "source": "kasha.rate",
+      "target": "fluorphos.yield",
+      "context": "full registry Kasha / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-11",
+      "source": "kasha.rate",
+      "target": "energygap.law",
+      "context": "full registry Kasha / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-12",
+      "source": "kasha.rate",
+      "target": "stokes.shift",
+      "context": "full registry Kasha / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-13",
+      "source": "kasha.rate",
+      "target": "ic.isc",
+      "context": "full registry Kasha / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-14",
+      "source": "kasha.rate",
+      "target": "forster.transfer",
+      "context": "full registry Kasha / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-15",
+      "source": "kasha.rate",
+      "target": "einstein.rate",
+      "context": "full registry Kasha / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-03-16",
+      "source": "kasha.rate",
+      "target": "raci.branching",
+      "context": "full registry Kasha / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-05",
+      "source": "sabatier.volcano",
+      "target": "goldschmidt.tolerance",
+      "context": "full registry Sabatier / Goldschmidt",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-06",
+      "source": "sabatier.volcano",
+      "target": "symmetry.factor",
+      "context": "full registry Sabatier / SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-07",
+      "source": "sabatier.volcano",
+      "target": "kashavavilov.shift",
+      "context": "full registry Sabatier / KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-08",
+      "source": "sabatier.volcano",
+      "target": "sternvolmer.intensity",
+      "context": "full registry Sabatier / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-09",
+      "source": "sabatier.volcano",
+      "target": "quantumyield.yield",
+      "context": "full registry Sabatier / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-10",
+      "source": "sabatier.volcano",
+      "target": "fluorphos.yield",
+      "context": "full registry Sabatier / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-11",
+      "source": "sabatier.volcano",
+      "target": "energygap.law",
+      "context": "full registry Sabatier / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-12",
+      "source": "sabatier.volcano",
+      "target": "stokes.shift",
+      "context": "full registry Sabatier / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-13",
+      "source": "sabatier.volcano",
+      "target": "ic.isc",
+      "context": "full registry Sabatier / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-14",
+      "source": "sabatier.volcano",
+      "target": "forster.transfer",
+      "context": "full registry Sabatier / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-15",
+      "source": "sabatier.volcano",
+      "target": "einstein.rate",
+      "context": "full registry Sabatier / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-04-16",
+      "source": "sabatier.volcano",
+      "target": "raci.branching",
+      "context": "full registry Sabatier / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-06",
+      "source": "goldschmidt.tolerance",
+      "target": "symmetry.factor",
+      "context": "full registry Goldschmidt / SymmetryFactor",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-07",
+      "source": "goldschmidt.tolerance",
+      "target": "kashavavilov.shift",
+      "context": "full registry Goldschmidt / KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-08",
+      "source": "goldschmidt.tolerance",
+      "target": "sternvolmer.intensity",
+      "context": "full registry Goldschmidt / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-09",
+      "source": "goldschmidt.tolerance",
+      "target": "quantumyield.yield",
+      "context": "full registry Goldschmidt / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-10",
+      "source": "goldschmidt.tolerance",
+      "target": "fluorphos.yield",
+      "context": "full registry Goldschmidt / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-11",
+      "source": "goldschmidt.tolerance",
+      "target": "energygap.law",
+      "context": "full registry Goldschmidt / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-12",
+      "source": "goldschmidt.tolerance",
+      "target": "stokes.shift",
+      "context": "full registry Goldschmidt / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-13",
+      "source": "goldschmidt.tolerance",
+      "target": "ic.isc",
+      "context": "full registry Goldschmidt / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-14",
+      "source": "goldschmidt.tolerance",
+      "target": "forster.transfer",
+      "context": "full registry Goldschmidt / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-15",
+      "source": "goldschmidt.tolerance",
+      "target": "einstein.rate",
+      "context": "full registry Goldschmidt / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-05-16",
+      "source": "goldschmidt.tolerance",
+      "target": "raci.branching",
+      "context": "full registry Goldschmidt / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-07",
+      "source": "symmetry.factor",
+      "target": "kashavavilov.shift",
+      "context": "full registry SymmetryFactor / KashaVavilov",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-08",
+      "source": "symmetry.factor",
+      "target": "sternvolmer.intensity",
+      "context": "full registry SymmetryFactor / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-09",
+      "source": "symmetry.factor",
+      "target": "quantumyield.yield",
+      "context": "full registry SymmetryFactor / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-10",
+      "source": "symmetry.factor",
+      "target": "fluorphos.yield",
+      "context": "full registry SymmetryFactor / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-11",
+      "source": "symmetry.factor",
+      "target": "energygap.law",
+      "context": "full registry SymmetryFactor / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-12",
+      "source": "symmetry.factor",
+      "target": "stokes.shift",
+      "context": "full registry SymmetryFactor / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-13",
+      "source": "symmetry.factor",
+      "target": "ic.isc",
+      "context": "full registry SymmetryFactor / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-14",
+      "source": "symmetry.factor",
+      "target": "forster.transfer",
+      "context": "full registry SymmetryFactor / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-15",
+      "source": "symmetry.factor",
+      "target": "einstein.rate",
+      "context": "full registry SymmetryFactor / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-06-16",
+      "source": "symmetry.factor",
+      "target": "raci.branching",
+      "context": "full registry SymmetryFactor / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-08",
+      "source": "kashavavilov.shift",
+      "target": "sternvolmer.intensity",
+      "context": "full registry KashaVavilov / SternVolmer",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-09",
+      "source": "kashavavilov.shift",
+      "target": "quantumyield.yield",
+      "context": "full registry KashaVavilov / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-10",
+      "source": "kashavavilov.shift",
+      "target": "fluorphos.yield",
+      "context": "full registry KashaVavilov / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-11",
+      "source": "kashavavilov.shift",
+      "target": "energygap.law",
+      "context": "full registry KashaVavilov / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-12",
+      "source": "kashavavilov.shift",
+      "target": "stokes.shift",
+      "context": "full registry KashaVavilov / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-13",
+      "source": "kashavavilov.shift",
+      "target": "ic.isc",
+      "context": "full registry KashaVavilov / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-14",
+      "source": "kashavavilov.shift",
+      "target": "forster.transfer",
+      "context": "full registry KashaVavilov / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-15",
+      "source": "kashavavilov.shift",
+      "target": "einstein.rate",
+      "context": "full registry KashaVavilov / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-07-16",
+      "source": "kashavavilov.shift",
+      "target": "raci.branching",
+      "context": "full registry KashaVavilov / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-09",
+      "source": "sternvolmer.intensity",
+      "target": "quantumyield.yield",
+      "context": "full registry SternVolmer / QuantumYield",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-10",
+      "source": "sternvolmer.intensity",
+      "target": "fluorphos.yield",
+      "context": "full registry SternVolmer / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-11",
+      "source": "sternvolmer.intensity",
+      "target": "energygap.law",
+      "context": "full registry SternVolmer / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-12",
+      "source": "sternvolmer.intensity",
+      "target": "stokes.shift",
+      "context": "full registry SternVolmer / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-13",
+      "source": "sternvolmer.intensity",
+      "target": "ic.isc",
+      "context": "full registry SternVolmer / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-14",
+      "source": "sternvolmer.intensity",
+      "target": "forster.transfer",
+      "context": "full registry SternVolmer / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-15",
+      "source": "sternvolmer.intensity",
+      "target": "einstein.rate",
+      "context": "full registry SternVolmer / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-08-16",
+      "source": "sternvolmer.intensity",
+      "target": "raci.branching",
+      "context": "full registry SternVolmer / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-09-10",
+      "source": "quantumyield.yield",
+      "target": "fluorphos.yield",
+      "context": "full registry QuantumYield / FluorPhos",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-09-11",
+      "source": "quantumyield.yield",
+      "target": "energygap.law",
+      "context": "full registry QuantumYield / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-09-12",
+      "source": "quantumyield.yield",
+      "target": "stokes.shift",
+      "context": "full registry QuantumYield / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-09-13",
+      "source": "quantumyield.yield",
+      "target": "ic.isc",
+      "context": "full registry QuantumYield / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-09-14",
+      "source": "quantumyield.yield",
+      "target": "forster.transfer",
+      "context": "full registry QuantumYield / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-09-15",
+      "source": "quantumyield.yield",
+      "target": "einstein.rate",
+      "context": "full registry QuantumYield / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-09-16",
+      "source": "quantumyield.yield",
+      "target": "raci.branching",
+      "context": "full registry QuantumYield / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-10-11",
+      "source": "fluorphos.yield",
+      "target": "energygap.law",
+      "context": "full registry FluorPhos / EnergyGapLaw",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-10-12",
+      "source": "fluorphos.yield",
+      "target": "stokes.shift",
+      "context": "full registry FluorPhos / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-10-13",
+      "source": "fluorphos.yield",
+      "target": "ic.isc",
+      "context": "full registry FluorPhos / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-10-14",
+      "source": "fluorphos.yield",
+      "target": "forster.transfer",
+      "context": "full registry FluorPhos / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-10-15",
+      "source": "fluorphos.yield",
+      "target": "einstein.rate",
+      "context": "full registry FluorPhos / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-10-16",
+      "source": "fluorphos.yield",
+      "target": "raci.branching",
+      "context": "full registry FluorPhos / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-11-12",
+      "source": "energygap.law",
+      "target": "stokes.shift",
+      "context": "full registry EnergyGapLaw / StokesShift",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-11-13",
+      "source": "energygap.law",
+      "target": "ic.isc",
+      "context": "full registry EnergyGapLaw / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-11-14",
+      "source": "energygap.law",
+      "target": "forster.transfer",
+      "context": "full registry EnergyGapLaw / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-11-15",
+      "source": "energygap.law",
+      "target": "einstein.rate",
+      "context": "full registry EnergyGapLaw / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-11-16",
+      "source": "energygap.law",
+      "target": "raci.branching",
+      "context": "full registry EnergyGapLaw / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-12-13",
+      "source": "stokes.shift",
+      "target": "ic.isc",
+      "context": "full registry StokesShift / ICvsISC",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-12-14",
+      "source": "stokes.shift",
+      "target": "forster.transfer",
+      "context": "full registry StokesShift / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-12-15",
+      "source": "stokes.shift",
+      "target": "einstein.rate",
+      "context": "full registry StokesShift / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-12-16",
+      "source": "stokes.shift",
+      "target": "raci.branching",
+      "context": "full registry StokesShift / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-13-14",
+      "source": "ic.isc",
+      "target": "forster.transfer",
+      "context": "full registry ICvsISC / Forster",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-13-15",
+      "source": "ic.isc",
+      "target": "einstein.rate",
+      "context": "full registry ICvsISC / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-13-16",
+      "source": "ic.isc",
+      "target": "raci.branching",
+      "context": "full registry ICvsISC / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-14-15",
+      "source": "forster.transfer",
+      "target": "einstein.rate",
+      "context": "full registry Forster / Einstein",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-14-16",
+      "source": "forster.transfer",
+      "target": "raci.branching",
+      "context": "full registry Forster / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    },
+    {
+      "id": "q-full-15-16",
+      "source": "einstein.rate",
+      "target": "raci.branching",
+      "context": "full registry Einstein / RACI",
+      "provenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registered query between two stable statement ids."
+      }
+    }
+  ],
+  "certificates": [],
+  "records": [
+    {
+      "id": "rec-full-00-01",
+      "queryId": "q-full-00-01",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-02",
+      "queryId": "q-full-00-02",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-03",
+      "queryId": "q-full-00-03",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-04",
+      "queryId": "q-full-00-04",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-05",
+      "queryId": "q-full-00-05",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-06",
+      "queryId": "q-full-00-06",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-07",
+      "queryId": "q-full-00-07",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-08",
+      "queryId": "q-full-00-08",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-09",
+      "queryId": "q-full-00-09",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-10",
+      "queryId": "q-full-00-10",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-11",
+      "queryId": "q-full-00-11",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-12",
+      "queryId": "q-full-00-12",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-13",
+      "queryId": "q-full-00-13",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-14",
+      "queryId": "q-full-00-14",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-15",
+      "queryId": "q-full-00-15",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-00-16",
+      "queryId": "q-full-00-16",
+      "statementVersion": "marcus.barrier@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-02",
+      "queryId": "q-full-01-02",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-03",
+      "queryId": "q-full-01-03",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-04",
+      "queryId": "q-full-01-04",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-05",
+      "queryId": "q-full-01-05",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-06",
+      "queryId": "q-full-01-06",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-07",
+      "queryId": "q-full-01-07",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-08",
+      "queryId": "q-full-01-08",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-09",
+      "queryId": "q-full-01-09",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-10",
+      "queryId": "q-full-01-10",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-11",
+      "queryId": "q-full-01-11",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-12",
+      "queryId": "q-full-01-12",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-13",
+      "queryId": "q-full-01-13",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-14",
+      "queryId": "q-full-01-14",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-15",
+      "queryId": "q-full-01-15",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-01-16",
+      "queryId": "q-full-01-16",
+      "statementVersion": "hammond.gap@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-03",
+      "queryId": "q-full-02-03",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-04",
+      "queryId": "q-full-02-04",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-05",
+      "queryId": "q-full-02-05",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-06",
+      "queryId": "q-full-02-06",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-07",
+      "queryId": "q-full-02-07",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-08",
+      "queryId": "q-full-02-08",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-09",
+      "queryId": "q-full-02-09",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-10",
+      "queryId": "q-full-02-10",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-11",
+      "queryId": "q-full-02-11",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-12",
+      "queryId": "q-full-02-12",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-13",
+      "queryId": "q-full-02-13",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-14",
+      "queryId": "q-full-02-14",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-15",
+      "queryId": "q-full-02-15",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-02-16",
+      "queryId": "q-full-02-16",
+      "statementVersion": "bep.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-04",
+      "queryId": "q-full-03-04",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-05",
+      "queryId": "q-full-03-05",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-06",
+      "queryId": "q-full-03-06",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-07",
+      "queryId": "q-full-03-07",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-08",
+      "queryId": "q-full-03-08",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-09",
+      "queryId": "q-full-03-09",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-10",
+      "queryId": "q-full-03-10",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-11",
+      "queryId": "q-full-03-11",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-12",
+      "queryId": "q-full-03-12",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-13",
+      "queryId": "q-full-03-13",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-14",
+      "queryId": "q-full-03-14",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-15",
+      "queryId": "q-full-03-15",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-03-16",
+      "queryId": "q-full-03-16",
+      "statementVersion": "kasha.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-05",
+      "queryId": "q-full-04-05",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-06",
+      "queryId": "q-full-04-06",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-07",
+      "queryId": "q-full-04-07",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-08",
+      "queryId": "q-full-04-08",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-09",
+      "queryId": "q-full-04-09",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-10",
+      "queryId": "q-full-04-10",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-11",
+      "queryId": "q-full-04-11",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-12",
+      "queryId": "q-full-04-12",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-13",
+      "queryId": "q-full-04-13",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-14",
+      "queryId": "q-full-04-14",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-15",
+      "queryId": "q-full-04-15",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-04-16",
+      "queryId": "q-full-04-16",
+      "statementVersion": "sabatier.volcano@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-06",
+      "queryId": "q-full-05-06",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-07",
+      "queryId": "q-full-05-07",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-08",
+      "queryId": "q-full-05-08",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-09",
+      "queryId": "q-full-05-09",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-10",
+      "queryId": "q-full-05-10",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-11",
+      "queryId": "q-full-05-11",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-12",
+      "queryId": "q-full-05-12",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-13",
+      "queryId": "q-full-05-13",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-14",
+      "queryId": "q-full-05-14",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-15",
+      "queryId": "q-full-05-15",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-05-16",
+      "queryId": "q-full-05-16",
+      "statementVersion": "goldschmidt.tolerance@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-07",
+      "queryId": "q-full-06-07",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-08",
+      "queryId": "q-full-06-08",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-09",
+      "queryId": "q-full-06-09",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-10",
+      "queryId": "q-full-06-10",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-11",
+      "queryId": "q-full-06-11",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-12",
+      "queryId": "q-full-06-12",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-13",
+      "queryId": "q-full-06-13",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-14",
+      "queryId": "q-full-06-14",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-15",
+      "queryId": "q-full-06-15",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-06-16",
+      "queryId": "q-full-06-16",
+      "statementVersion": "symmetry.factor@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-08",
+      "queryId": "q-full-07-08",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-09",
+      "queryId": "q-full-07-09",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-10",
+      "queryId": "q-full-07-10",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-11",
+      "queryId": "q-full-07-11",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-12",
+      "queryId": "q-full-07-12",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-13",
+      "queryId": "q-full-07-13",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-14",
+      "queryId": "q-full-07-14",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-15",
+      "queryId": "q-full-07-15",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-07-16",
+      "queryId": "q-full-07-16",
+      "statementVersion": "kashavavilov.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-09",
+      "queryId": "q-full-08-09",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-10",
+      "queryId": "q-full-08-10",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-11",
+      "queryId": "q-full-08-11",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-12",
+      "queryId": "q-full-08-12",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-13",
+      "queryId": "q-full-08-13",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-14",
+      "queryId": "q-full-08-14",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-15",
+      "queryId": "q-full-08-15",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-08-16",
+      "queryId": "q-full-08-16",
+      "statementVersion": "sternvolmer.intensity@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-09-10",
+      "queryId": "q-full-09-10",
+      "statementVersion": "quantumyield.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-09-11",
+      "queryId": "q-full-09-11",
+      "statementVersion": "quantumyield.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-09-12",
+      "queryId": "q-full-09-12",
+      "statementVersion": "quantumyield.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-09-13",
+      "queryId": "q-full-09-13",
+      "statementVersion": "quantumyield.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-09-14",
+      "queryId": "q-full-09-14",
+      "statementVersion": "quantumyield.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-09-15",
+      "queryId": "q-full-09-15",
+      "statementVersion": "quantumyield.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-09-16",
+      "queryId": "q-full-09-16",
+      "statementVersion": "quantumyield.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-10-11",
+      "queryId": "q-full-10-11",
+      "statementVersion": "fluorphos.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-10-12",
+      "queryId": "q-full-10-12",
+      "statementVersion": "fluorphos.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-10-13",
+      "queryId": "q-full-10-13",
+      "statementVersion": "fluorphos.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-10-14",
+      "queryId": "q-full-10-14",
+      "statementVersion": "fluorphos.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-10-15",
+      "queryId": "q-full-10-15",
+      "statementVersion": "fluorphos.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-10-16",
+      "queryId": "q-full-10-16",
+      "statementVersion": "fluorphos.yield@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-11-12",
+      "queryId": "q-full-11-12",
+      "statementVersion": "energygap.law@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-11-13",
+      "queryId": "q-full-11-13",
+      "statementVersion": "energygap.law@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-11-14",
+      "queryId": "q-full-11-14",
+      "statementVersion": "energygap.law@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-11-15",
+      "queryId": "q-full-11-15",
+      "statementVersion": "energygap.law@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-11-16",
+      "queryId": "q-full-11-16",
+      "statementVersion": "energygap.law@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-12-13",
+      "queryId": "q-full-12-13",
+      "statementVersion": "stokes.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-12-14",
+      "queryId": "q-full-12-14",
+      "statementVersion": "stokes.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-12-15",
+      "queryId": "q-full-12-15",
+      "statementVersion": "stokes.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-12-16",
+      "queryId": "q-full-12-16",
+      "statementVersion": "stokes.shift@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-13-14",
+      "queryId": "q-full-13-14",
+      "statementVersion": "ic.isc@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-13-15",
+      "queryId": "q-full-13-15",
+      "statementVersion": "ic.isc@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-13-16",
+      "queryId": "q-full-13-16",
+      "statementVersion": "ic.isc@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-14-15",
+      "queryId": "q-full-14-15",
+      "statementVersion": "forster.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-14-16",
+      "queryId": "q-full-14-16",
+      "statementVersion": "forster.transfer@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    },
+    {
+      "id": "rec-full-15-16",
+      "queryId": "q-full-15-16",
+      "statementVersion": "einstein.rate@7ad25a5",
+      "scope": "global",
+      "status": "unresolved",
+      "snapshot": "snap-source-7ad25a5",
+      "provenance": {
+        "kind": "manual",
+        "references": [
+          {
+            "artifact": "theories/RELATIONS.md",
+            "locator": "relation ledger"
+          }
+        ],
+        "rationale": "Registry-completeness record; no certificate claimed."
+      },
+      "rationale": "Registry-completeness record; no certificate claimed.",
+      "candidate": "implication"
+    }
+  ]
+}

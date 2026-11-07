@@ -1,0 +1,1498 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photolean.local/relation_audit/schema.json",
+  "title": "PhotoLean Relation Audit Manifest v1.2",
+  "description": "Structural contract for relation_audit/pilot.json and relation_audit/registry.json. The schema fixes the data shape; the fail-closed validator owns uniqueness, cross-reference resolution, Lean checks, pair coverage, and report generation. Relation semantics (record.relationKind and the certificate's kind-specific semantics), audit status, certificate evidence, and provenance are separate fields on purpose: no status, badge, or provenance record may substitute for a certificate, and a certificate cannot relabel its kind. Version 1.2.0 completes the lead-mandated correction R1. The Lean ConditionalComposition constructor is proof-relevant and authoritative: it stores the two typed parents, the middle-endpoint alignment, premise propagation, bridges and discharges, and computes the child comparison and conclusion. JSON therefore records only the manifest-side parent IDs, mediator, translations, bridges and discharges; it does not reconstruct a second combinator application. The validator resolves the parent IDs to their Lean certificate names and pins certificateParentIDs, certificateParentKinds, certificateParentPremiseIDs, certificateBridgeIDs, certificateDischargeIDs, certificateMediating? and certificateCompositionForm? definitionally, together with the child certificateKind equality. R2-R4 remain as in 1.1.0: definitional witnesses use the standard axiom whitelist rather than an empty footprint, typed badge/bridge/discharge claims are rejected until typed evidence exists, and different certified kinds are not conflicts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "mode",
+    "theoryInventory",
+    "pairCount",
+    "snapshots",
+    "scopes",
+    "statements",
+    "queries",
+    "certificates",
+    "records"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional manifest-level schema pointer, for example relation_audit/schema.json."
+    },
+    "schemaVersion": {
+      "const": "1.2.0",
+      "description": "Manifest schema version. 1.2.0 is a deliberate, documented breaking change from 1.1.0 (see docs/RELATION-AUDIT.md section 13): composition JSON no longer duplicates the parent-consuming application."
+    },
+    "mode": {
+      "enum": [
+        "pilot",
+        "full"
+      ],
+      "description": "pilot validates the pilot acceptance set; full requires 136/136 registry coverage."
+    },
+    "description": {
+      "type": "string"
+    },
+    "theoryInventory": {
+      "type": "array",
+      "minItems": 17,
+      "maxItems": 17,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/theoryId"
+      },
+      "description": "The seventeen theory IDs. With seventeen distinct IDs the unordered pair universe is C(17,2)=136."
+    },
+    "pairCount": {
+      "const": 136
+    },
+    "snapshots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/snapshot"
+      }
+    },
+    "scopes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/scope"
+      }
+    },
+    "statements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/statement"
+      }
+    },
+    "queries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/query"
+      }
+    },
+    "certificates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/certificate"
+      }
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/record"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z][A-Za-z0-9._:-]*$"
+    },
+    "theoryId": {
+      "enum": [
+        "Marcus",
+        "Hammond",
+        "BEP",
+        "Kasha",
+        "Sabatier",
+        "Goldschmidt",
+        "SymmetryFactor",
+        "KashaVavilov",
+        "SternVolmer",
+        "QuantumYield",
+        "FluorPhos",
+        "EnergyGapLaw",
+        "StokesShift",
+        "ICvsISC",
+        "Forster",
+        "Einstein",
+        "RACI"
+      ]
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "gitSha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$",
+      "description": "Repository-relative path without '.', '..', or a leading slash."
+    },
+    "artifactLocation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Repository-relative path, DOI, or URL. The validator checks repository paths for existence and treats DOI/URL references as citations."
+    },
+    "leanTerm": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A Lean 4 term or declaration name. The validator type-checks declared terms through the generated Lean checks rather than by parsing this string."
+    },
+    "leanDeclaration": {
+      "type": "string",
+      "minLength": 3,
+      "pattern": "^[A-Za-z_][A-Za-z0-9_'.]*(?:\\.[A-Za-z_][A-Za-z0-9_']*)+$",
+      "description": "Fully qualified Lean 4 declaration name."
+    },
+    "relationKind": {
+      "enum": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence",
+        "distinguishability",
+        "refutation"
+      ]
+    },
+    "provenanceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact"
+      ],
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/artifactLocation"
+        },
+        "locator": {
+          "type": "string",
+          "description": "Section, theorem row, line range, DOI suffix, or other stable locator inside the artifact."
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "references"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "source",
+            "manual",
+            "computed",
+            "imported"
+          ],
+          "description": "How the material was obtained. A manual provenance must carry a rationale."
+        },
+        "references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/provenanceReference"
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Required when kind is manual and for every non-certified record."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "manual"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "rationale"
+            ]
+          }
+        }
+      ]
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "treeSha",
+        "toolchain",
+        "schemaSha256",
+        "artifacts"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "treeSha": {
+          "$ref": "#/$defs/gitSha",
+          "description": "Git commit resolved by the validator. Use the full 40-hex commit."
+        },
+        "toolchain": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exact text of lean-toolchain, for example leanprover/lean4:v4.17.0."
+        },
+        "mathlibRev": {
+          "$ref": "#/$defs/gitSha",
+          "description": "Optional mathlib revision pinned by lake-manifest.json."
+        },
+        "schemaSha256": {
+          "$ref": "#/$defs/sha256",
+          "description": "SHA-256 of relation_audit/schema.json at the snapshot."
+        },
+        "artifacts": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/sha256"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/path"
+          },
+          "description": "Map from repository-relative artifact path to SHA-256 at the snapshot. Every statement artifact and certificate source must be pinned here."
+        },
+        "createdAt": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|[+-][0-9]{2}:[0-9]{2})$"
+        },
+        "dirty": {
+          "type": "boolean",
+          "description": "True when the tree had uncommitted changes. A dirty snapshot is legal only with matched artifact hashes and a report caveat; a full-mode PASS should normally be taken on a clean snapshot."
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "description",
+        "theories",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "global",
+            "restricted",
+            "outOfScope"
+          ],
+          "description": "outOfScope records must use an outOfScope scope; unresolved and notEstablished records must not."
+        },
+        "dimension": {
+          "enum": [
+            "relation",
+            "observation",
+            "both"
+          ],
+          "description": "Optional relation/observation dimension of the scope. Two certified records may share (queryId, statementVersion) only when their scopes differ or make the compared dimension explicit; different certified relation kinds are not conflicts. Omitted means the scope does not restrict the dimension and the record's semantic claim is read literally."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 20
+        },
+        "theories": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/theoryId"
+          },
+          "description": "Theories covered by the scope. A global scope may name all seventeen; a restricted one normally names one or two."
+        },
+        "boundary": {
+          "type": "string",
+          "description": "Optional longer justification of the jurisdiction."
+        },
+        "includes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "excludes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "theory",
+        "version",
+        "artifact",
+        "sha256",
+        "context",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id",
+          "description": "Stable statement ID. It must not be renamed or reused when the statement changes; change version and sha256 instead."
+        },
+        "theory": {
+          "$ref": "#/$defs/theoryId"
+        },
+        "version": {
+          "$ref": "#/$defs/semver"
+        },
+        "artifact": {
+          "$ref": "#/$defs/path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256",
+          "description": "SHA-256 of the artifact file at the snapshot."
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Context label or ID shared by the comparison."
+        },
+        "declaration": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Fully qualified Lean declaration of the statement, when it has one."
+        },
+        "module": {
+          "type": "string",
+          "minLength": 3
+        },
+        "description": {
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source",
+        "target",
+        "context",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "source": {
+          "$ref": "#/$defs/id",
+          "description": "Statement ID of the left/directive endpoint. For an implication or refutation this is the antecedent."
+        },
+        "target": {
+          "$ref": "#/$defs/id",
+          "description": "Statement ID of the right endpoint. For an implication or refutation this is the consequent."
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Shared context Delta. The certificate semantics names the Lean type and translations."
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "question": {
+          "type": "string"
+        }
+      }
+    },
+    "premise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable statement text of the premise. The Lean proposition is the certificate's premise predicate."
+        },
+        "leanProposition": {
+          "$ref": "#/$defs/leanTerm"
+        },
+        "explicit": {
+          "type": "boolean",
+          "description": "True when the premise appears as a binder/assumption in the checked certificate signature."
+        },
+        "signatureName": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Binder name for the explicit premise."
+        },
+        "signatureDeclaration": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Declaration whose checked signature contains the binder."
+        },
+        "role": {
+          "enum": [
+            "context",
+            "bridge",
+            "endpoint",
+            "inherited",
+            "local"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "explicit": {
+                "const": true
+              }
+            },
+            "required": [
+              "explicit"
+            ]
+          },
+          "then": {
+            "required": [
+              "signatureName",
+              "signatureDeclaration"
+            ]
+          }
+        }
+      ]
+    },
+    "channelSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "domain",
+        "leftObservable",
+        "rightObservable"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "domain": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "Lean type of the channel input."
+        },
+        "leftObservable": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "Lean term of type Domain -> Delta -> Obs."
+        },
+        "rightObservable": {
+          "$ref": "#/$defs/leanTerm"
+        }
+      }
+    },
+    "certificateSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context",
+        "translations",
+        "premisePredicate"
+      ],
+      "properties": {
+        "context": {
+          "type": "string",
+          "minLength": 1
+        },
+        "translations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "left",
+            "right"
+          ],
+          "properties": {
+            "left": {
+              "$ref": "#/$defs/leanTerm"
+            },
+            "right": {
+              "$ref": "#/$defs/leanTerm"
+            }
+          }
+        },
+        "premisePredicate": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "Lean term of type Delta -> Prop for Pi."
+        },
+        "rflWitness": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "DefinitionalIdentity only: the rfl-only witness declaration. Definitional identity is established by fresh rfl elaboration and the single-constructor DefEq evidence, not by an empty #print axioms list. The witness footprint must be a subset of the standard whitelist {propext, Classical.choice, Quot.sound}; Real-valued pins legitimately report propext, Classical.choice and Quot.sound."
+        },
+        "rflWitnessAxiomFootprint": {
+          "type": "array",
+          "uniqueItems": true,
+          "maxItems": 3,
+          "items": {
+            "enum": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ]
+          },
+          "description": "DefinitionalIdentity only: declared exact #print axioms output of semantics.rflWitness. It is checked against the computed footprint and against the same whitelist as certificate.axiomFootprint. An empty list is legal but is not required."
+        },
+        "translation": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "DefinitionalIdentity/conditionalComposition: the declared translation term."
+        },
+        "rflCheck": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "lhs",
+            "rhs"
+          ],
+          "properties": {
+            "lhs": {
+              "$ref": "#/$defs/leanTerm"
+            },
+            "rhs": {
+              "$ref": "#/$defs/leanTerm"
+            }
+          },
+          "description": "DefinitionalIdentity only: the validator generates `example : lhs = rhs := rfl`."
+        },
+        "channels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "ObservationalEquivalence/distinguishability: channel IDs, one per declared observation channel."
+        },
+        "channelSpecs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/channelSpec"
+          },
+          "description": "Typed observation channels. The homogeneous-type limitation of PhotoLean.RelationAudit.Channel applies: channels with different Obs/input types need separate certificates."
+        },
+        "form": {
+          "enum": [
+            "separatingObservation",
+            "identifiabilityDecoder"
+          ],
+          "description": "Distinguishability only: the two forms remain distinct."
+        },
+        "witness": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Distinguishability only: the separating-observation certificate or the decoder/identifiability certificate, according to form."
+        },
+        "witnessContext": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "SeparatingObservation only: the admissible context point."
+        },
+        "channelID": {
+          "$ref": "#/$defs/id",
+          "description": "SeparatingObservation only."
+        },
+        "input": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "SeparatingObservation only: the channel input."
+        },
+        "decoderStatement": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "IdentifiabilityDecoder only: the decoder/classifier statement."
+        },
+        "counterexample": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Refutation only: the declaration proving the existential counterexample."
+        },
+        "target": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Refutation only: the implication being refuted."
+        },
+        "conclusionKind": {
+          "enum": [
+            "implication",
+            "equivalence"
+          ],
+          "description": "ConditionalComposition only: the logical form of the composed conclusion (`CompositionForm`)."
+        }
+      }
+    },
+    "certificate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "module",
+        "lean",
+        "kindFunction",
+        "constructor",
+        "premises",
+        "semantics",
+        "axiomFootprint"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "$ref": "#/$defs/relationKind"
+        },
+        "module": {
+          "type": "string",
+          "minLength": 3,
+          "description": "Lean module containing the certificate, for example PhotoLean.RelationAudit.Pilot."
+        },
+        "lean": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Fully qualified certificate declaration."
+        },
+        "kindFunction": {
+          "type": "string",
+          "minLength": 3,
+          "pattern": "^[A-Za-z_][A-Za-z0-9_'.]*(?:\\.[A-Za-z_][A-Za-z0-9_']*)+$",
+          "description": "Fully qualified computable kind projection. Production uses PhotoLean.RelationAudit.certificateKind; fixtures may use a mock module."
+        },
+        "constructor": {
+          "type": "string",
+          "minLength": 3,
+          "pattern": "^[A-Za-z_][A-Za-z0-9_'.]*(?:\\.[A-Za-z_][A-Za-z0-9_']*)+$",
+          "description": "Fully qualified expected kind constructor. Must match certificate.kind; the validator pins it with `certificateKind <lean> = <constructor>` by rfl."
+        },
+        "premises": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/premise"
+          }
+        },
+        "semantics": {
+          "$ref": "#/$defs/certificateSemantics"
+        },
+        "axiomFootprint": {
+          "type": "array",
+          "uniqueItems": true,
+          "maxItems": 3,
+          "items": {
+            "enum": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ]
+          },
+          "description": "Exact #print axioms list of the certificate. Any other axiom, including sorryAx or a custom axiom, fails. This whitelist also applies to definitional witnesses (semantics.rflWitnessAxiomFootprint); an empty footprint is never required."
+        },
+        "sourcePath": {
+          "$ref": "#/$defs/path"
+        },
+        "sourceSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "definitionalIdentity"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semantics": {
+                "required": [
+                  "rflWitness",
+                  "rflWitnessAxiomFootprint",
+                  "translation",
+                  "rflCheck"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "observationalEquivalence"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semantics": {
+                "required": [
+                  "channels"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "distinguishability"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semantics": {
+                "required": [
+                  "form",
+                  "witness",
+                  "channels"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "refutation"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semantics": {
+                "required": [
+                  "counterexample",
+                  "target"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "conditionalComposition"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semantics": {
+                "required": [
+                  "translation"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "explicitBadge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "earned",
+        "premiseIds"
+      ],
+      "properties": {
+        "earned": {
+          "const": true
+        },
+        "premiseIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "The record premise IDs claimed explicit. The validator requires this set to equal the record premise set and requires each premise to carry a checked signatureName/signatureDeclaration."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "description": "Presence asserts that every declared premise is explicit in the checked signature. The claim is tied to the record by nesting and to the premise IDs by the required premiseIds list."
+    },
+    "nonvacuousBadge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lean",
+        "expectedType",
+        "premiseIds"
+      ],
+      "properties": {
+        "lean": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Declaration proving the declared expectedType."
+        },
+        "expectedType": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "The exact proposition the witness must prove. For nonvacuity this is `exists delta, Pi delta`, where Pi is the certificate's premisePredicate. The validator checks `example : expectedType := lean` and checks expectedType against the canonical formula for the record; existence and axiom footprint alone are not accepted."
+        },
+        "premiseIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "The record premise IDs whose conjunction Pi the witness makes nonvacuous. Must equal the record premise set."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "description": "Nonvacuity requires typed evidence `exists delta, Pi delta` tied to the record's premise IDs. Until the validator implements that expected-type check, it must reject the badge rather than accept a declaration on existence alone."
+    },
+    "nonredundantWitness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lean",
+        "expectedType"
+      ],
+      "properties": {
+        "lean": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Declaration proving this premise's residual-context countermodel."
+        },
+        "expectedType": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "The exact countermodel proposition for this premise: `exists delta, (all other record premises hold) and (this premise fails) and (the certified relation conclusion fails)`. The validator checks `example : expectedType := lean` and checks expectedType against the canonical formula for the record and premise ID."
+        }
+      },
+      "description": "One typed residual-context countermodel per record premise ID."
+    },
+    "nonredundantBadge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "premiseIds",
+        "byPremise"
+      ],
+      "properties": {
+        "premiseIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "The record premise IDs claimed nonredundant. Must equal the keys of byPremise."
+        },
+        "byPremise": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonredundantWitness"
+          },
+          "description": "Map premise ID -> typed residual-context countermodel witness. Every record premise must have exactly one entry."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "description": "Nonredundancy requires, for each claimed premise, a typed context that satisfies the other premises, falsifies that premise, and falsifies the certified relation conclusion. A bare declaration name is not evidence."
+    },
+    "weakestBadge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "premiseIds",
+        "preorder",
+        "alternatives",
+        "expectedType",
+        "minimality"
+      ],
+      "properties": {
+        "premiseIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "The record premise IDs over which minimality is claimed. Must equal the record premise set."
+        },
+        "preorder": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "Declared alternative-premise preorder. It must be a preorder on the declared alternative premise sets, not a boolean flag."
+        },
+        "alternatives": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "Declared alternative premise-set IDs over which minimality is taken."
+        },
+        "expectedType": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "The exact minimality proposition the witness must prove, for example `forall alt in alternatives, Pi <= alt`. The validator checks `example : expectedType := minimality` and checks expectedType against the canonical formula built from the declared preorder and alternatives."
+        },
+        "minimality": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Separate minimality certificate over the declared alternative preorder. Never inferred from nonredundancy, a failed proof, or linter output."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "description": "Weakest requires a declared alternative-premise preorder, the alternative IDs, a typed minimality proposition, and a separate minimality certificate. Until the typed expected-evidence check exists, the validator must reject the badge."
+    },
+    "badges": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "explicit": {
+          "$ref": "#/$defs/explicitBadge"
+        },
+        "nonvacuous": {
+          "$ref": "#/$defs/nonvacuousBadge"
+        },
+        "nonredundant": {
+          "$ref": "#/$defs/nonredundantBadge"
+        },
+        "weakest": {
+          "$ref": "#/$defs/weakestBadge"
+        }
+      },
+      "description": "Only claimed badges are present. An omitted badge is the absence of a claim, not a negative result."
+    },
+    "compositionTranslation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to",
+        "description"
+      ],
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/id"
+        },
+        "to": {
+          "$ref": "#/$defs/id"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "leanDeclaration": {
+          "$ref": "#/$defs/leanDeclaration"
+        }
+      }
+    },
+    "compositionBridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "premiseId",
+        "statement",
+        "expectedType",
+        "witness"
+      ],
+      "properties": {
+        "premiseId": {
+          "$ref": "#/$defs/id"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expectedType": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "The Lean proposition of this bridge premise. The validator checks `example : expectedType := witness` and requires expectedType to be definitionally the leanProposition of the record premise with this premiseId."
+        },
+        "witness": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Lean declaration inhabiting expectedType. A bare name checked only for existence/axioms is not sufficient."
+        }
+      }
+    },
+    "compositionDischarge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "premiseId",
+        "retainedPremiseIds",
+        "expectedType",
+        "witness"
+      ],
+      "properties": {
+        "premiseId": {
+          "$ref": "#/$defs/id"
+        },
+        "retainedPremiseIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "The premise IDs from which the discharged premise is derived. May be empty only when the discharged premise is proved unconditionally."
+        },
+        "expectedType": {
+          "$ref": "#/$defs/leanTerm",
+          "description": "The Lean entailment type: the conjunction of retained premise predicates implies the discharged premise predicate, universally over the shared context. The validator checks `example : expectedType := witness` and checks expectedType against the retainedPremiseIds."
+        },
+        "witness": {
+          "$ref": "#/$defs/leanDeclaration",
+          "description": "Lean declaration inhabiting expectedType."
+        },
+        "statement": {
+          "type": "string"
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Composition evidence for a conditionalComposition record. The Lean ConditionalComposition constructor is authoritative and proof-relevant: it stores the two typed parents, the middle-endpoint alignment, premise propagation, bridges and discharges, and computes the child comparison and conclusion. JSON therefore records only the manifest-side parent IDs, mediator, translations, bridges and discharges; it does not reconstruct a second combinator application. The validator resolves each parent ID to the Lean certificate name and generates definitional checks for certificateParentIDs, certificateParentKinds, certificateParentPremiseIDs, certificateBridgeIDs, certificateDischargeIDs, certificateMediating? and certificateCompositionForm?, in addition to the child certificateKind equality. A parent name plus an independent child proof is not an accepted alternative representation.",
+      "required": [
+        "parents",
+        "mediators",
+        "translations"
+      ],
+      "properties": {
+        "parents": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "The two parent certificate IDs, in left-to-right (combinator argument) order. The validator resolves each ID to its Lean certificate name and requires certificateParentIDs of the child certificate to be definitionally that list. The Lean ConditionalComposition constructor is binary, so exactly two parents are allowed."
+        },
+        "mediators": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "description": "The single mediating endpoint statement ID of the binary composition. Its Lean declaration must be definitionally the statementId projected from certificateMediating? of the child certificate."
+        },
+        "translations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/compositionTranslation"
+          },
+          "description": "Declared endpoint translations. Every from/to endpoint must resolve to a statement."
+        },
+        "bridges": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "$ref": "#/$defs/compositionBridge"
+          },
+          "description": "Bridge premises with their typed Lean witnesses. The list may be omitted or empty when the parent contexts already align; an empty bridge list is valid and is checked by certificateBridgeIDs = []. Every declared bridge is rejected until typed bridge evidence tied to the record and premise IDs is implemented."
+        },
+        "discharges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/compositionDischarge"
+          },
+          "description": "Declared discharge certificates. A premise may be omitted only through a typed discharge; every declared discharge is rejected until typed discharge evidence is implemented. The Lean certificate projection certificateDischargeIDs must still match the declared list."
+        },
+        "conclusionKind": {
+          "enum": [
+            "implication",
+            "equivalence"
+          ],
+          "description": "Optional. Must equal the form computed from the parent kinds (equivalence only when both parents are equivalences) and pinned definitionally through certificateCompositionForm?."
+        }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "reference",
+        "recompute"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "leanProbe",
+            "sourceScan",
+            "census",
+            "search"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Lean declaration, repository path, or search target."
+        },
+        "recompute": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Machine-recomputable command or procedure."
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "One audit answer at one (queryId, statementVersion, scope). Multiple records may share that key when their audit statuses are compatible; in particular, different certified relation kinds are not inherently contradictory. Conflict detection is status-based, not kind-based, and pair identity alone is never a conflict key.",
+      "required": [
+        "id",
+        "queryId",
+        "statementVersion",
+        "scope",
+        "snapshot",
+        "status",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "queryId": {
+          "$ref": "#/$defs/id"
+        },
+        "statementVersion": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Snapshot-era statement version label for both endpoints, for example `Marcus.InvertedRegion@1.0.0|BEP.eact@1.0.0`. Together with queryId and scope it is the conflict key."
+        },
+        "scope": {
+          "$ref": "#/$defs/id"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "certified",
+            "unresolved",
+            "notEstablished",
+            "outOfScope"
+          ]
+        },
+        "relationKind": {
+          "$ref": "#/$defs/relationKind",
+          "description": "Present iff status is certified. This is the asserted relation semantics and is independent of evidence, status, and provenance."
+        },
+        "certificate": {
+          "$ref": "#/$defs/id",
+          "description": "Present iff status is certified. References a top-level certificate row."
+        },
+        "premises": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/premise"
+          },
+          "description": "Premises claimed by this record. For non-composition certificates these are the certificate premises; for a conditional composition they are the certificate premises plus inherited parent premises plus bridge premises, minus discharged premises."
+        },
+        "badges": {
+          "$ref": "#/$defs/badges"
+        },
+        "composition": {
+          "$ref": "#/$defs/composition"
+        },
+        "candidate": {
+          "$ref": "#/$defs/relationKind",
+          "description": "Unresolved only: the candidate relation kind still under investigation."
+        },
+        "dependencies": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/dependency"
+          },
+          "description": "notEstablished only: machine-recomputable dependency evidence."
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Human rationale. Required for every non-certified record; optional for a certified record."
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "certified"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "relationKind",
+              "certificate",
+              "premises",
+              "badges"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "candidate"
+                  ]
+                },
+                {
+                  "required": [
+                    "dependencies"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "unresolved",
+                  "notEstablished",
+                  "outOfScope"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "rationale"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "relationKind"
+                  ]
+                },
+                {
+                  "required": [
+                    "certificate"
+                  ]
+                },
+                {
+                  "required": [
+                    "premises"
+                  ]
+                },
+                {
+                  "required": [
+                    "badges"
+                  ]
+                },
+                {
+                  "required": [
+                    "composition"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "unresolved"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "candidate"
+            ],
+            "not": {
+              "required": [
+                "dependencies"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "notEstablished"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "dependencies"
+            ],
+            "not": {
+              "required": [
+                "candidate"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "outOfScope"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "candidate"
+                  ]
+                },
+                {
+                  "required": [
+                    "dependencies"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "certified"
+              },
+              "relationKind": {
+                "const": "conditionalComposition"
+              }
+            },
+            "required": [
+              "status",
+              "relationKind"
+            ]
+          },
+          "then": {
+            "required": [
+              "composition"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "certified"
+              },
+              "relationKind": {
+                "enum": [
+                  "definitionalIdentity",
+                  "implication",
+                  "equivalence",
+                  "observationalEquivalence",
+                  "distinguishability",
+                  "refutation"
+                ]
+              }
+            },
+            "required": [
+              "status",
+              "relationKind"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "composition"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

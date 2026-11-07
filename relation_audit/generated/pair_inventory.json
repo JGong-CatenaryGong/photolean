@@ -1,0 +1,3361 @@
+{
+  "artifactKind": "relation-pair-inventory",
+  "bothEdgeAndAbsence": [],
+  "counts": {
+    "ambiguousPairs": 1,
+    "bothEdgeAndAbsencePairs": 0,
+    "completionBlockPairs": 26,
+    "duplicateRegistryRows": 4,
+    "legacyCoveredPairs": 136,
+    "legacyEdges": 26,
+    "legacyRawAbsenceRegistryRows": 114,
+    "legacyUniqueAbsences": 110,
+    "pairs": 136,
+    "unaccountedPairs": 0
+  },
+  "nonClaims": [
+    "Legacy edge/absence labels are historical census labels, not audit judgments.",
+    "No pair is recorded as certified, unresolved, notEstablished, or outOfScope.",
+    "Coverage of the legacy census is not resolved audit coverage."
+  ],
+  "pairs": [
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§2 tsCoord_lt_zero_iff_inverted, lefflerSecant_neg_iff_inverted; §4; §5 hammond_barrier_eq_gapReactant; §6 hammond_sharp_iff_marcus_sharp",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Direct equivalences, definitional aliases, and the exactness contrast.",
+        "registry": "EDGES",
+        "subtype": "direct"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-Hammond",
+      "theories": [
+        "Marcus",
+        "Hammond"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§2 epBounds_iff_no_inverted_direction; §3 epBounds_of_marcus_normal; §5 bep_eact_eq_marcus_barrier, bep_rate_eq_exp_neg_eact",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Definitional aliases plus one-way entailments and the headline equivalence.",
+        "registry": "EDGES",
+        "subtype": "direct"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-BEP",
+      "theories": [
+        "Marcus",
+        "BEP"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§7 five rows (kernel_marcusIC, kashaWithin_one_marcus, not_kashaWithin_of_gap_far, kashaWindow_halfWidth, marcusIC_pos)",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Conditional equivalence under the declared hic modelling premise.",
+        "registry": "EDGES",
+        "subtype": "conditional-premise"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-Kasha",
+      "theories": [
+        "Marcus",
+        "Kasha"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§9 marcus_rate_eq_activity (C1), marcusRate_antiVolcanoDescriptor (C2)",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Look-alike pair: one shared functional form and one shared predicate, then three non-relations. Not a direct edge.",
+        "registry": "EDGES",
+        "subtype": "look-alike"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-Sabatier",
+      "theories": [
+        "Marcus",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-Goldschmidt",
+      "theories": [
+        "Marcus",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§11 symmetryFactor_tsCoordZero_eq_kernel, symmetryFactor_betaHalf_iff; §10 registry \"SymmetryFactor ↔ Marcus, Hammond, BEP — §11\"",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "A1 tie-back to the shared kernel; no row names Marcus directly.",
+        "registry": "EDGES",
+        "subtype": "transitive-via-kernel"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-SymmetryFactor",
+      "theories": [
+        "Marcus",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"KashaVavilov ↔ Marcus / Hammond / BEP — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-KashaVavilov",
+      "theories": [
+        "Marcus",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-SternVolmer",
+      "theories": [
+        "Marcus",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-QuantumYield",
+      "theories": [
+        "Marcus",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-FluorPhos",
+      "theories": [
+        "Marcus",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§12 eg_rate_eq_marcus, eg_invertedGap_iff_marcus",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "EnergyGapLaw rate and inverted-gap predicate pinned to Marcus.",
+        "registry": "EDGES",
+        "subtype": "definitional"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-EnergyGapLaw",
+      "theories": [
+        "Marcus",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "in-module edge: PhotoLean/StokesShift/Criterion.lean emEnergy_pos_iff_inverted (row SS-C9), noted in §16 completion block",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "The edge is delivered inside StokesShift.Criterion (row SS-C9), not re-exported here.",
+        "registry": "EDGES",
+        "subtype": "in-module"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-StokesShift",
+      "theories": [
+        "Marcus",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§12 icvscic_icRate_eq_marcus",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "ICvsISC internal-conversion rate pinned to the Marcus rate.",
+        "registry": "EDGES",
+        "subtype": "definitional"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-ICvsISC",
+      "theories": [
+        "Marcus",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-Forster",
+      "theories": [
+        "Marcus",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-Einstein",
+      "theories": [
+        "Marcus",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": {
+        "absenceReading": "§17 row kernel_surfaces_cross_at_tsCoord is labelled \"look-alike, machine note\", and paper §3 lists \"RACI versus Marcus … real crossing vs. codimension-2 degeneracy\" among the shape look-alikes registered with edge construction refused",
+        "countedAs": "absence",
+        "edgeReading": "§17 last bullet groups \"RACI ↔ QuantumYield / EnergyGapLaw / ICvsISC / Marcus — see the five machine rows above\"",
+        "effectOnCoverage": "none (the pair is covered either way); counting it as an edge would give 27 edges + 109 absences"
+      },
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 kernel_surfaces_cross_at_tsCoord — \"RACI ↔ Marcus (look-alike, machine note)\"; paper §3 lists \"RACI versus Marcus … real crossing vs. codimension-2 degeneracy\" among the shape look-alikes with edge construction refused (the row pins the Marcus side and asserts no edge)",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Section 17 row kernel_surfaces_cross_at_tsCoord is a look-alike machine note; the pair is counted as a legacy absence and carries the census ambiguity note.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "look-alike"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Marcus-RACI",
+      "theories": [
+        "Marcus",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§2 transfer_eq_tsCoord_bridge, secSlope_eq_lefflerSecant; §3 epBounds_of_reactionRegion, hammondDescriptor_of_epConformsOnWindow; §6 hammond_trend_exact_bep_law_inexact",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Equivalences and one-way entailments; includes the exactness contrast.",
+        "registry": "EDGES",
+        "subtype": "direct"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-BEP",
+      "theories": [
+        "Hammond",
+        "BEP"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Kasha ↔ Hammond — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-Kasha",
+      "theories": [
+        "Hammond",
+        "Kasha"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Sabatier ↔ Hammond — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-Sabatier",
+      "theories": [
+        "Hammond",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-Goldschmidt",
+      "theories": [
+        "Hammond",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 registry \"SymmetryFactor ↔ Marcus, Hammond, BEP — §11\" (via §1 kernel certificate Kernel.tsCoord = Hammond.tsCoord)",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "No direct row names both theories; the legacy edge rests on the section-10 registry line and the section-1 kernel certificates.",
+        "registry": "EDGES",
+        "subtype": "transitive-registry-only"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-SymmetryFactor",
+      "theories": [
+        "Hammond",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"KashaVavilov ↔ Marcus / Hammond / BEP — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-KashaVavilov",
+      "theories": [
+        "Hammond",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-SternVolmer",
+      "theories": [
+        "Hammond",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-QuantumYield",
+      "theories": [
+        "Hammond",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-FluorPhos",
+      "theories": [
+        "Hammond",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 eg_boundary_eq_tsCoord_zero (the \"Hammond boundary row\")",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "The legacy edge cites the boundary row eg_boundary_eq_tsCoord_zero, a kernel identity rather than a direct EGL-Hammond relation.",
+        "registry": "EDGES",
+        "subtype": "shape"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-EnergyGapLaw",
+      "theories": [
+        "Hammond",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"StokesShift ↔ Hammond / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-StokesShift",
+      "theories": [
+        "Hammond",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"ICvsISC ↔ Hammond / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-ICvsISC",
+      "theories": [
+        "Hammond",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-Forster",
+      "theories": [
+        "Hammond",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-Einstein",
+      "theories": [
+        "Hammond",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Hammond / BEP / Sabatier — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Hammond-RACI",
+      "theories": [
+        "Hammond",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Kasha ↔ BEP — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-Kasha",
+      "theories": [
+        "BEP",
+        "Kasha"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§8 six rows (linearVolcano_eq_bepTangent … linearVolcano_apex_exact)",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Sabatier-to-BEP composition rows; each is a candidate typed composition.",
+        "registry": "EDGES",
+        "subtype": "composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-Sabatier",
+      "theories": [
+        "BEP",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-Goldschmidt",
+      "theories": [
+        "BEP",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§11 symmetryFactor_tsCoordZero_eq_bepTransfer",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "A1 tie-back to BEP.transfer through the kernel/E1 chain.",
+        "registry": "EDGES",
+        "subtype": "transitive-via-kernel"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-SymmetryFactor",
+      "theories": [
+        "BEP",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"KashaVavilov ↔ Marcus / Hammond / BEP — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-KashaVavilov",
+      "theories": [
+        "BEP",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-SternVolmer",
+      "theories": [
+        "BEP",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-QuantumYield",
+      "theories": [
+        "BEP",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-FluorPhos",
+      "theories": [
+        "BEP",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ BEP — no edge (a registered shape edge)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Section 16 completion: EnergyGapLaw against BEP - no edge (a registered shape edge).",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "shape"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-EnergyGapLaw",
+      "theories": [
+        "BEP",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"StokesShift ↔ … / BEP / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-StokesShift",
+      "theories": [
+        "BEP",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"ICvsISC ↔ … / BEP / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-ICvsISC",
+      "theories": [
+        "BEP",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-Forster",
+      "theories": [
+        "BEP",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-Einstein",
+      "theories": [
+        "BEP",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Hammond / BEP / Sabatier — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-BEP-RACI",
+      "theories": [
+        "BEP",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Sabatier ↔ Kasha — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-Sabatier",
+      "theories": [
+        "Kasha",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Goldschmidt ↔ all six — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-Goldschmidt",
+      "theories": [
+        "Kasha",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-SymmetryFactor",
+      "theories": [
+        "Kasha",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§13 kv_d2_verdict, kv_antiKasha_boundary (both over Kasha.RateData / Kasha.KashaRule)",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "A2 adjudication of Kasha's rule against Vavilov behavior; intra-theory reading.",
+        "registry": "EDGES",
+        "subtype": "adjudication"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-KashaVavilov",
+      "theories": [
+        "Kasha",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": {
+        "kind": "unresolved-candidate",
+        "note": "Migration candidate only; no certificate exists and this is not an audit `unresolved` record.",
+        "reason": "Section 16: 'Kasha against SternVolmer - no edge (registered candidate, not delivered)'."
+      },
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"Kasha ↔ SternVolmer — no edge (registered candidate, not delivered)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "undelivered-candidate"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-SternVolmer",
+      "theories": [
+        "Kasha",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 kasha_radBranch_eq_yieldOf",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Ladder radiative branch as a two-channel quantum yield.",
+        "registry": "EDGES",
+        "subtype": "composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-QuantumYield",
+      "theories": [
+        "Kasha",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": {
+        "kind": "unresolved-candidate",
+        "note": "Migration candidate only; no certificate exists and this is not an audit `unresolved` record.",
+        "reason": "Section 16: 'FluorPhos against Kasha / KashaVavilov - no edge (undelivered candidate compositions)'."
+      },
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"FluorPhos ↔ Kasha / KashaVavilov — no edge (undelivered candidate compositions)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "undelivered-candidate"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-FluorPhos",
+      "theories": [
+        "Kasha",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 marcusIC_strictAnti_on_inverted_gaps",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "The legacy edge cites marcusIC_strictAnti_on_inverted_gaps, which does not consume any EnergyGapLaw declaration.",
+        "registry": "EDGES",
+        "subtype": "one-sided"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-EnergyGapLaw",
+      "theories": [
+        "Kasha",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"StokesShift ↔ Kasha / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-StokesShift",
+      "theories": [
+        "Kasha",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"ICvsISC ↔ Kasha / KashaVavilov / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-ICvsISC",
+      "theories": [
+        "Kasha",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ … / Kasha / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-Forster",
+      "theories": [
+        "Kasha",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ … / Kasha / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-Einstein",
+      "theories": [
+        "Kasha",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Kasha / KashaVavilov — shape note (no machine row)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Kasha-RACI",
+      "theories": [
+        "Kasha",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Goldschmidt ↔ all six — no edge\" + \"Goldschmidt ↔ Sabatier — look-alike of shape\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Section 10: a look-alike of shape, with no edge.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "look-alike"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-Goldschmidt",
+      "theories": [
+        "Sabatier",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-SymmetryFactor",
+      "theories": [
+        "Sabatier",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-KashaVavilov",
+      "theories": [
+        "Sabatier",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-SternVolmer",
+      "theories": [
+        "Sabatier",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-QuantumYield",
+      "theories": [
+        "Sabatier",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-FluorPhos",
+      "theories": [
+        "Sabatier",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ Sabatier / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-EnergyGapLaw",
+      "theories": [
+        "Sabatier",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"StokesShift ↔ … / Sabatier / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-StokesShift",
+      "theories": [
+        "Sabatier",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"ICvsISC ↔ … / Sabatier / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-ICvsISC",
+      "theories": [
+        "Sabatier",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ … / Sabatier / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-Forster",
+      "theories": [
+        "Sabatier",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ … / Sabatier / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-Einstein",
+      "theories": [
+        "Sabatier",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Hammond / BEP / Sabatier — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Sabatier-RACI",
+      "theories": [
+        "Sabatier",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§10 \"Goldschmidt ↔ all six\" and \"SymmetryFactor ↔ Kasha, Sabatier, Goldschmidt — no edge\" (listed twice)",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§10 (no-edge registry, first seven theories)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-SymmetryFactor",
+      "theories": [
+        "Goldschmidt",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-KashaVavilov",
+      "theories": [
+        "Goldschmidt",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-SternVolmer",
+      "theories": [
+        "Goldschmidt",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-QuantumYield",
+      "theories": [
+        "Goldschmidt",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-FluorPhos",
+      "theories": [
+        "Goldschmidt",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ … / Goldschmidt / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-EnergyGapLaw",
+      "theories": [
+        "Goldschmidt",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"StokesShift ↔ … / Goldschmidt / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-StokesShift",
+      "theories": [
+        "Goldschmidt",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"ICvsISC ↔ … / Goldschmidt / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-ICvsISC",
+      "theories": [
+        "Goldschmidt",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"Forster ↔ Goldschmidt — no edge (look-alike, no machine row)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Section 16 completion: Forster against Goldschmidt - no edge (look-alike, no machine row).",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "look-alike"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-Forster",
+      "theories": [
+        "Goldschmidt",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ … / Goldschmidt / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-Einstein",
+      "theories": [
+        "Goldschmidt",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Goldschmidt — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Goldschmidt-RACI",
+      "theories": [
+        "Goldschmidt",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-KashaVavilov",
+      "theories": [
+        "SymmetryFactor",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"SternVolmer ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-SternVolmer",
+      "theories": [
+        "SymmetryFactor",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"QuantumYield ↔ Marcus / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-QuantumYield",
+      "theories": [
+        "SymmetryFactor",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … — no edge except through QuantumYield\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-FluorPhos",
+      "theories": [
+        "SymmetryFactor",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ … / SymmetryFactor / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-EnergyGapLaw",
+      "theories": [
+        "SymmetryFactor",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"StokesShift ↔ … / SymmetryFactor — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-StokesShift",
+      "theories": [
+        "SymmetryFactor",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"ICvsISC ↔ … / SymmetryFactor — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-ICvsISC",
+      "theories": [
+        "SymmetryFactor",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ … / SymmetryFactor / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-Forster",
+      "theories": [
+        "SymmetryFactor",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ … / SymmetryFactor / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-Einstein",
+      "theories": [
+        "SymmetryFactor",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ SymmetryFactor — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SymmetryFactor-RACI",
+      "theories": [
+        "SymmetryFactor",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": {
+        "kind": "unresolved-candidate",
+        "note": "Migration candidate only; no certificate exists and this is not an audit `unresolved` record.",
+        "reason": "Section 16: 'KashaVavilov against SternVolmer / QuantumYield - undelivered candidate compositions'."
+      },
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"KashaVavilov ↔ SternVolmer / QuantumYield — undelivered candidate compositions\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "undelivered-candidate"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-SternVolmer",
+      "theories": [
+        "KashaVavilov",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": {
+        "kind": "unresolved-candidate",
+        "note": "Migration candidate only; no certificate exists and this is not an audit `unresolved` record.",
+        "reason": "Section 16: 'KashaVavilov against SternVolmer / QuantumYield - undelivered candidate compositions'."
+      },
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"KashaVavilov ↔ … / QuantumYield — undelivered candidate compositions\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "undelivered-candidate"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-QuantumYield",
+      "theories": [
+        "KashaVavilov",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": {
+        "kind": "unresolved-candidate",
+        "note": "Migration candidate only; no certificate exists and this is not an audit `unresolved` record.",
+        "reason": "Section 16: 'FluorPhos against Kasha / KashaVavilov - no edge (undelivered candidate compositions)'."
+      },
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"FluorPhos ↔ Kasha / KashaVavilov — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "undelivered-candidate"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-FluorPhos",
+      "theories": [
+        "KashaVavilov",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": {
+        "kind": "unresolved-candidate",
+        "note": "Migration candidate only; no certificate exists and this is not an audit `unresolved` record.",
+        "reason": "Section 16 completion block: EnergyGapLaw against KashaVavilov is registered as a no-edge pair, and the EnergyGapLaw bullet calls KashaVavilov an undelivered composition candidate."
+      },
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ … / KashaVavilov / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "undelivered-candidate"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-EnergyGapLaw",
+      "theories": [
+        "KashaVavilov",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"StokesShift ↔ Kasha / KashaVavilov / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-StokesShift",
+      "theories": [
+        "KashaVavilov",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"ICvsISC ↔ Kasha / KashaVavilov / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-ICvsISC",
+      "theories": [
+        "KashaVavilov",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ … / KashaVavilov / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-Forster",
+      "theories": [
+        "KashaVavilov",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ … / KashaVavilov / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-Einstein",
+      "theories": [
+        "KashaVavilov",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Kasha / KashaVavilov — shape note (no machine row)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-KashaVavilov-RACI",
+      "theories": [
+        "KashaVavilov",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 sv_quench_dilutes_yield",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Dynamic quenching as quantum-yield dilution.",
+        "registry": "EDGES",
+        "subtype": "composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-QuantumYield",
+      "theories": [
+        "SternVolmer",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 fpRatio_invariant_under_quench",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "The quench is encoded as the added rate kq*q, not through a SternVolmer declaration; a typed certificate needs an explicit translation.",
+        "registry": "EDGES",
+        "subtype": "model-level-composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-FluorPhos",
+      "theories": [
+        "SternVolmer",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ … / SternVolmer / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-EnergyGapLaw",
+      "theories": [
+        "SternVolmer",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"StokesShift ↔ … / SternVolmer / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-StokesShift",
+      "theories": [
+        "SternVolmer",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"ICvsISC ↔ … / SternVolmer / QuantumYield / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-ICvsISC",
+      "theories": [
+        "SternVolmer",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 Forster bullet: \"Two shape registrations carry machine content: the SV look-alike (fretEff6_inv_eq_one_plus, §15)\" — shape registered, no edge (paper §3 \"edge construction refused\")",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Section 16 Forster bullet: the SV look-alike fretEff6_inv_eq_one_plus is a registered shape with machine content; no edge.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "look-alike"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-Forster",
+      "theories": [
+        "SternVolmer",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"Einstein ↔ SternVolmer — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-Einstein",
+      "theories": [
+        "SternVolmer",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ SternVolmer — look-alike note (opposite trend)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-SternVolmer-RACI",
+      "theories": [
+        "SternVolmer",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 phiF_eq_yieldOf, phiP_eq_yieldOf_cascade",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Fluorescence and phosphorescence yields as quantum-yield compositions.",
+        "registry": "EDGES",
+        "subtype": "composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-QuantumYield-FluorPhos",
+      "theories": [
+        "QuantumYield",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ … / QuantumYield / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-QuantumYield-EnergyGapLaw",
+      "theories": [
+        "QuantumYield",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"StokesShift ↔ … / QuantumYield / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-QuantumYield-StokesShift",
+      "theories": [
+        "QuantumYield",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"ICvsISC ↔ … / QuantumYield / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-QuantumYield-ICvsISC",
+      "theories": [
+        "QuantumYield",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 fretEff6_eq_one_sub_yieldOf",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "FRET efficiency as one minus the donor yield.",
+        "registry": "EDGES",
+        "subtype": "composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-QuantumYield-Forster",
+      "theories": [
+        "QuantumYield",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 einstein_yield_via_qy",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "Einstein radiative channel anchored to the quantum-yield layer.",
+        "registry": "EDGES",
+        "subtype": "composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-QuantumYield-Einstein",
+      "theories": [
+        "QuantumYield",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 raci_qy_eq_yieldOf_two_channel, qy_two_channel_strictAnti_of_nr_lt",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "RACI quantum yield as a two-channel quantum yield.",
+        "registry": "EDGES",
+        "subtype": "composition"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-QuantumYield-RACI",
+      "theories": [
+        "QuantumYield",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … / EnergyGapLaw / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-FluorPhos-EnergyGapLaw",
+      "theories": [
+        "FluorPhos",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ],
+        "citation": "§16 \"StokesShift ↔ … / FluorPhos / … — no edge\" (also listed under the FluorPhos bullet)",
+        "duplicateRegistryRow": true,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-FluorPhos-StokesShift",
+      "theories": [
+        "FluorPhos",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"FluorPhos ↔ ICvsISC — the premise-level kISC identification (registered in both plans as a modelling premise, not a Lean row)\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Section 16: the premise-level kISC identification is registered as a modelling premise, not a Lean row.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "premise-level"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-FluorPhos-ICvsISC",
+      "theories": [
+        "FluorPhos",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … / Forster / Einstein — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-FluorPhos-Forster",
+      "theories": [
+        "FluorPhos",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"FluorPhos ↔ … / Forster / Einstein — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-FluorPhos-Einstein",
+      "theories": [
+        "FluorPhos",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ FluorPhos — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-FluorPhos-RACI",
+      "theories": [
+        "FluorPhos",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 egBarrier_zero_iff_emEnergy_zero",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "EGL barrier zero iff the Stokes emission window closes.",
+        "registry": "EDGES",
+        "subtype": "predicate-equivalence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-EnergyGapLaw-StokesShift",
+      "theories": [
+        "EnergyGapLaw",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§15 icvscic_icRate_eq_eg_nrRate",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "ICvsISC rate equals the EnergyGapLaw nonradiative rate.",
+        "registry": "EDGES",
+        "subtype": "definitional"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-EnergyGapLaw-ICvsISC",
+      "theories": [
+        "EnergyGapLaw",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Forster ↔ … / EnergyGapLaw / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-EnergyGapLaw-Forster",
+      "theories": [
+        "EnergyGapLaw",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 completion \"EnergyGapLaw ↔ … / Einstein — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 completion block (added 2026-09-24, 26 pairs)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-EnergyGapLaw-Einstein",
+      "theories": [
+        "EnergyGapLaw",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 log_barrierRate_eq",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "log_barrierRate_eq pins the RACI affine log shape and consumes no EnergyGapLaw row.",
+        "registry": "EDGES",
+        "subtype": "one-sided"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-EnergyGapLaw-RACI",
+      "theories": [
+        "EnergyGapLaw",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"StokesShift ↔ … / ICvsISC / … — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-StokesShift-ICvsISC",
+      "theories": [
+        "StokesShift",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ],
+        "citation": "§16 \"Forster ↔ … / StokesShift / … — no edge\" (also listed under the FluorPhos bullet)",
+        "duplicateRegistryRow": true,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-StokesShift-Forster",
+      "theories": [
+        "StokesShift",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ],
+        "citation": "§16 \"Einstein ↔ … / StokesShift / Forster — no edge\"",
+        "duplicateRegistryRow": true,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-StokesShift-Einstein",
+      "theories": [
+        "StokesShift",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ StokesShift — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-StokesShift-RACI",
+      "theories": [
+        "StokesShift",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [
+          "§16 (extended no-edge registry, per-theory bullets)",
+          "§16 (extended no-edge registry, per-theory bullets)"
+        ],
+        "citation": "§16 \"Forster ↔ … / ICvsISC — no edge\" (also listed under the ICvsISC bullet)",
+        "duplicateRegistryRow": true,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-ICvsISC-Forster",
+      "theories": [
+        "ICvsISC",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"ICvsISC ↔ … / Forster / Einstein — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-ICvsISC-Einstein",
+      "theories": [
+        "ICvsISC",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 icvsisc_barrier_zero_at_crossing",
+        "duplicateRegistryRow": false,
+        "label": "edge",
+        "nonAuditMetadata": true,
+        "note": "icvsisc_barrier_zero_at_crossing pins the ICvsISC side only.",
+        "registry": "EDGES",
+        "subtype": "one-sided"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-ICvsISC-RACI",
+      "theories": [
+        "ICvsISC",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§16 \"Einstein ↔ … / Forster — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§16 (extended no-edge registry, per-theory bullets)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Forster-Einstein",
+      "theories": [
+        "Forster",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Forster — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Forster-RACI",
+      "theories": [
+        "Forster",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": null,
+      "auditJudgment": null,
+      "candidate": null,
+      "legacy": {
+        "alsoListedIn": [],
+        "citation": "§17 \"RACI ↔ Einstein — no edge\"",
+        "duplicateRegistryRow": false,
+        "label": "absence",
+        "nonAuditMetadata": true,
+        "note": "Legacy census label only; not an audit judgment.",
+        "registry": "§17 (no-edge registrations of the seventeenth node)",
+        "subtype": "registered-absence"
+      },
+      "migration": {
+        "legacyLabelIsNotAnAuditJudgment": true,
+        "status": "not-audited"
+      },
+      "pairId": "P-Einstein-RACI",
+      "theories": [
+        "Einstein",
+        "RACI"
+      ]
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "scope": "migration-inventory-only",
+  "source": {
+    "enumeration": [
+      "tools/counts.py:THEORIES",
+      "tools/counts.py:EDGES",
+      "tools/counts.py:ABSENCE_REGISTRIES",
+      "tools/counts.py:pair_census"
+    ],
+    "nonAuditMetadata": true,
+    "scanner": "tools/counts.py",
+    "scannerSha256": "4c9423d3e0742dc5d9234b217e106f66ce7b362177150e69400964127d979cdb",
+    "theories": [
+      "Marcus",
+      "Hammond",
+      "BEP",
+      "Kasha",
+      "Sabatier",
+      "Goldschmidt",
+      "SymmetryFactor",
+      "KashaVavilov",
+      "SternVolmer",
+      "QuantumYield",
+      "FluorPhos",
+      "EnergyGapLaw",
+      "StokesShift",
+      "ICvsISC",
+      "Forster",
+      "Einstein",
+      "RACI"
+    ]
+  },
+  "unaccountedPairs": []
+}

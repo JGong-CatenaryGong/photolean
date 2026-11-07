@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://photolean.local/relation_audit/dispositions.schema.json",
+  "title": "PhotoLean Relation-Audit Migration Disposition Ledger v1.0",
+  "description": "Structural contract for relation_audit/dispositions.json. The ledger is a migration overlay, not an audit registry: every entry assigns exactly one migration disposition to one scanned PhotoLean/Relations.lean declaration. Legacy section/class labels and the ledger's own dispositions are explicitly non-audit metadata. Pair and query references must resolve against the generated pair inventory and the R1 pilot.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "scope",
+    "source",
+    "dispositionVocabulary",
+    "relationRoleVocabulary",
+    "entries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "scope": {
+      "const": "migration-inventory-only"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scanner", "declarationInventory", "pairInventory", "note"],
+      "properties": {
+        "scanner": {
+          "const": "tools/counts.py"
+        },
+        "declarationInventory": {
+          "const": "relation_audit/generated/relations_inventory.json"
+        },
+        "pairInventory": {
+          "const": "relation_audit/generated/pair_inventory.json"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "dispositionVocabulary": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "$ref": "#/$defs/vocabularyItem"
+      }
+    },
+    "relationRoleVocabulary": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "$ref": "#/$defs/vocabularyItem"
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 78,
+      "maxItems": 78,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
+  },
+  "$defs": {
+    "vocabularyItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "provenanceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact", "locator"],
+      "properties": {
+        "artifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "references"],
+      "properties": {
+        "kind": {
+          "enum": ["source", "manual", "computed", "imported"]
+        },
+        "references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/provenanceReference"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declarationId",
+        "name",
+        "section",
+        "disposition",
+        "relationRole",
+        "pairIds",
+        "relatedPairIds",
+        "pilotRecordIds",
+        "pilotQueryIds",
+        "intraTheory",
+        "pairAssociation",
+        "rationale",
+        "migrationAction",
+        "provenance",
+        "nonAuditMetadata"
+      ],
+      "properties": {
+        "declarationId": {
+          "type": "string",
+          "pattern": "^D-S[0-9]{2}-[A-Za-z0-9_']+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 17
+        },
+        "disposition": {
+          "enum": [
+            "pilot-certificate",
+            "certificate-required",
+            "support-lemma",
+            "intra-theory-adjudication",
+            "look-alike-non-relation",
+            "metadata-only",
+            "scoped-relation-documentation",
+            "unresolved-candidate"
+          ]
+        },
+        "relationRole": {
+          "enum": [
+            "definitional-pin",
+            "definitional-alias",
+            "direct-equivalence",
+            "one-way-entailment",
+            "conditional-equivalence",
+            "composition",
+            "composition-component",
+            "model-level-composition",
+            "support",
+            "intra-theory-bridge",
+            "intra-theory-adjudication",
+            "adjudication-verdict",
+            "adjudication-boundary",
+            "look-alike-shared-form",
+            "look-alike-contrast",
+            "shape-note",
+            "one-sided-note",
+            "transitive-tie-back"
+          ]
+        },
+        "pairIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^P-[A-Za-z0-9]+-[A-Za-z0-9]+$"
+          }
+        },
+        "relatedPairIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^P-[A-Za-z0-9]+-[A-Za-z0-9]+$"
+          }
+        },
+        "pilotRecordIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2
+          }
+        },
+        "pilotQueryIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2
+          }
+        },
+        "intraTheory": {
+          "type": "boolean"
+        },
+        "pairAssociation": {
+          "enum": ["direct", "supporting", "look-alike", "intra-theory", "transitive", "none"],
+          "description": "How pairIds/relatedPairIds are used: a direct relation claim, supporting context, look-alike context, intra-theory context, transitive context, or no pair reference."
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 40
+        },
+        "migrationAction": {
+          "type": "string",
+          "minLength": 10
+        },
+        "notes": {
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "nonAuditMetadata": {
+          "const": true
+        }
+      }
+    }
+  }
+}

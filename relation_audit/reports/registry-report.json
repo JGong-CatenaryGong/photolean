@@ -1,0 +1,3473 @@
+{
+  "artifactKind": "relation-full-registry-generation",
+  "certificateMapping": [
+    {
+      "certificate": "cert-kernel-pin",
+      "declarationId": null,
+      "kind": "definitionalIdentity",
+      "outcome": "intra-theory-record",
+      "pairIds": [],
+      "reason": null,
+      "recordIds": [
+        "rec-kernel-pin"
+      ],
+      "registryCertificate": "cert-kernel-pin",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-hammond-bep",
+      "declarationId": null,
+      "kind": "implication",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-hammond-bep"
+      ],
+      "registryCertificate": "cert-hammond-bep",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-a1",
+      "declarationId": null,
+      "kind": "equivalence",
+      "outcome": "intra-theory-record",
+      "pairIds": [],
+      "reason": null,
+      "recordIds": [
+        "rec-a1"
+      ],
+      "registryCertificate": "cert-a1",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-kasha-marcus",
+      "declarationId": null,
+      "kind": "equivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-kasha-marcus"
+      ],
+      "registryCertificate": "cert-kasha-marcus",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-composition-parent-normal",
+      "declarationId": null,
+      "kind": "implication",
+      "outcome": "composition-parent",
+      "pairIds": [],
+      "reason": "Accepted R1 composition parent certificate; consumed by the conditionalComposition record and not a direct pair record itself.",
+      "recordIds": [],
+      "registryCertificate": "cert-composition-parent-normal",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-composition-parent-epbounds",
+      "declarationId": null,
+      "kind": "equivalence",
+      "outcome": "composition-parent",
+      "pairIds": [],
+      "reason": "Accepted R1 composition parent certificate; consumed by the conditionalComposition record and not a direct pair record itself.",
+      "recordIds": [],
+      "registryCertificate": "cert-composition-parent-epbounds",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-composition",
+      "declarationId": null,
+      "kind": "conditionalComposition",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-BEP"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-composition"
+      ],
+      "registryCertificate": "cert-composition",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-sv-intensity",
+      "declarationId": null,
+      "kind": "observationalEquivalence",
+      "outcome": "intra-theory-record",
+      "pairIds": [],
+      "reason": null,
+      "recordIds": [
+        "rec-sv-intensity"
+      ],
+      "registryCertificate": "cert-sv-intensity",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-sv-joint",
+      "declarationId": null,
+      "kind": "distinguishability",
+      "outcome": "intra-theory-record",
+      "pairIds": [],
+      "reason": null,
+      "recordIds": [
+        "rec-sv-joint"
+      ],
+      "registryCertificate": "cert-sv-joint",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-sv-decoder",
+      "declarationId": null,
+      "kind": "distinguishability",
+      "outcome": "intra-theory-record",
+      "pairIds": [],
+      "reason": null,
+      "recordIds": [
+        "rec-sv-decoder"
+      ],
+      "registryCertificate": "cert-sv-decoder",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "cert-kv-refutation",
+      "declarationId": null,
+      "kind": "refutation",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Kasha-KashaVavilov"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-kasha-vavilov"
+      ],
+      "registryCertificate": "cert-kv-refutation",
+      "source": "R1 pilot"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+      "declarationId": "D-S01-kernel_barrier_eq_hammond",
+      "endpointTheories": [
+        "Hammond",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S01-kernel-barrier-eq-hammond",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+      "declarationId": "D-S01-kernel_barrier_eq_bep",
+      "endpointTheories": [
+        "BEP",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S01-kernel-barrier-eq-bep",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+      "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+      "endpointTheories": [
+        "Hammond",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S01-kernel-reverseBarrier-eq-hammond",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+      "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+      "endpointTheories": [
+        "Hammond",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S01-kernel-tsCoord-eq-hammond",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+      "declarationId": "D-S01-kernel_transfer_eq_bep",
+      "endpointTheories": [
+        "BEP",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S01-kernel-transfer-eq-bep",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+      "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+      "endpointTheories": [
+        "Hammond",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S01-kernel-reactantSurface-eq-hammond",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+      "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+      "endpointTheories": [
+        "Hammond",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S01-kernel-productSurface-eq-hammond",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+      "declarationId": "D-S02-transfer_eq_tsCoord_bridge",
+      "endpointTheories": [
+        "BEP",
+        "Hammond"
+      ],
+      "kind": "observationalEquivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S02-transfer-eq-tsCoord-bridge"
+      ],
+      "registryCertificate": "cert-D-S02-transfer-eq-tsCoord-bridge",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+      "declarationId": "D-S02-secSlope_eq_lefflerSecant",
+      "endpointTheories": [
+        "BEP",
+        "Hammond"
+      ],
+      "kind": "observationalEquivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S02-secSlope-eq-lefflerSecant"
+      ],
+      "registryCertificate": "cert-D-S02-secSlope-eq-lefflerSecant",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+      "declarationId": "D-S02-tsCoord_lt_zero_iff_inverted",
+      "endpointTheories": [
+        "Hammond",
+        "Marcus"
+      ],
+      "kind": "equivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S02-tsCoord-lt-zero-iff-inverted"
+      ],
+      "registryCertificate": "cert-D-S02-tsCoord-lt-zero-iff-inverted",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+      "declarationId": "D-S02-lefflerSecant_neg_iff_inverted",
+      "endpointTheories": [
+        "Hammond",
+        "Marcus"
+      ],
+      "kind": "equivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S02-lefflerSecant-neg-iff-inverted"
+      ],
+      "registryCertificate": "cert-D-S02-lefflerSecant-neg-iff-inverted",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+      "declarationId": "D-S02-hammondZoneQ_beyondReactant_iff_inverted",
+      "endpointTheories": [
+        "Hammond",
+        "Marcus"
+      ],
+      "kind": "equivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S02-hammondZoneQ-beyondReactant-iff-inverted"
+      ],
+      "registryCertificate": "cert-D-S02-hammondZoneQ-beyondReactant-iff-inverted",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+      "declarationId": "D-S03-hammondDescriptor_of_epConformsOnWindow",
+      "endpointTheories": [
+        "BEP",
+        "Hammond"
+      ],
+      "kind": "implication",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Hammond-BEP"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S03-hammondDescriptor-of-epConformsOnWindow"
+      ],
+      "registryCertificate": "cert-D-S03-hammondDescriptor-of-epConformsOnWindow",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+      "declarationId": "D-S05-bep_eact_eq_marcus_barrier",
+      "endpointTheories": [
+        "BEP",
+        "Marcus"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-BEP"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S05-bep-eact-eq-marcus-barrier"
+      ],
+      "registryCertificate": "cert-D-S05-bep-eact-eq-marcus-barrier",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+      "declarationId": "D-S05-bep_rate_eq_exp_neg_eact",
+      "endpointTheories": [
+        "BEP",
+        "Marcus"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-BEP"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S05-bep-rate-eq-exp-neg-eact"
+      ],
+      "registryCertificate": "cert-D-S05-bep-rate-eq-exp-neg-eact",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+      "declarationId": "D-S05-hammond_barrier_eq_gapReactant",
+      "endpointTheories": [
+        "Hammond",
+        "Marcus"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S05-hammond-barrier-eq-gapReactant"
+      ],
+      "registryCertificate": "cert-D-S05-hammond-barrier-eq-gapReactant",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+      "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+      "endpointTheories": [
+        "Hammond",
+        "Marcus"
+      ],
+      "kind": "equivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S06-hammond-sharp-iff-marcus-sharp"
+      ],
+      "registryCertificate": "cert-D-S06-hammond-sharp-iff-marcus-sharp",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+      "declarationId": "D-S07-kernel_marcusIC",
+      "endpointTheories": [
+        "Kasha",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "reason": "Accepted R3 certificate PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin has endpoints ['Kasha', 'Kernel'], which do not match the declared pair 'P-Marcus-Kasha' ['Kasha', 'Marcus']; using it as a pair record would manufacture a pair that the certificate does not state. It is retained as non-pair kernel evidence.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S07-kernel-marcusIC",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+      "declarationId": "D-S12-eg_barrier_eq_kernel",
+      "endpointTheories": [
+        "EnergyGapLaw",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S12-eg-barrier-eq-kernel",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+      "declarationId": "D-S12-eg_rate_eq_marcus",
+      "endpointTheories": [
+        "EnergyGapLaw",
+        "Marcus"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-EnergyGapLaw"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S12-eg-rate-eq-marcus"
+      ],
+      "registryCertificate": "cert-D-S12-eg-rate-eq-marcus",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+      "declarationId": "D-S12-eg_invertedGap_iff_marcus",
+      "endpointTheories": [
+        "EnergyGapLaw",
+        "Marcus"
+      ],
+      "kind": "equivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-EnergyGapLaw"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S12-eg-invertedGap-iff-marcus"
+      ],
+      "registryCertificate": "cert-D-S12-eg-invertedGap-iff-marcus",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+      "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+      "endpointTheories": [
+        "Kernel",
+        "StokesShift"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S12-ss-s0Surface-eq-kernel",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+      "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+      "endpointTheories": [
+        "Kernel",
+        "StokesShift"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S12-ss-s1Surface-eq-kernel",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+      "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+      "endpointTheories": [
+        "ICvsISC",
+        "Kernel"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "non-pair-evidence",
+      "pairIds": [],
+      "reason": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "recordIds": [],
+      "registryCertificate": "cert-D-S12-icvscic-barrier-eq-kernel",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+      "declarationId": "D-S12-icvscic_icRate_eq_marcus",
+      "endpointTheories": [
+        "ICvsISC",
+        "Marcus"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-Marcus-ICvsISC"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S12-icvscic-icRate-eq-marcus"
+      ],
+      "registryCertificate": "cert-D-S12-icvscic-icRate-eq-marcus",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+      "declarationId": "D-S15-egBarrier_zero_iff_emEnergy_zero",
+      "endpointTheories": [
+        "EnergyGapLaw",
+        "StokesShift"
+      ],
+      "kind": "equivalence",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-EnergyGapLaw-StokesShift"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S15-egBarrier-zero-iff-emEnergy-zero"
+      ],
+      "registryCertificate": "cert-D-S15-egBarrier-zero-iff-emEnergy-zero",
+      "source": "R3 migration"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+      "declarationId": "D-S15-icvscic_icRate_eq_eg_nrRate",
+      "endpointTheories": [
+        "EnergyGapLaw",
+        "ICvsISC"
+      ],
+      "kind": "definitionalIdentity",
+      "outcome": "pair-record",
+      "pairIds": [
+        "P-EnergyGapLaw-ICvsISC"
+      ],
+      "reason": null,
+      "recordIds": [
+        "rec-D-S15-icvscic-icRate-eq-eg-nrRate"
+      ],
+      "registryCertificate": "cert-D-S15-icvscic-icRate-eq-eg-nrRate",
+      "source": "R3 migration"
+    }
+  ],
+  "counts": {
+    "acceptedCertificates": 38,
+    "byStatus": {
+      "certified": 24,
+      "notEstablished": 121,
+      "outOfScope": 0,
+      "unresolved": 6
+    },
+    "certificates": 38,
+    "certifiedByKind": {
+      "conditionalComposition": 1,
+      "definitionalIdentity": 7,
+      "distinguishability": 2,
+      "equivalence": 8,
+      "implication": 2,
+      "observationalEquivalence": 3,
+      "refutation": 1
+    },
+    "compositionParentCertificates": 2,
+    "intraTheoryRecordCertificates": 5,
+    "nonPairEvidenceCertificates": 12,
+    "nonPairRecordCertificates": 19,
+    "pairCertifiedRecords": 19,
+    "pairUniverse": 136,
+    "queries": 151,
+    "reclassifiedRows": 14,
+    "records": 151,
+    "scopes": 122,
+    "snapshots": 1,
+    "statements": 52,
+    "theoryCount": 17
+  },
+  "coverage": {
+    "coveredPairs": 136,
+    "missingPairs": [],
+    "notEstablishedRecords": 121,
+    "resolvedCoverage": 0.066176,
+    "resolvedCoverageComplete": false,
+    "resolvedPairs": 9,
+    "unresolvedPairs": [
+      "P-Kasha-FluorPhos",
+      "P-Kasha-SternVolmer",
+      "P-KashaVavilov-EnergyGapLaw",
+      "P-KashaVavilov-FluorPhos",
+      "P-KashaVavilov-QuantumYield",
+      "P-KashaVavilov-SternVolmer"
+    ],
+    "unresolvedRecords": 6
+  },
+  "exceptionalDecisions": [
+    {
+      "decision": "preserved as notEstablished; both readings recorded; no direct certificate and no resolution of the ambiguity",
+      "kind": "census-ambiguity",
+      "pairId": "P-Marcus-RACI"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S01-kernel_barrier_eq_hammond",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S01-kernel_barrier_eq_bep",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S01-kernel_reverseBarrier_eq_hammond",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S01-kernel_tsCoord_eq_hammond",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S01-kernel_transfer_eq_bep",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S01-kernel_reactantSurface_eq_hammond",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S01-kernel_productSurface_eq_hammond",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+      "decision": "Accepted R3 certificate PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin has endpoints ['Kasha', 'Kernel'], which do not match the declared pair 'P-Marcus-Kasha' ['Kasha', 'Marcus']; using it as a pair record would manufacture a pair that the certificate does not state. It is retained as non-pair kernel evidence.",
+      "declarationId": "D-S07-kernel_marcusIC",
+      "kind": "non-pair-certificate",
+      "pairId": "P-Marcus-Kasha"
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S12-eg_barrier_eq_kernel",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S12-ss_s0Surface_eq_kernel",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S12-ss_s1Surface_eq_kernel",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "certificate": "PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+      "decision": "Kernel-to-theory or otherwise non-pair certificate: the R3 fragment declares no pair association, so it is retained as non-pair evidence and must not manufacture pair coverage.",
+      "declarationId": "D-S12-icvscic_barrier_eq_kernel",
+      "kind": "non-pair-certificate",
+      "pairId": null
+    },
+    {
+      "decision": "represented as unresolved; no dependencies and no negative claim",
+      "kind": "undelivered-candidate",
+      "pairId": "P-Kasha-FluorPhos"
+    },
+    {
+      "decision": "represented as unresolved; no dependencies and no negative claim",
+      "kind": "undelivered-candidate",
+      "pairId": "P-Kasha-SternVolmer"
+    },
+    {
+      "decision": "represented as unresolved; no dependencies and no negative claim",
+      "kind": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-EnergyGapLaw"
+    },
+    {
+      "decision": "represented as unresolved; no dependencies and no negative claim",
+      "kind": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-FluorPhos"
+    },
+    {
+      "decision": "represented as unresolved; no dependencies and no negative claim",
+      "kind": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-QuantumYield"
+    },
+    {
+      "decision": "represented as unresolved; no dependencies and no negative claim",
+      "kind": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-SternVolmer"
+    },
+    {
+      "decision": "reuses the accepted R1 scoped notEstablished record instead of duplicating it",
+      "kind": "reused-pilot-absence",
+      "pairId": "P-Goldschmidt-Marcus"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-BEP-Sabatier",
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S08-linearVolcano_le_parabolic",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-BEP-Sabatier",
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S08-parabolic_descriptor",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-BEP-Sabatier",
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S08-linearVolcano_apex_exact",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-BEP-Sabatier",
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-Marcus-SymmetryFactor",
+      "targetCategory": "scoped-relation-documentation"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-BEP-SymmetryFactor",
+      "targetCategory": "scoped-relation-documentation"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-Kasha-QuantumYield",
+      "targetCategory": "support-lemma"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S15-sv_quench_dilutes_yield",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-SternVolmer-QuantumYield",
+      "targetCategory": "support-lemma"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S15-phiF_eq_yieldOf",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-QuantumYield-FluorPhos",
+      "targetCategory": "support-lemma"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-QuantumYield-FluorPhos",
+      "targetCategory": "support-lemma"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S15-einstein_yield_via_qy",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-QuantumYield-Einstein",
+      "targetCategory": "support-lemma"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-QuantumYield-Forster",
+      "targetCategory": "support-lemma"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S15-fpRatio_invariant_under_quench",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-SternVolmer-FluorPhos",
+      "targetCategory": "support-lemma"
+    },
+    {
+      "decision": "retained as non-certificate evidence; not promoted",
+      "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+      "kind": "reclassified-non-certificate",
+      "pairId": "P-QuantumYield-RACI",
+      "targetCategory": "support-lemma"
+    }
+  ],
+  "inputs": {
+    "PhotoLean/RelationAudit/Full/Sections01_05.lean": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d",
+    "PhotoLean/RelationAudit/Full/Sections06_10.lean": "c1885380b4dd0777b4dc3d34d94e4ed856367a5c2749692ddb4424faebf3a72b",
+    "PhotoLean/RelationAudit/Full/Sections11_17.lean": "862cb935a839afe218a3aa2724dee51606598d7773d8869062ae8b6f10ce05a9",
+    "PhotoLean/Relations.lean": "a50f4bc4c24c95209f3667a65449d1be79799f9e1948a03ea810f6cd8773844b",
+    "relation_audit/dispositions.json": "d9d2c7a4f9d470be0358451cae693cd11a18eec12bf940b5520d4de247942291",
+    "relation_audit/generated/pair_inventory.json": "049b12814540118cbb3f9c1323b85eec7a2a64cc0a01bfe73aa8d4e5ee935224",
+    "relation_audit/generated/relations_inventory.json": "1502226c82ab558fb4d9a4e24bb9b5e7b191bda7d1086eff7b5f88563452627e",
+    "relation_audit/migration/sections01_05.json": "bc63606a3c15b123c0cfc784389a5219b79da40a868daf227bb96fd8648bfac5",
+    "relation_audit/migration/sections06_10.json": "020b627b3c83bc1389bee6038baddcb13c34f0a470e500abe4a1318b9a60f958",
+    "relation_audit/migration/sections11_17.json": "01ba8d226e2dabb83fa1860a0bf111e9cb311cfd323cbdadf64734be14e762e0",
+    "relation_audit/pilot.json": "a7988a97cb7c1ff84ea992d04313bdf758da9990c1898c5ff09fa3ec1e506d3c",
+    "relation_audit/reports/inventory-report.json": "8e46499b7374934250f61889899a03c3c4753c37f6a684d491a22e42d5743487",
+    "relation_audit/reports/migration-report.json": "c95ea522c3c29f7f51b7138035af55cf382b48719a2e47f3136aab664db16f9a",
+    "relation_audit/reports/production-pilot.json": "9ac88a2b2800c43da9c1cf81b90a081cc392e9902738aaf55477678cb2d40085",
+    "relation_audit/schema.json": "5280f3d2b89870939802e12e52644562637b45d139d6747f5de06e9dbc28f501",
+    "tools/counts.py": "4c9423d3e0742dc5d9234b217e106f66ce7b362177150e69400964127d979cdb"
+  },
+  "nonClaims": [
+    "136/136 is registry coverage (every pair has an audit record), not resolved coverage; resolved coverage is the certified-pair count and is not complete.",
+    "No notEstablished record asserts logical non-existence; each one asserts only that no direct certificate is established in the stated snapshot/scope.",
+    "Legacy edge/absence labels are input metadata, not audit judgments, and are not promoted to certified or notEstablished status automatically.",
+    "Kernel-only pins and reclassified rows are not pair certificates and do not manufacture pair coverage.",
+    "The snapshot is dirty by construction (the relation-audit layer is uncommitted); the full-mode result carries that caveat and needs independent review.",
+    "No historical-genealogy, manuscript, or physical-identity claim is made."
+  ],
+  "pairDecisions": [
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-D-S02-tsCoord-lt-zero-iff-inverted",
+        "rec-D-S02-lefflerSecant-neg-iff-inverted",
+        "rec-D-S02-hammondZoneQ-beyondReactant-iff-inverted",
+        "rec-D-S05-hammond-barrier-eq-gapReactant",
+        "rec-D-S06-hammond-sharp-iff-marcus-sharp"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "direct",
+      "pairId": "P-Marcus-Hammond",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-D-S02-tsCoord-lt-zero-iff-inverted",
+        "rec-D-S02-lefflerSecant-neg-iff-inverted",
+        "rec-D-S02-hammondZoneQ-beyondReactant-iff-inverted",
+        "rec-D-S05-hammond-barrier-eq-gapReactant",
+        "rec-D-S06-hammond-sharp-iff-marcus-sharp"
+      ],
+      "status": "certified",
+      "theories": [
+        "Marcus",
+        "Hammond"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-composition",
+        "rec-D-S05-bep-eact-eq-marcus-barrier",
+        "rec-D-S05-bep-rate-eq-exp-neg-eact"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "direct",
+      "pairId": "P-Marcus-BEP",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-composition",
+        "rec-D-S05-bep-eact-eq-marcus-barrier",
+        "rec-D-S05-bep-rate-eq-exp-neg-eact"
+      ],
+      "status": "certified",
+      "theories": [
+        "Marcus",
+        "BEP"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-kasha-marcus"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "conditional-premise",
+      "pairId": "P-Marcus-Kasha",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-kasha-marcus"
+      ],
+      "status": "certified",
+      "theories": [
+        "Marcus",
+        "Kasha"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "look-alike",
+      "pairId": "P-Marcus-Sabatier",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-Sabatier"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Marcus-Goldschmidt",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-goldschmidt-marcus-noedge"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "transitive-via-kernel",
+      "pairId": "P-Marcus-SymmetryFactor",
+      "reclassifiedDeclarationIds": [
+        "D-S11-symmetryFactor_tsCoordZero_eq_kernel"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-SymmetryFactor"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Marcus-KashaVavilov",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-KashaVavilov"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Marcus-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-SternVolmer"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Marcus-QuantumYield",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Marcus-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-D-S12-eg-rate-eq-marcus",
+        "rec-D-S12-eg-invertedGap-iff-marcus"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "definitional",
+      "pairId": "P-Marcus-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-D-S12-eg-rate-eq-marcus",
+        "rec-D-S12-eg-invertedGap-iff-marcus"
+      ],
+      "status": "certified",
+      "theories": [
+        "Marcus",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "in-module",
+      "pairId": "P-Marcus-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-D-S12-icvscic-icRate-eq-marcus"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "definitional",
+      "pairId": "P-Marcus-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-D-S12-icvscic-icRate-eq-marcus"
+      ],
+      "status": "certified",
+      "theories": [
+        "Marcus",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Marcus-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Marcus-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": true,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "look-alike",
+      "pairId": "P-Marcus-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Marcus-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Marcus",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-hammond-bep",
+        "rec-D-S02-transfer-eq-tsCoord-bridge",
+        "rec-D-S02-secSlope-eq-lefflerSecant",
+        "rec-D-S03-hammondDescriptor-of-epConformsOnWindow"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "direct",
+      "pairId": "P-Hammond-BEP",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-hammond-bep",
+        "rec-D-S02-transfer-eq-tsCoord-bridge",
+        "rec-D-S02-secSlope-eq-lefflerSecant",
+        "rec-D-S03-hammondDescriptor-of-epConformsOnWindow"
+      ],
+      "status": "certified",
+      "theories": [
+        "Hammond",
+        "BEP"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-Kasha",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-Kasha"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "Kasha"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-Sabatier",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-Sabatier"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-Goldschmidt",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-Goldschmidt"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "transitive-registry-only",
+      "pairId": "P-Hammond-SymmetryFactor",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-SymmetryFactor"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-KashaVavilov",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-KashaVavilov"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-SternVolmer"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-QuantumYield",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "shape",
+      "pairId": "P-Hammond-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Hammond-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Hammond-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Hammond",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-Kasha",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-Kasha"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "Kasha"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "composition",
+      "pairId": "P-BEP-Sabatier",
+      "reclassifiedDeclarationIds": [
+        "D-S08-linearVolcano_eq_bepTangent",
+        "D-S08-linearVolcano_le_parabolic",
+        "D-S08-parabolic_descriptor",
+        "D-S08-linearVolcano_apex_exact"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-BEP-Sabatier"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-Goldschmidt",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-Goldschmidt"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "transitive-via-kernel",
+      "pairId": "P-BEP-SymmetryFactor",
+      "reclassifiedDeclarationIds": [
+        "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-BEP-SymmetryFactor"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-KashaVavilov",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-KashaVavilov"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-SternVolmer"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-QuantumYield",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "shape",
+      "pairId": "P-BEP-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-BEP-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-BEP-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "BEP",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-Sabatier",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-Sabatier"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "Sabatier"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-Goldschmidt",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-Goldschmidt"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-SymmetryFactor",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-SymmetryFactor"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-kasha-vavilov"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "adjudication",
+      "pairId": "P-Kasha-KashaVavilov",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-kasha-vavilov"
+      ],
+      "status": "certified",
+      "theories": [
+        "Kasha",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": true,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "undelivered-candidate",
+      "pairId": "P-Kasha-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-kasha-sternvolmer-unresolved"
+      ],
+      "status": "unresolved",
+      "theories": [
+        "Kasha",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "composition",
+      "pairId": "P-Kasha-QuantumYield",
+      "reclassifiedDeclarationIds": [
+        "D-S15-kasha_radBranch_eq_yieldOf"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": true,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "undelivered-candidate",
+      "pairId": "P-Kasha-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-candidate-P-Kasha-FluorPhos"
+      ],
+      "status": "unresolved",
+      "theories": [
+        "Kasha",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "one-sided",
+      "pairId": "P-Kasha-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Kasha-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Kasha-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Kasha",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "look-alike",
+      "pairId": "P-Sabatier-Goldschmidt",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-Goldschmidt"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "Goldschmidt"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-SymmetryFactor",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-SymmetryFactor"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-KashaVavilov",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-KashaVavilov"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-SternVolmer"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-QuantumYield",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Sabatier-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Sabatier-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Sabatier",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-SymmetryFactor",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-SymmetryFactor"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "SymmetryFactor"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-KashaVavilov",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-KashaVavilov"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-SternVolmer"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-QuantumYield",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "look-alike",
+      "pairId": "P-Goldschmidt-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Goldschmidt-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Goldschmidt-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Goldschmidt",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-KashaVavilov",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-KashaVavilov"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "KashaVavilov"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-SternVolmer"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-QuantumYield",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SymmetryFactor-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SymmetryFactor-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SymmetryFactor",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": true,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-SternVolmer",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-candidate-P-KashaVavilov-SternVolmer"
+      ],
+      "status": "unresolved",
+      "theories": [
+        "KashaVavilov",
+        "SternVolmer"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": true,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-QuantumYield",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-candidate-P-KashaVavilov-QuantumYield"
+      ],
+      "status": "unresolved",
+      "theories": [
+        "KashaVavilov",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": true,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-FluorPhos",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-candidate-P-KashaVavilov-FluorPhos"
+      ],
+      "status": "unresolved",
+      "theories": [
+        "KashaVavilov",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": true,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "undelivered-candidate",
+      "pairId": "P-KashaVavilov-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-candidate-P-KashaVavilov-EnergyGapLaw"
+      ],
+      "status": "unresolved",
+      "theories": [
+        "KashaVavilov",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-KashaVavilov-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-KashaVavilov-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "KashaVavilov",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-KashaVavilov-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-KashaVavilov-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "KashaVavilov",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-KashaVavilov-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-KashaVavilov-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "KashaVavilov",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-KashaVavilov-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-KashaVavilov-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "KashaVavilov",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-KashaVavilov-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-KashaVavilov-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "KashaVavilov",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "composition",
+      "pairId": "P-SternVolmer-QuantumYield",
+      "reclassifiedDeclarationIds": [
+        "D-S15-sv_quench_dilutes_yield"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-QuantumYield"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "QuantumYield"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "model-level-composition",
+      "pairId": "P-SternVolmer-FluorPhos",
+      "reclassifiedDeclarationIds": [
+        "D-S15-fpRatio_invariant_under_quench"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SternVolmer-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SternVolmer-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SternVolmer-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "look-alike",
+      "pairId": "P-SternVolmer-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SternVolmer-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-SternVolmer-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-SternVolmer-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "SternVolmer",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "composition",
+      "pairId": "P-QuantumYield-FluorPhos",
+      "reclassifiedDeclarationIds": [
+        "D-S15-phiF_eq_yieldOf",
+        "D-S15-phiP_eq_yieldOf_cascade"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-QuantumYield-FluorPhos"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "QuantumYield",
+        "FluorPhos"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-QuantumYield-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-QuantumYield-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "QuantumYield",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-QuantumYield-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-QuantumYield-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "QuantumYield",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-QuantumYield-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-QuantumYield-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "QuantumYield",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "composition",
+      "pairId": "P-QuantumYield-Forster",
+      "reclassifiedDeclarationIds": [
+        "D-S15-fretEff6_eq_one_sub_yieldOf"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-QuantumYield-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "QuantumYield",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "composition",
+      "pairId": "P-QuantumYield-Einstein",
+      "reclassifiedDeclarationIds": [
+        "D-S15-einstein_yield_via_qy"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-QuantumYield-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "QuantumYield",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "composition",
+      "pairId": "P-QuantumYield-RACI",
+      "reclassifiedDeclarationIds": [
+        "D-S17-raci_qy_eq_yieldOf_two_channel"
+      ],
+      "recordIds": [
+        "rec-notestablished-P-QuantumYield-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "QuantumYield",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-FluorPhos-EnergyGapLaw",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-FluorPhos-EnergyGapLaw"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "FluorPhos",
+        "EnergyGapLaw"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-FluorPhos-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-FluorPhos-StokesShift"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "FluorPhos",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "premise-level",
+      "pairId": "P-FluorPhos-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-FluorPhos-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "FluorPhos",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-FluorPhos-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-FluorPhos-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "FluorPhos",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-FluorPhos-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-FluorPhos-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "FluorPhos",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-FluorPhos-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-FluorPhos-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "FluorPhos",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-D-S15-egBarrier-zero-iff-emEnergy-zero"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "predicate-equivalence",
+      "pairId": "P-EnergyGapLaw-StokesShift",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-D-S15-egBarrier-zero-iff-emEnergy-zero"
+      ],
+      "status": "certified",
+      "theories": [
+        "EnergyGapLaw",
+        "StokesShift"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [
+        "rec-D-S15-icvscic-icRate-eq-eg-nrRate"
+      ],
+      "legacyLabel": "edge",
+      "legacySubtype": "definitional",
+      "pairId": "P-EnergyGapLaw-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-D-S15-icvscic-icRate-eq-eg-nrRate"
+      ],
+      "status": "certified",
+      "theories": [
+        "EnergyGapLaw",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-EnergyGapLaw-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-EnergyGapLaw-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "EnergyGapLaw",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-EnergyGapLaw-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-EnergyGapLaw-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "EnergyGapLaw",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "one-sided",
+      "pairId": "P-EnergyGapLaw-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-EnergyGapLaw-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "EnergyGapLaw",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-StokesShift-ICvsISC",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-StokesShift-ICvsISC"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "StokesShift",
+        "ICvsISC"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-StokesShift-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-StokesShift-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "StokesShift",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-StokesShift-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-StokesShift-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "StokesShift",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-StokesShift-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-StokesShift-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "StokesShift",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-ICvsISC-Forster",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-ICvsISC-Forster"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "ICvsISC",
+        "Forster"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-ICvsISC-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-ICvsISC-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "ICvsISC",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "edge",
+      "legacySubtype": "one-sided",
+      "pairId": "P-ICvsISC-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-ICvsISC-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "ICvsISC",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Forster-Einstein",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Forster-Einstein"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Forster",
+        "Einstein"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Forster-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Forster-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Forster",
+        "RACI"
+      ]
+    },
+    {
+      "ambiguous": false,
+      "candidate": false,
+      "certifiedRecordIds": [],
+      "legacyLabel": "absence",
+      "legacySubtype": "registered-absence",
+      "pairId": "P-Einstein-RACI",
+      "reclassifiedDeclarationIds": [],
+      "recordIds": [
+        "rec-notestablished-P-Einstein-RACI"
+      ],
+      "status": "notEstablished",
+      "theories": [
+        "Einstein",
+        "RACI"
+      ]
+    }
+  ],
+  "reclassifiedEvidence": [
+    {
+      "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+      "evidence": null,
+      "leanModule": null,
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "rationale": "The proof is `unfold` followed by `ring` rewrites; a direct `rfl` probe fails, so this is a propositional term identity, not a definitional one. It is not a statement-level implication or equivalence between two theory predicates either: both sides are composite real-valued model functionals. It is also not a ConditionalComposition: no typed parent certificate is consumed, and the identity is closed by arithmetic. The seven certified kinds have no constructor for pointwise functional equality, so a certificate would require inventing a statement pair.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_le_parabolic",
+      "evidence": null,
+      "leanModule": null,
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "rationale": "The statement is a pointwise order inequality between two composite model functionals. It is derived from the tangent-below-parabola inequality `bepLine_le_eact` on each branch plus `max_le`, so it is a mathematical composition of inequalities, not a relation between two theory predicates. The certified taxonomy has no order/inequality constructor; an implication reading would need a consequent statement that the inequality entails, which the delivered theorem does not have.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "declarationId": "D-S08-parabolic_descriptor",
+      "evidence": null,
+      "leanModule": null,
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "rationale": "The statement asserts that the Sabatier descriptor holds for the BEP-instantiated composite barrier. It is a property of one model functional (a unique global minimizer), not a relation between two theory predicates: the Sabatier side supplies the descriptor and the BEP side supplies the parabolic barrier definition, but no BEP statement entails the descriptor. The proof is the crossing/monotonicity argument, not typed-parent consumption. Certifying it would require inventing a BEP-side statement for the positivity hypotheses.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_apex_exact",
+      "evidence": null,
+      "leanModule": null,
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "rationale": "The statement is a pointwise value identity at the symmetric apex (lam1 = lam2 = lam, dE = 0). The proof rewrites through `BEP.bepLine_at_zero` and `BEP.eact_at_zero`, so a direct `rfl` probe fails: it is not a definitional identity. It is a local evaluation identity, not an implication/equivalence between two theory predicates and not a typed-parent composition. The row explicitly does not license a general equivalence of the two models, so promoting it to an equivalence would overstate the delivered content.",
+      "section": 8,
+      "targetCategory": "model-level-composition"
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_kernel",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-Marcus-SymmetryFactor"
+      ],
+      "rationale": "The row states a numeric equality of real-valued coordinate functions at the equal-curvature diagonal, `SymmetryFactor.tsCoordZero lam lam = Kernel.tsCoord lam 0`, under the explicit premise `0 < lam`. Its proof goes through `Real.sqrt` algebra and a division identity, so the two sides are not definitionally equal and `DefEq.refl` rejects; nor is the row an implication or equivalence between two theory predicates. The legacy Marcus-SymmetryFactor pair is transitive through the shared kernel object, and no delivered row names Marcus directly. Reclassified as a scoped transitive-via-kernel registration; certifying it as a direct Marcus-SymmetryFactor relation would overstate the delivered content.",
+      "section": 11,
+      "targetCategory": "scoped-relation-documentation"
+    },
+    {
+      "declarationId": "D-S11-symmetryFactor_tsCoordZero_eq_bepTransfer",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-BEP-SymmetryFactor"
+      ],
+      "rationale": "The row states the numeric equality `SymmetryFactor.tsCoordZero lam lam = BEP.transfer lam 0` at the equal-curvature diagonal under `0 < lam`, proved from the delivered thermoneutral tie-back. It is a specialization equality of real-valued coordinate functions, not a definitional identity (the sides are not defeq) and not a propositional implication or equivalence between two theory statements. The legacy BEP-SymmetryFactor pair is transitive through the kernel/E1 chain, so the row is retained as a scoped transitive registration rather than a direct seven-kind certificate.",
+      "section": 11,
+      "targetCategory": "scoped-relation-documentation"
+    },
+    {
+      "declarationId": "D-S15-kasha_radBranch_eq_yieldOf",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-Kasha-QuantumYield"
+      ],
+      "rationale": "The theorem is a pointwise algebraic identity between `Kasha.radBranch` and a two-channel `QuantumYield.yieldOf`, proved by unfolding the definitions and normalizing a `Fin 2` sum with `Fin.sum_univ_succ`; the elaborator rejects `DefEq.refl` for the two sides, so it is not a definitional identity. It also has no parent predicate, mediating endpoint, or typed parent certificate, so it is not a conditional composition under the proof-relevant contract. Reclassified as a support lemma for the Kasha-QuantumYield reading; no seven-kind certificate is manufactured.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "declarationId": "D-S15-sv_quench_dilutes_yield",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-SternVolmer-QuantumYield"
+      ],
+      "rationale": "The theorem is a conditional algebraic identity between `QuantumYield.yieldOf` and `SternVolmer.svRatioDyn`, requiring `0 < kr + knr` and `0 ≤ kq * q`. It is not a definitional identity (`DefEq.refl` fails), and it does not compose two typed parent certificates: the Stern-Volmer side is the two-parameter function `svRatioDyn (kr + knr) kq q`, not an implication or equivalence parent with a mediating predicate. Reclassified as an algebraic support lemma; the explicit positivity premises are retained in the fragment.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "declarationId": "D-S15-phiF_eq_yieldOf",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-QuantumYield-FluorPhos"
+      ],
+      "rationale": "The theorem is a pointwise algebraic identity between `FluorPhos.phiF` and a three-channel `QuantumYield.yieldOf`, proved by unfolding definitions and normalizing a `Fin 3` sum. The sides are not definitionally equal, and there is no typed parent or middle endpoint to consume; the row is an algebraic bridge/support fact, not a seven-kind relation. Reclassified as a support lemma.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "declarationId": "D-S15-phiP_eq_yieldOf_cascade",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-QuantumYield-FluorPhos"
+      ],
+      "rationale": "The theorem is a pointwise algebraic factorization of `FluorPhos.phiP` as the product of two `QuantumYield.yieldOf` values. The product is not a transitive implication/equivalence chain, so `ConditionalComposition` cannot represent it without inventing parent predicates; `DefEq.refl` also rejects the two sides. Reclassified as a support lemma recording the cascade factorization; this does not claim a typed composition.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "declarationId": "D-S15-einstein_yield_via_qy",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-QuantumYield-Einstein"
+      ],
+      "rationale": "The theorem is a pointwise algebraic identity between `A * Einstein.tauR (A + kNR)` and a two-channel `QuantumYield.yieldOf`. It succeeds by unfolding and a field rewrite, not by `rfl`, and it has no typed parent or middle predicate. It is an algebraic support fact for the Einstein-QuantumYield anchor, not a seven-kind certificate. Reclassified as a support lemma.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "declarationId": "D-S15-fretEff6_eq_one_sub_yieldOf",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-QuantumYield-Forster"
+      ],
+      "rationale": "The theorem is a conditional algebraic identity between `Forster.fretEff6` and `1 - QuantumYield.yieldOf` for the channel-added donor model, requiring `0 < kD`, `0 ≤ r6`, and `R ≠ 0`. It is not definitional (the proof uses `field_simp`/`ring`), and it has no typed parent certificates; the FRET side is a geometry-level efficiency, not a parent implication or equivalence. Reclassified as a support lemma.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "declarationId": "D-S15-fpRatio_invariant_under_quench",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-SternVolmer-FluorPhos"
+      ],
+      "rationale": "The theorem states that the fluorescence/phosphorescence ratio is invariant when the S1 internal-conversion channel is increased by `kq * q`, under explicit positivity premises. The Stern-Volmer side is encoded as the added rate `kq * q`, not as a delivered `SternVolmer` declaration, so there is no typed Stern-Volmer parent to consume; the row is a model-level identity rather than a conditional composition. The R2 ledger already required a translation/bridge before any composition claim. Reclassified as a support lemma with the model-level-composition boundary recorded.",
+      "section": 15,
+      "targetCategory": "support-lemma"
+    },
+    {
+      "declarationId": "D-S17-raci_qy_eq_yieldOf_two_channel",
+      "evidence": null,
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections11_17",
+      "pairIds": [
+        "P-QuantumYield-RACI"
+      ],
+      "rationale": "The theorem is a pointwise algebraic identity between `RACI.quantumYield` and a two-channel `QuantumYield.yieldOf`, proved by unfolding and normalizing the finite sum. The sides are not definitionally equal, and the row has no typed parent or mediating endpoint; it is an algebraic support fact for the RACI-QuantumYield link, not a conditional composition. Reclassified as a support lemma; no undelivered RACI candidate is invented.",
+      "section": 17,
+      "targetCategory": "support-lemma"
+    }
+  ],
+  "registrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+  "schemaVersion": "1.0.0",
+  "scope": "production-full-registry",
+  "sourceOfTruth": {
+    "acceptedReports": [
+      "relation_audit/reports/production-pilot.json",
+      "relation_audit/reports/inventory-report.json",
+      "relation_audit/reports/migration-report.json"
+    ],
+    "countsSource": "tools/counts.py",
+    "dispositions": "relation_audit/dispositions.json",
+    "fragments": [
+      "relation_audit/migration/sections01_05.json",
+      "relation_audit/migration/sections06_10.json",
+      "relation_audit/migration/sections11_17.json"
+    ],
+    "note": "Certificates and pair associations are read from the R1 pilot and R3 fragments; there is no second hand-maintained certificate list.",
+    "pairInventory": "relation_audit/generated/pair_inventory.json",
+    "pilot": "relation_audit/pilot.json",
+    "relationsInventory": "relation_audit/generated/relations_inventory.json",
+    "relationsSource": "PhotoLean/Relations.lean"
+  },
+  "status": "REGISTRY_GENERATED"
+}

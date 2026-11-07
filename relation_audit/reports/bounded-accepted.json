@@ -1,0 +1,930 @@
+{
+  "acceptanceState": "accepted-R8",
+  "acceptanceStatement": "accepted-R8",
+  "adversarialMutations": {
+    "allFailClosed": true,
+    "mutationsRejected": 17,
+    "positiveControls": 5,
+    "requiredMinimum": 12
+  },
+  "artifactKind": "bounded-relation-audit-independent-validation",
+  "blockers": [],
+  "checks": {
+    "failed": 0,
+    "total": 31347
+  },
+  "counts": {
+    "activeCertifiedEvidence": {
+      "boundedProbe": 55,
+      "deliveredModule": 12,
+      "total": 67
+    },
+    "certificateLibrary": {
+      "boundedProbe": 55,
+      "deliveredModule": 38,
+      "total": 93
+    },
+    "legacy": {
+      "aliasRepairs": 4,
+      "anchors": 125,
+      "byDisposition": {
+        "recertified-statement-level": 5,
+        "reconciled-absence-with-active-evidence": 41,
+        "reconciled-candidate-with-active-evidence": 3,
+        "repaired-and-restated": 1,
+        "repaired-and-reused": 2,
+        "retained-intra-theory-evidence": 5,
+        "retained-refutation-evidence": 1,
+        "retained-scoped-absence": 80,
+        "retained-unresolved-candidate": 3,
+        "reused-as-active-evidence": 10
+      },
+      "byStatus": {
+        "certified": 24,
+        "notEstablished": 121,
+        "unresolved": 6
+      },
+      "correctedViews": 3,
+      "entries": 151,
+      "intra": 5,
+      "named": 26,
+      "reconciliations": 44
+    },
+    "packages": 10,
+    "pairs": 136,
+    "probeCandidates": 3,
+    "probeCertificates": 55,
+    "probeFiles": 9,
+    "probeReviewedDeclarations": 58,
+    "queries": 152,
+    "records": 152
+  },
+  "deterministicRebuild": {
+    "acceptance": "accepted-R8",
+    "builderCommand": "python3 tools/relation_audit_bounded/build.py --acceptance accepted-R8",
+    "builderOutputTail": "R8 builder: PASS\n  acceptance: accepted-R8 (registry and dispositions)\n  packages: 10\n  pairs: 136 (screened 136)\n  queries: 152 {'certified': 67, 'refuted': 0, 'unresolved': 39, 'notEstablished': 2, 'outOfScope': 44}\n  certified pairs: 53\n  certificate library: {'total': 93, 'deliveredModule': 38, 'boundedProbe': 55}\n  active certified evidence: {'total': 67, 'boundedProbe': 55, 'deliveredModule': 12}\n  probe files / declarations: 9 / 58\n  legacy dispositions: 151 (26 named + 125 anchors)\n  alias repairs / corrected records: 4 / 3\n  absence reconciliations: 44 {'superseded-in-named-scope': 41, 'coexists-different-scope': 3}\n  registry: relation_audit/registry.accepted.json\n  schema: relation_audit/schema.accepted.json\n  dispositions: relation_audit/legacy-dispositions.accepted.json\n  docs: docs/RELATION-AUDIT-ACCEPTED.md",
+    "builderReturncode": 0,
+    "byteIdentical": true,
+    "comparedPaths": {
+      "docs/RELATION-AUDIT-ACCEPTED.md": "./docs/RELATION-AUDIT-ACCEPTED.md",
+      "relation_audit/legacy-dispositions.accepted.json": "./relation_audit/legacy-dispositions.accepted.json",
+      "relation_audit/registry.accepted.json": "./relation_audit/registry.accepted.json",
+      "relation_audit/schema.accepted.json": "./relation_audit/schema.accepted.json"
+    },
+    "isolatedRoot": "<isolated-temp>",
+    "sha256": {
+      "docs/RELATION-AUDIT-ACCEPTED.md": {
+        "generated": "a6d7d6182e9a41b933fe89ddfca8d6f58088054a9f42e2796deb2cf3ff286b18",
+        "rebuilt": "a6d7d6182e9a41b933fe89ddfca8d6f58088054a9f42e2796deb2cf3ff286b18"
+      },
+      "relation_audit/legacy-dispositions.accepted.json": {
+        "generated": "98f0a4e1b384089acb9cf8ac6d51f453f017af820e2d5998ee2bbb933d379c1d",
+        "rebuilt": "98f0a4e1b384089acb9cf8ac6d51f453f017af820e2d5998ee2bbb933d379c1d"
+      },
+      "relation_audit/registry.accepted.json": {
+        "generated": "894fa88a56de663e5447c9ec9667dc3461531535427ba5c492df9a8ba972c1ba",
+        "rebuilt": "894fa88a56de663e5447c9ec9667dc3461531535427ba5c492df9a8ba972c1ba"
+      },
+      "relation_audit/schema.accepted.json": {
+        "generated": "95f60be6f1f0aa96d454bfb77fd5628c7e3da620ca018a13142db632ef197e1d",
+        "rebuilt": "95f60be6f1f0aa96d454bfb77fd5628c7e3da620ca018a13142db632ef197e1d"
+      }
+    }
+  },
+  "deviations": [
+    {
+      "blocking": false,
+      "id": "DEV-R8-01",
+      "observed": "Ten accepted screening packages: R2 one, R3 one, R4 three, R5 five.",
+      "planStatement": "The plan describes eight accepted R2-R5 screening packages.",
+      "resolution": "Use all ten actual accepted packages; no package was dropped or invented. The plan-metadata miscount is recorded and does not change the 136/58 counts."
+    }
+  ],
+  "dimensions": {
+    "candidates": {
+      "candidateDeclarations": 3,
+      "candidateDeclarationsNotCertificates": true,
+      "candidateQueries": [
+        "Q-XD1-SEG-01",
+        "Q-XD1-SIC-01",
+        "Q-XD1-SSS-01"
+      ],
+      "meaning": "The three XD1 candidate declarations are unresolved evidence, never certificate library members."
+    },
+    "pairCoverage": {
+      "meaning": "Every R1 pair has a named statement-level query or a statement-level outOfScope record; this is not a certification count and not a claim that every pair has a non-outOfScope query.",
+      "pairUniverse": 136,
+      "pairsWithAnyActiveStatementRecord": 136,
+      "pairsWithNonOutOfScopeQuery": 94,
+      "pairsWithOnlyStatementLevelOutOfScope": 42,
+      "pairsWithScreening": 136,
+      "remainingPairIds": []
+    },
+    "queryOutcomes": {
+      "activeQueries": 152,
+      "byRound": {
+        "R2": {
+          "certified": 16,
+          "notEstablished": 0,
+          "outOfScope": 0,
+          "refuted": 0,
+          "unresolved": 3
+        },
+        "R3": {
+          "certified": 7,
+          "notEstablished": 0,
+          "outOfScope": 0,
+          "refuted": 0,
+          "unresolved": 5
+        },
+        "R4": {
+          "certified": 19,
+          "notEstablished": 1,
+          "outOfScope": 7,
+          "refuted": 0,
+          "unresolved": 19
+        },
+        "R5": {
+          "certified": 25,
+          "notEstablished": 1,
+          "outOfScope": 37,
+          "refuted": 0,
+          "unresolved": 12
+        }
+      },
+      "meaning": "Proposition-level bounded query outcomes, not pair coverage and not a completeness claim.",
+      "outcomes": {
+        "certified": 67,
+        "notEstablished": 2,
+        "outOfScope": 44,
+        "refuted": 0,
+        "unresolved": 39
+      }
+    },
+    "relationDiscovery": {
+      "certifiedEvidenceClasses": {
+        "boundedProbe": 55,
+        "deliveredModule": 12
+      },
+      "certifiedPairs": 53,
+      "certifiedQueries": 67,
+      "certifiedRelationKindCounts": {
+        "conditionalComposition": 2,
+        "definitionalIdentity": 12,
+        "equivalence": 13,
+        "implication": 4,
+        "observationalEquivalence": 36
+      },
+      "meaning": "Distinct certified statement-level relations discovered; 67 certified queries over 53 pairs is not 136/136 certification."
+    },
+    "retainedLegacyEvidence": {
+      "absenceReconciliations": 44,
+      "aliasRepairs": 4,
+      "correctedLegacyViews": 3,
+      "deliveredCertificatesActive": 12,
+      "deliveredCertificatesRetained": 26,
+      "legacyIntraTheoryRecords": 5,
+      "legacyNamedQueries": 26,
+      "legacyPairAnchors": 125,
+      "legacyRecordsDisposed": 151,
+      "meaning": "Retained historical evidence; pair anchors and intra-theory records contribute zero active coverage."
+    }
+  },
+  "exitCode": 0,
+  "externalGates": [
+    {
+      "command": "python3 audit_boundary/validate_boundary.py",
+      "expectedReturncode": 0,
+      "name": "r1",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.86,
+      "stderrTail": "",
+      "stdoutTail": "Bounded relation-audit boundary validation\n  root: .\n  boundary.md: present\n  theories: 17\n  pairs: 136\n  statement rows: 1154 (authority 1153, shared 1, eligible 1134)\n  unique pairs: 136\n  clusters: 6\n  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0\nRESULT: PASS (all boundary checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/validate_screening.py",
+      "expectedReturncode": 0,
+      "name": "r2",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.04,
+      "stderrTail": "",
+      "stdoutTail": "R2 bounded screening validation\n  root: .\n  checks failed: 0\nRESULT: PASS (all bounded-screening checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r4/validate_r3_content.py",
+      "expectedReturncode": 0,
+      "name": "r3_derived_content",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.05,
+      "stderrTail": "",
+      "stdoutTail": "R3 bounded screening content validation (derived)\n  root: .\n  excluded current-ledger freshness checks: 7\nEXCLUDED [snapshot.coverageLedgerSha256] current-ledger hash pin on bounded_audit/coverage.json (accepted pin a584d38e9318704e3cfa5ea482da09aaa88edaa066e61084dfbd834d502e09fd, current 7d4c4f2f6df6a50e3aa20ac510dddaebf3e0d63272cb8c9d3a83e90022b48e2d; owned by r4/validate_coverage.py)\nEXCLUDED [coverage.round] current-ledger round: accepted package pinned R3, current 'R5' (owned by r4/validate_coverage.py)\nEXCLUDED [coverage.cumulative] current-ledger cumulative screened count: pinned 21, current 136 (owned by r4/validate_coverage.py)\nEXCLUDED [coverage.remaining] current-ledger cumulative remaining count: pinned 115, current 0 (owned by r4/validate_coverage.py)\nEXCLUDED [coverage.byRound] current-ledger by-round counts: pinned {'R2': 10, 'R3': 11}, current {'R2': 10, 'R3': 11, 'R4': 46, 'R5': 69} (owned by r4/validate_coverage.py)\nEXCLUDED [coverage.remainingCount] current-ledger remaining list length: pinned 115, current 0 (owned by r4/validate_coverage.py)\nEXCLUDED [coverage.remainingSet] current-ledger remaining list contents: pinned queue-minus-screened (115), current 0 (owned by r4/validate_coverage.py)\n  checks failed: 0\nRESULT: PASS (all R3 package-content checks passed; 7 current-ledger freshness checks excluded)"
+    },
+    {
+      "command": "python3 bounded_audit/r4/validate_coverage.py --coverage bounded_audit/r4/coverage-accepted.json --skip-package-validators",
+      "expectedReturncode": 0,
+      "name": "r4_frozen_snapshot",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.07,
+      "stderrTail": "",
+      "stdoutTail": "R4 cumulative coverage validation\n  root: .\n  ledger: bounded_audit/r4/coverage-accepted.json\n  accepted pairs: 21\n  submitted R4 pairs: 46\n  R4 named queries: 46\n  R4 query outcomes: {\"certified\": 19, \"notEstablished\": 1, \"outOfScope\": 7, \"unresolved\": 19}\n  cumulative: 67/136 screened, 69 remaining\n  checks passed: 840\n  checks failed: 0\nRESULT: PASS (all R4 coverage checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r4/excited-01/validate.py",
+      "expectedReturncode": 0,
+      "name": "r4_e1",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.04,
+      "stderrTail": "",
+      "stdoutTail": "R4 E1 bounded screening validation\n  root: .\n  checks failed: 0\nRESULT: PASS (all R4 E1 bounded-screening checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r4/excited-02/validate.py",
+      "expectedReturncode": 0,
+      "name": "r4_e2",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.04,
+      "stderrTail": "",
+      "stdoutTail": "R4 E2 bounded screening validation\n  root: .\n  checks failed: 0\nRESULT: PASS (all E2 bounded-screening checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r5/validate_r4_ci_content.py",
+      "expectedReturncode": 0,
+      "name": "r4_ci_derived_content",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.05,
+      "stderrTail": "",
+      "stdoutTail": "R4 WP-conical-intersection-01 content validation (derived)\n  root: .\n  package: bounded_audit/r4/conical-01\n  excluded current-ledger freshness checks: 1\nEXCLUDED [coverage.cumulative] current-ledger cumulative screened count: pinned {21, 67}, current 136 (owned by r5/validate_coverage.py)\n  checks failed: 0\nRESULT: PASS (all conical-intersection package-content checks passed; 1 current-ledger freshness check excluded)"
+    },
+    {
+      "command": "python3 bounded_audit/r5/radiative-01/validate.py",
+      "expectedReturncode": 0,
+      "name": "r5_rad1",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.06,
+      "stderrTail": "",
+      "stdoutTail": "R5 RAD1 bounded screening validation\n  root: .\n  checks failed: 0\nRESULT: PASS (all RAD1 bounded-screening checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r5/radiative-02/validate.py",
+      "expectedReturncode": 0,
+      "name": "r5_rad2",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.05,
+      "stderrTail": "",
+      "stdoutTail": "R5 RAD2 bounded screening validation\n  root: .\n  checks run: 2480\n  checks failed: 0\nRESULT: PASS (all RAD2 bounded-screening checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r5/radiative-03/validate.py",
+      "expectedReturncode": 0,
+      "name": "r5_rad3",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.06,
+      "stderrTail": "",
+      "stdoutTail": "R5 WP-radiative-energy-transfer-03 validation\n  root: .\n  package: bounded_audit/r5/radiative-03\n  checks failed: 0\nRESULT: PASS (all WP-radiative-energy-transfer-03 package checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r5/cross-domain-01/validate.py",
+      "expectedReturncode": 0,
+      "name": "r5_xd1",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.05,
+      "stderrTail": "",
+      "stdoutTail": "R5 XD1 cross-domain-01 validation\n  root: .\n  package: bounded_audit/r5/cross-domain-01\n  checks failed: 0\nRESULT: PASS (all cross-domain-01 package checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r5/cross-domain-02/validate.py",
+      "expectedReturncode": 0,
+      "name": "r5_xd2",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.07,
+      "stderrTail": "",
+      "stdoutTail": "R5 WP-cross-domain-screening-02 validation\n  root: .\n  package: bounded_audit/r5/cross-domain-02\n  checks failed: 0\nRESULT: PASS (all cross-domain-02 package checks passed)"
+    },
+    {
+      "command": "python3 bounded_audit/r5/validate_coverage.py",
+      "expectedReturncode": 0,
+      "name": "r5_current_coverage",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 0.39,
+      "stderrTail": "",
+      "stdoutTail": "R5 cumulative coverage validation\n  root: .\n  ledger: bounded_audit/coverage.json\n  R5 ledger state: accepted-R5\n  R5 pairs: 69 (69)\n  R5 named queries: 75\n  R5 query outcomes: {\"certified\": 25, \"notEstablished\": 1, \"outOfScope\": 37, \"refuted\": 0, \"unresolved\": 12}\n  accepted pairs: 136\n  submitted pairs: 0\n  cumulative: 136/136 screened, 0 remaining\n  named queries over the 136 pairs: 152\n  cumulative query outcomes: {\"certified\": 67, \"notEstablished\": 2, \"outOfScope\": 44, \"refuted\": 0, \"unresolved\": 39}\n  checks passed: 10600\n  checks failed: 0\nRESULT: PASS (all R5 coverage checks passed)\nNOTE: 136/136 is *submitted* coverage; accepted coverage is 136/136 until the R5 rows uniformly flip to accepted-R5."
+    },
+    {
+      "command": "python3 bounded_audit/validate_r3.py",
+      "expectedReturncode": 1,
+      "name": "r3_raw_historical",
+      "passed": true,
+      "returncode": 1,
+      "seconds": 0.05,
+      "stderrTail": "",
+      "stdoutTail": "R3 bounded screening validation\n  root: .\n  checks failed: 7\nFAIL [snapshot.coverageLedgerSha256] bounded_audit/coverage.json hash drift: a584d38e9318704e3cfa5ea482da09aaa88edaa066e61084dfbd834d502e09fd != 7d4c4f2f6df6a50e3aa20ac510dddaebf3e0d63272cb8c9d3a83e90022b48e2d\nFAIL [coverage.round] coverage ledger round drift\nFAIL [coverage.cumulative] cumulative screened count drift\nFAIL [coverage.remaining] cumulative remaining count drift\nFAIL [coverage.byRound] coverage by-round counts drift\nFAIL [coverage.remainingCount] remainingPairIds has 0 entries, expected 115\nFAIL [coverage.remainingSet] remainingPairIds is not the queue minus the screened pairs\nRESULT: FAIL (7 failed checks)"
+    },
+    {
+      "command": "python3 bounded_audit/r4/conical-01/validate.py",
+      "expectedReturncode": 1,
+      "name": "r4_ci_raw_historical",
+      "passed": true,
+      "returncode": 1,
+      "seconds": 0.05,
+      "stderrTail": "",
+      "stdoutTail": "R4 WP-conical-intersection-01 validation\n  root: .\n  package: bounded_audit/r4/conical-01\n  checks failed: 1\nFAIL [coverage.cumulative] cumulative screened count is neither the accepted 21 nor the integrated 67\nRESULT: FAIL (1 failed checks)"
+    },
+    {
+      "command": "proofs/scripts/check.sh --strict",
+      "expectedReturncode": 0,
+      "name": "strict_build_scan",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 1.31,
+      "stderrTail": "",
+      "stdoutTail": "==> [PhotoLean] leaf data plane\n==> per-theory leaf data plane (theories/*/ : plan.md TASKS.md LITERATURE.md RESULTS.md probes/)\n   OK      theories/BEP (5/5)\n   OK      theories/Einstein (5/5)\n   OK      theories/EnergyGapLaw (5/5)\n   OK      theories/FluorPhos (5/5)\n   OK      theories/Forster (5/5)\n   OK      theories/goldschmidt (5/5)\n   OK      theories/hammond (5/5)\n   OK      theories/ICvsISC (5/5)\n   OK      theories/kasha (5/5)\n   OK      theories/KashaVavilov (5/5)\n   OK      theories/Marcus (5/5)\n   OK      theories/QuantumYield (5/5)\n   OK      theories/RACI (5/5)\n   OK      theories/Sabatier (5/5)\n   OK      theories/SternVolmer (5/5)\n   OK      theories/StokesShift (5/5)\n   OK      theories/SymmetryFactor (5/5)\n==> lake build all\n\u26a0 [6345/6409] Replayed PhotoLean.SternVolmer.Basic\nwarning: ././././PhotoLean/SternVolmer/Basic.lean:65:32: unused variable `Ka`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`\nwarning: ././././PhotoLean/SternVolmer/Basic.lean:65:35: unused variable `q`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`\n\u26a0 [6384/6409] Replayed PhotoLean.SternVolmer.RatModel\nwarning: ././././PhotoLean/SternVolmer/RatModel.lean:61:22: unused variable `Ka`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`\nwarning: ././././PhotoLean/SternVolmer/RatModel.lean:61:25: unused variable `q`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`\n\u26a0 [6395/6409] Replayed PhotoLean.FluorPhos.RatModel\nwarning: ././././PhotoLean/FluorPhos/RatModel.lean:89:21: unused variable `kIC`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`\nBuild completed successfully.\n==> sorry / custom axiom scan (PhotoLean/**/*.lean)\nclean\n==> summary\nbuild: OK\nallowed axioms: propext Classical.choice Quot.sound\nverdict: PASS"
+    },
+    {
+      "command": "python3 tools/relation_audit.py --manifest relation_audit/registry.json --schema relation_audit/schema.json --mode full --json-out <isolated-temp>/production-full-r8.json --lean-source-out <isolated-temp>/production-full-r8-lean-checks.lean",
+      "expectedReturncode": 0,
+      "legacyReport": {
+        "counts": {
+          "byStatus": {
+            "certified": 24,
+            "notEstablished": 121,
+            "outOfScope": 0,
+            "unresolved": 6
+          },
+          "certificates": 38,
+          "certifiedByKind": {
+            "conditionalComposition": 1,
+            "definitionalIdentity": 7,
+            "distinguishability": 2,
+            "equivalence": 8,
+            "implication": 2,
+            "observationalEquivalence": 3,
+            "refutation": 1
+          },
+          "queries": 151,
+          "records": 151,
+          "scopes": 122,
+          "snapshots": 1,
+          "statements": 52
+        },
+        "coverage": {
+          "coveredPairs": 136,
+          "expectedPairUniverse": 136,
+          "expectedTheoryCount": 17,
+          "missingPairs": [],
+          "mode": "full",
+          "pairUniverse": 136,
+          "registryCoverage": 1.0,
+          "resolvedCoverage": 0.066176,
+          "resolvedCoverageComplete": false,
+          "resolvedPairs": 9,
+          "theoryCount": 17,
+          "unresolvedRecords": 6
+        },
+        "exitCode": 0,
+        "failureCount": null,
+        "status": "PASS"
+      },
+      "name": "legacy_full_lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 9.86,
+      "stderrTail": "",
+      "stdoutTail": "== RelationAudit (full mode) ==\nmanifest: relation_audit/registry.json\nschema:   relation_audit/schema.json\n  structure    PASS           (3 checks)\n  references   PASS           (2 checks)\n  semantics    PASS           (2 checks)\n  provenance   PASS           (1 checks)\n  snapshot     PASS           (2 checks)\n  coverage     PASS           (2 checks)\n  lean         PASS           (223 checks)\ncoverage:\n  theories          17/17\n  registry          136/136 pairs\n  resolved          9/136 pairs (complete=False)\n  unresolved records 6\ncounts:\n  by status         {'certified': 24, 'unresolved': 6, 'notEstablished': 121, 'outOfScope': 0}\n  certified by kind {'definitionalIdentity': 7, 'implication': 2, 'equivalence': 8, 'conditionalComposition': 1, 'observationalEquivalence': 3, 'distinguishability': 2, 'refutation': 1}\ncaveat: snapshotDirty: dirty snapshot(s) 'snap-relation-audit-2026-10-31': artifact hashes were matched against the working tree; a full-mode PASS on a dirty tree needs independent review.\nunresolved set:\n  rec-kasha-sternvolmer-unresolved query=q-kasha-sternvolmer-candidate version=kasha.kashaRule@1.0.0|sternvolmer.intensityDyn@1.0.0 scope=global\n  rec-candidate-P-Kasha-FluorPhos query=q-pair-P-Kasha-FluorPhos version=stmt-theory-Kasha@1.0.0|stmt-theory-FluorPhos@1.0.0 scope=global\n  rec-candidate-P-KashaVavilov-SternVolmer query=q-pair-P-KashaVavilov-SternVolmer version=stmt-theory-KashaVavilov@1.0.0|stmt-theory-SternVolmer@1.0.0 scope=global\n  rec-candidate-P-KashaVavilov-QuantumYield query=q-pair-P-KashaVavilov-QuantumYield version=stmt-theory-KashaVavilov@1.0.0|stmt-theory-QuantumYield@1.0.0 scope=global\n  rec-candidate-P-KashaVavilov-FluorPhos query=q-pair-P-KashaVavilov-FluorPhos version=stmt-theory-KashaVavilov@1.0.0|stmt-theory-FluorPhos@1.0.0 scope=global\n  rec-candidate-P-KashaVavilov-EnergyGapLaw query=q-pair-P-KashaVavilov-EnergyGapLaw version=stmt-theory-KashaVavilov@1.0.0|stmt-theory-EnergyGapLaw@1.0.0 scope=global\noverall: PASS (exit 0)"
+    },
+    {
+      "command": "python3 tools/relation_audit_bounded/tests/test_adversarial.py",
+      "expectedReturncode": 0,
+      "name": "adversarial_mutations",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 68.18,
+      "stderrTail": "",
+      "stdoutTail": "PASS missing_pair: fail-closed with pairs.count\nPASS duplicate_pair: fail-closed with pairs.unique\nPASS pair_anchor_substitution: fail-closed with pairs.query_ids\nPASS wrong_outcome: fail-closed with records.status\nPASS certified_without_evidence: fail-closed with queries.certified_evidence\nPASS candidate_promoted: fail-closed with certificates.probe_count\nPASS unknown_alias_endpoint: fail-closed with queries.alias_endpoint\nPASS unrepaired_legacy_record: fail-closed with dispositions.corrected_missing\nPASS missing_legacy_disposition: fail-closed with dispositions.count\nPASS absence_reconciliation_removed: fail-closed with dispositions.absence_missing\nPASS stale_probe_hash: fail-closed with probes.file_hash\nPASS forbidden_axiom_footprint: fail-closed with certificates.probe_axioms\nPASS wrong_evidence_class: fail-closed with certificates.probe_class\nPASS partial_acceptance_flip: fail-closed with state.acceptance_uniform\nPASS self_hash_cycle: fail-closed with hash.self_reference\nPASS legacy_anchor_counts: fail-closed with dispositions.active_coverage\nPASS probe_declaration_missing: fail-closed with probes.certificate_declarations\n\nAll 17 mutations failed closed; 5 positive controls passed."
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r3/probes/R3-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 4.45,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.R3.marcusSymFactorBarrierBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R3.marcusKashaWindowBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R3.kashaRadiativeBranchYieldBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R3.svQuenchDilutesYieldBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R3.fpRatioInvariantBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiFYieldBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiPYieldCascadeBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r4/conical-01/probes/R4-CI-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r4/conical-01/probes/R4-CI-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 4.37,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.CI.marcusRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r4/excited-01/probes/E1-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 4.48,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondEnergyGapBarrierZeroEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepEnergyGapInvertedEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondKashaICMaxEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondICvsISCBarrierPin' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepKashaTransferZeroEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondStokesAbsorptionBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r4/excited-02/probes/E2-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 3.91,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 3.14,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierStrongBranch_eq_eglBarrier' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierSymmetricApex_eq_stokesEighth' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierActivity_eq_icRate' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 5.73,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglRateBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglZoneBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusICRateBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusSSBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaVavBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEglRateBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEinsteinBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.kvQyBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.kvFpBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.kvSvBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD1.mkvBridge' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 4.39,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEgBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyIcBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyFoBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEbBridge' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/radiative-03/probes/RAD3-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/r5/radiative-03/probes/RAD3-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 7.6,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiBranchBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiElSayedBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.ffTransferBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.fpEinsBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.esZeroBarrierBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.esBarrierEmissionBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiRateDefinition' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiCrossoverComposition' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.siSurfaceBridge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Rad3.foEinBridge' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    },
+    {
+      "command": "./proofs/scripts/lake env lean bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+      "expectedReturncode": 0,
+      "name": "probe:bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 3.64,
+      "stderrTail": "",
+      "stdoutTail": "'PhotoLean.RelationAudit.BoundedAudit.Surface.marcusRateSabatierActivityPin' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorHammondThermoneutralBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorBepThermoneutralBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'PhotoLean.RelationAudit.BoundedAudit.Surface.bepSabatierLinearVolcanoBridge' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "command": "python3 tools/relation_audit_bounded/build.py --acceptance accepted-R8",
+      "expectedReturncode": 0,
+      "name": "deterministic_rebuild",
+      "passed": true,
+      "returncode": 0,
+      "seconds": 2.59,
+      "stderrTail": "",
+      "stdoutTail": "R8 builder: PASS\n  acceptance: accepted-R8 (registry and dispositions)\n  packages: 10\n  pairs: 136 (screened 136)\n  queries: 152 {'certified': 67, 'refuted': 0, 'unresolved': 39, 'notEstablished': 2, 'outOfScope': 44}\n  certified pairs: 53\n  certificate library: {'total': 93, 'deliveredModule': 38, 'boundedProbe': 55}\n  active certified evidence: {'total': 67, 'boundedProbe': 55, 'deliveredModule': 12}\n  probe files / declarations: 9 / 58\n  legacy dispositions: 151 (26 named + 125 anchors)\n  alias repairs / corrected records: 4 / 3\n  absence reconciliations: 44 {'superseded-in-named-scope': 41, 'coexists-different-scope': 3}\n  registry: relation_audit/registry.accepted.json\n  schema: relation_audit/schema.accepted.json\n  dispositions: relation_audit/legacy-dispositions.accepted.json\n  docs: docs/RELATION-AUDIT-ACCEPTED.md"
+    }
+  ],
+  "failures": [],
+  "generatedOn": "2026-11-04",
+  "hashes": {
+    "bounded_audit/coverage.json": "7d4c4f2f6df6a50e3aa20ac510dddaebf3e0d63272cb8c9d3a83e90022b48e2d",
+    "bounded_audit/r4/coverage-accepted.json": "d1e44bf7bbb5e81c7b85f610d6ffc1d4d3fed0fcde5cd1ab3202fb23ca6c32fa",
+    "docs/RELATION-AUDIT-ACCEPTED.md": "a6d7d6182e9a41b933fe89ddfca8d6f58088054a9f42e2796deb2cf3ff286b18",
+    "relation_audit/legacy-dispositions.accepted.json": "98f0a4e1b384089acb9cf8ac6d51f453f017af820e2d5998ee2bbb933d379c1d",
+    "relation_audit/registry.accepted.json": "894fa88a56de663e5447c9ec9667dc3461531535427ba5c492df9a8ba972c1ba",
+    "relation_audit/registry.json": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "relation_audit/schema.accepted.json": "95f60be6f1f0aa96d454bfb77fd5628c7e3da620ca018a13142db632ef197e1d"
+  },
+  "invariants": {
+    "backupSha256": "c72fbc4cb134e57cde379f2a10011c9a27f0f7a3497af50fd6c4c404bdf2745a",
+    "coverageSha256": "7d4c4f2f6df6a50e3aa20ac510dddaebf3e0d63272cb8c9d3a83e90022b48e2d",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "originalClean": true,
+    "originalHead": "7ad25a5f03a88acc3af03f65149cf2ac102e7dac",
+    "originalPhotoLeanFiles": 95,
+    "originalRepo": "<local>/study/ai4math/photolean2/photolean",
+    "photoLeanFiles": 102,
+    "photoLeanMismatches": []
+  },
+  "nonClaims": [
+    "136/136 pair coverage means every pair has a named statement-level record, not that every pair is certified.",
+    "Unresolved, notEstablished and outOfScope are outcomes, not failures and not refutations.",
+    "The 55 bounded-probe certificates are package-local evidence, not additions to the frozen delivered PhotoLean tree.",
+    "The three XD1 candidate declarations are unresolved evidence, not certificates.",
+    "The legacy registry and its 151 records remain historical inputs; dispositions are additive interpretations.",
+    "The bounded protocol does not exhaust all propositions of the seventeen theories.",
+    "This report is validator evidence. When acceptanceState is pending it is not an acceptance record; only two independent reviewers and the lead may accept."
+  ],
+  "notes": [],
+  "probeRuns": [
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiFYieldBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiPYieldCascadeBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R3.fpRatioInvariantBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R3.kashaRadiativeBranchYieldBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R3.marcusKashaWindowBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R3.marcusSymFactorBarrierBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R3.svQuenchDilutesYieldBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+      "declarations": 7,
+      "path": "bounded_audit/r3/probes/R3-probe.lean",
+      "returncode": 0,
+      "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.CI.marcusRateBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r4/conical-01/probes/R4-CI-probe.lean",
+      "declarations": 8,
+      "path": "bounded_audit/r4/conical-01/probes/R4-CI-probe.lean",
+      "returncode": 0,
+      "sha256": "33cf7fe66d3c3cee3431f9ace125259bca3c36ef798d9f5324154b817ce80572"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepEnergyGapInvertedEquiv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepKashaTransferZeroEquiv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondEnergyGapBarrierZeroEquiv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondICvsISCBarrierPin": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondKashaICMaxEquiv": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondStokesAbsorptionBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+      "declarations": 6,
+      "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+      "returncode": 0,
+      "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean",
+      "declarations": 5,
+      "path": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+      "returncode": 0,
+      "sha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierActivity_eq_icRate": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierStrongBranch_eq_eglBarrier": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierSymmetricApex_eq_stokesEighth": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+      "declarations": 3,
+      "path": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+      "returncode": 0,
+      "sha256": "f5668397e57c44266dc70fc0195061f780b5171bf860cd533986e9c57d1f07f1"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEglRateBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEinsteinBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaVavBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvFpBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvQyBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvSvBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglRateBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglZoneBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusICRateBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusSSBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD1.mkvBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+      "declarations": 11,
+      "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+      "returncode": 0,
+      "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEbBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEgBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyFoBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyIcBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+      "declarations": 4,
+      "path": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+      "returncode": 0,
+      "sha256": "36a5ae42f68a6112f466f067a713d6b2a8f2e781bbc18bb735e8dc3ddabbef2b"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.eiCrossoverComposition": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.eiRateDefinition": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.esBarrierEmissionBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.esZeroBarrierBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.ffTransferBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.fiBranchBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.fiElSayedBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.foEinBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.fpEinsBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Rad3.siSurfaceBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/r5/radiative-03/probes/RAD3-probe.lean",
+      "declarations": 10,
+      "path": "bounded_audit/r5/radiative-03/probes/RAD3-probe.lean",
+      "returncode": 0,
+      "sha256": "c693f19830aeb8ce7c01f43f1c2821bc57920f98d0d03f3cdca5dbd1a3f95f09"
+    },
+    {
+      "axioms": {
+        "PhotoLean.RelationAudit.BoundedAudit.Surface.bepSabatierLinearVolcanoBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Surface.marcusRateSabatierActivityPin": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorBepThermoneutralBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorHammondThermoneutralBridge": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "command": "./proofs/scripts/lake env lean bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+      "declarations": 4,
+      "path": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+      "returncode": 0,
+      "sha256": "db1975be8ebe38d20b05252a9443faf0dcebd7803d97c90cca5d2ca942ba755c"
+    }
+  ],
+  "root": ".",
+  "round": "R8",
+  "schemaVersion": "1.0.0",
+  "selfAcceptance": false,
+  "skippedChecks": [],
+  "status": "PASS",
+  "validator": "tools/relation_audit_bounded/validate.py"
+}

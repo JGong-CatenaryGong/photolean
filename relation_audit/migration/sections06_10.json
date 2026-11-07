@@ -1,0 +1,541 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "relation-migration-fragment",
+  "scope": "migration-fragment",
+  "sectionRange": {
+    "first": 6,
+    "last": 10
+  },
+  "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+  "leanSource": "PhotoLean/RelationAudit/Full/Sections06_10.lean",
+  "sourceArtifact": "PhotoLean/Relations.lean",
+  "dispositionsArtifact": "relation_audit/dispositions.json",
+  "dispositionsSchemaVersion": "1.0.0",
+  "queue": {
+    "source": "relation_audit/dispositions.json entries with disposition == \"certificate-required\" and 6 <= section <= 10",
+    "expectedCount": 6,
+    "coveredCount": 6,
+    "declarationIds": [
+      "D-S06-hammond_sharp_iff_marcus_sharp",
+      "D-S07-kernel_marcusIC",
+      "D-S08-linearVolcano_eq_bepTangent",
+      "D-S08-linearVolcano_le_parabolic",
+      "D-S08-parabolic_descriptor",
+      "D-S08-linearVolcano_apex_exact"
+    ],
+    "outcomeCounts": {
+      "certified": 2,
+      "reclassified": 4
+    }
+  },
+  "outcomeVocabulary": [
+    {
+      "id": "certified",
+      "description": "A kind-correct typed Certificate exists in the section module."
+    },
+    {
+      "id": "reclassified",
+      "description": "No seven-kind certificate is honest; a target category and rationale are recorded."
+    }
+  ],
+  "targetCategoryVocabulary": [
+    {
+      "id": "model-level-composition",
+      "source": "relation_audit/dispositions.json#relationRoleVocabulary",
+      "description": "Composition stated at the modelling level: a value-level identity, order inequality, or single-model property that is not produced by a typed ConditionalComposition parent chain."
+    }
+  ],
+  "nonClaims": [
+    "This fragment is not a production registry and does not claim 136/136 or resolved coverage.",
+    "Reclassified rows are not certified relations; they are preserved as evidence only.",
+    "A certified definitionalIdentity is a fresh DefEq check, not propositional equality and not a physical-identity claim.",
+    "The §8 reclassifications do not deny the delivered theorems; they deny only that those theorems are seven-kind direct relations."
+  ],
+  "entries": [
+    {
+      "declarationId": "D-S06-hammond_sharp_iff_marcus_sharp",
+      "originalDeclaration": "PhotoLean.Relations.hammond_sharp_iff_marcus_sharp",
+      "section": 6,
+      "sectionTitle": "Non-relations and shape differences (new theorems of this module)",
+      "pairIds": [
+        "P-Marcus-Hammond"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "direct-equivalence",
+        "rationale": "Co-extensiveness of the Hammond structural descriptor and the Marcus rate descriptor, proved by composing the two delivered sharp characterizations. It is a genuine cross-theory equivalence and needs a typed equivalence certificate; it is not a definitional identity and its content is the co-extensiveness itself.",
+        "migrationAction": "Add a typed equivalence certificate; keep the composition provenance visible."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+      "relationKind": "equivalence",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate_premiseIDs",
+      "sharedContext": "HammondMarcusSharpCtx = { A : Real, kB : Real, T : Real, lam : Real }",
+      "premises": [
+        {
+          "id": "hammondMarcusSharp.preExponentialPositive",
+          "predicate": "0 < A",
+          "statement": "The Marcus pre-exponential factor is positive.",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "the forward direction builds the left conjunct 0 < A of the Marcus rate descriptor"
+        },
+        {
+          "id": "hammondMarcusSharp.boltzmannPositive",
+          "predicate": "0 < kB",
+          "statement": "The Boltzmann constant is positive.",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by Marcus.descriptor_sharp"
+        },
+        {
+          "id": "hammondMarcusSharp.temperaturePositive",
+          "predicate": "0 < T",
+          "statement": "The temperature is positive.",
+          "evidence": "explicit",
+          "loadBearing": true,
+          "usedIn": "consumed by Marcus.descriptor_sharp"
+        }
+      ],
+      "statement": {
+        "form": "equivalence",
+        "left": {
+          "theory": "PhotoLean.Hammond",
+          "statementId": "PhotoLean.Hammond.HammondDescriptor",
+          "predicate": "Hammond.HammondDescriptor lam",
+          "provenance": "PhotoLean/Hammond/Sharp.lean#hammond_sharp"
+        },
+        "right": {
+          "theory": "PhotoLean.Marcus",
+          "statementId": "PhotoLean.Marcus.rateDescriptor",
+          "predicate": "(forall x : Real, 0 < Marcus.rate A lam kB T x) /\\ Marcus.InvertedDescriptor A lam kB T",
+          "provenance": "PhotoLean/Marcus/Sharp.lean#descriptor_sharp"
+        },
+        "translations": {
+          "left": "fun delta : HammondMarcusSharpCtx => delta",
+          "right": "fun delta : HammondMarcusSharpCtx => delta"
+        },
+        "premisePredicate": "fun delta => 0 < delta.A /\\ 0 < delta.kB /\\ 0 < delta.T"
+      },
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§6 hammond_sharp_iff_marcus_sharp (line 301)"
+          },
+          {
+            "artifact": "PhotoLean/Hammond/Sharp.lean",
+            "locator": "hammond_sharp (H3 sharp characterization)"
+          },
+          {
+            "artifact": "PhotoLean/Marcus/Sharp.lean",
+            "locator": "descriptor_sharp (M4a sharp characterization)"
+          }
+        ],
+        "note": "The delivered theorem is a direct iff. Its proof reuses the two sharp characterizations as supporting declarations, but the row is certified as an equivalence, not as a conditionalComposition: no typed parents are consumed by a composition combinator."
+      },
+      "compositionProvenance": {
+        "supportingDeclarations": [
+          "PhotoLean.Hammond.hammond_sharp",
+          "PhotoLean.Marcus.descriptor_sharp"
+        ],
+        "typedParentComposition": false,
+        "note": "Composition provenance is visible for review; it does not change the certified kind."
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§6 hammond_sharp_iff_marcus_sharp (line 301)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S07-kernel_marcusIC",
+      "originalDeclaration": "PhotoLean.Relations.kernel_marcusIC",
+      "section": 7,
+      "sectionTitle": "Conditional composition edge: Kasha's internal conversion on the Marcus barrier",
+      "pairIds": [
+        "P-Marcus-Kasha"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "definitional-pin",
+        "rationale": "Kernel pin: the Kasha internal-conversion rate is the kernel barrier inside the Marcus rate law. It is a definitionalIdentity candidate and the definitional core of the Kasha-Marcus edge, not a separate theorem-level relation.",
+        "migrationAction": "Add a definitionalIdentity certificate against the kernel barrier."
+      },
+      "outcome": "certified",
+      "certificate": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+      "relationKind": "definitionalIdentity",
+      "certificateConstructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+      "leanModule": "PhotoLean.RelationAudit.Full.Sections06_10",
+      "leanKindWitness": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_kind",
+      "leanPremiseWitness": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_premiseIDs",
+      "sharedContext": "KernelMarcusICCtx = { A : Real, lam : Real, kB : Real, T : Real, x : Real }",
+      "premises": [],
+      "statement": {
+        "form": "definitionalIdentity",
+        "left": {
+          "theory": "PhotoLean.Kasha",
+          "statementId": "PhotoLean.Kasha.marcusIC",
+          "term": "Kasha.marcusIC A lam kB T x",
+          "provenance": "PhotoLean/Kasha/Compose.lean#marcusIC"
+        },
+        "right": {
+          "theory": "PhotoLean.Kernel",
+          "statementId": "PhotoLean.Kernel.barrierRate",
+          "term": "A * Real.exp (-(Kernel.barrier lam x) / (kB * T))",
+          "provenance": "PhotoLean/Kernel.lean#barrier"
+        },
+        "translations": {
+          "left": "fun delta : KernelMarcusICCtx => delta",
+          "right": "fun delta : KernelMarcusICCtx => delta"
+        },
+        "definitionalWitness": {
+          "kind": "DefEq.refl",
+          "functionWitness": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_defeq",
+          "pointwiseWitness": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_rfl",
+          "note": "The certificate field `same` is `DefEq.refl`; the elaborator accepts the two translated functions as definitionally equal. This is a fresh kernel definitional check, not propositional equality and not a physical-identity claim."
+        }
+      },
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§7 kernel_marcusIC (line 339)"
+          },
+          {
+            "artifact": "PhotoLean/Kasha/Compose.lean",
+            "locator": "marcusIC"
+          },
+          {
+            "artifact": "PhotoLean/Kernel.lean",
+            "locator": "barrier"
+          }
+        ],
+        "note": "The original theorem is proved by unfolding Kasha.marcusIC, Kernel.barrier and Marcus.barrier and closing with rfl; the pin reuses exactly that definitional equality."
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§7 kernel_marcusIC (line 339)",
+      "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+      "axiomFootprint": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiomProbe": {
+        "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+        "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+        "allowed": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "result": "within-allowlist"
+      },
+      "r2ActionStatus": "satisfied"
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_eq_bepTangent",
+      "originalDeclaration": "PhotoLean.Relations.linearVolcano_eq_bepTangent",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Identity: the Sabatier linear volcano is the maximum of the two BEP tangent lines at thermoneutrality. It is a delivered composition result and needs a typed certificate; it is not a definitional rfl identity.",
+        "migrationAction": "Add a typed composition/equivalence certificate for the Sabatier-BEP volcano identity."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "targetCategory": "model-level-composition",
+      "rationale": "The proof is `unfold` followed by `ring` rewrites; a direct `rfl` probe fails, so this is a propositional term identity, not a definitional one. It is not a statement-level implication or equivalence between two theory predicates either: both sides are composite real-valued model functionals. It is also not a ConditionalComposition: no typed parent certificate is consumed, and the identity is closed by arithmetic. The seven certified kinds have no constructor for pointwise functional equality, so a certificate would require inventing a statement pair.",
+      "certificationBlockers": [
+        "propositional-term-identity",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "premises": [],
+      "statement": {
+        "form": "pointwise-functional-identity",
+        "leanStatement": "forall (lam1 lam2 dE : Real), Sabatier.volcanoBarrier (1/2) (lam1/4) (1/2) (lam2/4) dE = max (BEP.bepLine lam1 (-dE)) (BEP.bepLine lam2 dE)"
+      },
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 linearVolcano_eq_bepTangent (line 402)"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "linearVolcano_eq_bepTangent"
+          }
+        ],
+        "note": "Statement is re-exported verbatim by `PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_eq_bepTangent`; that declaration is evidence, not a Certificate."
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§8 linearVolcano_eq_bepTangent (line 402)",
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_eq_bepTangent",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_le_parabolic",
+      "originalDeclaration": "PhotoLean.Relations.linearVolcano_le_parabolic",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "Pointwise lower bound of the linear volcano by the two-parabola volcano: the linear model underestimates the barrier away from the apex. This is a composition result and needs a typed order/implication certificate, not an edge label alone.",
+        "migrationAction": "Add a typed pointwise-order certificate."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "targetCategory": "model-level-composition",
+      "rationale": "The statement is a pointwise order inequality between two composite model functionals. It is derived from the tangent-below-parabola inequality `bepLine_le_eact` on each branch plus `max_le`, so it is a mathematical composition of inequalities, not a relation between two theory predicates. The certified taxonomy has no order/inequality constructor; an implication reading would need a consequent statement that the inequality entails, which the delivered theorem does not have.",
+      "certificationBlockers": [
+        "pointwise-order-inequality",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "premises": [
+        {
+          "id": "sabatier.linearVolcano.lowerBound.lam1Positive",
+          "predicate": "0 < lam1",
+          "statement": "The first reorganization energy is positive.",
+          "evidence": "hypothesis",
+          "loadBearing": true,
+          "usedIn": "needed by bepLine_le_eact for the ascending branch"
+        },
+        {
+          "id": "sabatier.linearVolcano.lowerBound.lam2Positive",
+          "predicate": "0 < lam2",
+          "statement": "The second reorganization energy is positive.",
+          "evidence": "hypothesis",
+          "loadBearing": true,
+          "usedIn": "needed by bepLine_le_eact for the descending branch"
+        }
+      ],
+      "statement": {
+        "form": "pointwise-order-inequality",
+        "leanStatement": "forall (lam1 lam2 : Real), 0 < lam1 -> 0 < lam2 -> forall dE : Real, Sabatier.volcanoBarrier (1/2) (lam1/4) (1/2) (lam2/4) dE <= Sabatier.parabolicBarrier lam1 lam2 dE"
+      },
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 linearVolcano_le_parabolic (line 415)"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "linearVolcano_le_parabolic"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "bepLine_le_eact"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "linearVolcano_eq_bepTangent"
+          }
+        ],
+        "note": "Statement is re-exported verbatim by `PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_le_parabolic`; that declaration is evidence, not a Certificate."
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§8 linearVolcano_le_parabolic (line 415)",
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_le_parabolic",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S08-parabolic_descriptor",
+      "originalDeclaration": "PhotoLean.Relations.parabolic_descriptor",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "The Sabatier volcano descriptor holds in the two-parabola model with no BEP linearization. This is a composition certificate showing the descriptor survives the exact model; it needs a typed certificate.",
+        "migrationAction": "Add a typed composition certificate for the descriptor."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "targetCategory": "model-level-composition",
+      "rationale": "The statement asserts that the Sabatier descriptor holds for the BEP-instantiated composite barrier. It is a property of one model functional (a unique global minimizer), not a relation between two theory predicates: the Sabatier side supplies the descriptor and the BEP side supplies the parabolic barrier definition, but no BEP statement entails the descriptor. The proof is the crossing/monotonicity argument, not typed-parent consumption. Certifying it would require inventing a BEP-side statement for the positivity hypotheses.",
+      "certificationBlockers": [
+        "single-model-property",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "premises": [
+        {
+          "id": "sabatier.parabolicDescriptor.lam1Positive",
+          "predicate": "0 < lam1",
+          "statement": "The first reorganization energy is positive.",
+          "evidence": "hypothesis",
+          "loadBearing": true,
+          "usedIn": "used by the crossing/uniqueness argument"
+        },
+        {
+          "id": "sabatier.parabolicDescriptor.lam2Positive",
+          "predicate": "0 < lam2",
+          "statement": "The second reorganization energy is positive.",
+          "evidence": "hypothesis",
+          "loadBearing": true,
+          "usedIn": "used by the crossing/uniqueness argument"
+        }
+      ],
+      "statement": {
+        "form": "model-level-predicate",
+        "leanStatement": "forall (lam1 lam2 : Real), 0 < lam1 -> 0 < lam2 -> Sabatier.VolcanoDescriptor (fun dE => Sabatier.parabolicBarrier lam1 lam2 dE) (Sabatier.apexPar lam1 lam2)"
+      },
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 parabolic_descriptor (line 423)"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "parabolic_descriptor"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "parabolicBarrier_apex_le"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "parabolicBarrier_eq_apex_iff"
+          }
+        ],
+        "note": "Statement is re-exported verbatim by `PhotoLean.RelationAudit.Full.Sections06_10.section08_parabolic_descriptor`; that declaration is evidence, not a Certificate."
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§8 parabolic_descriptor (line 423)",
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_parabolic_descriptor",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    },
+    {
+      "declarationId": "D-S08-linearVolcano_apex_exact",
+      "originalDeclaration": "PhotoLean.Relations.linearVolcano_apex_exact",
+      "section": 8,
+      "sectionTitle": "Composition edge: the Sabatier volcano over the BEP two-parabola model",
+      "pairIds": [
+        "P-BEP-Sabatier"
+      ],
+      "intraTheory": false,
+      "r2Ledger": {
+        "disposition": "certificate-required",
+        "relationRole": "composition",
+        "rationale": "At a symmetric cycles apex the tangent-line model and the parabola model agree exactly. This is a composition result about the apex and needs a typed certificate; it does not license a general equivalence of the two models.",
+        "migrationAction": "Add a typed apex-composition certificate."
+      },
+      "outcome": "reclassified",
+      "certificate": null,
+      "relationKind": null,
+      "targetCategory": "model-level-composition",
+      "rationale": "The statement is a pointwise value identity at the symmetric apex (lam1 = lam2 = lam, dE = 0). The proof rewrites through `BEP.bepLine_at_zero` and `BEP.eact_at_zero`, so a direct `rfl` probe fails: it is not a definitional identity. It is a local evaluation identity, not an implication/equivalence between two theory predicates and not a typed-parent composition. The row explicitly does not license a general equivalence of the two models, so promoting it to an equivalence would overstate the delivered content.",
+      "certificationBlockers": [
+        "pointwise-value-identity",
+        "not-definitional",
+        "not-typed-parent-composition",
+        "no-seven-kind-constructor"
+      ],
+      "premises": [
+        {
+          "id": "sabatier.linearVolcano.apexExact.lamPositive",
+          "predicate": "0 < lam",
+          "statement": "The symmetric reorganization energy is positive.",
+          "evidence": "hypothesis",
+          "loadBearing": true,
+          "usedIn": "needed for the nonzero denominators in BEP.eact_at_zero / bepLine_at_zero"
+        }
+      ],
+      "statement": {
+        "form": "pointwise-value-identity",
+        "leanStatement": "forall (lam : Real), 0 < lam -> Sabatier.volcanoBarrier (1/2) (lam/4) (1/2) (lam/4) 0 = Sabatier.parabolicBarrier lam lam 0"
+      },
+      "statementProvenance": {
+        "kind": "source",
+        "references": [
+          {
+            "artifact": "PhotoLean/Relations.lean",
+            "locator": "§8 linearVolcano_apex_exact (line 435)"
+          },
+          {
+            "artifact": "PhotoLean/Sabatier/Compose.lean",
+            "locator": "linearVolcano_apex_exact"
+          },
+          {
+            "artifact": "PhotoLean/BEP/Basic.lean",
+            "locator": "bepLine_at_zero"
+          },
+          {
+            "artifact": "PhotoLean/BEP/Basic.lean",
+            "locator": "eact_at_zero"
+          }
+        ],
+        "note": "Statement is re-exported verbatim by `PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_apex_exact`; that declaration is evidence, not a Certificate."
+      },
+      "sourceArtifact": "PhotoLean/Relations.lean",
+      "sourceLocator": "§8 linearVolcano_apex_exact (line 435)",
+      "evidence": {
+        "leanName": "PhotoLean.RelationAudit.Full.Sections06_10.section08_linearVolcano_apex_exact",
+        "certificate": false,
+        "note": "Re-exported in the section module only as reclassification evidence; it is deliberately not wrapped in a Certificate."
+      },
+      "r2ActionStatus": "reclassified-instead"
+    }
+  ]
+}

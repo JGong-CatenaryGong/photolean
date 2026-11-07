@@ -1,0 +1,1879 @@
+{
+  "caveats": [
+    {
+      "code": "snapshotDirty",
+      "message": "dirty snapshot(s) 'snap-relation-audit-2026-10-31': artifact hashes were matched against the working tree; a full-mode PASS on a dirty tree needs independent review."
+    }
+  ],
+  "contract": "docs/RELATION-AUDIT-CONTRACT.md",
+  "counts": {
+    "byStatus": {
+      "certified": 24,
+      "notEstablished": 121,
+      "outOfScope": 0,
+      "unresolved": 6
+    },
+    "certificates": 38,
+    "certifiedByKind": {
+      "conditionalComposition": 1,
+      "definitionalIdentity": 7,
+      "distinguishability": 2,
+      "equivalence": 8,
+      "implication": 2,
+      "observationalEquivalence": 3,
+      "refutation": 1
+    },
+    "queries": 151,
+    "records": 151,
+    "scopes": 122,
+    "snapshots": 1,
+    "statements": 52
+  },
+  "coverage": {
+    "coveredPairs": 136,
+    "expectedPairUniverse": 136,
+    "expectedTheoryCount": 17,
+    "missingPairs": [],
+    "mode": "full",
+    "pairUniverse": 136,
+    "registryCoverage": 1.0,
+    "resolvedCoverage": 0.066176,
+    "resolvedCoverageComplete": false,
+    "resolvedPairs": 9,
+    "theoryCount": 17,
+    "unresolvedRecords": 6
+  },
+  "exitCode": 0,
+  "failureCount": 0,
+  "gates": {
+    "coverage": {
+      "counts": {
+        "FAIL": 0,
+        "PASS": 2,
+        "SKIP": 0
+      },
+      "description": "17-theory inventory and 136-pair registry coverage",
+      "findings": [
+        {
+          "code": "coverage.registry",
+          "message": "registry coverage 136/136 pairs (136/136)",
+          "status": "PASS"
+        },
+        {
+          "code": "coverage.resolvedCount",
+          "message": "resolved coverage 9/136 pairs; not claiming completeness",
+          "status": "PASS"
+        }
+      ],
+      "name": "coverage",
+      "status": "PASS"
+    },
+    "lean": {
+      "counts": {
+        "FAIL": 0,
+        "PASS": 223,
+        "SKIP": 0
+      },
+      "description": "certificate existence, certificateKind equality, axioms",
+      "findings": [
+        {
+          "code": "lean.exists",
+          "location": "certificates[0]",
+          "message": "declaration exists: PhotoLean.RelationAudit.kernelBarrierPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[0]",
+          "message": "certificates[0].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[0]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.kernelBarrierPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[0].premises",
+          "message": "certificates[0].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[0].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.kernelBarrierPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[0].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.kernelBarrierPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[0].semantics.rflCheck",
+          "message": "certificates[0].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[1]",
+          "message": "declaration exists: PhotoLean.RelationAudit.epBoundsImplication",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[1]",
+          "message": "certificates[1].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[1]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.epBoundsImplication: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[1].premises",
+          "message": "certificates[1].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[2]",
+          "message": "declaration exists: PhotoLean.RelationAudit.betaHalfEquivalence",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[2]",
+          "message": "certificates[2].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[2]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.betaHalfEquivalence: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[2].premises",
+          "message": "certificates[2].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[3]",
+          "message": "declaration exists: PhotoLean.RelationAudit.kashaMarcusEquivalence",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[3]",
+          "message": "certificates[3].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[3]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.kashaMarcusEquivalence: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[3].premises",
+          "message": "certificates[3].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[4]",
+          "message": "declaration exists: PhotoLean.RelationAudit.marcusNormalImplication",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[4]",
+          "message": "certificates[4].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[4]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.marcusNormalImplication: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[4].premises",
+          "message": "certificates[4].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[5]",
+          "message": "declaration exists: PhotoLean.RelationAudit.epBoundsNoInvertedEquivalence",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[5]",
+          "message": "certificates[5].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[5]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.epBoundsNoInvertedEquivalence: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[5].premises",
+          "message": "certificates[5].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[6]",
+          "message": "declaration exists: PhotoLean.RelationAudit.marcusNormalNoInvertedComposition",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[6]",
+          "message": "certificates[6].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[6]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.marcusNormalNoInvertedComposition: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[6].premises",
+          "message": "certificates[6].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[7]",
+          "message": "declaration exists: PhotoLean.RelationAudit.svIntensityObservationalEquivalence",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[7]",
+          "message": "certificates[7].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[7]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.svIntensityObservationalEquivalence: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[7].premises",
+          "message": "certificates[7].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[8]",
+          "message": "declaration exists: PhotoLean.RelationAudit.svJointDistinguishability",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[8]",
+          "message": "certificates[8].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[8]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.svJointDistinguishability: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[8].premises",
+          "message": "certificates[8].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[8].semantics.witness",
+          "message": "declaration exists: PhotoLean.RelationAudit.svJointSeparationWitness",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[8].semantics.witness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.svJointSeparationWitness: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[9]",
+          "message": "declaration exists: PhotoLean.RelationAudit.svJointIdentifiability",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[9]",
+          "message": "certificates[9].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[9]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.svJointIdentifiability: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[9].premises",
+          "message": "certificates[9].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[9].semantics.witness",
+          "message": "declaration exists: PhotoLean.RelationAudit.svJointDecoderWitness",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[9].semantics.witness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.svJointDecoderWitness: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[10]",
+          "message": "declaration exists: PhotoLean.RelationAudit.kvRefutation",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[10]",
+          "message": "certificates[10].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[10]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.kvRefutation: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[10].premises",
+          "message": "certificates[10].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[10].semantics.counterexample",
+          "message": "declaration exists: PhotoLean.RelationAudit.kvRefutationCounterexample",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[10].semantics.counterexample",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.kvRefutationCounterexample: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[11]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[11]",
+          "message": "certificates[11].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[11]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[11].premises",
+          "message": "certificates[11].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[11].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[11].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierHammondPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[11].semantics.rflCheck",
+          "message": "certificates[11].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[12]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[12]",
+          "message": "certificates[12].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[12]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[12].premises",
+          "message": "certificates[12].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[12].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[12].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelBarrierBepPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[12].semantics.rflCheck",
+          "message": "certificates[12].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[13]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[13]",
+          "message": "certificates[13].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[13]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[13].premises",
+          "message": "certificates[13].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[13].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[13].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelReverseBarrierHammondPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[13].semantics.rflCheck",
+          "message": "certificates[13].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[14]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[14]",
+          "message": "certificates[14].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[14]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[14].premises",
+          "message": "certificates[14].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[14].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[14].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelTsCoordHammondPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[14].semantics.rflCheck",
+          "message": "certificates[14].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[15]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[15]",
+          "message": "certificates[15].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[15]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[15].premises",
+          "message": "certificates[15].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[15].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[15].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelTransferBepPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[15].semantics.rflCheck",
+          "message": "certificates[15].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[16]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[16]",
+          "message": "certificates[16].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[16]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[16].premises",
+          "message": "certificates[16].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[16].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[16].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelReactantSurfaceHammondPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[16].semantics.rflCheck",
+          "message": "certificates[16].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[17]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[17]",
+          "message": "certificates[17].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[17]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[17].premises",
+          "message": "certificates[17].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[17].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[17].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.kernelProductSurfaceHammondPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[17].semantics.rflCheck",
+          "message": "certificates[17].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[18]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[18]",
+          "message": "certificates[18].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[18]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[18].premises",
+          "message": "certificates[18].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[19]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[19]",
+          "message": "certificates[19].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[19]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[19].premises",
+          "message": "certificates[19].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[20]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[20]",
+          "message": "certificates[20].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[20]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[20].premises",
+          "message": "certificates[20].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[21]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[21]",
+          "message": "certificates[21].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[21]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[21].premises",
+          "message": "certificates[21].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[22]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[22]",
+          "message": "certificates[22].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[22]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[22].premises",
+          "message": "certificates[22].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[23]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[23]",
+          "message": "certificates[23].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[23]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[23].premises",
+          "message": "certificates[23].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[24]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[24]",
+          "message": "certificates[24].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[24]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[24].premises",
+          "message": "certificates[24].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[24].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[24].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[24].semantics.rflCheck",
+          "message": "certificates[24].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[25]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[25]",
+          "message": "certificates[25].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[25]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[25].premises",
+          "message": "certificates[25].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[25].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[25].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[25].semantics.rflCheck",
+          "message": "certificates[25].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[26]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[26]",
+          "message": "certificates[26].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[26]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[26].premises",
+          "message": "certificates[26].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[26].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[26].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[26].semantics.rflCheck",
+          "message": "certificates[26].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[27]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[27]",
+          "message": "certificates[27].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[27]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[27].premises",
+          "message": "certificates[27].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[28]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[28]",
+          "message": "certificates[28].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[28]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[28].premises",
+          "message": "certificates[28].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[28].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[28].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections06_10.kernelMarcusICPin_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[28].semantics.rflCheck",
+          "message": "certificates[28].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[29]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[29]",
+          "message": "certificates[29].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[29]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[29].premises",
+          "message": "certificates[29].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[29].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[29].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.egBarrierEqKernelCertificate_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[29].semantics.rflCheck",
+          "message": "certificates[29].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[30]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[30]",
+          "message": "certificates[30].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[30]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[30].premises",
+          "message": "certificates[30].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[30].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[30].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.egRateEqMarcusCertificate_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[30].semantics.rflCheck",
+          "message": "certificates[30].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[31]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[31]",
+          "message": "certificates[31].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[31]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.egInvertedGapEquivalenceCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[31].premises",
+          "message": "certificates[31].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[32]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[32]",
+          "message": "certificates[32].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[32]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[32].premises",
+          "message": "certificates[32].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[32].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[32].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.ssS0SurfaceEqKernelCertificate_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[32].semantics.rflCheck",
+          "message": "certificates[32].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[33]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[33]",
+          "message": "certificates[33].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[33]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[33].premises",
+          "message": "certificates[33].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[33].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[33].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.ssS1SurfaceEqKernelCertificate_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[33].semantics.rflCheck",
+          "message": "certificates[33].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[34]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[34]",
+          "message": "certificates[34].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[34]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[34].premises",
+          "message": "certificates[34].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[34].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[34].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.icvscicBarrierEqKernelCertificate_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[34].semantics.rflCheck",
+          "message": "certificates[34].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[35]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[35]",
+          "message": "certificates[35].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[35]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[35].premises",
+          "message": "certificates[35].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[35].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[35].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqMarcusCertificate_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[35].semantics.rflCheck",
+          "message": "certificates[35].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[36]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[36]",
+          "message": "certificates[36].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[36]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.egBarrierZeroIffEmEnergyZeroCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[36].premises",
+          "message": "certificates[36].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[37]",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificateKind",
+          "location": "certificates[37]",
+          "message": "certificates[37].kind elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[37]",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.certificatePremiseIDs",
+          "location": "certificates[37].premises",
+          "message": "certificates[37].premiseIds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.exists",
+          "location": "certificates[37].semantics.rflWitness",
+          "message": "declaration exists: PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_defeq",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.axioms",
+          "location": "certificates[37].semantics.rflWitness",
+          "message": "allowed axiom footprint for PhotoLean.RelationAudit.Full.Sections11_17.icvscicIcRateEqEnergyGapLawCertificate_defeq: Classical.choice, Quot.sound, propext",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.rflCheck",
+          "location": "certificates[37].semantics.rflCheck",
+          "message": "certificates[37].rflCheck elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.compositionParentIDs",
+          "location": "records[4].composition",
+          "message": "records[4].composition.parentIDs elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.compositionParentKinds",
+          "location": "records[4].composition",
+          "message": "records[4].composition.parentKinds elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.compositionParentPremiseIDs",
+          "location": "records[4].composition",
+          "message": "records[4].composition.parentPremiseIDs elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.compositionBridgeIDs",
+          "location": "records[4].composition",
+          "message": "records[4].composition.bridgeIDs elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.compositionDischargeIDs",
+          "location": "records[4].composition",
+          "message": "records[4].composition.dischargeIDs elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.compositionMediating",
+          "location": "records[4].composition",
+          "message": "records[4].composition.mediating elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.compositionForm",
+          "location": "records[4].composition",
+          "message": "records[4].composition.form elaborated with rfl",
+          "status": "PASS"
+        },
+        {
+          "code": "lean.run",
+          "location": "<lean>",
+          "message": "Lean accepted 222 generated checks",
+          "status": "PASS"
+        }
+      ],
+      "name": "lean",
+      "status": "PASS"
+    },
+    "provenance": {
+      "counts": {
+        "FAIL": 0,
+        "PASS": 1,
+        "SKIP": 0
+      },
+      "description": "source provenance, rationale, dependency evidence",
+      "findings": [
+        {
+          "code": "provenance.valid",
+          "message": "476 provenance record(s) reference existing sources and carry the required rationale",
+          "status": "PASS"
+        }
+      ],
+      "name": "provenance",
+      "status": "PASS"
+    },
+    "references": {
+      "counts": {
+        "FAIL": 0,
+        "PASS": 2,
+        "SKIP": 0
+      },
+      "description": "endpoint, query, scope, snapshot and certificate resolution",
+      "findings": [
+        {
+          "code": "statement.count",
+          "message": "52 statement references checked",
+          "status": "PASS"
+        },
+        {
+          "code": "query.count",
+          "message": "151 queries checked",
+          "status": "PASS"
+        }
+      ],
+      "name": "references",
+      "status": "PASS"
+    },
+    "semantics": {
+      "counts": {
+        "FAIL": 0,
+        "PASS": 2,
+        "SKIP": 0
+      },
+      "description": "statuses, conflicts, premises, badges, composition",
+      "findings": [
+        {
+          "code": "certificate.count",
+          "message": "38 certificate row(s) inspected",
+          "status": "PASS"
+        },
+        {
+          "code": "record.valid",
+          "message": "151 audit record(s) passed status, conflict, premise, badge and composition checks",
+          "status": "PASS"
+        }
+      ],
+      "name": "semantics",
+      "status": "PASS"
+    },
+    "snapshot": {
+      "counts": {
+        "FAIL": 0,
+        "PASS": 2,
+        "SKIP": 0
+      },
+      "description": "toolchain, schema and artifact hashes",
+      "findings": [
+        {
+          "code": "snapshot.dirty",
+          "location": "snapshots",
+          "message": "snapshot 'snap-relation-audit-2026-10-31' is dirty; artifact hashes were matched against the working tree, not the commit",
+          "status": "PASS"
+        },
+        {
+          "code": "snapshot.valid",
+          "message": "1 snapshot(s) match toolchain, schema and artifacts",
+          "status": "PASS"
+        }
+      ],
+      "name": "snapshot",
+      "status": "PASS"
+    },
+    "structure": {
+      "counts": {
+        "FAIL": 0,
+        "PASS": 3,
+        "SKIP": 0
+      },
+      "description": "JSON/schema, unique IDs, required fields",
+      "findings": [
+        {
+          "code": "schema.valid",
+          "message": "manifest validates against the checked-in schema",
+          "status": "PASS"
+        },
+        {
+          "code": "id.unique",
+          "message": "unique ids: 1 snapshots, 122 scopes, 52 statements, 151 queries, 38 certificates, 151 records",
+          "status": "PASS"
+        },
+        {
+          "code": "coverage.inventory",
+          "message": "17 distinct theory ids in the inventory",
+          "status": "PASS"
+        }
+      ],
+      "name": "structure",
+      "status": "PASS"
+    }
+  },
+  "manifest": "relation_audit/registry.json",
+  "metadata": {
+    "certificateCount": 38,
+    "gates": {
+      "coverage": "PASS",
+      "lean": "PASS",
+      "provenance": "PASS",
+      "references": "PASS",
+      "semantics": "PASS",
+      "snapshot": "PASS",
+      "structure": "PASS"
+    },
+    "headSha": "7ad25a5f03a88acc3af03f65149cf2ac102e7dac",
+    "interface": {
+      "badge": {
+        "definition": "<absent>",
+        "fields": {
+          "alternatives": "alternatives",
+          "byPremise": "byPremise",
+          "earned": "earned",
+          "kind": "kind",
+          "lean": "lean",
+          "minimality": "minimality",
+          "premiseIds": "premiseIds",
+          "preorder": "preorder"
+        }
+      },
+      "bridge": {
+        "definition": "<absent>",
+        "fields": {
+          "premiseId": "premiseId",
+          "statement": "statement",
+          "witness": "witness"
+        }
+      },
+      "certificate": {
+        "definition": "certificate",
+        "fields": {
+          "axiomFootprint": "axiomFootprint",
+          "constructor": "constructor",
+          "id": "id",
+          "kind": "kind",
+          "kindFunction": "kindFunction",
+          "lean": "lean",
+          "module": "module",
+          "premises": "premises",
+          "semantics": "semantics",
+          "sourcePath": "sourcePath",
+          "sourceSha256": "sourceSha256"
+        },
+        "required": [
+          "id",
+          "kind",
+          "module",
+          "lean",
+          "kindFunction",
+          "constructor",
+          "premises",
+          "semantics",
+          "axiomFootprint"
+        ]
+      },
+      "composition": {
+        "definition": "composition",
+        "fields": {
+          "bridges": "bridges",
+          "discharges": "discharges",
+          "mediators": "mediators",
+          "parents": "parents",
+          "translations": "translations"
+        },
+        "required": [
+          "parents",
+          "mediators",
+          "translations"
+        ]
+      },
+      "dependency": {
+        "definition": "dependency",
+        "fields": {
+          "kind": "kind",
+          "recompute": "recompute",
+          "reference": "reference",
+          "sha256": "sha256"
+        },
+        "required": [
+          "kind",
+          "reference",
+          "recompute"
+        ]
+      },
+      "discharge": {
+        "definition": "<absent>",
+        "fields": {
+          "premiseId": "premiseId",
+          "witness": "witness"
+        }
+      },
+      "manifest": {
+        "definition": "<root>",
+        "fields": {
+          "certificates": "certificates",
+          "description": "description",
+          "mode": "mode",
+          "pairCount": "pairCount",
+          "queries": "queries",
+          "records": "records",
+          "schemaVersion": "schemaVersion",
+          "scopes": "scopes",
+          "snapshots": "snapshots",
+          "statements": "statements",
+          "theoryInventory": "theoryInventory"
+        },
+        "required": [
+          "schemaVersion",
+          "mode",
+          "theoryInventory",
+          "pairCount",
+          "snapshots",
+          "scopes",
+          "statements",
+          "queries",
+          "certificates",
+          "records"
+        ]
+      },
+      "premise": {
+        "definition": "<absent>",
+        "fields": {
+          "explicit": "explicit",
+          "id": "id",
+          "role": "role",
+          "signatureDeclaration": "signatureDeclaration",
+          "signatureName": "signatureName",
+          "statement": "statement"
+        }
+      },
+      "provenance": {
+        "definition": "provenance",
+        "fields": {
+          "kind": "kind",
+          "rationale": "rationale",
+          "references": "references"
+        },
+        "required": [
+          "kind",
+          "references"
+        ]
+      },
+      "query": {
+        "definition": "query",
+        "fields": {
+          "context": "context",
+          "id": "id",
+          "provenance": "provenance",
+          "source": "source",
+          "target": "target"
+        },
+        "required": [
+          "id",
+          "source",
+          "target",
+          "context",
+          "provenance"
+        ]
+      },
+      "record": {
+        "definition": "record",
+        "fields": {
+          "badges": "badges",
+          "candidate": "candidate",
+          "certificate": "certificate",
+          "composition": "composition",
+          "dependencies": "dependencies",
+          "id": "id",
+          "premises": "premises",
+          "provenance": "provenance",
+          "queryId": "queryId",
+          "rationale": "rationale",
+          "relationKind": "relationKind",
+          "scope": "scope",
+          "snapshot": "snapshot",
+          "statementVersion": "statementVersion",
+          "status": "status"
+        },
+        "required": [
+          "id",
+          "queryId",
+          "statementVersion",
+          "scope",
+          "snapshot",
+          "status",
+          "provenance"
+        ]
+      },
+      "reference": {
+        "definition": "<absent>",
+        "fields": {
+          "artifact": "artifact",
+          "locator": "locator"
+        }
+      },
+      "scope": {
+        "definition": "scope",
+        "fields": {
+          "description": "description",
+          "id": "id",
+          "kind": "kind",
+          "provenance": "provenance",
+          "theories": "theories"
+        },
+        "required": [
+          "id",
+          "kind",
+          "description",
+          "theories",
+          "provenance"
+        ]
+      },
+      "semantics": {
+        "definition": "certificateSemantics",
+        "fields": {
+          "channelSpecs": "channelSpecs",
+          "channels": "channels",
+          "context": "context",
+          "counterexample": "counterexample",
+          "form": "form",
+          "premisePredicate": "premisePredicate",
+          "rflCheck": "rflCheck",
+          "rflWitness": "rflWitness",
+          "rflWitnessAxiomFootprint": "rflWitnessAxiomFootprint",
+          "target": "target",
+          "translation": "translation",
+          "translations": "translations",
+          "witness": "witness"
+        },
+        "required": [
+          "context",
+          "translations",
+          "premisePredicate"
+        ]
+      },
+      "snapshot": {
+        "definition": "snapshot",
+        "fields": {
+          "artifacts": "artifacts",
+          "dirty": "dirty",
+          "id": "id",
+          "mathlibRev": "mathlibRev",
+          "schemaSha256": "schemaSha256",
+          "toolchain": "toolchain",
+          "treeSha": "treeSha"
+        },
+        "required": [
+          "id",
+          "treeSha",
+          "toolchain",
+          "schemaSha256",
+          "artifacts"
+        ]
+      },
+      "statement": {
+        "definition": "statement",
+        "fields": {
+          "artifact": "artifact",
+          "context": "context",
+          "declaration": "declaration",
+          "id": "id",
+          "provenance": "provenance",
+          "sha256": "sha256",
+          "theory": "theory",
+          "version": "version"
+        },
+        "required": [
+          "id",
+          "theory",
+          "version",
+          "artifact",
+          "sha256",
+          "context",
+          "provenance"
+        ]
+      }
+    },
+    "lean": {
+      "checks": 124,
+      "requested": true,
+      "sourceOut": "relation_audit/reports/production-full-lean-checks.lean",
+      "sourceOutSha256": "b54f1a907d6a95a21262960446b11e655ca48b679850f12bd2cf736677e2841b",
+      "status": "PASS"
+    },
+    "manifestSha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "recordCount": 151,
+    "requestedChecks": 235,
+    "schemaSha256": "5280f3d2b89870939802e12e52644562637b45d139d6747f5de06e9dbc28f501",
+    "schemaVersion": "1.2.0",
+    "snapshotDirty": true,
+    "snapshots": [
+      "snap-relation-audit-2026-10-31"
+    ],
+    "theoryCount": 17,
+    "toolchain": "leanprover/lean4:v4.17.0"
+  },
+  "mode": "full",
+  "schema": "relation_audit/schema.json",
+  "skipCount": 0,
+  "status": "PASS",
+  "tool": "relation_audit",
+  "unresolved": [
+    {
+      "queryId": "q-kasha-sternvolmer-candidate",
+      "record": "rec-kasha-sternvolmer-unresolved",
+      "scope": "global",
+      "statementVersion": "kasha.kashaRule@1.0.0|sternvolmer.intensityDyn@1.0.0"
+    },
+    {
+      "queryId": "q-pair-P-Kasha-FluorPhos",
+      "record": "rec-candidate-P-Kasha-FluorPhos",
+      "scope": "global",
+      "statementVersion": "stmt-theory-Kasha@1.0.0|stmt-theory-FluorPhos@1.0.0"
+    },
+    {
+      "queryId": "q-pair-P-KashaVavilov-SternVolmer",
+      "record": "rec-candidate-P-KashaVavilov-SternVolmer",
+      "scope": "global",
+      "statementVersion": "stmt-theory-KashaVavilov@1.0.0|stmt-theory-SternVolmer@1.0.0"
+    },
+    {
+      "queryId": "q-pair-P-KashaVavilov-QuantumYield",
+      "record": "rec-candidate-P-KashaVavilov-QuantumYield",
+      "scope": "global",
+      "statementVersion": "stmt-theory-KashaVavilov@1.0.0|stmt-theory-QuantumYield@1.0.0"
+    },
+    {
+      "queryId": "q-pair-P-KashaVavilov-FluorPhos",
+      "record": "rec-candidate-P-KashaVavilov-FluorPhos",
+      "scope": "global",
+      "statementVersion": "stmt-theory-KashaVavilov@1.0.0|stmt-theory-FluorPhos@1.0.0"
+    },
+    {
+      "queryId": "q-pair-P-KashaVavilov-EnergyGapLaw",
+      "record": "rec-candidate-P-KashaVavilov-EnergyGapLaw",
+      "scope": "global",
+      "statementVersion": "stmt-theory-KashaVavilov@1.0.0|stmt-theory-EnergyGapLaw@1.0.0"
+    }
+  ]
+}
