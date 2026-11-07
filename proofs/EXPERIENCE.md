@@ -4480,7 +4480,7 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   `photolean-prerewrite-2026-09-26.bundle` (all refs at the pre-rewrite tip), a source tarball of the
   same state, the two planning documents and the removed blocks (private-notes set), and the three
   filter rule files.
-- **Tool**: `git-filter-repo` (available at `/home/jgong/psi4conda/bin/git-filter-repo`), three passes:
+- **Tool**: `git-filter-repo`, three passes:
   (i) purge seven paths from every commit (the two planning documents, the two review records that
   carried the strategy discussion — re-introduced afterwards in cleaned form — the archive metadata
   file, and the manuscript LaTeX sources), rename the two audit reports to model-agnostic names
@@ -4502,3 +4502,152 @@ re-freezes confirmed model-content (`svRatioBoth` in `mixed_witness`; `Rat.barri
   them is not attempted. The remote was removed by filter-repo and re-added; publishing the rewritten
   history needs a force push — and for a guaranteed-clean GitHub repository the stronger option is to
   delete and recreate it, since unreachable objects can remain retrievable by direct SHA for a while.
+
+### 2026-10-31 — RelationAudit pilot: typed certificates and fail-closed audit — lead — DONE
+
+- **Goal**: add an isolated, premise-indexed relation-audit layer with seven certificate kinds, scoped unresolved/not-established statuses, canonical composition metadata, and independent acceptance; leave the original repository and theory modules untouched.
+- **Tried and failed**:
+  - A first composition encoding listed parent names beside an independently proved child conclusion. This did not establish that the parents generated the child or that their middle endpoints aligned; it was rejected in lead review and replaced by typed parent certificates consumed by `ConditionalComposition.sound`.
+  - Requiring an empty axiom footprint for definitional `rfl` witnesses rejected legitimate Real-valued pins. Fresh `rfl` supplies the definitional guarantee; the correct additional gate is the standard allowed-axiom whitelist.
+  - Checking only that nonvacuity/nonredundancy/weakest witness declarations exist allowed unrelated theorems to earn badges. Until typed expected evidence is implemented, these claims now fail closed.
+  - An initial schema duplicated composition as a second JSON combinator/application language. The simpler and stronger integration checks canonical Lean projections (`certificateParentIDs`, premise/bridge/discharge IDs, mediator, and composition form) instead of maintaining two semantic representations.
+  - Workflow execution with an incompletely specified model route returned no artifacts; an explicitly configured provider/model route was required. Reviewer routing separately used an independent reviewer.
+  - Reports written to `/tmp` in one sandbox invocation were not reliably visible in a later invocation. Durable run artifacts belong under `relation_audit/reports/`; reviewers regenerate their own temporary outputs.
+- **Worked**: statement/context/premise-indexed certificates; fresh `certificateKind` and premise-projection `rfl` checks; proof-relevant composition with empty bridges when parent endpoints already align; Kasha–Marcus reclassified as conditional equivalence; scoped absence with recomputable source scans; nonzero exit for skipped Lean.
+- **Independent acceptance**: R1 reviewer PASS after rerunning the production pilot, all 70 tests, strict Lean checks, direct elaboration of generated checks, fail-closed controls, and isolation checks. Pilot coverage is deliberately 6/136 registry pairs and 4/136 resolved pairs, not a full-coverage claim.
+- **Reusable rule**: a green build validates elaboration only. Accept a relation audit only when kind-specific semantics, canonical metadata, provenance/snapshot, scope/status, coverage, allowed axioms, and adversarial mutations all pass independently.
+
+### 2026-10-31 — RelationAudit migration inventory and disposition ledger — lead — DONE
+
+- **Goal**: enumerate the complete migration surface without converting legacy census labels into audit judgments.
+- **Tried and failed**: a controlled drift mutation removed one generated declaration and one disposition entry; `relation_audit_inventory.py --check` correctly exited 1 with seven findings (missing disposition, count mismatch, and stale generated artifacts), then returned to exit 0 after restoration. This is the expected rejection path, retained as evidence that the inventory gate is not decorative.
+- **Classification traps rejected**: flattening all 78 declarations into pair edges would mix pins, support lemmas, intra-theory adjudications, and look-alikes; promoting 26 legacy edges to certified would hide transitive/one-sided/shape-only rows; converting 110 legacy absences to notEstablished would omit scope and recomputable evidence. The six undelivered candidates have no declaration rows and must be pair-level migration items rather than phantom declaration dispositions.
+- **Worked**: generate both inventories by importing `tools/counts.py`; keep a separate 78-entry authored disposition overlay with rationales/provenance; namespace legacy labels as non-audit metadata; byte-check deterministic generated artifacts; record the Marcus/RACI ambiguity and legacy Fig. 3 count mismatch without adjudicating them in an inventory round.
+- **Independent acceptance**: R2 reviewer PASS after rerunning drift/tests/pilot/strict/census/isolation and inspecting every exceptional classification plus samples of every support/metadata category. The accepted ledger has 41 `certificate-required` rows for the next migration round; it is not a full registry or a resolved-coverage claim.
+- **Reusable rule**: inventory completeness and audit correctness are different gates. `--check` proves consistency with the census source; only kind-specific certificates and scoped audit records can establish relation judgments.
+
+### 2026-10-31 — RelationAudit certificate-required migration — lead — DONE
+
+- **Goal**: process all 41 R2 certificate-required declarations without forcing them into an unsuitable relation kind.
+- **Tried and failed**: kernel probes rejected `rfl` for the two value-level observation bridges and for all 13 equational rows later reclassified; these are real negative results that prevented false definitionalIdentity claims. One section worker also observed the repository-wide strict scanner reject another worker's docstring beginning with the word `axiom`; the owner changed the wording and the clean scan was rerun. The lesson is to treat the scanner as deliberately lexical and keep prohibited tokens out of comments as well as code.
+- **Worked**: split sections 1–5, 6–10, and 11–17 into disjoint Lean modules and mapping fragments; integrate with a generator that checks all 41 queue IDs and emits 222 kind/premise/definitional/evidence/axiom commands; use fresh `DefEq.refl` inside every definitional certificate; represent genuine pointwise observation equalities with explicit channels; re-export reclassified statements as evidence without constructing `Certificate` values.
+- **Outcome**: 27 certificates and 14 honest reclassifications (4 model-level composition, 8 support lemmas, 2 scoped relation documentation), with no new conditionalComposition row. The 27/41 certified count is a result of semantics, not a target.
+- **Independent acceptance**: R3 reviewer PASS after reading every original declaration and mapping, rerunning full Lean/strict/146-test/inventory/pilot gates, and probing the claimed non-definitional equalities. No production registry or 136-pair coverage claim was made in this round.
+- **Reusable rule**: when the certificate vocabulary cannot represent a statement without distortion, retain the theorem as evidence and reclassify its audit role. A smaller certified set is preferable to a larger but false relation taxonomy.
+
+### 2026-10-31 — Production 136-pair relation registry — lead — DONE
+
+- **Goal**: merge the accepted pilot, inventory, and migration fragments into a deterministic production registry with real full-mode Lean validation.
+- **Tried and failed**: `--no-lean` returned INCOMPLETE/exit 2, confirming that a skipped kernel gate cannot become PASS. Drift/mutation fixtures rejected hand-added certificates, status changes, stale hashes, unknown pair associations, and report drift. A residual CLI defect remains: `--explain-pair` on an unknown ID raises a NameError traceback instead of a clean diagnostic; known-pair and validation paths are unaffected, but a future UX round should replace the traceback with a structured error.
+- **Pair-mapping trap caught**: `kernel_marcusIC` carried a legacy `P-Marcus-Kasha` association while its actual endpoints were Kasha/Kernel. It was retained as non-pair evidence; the Marcus/Kasha pair is covered only by the accepted R1 equivalence. Endpoint semantics, not a legacy pair ID, decide registry coverage.
+- **Worked**: derive all 38 certificate rows from accepted artifacts; preserve multiple records per pair and conflict keys; distinguish 19 pair-record certificates, 5 intra-theory records, 2 composition parents, and 12 non-pair pins; emit six unresolved candidates without dependencies; emit 121 conservative pair-scoped notEstablished records with pinned provenance and recompute commands.
+- **Independent acceptance**: R4 reviewer PASS after deterministic regeneration, full Lean validation, direct generated-check elaboration, 177 tests, all prior gates, and rerunning all 123 unique absence-dependency commands. Registry coverage is 136/136, while resolved coverage is only 9/136 and remains explicitly incomplete.
+- **Reusable rule**: full registry coverage is an audit-bookkeeping result, not logical completeness. Every absence claim needs a scope and reproducible evidence, and every certificate needs a truthful endpoint mapping before it can cover a pair.
+
+### 2026-10-31 — Isolated manuscript relation-audit alignment — lead — DONE
+
+- **Goal**: make the manuscript describe the accepted audit object rather than the earlier legacy edge/absence narrative, without touching the original paper or expanding the Lean round.
+- **Tried and failed**: the planned `latexmk -pdf main.tex` initially had no system TeX engine. The executor installed an isolated TeX Live 2026, built successfully, and removed it; the independent reviewer repeated the build from a fresh temporary toolchain rather than trusting the executor's log. The legacy `counts.py` also reports an `auxiliary_axiom_constants` DIFF for compiler-generated `_elambda` implementation constants in the new layer; named-certificate `#print axioms` probes still contain only the three allowed axioms, so the correct response is to distinguish census diagnostics from certificate gates, not hide the DIFF or claim a new custom axiom.
+- **Worked**: define genealogy as synchronic and non-historical; separate seven certificate kinds from unresolved/notEstablished/outOfScope; report 136/136 registry versus 9/136 resolved coverage; correct Kasha–Marcus to conditional equivalence and A3 to intensity observation plus joint discrimination with an explicit decoder premise; disclose legacy figure wording/count mismatches in captions; state dirty-snapshot provenance instead of implying a clean public release.
+- **Independent acceptance**: R5 reviewer PASS after checking the actual 16-hunk diff against R1–R4 evidence, rerunning registry/tests and certificate axiom probes, rebuilding the 15-page PDF, and finding its extracted text byte-identical to the delivered PDF. Original manuscript hashes and original repository remained unchanged.
+- **Reusable rule**: manuscript claims are downstream of accepted artifacts. When old artwork or census wording conflicts with the new audit, disclose the legacy boundary explicitly; do not silently rewrite either the evidence or the caption to make them appear consistent.
+
+### 2026-11-04 — Bounded relation registry R5–R8: prose drift, review nulls and independent acceptance — validator
+
+- **Goal**: integrate the accepted R1–R7 bounded screening evidence into one machine-auditable registry with
+  ten accepted R2–R5 packages, 136/136 pair coverage, 152 named queries, a 93-entry certificate library,
+  explicit legacy alias repair and old-absence/new-evidence reconciliation, then validate it independently
+  before any lead acceptance.
+- **Tried and failed (R5, semantic prose drift)**: RAD1's `Q-RAD1-MSS-01` chemical question and
+  falsification condition were inverted relative to the checked `pos emEnergy ↔ InvertedRegion` certificate,
+  and `Q-RAD1-KKV-01`'s kind rationale attributed the Vavilov-yield independence leak to `SpecSame`. The Lean
+  certificates, outcomes and counts were unchanged, so a certificate-only gate would have passed while the
+  human-readable chemical claim was false. R6 then found that the RAD1 probe's §4 block comment still said
+  emEnergy is negative in the inverted region, contradicting the theorem in the same file. R7 fixed the
+  comment and pinned its direction, normal-region sentence and inverted-region sentence with dedicated
+  mutation codes.
+- **Tried and failed (R7, review null is not a verdict)**: the configured independent-review route
+  returned null twice for the independent integration review. A null response is not PASS: it supplies no
+  reviewer, no evidence and no acceptance block. The round stayed unaccepted and was re-dispatched to the
+  available second independent-review route. The same rule applies to any "no findings"
+  response that did not actually run the gates.
+- **Tried and failed (R7, document counts drifted from package data)**: the R5 README and the integration
+  report stated 42 non-certified R5 queries and three multi-query pairs. Recomputing from the five
+  `screening.json` files gave 50 = 6 + 12 + 6 + 15 + 11 and six multi-query pairs (three RAD3 pairs were
+  missing from the prose). The only remedy was to correct the prose, rerun the current coverage gate and
+  obtain a fresh review; the ledger, package artifacts and mathematical outcomes were not touched.
+- **Tried and failed (R8, plan metadata versus accepted artifacts)**: the plan described eight accepted
+  R2–R5 screening packages. The coverage ledger actually exposes ten (R2 one, R3 one, R4 three, R5 five).
+  Using eight silently would have lost pairs or queries. The builder reported `DEV-R8-01`; the independent
+  validator recomputed all package, pair and query sets from `coverage.json` and used all ten, recording the
+  deviation rather than substituting data.
+- **Tried and failed (R8, validator over-strictness that was not an accepted requirement)**: the first
+  independent pass required every active query to carry at least one observation channel and initially
+  compared every audit-copy PhotoLean file with the pre-R1 original. Both were false positives: definitional
+  pins legitimately have no channel (31 certified queries), and the audit copy adds seven accepted
+  `PhotoLean/RelationAudit` modules to the original 95 files. A validator must enforce the accepted shape,
+  not invent a stricter shape and then call the accepted artifact defective. The corrected checks allow
+  empty channels, verify channels that do exist, and compare only files that exist in the original tree.
+- **Worked (R8, independent recomputation)**: the validator rebuilt all counts from accepted sources rather
+  than trusting the manifest: 136 pairs / 152 queries / 152 records; 67 certified / 0 refuted / 39 unresolved /
+  2 notEstablished / 44 outOfScope; 93 certificates = 38 deliveredModule + 55 boundedProbe; 67 active
+  certificates = 55 probe + 12 legacy; 9 probes / 58 reviewed declarations / 3 excluded XD1 candidates;
+  151 dispositions = 26 named + 125 anchors; four aliases, three corrected views and 44 reconciliations.
+  Every active endpoint was re-resolved to a real R1 inventory declaration with source, line and signature
+  hashes; every accepted raw query field had to survive unchanged except additive integration metadata.
+- **Worked (R8, fail-closed acceptance state)**: both `submitted-R8-pending-review` and `accepted-R8` pass the
+  same checks; a registry-only flip while the disposition ledger stayed pending is rejected
+  (`state.acceptance_uniform`). The accepted state also requires all ten packages and all five R5 work
+  packages to be accepted. This supports a lead flip without editing the validator.
+- **Worked (R8, adversarial and deterministic controls)**: 17 `/tmp` mutations failed closed (missing and
+  duplicate pair, pair-anchor substitution, wrong outcome, certified without evidence, candidate promotion,
+  unknown alias endpoint, unrepaired legacy record, missing disposition, reconciliation removal, stale probe
+  hash, forbidden axiom footprint, wrong evidence class, partial acceptance flip, self-hash cycle,
+  anchor-coverage inflation, missing probe declaration), with three positive controls (pending, uniform
+  accepted, isolated rebuild). The isolated builder reproduced all four outputs byte-for-byte.
+- **Independent verification measured**: 31,331 checks / 0 failed; 13 Python historical/current gates; R3 raw
+  7 and R4 CI raw 1 expected stale-ledger failures with zero content regression; strict build/scan PASS clean;
+  unchanged legacy full validator PASS with 223 Lean checks, 151/151/38/52 and 136/136 pairs; nine probe
+  compilations exit 0 and all 58 declarations depend only on `propext`, `Classical.choice`, `Quot.sound`;
+  current R5 coverage 10,600/0; legacy registry `25d38791…ecbf0`, coverage `7d4c4f2f…b48e2d`, backup
+  `c72fbc4c…f2745a` and original repository HEAD `7ad25a5f…e7dac` clean.
+- **Reusable rule**: certificate mathematics, JSON schema validity and pair counts are separate gates from
+  semantic prose. A checked theorem can coexist with an inverted chemical question, a stale probe comment, a
+  wrong count in a report, or a review route that returns nothing. Accept a relation registry only after
+  independent source recomputation, direction/comment pins, the legacy Lean validator, live probe axiom
+  audits, adversarial mutations, deterministic rebuild and two fresh explicit human-readable verdicts; a null
+  review is never PASS and a validator's own PASS is never the lead's acceptance.
+
+### R8 rework — acceptance state must be a build input, not a constant
+
+- **Tried and failed (R8, hardcoded pending state)**: after a uniform `accepted-R8` flip, the structural
+  validator run with `--skip-rebuild` passed, but the default deterministic rebuild failed two
+  `rebuild.byte_identical` checks. `build.py` hardcoded `submitted-R8-pending-review` in both the registry
+  and the disposition ledger, so the isolated rebuild produced pending bytes while the checked-in artifacts
+  were accepted. The generated docs still said pending as well. A state flip is therefore part of the
+  builder's input, not a post-processing edit.
+- **Tried and failed (R8, rebuild ignored the manifest under test)**: invoking the isolated builder with no
+  acceptance argument made every accepted checkout non-reproducible, and comparing only the checkout-default
+  registry/dispositions meant a run with custom `--registry`/`--dispositions` could not prove those files were
+  deterministic either. The rebuild gate must pass the current manifest acceptance and must compare the
+  manifests actually under test.
+- **Worked (R8, explicit validated acceptance argument)**: `build.py --acceptance` accepts the two canonical
+  states (plus `pending`/`accepted` aliases), defaults to pending, rejects anything else before writing, and
+  writes the same state into registry and dispositions. Registry non-claims, disposition non-claims and the
+  documentation render from that state. The default pending build remained byte-identical to the previously
+  accepted four outputs (`cec5f7c2…`, `95f60be6…`, `28171ea5…`, `757c9f0d…`), so the existing semantic PASS
+  remained applicable.
+- **Worked (R8, rebuild follows the current manifest)**: `check_deterministic_rebuild` takes the manifest
+  acceptance, invokes the builder with `--acceptance <state>`, seeds custom registry/dispositions into the
+  isolated tree and compares regenerated bytes against those exact files. The accepted full run in an
+  isolated `/tmp` copy passed 31,347 checks / 0 failed with `byteIdentical=true`; the custom-path accepted
+  run passed 31,116 / 0 with rebuild enabled.
+- **Worked (R8, positive accepted+rebuild test)**: the mutation suite now uses a pending baseline and counts
+  five positive controls: pending structure, uniform accepted structure, pending rebuild, **complete accepted
+  artifact set with rebuild enabled**, and **accepted set through custom paths with rebuild enabled**. All 17
+  mutations still failed closed; invalid acceptance exits 2 and partial flips remain rejected by
+  `state.acceptance_uniform`.
+- **Reusable rule**: whenever acceptance is a persisted field, regenerate every artifact from an explicit,
+  validated state argument and make the reproducibility gate rebuild under that same state. A
+  `--skip-rebuild` pass is not evidence for the default rebuild path; add a positive accepted+rebuild test
+  (including custom paths) before offering a state flip to the lead.

@@ -64,7 +64,8 @@ defaultTargets = ["PhotoLean.Smoke", "PhotoLean.Marcus.Basic", "PhotoLean.Marcus
                   "PhotoLean.RACI.Jablonski", "PhotoLean.RACI.JablonskiRatios",
                   "PhotoLean.RACI.Main", "PhotoLean.RACI.Seam",
                   "PhotoLean.RACI.GeometricPhase",
-                  "PhotoLean.RACI.RatModel", "PhotoLean.RACI.Instances"]
+                  "PhotoLean.RACI.RatModel", "PhotoLean.RACI.Instances",
+                  "PhotoLean.RelationAudit", "PhotoLean.RelationAudit.Full"]
 
 [[require]]
 name = "mathlib"
