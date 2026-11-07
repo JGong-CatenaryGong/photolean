@@ -1,0 +1,2474 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-coverage-ledger",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "description": "Cumulative bounded-screening coverage ledger. It counts pairs that have a submitted or accepted screening package, not pairs with a certified relation. screenedPairs holds the 21 accepted R2/R3 pairs, submittedPairs holds the 46 R4 pairs (accepted-R4), and r5SubmittedPairs holds the 69 R5 pairs (submitted-R5-pending-review before independent review; a uniform flip to accepted-R5 is the lead-only acceptance step). cumulative.screenedPairCount counts all three lists; acceptedPairCount and submittedPairCount are derived from the row states.",
+  "universe": {
+    "pairCount": 136,
+    "theoryCount": 17,
+    "source": "audit_boundary/pair-queue.json",
+    "sourceSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504"
+  },
+  "acceptedWorkPackages": [
+    {
+      "round": "R2",
+      "id": "WP-SURFACE-01",
+      "path": "bounded_audit/wp-surface-01/screening.json",
+      "sha256": "2a98dac9d75d76782a307bd6903dd6adec6dcc946f09e186c07895e3bee1b49c",
+      "pairCount": 10,
+      "acceptance": "accepted-R2"
+    },
+    {
+      "round": "R3",
+      "id": "R3-QUENCH-01",
+      "path": "bounded_audit/r3/screening.json",
+      "pairCount": 11,
+      "acceptance": "accepted-R3"
+    }
+  ],
+  "submittedWorkPackages": [
+    {
+      "round": "R4",
+      "id": "WP-excited-state-kinetics-01",
+      "packageId": "R4-E1-EXCITED-01",
+      "path": "bounded_audit/r4/excited-01/screening.json",
+      "sha256": "9a096648063cda57f484f0ecddb802ebf6aa34fb115b26c31e187e75941ef60b",
+      "pairCount": 16,
+      "queryCount": 16,
+      "byStatus": {
+        "certified": 6,
+        "unresolved": 9,
+        "outOfScope": 1
+      },
+      "acceptance": "accepted-R4",
+      "searchLogPath": "bounded_audit/r4/excited-01/search-log.json",
+      "searchLogSha256": "1a18a2a3bc5d23e62622dd87aa4cd76da4d9edfa98f64a137f0af786645d08f7",
+      "fragmentPath": "bounded_audit/r4/excited-01/coverage-fragment.json",
+      "fragmentSha256": "ae20cedb9cef742e9cfc8e242a5b268f5d770098d781105535aa4cad8e9793cd",
+      "probePath": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+      "validatePath": "bounded_audit/r4/excited-01/validate.py",
+      "validateSha256": "a0cc305dee96530b25c65b062bbf812d386297bfa9cf1e92f0823993d5b4d47c",
+      "probeSha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2"
+    },
+    {
+      "round": "R4",
+      "id": "WP-excited-state-kinetics-02",
+      "packageId": "WP-excited-state-kinetics-02",
+      "path": "bounded_audit/r4/excited-02/screening.json",
+      "sha256": "5ceee13be0629cd93b912d68e0a44751e1906c7acfd823cc9297af0a61c94af6",
+      "pairCount": 14,
+      "queryCount": 14,
+      "byStatus": {
+        "certified": 5,
+        "unresolved": 4,
+        "outOfScope": 5
+      },
+      "acceptance": "accepted-R4",
+      "searchLogPath": "bounded_audit/r4/excited-02/search-log.json",
+      "searchLogSha256": "cf3928dd98dbe0d5c9da6ba274e8bbc9234b1fa7b08b5248c30d165b66721922",
+      "fragmentPath": "bounded_audit/r4/excited-02/coverage-fragment.json",
+      "fragmentSha256": "810ad34065ad0ddf7774b2810c401a94cfa6b5eb514a890026fdb4a6245e646d",
+      "probePath": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+      "validatePath": "bounded_audit/r4/excited-02/validate.py",
+      "validateSha256": "33c6e63342c762fd03d0aed68d17edf4c10b60a186b4438705ae5d2e1eb593d3",
+      "probeSha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11"
+    },
+    {
+      "round": "R4",
+      "id": "WP-conical-intersection-01",
+      "packageId": "WP-conical-intersection-01",
+      "path": "bounded_audit/r4/conical-01/screening.json",
+      "sha256": "f368b9b1f1ded5800419a5283b541363e83f37c4b8ef54aa641890cb54615487",
+      "pairCount": 16,
+      "queryCount": 16,
+      "byStatus": {
+        "certified": 8,
+        "unresolved": 6,
+        "notEstablished": 1,
+        "outOfScope": 1
+      },
+      "acceptance": "accepted-R4",
+      "searchLogPath": "bounded_audit/r4/conical-01/search-log.json",
+      "searchLogSha256": "2b349272ad948309909bc8022f488147730104e02b21fa792b9aaa23f29d6b53",
+      "fragmentPath": "bounded_audit/r4/conical-01/coverage-fragment.json",
+      "fragmentSha256": "0efa855f60b26452a4daf0c0e6ed48cc31f9f1c826a80c0cab5a17e1605d379b",
+      "probePath": "bounded_audit/r4/conical-01/probes/R4-CI-probe.lean",
+      "validatePath": "bounded_audit/r4/conical-01/validate.py",
+      "validateSha256": "5a258939048a3d8890449712b7c084e003224ecb8dce8ff90920faee8a5876cf",
+      "probeSha256": "33cf7fe66d3c3cee3431f9ace125259bca3c36ef798d9f5324154b817ce80572"
+    }
+  ],
+  "r5WorkPackages": [
+    {
+      "round": "R5",
+      "id": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packageId": "RAD1",
+      "path": "bounded_audit/r5/radiative-01/screening.json",
+      "sha256": "a5ad482e12223642cdc10db81d36142f9fd8266c7cbb914a8fe243084d31b837",
+      "pairCount": 16,
+      "queryCount": 17,
+      "byStatus": {
+        "certified": 11,
+        "unresolved": 2,
+        "outOfScope": 4
+      },
+      "acceptance": "accepted-R5",
+      "searchLogPath": "bounded_audit/r5/radiative-01/search-log.json",
+      "searchLogSha256": "1b711c1dbda4bbdc77e4da53025192e17b0b79011b394f859763f796d74dbf3a",
+      "fragmentPath": "bounded_audit/r5/radiative-01/coverage-fragment.json",
+      "fragmentSha256": "38ab39d7ecef2a28b08e90724cf0eb22f5958daa8dcc9c92a1012f5669f680ad",
+      "probePath": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+      "probeSha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+      "validatePath": "bounded_audit/r5/radiative-01/validate.py",
+      "validateSha256": "98c82e25399a57b1db13c6c64f04457e3debf824fffc319848c529984f861cfd"
+    },
+    {
+      "round": "R5",
+      "id": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packageId": "RAD2",
+      "path": "bounded_audit/r5/radiative-02/screening.json",
+      "sha256": "fcb1683765fca39abace7299b09436d39aefa943b96aa515a96f2dab548c83c6",
+      "pairCount": 16,
+      "queryCount": 16,
+      "byStatus": {
+        "certified": 4,
+        "unresolved": 6,
+        "outOfScope": 6
+      },
+      "acceptance": "accepted-R5",
+      "searchLogPath": "bounded_audit/r5/radiative-02/search-log.json",
+      "searchLogSha256": "9a28cd2df5e0ab0aa3863efaab1648279df76192929fbb4d9495ed7d9adf84e5",
+      "fragmentPath": "bounded_audit/r5/radiative-02/coverage-fragment.json",
+      "fragmentSha256": "2292f2b02509e6bc535655ea5ce0e100622ad8706ab27eb331b68489ab93561e",
+      "probePath": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+      "probeSha256": "36a5ae42f68a6112f466f067a713d6b2a8f2e781bbc18bb735e8dc3ddabbef2b",
+      "validatePath": "bounded_audit/r5/radiative-02/validate.py",
+      "validateSha256": "bc36b826cc402fa0314f4e797c3e7568630e8fa616baa76f0366111ec8a18d04"
+    },
+    {
+      "round": "R5",
+      "id": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packageId": "RAD3",
+      "path": "bounded_audit/r5/radiative-03/screening.json",
+      "sha256": "34da3a2651d496885a5981569b64a2dd68738494e333e99dd56636a2d136c55b",
+      "pairCount": 13,
+      "queryCount": 16,
+      "byStatus": {
+        "certified": 10,
+        "unresolved": 1,
+        "notEstablished": 1,
+        "outOfScope": 4
+      },
+      "acceptance": "accepted-R5",
+      "searchLogPath": "bounded_audit/r5/radiative-03/search-log.json",
+      "searchLogSha256": "5c35aa15b167f156b2e3d3554ea52578b121709b9610bcf3a5f447dc75d3a756",
+      "fragmentPath": "bounded_audit/r5/radiative-03/coverage-fragment.json",
+      "fragmentSha256": "a63d14543046f98574b35af199be70d50ea20bf9e41516daa47ad01309fa7a90",
+      "probePath": "bounded_audit/r5/radiative-03/probes/RAD3-probe.lean",
+      "probeSha256": "c693f19830aeb8ce7c01f43f1c2821bc57920f98d0d03f3cdca5dbd1a3f95f09",
+      "validatePath": "bounded_audit/r5/radiative-03/validate.py",
+      "validateSha256": "5e06e28e5709125dcff8004d08c23aab7c8df3d4d361d63c234252674c594aeb"
+    },
+    {
+      "round": "R5",
+      "id": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packageId": "XD1",
+      "path": "bounded_audit/r5/cross-domain-01/screening.json",
+      "sha256": "fa096f5932a2871847cb67e0a94a7190516cd94f0bd7c7b57d329a34e24cdfd3",
+      "pairCount": 15,
+      "queryCount": 15,
+      "byStatus": {
+        "unresolved": 3,
+        "outOfScope": 12
+      },
+      "acceptance": "accepted-R5",
+      "searchLogPath": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "searchLogSha256": "0bf725db10525b5a519e696845a0f2bcf40185fe81f9e34c7df708531d5c26d7",
+      "fragmentPath": "bounded_audit/r5/cross-domain-01/coverage-fragment.json",
+      "fragmentSha256": "7ace5775895aab795a76e0cf9d2be30c491b90a6cfcfe30b207532c639b7c87f",
+      "probePath": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+      "probeSha256": "f5668397e57c44266dc70fc0195061f780b5171bf860cd533986e9c57d1f07f1",
+      "validatePath": "bounded_audit/r5/cross-domain-01/validate.py",
+      "validateSha256": "3cef2a80dc273911df4083643fd9acedcb097e0fad608b341294f2b85edb0fc6"
+    },
+    {
+      "round": "R5",
+      "id": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packageId": "XD2",
+      "path": "bounded_audit/r5/cross-domain-02/screening.json",
+      "sha256": "02456b78ee5852a306652901085e31a2387045faaf30f0b3566f2a6bac22c80f",
+      "pairCount": 9,
+      "queryCount": 11,
+      "byStatus": {
+        "outOfScope": 11
+      },
+      "acceptance": "accepted-R5",
+      "searchLogPath": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "searchLogSha256": "391d616e18dd355272eab65eb8adbeae330a25ea33b1246b0764789161dbfcb6",
+      "fragmentPath": "bounded_audit/r5/cross-domain-02/coverage-fragment.json",
+      "fragmentSha256": "325fba38c6defd81953b6ef964155c0c88d87db254eaf694a65b34717ab2674a",
+      "probePath": null,
+      "probeSha256": null,
+      "validatePath": "bounded_audit/r5/cross-domain-02/validate.py",
+      "validateSha256": "cb18cc59ef6e69ac54fc61a95db5750c63cd4ac8d7422d03c6d73cad84e62008"
+    }
+  ],
+  "screenedPairs": [
+    {
+      "pairId": "P-Marcus-Hammond",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 5,
+      "byStatus": {
+        "certified": 5
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-Marcus-BEP",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 3,
+      "byStatus": {
+        "certified": 3
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-Marcus-Sabatier",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-Hammond-BEP",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 4,
+      "byStatus": {
+        "certified": 4
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-Hammond-Sabatier",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-Hammond-SymmetryFactor",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-BEP-Sabatier",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-BEP-SymmetryFactor",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-Kasha-Sabatier",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 early cross-domain pair (R1 cross-domain cluster); not rescreened in R3."
+    },
+    {
+      "pairId": "P-Sabatier-SymmetryFactor",
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "packagePath": "bounded_audit/wp-surface-01/screening.json",
+      "acceptance": "accepted-R2",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "Accepted R2 WP-SURFACE-01 screening; not rescreened in R3."
+    },
+    {
+      "pairId": "P-Marcus-SymmetryFactor",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R3 surface-gap reconciliation: included in the R1 surface work package but omitted by R2; no R1 artifact edited."
+    },
+    {
+      "pairId": "P-Marcus-Kasha",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-Marcus-SternVolmer",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-Marcus-QuantumYield",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-Marcus-FluorPhos",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-Kasha-SternVolmer",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-Kasha-QuantumYield",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-Kasha-FluorPhos",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-SternVolmer-QuantumYield",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-SternVolmer-FluorPhos",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    },
+    {
+      "pairId": "P-QuantumYield-FluorPhos",
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "packagePath": "bounded_audit/r3/screening.json",
+      "acceptance": "accepted-R3",
+      "queryCount": 2,
+      "byStatus": {
+        "certified": 2
+      },
+      "overlapNote": "R3 quenching-quantum-yield batch."
+    }
+  ],
+  "submittedPairs": [
+    {
+      "pairId": "P-Hammond-Kasha",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HK-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-KashaVavilov",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HKV-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-SternVolmer",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HSV-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-QuantumYield",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HQY-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-FluorPhos",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HFP-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-EnergyGapLaw",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HEG-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-StokesShift",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HSS-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-ICvsISC",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HIC-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-Forster",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HFO-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-Einstein",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-HEIN-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-Kasha",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-BK-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-KashaVavilov",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-BKV-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-SternVolmer",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-BSV-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-QuantumYield",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-BQY-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-FluorPhos",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-BFP-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-EnergyGapLaw",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-01",
+      "packagePath": "bounded_audit/r4/excited-01/screening.json",
+      "packageId": "E1",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-R4-E1-BEG-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E1 package (WP-excited-state-kinetics-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-StokesShift",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-BS-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-ICvsISC",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-BI-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-Forster",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-BF-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-Einstein",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-BE-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Kasha-SymmetryFactor",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-KS-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-KashaVavilov",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SK-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-SternVolmer",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SV-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-QuantumYield",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SQ-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-FluorPhos",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SF-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-EnergyGapLaw",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SE-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-StokesShift",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SS-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-ICvsISC",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SI-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-Forster",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SFo-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-Einstein",
+      "round": "R4",
+      "workPackage": "WP-excited-state-kinetics-02",
+      "packagePath": "bounded_audit/r4/excited-02/screening.json",
+      "packageId": "E2",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-E2-SEIn-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R4 E2 package (WP-excited-state-kinetics-02); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Marcus-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-MR-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Hammond-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-HM-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-BEP-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-BP-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Kasha-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-KS-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Sabatier-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-SA-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Goldschmidt-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-GS-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SymmetryFactor-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-SF-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-KashaVavilov-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-KV-01"
+      ],
+      "byStatus": {
+        "notEstablished": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-SternVolmer-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-SV-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-QuantumYield-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-QY-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-FluorPhos-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-FP-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-EnergyGapLaw-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-EG-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-StokesShift-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-SS-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-ICvsISC-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-IC-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Forster-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-FO-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    },
+    {
+      "pairId": "P-Einstein-RACI",
+      "round": "R4",
+      "workPackage": "WP-conical-intersection-01",
+      "packagePath": "bounded_audit/r4/conical-01/screening.json",
+      "packageId": "CI",
+      "acceptance": "accepted-R4",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-CI-EB-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R4 CI package (WP-conical-intersection-01); submitted for independent K3 review, disjoint from the accepted R2/R3 pairs, not rescreened."
+    }
+  ],
+  "r5SubmittedPairs": [
+    {
+      "pairId": "P-Marcus-KashaVavilov",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-MKVV-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Marcus-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 2,
+      "queryIds": [
+        "Q-RAD1-MEG-01",
+        "Q-RAD1-MEG-02"
+      ],
+      "byStatus": {
+        "certified": 2
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Marcus-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-MSS-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Marcus-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-MIC-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Marcus-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-MFO-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Marcus-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-MEB-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Kasha-KashaVavilov",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-KKV-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Kasha-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-KEG-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Kasha-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-KSS-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Kasha-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-KIC-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Kasha-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-KFO-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Kasha-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-KEB-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-SternVolmer",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-VSV-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-QuantumYield",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-VQY-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-FluorPhos",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-VFP-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-01",
+      "r1WorkPackage": "WP-radiative-energy-transfer-01",
+      "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+      "packageId": "RAD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD1-VEG-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD1 (WP-radiative-energy-transfer-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-KVS-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-KVI-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-KVF-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-KashaVavilov-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-KVE-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-SternVolmer-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-SVE-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-SternVolmer-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-SVS-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-SternVolmer-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-SVI-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-SternVolmer-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-SVF-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-SternVolmer-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-SVEb-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-QuantumYield-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-QYE-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-QuantumYield-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-QYS-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-QuantumYield-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-QYI-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-QuantumYield-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-QYF-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-QuantumYield-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-QYEB-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-FluorPhos-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-FPE-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-FluorPhos-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-02",
+      "r1WorkPackage": "WP-radiative-energy-transfer-02",
+      "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+      "packageId": "RAD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD2-FPS-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD2 (WP-radiative-energy-transfer-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-FluorPhos-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 2,
+      "queryIds": [
+        "Q-RAD3-FI-01",
+        "Q-RAD3-FI-02"
+      ],
+      "byStatus": {
+        "certified": 2
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-FluorPhos-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-FF-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-FluorPhos-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-FE-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-EnergyGapLaw-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 2,
+      "queryIds": [
+        "Q-RAD3-ES-01",
+        "Q-RAD3-ES-02"
+      ],
+      "byStatus": {
+        "certified": 2
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-EnergyGapLaw-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 2,
+      "queryIds": [
+        "Q-RAD3-EI-01",
+        "Q-RAD3-EI-02"
+      ],
+      "byStatus": {
+        "certified": 2
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-EnergyGapLaw-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-EF-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-EnergyGapLaw-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-EE-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-StokesShift-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-SI-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-StokesShift-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-SF-01"
+      ],
+      "byStatus": {
+        "notEstablished": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-StokesShift-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-SE-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-ICvsISC-Forster",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-IF-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-ICvsISC-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-IE-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Forster-Einstein",
+      "round": "R5",
+      "workPackage": "WP-radiative-energy-transfer-03",
+      "r1WorkPackage": "WP-radiative-energy-transfer-03",
+      "packagePath": "bounded_audit/r5/radiative-03/screening.json",
+      "packageId": "RAD3",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-RAD3-FoE-01"
+      ],
+      "byStatus": {
+        "certified": 1
+      },
+      "overlapNote": "R5 package RAD3 (WP-radiative-energy-transfer-03); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Marcus-Goldschmidt",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-MG-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Hammond-Goldschmidt",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-HG-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-BEP-Goldschmidt",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-BG-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Kasha-Goldschmidt",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-KG-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-Goldschmidt",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SG-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-KashaVavilov",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SKV-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-SternVolmer",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SSV-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-QuantumYield",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SQY-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-FluorPhos",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SFP-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SEG-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-StokesShift",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SSS-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-ICvsISC",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SIC-01"
+      ],
+      "byStatus": {
+        "unresolved": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-Forster",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SF-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Sabatier-Einstein",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-SE-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-SymmetryFactor",
+      "round": "R5",
+      "workPackage": "XD1-CROSS-DOMAIN-01",
+      "r1WorkPackage": "WP-cross-domain-screening-01",
+      "packagePath": "bounded_audit/r5/cross-domain-01/screening.json",
+      "packageId": "XD1",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD1-GSF-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD1 (WP-cross-domain-screening-01); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-KashaVavilov",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD2-KV-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-SternVolmer",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD2-SV-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-QuantumYield",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD2-QY-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-FluorPhos",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD2-FP-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-EnergyGapLaw",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 2,
+      "queryIds": [
+        "Q-XD2-EG-01",
+        "Q-XD2-EG-02"
+      ],
+      "byStatus": {
+        "outOfScope": 2
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-StokesShift",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD2-SS-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-ICvsISC",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD2-IC-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-Forster",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 2,
+      "queryIds": [
+        "Q-XD2-FR-01",
+        "Q-XD2-FR-02"
+      ],
+      "byStatus": {
+        "outOfScope": 2
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    },
+    {
+      "pairId": "P-Goldschmidt-Einstein",
+      "round": "R5",
+      "workPackage": "WP-cross-domain-screening-02",
+      "r1WorkPackage": "WP-cross-domain-screening-02",
+      "packagePath": "bounded_audit/r5/cross-domain-02/screening.json",
+      "packageId": "XD2",
+      "acceptance": "accepted-R5",
+      "queryCount": 1,
+      "queryIds": [
+        "Q-XD2-EI-01"
+      ],
+      "byStatus": {
+        "outOfScope": 1
+      },
+      "overlapNote": "R5 package XD2 (WP-cross-domain-screening-02); submitted for independent K3 review, disjoint from the accepted 67 R2/R3/R4 pairs and from the other four R5 packages."
+    }
+  ],
+  "cumulative": {
+    "screenedPairCount": 136,
+    "acceptedPairCount": 136,
+    "submittedPairCount": 0,
+    "remainingPairCount": 0,
+    "acceptedBeforeReviewPairCount": 67,
+    "byRound": {
+      "R2": 10,
+      "R3": 11,
+      "R4": 46,
+      "R5": 69
+    },
+    "queryOutcomes": {
+      "certified": 67,
+      "refuted": 0,
+      "unresolved": 39,
+      "notEstablished": 2,
+      "outOfScope": 44
+    },
+    "queryCount": 152,
+    "surfaceGapReconciliation": "P-Marcus-SymmetryFactor",
+    "earlyCrossDomainPair": "P-Kasha-Sabatier",
+    "note": "136/136 pairs have a submitted-or-accepted screening package; before independent R5 review the accepted count is 67/136 (R2 10 + R3 11 + R4 46) and the 69 R5 rows are submitted-R5-pending-review. Remaining is 0 because every R1 pair now has a named query or a statement-level outOfScope record. Screened is not certified: queryOutcomes counts named queries (152), not pairs. This ledger does not self-accept; the lead flips the R5 rows after the six independent reviews."
+  },
+  "roundHistory": [
+    {
+      "round": "R2",
+      "workPackage": "WP-SURFACE-01",
+      "screenedPairCount": 10,
+      "remainingPairCount": 126,
+      "acceptance": "accepted-R2"
+    },
+    {
+      "round": "R3",
+      "workPackage": "R3-QUENCH-01",
+      "screenedPairCount": 21,
+      "remainingPairCount": 115,
+      "acceptance": "accepted-R3"
+    },
+    {
+      "round": "R4",
+      "workPackage": "R4 three-package batch (E1/E2/CI)",
+      "screenedPairCount": 67,
+      "remainingPairCount": 69,
+      "acceptance": "accepted-R4"
+    },
+    {
+      "round": "R5",
+      "workPackage": "R5 five-package batch (RAD1/RAD2/RAD3/XD1/XD2)",
+      "screenedPairCount": 136,
+      "remainingPairCount": 0,
+      "acceptance": "accepted-R5"
+    }
+  ],
+  "remainingPairIds": [],
+  "knownSeams": [
+    "Round-frozen pins: the accepted R3 screening package pins this ledger by hash (bounded_audit/r3/screening.json snapshot.coverageLedgerSha256 and coverageReference.sha256) and its accepted validator pins the R3 ledger state (21/115). Advancing this ledger through R4 and R5 necessarily changes that hash and those counts. The accepted R3 content gate is bounded_audit/r4/validate_r3_content.py, which excludes exactly the seven enumerated current-ledger freshness checks; the original bounded_audit/validate_r3.py still reports exactly those seven stale-ledger checks and is not claimed to be green against this ledger.",
+    "R4 CI package pin: bounded_audit/r4/conical-01/validate.py pins cumulative.screenedPairCount to {21, 67}. After R5 the count is 136, so bounded_audit/r5/validate_r4_ci_content.py is derived from the accepted CI validator and excludes exactly the one stale check coverage.cumulative; every other CI content/evidence check and the accepted-R2/R3-set checks remain. The original CI validator is unchanged and is expected to fail only coverage.cumulative against this later ledger.",
+    "R4 round-frozen gate: bounded_audit/r4/validate_coverage.py is an R4 integration gate and is run only against the frozen snapshot bounded_audit/r4/coverage-accepted.json. It is not expected to be green against this advanced 136/136 ledger, and this ledger does not claim that it is.",
+    "Anti-cycle design: this ledger records hashes of the R2 package and of the R4/R5 packages (screening, search log, fragment, probe, validator), none of which pins this ledger. It deliberately records no hash of bounded_audit/r3/screening.json (that accepted package pins this ledger) and no hash of itself. Do not add a self-hash or an R3-screening hash here: either would close a hash cycle. The five R5 packages never read or pin this mutable ledger and their fragments remain immutable submission snapshots.",
+    "Snapshot drift: the R5 package REPORTs record this ledger at its pre-integration R4 hash d1e44bf7bbb5e81c7b85f610d6ffc1d4d3fed0fcde5cd1ab3202fb23ca6c32fa. That value is historical; no package validator reads or pins the ledger."
+  ],
+  "nonClaims": [
+    "Screened is not the same as certified: a pair may have an unresolved, notEstablished or outOfScope query.",
+    "The 136/136 count is a bounded-audit coverage count, not an exhaustive or final classification.",
+    "Before independent R5 review, the 69 R5 pairs were submitted-R5-pending-review; after the independent reviews passed, the lead uniformly flipped them to accepted-R5. This ledger did not self-accept.",
+    "Before independent R5 review, accepted coverage is 67/136; 136/136 is submitted coverage, not accepted coverage.",
+    "The cumulative count includes submitted packages; it is not a claim that the submitted packages have passed review.",
+    "The 69 R5 rows are accepted only if the lead flips them uniformly to accepted-R5 after the six independent reviews pass; the R5 coverage validator computes accepted/submitted totals from the row states and needs no edit for that flip.",
+    "The cumulative ledger is not a completeness claim about conceivable relations outside the frozen bounded query protocol."
+  ],
+  "frozenSnapshots": [
+    {
+      "path": "bounded_audit/r4/coverage-accepted.json",
+      "round": "R4",
+      "sha256": "d1e44bf7bbb5e81c7b85f610d6ffc1d4d3fed0fcde5cd1ab3202fb23ca6c32fa",
+      "role": "Frozen accepted-R4 ledger snapshot, preserved unmodified. It is an input of the historical R4 integration gate (r4/validate_coverage.py --coverage bounded_audit/r4/coverage-accepted.json) and does not pin this ledger."
+    }
+  ]
+}

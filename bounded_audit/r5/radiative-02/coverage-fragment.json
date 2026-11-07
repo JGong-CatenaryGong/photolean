@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-coverage-fragment",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-radiative-energy-transfer-02",
+  "packagePath": "bounded_audit/r5/radiative-02/screening.json",
+  "screeningSha256": "fcb1683765fca39abace7299b09436d39aefa943b96aa515a96f2dab548c83c6",
+  "pairCount": 16,
+  "queryCount": 16,
+  "byStatus": {
+    "outOfScope": 6,
+    "unresolved": 6,
+    "certified": 4
+  },
+  "byExpectedKind": {
+    "implication": 6,
+    "conditionalComposition": 6,
+    "observationalEquivalence": 4
+  },
+  "primaryCluster": "radiative-energy-transfer",
+  "screenedPairs": [
+    {
+      "pairId": "P-KashaVavilov-StokesShift",
+      "theories": [
+        "KashaVavilov",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-KashaVavilov-ICvsISC",
+      "theories": [
+        "KashaVavilov",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-KashaVavilov-Forster",
+      "theories": [
+        "KashaVavilov",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-KashaVavilov-Einstein",
+      "theories": [
+        "KashaVavilov",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-SternVolmer-EnergyGapLaw",
+      "theories": [
+        "SternVolmer",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-SternVolmer-StokesShift",
+      "theories": [
+        "SternVolmer",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-SternVolmer-ICvsISC",
+      "theories": [
+        "SternVolmer",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-SternVolmer-Forster",
+      "theories": [
+        "SternVolmer",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-SternVolmer-Einstein",
+      "theories": [
+        "SternVolmer",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-QuantumYield-EnergyGapLaw",
+      "theories": [
+        "QuantumYield",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-QuantumYield-StokesShift",
+      "theories": [
+        "QuantumYield",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-QuantumYield-ICvsISC",
+      "theories": [
+        "QuantumYield",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-QuantumYield-Forster",
+      "theories": [
+        "QuantumYield",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-QuantumYield-Einstein",
+      "theories": [
+        "QuantumYield",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-FluorPhos-EnergyGapLaw",
+      "theories": [
+        "FluorPhos",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-FluorPhos-StokesShift",
+      "theories": [
+        "FluorPhos",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    }
+  ],
+  "acceptance": "submitted-R5-pending-review",
+  "nonClaims": [
+    "This fragment contributes sixteen pairs to the R5 cumulative ledger; it does not itself edit the ledger.",
+    "Screened is not the same as certified.",
+    "The fragment records the package status as submitted-R5-pending-review until independent K3 review."
+  ]
+}

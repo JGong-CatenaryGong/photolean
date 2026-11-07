@@ -1,0 +1,5 @@
+'PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]

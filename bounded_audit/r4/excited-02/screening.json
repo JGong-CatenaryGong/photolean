@@ -1,0 +1,1967 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-screening-package",
+  "round": "R4",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "WP-excited-state-kinetics-02",
+    "title": "Excited-state kinetics, second half: BEP and SymmetryFactor bridge screening",
+    "source": "R4 plan file, Package E2",
+    "pairIds": [
+      "P-BEP-StokesShift",
+      "P-BEP-ICvsISC",
+      "P-BEP-Forster",
+      "P-BEP-Einstein",
+      "P-Kasha-SymmetryFactor",
+      "P-SymmetryFactor-KashaVavilov",
+      "P-SymmetryFactor-SternVolmer",
+      "P-SymmetryFactor-QuantumYield",
+      "P-SymmetryFactor-FluorPhos",
+      "P-SymmetryFactor-EnergyGapLaw",
+      "P-SymmetryFactor-StokesShift",
+      "P-SymmetryFactor-ICvsISC",
+      "P-SymmetryFactor-Forster",
+      "P-SymmetryFactor-Einstein"
+    ],
+    "pairCount": 14,
+    "note": "Exactly the fourteen pairs assigned to Package E2. No accepted R2/R3 pair is rescreened."
+  },
+  "statusVocabulary": [
+    "certified",
+    "refuted",
+    "unresolved",
+    "notEstablished",
+    "outOfScope"
+  ],
+  "kindVocabulary": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence",
+    "conditionalComposition",
+    "observationalEquivalence",
+    "distinguishability",
+    "refutation"
+  ],
+  "allowedAxioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "snapshot": {
+    "id": "snap-bounded-audit-2026-11-04-r4e2",
+    "date": "2026-11-04",
+    "round": "R4",
+    "inventory": "audit_boundary/statement-inventory.json",
+    "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "pairQueue": "audit_boundary/pair-queue.json",
+    "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+    "clusterPlan": "audit_boundary/cluster-plan.json",
+    "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+    "boundary": "audit_boundary/BOUNDARY.md",
+    "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+    "legacyRegistry": "relation_audit/registry.json",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "acceptedR2Package": "bounded_audit/wp-surface-01/screening.json",
+    "acceptedR2Sha256": "2a98dac9d75d76782a307bd6903dd6adec6dcc946f09e186c07895e3bee1b49c",
+    "acceptedR3Package": "bounded_audit/r3/screening.json",
+    "acceptedR3Sha256": "452d213c5a142b4910f7adcf1e4efd433d02be83f538510992a2dfe758ed262c",
+    "leanToolchain": "leanprover/lean4:v4.17.0",
+    "deliveredLeanFileCount": 102,
+    "note": "The mutable R4 cumulative coverage ledger is deliberately not pinned by this package."
+  },
+  "inventoryReference": {
+    "path": "audit_boundary/statement-inventory.json",
+    "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "statementRows": 1154,
+    "screeningEligibleRows": 1134
+  },
+  "legacyRegistryReference": {
+    "path": "relation_audit/registry.json",
+    "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "certificateCount": 38,
+    "queryCount": 151,
+    "recordCount": 151
+  },
+  "acceptedCoverageReference": {
+    "acceptedPairs": 21,
+    "sources": [
+      "bounded_audit/wp-surface-01/screening.json",
+      "bounded_audit/r3/screening.json"
+    ],
+    "note": "The accepted R2/R3 packages are pinned by hash; the R4 cumulative ledger is not."
+  },
+  "searchLogReference": {
+    "path": "bounded_audit/r4/excited-02/search-log.json",
+    "sha256": "cf3928dd98dbe0d5c9da6ba274e8bbc9234b1fa7b08b5248c30d165b66721922",
+    "entryCount": 9
+  },
+  "probeReference": {
+    "path": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+    "sha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11",
+    "declarationCount": 5,
+    "log": "bounded_audit/r4/excited-02/probes/compile.log"
+  },
+  "contextLibrary": {
+    "BepStokesCtx": {
+      "id": "BepStokesCtx",
+      "fields": [
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "Equal-curvature two-parabola step read both kinetically (BEP barrier at x = 0) and optically (vertical absorption minus vertical emission). lam is the reorganization energy shared by both readings; e00 is the 0-0 energy that cancels from the Stokes shift.",
+      "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#BepStokesCtx"
+    },
+    "BepICCtx": {
+      "id": "BepICCtx",
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Equal-curvature two-parabola crossing at reorganization energy lam and driving-force gap x. ICvsISC reads the same crossing as the nonradiative-channel Franck-Condon barrier; BEP reads it as the forward activation barrier of the elementary step.",
+      "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#BepICCtx"
+    },
+    "ScStokesCtx": {
+      "id": "ScStokesCtx",
+      "fields": [
+        "lam : ℝ",
+        "e00 : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "Equal-curvature displaced parabolas: ground surface at q = 0 and excited surface at q = 1 with 0-0 offset e00. SymmetryFactor reads the same surface pair with reactant/product curvature parameters kr = kp = lam.",
+      "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#ScStokesCtx"
+    },
+    "ScEgCtx": {
+      "id": "ScEgCtx",
+      "fields": [
+        "lam : ℝ"
+      ],
+      "physicalReading": "Thermoneutral equal-curvature two-parabola step: reorganization energy lam, driving force x = 0, and crossing coordinate fixed at the SymmetryFactor beta = 1/2 point.",
+      "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#ScEgCtx"
+    },
+    "ScICCtx": {
+      "id": "ScICCtx",
+      "fields": [
+        "lam : ℝ"
+      ],
+      "physicalReading": "Thermoneutral equal-curvature two-parabola channel: reorganization energy lam, gap x = 0, and crossing coordinate fixed at the SymmetryFactor beta = 1/2 point.",
+      "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#ScICCtx"
+    },
+    "BepForsterDisjointCtx": {
+      "id": "BepForsterDisjointCtx",
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ",
+        "tauD : ℝ",
+        "r6 : ℝ",
+        "R : ℝ"
+      ],
+      "physicalReading": "Disjoint descriptor sets: BEP has a reaction coordinate and an activation barrier; Förster has a donor lifetime and a donor-acceptor separation with an R^-6 rate law. No shared physical coordinate or declared translation exists.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#BepForsterDisjointCtx (candidate context; no Lean structure)"
+    },
+    "BepEinsteinDisjointCtx": {
+      "id": "BepEinsteinDisjointCtx",
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ",
+        "h : ℝ",
+        "c : ℝ",
+        "nu : ℝ"
+      ],
+      "physicalReading": "Disjoint descriptor sets: BEP has a reaction coordinate and an activation barrier; the Einstein A/B coefficients are radiative transition quantities with a radiation-density factor. No shared physical coordinate or declared translation exists.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#BepEinsteinDisjointCtx (candidate context; no Lean structure)"
+    },
+    "KashaScCandidateCtx": {
+      "id": "KashaScCandidateCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "kr : ℝ",
+        "kp : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: a two-level ladder whose upper-to-lower internal-conversion rate would be a crossing-controlled step with SymmetryFactor curvatures. The ladder leaves ic as an arbitrary rate function and no delivered translation relates it to (kr, kp).",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#KashaScCandidateCtx (candidate context; no Lean structure)"
+    },
+    "ScKvDisjointCtx": {
+      "id": "ScKvDisjointCtx",
+      "fields": [
+        "kr : ℝ",
+        "kp : ℝ",
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "M : ℕ",
+        "N : ℕ"
+      ],
+      "physicalReading": "Disjoint observable sets: SymmetryFactor compares a curvature pair and a crossing coordinate; KashaVavilov compares normalized spectra of a ladder at two excitation levels. No shared scalar or channel exists.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#ScKvDisjointCtx (candidate context; no Lean structure)"
+    },
+    "ScSvCandidateCtx": {
+      "id": "ScSvCandidateCtx",
+      "fields": [
+        "kr : ℝ",
+        "kp : ℝ",
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: a crossing-controlled quenching channel with SymmetryFactor curvatures alongside a Stern-Volmer intrinsic decay k0 and concentration channel kq*q. No total translation from [Q] to a driving force is declared.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#ScSvCandidateCtx (candidate context; no Lean structure)"
+    },
+    "ScQyCandidateCtx": {
+      "id": "ScQyCandidateCtx",
+      "fields": [
+        "kr : ℝ",
+        "kp : ℝ",
+        "k : Fin n → ℝ",
+        "i : Fin n"
+      ],
+      "physicalReading": "Candidate shared context: one parallel decay channel of the QuantumYield calculus would be a crossing-controlled nonradiative rate with SymmetryFactor curvatures. No delivered instance fills a channel with such a rate.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#ScQyCandidateCtx (candidate context; no Lean structure)"
+    },
+    "ScFpCandidateCtx": {
+      "id": "ScFpCandidateCtx",
+      "fields": [
+        "kr : ℝ",
+        "kp : ℝ",
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the FluorPhos S1 intersystem-crossing/internal-conversion channels would be crossing-controlled processes with SymmetryFactor curvatures. No delivered rate law relates the two parameter sets.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#ScFpCandidateCtx (candidate context; no Lean structure)"
+    },
+    "ScForsterDisjointCtx": {
+      "id": "ScForsterDisjointCtx",
+      "fields": [
+        "kr : ℝ",
+        "kp : ℝ",
+        "thetaD : ℝ",
+        "thetaA : ℝ",
+        "phi : ℝ"
+      ],
+      "physicalReading": "Disjoint geometric sets: the SymmetryFactor crossing coordinate is a two-parabola reaction-coordinate geometry; the Förster orientation factor is a donor-acceptor dipole geometry. Both are geometric, but they share no scalar.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#ScForsterDisjointCtx (candidate context; no Lean structure)"
+    },
+    "ScEinsteinDisjointCtx": {
+      "id": "ScEinsteinDisjointCtx",
+      "fields": [
+        "kr : ℝ",
+        "kp : ℝ",
+        "h : ℝ",
+        "c : ℝ",
+        "nu : ℝ"
+      ],
+      "physicalReading": "Disjoint descriptor sets: the SymmetryFactor crossing coordinate is a structural surface-crossing geometry; the Einstein A/B coefficients are radiative transition quantities. No shared scalar or declared translation exists.",
+      "provenance": "bounded_audit/r4/excited-02/screening.json#ScEinsteinDisjointCtx (candidate context; no Lean structure)"
+    }
+  },
+  "scopeLibrary": {
+    "scope-E2-bep-stokes-thermoneutral": {
+      "id": "scope-E2-bep-stokes-thermoneutral",
+      "description": "Thermoneutral equal-curvature two-parabola step read by BEP and StokesShift.",
+      "domain": "all (lam, e00) in ℝ²; the totalized lam = 0 corner is included.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+    },
+    "scope-E2-bep-ic-barrier": {
+      "id": "scope-E2-bep-ic-barrier",
+      "description": "Equal-curvature crossing barrier compared between BEP and the ICvsISC channel.",
+      "domain": "all (lam, x) in ℝ²; no positivity premise is needed for the definitional pin.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+    },
+    "scope-E2-sc-stokes-surfaces": {
+      "id": "scope-E2-sc-stokes-surfaces",
+      "description": "Equal-curvature surface pair shared by StokesShift and SymmetryFactor.",
+      "domain": "all (lam, e00, q) in ℝ³; the paired ground and excited surfaces are compared.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+    },
+    "scope-E2-sc-egl-thermoneutral": {
+      "id": "scope-E2-sc-egl-thermoneutral",
+      "description": "Thermoneutral equal-curvature barrier height in EnergyGapLaw and SymmetryFactor.",
+      "domain": "all lam > 0; driving force fixed at x = 0 and crossing coordinate at beta = 1/2.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+    },
+    "scope-E2-sc-ic-thermoneutral": {
+      "id": "scope-E2-sc-ic-thermoneutral",
+      "description": "Thermoneutral equal-curvature barrier height in ICvsISC and SymmetryFactor.",
+      "domain": "all lam > 0; gap fixed at x = 0 and crossing coordinate at beta = 1/2.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+    },
+    "scope-E2-candidate-bridge": {
+      "id": "scope-E2-candidate-bridge",
+      "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+      "domain": "the four named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+    },
+    "scope-E2-jurisdiction": {
+      "id": "scope-E2-jurisdiction",
+      "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+      "domain": "the five named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+    }
+  },
+  "pairs": [
+    {
+      "pairId": "P-BEP-StokesShift",
+      "theories": [
+        "BEP",
+        "StokesShift"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-BS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-BS-01",
+          "pairId": "P-BEP-StokesShift",
+          "title": "BEP thermoneutral barrier is one eighth of the Stokes shift",
+          "chemicalQuestion": "In the shared equal-curvature two-parabola model, is the BEP activation barrier at thermoneutrality one eighth of the optical Stokes shift computed from the same reorganization energy?",
+          "chemicalRationale": "BEP reads the model kinetically: the barrier at x = 0 is the reactant surface at the two-parabola crossing. StokesShift reads the same displaced parabolas optically: vertical absorption minus vertical emission is 2*lam. The thermoneutral barrier is lam/4, so the two theory-owned descriptors are linked by the factor 1/8. The query asks whether the kinetic and optical readings report the same reorganization energy, not whether two notations look alike.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-stokesShift",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.stokesShift",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 83,
+              "version": "1.0.0",
+              "signatureSha256": "79b2d2370cf7d1787574a8cf03830d19021beea1b6700e37b88ea61059126aae",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepStokesCtx",
+            "fields": [
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola step read both kinetically (BEP barrier at x = 0) and optically (vertical absorption minus vertical emission). lam is the reorganization energy shared by both readings; e00 is the 0-0 energy that cancels from the Stokes shift.",
+            "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#BepStokesCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepStokesCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The identity holds for every lam, including the totalized lam = 0 corner; no positivity premise is load-bearing, so none is declared."
+          },
+          "observationChannels": [
+            {
+              "id": "thermoneutralBarrierVsEighthStokesShift",
+              "name": "thermoneutralBarrierVsEighthStokesShift",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => PhotoLean.BEP.eact δ.lam 0",
+              "rightObs": "fun δ _ => PhotoLean.StokesShift.stokesShift δ.lam δ.e00 / 8"
+            }
+          ],
+          "scope": {
+            "id": "scope-E2-bep-stokes-thermoneutral",
+            "description": "Thermoneutral equal-curvature two-parabola step read by BEP and StokesShift.",
+            "domain": "all (lam, e00) in ℝ²; the totalized lam = 0 corner is included.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued observables on the shared context; the certificate is equality of the declared barrier-height channel against the band-separation channel.",
+          "falsificationCondition": "A context (lam, e00) at which BEP.eact lam 0 differs from StokesShift.stokesShift lam e00 / 8 would refute the equality; the totalized lam = 0 corner is included.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe theorem bepStokesThermoneutral and the observational channel certificate bepStokesBridge are checked; the equality holds for every lam and e00 including lam = 0.",
+            "evidence": {
+              "type": "e2-probe-certificate",
+              "certificateId": "EB2-BS-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "sha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "log": "bounded_audit/r4/excited-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.BEP.eact_at_zero",
+                  "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+                  "sourceLine": 137,
+                  "role": "delivered thermoneutral evaluation row eact lam 0 = lam/4"
+                },
+                {
+                  "declaration": "PhotoLean.StokesShift.stokesShift_eq_two_lam",
+                  "sourceArtifact": "PhotoLean/StokesShift/Criterion.lean",
+                  "sourceLine": 60,
+                  "role": "delivered Stokes-shift law stokesShift lam e00 = 2*lam"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe re-derives both delivered evaluation rows so the lam = 0 totalized corner is covered in one statement; the two delivered rows are cited as source coherence. The legacy registry has no certificate for this pair."
+            }
+          },
+          "provenance": {
+            "kind": "e2-probe-certificate",
+            "certificateId": "EB2-BS-01",
+            "sourceArtifact": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-ICvsISC",
+      "theories": [
+        "BEP",
+        "ICvsISC"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-BI-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-BI-01",
+          "pairId": "P-BEP-ICvsISC",
+          "title": "The IC channel Franck-Condon barrier is the BEP activation barrier",
+          "chemicalQuestion": "Is the controlling Franck-Condon barrier of the ICvsISC internal-conversion channel the same equal-curvature crossing barrier that BEP reports as its activation energy at the same reorganization energy and gap?",
+          "chemicalRationale": "Both theories are built on the same equal-curvature two-parabola crossing. ICvsISC copies the kernel barrier as fcBarrier to control the IC channel Arrhenius rate; BEP reports the forward activation barrier eact of the elementary step. The query asks whether the two theory-owned barrier descriptors are the same object, which is the statement-level bridge between the nonradiative-channel reading and the linear-free-energy reading.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.fcBarrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+              "sourceLine": 63,
+              "version": "1.0.0",
+              "signatureSha256": "37c1541846725e6508950b54997d6c9b6a1937d6d0a10209c46f4262500db121",
+              "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepICCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola crossing at reorganization energy lam and driving-force gap x. ICvsISC reads the same crossing as the nonradiative-channel Franck-Condon barrier; BEP reads it as the forward activation barrier of the elementary step.",
+            "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#BepICCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepICCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The two terms are definitionally the same total function of (lam, x); no premise is load-bearing."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-bep-ic-barrier",
+            "description": "Equal-curvature crossing barrier compared between BEP and the ICvsISC channel.",
+            "domain": "all (lam, x) in ℝ²; no positivity premise is needed for the definitional pin.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "The obligation is a fresh kernel rfl check after the identity translations, not a propositional equality or a physical-identity claim.",
+          "falsificationCondition": "A context (lam, x) at which BEP.eact lam x differs from ICvsISC.fcBarrier lam x would refute the definitional identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe constructs a DefinitionalPin whose two translated terms elaborate by rfl; the pin is wrapped as a typed definitionalIdentity certificate.",
+            "evidence": {
+              "type": "e2-probe-certificate",
+              "certificateId": "EB2-BI-01",
+              "kind": "definitionalIdentity",
+              "probe": {
+                "path": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "sha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "log": "bounded_audit/r4/excited-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.bep_eact_eq_marcus_barrier",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 245,
+                  "role": "delivered BEP activation barrier / Marcus barrier pin"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.icvscic_barrier_eq_kernel",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 693,
+                  "role": "delivered IC Franck-Condon barrier / kernel barrier pin"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "Both theory copies are pinned to the delivered kernel barrier; the probe performs the fresh rfl check of the two theory-owned terms. It is not a wrapper around a certified count: the identity is the barrier-level bridge between the two readings."
+            }
+          },
+          "provenance": {
+            "kind": "e2-probe-certificate",
+            "certificateId": "EB2-BI-01",
+            "sourceArtifact": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-Forster",
+      "theories": [
+        "BEP",
+        "Forster"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-BF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-BF-01",
+          "pairId": "P-BEP-Forster",
+          "title": "Is the Förster transfer rate an activated BEP process?",
+          "chemicalQuestion": "Is the Förster resonance energy-transfer rate an activated elementary-step rate whose barrier is the BEP activation barrier at the same driving force?",
+          "chemicalRationale": "Förster transfer is a through-space dipolar process with an R^-6 distance law and no reaction coordinate; BEP is an activated crossing with a reorganization energy and a driving force. The two models share no energy coordinate, and a translation from (tauD, r6, R) to (lam, x) is not a coordinate change of the declared model. The question is outside the declared jurisdiction, not logically false.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-fretRate",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.fretRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 54,
+              "version": "1.0.0",
+              "signatureSha256": "22e3fe56a137bbdd1e71e417edcaf8a83f45cd1dbc08672e98ec5631f15c2a8c",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepForsterDisjointCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ",
+              "tauD : ℝ",
+              "r6 : ℝ",
+              "R : ℝ"
+            ],
+            "physicalReading": "Disjoint descriptor sets: BEP has a reaction coordinate and an activation barrier; Förster has a donor lifetime and a donor-acceptor separation with an R^-6 rate law. No shared physical coordinate or declared translation exists.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#BepForsterDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the BEP (lam, x) barrier descriptor to the Förster (tauD, r6, R) transfer descriptor is declared; the two coordinate sets are disjoint.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Förster (tauD, r6, R) transfer descriptor to the BEP (lam, x) barrier descriptor is declared; the two coordinate sets are disjoint.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepForsterDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the five named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a BEP barrier premise to a Förster rate premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement identifying the Förster R^-6 rate with a BEP barrier would refute the outOfScope boundary; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: BEP has a reaction coordinate and a barrier, Förster has a donor lifetime and a donor-acceptor separation with an R^-6 rate law. The absence is jurisdictional, not a refutation or a logical non-existence claim.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-E2-BF-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: BEP has a reaction coordinate and a barrier, Förster has a donor lifetime and a donor-acceptor separation with an R^-6 rate law. The absence is jurisdictional, not a refutation or a logical non-existence claim."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-BF-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: BEP has a reaction coordinate and a barrier, Förster has a donor lifetime and a donor-acceptor separation with an R^-6 rate law. The absence is jurisdictional, not a refutation or a logical non-existence claim.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-Einstein",
+      "theories": [
+        "BEP",
+        "Einstein"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-BE-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-BE-01",
+          "pairId": "P-BEP-Einstein",
+          "title": "Are the Einstein A/B coefficients an activated BEP barrier?",
+          "chemicalQuestion": "Do the Einstein radiative coefficients constrain or imply the BEP activation barrier of the same transition?",
+          "chemicalRationale": "Einstein A/B are radiative transition coefficients with a radiation-density factor; BEP is a ground-state reaction barrier with a reaction coordinate and a reorganization energy. The coefficient pair does not contain a barrier and the barrier does not contain a radiative rate; no shared scalar or declared translation exists. The question is outside the declared jurisdiction.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-radFactor",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.radFactor",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+              "sourceLine": 45,
+              "version": "1.0.0",
+              "signatureSha256": "f3dace6e1d6bd5a48c2a46e6d8cf9ea56f04fc5c12f948fd72178e2b894c13eb",
+              "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepEinsteinDisjointCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ",
+              "h : ℝ",
+              "c : ℝ",
+              "nu : ℝ"
+            ],
+            "physicalReading": "Disjoint descriptor sets: BEP has a reaction coordinate and an activation barrier; the Einstein A/B coefficients are radiative transition quantities with a radiation-density factor. No shared physical coordinate or declared translation exists.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#BepEinsteinDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the BEP (lam, x) barrier descriptor to the Einstein (h, c, nu) radiative-coefficient descriptor is declared; the two coordinate sets are disjoint.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Einstein (h, c, nu) radiative-coefficient descriptor to the BEP (lam, x) barrier descriptor is declared; the two coordinate sets are disjoint.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepEinsteinDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the five named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a BEP barrier premise to a radiative-coefficient premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement identifying an Einstein coefficient with a BEP barrier would refute the outOfScope boundary; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: the BEP barrier is an activated crossing energy, while the Einstein coefficients are radiative transition quantities. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-E2-BE-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: the BEP barrier is an activated crossing energy, while the Einstein coefficients are radiative transition quantities. The absence is jurisdictional, not a refutation."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-BE-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the BEP barrier is an activated crossing energy, while the Einstein coefficients are radiative transition quantities. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-SymmetryFactor",
+      "theories": [
+        "Kasha",
+        "SymmetryFactor"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-KS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-KS-01",
+          "pairId": "P-Kasha-SymmetryFactor",
+          "title": "Is the Kasha funnel ratio controlled by the SymmetryFactor crossing coordinate?",
+          "chemicalQuestion": "Can the Kasha ladder internal-conversion/radiative funnel ratio be read as a crossing-controlled rate whose barrier is fixed by the SymmetryFactor thermoneutral crossing coordinate?",
+          "chemicalRationale": "Kasha funnelRatio is rad 0 * ic 1 / (rad 1 * decay 0); the ladder leaves ic as an arbitrary rate function, so a physical reading of the funnel needs a rate law. SymmetryFactor supplies a crossing coordinate and surfaces but no rate. If IC were a crossing-controlled process, the two theories would share a barrier descriptor; the query asks for that bridge. The candidate is chemically motivated but not delivered.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-funnelRatio",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.funnelRatio",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 112,
+              "version": "1.0.0",
+              "signatureSha256": "2d022727e96d749fe70adaf5732e115223374a30bd6115a8cda12689d39b3393",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaScCandidateCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "kr : ℝ",
+              "kp : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: a two-level ladder whose upper-to-lower internal-conversion rate would be a crossing-controlled step with SymmetryFactor curvatures. The ladder leaves ic as an arbitrary rate function and no delivered translation relates it to (kr, kp).",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#KashaScCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Kasha ladder rate functions to the SymmetryFactor curvature pair is declared; the ladder index is not a reaction coordinate.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the SymmetryFactor curvature pair to the Kasha ladder rate functions is declared; the crossing coordinate is not a ladder index.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaScCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate premises are not load-bearing for a disposition."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the four named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a rate-versus-structure bridge; the weakest composable form is an implication from a crossing-height premise to a funnel-ratio premise.",
+          "falsificationCondition": "A ladder and a curvature pair at which the funnel ratio is not controlled by the crossing height would refute the candidate implication; no such statement is delivered.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification of the ladder internal-conversion rate ic 1 with a crossing-controlled rate whose barrier is the SymmetryFactor thermoneutral crossing height is missing; Kasha.ic is an arbitrary rate function and SymmetryFactor has no rate coordinate.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-E2-KS-01",
+              "candidateSummary": "A delivered identification of the ladder internal-conversion rate ic 1 with a crossing-controlled rate whose barrier is the SymmetryFactor thermoneutral crossing height is missing; Kasha.ic is an arbitrary rate function and SymmetryFactor has no rate coordinate."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-KS-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-KashaVavilov",
+      "theories": [
+        "SymmetryFactor",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SK-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SK-01",
+          "pairId": "P-SymmetryFactor-KashaVavilov",
+          "title": "Does the SymmetryFactor crossing coordinate constrain Kasha-Vavilov spectral invariance?",
+          "chemicalQuestion": "Does the SymmetryFactor beta = 1/2 crossing coordinate constrain the Kasha-Vavilov predicate that normalized spectra are excitation-independent?",
+          "chemicalRationale": "SymmetryFactor is a structural crossing-coordinate theory over a curvature pair; KashaVavilov.SpecSame is a normalized-spectrum predicate over a ladder at two excitation levels. A crossing coordinate does not enter a normalized spectrum and a spectrum does not enter a surface geometry. No shared observable or declared translation exists, so the question is outside the declared jurisdiction.",
+          "endpoints": {
+            "source": {
+              "statementId": "symmetry.betaHalfReading",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.BetaHalfReading",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 62,
+              "version": "1.0.0",
+              "signatureSha256": "01479b684f91b7c2f78af4cb9cdbb5127a3734c552949eec5c881b9ea2f66c09",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.SpecSame",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScKvDisjointCtx",
+            "fields": [
+              "kr : ℝ",
+              "kp : ℝ",
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "M : ℕ",
+              "N : ℕ"
+            ],
+            "physicalReading": "Disjoint observable sets: SymmetryFactor compares a curvature pair and a crossing coordinate; KashaVavilov compares normalized spectra of a ladder at two excitation levels. No shared scalar or channel exists.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#ScKvDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from this descriptor set to the partner descriptor set is declared; the two physical contexts are disjoint.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the partner descriptor set to this descriptor set is declared; the two physical contexts are disjoint.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : ScKvDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the five named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a crossing-coordinate premise to a spectral-invariance premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement relating the crossing coordinate to a normalized-spectrum predicate would refute the outOfScope boundary; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: the curvature pair and crossing coordinate share no scalar with the ladder rates and normalized spectra. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-E2-SK-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: the curvature pair and crossing coordinate share no scalar with the ladder rates and normalized spectra. The absence is jurisdictional, not a refutation."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-SK-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the curvature pair and crossing coordinate share no scalar with the ladder rates and normalized spectra. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-SternVolmer",
+      "theories": [
+        "SymmetryFactor",
+        "SternVolmer"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SV-01",
+          "pairId": "P-SymmetryFactor-SternVolmer",
+          "title": "Is the Stern-Volmer bimolecular rate a crossing-controlled rate with the SymmetryFactor coefficient?",
+          "chemicalQuestion": "Is the Stern-Volmer added quenching channel kq*[Q] an activated crossing-controlled channel whose barrier geometry is the SymmetryFactor two-parabola crossing?",
+          "chemicalRationale": "SternVolmer is a rate-parameter model over a concentration variable; SymmetryFactor is a structural crossing-coordinate theory. If the quencher acts by electron transfer, kq could be an activated rate whose barrier is a Marcus-type two-parabola crossing, and the symmetry factor supplies the thermoneutral crossing coordinate. The candidate bridge needs a rate law and a translation from [Q] to a driving force. Neither is delivered.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SternVolmer-PhotoLean-SternVolmer-KSV",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.KSV",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 68,
+              "version": "1.0.0",
+              "signatureSha256": "9daa3352c688f73d6dca4edbcbde54bae1e6c51f445dca9f686bb27062718826",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScSvCandidateCtx",
+            "fields": [
+              "kr : ℝ",
+              "kp : ℝ",
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: a crossing-controlled quenching channel with SymmetryFactor curvatures alongside a Stern-Volmer intrinsic decay k0 and concentration channel kq*q. No total translation from [Q] to a driving force is declared.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#ScSvCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the SymmetryFactor curvature pair to the partner parameter space is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the partner parameter space to the SymmetryFactor curvature pair is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : ScSvCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate premises are not load-bearing for a disposition."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the four named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a rate-versus-structure bridge; the weakest composable form is an implication from a crossing-controlled rate premise to the SV ratio premise.",
+          "falsificationCondition": "A context at which the SV quenching rate is not a crossing-controlled rate would refute the candidate implication; no such statement is delivered.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification of the Stern-Volmer constant KSV = kq/k0 with a crossing-controlled rate at the SymmetryFactor barrier, plus a total translation from quencher concentration to the driving force, is missing.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-E2-SV-01",
+              "candidateSummary": "A delivered identification of the Stern-Volmer constant KSV = kq/k0 with a crossing-controlled rate at the SymmetryFactor barrier, plus a total translation from quencher concentration to the driving force, is missing."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-SV-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-QuantumYield",
+      "theories": [
+        "SymmetryFactor",
+        "QuantumYield"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SQ-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SQ-01",
+          "pairId": "P-SymmetryFactor-QuantumYield",
+          "title": "Is a quantum-yield channel controlled by the SymmetryFactor crossing height?",
+          "chemicalQuestion": "Can one parallel decay channel of the QuantumYield calculus be read as a crossing-controlled nonradiative channel whose barrier is the SymmetryFactor thermoneutral crossing height?",
+          "chemicalRationale": "QuantumYield is an algebraic rate-share calculus; SymmetryFactor gives surfaces and a crossing coordinate. A bridge would fill a QuantumYield channel with a crossing-controlled rate and read its share through the symmetry-factor barrier. No delivered instance fills a channel with such a rate, and the QY calculus leaves the rate vector arbitrary.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScQyCandidateCtx",
+            "fields": [
+              "kr : ℝ",
+              "kp : ℝ",
+              "k : Fin n → ℝ",
+              "i : Fin n"
+            ],
+            "physicalReading": "Candidate shared context: one parallel decay channel of the QuantumYield calculus would be a crossing-controlled nonradiative rate with SymmetryFactor curvatures. No delivered instance fills a channel with such a rate.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#ScQyCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the SymmetryFactor curvature pair to the partner parameter space is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the partner parameter space to the SymmetryFactor curvature pair is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : ScQyCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate premises are not load-bearing for a disposition."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the four named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a rate-versus-share bridge; the weakest composable form is an implication from a crossing-controlled channel premise to the yield-share premise.",
+          "falsificationCondition": "A quantum-yield channel whose rate is not crossing-controlled would refute the candidate implication; no such statement is delivered.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered instance that fills a QuantumYield channel with a crossing-controlled rate whose barrier is the SymmetryFactor thermoneutral crossing height is missing; the QY calculus is purely algebraic.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-E2-SQ-01",
+              "candidateSummary": "A delivered instance that fills a QuantumYield channel with a crossing-controlled rate whose barrier is the SymmetryFactor thermoneutral crossing height is missing; the QY calculus is purely algebraic."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-SQ-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-FluorPhos",
+      "theories": [
+        "SymmetryFactor",
+        "FluorPhos"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SF-01",
+          "pairId": "P-SymmetryFactor-FluorPhos",
+          "title": "Are the FluorPhos ISC and IC channels crossing-controlled with the SymmetryFactor barrier?",
+          "chemicalQuestion": "Can the FluorPhos S1 nonradiative channels kISC and kIC be read as crossing-controlled processes whose barriers are the SymmetryFactor thermoneutral crossing height?",
+          "chemicalRationale": "FluorPhos treats the S1 intersystem-crossing and internal-conversion channels as rate parameters; SymmetryFactor gives a crossing geometry. A bridge would identify kIC or kISC with an activated crossing rate whose barrier is the symmetry-factor surface height. The FluorPhos model has no energy surface and SymmetryFactor has no spin-orbit or rate object, so the candidate is chemically plausible but not delivered.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-iscBranch",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.iscBranch",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 54,
+              "version": "1.0.0",
+              "signatureSha256": "153bf46556f5ad2f27aa6d5e183b3b742fe8d395858e84ef11e0f3714fcf73b5",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScFpCandidateCtx",
+            "fields": [
+              "kr : ℝ",
+              "kp : ℝ",
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the FluorPhos S1 intersystem-crossing/internal-conversion channels would be crossing-controlled processes with SymmetryFactor curvatures. No delivered rate law relates the two parameter sets.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#ScFpCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the SymmetryFactor curvature pair to the partner parameter space is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the partner parameter space to the SymmetryFactor curvature pair is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : ScFpCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate premises are not load-bearing for a disposition."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the four named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a rate-versus-branch bridge; the weakest composable form is an implication from a crossing-controlled channel premise to the ISC branch premise.",
+          "falsificationCondition": "A FluorPhos channel whose rate is not crossing-controlled would refute the candidate implication; no such statement is delivered.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered rate law identifying the FluorPhos iscBranch or internal-conversion channel with a crossing-controlled rate at the SymmetryFactor barrier is missing.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-E2-SF-01",
+              "candidateSummary": "A delivered rate law identifying the FluorPhos iscBranch or internal-conversion channel with a crossing-controlled rate at the SymmetryFactor barrier is missing."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-SF-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-EnergyGapLaw",
+      "theories": [
+        "SymmetryFactor",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SE-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SE-01",
+          "pairId": "P-SymmetryFactor-EnergyGapLaw",
+          "title": "EGL thermoneutral barrier is the SymmetryFactor surface height at beta = 1/2",
+          "chemicalQuestion": "At thermoneutral equal curvature, is the energy-gap law nonradiative barrier the SymmetryFactor reactant-surface height at its beta = 1/2 crossing coordinate?",
+          "chemicalRationale": "EnergyGapLaw copies the kernel barrier as the nonradiative barrier of an electronic relaxation; SymmetryFactor computes the thermoneutral crossing coordinate of the two-parabola model and its surface height. At equal curvature the crossing coordinate is 1/2 and the reactant-surface height there is lam/4, which is the EGL barrier at x = 0. The query asks whether the barrier that controls the nonradiative rate and the crossing height that fixes the structural transfer coefficient are the same observable.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrBarrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 62,
+              "version": "1.0.0",
+              "signatureSha256": "1eb0a487e369bf0639bba0a13210dc26b4dc493803852a4098991d3774fe2259",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-asymReactantSurface",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.asymReactantSurface",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "3c4737e711c802f32a8b8da270b38a8bc6ea7e358de007180c44cf2b13906efc",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScEgCtx",
+            "fields": [
+              "lam : ℝ"
+            ],
+            "physicalReading": "Thermoneutral equal-curvature two-parabola step: reorganization energy lam, driving force x = 0, and crossing coordinate fixed at the SymmetryFactor beta = 1/2 point.",
+            "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#ScEgCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "coordinate-map",
+              "term": "fun δ : ScEgCtx => (δ.lam, δ.lam, PhotoLean.SymmetryFactor.tsCoordZero δ.lam δ.lam)",
+              "requirement": "The right context sets kr = kp = lam and q = tsCoordZero lam lam; the map is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : ScEgCtx => ∀ p ∈ scEgPremises, p.predicate δ",
+            "premiseIds": [
+              "scEg.lamPositive"
+            ],
+            "definitions": [
+              {
+                "id": "scEg.lamPositive",
+                "predicate": "fun δ : ScEgCtx => 0 < δ.lam",
+                "statement": "0 < lam: the reorganization energy is positive (load-bearing for the division by 4*lam and for betaHalf_holds_in_kernel).",
+                "loadBearing": "Consumed by the probe proof (field_simp and betaHalf_holds_in_kernel)."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "thermoneutralBarrierHeight",
+              "name": "thermoneutralBarrierHeight",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => PhotoLean.EnergyGapLaw.nrBarrier δ.lam 0",
+              "rightObs": "fun δ _ => PhotoLean.SymmetryFactor.asymReactantSurface δ.lam (PhotoLean.SymmetryFactor.tsCoordZero δ.lam δ.lam)"
+            }
+          ],
+          "scope": {
+            "id": "scope-E2-sc-egl-thermoneutral",
+            "description": "Thermoneutral equal-curvature barrier height in EnergyGapLaw and SymmetryFactor.",
+            "domain": "all lam > 0; driving force fixed at x = 0 and crossing coordinate at beta = 1/2.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "The two readings are real-valued barrier-height observables on the same shared context; the certificate is equality of the declared channel.",
+          "falsificationCondition": "A context lam > 0 at which EnergyGapLaw.nrBarrier lam 0 differs from the SymmetryFactor reactant-surface height at tsCoordZero lam lam would refute the equality.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe checks egThermoneutralSurface under 0 < lam and wraps it in the thermoneutralBarrierHeight observational certificate.",
+            "evidence": {
+              "type": "e2-probe-certificate",
+              "certificateId": "EB2-SE-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "sha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "log": "bounded_audit/r4/excited-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.eg_barrier_eq_kernel",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 669,
+                  "role": "delivered EGL barrier / kernel barrier pin"
+                },
+                {
+                  "declaration": "PhotoLean.SymmetryFactor.betaHalf_holds_in_kernel",
+                  "sourceArtifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+                  "sourceLine": 128,
+                  "role": "delivered equal-curvature beta = 1/2 reading"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe extends the delivered section 11 tie-back to the EGL kernel copy. The channel is the barrier height, not the bare predicate, so the row is an observational equivalence rather than a shape note."
+            }
+          },
+          "provenance": {
+            "kind": "e2-probe-certificate",
+            "certificateId": "EB2-SE-01",
+            "sourceArtifact": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-StokesShift",
+      "theories": [
+        "SymmetryFactor",
+        "StokesShift"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SS-01",
+          "pairId": "P-SymmetryFactor-StokesShift",
+          "title": "Stokes-shift surfaces are the SymmetryFactor parabolas at equal curvature",
+          "chemicalQuestion": "Are the ground- and excited-state surfaces of the Stokes-shift model the same two displaced parabolas whose unequal-curvature generalization SymmetryFactor adjudicates, specialized to equal curvature?",
+          "chemicalRationale": "StokesShift carries its own copies of the kernel reactant and product surfaces to compute vertical band positions; SymmetryFactor carries the unequal-curvature surfaces asymReactantSurface/asymProductSurface whose equal-curvature specialization is the kernel surface. The query asks whether the optical surfaces are the structural surfaces at kr = kp = lam with dG = e00. That is the model-level bridge between the band-position reading and the crossing-coordinate reading.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-s0Surface",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.s0Surface",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "46084df413f5f9874e87ab7ec6df334d6235d1cff085cf05f296e634a1002bfa",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-asymReactantSurface",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.asymReactantSurface",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "3c4737e711c802f32a8b8da270b38a8bc6ea7e358de007180c44cf2b13906efc",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScStokesCtx",
+            "fields": [
+              "lam : ℝ",
+              "e00 : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "Equal-curvature displaced parabolas: ground surface at q = 0 and excited surface at q = 1 with 0-0 offset e00. SymmetryFactor reads the same surface pair with reactant/product curvature parameters kr = kp = lam.",
+            "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#ScStokesCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : ScStokesCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The paired surface identity holds definitionally for every (lam, e00, q); no premise is load-bearing."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-sc-stokes-surfaces",
+            "description": "Equal-curvature surface pair shared by StokesShift and SymmetryFactor.",
+            "domain": "all (lam, e00, q) in ℝ³; the paired ground and excited surfaces are compared.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "The certificate pins the paired translated surface terms by a fresh rfl check; the excited pair s1Surface/asymProductSurface is included in the same pin.",
+          "falsificationCondition": "A context (lam, e00, q) at which either the ground or the excited surface pair differs would refute the identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe DefinitionalPin pairs (s0Surface, s1Surface) with (asymReactantSurface, asymProductSurface) and elaborates by rfl.",
+            "evidence": {
+              "type": "e2-probe-certificate",
+              "certificateId": "EB2-SS-01",
+              "kind": "definitionalIdentity",
+              "probe": {
+                "path": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "sha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "log": "bounded_audit/r4/excited-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.ss_s0Surface_eq_kernel",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 683,
+                  "role": "delivered Stokes ground surface / kernel reactant surface pin"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.ss_s1Surface_eq_kernel",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 688,
+                  "role": "delivered Stokes excited surface / kernel product surface pin"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The delivered kernel pins give each surface pair the same normal form; the probe pins both pairs in one fresh rfl check. The legacy registry registers this pair as an absence anchor, not as a named query."
+            }
+          },
+          "provenance": {
+            "kind": "e2-probe-certificate",
+            "certificateId": "EB2-SS-01",
+            "sourceArtifact": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-ICvsISC",
+      "theories": [
+        "SymmetryFactor",
+        "ICvsISC"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SI-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SI-01",
+          "pairId": "P-SymmetryFactor-ICvsISC",
+          "title": "ICvsISC thermoneutral barrier is the SymmetryFactor surface height at beta = 1/2",
+          "chemicalQuestion": "At thermoneutral equal curvature, is the IC channel Franck-Condon barrier the SymmetryFactor reactant-surface height at its beta = 1/2 crossing coordinate?",
+          "chemicalRationale": "ICvsISC fcBarrier controls the internal-conversion rate; SymmetryFactor computes the thermoneutral crossing coordinate and its surface height. At equal curvature the crossing is at 1/2 and the reactant-surface height is lam/4, which is the IC barrier at x = 0. The query asks whether the barrier that controls the IC channel is the same crossing height that the symmetry-factor theory reports, which is a genuine statement-level comparison of the two theory-owned barrier descriptors.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.fcBarrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+              "sourceLine": 63,
+              "version": "1.0.0",
+              "signatureSha256": "37c1541846725e6508950b54997d6c9b6a1937d6d0a10209c46f4262500db121",
+              "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-asymReactantSurface",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.asymReactantSurface",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "3c4737e711c802f32a8b8da270b38a8bc6ea7e358de007180c44cf2b13906efc",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScICCtx",
+            "fields": [
+              "lam : ℝ"
+            ],
+            "physicalReading": "Thermoneutral equal-curvature two-parabola channel: reorganization energy lam, gap x = 0, and crossing coordinate fixed at the SymmetryFactor beta = 1/2 point.",
+            "provenance": "bounded_audit/r4/excited-02/probes/E2-probe.lean#ScICCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "coordinate-map",
+              "term": "fun δ : ScICCtx => (δ.lam, δ.lam, PhotoLean.SymmetryFactor.tsCoordZero δ.lam δ.lam)",
+              "requirement": "The right context sets kr = kp = lam and q = tsCoordZero lam lam; the map is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : ScICCtx => ∀ p ∈ scICPremises, p.predicate δ",
+            "premiseIds": [
+              "scIC.lamPositive"
+            ],
+            "definitions": [
+              {
+                "id": "scIC.lamPositive",
+                "predicate": "fun δ : ScICCtx => 0 < δ.lam",
+                "statement": "0 < lam: the reorganization energy is positive (load-bearing for the division by 4*lam and for betaHalf_holds_in_kernel).",
+                "loadBearing": "Consumed by the probe proof (field_simp and betaHalf_holds_in_kernel)."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "thermoneutralBarrierHeight",
+              "name": "thermoneutralBarrierHeight",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => PhotoLean.ICvsISC.fcBarrier δ.lam 0",
+              "rightObs": "fun δ _ => PhotoLean.SymmetryFactor.asymReactantSurface δ.lam (PhotoLean.SymmetryFactor.tsCoordZero δ.lam δ.lam)"
+            }
+          ],
+          "scope": {
+            "id": "scope-E2-sc-ic-thermoneutral",
+            "description": "Thermoneutral equal-curvature barrier height in ICvsISC and SymmetryFactor.",
+            "domain": "all lam > 0; gap fixed at x = 0 and crossing coordinate at beta = 1/2.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "The two readings are real-valued barrier-height observables on the same shared context; the certificate is equality of the declared channel.",
+          "falsificationCondition": "A context lam > 0 at which ICvsISC.fcBarrier lam 0 differs from the SymmetryFactor reactant-surface height at tsCoordZero lam lam would refute the equality.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe checks icThermoneutralSurface under 0 < lam and wraps it in the thermoneutralBarrierHeight observational certificate.",
+            "evidence": {
+              "type": "e2-probe-certificate",
+              "certificateId": "EB2-SI-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "sha256": "69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean",
+                "log": "bounded_audit/r4/excited-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.icvscic_barrier_eq_kernel",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 693,
+                  "role": "delivered IC barrier / kernel barrier pin"
+                },
+                {
+                  "declaration": "PhotoLean.SymmetryFactor.betaHalf_holds_in_kernel",
+                  "sourceArtifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+                  "sourceLine": 128,
+                  "role": "delivered equal-curvature beta = 1/2 reading"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe extends the delivered section 11 tie-back to the ICvsISC kernel copy. The channel is the barrier height, so the row is an observational equivalence rather than a shape note."
+            }
+          },
+          "provenance": {
+            "kind": "e2-probe-certificate",
+            "certificateId": "EB2-SI-01",
+            "sourceArtifact": "bounded_audit/r4/excited-02/probes/E2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-Forster",
+      "theories": [
+        "SymmetryFactor",
+        "Forster"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SFo-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SFo-01",
+          "pairId": "P-SymmetryFactor-Forster",
+          "title": "Does the SymmetryFactor crossing geometry constrain the Förster orientation factor?",
+          "chemicalQuestion": "Does the SymmetryFactor thermoneutral crossing coordinate constrain the Förster orientation factor kappa^2 or the R^-6 transfer rate?",
+          "chemicalRationale": "The Förster orientation factor is a donor-acceptor dipole geometry of two distinct chromophores; the symmetry factor is a two-parabola crossing coordinate of a reaction step. Both are geometric, but they are different geometries with no shared scalar or declared translation. The question is outside the declared jurisdiction.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-kappaSq",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.kappaSq",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "e8fc6de10b0aa994a531b1441a0b9a7446fde15acf67593a02d777079c428371",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScForsterDisjointCtx",
+            "fields": [
+              "kr : ℝ",
+              "kp : ℝ",
+              "thetaD : ℝ",
+              "thetaA : ℝ",
+              "phi : ℝ"
+            ],
+            "physicalReading": "Disjoint geometric sets: the SymmetryFactor crossing coordinate is a two-parabola reaction-coordinate geometry; the Förster orientation factor is a donor-acceptor dipole geometry. Both are geometric, but they share no scalar.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#ScForsterDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from this descriptor set to the partner descriptor set is declared; the two physical contexts are disjoint.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the partner descriptor set to this descriptor set is declared; the two physical contexts are disjoint.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : ScForsterDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the five named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a crossing-coordinate premise to an orientation-factor premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement relating the crossing coordinate to the orientation factor would refute the outOfScope boundary; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: the crossing coordinate of a two-parabola reaction step shares no scalar with the orientation/distance geometry of a donor-acceptor pair. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-E2-SFo-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: the crossing coordinate of a two-parabola reaction step shares no scalar with the orientation/distance geometry of a donor-acceptor pair. The absence is jurisdictional, not a refutation."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-SFo-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the crossing coordinate of a two-parabola reaction step shares no scalar with the orientation/distance geometry of a donor-acceptor pair. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SymmetryFactor-Einstein",
+      "theories": [
+        "SymmetryFactor",
+        "Einstein"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-E2-SEIn-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-E2-SEIn-01",
+          "pairId": "P-SymmetryFactor-Einstein",
+          "title": "Does the SymmetryFactor crossing coordinate constrain Einstein radiative coefficients?",
+          "chemicalQuestion": "Does the SymmetryFactor thermoneutral crossing coordinate constrain the Einstein A/B coefficients or the radiative lifetime of the same transition?",
+          "chemicalRationale": "The Einstein coefficients are radiative transition quantities with a radiation-density factor; the symmetry factor is a structural ground/excited crossing geometry. The radiative coefficients contain no crossing coordinate and the crossing geometry contains no radiative rate. No shared scalar or declared translation exists; the question is outside the declared jurisdiction.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-radFactor",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.radFactor",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+              "sourceLine": 45,
+              "version": "1.0.0",
+              "signatureSha256": "f3dace6e1d6bd5a48c2a46e6d8cf9ea56f04fc5c12f948fd72178e2b894c13eb",
+              "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "ScEinsteinDisjointCtx",
+            "fields": [
+              "kr : ℝ",
+              "kp : ℝ",
+              "h : ℝ",
+              "c : ℝ",
+              "nu : ℝ"
+            ],
+            "physicalReading": "Disjoint descriptor sets: the SymmetryFactor crossing coordinate is a structural surface-crossing geometry; the Einstein A/B coefficients are radiative transition quantities. No shared scalar or declared translation exists.",
+            "provenance": "bounded_audit/r4/excited-02/screening.json#ScEinsteinDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from this descriptor set to the partner descriptor set is declared; the two physical contexts are disjoint.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the partner descriptor set to this descriptor set is declared; the two physical contexts are disjoint.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : ScEinsteinDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-E2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the five named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r4e2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a crossing-coordinate premise to a radiative-coefficient premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement relating the crossing coordinate to an Einstein coefficient would refute the outOfScope boundary; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: the crossing coordinate of a two-parabola step shares no scalar with the radiative A/B coefficients. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-E2-SEIn-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: the crossing coordinate of a two-parabola step shares no scalar with the radiative A/B coefficients. The absence is jurisdictional, not a refutation."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r4/excited-02/search-log.json",
+            "locator": "SL-E2-SEIn-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the crossing coordinate of a two-parabola step shares no scalar with the radiative A/B coefficients. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "pairs": 14,
+    "queries": 14,
+    "byStatus": {
+      "certified": 5,
+      "unresolved": 4,
+      "outOfScope": 5
+    },
+    "byExpectedKind": {
+      "observationalEquivalence": 3,
+      "definitionalIdentity": 2,
+      "implication": 9
+    },
+    "certified": 5,
+    "refuted": 0,
+    "unresolved": 4,
+    "notEstablished": 0,
+    "outOfScope": 5
+  },
+  "nonClaims": [
+    "This package is not a completeness claim about any pair.",
+    "A certified row is a checked relation under its declared context, premises and snapshot; it is not a claim of physical universality.",
+    "An unresolved row is not a negative claim and is not a refutation.",
+    "An outOfScope row records jurisdiction, not logical absence.",
+    "No pair was forced into a relation to increase edge or certification counts.",
+    "The legacy registry is read-only in R4; its pair-level absence anchors are coverage history, not audit verdicts.",
+    "The 14/136 count is a bounded-audit coverage count, not the cumulative R4 ledger."
+  ]
+}

@@ -1,0 +1,5 @@
+# E1 probe forbidden-token scan
+# pattern: sorry|admit|^[ \t]*(private[ \t]+|protected[ \t]+)?(axiom|constant)([ \t]|$)
+# command: grep -nE on bounded_audit/r4/excited-01/probes/E1-probe.lean
+# no hits
+# verdict: PASS (clean)

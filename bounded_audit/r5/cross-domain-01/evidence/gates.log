@@ -1,0 +1,86 @@
+R5 XD1 cross-domain-01 - gate evidence
+generated: 2026-11-04
+
+== python3 audit_boundary/validate_boundary.py ==
+Bounded relation-audit boundary validation
+  root: .
+  boundary.md: present
+  theories: 17
+  pairs: 136
+  statement rows: 1154 (authority 1153, shared 1, eligible 1134)
+  unique pairs: 136
+  clusters: 6
+  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0
+RESULT: PASS (all boundary checks passed)
+exit=0
+
+== python3 bounded_audit/validate_screening.py ==
+R2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all bounded-screening checks passed)
+exit=0
+
+== python3 bounded_audit/r4/validate_r3_content.py ==
+EXCLUDED [coverage.remainingCount] current-ledger remaining list length: pinned 115, current 69 (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.remainingSet] current-ledger remaining list contents: pinned queue-minus-screened (115), current 69 (owned by r4/validate_coverage.py)
+  checks failed: 0
+RESULT: PASS (all R3 package-content checks passed; 7 current-ledger freshness checks excluded)
+exit=0
+
+== python3 bounded_audit/r4/validate_coverage.py --coverage bounded_audit/r4/coverage-accepted.json ==
+  accepted pairs: 21
+  submitted R4 pairs: 46
+  R4 named queries: 46
+  R4 query outcomes: {"certified": 19, "notEstablished": 1, "outOfScope": 7, "unresolved": 19}
+  cumulative: 67/136 screened, 69 remaining
+  checks passed: 846
+  checks failed: 0
+RESULT: PASS (all R4 coverage checks passed)
+exit=0
+
+== python3 bounded_audit/r4/excited-01/validate.py ==
+  checks failed: 0
+RESULT: PASS (all R4 E1 bounded-screening checks passed)
+exit=0
+
+== python3 bounded_audit/r4/excited-02/validate.py ==
+  checks failed: 0
+RESULT: PASS (all E2 bounded-screening checks passed)
+exit=0
+
+== python3 bounded_audit/r4/conical-01/validate.py ==
+  checks failed: 0
+RESULT: PASS (all conical-intersection package checks passed)
+exit=0
+
+== python3 bounded_audit/r5/cross-domain-01/validate.py ==
+R5 XD1 cross-domain-01 validation
+  root: .
+  package: bounded_audit/r5/cross-domain-01
+  checks failed: 0
+RESULT: PASS (all cross-domain-01 package checks passed)
+exit=0
+
+== proofs/scripts/lake env lean bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean ==
+'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierStrongBranch_eq_eglBarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierSymmetricApex_eq_stokesEighth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierActivity_eq_icRate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+exit=0
+
+== proofs/scripts/check.sh --strict ==
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.
+==> sorry / custom axiom scan (PhotoLean/**/*.lean)
+clean
+==> summary
+build: OK
+allowed axioms: propext Classical.choice Quot.sound
+verdict: PASS
+exit=0

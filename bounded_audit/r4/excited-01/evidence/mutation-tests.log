@@ -1,0 +1,47 @@
+# R4 E1 package mutation tests
+# validator: python3 bounded_audit/r4/excited-01/validate.py --package <mutant>
+# each mutation must make the validator exit nonzero
+
+## duplicate pair row
+exit=1
+FAIL [pairs.duplicate] duplicate pair id in screening package
+FAIL [pairs.count] screening pair count is not sixteen
+FAIL [queries.duplicate] duplicate query id in screening package
+FAIL [probe.axiomCount] compile log has fewer axiom print-outs than certified queries
+FAIL [counts.pairs] pair count drift
+
+## pair with no query row
+exit=1
+FAIL [pair.noQuery] pair 'P-Hammond-Kasha' has no named query or outOfScope record
+FAIL [pair.noQueryRow] pair 'P-Hammond-Kasha' has no query row
+FAIL [counts.queries] query count drift
+FAIL [counts.byStatus] status counts drift: {'certified': 6, 'unresolved': 9, 'outOfScope': 1} != {'unresolved': 9, 'certified': 5, 'outOfScope': 1}
+FAIL [counts.byExpectedKind] kind counts drift: {'equivalence': 4, 'definitionalIdentity': 1, 'observationalEquivalence': 1, 'conditionalComposition': 2, 'implication': 8} != {'conditionalComposition': 2, 'implication': 8, 'equivalence': 3, 'observationalEquivalence': 1, 'definitionalIdentity': 1}
+
+## certified query with a corrupted probe hash
+exit=1
+FAIL [evidence.probeHash] query 'Q-R4-E1-HK-01' probe source hash drift
+FAIL [fragment.screeningHash] fragment screening hash drift
+
+## endpoint signature hash drift
+exit=1
+FAIL [endpoint.signatureSha256] query 'Q-R4-E1-HK-01' source endpoint field signatureSha256 drifts from the inventory
+FAIL [fragment.screeningHash] fragment screening hash drift
+
+## missing search-log entry for an unresolved query
+exit=1
+FAIL [search.missing] query 'Q-R4-E1-HKV-01' status unresolved has no search-log entry 'SL-R4-E1-HKV-01'
+FAIL [search.count] search-log entry count 9 does not match the 10 non-certified queries
+FAIL [search.counts] search-log declared entry count drift
+FAIL [search.byStatus] search-log declared status counts drift
+FAIL [fragment.searchHash] fragment search-log hash drift
+
+## certified query relabelled unresolved without evidence
+exit=1
+FAIL [evidence.searchType] query 'Q-R4-E1-HK-01' status unresolved requires a scoped-search evidence record
+FAIL [evidence.searchRef] query 'Q-R4-E1-HK-01' status unresolved has no search-log reference
+FAIL [evidence.candidateSummary] query 'Q-R4-E1-HK-01' status unresolved has no candidate metadata summary
+FAIL [search.missing] query 'Q-R4-E1-HK-01' status unresolved has no search-log entry None
+FAIL [search.count] search-log entry count 10 does not match the 11 non-certified queries
+
+mutations=6 survived=0

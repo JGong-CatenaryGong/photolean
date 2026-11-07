@@ -1,0 +1,19 @@
+# Probe discipline scan — 2026-11-04T02:15:42+08:00
+# file: bounded_audit/r4/conical-01/probes/R4-CI-probe.lean
+
+$ grep -nE "sorry|admit|^[[:space:]]*(private[[:space:]]+|protected[[:space:]]+)?(axiom|constant)([[:space:]]|$)" bounded_audit/r4/conical-01/probes/R4-CI-probe.lean
+[exit=1 — 1 means no match]
+
+$ grep -c "^#print axioms" bounded_audit/r4/conical-01/probes/R4-CI-probe.lean
+8
+
+$ grep -oE "sorryAx" bounded_audit/r4/conical-01/probes/compile.log | wc -l
+0
+
+$ grep -oE "propext|Classical.choice|Quot.sound" bounded_audit/r4/conical-01/probes/compile.log | sort | uniq -c
+      8 Classical.choice
+      8 propext
+      8 Quot.sound
+
+$ grep -c "depends on axioms" bounded_audit/r4/conical-01/probes/compile.log
+8

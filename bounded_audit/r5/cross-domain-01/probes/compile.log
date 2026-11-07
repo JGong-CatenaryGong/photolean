@@ -1,0 +1,9 @@
+'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierStrongBranch_eq_eglBarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierSymmetricApex_eq_stokesEighth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierActivity_eq_icRate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-coverage-fragment",
+  "round": "R4",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-excited-state-kinetics-02",
+  "packagePath": "bounded_audit/r4/excited-02/screening.json",
+  "screeningSha256": "5ceee13be0629cd93b912d68e0a44751e1906c7acfd823cc9297af0a61c94af6",
+  "pairCount": 14,
+  "queryCount": 14,
+  "byStatus": {
+    "certified": 5,
+    "unresolved": 4,
+    "outOfScope": 5
+  },
+  "byExpectedKind": {
+    "observationalEquivalence": 3,
+    "definitionalIdentity": 2,
+    "implication": 9
+  },
+  "primaryCluster": "excited-state-kinetics",
+  "screenedPairs": [
+    {
+      "pairId": "P-BEP-StokesShift",
+      "theories": [
+        "BEP",
+        "StokesShift"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-BEP-ICvsISC",
+      "theories": [
+        "BEP",
+        "ICvsISC"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-BEP-Forster",
+      "theories": [
+        "BEP",
+        "Forster"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-BEP-Einstein",
+      "theories": [
+        "BEP",
+        "Einstein"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-Kasha-SymmetryFactor",
+      "theories": [
+        "Kasha",
+        "SymmetryFactor"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-KashaVavilov",
+      "theories": [
+        "SymmetryFactor",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-SternVolmer",
+      "theories": [
+        "SymmetryFactor",
+        "SternVolmer"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-QuantumYield",
+      "theories": [
+        "SymmetryFactor",
+        "QuantumYield"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-FluorPhos",
+      "theories": [
+        "SymmetryFactor",
+        "FluorPhos"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-EnergyGapLaw",
+      "theories": [
+        "SymmetryFactor",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-StokesShift",
+      "theories": [
+        "SymmetryFactor",
+        "StokesShift"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-ICvsISC",
+      "theories": [
+        "SymmetryFactor",
+        "ICvsISC"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-Forster",
+      "theories": [
+        "SymmetryFactor",
+        "Forster"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-SymmetryFactor-Einstein",
+      "theories": [
+        "SymmetryFactor",
+        "Einstein"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    }
+  ],
+  "acceptance": "submitted-R4-pending-review",
+  "nonClaims": [
+    "This fragment contributes fourteen pairs to the R4 cumulative ledger; it does not itself edit the ledger.",
+    "Screened is not the same as certified.",
+    "The fragment records the package status as submitted-R4-pending-review until independent K3 review."
+  ]
+}

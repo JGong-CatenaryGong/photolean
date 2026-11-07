@@ -1,0 +1,92 @@
+=== PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate (PhotoLean.RelationAudit.Full.Sections06_10)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate (importing PhotoLean.RelationAudit.Full.Sections06_10)
+'PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.marcusNormalNoInvertedComposition (PhotoLean.RelationAudit)
+==> #print axioms PhotoLean.RelationAudit.marcusNormalNoInvertedComposition (importing PhotoLean.RelationAudit)
+'PhotoLean.RelationAudit.marcusNormalNoInvertedComposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.epBoundsImplication (PhotoLean.RelationAudit)
+==> #print axioms PhotoLean.RelationAudit.epBoundsImplication (importing PhotoLean.RelationAudit)
+'PhotoLean.RelationAudit.epBoundsImplication' depends on axioms: [propext, Classical.choice, Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound
+=== PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication (PhotoLean.RelationAudit.Full.Sections01_05)
+==> #print axioms PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication (importing PhotoLean.RelationAudit.Full.Sections01_05)
+'PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+----
+verdict: PASS (only mathlib infrastructure axioms)
+allowed: propext Classical.choice Quot.sound

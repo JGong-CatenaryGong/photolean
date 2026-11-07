@@ -1,0 +1,1174 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-search-log",
+ "round": "R5",
+ "generatedOn": "2026-11-04",
+ "workPackage": "WP-cross-domain-screening-02",
+ "snapshot": "snap-bounded-audit-2026-11-04",
+ "entries": [
+  {
+   "searchId": "SL-XD2-KV-01",
+   "queryId": "Q-XD2-KV-01",
+   "pairId": "P-Goldschmidt-KashaVavilov",
+   "status": "outOfScope",
+   "scope": "scope-XD2-KV-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "goldschmidt.conformance",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "stmt-KashaVavilov-PhotoLean-KashaVavilov-lossless_separates_kasha_vavilov",
+    "stmt-KashaVavilov-PhotoLean-KashaVavilov-d2_verdict"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GdKvCandidateCtx (rA, rB, rO, rad, ic, n): a union of a lattice context and a ladder context, with no delivered statement linking the two parts"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 942 \"KashaVavilov <-> Sabatier / Goldschmidt / SymmetryFactor - no edge. No shared scalar: the D2 predicates speak about yields and ladders; the volcano, the ionic radii and the curvature pairs share none of them.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+     "locator": "SpecSame (line 72), specFrac rows (lines 101, 116), kashaRule_mono (line 128)",
+     "finding": "Every KashaVavilov statement is a ladder or spectral-fraction statement; no radius."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-KashaVavilov",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and KashaVavilov",
+     "finding": "Signature scan: 139 Goldschmidt rows and 29 KashaVavilov rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'SpecSame|fluoYield|emitYield|upperYield|rateData|specFrac|kashaRule|vavilovAt|VavilovAt|VavilovUpTo|lossless|KashaRule|radBranch|icBranch|cascade' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered ladder identifier.",
+     "result": "Three matches of the plain word `cascade`, all in docstrings (Goldschmidt/Instances.lean:136, :151; Goldschmidt/RatModel.lean:181). No declaration signature carries a ladder identifier (signature scan: 0)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/KashaVavilov/*.lean",
+     "purpose": "Search the KashaVavilov modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/KashaVavilov/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; KashaVavilov imports `Mathlib`, `PhotoLean.Kasha.Basic`, `PhotoLean.Kasha.Criterion` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py KashaVavilov",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, KashaVavilov rows 29; Goldschmidt identifiers in KashaVavilov signatures: 0; KashaVavilov identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-KashaVavilov",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-KashaVavilov\ntheories: ['Goldschmidt', 'KashaVavilov']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-KashaVavilov: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (implication).",
+     "outcome": "Not statable as a implication: even the weakest admissible link is a one-way implication from a band verdict to a ladder property. That already requires a shared scalar; the two endpoints measure a length ratio and a family of per-level rates, so no implication of the declared form can be stated without inventing a translation."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; KashaVavilov imports `Mathlib`, `PhotoLean.Kasha.Basic`, `PhotoLean.Kasha.Criterion` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "band-verdict-to-ladder-loss",
+     "statement": "An in-band perovskite triple would force the lossless ladder corner (`rad = 1`, `ic 0 = 0`) or its negation.",
+     "status": "not admitted: the two predicates read disjoint vocabularies, and no delivered statement maps (rA, rB, rO) to (rad, ic); asserting the link would be a forced relation."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation, and no shared observable between the tolerance-factor band statements and the Kasha-Vavilov ladder statements; the boundary is a jurisdiction boundary, not a logical absence.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py KashaVavilov",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/KashaVavilov/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-KashaVavilov",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope with a statement-level reason: the endpoints are named, their vocabularies are disjoint in the signature scan, and the import closures do not intersect. The legacy pair-level notEstablished anchor is coverage history, not a named chemical query."
+  },
+  {
+   "searchId": "SL-XD2-SV-01",
+   "queryId": "Q-XD2-SV-01",
+   "pairId": "P-Goldschmidt-SternVolmer",
+   "status": "outOfScope",
+   "scope": "scope-XD2-SV-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-goldschmidtZone",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-GoldschmidtZone",
+    "stmt-SternVolmer-PhotoLean-SternVolmer-svZoneQ",
+    "stmt-SternVolmer-PhotoLean-SternVolmer-svZoneQ_dynLike",
+    "sternvolmer.intensityDyn"
+   ],
+   "searchedKinds": [
+    "equivalence",
+    "definitionalIdentity",
+    "distinguishability"
+   ],
+   "contextsConsidered": [
+    "GdSvCandidateCtx (rA, rB, rO, lo, hi, slopeI, slopeTau): the union context a verdict equivalence would need"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 945 \"SternVolmer <-> ... Goldschmidt ... - no edge. The SV model has no energy surface, no descriptor axis, no geometry: it is a rate-parameter model over a concentration variable.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/SternVolmer/RatModel.lean",
+     "locator": "SVZone (line 112), svZoneQ (line 119), svZoneQ_dynLike (line 128)",
+     "finding": "The SV classifier reads rational slope pairs and returns a four-constructor verdict."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-SternVolmer",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and SternVolmer",
+     "finding": "Signature scan: 139 Goldschmidt rows and 46 SternVolmer rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'dynDecay|svRatioDyn|tauRatioDyn|svRatioStat|tauRatioStat|KSV|svRatioBoth|svRatioOf|tauRatioOf|LifetimeTracks|svZoneQ|SVZone|Mech' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered Stern-Volmer identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/SternVolmer/*.lean",
+     "purpose": "Search the SternVolmer modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/SternVolmer/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; SternVolmer imports `Mathlib` plus its own four modules. The non-own import sets are empty on both sides and neither side imports the other."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py SternVolmer",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, SternVolmer rows 46; Goldschmidt identifiers in SternVolmer signatures: 0; SternVolmer identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-SternVolmer",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-SternVolmer\ntheories: ['Goldschmidt', 'SternVolmer']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-SternVolmer: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (equivalence).",
+     "outcome": "Not statable as a equivalence: the question is a verdict equivalence: the two classifiers agree on every input under the declared translation. It is the strongest form the shared classifier shape could support, and it fails at the input and arity level before any proof is attempted."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; SternVolmer imports `Mathlib` plus its own four modules. The non-own import sets are empty on both sides and neither side imports the other."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "classifier-verdict-equivalence",
+     "statement": "The two classifiers return corresponding verdicts on every input.",
+     "status": "not admitted: the two verdict types have different cardinalities (3 versus 4) and the inputs are a real triple versus a rational pair; a correspondence would have to be invented, which is a forced relation."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation and no shared input family between the Goldschmidt radius-ratio classifier and the Stern-Volmer slope-pair classifier; jurisdiction boundary, not logical absence.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py SternVolmer",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/SternVolmer/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-SternVolmer",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope with a statement-level reason naming both classifier declarations, their input types and their verdict arities. The legacy pair anchor is coverage history only."
+  },
+  {
+   "searchId": "SL-XD2-QY-01",
+   "queryId": "Q-XD2-QY-01",
+   "pairId": "P-Goldschmidt-QuantumYield",
+   "status": "outOfScope",
+   "scope": "scope-XD2-QY-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-InBand",
+    "goldschmidt.conformance",
+    "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+    "stmt-QuantumYield-PhotoLean-QuantumYield-totalRate"
+   ],
+   "searchedKinds": [
+    "implication",
+    "definitionalIdentity",
+    "equivalence"
+   ],
+   "contextsConsidered": [
+    "GdQyCandidateCtx (rA, rB, rO, lo, hi, k): the union context a part-over-whole identification would need"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 948 \"QuantumYield <-> ... Goldschmidt ... - no edge. The parallel-channel calculus is purely algebraic.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/QuantumYield/Basic.lean",
+     "locator": "totalRate (line 40), yieldOf (line 44), tauOf (line 48)",
+     "finding": "Every QuantumYield statement is a rate share or a rate total; no radius."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-QuantumYield",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and QuantumYield",
+     "finding": "Signature scan: 139 Goldschmidt rows and 29 QuantumYield rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'totalRate|yieldOf|tauOf|QYData|sum_yieldOf_eq_one' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered yield identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/QuantumYield/*.lean",
+     "purpose": "Search the QuantumYield modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/QuantumYield/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; QuantumYield imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py QuantumYield",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, QuantumYield rows 29; Goldschmidt identifiers in QuantumYield signatures: 0; QuantumYield identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-QuantumYield",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-QuantumYield\ntheories: ['Goldschmidt', 'QuantumYield']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-QuantumYield: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (implication).",
+     "outcome": "Not statable as a implication: the weakest admissible link is a one-way implication from band membership to a channel share. A part-of-whole shape does not supply the shared scalar such an implication needs."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; QuantumYield imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "part-over-whole shape",
+     "statement": "A band membership and a channel share are the same normalised quantity.",
+     "status": "not admitted: `InBand` is unnormalised and reads a length ratio; `yieldOf` is normalised over a rate vector. Sharing the \"part of a whole\" shape is not a shared context."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation and no shared observable between the Goldschmidt band statements and the QuantumYield rate algebra; jurisdiction boundary, not logical absence.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py QuantumYield",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/QuantumYield/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-QuantumYield",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope: the endpoints are named, the ratio shapes are explicitly rejected as a rationale, and the machine scans show disjoint vocabularies and imports."
+  },
+  {
+   "searchId": "SL-XD2-FP-01",
+   "queryId": "Q-XD2-FP-01",
+   "pairId": "P-Goldschmidt-FluorPhos",
+   "status": "outOfScope",
+   "scope": "scope-XD2-FP-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-goldschmidtZone",
+    "goldschmidt.conformance",
+    "stmt-FluorPhos-PhotoLean-FluorPhos-fpZoneQ",
+    "stmt-FluorPhos-PhotoLean-FluorPhos-fpZoneQ_phosphorDominant_iff",
+    "stmt-FluorPhos-PhotoLean-FluorPhos-phiP"
+   ],
+   "searchedKinds": [
+    "equivalence",
+    "implication",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GdFpCandidateCtx (rA, rB, rO, lo, hi, kF, kISC, kIC, kP, kNR): the union context a verdict correspondence would need"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 952 \"FluorPhos <-> ... Goldschmidt ... - no edge except through QuantumYield. The competition layer's objects are branch probabilities.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/FluorPhos/RatModel.lean",
+     "locator": "FPZone (line 84), fpZoneQ (line 89), fpZoneQ_phosphorDominant_iff (line 97)",
+     "finding": "The FluorPhos classifier compares rational rate products and returns a three-way verdict; the build log records `kIC` as an unused variable at line 89."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-FluorPhos",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and FluorPhos",
+     "finding": "Signature scan: 139 Goldschmidt rows and 30 FluorPhos rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 's1Decay|phiF|iscBranch|t1BranchP|phiP|FPZone|fpZoneQ|FPData|crossover_isc' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered FluorPhos identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/FluorPhos/*.lean",
+     "purpose": "Search the FluorPhos modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/FluorPhos/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; FluorPhos imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py FluorPhos",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, FluorPhos rows 30; Goldschmidt identifiers in FluorPhos signatures: 0; FluorPhos identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-FluorPhos",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-FluorPhos\ntheories: ['Goldschmidt', 'FluorPhos']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-FluorPhos: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (equivalence).",
+     "outcome": "Not statable as a equivalence: the query asks for a verdict equivalence of the two three-way classifiers. The three-verdict shape is the strongest thing the pair offers; the input families and the decision functions are unrelated."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; FluorPhos imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "three-verdict classifier shape",
+     "statement": "The two three-way classifiers order corresponding verdicts.",
+     "status": "not admitted: the decision functions read disjoint parameter families (radius ratio versus rate products), and the FluorPhos decision body does not even consume kIC (build linter, FluorPhos/RatModel.lean:89)."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation and no shared parameter family between the Goldschmidt band classifier and the FluorPhos competition classifier; jurisdiction boundary, not logical absence.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py FluorPhos",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/FluorPhos/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-FluorPhos",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope with a statement-level reason that names both classifiers and their decision functions, and with the machine scans recorded."
+  },
+  {
+   "searchId": "SL-XD2-EG-01",
+   "queryId": "Q-XD2-EG-01",
+   "pairId": "P-Goldschmidt-EnergyGapLaw",
+   "status": "outOfScope",
+   "scope": "scope-XD2-EG-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-gapA",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-idealAO",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-cert_nrBarrier",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate"
+   ],
+   "searchedKinds": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence"
+   ],
+   "contextsConsidered": [
+    "GdEgCandidateCtx (rA, rB, rO, lam, x): radii plus the energy-gap coordinate"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 991 \"EnergyGapLaw <-> Sabatier / Goldschmidt / SymmetryFactor / KashaVavilov / SternVolmer / QuantumYield / Einstein - no edge. ... none of the partner scalars (a descriptor axis, ionic radii, a curvature pair, a ladder, a concentration axis, a yield algebra, radiative conversions) occurs in nrBarrier/nrRate/lnRate/egZoneQ.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+     "locator": "nrBarrier (line 62), cert_nrBarrier (line 67), nrRate (line 74)",
+     "finding": "The energy-gap quantities are energies pinned to the Kernel and Marcus barrier."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-EnergyGapLaw",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and EnergyGapLaw",
+     "finding": "Signature scan: 139 Goldschmidt rows and 26 EnergyGapLaw rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'nrBarrier|nrRate|InvertedGap|lnRate|eglTangent|egZoneQ|EGZone|aromaticSeries|secant_slope' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered energy-gap-law identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/EnergyGapLaw/*.lean",
+     "purpose": "Search the EnergyGapLaw modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/EnergyGapLaw/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; EnergyGapLaw imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py EnergyGapLaw",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, EnergyGapLaw rows 26; Goldschmidt identifiers in EnergyGapLaw signatures: 0; EnergyGapLaw identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-EnergyGapLaw",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-EnergyGapLaw\ntheories: ['Goldschmidt', 'EnergyGapLaw']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-EnergyGapLaw: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (definitionalIdentity).",
+     "outcome": "Not statable as a definitionalIdentity: the query tests the strongest possible identification, a kernel `rfl` after a translation, because a naming resemblance is the only evidence for identity. The strongest test is the honest one here: if the two were the same object, `rfl` would settle it."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; EnergyGapLaw imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "naming collision (gap / barrier)",
+     "statement": "`gapA` and `nrBarrier` denote the same quantity.",
+     "status": "not admitted: a length is not an energy. The identification would need a translation from angstrom to joules and a map from radii to (lam, x); neither is delivered or physically meaningful."
+    }
+   ],
+   "remainingGap": "No shared context and no declared translation between the geometric rattling length and the Marcus crossing energy; the boundary is dimensional, not merely undelivered.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py EnergyGapLaw",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/EnergyGapLaw/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-EnergyGapLaw",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope on statement-level dimensional grounds: the two declarations are named explicitly and their bodies are compared in the reason. The legacy absence registration agrees but is not the argument."
+  },
+  {
+   "searchId": "SL-XD2-EG-02",
+   "queryId": "Q-XD2-EG-02",
+   "pairId": "P-Goldschmidt-EnergyGapLaw",
+   "status": "outOfScope",
+   "scope": "scope-XD2-EG-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-goldschmidtZone",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-GoldschmidtZone",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-egZoneQ",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-egZoneQ_eq_inverted_iff",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-InvertedGap"
+   ],
+   "searchedKinds": [
+    "equivalence",
+    "implication",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GdEgCandidateCtx (rA, rB, rO, lam, x): radii plus the energy-gap coordinate"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 991 \"EnergyGapLaw <-> Sabatier / Goldschmidt / SymmetryFactor / KashaVavilov / SternVolmer / QuantumYield / Einstein - no edge. ... none of the partner scalars (a descriptor axis, ionic radii, a curvature pair, a ladder, a concentration axis, a yield algebra, radiative conversions) occurs in nrBarrier/nrRate/lnRate/egZoneQ.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+     "locator": "nrBarrier (line 62), cert_nrBarrier (line 67), nrRate (line 74)",
+     "finding": "The energy-gap quantities are energies pinned to the Kernel and Marcus barrier."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-EnergyGapLaw",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and EnergyGapLaw",
+     "finding": "Signature scan: 139 Goldschmidt rows and 26 EnergyGapLaw rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'nrBarrier|nrRate|InvertedGap|lnRate|eglTangent|egZoneQ|EGZone|aromaticSeries|secant_slope' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered energy-gap-law identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/EnergyGapLaw/*.lean",
+     "purpose": "Search the EnergyGapLaw modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/EnergyGapLaw/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; EnergyGapLaw imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py EnergyGapLaw",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, EnergyGapLaw rows 26; Goldschmidt identifiers in EnergyGapLaw signatures: 0; EnergyGapLaw identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-EnergyGapLaw",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-EnergyGapLaw\ntheories: ['Goldschmidt', 'EnergyGapLaw']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-EnergyGapLaw: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (equivalence).",
+     "outcome": "Not statable as a equivalence: the query asks for a verdict equivalence of two three-way classifiers. The classifier shape is the only formal contact, and the equivalence is the strongest claim that shape could support."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; EnergyGapLaw imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "three-way classifier shape",
+     "statement": "The two three-way classifiers order corresponding verdicts.",
+     "status": "not admitted: the decision functions read a radius ratio versus an energy pair, and no delivered map identifies them."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation and no shared input family between the Goldschmidt band classifier and the energy-gap zone classifier; jurisdiction boundary, not logical absence.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py EnergyGapLaw",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/EnergyGapLaw/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-EnergyGapLaw",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope. The classifier shape is named and explicitly rejected as a rationale, and the machine scans are recorded."
+  },
+  {
+   "searchId": "SL-XD2-SS-01",
+   "queryId": "Q-XD2-SS-01",
+   "pairId": "P-Goldschmidt-StokesShift",
+   "status": "outOfScope",
+   "scope": "scope-XD2-SS-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "goldschmidt.conformance",
+    "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+    "stmt-StokesShift-PhotoLean-StokesShift-stokesShift",
+    "stmt-StokesShift-PhotoLean-StokesShift-absEnergy"
+   ],
+   "searchedKinds": [
+    "implication",
+    "definitionalIdentity",
+    "equivalence"
+   ],
+   "contextsConsidered": [
+    "GdSsCandidateCtx (rA, rB, rO, lam, e00): radii plus the two-surface parameters"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 998 \"StokesShift <-> Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor - no edge. ... the content is band positions (absEnergy, emEnergy, the emission window); no rate, line law, descriptor, curvature pair or radius occurs in a StokesShift row.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/StokesShift/Basic.lean",
+     "locator": "s0Surface (line 55), s1Surface (line 66), emEnergy (line 80)",
+     "finding": "The Stokes statements are differences of electronic energies on two surfaces."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-StokesShift",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and StokesShift",
+     "finding": "Signature scan: 139 Goldschmidt rows and 36 StokesShift rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 's0Surface|s1Surface|absEnergy|emEnergy|stokesShift|SSZone|ssZoneQ|mirror_midpoint|emission_window' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered Stokes-shift identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/StokesShift/*.lean",
+     "purpose": "Search the StokesShift modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/StokesShift/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; StokesShift imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py StokesShift",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, StokesShift rows 36; Goldschmidt identifiers in StokesShift signatures: 0; StokesShift identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-StokesShift",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-StokesShift\ntheories: ['Goldschmidt', 'StokesShift']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-StokesShift: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (implication).",
+     "outcome": "Not statable as a implication: the weakest admissible link is a one-way implication from a geometric ratio to a spectral energy. A shared scalar type (the reals) does not supply a shared observable, so no implication of the declared form can be stated."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; StokesShift imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "dimensionless-scalar shape",
+     "statement": "The tolerance factor measures the same spectral relaxation as the emission energy.",
+     "status": "not admitted: one is dimensionless and geometric, the other is an energy; a reading of the packing ratio as a spectral shift has no delivered support."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation and no shared observable between the tolerance factor and the emission energy; jurisdiction boundary, not logical absence.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py StokesShift",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/StokesShift/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-StokesShift",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope with the two declarations named and their dimensions compared. The legacy absence registration agrees but is not the argument."
+  },
+  {
+   "searchId": "SL-XD2-IC-01",
+   "queryId": "Q-XD2-IC-01",
+   "pairId": "P-Goldschmidt-ICvsISC",
+   "status": "outOfScope",
+   "scope": "scope-XD2-IC-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "goldschmidt.conformance",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "stmt-ICvsISC-PhotoLean-ICvsISC-spin_discount",
+    "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+    "stmt-ICvsISC-PhotoLean-ICvsISC-iscRate"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "conditionalComposition"
+   ],
+   "contextsConsidered": [
+    "GdIcCandidateCtx (rA, rB, rO, lamI, xI, HSO): radii plus the two barrier coordinates and a spin-orbit coupling"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 1002 \"ICvsISC <-> Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor - no edge. ... its FC-barrier/spin-discount content names none of the partner scalars.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/ICvsISC/Criterion.lean",
+     "locator": "rate_ratio_eq (line 80), isc_dominates_iff (line 124), spin_discount (line 164)",
+     "finding": "Every ICvsISC statement orders rates or Franck-Condon barriers under a spin-orbit premise; no radius."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-ICvsISC",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and ICvsISC",
+     "finding": "Signature scan: 139 Goldschmidt rows and 20 ICvsISC rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'fcBarrier|icRate|iscRate|rate_ratio_eq|log_rate_ratio|isc_dominates_iff|spin_discount|FCData|hso_zero_isc_absent|barrier_diff' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered IC/ISC identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/ICvsISC/*.lean",
+     "purpose": "Search the ICvsISC modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/ICvsISC/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; ICvsISC imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py ICvsISC",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, ICvsISC rows 20; Goldschmidt identifiers in ICvsISC signatures: 0; ICvsISC identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-ICvsISC",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-ICvsISC\ntheories: ['Goldschmidt', 'ICvsISC']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-ICvsISC: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (implication).",
+     "outcome": "Not statable as a implication: the weakest admissible link is a one-way implication from the band verdict to the barrier ordering. That requires a shared energy scale, which the Goldschmidt authority does not have."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; ICvsISC imports `Mathlib`, `PhotoLean.Kernel`, `PhotoLean.Marcus.Basic` and its own modules. The non-own import sets do not intersect and neither side imports the other."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "band-verdict-to-barrier-ordering",
+     "statement": "An in-band perovskite triple would force a specific IC/ISC barrier order.",
+     "status": "not admitted: the conclusion needs barrier and coupling energies and the premise supplies radii; no delivered statement relates the two vocabularies."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation and no shared energy scale between the band verdict and the spin-discount barrier ordering; jurisdiction boundary, not logical absence.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py ICvsISC",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/ICvsISC/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-ICvsISC",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope with both declarations and the full premise list named, so the reason is statement-level rather than a theory-name contrast."
+  },
+  {
+   "searchId": "SL-XD2-FR-01",
+   "queryId": "Q-XD2-FR-01",
+   "pairId": "P-Goldschmidt-Forster",
+   "status": "outOfScope",
+   "scope": "scope-XD2-FR-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-contact_iff_tolFac_one",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-idealAO",
+    "stmt-Forster-PhotoLean-Forster-fretEff_self",
+    "stmt-Forster-PhotoLean-Forster-fretEff",
+    "stmt-Forster-PhotoLean-Forster-r0six"
+   ],
+   "searchedKinds": [
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GdFrCandidateCtx (rA, rB, rO, R0, R): ionic radii plus a Forster radius and a donor-acceptor separation"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 1021 \"Forster <-> Goldschmidt - no edge (look-alike, no machine row). Two purely geometric threshold criteria - transfer geometry versus ionic radii - sharing no scalar; the Forster plan §10 registers the shape.\"",
+     "finding": "The legacy register records the look-alike and explicitly declines a machine row."
+    },
+    {
+     "artifact": "PhotoLean/Forster/Basic.lean",
+     "locator": "kappaSq (line 50), fretEff (line 61), r0six (line 65)",
+     "finding": "The Forster statements are transfer geometry and spectroscopic length scales."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-Forster",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and Forster",
+     "finding": "Signature scan: 139 Goldschmidt rows and 32 Forster rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'kappaSq|fretRate|fretEff6|fretEff|r0six|kappaConvention|fret_blind_spot' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered Forster identifier.",
+     "result": "No matches (grep exit 1). The plain word `transfer` occurs 12 times in Goldschmidt docstrings (grep -rnw transfer | wc -l = 12) and never in a declaration signature."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/Forster/*.lean",
+     "purpose": "Search the Forster modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/Forster/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; Forster imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Forster",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, Forster rows 32; Goldschmidt identifiers in Forster signatures: 0; Forster identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Forster",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-Forster\ntheories: ['Goldschmidt', 'Forster']\nlegacy: label='absence' subtype='look-alike'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-Forster: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (equivalence).",
+     "outcome": "Not statable as a equivalence: the query asks for an equivalence of the two threshold criteria under one translation, which is the strongest statement the look-alike shape could support."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; Forster imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "geometric threshold look-alike",
+     "statement": "The contact threshold and the half-efficiency threshold are the same criterion after translation.",
+     "status": "not admitted: the thresholds and the underlying lengths differ, and the legacy register itself classifies the coincidence as a look-alike with no machine row. A shape-only identification would be a forced relation."
+    }
+   ],
+   "remainingGap": "No shared context and no declared translation between the ionic contact length and the donor-acceptor separation; the shared threshold shape is not a shared quantity.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Forster",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/Forster/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Forster",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope. The look-alike is stated explicitly, its two thresholds are compared, and the reason for rejecting the shape as a rationale is given at the statement level."
+  },
+  {
+   "searchId": "SL-XD2-FR-02",
+   "queryId": "Q-XD2-FR-02",
+   "pairId": "P-Goldschmidt-Forster",
+   "status": "outOfScope",
+   "scope": "scope-XD2-FR-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-latticeOf",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-idealAO",
+    "stmt-Forster-PhotoLean-Forster-r0six",
+    "stmt-Forster-PhotoLean-Forster-kappaSq",
+    "stmt-Forster-PhotoLean-Forster-fretRate"
+   ],
+   "searchedKinds": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence"
+   ],
+   "contextsConsidered": [
+    "GdFrCandidateCtx (rA, rB, rO, R0, R): ionic radii plus a Forster radius and a donor-acceptor separation"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 1021 \"Forster <-> Goldschmidt - no edge (look-alike, no machine row). Two purely geometric threshold criteria - transfer geometry versus ionic radii - sharing no scalar; the Forster plan §10 registers the shape.\"",
+     "finding": "The legacy register records the look-alike and explicitly declines a machine row."
+    },
+    {
+     "artifact": "PhotoLean/Forster/Basic.lean",
+     "locator": "kappaSq (line 50), fretEff (line 61), r0six (line 65)",
+     "finding": "The Forster statements are transfer geometry and spectroscopic length scales."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-Forster",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and Forster",
+     "finding": "Signature scan: 139 Goldschmidt rows and 32 Forster rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'kappaSq|fretRate|fretEff6|fretEff|r0six|kappaConvention|fret_blind_spot' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered Forster identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/Forster/*.lean",
+     "purpose": "Search the Forster modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/Forster/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; Forster imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Forster",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, Forster rows 32; Goldschmidt identifiers in Forster signatures: 0; Forster identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Forster",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-Forster\ntheories: ['Goldschmidt', 'Forster']\nlegacy: label='absence' subtype='look-alike'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-Forster: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (definitionalIdentity).",
+     "outcome": "Not statable as a definitionalIdentity: the query tests whether the two length scales are the same object, which is the strongest available identification (a kernel `rfl` after translation). The dimensional mismatch (angstrom versus angstrom^6) is decisive."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; Forster imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "characteristic length scale",
+     "statement": "The lattice parameter and the Forster radius are one length scale.",
+     "status": "not admitted: a length and a length to the sixth power cannot be identified by a translation, and the Forster scale is built from spectroscopic factors that the lattice statement does not contain."
+    }
+   ],
+   "remainingGap": "No shared context and no declared translation between the geometric lattice length and the spectroscopic Forster length scale; the boundary is dimensional and structural.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Forster",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/Forster/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Forster",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope with the two declarations and their argument lists named. This is the second, independent query on the pair: the threshold look-alike and the length identification are chemically distinct questions."
+  },
+  {
+   "searchId": "SL-XD2-EI-01",
+   "queryId": "Q-XD2-EI-01",
+   "pairId": "P-Goldschmidt-Einstein",
+   "status": "outOfScope",
+   "scope": "scope-XD2-EI-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tauGoldschmidt",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-RadiusMatch",
+    "stmt-Einstein-PhotoLean-Einstein-tauR",
+    "stmt-Einstein-PhotoLean-Einstein-radFactor",
+    "stmt-Einstein-PhotoLean-Einstein-aOfB"
+   ],
+   "searchedKinds": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence"
+   ],
+   "contextsConsidered": [
+    "GdEiCandidateCtx (rA, rB, rO, A): radii plus an Einstein A coefficient"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 969 \"Einstein <-> ... Goldschmidt ... - no edge. The radiative conversions' only machine contact is the QuantumYield anchor.\"",
+     "finding": "The legacy register records a registered absence with a statement-level reason."
+    },
+    {
+     "artifact": "PhotoLean/Einstein/Basic.lean",
+     "locator": "radFactor (line 45), aOfB (line 49), tauR (line 65)",
+     "finding": "Every Einstein statement converts between the A coefficient, the B coefficients and the radiative lifetime; no radius."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-Einstein",
+     "finding": "The legacy record is a pair-level notEstablished anchor with no kind and no certificate."
+    },
+    {
+     "artifact": "audit_boundary/statement-inventory.json",
+     "locator": "sourceSignature column, theories Goldschmidt and Einstein",
+     "finding": "Signature scan: 139 Goldschmidt rows and 33 Einstein rows; zero shared identifiers in both directions."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -nE 'radFactor|aOfB|b12OfB21|fOfA|aOfInt|tauR|detailed_balance|degeneracy_roundtrip|af_roundtrip' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt modules for a delivered Einstein identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rnE 'tolFac|latticeOf|idealAO|idealA|rAMin|rAMax|InBand|GoldschmidtConforms|goldschmidtZone|GoldschmidtZone|gapA|classicLo|classicHi|tetragonalHi|tauGoldschmidt|RadiusMatch|chiTol|Substitutable|ChargeBalanced|isovalent' PhotoLean/Einstein/*.lean",
+     "purpose": "Search the Einstein modules for a delivered Goldschmidt identifier.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/Einstein/",
+     "purpose": "Recompute both import closures and check for a cross-import or a shared non-Mathlib module.",
+     "result": "Goldschmidt imports `Mathlib` plus its own five modules only; Einstein imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "command": "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Einstein",
+     "purpose": "Re-run the machine signature scan over the frozen inventory.",
+     "result": "Goldschmidt rows 139, Einstein rows 33; Goldschmidt identifiers in Einstein signatures: 0; Einstein identifiers in Goldschmidt signatures: 0; RESULT: PASS."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Einstein",
+     "purpose": "Recompute the accepted legacy disposition for the pair.",
+     "result": "pair: P-Goldschmidt-Einstein\ntheories: ['Goldschmidt', 'Einstein']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-Einstein: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search for a delivered statement that carries an observable of the other theory across the pair.",
+     "outcome": "None. The signature scan finds zero shared identifiers in both directions over the full statement authorities."
+    },
+    {
+     "strategy": "Test the strongest admissible relation the pair offers (definitionalIdentity).",
+     "outcome": "Not statable as a definitionalIdentity: the query tests the strongest possible identification of the two tau-named constants, a kernel `rfl` after a translation. A dimensionless tolerance cannot be definitionally equal to a lifetime."
+    },
+    {
+     "strategy": "Check the dependency closures for a shared module or a cross-import.",
+     "outcome": "Goldschmidt imports `Mathlib` plus its own five modules only; Einstein imports `Mathlib` plus its own four modules. Neither side imports the other and the non-own import sets are empty."
+    },
+    {
+     "strategy": "Check the legacy register for a named query or a certificate.",
+     "outcome": "Only a pair-level notEstablished anchor with no kind and no certificate; the census label is a registered absence, not an audit verdict."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "shared-symbol (tau) collision",
+     "statement": "`tauGoldschmidt` and `tauR` denote the same constant.",
+     "status": "not admitted: a dimensionless tolerance fraction and a lifetime `1 / A` differ in dimension; the shared symbol is notation. A coincidence value `A = 20 / 3` is not a statement-level relation."
+    }
+   ],
+   "remainingGap": "No shared context and no declared translation between the dimensionless radius-rule constant and the radiative lifetime; the boundary is dimensional, not merely undelivered.",
+   "recomputeCommands": [
+    "python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Einstein",
+    "grep -rn '^import' PhotoLean/Goldschmidt/ PhotoLean/Einstein/",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Einstein",
+    "python3 bounded_audit/r5/cross-domain-02/validate.py"
+   ],
+   "rationale": "Recorded as outOfScope with both constants named and their dimensions compared. The legacy absence registration agrees but is not the argument."
+  }
+ ],
+ "counts": {
+  "entries": 11,
+  "byStatus": {
+   "outOfScope": 11
+  }
+ },
+ "nonClaims": [
+  "Every entry is a scoped search record over the frozen R1 statement inventory, the delivered Lean sources and the accepted legacy registry; it is not an existence proof and not a completeness claim.",
+  "A statement-level absence of a shared identifier is not a claim that no relation could be written outside the frozen inventory.",
+  "The legacy census label is coverage history, not an audit verdict, and it is not used as evidence for any outcome in this package."
+ ]
+}

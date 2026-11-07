@@ -1,0 +1,578 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-search-log",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-radiative-energy-transfer-03",
+  "snapshot": "snap-bounded-audit-2026-11-04",
+  "description": "Scoped search and jurisdiction records for the six non-certified queries of the RAD3 package; each record is recomputable with the listed commands.",
+  "entries": [
+    {
+      "searchId": "SL-RAD3-EF-01",
+      "queryId": "Q-RAD3-EF-01",
+      "pairId": "P-EnergyGapLaw-Forster",
+      "status": "outOfScope",
+      "scope": "scope-RAD3-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "chemicalQuestion": "Is the Forster transfer rate an activated energy-gap-law process?",
+      "searchedStatements": [
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-lnRate",
+        "stmt-Forster-PhotoLean-Forster-fretRate",
+        "stmt-Forster-PhotoLean-Forster-fretEff6",
+        "stmt-Forster-PhotoLean-Forster-r0six",
+        "stmt-Forster-PhotoLean-Forster-kappaSq"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "EgForsterDisjointCtx (candidate: gap coordinate (lam, x) beside transfer coordinates (tauD, r6, R))",
+        "two-parabola activated-rate context",
+        "through-space transfer context"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+          "locator": "nrRate (line 74)",
+          "finding": "The gap-law rate is A*exp(-nrBarrier(lam,x)/(kB*T)); its arguments are a gap coordinate, a reorganization energy and a thermal energy. No distance or lifetime parameter occurs."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "fretRate (line 54)",
+          "finding": "The Forster rate is (1/tauD)*(r6/R^6); its arguments are a donor lifetime, a sixth-power radius and a separation. No barrier or reorganization energy occurs."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "module docstring (line 21)",
+          "finding": "The module registers C, Phi, J, n as free positive parameters and states that no spectral-overlap theory is derived."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn \"fretRate\\|fretEff\\|r0six\\|kappaSq\\|tauD\" PhotoLean/EnergyGapLaw/",
+          "purpose": "Find any Forster descriptor inside the energy-gap-law theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "grep -rn \"nrBarrier\\|nrRate\\|lnRate\\|InvertedGap\" PhotoLean/Forster/",
+          "purpose": "Find any gap-law descriptor inside the Forster theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "python3 -c 'import json; inv=json.load(open(\"audit_boundary/statement-inventory.json\")); print([(t, sum(1 for s in inv[\"statements\"] if s[\"theory\"]==t and s[\"screeningEligible\"])) for t in [\"EnergyGapLaw\",\"Forster\"]])'",
+          "purpose": "Count the eligible statements searched on both sides.",
+          "result": "[('EnergyGapLaw', 25), ('Forster', 32)]"
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Compare the argument sets of the two rate laws directly.",
+          "outcome": "Disjoint: (A, lam, kB, T, x) versus (tauD, r6, R); no coordinate is shared."
+        },
+        {
+          "strategy": "Search the gap-law module for a distance or lifetime parameter.",
+          "outcome": "No occurrence."
+        },
+        {
+          "strategy": "Search the Forster module for a barrier or reorganization energy.",
+          "outcome": "No occurrence."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "implication",
+          "description": "A would-be identification of the Forster R^-6 rate with an activated gap-law rate at a shared coordinate; no such coordinate exists."
+        }
+      ],
+      "remainingGap": "No shared coordinate or declared translation exists: the gap-law rate is a function of (A, lam, kB, T, x) and the Forster rate of (tauD, r6, R). The jurisdiction record therefore denies a translation rather than reporting a missing proof.",
+      "recomputeCommands": [
+        "grep -rn \"fretRate\\|fretEff\\|r0six\\|kappaSq\\|tauD\" PhotoLean/EnergyGapLaw/",
+        "grep -rn \"nrBarrier\\|nrRate\\|lnRate\\|InvertedGap\" PhotoLean/Forster/"
+      ],
+      "rationale": "The scoped search confirms that the two delivered vocabularies never meet: no statement of either theory mentions a descriptor of the other. The outcome is jurisdictional, not a refutation and not a logical absence."
+    },
+    {
+      "searchId": "SL-RAD3-EE-01",
+      "queryId": "Q-RAD3-EE-01",
+      "pairId": "P-EnergyGapLaw-Einstein",
+      "status": "outOfScope",
+      "scope": "scope-RAD3-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "chemicalQuestion": "Is the gap-law prefactor the Einstein A coefficient?",
+      "searchedStatements": [
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-lnRate",
+        "stmt-Einstein-PhotoLean-Einstein-radFactor",
+        "stmt-Einstein-PhotoLean-Einstein-aOfB",
+        "stmt-Einstein-PhotoLean-Einstein-b12OfB21",
+        "stmt-Einstein-PhotoLean-Einstein-tauR",
+        "stmt-Einstein-PhotoLean-Einstein-yield_radiative"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "EgEinsteinDisjointCtx (candidate: gap coordinate (lam, x) beside coefficient algebra (K, B21))",
+        "activated nonradiative rate context",
+        "radiative detailed-balance context"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+          "locator": "nrRate (line 74)",
+          "finding": "The prefactor A multiplies exp(-nrBarrier/(kB*T)); it is a nonradiative frequency factor over a nuclear reorganization barrier."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "aOfB (line 49)",
+          "finding": "aOfB K B21 = K * B21: the Einstein A coefficient is a radiative coefficient built from the radiation-density factor and B21."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Criterion.lean",
+          "locator": "yield_radiative (line 152)",
+          "finding": "The delivered yield row is a two-channel radiative yield; it carries no gap-law prefactor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn \"radFactor\\|aOfB\\|b12OfB21\\|tauR\\|B21\\|g1\\|g2\" PhotoLean/EnergyGapLaw/",
+          "purpose": "Find any Einstein coefficient inside the energy-gap-law theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "grep -rn \"nrBarrier\\|nrRate\\|lnRate\\|InvertedGap\\|EGZone\" PhotoLean/Einstein/",
+          "purpose": "Find any gap-law descriptor inside the Einstein theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "python3 -c 'import json; inv=json.load(open(\"audit_boundary/statement-inventory.json\")); print([(t, sum(1 for s in inv[\"statements\"] if s[\"theory\"]==t and s[\"screeningEligible\"])) for t in [\"EnergyGapLaw\",\"Einstein\"]])'",
+          "purpose": "Count the eligible statements searched on both sides.",
+          "result": "[('EnergyGapLaw', 25), ('Einstein', 33)]"
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Substitute the Einstein A coefficient for the gap-law prefactor A.",
+          "outcome": "Not licensed: the gap-law A is a nonradiative frequency factor, the Einstein A a radiative coefficient; no delivered statement equates them."
+        },
+        {
+          "strategy": "Look for a delivered identification of the gap x with h*nu.",
+          "outcome": "None; radFactor takes h, c, nu but no statement connects nu to x."
+        },
+        {
+          "strategy": "Check whether the shared symbol A is used with the same type and role.",
+          "outcome": "Both are real numbers, but the roles differ (prefactor versus coefficient); the shared spelling is a naming coincidence."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "implication",
+          "description": "A would-be identification A_gap = aOfB (radFactor h c nu) B21 requiring a bridge premise that neither theory delivers."
+        }
+      ],
+      "remainingGap": "The shared symbol A denotes different quantities; no statement-level bridge and no shared coordinate exists. The jurisdiction record denies the translation; it does not claim the physical channels are unrelated.",
+      "recomputeCommands": [
+        "grep -rn \"radFactor\\|aOfB\\|b12OfB21\\|tauR\\|B21\\|g1\\|g2\" PhotoLean/EnergyGapLaw/",
+        "grep -rn \"nrBarrier\\|nrRate\\|lnRate\\|InvertedGap\\|EGZone\" PhotoLean/Einstein/"
+      ],
+      "rationale": "The scoped search confirms the notation trap: the two theories share the letter A but no descriptor. The outcome is jurisdictional."
+    },
+    {
+      "searchId": "SL-RAD3-SF-01",
+      "queryId": "Q-RAD3-SF-01",
+      "pairId": "P-StokesShift-Forster",
+      "status": "notEstablished",
+      "scope": "scope-RAD3-scoped-search",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "chemicalQuestion": "Is the Forster spectral overlap integral determined by the Stokes shift?",
+      "searchedStatements": [
+        "stmt-StokesShift-PhotoLean-StokesShift-stokesShift",
+        "stmt-StokesShift-PhotoLean-StokesShift-absEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-s0Surface",
+        "stmt-StokesShift-PhotoLean-StokesShift-s1Surface",
+        "stmt-Forster-PhotoLean-Forster-r0six",
+        "stmt-Forster-PhotoLean-Forster-fretRate",
+        "stmt-Forster-PhotoLean-Forster-fretEff6",
+        "stmt-Forster-PhotoLean-Forster-kappaSq"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "SfOverlapCandidateCtx (candidate: band maxima (lam, e00) beside radius parameters (C, kappasq, Phi, J, n))",
+        "band-maxima optical context",
+        "donor-acceptor transfer context"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "r0six (line 65)",
+          "finding": "r0six C kappasq Phi J n = C*kappasq*Phi*J/n^4; J is a free parameter and no definition of J or of a line shape exists in the module."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "module docstring (line 21)",
+          "finding": "Registered non-goal: C, Phi, J, n are free positive parameters and no spectral-overlap theory is derived."
+        },
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "module docstring (line 28)",
+          "finding": "Registered scope: no vibronic structure and no lineshape widths; the rows are about band maxima only."
+        },
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "stokesShift (line 83)",
+          "finding": "stokesShift is a pure band-maximum difference, with no line-shape or overlap argument."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnw \"r0six\\|fretRate\\|fretEff6\\|kappaSq\" PhotoLean/StokesShift/",
+          "purpose": "Find any Forster descriptor inside the Stokes-shift theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "grep -rnw \"stokesShift\\|absEnergy\\|emEnergy\\|e00\" PhotoLean/Forster/",
+          "purpose": "Find any Stokes descriptor inside the Forster theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "grep -rn \"overlap\\|spectral\\|lineshape\\|lineShape\" PhotoLean/StokesShift/ PhotoLean/Forster/",
+          "purpose": "Find a delivered overlap or line-shape declaration.",
+          "result": "Only two module-docstring lines (StokesShift/Basic.lean:28 and Forster/Basic.lean:21), both recording the non-goal; no declaration."
+        },
+        {
+          "command": "python3 -c 'import json; inv=json.load(open(\"audit_boundary/statement-inventory.json\")); print([(t, sum(1 for s in inv[\"statements\"] if s[\"theory\"]==t and s[\"screeningEligible\"])) for t in [\"StokesShift\",\"Forster\"]])'",
+          "purpose": "Count the eligible statements searched on both sides.",
+          "result": "[('StokesShift', 35), ('Forster', 32)]"
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Define J as an integral of the donor emission against the acceptor absorption.",
+          "outcome": "Neither theory declares a band shape or an integrable spectrum; J stays free."
+        },
+        {
+          "strategy": "Relate the Stokes shift 2*lam to the Forster radius through kappaSq or Phi_D.",
+          "outcome": "r0six Phi_D is a free parameter, not the FluorPhos yield; no delivered bridge."
+        },
+        {
+          "strategy": "Search every delivered declaration for overlap/spectral/line-shape content.",
+          "outcome": "No delivered declaration; only module prose records the non-goal."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "implication",
+          "description": "Candidate: J = J(stokesShift lam e00), or J as the overlap of two declared band shapes. The corpus has no band-shape object, so the implication has no deliverable antecedent."
+        }
+      ],
+      "remainingGap": "No line-shape or overlap declaration exists in the frozen statement set; J is a free parameter of r0six and the Stokes rows are band maxima. This is a scoped negative registration for the requested implication, not a claim that no physical relation exists.",
+      "recomputeCommands": [
+        "grep -rnw \"r0six\\|fretRate\\|fretEff6\\|kappaSq\" PhotoLean/StokesShift/",
+        "grep -rnw \"stokesShift\\|absEnergy\\|emEnergy\\|e00\" PhotoLean/Forster/",
+        "grep -rn \"overlap\\|spectral\\|lineshape\\|lineShape\" PhotoLean/StokesShift/ PhotoLean/Forster/"
+      ],
+      "rationale": "The scoped search is machine-recomputable and finds no statement of the requested kind. The candidate remains a physically meaningful but undelivered bridge, so the outcome is notEstablished rather than outOfScope."
+    },
+    {
+      "searchId": "SL-RAD3-SE-01",
+      "queryId": "Q-RAD3-SE-01",
+      "pairId": "P-StokesShift-Einstein",
+      "status": "outOfScope",
+      "scope": "scope-RAD3-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "chemicalQuestion": "Is the Stokes emission energy a transition frequency of the Einstein coefficients?",
+      "searchedStatements": [
+        "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-absEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-stokesShift",
+        "stmt-Einstein-PhotoLean-Einstein-radFactor",
+        "stmt-Einstein-PhotoLean-Einstein-aOfB",
+        "stmt-Einstein-PhotoLean-Einstein-aOfInt",
+        "stmt-Einstein-PhotoLean-Einstein-tauR"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "SeSpectralDisjointCtx (candidate: band maxima (lam, e00) beside radiation parameters (h, c, nu))",
+        "optical band-maxima context",
+        "radiative coefficient context"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "emEnergy (line 80)",
+          "finding": "emEnergy is the vertical emission energy built from the two surfaces; it is a band maximum, not a frequency."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "radFactor (line 45)",
+          "finding": "radFactor h c nu = 8*pi*h*nu^3/c^3: a radiation-density factor over a transition frequency."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "aOfInt (line 62)",
+          "finding": "aOfInt Ci I = Ci * I uses an integrated absorption I; there is no Stokes counterpart and I is not a band maximum."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnw \"radFactor\\|aOfB\\|aOfInt\\|tauR\" PhotoLean/StokesShift/",
+          "purpose": "Find any Einstein coefficient inside the Stokes-shift theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "grep -rnw \"stokesShift\\|absEnergy\\|emEnergy\\|e00\" PhotoLean/Einstein/",
+          "purpose": "Find any Stokes descriptor inside the Einstein theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "python3 -c 'import json; inv=json.load(open(\"audit_boundary/statement-inventory.json\")); print([(t, sum(1 for s in inv[\"statements\"] if s[\"theory\"]==t and s[\"screeningEligible\"])) for t in [\"StokesShift\",\"Einstein\"]])'",
+          "purpose": "Count the eligible statements searched on both sides.",
+          "result": "[('StokesShift', 35), ('Einstein', 33)]"
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Identify the emission energy with h*nu.",
+          "outcome": "No delivered statement connects emEnergy to nu; a translation would have to be declared, not assumed."
+        },
+        {
+          "strategy": "Identify the integrated absorption I of aOfInt with absEnergy.",
+          "outcome": "Rejected as a category error: I is an integrated absorption, absEnergy a band maximum."
+        },
+        {
+          "strategy": "Look for a delivered statement equating a surface coordinate with a transition frequency.",
+          "outcome": "None."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "implication",
+          "description": "A would-be evaluation of radFactor at nu = emEnergy/h; no delivered premise supports the substitution."
+        }
+      ],
+      "remainingGap": "No shared descriptor: StokesShift quantifies band maxima, Einstein quantifies radiative coefficients over a transition frequency. The jurisdiction record denies the translation; it does not claim the emission is non-radiative.",
+      "recomputeCommands": [
+        "grep -rnw \"radFactor\\|aOfB\\|aOfInt\\|tauR\" PhotoLean/StokesShift/",
+        "grep -rnw \"stokesShift\\|absEnergy\\|emEnergy\\|e00\" PhotoLean/Einstein/"
+      ],
+      "rationale": "The scoped search finds no bridge between a band maximum and a transition frequency. The outcome is jurisdictional, not a refutation."
+    },
+    {
+      "searchId": "SL-RAD3-IF-01",
+      "queryId": "Q-RAD3-IF-01",
+      "pairId": "P-ICvsISC-Forster",
+      "status": "unresolved",
+      "scope": "scope-RAD3-scoped-search",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "chemicalQuestion": "Is the Forster transfer channel a third channel in the IC-vs-ISC competition?",
+      "searchedStatements": [
+        "stmt-ICvsISC-PhotoLean-ICvsISC-iscRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-isc_dominates_iff",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+        "stmt-Forster-PhotoLean-Forster-fretRate",
+        "stmt-Forster-PhotoLean-Forster-fretEff6",
+        "stmt-Forster-PhotoLean-Forster-r0six"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "IfThirdChannelCandidateCtx (candidate: two IC/ISC channels plus a Forster channel (tauD, r6, R))",
+        "IC-vs-ISC competition context",
+        "donor-acceptor transfer context"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/ICvsISC/Criterion.lean",
+          "locator": "isc_dominates_iff (line 124)",
+          "finding": "The delivered crossover compares exactly two channels, icRate and iscRate; no third channel and no total decay appear."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "fretRate (line 54)",
+          "finding": "The Forster rate is (1/tauD)*(r6/R^6); the donor lifetime tauD and the separation R have no ICvsISC counterpart."
+        },
+        {
+          "artifact": "PhotoLean/ICvsISC/Basic.lean",
+          "locator": "FCData (line 91)",
+          "finding": "The premise bundle carries prefactors, reorganization energies and the thermal energy; no lifetime or separation occurs."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnw \"fretRate\\|fretEff6\\|r0six\\|kappaSq\\|tauD\" PhotoLean/ICvsISC/",
+          "purpose": "Find any Forster descriptor inside the IC-vs-ISC theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "grep -rnw \"icRate\\|iscRate\\|fcBarrier\\|HSO\\|FCData\" PhotoLean/Forster/",
+          "purpose": "Find any IC/ISC descriptor inside the Forster theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "python3 -c 'import json; inv=json.load(open(\"audit_boundary/statement-inventory.json\")); print([(t, sum(1 for s in inv[\"statements\"] if s[\"theory\"]==t and s[\"screeningEligible\"])) for t in [\"ICvsISC\",\"Forster\"]])'",
+          "purpose": "Count the eligible statements searched on both sides.",
+          "result": "[('ICvsISC', 19), ('Forster', 32)]"
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Add the transfer rate to the IC denominator of isc_dominates_iff.",
+          "outcome": "No delivered statement defines a total or a three-channel competition; isc_dominates_iff has exactly two channels."
+        },
+        {
+          "strategy": "Identify the donor decay rate 1/tauD with the IC rate.",
+          "outcome": "Not delivered; no statement equates them."
+        },
+        {
+          "strategy": "Compose the delivered crossover with a Forster parent.",
+          "outcome": "No typed parent exists: the Forster module has no dominance predicate."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "conditionalComposition",
+          "description": "Candidate: isc_dominates_iff with icRate replaced by icRate + fretRate. Missing: a delivered bridge that the donor decay rate is the IC channel rate and that the transfer channel adds to the IC channel."
+        }
+      ],
+      "remainingGap": "The composition needs two delivered bridges (1/tauD = icRate and the transfer channel added to the IC channel); the corpus states neither, and the legacy register records no shared scalar. The candidate remains open.",
+      "recomputeCommands": [
+        "grep -rnw \"fretRate\\|fretEff6\\|r0six\\|kappaSq\\|tauD\" PhotoLean/ICvsISC/",
+        "grep -rnw \"icRate\\|iscRate\\|fcBarrier\\|HSO\\|FCData\" PhotoLean/Forster/"
+      ],
+      "rationale": "The candidate is chemically meaningful (a third decay channel) but not delivered; the record names the exact missing bridges and makes no negative claim."
+    },
+    {
+      "searchId": "SL-RAD3-IE-01",
+      "queryId": "Q-RAD3-IE-01",
+      "pairId": "P-ICvsISC-Einstein",
+      "status": "outOfScope",
+      "scope": "scope-RAD3-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "chemicalQuestion": "Is the spin-orbit ISC channel a radiative Einstein coefficient?",
+      "searchedStatements": [
+        "stmt-ICvsISC-PhotoLean-ICvsISC-iscRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+        "stmt-Einstein-PhotoLean-Einstein-aOfB",
+        "stmt-Einstein-PhotoLean-Einstein-b12OfB21",
+        "stmt-Einstein-PhotoLean-Einstein-radFactor",
+        "stmt-Einstein-PhotoLean-Einstein-tauR"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "IeSpinRadDisjointCtx (candidate: spin-orbit channel (HSO, AS, lamS, xS) beside coefficient algebra (g1, g2, B21))",
+        "nonradiative spin-forbidden channel context",
+        "radiative detailed-balance context"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/ICvsISC/Basic.lean",
+          "locator": "iscRate (line 85)",
+          "finding": "iscRate HSO AS lamS kB T xS = HSO^2 * AS * exp(-fcBarrier(lamS,xS)/(kB*T)): a spin-orbit prefactor over a nuclear Franck-Condon barrier."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "aOfB (line 49)",
+          "finding": "aOfB K B21 = K * B21: a radiative coefficient over a radiation-density factor."
+        },
+        {
+          "artifact": "PhotoLean/ICvsISC/Criterion.lean",
+          "locator": "spin_discount (line 164)",
+          "finding": "The spin-orbit factor is a nonradiative threshold (log HSO); it is not a radiative coefficient."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnw \"radFactor\\|aOfB\\|b12OfB21\\|tauR\\|degeneracy\" PhotoLean/ICvsISC/",
+          "purpose": "Find any Einstein coefficient inside the IC-vs-ISC theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "grep -rnw \"icRate\\|iscRate\\|fcBarrier\\|HSO\\|FCData\" PhotoLean/Einstein/",
+          "purpose": "Find any IC/ISC descriptor inside the Einstein theory.",
+          "result": "(no match; exit 1)"
+        },
+        {
+          "command": "python3 -c 'import json; inv=json.load(open(\"audit_boundary/statement-inventory.json\")); print([(t, sum(1 for s in inv[\"statements\"] if s[\"theory\"]==t and s[\"screeningEligible\"])) for t in [\"ICvsISC\",\"Einstein\"]])'",
+          "purpose": "Count the eligible statements searched on both sides.",
+          "result": "[('ICvsISC', 19), ('Einstein', 33)]"
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Identify HSO^2*AS with aOfB or with radFactor*B21.",
+          "outcome": "No delivered statement; the spin-orbit amplitude is not a radiation-density factor."
+        },
+        {
+          "strategy": "Identify the nuclear ISC barrier with an Einstein transition energy.",
+          "outcome": "No delivered statement; a reorganization barrier is not a photon energy."
+        },
+        {
+          "strategy": "Look for a delivered total-decay or radiative-yield row in ICvsISC.",
+          "outcome": "None; ICvsISC has no yield, total or radiative channel."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "implication",
+          "description": "A would-be identification of the spin-orbit ISC prefactor with a radiative coefficient; no delivered premise supports it."
+        }
+      ],
+      "remainingGap": "No shared descriptor: the ISC channel is a nonradiative spin-forbidden crossing with a nuclear barrier, the Einstein coefficients describe radiative detailed balance. The jurisdiction record denies the translation; it does not claim the two channels cannot coexist.",
+      "recomputeCommands": [
+        "grep -rnw \"radFactor\\|aOfB\\|b12OfB21\\|tauR\\|degeneracy\" PhotoLean/ICvsISC/",
+        "grep -rnw \"icRate\\|iscRate\\|fcBarrier\\|HSO\\|FCData\" PhotoLean/Einstein/"
+      ],
+      "rationale": "The scoped search finds no bridge between a spin-orbit channel strength and a radiative coefficient. The outcome is jurisdictional, not a refutation."
+    }
+  ],
+  "counts": {
+    "entries": 6,
+    "byStatus": {
+      "outOfScope": 4,
+      "notEstablished": 1,
+      "unresolved": 1
+    }
+  },
+  "nonClaims": [
+    "A search record is scoped to the named statements, kinds and contexts; it is not a completeness claim.",
+    "A missing certificate is not a refutation.",
+    "An outOfScope record denies a declared translation; it does not assert logical non-existence.",
+    "The legacy registry is read-only and its pair labels are census metadata, not audit verdicts."
+  ]
+}

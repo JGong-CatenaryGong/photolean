@@ -1,0 +1,1644 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-search-log",
+ "round": "R5",
+ "generatedOn": "2026-11-04",
+ "workPackage": "XD1-CROSS-DOMAIN-01",
+ "snapshot": "snap-bounded-audit-2026-11-04",
+ "entries": [
+  {
+   "searchId": "SL-XD1-MG-01",
+   "queryId": "Q-XD1-MG-01",
+   "pairId": "P-Marcus-Goldschmidt",
+   "status": "outOfScope",
+   "scope": "scope-XD1-goldschmidt-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Marcus-PhotoLean-Marcus-InvertedRegion",
+    "marcus.barrier",
+    "stmt-Marcus-PhotoLean-Marcus-rate",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "goldschmidt.conformance",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-idealA"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GoldschmidtLatticeCtx (rA, rB, rO): no reorganization energy or driving force",
+    "Marcus energy context (lam, x): no ionic radius or lattice length"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§10 line 568 \"Goldschmidt <-> all six - no edge\"",
+     "finding": "The legacy register states that Goldschmidt formalizes a geometric tolerance-factor and ionic-substitution criterion with no energy model, so there is no object for an edge to the energy-side theories."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-goldschmidt-marcus-noedge",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Marcus/Basic.lean",
+     "locator": "PhotoLean/Marcus/Basic.lean#InvertedRegion (line 60)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+     "locator": "PhotoLean/Goldschmidt/Basic.lean#tolFac (line 39)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Marcus' PhotoLean/Goldschmidt --include='*.lean'",
+     "purpose": "Search the Goldschmidt modules for a delivered Marcus statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Marcus --include='*.lean'",
+     "purpose": "Search the Marcus modules for a delivered Goldschmidt statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Marcus/*.lean | sort -u",
+     "purpose": "Measure the Marcus module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Marcus.Barrier\nimport PhotoLean.Marcus.Basic\nimport PhotoLean.Marcus.Rate\nimport PhotoLean.Marcus.RatModel\nimport PhotoLean.Marcus.Reorg\nimport PhotoLean.Marcus.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+     "purpose": "Measure the Goldschmidt module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Goldschmidt.Basic\nimport PhotoLean.Goldschmidt.Criterion\nimport PhotoLean.Goldschmidt.RatModel\nimport PhotoLean.Goldschmidt.Rules"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-Goldschmidt",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Marcus-Goldschmidt\ntheories: ['Marcus', 'Goldschmidt']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-goldschmidt-marcus-noedge: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search the Goldschmidt sources for a Marcus declaration, and the Marcus sources for a Goldschmidt declaration.",
+     "outcome": "No matches in either direction; the delivered imports are disjoint."
+    },
+    {
+     "strategy": "Try to read the tolerance factor as a normalized Marcus coordinate.",
+     "outcome": "tolFac is a ratio of lengths and has no reorganization-energy or driving-force argument; the reading has no total translation."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "The registry has one pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "dimensionless-boundary analogy",
+     "statement": "t = 1 (ideal packing) versus x = lam (Marcus normal/inverted boundary)",
+     "status": "rejected: one is a length ratio, the other an energy equality; no shared dimension or map"
+    }
+   ],
+   "remainingGap": "A dimensioned context and a delivered map from (rA, rB, rO) to (lam, x), plus a statement that the Goldschmidt band edge is the Marcus boundary, are missing.",
+   "recomputeCommands": [
+    "grep -rn 'Marcus' PhotoLean/Goldschmidt --include='*.lean'",
+    "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Marcus --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Marcus/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-Goldschmidt"
+   ],
+   "rationale": "The legacy register records no edge; the only shared word is \"boundary\" and the two boundary objects have different dimensions. The honest status is outOfScope, not unresolved or refuted."
+  },
+  {
+   "searchId": "SL-XD1-HG-01",
+   "queryId": "Q-XD1-HG-01",
+   "pairId": "P-Hammond-Goldschmidt",
+   "status": "outOfScope",
+   "scope": "scope-XD1-goldschmidt-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+    "goldschmidt.conformance",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-idealA"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GoldschmidtLatticeCtx (rA, rB, rO): no reaction coordinate or energy surface",
+    "Hammond two-parabola context (lam, x): no radius or lattice length"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§10 line 568 \"Goldschmidt <-> all six - no edge\"",
+     "finding": "The legacy register states that Goldschmidt has no energy model, so there is no object for an edge to the Hammond structural coordinate."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Hammond-Goldschmidt",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Hammond/Basic.lean",
+     "locator": "PhotoLean/Hammond/Basic.lean#tsCoord (line 37)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+     "locator": "PhotoLean/Goldschmidt/Basic.lean#tolFac (line 39)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Hammond' PhotoLean/Goldschmidt --include='*.lean'",
+     "purpose": "Search the Goldschmidt modules for a delivered Hammond statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Hammond --include='*.lean'",
+     "purpose": "Search the Hammond modules for a delivered Goldschmidt statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Hammond/*.lean | sort -u",
+     "purpose": "Measure the Hammond module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Hammond.Basic\nimport PhotoLean.Hammond.Criterion\nimport PhotoLean.Hammond.RatModel\nimport PhotoLean.Hammond.Sharp\nimport PhotoLean.Marcus.Basic\nimport PhotoLean.Marcus.RatModel\nimport PhotoLean.Marcus.Reorg"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+     "purpose": "Measure the Goldschmidt module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Goldschmidt.Basic\nimport PhotoLean.Goldschmidt.Criterion\nimport PhotoLean.Goldschmidt.RatModel\nimport PhotoLean.Goldschmidt.Rules"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Goldschmidt",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Hammond-Goldschmidt\ntheories: ['Hammond', 'Goldschmidt']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Hammond-Goldschmidt: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other coordinate.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Identify tsCoord with a normalized tolerance factor.",
+     "outcome": "The normalized tolerance factor would need a map from radii to (lam, x); no delivered statement supplies one."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "dimensionless-fraction analogy",
+     "statement": "tsCoord in [0, 1] versus tolFac = 1 at ideal packing",
+     "status": "rejected: both are dimensionless but their arguments are different types of quantity; no total map"
+    }
+   ],
+   "remainingGap": "A total map from (rA, rB, rO) to (lam, x) and a statement preserving the fractional coordinate reading are missing.",
+   "recomputeCommands": [
+    "grep -rn 'Hammond' PhotoLean/Goldschmidt --include='*.lean'",
+    "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Hammond --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Hammond/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Goldschmidt"
+   ],
+   "rationale": "The dimensionless coincidence is tempting but the quantities have different arguments and dimensions; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-BG-01",
+   "queryId": "Q-XD1-BG-01",
+   "pairId": "P-BEP-Goldschmidt",
+   "status": "outOfScope",
+   "scope": "scope-XD1-goldschmidt-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-BEP-PhotoLean-BEP-bepRadius",
+    "goldschmidt.conformance",
+    "stmt-BEP-PhotoLean-BEP-bepDefect",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "stmt-BEP-PhotoLean-BEP-EPConformsOnWindow"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GoldschmidtLatticeCtx (rA, rB, rO): no driving-force window",
+    "BEP window context (lam, tol): no ionic radius or lattice length"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§10 line 568 \"Goldschmidt <-> all six - no edge\"",
+     "finding": "The legacy register states that Goldschmidt has no energy model; the only BEP string in the Goldschmidt sources is the fidelity-script path in comments, not a declaration."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-BEP-Goldschmidt",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/BEP/Basic.lean",
+     "locator": "PhotoLean/BEP/Basic.lean#bepRadius (line 70)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+     "locator": "PhotoLean/Goldschmidt/Basic.lean#GoldschmidtConforms (line 64)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'BEP' PhotoLean/Goldschmidt --include='*.lean'",
+     "purpose": "Search the Goldschmidt modules for a delivered BEP statement.",
+     "result": "PhotoLean/Goldschmidt/Instances.lean:11:  `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G6`).\nPhotoLean/Goldschmidt/RatModel.lean:17:`python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G5`). The `Rat`\nPhotoLean/Goldschmidt/Sharp.lean:13:  `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G4`).\nPhotoLean/Goldschmidt/Rules.lean:24:`python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G2` reports all 18 G2\nPhotoLean/Goldschmidt/Criterion.lean:12:  `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G3`).\nPhotoLean/Goldschmidt/Basic.lean:11:  `python3 theories/BEP/probes/bep-fidelity.py --theory goldschmidt --milestone G1`)."
+    },
+    {
+     "command": "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/BEP --include='*.lean'",
+     "purpose": "Search the BEP modules for a delivered Goldschmidt statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/BEP/*.lean | sort -u",
+     "purpose": "Measure the BEP module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.BEP.RatModel\nimport PhotoLean.Hammond.Basic\nimport PhotoLean.Marcus.Basic"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+     "purpose": "Measure the Goldschmidt module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Goldschmidt.Basic\nimport PhotoLean.Goldschmidt.Criterion\nimport PhotoLean.Goldschmidt.RatModel\nimport PhotoLean.Goldschmidt.Rules"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-Goldschmidt",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-BEP-Goldschmidt\ntheories: ['BEP', 'Goldschmidt']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-BEP-Goldschmidt: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other tolerance object.",
+     "outcome": "The Goldschmidt hits for \"BEP\" are only the fidelity-script path in comments; no declaration or import."
+    },
+    {
+     "strategy": "Read bepRadius as a Goldschmidt band width.",
+     "outcome": "bepRadius has driving-force units and a sqrt(lam * tol) form; GoldschmidtConforms has a dimensionless radius ratio. No map."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "tolerance-interval analogy",
+     "statement": "bepRadius lam tol defines an energy window; GoldschmidtConforms defines a dimensionless radius band",
+     "status": "rejected: different dimensions and argument types; no dimensioned conversion"
+    }
+   ],
+   "remainingGap": "A dimensioned conversion between the BEP driving-force window and the Goldschmidt dimensionless band, and a material map from (lam, tol) to (rA, rB, rO), are missing.",
+   "recomputeCommands": [
+    "grep -rn 'BEP' PhotoLean/Goldschmidt --include='*.lean'",
+    "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/BEP --include='*.lean'",
+    "grep -h '^import ' PhotoLean/BEP/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-BEP-Goldschmidt"
+   ],
+   "rationale": "The shared word \"tolerance\" does not make a shared quantity; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-KG-01",
+   "queryId": "Q-XD1-KG-01",
+   "pairId": "P-Kasha-Goldschmidt",
+   "status": "outOfScope",
+   "scope": "scope-XD1-goldschmidt-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "kasha.kashaRule",
+    "goldschmidt.conformance",
+    "stmt-Kasha-PhotoLean-Kasha-radBranch",
+    "stmt-Kasha-PhotoLean-Kasha-decay",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GoldschmidtLatticeCtx (rA, rB, rO): no rate ladder or emission yield",
+    "Kasha ladder context (rad, ic : ℕ -> ℝ): no ionic radius or lattice length"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§10 line 568 \"Goldschmidt <-> all six - no edge\"",
+     "finding": "The legacy register states that Goldschmidt has no energy or ladder model, so there is no object for an edge to the Kasha cascade."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Kasha-Goldschmidt",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Kasha/Basic.lean",
+     "locator": "PhotoLean/Kasha/Basic.lean#KashaRule (line 119)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+     "locator": "PhotoLean/Goldschmidt/Basic.lean#GoldschmidtConforms (line 64)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Kasha' PhotoLean/Goldschmidt --include='*.lean'",
+     "purpose": "Search the Goldschmidt modules for a delivered Kasha statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Kasha --include='*.lean'",
+     "purpose": "Search the Kasha modules for a delivered Goldschmidt statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Kasha/*.lean | sort -u",
+     "purpose": "Measure the Kasha module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Kasha.Basic\nimport PhotoLean.Kasha.Criterion\nimport PhotoLean.Kasha.RatModel\nimport PhotoLean.Marcus.Basic"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+     "purpose": "Measure the Goldschmidt module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Goldschmidt.Basic\nimport PhotoLean.Goldschmidt.Criterion\nimport PhotoLean.Goldschmidt.RatModel\nimport PhotoLean.Goldschmidt.Rules"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-Goldschmidt",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Kasha-Goldschmidt\ntheories: ['Kasha', 'Goldschmidt']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Kasha-Goldschmidt: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Read the Kasha rule as a band condition on an energy gap.",
+     "outcome": "Even if a gap were introduced, Goldschmidt has no gap variable or energy model; the translation is not total."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "band-vs-ladder analogy",
+     "statement": "Goldschmidt band membership versus Kasha rule on a ladder of levels",
+     "status": "rejected: different variable types (three radii vs two sequences); no map"
+    }
+   ],
+   "remainingGap": "A total map from the Kasha ladder to the Goldschmidt radius triple and a statement identifying the band condition with the rule are missing.",
+   "recomputeCommands": [
+    "grep -rn 'Kasha' PhotoLean/Goldschmidt --include='*.lean'",
+    "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Kasha --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Kasha/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-Goldschmidt"
+   ],
+   "rationale": "The two statements have different variable types and no delivered contact; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-SG-01",
+   "queryId": "Q-XD1-SG-01",
+   "pairId": "P-Sabatier-Goldschmidt",
+   "status": "outOfScope",
+   "scope": "scope-XD1-goldschmidt-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-NearOptimal",
+    "goldschmidt.conformance",
+    "stmt-Sabatier-PhotoLean-Sabatier-apex",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-InBand",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-idealA",
+    "stmt-Sabatier-PhotoLean-Sabatier-sabatierZone"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GoldschmidtLatticeCtx (rA, rB, rO): no binding-energy descriptor",
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no radius or lattice"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§10 line 583 \"Goldschmidt <-> Sabatier - a look-alike of shape, with no edge\"",
+     "finding": "The legacy register records the symmetric-band and three-way-classifier shape coincidences and states that no theorem transfers: the scalars are a radius ratio versus a binding energy with no delivered map."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-Goldschmidt",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#NearOptimal (line 98)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+     "locator": "PhotoLean/Goldschmidt/Basic.lean#GoldschmidtConforms (line 64)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Sabatier' PhotoLean/Goldschmidt --include='*.lean'",
+     "purpose": "Search the Goldschmidt modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered Goldschmidt statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+     "purpose": "Measure the Goldschmidt module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Goldschmidt.Basic\nimport PhotoLean.Goldschmidt.Criterion\nimport PhotoLean.Goldschmidt.RatModel\nimport PhotoLean.Goldschmidt.Rules"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-Goldschmidt",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-Goldschmidt\ntheories: ['Sabatier', 'Goldschmidt']\nlegacy: label='absence' subtype='look-alike'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-Goldschmidt: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other scalar.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Try to transfer the Goldschmidt window equivalence to the Sabatier band.",
+     "outcome": "The algebraic window identity is available, but it is a shape identity on an unrelated scalar; the legacy §10 row rejects the transfer for exactly this reason."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "symmetric-band shape identity",
+     "statement": "NearOptimal tol apex dE <-> Goldschmidt.InBand (apex - tol) (apex + tol) dE",
+     "status": "rejected as a shape-only identity: it relates a band predicate on a binding energy to a band predicate on a radius ratio, with no map between the scalars"
+    }
+   ],
+   "remainingGap": "A total map from (rA, rB, rO) to dE and a statement preserving the band reading are missing; without them the interval identity is only a shape.",
+   "recomputeCommands": [
+    "grep -rn 'Sabatier' PhotoLean/Goldschmidt --include='*.lean'",
+    "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/Sabatier --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-Goldschmidt"
+   ],
+   "rationale": "This is the sharpest shape coincidence in the package, and the legacy register names it explicitly. The honest status is outOfScope, not certified; certifying the band identity would manufacture a relation for coverage."
+  },
+  {
+   "searchId": "SL-XD1-SKV-01",
+   "queryId": "Q-XD1-SKV-01",
+   "pairId": "P-Sabatier-KashaVavilov",
+   "status": "outOfScope",
+   "scope": "scope-XD1-sabatier-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+    "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+    "stmt-Kasha-PhotoLean-Kasha-radBranch",
+    "stmt-Sabatier-PhotoLean-Sabatier-branchUp"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no ladder index",
+    "Kasha-Vavilov ladder context (rad, ic : ℕ -> ℝ): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 942 \"KashaVavilov <-> Sabatier / Goldschmidt / SymmetryFactor - no edge\"",
+     "finding": "The legacy register states that the D2 predicates speak about yields and ladders; the volcano shares none of them."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-KashaVavilov",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#activity (line 78)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+     "locator": "PhotoLean/KashaVavilov/Basic.lean#SpecSame (line 72)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'KashaVavilov' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered KashaVavilov statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/KashaVavilov --include='*.lean'",
+     "purpose": "Search the KashaVavilov modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/KashaVavilov/*.lean | sort -u",
+     "purpose": "Measure the KashaVavilov module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Kasha.Basic\nimport PhotoLean.Kasha.Criterion\nimport PhotoLean.KashaVavilov.Basic\nimport PhotoLean.KashaVavilov.Criterion"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-KashaVavilov",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-KashaVavilov\ntheories: ['Sabatier', 'KashaVavilov']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-KashaVavilov: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Route the comparison through Kasha.marcusIC.",
+     "outcome": "Kasha.marcusIC is a Kasha/Marcus rate, not a KashaVavilov ladder statement; routing through it would change the endpoint pair."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "Arrhenius-template analogy",
+     "statement": "Sabatier.activity and Kasha.marcusIC both use exp(-barrier/(kB*T)), but Kasha.marcusIC is not an endpoint of the KashaVavilov pair",
+     "status": "rejected: the shared exponential is in a third theory and does not relate the two endpoint statements"
+    }
+   ],
+   "remainingGap": "A delivered map from the ladder index/spectral fraction to the catalytic descriptor, and a statement relating the activity to the spectral-same predicate, are missing.",
+   "recomputeCommands": [
+    "grep -rn 'KashaVavilov' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/KashaVavilov --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/KashaVavilov/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-KashaVavilov"
+   ],
+   "rationale": "The two theories have different index types and no delivered contact; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-SSV-01",
+   "queryId": "Q-XD1-SSV-01",
+   "pairId": "P-Sabatier-SternVolmer",
+   "status": "outOfScope",
+   "scope": "scope-XD1-sabatier-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "sternvolmer.intensityDyn",
+    "stmt-SternVolmer-PhotoLean-SternVolmer-KSV",
+    "stmt-Sabatier-PhotoLean-Sabatier-branchUp",
+    "stmt-Sabatier-PhotoLean-Sabatier-apex"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no quencher concentration",
+    "Stern-Volmer concentration context (k0, kq, q): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 945 \"SternVolmer <-> ... / Sabatier / ... - no edge\"",
+     "finding": "The legacy register states that the SV model has no energy surface, no descriptor axis and no geometry: it is a rate-parameter model over a concentration variable."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-SternVolmer",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#activity (line 78)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/SternVolmer/Basic.lean",
+     "locator": "PhotoLean/SternVolmer/Basic.lean#svRatioDyn (line 51)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'SternVolmer' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered SternVolmer statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/SternVolmer --include='*.lean'",
+     "purpose": "Search the SternVolmer modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/SternVolmer/*.lean | sort -u",
+     "purpose": "Measure the SternVolmer module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.SternVolmer.Basic\nimport PhotoLean.SternVolmer.Criterion\nimport PhotoLean.SternVolmer.RatModel"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-SternVolmer",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-SternVolmer\ntheories: ['Sabatier', 'SternVolmer']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-SternVolmer: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other variable.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Read the quencher concentration as the catalytic descriptor.",
+     "outcome": "The SV ratio is linear in q and the activity is exponential in dE; the reading is an assumption, not a delivered statement."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "real-function analogy",
+     "statement": "svRatioDyn k0 kq q and activity f kB T dE are both real-valued, but one is linear in q and the other exponential in dE",
+     "status": "rejected: different domains and functional forms; no delivered map"
+    }
+   ],
+   "remainingGap": "A delivered map from the quencher concentration to the catalytic descriptor and a statement identifying the SV slope with the volcano slope are missing.",
+   "recomputeCommands": [
+    "grep -rn 'SternVolmer' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/SternVolmer --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/SternVolmer/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-SternVolmer"
+   ],
+   "rationale": "The SV model is a concentration-axis rate-parameter model; the volcano is a descriptor-axis barrier model. The legacy register records no edge, so outOfScope is the honest status."
+  },
+  {
+   "searchId": "SL-XD1-SQY-01",
+   "queryId": "Q-XD1-SQY-01",
+   "pairId": "P-Sabatier-QuantumYield",
+   "status": "outOfScope",
+   "scope": "scope-XD1-sabatier-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+    "stmt-QuantumYield-PhotoLean-QuantumYield-totalRate",
+    "stmt-Sabatier-PhotoLean-Sabatier-VolcanoDescriptor",
+    "stmt-Sabatier-PhotoLean-Sabatier-apex"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no channel index",
+    "QuantumYield channel context (k : Fin n -> ℝ, i : Fin n): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 948 \"QuantumYield <-> ... / Sabatier / ... - no edge\"",
+     "finding": "The legacy register states that the parallel-channel calculus is purely algebraic; the energy-side theories enter only through specific channel rates."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-QuantumYield",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#activity (line 78)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/QuantumYield/Basic.lean",
+     "locator": "PhotoLean/QuantumYield/Basic.lean#yieldOf (line 44)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'QuantumYield' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered QuantumYield statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/QuantumYield --include='*.lean'",
+     "purpose": "Search the QuantumYield modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/QuantumYield/*.lean | sort -u",
+     "purpose": "Measure the QuantumYield module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.QuantumYield.Basic\nimport PhotoLean.QuantumYield.RatModel"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-QuantumYield",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-QuantumYield\ntheories: ['Sabatier', 'QuantumYield']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-QuantumYield: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Embed the activity as one channel of a two-channel yield.",
+     "outcome": "That would require a declared competing channel and a normalization statement; neither is delivered, and the construction would be forced."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "rate-vs-yield analogy",
+     "statement": "activity is an unnormalized rate; yieldOf is a normalized branch probability",
+     "status": "rejected: different observables; no declared channel set containing the catalytic step"
+    }
+   ],
+   "remainingGap": "A declared channel set containing the catalytic step and a statement identifying the activity with the numerator of the yield are missing.",
+   "recomputeCommands": [
+    "grep -rn 'QuantumYield' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/QuantumYield --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/QuantumYield/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-QuantumYield"
+   ],
+   "rationale": "A yield and an activity are different observables; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-SFP-01",
+   "queryId": "Q-XD1-SFP-01",
+   "pairId": "P-Sabatier-FluorPhos",
+   "status": "outOfScope",
+   "scope": "scope-XD1-sabatier-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+    "stmt-FluorPhos-PhotoLean-FluorPhos-s1Decay",
+    "stmt-FluorPhos-PhotoLean-FluorPhos-iscBranch",
+    "stmt-Sabatier-PhotoLean-Sabatier-apex"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no channel set",
+    "FluorPhos channel context (kF, kISC, kIC): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 952 \"FluorPhos <-> ... - no edge except through QuantumYield\"",
+     "finding": "The legacy register states that the competition layer's objects are branch probabilities and its contacts run through the QuantumYield spine."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-FluorPhos",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#activity (line 78)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/FluorPhos/Basic.lean",
+     "locator": "PhotoLean/FluorPhos/Basic.lean#phiF (line 51)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'FluorPhos' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered FluorPhos statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/FluorPhos --include='*.lean'",
+     "purpose": "Search the FluorPhos modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/FluorPhos/*.lean | sort -u",
+     "purpose": "Measure the FluorPhos module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.FluorPhos.Basic\nimport PhotoLean.FluorPhos.Criterion\nimport PhotoLean.FluorPhos.RatModel"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-FluorPhos",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-FluorPhos\ntheories: ['Sabatier', 'FluorPhos']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-FluorPhos: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Set the activity as the radiative channel of the FluorPhos yield.",
+     "outcome": "That would require declaring the catalytic step as a photophysical channel and a competing ISC/IC set; neither is delivered."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "branch-probability analogy",
+     "statement": "phiF is a normalized three-channel branch; activity is an unnormalized rate",
+     "status": "rejected: different observables; no delivered channel identification"
+    }
+   ],
+   "remainingGap": "A delivered statement identifying the catalytic step with a photophysical channel and a corresponding channel set is missing.",
+   "recomputeCommands": [
+    "grep -rn 'FluorPhos' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/FluorPhos --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/FluorPhos/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-FluorPhos"
+   ],
+   "rationale": "The two statements are a branch probability and a turnover rate; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-SEG-01",
+   "queryId": "Q-XD1-SEG-01",
+   "pairId": "P-Sabatier-EnergyGapLaw",
+   "status": "unresolved",
+   "scope": "scope-XD1-sabatier-egl-candidate",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-parabolicBarrier",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+    "stmt-Sabatier-PhotoLean-Sabatier-parabolaDown",
+    "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+    "stmt-Sabatier-PhotoLean-Sabatier-apexPar"
+   ],
+   "searchedKinds": [
+    "implication",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "SabatierEglCandidateCtx (lam1, lam2, dE): a candidate two-parabola context",
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no optical gap",
+    "EnergyGapLaw gap context (lam, x): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 991 \"EnergyGapLaw <-> Sabatier / ... - no edge\"",
+     "finding": "The legacy register states that the delivered EnergyGapLaw links are the kernel and Marcus pins, the Kasha ordering row, the Hammond boundary row, and the StokesShift and ICvsISC rows; none of the partner scalars occurs in the EnergyGapLaw statements."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-EnergyGapLaw",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Compose.lean",
+     "locator": "PhotoLean/Sabatier/Compose.lean#parabolicBarrier (line 75)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+     "locator": "PhotoLean/EnergyGapLaw/Basic.lean#nrBarrier (line 62)",
+     "finding": "The target endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+     "locator": "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierStrongBranch_eq_eglBarrier",
+     "finding": "Candidate identity checked in the local probe; it carries only propext, Classical.choice and Quot.sound, but it is not used as a certified outcome because the chemical identification is missing."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'EnergyGapLaw' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered EnergyGapLaw statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/EnergyGapLaw --include='*.lean'",
+     "purpose": "Search the EnergyGapLaw modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/EnergyGapLaw/*.lean | sort -u",
+     "purpose": "Measure the EnergyGapLaw module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.EnergyGapLaw.Basic\nimport PhotoLean.EnergyGapLaw.Criterion\nimport PhotoLean.EnergyGapLaw.RatModel\nimport PhotoLean.EnergyGapLaw.Sharp\nimport PhotoLean.Kernel\nimport PhotoLean.Marcus.Basic"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-EnergyGapLaw",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-EnergyGapLaw\ntheories: ['Sabatier', 'EnergyGapLaw']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-EnergyGapLaw: status='notEstablished' kind=None certificate=None"
+    },
+    {
+     "command": "grep -rn 'nrBarrier\\|eact' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for the energy-gap barrier or the BEP barrier.",
+     "result": "PhotoLean/Sabatier/Compose.lean:10:`BEP.eact lam x = (lam - x) ^ 2 / (4 * lam)`, produces the two-parabola volcano\nPhotoLean/Sabatier/Compose.lean:12:  `parabolaUp lam1 dE   = BEP.eact lam1 (-dE)`   (the branch penalized by weak binding),\nPhotoLean/Sabatier/Compose.lean:13:  `parabolaDown lam2 dE = BEP.eact lam2 dE`      (the reverse step),\nPhotoLean/Sabatier/Compose.lean:22:2. each tangent line lies below its parabola (`bepLine_le_eact`), so the linear volcano is a\nPhotoLean/Sabatier/Compose.lean:64:whose reaction energy is the descriptor `dE` (`PhotoLean.BEP.eact` at driving force `-dE`).\nPhotoLean/Sabatier/Compose.lean:66:noncomputable def parabolaUp (lam1 dE : ℝ) : ℝ := BEP.eact lam1 (-dE)\nPhotoLean/Sabatier/Compose.lean:69:(`PhotoLean.BEP.eact` at driving force `dE`). (plan §7) -/\nPhotoLean/Sabatier/Compose.lean:70:noncomputable def parabolaDown (lam2 dE : ℝ) : ℝ := BEP.eact lam2 dE\nPhotoLean/Sabatier/Compose.lean:91:  unfold parabolaUp BEP.eact\nPhotoLean/Sabatier/Compose.lean:114:theorem bepLine_le_eact {lam : ℝ} (hlam : 0 < lam) (x : ℝ) :\nPhotoLean/Sabatier/Compose.lean:115:    BEP.bepLine lam x ≤ BEP.eact lam x := by\nPhotoLean/Sabatier/Compose.lean:116:  have h : BEP.eact lam x - BEP.bepLine lam x = x ^ 2 / (4 * lam) := by\nPhotoLean/Sabatier/Compose.lean:117:    unfold BEP.eact BEP.bepLine\nPhotoLean/Sabatier/Compose.lean:125:`bepLine_le_eact`, taken at the driving forces `-dE` (ascending step) and `dE` (reverse step).\nPhotoLean/Sabatier/Compose.lean:132:    (le_trans (bepLine_le_eact h1 (-dE)) (le_max_left _ _))\nPhotoLean/Sabatier/Compose.lean:133:    (le_trans (bepLine_le_eact h2 dE) (le_max_right _ _))\nPhotoLean/Sabatier/Compose.lean:140:  unfold parabolaUp parabolaDown apexPar BEP.eact\nPhotoLean/Sabatier/Compose.lean:286:model (`BEP.eact_at_zero`). (plan §7) -/\nPhotoLean/Sabatier/Compose.lean:291:  rw [BEP.eact_at_zero h.ne', neg_zero, BEP.eact_at_zero h.ne', max_self]\nPhotoLean/Sabatier/Instances.lean:268:  simp only [parabolicBarrier, parabolaUp, parabolaDown, BEP.eact]"
+    },
+    {
+     "command": "grep -rn 'parabola\\|parabolicBarrier\\|Sabatier' PhotoLean/EnergyGapLaw --include='*.lean'",
+     "purpose": "Search the EnergyGapLaw modules for a Sabatier or parabolic-barrier statement.",
+     "result": "PhotoLean/EnergyGapLaw/Basic.lean:5:`PhotoLean.Kernel` carries the single definitions of the two-parabola family (barrier, reverse"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a delivered statement mentioning the other barrier.",
+     "outcome": "No matches; the delivered imports are disjoint (Sabatier imports BEP; EnergyGapLaw imports Kernel and Marcus)."
+    },
+    {
+     "strategy": "Prove the descending-branch identity and try to lift it to the effective barrier.",
+     "outcome": "The branch identity is a kernel rfl (probe), but the effective barrier is a maximum of two branches; lifting it needs the branch-dominance side condition and the dE = x identification, neither delivered."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; the legacy §16 row calls the shared barrier a shape edge with no theorem transfer."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "kernel branch identity",
+     "statement": "parabolaDown lam2 dE = nrBarrier lam2 dE (checked in probes/XD1-probe.lean)",
+     "status": "checked formula identity; not admitted as a chemical relation because it is one branch and does not identify the two processes"
+    },
+    {
+     "kind": "Arrhenius rate-law substitution",
+     "statement": "activity (fun y => nrBarrier lam y) kB T x = nrRate 1 lam kB T x",
+     "status": "rejected as a shape-only identity: an Arrhenius shape alone does not identify a reaction barrier with an optical parameter"
+    }
+   ],
+   "remainingGap": "A delivered statement that the strong-binding branch is rate-limiting and that the catalytic descriptor is the optical gap x; the kernel branch identity alone is a shape edge, not a chemical relation.",
+   "recomputeCommands": [
+    "grep -rn 'EnergyGapLaw' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/EnergyGapLaw --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/EnergyGapLaw/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-EnergyGapLaw"
+   ],
+   "rationale": "The branch identity is genuine and checked, which is why the pair is unresolved rather than outOfScope; the chemical identification is missing, which is why it is not certified."
+  },
+  {
+   "searchId": "SL-XD1-SSS-01",
+   "queryId": "Q-XD1-SSS-01",
+   "pairId": "P-Sabatier-StokesShift",
+   "status": "unresolved",
+   "scope": "scope-XD1-sabatier-stokes-candidate",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-parabolicBarrier",
+    "stmt-StokesShift-PhotoLean-StokesShift-stokesShift",
+    "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+    "stmt-Sabatier-PhotoLean-Sabatier-apexBarrier",
+    "stmt-StokesShift-PhotoLean-StokesShift-s1Surface"
+   ],
+   "searchedKinds": [
+    "implication",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "SabatierStokesCandidateCtx (lam, e00): a candidate displaced-harmonic context",
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no optical e00",
+    "StokesShift surface context (lam, e00, q): no catalytic branch"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 996 \"StokesShift <-> ... / Sabatier / ... - no edge\"",
+     "finding": "The legacy register states that the StokesShift surfaces are kernel copies and the content is band positions; no rate, line law, descriptor, curvature pair or radius occurs in a StokesShift row."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-StokesShift",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Compose.lean",
+     "locator": "PhotoLean/Sabatier/Compose.lean#parabolicBarrier (line 75)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/StokesShift/Basic.lean",
+     "locator": "PhotoLean/StokesShift/Basic.lean#stokesShift (line 83)",
+     "finding": "The target endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+     "locator": "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierSymmetricApex_eq_stokesEighth",
+     "finding": "Candidate identity checked in the local probe; it carries only propext, Classical.choice and Quot.sound, but it is not used as a certified outcome because the chemical identification is missing."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'StokesShift' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered StokesShift statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/StokesShift --include='*.lean'",
+     "purpose": "Search the StokesShift modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/StokesShift/*.lean | sort -u",
+     "purpose": "Measure the StokesShift module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Kernel\nimport PhotoLean.Marcus.Basic\nimport PhotoLean.StokesShift.Basic\nimport PhotoLean.StokesShift.RatModel"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-StokesShift",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-StokesShift\ntheories: ['Sabatier', 'StokesShift']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-StokesShift: status='notEstablished' kind=None certificate=None"
+    },
+    {
+     "command": "grep -rn 'stokesShift\\|emEnergy\\|StokesShift' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a Stokes-shift or emission-energy statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|parabolicBarrier\\|apexBarrier' PhotoLean/StokesShift --include='*.lean'",
+     "purpose": "Search the StokesShift modules for a Sabatier or volcano-barrier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches; the delivered imports are disjoint (Sabatier imports BEP; StokesShift imports Kernel and Marcus)."
+    },
+    {
+     "strategy": "Prove the symmetric-apex one-eighth identity and try to read it as a bridge.",
+     "outcome": "The identity is a kernel calculation, but it assumes the optical and catalytic reorganization energies are the same; no delivered statement makes that identification."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; the legacy §16 row registers no edge."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "symmetric-apex identity",
+     "statement": "parabolicBarrier lam lam 0 = stokesShift lam e00 / 8 (checked in probes/XD1-probe.lean)",
+     "status": "checked formula identity; not admitted as a chemical relation because the two reorganization energies are not identified"
+    },
+    {
+     "kind": "shared reorganization-energy analogy",
+     "statement": "both theories use a symbol named lam for a reorganization energy",
+     "status": "rejected: shared notation is not a shared statement or a delivered identification"
+    }
+   ],
+   "remainingGap": "A statement-level identification of the optical reorganization energy with the catalytic reorganization energy; without it the one-eighth identity is a formula coincidence, not a chemical relation.",
+   "recomputeCommands": [
+    "grep -rn 'StokesShift' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/StokesShift --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/StokesShift/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-StokesShift"
+   ],
+   "rationale": "The identity is genuine and checked, which is why the pair is unresolved rather than outOfScope; the reorganization-energy identification is missing, which is why it is not certified."
+  },
+  {
+   "searchId": "SL-XD1-SIC-01",
+   "queryId": "Q-XD1-SIC-01",
+   "pairId": "P-Sabatier-ICvsISC",
+   "status": "unresolved",
+   "scope": "scope-XD1-sabatier-ic-candidate",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+    "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+    "stmt-Sabatier-PhotoLean-Sabatier-VolcanoDescriptor",
+    "stmt-ICvsISC-PhotoLean-ICvsISC-iscRate"
+   ],
+   "searchedKinds": [
+    "implication",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "SabatierIcCandidateCtx (A, lam, kB, T, x): a candidate rate-law context",
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no FC barrier",
+    "ICvsISC channel context (AI, AS, lamI, lamS, kB, T): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 1001 \"ICvsISC <-> ... / Sabatier / ... - no edge\"",
+     "finding": "The legacy register states that the FC-barrier/spin-discount content names none of the partner scalars; its contacts are the kernel/Marcus pins, the EnergyGapLaw rate identity and the RACI row."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-ICvsISC",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#activity (line 78)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/ICvsISC/Basic.lean",
+     "locator": "PhotoLean/ICvsISC/Basic.lean#icRate (line 72)",
+     "finding": "The target endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+     "locator": "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierActivity_eq_icRate",
+     "finding": "Candidate identity checked in the local probe; it carries only propext, Classical.choice and Quot.sound, but it is not used as a certified outcome because the chemical identification is missing."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'ICvsISC' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered ICvsISC statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/ICvsISC --include='*.lean'",
+     "purpose": "Search the ICvsISC modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/ICvsISC/*.lean | sort -u",
+     "purpose": "Measure the ICvsISC module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.ICvsISC.Basic\nimport PhotoLean.ICvsISC.RatModel\nimport PhotoLean.Kernel\nimport PhotoLean.Marcus.Basic"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-ICvsISC",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-ICvsISC\ntheories: ['Sabatier', 'ICvsISC']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-ICvsISC: status='notEstablished' kind=None certificate=None"
+    },
+    {
+     "command": "grep -rn 'icRate\\|fcBarrier\\|ICvsISC' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for an IC rate or FC barrier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|activity\\|VolcanoDescriptor' PhotoLean/ICvsISC --include='*.lean'",
+     "purpose": "Search the ICvsISC modules for a Sabatier activity statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches; the delivered imports are disjoint (Sabatier imports BEP; ICvsISC imports Kernel and Marcus)."
+    },
+    {
+     "strategy": "Prove the rate-law identity and try to read it as a chemical bridge.",
+     "outcome": "The identity is a substitution of fcBarrier into activity; it does not identify the IC channel with the catalytic step, so it is a shape-level relation."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; the legacy §16 row registers no edge."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "rate-law identity",
+     "statement": "icRate A lam kB T x = A * activity (fun y => fcBarrier lam y) kB T x (checked in probes/XD1-probe.lean)",
+     "status": "checked formula identity; not admitted as a chemical relation because it is only an Arrhenius substitution and does not identify the two processes"
+    },
+    {
+     "kind": "spin-discount analogy",
+     "statement": "the IC channel is one branch of a two-channel decay, like the volcano has two branches",
+     "status": "rejected: branch-count similarity is not a shared scalar or a delivered statement"
+    }
+   ],
+   "remainingGap": "A statement-level identification of the IC channel and FC barrier with the catalytic step and volcano barrier; the rate-law identity alone is shape-level.",
+   "recomputeCommands": [
+    "grep -rn 'ICvsISC' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/ICvsISC --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/ICvsISC/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-ICvsISC"
+   ],
+   "rationale": "The rate-law identity is genuine and checked, which is why the pair is unresolved rather than outOfScope; the process identification is missing, which is why it is not certified."
+  },
+  {
+   "searchId": "SL-XD1-SF-01",
+   "queryId": "Q-XD1-SF-01",
+   "pairId": "P-Sabatier-Forster",
+   "status": "outOfScope",
+   "scope": "scope-XD1-sabatier-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "stmt-Forster-PhotoLean-Forster-fretRate",
+    "stmt-Forster-PhotoLean-Forster-fretEff6",
+    "stmt-Forster-PhotoLean-Forster-r0six",
+    "stmt-Sabatier-PhotoLean-Sabatier-apex"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no separation",
+    "Forster transfer context (tauD, r6, R): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 964 \"Forster <-> ... / Sabatier / ... - no edge\"",
+     "finding": "The legacy register states that the transfer geometry shares no scalar with the energy-surface family; the SV and Goldschmidt look-alikes are shape registrations, not edges."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-Forster",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#activity (line 78)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/Forster/Basic.lean",
+     "locator": "PhotoLean/Forster/Basic.lean#fretRate (line 54)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Forster' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered Forster statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/Forster --include='*.lean'",
+     "purpose": "Search the Forster modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Forster/*.lean | sort -u",
+     "purpose": "Measure the Forster module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Forster.Basic\nimport PhotoLean.Forster.Criterion\nimport PhotoLean.Forster.RatModel"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-Forster",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-Forster\ntheories: ['Sabatier', 'Forster']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-Forster: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Read the donor-acceptor separation as the catalytic descriptor.",
+     "outcome": "The transfer rate is inverse-sixth-power in R and the activity is exponential in dE; the reading is an assumption, not a delivered statement."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "real-valued-rate analogy",
+     "statement": "fretRate and activity are both rates, but one is R^-6 and the other is exp(-barrier/kBT)",
+     "status": "rejected: different functional forms and domains; no delivered map"
+    }
+   ],
+   "remainingGap": "A delivered map from the donor-acceptor separation to the catalytic descriptor and a statement identifying the transfer rate with the turnover are missing.",
+   "recomputeCommands": [
+    "grep -rn 'Forster' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/Forster --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/Forster/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-Forster"
+   ],
+   "rationale": "The transfer geometry and the volcano descriptor axis share no scalar; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-SE-01",
+   "queryId": "Q-XD1-SE-01",
+   "pairId": "P-Sabatier-Einstein",
+   "status": "outOfScope",
+   "scope": "scope-XD1-sabatier-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "stmt-Einstein-PhotoLean-Einstein-tauR",
+    "stmt-Einstein-PhotoLean-Einstein-aOfB",
+    "stmt-Einstein-PhotoLean-Einstein-radFactor",
+    "stmt-Sabatier-PhotoLean-Sabatier-apex"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "Sabatier descriptor context (alphaA, betaA, alphaB, betaB, dE): no radiative lifetime",
+    "Einstein radiative context (A, K, B21): no catalytic descriptor"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§16 line 969 \"Einstein <-> ... / Sabatier / ... - no edge\"",
+     "finding": "The legacy register states that the radiative conversions' only machine contact is the QuantumYield anchor; the J-integral link to Forster is a modelling premise."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-Einstein",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "PhotoLean/Sabatier/Basic.lean#activity (line 78)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/Einstein/Basic.lean",
+     "locator": "PhotoLean/Einstein/Basic.lean#tauR (line 65)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Einstein' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered Einstein statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/Einstein --include='*.lean'",
+     "purpose": "Search the Einstein modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+     "purpose": "Measure the Sabatier module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Basic\nimport PhotoLean.Sabatier.Basic\nimport PhotoLean.Sabatier.Compose\nimport PhotoLean.Sabatier.RatModel\nimport PhotoLean.Sabatier.Sharp"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Einstein/*.lean | sort -u",
+     "purpose": "Measure the Einstein module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Einstein.Basic\nimport PhotoLean.Einstein.Criterion\nimport PhotoLean.Einstein.RatModel"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-Einstein",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-Einstein\ntheories: ['Sabatier', 'Einstein']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Sabatier-Einstein: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "No matches in either direction; the imports are disjoint."
+    },
+    {
+     "strategy": "Set the catalytic rate to the Einstein A coefficient.",
+     "outcome": "That would require a statement identifying the catalytic step with the radiative transition; neither authority supplies it."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "rate-vs-lifetime analogy",
+     "statement": "activity is an Arrhenius rate and tauR is the reciprocal of a radiative rate",
+     "status": "rejected: different observables and arguments; no delivered map"
+    }
+   ],
+   "remainingGap": "A delivered statement identifying the catalytic rate with the radiative A coefficient and the volcano barrier with the transition energy is missing.",
+   "recomputeCommands": [
+    "grep -rn 'Einstein' PhotoLean/Sabatier --include='*.lean'",
+    "grep -rn 'Sabatier\\|VolcanoDescriptor\\|activity' PhotoLean/Einstein --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Sabatier/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/Einstein/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-Einstein"
+   ],
+   "rationale": "The radiative lifetime and the catalytic turnover are different observables; the legacy register records no edge. The honest status is outOfScope."
+  },
+  {
+   "searchId": "SL-XD1-GSF-01",
+   "queryId": "Q-XD1-GSF-01",
+   "pairId": "P-Goldschmidt-SymmetryFactor",
+   "status": "outOfScope",
+   "scope": "scope-XD1-goldschmidt-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-idealA",
+    "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-CrossesAtThermoneutral",
+    "symmetry.betaHalfReading"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "definitionalIdentity",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GoldschmidtLatticeCtx (rA, rB, rO): no curvature pair",
+    "SymmetryFactor curvature context (kr, kp): no ionic radius or lattice length"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§10 line 603 \"SymmetryFactor <-> Kasha, Sabatier, Goldschmidt - no edge\"",
+     "finding": "The legacy register states that the curvature-pair scalar (kr, kp) shares no object with the ladder, the volcano descriptor axis or the ionic radii."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-SymmetryFactor",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it is coverage history, not an audit verdict."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+     "locator": "PhotoLean/Goldschmidt/Basic.lean#tolFac (line 39)",
+     "finding": "The source endpoint declaration consumed by the query."
+    },
+    {
+     "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+     "locator": "PhotoLean/SymmetryFactor/Basic.lean#tsCoordZero (line 57)",
+     "finding": "The target endpoint declaration consumed by the query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'SymmetryFactor' PhotoLean/Goldschmidt --include='*.lean'",
+     "purpose": "Search the Goldschmidt modules for a delivered SymmetryFactor statement.",
+     "result": "No matches (grep exit 1; no stdout)."
+    },
+    {
+     "command": "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/SymmetryFactor --include='*.lean'",
+     "purpose": "Search the SymmetryFactor modules for a delivered Goldschmidt statement.",
+     "result": "PhotoLean/SymmetryFactor/RatModel.lean:9:(the Goldschmidt \"push the root into exact rational squares\" pattern). The cast bridges\nPhotoLean/SymmetryFactor/RatModel.lean:34:layer (the Goldschmidt √-free-squares pattern). -/"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+     "purpose": "Measure the Goldschmidt module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.Goldschmidt.Basic\nimport PhotoLean.Goldschmidt.Criterion\nimport PhotoLean.Goldschmidt.RatModel\nimport PhotoLean.Goldschmidt.Rules"
+    },
+    {
+     "command": "grep -h '^import ' PhotoLean/SymmetryFactor/*.lean | sort -u",
+     "purpose": "Measure the SymmetryFactor module dependencies.",
+     "result": "import Mathlib\nimport PhotoLean.BEP.Criterion\nimport PhotoLean.Kernel\nimport PhotoLean.SymmetryFactor.Basic\nimport PhotoLean.SymmetryFactor.Criterion\nimport PhotoLean.SymmetryFactor.RatModel\nimport PhotoLean.SymmetryFactor.Sharp"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-SymmetryFactor",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Goldschmidt-SymmetryFactor\ntheories: ['Goldschmidt', 'SymmetryFactor']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\ndispositions:\n  (none; the pair is not named by the 78-row disposition ledger)\nfragments:\n  (none)\nregistry records:\n  rec-notestablished-P-Goldschmidt-SymmetryFactor: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search both authorities for a statement mentioning the other object.",
+     "outcome": "The only Goldschmidt string in SymmetryFactor is a RatModel comment about the rational-square pattern; no declaration or import."
+    },
+    {
+     "strategy": "Read the curvature pair as ionic radii.",
+     "outcome": "kr and kp are potential curvatures; rA, rB, rO are lengths. The reading has no total map or delivered statement."
+    },
+    {
+     "strategy": "Recompute the legacy disposition.",
+     "outcome": "One pair-level notEstablished anchor; no named query or certificate."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "square-root-ratio analogy",
+     "statement": "tolFac has a sqrt 2 denominator; tsCoordZero has sqrt kr and sqrt kp",
+     "status": "rejected: both are square-root ratios but of different quantities; the only contact is a comment about a rational-square proof pattern"
+    }
+   ],
+   "remainingGap": "A total map from (rA, rB, rO) to (kr, kp) and a statement preserving the crossing-coordinate reading are missing.",
+   "recomputeCommands": [
+    "grep -rn 'SymmetryFactor' PhotoLean/Goldschmidt --include='*.lean'",
+    "grep -rn 'Goldschmidt\\|tolFac\\|GoldschmidtConforms' PhotoLean/SymmetryFactor --include='*.lean'",
+    "grep -h '^import ' PhotoLean/Goldschmidt/*.lean | sort -u",
+    "grep -h '^import ' PhotoLean/SymmetryFactor/*.lean | sort -u",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-SymmetryFactor"
+   ],
+   "rationale": "The square-root shape is an algebraic analogy; the legacy register records no edge. The honest status is outOfScope."
+  }
+ ],
+ "counts": {
+  "entries": 15,
+  "byStatus": {
+   "outOfScope": 12,
+   "unresolved": 3
+  }
+ },
+ "nonClaims": [
+  "A search-log entry records a bounded search, not a completeness claim over the corpus.",
+  "A notEstablished or outOfScope legacy label is census metadata, not an audit verdict.",
+  "Candidate identities checked in the local probe are not certified outcomes."
+ ]
+}

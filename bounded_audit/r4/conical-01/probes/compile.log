@@ -1,0 +1,12 @@
+'PhotoLean.RelationAudit.BoundedAudit.CI.marcusRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge' depends on axioms: [propext, Classical.choice, Quot.sound]

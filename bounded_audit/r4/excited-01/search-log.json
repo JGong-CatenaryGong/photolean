@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-search-log",
+  "round": "R4",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "R4-E1-EXCITED-01",
+    "r1WorkPackage": "WP-excited-state-kinetics-01",
+    "pairIds": [
+      "P-Hammond-Kasha",
+      "P-Hammond-KashaVavilov",
+      "P-Hammond-SternVolmer",
+      "P-Hammond-QuantumYield",
+      "P-Hammond-FluorPhos",
+      "P-Hammond-EnergyGapLaw",
+      "P-Hammond-StokesShift",
+      "P-Hammond-ICvsISC",
+      "P-Hammond-Forster",
+      "P-Hammond-Einstein",
+      "P-BEP-Kasha",
+      "P-BEP-KashaVavilov",
+      "P-BEP-SternVolmer",
+      "P-BEP-QuantumYield",
+      "P-BEP-FluorPhos",
+      "P-BEP-EnergyGapLaw"
+    ],
+    "pairCount": 16
+  },
+  "snapshot": "snap-bounded-audit-2026-11-04",
+  "entries": [
+    {
+      "searchId": "SL-R4-E1-HKV-01",
+      "queryId": "Q-R4-E1-HKV-01",
+      "pairId": "P-Hammond-KashaVavilov",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+        "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+        "kasha.kashaWithin"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "HammondKashaVavilovCandidateCtx (lam, x, rad, ic, N); no total map from a ladder level or rate to a driving force"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 939",
+          "finding": "KashaVavilov ↔ Marcus / Hammond / BEP — no edge: the D2 layer is about branching laws of the ladder, not barriers or coordinates; its only contact with the two-parabola family runs through Kasha §7 (Kasha.marcusIC)."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+          "locator": "PhotoLean/KashaVavilov/Basic.lean#SpecSame",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Hammond-KashaVavilov",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/KashaVavilov --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/KashaVavilov/Basic.lean:39 (a fidelity-script path inside a comment); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/KashaVavilov --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/KashaVavilov/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.Kasha.Basic; PhotoLean.Kasha.Criterion; PhotoLean.KashaVavilov.Basic; PhotoLean.KashaVavilov.Criterion."
+        },
+        {
+          "command": "grep -rn 'KashaVavilov' PhotoLean/Hammond --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-KashaVavilov",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-Hammond-KashaVavilov' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'KashaVavilov' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 939: KashaVavilov ↔ Marcus / Hammond / BEP — no edge: the D2 layer is about branching laws of the ladder, not barriers or coordinates; its only contact with the two-parabola family runs through Kasha §7 (Kasha.marcusIC)."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the KashaVavilov modules for a delivered theorem mentioning a barrier, tsCoord, gapReactant, or eact.",
+          "outcome": "No matches; the module contains no barrier symbol."
+        },
+        {
+          "strategy": "Try the Kasha §7 composition: identify ic with Kasha.marcusIC at the Hammond barrier and carry the Kasha window criterion to SpecSame.",
+          "outcome": "The first step is a modelling premise, and no delivered theorem connects SpecSame to KashaWithin; the composition is not delivered."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate for the pair.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "KashaVavilov.SpecSame rad ic M N plus ic = Kasha.marcusIC A lam kB T x would make spectral agreement a statement about the Hammond barrier window.",
+          "status": "candidate only; no delivered conditional composition."
+        }
+      ],
+      "remainingGap": "A delivered conditional composition that (i) identifies the ladder S2→S1 ic with Kasha.marcusIC at the Hammond barrier and (ii) carries the Kasha window criterion to SpecSame is missing; KashaVavilov's ladder rates are free functions.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/KashaVavilov --include='*.lean'",
+        "grep -h '^import' PhotoLean/KashaVavilov/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-KashaVavilov"
+      ],
+      "rationale": "The legacy register records no edge and names Kasha §7 as the only contact. A candidate composition remains, so the honest status is unresolved, not refuted and not a forced edge."
+    },
+    {
+      "searchId": "SL-R4-E1-BKV-01",
+      "queryId": "Q-R4-E1-BKV-01",
+      "pairId": "P-BEP-KashaVavilov",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-BEP-PhotoLean-BEP-eact",
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+        "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+        "kasha.kashaWithin"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "BepKashaVavilovCandidateCtx (lam, x, rad, ic, N); no total map from a ladder level or rate to a driving force"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 939",
+          "finding": "KashaVavilov ↔ Marcus / Hammond / BEP — no edge: the D2 layer is about branching laws of the ladder, not barriers or coordinates; its only contact with the two-parabola family runs through Kasha §7 (Kasha.marcusIC)."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+          "locator": "PhotoLean/KashaVavilov/Basic.lean#SpecSame",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-BEP-KashaVavilov",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/KashaVavilov --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/KashaVavilov/Basic.lean:39 (a fidelity-script path inside a comment); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/KashaVavilov --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/KashaVavilov/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.Kasha.Basic; PhotoLean.Kasha.Criterion; PhotoLean.KashaVavilov.Basic; PhotoLean.KashaVavilov.Criterion."
+        },
+        {
+          "command": "grep -rn 'KashaVavilov' PhotoLean/BEP --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-KashaVavilov",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-BEP-KashaVavilov' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'KashaVavilov' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 939: KashaVavilov ↔ Marcus / Hammond / BEP — no edge: the D2 layer is about branching laws of the ladder, not barriers or coordinates; its only contact with the two-parabola family runs through Kasha §7 (Kasha.marcusIC)."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the KashaVavilov modules for a delivered BEP activation-energy statement.",
+          "outcome": "No matches; the module contains no barrier or eact symbol."
+        },
+        {
+          "strategy": "Try a conditional composition: identify ic with an Arrhenius rate over BEP.eact, then carry the Vavilov predicate.",
+          "outcome": "The identification is a modelling premise and no delivered theorem connects SpecSame to a BEP window; the composition is not delivered."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate for the pair.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "KashaVavilov.SpecSame rad ic M N plus ic = A exp(-BEP.eact lam x/(kB T)) would make spectral agreement a statement about the BEP barrier.",
+          "status": "candidate only; no delivered conditional composition."
+        }
+      ],
+      "remainingGap": "A delivered conditional composition that (i) identifies the ladder S2→S1 ic with an Arrhenius rate over BEP.eact and (ii) carries the Vavilov predicate is missing; the ladder rates are free functions.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/KashaVavilov --include='*.lean'",
+        "grep -h '^import' PhotoLean/KashaVavilov/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-BEP-KashaVavilov"
+      ],
+      "rationale": "The legacy register records no edge. A candidate composition remains, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-R4-E1-HSV-01",
+      "queryId": "Q-R4-E1-HSV-01",
+      "pairId": "P-Hammond-SternVolmer",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+        "sternvolmer.intensityDyn"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "HammondSvCandidateCtx (A, lam, kB, T, x, k0, kq, q); no total translation q ↔ x"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 945",
+          "finding": "SternVolmer ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the SV model has no energy surface, no descriptor axis, no geometry; its contacts run through QuantumYield."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "PhotoLean/SternVolmer/Basic.lean#dynDecay",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Hammond-SternVolmer",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/SternVolmer --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/SternVolmer/RatModel.lean:37, Basic.lean:33, Instances.lean:30 (fidelity-script paths inside comments); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/SternVolmer --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SternVolmer/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.SternVolmer.Basic; PhotoLean.SternVolmer.Criterion; PhotoLean.SternVolmer.RatModel."
+        },
+        {
+          "command": "grep -rn 'SternVolmer' PhotoLean/Hammond --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-SternVolmer",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-Hammond-SternVolmer' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'SternVolmer' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 945: SternVolmer ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the SV model has no energy surface, no descriptor axis, no geometry; its contacts run through QuantumYield."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the SternVolmer modules for a delivered theorem mentioning a barrier or a driving force.",
+          "outcome": "No matches; the module contains no energy-surface symbol."
+        },
+        {
+          "strategy": "Read the SV added channel kq·q as an Arrhenius rate over the Hammond barrier at a quencher-dependent driving force.",
+          "outcome": "The structural analogy is clear, but no translation [Q] → x and no delivered theorem exist."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-law analogy",
+          "statement": "SternVolmer.dynDecay k0 kq q = k0 + kq q versus an Arrhenius rate A exp(-Hammond.gapReactant lam x/(kB T)).",
+          "status": "candidate only; no statement-level identification is delivered."
+        }
+      ],
+      "remainingGap": "A delivered identification of the SV added channel kq·q with an Arrhenius rate over the Hammond barrier, plus a total translation between quencher concentration and the driving force, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/SternVolmer --include='*.lean'",
+        "grep -h '^import' PhotoLean/SternVolmer/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-SternVolmer"
+      ],
+      "rationale": "The legacy register records no edge and routes SV contacts through QuantumYield. A rate-law analogy remains, so the honest status is unresolved, not refuted and not a forced edge."
+    },
+    {
+      "searchId": "SL-R4-E1-BSV-01",
+      "queryId": "Q-R4-E1-BSV-01",
+      "pairId": "P-BEP-SternVolmer",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-BEP-PhotoLean-BEP-eact",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+        "sternvolmer.intensityDyn"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "BepSvCandidateCtx (A, lam, kB, T, x, k0, kq, q); no total translation q ↔ x"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 945",
+          "finding": "SternVolmer ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the SV model has no energy surface, no descriptor axis, no geometry; its contacts run through QuantumYield."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "PhotoLean/SternVolmer/Basic.lean#dynDecay",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-BEP-SternVolmer",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/SternVolmer --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/SternVolmer/RatModel.lean:37, Basic.lean:33, Instances.lean:30 (fidelity-script paths inside comments); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/SternVolmer --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SternVolmer/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.SternVolmer.Basic; PhotoLean.SternVolmer.Criterion; PhotoLean.SternVolmer.RatModel."
+        },
+        {
+          "command": "grep -rn 'SternVolmer' PhotoLean/BEP --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-SternVolmer",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-BEP-SternVolmer' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'SternVolmer' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 945: SternVolmer ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the SV model has no energy surface, no descriptor axis, no geometry; its contacts run through QuantumYield."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the SternVolmer modules for a delivered theorem mentioning a BEP activation energy.",
+          "outcome": "No matches; the module contains no energy-surface symbol."
+        },
+        {
+          "strategy": "Read the SV added channel kq·q as an Arrhenius rate over eact.",
+          "outcome": "The structural analogy is clear, but no translation [Q] → x and no delivered theorem exist."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-law analogy",
+          "statement": "SternVolmer.dynDecay k0 kq q = k0 + kq q versus an Arrhenius rate A exp(-BEP.eact lam x/(kB T)).",
+          "status": "candidate only; no statement-level identification is delivered."
+        }
+      ],
+      "remainingGap": "A delivered identification of the SV added channel kq·q with an Arrhenius rate over BEP.eact, plus a total translation between quencher concentration and the driving force, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/SternVolmer --include='*.lean'",
+        "grep -h '^import' PhotoLean/SternVolmer/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-BEP-SternVolmer"
+      ],
+      "rationale": "The legacy register records no edge. A rate-law analogy remains, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-R4-E1-HQY-01",
+      "queryId": "Q-R4-E1-HQY-01",
+      "pairId": "P-Hammond-QuantumYield",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-totalRate"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "HammondQyCandidateCtx (A, lam, kB, T, x, kr); no delivered channel vector"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 948",
+          "finding": "QuantumYield ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the parallel-channel calculus is purely algebraic; the energy-side theories enter only through the specific rates that fill its channels."
+        },
+        {
+          "artifact": "PhotoLean/QuantumYield/Basic.lean",
+          "locator": "PhotoLean/QuantumYield/Basic.lean#yieldOf",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Hammond-QuantumYield",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/QuantumYield --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/QuantumYield/Basic.lean:24, Instances.lean:30 (fidelity-script paths inside comments); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/QuantumYield --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/QuantumYield/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.QuantumYield.Basic; PhotoLean.QuantumYield.RatModel."
+        },
+        {
+          "command": "grep -rn 'QuantumYield' PhotoLean/Hammond --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-QuantumYield",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-Hammond-QuantumYield' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'QuantumYield' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 948: QuantumYield ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the parallel-channel calculus is purely algebraic; the energy-side theories enter only through the specific rates that fill its channels."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the QuantumYield modules for a delivered theorem mentioning a barrier or a rate law.",
+          "outcome": "No matches; the module is purely algebraic and imports no energy-side module."
+        },
+        {
+          "strategy": "Instantiate yieldOf on a two-channel vector whose second channel is the Hammond-barrier rate.",
+          "outcome": "The instantiation is possible in principle, but no delivered theorem relates the resulting yield to the barrier; the bridge is missing."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "QuantumYield.yieldOf ![kr, A exp(-Hammond.gapReactant lam x/(kB T))] 0 is the fluorescence yield of a barrier-controlled two-channel model.",
+          "status": "candidate only; no delivered theorem."
+        }
+      ],
+      "remainingGap": "A delivered two-channel yield theorem whose nonradiative channel is A exp(-Hammond.gapReactant/(kB T)) is missing; QuantumYield leaves every channel rate free.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/QuantumYield --include='*.lean'",
+        "grep -h '^import' PhotoLean/QuantumYield/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-QuantumYield"
+      ],
+      "rationale": "The legacy register records no edge and says the energy-side theories enter only through the specific rates that fill the channels. A candidate composition remains, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-R4-E1-BQY-01",
+      "queryId": "Q-R4-E1-BQY-01",
+      "pairId": "P-BEP-QuantumYield",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-BEP-PhotoLean-BEP-eact",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-totalRate"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "BepQyCandidateCtx (A, lam, kB, T, x, kr); no delivered channel vector"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 948",
+          "finding": "QuantumYield ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the parallel-channel calculus is purely algebraic; the energy-side theories enter only through the specific rates that fill its channels."
+        },
+        {
+          "artifact": "PhotoLean/QuantumYield/Basic.lean",
+          "locator": "PhotoLean/QuantumYield/Basic.lean#yieldOf",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-BEP-QuantumYield",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/QuantumYield --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/QuantumYield/Basic.lean:24, Instances.lean:30 (fidelity-script paths inside comments); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/QuantumYield --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/QuantumYield/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.QuantumYield.Basic; PhotoLean.QuantumYield.RatModel."
+        },
+        {
+          "command": "grep -rn 'QuantumYield' PhotoLean/BEP --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-QuantumYield",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-BEP-QuantumYield' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'QuantumYield' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 948: QuantumYield ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor — no edge: the parallel-channel calculus is purely algebraic; the energy-side theories enter only through the specific rates that fill its channels."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the QuantumYield modules for a delivered theorem mentioning a barrier.",
+          "outcome": "No matches; the module is purely algebraic."
+        },
+        {
+          "strategy": "Instantiate yieldOf on a two-channel vector whose second channel is the BEP-barrier rate.",
+          "outcome": "The instantiation is possible in principle, but no delivered theorem relates the resulting yield to the barrier; the bridge is missing."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "QuantumYield.yieldOf ![kr, A exp(-BEP.eact lam x/(kB T))] 0 is the fluorescence yield of a BEP-barrier-controlled two-channel model.",
+          "status": "candidate only; no delivered theorem."
+        }
+      ],
+      "remainingGap": "A delivered two-channel yield theorem whose nonradiative channel is A exp(-BEP.eact/(kB T)) is missing; QuantumYield leaves every channel rate free.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/QuantumYield --include='*.lean'",
+        "grep -h '^import' PhotoLean/QuantumYield/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-BEP-QuantumYield"
+      ],
+      "rationale": "The legacy register records no edge. A candidate composition remains, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-R4-E1-HFP-01",
+      "queryId": "Q-R4-E1-HFP-01",
+      "pairId": "P-Hammond-FluorPhos",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-s1Decay"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "HammondFpCandidateCtx (kF, kISC, A, lam, kB, T, x); no delivered kIC identification"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 952",
+          "finding": "FluorPhos ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor / StokesShift / EnergyGapLaw / Forster / Einstein — no edge except through QuantumYield; its objects are branch probabilities."
+        },
+        {
+          "artifact": "PhotoLean/FluorPhos/Basic.lean",
+          "locator": "PhotoLean/FluorPhos/Basic.lean#phiF",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Hammond-FluorPhos",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/FluorPhos --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/FluorPhos/RatModel.lean:24, Criterion.lean:51, Instances.lean:30, Basic.lean:22 (fidelity-script paths inside comments); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/FluorPhos --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/FluorPhos/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.FluorPhos.Basic; PhotoLean.FluorPhos.Criterion; PhotoLean.FluorPhos.RatModel."
+        },
+        {
+          "command": "grep -rn 'FluorPhos' PhotoLean/Hammond --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-FluorPhos",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-Hammond-FluorPhos' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'FluorPhos' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 952: FluorPhos ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor / StokesShift / EnergyGapLaw / Forster / Einstein — no edge except through QuantumYield; its objects are branch probabilities."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the FluorPhos modules for a delivered theorem mentioning a barrier or an activation energy.",
+          "outcome": "No matches; the module is a branch-probability layer with free rates."
+        },
+        {
+          "strategy": "Replace kIC by the Hammond-barrier Arrhenius rate and differentiate phiF.",
+          "outcome": "The monotonicity argument is informal; no delivered theorem identifies kIC with the barrier rate."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "FluorPhos.phiF kF kISC (A exp(-Hammond.gapReactant lam x/(kB T))) is a barrier-controlled fluorescence yield.",
+          "status": "candidate only; no delivered theorem."
+        }
+      ],
+      "remainingGap": "A delivered identification kIC = A exp(-Hammond.gapReactant/(kB T)) inside the FluorPhos competition is missing; kIC is a free rate and the module imports no energy-side module.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/FluorPhos --include='*.lean'",
+        "grep -h '^import' PhotoLean/FluorPhos/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-FluorPhos"
+      ],
+      "rationale": "The legacy register records no edge except through QuantumYield. A candidate composition remains, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-R4-E1-BFP-01",
+      "queryId": "Q-R4-E1-BFP-01",
+      "pairId": "P-BEP-FluorPhos",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-BEP-PhotoLean-BEP-eact",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-s1Decay"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "BepFpCandidateCtx (kF, kISC, A, lam, kB, T, x); no delivered kIC identification"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 952",
+          "finding": "FluorPhos ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor / StokesShift / EnergyGapLaw / Forster / Einstein — no edge except through QuantumYield; its objects are branch probabilities."
+        },
+        {
+          "artifact": "PhotoLean/FluorPhos/Basic.lean",
+          "locator": "PhotoLean/FluorPhos/Basic.lean#phiF",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-BEP-FluorPhos",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/FluorPhos --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/FluorPhos/RatModel.lean:24, Criterion.lean:51, Instances.lean:30, Basic.lean:22 (fidelity-script paths inside comments); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/FluorPhos --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/FluorPhos/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.FluorPhos.Basic; PhotoLean.FluorPhos.Criterion; PhotoLean.FluorPhos.RatModel."
+        },
+        {
+          "command": "grep -rn 'FluorPhos' PhotoLean/BEP --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-FluorPhos",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-BEP-FluorPhos' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'FluorPhos' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 952: FluorPhos ↔ Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor / StokesShift / EnergyGapLaw / Forster / Einstein — no edge except through QuantumYield; its objects are branch probabilities."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the FluorPhos modules for a delivered theorem mentioning a BEP barrier.",
+          "outcome": "No matches; the module is a branch-probability layer with free rates."
+        },
+        {
+          "strategy": "Replace kIC by the BEP-barrier Arrhenius rate and differentiate phiF.",
+          "outcome": "The monotonicity argument is informal; no delivered theorem identifies kIC with the barrier rate."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "FluorPhos.phiF kF kISC (A exp(-BEP.eact lam x/(kB T))) is a BEP-barrier-controlled fluorescence yield.",
+          "status": "candidate only; no delivered theorem."
+        }
+      ],
+      "remainingGap": "A delivered identification kIC = A exp(-BEP.eact/(kB T)) inside the FluorPhos competition is missing; kIC is a free rate.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/FluorPhos --include='*.lean'",
+        "grep -h '^import' PhotoLean/FluorPhos/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-BEP-FluorPhos"
+      ],
+      "rationale": "The legacy register records no edge except through QuantumYield. A candidate composition remains, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-R4-E1-HEIN-01",
+      "queryId": "Q-R4-E1-HEIN-01",
+      "pairId": "P-Hammond-Einstein",
+      "status": "unresolved",
+      "scope": "scope-R4-E1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+        "stmt-Einstein-PhotoLean-Einstein-yield_radiative",
+        "stmt-Einstein-PhotoLean-Einstein-tauR"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "HammondEinsteinCandidateCtx (A, kNR, lam, kB, T, x); no delivered kNR identification"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 969",
+          "finding": "Einstein ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / Goldschmidt / SymmetryFactor / StokesShift / Forster — no edge: the radiative conversions reach the batch only through the QuantumYield anchor."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "PhotoLean/Einstein/Basic.lean#aOfB",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Hammond-Einstein",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/Einstein --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/Einstein/Basic.lean:26 (a fidelity-script path inside a comment); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/Einstein --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Einstein/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.Einstein.Basic; PhotoLean.Einstein.Criterion; PhotoLean.Einstein.RatModel."
+        },
+        {
+          "command": "grep -rn 'Einstein' PhotoLean/Hammond --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Einstein",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-Hammond-Einstein' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'Einstein' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 969: Einstein ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / Goldschmidt / SymmetryFactor / StokesShift / Forster — no edge: the radiative conversions reach the batch only through the QuantumYield anchor."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the Einstein modules for a delivered theorem mentioning a barrier or a driving force.",
+          "outcome": "No matches; the module is a two-level radiative-conversion layer."
+        },
+        {
+          "strategy": "Identify kNR with the Hammond-barrier Arrhenius rate and read yield_radiative as a barrier-controlled yield.",
+          "outcome": "The identification is a modelling premise; no delivered theorem connects the two."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Einstein.yield_radiative A (A exp(-Hammond.gapReactant lam x/(kB T))) is a barrier-controlled radiative yield.",
+          "status": "candidate only; no delivered theorem."
+        }
+      ],
+      "remainingGap": "A delivered identification kNR = A exp(-Hammond.gapReactant/(kB T)) in yield_radiative is missing; kNR is a free rate.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/Einstein --include='*.lean'",
+        "grep -h '^import' PhotoLean/Einstein/*.lean | sort -u",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Einstein"
+      ],
+      "rationale": "The legacy register records no edge and routes the radiative conversions only through the QuantumYield anchor. A candidate composition remains, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-R4-E1-HFO-01",
+      "queryId": "Q-R4-E1-HFO-01",
+      "pairId": "P-Hammond-Forster",
+      "status": "outOfScope",
+      "scope": "scope-R4-E1-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+        "stmt-Forster-PhotoLean-Forster-fretEff6",
+        "stmt-Forster-PhotoLean-Forster-fretEff",
+        "stmt-Forster-PhotoLean-Forster-kappaSq"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "HammondForsterCandidateCtx (R, tauD, lam, x); no total map between the transfer geometry and the two-parabola coordinates"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 extended no-edge register, line 964",
+          "finding": "Forster ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / SymmetryFactor / StokesShift / EnergyGapLaw / ICvsISC — no edge: the transfer geometry shares no scalar with the energy-surface family."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "PhotoLean/Forster/Basic.lean#fretEff6",
+          "finding": "The partner object is a free rate/predicate parameter; the module imports only Mathlib plus its own theory modules (KashaVavilov additionally imports Kasha)."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 workspace dependency note (lines 1025-1029)",
+          "finding": "The photophysics modules import only Mathlib plus their own theory modules (plus Kernel/Marcus for the group-B theories); Relations.lean is the only cross-theory module."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Hammond-Forster",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query; it carries no certificate."
+        },
+        {
+          "artifact": "audit_boundary/statement-inventory.json",
+          "locator": "endpoint rows for this query",
+          "finding": "Both endpoint statements are screening-eligible inventory declarations with resolved source artifacts and signature hashes."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Hammond\\|BEP' PhotoLean/Forster --include='*.lean'",
+          "purpose": "Search the partner modules for a delivered Hammond/BEP statement.",
+          "result": "PhotoLean/Forster/RatModel.lean:27, Instances.lean:23, Basic.lean:35 (fidelity-script paths inside comments); no delivered declaration references Hammond or BEP."
+        },
+        {
+          "command": "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/Forster --include='*.lean'",
+          "purpose": "Search the partner modules for any barrier or coordinate declaration.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Forster/*.lean | sort -u",
+          "purpose": "Measure the partner module dependencies.",
+          "result": "Mathlib; PhotoLean.Forster.Basic; PhotoLean.Forster.Criterion; PhotoLean.Forster.RatModel."
+        },
+        {
+          "command": "grep -rn 'Forster' PhotoLean/Hammond --include='*.lean'",
+          "purpose": "Search the barrier-theory modules for a reference to the partner theory.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Forster",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; registry record 'rec-notestablished-P-Hammond-Forster' status='notEstablished' kind=None certificate=None."
+        },
+        {
+          "command": "grep -n 'Forster' PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration for the pair.",
+          "result": "First match line 964: Forster ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / SymmetryFactor / StokesShift / EnergyGapLaw / ICvsISC — no edge: the transfer geometry shares no scalar with the energy-surface family."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the Förster modules for a delivered theorem mentioning a barrier, a driving force, or a reorganization energy.",
+          "outcome": "No matches; the module contains only the transfer geometry and spectral parameters."
+        },
+        {
+          "strategy": "Search the Hammond modules for a delivered theorem mentioning a distance, a spectral overlap, or an orientation factor.",
+          "outcome": "No matches; the module contains only the two-parabola surface geometry."
+        },
+        {
+          "strategy": "Search the legacy registry and the §16 register for a candidate bridge.",
+          "outcome": "The register records no edge and states that the transfer geometry shares no scalar with the energy-surface family."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "jurisdiction",
+          "statement": "No shared scalar exists between Förster fretEff6 and Hammond gapReactant; the two statements live on disjoint coordinate sets.",
+          "status": "jurisdiction finding, not logical absence."
+        }
+      ],
+      "remainingGap": "No shared context or total translation: Förster statements quantify over (R, tauD, r0six, kappaSq, J) and Hammond statements over (lam, x); the §16 register states the transfer geometry shares no scalar with the energy-surface family. This is a jurisdiction finding, not logical absence.",
+      "recomputeCommands": [
+        "grep -rn 'barrier\\|tsCoord\\|gapReactant\\|eact' PhotoLean/Forster --include='*.lean'",
+        "grep -rn 'tauD\\|kappaSq\\|r0six\\|fretEff' PhotoLean/Hammond --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Forster"
+      ],
+      "rationale": "The delivered §16 register records the jurisdiction finding. No counterexample is claimed and no forced edge is created; the query is outOfScope by statement-level reason."
+    }
+  ],
+  "counts": {
+    "entries": 10,
+    "byStatus": {
+      "outOfScope": 1,
+      "unresolved": 9
+    }
+  },
+  "nonClaims": [
+    "A search entry records a scoped, machine-recomputable search; it is not a negative claim outside the named statements, kinds, and contexts.",
+    "The outOfScope entry records jurisdiction, not logical absence.",
+    "No failed proof attempt is relabelled as a refutation."
+  ]
+}

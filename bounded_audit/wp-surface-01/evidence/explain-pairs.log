@@ -1,0 +1,36 @@
+=== P-Hammond-Sabatier
+pair: P-Hammond-Sabatier
+theories: ['Hammond', 'Sabatier']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Hammond-Sabatier: status='notEstablished' kind=None certificate=None
+=== P-Kasha-Sabatier
+pair: P-Kasha-Sabatier
+theories: ['Kasha', 'Sabatier']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Kasha-Sabatier: status='notEstablished' kind=None certificate=None
+=== P-Sabatier-SymmetryFactor
+pair: P-Sabatier-SymmetryFactor
+theories: ['Sabatier', 'SymmetryFactor']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Sabatier-SymmetryFactor: status='notEstablished' kind=None certificate=None

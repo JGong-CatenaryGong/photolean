@@ -1,0 +1,233 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-coverage-fragment",
+ "round": "R4",
+ "generatedOn": "2026-11-04",
+ "workPackage": {
+  "id": "WP-conical-intersection-01",
+  "path": "bounded_audit/r4/conical-01/screening.json",
+  "pairCount": 16,
+  "sha256": "f368b9b1f1ded5800419a5283b541363e83f37c4b8ef54aa641890cb54615487"
+ },
+ "packageState": "submitted-R4-pending-review",
+ "universe": {
+  "pairCount": 136,
+  "source": "audit_boundary/pair-queue.json",
+  "sourceSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504"
+ },
+ "pairs": [
+  {
+   "pairId": "P-Marcus-RACI",
+   "theories": [
+    "Marcus",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  },
+  {
+   "pairId": "P-Hammond-RACI",
+   "theories": [
+    "Hammond",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-BEP-RACI",
+   "theories": [
+    "BEP",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-Kasha-RACI",
+   "theories": [
+    "Kasha",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-RACI",
+   "theories": [
+    "Sabatier",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-RACI",
+   "theories": [
+    "Goldschmidt",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-SymmetryFactor-RACI",
+   "theories": [
+    "SymmetryFactor",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-KashaVavilov-RACI",
+   "theories": [
+    "KashaVavilov",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "notEstablished": 1
+   }
+  },
+  {
+   "pairId": "P-SternVolmer-RACI",
+   "theories": [
+    "SternVolmer",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  },
+  {
+   "pairId": "P-QuantumYield-RACI",
+   "theories": [
+    "QuantumYield",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  },
+  {
+   "pairId": "P-FluorPhos-RACI",
+   "theories": [
+    "FluorPhos",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  },
+  {
+   "pairId": "P-EnergyGapLaw-RACI",
+   "theories": [
+    "EnergyGapLaw",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  },
+  {
+   "pairId": "P-StokesShift-RACI",
+   "theories": [
+    "StokesShift",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-ICvsISC-RACI",
+   "theories": [
+    "ICvsISC",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  },
+  {
+   "pairId": "P-Forster-RACI",
+   "theories": [
+    "Forster",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-Einstein-RACI",
+   "theories": [
+    "Einstein",
+    "RACI"
+   ],
+   "primaryCluster": "conical-intersection",
+   "queryCount": 1,
+   "byStatus": {
+    "certified": 1
+   }
+  }
+ ],
+ "counts": {
+  "pairs": 16,
+  "queries": 16,
+  "byStatus": {
+   "certified": 8,
+   "unresolved": 6,
+   "notEstablished": 1,
+   "outOfScope": 1
+  },
+  "screenedDelta": 16
+ },
+ "overlapWithAccepted": {
+  "acceptedScreenedPairCount": 21,
+  "intersection": [],
+  "note": "The fragment is disjoint from the accepted R2/R3 pairs; the accepted 21/136 state is read, not pinned."
+ },
+ "accumulationNote": "This fragment is not the cumulative ledger. The integration agent composes it with the accepted 21 pairs into bounded_audit/coverage.json (67/136). This package does not write the ledger.",
+ "nonClaims": [
+  "A coverage fragment counts screened pairs; it is not a completeness claim.",
+  "The fragment does not assign acceptance; the package stays submitted-R4-pending-review until independent K3 review."
+ ]
+}

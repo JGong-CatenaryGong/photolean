@@ -1,0 +1,2276 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-screening-package",
+  "round": "R4",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "R4-E1-EXCITED-01",
+    "title": "Excited-state kinetics, E1 batch",
+    "source": "loop/计划.md R4, Package E1",
+    "r1WorkPackage": "WP-excited-state-kinetics-01",
+    "pairIds": [
+      "P-Hammond-Kasha",
+      "P-Hammond-KashaVavilov",
+      "P-Hammond-SternVolmer",
+      "P-Hammond-QuantumYield",
+      "P-Hammond-FluorPhos",
+      "P-Hammond-EnergyGapLaw",
+      "P-Hammond-StokesShift",
+      "P-Hammond-ICvsISC",
+      "P-Hammond-Forster",
+      "P-Hammond-Einstein",
+      "P-BEP-Kasha",
+      "P-BEP-KashaVavilov",
+      "P-BEP-SternVolmer",
+      "P-BEP-QuantumYield",
+      "P-BEP-FluorPhos",
+      "P-BEP-EnergyGapLaw"
+    ],
+    "pairCount": 16,
+    "r1ClusterPlanWorkPackage": {
+      "id": "WP-excited-state-kinetics-01",
+      "pairIds": [
+        "P-Hammond-Kasha",
+        "P-Hammond-KashaVavilov",
+        "P-Hammond-SternVolmer",
+        "P-Hammond-QuantumYield",
+        "P-Hammond-FluorPhos",
+        "P-Hammond-EnergyGapLaw",
+        "P-Hammond-StokesShift",
+        "P-Hammond-ICvsISC",
+        "P-Hammond-Forster",
+        "P-Hammond-Einstein",
+        "P-BEP-Kasha",
+        "P-BEP-KashaVavilov",
+        "P-BEP-SternVolmer",
+        "P-BEP-QuantumYield",
+        "P-BEP-FluorPhos",
+        "P-BEP-EnergyGapLaw"
+      ],
+      "difference": {
+        "addedByR4Plan": [],
+        "removedByR4Plan": [],
+        "note": "The R4 E1 pair list is exactly the R1 work-package list; no R2/R3 pair is rescreened."
+      }
+    }
+  },
+  "statusVocabulary": [
+    "certified",
+    "refuted",
+    "unresolved",
+    "notEstablished",
+    "outOfScope"
+  ],
+  "kindVocabulary": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence",
+    "conditionalComposition",
+    "observationalEquivalence",
+    "distinguishability",
+    "refutation"
+  ],
+  "allowedAxioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "snapshot": {
+    "id": "snap-bounded-audit-2026-11-04",
+    "date": "2026-11-04",
+    "round": "R4",
+    "inventory": "audit_boundary/statement-inventory.json",
+    "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "pairQueue": "audit_boundary/pair-queue.json",
+    "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+    "clusterPlan": "audit_boundary/cluster-plan.json",
+    "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+    "boundary": "audit_boundary/BOUNDARY.md",
+    "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+    "legacyRegistry": "relation_audit/registry.json",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "leanToolchain": "leanprover/lean4:v4.17.0",
+    "deliveredLeanFileCount": 102
+  },
+  "inventoryReference": {
+    "path": "audit_boundary/statement-inventory.json",
+    "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "statementRows": 1154,
+    "screeningEligible": 1134,
+    "schemaVersion": "1.0.0",
+    "round": "R1"
+  },
+  "legacyRegistryReference": {
+    "path": "relation_audit/registry.json",
+    "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "expectedSha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "mode": "read-only"
+  },
+  "searchLogReference": {
+    "path": "bounded_audit/r4/excited-01/search-log.json",
+    "sha256": "1a18a2a3bc5d23e62622dd87aa4cd76da4d9edfa98f64a137f0af786645d08f7",
+    "entryCount": 10
+  },
+  "probeReference": {
+    "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+    "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2",
+    "compileLog": "bounded_audit/r4/excited-01/probes/compile.log",
+    "scanLog": "bounded_audit/r4/excited-01/probes/scan.log",
+    "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+    "axiomAuditCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+    "allowedAxioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "coverageFragment": {
+    "path": "bounded_audit/r4/excited-01/coverage-fragment.json",
+    "note": "The fragment carries this package counting only; it does not write the mutable R4 cumulative coverage ledger."
+  },
+  "aliasResolutions": [],
+  "contextLibrary": {
+    "HammondEnergyGapCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Equal-curvature two-parabola context: reorganization energy lam and driving force x = -ΔG°. The forward barrier is (lam - x)^2/(4 lam) and the crossing coordinate is (lam - x)/(2 lam); the barrierless point is x = lam.",
+      "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondEnergyGapCtx"
+    },
+    "BepEnergyGapCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Equal-curvature two-parabola context shared by BEP and the energy-gap law: reorganization energy lam and driving force x = -ΔG°; the BEP coefficient is 1/2 - x/(2 lam) and the energy-gap-law inverted region is lam < x.",
+      "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#BepEnergyGapCtx"
+    },
+    "HammondKashaCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Kasha internal-conversion step read in the Marcus form: pre-exponential A, reorganization energy lam, thermal energy kB·T, and the S2→S1 gap x. The IC rate is A exp(-barrier/(kB T)); the Hammond crossing coordinate is (lam - x)/(2 lam).",
+      "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondKashaCtx"
+    },
+    "HammondICvsISCCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Equal-curvature two-parabola barrier context for the IC channel: reorganization energy lam and gap x. Both the IC Franck–Condon barrier and the Hammond forward gap are copies of the same kernel barrier.",
+      "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondICvsISCCtx"
+    },
+    "BepKashaCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "BEP coefficient and Kasha Marcus-form IC rate on the same step: pre-exponential A, reorganization energy lam, thermal energy kB·T, and gap x.",
+      "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#BepKashaCtx"
+    },
+    "HammondStokesCtx": {
+      "fields": [
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "Displaced equal-curvature oscillator: ground surface lam q^2 and excited surface lam (q - 1)^2 + e00. The vertical absorption at q = 0 is the gap between the excited and ground surfaces.",
+      "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondStokesCtx"
+    },
+    "HammondKashaVavilovCandidateCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ",
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ"
+      ],
+      "physicalReading": "Candidate juxtaposition of a Kasha–Vavilov ladder (radiative and IC rate functions over levels 0..N) and the Hammond two-parabola barrier (lam, x). No total map from a ladder level or a ladder rate to a driving force is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#HammondKashaVavilovCandidateCtx (candidate; no Lean structure)"
+    },
+    "BepKashaVavilovCandidateCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ",
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ"
+      ],
+      "physicalReading": "Candidate juxtaposition of a Kasha–Vavilov ladder and the BEP activation barrier (lam, x). No total map from a ladder level or a ladder rate to a driving force is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#BepKashaVavilovCandidateCtx (candidate; no Lean structure)"
+    },
+    "HammondSvCandidateCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "Candidate juxtaposition of a Hammond barrier (lam, x) and a Stern–Volmer concentration channel k0 + kq q. No total translation between the quencher concentration q and the driving force x is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#HammondSvCandidateCtx (candidate; no Lean structure)"
+    },
+    "BepSvCandidateCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "Candidate juxtaposition of a BEP activation barrier (lam, x) and a Stern–Volmer concentration channel k0 + kq q. No total translation between q and x is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#BepSvCandidateCtx (candidate; no Lean structure)"
+    },
+    "HammondQyCandidateCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "kr : ℝ"
+      ],
+      "physicalReading": "Candidate two-channel yield context: a radiative channel kr and an IC channel that would be the Arrhenius rate over the Hammond forward barrier. The yield vector is not a delivered object and no channel identification is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#HammondQyCandidateCtx (candidate; no Lean structure)"
+    },
+    "BepQyCandidateCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "kr : ℝ"
+      ],
+      "physicalReading": "Candidate two-channel yield context: a radiative channel kr and an IC channel that would be the Arrhenius rate over the BEP activation barrier. No channel identification is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#BepQyCandidateCtx (candidate; no Lean structure)"
+    },
+    "HammondFpCandidateCtx": {
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate FluorPhos competition context: kF and kISC are free rates, and the IC channel would be the Arrhenius rate over the Hammond forward barrier. The identification of kIC with that barrier-controlled rate is not delivered.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#HammondFpCandidateCtx (candidate; no Lean structure)"
+    },
+    "BepFpCandidateCtx": {
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate FluorPhos competition context with the IC channel read as the Arrhenius rate over the BEP activation barrier. The identification is not delivered.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#BepFpCandidateCtx (candidate; no Lean structure)"
+    },
+    "HammondEinsteinCandidateCtx": {
+      "fields": [
+        "A : ℝ",
+        "kNR : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate radiative-yield context: the Einstein two-channel yield A/(A + kNR) with kNR would be the Arrhenius rate over the Hammond forward barrier. No such identification is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#HammondEinsteinCandidateCtx (candidate; no Lean structure)"
+    },
+    "HammondForsterCandidateCtx": {
+      "fields": [
+        "R : ℝ",
+        "tauD : ℝ",
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate juxtaposition of a Förster transfer geometry (donor–acceptor separation R, donor lifetime tauD) and a Hammond two-parabola barrier (lam, x). The two state spaces share no scalar and no total map between them is declared.",
+      "provenance": "bounded_audit/r4/excited-01/screening.json#HammondForsterCandidateCtx (candidate; no Lean structure)"
+    }
+  },
+  "scopeLibrary": {
+    "scope-R4-E1-barrierless": {
+      "description": "Barrierless-locus scope of the equal-curvature two-parabola model: lam ≠ 0 or lam > 0, all driving forces x; the compared predicates are zero-barrier and inverted-region loci.",
+      "domain": "all (lam, x) in ℝ² with the declared curvature premise; no other restriction."
+    },
+    "scope-R4-E1-rate-geometry": {
+      "description": "Rate/geometry scope of the Marcus-form internal-conversion step: A > 0, kB·T > 0, lam > 0, all driving forces x; the compared predicates are a rate maximum and a crossing-coordinate boundary.",
+      "domain": "all (A, lam, kB, T, x) in ℝ⁵ with the declared positivity premises."
+    },
+    "scope-R4-E1-barrier-pin": {
+      "description": "Definitional barrier-pin scope: all (lam, x) in ℝ²; the compared terms are the two barrier copies, both totalized at lam = 0.",
+      "domain": "all (lam, x) in ℝ²; no premise."
+    },
+    "scope-R4-E1-surface-observable": {
+      "description": "Vertical-absorption observable scope: all (lam, e00) in ℝ²; the channel observes the absorption energy at the ground-state geometry.",
+      "domain": "all (lam, e00) in ℝ²; no premise."
+    },
+    "scope-R4-E1-candidate-bridge": {
+      "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+      "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry."
+    },
+    "scope-R4-E1-jurisdiction": {
+      "description": "Jurisdiction scope of a query for which no shared context and no total translation exists. This records jurisdiction, not logical absence.",
+      "domain": "the named pair and the two endpoint statements; the declared translations are not total."
+    }
+  },
+  "pairs": [
+    {
+      "pairId": "P-Hammond-Kasha",
+      "theories": [
+        "Hammond",
+        "Kasha"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HK-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HK-01",
+          "pairId": "P-Hammond-Kasha",
+          "title": "Kasha internal conversion is at its pre-exponential exactly at the Hammond barrierless geometry",
+          "chemicalQuestion": "Under the declared Marcus form of the Kasha S2→S1 internal-conversion rate, does that rate reach its pre-exponential factor A exactly when the Hammond transition-state coordinate reaches the reactant well?",
+          "chemicalRationale": "Kasha's ladder model makes the S2→S1 internal-conversion channel a Marcus-form rate marcusIC = A exp(-barrier/(kB T)); Hammond reports the same equal-curvature forward barrier and its crossing coordinate tsCoord. The rate is maximal, equal to A, exactly when the barrier vanishes, which is exactly when tsCoord = 0. The query connects a Kasha rate observable to a Hammond geometric observable: internal conversion is activationless exactly at the reactant-geometry crossing. The Marcus-form identification of the IC channel is a declared modelling premise of the Kasha module; the query does not assert that all internal conversion is a Marcus process.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.tsCoord",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 37,
+              "version": "1.0.0",
+              "signatureSha256": "f3321a0b50ef99958bad361d208e44b62092baf8a2b4e64c0c78cfe0747981a0",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.marcusIC",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Compose.lean",
+              "sourceLine": 98,
+              "version": "1.0.0",
+              "signatureSha256": "fc351c6553fb032c69bf7a2cc156d502c0e44b4830a4483860104568a3ae4d4a",
+              "sourceArtifactSha256": "76e93ddf2d951c237efe334c4c9535aa4761245e1a6840737f53668ba45fd352",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondKashaCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Kasha internal-conversion step read in the Marcus form: pre-exponential A, reorganization energy lam, thermal energy kB·T, and the S2→S1 gap x. The IC rate is A exp(-barrier/(kB T)); the Hammond crossing coordinate is (lam - x)/(2 lam).",
+            "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondKashaCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : HammondKashaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : HammondKashaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : HammondKashaCtx => ∀ p ∈ hammondKashaPremises, p.predicate δ",
+            "premiseIds": [
+              "kasha.preExponentialPositive",
+              "thermal.energyPositive",
+              "hammond.curvaturePositive"
+            ],
+            "definitions": [
+              {
+                "id": "kasha.preExponentialPositive",
+                "predicate": "fun δ : HammondKashaCtx => 0 < δ.A",
+                "statement": "0 < A: the pre-exponential factor is positive.",
+                "loadBearing": "Consumed to cancel A."
+              },
+              {
+                "id": "thermal.energyPositive",
+                "predicate": "fun δ : HammondKashaCtx => 0 < δ.kB * δ.T",
+                "statement": "0 < kB·T: the thermal energy is positive.",
+                "loadBearing": "Consumed to clear the exponential argument."
+              },
+              {
+                "id": "hammond.curvaturePositive",
+                "predicate": "fun δ : HammondKashaCtx => 0 < δ.lam",
+                "statement": "0 < lam: the reorganization energy is positive.",
+                "loadBearing": "Consumed by the barrier algebra."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-rate-geometry",
+            "description": "Rate/geometry scope of the Marcus-form internal-conversion step: A > 0, kB·T > 0, lam > 0, all driving forces x; the compared predicates are a rate maximum and a crossing-coordinate boundary.",
+            "domain": "all (A, lam, kB, T, x) in ℝ⁵ with the declared positivity premises.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "Both sides are propositions on the same (A, lam, kB, T, x) context; the certificate is an iff under the declared positivity premises.",
+          "falsificationCondition": "A context satisfying the positivity premises at which marcusIC = A but tsCoord ≠ 0 (or conversely) would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked: the Kasha IC rate equals its pre-exponential exactly at the Hammond coordinate zero under the positivity premises. The proof consumes the delivered kernel identity of the Kasha IC rate.",
+            "evidence": {
+              "type": "r4-probe-certificate",
+              "certificateId": "Q-R4-E1-HK-01",
+              "kind": "equivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondKashaICMaxEquiv",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondKashaICMaxEquiv_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "log": "bounded_audit/r4/excited-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.kernel_marcusIC",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 339,
+                  "role": "delivered §7 kernel identity of the Kasha IC rate consumed by the proof"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.kernel_barrier_eq_hammond",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 105,
+                  "role": "delivered §1 kernel/Hammond barrier pin used by the chemical reading"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe rewrites the Kasha rate through the delivered kernel identity and proves the rate-maximum/coordinate-boundary equivalence."
+            }
+          },
+          "provenance": {
+            "kind": "r4-probe-certificate",
+            "sourceArtifact": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondKashaICMaxEquiv"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-KashaVavilov",
+      "theories": [
+        "Hammond",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HKV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HKV-01",
+          "pairId": "P-Hammond-KashaVavilov",
+          "title": "Does the Kasha–Vavilov ladder inherit a barrier window from the Hammond model?",
+          "chemicalQuestion": "If the S2→S1 internal-conversion loss of a Kasha–Vavilov ladder is the Marcus-form rate at the Hammond forward barrier, does the Vavilov spectral-agreement predicate become a statement about a driving-force window around the reorganization energy?",
+          "chemicalRationale": "KashaVavilov's SpecSame compares normalized spectra across excitation levels; its ladder rates are free functions. The only contact with the two-parabola family registered in the delivered corpus runs through Kasha's marcusIC, which carries the Hammond/kernel barrier. A conditional composition would identify the ladder ic with marcusIC and then use the Kasha window criterion; the query asks whether that composition is delivered. It is a genuine chemical question because Vavilov behaviour is often discussed as a gap-dependent loss, but the delivered theory does not identify the ladder rates with a barrier.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.SpecSame",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondKashaVavilovCandidateCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ",
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ"
+            ],
+            "physicalReading": "Candidate juxtaposition of a Kasha–Vavilov ladder (radiative and IC rate functions over levels 0..N) and the Hammond two-parabola barrier (lam, x). No total map from a ladder level or a ladder rate to a driving force is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#HammondKashaVavilovCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondKashaVavilovCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate is a typed composition of the ladder rates with the Kasha Marcus-form rate and the Kasha window criterion; no such delivered composition exists.",
+          "falsificationCondition": "A context at which the ladder is Vavilov-conforming but the composed barrier window fails (or conversely) would refute the candidate composition.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No delivered statement-level composition connects KashaVavilov's SpecSame predicate to a Hammond barrier window; the ladder rates are free functions. The legacy register records no edge and names Kasha's §7 composition as the only contact, so the honest status is unresolved rather than refuted or a forced edge.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-HKV-01",
+              "candidateSummary": "Candidate: identify the ladder S2→S1 ic with Kasha.marcusIC at the Hammond barrier and compose the Kasha window criterion; the delivered corpus has no such conditional composition."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-HKV-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-SternVolmer",
+      "theories": [
+        "Hammond",
+        "SternVolmer"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HSV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HSV-01",
+          "pairId": "P-Hammond-SternVolmer",
+          "title": "Is the Stern–Volmer added quenching channel a barrier-controlled rate at the Hammond step?",
+          "chemicalQuestion": "Is the Stern–Volmer added decay channel kq·[Q] the same physical rate as an Arrhenius rate over the Hammond forward barrier at a quencher-dependent driving force?",
+          "chemicalRationale": "SternVolmer models the quencher-dependent decay as k0 + kq q, with kq a free bimolecular rate; Hammond supplies a barrier for an elementary step. If collisional quenching is an activated transfer step, kq should be a barrier-controlled rate. A statement-level bridge would identify the added channel with exp(-Hammond.gapReactant/(kB T)) at a driving force tied to the quencher. The query asks for that bridge; the missing piece is a translation between quencher concentration and the driving force.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.dynDecay",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 47,
+              "version": "1.0.0",
+              "signatureSha256": "300a9093783079efccbc86615861306e755d9c7024bbbcdf5e9068654d62a907",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondSvCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "Candidate juxtaposition of a Hammond barrier (lam, x) and a Stern–Volmer concentration channel k0 + kq q. No total translation between the quencher concentration q and the driving force x is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#HammondSvCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondSvCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a typed implication from a barrier-controlled channel to the SV added channel; no such delivered statement exists.",
+          "falsificationCondition": "A context at which the SV added channel differs from the barrier-controlled rate at the same quencher loading would refute the candidate implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification of the SV added channel kq·q with an Arrhenius rate over the Hammond barrier, plus a total translation from quencher concentration to the driving force, is missing. The legacy register records no edge and routes SV contacts through QuantumYield, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-HSV-01",
+              "candidateSummary": "Candidate: the SV added channel kq·q is an Arrhenius rate over the Hammond barrier at a quencher-dependent driving force; no delivered identification exists."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-HSV-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-QuantumYield",
+      "theories": [
+        "Hammond",
+        "QuantumYield"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HQY-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HQY-01",
+          "pairId": "P-Hammond-QuantumYield",
+          "title": "Does a Hammond-barrier nonradiative channel control the parallel-channel quantum yield?",
+          "chemicalQuestion": "In a two-channel quantum-yield model whose nonradiative channel is an Arrhenius rate over the Hammond forward barrier, is the radiative yield a monotone function of that barrier?",
+          "chemicalRationale": "QuantumYield defines yieldOf as k_i / Σ k, with every channel rate free. Hammond supplies the barrier. A bridge would set the nonradiative channel to A exp(-gapReactant/(kB T)) and prove the yield comparison; the delivered corpus has no theorem identifying a yield channel with a barrier-controlled rate. The query asks for that composition. It is chemically meaningful because the fluorescence quantum yield is the standard observable of competition between radiative decay and activated nonradiative loss.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondQyCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "kr : ℝ"
+            ],
+            "physicalReading": "Candidate two-channel yield context: a radiative channel kr and an IC channel that would be the Arrhenius rate over the Hammond forward barrier. The yield vector is not a delivered object and no channel identification is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#HammondQyCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondQyCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a typed implication from a barrier-controlled channel to a yield monotonicity; no such delivered statement exists.",
+          "falsificationCondition": "A context at which the yield does not move monotonically with the barrier-controlled channel would refute the candidate implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered two-channel yield theorem whose nonradiative channel is an Arrhenius rate over the Hammond barrier is missing; QuantumYield leaves every channel rate free. The legacy register records no edge, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-HQY-01",
+              "candidateSummary": "Candidate: a two-channel yield with the nonradiative channel A exp(-Hammond.gapReactant/(kB T)); no delivered theorem identifies a yield channel with the barrier rate."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-HQY-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-FluorPhos",
+      "theories": [
+        "Hammond",
+        "FluorPhos"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HFP-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HFP-01",
+          "pairId": "P-Hammond-FluorPhos",
+          "title": "Does the Hammond barrier control the S1 fluorescence/phosphorescence competition?",
+          "chemicalQuestion": "If the S1 internal-conversion rate in the FluorPhos competition model is an Arrhenius rate over the Hammond forward barrier, does the fluorescence yield phiF decrease as that barrier decreases?",
+          "chemicalRationale": "FluorPhos writes phiF = kF/(kF + kISC + kIC), with kIC a free rate; Hammond supplies the barrier. A bridge would replace kIC by the barrier-controlled rate and derive the monotonicity. The delivered corpus has no such theorem. The query is chemically meaningful because internal conversion is the nonradiative channel that competes with fluorescence and intersystem crossing in the S1 decay.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiF",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "902b6639757e5df14a909a3d57e43fa7e5806dcf7ee7caba25a0b290ddfb8208",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondFpCandidateCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate FluorPhos competition context: kF and kISC are free rates, and the IC channel would be the Arrhenius rate over the Hammond forward barrier. The identification of kIC with that barrier-controlled rate is not delivered.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#HammondFpCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondFpCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a typed implication from the barrier-controlled IC rate to a fluorescence-yield monotonicity; no such delivered statement exists.",
+          "falsificationCondition": "A context at which phiF does not move monotonically with the barrier-controlled kIC would refute the candidate implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification kIC = A exp(-Hammond.gapReactant/(kB T)) inside the FluorPhos competition is missing; kIC is a free rate. The legacy register records no edge except through QuantumYield, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-HFP-01",
+              "candidateSummary": "Candidate: identify kIC with A exp(-Hammond.gapReactant/(kB T)) inside the FluorPhos competition; no delivered identification exists."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-HFP-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-EnergyGapLaw",
+      "theories": [
+        "Hammond",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "edge",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HEG-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HEG-01",
+          "pairId": "P-Hammond-EnergyGapLaw",
+          "title": "The energy-gap-law barrier vanishes exactly at the Hammond barrierless geometry",
+          "chemicalQuestion": "At the same reorganization energy and driving force, does the energy-gap-law nonradiative barrier vanish exactly when the Hammond transition-state coordinate reaches the reactant well?",
+          "chemicalRationale": "Both theories read the same equal-curvature two-parabola crossing. The energy-gap law reports the nonradiative barrier as nrBarrier = (lam - x)^2/(4 lam); Hammond reports the crossing coordinate as tsCoord = (lam - x)/(2 lam) and its forward barrier as gapReactant. The nonradiative barrier is zero exactly at x = lam, which is exactly where the Hammond transition state reaches the reactant geometry. The delivered §15 boundary row already identifies the kernel coordinate zero with lam = x; this query asks whether the energy-gap-law barrier zero and the Hammond coordinate zero are the same physical locus. That is a statement about where a nonradiative channel becomes barrierless, not a notation match.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.tsCoord",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 37,
+              "version": "1.0.0",
+              "signatureSha256": "f3321a0b50ef99958bad361d208e44b62092baf8a2b4e64c0c78cfe0747981a0",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrBarrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 62,
+              "version": "1.0.0",
+              "signatureSha256": "1eb0a487e369bf0639bba0a13210dc26b4dc493803852a4098991d3774fe2259",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondEnergyGapCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola context: reorganization energy lam and driving force x = -ΔG°. The forward barrier is (lam - x)^2/(4 lam) and the crossing coordinate is (lam - x)/(2 lam); the barrierless point is x = lam.",
+            "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondEnergyGapCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : HammondEnergyGapCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : HammondEnergyGapCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : HammondEnergyGapCtx => δ.lam ≠ 0",
+            "premiseIds": [
+              "hammondEnergyGap.lamNeZero"
+            ],
+            "definitions": [
+              {
+                "id": "hammondEnergyGap.lamNeZero",
+                "predicate": "fun δ : HammondEnergyGapCtx => δ.lam ≠ 0",
+                "statement": "lam ≠ 0: the reorganization energy is nonzero, so both barrier presentations are well defined.",
+                "loadBearing": "Consumed by the division clearing in the checked certificate."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-barrierless",
+            "description": "Barrierless-locus scope of the equal-curvature two-parabola model: lam ≠ 0 or lam > 0, all driving forces x; the compared predicates are zero-barrier and inverted-region loci.",
+            "domain": "all (lam, x) in ℝ² with the declared curvature premise; no other restriction.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "Both sides are propositions on the same (lam, x) context; the certificate is an iff under the declared nonzero-curvature premise.",
+          "falsificationCondition": "A context with lam ≠ 0 at which nrBarrier lam x = 0 but Hammond.tsCoord lam x ≠ 0 (or conversely) would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked: the nonradiative barrier zero is equivalent to the Hammond crossing-coordinate zero under lam ≠ 0. The proof consumes the delivered §15 boundary row and the energy-gap-law kernel pin.",
+            "evidence": {
+              "type": "r4-probe-certificate",
+              "certificateId": "Q-R4-E1-HEG-01",
+              "kind": "equivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondEnergyGapBarrierZeroEquiv",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondEnergyGapBarrierZeroEquiv_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "log": "bounded_audit/r4/excited-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.eg_boundary_eq_tsCoord_zero",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 920,
+                  "role": "delivered §15 boundary row consumed by the proof"
+                },
+                {
+                  "declaration": "PhotoLean.EnergyGapLaw.cert_nrBarrier",
+                  "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+                  "sourceLine": 67,
+                  "role": "delivered kernel pin of the energy-gap-law barrier"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe proves the barrier-zero equivalence and pins it as an equivalence certificate; the delivered boundary row supplies the coordinate half and the kernel pin supplies the barrier identity."
+            }
+          },
+          "provenance": {
+            "kind": "r4-probe-certificate",
+            "sourceArtifact": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondEnergyGapBarrierZeroEquiv"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-StokesShift",
+      "theories": [
+        "Hammond",
+        "StokesShift"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HSS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HSS-01",
+          "pairId": "P-Hammond-StokesShift",
+          "title": "The Stokes absorption maximum is the Hammond vertical surface gap",
+          "chemicalQuestion": "Is the Stokes vertical absorption energy the same physical gap as the Hammond product-surface energy at the ground-state geometry minus the Hammond reactant-surface energy there?",
+          "chemicalRationale": "StokesShift defines the absorption maximum as the vertical transition at the ground-state minimum, absEnergy = s1Surface(0) - s0Surface(0). Hammond's two surfaces are the displaced ground and excited surfaces of the same equal-curvature oscillator: productSurface at q = 0 minus reactantSurface at q = 0 is exactly the vertical gap. The query identifies the spectroscopic band maximum with the surface gap; it is an observable-level statement, and it does not claim that every measured Stokes shift is a two-parabola reorganization energy.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-productSurface",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.productSurface",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 33,
+              "version": "1.0.0",
+              "signatureSha256": "0aa1c897f7b1c9e3a03aa09d892533ddbc2810f860c0a3a0fcf00b36f39fffec",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-absEnergy",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.absEnergy",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 76,
+              "version": "1.0.0",
+              "signatureSha256": "46ab3a1066c035b5dba63ef16727d609e7747fce8429695bd9208cab996c92c7",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondStokesCtx",
+            "fields": [
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "Displaced equal-curvature oscillator: ground surface lam q^2 and excited surface lam (q - 1)^2 + e00. The vertical absorption at q = 0 is the gap between the excited and ground surfaces.",
+            "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondStokesCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : HammondStokesCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : HammondStokesCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondStokesCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [
+            {
+              "id": "absorptionEnergy",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single vertical-absorption configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => StokesShift.absEnergy δ.lam δ.e00",
+              "rightObs": "fun δ _ => Hammond.productSurface δ.lam δ.e00 0 - Hammond.reactantSurface δ.lam 0"
+            }
+          ],
+          "scope": {
+            "id": "scope-R4-E1-surface-observable",
+            "description": "Vertical-absorption observable scope: all (lam, e00) in ℝ²; the channel observes the absorption energy at the ground-state geometry.",
+            "domain": "all (lam, e00) in ℝ²; no premise.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued absorption energies on the same (lam, e00) context; the certificate is equality of every declared channel observation.",
+          "falsificationCondition": "A context at which the Stokes absorption energy differs from the Hammond vertical surface gap would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked: the declared absorption-energy channel is equal on its whole domain. The proof consumes the delivered absorption-energy law and the Hammond surface definitions.",
+            "evidence": {
+              "type": "r4-probe-certificate",
+              "certificateId": "Q-R4-E1-HSS-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondStokesAbsorptionBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondStokesAbsorptionBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "log": "bounded_audit/r4/excited-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.StokesShift.absEnergy_eq",
+                  "sourceArtifact": "PhotoLean/StokesShift/Criterion.lean",
+                  "sourceLine": 48,
+                  "role": "delivered §4 absorption-energy law consumed by the proof"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.kernel_productSurface_eq_hammond",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 134,
+                  "role": "delivered §1 kernel/Hammond product-surface pin used by the chemical reading"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe proves equality of the declared absorption-energy channel on its whole domain and pins the certificate as an observational equivalence."
+            }
+          },
+          "provenance": {
+            "kind": "r4-probe-certificate",
+            "sourceArtifact": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondStokesAbsorptionBridge"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-ICvsISC",
+      "theories": [
+        "Hammond",
+        "ICvsISC"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HIC-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HIC-01",
+          "pairId": "P-Hammond-ICvsISC",
+          "title": "The IC Franck–Condon barrier is the Hammond forward reactant gap",
+          "chemicalQuestion": "At the same reorganization energy and gap, is the Franck–Condon barrier of the internal-conversion channel the same equal-curvature forward barrier that Hammond reports as its reactant gap?",
+          "chemicalRationale": "The ICvsISC theory computes its Franck–Condon barrier as fcBarrier = (lam - x)^2/(4 lam), a channel-specific copy of the shared kernel barrier. Hammond computes the forward barrier gapReactant from the crossing of the same two harmonic surfaces. Both are the same physical barrier of the equal-curvature displaced-oscillator model, with independent definitions and independent provenance. The query asks for the definitional identity of the two barrier copies. It is a model-level statement: it does not assert that the microscopic IC barrier is a chemical reaction barrier in every system.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.fcBarrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+              "sourceLine": 63,
+              "version": "1.0.0",
+              "signatureSha256": "37c1541846725e6508950b54997d6c9b6a1937d6d0a10209c46f4262500db121",
+              "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondICvsISCCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola barrier context for the IC channel: reorganization energy lam and gap x. Both the IC Franck–Condon barrier and the Hammond forward gap are copies of the same kernel barrier.",
+            "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#HammondICvsISCCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : HammondICvsISCCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : HammondICvsISCCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondICvsISCCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-barrier-pin",
+            "description": "Definitional barrier-pin scope: all (lam, x) in ℝ²; the compared terms are the two barrier copies, both totalized at lam = 0.",
+            "domain": "all (lam, x) in ℝ²; no premise.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "The two endpoints are real-valued barrier definitions with identical bodies; the certificate is a fresh rfl-only DefEq pin.",
+          "falsificationCondition": "A context at which fcBarrier and gapReactant take different values would refute the definitional identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked: the two barrier copies are definitionally equal. The delivered pins identify both with the shared kernel barrier, and the probe carries the fresh rfl-only DefEq pin.",
+            "evidence": {
+              "type": "r4-probe-certificate",
+              "certificateId": "Q-R4-E1-HIC-01",
+              "kind": "definitionalIdentity",
+              "probe": {
+                "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondICvsISCBarrierPin",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondICvsISCBarrierPin_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "log": "bounded_audit/r4/excited-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.ICvsISC.cert_fcBarrier",
+                  "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+                  "sourceLine": 67,
+                  "role": "delivered pin of the IC barrier to the kernel barrier"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.kernel_barrier_eq_hammond",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 105,
+                  "role": "delivered pin of the kernel barrier to the Hammond forward gap"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The IC barrier and the Hammond forward gap are both copies of the kernel barrier; the probe records a fresh rfl-only DefEq pin over the two delivered declarations."
+            }
+          },
+          "provenance": {
+            "kind": "r4-probe-certificate",
+            "sourceArtifact": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondICvsISCBarrierPin"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-Forster",
+      "theories": [
+        "Hammond",
+        "Forster"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HFO-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HFO-01",
+          "pairId": "P-Hammond-Forster",
+          "title": "Is there a shared scalar between the Förster transfer geometry and the Hammond barrier?",
+          "chemicalQuestion": "Can the Förster transfer efficiency at donor–acceptor separation R be expressed as a function of the Hammond two-parabola barrier at the same driving force?",
+          "chemicalRationale": "Forster's transfer efficiency is R0^6/(R0^6 + R^6), a function of the donor–acceptor separation and the spectral/orientation parameters; Hammond's barrier is a function of reorganization energy and driving force. The delivered Förster statements contain no potential-energy surface, no reorganization energy, and no driving force; the Hammond statements contain no donor–acceptor separation and no spectral overlap. The delivered §16 extended no-edge register states that the transfer geometry shares no scalar with the energy-surface family. The query asks whether a shared scalar exists; the audit finds no declared context or translation, so the query is outside the declared jurisdiction rather than logically false.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-fretEff6",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.fretEff6",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "610f33f9e606af69c8f6979f12a55f5d4e50d471029bf1078d478d6e9f2123fa",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondForsterCandidateCtx",
+            "fields": [
+              "R : ℝ",
+              "tauD : ℝ",
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate juxtaposition of a Förster transfer geometry (donor–acceptor separation R, donor lifetime tauD) and a Hammond two-parabola barrier (lam, x). The two state spaces share no scalar and no total map between them is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#HammondForsterCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "No total translation is declared from the Förster geometry to the Hammond coordinates.",
+              "reason": "The Förster statements have no reorganization energy or driving force, so there is no coordinate to map into the Hammond context."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "No total translation is declared from the Hammond coordinates to the Förster geometry.",
+              "reason": "The Hammond statements have no donor–acceptor separation or spectral overlap, so there is no coordinate to map into the Förster context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondForsterCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-jurisdiction",
+            "description": "Jurisdiction scope of a query for which no shared context and no total translation exists. This records jurisdiction, not logical absence.",
+            "domain": "the named pair and the two endpoint statements; the declared translations are not total.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate would be an implication from the surface barrier to the transfer efficiency; the audit finds no shared scalar on which to state it.",
+          "falsificationCondition": "A context in which a total translation from R (and the spectral parameters) to (lam, x) is declared would move the query into scope; the current record claims no counterexample.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "The query is outside the declared audit jurisdiction: there is no shared context and no total translation between the Förster transfer geometry and the Hammond two-parabola coordinates. The finding is statement-level and cited to the delivered §16 register; it is not logical absence.",
+            "evidence": {
+              "type": "jurisdiction",
+              "jurisdictionRationale": "The two endpoint statements have no shared scalar and no declared total translation: Förster quantifies over (R, tauD, r0six, kappaSq, J) and Hammond over (lam, x). The delivered §16 register records the same jurisdiction finding. This is not a claim that no relation could ever be written.",
+              "searchLogRef": "SL-R4-E1-HFO-01"
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-HFO-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-Einstein",
+      "theories": [
+        "Hammond",
+        "Einstein"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-HEIN-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-HEIN-01",
+          "pairId": "P-Hammond-Einstein",
+          "title": "Does a Hammond-barrier nonradiative channel control the Einstein radiative yield?",
+          "chemicalQuestion": "In the two-channel radiative-yield model yield_radiative = A/(A + kNR), is the yield controlled by the Hammond forward barrier when kNR is the barrier-controlled nonradiative rate?",
+          "chemicalRationale": "Einstein's yield_radiative is the radiative branching ratio of a two-channel decay, with kNR free; Hammond supplies the barrier. A bridge would identify kNR with an Arrhenius rate over gapReactant and prove the monotonicity. The delivered corpus has no such theorem. The query is chemically meaningful because the radiative quantum yield is the standard competition observable, but the identification of kNR with a specific reaction barrier is a modelling premise.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-yield_radiative",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.yield_radiative",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/Einstein/Criterion.lean",
+              "sourceLine": 152,
+              "version": "1.0.0",
+              "signatureSha256": "0c80d9027159bdc026264c3004799bccf55b23e05471b9b78ed06dd3fe4b9ca0",
+              "sourceArtifactSha256": "2c283dfd035263c3a4952883e74656ede28b1a4afa71732c3d3e8e3a83ac0646",
+              "endpointForm": "theorem"
+            }
+          },
+          "sharedContext": {
+            "id": "HammondEinsteinCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "kNR : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate radiative-yield context: the Einstein two-channel yield A/(A + kNR) with kNR would be the Arrhenius rate over the Hammond forward barrier. No such identification is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#HammondEinsteinCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : HammondEinsteinCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a typed implication from the barrier-controlled kNR to the radiative-yield monotonicity; no such delivered statement exists.",
+          "falsificationCondition": "A context at which the radiative yield does not move monotonically with the barrier-controlled kNR would refute the candidate implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification kNR = A exp(-Hammond.gapReactant/(kB T)) in yield_radiative is missing; kNR is a free rate. The legacy register records no edge and routes the radiative conversions only through the QuantumYield anchor, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-HEIN-01",
+              "candidateSummary": "Candidate: identify kNR with A exp(-Hammond.gapReactant/(kB T)) in yield_radiative; no delivered identification exists."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-HEIN-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-Kasha",
+      "theories": [
+        "BEP",
+        "Kasha"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-BK-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-BK-01",
+          "pairId": "P-BEP-Kasha",
+          "title": "The BEP coefficient vanishes exactly at the Kasha IC-rate maximum",
+          "chemicalQuestion": "Does the BEP/Brønsted transfer coefficient vanish exactly where the Kasha Marcus-form internal-conversion rate reaches its pre-exponential value?",
+          "chemicalRationale": "The BEP transfer coefficient is the linear-response slope of the same two-parabola barrier; the delivered bridge identifies it with the Hammond transition-state coordinate. The Kasha IC rate is A exp(-barrier/(kB T)), maximal at zero barrier. The query asks whether the BEP coefficient zero and the Kasha IC rate maximum are the same driving-force point: the point where the barrier has no first-order free-energy dependence is the point where the nonradiative channel is activationless. The statement is about the two observables, not a restatement of either definition.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-transfer",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.transfer",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 59,
+              "version": "1.0.0",
+              "signatureSha256": "5db0ca641b7a930664fddc5f9f204f9f3dc2b7fed0eb16a6f2b7748041352997",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.marcusIC",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Compose.lean",
+              "sourceLine": 98,
+              "version": "1.0.0",
+              "signatureSha256": "fc351c6553fb032c69bf7a2cc156d502c0e44b4830a4483860104568a3ae4d4a",
+              "sourceArtifactSha256": "76e93ddf2d951c237efe334c4c9535aa4761245e1a6840737f53668ba45fd352",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepKashaCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "BEP coefficient and Kasha Marcus-form IC rate on the same step: pre-exponential A, reorganization energy lam, thermal energy kB·T, and gap x.",
+            "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#BepKashaCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : BepKashaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : BepKashaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : BepKashaCtx => ∀ p ∈ bepKashaPremises, p.predicate δ",
+            "premiseIds": [
+              "kasha.preExponentialPositive",
+              "thermal.energyPositive",
+              "bep.curvaturePositive"
+            ],
+            "definitions": [
+              {
+                "id": "kasha.preExponentialPositive",
+                "predicate": "fun δ : BepKashaCtx => 0 < δ.A",
+                "statement": "0 < A: the pre-exponential factor is positive.",
+                "loadBearing": "Consumed to cancel A."
+              },
+              {
+                "id": "thermal.energyPositive",
+                "predicate": "fun δ : BepKashaCtx => 0 < δ.kB * δ.T",
+                "statement": "0 < kB·T: the thermal energy is positive.",
+                "loadBearing": "Consumed to clear the exponential argument."
+              },
+              {
+                "id": "bep.curvaturePositive",
+                "predicate": "fun δ : BepKashaCtx => 0 < δ.lam",
+                "statement": "0 < lam: the reorganization energy is positive.",
+                "loadBearing": "Consumed by the coefficient algebra."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-rate-geometry",
+            "description": "Rate/geometry scope of the Marcus-form internal-conversion step: A > 0, kB·T > 0, lam > 0, all driving forces x; the compared predicates are a rate maximum and a crossing-coordinate boundary.",
+            "domain": "all (A, lam, kB, T, x) in ℝ⁵ with the declared positivity premises.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "Both sides are propositions on the same (A, lam, kB, T, x) context; the certificate is an iff under the declared positivity premises.",
+          "falsificationCondition": "A context satisfying the positivity premises at which transfer = 0 but marcusIC ≠ A (or conversely) would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked: the BEP coefficient zero is equivalent to the Kasha IC-rate maximum under the positivity premises. The proof consumes the delivered coefficient/coordinate bridge and the shared §3 pin.",
+            "evidence": {
+              "type": "r4-probe-certificate",
+              "certificateId": "Q-R4-E1-BK-01",
+              "kind": "equivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepKashaTransferZeroEquiv",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepKashaTransferZeroEquiv_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "log": "bounded_audit/r4/excited-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.transfer_eq_tsCoord_bridge",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 144,
+                  "role": "delivered §2 coefficient/coordinate bridge consumed by the proof"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.kernel_marcusIC",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 339,
+                  "role": "delivered §7 kernel identity used by the shared §3 pin"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe composes the delivered coefficient bridge with the §3 rate/coordinate pin to obtain the coefficient-zero/rate-maximum equivalence."
+            }
+          },
+          "provenance": {
+            "kind": "r4-probe-certificate",
+            "sourceArtifact": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepKashaTransferZeroEquiv"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-KashaVavilov",
+      "theories": [
+        "BEP",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-BKV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-BKV-01",
+          "pairId": "P-BEP-KashaVavilov",
+          "title": "Does the Kasha–Vavilov ladder inherit a barrier window from the BEP activation energy?",
+          "chemicalQuestion": "If the S2→S1 internal-conversion loss of a Kasha–Vavilov ladder is an Arrhenius rate over the BEP activation energy, does the Vavilov spectral-agreement predicate become a statement about the BEP driving-force window?",
+          "chemicalRationale": "KashaVavilov's SpecSame compares normalized spectra across excitation levels; its ladder rates are free functions. BEP supplies an activation barrier eact of the equal-curvature two-parabola step. A conditional composition would identify the ladder ic with an Arrhenius rate over eact and carry the Vavilov predicate to a barrier statement; the delivered corpus has no such composition. The query is chemically meaningful because Vavilov behaviour is often read as a gap-dependent loss, but the delivered theory leaves the ladder rates free.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.SpecSame",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepKashaVavilovCandidateCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ",
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ"
+            ],
+            "physicalReading": "Candidate juxtaposition of a Kasha–Vavilov ladder and the BEP activation barrier (lam, x). No total map from a ladder level or a ladder rate to a driving force is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#BepKashaVavilovCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepKashaVavilovCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate is a typed composition of the ladder rates with a BEP-barrier Arrhenius rate; no such delivered composition exists.",
+          "falsificationCondition": "A context at which the ladder is Vavilov-conforming but the composed BEP barrier window fails (or conversely) would refute the candidate composition.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No delivered statement-level composition connects KashaVavilov's SpecSame predicate to the BEP activation barrier; the ladder rates are free functions. The legacy register records no edge, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-BKV-01",
+              "candidateSummary": "Candidate: identify the ladder S2→S1 ic with an Arrhenius rate over BEP.eact and compose the Vavilov predicate; the delivered corpus has no such conditional composition."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-BKV-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-SternVolmer",
+      "theories": [
+        "BEP",
+        "SternVolmer"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-BSV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-BSV-01",
+          "pairId": "P-BEP-SternVolmer",
+          "title": "Is the Stern–Volmer added quenching channel a barrier-controlled rate at the BEP step?",
+          "chemicalQuestion": "Is the Stern–Volmer added decay channel kq·[Q] the same physical rate as an Arrhenius rate over the BEP activation energy at a quencher-dependent driving force?",
+          "chemicalRationale": "SternVolmer models the quencher-dependent decay as k0 + kq q, with kq a free bimolecular rate; BEP supplies an activation barrier eact for an elementary step. If collisional quenching is an activated transfer step, kq should be a barrier-controlled rate. A statement-level bridge would identify the added channel with exp(-BEP.eact/(kB T)) at a driving force tied to the quencher. The query asks for that bridge; the missing piece is a translation between quencher concentration and the driving force.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.dynDecay",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 47,
+              "version": "1.0.0",
+              "signatureSha256": "300a9093783079efccbc86615861306e755d9c7024bbbcdf5e9068654d62a907",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepSvCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "Candidate juxtaposition of a BEP activation barrier (lam, x) and a Stern–Volmer concentration channel k0 + kq q. No total translation between q and x is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#BepSvCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepSvCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a typed implication from a BEP-barrier rate to the SV added channel; no such delivered statement exists.",
+          "falsificationCondition": "A context at which the SV added channel differs from the BEP-barrier rate at the same quencher loading would refute the candidate implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification of the SV added channel kq·q with an Arrhenius rate over BEP.eact, plus a total translation from quencher concentration to the driving force, is missing. The legacy register records no edge, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-BSV-01",
+              "candidateSummary": "Candidate: the SV added channel kq·q is an Arrhenius rate over BEP.eact at a quencher-dependent driving force; no delivered identification exists."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-BSV-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-QuantumYield",
+      "theories": [
+        "BEP",
+        "QuantumYield"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-BQY-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-BQY-01",
+          "pairId": "P-BEP-QuantumYield",
+          "title": "Does a BEP-barrier nonradiative channel control the parallel-channel quantum yield?",
+          "chemicalQuestion": "In a two-channel quantum-yield model whose nonradiative channel is an Arrhenius rate over the BEP activation energy, is the radiative yield a monotone function of that barrier?",
+          "chemicalRationale": "QuantumYield defines yieldOf as k_i / Σ k, with every channel rate free. BEP supplies an activation barrier eact. A bridge would set the nonradiative channel to A exp(-eact/(kB T)) and prove the yield comparison; the delivered corpus has no theorem identifying a yield channel with a barrier-controlled rate. The query asks for that composition. It is chemically meaningful because the fluorescence quantum yield is the standard observable of competition between radiative decay and activated nonradiative loss.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepQyCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "kr : ℝ"
+            ],
+            "physicalReading": "Candidate two-channel yield context: a radiative channel kr and an IC channel that would be the Arrhenius rate over the BEP activation barrier. No channel identification is declared.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#BepQyCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepQyCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a typed implication from a BEP-barrier rate to a yield monotonicity; no such delivered statement exists.",
+          "falsificationCondition": "A context at which the yield does not move monotonically with the BEP-barrier channel would refute the candidate implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered two-channel yield theorem whose nonradiative channel is an Arrhenius rate over BEP.eact is missing; QuantumYield leaves every channel rate free. The legacy register records no edge, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-BQY-01",
+              "candidateSummary": "Candidate: a two-channel yield with the nonradiative channel A exp(-BEP.eact/(kB T)); no delivered theorem identifies a yield channel with the barrier rate."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-BQY-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-FluorPhos",
+      "theories": [
+        "BEP",
+        "FluorPhos"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-BFP-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-BFP-01",
+          "pairId": "P-BEP-FluorPhos",
+          "title": "Does the BEP barrier control the S1 fluorescence/phosphorescence competition?",
+          "chemicalQuestion": "If the S1 internal-conversion rate in the FluorPhos competition model is an Arrhenius rate over the BEP activation energy, does the fluorescence yield phiF decrease as that barrier decreases?",
+          "chemicalRationale": "FluorPhos writes phiF = kF/(kF + kISC + kIC), with kIC a free rate; BEP supplies an activation barrier eact. A bridge would replace kIC by the BEP-barrier rate and derive the monotonicity. The delivered corpus has no such theorem. The query is chemically meaningful because internal conversion is the nonradiative channel that competes with fluorescence and intersystem crossing in the S1 decay.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiF",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "902b6639757e5df14a909a3d57e43fa7e5806dcf7ee7caba25a0b290ddfb8208",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepFpCandidateCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate FluorPhos competition context with the IC channel read as the Arrhenius rate over the BEP activation barrier. The identification is not delivered.",
+            "provenance": "bounded_audit/r4/excited-01/screening.json#BepFpCandidateCtx (candidate; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "No total translation is declared; the candidate context is a juxtaposition of the two state spaces.",
+              "reason": "The delivered corpus contains no total map between the two coordinate systems named in the context."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepFpCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge between a two-parabola barrier and a partner-theory rate, ladder, or yield. No negative claim outside the named search.",
+            "domain": "the named pair and the statements/kinds/contexts recorded in its search-log entry.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate is a typed implication from the BEP-barrier rate to a fluorescence-yield monotonicity; no such delivered statement exists.",
+          "falsificationCondition": "A context at which phiF does not move monotonically with the BEP-barrier-controlled kIC would refute the candidate implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification kIC = A exp(-BEP.eact/(kB T)) inside the FluorPhos competition is missing; kIC is a free rate. The legacy register records no edge except through QuantumYield, so the honest status is unresolved.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R4-E1-BFP-01",
+              "candidateSummary": "Candidate: identify kIC with A exp(-BEP.eact/(kB T)) inside the FluorPhos competition; no delivered identification exists."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r4/excited-01/search-log.json",
+            "locator": "SL-R4-E1-BFP-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-EnergyGapLaw",
+      "theories": [
+        "BEP",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "r1QueueLegacyStatus": "absence",
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope",
+      "queryIds": [
+        "Q-R4-E1-BEG-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R4-E1-BEG-01",
+          "pairId": "P-BEP-EnergyGapLaw",
+          "title": "The energy-gap inverted region is exactly the negative BEP transfer-coefficient region",
+          "chemicalQuestion": "At positive reorganization energy, is the energy-gap-law inverted region (driving force beyond lam) exactly the driving-force range where the BEP/Brønsted transfer coefficient becomes negative?",
+          "chemicalRationale": "The energy-gap law calls the gap inverted when lam < x. The BEP coefficient is transfer = 1/2 - x/(2 lam), the linear-response slope of the same two-parabola barrier. The delivered bridge identifies transfer with the Hammond transition-state coordinate, and the delivered §2 row identifies a negative coordinate with the Marcus inverted region. The query asks whether the two theories place the regime boundary at the same driving force: the point where the barrier starts to fall as the driving force grows is the point where the energy-gap law calls the gap inverted. That is a statement about the sign of the free-energy dependence, not a shape similarity.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-transfer",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.transfer",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 59,
+              "version": "1.0.0",
+              "signatureSha256": "5db0ca641b7a930664fddc5f9f204f9f3dc2b7fed0eb16a6f2b7748041352997",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-InvertedGap",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.InvertedGap",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 88,
+              "version": "1.0.0",
+              "signatureSha256": "71a2763d66a1a6d5316f948b210fe190e11d54dd24275f50e603d0c7169ed234",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "BepEnergyGapCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola context shared by BEP and the energy-gap law: reorganization energy lam and driving force x = -ΔG°; the BEP coefficient is 1/2 - x/(2 lam) and the energy-gap-law inverted region is lam < x.",
+            "provenance": "bounded_audit/r4/excited-01/probes/E1-probe.lean#BepEnergyGapCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : BepEnergyGapCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : BepEnergyGapCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : BepEnergyGapCtx => 0 < δ.lam",
+            "premiseIds": [
+              "bepEnergyGap.lamPositive"
+            ],
+            "definitions": [
+              {
+                "id": "bepEnergyGap.lamPositive",
+                "predicate": "fun δ : BepEnergyGapCtx => 0 < δ.lam",
+                "statement": "0 < lam: the curvature is positive, so the inverted region has the physical orientation lam < x.",
+                "loadBearing": "Consumed by the delivered sign row and the proof."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R4-E1-barrierless",
+            "description": "Barrierless-locus scope of the equal-curvature two-parabola model: lam ≠ 0 or lam > 0, all driving forces x; the compared predicates are zero-barrier and inverted-region loci.",
+            "domain": "all (lam, x) in ℝ² with the declared curvature premise; no other restriction.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "Both sides are propositions on the same (lam, x) context; the certificate is an iff under positive curvature.",
+          "falsificationCondition": "A context with lam > 0 at which exactly one of InvertedGap and transfer < 0 holds would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked: the energy-gap-law inverted region and the negative BEP coefficient region coincide under positive curvature. The proof consumes the delivered transfer/coordinate bridge and the delivered inverted-region sign row.",
+            "evidence": {
+              "type": "r4-probe-certificate",
+              "certificateId": "Q-R4-E1-BEG-01",
+              "kind": "equivalence",
+              "probe": {
+                "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepEnergyGapInvertedEquiv",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepEnergyGapInvertedEquiv_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean",
+                "log": "bounded_audit/r4/excited-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.transfer_eq_tsCoord_bridge",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 144,
+                  "role": "delivered §2 BEP/Hammond coefficient bridge consumed by the proof"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.tsCoord_lt_zero_iff_inverted",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 164,
+                  "role": "delivered §2 inverted-region sign row consumed by the proof"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe composes the delivered transfer/coordinate bridge with the delivered inverted-region sign row; the certificate is an equivalence of the two regime predicates."
+            }
+          },
+          "provenance": {
+            "kind": "r4-probe-certificate",
+            "sourceArtifact": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepEnergyGapInvertedEquiv"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "pairs": 16,
+    "queries": 16,
+    "byStatus": {
+      "certified": 6,
+      "unresolved": 9,
+      "outOfScope": 1
+    },
+    "byExpectedKind": {
+      "equivalence": 4,
+      "definitionalIdentity": 1,
+      "observationalEquivalence": 1,
+      "conditionalComposition": 2,
+      "implication": 8
+    },
+    "certified": 6,
+    "refuted": 0,
+    "unresolved": 9,
+    "notEstablished": 0,
+    "outOfScope": 1,
+    "searchEntries": 10
+  },
+  "nonClaims": [
+    "A certified record is a checked statement-level relation under its declared context and premises; it is not a claim of physical universality.",
+    "A definitional identity is a kernel rfl pin over the declared translations; it is not propositional equality of the two physical vocabularies.",
+    "An unresolved record is a candidate registration; it is not a negative claim.",
+    "The outOfScope record is a jurisdiction finding, not logical absence.",
+    "No accepted R2/R3 pair is rescreened, and this package does not write the mutable R4 cumulative coverage ledger.",
+    "The r1QueueLegacyStatus field is a legacy census label, not an audit verdict.",
+    "The package makes no pair-count or edge-count target claim."
+  ]
+}

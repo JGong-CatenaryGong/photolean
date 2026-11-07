@@ -1,0 +1,2698 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-screening-package",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "WP-radiative-energy-transfer-01",
+    "title": "Radiative and energy-transfer relations, first half: Marcus/Kasha ladders, energy-gap law, Stokes window, IC channel, Einstein radiative fraction and the quenching contact",
+    "source": "loop/计划.md R5, Package RAD1",
+    "pairIds": [
+      "P-Marcus-KashaVavilov",
+      "P-Marcus-EnergyGapLaw",
+      "P-Marcus-StokesShift",
+      "P-Marcus-ICvsISC",
+      "P-Marcus-Forster",
+      "P-Marcus-Einstein",
+      "P-Kasha-KashaVavilov",
+      "P-Kasha-EnergyGapLaw",
+      "P-Kasha-StokesShift",
+      "P-Kasha-ICvsISC",
+      "P-Kasha-Forster",
+      "P-Kasha-Einstein",
+      "P-KashaVavilov-SternVolmer",
+      "P-KashaVavilov-QuantumYield",
+      "P-KashaVavilov-FluorPhos",
+      "P-KashaVavilov-EnergyGapLaw"
+    ],
+    "pairCount": 16,
+    "note": "Exactly the sixteen pairs of R1 work package WP-radiative-energy-transfer-01. No accepted R2/R3/R4 pair is rescreened and no other R5 package pair appears."
+  },
+  "statusVocabulary": [
+    "certified",
+    "refuted",
+    "unresolved",
+    "notEstablished",
+    "outOfScope"
+  ],
+  "kindVocabulary": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence",
+    "conditionalComposition",
+    "observationalEquivalence",
+    "distinguishability",
+    "refutation"
+  ],
+  "allowedAxioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "snapshot": {
+    "id": "snap-bounded-audit-2026-11-04-r5rad1",
+    "date": "2026-11-04",
+    "round": "R5",
+    "inventory": "audit_boundary/statement-inventory.json",
+    "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "pairQueue": "audit_boundary/pair-queue.json",
+    "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+    "clusterPlan": "audit_boundary/cluster-plan.json",
+    "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+    "boundary": "audit_boundary/BOUNDARY.md",
+    "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+    "legacyRegistry": "relation_audit/registry.json",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "acceptedR2Package": "bounded_audit/wp-surface-01/screening.json",
+    "acceptedR2Sha256": "2a98dac9d75d76782a307bd6903dd6adec6dcc946f09e186c07895e3bee1b49c",
+    "acceptedR3Package": "bounded_audit/r3/screening.json",
+    "acceptedR3Sha256": "452d213c5a142b4910f7adcf1e4efd433d02be83f538510992a2dfe758ed262c",
+    "acceptedR4E1Package": "bounded_audit/r4/excited-01/screening.json",
+    "acceptedR4E1Sha256": "9a096648063cda57f484f0ecddb802ebf6aa34fb115b26c31e187e75941ef60b",
+    "acceptedR4E2Package": "bounded_audit/r4/excited-02/screening.json",
+    "acceptedR4E2Sha256": "5ceee13be0629cd93b912d68e0a44751e1906c7acfd823cc9297af0a61c94af6",
+    "acceptedR4CIPackage": "bounded_audit/r4/conical-01/screening.json",
+    "acceptedR4CISha256": "f368b9b1f1ded5800419a5283b541363e83f37c4b8ef54aa641890cb54615487",
+    "leanToolchain": "leanprover/lean4:v4.17.0",
+    "deliveredLeanFileCount": 102,
+    "note": "The mutable R5 cumulative coverage ledger is deliberately not pinned by this package; prior coverage is derived from the five accepted screening packages."
+  },
+  "inventoryReference": {
+    "path": "audit_boundary/statement-inventory.json",
+    "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "statementRows": 1154,
+    "screeningEligibleRows": 1134
+  },
+  "legacyRegistryReference": {
+    "path": "relation_audit/registry.json",
+    "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "certificateCount": 38,
+    "queryCount": 151,
+    "recordCount": 151
+  },
+  "acceptedCoverageReference": {
+    "acceptedPairs": 67,
+    "sources": [
+      "bounded_audit/wp-surface-01/screening.json",
+      "bounded_audit/r3/screening.json",
+      "bounded_audit/r4/excited-01/screening.json",
+      "bounded_audit/r4/excited-02/screening.json",
+      "bounded_audit/r4/conical-01/screening.json"
+    ],
+    "note": "Derived by reading the five accepted screening packages directly; the mutable R5 ledger is not read and not pinned."
+  },
+  "searchLogReference": {
+    "path": "bounded_audit/r5/radiative-01/search-log.json",
+    "sha256": "1b711c1dbda4bbdc77e4da53025192e17b0b79011b394f859763f796d74dbf3a",
+    "entryCount": 6
+  },
+  "probeReference": {
+    "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+    "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+    "declarationCount": 11,
+    "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+  },
+  "contextLibrary": {
+    "MarcusKvCtx": {
+      "id": "MarcusKvCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "tol : ℝ",
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ"
+      ],
+      "physicalReading": "A two-level ladder (radiative rad, nonradiative ic) whose S₂→S₁ internal conversion is the Marcus-form activated step at reorganization energy lam and gap x, compared at tolerance tol. The Marcus barrier sets the squared-gap window; the ladder decides whether the upper block emits.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#MarcusKvCtx"
+    },
+    "EglRateCtx": {
+      "id": "EglRateCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "One nonradiative step in the equal-curvature two-parabola model: pre-exponential A, reorganization energy lam, thermal energy kB*T and driving force x. Both theories evaluate their own rate law on this same parameter tuple.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#EglRateCtx"
+    },
+    "EglZoneCtx": {
+      "id": "EglZoneCtx",
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "The reorganization energy and driving force of one step. The two theories classify this point into the same region: the gap larger than the reorganization energy.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#EglZoneCtx"
+    },
+    "MarcusICCtx": {
+      "id": "MarcusICCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "One internal-conversion step: pre-exponential A, channel reorganization energy lam, thermal energy kB*T and the channel gap x. ICvsISC evaluates its IC rate law on this tuple; Marcus evaluates its activated rate on the same tuple.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#MarcusICCtx"
+    },
+    "MarcusSSCtx": {
+      "id": "MarcusSSCtx",
+      "fields": [
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "The displaced-parabola pair of the same fluorophore: reorganization energy lam and 0-0 energy e00. Marcus classifies (lam, e00); StokesShift computes the vertical absorption and emission energies from the same pair.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#MarcusSSCtx"
+    },
+    "KashaVavCtx": {
+      "id": "KashaVavCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ"
+      ],
+      "physicalReading": "The Kasha ladder up to excitation level N: radiative and nonradiative rate arrays and the level N at which the excitation enters. Kasha states the exact rule as upperYield = 0; KashaVavilov states the spectral invariance of the same ladder.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KashaVavCtx"
+    },
+    "KashaEglCtx": {
+      "id": "KashaEglCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "One internal-conversion step in the Marcus form: pre-exponential A, reorganization energy lam, thermal energy kB*T and gap x. The Kasha ladder fills its inter-level IC channel with this rate; the energy-gap law writes its nonradiative rate on the same tuple.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KashaEglCtx"
+    },
+    "KashaEinsteinCtx": {
+      "id": "KashaEinsteinCtx",
+      "fields": [
+        "A : ℝ",
+        "kNR : ℝ"
+      ],
+      "physicalReading": "One excited state with radiative rate A and total nonradiative loss kNR. The Kasha ladder resolves it into a radiative and a nonradiative branch; the Einstein side writes the same radiative fraction as A times the observed lifetime 1/(A+kNR).",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KashaEinsteinCtx"
+    },
+    "KvQyCtx": {
+      "id": "KvQyCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ"
+      ],
+      "physicalReading": "The Kasha ladder up to level N. The KashaVavilov total-yield row splits the fluorescence yield into the lowest-level emission and the upper-block leak; the QuantumYield calculus evaluates the lowest-level two-channel yield.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KvQyCtx"
+    },
+    "KvFpCtx": {
+      "id": "KvFpCtx",
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ"
+      ],
+      "physicalReading": "The S₁ state with fluorescence, intersystem-crossing and internal-conversion rates. FluorPhos keeps the three channels separate; the Kasha ladder resolves the same state into one radiative and one nonradiative channel, the latter carrying kISC + kIC.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KvFpCtx"
+    },
+    "KvSvCtx": {
+      "id": "KvSvCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "The Kasha ladder up to level N under a collisional quencher at concentration q with bimolecular rate kq. Dynamic quenching adds kq*q to the *level-0* total decay; the upper levels of the ladder are untouched.",
+      "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KvSvCtx"
+    },
+    "MarcusForsterDisjointCtx": {
+      "id": "MarcusForsterDisjointCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "tauD : ℝ",
+        "r6 : ℝ",
+        "R : ℝ"
+      ],
+      "physicalReading": "Candidate shared context only: the Marcus step carries an activation barrier with a driving-force coordinate, the Förster transfer carries a donor lifetime and a donor-acceptor separation with an R⁻⁶ rate law. No declared translation relates a separation to a driving force.",
+      "provenance": "bounded_audit/r5/radiative-01/screening.json#MarcusForsterDisjointCtx (candidate context; no Lean structure)"
+    },
+    "MarcusEinsteinDisjointCtx": {
+      "id": "MarcusEinsteinDisjointCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "h : ℝ",
+        "c : ℝ",
+        "nu : ℝ",
+        "B21 : ℝ"
+      ],
+      "physicalReading": "Candidate shared context only: the Marcus rate is an activated nonradiative step; the Einstein coefficients are radiative transition quantities with a radiation-density factor. The single symbol A means a pre-exponential on one side and a spontaneous-emission coefficient on the other; no translation is declared.",
+      "provenance": "bounded_audit/r5/radiative-01/screening.json#MarcusEinsteinDisjointCtx (candidate context; no Lean structure)"
+    },
+    "KashaStokesDisjointCtx": {
+      "id": "KashaStokesDisjointCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ",
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "Candidate shared context only: the ladder carries rate arrays and yields; the Stokes description carries the two parabola offsets (lam, e00) and no rate array. No declared translation turns a rate array into a band position.",
+      "provenance": "bounded_audit/r5/radiative-01/screening.json#KashaStokesDisjointCtx (candidate context; no Lean structure)"
+    },
+    "KashaICCandidateCtx": {
+      "id": "KashaICCandidateCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the ladder channelling S₂→S₁ conversion through the ICvsISC Arrhenius rate law at that step’s own reorganization energy and gap. The ladder leaves ic a free rate array, so the assignment ic 1 = icRate is a modelling premise that no delivered statement carries.",
+      "provenance": "bounded_audit/r5/radiative-01/screening.json#KashaICCandidateCtx (candidate context; no Lean structure)"
+    },
+    "KashaForsterDisjointCtx": {
+      "id": "KashaForsterDisjointCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ",
+        "tauD : ℝ",
+        "r6 : ℝ",
+        "R : ℝ"
+      ],
+      "physicalReading": "Candidate shared context only: the ladder emits and converts between its own levels; the Förster description transfers excitation between two chromophores through a dipole geometry. No donor-acceptor pair and no donor lifetime occur in the ladder.",
+      "provenance": "bounded_audit/r5/radiative-01/screening.json#KashaForsterDisjointCtx (candidate context; no Lean structure)"
+    },
+    "KvEglCandidateCtx": {
+      "id": "KvEglCandidateCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the energy-gap law’s nonradiative rate fills the ladder’s IC channel, which would decide whether the Vavilov invariance survives. The ladder carries no energy-gap parameter of its own, and the delivered window row is stated with the Kasha-side Marcus-form rate, not with the energy-gap-law rate.",
+      "provenance": "bounded_audit/r5/radiative-01/screening.json#KvEglCandidateCtx (candidate context; no Lean structure)"
+    }
+  },
+  "scopeLibrary": {
+    "scope-RAD1-marcus-kv-window": {
+      "id": "scope-RAD1-marcus-kv-window",
+      "description": "Marcus window condition compared with the KashaVavilov anti-Kasha predicate.",
+      "domain": "all (A, lam, kB, T, x, tol, rad, ic) satisfying the seven declared premises; the totalized divisions of the ladder are included under the positivity premises",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-egl-rate": {
+      "id": "scope-RAD1-egl-rate",
+      "description": "The two rate laws evaluated on one parameter tuple.",
+      "domain": "all (A, lam, kB, T, x) in ℝ⁵; the totalized lam = 0 corner and kB*T = 0 are included",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-egl-zone": {
+      "id": "scope-RAD1-egl-zone",
+      "description": "The two region predicates evaluated on one (lam, x) pair.",
+      "domain": "all (lam, x) in ℝ²",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-ic-rate": {
+      "id": "scope-RAD1-ic-rate",
+      "description": "The IC channel rate law and the Marcus rate on one parameter tuple.",
+      "domain": "all (A, lam, kB, T, x) in ℝ⁵; totalized divisions included",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-ss-window": {
+      "id": "scope-RAD1-ss-window",
+      "description": "The inversion predicate and the sign of the emission energy.",
+      "domain": "all (lam, e00) in ℝ²; the e00 = lam zero-photon corner is included",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-kasha-vav-spec": {
+      "id": "scope-RAD1-kasha-vav-spec",
+      "description": "Kasha rule implies spectral excitation-independence on the same ladder.",
+      "domain": "all ladders (rad, ic) and levels N satisfying RateData and the positive fluorescence-yield hypotheses for every M ≤ N",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-kasha-egl-rate": {
+      "id": "scope-RAD1-kasha-egl-rate",
+      "description": "The ladder IC rate law and the energy-gap-law rate on one tuple.",
+      "domain": "all (A, lam, kB, T, x) in ℝ⁵; totalized divisions included",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-kasha-einstein": {
+      "id": "scope-RAD1-kasha-einstein",
+      "description": "The lowest-level radiative fraction read by Kasha and by Einstein.",
+      "domain": "all (A, kNR) in ℝ²; the A + kNR = 0 corner is included under totalized division",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-kv-qy-decomp": {
+      "id": "scope-RAD1-kv-qy-decomp",
+      "description": "The KashaVavilov total-yield decomposition with the QuantumYield calculus.",
+      "domain": "all ladders (rad, ic) and levels N; totalized divisions included",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-kv-fp-lump": {
+      "id": "scope-RAD1-kv-fp-lump",
+      "description": "The bottom-level ladder yield against the FluorPhos fluorescence yield.",
+      "domain": "all (kF, kISC, kIC) in ℝ³ under the declared channel-lumping translation rad 0 = kF, ic 0 = kISC + kIC",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-kv-sv-quench": {
+      "id": "scope-RAD1-kv-sv-quench",
+      "description": "The bottom-emission channel before and after a level-0 collisional quench.",
+      "domain": "all (rad, ic, N, kq, q) with 0 < rad 0 + ic 0 and 0 ≤ kq*q; the quench channel is added to the level-0 decay only",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-candidate-bridge": {
+      "id": "scope-RAD1-candidate-bridge",
+      "description": "Scoped search for a delivered statement-level bridge; no negative claim outside it.",
+      "domain": "the named unresolved pairs and the statements, kinds and contexts recorded in their search-log entries",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    },
+    "scope-RAD1-jurisdiction": {
+      "id": "scope-RAD1-jurisdiction",
+      "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+      "domain": "the named outOfScope pairs and the statements, kinds and contexts recorded in their search-log entries",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+    }
+  },
+  "pairs": [
+    {
+      "pairId": "P-Marcus-KashaVavilov",
+      "theories": [
+        "Marcus",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-MKVV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-MKVV-01",
+          "title": "A gap outside the Marcus window makes anti-Kasha emission observable",
+          "chemicalQuestion": "If the ladder’s S₂→S₁ internal conversion obeys the Marcus rate at reorganization energy lam and gap x, does a squared gap outside the Kasha tolerance window force a positive emission yield from the upper block — i.e. an observable failure of the Kasha rule rather than Vavilov spectral invariance?",
+          "chemicalRationale": "Marcus supplies the energy-gap control of an internal-conversion step: the barrier (lam − x)²/(4·lam) is smallest at x = lam, so the conversion rate is maximal there and falls quadratically as the gap leaves the reorganization energy. The KashaVavilov layer decides whether the ladder keeps the lowest-state spectrum (SpecSame, the Vavilov side) or leaks emission from above (anti-Kasha observable). The query composes the two statements: once the Marcus-controlled squared gap exceeds the Kasha window bound, the upper block necessarily retains emission. It is a cross-theory implication whose antecedent is a Marcus barrier condition and whose consequent is the KashaVavilov anti-Kasha predicate, not an identity of two rate notations.",
+          "endpoints": {
+            "source": {
+              "statementId": "marcus.barrier",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.barrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "4989203cd675772ef27166c739add6adeee01ae6913b9441b65da10dc98cdd3d",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-antiKasha_observable_iff",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.antiKasha_observable_iff",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Criterion.lean",
+              "sourceLine": 333,
+              "version": "1.0.0",
+              "signatureSha256": "ad7ac1c63f010140038347b1802ab9d5bbdb03745e93ed3e7e7e4bad859ac7e3",
+              "sourceArtifactSha256": "6530629bf4365c550d4c1e26953ebd550c499dc5f70057904eb35f4cb9b2e566",
+              "endpointForm": "theorem"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusKvCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "tol : ℝ",
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ"
+            ],
+            "physicalReading": "A two-level ladder (radiative rad, nonradiative ic) whose S₂→S₁ internal conversion is the Marcus-form activated step at reorganization energy lam and gap x, compared at tolerance tol. The Marcus barrier sets the squared-gap window; the ladder decides whether the upper block emits.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#MarcusKvCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "coordinate-map",
+              "term": "fun δ : MarcusKvCtx => δ",
+              "requirement": "The Marcus barrier is evaluated at the shared (lam, x); the prefactor, thermal energy and tolerance are carried only as premise parameters."
+            },
+            "right": {
+              "id": "descriptor-endpoint",
+              "term": "fun δ : MarcusKvCtx =>\n  { rad := δ.rad, ic := δ.ic, N := 1 }",
+              "requirement": "The KashaVavilov predicate is evaluated on the same ladder (rad, ic) at level N = 1; its interpretation as “emission from above the lowest state is observable” is the declared content of the delivered D2 boundary row."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : MarcusKvCtx =>\n  PhotoLean.Kasha.RateData δ.rad δ.ic 1 ∧\n  0 < δ.tol ∧ δ.tol < 1 ∧ 0 < δ.A ∧ 0 < δ.lam ∧ 0 < δ.kB * δ.T ∧\n  0 < δ.rad 0 ∧ 0 < δ.rad 1 ∧\n  δ.ic 1 = PhotoLean.Kasha.marcusIC δ.A δ.lam δ.kB δ.T δ.x",
+            "premiseIds": [
+              "mkv.rateData",
+              "mkv.tolerance",
+              "mkv.prefactorPositive",
+              "mkv.lamPositive",
+              "mkv.thermalPositive",
+              "mkv.ratesPositive",
+              "mkv.icIsMarcusRate"
+            ],
+            "definitions": [
+              {
+                "id": "mkv.rateData",
+                "predicate": "PhotoLean.Kasha.RateData δ.rad δ.ic 1",
+                "statement": "the ladder has positive total decay rates, nonnegative radiative and nonnegative nonradiative rates up to level 1",
+                "loadBearing": "consumed by the window row (decay positivity) and by the anti-Kasha boundary row (RateData is its only hypothesis)"
+              },
+              {
+                "id": "mkv.tolerance",
+                "predicate": "0 < δ.tol ∧ δ.tol < 1",
+                "statement": "the tolerance is a physical fraction strictly between 0 and 1",
+                "loadBearing": "consumed by the window row and by the log-positivity of the threshold"
+              },
+              {
+                "id": "mkv.prefactorPositive",
+                "predicate": "0 < δ.A",
+                "statement": "the Marcus pre-exponential factor is positive",
+                "loadBearing": "consumed by the window row (positivity of the gap threshold)"
+              },
+              {
+                "id": "mkv.lamPositive",
+                "predicate": "0 < δ.lam",
+                "statement": "the reorganization energy is positive",
+                "loadBearing": "consumed by the window row; without it the barrier and the threshold are not ordered"
+              },
+              {
+                "id": "mkv.thermalPositive",
+                "predicate": "0 < δ.kB * δ.T",
+                "statement": "the thermal energy is positive",
+                "loadBearing": "consumed by the window row’s logarithm and division steps"
+              },
+              {
+                "id": "mkv.ratesPositive",
+                "predicate": "0 < δ.rad 0 ∧ 0 < δ.rad 1",
+                "statement": "the bottom and funnel radiative rates are positive",
+                "loadBearing": "consumed by the window row; also used to derive the positive upper yield through the tolerance bound"
+              },
+              {
+                "id": "mkv.icIsMarcusRate",
+                "predicate": "δ.ic 1 = PhotoLean.Kasha.marcusIC δ.A δ.lam δ.kB δ.T δ.x",
+                "statement": "the ladder’s inter-level internal-conversion channel is the Marcus-form activated rate at the same reorganization energy and gap",
+                "loadBearing": "the declared modelling premise of the composition; without it the ladder carries an arbitrary rate array"
+              }
+            ],
+            "note": "All seven premises are consumed by the proof: the window row consumes six and the seventh names the channel assignment. No premise is decorative."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-marcus-kv-window",
+            "description": "Marcus window condition compared with the KashaVavilov anti-Kasha predicate.",
+            "domain": "all (A, lam, kB, T, x, tol, rad, ic) satisfying the seven declared premises; the totalized divisions of the ladder are included under the positivity premises",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The obligation is one-way: a Marcus barrier condition entails the KashaVavilov anti-Kasha predicate. The converse is not claimed (anti-Kasha emission can arise from any fast upper conversion), so the row is an implication, not an equivalence.",
+          "falsificationCondition": "A context satisfying the seven premises at which the squared gap exceeds the window bound yet the ladder still satisfies the Kasha rule (upperYield rad ic 1 = 0) would refute the implication. The probe proof is total, so no such context exists in the model.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe’s `mkv_sound` derives the anti-Kasha predicate from the window premises and the gap bound, consuming both the delivered window row `Kasha.not_kashaWithin_of_gap_far` and the delivered D2 boundary row `KashaVavilov.antiKasha_observable_iff`.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-MKVV-01",
+              "kind": "implication",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.mkvBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.mkvBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Kasha.not_kashaWithin_of_gap_far",
+                  "sourceArtifact": "PhotoLean/Kasha/Compose.lean",
+                  "sourceLine": 411,
+                  "role": "delivered anti-Kasha direction of the Marcus window row"
+                },
+                {
+                  "declaration": "PhotoLean.KashaVavilov.antiKasha_observable_iff",
+                  "sourceArtifact": "PhotoLean/KashaVavilov/Criterion.lean",
+                  "sourceLine": 333,
+                  "role": "delivered D2 boundary: positive upper yield ↔ the rule fails"
+                },
+                {
+                  "declaration": "PhotoLean.Kasha.fluoYield_nonneg",
+                  "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+                  "sourceLine": 266,
+                  "role": "delivered nonnegativity consumed to turn the window violation into a strict positivity"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The certificate is a typed implication. Its antecedent is a Marcus barrier condition; its consequent is the KashaVavilov predicate. The proof consumes the two delivered rows above, so the row is a composition of delivered statements, not a restatement of one."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-MKVV-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.mkvBridge",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Marcus-KashaVavilov"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-EnergyGapLaw",
+      "theories": [
+        "Marcus",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-MEG-01",
+        "Q-RAD1-MEG-02"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-MEG-01",
+          "title": "The energy-gap-law nonradiative rate is the Marcus rate",
+          "chemicalQuestion": "Is the energy-gap law’s nonradiative rate — the Arrhenius rate over the equal-curvature crossing barrier — literally the Marcus rate at the same pre-exponential factor, reorganization energy, thermal energy and driving force?",
+          "chemicalRationale": "The energy-gap law and the Marcus inverted region describe the same nonradiative step: an activated crossing of the two equal-curvature parabolas, with the gap as the driving force. The energy-gap-law module keeps its own copy of the barrier and rate for independence, and its delivered certificate pins that copy to the Marcus body. The query asks whether the two theories’ nonradiative rate is one and the same rate law, so that the gap-law’s gap dependence is the Marcus barrier’s quadratic dependence. The answer is yes, definitionally.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 74,
+              "version": "1.0.0",
+              "signatureSha256": "987f56aec9bd86a4bf9b75615503ef3971f7ab605688cadba66688898258c12e",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "EglRateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "One nonradiative step in the equal-curvature two-parabola model: pre-exponential A, reorganization energy lam, thermal energy kB*T and driving force x. Both theories evaluate their own rate law on this same parameter tuple.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#EglRateCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : EglRateCtx => δ",
+              "requirement": "Both statement contexts are the shared parameter tuple; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : EglRateCtx => δ",
+              "requirement": "Both statement contexts are the shared parameter tuple; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : EglRateCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The two rate laws are definitionally the same total function of the tuple, including the lam = 0 and kB*T = 0 totalized corners; no premise is load-bearing, so none is declared."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-egl-rate",
+            "description": "The two rate laws evaluated on one parameter tuple.",
+            "domain": "all (A, lam, kB, T, x) in ℝ⁵; the totalized lam = 0 corner and kB*T = 0 are included",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "The obligation is a fresh elaborator check that the two translated rate terms are definitionally equal, not a propositional equality and not a physical-identity claim.",
+          "falsificationCondition": "A tuple (A, lam, kB, T, x) at which the two rate values differ would refute the definitional identity; the probe pin is total.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe builds a `DefinitionalPin` whose two translated terms elaborate by `rfl`; the pin is wrapped as a typed definitionalIdentity certificate.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-MEG-01",
+              "kind": "definitionalIdentity",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglRateBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglRateBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.EnergyGapLaw.cert_nrRate",
+                  "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+                  "sourceLine": 80,
+                  "role": "delivered Marcus certificate of the energy-gap-law rate"
+                },
+                {
+                  "declaration": "PhotoLean.Kernel.barrier",
+                  "sourceArtifact": "PhotoLean/Kernel.lean",
+                  "sourceLine": 46,
+                  "role": "shared equal-curvature barrier that both copies unfold to"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "Both theory copies are pinned to the delivered kernel barrier; the probe performs the fresh `rfl` check of the two theory-owned terms. The row is the rate-level bridge between the gap law and the Marcus rate, and the legacy registry’s two certified records for this pair (rate identity and region equivalence) are re-derived here at statement level."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-MEG-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglRateBridge",
+            "legacyDisposition": "The legacy registry carries two certified records for this pair (`rec-D-S12-eg-rate-eq-marcus`, `rec-D-S12-eg-invertedGap-iff-marcus`). They are re-derived here from the delivered declarations, so the package does not depend on the legacy certificate objects."
+          },
+          "pairId": "P-Marcus-EnergyGapLaw"
+        },
+        {
+          "queryId": "Q-RAD1-MEG-02",
+          "title": "The energy-gap-law inverted gap is the Marcus inverted region",
+          "chemicalQuestion": "Is the gap region in which the energy-gap law’s rate decreases with driving force — the inverted gap — exactly the Marcus inverted region?",
+          "chemicalRationale": "Both predicates cut the (lam, x) plane at x = lam: above it the barrier grows with the gap, so the rate falls. The two theories state the same boundary for the same physical reason (the parabola crossing moves past the reactant minimum), and the energy-gap-law certificate pins its predicate to the Marcus one. The query asks for the region-level identity that the rate-level identity of the companion query presupposes.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-InvertedRegion",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.InvertedRegion",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 60,
+              "version": "1.0.0",
+              "signatureSha256": "6970c5b1e6e982d966af182a2f8063f67d952fafa3b06573f0721ce83fb250fb",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-InvertedGap",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.InvertedGap",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 88,
+              "version": "1.0.0",
+              "signatureSha256": "71a2763d66a1a6d5316f948b210fe190e11d54dd24275f50e603d0c7169ed234",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "EglZoneCtx",
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "The reorganization energy and driving force of one step. The two theories classify this point into the same region: the gap larger than the reorganization energy.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#EglZoneCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : EglZoneCtx => δ",
+              "requirement": "Both region predicates are evaluated on the same (lam, x)."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : EglZoneCtx => δ",
+              "requirement": "Both region predicates are evaluated on the same (lam, x)."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : EglZoneCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The two predicates have the same body, so no premise is load-bearing; the boundary point x = lam belongs to neither region on both sides."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-egl-zone",
+            "description": "The two region predicates evaluated on one (lam, x) pair.",
+            "domain": "all (lam, x) in ℝ²",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "Two propositions on the same plane are compared; the obligation is a two-sided implication, i.e. an equivalence.",
+          "falsificationCondition": "A pair (lam, x) in exactly one of the two regions would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe’s `marcusEglZone_iff` is the delivered `cert_invertedGap` read backwards; the certificate wraps it as a typed equivalence.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-MEG-02",
+              "kind": "equivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglZoneBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglZoneBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.EnergyGapLaw.cert_invertedGap",
+                  "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+                  "sourceLine": 92,
+                  "role": "delivered Marcus certificate of the inverted-gap predicate"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The equivalence is delivered at statement level by the energy-gap-law module and re-exported through the probe; the probe does not weaken or strengthen the predicates."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-MEG-02",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglZoneBridge",
+            "legacyDisposition": "The legacy registry’s `rec-D-S12-eg-invertedGap-iff-marcus` is re-derived; the legacy object is not cited as evidence."
+          },
+          "pairId": "P-Marcus-EnergyGapLaw"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-StokesShift",
+      "theories": [
+        "Marcus",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-MSS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-MSS-01",
+          "title": "The emission window is open exactly in the Marcus inverted region",
+          "chemicalQuestion": "Does the Stokes emission energy become positive (`0 < emEnergy`) — a vertical photon above the 0-0 energy — exactly in the Marcus inverted region (`InvertedRegion`, lam < e00), and is it negative or zero outside that region (normal region e00 < lam, and the zero-photon corner e00 = lam)?",
+          "chemicalRationale": "The Stokes module computes the vertical absorption and emission energies from the same displaced-parabola pair that Marcus classifies. Its emission energy is e00 − lam, which changes sign at e00 = lam — exactly the Marcus region boundary. The delivered row SS-C9 records the sign identity against `Marcus.InvertedRegion`. The query asks whether the optical emission-window sign is the Marcus region predicate, which is the one genuine Marcus/StokesShift statement-level contact (the surfaces are only kernel copies).",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-InvertedRegion",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.InvertedRegion",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 60,
+              "version": "1.0.0",
+              "signatureSha256": "6970c5b1e6e982d966af182a2f8063f67d952fafa3b06573f0721ce83fb250fb",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.emEnergy",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "31c4f14c2cfab83174ed72561ae8fc8e67b82fa5d06549ab95e511ba1108f504",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusSSCtx",
+            "fields": [
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "The displaced-parabola pair of the same fluorophore: reorganization energy lam and 0-0 energy e00. Marcus classifies (lam, e00); StokesShift computes the vertical absorption and emission energies from the same pair.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#MarcusSSCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : MarcusSSCtx => δ",
+              "requirement": "The Marcus region predicate is evaluated on (lam, e00) as the driving force pair."
+            },
+            "right": {
+              "id": "energy-window",
+              "term": "fun δ : MarcusSSCtx => (δ.lam, δ.e00)",
+              "requirement": "The Stokes emission energy takes the reorganization energy lam and the 0-0 energy e00 as its two arguments; the optical observable is the sign of that energy, not its magnitude."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : MarcusSSCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The sign identity is total in (lam, e00); the e00 = lam corner has emission energy exactly zero on both sides. No premise is load-bearing."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-ss-window",
+            "description": "The inversion predicate and the sign of the emission energy.",
+            "domain": "all (lam, e00) in ℝ²; the e00 = lam zero-photon corner is included",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "The obligation is two-sided: the optical sign predicate and the region predicate hold at exactly the same points.",
+          "falsificationCondition": "A pair (lam, e00) at which exactly one of `0 < emEnergy lam e00` and `InvertedRegion lam e00` holds — e.g. positive emission energy on the normal side, or negative emission energy in the inverted region — would refute the equivalence; the corner e00 = lam gives emEnergy = 0 on both sides, so it is not a counterexample.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe’s `marcusSS_iff` is the delivered `emEnergy_pos_iff_inverted` read backwards; the certificate wraps it as a typed equivalence.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-MSS-01",
+              "kind": "equivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusSSBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusSSBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.StokesShift.emEnergy_pos_iff_inverted",
+                  "sourceArtifact": "PhotoLean/StokesShift/Criterion.lean",
+                  "sourceLine": 112,
+                  "role": "delivered SS-C9 sign row against the Marcus inverted region"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The row is the one content-level Marcus/StokesShift contact: the optical observation channel of the emission window is the Marcus region predicate. It is not a claim that the Stokes shift magnitude is a Marcus rate or barrier."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-MSS-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusSSBridge",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Marcus-StokesShift"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-ICvsISC",
+      "theories": [
+        "Marcus",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-MIC-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-MIC-01",
+          "title": "The IC channel rate is the Marcus activated rate",
+          "chemicalQuestion": "Is the spin-conserving internal-conversion channel’s rate — Arrhenius over its own Franck–Condon barrier — the Marcus activated rate at the same pre-exponential factor, reorganization energy, thermal energy and gap?",
+          "chemicalRationale": "The IC-vs-ISC competition model builds the internal-conversion channel on the same equal-curvature Franck–Condon barrier that Marcus generalizes, and states its rate in the Marcus form. The query asks whether the IC channel rate is the Marcus rate, which is what licenses reading the IC channel’s gap dependence as the Marcus inverted-region behaviour. It is the rate-level half of the nonradiative-channel identification; the spin-forbidden ISC channel is explicitly not part of the claim.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.icRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "2ba39280d9bad8ff65662aa1c72d3c0a0427d5a3568b27b23a5a4f0e7b1bdf68",
+              "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusICCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "One internal-conversion step: pre-exponential A, channel reorganization energy lam, thermal energy kB*T and the channel gap x. ICvsISC evaluates its IC rate law on this tuple; Marcus evaluates its activated rate on the same tuple.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#MarcusICCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : MarcusICCtx => δ",
+              "requirement": "Both rates are evaluated on the shared parameter tuple."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : MarcusICCtx => δ",
+              "requirement": "The IC channel’s reorganization energy and gap are the shared lam and x; the IC prefactor is the shared A."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : MarcusICCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The two rate laws are definitionally the same total function; the totalized lam = 0 and kB*T = 0 corners are included, so no premise is load-bearing."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-ic-rate",
+            "description": "The IC channel rate law and the Marcus rate on one parameter tuple.",
+            "domain": "all (A, lam, kB, T, x) in ℝ⁵; totalized divisions included",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "The obligation is a fresh `rfl` check of the two translated rate terms. The physical claim is the channel identification; the certificate records it as a definitional rate identity.",
+          "falsificationCondition": "A tuple at which the IC rate and the Marcus rate differ would refute the identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe builds a `DefinitionalPin` of the two translated rate terms and wraps it as a typed definitionalIdentity certificate.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-MIC-01",
+              "kind": "definitionalIdentity",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusICRateBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusICRateBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.ICvsISC.cert_icRate",
+                  "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+                  "sourceLine": 77,
+                  "role": "delivered Marcus certificate of the IC rate"
+                },
+                {
+                  "declaration": "PhotoLean.Kernel.barrier",
+                  "sourceArtifact": "PhotoLean/Kernel.lean",
+                  "sourceLine": 46,
+                  "role": "shared equal-curvature barrier that both copies unfold to"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The IC module’s delivered certificate pins its own barrier and rate copies to the kernel and Marcus bodies; the probe adds the fresh `rfl` check of the two theory-owned terms. The legacy registry’s certified record for this pair (`rec-D-S12-icvscic-icRate-eq-marcus`) is re-derived, not cited."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-MIC-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusICRateBridge",
+            "legacyDisposition": "The legacy registry’s certified record is re-derived from the delivered declarations; the legacy object itself is not cited as evidence."
+          },
+          "pairId": "P-Marcus-ICvsISC"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-Forster",
+      "theories": [
+        "Marcus",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-MFO-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-MFO-01",
+          "title": "Is the Förster transfer rate an activated Marcus step?",
+          "chemicalQuestion": "Is the Förster resonance transfer rate — a through-space dipolar process with an R⁻⁶ distance law and a donor lifetime — the Marcus activated rate at the same driving force?",
+          "chemicalRationale": "Förster transfer is not an activated crossing: its rate is set by the spectral overlap and the donor–acceptor separation, and its only energy is the donor transition energy. Marcus’s rate is an activated barrier over a reaction coordinate with a reorganization energy and a driving force. The two models share no scalar: a translation from (tauD, r6, R) to (lam, x) is not a coordinate change of either declared model. The question is outside the declared jurisdiction, not logically false — and an Arrhenius shape alone must not be read as identifying a barrier with a transfer geometry.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-fretRate",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.fretRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 54,
+              "version": "1.0.0",
+              "signatureSha256": "22e3fe56a137bbdd1e71e417edcaf8a83f45cd1dbc08672e98ec5631f15c2a8c",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusForsterDisjointCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "tauD : ℝ",
+              "r6 : ℝ",
+              "R : ℝ"
+            ],
+            "physicalReading": "Candidate shared context only: the Marcus step carries an activation barrier with a driving-force coordinate, the Förster transfer carries a donor lifetime and a donor-acceptor separation with an R⁻⁶ rate law. No declared translation relates a separation to a driving force.",
+            "provenance": "bounded_audit/r5/radiative-01/screening.json#MarcusForsterDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : MarcusForsterDisjointCtx => (δ.A, δ.lam, δ.kB, δ.T, δ.x)",
+              "requirement": "The Marcus tuple is read off the candidate context."
+            },
+            "right": {
+              "id": "none-declared",
+              "reason": "No delivered translation maps (tauD, r6, R) to (lam, x): the Förster descriptors are a lifetime and a separation, the Marcus descriptors a reorganization energy and a driving force.",
+              "requirement": "The right-side translation is undeclared, which is the jurisdiction boundary; the query is therefore recorded as outOfScope rather than searched further."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : MarcusForsterDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No premise is declared because no comparison is in scope; the candidate context exists only to record the two descriptor sets side by side."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the named outOfScope pairs and the statements, kinds and contexts recorded in their search-log entries",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The only relation a user could assert is the one-way reading “Förster transfer is an activated step”; the record states that this reading has no statement-level context.",
+          "falsificationCondition": "A delivered statement that equates a Förster descriptor with a Marcus barrier/rate descriptor would move this pair into scope; none exists in the frozen inventory.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "Neither theory’s statements contain the other’s descriptors: Marcus’s rate takes (A, lam, kB, T, x); Förster’s takes (tauD, r6, R) and returns an R⁻⁶ transfer rate. The delivered §16 registration records the pair as “no edge” for exactly this reason.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD1-MFO-01",
+              "jurisdictionRationale": "Statement-level jurisdiction: `PhotoLean.Marcus.rate` is a function of (A, lam, kB, T, x) only (PhotoLean/Marcus/Basic.lean:55), while `PhotoLean.Forster.fretRate` is a function of (tauD, r6, R) only (PhotoLean/Forster/Basic.lean:54). The frozen inventory has no statement whose signature accepts both descriptor sets, and `PhotoLean/Relations.lean` §16 (line 964) registers “Forster ↔ Marcus … — no edge” with the reason “the transfer geometry shares no scalar with the energy-surface family”. A translation between a donor–acceptor separation and a driving force is not a coordinate change of either delivered model, so the question lies outside the declared jurisdiction; this is a jurisdiction record, not a claim that no physical connection exists."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/search-log.json",
+            "locator": "SL-RAD1-MFO-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the Marcus rate takes a reorganization energy and a driving force, the Forster rate takes a donor lifetime and an R^-6 separation. The absence is jurisdictional, not a refutation or a logical non-existence claim.",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Marcus-Forster"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-Einstein",
+      "theories": [
+        "Marcus",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-MEB-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-MEB-01",
+          "title": "Is the Marcus rate an Einstein spontaneous-emission coefficient?",
+          "chemicalQuestion": "Is the Marcus activation-controlled rate the Einstein A coefficient of the same transition — i.e. is the nonradiative activated step the radiative spontaneous-emission process?",
+          "chemicalRationale": "The Einstein coefficients describe radiative transitions: A₂₁ is fixed by the radiation-density factor and the B coefficient, and the radiative lifetime is 1/A. The Marcus rate is an activated nonradiative step whose scale is set by a barrier and a pre-exponential factor. The symbol A means a pre-exponential on one side and a spontaneous-emission coefficient on the other — a notation collision, not a shared object. The two models have no shared scalar; the only machine contact of the Einstein side runs through the QuantumYield calculus, which is a different pair.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-aOfB",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.aOfB",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+              "sourceLine": 49,
+              "version": "1.0.0",
+              "signatureSha256": "37ce2a4ce5f5292d4a34a51ad2c1bc4c30e269fcfccae4093d3bc91b5a7cd223",
+              "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusEinsteinDisjointCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "h : ℝ",
+              "c : ℝ",
+              "nu : ℝ",
+              "B21 : ℝ"
+            ],
+            "physicalReading": "Candidate shared context only: the Marcus rate is an activated nonradiative step; the Einstein coefficients are radiative transition quantities with a radiation-density factor. The single symbol A means a pre-exponential on one side and a spontaneous-emission coefficient on the other; no translation is declared.",
+            "provenance": "bounded_audit/r5/radiative-01/screening.json#MarcusEinsteinDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : MarcusEinsteinDisjointCtx => (δ.A, δ.lam, δ.kB, δ.T, δ.x)",
+              "requirement": "The Marcus tuple is read off the candidate context."
+            },
+            "right": {
+              "id": "none-declared",
+              "reason": "No delivered translation maps (h, c, nu, B21) to (lam, x); the radiation-density factor and the driving force are different kinds of quantity.",
+              "requirement": "The right-side translation is undeclared; the query is a jurisdiction record."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : MarcusEinsteinDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No comparison is in scope, so no premise is declared."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the named outOfScope pairs and the statements, kinds and contexts recorded in their search-log entries",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate relation is the one-way reading “the activated rate is the radiative coefficient”; the record states it has no statement-level context.",
+          "falsificationCondition": "A delivered statement equating a Marcus rate/barrier descriptor with an Einstein coefficient or radiation factor would move the pair into scope; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "Marcus’s rate is a function of (A, lam, kB, T, x); the Einstein aOfB row is a function of (K, B21) where K is the radiation-density factor 8πhν³/c³. The delivered §16 registration records “no edge” and the only Einstein machine contact is the QuantumYield anchor.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD1-MEB-01",
+              "jurisdictionRationale": "Statement-level jurisdiction: `PhotoLean.Marcus.rate` (PhotoLean/Marcus/Basic.lean:55) takes a barrier and a thermal energy; `PhotoLean.Einstein.aOfB` (PhotoLean/Einstein/Basic.lean:49) takes a collected radiation-density factor and a B coefficient. The frozen inventory has no statement whose signature accepts both, and `PhotoLean/Relations.lean` §16 (line 969) registers “Einstein ↔ Marcus … — no edge”. The one Einstein row that touches a rate-level object is `einstein_yield_via_qy` (PhotoLean/Relations.lean §15), which is a QuantumYield composition, i.e. the Einstein–QuantumYield pair, not this one. The question is a jurisdiction boundary, not a refuted claim."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/search-log.json",
+            "locator": "SL-RAD1-MEB-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the Marcus rate is an activated nonradiative step, the Einstein rows are radiative transition quantities built from a radiation-density factor. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Marcus-Einstein"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-KashaVavilov",
+      "theories": [
+        "Kasha",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-KKV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-KKV-01",
+          "title": "Kasha’s rule entails the spectral Vavilov rule",
+          "chemicalQuestion": "If the ladder satisfies the exact Kasha rule — no emission from levels above the lowest — do the normalized emission spectra at all excitation levels up to N coincide, i.e. does Vavilov’s excitation-independence follow?",
+          "chemicalRationale": "Kasha’s rule confines all emission to the lowest excited state; Vavilov’s rule says the emission spectrum does not depend on the excitation wavelength. The D2 layer separates these two statements and proves that the first entails the second under the ladder’s standing physical premises and positive yields: if every upper level has zero radiative rate, the normalized spectrum is the delta at level 0 at every excitation level. The query is the pair’s statement-level bridge between the rule and the spectral invariance, and it is exactly the delivered KV-B7 row.",
+          "endpoints": {
+            "source": {
+              "statementId": "kasha.kashaRule",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.KashaRule",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 119,
+              "version": "1.0.0",
+              "signatureSha256": "8b50262c9cb18796fb440dd797799877caa142143a5cca1ac616460cc38aa2da",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.SpecSame",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaVavCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ"
+            ],
+            "physicalReading": "The Kasha ladder up to excitation level N: radiative and nonradiative rate arrays and the level N at which the excitation enters. Kasha states the exact rule as upperYield = 0; KashaVavilov states the spectral invariance of the same ladder.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KashaVavCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KashaVavCtx => δ",
+              "requirement": "The rule is evaluated on the same ladder and level N."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : KashaVavCtx => δ",
+              "requirement": "The spectral predicate is evaluated on the same ladder for every M ≤ N against level N."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : KashaVavCtx =>\n  PhotoLean.Kasha.RateData δ.rad δ.ic δ.N ∧\n  (∀ M, M ≤ δ.N → 0 < PhotoLean.Kasha.fluoYield δ.rad δ.ic M)",
+            "premiseIds": [
+              "kv.rateData",
+              "kv.fluoYieldPositive"
+            ],
+            "definitions": [
+              {
+                "id": "kv.rateData",
+                "predicate": "PhotoLean.Kasha.RateData δ.rad δ.ic δ.N",
+                "statement": "positive total decay up to N, nonnegative radiative and nonradiative rates",
+                "loadBearing": "consumed to descend the rule to every M ≤ N and to rewrite rad i = 0 on the upper levels"
+              },
+              {
+                "id": "kv.fluoYieldPositive",
+                "predicate": "∀ M, M ≤ δ.N → 0 < PhotoLean.Kasha.fluoYield δ.rad δ.ic M",
+                "statement": "the total fluorescence yield is positive at every lower level",
+                "loadBearing": "consumed as the nonvanishing denominator of the normalized spectral fraction; without it the fractions are totalized divisions with no defined ratio"
+              }
+            ],
+            "note": "Both premises are consumed by the delivered KV-B7 proof; the positivity is load-bearing exactly because `specFrac` is a totalized division."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-kasha-vav-spec",
+            "description": "Kasha rule implies spectral excitation-independence on the same ladder.",
+            "domain": "all ladders (rad, ic) and levels N satisfying RateData and the positive fluorescence-yield hypotheses for every M ≤ N",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The certificate is the one-way implication `KashaRule → SpecSame`: the exact Kasha rule entails equality of the normalized spectral shapes, and the converse is not claimed. `SpecSame` is a statement about spectral shape only; it does not assert that the fluorescence yield is constant across excitation levels, and no VavilovAt/VavilovUpTo yield-independence claim is attached to it.",
+          "falsificationCondition": "A ladder satisfying the two premises and the Kasha rule at which two levels M ≤ N have different normalized spectra would refute the implication.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe’s `kashaVav_sound` applies the delivered KV-B7 row `KashaVavilov.specSame_of_kashaRule`; the certificate is a typed implication carrying both premises by ID.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-KKV-01",
+              "kind": "implication",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaVavBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaVavBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.KashaVavilov.specSame_of_kashaRule",
+                  "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+                  "sourceLine": 137,
+                  "role": "delivered KV-B7 spectral Vavilov row"
+                },
+                {
+                  "declaration": "PhotoLean.KashaVavilov.specFrac_zero_of_kashaRule",
+                  "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+                  "sourceLine": 101,
+                  "role": "delivered bottom-level spectral fraction used by KV-B7"
+                },
+                {
+                  "declaration": "PhotoLean.Kasha.kashaRule_iff_rad_zero",
+                  "sourceArtifact": "PhotoLean/Kasha/Criterion.lean",
+                  "sourceLine": 252,
+                  "role": "delivered rule-to-radiative-rate form used to descend the rule"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe consumes the delivered KV-B7 row with its two premises; the row is the D2 layer’s own statement-level bridge between Kasha’s rule and Vavilov’s spectral invariance."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-KKV-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaVavBridge",
+            "legacyDisposition": "The legacy registry’s certified `rec-kasha-vavilov` D2 record is re-derived here at the spectral row; the legacy object is not cited as evidence."
+          },
+          "pairId": "P-Kasha-KashaVavilov"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-EnergyGapLaw",
+      "theories": [
+        "Kasha",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-KEG-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-KEG-01",
+          "title": "The ladder’s Marcus-form IC rate is the energy-gap-law rate",
+          "chemicalQuestion": "Is the internal-conversion rate that the Kasha ladder’s Marcus bridge quantifies over — `marcusIC A lam kB T x` — the energy-gap law’s nonradiative rate at the same pre-exponential factor, reorganization energy, thermal energy and gap?",
+          "chemicalRationale": "The ladder’s IC channel and the energy-gap law’s nonradiative channel are the same physical process: an activated crossing whose rate falls as the gap leaves the reorganization energy. The Kasha module states its channel in the Marcus form (`marcusIC`) so that its window theorem can speak about gap control; the energy-gap-law module states the nonradiative rate on the same barrier. The query asks whether the two are one rate law, which is what lets the Kasha window be read as an energy-gap criterion.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.marcusIC",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Compose.lean",
+              "sourceLine": 98,
+              "version": "1.0.0",
+              "signatureSha256": "fc351c6553fb032c69bf7a2cc156d502c0e44b4830a4483860104568a3ae4d4a",
+              "sourceArtifactSha256": "76e93ddf2d951c237efe334c4c9535aa4761245e1a6840737f53668ba45fd352",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 74,
+              "version": "1.0.0",
+              "signatureSha256": "987f56aec9bd86a4bf9b75615503ef3971f7ab605688cadba66688898258c12e",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaEglCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "One internal-conversion step in the Marcus form: pre-exponential A, reorganization energy lam, thermal energy kB*T and gap x. The Kasha ladder fills its inter-level IC channel with this rate; the energy-gap law writes its nonradiative rate on the same tuple.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KashaEglCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KashaEglCtx => δ",
+              "requirement": "The ladder IC rate is evaluated on the shared parameter tuple."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : KashaEglCtx => δ",
+              "requirement": "The energy-gap-law rate is evaluated on the shared parameter tuple."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaEglCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "Both bodies are total functions of the same tuple with the same totalized divisions; no premise is load-bearing."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-kasha-egl-rate",
+            "description": "The ladder IC rate law and the energy-gap-law rate on one tuple.",
+            "domain": "all (A, lam, kB, T, x) in ℝ⁵; totalized divisions included",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "The obligation is a fresh `rfl` check of the two translated rate terms, not a propositional equality.",
+          "falsificationCondition": "A tuple at which the ladder’s Marcus-form IC rate and the energy-gap-law rate differ would refute the identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe builds a `DefinitionalPin` of the two translated terms and wraps it as a typed definitionalIdentity certificate.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-KEG-01",
+              "kind": "definitionalIdentity",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEglRateBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEglRateBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Kasha.marcusIC",
+                  "sourceArtifact": "PhotoLean/Kasha/Compose.lean",
+                  "sourceLine": 98,
+                  "role": "the ladder’s declared Marcus-form IC rate"
+                },
+                {
+                  "declaration": "PhotoLean.EnergyGapLaw.nrRate",
+                  "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+                  "sourceLine": 74,
+                  "role": "the energy-gap-law nonradiative rate"
+                },
+                {
+                  "declaration": "PhotoLean.Kernel.barrier",
+                  "sourceArtifact": "PhotoLean/Kernel.lean",
+                  "sourceLine": 46,
+                  "role": "shared equal-curvature barrier that both bodies unfold to"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "Both theory copies reduce to the same delivered kernel barrier, so the identity is a genuine model identification of one nonradiative channel, not a comparison of two unrelated formulas: the IC channel of the ladder is the channel the gap law describes."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-KEG-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEglRateBridge",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor (`rec-notestablished-P-Kasha-EnergyGapLaw`); it is coverage history, not an audit verdict."
+          },
+          "pairId": "P-Kasha-EnergyGapLaw"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-StokesShift",
+      "theories": [
+        "Kasha",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-KSS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-KSS-01",
+          "title": "Does the ladder’s radiative emission specify the Stokes band separation?",
+          "chemicalQuestion": "Does the Kasha ladder’s radiative channel determine the Stokes band separation of the same fluorophore — i.e. is the ladder’s emission yield the Stokes-shifted band position?",
+          "chemicalRationale": "The ladder is a rate-array model: it says how much emission comes from each level and how the population funnels. The Stokes shift is a band-position observable of the displaced-parabola pair, computed from the reorganization energy and the 0-0 energy. The two descriptions have different kinds of arguments (rate arrays versus energy offsets), and the ladder carries no energy coordinate at all. The question is a jurisdiction question: no statement-level translation from a rate array to a band position is declared, so the pair is recorded as outside the frozen query protocol rather than searched for a forced edge.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-radBranch",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.radBranch",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 79,
+              "version": "1.0.0",
+              "signatureSha256": "450fed5589ef2f33b27a354bda22b1c3d0b02fba24e1dac01e7e161d692397fa",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.emEnergy",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "31c4f14c2cfab83174ed72561ae8fc8e67b82fa5d06549ab95e511ba1108f504",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaStokesDisjointCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ",
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "Candidate shared context only: the ladder carries rate arrays and yields; the Stokes description carries the two parabola offsets (lam, e00) and no rate array. No declared translation turns a rate array into a band position.",
+            "provenance": "bounded_audit/r5/radiative-01/screening.json#KashaStokesDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KashaStokesDisjointCtx => (δ.rad, δ.ic)",
+              "requirement": "The ladder is read off the candidate context."
+            },
+            "right": {
+              "id": "none-declared",
+              "reason": "No delivered translation maps a rate array (rad, ic) to a pair of energies (lam, e00); the codomains have different physical dimensions and the ladder has no energy argument.",
+              "requirement": "The right-side translation is undeclared; the query is a jurisdiction record."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaStokesDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No comparison is in scope, so no premise is declared."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the named outOfScope pairs and the statements, kinds and contexts recorded in their search-log entries",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The only candidate relation is the one-way reading “the ladder’s emission fixes the band separation”; the record states it has no statement-level context.",
+          "falsificationCondition": "A delivered statement taking both a rate array and the parabola offsets would move the pair into scope; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "Kasha’s statements are functions of rate arrays; the Stokes statements are functions of (lam, e00). The delivered §16 registration records “no edge” for this pair, with the reason “positions of band maxima vs rates/ladders”.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD1-KSS-01",
+              "jurisdictionRationale": "Statement-level jurisdiction: `PhotoLean.Kasha.radBranch` (PhotoLean/Kasha/Basic.lean:79) takes two rate arrays and a level index; `PhotoLean.StokesShift.emEnergy` (PhotoLean/StokesShift/Basic.lean:80) takes the reorganization energy and the 0-0 energy. The frozen inventory has no statement whose signature accepts both, and `PhotoLean/Relations.lean` §16 (line 956) registers “StokesShift ↔ Kasha … — no edge” because band positions and ladder rates are different observables. A rate array cannot be translated into a band position by a coordinate change of either model, so the pair is outside the declared jurisdiction; the record does not claim that the two descriptions are physically unrelated."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/search-log.json",
+            "locator": "SL-RAD1-KSS-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the ladder is a rate-array model with no energy coordinate, the Stokes rows are band positions of the displaced-parabola pair. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Kasha-StokesShift"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-ICvsISC",
+      "theories": [
+        "Kasha",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-KIC-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-KIC-01",
+          "title": "Does the ICvsISC rate law fill the ladder’s inter-level IC channel?",
+          "chemicalQuestion": "If the ladder’s inter-level internal-conversion rate is the ICvsISC Arrhenius rate law evaluated at that step’s own reorganization energy and gap, does Kasha conformance become an explicit bound on the squared gap?",
+          "chemicalRationale": "Both theories model internal conversion: the ladder as a free per-level rate, the IC-vs-ISC competition as an Arrhenius law over a Franck–Condon barrier. A bridge needs the channel assignment `ic 1 = icRate …` as a modelling premise; the delivered ladder leaves `ic` an arbitrary rate array, so no delivered statement carries that premise. The candidate composition is precisely the Kasha window theorem (which takes `ic 1 = marcusIC …`) preceded by the ICvsISC rate certificate. The query is recorded as unresolved because the missing object is the channel assignment, not a search result.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-icBranch",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.icBranch",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 83,
+              "version": "1.0.0",
+              "signatureSha256": "d16e19733f55a145c4d7a78437538c42846165a2f008e99331dfb1d83d153789",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.icRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "2ba39280d9bad8ff65662aa1c72d3c0a0427d5a3568b27b23a5a4f0e7b1bdf68",
+              "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaICCandidateCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the ladder channelling S₂→S₁ conversion through the ICvsISC Arrhenius rate law at that step’s own reorganization energy and gap. The ladder leaves ic a free rate array, so the assignment ic 1 = icRate is a modelling premise that no delivered statement carries.",
+            "provenance": "bounded_audit/r5/radiative-01/screening.json#KashaICCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KashaICCandidateCtx => (δ.rad, δ.ic)",
+              "requirement": "The ladder is read off the candidate context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "reason": "The candidate translation evaluates the ICvsISC rate law at the ladder step’s own (lam, x); it is not total because the ladder has no declared energy parameters, so the assignment is a modelling premise.",
+              "requirement": "The translation is recorded as a candidate, which is why the query is unresolved rather than certified."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : KashaICCandidateCtx =>\n  PhotoLean.Kasha.RateData δ.rad δ.ic δ.N ∧\n  δ.ic 1 = PhotoLean.ICvsISC.icRate δ.A δ.lam δ.kB δ.T δ.x",
+            "premiseIds": [
+              "kic.rateData",
+              "kic.channelAssignment"
+            ],
+            "definitions": [
+              {
+                "id": "kic.rateData",
+                "predicate": "PhotoLean.Kasha.RateData δ.rad δ.ic δ.N",
+                "statement": "the ladder’s standing physical premises",
+                "loadBearing": "the window row is stated only under RateData"
+              },
+              {
+                "id": "kic.channelAssignment",
+                "predicate": "δ.ic 1 = PhotoLean.ICvsISC.icRate δ.A δ.lam δ.kB δ.T δ.x",
+                "statement": "the ladder’s S₂→S₁ channel is the ICvsISC channel law at the step’s own reorganization energy and gap",
+                "loadBearing": "this is the premise the delivery is missing: no delivered row instantiates the ladder’s `ic` with a rate law"
+              }
+            ],
+            "note": "The second premise is a candidate, not a delivered fact; it is listed so the remaining gap is machine-visible."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside it.",
+            "domain": "the named unresolved pairs and the statements, kinds and contexts recorded in their search-log entries",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate is a two-step entailment: the ICvsISC rate certificate followed by the Kasha window row. The record states which parent is missing rather than asserting the child.",
+          "falsificationCondition": "A delivered statement that instantiates the ladder’s `ic` with the ICvsISC rate (or otherwise identifies the two channel laws) would close the gap and permit the composition.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "The two theories share the internal-conversion channel, but the ladder stores it as an unconstrained rate array and the ICvsISC module stores it as an Arrhenius law. The bridge needs the channel assignment as a modelling premise, which no delivered statement states; the search log records the searched statements and the exact remaining gap.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD1-KIC-01",
+              "candidateSummary": "Candidate: `ic 1 = ICvsISC.icRate A lam kB T x` followed by the delivered Kasha window row (which accepts `ic 1 = marcusIC …`). The ICvsISC delivered certificate `cert_icRate` would supply the rate half; the channel assignment itself is the missing premise."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/search-log.json",
+            "locator": "SL-RAD1-KIC-01",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Kasha-ICvsISC"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-Forster",
+      "theories": [
+        "Kasha",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-KFO-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-KFO-01",
+          "title": "Is the ladder’s emission yield the Förster transfer efficiency?",
+          "chemicalQuestion": "Is the Kasha ladder’s emission yield of one level the Förster transfer efficiency of the same excited state — i.e. does the ladder describe energy transfer between two chromophores?",
+          "chemicalRationale": "The ladder is a single-molecule branching model: excitation enters at level N and cascades down. Förster transfer is a two-chromophore process controlled by a donor lifetime, an orientation factor and an R⁻⁶ separation. The ladder has no donor–acceptor pair, no separation and no lifetime in its arguments, and the Förster rows have no level structure. The question is outside the declared jurisdiction: the two models answer different questions, and no statement-level translation turns a level yield into a transfer efficiency.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-emitYield",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.emitYield",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 91,
+              "version": "1.0.0",
+              "signatureSha256": "d3e0e19ed2da4e02a4b46760c2fab98bb46a38e0fe6b1aaffdce1c989a743e20",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-fretRate",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.fretRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 54,
+              "version": "1.0.0",
+              "signatureSha256": "22e3fe56a137bbdd1e71e417edcaf8a83f45cd1dbc08672e98ec5631f15c2a8c",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaForsterDisjointCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ",
+              "tauD : ℝ",
+              "r6 : ℝ",
+              "R : ℝ"
+            ],
+            "physicalReading": "Candidate shared context only: the ladder emits and converts between its own levels; the Förster description transfers excitation between two chromophores through a dipole geometry. No donor-acceptor pair and no donor lifetime occur in the ladder.",
+            "provenance": "bounded_audit/r5/radiative-01/screening.json#KashaForsterDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KashaForsterDisjointCtx => (δ.rad, δ.ic)",
+              "requirement": "The ladder is read off the candidate context."
+            },
+            "right": {
+              "id": "none-declared",
+              "reason": "No delivered translation maps a level yield (a function of rate arrays and two level indices) to a transfer rate (a function of tauD, r6, R).",
+              "requirement": "The right-side translation is undeclared; the query is a jurisdiction record."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaForsterDisjointCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No comparison is in scope, so no premise is declared."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the named outOfScope pairs and the statements, kinds and contexts recorded in their search-log entries",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The candidate relation is the one-way reading “the ladder’s emission is the transfer process”; the record states it has no statement-level context.",
+          "falsificationCondition": "A delivered statement that gives the ladder a donor–acceptor pair or a lifetime would move the pair into scope; none exists.",
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "Kasha’s emission yields are functions of rate arrays and level indices; Förster’s transfer rate is a function of a donor lifetime and an R⁻⁶ separation. The delivered §16 registration records “no edge”.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD1-KFO-01",
+              "jurisdictionRationale": "Statement-level jurisdiction: `PhotoLean.Kasha.emitYield` (PhotoLean/Kasha/Basic.lean:91) takes two rate arrays and two level indices; `PhotoLean.Forster.fretRate` (PhotoLean/Forster/Basic.lean:54) takes (tauD, r6, R). The frozen inventory has no statement accepting both, and `PhotoLean/Relations.lean` §16 (line 964) registers “Forster ↔ … Kasha … — no edge” because the transfer geometry shares no scalar with the ladder. The record is a jurisdiction boundary: the ladder is not claimed to be unable to participate in transfer, only that the frozen statements declare no such relation."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/search-log.json",
+            "locator": "SL-RAD1-KFO-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the ladder is a single-molecule branching model with no donor-acceptor pair, the Forster rows are a two-chromophore transfer geometry. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Kasha-Forster"
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-Einstein",
+      "theories": [
+        "Kasha",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-KEB-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-KEB-01",
+          "title": "The lowest-level radiative branch is the Einstein A·τ radiative fraction",
+          "chemicalQuestion": "Is the Kasha ladder’s radiative branch at the lowest level — with radiative rate A and total nonradiative loss kNR — the Einstein-side radiative fraction A·τ, where τ = 1/(A + kNR) is the observed lifetime?",
+          "chemicalRationale": "The ladder’s bottom level decays radiatively at A and nonradiatively at kNR, so its radiative branch is A/(A + kNR). The Einstein description writes the same fraction as the spontaneous-emission coefficient times the observed lifetime. The query asks whether the two theories report the same radiative fraction of the same two-channel decay — an optical observable — rather than whether the ladder’s emission rate is the A coefficient itself (which the Marcus/Einstein jurisdiction record rejects).",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-radBranch",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.radBranch",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 79,
+              "version": "1.0.0",
+              "signatureSha256": "450fed5589ef2f33b27a354bda22b1c3d0b02fba24e1dac01e7e161d692397fa",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-tauR",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.tauR",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+              "sourceLine": 65,
+              "version": "1.0.0",
+              "signatureSha256": "b515d1f09b47e8e4a348a64dd5f6444338fb4f77939b88a5b4fc1921d549f98f",
+              "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaEinsteinCtx",
+            "fields": [
+              "A : ℝ",
+              "kNR : ℝ"
+            ],
+            "physicalReading": "One excited state with radiative rate A and total nonradiative loss kNR. The Kasha ladder resolves it into a radiative and a nonradiative branch; the Einstein side writes the same radiative fraction as A times the observed lifetime 1/(A+kNR).",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KashaEinsteinCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "descriptor-endpoint",
+              "term": "fun δ : KashaEinsteinCtx =>\n  (fun _ : ℕ => δ.A, fun _ : ℕ => δ.kNR, 0)",
+              "requirement": "The ladder’s rate arrays are the constant radiative and nonradiative channels of one state, evaluated at level 0."
+            },
+            "right": {
+              "id": "descriptor-endpoint",
+              "term": "fun δ : KashaEinsteinCtx => (δ.A, δ.A + δ.kNR)",
+              "requirement": "The Einstein A coefficient is the ladder’s radiative rate; the lifetime denominator is the same total decay A + kNR."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaEinsteinCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The identity holds at every (A, kNR) as a totalized-division identity; the A + kNR = 0 corner is included, so no positivity premise is load-bearing."
+          },
+          "observationChannels": [
+            {
+              "id": "lowestLevelRadiativeFraction",
+              "name": "lowestLevelRadiativeFraction",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => PhotoLean.Kasha.radBranch\n  (fun _ => δ.A) (fun _ => δ.kNR) 0",
+              "rightObs": "fun δ _ => δ.A * PhotoLean.Einstein.tauR (δ.A + δ.kNR)"
+            }
+          ],
+          "scope": {
+            "id": "scope-RAD1-kasha-einstein",
+            "description": "The lowest-level radiative fraction read by Kasha and by Einstein.",
+            "domain": "all (A, kNR) in ℝ²; the A + kNR = 0 corner is included under totalized division",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both sides are real-valued observables on the same context; the certificate is equality of the declared radiative-fraction channel at every context point.",
+          "falsificationCondition": "A pair (A, kNR) at which the radiative branch and A·τ differ would refute the observational equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe’s `kashaEinstein_eq` proves the channel equality by `mul_one_div` after unfolding both definitions; the certificate is a typed observationalEquivalence with one channel.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-KEB-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEinsteinBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEinsteinBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Kasha.radBranch",
+                  "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+                  "sourceLine": 79,
+                  "role": "the ladder’s radiative branch definition"
+                },
+                {
+                  "declaration": "PhotoLean.Einstein.tauR",
+                  "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+                  "sourceLine": 65,
+                  "role": "the Einstein radiative lifetime 1/A"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The equality is the algebraic content of “A·τ is the radiative yield”; it is a real observation-channel identity on the same two-channel decay, and the translation names the two channel assignments explicitly."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-KEB-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEinsteinBridge",
+            "legacyDisposition": "The legacy registry carries only a pair-level notEstablished anchor for this pair; it is coverage history, not an audit verdict, and is not cited as evidence."
+          },
+          "pairId": "P-Kasha-Einstein"
+        }
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-SternVolmer",
+      "theories": [
+        "KashaVavilov",
+        "SternVolmer"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-VSV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-VSV-01",
+          "title": "Dynamic quenching dilutes only the ladder’s bottom emission channel",
+          "chemicalQuestion": "Does a collisional quencher that adds kq·[Q] to the ladder’s level-0 decay dilute the bottom emission channel by exactly the Stern–Volmer ratio of the unquenched level-0 decay, while leaving the upper-block leak — the quantity Vavilov’s law is about — unchanged?",
+          "chemicalRationale": "Dynamic quenching competes with the bottom level’s own decay; the upper levels of the ladder relax internally and are not quenched. The ladder’s total yield splits (the delivered KashaVavilov row) into the bottom emission and the upper leak. Since the leak is invariant and the bottom radiative branch is diluted by (k0 + kq·q)/k0 with k0 the unquenched level-0 decay, the bottom-emission channel is exactly quench-covariant. This is the statement-level form of the SternVolmer–QuantumYield dilution row, read on the ladder’s own decomposition: it tells which part of the KashaVavilov yield the quencher moves.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-fluoYield_eq_emitYield_zero_add_upperYield",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.fluoYield_eq_emitYield_zero_add_upperYield",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "8610ff13e6846739525cc69d5b4fce98f642ceff1ec74ec9d0d91a5abac8b568",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "theorem"
+            },
+            "target": {
+              "statementId": "sternvolmer.intensityDyn",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvSvCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "The Kasha ladder up to level N under a collisional quencher at concentration q with bimolecular rate kq. Dynamic quenching adds kq*q to the *level-0* total decay; the upper levels of the ladder are untouched.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KvSvCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KvSvCtx => δ",
+              "requirement": "The ladder is evaluated on the shared context; the upper leak term is shared."
+            },
+            "right": {
+              "id": "observational-setup",
+              "term": "fun δ : KvSvCtx =>\n  (PhotoLean.Kasha.decay δ.rad δ.ic 0, δ.kq, δ.q)",
+              "requirement": "The Stern–Volmer ratio is evaluated at the *unquenched* level-0 total decay, the quencher rate and the concentration."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : KvSvCtx =>\n  0 < δ.rad 0 + δ.ic 0 ∧ 0 ≤ δ.kq * δ.q",
+            "premiseIds": [
+              "kvSv.levelZeroDecayPositive",
+              "kvSv.quenchChannelNonnegative"
+            ],
+            "definitions": [
+              {
+                "id": "kvSv.levelZeroDecayPositive",
+                "predicate": "0 < δ.rad 0 + δ.ic 0",
+                "statement": "the unquenched level-0 total decay is positive",
+                "loadBearing": "consumed as the nonzero denominator of the Stern–Volmer ratio and of the radiative branch"
+              },
+              {
+                "id": "kvSv.quenchChannelNonnegative",
+                "predicate": "0 ≤ δ.kq * δ.q",
+                "statement": "the collisional channel is a loss channel",
+                "loadBearing": "consumed to keep the quenched level-0 decay positive so the quenched radiative branch has a nonzero denominator"
+              }
+            ],
+            "note": "Both premises are consumed by `kvSv_branch`; neither is decorative."
+          },
+          "observationChannels": [
+            {
+              "id": "bottomEmissionChannelUnderQuench",
+              "name": "bottomEmissionChannelUnderQuench",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => PhotoLean.Kasha.fluoYield δ.rad δ.ic δ.N -\n  PhotoLean.Kasha.upperYield δ.rad δ.ic δ.N",
+              "rightObs": "fun δ _ =>\n  (PhotoLean.Kasha.fluoYield δ.rad\n      (PhotoLean.RelationAudit.BoundedAudit.RAD1.quenchIC δ.ic δ.kq δ.q) δ.N -\n    PhotoLean.Kasha.upperYield δ.rad δ.ic δ.N) *\n  PhotoLean.SternVolmer.svRatioDyn (δ.rad 0 + δ.ic 0) δ.kq δ.q"
+            }
+          ],
+          "scope": {
+            "id": "scope-RAD1-kv-sv-quench",
+            "description": "The bottom-emission channel before and after a level-0 collisional quench.",
+            "domain": "all (rad, ic, N, kq, q) with 0 < rad 0 + ic 0 and 0 ≤ kq*q; the quench channel is added to the level-0 decay only",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both sides are real-valued observables on the same ladder; the certificate is equality of the declared bottom-emission channel at every context point satisfying the two premises.",
+          "falsificationCondition": "A context at which the bottom-emission channel and the Stern–Volmer-diluted quenched channel differ would refute the observational equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe proves the upper-leak invariance (`kvSv_upper_invariant`), the funnel-transmission invariance (`kvSv_cascade_invariant`), the branch dilution (`kvSv_branch`) and the channel equality (`kvSv_dilution`); the certificate is a typed observationalEquivalence with one channel.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-VSV-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvSvBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvSvBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.KashaVavilov.fluoYield_eq_emitYield_zero_add_upperYield",
+                  "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+                  "sourceLine": 80,
+                  "role": "delivered KV-B2 total-yield split consumed on both quench states"
+                },
+                {
+                  "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+                  "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+                  "sourceLine": 51,
+                  "role": "the dynamic Stern–Volmer ratio (decay ratio)"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.sv_quench_dilutes_yield",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 785,
+                  "role": "delivered SternVolmer→QuantumYield dilution row (source coherence for the same physical claim at the QY level)"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The certificate proves the ladder-level composition directly: the leak is invariant because it sums levels 1..N, the funnel transmission is invariant because it multiplies levels 1..N, and the bottom branch scales by the Stern–Volmer ratio. It is not a wrapper around the QY-level dilution row; that row is cited for coherence only."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-VSV-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvSvBridge",
+            "legacyDisposition": "The legacy registry carries only a pair-level undelivered-candidate anchor (`rec-candidate-P-KashaVavilov-SternVolmer`); it is coverage history, not an audit verdict."
+          },
+          "pairId": "P-KashaVavilov-SternVolmer"
+        }
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-QuantumYield",
+      "theories": [
+        "KashaVavilov",
+        "QuantumYield"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-VQY-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-VQY-01",
+          "title": "The ladder yield is the level-0 quantum yield transported by the funnel plus the leak",
+          "chemicalQuestion": "Is the KashaVavilov total fluorescence yield the two-channel quantum yield of the lowest level, multiplied by the funnel transmission to that level, plus the upper-block leak?",
+          "chemicalRationale": "The KashaVavilov total-yield row splits the fluorescence yield into the lowest level’s emission and the upper leak. The lowest level’s emission is a radiative branch times the probability of reaching level 0 without emitting — and that branch is exactly the two-channel quantum yield of the level-0 rate pair (the delivered Kasha–QuantumYield row). The query asks whether the ladder’s yield is therefore an algebraic composition of the QuantumYield calculus and the ladder’s own funnel transmission. It is a decomposition identity, not a new yield law.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-fluoYield_eq_emitYield_zero_add_upperYield",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.fluoYield_eq_emitYield_zero_add_upperYield",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "8610ff13e6846739525cc69d5b4fce98f642ceff1ec74ec9d0d91a5abac8b568",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "theorem"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvQyCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ"
+            ],
+            "physicalReading": "The Kasha ladder up to level N. The KashaVavilov total-yield row splits the fluorescence yield into the lowest-level emission and the upper-block leak; the QuantumYield calculus evaluates the lowest-level two-channel yield.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KvQyCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KvQyCtx => δ",
+              "requirement": "The ladder is evaluated on the shared context."
+            },
+            "right": {
+              "id": "descriptor-endpoint",
+              "term": "fun δ : KvQyCtx =>\n  (![δ.rad 0, δ.ic 0], (0 : Fin 2))",
+              "requirement": "The quantum-yield calculus is applied to the level-0 rate pair and its radiative channel 0."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KvQyCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The decomposition holds as a totalized-division identity at every ladder and level; no premise is load-bearing."
+          },
+          "observationChannels": [
+            {
+              "id": "ladderYieldDecomposition",
+              "name": "ladderYieldDecomposition",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => PhotoLean.Kasha.fluoYield δ.rad δ.ic δ.N",
+              "rightObs": "fun δ _ =>\n  PhotoLean.QuantumYield.yieldOf ![δ.rad 0, δ.ic 0] 0 *\n    PhotoLean.Kasha.cascade δ.rad δ.ic 0 δ.N +\n  PhotoLean.Kasha.upperYield δ.rad δ.ic δ.N"
+            }
+          ],
+          "scope": {
+            "id": "scope-RAD1-kv-qy-decomp",
+            "description": "The KashaVavilov total-yield decomposition with the QuantumYield calculus.",
+            "domain": "all ladders (rad, ic) and levels N; totalized divisions included",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both sides are real-valued observables on the same ladder; the certificate is equality of the declared decomposition channel at every context point.",
+          "falsificationCondition": "A ladder and level at which the total yield differs from the composed expression would refute the decomposition.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe’s `kvQy_decomposition` rewrites the delivered KV-B2 split and the delivered Kasha→QuantumYield branch row; the certificate is a typed observationalEquivalence with one channel.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-VQY-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvQyBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvQyBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.KashaVavilov.fluoYield_eq_emitYield_zero_add_upperYield",
+                  "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+                  "sourceLine": 80,
+                  "role": "delivered KV-B2 total-yield split"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.kasha_radBranch_eq_yieldOf",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 776,
+                  "role": "delivered Kasha→QuantumYield two-channel yield row"
+                },
+                {
+                  "declaration": "PhotoLean.Kasha.cascade",
+                  "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+                  "sourceLine": 87,
+                  "role": "the ladder’s funnel transmission to level 0"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The certificate consumes the two delivered rows; the decomposition is the yield-level content of the KashaVavilov/QuantumYield contact. It states how the ladder’s yield is built from the QuantumYield calculus, and it makes explicit that the upper-block leak is not part of the level-0 quantum yield."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-VQY-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvQyBridge",
+            "legacyDisposition": "The legacy registry carries only a pair-level undelivered-candidate anchor (`rec-candidate-P-KashaVavilov-QuantumYield`); it is coverage history, not an audit verdict."
+          },
+          "pairId": "P-KashaVavilov-QuantumYield"
+        }
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-FluorPhos",
+      "theories": [
+        "KashaVavilov",
+        "FluorPhos"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-VFP-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-VFP-01",
+          "title": "The coarse-grained ladder yield is the FluorPhos fluorescence yield",
+          "chemicalQuestion": "Under the channel-lumping translation — the ladder’s radiative channel is the fluorescence rate kF and its nonradiative channel carries the summed ISC + IC loss — is the ladder’s bottom-level fluorescence yield the FluorPhos S₁ fluorescence yield?",
+          "chemicalRationale": "FluorPhos resolves the S₁ decay into three channels (kF, kISC, kIC); the Kasha ladder resolves it into two (radiative, nonradiative). Lumping the two nonradiative channels into the ladder’s single loss rate gives rad 0 = kF and ic 0 = kISC + kIC, and then the ladder’s total yield at level 0 — which is just its bottom-level radiative branch — is kF/(kF + kISC + kIC), the FluorPhos fluorescence yield. The query asks whether the coarse-grained ladder and the three-channel competition model report the same fluorescence yield, which is the exact content of the lumping hypothesis.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-fluoYield_eq_emitYield_zero_add_upperYield",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.fluoYield_eq_emitYield_zero_add_upperYield",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "8610ff13e6846739525cc69d5b4fce98f642ceff1ec74ec9d0d91a5abac8b568",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "theorem"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiF",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "902b6639757e5df14a909a3d57e43fa7e5806dcf7ee7caba25a0b290ddfb8208",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvFpCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ"
+            ],
+            "physicalReading": "The S₁ state with fluorescence, intersystem-crossing and internal-conversion rates. FluorPhos keeps the three channels separate; the Kasha ladder resolves the same state into one radiative and one nonradiative channel, the latter carrying kISC + kIC.",
+            "provenance": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean#KvFpCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "descriptor-endpoint",
+              "term": "fun δ : KvFpCtx =>\n  (fun n => if n = 0 then δ.kF else 0,\n   fun n => if n = 0 then δ.kISC + δ.kIC else 0, 0)",
+              "requirement": "The ladder’s rate arrays are the lumped S₁ channels; the level is 0, where no upper level exists."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : KvFpCtx => δ",
+              "requirement": "The FluorPhos yield is evaluated on the three S₁ channels."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KvFpCtx => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The identity holds at every (kF, kISC, kIC) as a totalized-division identity; the lumping is carried by the translation, not by a premise, because it is the declared channel correspondence."
+          },
+          "observationChannels": [
+            {
+              "id": "bottomLevelFluorescenceYield",
+              "name": "bottomLevelFluorescenceYield",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ =>\n  PhotoLean.Kasha.fluoYield\n    (fun n => if n = 0 then δ.kF else 0)\n    (fun n => if n = 0 then δ.kISC + δ.kIC else 0) 0",
+              "rightObs": "fun δ _ => PhotoLean.FluorPhos.phiF δ.kF δ.kISC δ.kIC"
+            }
+          ],
+          "scope": {
+            "id": "scope-RAD1-kv-fp-lump",
+            "description": "The bottom-level ladder yield against the FluorPhos fluorescence yield.",
+            "domain": "all (kF, kISC, kIC) in ℝ³ under the declared channel-lumping translation rad 0 = kF, ic 0 = kISC + kIC",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both sides are real-valued observables on the same S₁ state; the certificate is equality of the declared fluorescence-yield channel under the stated lumping translation.",
+          "falsificationCondition": "A triple (kF, kISC, kIC) at which the lumped ladder yield and the FluorPhos yield differ would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe’s `kvFp_lumped` unfolds both yields and closes the identity by `ring`; the certificate is a typed observationalEquivalence with one channel.",
+            "evidence": {
+              "type": "rad1-probe-certificate",
+              "certificateId": "RC-RAD1-VFP-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "sha256": "38cc6056139db6890175441cf029bf9e5c01ad6e1b63c88e2d2f9ad5b388cfeb",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvFpBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvFpBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+                "log": "bounded_audit/r5/radiative-01/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Kasha.fluoYield",
+                  "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+                  "sourceLine": 94,
+                  "role": "the ladder total yield (at level 0 the single bottom branch)"
+                },
+                {
+                  "declaration": "PhotoLean.FluorPhos.phiF",
+                  "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+                  "sourceLine": 51,
+                  "role": "the three-channel S₁ fluorescence yield"
+                },
+                {
+                  "declaration": "PhotoLean.FluorPhos.s1Decay",
+                  "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+                  "sourceLine": 48,
+                  "role": "the S₁ total decay kF + kISC + kIC"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The row is the exact statement-level content of the coarse-graining hypothesis: the ladder’s two-channel bottom branch with the lumped loss is the three-channel FluorPhos yield. The lumping is in the translation, so a reader can reject the translation without rejecting the algebra."
+            }
+          },
+          "provenance": {
+            "kind": "rad1-probe-certificate",
+            "certificateId": "RC-RAD1-VFP-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/probes/RAD1-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD1.kvFpBridge",
+            "legacyDisposition": "The legacy registry carries only a pair-level undelivered-candidate anchor (`rec-candidate-P-KashaVavilov-FluorPhos`); it is coverage history, not an audit verdict."
+          },
+          "pairId": "P-KashaVavilov-FluorPhos"
+        }
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-EnergyGapLaw",
+      "theories": [
+        "KashaVavilov",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD1-VEG-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD1-VEG-01",
+          "title": "Does the energy-gap law decide when the Vavilov invariance breaks?",
+          "chemicalQuestion": "Does the energy-gap law’s nonradiative rate, once it fills the ladder’s conversion channel, decide whether the ladder keeps the Vavilov invariance or becomes anti-Kasha?",
+          "chemicalRationale": "The energy-gap law is the gap dependence of the nonradiative rate; the KashaVavilov layer states when the ladder departs from the lowest-state spectrum. Their composition would be: gap-law rate → ladder conversion rate → upper yield → anti-Kasha observable. The delivered pieces are the gap-law rate identity to Marcus (in the EnergyGapLaw module), the Kasha window row (stated with the Kasha-side `marcusIC` object), and the D2 anti-Kasha boundary. What is missing is a delivered statement that carries the gap-law rate into the ladder and out to the Vavilov predicate; the delivered EnergyGapLaw§16 registration lists KashaVavilov as an undelivered composition candidate. The query is therefore unresolved with the gap recorded precisely.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-antiKasha_observable_iff",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.antiKasha_observable_iff",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Criterion.lean",
+              "sourceLine": 333,
+              "version": "1.0.0",
+              "signatureSha256": "ad7ac1c63f010140038347b1802ab9d5bbdb03745e93ed3e7e7e4bad859ac7e3",
+              "sourceArtifactSha256": "6530629bf4365c550d4c1e26953ebd550c499dc5f70057904eb35f4cb9b2e566",
+              "endpointForm": "theorem"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 74,
+              "version": "1.0.0",
+              "signatureSha256": "987f56aec9bd86a4bf9b75615503ef3971f7ab605688cadba66688898258c12e",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvEglCandidateCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the energy-gap law’s nonradiative rate fills the ladder’s IC channel, which would decide whether the Vavilov invariance survives. The ladder carries no energy-gap parameter of its own, and the delivered window row is stated with the Kasha-side Marcus-form rate, not with the energy-gap-law rate.",
+            "provenance": "bounded_audit/r5/radiative-01/screening.json#KvEglCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KvEglCandidateCtx => (δ.rad, δ.ic)",
+              "requirement": "The ladder is read off the candidate context."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "reason": "The gap-law rate is a function of (A, lam, kB, T, x); the ladder is a function of rate arrays. The candidate translation fills the ladder’s channel with the gap-law rate, which no delivered statement declares.",
+              "requirement": "The translation is a candidate, which is why the query is unresolved rather than certified."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : KvEglCandidateCtx =>\n  PhotoLean.Kasha.RateData δ.rad δ.ic δ.N ∧\n  δ.ic 1 = PhotoLean.EnergyGapLaw.nrRate δ.A δ.lam δ.kB δ.T δ.x",
+            "premiseIds": [
+              "veg.rateData",
+              "veg.channelAssignment"
+            ],
+            "definitions": [
+              {
+                "id": "veg.rateData",
+                "predicate": "PhotoLean.Kasha.RateData δ.rad δ.ic δ.N",
+                "statement": "the ladder’s standing physical premises",
+                "loadBearing": "the window and boundary rows are stated only under RateData"
+              },
+              {
+                "id": "veg.channelAssignment",
+                "predicate": "δ.ic 1 = PhotoLean.EnergyGapLaw.nrRate δ.A δ.lam δ.kB δ.T δ.x",
+                "statement": "the ladder’s conversion channel is the energy-gap-law rate",
+                "loadBearing": "the missing delivered row: no statement instantiates the ladder’s channel with the gap-law rate"
+              }
+            ],
+            "note": "The second premise is the exact remaining gap; it is listed so the search result is machine-visible rather than prose only."
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-RAD1-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside it.",
+            "domain": "the named unresolved pairs and the statements, kinds and contexts recorded in their search-log entries",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad1"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate is a multi-step entailment (gap-law rate → ladder channel → window → anti-Kasha). The record states which parent is missing rather than asserting the child.",
+          "falsificationCondition": "A delivered statement that fills the ladder’s channel with the gap-law rate, or that states the Vavilov predicate directly in terms of the gap-law rate, would close the gap.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "The composition is chemically well posed but the delivered rows do not carry it: the window theorem is stated with `Kasha.marcusIC`, the gap-law rate lives in `EnergyGapLaw.nrRate`, and no statement bridges the ladder’s `ic` array to either. The search log records the searched statements and the exact missing parent.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD1-VEG-01",
+              "candidateSummary": "Candidate: `ic 1 = EnergyGapLaw.nrRate A lam kB T x`, then the delivered Kasha window row (after the definitional gap-law/Marcus rate identity), then `KashaVavilov.antiKasha_observable_iff`. The missing parent is the ladder channel assignment; no delivered statement states it."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-01/search-log.json",
+            "locator": "SL-RAD1-VEG-01",
+            "legacyDisposition": "The legacy registry carries only a pair-level undelivered-candidate anchor (`rec-candidate-P-KashaVavilov-EnergyGapLaw`); it is coverage history, not an audit verdict."
+          },
+          "pairId": "P-KashaVavilov-EnergyGapLaw"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "pairs": 16,
+    "queries": 17,
+    "byStatus": {
+      "certified": 11,
+      "unresolved": 2,
+      "outOfScope": 4
+    },
+    "byExpectedKind": {
+      "definitionalIdentity": 3,
+      "implication": 6,
+      "equivalence": 2,
+      "conditionalComposition": 2,
+      "observationalEquivalence": 4
+    },
+    "certified": 11,
+    "refuted": 0,
+    "unresolved": 2,
+    "notEstablished": 0,
+    "outOfScope": 4
+  },
+  "nonClaims": [
+    "Sixteen pairs, seventeen queries: one query per pair except P-Marcus-EnergyGapLaw, which carries two chemically distinct statement-level queries.",
+    "Screened is not the same as certified; the package records pair coverage separately from outcome counts.",
+    "One query per pair does not exhaust all conceivable relations between the theories outside the frozen bounded query protocol.",
+    "The certified rows are probe-level Lean certificates over delivered statements; they are not claims that the delivered theories are complete models of the chemistry.",
+    "The outOfScope rows are jurisdiction records about statement-level vocabulary; they do not claim that the physical processes are unrelated.",
+    "No R5 acceptance is claimed: the package stays submitted until independent review."
+  ]
+}

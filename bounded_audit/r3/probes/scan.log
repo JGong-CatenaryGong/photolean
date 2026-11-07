@@ -1,0 +1,5 @@
+# R3 probe forbidden-token scan
+# pattern: sorry|admit|^[ \t]*(private[ \t]+|protected[ \t]+)?(axiom|constant)([ \t]|$)
+# command: grep -rnE ... bounded_audit/r3/probes/R3-probe.lean
+# no hits
+# verdict: PASS (clean)

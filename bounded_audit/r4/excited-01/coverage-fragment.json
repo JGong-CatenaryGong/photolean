@@ -1,0 +1,400 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-coverage-fragment",
+  "round": "R4",
+  "generatedOn": "2026-11-04",
+  "package": {
+    "id": "R4-E1-EXCITED-01",
+    "workPackage": "WP-excited-state-kinetics-01",
+    "status": "submitted-R4-pending-review",
+    "pairCount": 16,
+    "queryCount": 16
+  },
+  "snapshot": {
+    "id": "snap-bounded-audit-2026-11-04",
+    "date": "2026-11-04",
+    "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+    "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+    "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0"
+  },
+  "counts": {
+    "pairs": 16,
+    "queries": 16,
+    "byStatus": {
+      "certified": 6,
+      "unresolved": 9,
+      "outOfScope": 1
+    },
+    "byExpectedKind": {
+      "equivalence": 4,
+      "definitionalIdentity": 1,
+      "observationalEquivalence": 1,
+      "conditionalComposition": 2,
+      "implication": 8
+    },
+    "certified": 6,
+    "refuted": 0,
+    "unresolved": 9,
+    "notEstablished": 0,
+    "outOfScope": 1,
+    "searchEntries": 10
+  },
+  "pairs": [
+    {
+      "pairId": "P-Hammond-Kasha",
+      "theories": [
+        "Hammond",
+        "Kasha"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HK-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HK-01",
+          "status": "certified",
+          "expectedKind": "equivalence",
+          "evidenceType": "r4-probe-certificate",
+          "certificateId": "Q-R4-E1-HK-01"
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-KashaVavilov",
+      "theories": [
+        "Hammond",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HKV-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HKV-01",
+          "status": "unresolved",
+          "expectedKind": "conditionalComposition",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-SternVolmer",
+      "theories": [
+        "Hammond",
+        "SternVolmer"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HSV-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HSV-01",
+          "status": "unresolved",
+          "expectedKind": "implication",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-QuantumYield",
+      "theories": [
+        "Hammond",
+        "QuantumYield"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HQY-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HQY-01",
+          "status": "unresolved",
+          "expectedKind": "implication",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-FluorPhos",
+      "theories": [
+        "Hammond",
+        "FluorPhos"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HFP-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HFP-01",
+          "status": "unresolved",
+          "expectedKind": "implication",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-EnergyGapLaw",
+      "theories": [
+        "Hammond",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HEG-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HEG-01",
+          "status": "certified",
+          "expectedKind": "equivalence",
+          "evidenceType": "r4-probe-certificate",
+          "certificateId": "Q-R4-E1-HEG-01"
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-StokesShift",
+      "theories": [
+        "Hammond",
+        "StokesShift"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HSS-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HSS-01",
+          "status": "certified",
+          "expectedKind": "observationalEquivalence",
+          "evidenceType": "r4-probe-certificate",
+          "certificateId": "Q-R4-E1-HSS-01"
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-ICvsISC",
+      "theories": [
+        "Hammond",
+        "ICvsISC"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HIC-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HIC-01",
+          "status": "certified",
+          "expectedKind": "definitionalIdentity",
+          "evidenceType": "r4-probe-certificate",
+          "certificateId": "Q-R4-E1-HIC-01"
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-Forster",
+      "theories": [
+        "Hammond",
+        "Forster"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HFO-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HFO-01",
+          "status": "outOfScope",
+          "expectedKind": "implication",
+          "evidenceType": "jurisdiction",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-Hammond-Einstein",
+      "theories": [
+        "Hammond",
+        "Einstein"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-HEIN-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-HEIN-01",
+          "status": "unresolved",
+          "expectedKind": "implication",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-BEP-Kasha",
+      "theories": [
+        "BEP",
+        "Kasha"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-BK-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-BK-01",
+          "status": "certified",
+          "expectedKind": "equivalence",
+          "evidenceType": "r4-probe-certificate",
+          "certificateId": "Q-R4-E1-BK-01"
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-BEP-KashaVavilov",
+      "theories": [
+        "BEP",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-BKV-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-BKV-01",
+          "status": "unresolved",
+          "expectedKind": "conditionalComposition",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-BEP-SternVolmer",
+      "theories": [
+        "BEP",
+        "SternVolmer"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-BSV-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-BSV-01",
+          "status": "unresolved",
+          "expectedKind": "implication",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-BEP-QuantumYield",
+      "theories": [
+        "BEP",
+        "QuantumYield"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-BQY-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-BQY-01",
+          "status": "unresolved",
+          "expectedKind": "implication",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-BEP-FluorPhos",
+      "theories": [
+        "BEP",
+        "FluorPhos"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-BFP-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-BFP-01",
+          "status": "unresolved",
+          "expectedKind": "implication",
+          "evidenceType": "scoped-search",
+          "certificateId": null
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    },
+    {
+      "pairId": "P-BEP-EnergyGapLaw",
+      "theories": [
+        "BEP",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "excited-state-kinetics",
+      "queryIds": [
+        "Q-R4-E1-BEG-01"
+      ],
+      "outcomes": [
+        {
+          "queryId": "Q-R4-E1-BEG-01",
+          "status": "certified",
+          "expectedKind": "equivalence",
+          "evidenceType": "r4-probe-certificate",
+          "certificateId": "Q-R4-E1-BEG-01"
+        }
+      ],
+      "screeningRequirement": "namedQueryOrStatementLevelOutOfScope"
+    }
+  ],
+  "packageArtifacts": {
+    "screening": {
+      "path": "bounded_audit/r4/excited-01/screening.json",
+      "sha256": "9a096648063cda57f484f0ecddb802ebf6aa34fb115b26c31e187e75941ef60b"
+    },
+    "searchLog": {
+      "path": "bounded_audit/r4/excited-01/search-log.json",
+      "sha256": "1a18a2a3bc5d23e62622dd87aa4cd76da4d9edfa98f64a137f0af786645d08f7"
+    },
+    "probe": {
+      "path": "bounded_audit/r4/excited-01/probes/E1-probe.lean",
+      "sha256": "b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2"
+    }
+  },
+  "nonClaims": [
+    "This fragment carries the sixteen E1 pairs only; it does not write or replace the mutable R4 cumulative coverage ledger.",
+    "The submitted status is not an acceptance; independent K3 review is required."
+  ]
+}

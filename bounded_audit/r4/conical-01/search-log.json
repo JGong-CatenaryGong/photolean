@@ -1,0 +1,791 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-search-log",
+ "round": "R4",
+ "generatedOn": "2026-11-04",
+ "workPackage": "WP-conical-intersection-01",
+ "snapshot": "snap-bounded-audit-2026-11-04",
+ "entries": [
+  {
+   "searchId": "SL-CI-HM-01",
+   "queryId": "Q-CI-HM-01",
+   "pairId": "P-Hammond-RACI",
+   "status": "unresolved",
+   "scope": "scope-CI-candidate-bridge",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+    "stmt-RACI-PhotoLean-RACI-accessGap",
+    "stmt-RACI-PhotoLean-RACI-Allowed",
+    "stmt-RACI-PhotoLean-RACI-torsion_knr_lt",
+    "stmt-Hammond-PhotoLean-Hammond-gapReactant"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "observationalEquivalence",
+    "conditionalComposition"
+   ],
+   "contextsConsidered": [
+    "HammondTsCandidateCtx (lam, x, delta, A, beta); no map between the torsion angle and the two-parabola coordinate"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§17 line 1092: \"RACI <-> Hammond / BEP / Sabatier - no edge\"",
+     "finding": "The legacy register states there is no edge because RACI is a nonadiabatic kinetics theory about a topological degeneracy while the three principle theories are structural readings of one equal-curvature object."
+    },
+    {
+     "artifact": "PhotoLean/Hammond/Basic.lean",
+     "locator": "tsCoord, gapReactant, ReactantLike, ProductLike",
+     "finding": "The Hammond coordinate is the normalized two-parabola crossing position; its barrier is gapReactant."
+    },
+    {
+     "artifact": "PhotoLean/RACI/Main.lean",
+     "locator": "accessGap, accessGap_allowed, torsion_knr_lt",
+     "finding": "The RACI block is the symmetric torsion interval |theta| >= delta with gap 2*delta; no two-parabola coordinate occurs."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Hammond-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Hammond' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a delivered Hammond statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'tsCoord' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for the Hammond transition-state coordinate.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'RACI' PhotoLean/Hammond --include='*.lean'",
+     "purpose": "Search the Hammond modules for a delivered RACI statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -h '^import' PhotoLean/RACI/*.lean | sort -u",
+     "purpose": "Measure the RACI module dependencies.",
+     "result": "import Mathlib plus the nine PhotoLean.RACI submodules only; no partner module is imported."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Hammond-RACI\ntheories: ['Hammond', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Hammond-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search the delivered cross-theory modules for a theorem whose type mentions both RACI.accessGap and Hammond.tsCoord.",
+     "outcome": "No such theorem."
+    },
+    {
+     "strategy": "Read the RACI blocking as a Hammond late-transition-state statement.",
+     "outcome": "The structural analogy is clear (both are distances from a crossing), but no map theta -> q and no statement relates the two barriers."
+    },
+    {
+     "strategy": "Use the legacy kernel/Marcus rows to transfer a barrier identity to Hammond.",
+     "outcome": "Hammond.gapReactant is the Marcus barrier (legacy definitional row), so a barrier identity would route through Marcus, not through RACI; it would not relate the RACI accessibility gap."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "barrier-shape analogy",
+     "statement": "RACI barrier 2*delta (via accessGap_allowed) versus Hammond gapReactant (lam - x)^2/(4 lam)",
+     "status": "candidate only; no statement-level identification is delivered."
+    }
+   ],
+   "remainingGap": "A delivered map between the torsion angle theta and the Hammond two-parabola coordinate q, plus a statement identifying accessGap with tsCoord or with the Hammond barrier ordinate, is missing.",
+   "recomputeCommands": [
+    "grep -rn 'Hammond' PhotoLean/RACI --include='*.lean'",
+    "grep -rn 'RACI' PhotoLean/Hammond --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-RACI"
+   ],
+   "rationale": "The legacy register records no edge; the only shared structure is a barrier as a function of a crossing coordinate, which is a shape analogy, not a shared context. The honest status is unresolved, not refuted."
+  },
+  {
+   "searchId": "SL-CI-BP-01",
+   "queryId": "Q-CI-BP-01",
+   "pairId": "P-BEP-RACI",
+   "status": "unresolved",
+   "scope": "scope-CI-candidate-bridge",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-BEP-PhotoLean-BEP-rate_eq_exp_neg_eact",
+    "stmt-BEP-PhotoLean-BEP-eact",
+    "stmt-RACI-PhotoLean-RACI-barrierRate",
+    "stmt-BEP-PhotoLean-BEP-eact_eq_barrier"
+   ],
+   "searchedKinds": [
+    "observationalEquivalence",
+    "implication",
+    "equivalence"
+   ],
+   "contextsConsidered": [
+    "BepRateCandidateCtx (A, lam, kB, T, x); no identification of the reactive activation energy with the CI accessibility gap"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/BEP/Compose.lean",
+     "locator": "rate_eq_exp_neg_eact (line 76): Marcus.rate = A*exp(-(eact)/(kB*T))",
+     "finding": "The delivered BEP bridge makes the algebraic substitution of eact into the RACI rate immediate."
+    },
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§17 line 1092: \"RACI <-> Hammond / BEP / Sabatier - no edge ... No shared scalar\"",
+     "finding": "The legacy register refuses the edge for want of a shared scalar, so a rate-form substitution is not an accepted relation."
+    },
+    {
+     "artifact": "PhotoLean/RACI/Barrier.lean",
+     "locator": "barrierRate (line 17)",
+     "finding": "The RACI barrier argument B is an unconstrained real; nothing in the RACI theory says it is a reaction activation energy."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-BEP-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'BEP\\|eact' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a delivered BEP statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'RACI' PhotoLean/BEP --include='*.lean'",
+     "purpose": "Search the BEP modules for a delivered RACI statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -h '^import' PhotoLean/RACI/*.lean | sort -u",
+     "purpose": "Measure the RACI module dependencies.",
+     "result": "import Mathlib plus the nine PhotoLean.RACI submodules only; no partner module is imported."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-BEP-RACI\ntheories: ['BEP', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-BEP-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Prove the exponential substitution through the delivered BEP bridge.",
+     "outcome": "The algebra closes, but it only rewrites eact into the RACI rate; it does not identify eact with the CI barrier."
+    },
+    {
+     "strategy": "Treat the BEP activation energy as the RACI CI barrier under the equal-curvature model.",
+     "outcome": "BEP has no electronic-state model and RACI has no reaction-energy surface; the identification would be an assumption, not a delivered statement."
+    },
+    {
+     "strategy": "Search the legacy registry for a named query or certificate.",
+     "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "rate-form substitution",
+     "statement": "RACI.barrierRate A (1/(kB*T)) (BEP.eact lam x) = A*exp(-(eact lam x)/(kB*T))",
+     "status": "algebraically immediate through rate_eq_exp_neg_eact; not admitted as a chemical relation."
+    }
+   ],
+   "remainingGap": "A delivered or physically argued identification of the BEP reactive activation energy with the RACI conical-intersection accessibility gap is missing; the shared exponential form alone is not a shared context.",
+   "recomputeCommands": [
+    "grep -rn 'BEP\\|eact' PhotoLean/RACI --include='*.lean'",
+    "grep -rn 'RACI' PhotoLean/BEP --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-BEP-RACI"
+   ],
+   "rationale": "The algebraic substitution is real, but certifying it would assert a relation from algebraic shape alone; the legacy register records no shared scalar. The honest status is unresolved."
+  },
+  {
+   "searchId": "SL-CI-SA-01",
+   "queryId": "Q-CI-SA-01",
+   "pairId": "P-Sabatier-RACI",
+   "status": "unresolved",
+   "scope": "scope-CI-candidate-bridge",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Sabatier-PhotoLean-Sabatier-activity",
+    "stmt-Sabatier-PhotoLean-Sabatier-volcanoBarrier",
+    "stmt-RACI-PhotoLean-RACI-barrierRate"
+   ],
+   "searchedKinds": [
+    "implication",
+    "observationalEquivalence",
+    "definitionalIdentity"
+   ],
+   "contextsConsidered": [
+    "SabatierActivityCandidateCtx (dE, kB, T); catalytic adsorption-energy barrier versus CI accessibility gap"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§17 line 1092: \"RACI <-> Hammond / BEP / Sabatier - no edge\"",
+     "finding": "No shared scalar is registered between RACI and the three principle theories."
+    },
+    {
+     "artifact": "PhotoLean/Sabatier/Basic.lean",
+     "locator": "activity (line 78), volcanoBarrier (line 49)",
+     "finding": "The Sabatier activity is an Arrhenius exponential of the volcano barrier over kB*T."
+    },
+    {
+     "artifact": "PhotoLean/RACI/Barrier.lean",
+     "locator": "barrierRate (line 17)",
+     "finding": "The RACI channel is the same exponential form with an unconstrained barrier argument."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Sabatier-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'Sabatier\\|volcano\\|activity' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a delivered Sabatier statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'RACI' PhotoLean/Sabatier --include='*.lean'",
+     "purpose": "Search the Sabatier modules for a delivered RACI statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rcw -E 'quantumYield|barrierRate' PhotoLean/Sabatier/*.lean",
+     "purpose": "Count the RACI-specific observables in the Sabatier authority.",
+     "result": "All files report 0 hits."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Sabatier-RACI\ntheories: ['Sabatier', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Sabatier-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Prove the exponential identity activity = barrierRate 1 (1/(kB*T)) (f dE).",
+     "outcome": "The algebra closes, but it identifies no physical barrier; it is a formula coincidence."
+    },
+    {
+     "strategy": "Read the volcano barrier as the CI accessibility gap.",
+     "outcome": "No delivered statement relates an adsorption energy to a torsion accessibility constraint."
+    },
+    {
+     "strategy": "Search the legacy registry for a named query or certificate.",
+     "outcome": "Only a pair-level notEstablished anchor; the census label \"edge\" of P-Sabatier-RACI in the pair queue is a legacy composition row (BEP/Sabatier), not a RACI relation."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "Arrhenius-form analogy",
+     "statement": "Sabatier.activity f kB T dE = exp(-(f dE)/(kB*T)) versus RACI.barrierRate 1 (1/(kB*T)) (f dE)",
+     "status": "candidate only; the shared form is not a shared physical context."
+    }
+   ],
+   "remainingGap": "A delivered or physically argued identification of the Sabatier volcano barrier with the RACI CI barrier is missing, and no Sabatier statement shares an object with RACI.",
+   "recomputeCommands": [
+    "grep -rn 'Sabatier\\|volcano\\|activity' PhotoLean/RACI --include='*.lean'",
+    "grep -rn 'RACI' PhotoLean/Sabatier --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-RACI"
+   ],
+   "rationale": "The two sides share only the Arrhenius exponential form. The R1 boundary forbids admitting algebraic shape alone as a relation, so the honest status is unresolved."
+  },
+  {
+   "searchId": "SL-CI-SF-01",
+   "queryId": "Q-CI-SF-01",
+   "pairId": "P-SymmetryFactor-RACI",
+   "status": "unresolved",
+   "scope": "scope-CI-candidate-bridge",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+    "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-crosses_eq_algebra",
+    "stmt-RACI-PhotoLean-RACI-torsionH_conicalSet",
+    "stmt-RACI-PhotoLean-RACI-torsionH",
+    "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero_crosses"
+   ],
+   "searchedKinds": [
+    "equivalence",
+    "observationalEquivalence",
+    "definitionalIdentity"
+   ],
+   "contextsConsidered": [
+    "SymmetryCrossingCandidateCtx (lam, kr, kp, theta); different normalizations, no delivered map"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§11 symmetryFactor_tsCoordZero_eq_kernel; §17 line 1096 \"RACI <-> SymmetryFactor - no edge\"",
+     "finding": "The accepted R3 tie-back routes through the kernel barrier; RACI has no kernel entry point, so the tie-back does not transfer."
+    },
+    {
+     "artifact": "PhotoLean/RACI/Torsion.lean",
+     "locator": "torsionH (line 66), torsionH_conicalSet (line 85)",
+     "finding": "The RACI conical set is the matrix degeneracy {a = d, b = 0}, exactly {0}, with gap 2|theta|."
+    },
+    {
+     "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+     "locator": "tsCoordZero",
+     "finding": "The SymmetryFactor crossing coordinate is a normalized (0,1) two-parabola coordinate, not an angle."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-SymmetryFactor-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'SymmetryFactor\\|tsCoordZero\\|BetaHalf' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a delivered SymmetryFactor statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'RACI' PhotoLean/SymmetryFactor --include='*.lean'",
+     "purpose": "Search the SymmetryFactor modules for a delivered RACI statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rcw -E 'conical|torsion|barrierRate' PhotoLean/SymmetryFactor/*.lean",
+     "purpose": "Count conical/torsion/RACI-rate tokens in the SymmetryFactor authority.",
+     "result": "0 hits in all five files. A separate word-boundary scan for 'barrier' returns one docstring occurrence (SymmetryFactor/Basic.lean:20); the SymmetryFactor authority has no barrier declaration."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-SymmetryFactor-RACI\ntheories: ['SymmetryFactor', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-SymmetryFactor-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Transfer the R3 Marcus/SymmetryFactor kernel tie-back to RACI.",
+     "outcome": "The tie-back identifies tsCoordZero with Kernel.tsCoord and the kernel barrier with the Marcus barrier; RACI has neither, so nothing transfers."
+    },
+    {
+     "strategy": "Normalize the torsion angle to the (0,1) crossing coordinate.",
+     "outcome": "No normalization is delivered; choosing one would be an undeclared translation."
+    },
+    {
+     "strategy": "Search the legacy registry for a named query or certificate.",
+     "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "crossing-coordinate analogy",
+     "statement": "RACI torsionH_conicalSet = {0} with gap 2|theta| versus SymmetryFactor tsCoordZero(kr,kp)",
+     "status": "candidate only; no normalization map and no shared barrier object."
+    }
+   ],
+   "remainingGap": "A delivered identification of the torsion angle with the normalized crossing coordinate, and of the matrix degeneracy with the SymmetryFactor surface crossing, is missing.",
+   "recomputeCommands": [
+    "grep -rn 'SymmetryFactor\\|tsCoordZero\\|BetaHalf' PhotoLean/RACI --include='*.lean'",
+    "grep -rn 'RACI' PhotoLean/SymmetryFactor --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-RACI"
+   ],
+   "rationale": "Both theories have a unique crossing coordinate, but the R3 kernel route that was accepted for Marcus/SymmetryFactor has no RACI analogue. The candidate stays open; unresolved, not refuted."
+  },
+  {
+   "searchId": "SL-CI-SS-01",
+   "queryId": "Q-CI-SS-01",
+   "pairId": "P-StokesShift-RACI",
+   "status": "unresolved",
+   "scope": "scope-CI-candidate-bridge",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+    "stmt-StokesShift-PhotoLean-StokesShift-s1Surface",
+    "stmt-StokesShift-PhotoLean-StokesShift-s0Surface",
+    "stmt-RACI-PhotoLean-RACI-torsionH",
+    "stmt-RACI-PhotoLean-RACI-torsionH_conicalSet"
+   ],
+   "searchedKinds": [
+    "equivalence",
+    "observationalEquivalence",
+    "definitionalIdentity"
+   ],
+   "contextsConsidered": [
+    "StokesGapCandidateCtx (lam, e00, theta); no map between the displacement coordinate and the torsion angle"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§17 line 1108 \"RACI <-> StokesShift - no edge\"",
+     "finding": "The legacy register refuses the edge because the surface families differ: displaced parabolas versus a two-state Hamiltonian family."
+    },
+    {
+     "artifact": "PhotoLean/StokesShift/Basic.lean",
+     "locator": "s0Surface, s1Surface, emEnergy, stokesShift",
+     "finding": "The Stokes surfaces are single-mode displaced parabolas; the gap s1 - s0 is linear in q and vanishes at the crossing."
+    },
+    {
+     "artifact": "PhotoLean/RACI/Torsion.lean",
+     "locator": "torsionH (line 66)",
+     "finding": "The RACI gap 2|theta| is a matrix degeneracy gap, not an energy difference of two displaced parabolas."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-StokesShift-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'emEnergy\\|stokesShift\\|s0Surface\\|s1Surface' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a delivered StokesShift statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'RACI' PhotoLean/StokesShift --include='*.lean'",
+     "purpose": "Search the StokesShift modules for a delivered RACI statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rcw -E 'conical|torsion|barrier' PhotoLean/StokesShift/*.lean",
+     "purpose": "Count conical/torsion/barrier tokens in the StokesShift authority.",
+     "result": "All files report 0 hits."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-StokesShift-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-StokesShift-RACI\ntheories: ['StokesShift', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-StokesShift-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Identify the RACI torsion gap with the Stokes emission gap under a coordinate map.",
+     "outcome": "No map q <-> theta is delivered and the emission-energy offset e00 has no RACI counterpart."
+    },
+    {
+     "strategy": "Read the RACI conical point as the Stokes crossing point.",
+     "outcome": "Both gaps vanish at a crossing, but one crossing is a matrix degeneracy and the other an energy crossing of displaced parabolas."
+    },
+    {
+     "strategy": "Search the legacy registry for a named query or certificate.",
+     "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "linear-gap analogy",
+     "statement": "RACI torsion gap 2|theta| versus StokesShift gap s1(q) - s0(q)",
+     "status": "candidate only; no coordinate map and no shared energy offset."
+    }
+   ],
+   "remainingGap": "A delivered coordinate map between the Stokes displacement and the torsion angle, plus an identification of the emission-energy offset with a RACI parameter, is missing.",
+   "recomputeCommands": [
+    "grep -rn 'emEnergy\\|stokesShift\\|s0Surface\\|s1Surface' PhotoLean/RACI --include='*.lean'",
+    "grep -rn 'RACI' PhotoLean/StokesShift --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-StokesShift-RACI"
+   ],
+   "rationale": "The gaps share a linear shape and a crossing, but the surface families and the gap semantics differ; the shape coincidence is not a shared context. Unresolved."
+  },
+  {
+   "searchId": "SL-CI-FO-01",
+   "queryId": "Q-CI-FO-01",
+   "pairId": "P-Forster-RACI",
+   "status": "unresolved",
+   "scope": "scope-CI-candidate-bridge",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Forster-PhotoLean-Forster-fretEff6",
+    "stmt-Forster-PhotoLean-Forster-fretEff_via_lifetime",
+    "stmt-Forster-PhotoLean-Forster-fretRate",
+    "stmt-RACI-PhotoLean-RACI-quantumYield"
+   ],
+   "searchedKinds": [
+    "conditionalComposition",
+    "implication",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "ForsterChannelCandidateCtx (kr, knr, kT, tauD, r6, R); the donor-lifetime and transfer-rate bridges are not delivered"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Forster/Criterion.lean",
+     "locator": "fretEff_via_lifetime (line 241)",
+     "finding": "The Forster efficiency is 1 - (1/(kD+kF))/(1/kD) = (kF/kD)/(kF/kD + 1), a transfer-channel fraction."
+    },
+    {
+     "artifact": "PhotoLean/RACI/Jablonski.lean",
+     "locator": "quantumYield (line 17)",
+     "finding": "The RACI yield is a two-channel competition with no transfer channel."
+    },
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§17 line 1105 \"RACI <-> Forster - no edge. Transfer geometry vs nonadiabatic kinetics: no shared scalar\"",
+     "finding": "The legacy register refuses the edge."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Forster-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rn 'fret\\|Forster\\|fretEff' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a delivered Forster statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'RACI' PhotoLean/Forster --include='*.lean'",
+     "purpose": "Search the Forster modules for a delivered RACI statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rcw -E 'conical|torsion|barrier' PhotoLean/Forster/*.lean",
+     "purpose": "Count conical/torsion/barrier tokens in the Forster authority.",
+     "result": "All files report 0 hits."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Forster-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Forster-RACI\ntheories: ['Forster', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Forster-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Compose the RACI two-channel yield with the Forster efficiency as an added channel.",
+     "outcome": "The composition needs tauD = 1/(kr + knr) and kT = fretRate tauD r6 R as delivered premises; neither is delivered."
+    },
+    {
+     "strategy": "Use fretEff6 with r6 = kT and R^6 = kr + knr.",
+     "outcome": "This is a possible instantiation, but it presupposes the same two bridges and would be an undeclared translation."
+    },
+    {
+     "strategy": "Search the legacy registry for a named query or certificate.",
+     "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "channel composition",
+     "statement": "Phi(kr, knr + kT) = (1 - E) * Phi(kr, knr) with E = kT/(kD + kT)",
+     "status": "candidate only; the donor-lifetime and transfer-rate bridges are not delivered."
+    }
+   ],
+   "remainingGap": "Delivered bridges tauD = 1/(kr + knr) and kT = fretRate tauD r6 R, plus a statement that the RACI knr is the donor intrinsic nonradiative rate, are missing.",
+   "recomputeCommands": [
+    "grep -rn 'fret\\|Forster\\|fretEff' PhotoLean/RACI --include='*.lean'",
+    "grep -rn 'RACI' PhotoLean/Forster --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Forster-RACI"
+   ],
+   "rationale": "The composition is chemically natural, but its parent bridges are not delivered statements; recording a precise gap is honest and the plan explicitly permits it."
+  },
+  {
+   "searchId": "SL-CI-KV-01",
+   "queryId": "Q-CI-KV-01",
+   "pairId": "P-KashaVavilov-RACI",
+   "status": "notEstablished",
+   "scope": "scope-CI-kv-scoped-search",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+    "stmt-KashaVavilov-PhotoLean-KashaVavilov-rateData_mono",
+    "stmt-KashaVavilov-PhotoLean-KashaVavilov-fluoYield_eq_emitYield_zero_add_upperYield",
+    "stmt-KashaVavilov-PhotoLean-KashaVavilov-lossless_separates_kasha_vavilov",
+    "stmt-RACI-PhotoLean-RACI-competitionRatio"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "observationalEquivalence",
+    "conditionalComposition",
+    "definitionalIdentity"
+   ],
+   "contextsConsidered": [
+    "KashaVavilovSpectrumCandidateCtx (rad, ic, N); no barrier, CI or CI-limited-yield premise in the searched statements"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+     "locator": "SpecSame (line 72), rateData_mono (line 91)",
+     "finding": "The KashaVavilov authority is a spectral-invariance ladder over Kasha rate data; it has no barrier, conical intersection or torsion statement."
+    },
+    {
+     "artifact": "PhotoLean/KashaVavilov/Criterion.lean",
+     "locator": "yield and separation rows",
+     "finding": "The yield rows delegate to Kasha.fluoYield/emitYield; the only yield algebra is Kasha yield algebra, already screened as Q-CI-KS-01."
+    },
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§17 line 1098 \"RACI <-> Kasha / KashaVavilov - shape note (no machine row)\"",
+     "finding": "The legacy register records a shape note, not an edge."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-KashaVavilov-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rnw -E 'barrier|conical|torsion' PhotoLean/KashaVavilov/*.lean",
+     "purpose": "Search the KashaVavilov authority for a barrier, CI or torsion statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'SpecSame\\|Vavilov\\|specFrac' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a spectral statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "python3 -c \"import json;d=json.load(open('audit_boundary/statement-inventory.json'));print(len([s for s in d['statements'] if s['theory']=='KashaVavilov']))\"",
+     "purpose": "Count the KashaVavilov statements searched.",
+     "result": "29"
+    },
+    {
+     "command": "python3 -c \"import json;d=json.load(open('audit_boundary/statement-inventory.json'));print(len([s for s in d['statements'] if s['theory']=='RACI']))\"",
+     "purpose": "Count the RACI statements searched.",
+     "result": "71"
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-KashaVavilov-RACI\ntheories: ['KashaVavilov', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-KashaVavilov-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Search the 29 KashaVavilov statements for any rate, barrier, CI or yield statement that could carry a RACI relation.",
+     "outcome": "The authority contains spectral-fraction and ladder-verdict rows only; the word-boundary scan for barrier/conical/torsion returns no match."
+    },
+    {
+     "strategy": "Reuse the KashaVavilov yield row as a RACI yield relation.",
+     "outcome": "That row is Kasha yield algebra; its RACI relation is already Q-CI-KS-01, so reusing it here would double-count one relation under two pair labels."
+    },
+    {
+     "strategy": "Search the legacy registry for a named query or certificate.",
+     "outcome": "Only a pair-level notEstablished anchor and a shape note; no named proposition-level query."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "spectral-invariance premise",
+     "statement": "KashaVavilov.SpecSame (excitation-level-independent spectrum) versus the RACI competition ratio",
+     "status": "candidate only; the searched statement set contains no implication linking them."
+    }
+   ],
+   "remainingGap": "Within the frozen snapshot the searched statement set contains no statement of the requested kind; the gap is the absence of a barrier/CI/CI-limited-yield statement in the KashaVavilov authority and of a spectral statement in the RACI authority.",
+   "recomputeCommands": [
+    "grep -rnw -E 'barrier|conical|torsion' PhotoLean/KashaVavilov/*.lean",
+    "grep -rn 'SpecSame\\|Vavilov\\|specFrac' PhotoLean/RACI --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-RACI"
+   ],
+   "rationale": "This is a scoped negative registration over the named 29+71 statements, not a logical absence claim. The only shared yield object is Kasha and is already screened in Q-CI-KS-01."
+  },
+  {
+   "searchId": "SL-CI-GS-01",
+   "queryId": "Q-CI-GS-01",
+   "pairId": "P-Goldschmidt-RACI",
+   "status": "outOfScope",
+   "scope": "scope-CI-out-of-jurisdiction",
+   "snapshot": "snap-bounded-audit-2026-11-04",
+   "searchedStatements": [
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+    "goldschmidt.conformance",
+    "stmt-Goldschmidt-PhotoLean-Goldschmidt-RadiusMatch",
+    "stmt-RACI-PhotoLean-RACI-barrierRate",
+    "stmt-RACI-PhotoLean-RACI-torsionH"
+   ],
+   "searchedKinds": [
+    "implication",
+    "equivalence",
+    "observationalEquivalence"
+   ],
+   "contextsConsidered": [
+    "GoldschmidtLatticeCtx (rA, rB, rO): a lattice-geometry context with no electronic, rate or yield observable"
+   ],
+   "dependenciesConsulted": [
+    {
+     "artifact": "PhotoLean/Relations.lean",
+     "locator": "§17 line 1095 \"RACI <-> Goldschmidt - no edge. Ionic radii vs conical intersections: no object in common.\"",
+     "finding": "The legacy register records the absence of a shared object."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Basic.lean",
+     "locator": "tolFac (line 39), InBand, GoldschmidtConforms",
+     "finding": "Every Goldschmidt statement is a tolerance-factor or band predicate over ionic radii."
+    },
+    {
+     "artifact": "PhotoLean/Goldschmidt/Rules.lean",
+     "locator": "RadiusMatch, chiTol, Substitutable",
+     "finding": "The substitution rules are radius and chemical-character predicates; no energy or rate occurs."
+    },
+    {
+     "artifact": "relation_audit/registry.json",
+     "locator": "rec-notestablished-P-Goldschmidt-RACI",
+     "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+    }
+   ],
+   "commands": [
+    {
+     "command": "grep -rnw -E 'rate|barrier|conical|quantumYield|torsion|excited' PhotoLean/Goldschmidt/*.lean",
+     "purpose": "Search the Goldschmidt authority for an electronic-state, rate or yield statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'tolFac\\|Goldschmidt' PhotoLean/RACI --include='*.lean'",
+     "purpose": "Search the RACI modules for a radius or lattice statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "grep -rn 'RACI' PhotoLean/Goldschmidt --include='*.lean'",
+     "purpose": "Search the Goldschmidt modules for a delivered RACI statement.",
+     "result": "No matches (grep exit 1)."
+    },
+    {
+     "command": "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-RACI",
+     "purpose": "Recompute the accepted legacy disposition.",
+     "result": "pair: P-Goldschmidt-RACI\ntheories: ['Goldschmidt', 'RACI']\nlegacy: label='absence' subtype='registered-absence'\ncandidate: False\nambiguous: False\nregistry records:\n  rec-notestablished-P-Goldschmidt-RACI: status='notEstablished' kind=None certificate=None"
+    }
+   ],
+   "strategiesAttempted": [
+    {
+     "strategy": "Find a shared observable between the tolerance factor and the RACI yield or rate.",
+     "outcome": "None: the tolerance factor is a radius ratio and the RACI observables are energies, rates and yields."
+    },
+    {
+     "strategy": "Form the weakest possible query (a geometric-classification implication).",
+     "outcome": "Both sides decide a classification, but from unrelated inputs; no shared context or translation exists, so even the weakest link is outside the jurisdiction."
+    },
+    {
+     "strategy": "Search the legacy registry for a named query or certificate.",
+     "outcome": "Only a pair-level notEstablished anchor; the census label is a registered absence."
+    }
+   ],
+   "candidateEvidence": [
+    {
+     "kind": "classification-shape analogy",
+     "statement": "Goldschmidt zone classification versus RACI conical/gapped classification",
+     "status": "not admitted: a shared classification shape is not a shared context or a declared translation."
+    }
+   ],
+   "remainingGap": "No shared context, no declared translation, and no shared observable between the lattice-geometry statements and the excited-state kinetics statements; this is a jurisdiction boundary, not a logical absence.",
+   "recomputeCommands": [
+    "grep -rnw -E 'rate|barrier|conical|quantumYield|torsion|excited' PhotoLean/Goldschmidt/*.lean",
+    "grep -rn 'tolFac\\|Goldschmidt' PhotoLean/RACI --include='*.lean'",
+    "python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-RACI"
+   ],
+   "rationale": "The jurisdiction reason is statement-level: no Goldschmidt statement carries an electronic, rate or yield term and no RACI statement carries an ionic-radius or lattice term. Recorded as outOfScope, not as a negative existence claim."
+  }
+ ],
+ "counts": {
+  "entries": 8,
+  "byStatus": {
+   "unresolved": 6,
+   "notEstablished": 1,
+   "outOfScope": 1
+  }
+ },
+ "nonClaims": [
+  "A search-log entry is a scoped search record, not a negative existence claim.",
+  "No failed proof attempt or timeout is recorded as a refutation."
+ ]
+}

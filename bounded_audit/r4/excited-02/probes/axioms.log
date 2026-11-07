@@ -1,0 +1,7 @@
+# E2 probe axiom audit — proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean
+# Every certified declaration lists at most propext, Classical.choice, Quot.sound.
+'PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,96 @@
+# R5 XD2 /tmp mutation tests - 2026-11-04T03:07:23+08:00
+# harness: python3 bounded_audit/r5/cross-domain-02/evidence/mutation_tests.py
+# every case copies the three JSON artifacts to a fresh /tmp directory, applies exactly one
+# mutation and runs validate.py against the copies; the package is never modified.
+
+scratch directory: /tmp/xd2-mut-s357e6hi
+validator: ./bounded_audit/r5/cross-domain-02/validate.py
+
+### M0 baseline (unmutated copies) - must PASS
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M0/screening.json --search-log /tmp/xd2-mut-s357e6hi/M0/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M0/coverage-fragment.json
+exit=0 (expected 0)
+verdict: OK
+
+### M1 drop one assigned pair
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M1/screening.json --search-log /tmp/xd2-mut-s357e6hi/M1/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M1/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: counts.byExpectedKind, counts.byStatus, counts.outOfScope, counts.pairs, counts.pairsWithQuery, counts.queries, counts.searchByStatus, fragment.counts.byStatus, fragment.counts.pairs, fragment.counts.queries, fragment.pairs, pairs.coverage, pairs.order, queries.count, search.oneToOne, search.queryMissing
+verdict: OK
+
+### M2 add an accepted R2 pair
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M2/screening.json --search-log /tmp/xd2-mut-s357e6hi/M2/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M2/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: counts.byExpectedKind, counts.byStatus, counts.outOfScope, counts.pairs, counts.pairsWithQuery, counts.queries, counts.searchByStatus, endpoint.pairTheories, endpoint.partnerTheory, fragment.counts.byStatus, fragment.counts.pairs, fragment.counts.queries, fragment.pairs, pair.clusterName, pair.goldschmidt, pair.partner, pair.unknown, pairs.coverage, pairs.order, queries.count, queries.duplicate, query.pairId, search.oneToOne
+verdict: OK
+
+### M3 duplicate a query id
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M3/screening.json --search-log /tmp/xd2-mut-s357e6hi/M3/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M3/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: pair.queryIds, queries.duplicate, search.backref, search.mismatch, search.queryMissing
+verdict: OK
+
+### M4 forge a certified outcome
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M4/screening.json --search-log /tmp/xd2-mut-s357e6hi/M4/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M4/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: counts.byStatus, counts.certified, counts.outOfScope, counts.searchByStatus, fragment.byStatus, fragment.counts.byStatus, outcome.certifiedUnsupported, outcome.noCertified, provenance.locator, search.backref, search.certifiedEntry, search.oneToOne, search.status
+verdict: OK
+
+### M5 tamper an endpoint signature hash
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M5/screening.json --search-log /tmp/xd2-mut-s357e6hi/M5/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M5/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: endpoint.signatureSha256
+verdict: OK
+
+### M6 mislabel an expected kind
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M6/screening.json --search-log /tmp/xd2-mut-s357e6hi/M6/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M6/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: counts.byExpectedKind
+verdict: OK
+
+### M7 strip an outOfScope translation reason
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M7/screening.json --search-log /tmp/xd2-mut-s357e6hi/M7/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M7/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: translation.reason, translation.reasonLength
+verdict: OK
+
+### M8 delete a search-log entry
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M8/screening.json --search-log /tmp/xd2-mut-s357e6hi/M8/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M8/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: counts.searchEntries, fragment.sha, search.missing, search.oneToOne, searchLogReference.entryCount
+verdict: OK
+
+### M9 pin the mutable R5 ledger in the snapshot
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M9/screening.json --search-log /tmp/xd2-mut-s357e6hi/M9/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M9/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: self.ledgerPinned
+verdict: OK
+
+### M10 drift the coverage fragment
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M10/screening.json --search-log /tmp/xd2-mut-s357e6hi/M10/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M10/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: fragment.counts.delta
+verdict: OK
+
+### M11 replace a statement-level reason with a theory-name contrast
+$ python3 ./bounded_audit/r5/cross-domain-02/validate.py --screening /tmp/xd2-mut-s357e6hi/M11/screening.json --search-log /tmp/xd2-mut-s357e6hi/M11/search-log.json --fragment /tmp/xd2-mut-s357e6hi/M11/coverage-fragment.json
+exit=1 (expected 1)
+failure codes: evidence.statementLevelLength, evidence.statementLevelNames
+verdict: OK
+
+SUMMARY
+case  mutation                                             exit   verdict
+M0    baseline (unmutated copies) - must PASS              0      PASS
+M1    drop one assigned pair                               1      FAIL-CLOSED
+M2    add an accepted R2 pair                              1      FAIL-CLOSED
+M3    duplicate a query id                                 1      FAIL-CLOSED
+M4    forge a certified outcome                            1      FAIL-CLOSED
+M5    tamper an endpoint signature hash                    1      FAIL-CLOSED
+M6    mislabel an expected kind                            1      FAIL-CLOSED
+M7    strip an outOfScope translation reason               1      FAIL-CLOSED
+M8    delete a search-log entry                            1      FAIL-CLOSED
+M9    pin the mutable R5 ledger in the snapshot            1      FAIL-CLOSED
+M10   drift the coverage fragment                          1      FAIL-CLOSED
+M11   replace a statement-level reason with a theory-name  1      FAIL-CLOSED
+
+harness verdict: PASS
+[harness exit=0]

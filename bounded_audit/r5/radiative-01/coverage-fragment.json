@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-coverage-fragment",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-radiative-energy-transfer-01",
+  "packagePath": "bounded_audit/r5/radiative-01/screening.json",
+  "screeningSha256": "a5ad482e12223642cdc10db81d36142f9fd8266c7cbb914a8fe243084d31b837",
+  "pairCount": 16,
+  "queryCount": 17,
+  "byStatus": {
+    "certified": 11,
+    "unresolved": 2,
+    "outOfScope": 4
+  },
+  "byExpectedKind": {
+    "definitionalIdentity": 3,
+    "implication": 6,
+    "equivalence": 2,
+    "conditionalComposition": 2,
+    "observationalEquivalence": 4
+  },
+  "primaryCluster": "radiative-energy-transfer",
+  "screenedPairs": [
+    {
+      "pairId": "P-Marcus-KashaVavilov",
+      "theories": [
+        "Marcus",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-Marcus-EnergyGapLaw",
+      "theories": [
+        "Marcus",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 2,
+      "byStatus": {
+        "certified": 2
+      }
+    },
+    {
+      "pairId": "P-Marcus-StokesShift",
+      "theories": [
+        "Marcus",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-Marcus-ICvsISC",
+      "theories": [
+        "Marcus",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-Marcus-Forster",
+      "theories": [
+        "Marcus",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-Marcus-Einstein",
+      "theories": [
+        "Marcus",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-Kasha-KashaVavilov",
+      "theories": [
+        "Kasha",
+        "KashaVavilov"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-Kasha-EnergyGapLaw",
+      "theories": [
+        "Kasha",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-Kasha-StokesShift",
+      "theories": [
+        "Kasha",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-Kasha-ICvsISC",
+      "theories": [
+        "Kasha",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-Kasha-Forster",
+      "theories": [
+        "Kasha",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-Kasha-Einstein",
+      "theories": [
+        "Kasha",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-KashaVavilov-SternVolmer",
+      "theories": [
+        "KashaVavilov",
+        "SternVolmer"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-KashaVavilov-QuantumYield",
+      "theories": [
+        "KashaVavilov",
+        "QuantumYield"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-KashaVavilov-FluorPhos",
+      "theories": [
+        "KashaVavilov",
+        "FluorPhos"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-KashaVavilov-EnergyGapLaw",
+      "theories": [
+        "KashaVavilov",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    }
+  ],
+  "acceptance": "submitted-R5-pending-review",
+  "nonClaims": [
+    "This fragment contributes sixteen pairs to the R5 cumulative ledger; it does not itself edit the ledger.",
+    "Screened is not the same as certified.",
+    "The fragment records the package status as submitted-R5-pending-review until independent review.",
+    "The fragment does not pin the mutable R5 ledger and carries no cumulative count."
+  ]
+}

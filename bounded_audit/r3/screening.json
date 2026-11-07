@@ -1,0 +1,1927 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-screening-package",
+  "round": "R3",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "R3-QUENCH-01",
+    "title": "Surface-gap reconciliation and the quenching-quantum-yield cluster",
+    "source": "loop/计划.md R3, steps 1-3",
+    "pairIds": [
+      "P-Marcus-SymmetryFactor",
+      "P-Marcus-Kasha",
+      "P-Marcus-SternVolmer",
+      "P-Marcus-QuantumYield",
+      "P-Marcus-FluorPhos",
+      "P-Kasha-SternVolmer",
+      "P-Kasha-QuantumYield",
+      "P-Kasha-FluorPhos",
+      "P-SternVolmer-QuantumYield",
+      "P-SternVolmer-FluorPhos",
+      "P-QuantumYield-FluorPhos"
+    ],
+    "pairCount": 11,
+    "note": "The first pair is the missing R1 surface work-package pair; the other ten are the R1 quenching-quantum-yield cluster. No R2 pair is rescreened."
+  },
+  "statusVocabulary": [
+    "certified",
+    "refuted",
+    "unresolved",
+    "notEstablished",
+    "outOfScope"
+  ],
+  "kindVocabulary": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence",
+    "conditionalComposition",
+    "observationalEquivalence",
+    "distinguishability",
+    "refutation"
+  ],
+  "allowedAxioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "snapshot": {
+    "id": "snap-bounded-audit-2026-11-04",
+    "date": "2026-11-04",
+    "round": "R3",
+    "inventory": "audit_boundary/statement-inventory.json",
+    "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "pairQueue": "audit_boundary/pair-queue.json",
+    "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+    "clusterPlan": "audit_boundary/cluster-plan.json",
+    "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+    "boundary": "audit_boundary/BOUNDARY.md",
+    "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+    "legacyRegistry": "relation_audit/registry.json",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "coverageLedger": "bounded_audit/coverage.json",
+    "coverageLedgerSha256": "a584d38e9318704e3cfa5ea482da09aaa88edaa066e61084dfbd834d502e09fd",
+    "leanToolchain": "leanprover/lean4:v4.17.0",
+    "deliveredLeanFileCount": 102
+  },
+  "inventoryReference": {
+    "path": "audit_boundary/statement-inventory.json",
+    "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "statementRows": 1154,
+    "screeningEligibleRows": 1134
+  },
+  "legacyRegistryReference": {
+    "path": "relation_audit/registry.json",
+    "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "certificateCount": 38,
+    "queryCount": 151,
+    "recordCount": 151
+  },
+  "coverageReference": {
+    "path": "bounded_audit/coverage.json",
+    "sha256": "a584d38e9318704e3cfa5ea482da09aaa88edaa066e61084dfbd834d502e09fd"
+  },
+  "searchLogReference": {
+    "path": "bounded_audit/r3/search-log.json",
+    "sha256": "4b9be86649a78ca31cb44bb77874f245bb0e56ce892d82299aa19e2ff8b863f1",
+    "entryCount": 5
+  },
+  "probeReference": {
+    "path": "bounded_audit/r3/probes/R3-probe.lean",
+    "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+    "declarationCount": 7,
+    "log": "bounded_audit/r3/probes/compile.log"
+  },
+  "aliasResolutions": [
+    {
+      "id": "AL-R3-01",
+      "aliasClass": "r1-legacy-dangling",
+      "aliasStatementId": "stmt-BEP-PhotoLean-BEP-rateViaEact",
+      "aliasDeclaration": "PhotoLean.BEP.rateViaEact",
+      "resolvedStatementId": "stmt-BEP-PhotoLean-BEP-rate_eq_exp_neg_eact",
+      "resolvedDeclaration": "PhotoLean.BEP.rate_eq_exp_neg_eact",
+      "resolutionKind": "theorem-rhs-term",
+      "note": "R1 dangling legacy endpoint alias; repaired in this metadata only. No R3 query cites the alias."
+    },
+    {
+      "id": "AL-R3-02",
+      "aliasClass": "r1-legacy-dangling",
+      "aliasStatementId": "stmt-Marcus-PhotoLean-Marcus-rateDescriptor",
+      "aliasDeclaration": "PhotoLean.Marcus.rateDescriptor",
+      "resolvedStatementId": "stmt-Marcus-PhotoLean-Marcus-descriptor_sharp",
+      "resolvedDeclaration": "PhotoLean.Marcus.descriptor_sharp",
+      "resolutionKind": "theorem-lhs-predicate",
+      "note": "R1 dangling legacy endpoint alias; repaired in this metadata only. No R3 query cites the alias."
+    },
+    {
+      "id": "AL-R3-03",
+      "aliasClass": "r1-legacy-dangling",
+      "aliasStatementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier-eq-zero",
+      "aliasDeclaration": "PhotoLean.EnergyGapLaw.nrBarrier_eq_zero",
+      "resolvedStatementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+      "resolvedDeclaration": "PhotoLean.EnergyGapLaw.nrBarrier",
+      "resolutionKind": "definition-zero-locus",
+      "note": "R1 dangling legacy endpoint alias; the delivered theorem is PhotoLean.Relations.egBarrier_zero_iff_emEnergy_zero, which is outside the theory authority and therefore not an inventory row. The alias denotes the zero locus of nrBarrier; repaired in this metadata only."
+    },
+    {
+      "id": "AL-R3-04",
+      "aliasClass": "r1-legacy-dangling",
+      "aliasStatementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy-eq-zero",
+      "aliasDeclaration": "PhotoLean.StokesShift.emEnergy_eq_zero",
+      "resolvedStatementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+      "resolvedDeclaration": "PhotoLean.StokesShift.emEnergy",
+      "resolutionKind": "definition-zero-locus",
+      "note": "R1 dangling legacy endpoint alias; the delivered theorem is PhotoLean.Relations.egBarrier_zero_iff_emEnergy_zero (outside the theory authority). The alias denotes the zero locus of emEnergy; repaired in this metadata only."
+    }
+  ],
+  "contextLibrary": {
+    "MarcusSymFactorCtx": {
+      "id": "MarcusSymFactorCtx",
+      "fields": [
+        "lam : ℝ"
+      ],
+      "physicalReading": "Equal-curvature two-parabola step at thermoneutrality: reorganization energy lam, driving force x = 0. The SymmetryFactor crossing coordinate is the β = 1/2 point of the same surfaces.",
+      "provenance": "bounded_audit/r3/probes/R3-probe.lean#MarcusSymFactorCtx"
+    },
+    "MarcusKashaCtx": {
+      "id": "MarcusKashaCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "tol : ℝ"
+      ],
+      "physicalReading": "Kasha ladder at excitation level 1 plus the Marcus parameters of the S₂→S₁ internal-conversion step. The declared hic premise identifies ic 1 with the Marcus-form rate A·exp(−barrier(lam,x)/(k_B T)).",
+      "provenance": "bounded_audit/r3/probes/R3-probe.lean#MarcusKashaCtx"
+    },
+    "KashaQyCtx": {
+      "id": "KashaQyCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "n : ℕ"
+      ],
+      "physicalReading": "Kasha ladder at level n: radiative rate rad n and internal-conversion rate ic n are the two parallel decay channels of the emitting state.",
+      "provenance": "bounded_audit/r3/probes/R3-probe.lean#KashaQyCtx"
+    },
+    "SvQyCtx": {
+      "id": "SvQyCtx",
+      "fields": [
+        "kr : ℝ",
+        "knr : ℝ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "Two-channel emitter with radiative rate kr and nonradiative rate knr, plus the Stern–Volmer dynamic quench channel kq·q. The SV ratio is the total-decay ratio.",
+      "provenance": "bounded_audit/r3/probes/R3-probe.lean#SvQyCtx"
+    },
+    "SvFpCtx": {
+      "id": "SvFpCtx",
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ",
+        "kP : ℝ",
+        "kNR : ℝ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "FluorPhos S₁/T₁ competition with the Stern–Volmer dynamic quench channel kq·q added to the S₁ nonradiative (IC) rate. The SV concentration is translated to an added nonradiative channel.",
+      "provenance": "bounded_audit/r3/probes/R3-probe.lean#SvFpCtx"
+    },
+    "FpQyCtx": {
+      "id": "FpQyCtx",
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ"
+      ],
+      "physicalReading": "FluorPhos S₁ decay with radiative kF, intersystem-crossing kISC and internal-conversion kIC channels; the shared context of the three-channel yield comparison.",
+      "provenance": "bounded_audit/r3/probes/R3-probe.lean#FpQyCtx"
+    },
+    "FpQyCascadeCtx": {
+      "id": "FpQyCascadeCtx",
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ",
+        "kP : ℝ",
+        "kNR : ℝ"
+      ],
+      "physicalReading": "FluorPhos S₁ decay (kF, kISC, kIC) and T₁ decay (kP, kNR); the shared context of the phosphorescence cascade comparison.",
+      "provenance": "bounded_audit/r3/probes/R3-probe.lean#FpQyCascadeCtx"
+    },
+    "MarcusSvCandidateCtx": {
+      "id": "MarcusSvCandidateCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: a Marcus electron-transfer step with pre-exponential A, reorganization energy lam, thermal energy kB·T, driving force x, and a Stern–Volmer quencher concentration q with bimolecular rate kq. No total translation between x and [Q] is declared.",
+      "provenance": "bounded_audit/r3/screening.json#MarcusSvCandidateCtx (candidate context; no Lean structure)"
+    },
+    "MarcusQyCandidateCtx": {
+      "id": "MarcusQyCandidateCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "knr : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: a Marcus rate as one parallel decay channel alongside a nonradiative rate knr in the QuantumYield calculus. No delivered instantiation exists.",
+      "provenance": "bounded_audit/r3/screening.json#MarcusQyCandidateCtx (candidate context; no Lean structure)"
+    },
+    "MarcusFpCandidateCtx": {
+      "id": "MarcusFpCandidateCtx",
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: a Marcus-form S₁→T₁ rate alongside the FluorPhos ISC/IC channels. No delivered identification of kISC with Marcus.rate exists.",
+      "provenance": "bounded_audit/r3/screening.json#MarcusFpCandidateCtx (candidate context; no Lean structure)"
+    },
+    "KashaSvCandidateCtx": {
+      "id": "KashaSvCandidateCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "tol : ℝ",
+        "kq : ℝ",
+        "q : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the Kasha ladder at level 1 with the Stern–Volmer dynamic quench represented as an added level-0 nonradiative loss kq·q. No delivered composition carries the translation.",
+      "provenance": "bounded_audit/r3/screening.json#KashaSvCandidateCtx (candidate context; no Lean structure)"
+    },
+    "KashaFpCandidateCtx": {
+      "id": "KashaFpCandidateCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: a two-level Kasha ladder (radiative rad, nonradiative ic) compared with the FluorPhos S₁ channels (kF, kISC, kIC). No delivered composition identifies the two branchings.",
+      "provenance": "bounded_audit/r3/screening.json#KashaFpCandidateCtx (candidate context; no Lean structure)"
+    }
+  },
+  "scopeLibrary": {
+    "scope-R3-surface-thermoneutral": {
+      "id": "scope-R3-surface-thermoneutral",
+      "description": "Equal-curvature thermoneutral two-parabola scope shared by Marcus and SymmetryFactor.",
+      "domain": "all lam in ℝ with the physical premise 0 < lam; driving force fixed at x = 0.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-R3-marcus-kasha-window": {
+      "id": "scope-R3-marcus-kasha-window",
+      "description": "Kasha level-1 conformance and the Marcus barrier bound under the declared hic modelling premise.",
+      "domain": "all (rad, ic, A, lam, kB, T, x, tol) satisfying the nine declared premises; no global claim outside them.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-R3-kasha-yield": {
+      "id": "scope-R3-kasha-yield",
+      "description": "Kasha ladder radiative branch versus the two-channel QuantumYield calculus.",
+      "domain": "all ladders (rad, ic) and levels n; totalized division at zero total is included.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-R3-sv-qy-dilution": {
+      "id": "scope-R3-sv-qy-dilution",
+      "description": "Stern–Volmer dynamic quenching of a two-channel quantum yield.",
+      "domain": "all (kr, knr, kq, q) with 0 < kr + knr and 0 ≤ kq·q.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-R3-sv-fp-invariance": {
+      "id": "scope-R3-sv-fp-invariance",
+      "description": "FluorPhos F/P ratio under the Stern–Volmer added S₁ channel.",
+      "domain": "all rate tuples with positive S₁ and T₁ total decays as declared.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-R3-qy-fp-composition": {
+      "id": "scope-R3-qy-fp-composition",
+      "description": "FluorPhos fluorescence/phosphorescence yields as QuantumYield compositions.",
+      "domain": "all (kF, kISC, kIC) and (kF, kISC, kIC, kP, kNR) rate tuples; totalized division included.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-R3-candidate-bridge": {
+      "id": "scope-R3-candidate-bridge",
+      "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+      "domain": "the five named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    }
+  },
+  "pairs": [
+    {
+      "pairId": "P-Marcus-SymmetryFactor",
+      "theories": [
+        "Marcus",
+        "SymmetryFactor"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "queryIds": [
+        "Q-R3-MS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-MS-01",
+          "pairId": "P-Marcus-SymmetryFactor",
+          "title": "Marcus thermoneutral barrier is the SymmetryFactor β=1/2 surface height",
+          "chemicalQuestion": "At equal force constants and thermoneutral driving force, is the Marcus forward barrier the height of the SymmetryFactor equal-curvature reactant surface at its β = 1/2 crossing coordinate?",
+          "chemicalRationale": "Both theories describe the same classical two-parabola crossing. SymmetryFactor computes the equal-curvature crossing coordinate as 1/2; Marcus reports the barrier as the reactant surface energy at that crossing. The delivered kernel tie-back identifies the SymmetryFactor coordinate with the kernel coordinate, and the kernel barrier is definitionally the Marcus barrier. The query asks whether the two theories report the same physical barrier height, not merely a similar notation.",
+          "endpoints": {
+            "source": {
+              "statementId": "marcus.barrier",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.barrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "4989203cd675772ef27166c739add6adeee01ae6913b9441b65da10dc98cdd3d",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-asymReactantSurface",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.asymReactantSurface",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "3c4737e711c802f32a8b8da270b38a8bc6ea7e358de007180c44cf2b13906efc",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusSymFactorCtx",
+            "fields": [
+              "lam : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola step at thermoneutrality: reorganization energy lam, driving force x = 0. The SymmetryFactor crossing coordinate is the β = 1/2 point of the same surfaces.",
+            "provenance": "bounded_audit/r3/probes/R3-probe.lean#MarcusSymFactorCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : MarcusSymFactorCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : MarcusSymFactorCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : MarcusSymFactorCtx => ∀ p ∈ marcusSymFactorPremises, p.predicate δ",
+            "premiseIds": [
+              "marcusSymmetryFactor.lamPositive"
+            ],
+            "definitions": [
+              {
+                "id": "marcusSymmetryFactor.lamPositive",
+                "predicate": "fun δ : MarcusSymFactorCtx => 0 < δ.lam",
+                "statement": "0 < lam: the reorganization energy is positive (load-bearing for the division by 4·lam and the kernel coordinate).",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "thermoneutralBarrierHeight",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single thermoneutral configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => Marcus.barrier δ.lam 0",
+              "rightObs": "fun δ _ => SymmetryFactor.asymReactantSurface δ.lam (SymmetryFactor.tsCoordZero δ.lam δ.lam)"
+            }
+          ],
+          "scope": {
+            "id": "scope-R3-surface-thermoneutral",
+            "description": "Equal-curvature thermoneutral two-parabola scope shared by Marcus and SymmetryFactor.",
+            "domain": "all lam in ℝ with the physical premise 0 < lam; driving force fixed at x = 0.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "The two readings are real-valued barrier-height observables on the same shared context; the certificate is equality of every declared channel observation.",
+          "falsificationCondition": "A context lam > 0 at which the Marcus barrier and the SymmetryFactor surface height at the β = 1/2 coordinate differ would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked; the delivered §11 tie-back plus the definitional kernel/Marcus barrier pin give the equality under 0 < lam.",
+            "evidence": {
+              "type": "r3-probe-certificate",
+              "certificateId": "Q-R3-MS-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r3/probes/R3-probe.lean",
+                "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R3.marcusSymFactorBarrierBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R3.marcusSymFactorBarrierBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+                "log": "bounded_audit/r3/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.symmetryFactor_tsCoordZero_eq_kernel",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 632,
+                  "role": "delivered §11 tie-back consumed by the probe"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.kernel_barrier_eq_marcus",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 101,
+                  "role": "definitional kernel/Marcus barrier pin used by the translation"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The delivered migration fragment reclassified the §11 tie-back as support evidence because the legacy registry had no declared observation channel. This R3 query declares the thermoneutral barrier-height channel and checks the equality; the legacy registry is not edited."
+            }
+          },
+          "provenance": {
+            "kind": "r3-probe-certificate",
+            "certificateId": "Q-R3-MS-01",
+            "sourceArtifact": "bounded_audit/r3/probes/R3-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R3.marcusSymFactorBarrierBridge",
+            "legacyDisposition": "D-S11-symmetryFactor_tsCoordZero_eq_kernel (certificate-required, reclassified as support in the delivered migration fragment)"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-Kasha",
+      "theories": [
+        "Marcus",
+        "Kasha"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-MK-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-MK-01",
+          "pairId": "P-Marcus-Kasha",
+          "title": "Kasha conformance is a Marcus barrier bound under the hic premise",
+          "chemicalQuestion": "Under the declared identification of the ladder S₂→S₁ internal-conversion rate with the Marcus-form rate, is Kasha conformance at level 1 equivalent to a bound on the Marcus barrier?",
+          "chemicalRationale": "The Kasha ladder conformance criterion is a two-level rate inequality. When the S₂→S₁ internal-conversion rate is the Marcus rate at the gap, the inequality can be solved for the Marcus barrier: conformance is exactly barrier ≤ k_B T log K. The query asks for that statement-level bridge, which the delivered §7 conditional composition provides.",
+          "endpoints": {
+            "source": {
+              "statementId": "kasha.kashaWithin",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.KashaWithin",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 123,
+              "version": "1.0.0",
+              "signatureSha256": "70c915948176bd94266f3b7ec450683be60ca115e785113fa68a6ab7b1bd9491",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "marcus.barrier",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.barrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "4989203cd675772ef27166c739add6adeee01ae6913b9441b65da10dc98cdd3d",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusKashaCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "tol : ℝ"
+            ],
+            "physicalReading": "Kasha ladder at excitation level 1 plus the Marcus parameters of the S₂→S₁ internal-conversion step. The declared hic premise identifies ic 1 with the Marcus-form rate A·exp(−barrier(lam,x)/(k_B T)).",
+            "provenance": "bounded_audit/r3/probes/R3-probe.lean#MarcusKashaCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : MarcusKashaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : MarcusKashaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : MarcusKashaCtx => ∀ p ∈ marcusKashaPremises, p.predicate δ",
+            "premiseIds": [
+              "kasha.rateData",
+              "kasha.tolerancePositive",
+              "kasha.toleranceBelowOne",
+              "marcus.preExponentialPositive",
+              "marcus.curvaturePositive",
+              "thermal.energyPositive",
+              "kasha.radZeroPositive",
+              "kasha.radOnePositive",
+              "kashaMarcus.icIdentification"
+            ],
+            "definitions": [
+              {
+                "id": "kasha.rateData",
+                "predicate": "fun δ : MarcusKashaCtx => Kasha.RateData δ.rad δ.ic 1",
+                "statement": "Kasha.RateData rad ic 1: the ladder is admissible at level 1.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "kasha.tolerancePositive",
+                "predicate": "fun δ : MarcusKashaCtx => 0 < δ.tol",
+                "statement": "0 < tol: the tolerance is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "kasha.toleranceBelowOne",
+                "predicate": "fun δ : MarcusKashaCtx => δ.tol < 1",
+                "statement": "tol < 1: the tolerance is below one.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "marcus.preExponentialPositive",
+                "predicate": "fun δ : MarcusKashaCtx => 0 < δ.A",
+                "statement": "0 < A: the Marcus pre-exponential factor is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "marcus.curvaturePositive",
+                "predicate": "fun δ : MarcusKashaCtx => 0 < δ.lam",
+                "statement": "0 < lam: the Marcus curvature is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "thermal.energyPositive",
+                "predicate": "fun δ : MarcusKashaCtx => 0 < δ.kB * δ.T",
+                "statement": "0 < kB * T: the thermal energy is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "kasha.radZeroPositive",
+                "predicate": "fun δ : MarcusKashaCtx => 0 < δ.rad 0",
+                "statement": "0 < rad 0: the lowest-state radiative rate is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "kasha.radOnePositive",
+                "predicate": "fun δ : MarcusKashaCtx => 0 < δ.rad 1",
+                "statement": "0 < rad 1: the next-state radiative rate is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "kashaMarcus.icIdentification",
+                "predicate": "fun δ : MarcusKashaCtx => δ.ic 1 = Kasha.marcusIC δ.A δ.lam δ.kB δ.T δ.x",
+                "statement": "ic 1 = Kasha.marcusIC A lam kB T x: declared hic modelling premise.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R3-marcus-kasha-window",
+            "description": "Kasha level-1 conformance and the Marcus barrier bound under the declared hic modelling premise.",
+            "domain": "all (rad, ic, A, lam, kB, T, x, tol) satisfying the nine declared premises; no global claim outside them.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "The delivered bridge is a propositional iff between the Kasha predicate and the Marcus barrier bound.",
+          "falsificationCondition": "A context satisfying the nine premises where Kasha conformance holds and the Marcus barrier exceeds k_B T log K (or vice versa) would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked; the delivered §7 bridge plus the positive 4·lam premise give the barrier-bound equivalence.",
+            "evidence": {
+              "type": "r3-probe-certificate",
+              "certificateId": "Q-R3-MK-01",
+              "kind": "equivalence",
+              "probe": {
+                "path": "bounded_audit/r3/probes/R3-probe.lean",
+                "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R3.marcusKashaWindowBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R3.marcusKashaWindowBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+                "log": "bounded_audit/r3/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Kasha.kashaWithin_one_marcus",
+                  "sourceArtifact": "PhotoLean/Kasha/Compose.lean",
+                  "sourceLine": 318,
+                  "role": "delivered §7 bridge consumed by the probe"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The delivered §7 theorem relates Kasha conformance to the squared-gap bound. The probe divides the bound by the positive 4·lam, turning it into the Marcus barrier bound and giving the query a Marcus-owned barrier endpoint instead of the Kasha-owned window statement used by the legacy pilot certificate."
+            }
+          },
+          "provenance": {
+            "kind": "r3-probe-certificate",
+            "certificateId": "Q-R3-MK-01",
+            "sourceArtifact": "bounded_audit/r3/probes/R3-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R3.marcusKashaWindowBridge",
+            "legacyQueryId": "q-kasha-marcus",
+            "legacyRecordId": "rec-kasha-marcus",
+            "legacyCertificateId": "cert-kasha-marcus"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-SternVolmer",
+      "theories": [
+        "Marcus",
+        "SternVolmer"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-MV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-MV-01",
+          "pairId": "P-Marcus-SternVolmer",
+          "title": "Is the bimolecular quenching rate a Marcus rate?",
+          "chemicalQuestion": "Is the Stern–Volmer bimolecular quenching rate constant k_q the Marcus rate of the quenching step at the same driving force and reorganization energy?",
+          "chemicalRationale": "Both theories are kinetic: Marcus gives an electron-transfer rate k = A exp(−ΔG‡/k_B T); Stern–Volmer writes the quencher-dependent decay as k0 + k_q[Q]. If the quenching step is an electron transfer, k_q should be a Marcus rate, so a statement-level bridge would identify the SV added channel with the Marcus rate at the quenching step driving force. The query asks for that bridge.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.dynDecay",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 47,
+              "version": "1.0.0",
+              "signatureSha256": "300a9093783079efccbc86615861306e755d9c7024bbbcdf5e9068654d62a907",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusSvCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: a Marcus electron-transfer step with pre-exponential A, reorganization energy lam, thermal energy kB·T, driving force x, and a Stern–Volmer quencher concentration q with bimolecular rate kq. No total translation between x and [Q] is declared.",
+            "provenance": "bounded_audit/r3/screening.json#MarcusSvCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Marcus driving force to the Stern–Volmer quencher concentration is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the quencher concentration to the Marcus driving force is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : MarcusSvCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R3-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the five named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "Candidate: both sides expose a rate law, and the SV added channel k_q[Q] is structurally the same object as a Marcus rate at a fixed driving force. No delivered statement identifies them; the legacy registry registers a no-edge (contacts run through QuantumYield only).",
+          "falsificationCondition": "A context at which the SV k_q differs from the Marcus rate of the same step would refute the implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered statement-level identification of the SV added channel k_q·q with a Marcus rate at the quenching step driving force, plus a total translation between [Q] and that driving force, is missing.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R3-MV-01",
+              "candidateSummary": "Candidate: both sides expose a rate law, and the SV added channel k_q[Q] is structurally the same object as a Marcus rate at a fixed driving force. No delivered statement identifies them; the legacy registry registers a no-edge (contacts run through QuantumYield only)."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r3/search-log.json",
+            "locator": "SL-R3-MV-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-QuantumYield",
+      "theories": [
+        "Marcus",
+        "QuantumYield"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-MQ-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-MQ-01",
+          "pairId": "P-Marcus-QuantumYield",
+          "title": "Is a Marcus rate channel a quantum-yield channel?",
+          "chemicalQuestion": "Can a Marcus electron-transfer rate be used as one channel of the QuantumYield parallel-channel calculus, and is the resulting yield the Marcus rate divided by the total decay?",
+          "chemicalRationale": "QuantumYield is a purely algebraic parallel-channel calculus; Marcus supplies a rate law. A composition would let a Marcus channel enter the yield numerator and denominator. The query asks for a delivered statement-level composition.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusQyCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "knr : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: a Marcus rate as one parallel decay channel alongside a nonradiative rate knr in the QuantumYield calculus. No delivered instantiation exists.",
+            "provenance": "bounded_audit/r3/screening.json#MarcusQyCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Marcus driving force to the Stern–Volmer quencher concentration is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the quencher concentration to the Marcus driving force is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : MarcusQyCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R3-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the five named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "Candidate: QuantumYield.yieldOf accepts an arbitrary rate vector, so a Marcus rate can fill a channel syntactically. No delivered instance or theorem performs that substitution; the legacy registry registers a no-edge (energy-side theories enter only through specific rates).",
+          "falsificationCondition": "A context at which substituting a Marcus rate into the QuantumYield channel calculus fails the yield identity would refute the implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered composition instantiating QuantumYield.yieldOf with Marcus.rate as a channel and proving the yield identity under the Marcus rate positivity premises is missing.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R3-MQ-01",
+              "candidateSummary": "Candidate: QuantumYield.yieldOf accepts an arbitrary rate vector, so a Marcus rate can fill a channel syntactically. No delivered instance or theorem performs that substitution; the legacy registry registers a no-edge (energy-side theories enter only through specific rates)."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r3/search-log.json",
+            "locator": "SL-R3-MQ-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-FluorPhos",
+      "theories": [
+        "Marcus",
+        "FluorPhos"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-MF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-MF-01",
+          "pairId": "P-Marcus-FluorPhos",
+          "title": "Is the S₁→T₁ ISC rate a Marcus rate?",
+          "chemicalQuestion": "Is the FluorPhos S₁→T₁ intersystem-crossing rate an electron-transfer rate of Marcus form at the S₁–T₁ gap?",
+          "chemicalRationale": "FluorPhos models ISC as a rate kISC in the S₁ decay; Marcus supplies a barrier-controlled rate law. A bridge would identify kISC with Marcus.rate at the S₁–T₁ driving force. The query asks for that statement-level bridge.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-iscBranch",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.iscBranch",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 54,
+              "version": "1.0.0",
+              "signatureSha256": "153bf46556f5ad2f27aa6d5e183b3b742fe8d395858e84ef11e0f3714fcf73b5",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "MarcusFpCandidateCtx",
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: a Marcus-form S₁→T₁ rate alongside the FluorPhos ISC/IC channels. No delivered identification of kISC with Marcus.rate exists.",
+            "provenance": "bounded_audit/r3/screening.json#MarcusFpCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Marcus driving force to the Stern–Volmer quencher concentration is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the quencher concentration to the Marcus driving force is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : MarcusFpCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R3-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the five named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "Candidate: both sides have a rate; FluorPhos even mentions Marcus.RatModel in a comment. No delivered theorem identifies kISC with Marcus.rate; the legacy registry registers a no-edge except through QuantumYield.",
+          "falsificationCondition": "A context at which the ISC branch computed from a Marcus rate differs from the FluorPhos branch would refute the implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered identification kISC = Marcus.rate A lam kB T x with the S₁–T₁ gap as x, plus the positivity premises, is missing.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R3-MF-01",
+              "candidateSummary": "Candidate: both sides have a rate; FluorPhos even mentions Marcus.RatModel in a comment. No delivered theorem identifies kISC with Marcus.rate; the legacy registry registers a no-edge except through QuantumYield."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r3/search-log.json",
+            "locator": "SL-R3-MF-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-SternVolmer",
+      "theories": [
+        "Kasha",
+        "SternVolmer"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-KV-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-KV-01",
+          "pairId": "P-Kasha-SternVolmer",
+          "title": "Does dynamic quenching act as an added level-0 loss in the Kasha ladder?",
+          "chemicalQuestion": "Is Stern–Volmer dynamic quenching exactly an added nonradiative loss at the Kasha ladder emitting level, so that the quenched ladder yield is the unquenched yield times the SV ratio?",
+          "chemicalRationale": "The SternVolmer plan registers dynamic quenching as an addition to the ladder level-0 loss; the Kasha ladder radBranch/emitYield are branching probabilities. A composition through QuantumYield would give the dilution identity. The query asks for that delivered statement-level composition.",
+          "endpoints": {
+            "source": {
+              "statementId": "kasha.kashaRule",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.KashaRule",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 119,
+              "version": "1.0.0",
+              "signatureSha256": "8b50262c9cb18796fb440dd797799877caa142143a5cca1ac616460cc38aa2da",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "sternvolmer.intensityDyn",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaSvCandidateCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "tol : ℝ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the Kasha ladder at level 1 with the Stern–Volmer dynamic quench represented as an added level-0 nonradiative loss kq·q. No delivered composition carries the translation.",
+            "provenance": "bounded_audit/r3/screening.json#KashaSvCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Marcus driving force to the Stern–Volmer quencher concentration is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the quencher concentration to the Marcus driving force is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaSvCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R3-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the five named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "Candidate: a composition of the delivered §15 rows kasha_radBranch_eq_yieldOf and sv_quench_dilutes_yield appears provable, but no delivered row carries it. The legacy registry registers a no-edge (registered candidate, not delivered) and the legacy record is unresolved.",
+          "falsificationCondition": "A ladder context at which the quenched Kasha yield is not the unquenched yield times the SV ratio would refute the implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered typed composition from the Kasha radiative branch through QuantumYield to the Stern–Volmer dilution identity, with the quencher concentration translated to an added level-0 loss, is missing.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R3-KV-01",
+              "candidateSummary": "Candidate: a composition of the delivered §15 rows kasha_radBranch_eq_yieldOf and sv_quench_dilutes_yield appears provable, but no delivered row carries it. The legacy registry registers a no-edge (registered candidate, not delivered) and the legacy record is unresolved."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r3/search-log.json",
+            "locator": "SL-R3-KV-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-QuantumYield",
+      "theories": [
+        "Kasha",
+        "QuantumYield"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-KQ-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-KQ-01",
+          "pairId": "P-Kasha-QuantumYield",
+          "title": "Kasha radiative branch is the two-channel quantum yield",
+          "chemicalQuestion": "Is the Kasha ladder radiative branch at level n exactly the two-channel quantum yield of the radiative and internal-conversion rates?",
+          "chemicalRationale": "The Kasha ladder radBranch is a branching probability rad/(rad+ic); the QuantumYield layer defines a parallel-channel yield k_i/Σk. The query asks whether the ladder radiative branch is the same physical yield, not just a similarly shaped ratio.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-radBranch",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.radBranch",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 79,
+              "version": "1.0.0",
+              "signatureSha256": "450fed5589ef2f33b27a354bda22b1c3d0b02fba24e1dac01e7e161d692397fa",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaQyCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "n : ℕ"
+            ],
+            "physicalReading": "Kasha ladder at level n: radiative rate rad n and internal-conversion rate ic n are the two parallel decay channels of the emitting state.",
+            "provenance": "bounded_audit/r3/probes/R3-probe.lean#KashaQyCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : KashaQyCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : KashaQyCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaQyCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [
+            {
+              "id": "radiativeBranchYield",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the ladder level n)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => Kasha.radBranch δ.rad δ.ic δ.n",
+              "rightObs": "fun δ _ => QuantumYield.yieldOf ![δ.rad δ.n, δ.ic δ.n] 0"
+            }
+          ],
+          "scope": {
+            "id": "scope-R3-kasha-yield",
+            "description": "Kasha ladder radiative branch versus the two-channel QuantumYield calculus.",
+            "domain": "all ladders (rad, ic) and levels n; totalized division at zero total is included.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued yield observables on the same ladder context; the certificate is equality of the declared channel.",
+          "falsificationCondition": "A ladder context (rad, ic, n) at which the two yield values differ would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked against the delivered §15 identity.",
+            "evidence": {
+              "type": "r3-probe-certificate",
+              "certificateId": "Q-R3-KQ-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r3/probes/R3-probe.lean",
+                "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R3.kashaRadiativeBranchYieldBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R3.kashaRadiativeBranchYieldBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+                "log": "bounded_audit/r3/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.kasha_radBranch_eq_yieldOf",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 776,
+                  "role": "delivered §15 composition row consumed by the probe"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The delivered §15 row is an algebraic value identity; the probe declares the yield channel and checks the equality, rather than relabeling the identity as a predicate equivalence."
+            }
+          },
+          "provenance": {
+            "kind": "r3-probe-certificate",
+            "certificateId": "Q-R3-KQ-01",
+            "sourceArtifact": "bounded_audit/r3/probes/R3-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R3.kashaRadiativeBranchYieldBridge",
+            "legacyCensus": "§15 kasha_radBranch_eq_yieldOf (composition)"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-FluorPhos",
+      "theories": [
+        "Kasha",
+        "FluorPhos"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-KF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-KF-01",
+          "pairId": "P-Kasha-FluorPhos",
+          "title": "Is the FluorPhos fluorescence yield the Kasha ladder radiative branch?",
+          "chemicalQuestion": "Is the FluorPhos fluorescence yield exactly the Kasha ladder radiative branch for a two-level ladder whose nonradiative loss is the sum of ISC and IC?",
+          "chemicalRationale": "Kasha radBranch is a ladder branching probability; FluorPhos φ_F is the S₁ radiative branch with ISC+IC losses. A composition through QuantumYield would identify them. The query asks for that delivered statement-level composition.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Kasha-PhotoLean-Kasha-fluoYield",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.fluoYield",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 94,
+              "version": "1.0.0",
+              "signatureSha256": "ffcb61ca0313575b7e26759f7ca1bfcdf6ab2b34702bd3ee255ac891ca849acb",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiF",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "902b6639757e5df14a909a3d57e43fa7e5806dcf7ee7caba25a0b290ddfb8208",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KashaFpCandidateCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: a two-level Kasha ladder (radiative rad, nonradiative ic) compared with the FluorPhos S₁ channels (kF, kISC, kIC). No delivered composition identifies the two branchings.",
+            "provenance": "bounded_audit/r3/screening.json#KashaFpCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the Marcus driving force to the Stern–Volmer quencher concentration is declared in the delivered corpus.",
+              "term": ""
+            },
+            "right": {
+              "id": "none-declared",
+              "requirement": "none-declared",
+              "reason": "No total translation from the quencher concentration to the Marcus driving force is declared in the delivered corpus.",
+              "term": ""
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : KashaFpCandidateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "id": "scope-R3-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the five named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "Candidate: a composition of the delivered §15 rows kasha_radBranch_eq_yieldOf and phiF_eq_yieldOf appears provable, but no delivered row carries it. The legacy registry registers a no-edge (undelivered candidate compositions) and the legacy record is unresolved.",
+          "falsificationCondition": "A rate context at which the Kasha two-level branch and the FluorPhos φ_F differ would refute the implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A delivered typed composition identifying the Kasha ladder radBranch at a two-level ladder (ic = kISC + kIC) with FluorPhos.phiF is missing.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-R3-KF-01",
+              "candidateSummary": "Candidate: a composition of the delivered §15 rows kasha_radBranch_eq_yieldOf and phiF_eq_yieldOf appears provable, but no delivered row carries it. The legacy registry registers a no-edge (undelivered candidate compositions) and the legacy record is unresolved."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r3/search-log.json",
+            "locator": "SL-R3-KF-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SternVolmer-QuantumYield",
+      "theories": [
+        "SternVolmer",
+        "QuantumYield"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-SQ-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-SQ-01",
+          "pairId": "P-SternVolmer-QuantumYield",
+          "title": "Dynamic quenching dilutes the quantum yield by the Stern–Volmer ratio",
+          "chemicalQuestion": "Is the unquenched quantum yield of a two-channel emitter the quenched yield times the Stern–Volmer dynamic ratio?",
+          "chemicalRationale": "Dynamic quenching adds a bimolecular channel k_q[Q] to the decay. The Stern–Volmer ratio is the decay ratio; the quantum yield is the radiative share. The query asks whether the yield dilution is exactly the SV ratio, which is the delivered §15 composition.",
+          "endpoints": {
+            "source": {
+              "statementId": "sternvolmer.intensityDyn",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "SvQyCtx",
+            "fields": [
+              "kr : ℝ",
+              "knr : ℝ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "Two-channel emitter with radiative rate kr and nonradiative rate knr, plus the Stern–Volmer dynamic quench channel kq·q. The SV ratio is the total-decay ratio.",
+            "provenance": "bounded_audit/r3/probes/R3-probe.lean#SvQyCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : SvQyCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : SvQyCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : SvQyCtx => ∀ p ∈ svQyPremises, p.predicate δ",
+            "premiseIds": [
+              "sternVolmer.totalRatePositive",
+              "sternVolmer.quenchNonnegative"
+            ],
+            "definitions": [
+              {
+                "id": "sternVolmer.totalRatePositive",
+                "predicate": "fun δ : SvQyCtx => 0 < δ.kr + δ.knr",
+                "statement": "0 < kr + knr: the unquenched total decay is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "sternVolmer.quenchNonnegative",
+                "predicate": "fun δ : SvQyCtx => 0 ≤ δ.kq * δ.q",
+                "statement": "0 ≤ kq * q: the added quench channel is nonnegative.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "quenchedQuantumYield",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the declared quencher concentration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => QuantumYield.yieldOf ![δ.kr, δ.knr] 0",
+              "rightObs": "fun δ _ => QuantumYield.yieldOf ![δ.kr, δ.knr + δ.kq * δ.q] 0 * SternVolmer.svRatioDyn (δ.kr + δ.knr) δ.kq δ.q"
+            }
+          ],
+          "scope": {
+            "id": "scope-R3-sv-qy-dilution",
+            "description": "Stern–Volmer dynamic quenching of a two-channel quantum yield.",
+            "domain": "all (kr, knr, kq, q) with 0 < kr + knr and 0 ≤ kq·q.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "The two readings are real-valued yield observables; the certificate is equality of the declared yield channel.",
+          "falsificationCondition": "A context with positive unquenched total rate and nonnegative quench channel at which the yield identity fails would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked against the delivered §15 identity.",
+            "evidence": {
+              "type": "r3-probe-certificate",
+              "certificateId": "Q-R3-SQ-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r3/probes/R3-probe.lean",
+                "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R3.svQuenchDilutesYieldBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R3.svQuenchDilutesYieldBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+                "log": "bounded_audit/r3/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.sv_quench_dilutes_yield",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 785,
+                  "role": "delivered §15 composition row consumed by the probe"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The delivered §15 identity is an algebraic value identity; the probe declares the yield channel and checks the equality."
+            }
+          },
+          "provenance": {
+            "kind": "r3-probe-certificate",
+            "certificateId": "Q-R3-SQ-01",
+            "sourceArtifact": "bounded_audit/r3/probes/R3-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R3.svQuenchDilutesYieldBridge",
+            "legacyCensus": "§15 sv_quench_dilutes_yield (composition)"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SternVolmer-FluorPhos",
+      "theories": [
+        "SternVolmer",
+        "FluorPhos"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-SF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-SF-01",
+          "pairId": "P-SternVolmer-FluorPhos",
+          "title": "Fluorescence/phosphorescence ratio is invariant under dynamic quenching",
+          "chemicalQuestion": "Does adding the Stern–Volmer dynamic-quench channel k_q[Q] to the S₁ nonradiative rate leave the fluorescence/phosphorescence ratio unchanged?",
+          "chemicalRationale": "The SV model represents dynamic quenching as an added decay channel; the FluorPhos competition layer F/P ratio is the ISC branch times the T₁ radiative branch divided by the S₁ radiative branch. Because the added channel cancels between the two S₁ yields, the ratio is quench-invariant. The query asks whether that model-level composition is a statement-level relation.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.dynDecay",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 47,
+              "version": "1.0.0",
+              "signatureSha256": "300a9093783079efccbc86615861306e755d9c7024bbbcdf5e9068654d62a907",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiP",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiP",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 61,
+              "version": "1.0.0",
+              "signatureSha256": "c7b1dfb6630fc27b592d1fbd59c7da7e98b79af09dba47d3ffe4f95e77514fa6",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "SvFpCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ",
+              "kP : ℝ",
+              "kNR : ℝ",
+              "kq : ℝ",
+              "q : ℝ"
+            ],
+            "physicalReading": "FluorPhos S₁/T₁ competition with the Stern–Volmer dynamic quench channel kq·q added to the S₁ nonradiative (IC) rate. The SV concentration is translated to an added nonradiative channel.",
+            "provenance": "bounded_audit/r3/probes/R3-probe.lean#SvFpCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : SvFpCtx => δ",
+              "requirement": "The FluorPhos context is the shared context; the translation is total."
+            },
+            "right": {
+              "id": "coordinate-map",
+              "term": "fun δ : SvFpCtx => (δ.kF, δ.kISC, δ.kIC + δ.kq * δ.q, δ.kP, δ.kNR)",
+              "requirement": "The SV added channel kq·q is substituted into the FluorPhos S₁ nonradiative rate; the map is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : SvFpCtx => ∀ p ∈ svFpPremises, p.predicate δ",
+            "premiseIds": [
+              "fluorPhos.radiativeRatePositive",
+              "fluorPhos.s1DecayPositive",
+              "fluorPhos.s1DecayQuenchedPositive",
+              "fluorPhos.t1DecayPositive"
+            ],
+            "definitions": [
+              {
+                "id": "fluorPhos.radiativeRatePositive",
+                "predicate": "fun δ : SvFpCtx => 0 < δ.kF",
+                "statement": "0 < kF: the S₁ radiative rate is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "fluorPhos.s1DecayPositive",
+                "predicate": "fun δ : SvFpCtx => 0 < FluorPhos.s1Decay δ.kF δ.kISC δ.kIC",
+                "statement": "0 < s1Decay kF kISC kIC: the unquenched S₁ total decay is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "fluorPhos.s1DecayQuenchedPositive",
+                "predicate": "fun δ : SvFpCtx => 0 < FluorPhos.s1Decay δ.kF δ.kISC (δ.kIC + δ.kq * δ.q)",
+                "statement": "0 < s1Decay kF kISC (kIC + kq*q): the quenched S₁ total decay is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              },
+              {
+                "id": "fluorPhos.t1DecayPositive",
+                "predicate": "fun δ : SvFpCtx => 0 < δ.kP + δ.kNR",
+                "statement": "0 < kP + kNR: the T₁ total decay is positive.",
+                "loadBearing": "Consumed by the checked certificate or by the declared premise predicate."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "fluorescencePhosphorescenceRatio",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the declared quencher concentration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => FluorPhos.phiP δ.kF δ.kISC δ.kIC δ.kP δ.kNR / FluorPhos.phiF δ.kF δ.kISC δ.kIC",
+              "rightObs": "fun δ _ => FluorPhos.phiP δ.kF δ.kISC (δ.kIC + δ.kq * δ.q) δ.kP δ.kNR / FluorPhos.phiF δ.kF δ.kISC (δ.kIC + δ.kq * δ.q)"
+            }
+          ],
+          "scope": {
+            "id": "scope-R3-sv-fp-invariance",
+            "description": "FluorPhos F/P ratio under the Stern–Volmer added S₁ channel.",
+            "domain": "all rate tuples with positive S₁ and T₁ total decays as declared.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "The two readings are real-valued ratio observables on the same rate context; the certificate is equality of the declared ratio channel.",
+          "falsificationCondition": "A context with positive S₁/T₁ decays at which the quenched and unquenched F/P ratios differ would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked against the delivered §15 quench-invariance identity under the declared translation.",
+            "evidence": {
+              "type": "r3-probe-certificate",
+              "certificateId": "Q-R3-SF-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r3/probes/R3-probe.lean",
+                "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R3.fpRatioInvariantBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R3.fpRatioInvariantBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+                "log": "bounded_audit/r3/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.fpRatio_invariant_under_quench",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 896,
+                  "role": "delivered §15 model-level composition row consumed by the probe"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The legacy note requires an explicit translation because the quench is encoded as an added rate, not through a SternVolmer declaration. The R3 query declares that translation (coordinate-map kq·q into the S₁ nonradiative rate) and checks the ratio channel."
+            }
+          },
+          "provenance": {
+            "kind": "r3-probe-certificate",
+            "certificateId": "Q-R3-SF-01",
+            "sourceArtifact": "bounded_audit/r3/probes/R3-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R3.fpRatioInvariantBridge",
+            "legacyCensus": "§15 fpRatio_invariant_under_quench (model-level-composition)"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-QuantumYield-FluorPhos",
+      "theories": [
+        "QuantumYield",
+        "FluorPhos"
+      ],
+      "primaryCluster": "quenching-quantum-yield",
+      "queryIds": [
+        "Q-R3-QF-01",
+        "Q-R3-QF-02"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-R3-QF-01",
+          "pairId": "P-QuantumYield-FluorPhos",
+          "title": "Fluorescence yield is the three-channel quantum yield",
+          "chemicalQuestion": "Is the FluorPhos fluorescence yield exactly the three-channel quantum yield of the S₁ radiative, ISC and IC rates?",
+          "chemicalRationale": "FluorPhos defines φ_F as the S₁ radiative branch over the total S₁ decay; QuantumYield defines a parallel-channel yield. The query asks whether the two are the same physical branching probability.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiF",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "902b6639757e5df14a909a3d57e43fa7e5806dcf7ee7caba25a0b290ddfb8208",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "FpQyCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ"
+            ],
+            "physicalReading": "FluorPhos S₁ decay with radiative kF, intersystem-crossing kISC and internal-conversion kIC channels; the shared context of the three-channel yield comparison.",
+            "provenance": "bounded_audit/r3/probes/R3-probe.lean#FpQyCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : FpQyCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : FpQyCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : FpQyCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [
+            {
+              "id": "fluorescenceYield",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the S₁ rate tuple)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => QuantumYield.yieldOf ![δ.kF, δ.kISC, δ.kIC] 0",
+              "rightObs": "fun δ _ => FluorPhos.phiF δ.kF δ.kISC δ.kIC"
+            }
+          ],
+          "scope": {
+            "id": "scope-R3-qy-fp-composition",
+            "description": "FluorPhos fluorescence/phosphorescence yields as QuantumYield compositions.",
+            "domain": "all (kF, kISC, kIC) and (kF, kISC, kIC, kP, kNR) rate tuples; totalized division included.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued fluorescence-yield observables on the same rate context; the certificate is equality of the declared channel.",
+          "falsificationCondition": "A rate context (kF, kISC, kIC) at which the two yields differ would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked against the delivered §15 fluorescence identity.",
+            "evidence": {
+              "type": "r3-probe-certificate",
+              "certificateId": "Q-R3-QF-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r3/probes/R3-probe.lean",
+                "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiFYieldBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiFYieldBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+                "log": "bounded_audit/r3/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.phiF_eq_yieldOf",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 802,
+                  "role": "delivered §15 composition row consumed by the probe"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The delivered §15 identity is an algebraic value identity; the probe declares the fluorescence-yield channel and checks the equality."
+            }
+          },
+          "provenance": {
+            "kind": "r3-probe-certificate",
+            "certificateId": "Q-R3-QF-01",
+            "sourceArtifact": "bounded_audit/r3/probes/R3-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiFYieldBridge",
+            "legacyCensus": "§15 phiF_eq_yieldOf (composition)"
+          }
+        },
+        {
+          "queryId": "Q-R3-QF-02",
+          "pairId": "P-QuantumYield-FluorPhos",
+          "title": "Phosphorescence yield is a cascade of two quantum yields",
+          "chemicalQuestion": "Is the FluorPhos phosphorescence yield exactly the product of the S₁→T₁ quantum yield and the T₁ radiative quantum yield?",
+          "chemicalRationale": "FluorPhos defines φ_P as the ISC branch times the T₁ radiative branch. The QuantumYield layer defines each branch as a parallel-channel yield. The query asks whether the cascade product is exactly the composition of the two yields.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiP",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiP",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 61,
+              "version": "1.0.0",
+              "signatureSha256": "c7b1dfb6630fc27b592d1fbd59c7da7e98b79af09dba47d3ffe4f95e77514fa6",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "FpQyCascadeCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ",
+              "kP : ℝ",
+              "kNR : ℝ"
+            ],
+            "physicalReading": "FluorPhos S₁ decay (kF, kISC, kIC) and T₁ decay (kP, kNR); the shared context of the phosphorescence cascade comparison.",
+            "provenance": "bounded_audit/r3/probes/R3-probe.lean#FpQyCascadeCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : FpQyCascadeCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : FpQyCascadeCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : FpQyCascadeCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [
+            {
+              "id": "phosphorescenceYield",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the S₁/T₁ rate tuple)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => QuantumYield.yieldOf ![δ.kF, δ.kISC, δ.kIC] 1 * QuantumYield.yieldOf ![δ.kP, δ.kNR] 0",
+              "rightObs": "fun δ _ => FluorPhos.phiP δ.kF δ.kISC δ.kIC δ.kP δ.kNR"
+            }
+          ],
+          "scope": {
+            "id": "scope-R3-qy-fp-composition",
+            "description": "FluorPhos fluorescence/phosphorescence yields as QuantumYield compositions.",
+            "domain": "all (kF, kISC, kIC) and (kF, kISC, kIC, kP, kNR) rate tuples; totalized division included.",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued phosphorescence-yield observables on the same rate context; the certificate is equality of the declared channel.",
+          "falsificationCondition": "A rate context (kF, kISC, kIC, kP, kNR) at which the cascade product and the FluorPhos φ_P differ would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe certificate is checked against the delivered §15 cascade identity.",
+            "evidence": {
+              "type": "r3-probe-certificate",
+              "certificateId": "Q-R3-QF-02",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r3/probes/R3-probe.lean",
+                "sha256": "16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiPYieldCascadeBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiPYieldCascadeBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean",
+                "log": "bounded_audit/r3/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.phiP_eq_yieldOf_cascade",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 808,
+                  "role": "delivered §15 cascade row consumed by the probe"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The delivered §15 identity is an algebraic value identity; the probe declares the phosphorescence-yield channel and checks the equality."
+            }
+          },
+          "provenance": {
+            "kind": "r3-probe-certificate",
+            "certificateId": "Q-R3-QF-02",
+            "sourceArtifact": "bounded_audit/r3/probes/R3-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiPYieldCascadeBridge",
+            "legacyCensus": "§15 phiP_eq_yieldOf_cascade (composition)"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "pairs": 11,
+    "queries": 12,
+    "byStatus": {
+      "certified": 7,
+      "unresolved": 5
+    },
+    "byExpectedKind": {
+      "observationalEquivalence": 6,
+      "equivalence": 1,
+      "implication": 5
+    },
+    "certified": 7,
+    "refuted": 0,
+    "unresolved": 5,
+    "notEstablished": 0,
+    "outOfScope": 0
+  },
+  "nonClaims": [
+    "This package is not a completeness claim about any pair.",
+    "A certified row is a checked relation under its declared context, premises and snapshot; it is not a claim of physical universality.",
+    "An unresolved row is not a negative claim and is not a refutation.",
+    "No pair was forced into a relation to increase edge count.",
+    "The legacy registry is read-only in R3; the four dangling endpoint aliases are repaired only in this new screening metadata.",
+    "The cumulative 21/136 coverage count is not exhaustive or final."
+  ]
+}

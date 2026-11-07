@@ -1,0 +1,11 @@
+# Ledger-independence test: the RAD1 validator must not read the mutable R5 ledger
+# Copy the tree to /tmp, delete bounded_audit/coverage.json from the COPY only, run the copy.
+$ test -f /tmp/rad1-ledger-independence-7kBdmC/photolean/bounded_audit/coverage.json -> present
+removed '/tmp/rad1-ledger-independence-7kBdmC/photolean/bounded_audit/coverage.json'
+$ python3 /tmp/rad1-ledger-independence-7kBdmC/photolean/bounded_audit/r5/radiative-01/validate.py
+R5 RAD1 bounded screening validation
+  root: /tmp/rad1-ledger-independence-7kBdmC/photolean
+  checks failed: 0
+RESULT: PASS (all RAD1 bounded-screening checks passed)
+[exit=0]
+temp copy removed; the repository ledger was never touched

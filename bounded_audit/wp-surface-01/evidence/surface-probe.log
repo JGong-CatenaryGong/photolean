@@ -1,0 +1,12 @@
+'PhotoLean.RelationAudit.BoundedAudit.Surface.marcusRateSabatierActivityPin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorHammondThermoneutralBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorBepThermoneutralBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Surface.bepSabatierLinearVolcanoBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

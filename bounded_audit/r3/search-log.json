@@ -1,0 +1,501 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-search-log",
+  "round": "R3",
+  "generatedOn": "2026-11-04",
+  "workPackage": "R3-QUENCH-01",
+  "snapshot": "snap-bounded-audit-2026-11-04",
+  "entries": [
+    {
+      "searchId": "SL-R3-MV-01",
+      "queryId": "Q-R3-MV-01",
+      "pairId": "P-Marcus-SternVolmer",
+      "status": "unresolved",
+      "scope": "scope-R3-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Marcus-PhotoLean-Marcus-rate",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+        "sternvolmer.intensityDyn"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "MarcusSvCandidateCtx (A, lam, kB, T, x, kq, q); no total translation between x and [Q]"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 line 945: SternVolmer ↔ Marcus no edge; contacts run through QuantumYield",
+          "finding": "The legacy register states there is no edge and that the SV contacts all run through QuantumYield."
+        },
+        {
+          "artifact": "PhotoLean/Marcus/Basic.lean",
+          "locator": "rate, barrier",
+          "finding": "The Marcus rate is a barrier-controlled Arrhenius law with a single driving force x."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "dynDecay, svRatioDyn",
+          "finding": "The SV model treats kq as a concentration-channel parameter and has no energy surface."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Marcus-SternVolmer",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named chemical query."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SternVolmer' PhotoLean/Marcus --include='*.lean'",
+          "purpose": "Search the Marcus modules for a delivered SV statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Marcus' PhotoLean/SternVolmer --include='*.lean'",
+          "purpose": "Search the SV modules for a delivered Marcus statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Marcus/*.lean | sort -u",
+          "purpose": "Measure the Marcus module dependencies.",
+          "result": "Mathlib only plus the Marcus submodules; no SternVolmer import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SternVolmer/*.lean | sort -u",
+          "purpose": "Measure the SV module dependencies.",
+          "result": "Mathlib plus the SternVolmer submodules; no Marcus import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-SternVolmer",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; registry record rec-notestablished-P-Marcus-SternVolmer status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the delivered cross-theory modules for a theorem whose type mentions both Marcus.rate and an SV channel.",
+          "outcome": "No such theorem."
+        },
+        {
+          "strategy": "Read the SV added channel as a Marcus rate at a fixed driving force.",
+          "outcome": "The structural analogy is clear, but no translation [Q] -> x and no delivered theorem exist."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor; no named proposition-level query."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-law analogy",
+          "statement": "SternVolmer.dynDecay k0 kq q = k0 + kq*q versus Marcus.rate A lam kB T x = A*exp(-barrier lam x/(kB*T))",
+          "status": "candidate only; no statement-level identification is delivered."
+        }
+      ],
+      "remainingGap": "A delivered identification of the SV bimolecular rate constant kq with Marcus.rate at the quenching-step driving force, plus a total translation between the quencher concentration and that driving force, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'SternVolmer' PhotoLean/Marcus --include='*.lean'",
+        "grep -rn 'Marcus' PhotoLean/SternVolmer --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-SternVolmer"
+      ],
+      "rationale": "The legacy register says there is no edge and that SV contacts run through QuantumYield. A rate-law analogy remains, so the honest status is unresolved, not refuted and not a forced edge."
+    },
+    {
+      "searchId": "SL-R3-MQ-01",
+      "queryId": "Q-R3-MQ-01",
+      "pairId": "P-Marcus-QuantumYield",
+      "status": "unresolved",
+      "scope": "scope-R3-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Marcus-PhotoLean-Marcus-rate",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-inst_quenchDilution_phiF"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "MarcusQyCandidateCtx (A, lam, kB, T, x, knr); no delivered instantiation"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 line 948: QuantumYield ↔ Marcus no edge; energy-side theories enter only through specific rates",
+          "finding": "The legacy register states there is no edge; QuantumYield is purely algebraic."
+        },
+        {
+          "artifact": "PhotoLean/QuantumYield/Basic.lean",
+          "locator": "yieldOf, totalRate",
+          "finding": "The QY calculus accepts an arbitrary rate vector but has no Marcus-specific instance."
+        },
+        {
+          "artifact": "PhotoLean/QuantumYield/Instances.lean",
+          "locator": "inst_quenchDilution_phiF, inst_quenchDilution_sternVolmer",
+          "finding": "The delivered instances use algebraic rate parameters, not Marcus.rate."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Marcus-QuantumYield",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'QuantumYield' PhotoLean/Marcus --include='*.lean'",
+          "purpose": "Search the Marcus modules for a delivered QY statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Marcus' PhotoLean/QuantumYield --include='*.lean'",
+          "purpose": "Search the QY modules for a delivered Marcus statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/QuantumYield/*.lean | sort -u",
+          "purpose": "Measure the QY module dependencies.",
+          "result": "Mathlib plus QuantumYield.Basic and QuantumYield.RatModel; no Marcus import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-QuantumYield",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-Marcus-QuantumYield status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Instantiate QuantumYield.yieldOf with a Marcus rate as one channel and look for a delivered composition.",
+          "outcome": "No delivered composition or instance exists; a new proof would be needed."
+        },
+        {
+          "strategy": "Search the delivered §15 composition rows for a Marcus channel.",
+          "outcome": "The §15 rows compose Kasha, SV, FP, Einstein, Forster and RACI rates; none uses Marcus.rate."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "type-level substitution",
+          "statement": "QuantumYield.yieldOf ![Marcus.rate A lam kB T x, knr] 0 = Marcus.rate A lam kB T x / (Marcus.rate A lam kB T x + knr)",
+          "status": "candidate only; the identity is a definitional unfolding, not a delivered cross-theory theorem, and no premise-carrying composition is delivered."
+        }
+      ],
+      "remainingGap": "A delivered composition instantiating QuantumYield.yieldOf with Marcus.rate as a channel, with the Marcus positivity premises propagated, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'QuantumYield' PhotoLean/Marcus --include='*.lean'",
+        "grep -rn 'Marcus' PhotoLean/QuantumYield --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-QuantumYield"
+      ],
+      "rationale": "The legacy register says there is no edge and that energy-side theories enter QuantumYield only through specific rates. A syntactic substitution remains a candidate, so the status is unresolved."
+    },
+    {
+      "searchId": "SL-R3-MF-01",
+      "queryId": "Q-R3-MF-01",
+      "pairId": "P-Marcus-FluorPhos",
+      "status": "unresolved",
+      "scope": "scope-R3-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Marcus-PhotoLean-Marcus-rate",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-iscBranch",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-phiF"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "MarcusFpCandidateCtx (A, lam, kB, T, x, kISC, kIC); no delivered identification"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 lines 952-954: FluorPhos no edge except through QuantumYield",
+          "finding": "The legacy register states the FP contacts are the QY compositions and the SV quench invariance."
+        },
+        {
+          "artifact": "PhotoLean/FluorPhos/Basic.lean",
+          "locator": "iscBranch, phiF, phiP",
+          "finding": "FluorPhos treats kISC as a rate parameter of the S₁ decay; no rate law is attached."
+        },
+        {
+          "artifact": "PhotoLean/Marcus/Rate.lean",
+          "locator": "rate, rate_pos",
+          "finding": "Marcus supplies the barrier-controlled rate law."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Marcus-FluorPhos",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'FluorPhos' PhotoLean/Marcus --include='*.lean'",
+          "purpose": "Search the Marcus modules for a delivered FP statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Marcus' PhotoLean/FluorPhos --include='*.lean'",
+          "purpose": "Search the FP modules for a delivered Marcus statement.",
+          "result": "One comment-only match: PhotoLean/FluorPhos/Instances.lean:62 mentions PhotoLean.Marcus.RatModel in a docstring; no declaration."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-FluorPhos",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-Marcus-FluorPhos status=notEstablished certificate=None."
+        },
+        {
+          "command": "grep -n 'FluorPhos ↔ Marcus' PhotoLean/Relations.lean",
+          "purpose": "Locate the no-edge registration.",
+          "result": "Line 952: the register says no edge except through QuantumYield."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Identify kISC with Marcus.rate at the S₁–T₁ gap and look for a delivered theorem.",
+          "outcome": "No delivered theorem; the comment in FluorPhos/Instances.lean is not a statement."
+        },
+        {
+          "strategy": "Search the §15 FP compositions for a Marcus side.",
+          "outcome": "The §15 rows compose phiF/phiP with QuantumYield; no Marcus rate enters."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-law analogy",
+          "statement": "FluorPhos.iscBranch kF kISC kIC = kISC / s1Decay versus Marcus.rate A lam kB T x at x = S₁–T₁ gap",
+          "status": "candidate only; no delivered identification of kISC with Marcus.rate."
+        }
+      ],
+      "remainingGap": "A delivered identification kISC = Marcus.rate A lam kB T x with the S₁–T₁ gap as x, plus the positivity premises, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'FluorPhos' PhotoLean/Marcus --include='*.lean'",
+        "grep -rn 'Marcus' PhotoLean/FluorPhos --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-FluorPhos"
+      ],
+      "rationale": "The legacy register says no edge except through QuantumYield. A rate-law analogy remains a candidate, so the status is unresolved."
+    },
+    {
+      "searchId": "SL-R3-KV-01",
+      "queryId": "Q-R3-KV-01",
+      "pairId": "P-Kasha-SternVolmer",
+      "status": "unresolved",
+      "scope": "scope-R3-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "kasha.kashaRule",
+        "kasha.kashaWithin",
+        "sternvolmer.intensityDyn",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "KashaSvCandidateCtx (rad, ic, tol, kq, q); the SV quench is an added level-0 loss, but no delivered composition carries it"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 line 1016: Kasha ↔ SternVolmer no edge (registered candidate, not delivered)",
+          "finding": "The legacy register explicitly names the pair as an undelivered candidate."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§15 kasha_radBranch_eq_yieldOf and sv_quench_dilutes_yield",
+          "finding": "Both parent identities are delivered; a two-step composition through QuantumYield is the candidate."
+        },
+        {
+          "artifact": "PhotoLean/Kasha/Basic.lean",
+          "locator": "KashaRule, KashaWithin, radBranch, emitYield",
+          "finding": "Kasha predicates are ladder branching properties."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "dynDecay, svRatioDyn",
+          "finding": "The SV model adds a concentration-dependent decay channel."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Kasha' PhotoLean/SternVolmer --include='*.lean'",
+          "purpose": "Search the SV modules for a delivered Kasha statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'SternVolmer' PhotoLean/Kasha --include='*.lean'",
+          "purpose": "Search the Kasha modules for a delivered SV statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-SternVolmer",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=undelivered-candidate; candidate=True; rec-kasha-sternvolmer-unresolved status=unresolved certificate=None."
+        },
+        {
+          "command": "grep -n 'Kasha ↔ SternVolmer' PhotoLean/Relations.lean",
+          "purpose": "Locate the no-edge registration.",
+          "result": "Line 1016: no edge (registered candidate, not delivered)."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Compose §15 kasha_radBranch_eq_yieldOf with sv_quench_dilutes_yield through QuantumYield.",
+          "outcome": "The composition appears provable, but no delivered row carries it and no typed parent chain is delivered."
+        },
+        {
+          "strategy": "Search the delivered Kasha/SV modules for a direct quench theorem.",
+          "outcome": "No cross-theory declaration; the two modules do not import each other."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "The legacy named query q-kasha-sternvolmer-candidate is unresolved; no certificate."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Kasha.radBranch rad (fun n => ic n + kq*q) n = Kasha.radBranch rad ic n / svRatioDyn (rad n + ic n) kq q",
+          "status": "candidate only; a composition of two delivered §15 rows, not a delivered row."
+        }
+      ],
+      "remainingGap": "A delivered typed composition from the Kasha radiative branch through QuantumYield to the Stern–Volmer dilution identity, with the quencher concentration translated to an added level-0 loss, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'Kasha' PhotoLean/SternVolmer --include='*.lean'",
+        "grep -rn 'SternVolmer' PhotoLean/Kasha --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-SternVolmer"
+      ],
+      "rationale": "The legacy register explicitly registers the pair as an undelivered candidate. The candidate composition is not delivered as a row, so the status is unresolved rather than certified."
+    },
+    {
+      "searchId": "SL-R3-KF-01",
+      "queryId": "Q-R3-KF-01",
+      "pairId": "P-Kasha-FluorPhos",
+      "status": "unresolved",
+      "scope": "scope-R3-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Kasha-PhotoLean-Kasha-radBranch",
+        "stmt-Kasha-PhotoLean-Kasha-fluoYield",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-phiF"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "KashaFpCandidateCtx (rad, ic, kF, kISC, kIC); no delivered composition"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§16 lines 1006-1008: FluorPhos ↔ Kasha no edge (undelivered candidate compositions)",
+          "finding": "The legacy register explicitly names the pair as an undelivered candidate."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§15 kasha_radBranch_eq_yieldOf and phiF_eq_yieldOf",
+          "finding": "Both parent identities are delivered; a two-step composition through QuantumYield is the candidate."
+        },
+        {
+          "artifact": "PhotoLean/Kasha/Basic.lean",
+          "locator": "radBranch, fluoYield",
+          "finding": "Kasha exposes ladder branching probabilities."
+        },
+        {
+          "artifact": "PhotoLean/FluorPhos/Basic.lean",
+          "locator": "phiF, iscBranch",
+          "finding": "FluorPhos exposes the S₁ radiative branch with ISC and IC losses."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Kasha' PhotoLean/FluorPhos --include='*.lean'",
+          "purpose": "Search the FP modules for a delivered Kasha statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'FluorPhos' PhotoLean/Kasha --include='*.lean'",
+          "purpose": "Search the Kasha modules for a delivered FP statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-FluorPhos",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=undelivered-candidate; candidate=True; rec-candidate-P-Kasha-FluorPhos status=unresolved certificate=None."
+        },
+        {
+          "command": "grep -n 'FluorPhos ↔ Kasha' PhotoLean/Relations.lean",
+          "purpose": "Locate the no-edge registration.",
+          "result": "Line 1006: no edge (undelivered candidate compositions)."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Compose §15 kasha_radBranch_eq_yieldOf with phiF_eq_yieldOf through QuantumYield.",
+          "outcome": "The composition appears provable, but no delivered row carries it and no typed parent chain is delivered."
+        },
+        {
+          "strategy": "Search the delivered Kasha/FP modules for a direct branch identity.",
+          "outcome": "No cross-theory declaration; the two modules do not import each other."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only the unresolved rec-candidate-P-Kasha-FluorPhos row; no certificate."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Kasha.radBranch (fun _ => kF) (fun _ => kISC + kIC) 0 = FluorPhos.phiF kF kISC kIC",
+          "status": "candidate only; a composition of two delivered §15 rows, not a delivered row."
+        }
+      ],
+      "remainingGap": "A delivered typed composition identifying the Kasha ladder radBranch at a two-level ladder (ic = kISC + kIC) with FluorPhos.phiF is missing.",
+      "recomputeCommands": [
+        "grep -rn 'Kasha' PhotoLean/FluorPhos --include='*.lean'",
+        "grep -rn 'FluorPhos' PhotoLean/Kasha --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-FluorPhos"
+      ],
+      "rationale": "The legacy register explicitly registers the pair as undelivered candidate compositions. The candidate composition is not delivered as a row, so the status is unresolved rather than certified."
+    }
+  ],
+  "counts": {
+    "entries": 5,
+    "byStatus": {
+      "unresolved": 5
+    }
+  },
+  "nonClaims": [
+    "A search-log entry is a scoped search record, not a negative existence claim.",
+    "No failed proof attempt or timeout is recorded as a refutation."
+  ]
+}

@@ -1,0 +1,2807 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-screening-package",
+  "round": "R2",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "WP-SURFACE-01",
+    "title": "Surface and free-energy relations",
+    "source": "loop/计划.md R2, step 1",
+    "pairIds": [
+      "P-Marcus-Hammond",
+      "P-Marcus-BEP",
+      "P-Marcus-Sabatier",
+      "P-Hammond-BEP",
+      "P-Hammond-Sabatier",
+      "P-Hammond-SymmetryFactor",
+      "P-BEP-Sabatier",
+      "P-BEP-SymmetryFactor",
+      "P-Kasha-Sabatier",
+      "P-Sabatier-SymmetryFactor"
+    ],
+    "pairCount": 10,
+    "r1ClusterPlanWorkPackage": {
+      "id": "WP-surface-free-energy-01",
+      "pairIds": [
+        "P-Marcus-Hammond",
+        "P-Marcus-BEP",
+        "P-Marcus-Sabatier",
+        "P-Marcus-SymmetryFactor",
+        "P-Hammond-BEP",
+        "P-Hammond-Sabatier",
+        "P-Hammond-SymmetryFactor",
+        "P-BEP-Sabatier",
+        "P-BEP-SymmetryFactor",
+        "P-Sabatier-SymmetryFactor"
+      ],
+      "difference": {
+        "addedByR2Plan": [
+          "P-Kasha-Sabatier"
+        ],
+        "removedByR2Plan": [
+          "P-Marcus-SymmetryFactor"
+        ],
+        "note": "The approved R2 plan names ten pairs including P-Kasha-Sabatier and excluding P-Marcus-SymmetryFactor. The R1 cluster plan work package has the opposite membership. This package follows the approved R2 plan; the mismatch is recorded rather than silently reconciled. No R1 artifact is edited."
+      }
+    }
+  },
+  "statusVocabulary": [
+    "certified",
+    "refuted",
+    "unresolved",
+    "notEstablished",
+    "outOfScope"
+  ],
+  "kindVocabulary": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence",
+    "conditionalComposition",
+    "observationalEquivalence",
+    "distinguishability",
+    "refutation"
+  ],
+  "allowedAxioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "snapshot": {
+    "id": "snap-bounded-audit-2026-11-04",
+    "date": "2026-11-04",
+    "round": "R2",
+    "inventory": "audit_boundary/statement-inventory.json",
+    "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "pairQueue": "audit_boundary/pair-queue.json",
+    "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+    "clusterPlan": "audit_boundary/cluster-plan.json",
+    "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+    "boundary": "audit_boundary/BOUNDARY.md",
+    "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+    "legacyRegistry": "relation_audit/registry.json",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "leanToolchain": "leanprover/lean4:v4.17.0",
+    "deliveredLeanFileCount": 102
+  },
+  "inventoryReference": {
+    "path": "audit_boundary/statement-inventory.json",
+    "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "statementRows": 1154,
+    "screeningEligible": 1134,
+    "schemaVersion": "1.0.0",
+    "round": "R1"
+  },
+  "legacyRegistryReference": {
+    "path": "relation_audit/registry.json",
+    "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "expectedSha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "mode": "read-only"
+  },
+  "aliasResolutions": [
+    {
+      "id": "AL-WPS01-01",
+      "aliasClass": "r1-legacy-dangling",
+      "aliasStatementId": "stmt-BEP-PhotoLean-BEP-rateViaEact",
+      "aliasDeclaration": "PhotoLean.BEP.rateViaEact",
+      "resolvedStatementId": "stmt-BEP-PhotoLean-BEP-rate_eq_exp_neg_eact",
+      "resolvedDeclaration": "PhotoLean.BEP.rate_eq_exp_neg_eact",
+      "resolutionKind": "theorem-rhs-term",
+      "legacyQueryId": "q-D-S05-bep-rate-eq-exp-neg-eact",
+      "legacyRecordId": "rec-D-S05-bep-rate-eq-exp-neg-eact",
+      "certificateId": "cert-D-S05-bep-rate-eq-exp-neg-eact",
+      "note": "The R1 inventory records PhotoLean.BEP.rateViaEact as dangling legacy metadata. The real declaration is BEP.rate_eq_exp_neg_eact, whose RHS is the term the certificate compares. The alias is repaired in this screening layer only; the legacy registry is not edited."
+    },
+    {
+      "id": "AL-WPS01-02",
+      "aliasClass": "r1-legacy-dangling",
+      "aliasStatementId": "stmt-Marcus-PhotoLean-Marcus-rateDescriptor",
+      "aliasDeclaration": "PhotoLean.Marcus.rateDescriptor",
+      "resolvedStatementId": "stmt-Marcus-PhotoLean-Marcus-descriptor_sharp",
+      "resolvedDeclaration": "PhotoLean.Marcus.descriptor_sharp",
+      "resolutionKind": "theorem-lhs-predicate",
+      "legacyQueryId": "q-D-S06-hammond-sharp-iff-marcus-sharp",
+      "legacyRecordId": "rec-D-S06-hammond-sharp-iff-marcus-sharp",
+      "certificateId": "cert-D-S06-hammond-sharp-iff-marcus-sharp",
+      "note": "The R1 inventory records PhotoLean.Marcus.rateDescriptor as dangling legacy metadata. The real declaration is Marcus.descriptor_sharp, whose LHS is the conjunctive rate-descriptor predicate used by the certificate. The alias is repaired in this screening layer only."
+    },
+    {
+      "id": "AL-WPS01-03",
+      "aliasClass": "certificate-internal-endpoint",
+      "aliasStatementId": "PhotoLean.BEP.noInvertedDirection",
+      "aliasDeclaration": "PhotoLean.BEP.noInvertedDirection",
+      "resolvedStatementId": "bep.noInvertedDirection",
+      "resolvedDeclaration": "PhotoLean.BEP.epBounds_iff_no_inverted_direction",
+      "resolutionKind": "theorem-rhs-predicate",
+      "legacyQueryId": "q-composition",
+      "legacyRecordId": "rec-composition",
+      "certificateId": "cert-composition",
+      "note": "The certificate-internal StatementRef string PhotoLean.BEP.noInvertedDirection is not a delivered declaration; it names the RHS predicate of BEP.epBounds_iff_no_inverted_direction. The inventory row bep.noInvertedDirection is that real theorem. Recorded here so the endpoint does not silently become a fictional declaration."
+    }
+  ],
+  "contextLibrary": {
+    "TwoParabolaCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Equal-curvature two-parabola step: reorganization energy lam and driving force x = -ΔG°. The transition state is at q = (lam - x)/(2 lam).",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#TwoParabolaCtx"
+    },
+    "BarrierCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "The R1 pilot context for the Marcus/Hammond/BEP barrier family: curvature lam and driving force x.",
+      "provenance": "PhotoLean/RelationAudit/Pilot.lean#BarrierCtx"
+    },
+    "SecantCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x1 : ℝ",
+        "x2 : ℝ"
+      ],
+      "physicalReading": "Two driving forces x1 and x2 on the same equal-curvature barrier; the Leffler secant is the finite-difference Brønsted coefficient.",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#SecantCtx"
+    },
+    "RatCtx": {
+      "fields": [
+        "lam : ℚ",
+        "x : ℚ"
+      ],
+      "physicalReading": "Exact-rational copy of the two-parabola context, used for the decidable zone classifiers.",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#RatCtx"
+    },
+    "HammondMarcusSharpCtx": {
+      "fields": [
+        "A : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "lam : ℝ"
+      ],
+      "physicalReading": "Marcus rate parameters (pre-exponential A, Boltzmann constant kB, temperature T) together with the curvature lam.",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections06_10.lean#HammondMarcusSharpCtx"
+    },
+    "RateCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Marcus/BEP rate context: pre-exponential factor, curvature, thermal energy and driving force.",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#RateCtx"
+    },
+    "RateActivityCtx": {
+      "fields": [
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Shared Arrhenius context of the Marcus rate and the Sabatier activity functional of the same two-parabola barrier.",
+      "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#RateActivityCtx"
+    },
+    "TransferCtx": {
+      "fields": [
+        "lam : ℝ"
+      ],
+      "physicalReading": "Curvature of the step; the driving force is the observation-channel input, so the transfer coefficient and the transition-state coordinate are compared at every x.",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#TransferCtx"
+    },
+    "SlopeCtx": {
+      "fields": [
+        "lam : ℝ"
+      ],
+      "physicalReading": "Curvature of the step; the driving-force window (x, h) is the observation-channel input.",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#SlopeCtx"
+    },
+    "WindowCtx": {
+      "fields": [
+        "lam : ℝ",
+        "tol : ℝ",
+        "a : ℝ",
+        "b : ℝ"
+      ],
+      "physicalReading": "BEP conformance window: curvature, tolerance, and the two window endpoints in driving force.",
+      "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#WindowCtx"
+    },
+    "SymFactorHammondCtx": {
+      "fields": [
+        "lam : ℝ"
+      ],
+      "physicalReading": "Equal-curvature diagonal of the SymmetryFactor model, identified with the Hammond/Marcus kernel curvature lam.",
+      "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#SymFactorHammondCtx"
+    },
+    "SymFactorBepCtx": {
+      "fields": [
+        "lam : ℝ"
+      ],
+      "physicalReading": "Equal-curvature diagonal of the SymmetryFactor model, identified with the BEP kernel curvature lam.",
+      "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#SymFactorBepCtx"
+    },
+    "BepSabatierCtx": {
+      "fields": [
+        "lam1 : ℝ",
+        "lam2 : ℝ"
+      ],
+      "physicalReading": "Two branch curvatures of the two-parabola volcano; the descriptor dE is the observation-channel input.",
+      "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#BepSabatierCtx"
+    },
+    "HammondSabatierCandidateCtx": {
+      "fields": [
+        "lam : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the Hammond curvature/driving-force pair, with the Sabatier descriptor profile instantiated on the Hammond barrier. The translation is a candidate only; no delivered statement-level bridge realizes it.",
+      "provenance": "candidate context declared in this R2 package",
+      "translationStatus": "candidate-not-total"
+    },
+    "KashaSabatierCandidateCtx": {
+      "fields": [
+        "x : ℝ",
+        "A : ℝ",
+        "kB : ℝ",
+        "T : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the Kasha energy gap/Marcus rate parameters, with the Sabatier descriptor axis read as the same gap. The translation is a candidate only; the two theories declare different target quantities (ladder yield vs volcano barrier).",
+      "provenance": "candidate context declared in this R2 package",
+      "translationStatus": "candidate-not-total"
+    },
+    "SabatierSymmetryCandidateCtx": {
+      "fields": [
+        "lam1 : ℝ",
+        "lam2 : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the two branch curvatures, read both as Sabatier descriptor-axis parameters and as SymmetryFactor force constants. The translation is a candidate only; the descriptor axis and the reaction coordinate are different physical coordinates.",
+      "provenance": "candidate context declared in this R2 package",
+      "translationStatus": "candidate-not-total"
+    }
+  },
+  "scopeLibrary": {
+    "scope-WPS01-two-parabola": {
+      "description": "Global equal-curvature two-parabola scope of the Marcus/Hammond/BEP barrier family.",
+      "domain": "all (lam, x) in ℝ²; a premise may restrict to 0 < lam.",
+      "id": "scope-WPS01-two-parabola",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-secant": {
+      "description": "Global Leffler-secant scope over two distinct driving forces.",
+      "domain": "all (lam, x1, x2) in ℝ³ with 0 < lam and x1 ≠ x2 where the premise requires it.",
+      "id": "scope-WPS01-secant",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-rational": {
+      "description": "Exact-rational classifier scope.",
+      "domain": "all (lam, x) in ℚ² with 0 < lam where the premise requires it.",
+      "id": "scope-WPS01-rational",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-sharp": {
+      "description": "Global sharp-descriptor scope under positive rate parameters.",
+      "domain": "all (A, kB, T, lam) in ℝ⁴ with 0 < A, 0 < kB, 0 < T.",
+      "id": "scope-WPS01-sharp",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-rate": {
+      "description": "Global Marcus/BEP rate-law scope.",
+      "domain": "all (A, lam, kB, T, x) in ℝ⁵.",
+      "id": "scope-WPS01-rate",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-transfer": {
+      "description": "BEP transfer/Hammond coordinate scope at nonzero curvature.",
+      "domain": "all lam ≠ 0 and all driving forces x.",
+      "id": "scope-WPS01-transfer",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-slope": {
+      "description": "BEP observable-slope / Hammond Leffler-secant scope.",
+      "domain": "all lam and all driving-force windows (x, h) in ℝ².",
+      "id": "scope-WPS01-slope",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-window": {
+      "description": "BEP window-conformance scope.",
+      "domain": "all (lam, tol, a, b) in ℝ⁴.",
+      "id": "scope-WPS01-window",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-equal-curvature": {
+      "description": "Equal-curvature diagonal of the SymmetryFactor model.",
+      "domain": "all lam > 0 on the diagonal kr = kp = lam.",
+      "id": "scope-WPS01-equal-curvature",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-descriptor-axis": {
+      "description": "Sabatier descriptor-axis scope over the branch curvatures.",
+      "domain": "all (lam1, lam2, dE) in ℝ³.",
+      "id": "scope-WPS01-descriptor-axis",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    },
+    "scope-WPS01-candidate-bridge": {
+      "description": "Candidate bridge scope for a comparison whose translation is not declared by the delivered theories.",
+      "domain": "candidate contexts only; no total delivered translation.",
+      "id": "scope-WPS01-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+    }
+  },
+  "pairs": [
+    {
+      "pairId": "P-Marcus-Hammond",
+      "theories": [
+        "Marcus",
+        "Hammond"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-MH-01",
+        "Q-WPS01-MH-02",
+        "Q-WPS01-MH-03",
+        "Q-WPS01-MH-04",
+        "Q-WPS01-MH-05"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-MH-01",
+          "pairId": "P-Marcus-Hammond",
+          "title": "Marcus barrier is the Hammond forward reactant gap",
+          "chemicalQuestion": "Is the Marcus forward barrier the same physical barrier height as the Hammond forward reactant gap at the same curvature and driving force?",
+          "chemicalRationale": "Both theories read the crossing of the same equal-curvature two-parabola model. The definitional identity is what licenses comparing their reported activation energies directly; it is not merely a notation match, because the two definitions have independent provenance in their theory modules.",
+          "endpoints": {
+            "source": {
+              "statementId": "marcus.barrier",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.barrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "4989203cd675772ef27166c739add6adeee01ae6913b9441b65da10dc98cdd3d",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-gapReactant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.gapReactant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 40,
+              "version": "1.0.0",
+              "signatureSha256": "9a8649bdbcbd50be0fd21e16eb09370909e11460985769615510eead1413be57",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola step: reorganization energy lam and driving force x = -ΔG°. The transition state is at q = (lam - x)/(2 lam).",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#TwoParabolaCtx",
+            "id": "TwoParabolaCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : TwoParabolaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : TwoParabolaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : TwoParabolaCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global equal-curvature two-parabola scope of the Marcus/Hammond/BEP barrier family.",
+            "domain": "all (lam, x) in ℝ²; a premise may restrict to 0 < lam.",
+            "id": "scope-WPS01-two-parabola",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "A kernel rfl pin: the two translated real-valued terms are definitionally equal.",
+          "falsificationCondition": "A context (lam, x) at which the two translated barrier values differ would refute the definitional identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S05-hammond-barrier-eq-gapReactant",
+              "kind": "definitionalIdentity",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin = RelationKind.definitionalIdentity := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)",
+                "endpointNote": "Definitional pin over the delivered Marcus.barrier and Hammond.gapReactant."
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S05-hammond-barrier-eq-gapReactant",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.hammondBarrierGapReactantPin",
+            "legacyQueryId": "q-D-S05-hammond-barrier-eq-gapReactant",
+            "legacyRecordId": "rec-D-S05-hammond-barrier-eq-gapReactant"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-MH-02",
+          "pairId": "P-Marcus-Hammond",
+          "title": "Negative Hammond transition-state coordinate iff Marcus inverted region",
+          "chemicalQuestion": "Does a negative Hammond transition-state coordinate exactly mark the Marcus inverted region at the same curvature and driving force?",
+          "chemicalRationale": "The transition-state coordinate q‡ = (lam - x)/(2 lam) changes sign exactly when the driving force passes the reorganization energy. That is the Marcus inverted-region boundary, so the equivalence is the structural reading of the inverted region.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.tsCoord",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 37,
+              "version": "1.0.0",
+              "signatureSha256": "f3321a0b50ef99958bad361d208e44b62092baf8a2b4e64c0c78cfe0747981a0",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-InvertedRegion",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.InvertedRegion",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 60,
+              "version": "1.0.0",
+              "signatureSha256": "6970c5b1e6e982d966af182a2f8063f67d952fafa3b06573f0721ce83fb250fb",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola step: reorganization energy lam and driving force x = -ΔG°. The transition state is at q = (lam - x)/(2 lam).",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#TwoParabolaCtx",
+            "id": "TwoParabolaCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : TwoParabolaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : TwoParabolaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : TwoParabolaCtx => 0 < δ.lam",
+            "premiseIds": [
+              "marcus.curvaturePositive"
+            ],
+            "definitions": [
+              {
+                "id": "marcus.curvaturePositive",
+                "predicate": "fun δ : TwoParabolaCtx => 0 < δ.lam",
+                "statement": "The curvature is positive.",
+                "loadBearing": "Keeps the two totalized divisions and the sign comparison meaningful."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global equal-curvature two-parabola scope of the Marcus/Hammond/BEP barrier family.",
+            "domain": "all (lam, x) in ℝ²; a premise may restrict to 0 < lam.",
+            "id": "scope-WPS01-two-parabola",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "A genuine iff between the sign predicate on the structural coordinate and the Marcus inverted-region predicate.",
+          "falsificationCondition": "A context with 0 < lam where exactly one side holds would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S02-tsCoord-lt-zero-iff-inverted",
+              "kind": "equivalence",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence = RelationKind.equivalence := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S02-tsCoord-lt-zero-iff-inverted",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.tsCoordLtZeroInvertedEquivalence",
+            "legacyQueryId": "q-D-S02-tsCoord-lt-zero-iff-inverted",
+            "legacyRecordId": "rec-D-S02-tsCoord-lt-zero-iff-inverted"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-MH-03",
+          "pairId": "P-Marcus-Hammond",
+          "title": "Negative Leffler secant iff Marcus inverted region at the midpoint",
+          "chemicalQuestion": "Is a negative Hammond Leffler secant — the Brønsted coefficient measured from barrier data over two driving forces — exactly the Marcus inverted region at the secant midpoint?",
+          "chemicalRationale": "The Leffler secant is an observable Brønsted slope obtained from barrier differences, while the Marcus inverted region is a statement about the driving force relative to the reorganization energy. The equivalence connects the measured slope sign to the inverted-region classification at the midpoint of the two driving forces.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-lefflerSecant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.lefflerSecant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 48,
+              "version": "1.0.0",
+              "signatureSha256": "2f663ebde74ac1345473026959f6713ce0afc0799da6d5cbcf030efe060c9c89",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-InvertedRegion",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.InvertedRegion",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 60,
+              "version": "1.0.0",
+              "signatureSha256": "6970c5b1e6e982d966af182a2f8063f67d952fafa3b06573f0721ce83fb250fb",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "x1 : ℝ",
+              "x2 : ℝ"
+            ],
+            "physicalReading": "Two driving forces x1 and x2 on the same equal-curvature barrier; the Leffler secant is the finite-difference Brønsted coefficient.",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#SecantCtx",
+            "id": "SecantCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : SecantCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : SecantCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : SecantCtx => 0 < δ.lam ∧ δ.x1 ≠ δ.x2",
+            "premiseIds": [
+              "marcus.curvaturePositive",
+              "hammond.distinctDrivingForces"
+            ],
+            "definitions": [
+              {
+                "id": "marcus.curvaturePositive",
+                "predicate": "fun δ : SecantCtx => 0 < δ.lam",
+                "statement": "The curvature is positive.",
+                "loadBearing": "Keeps the totalized division and the sign comparison meaningful."
+              },
+              {
+                "id": "hammond.distinctDrivingForces",
+                "predicate": "fun δ : SecantCtx => δ.x1 ≠ δ.x2",
+                "statement": "The two driving forces are distinct.",
+                "loadBearing": "The secant denominator is x2 - x1; without it the observable is not defined."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global Leffler-secant scope over two distinct driving forces.",
+            "domain": "all (lam, x1, x2) in ℝ³ with 0 < lam and x1 ≠ x2 where the premise requires it.",
+            "id": "scope-WPS01-secant",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "A genuine iff between the secant-sign predicate and the midpoint inverted-region predicate.",
+          "falsificationCondition": "A context with 0 < lam and x1 ≠ x2 where exactly one side holds would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S02-lefflerSecant-neg-iff-inverted",
+              "kind": "equivalence",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence = RelationKind.equivalence := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S02-lefflerSecant-neg-iff-inverted",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.lefflerSecantNegInvertedEquivalence",
+            "legacyQueryId": "q-D-S02-lefflerSecant-neg-iff-inverted",
+            "legacyRecordId": "rec-D-S02-lefflerSecant-neg-iff-inverted"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-MH-04",
+          "pairId": "P-Marcus-Hammond",
+          "title": "Rational Hammond and Marcus zone classifiers agree",
+          "chemicalQuestion": "Do the rational Hammond deep-exergonic classifier and the rational Marcus inverted-zone classifier select exactly the same instances?",
+          "chemicalRationale": "The two theories implement decidable zone classifiers over ℚ. The equivalence says the Hammond beyond-reactant branch is exactly the Marcus inverted zone, so the two implementations make the same chemical classification in the exact-rational fragment.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-Rat-hammondZoneQ",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.Rat.hammondZoneQ",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/RatModel.lean",
+              "sourceLine": 56,
+              "version": "1.0.0",
+              "signatureSha256": "0a4ac728457844579aa3e370ff700d8e4ff39c301a8d7bf6062391077f87dff1",
+              "sourceArtifactSha256": "27bffaac5666057d718ea43bf0e6a6c88f318d93564b17933a596a2ca9a8386d",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-Rat-zoneQ",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.Rat.zoneQ",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/RatModel.lean",
+              "sourceLine": 54,
+              "version": "1.0.0",
+              "signatureSha256": "02bbe7640638743b42fb5823cda624911ee76682cf3ea8ac5ba554427dee9a39",
+              "sourceArtifactSha256": "b3915f0abbbec3ea4a9df42604a0f4b6fd177d828f560bc8cfa37fa75759734b",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℚ",
+              "x : ℚ"
+            ],
+            "physicalReading": "Exact-rational copy of the two-parabola context, used for the decidable zone classifiers.",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#RatCtx",
+            "id": "RatCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : RatCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : RatCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : RatCtx => 0 < δ.lam",
+            "premiseIds": [
+              "marcus.curvaturePositive"
+            ],
+            "definitions": [
+              {
+                "id": "marcus.curvaturePositive",
+                "predicate": "fun δ : RatCtx => 0 < δ.lam",
+                "statement": "The rational curvature is positive.",
+                "loadBearing": "The delivered classifier equivalence is stated under this premise."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Exact-rational classifier scope.",
+            "domain": "all (lam, x) in ℚ² with 0 < lam where the premise requires it.",
+            "id": "scope-WPS01-rational",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "A genuine iff between two decidable classifier equalities over ℚ.",
+          "falsificationCondition": "A rational context with 0 < lam where exactly one classifier equality holds would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S02-hammondZoneQ-beyondReactant-iff-inverted",
+              "kind": "equivalence",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence = RelationKind.equivalence := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S02-hammondZoneQ-beyondReactant-iff-inverted",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.hammondZoneQInvertedEquivalence",
+            "legacyQueryId": "q-D-S02-hammondZoneQ-beyondReactant-iff-inverted",
+            "legacyRecordId": "rec-D-S02-hammondZoneQ-beyondReactant-iff-inverted"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-MH-05",
+          "pairId": "P-Marcus-Hammond",
+          "title": "Hammond structural descriptor and Marcus rate descriptor are co-extensive",
+          "chemicalQuestion": "Are the Hammond structural descriptor and the Marcus rate descriptor — everywhere-positive rate plus the inverted-region description — co-extensive under positive rate parameters?",
+          "chemicalRationale": "Both descriptors characterise the positive-curvature two-parabola model, but they are not restatements: one is structural (transition-state coordinate monotonicity), the other is rate-level (positivity plus inverted-region monotonicity). The equivalence is the co-extensiveness of the two sharp characterisations.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-HammondDescriptor",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.HammondDescriptor",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 66,
+              "version": "1.0.0",
+              "signatureSha256": "707ce81dff785e0f60e4299b115608a76f7a8425e8040020c6a878ec939dd314",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-descriptor_sharp",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.descriptor_sharp",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/Marcus/Sharp.lean",
+              "sourceLine": 273,
+              "version": "1.0.0",
+              "signatureSha256": "7621f4b05b6ec443c1268828c9be7bf7825faa4fc3866dc176fefb65d0d7a929",
+              "sourceArtifactSha256": "c4c57b9eb88863d7f34d85d6d9807a1196c2dcecaac8bc577585a283b9a0d54e",
+              "endpointForm": "theorem-lhs-predicate",
+              "endpointNote": "The certificate right predicate is the left-hand conjunctive predicate of Marcus.descriptor_sharp. Legacy statementId PhotoLean.Marcus.rateDescriptor is a synthetic alias, resolved here to the real theorem statement; see aliasResolutions[AL-WPS01-02]."
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "A : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "lam : ℝ"
+            ],
+            "physicalReading": "Marcus rate parameters (pre-exponential A, Boltzmann constant kB, temperature T) together with the curvature lam.",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections06_10.lean#HammondMarcusSharpCtx",
+            "id": "HammondMarcusSharpCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : HammondMarcusSharpCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : HammondMarcusSharpCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : HammondMarcusSharpCtx => 0 < δ.A ∧ 0 < δ.kB ∧ 0 < δ.T",
+            "premiseIds": [
+              "hammondMarcusSharp.preExponentialPositive",
+              "hammondMarcusSharp.boltzmannPositive",
+              "hammondMarcusSharp.temperaturePositive"
+            ],
+            "definitions": [
+              {
+                "id": "hammondMarcusSharp.preExponentialPositive",
+                "predicate": "fun δ : HammondMarcusSharpCtx => 0 < δ.A",
+                "statement": "The Marcus pre-exponential factor is positive.",
+                "loadBearing": "The sharp equivalence fails on the negative-prefactor branch."
+              },
+              {
+                "id": "hammondMarcusSharp.boltzmannPositive",
+                "predicate": "fun δ : HammondMarcusSharpCtx => 0 < δ.kB",
+                "statement": "The Boltzmann constant is positive.",
+                "loadBearing": "The rate ordering is read through the sign of kB*T."
+              },
+              {
+                "id": "hammondMarcusSharp.temperaturePositive",
+                "predicate": "fun δ : HammondMarcusSharpCtx => 0 < δ.T",
+                "statement": "The temperature is positive.",
+                "loadBearing": "The rate ordering is read through the sign of kB*T."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global sharp-descriptor scope under positive rate parameters.",
+            "domain": "all (A, kB, T, lam) in ℝ⁴ with 0 < A, 0 < kB, 0 < T.",
+            "id": "scope-WPS01-sharp",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "A genuine iff under the three positivity premises: the structural descriptor holds exactly when the rate is everywhere positive and the inverted-region description holds.",
+          "falsificationCondition": "A context with 0 < A, 0 < kB, 0 < T where exactly one side holds would refute the equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S06-hammond-sharp-iff-marcus-sharp",
+              "kind": "equivalence",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+                "module": "PhotoLean.RelationAudit.Full.Sections06_10",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.equivalence",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate = RelationKind.equivalence := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections06_10.lean",
+                "sha256": "c1885380b4dd0777b4dc3d34d94e4ed856367a5c2749692ddb4424faebf3a72b"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)",
+                "endpointNote": "The certificate metadata names PhotoLean.Marcus.rateDescriptor; the real declaration is Marcus.descriptor_sharp, whose LHS is the right predicate. The alias is repaired in this screening layer only."
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S06-hammond-sharp-iff-marcus-sharp",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections06_10.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections06_10.hammondMarcusSharpCertificate",
+            "legacyQueryId": "q-D-S06-hammond-sharp-iff-marcus-sharp",
+            "legacyRecordId": "rec-D-S06-hammond-sharp-iff-marcus-sharp",
+            "aliasResolutionIds": [
+              "AL-WPS01-02"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-BEP",
+      "theories": [
+        "Marcus",
+        "BEP"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-MB-01",
+        "Q-WPS01-MB-02",
+        "Q-WPS01-MB-03"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-MB-01",
+          "pairId": "P-Marcus-BEP",
+          "title": "Marcus normal region entails the BEP no-inverted-direction condition",
+          "chemicalQuestion": "Does the Marcus normal region, together with a non-inverted reverse direction, entail the BEP no-inverted-direction condition through the Evans–Polanyi bounds?",
+          "chemicalRationale": "The Evans–Polanyi bounds are equivalent to the absence of an inverted direction for either the forward or the reverse step. A normal-region forward direction plus a non-inverted reverse direction therefore excludes both inverted directions; the query composes the Marcus normal-region premise with the BEP equivalence through the EP-bounds mediator.",
+          "endpoints": {
+            "source": {
+              "statementId": "marcus.normalRegion",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.NormalRegion",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 65,
+              "version": "1.0.0",
+              "signatureSha256": "257d2ed5b0b31216e2a84cf3576311436172884795cbc57224240f68bf05411c",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "bep.noInvertedDirection",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.epBounds_iff_no_inverted_direction",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/BEP/Compose.lean",
+              "sourceLine": 95,
+              "version": "1.0.0",
+              "signatureSha256": "98de4dd2995c45f30fbc95a4d8f16454c40629c029ebce53c2530950596fa8bc",
+              "sourceArtifactSha256": "bcc062b6a153a47782f034e6dbe9c9ce5be670fd1f03f5accb7be083f4da513b",
+              "endpointForm": "theorem-rhs-predicate",
+              "endpointNote": "The certificate right predicate is the right-hand predicate of BEP.epBounds_iff_no_inverted_direction, the delivered theorem named by the inventory row. See aliasResolutions[AL-WPS01-03]."
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "The R1 pilot context for the Marcus/Hammond/BEP barrier family: curvature lam and driving force x.",
+            "provenance": "PhotoLean/RelationAudit/Pilot.lean#BarrierCtx",
+            "id": "BarrierCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : BarrierCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : BarrierCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : BarrierCtx => 0 < δ.lam ∧ -δ.lam ≤ δ.x",
+            "premiseIds": [
+              "barrier.positiveCurvature",
+              "marcus.reverseNotInverted"
+            ],
+            "definitions": [
+              {
+                "id": "barrier.positiveCurvature",
+                "predicate": "fun δ : BarrierCtx => 0 < δ.lam",
+                "statement": "The Marcus curvature is positive.",
+                "loadBearing": "Consumed by both parents."
+              },
+              {
+                "id": "marcus.reverseNotInverted",
+                "predicate": "fun δ : BarrierCtx => -δ.lam ≤ δ.x",
+                "statement": "The reverse direction is not inverted.",
+                "loadBearing": "Consumed by the Marcus-normal parent; without it the forward normal region alone does not exclude an inverted reverse direction."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global equal-curvature two-parabola scope of the Marcus/Hammond/BEP barrier family.",
+            "domain": "all (lam, x) in ℝ²; a premise may restrict to 0 < lam.",
+            "id": "scope-WPS01-two-parabola",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "A typed composition of the delivered Marcus-normal implication and the delivered EP-bounds/no-inverted-direction equivalence; the child conclusion is computed, not independently proved.",
+          "falsificationCondition": "A context satisfying the child premises and Marcus.NormalRegion but falsifying the no-inverted-direction predicate would refute the composition.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-composition",
+              "kind": "conditionalComposition",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.marcusNormalNoInvertedComposition",
+                "module": "PhotoLean.RelationAudit.Pilot",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.conditionalComposition",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.marcusNormalNoInvertedComposition = RelationKind.conditionalComposition := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Pilot.lean",
+                "sha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-composition",
+            "sourceArtifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "PhotoLean.RelationAudit.marcusNormalNoInvertedComposition",
+            "legacyQueryId": "q-composition",
+            "legacyRecordId": "rec-composition",
+            "aliasResolutionIds": [
+              "AL-WPS01-03"
+            ]
+          }
+        },
+        {
+          "queryId": "Q-WPS01-MB-02",
+          "pairId": "P-Marcus-BEP",
+          "title": "BEP activation barrier is the Marcus forward barrier",
+          "chemicalQuestion": "Is the BEP activation barrier definitionally the Marcus forward barrier at the same curvature and driving force?",
+          "chemicalRationale": "Both theories use the same equal-curvature two-parabola crossing. The definitional pin shows that their barrier symbols denote one physical barrier, so BEP activation energies and Marcus barrier heights are directly comparable.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.eact",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "378b375021e4eb1b15c0ac732657c086a3439f48e5778c58befeb4cb6e9eab84",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "marcus.barrier",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.barrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 50,
+              "version": "1.0.0",
+              "signatureSha256": "4989203cd675772ef27166c739add6adeee01ae6913b9441b65da10dc98cdd3d",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Equal-curvature two-parabola step: reorganization energy lam and driving force x = -ΔG°. The transition state is at q = (lam - x)/(2 lam).",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#TwoParabolaCtx",
+            "id": "TwoParabolaCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : TwoParabolaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : TwoParabolaCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : TwoParabolaCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global equal-curvature two-parabola scope of the Marcus/Hammond/BEP barrier family.",
+            "domain": "all (lam, x) in ℝ²; a premise may restrict to 0 < lam.",
+            "id": "scope-WPS01-two-parabola",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "A kernel rfl pin: both definitions unfold to the same term.",
+          "falsificationCondition": "A context (lam, x) at which the two translated barriers differ would refute the definitional identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S05-bep-eact-eq-marcus-barrier",
+              "kind": "definitionalIdentity",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin = RelationKind.definitionalIdentity := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S05-bep-eact-eq-marcus-barrier",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.bepEactMarcusBarrierPin",
+            "legacyQueryId": "q-D-S05-bep-eact-eq-marcus-barrier",
+            "legacyRecordId": "rec-D-S05-bep-eact-eq-marcus-barrier"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-MB-03",
+          "pairId": "P-Marcus-BEP",
+          "title": "Marcus rate is the BEP Arrhenius form through the activation barrier",
+          "chemicalQuestion": "Is the Marcus rate law definitionally the BEP Arrhenius form written through the BEP activation barrier?",
+          "chemicalRationale": "The Marcus rate and the BEP rate expression differ only by rewriting the barrier as the BEP activation energy. The definitional identity is the rate-level content of the shared barrier, and it makes the two rate languages interchangeable without a new physical assumption.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-rate_eq_exp_neg_eact",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.rate_eq_exp_neg_eact",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/BEP/Compose.lean",
+              "sourceLine": 76,
+              "version": "1.0.0",
+              "signatureSha256": "8c8a874d886e33db6bd037305ff2a7829ee30706ac75c610f4cbc6c8faacf9a4",
+              "sourceArtifactSha256": "bcc062b6a153a47782f034e6dbe9c9ce5be670fd1f03f5accb7be083f4da513b",
+              "endpointForm": "theorem-rhs-term",
+              "endpointNote": "The certificate right term is the right-hand term of the delivered theorem BEP.rate_eq_exp_neg_eact. Legacy statementId PhotoLean.BEP.rateViaEact is a synthetic alias, resolved here to the real theorem statement; see aliasResolutions[AL-WPS01-01]."
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Marcus/BEP rate context: pre-exponential factor, curvature, thermal energy and driving force.",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#RateCtx",
+            "id": "RateCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : RateCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : RateCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : RateCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global Marcus/BEP rate-law scope.",
+            "domain": "all (A, lam, kB, T, x) in ℝ⁵.",
+            "id": "scope-WPS01-rate",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "A kernel rfl pin after unfolding the Marcus rate and the BEP activation barrier.",
+          "falsificationCondition": "A context (A, lam, kB, T, x) at which the two translated rate terms differ would refute the definitional identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S05-bep-rate-eq-exp-neg-eact",
+              "kind": "definitionalIdentity",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.definitionalIdentity",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin = RelationKind.definitionalIdentity := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)",
+                "endpointNote": "The certificate right endpoint names PhotoLean.BEP.rateViaEact; the real declaration is BEP.rate_eq_exp_neg_eact, whose RHS is the term used. The alias is repaired in this screening layer only."
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S05-bep-rate-eq-exp-neg-eact",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.bepRateExpNegEactPin",
+            "legacyQueryId": "q-D-S05-bep-rate-eq-exp-neg-eact",
+            "legacyRecordId": "rec-D-S05-bep-rate-eq-exp-neg-eact",
+            "aliasResolutionIds": [
+              "AL-WPS01-01"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Marcus-Sabatier",
+      "theories": [
+        "Marcus",
+        "Sabatier"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-MS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-MS-01",
+          "pairId": "P-Marcus-Sabatier",
+          "title": "Marcus rate shares the Sabatier activity functional of the same barrier",
+          "chemicalQuestion": "Is the Marcus rate law exactly the Sabatier activity functional of the same two-parabola barrier, scaled by the pre-exponential factor?",
+          "chemicalRationale": "The two theories describe different observables — an electron-transfer rate and a catalytic turnover proxy — but both use the same Arrhenius activation form on the same two-parabola barrier. The definitional identity is the exact shared functional form behind the look-alike; it does not claim that the two optima coincide.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Marcus-PhotoLean-Marcus-rate",
+              "theory": "Marcus",
+              "declaration": "PhotoLean.Marcus.rate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+              "sourceLine": 55,
+              "version": "1.0.0",
+              "signatureSha256": "26c88a3f9423c87a9a0c987e7a1a2ef44ede6f9018a96da35b78b5f05d4750e7",
+              "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+              "theory": "Sabatier",
+              "declaration": "PhotoLean.Sabatier.activity",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+              "sourceLine": 78,
+              "version": "1.0.0",
+              "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+              "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Shared Arrhenius context of the Marcus rate and the Sabatier activity functional of the same two-parabola barrier.",
+            "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#RateActivityCtx",
+            "id": "RateActivityCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : RateActivityCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : RateActivityCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : RateActivityCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global Marcus/BEP rate-law scope.",
+            "domain": "all (A, lam, kB, T, x) in ℝ⁵.",
+            "id": "scope-WPS01-rate",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "definitionalIdentity",
+          "expectedKindRationale": "The two rate terms unfold to the same Arrhenius body after substituting the kernel barrier; the pin carries a fresh DefEq.refl.",
+          "falsificationCondition": "A context (A, lam, kB, T, x) at which the two translated rate terms differ would refute the definitional identity.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "r2-probe-certificate",
+              "certificateId": "QP-marcusRateSabatierActivityPin",
+              "kind": "definitionalIdentity",
+              "probe": {
+                "path": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "sha256": "db1975be8ebe38d20b05252a9443faf0dcebd7803d97c90cca5d2ca942ba755c",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.Surface.marcusRateSabatierActivityPin",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.Surface.marcusRateSabatierActivityPin_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "log": "bounded_audit/wp-surface-01/evidence/surface-probe.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.marcus_rate_eq_activity",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 466,
+                  "role": "delivered §9 C1 theorem consumed by the probe wrapper"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The R1 source manifest freezes the PhotoLean/**/*.lean file set; adding a delivered module would break validate_boundary.py. The certificate is therefore checked as a compiled probe under bounded_audit/, and the underlying delivered theorem is cited."
+            }
+          },
+          "provenance": {
+            "kind": "r2-probe-certificate",
+            "certificateId": "QP-marcusRateSabatierActivityPin",
+            "sourceArtifact": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.Surface.marcusRateSabatierActivityPin"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-BEP",
+      "theories": [
+        "Hammond",
+        "BEP"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-HB-01",
+        "Q-WPS01-HB-02",
+        "Q-WPS01-HB-03",
+        "Q-WPS01-HB-04"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-HB-01",
+          "pairId": "P-Hammond-BEP",
+          "title": "Hammond reaction region entails the Evans–Polanyi bounds",
+          "chemicalQuestion": "Does Hammond’s reaction region — the crossing point strictly between the two wells — entail the BEP Evans–Polanyi bounds 0 ≤ α ≤ 1?",
+          "chemicalRationale": "The reaction region places both the forward and the reverse direction inside the Marcus normal region, so both transfer coefficients lie in [0,1]. The one-way implication is the chemical content of “inside the Hammond window implies normal Brønsted behaviour”; the converse fails outside the window.",
+          "endpoints": {
+            "source": {
+              "statementId": "hammond.reactionRegion",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.ReactionRegion",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 52,
+              "version": "1.0.0",
+              "signatureSha256": "fcc41a79e277b28f622324772a0d1be8c6ce761abf747dcc6c3fa50b972e1237",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "bep.epBounds",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.EPBounds",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "a5934479e6baa17b4d03da40fd00f2ccaa3ca63c38c1638c74bd327c3cd228e1",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "The R1 pilot context for the Marcus/Hammond/BEP barrier family: curvature lam and driving force x.",
+            "provenance": "PhotoLean/RelationAudit/Pilot.lean#BarrierCtx",
+            "id": "BarrierCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : BarrierCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : BarrierCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : BarrierCtx => 0 < δ.lam",
+            "premiseIds": [
+              "marcus.curvaturePositive"
+            ],
+            "definitions": [
+              {
+                "id": "marcus.curvaturePositive",
+                "predicate": "fun δ : BarrierCtx => 0 < δ.lam",
+                "statement": "The curvature is positive.",
+                "loadBearing": "Keeps the two totalized divisions and the sign comparison meaningful."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Global equal-curvature two-parabola scope of the Marcus/Hammond/BEP barrier family.",
+            "domain": "all (lam, x) in ℝ²; a premise may restrict to 0 < lam.",
+            "id": "scope-WPS01-two-parabola",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "A one-way entailment; the converse is not claimed and is false for steps outside the window that still satisfy the bounds.",
+          "falsificationCondition": "A context with 0 < lam satisfying Hammond.ReactionRegion but falsifying BEP.EPBounds would refute the implication.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-hammond-bep",
+              "kind": "implication",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.epBoundsImplication",
+                "module": "PhotoLean.RelationAudit.Pilot",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.implication",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.epBoundsImplication = RelationKind.implication := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Pilot.lean",
+                "sha256": "d4a2f08ad556f816bd58340afafc0d452944d177ee103234c4cb92c300c151a2"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-hammond-bep",
+            "sourceArtifact": "PhotoLean/RelationAudit/Pilot.lean",
+            "locator": "PhotoLean.RelationAudit.epBoundsImplication",
+            "legacyQueryId": "q-hammond-bep",
+            "legacyRecordId": "rec-hammond-bep"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-HB-02",
+          "pairId": "P-Hammond-BEP",
+          "title": "BEP transfer coefficient is the Hammond transition-state coordinate",
+          "chemicalQuestion": "Is the BEP transfer coefficient observationally the Hammond transition-state coordinate at the same driving force?",
+          "chemicalRationale": "The BEP transfer coefficient is the linear-response form 1/2 - x/(2 lam); the Hammond transition-state coordinate is (lam - x)/(2 lam). They agree at every driving force away from lam = 0, so the two theories’ observables are the same structural quantity, not two independent descriptors.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-transfer",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.transfer",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 59,
+              "version": "1.0.0",
+              "signatureSha256": "5db0ca641b7a930664fddc5f9f204f9f3dc2b7fed0eb16a6f2b7748041352997",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.tsCoord",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 37,
+              "version": "1.0.0",
+              "signatureSha256": "f3321a0b50ef99958bad361d208e44b62092baf8a2b4e64c0c78cfe0747981a0",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ"
+            ],
+            "physicalReading": "Curvature of the step; the driving force is the observation-channel input, so the transfer coefficient and the transition-state coordinate are compared at every x.",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#TransferCtx",
+            "id": "TransferCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : TransferCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : TransferCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : TransferCtx => δ.lam ≠ 0",
+            "premiseIds": [
+              "bep.lamNeZero"
+            ],
+            "definitions": [
+              {
+                "id": "bep.lamNeZero",
+                "predicate": "fun δ : TransferCtx => δ.lam ≠ 0",
+                "statement": "The BEP linear-response coefficient is well defined only at nonzero curvature.",
+                "loadBearing": "At lam = 0 the two totalized-division values disagree."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "transfer-coefficient",
+              "observedValueType": "ℝ",
+              "inputDomain": "x : ℝ (driving force)",
+              "domainNonempty": true,
+              "leftObs": "fun δ x => BEP.transfer δ.lam x",
+              "rightObs": "fun δ x => Hammond.tsCoord δ.lam x"
+            }
+          ],
+          "scope": {
+            "description": "BEP transfer/Hammond coordinate scope at nonzero curvature.",
+            "domain": "all lam ≠ 0 and all driving forces x.",
+            "id": "scope-WPS01-transfer",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Equality of the declared transfer-coefficient channel at every driving force in its domain, under lam ≠ 0.",
+          "falsificationCondition": "A context lam ≠ 0 and a driving force x at which the two observed coefficients differ would refute the observational equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S02-transfer-eq-tsCoord-bridge",
+              "kind": "observationalEquivalence",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.observationalEquivalence",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge = RelationKind.observationalEquivalence := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S02-transfer-eq-tsCoord-bridge",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.transferTsCoordBridge",
+            "legacyQueryId": "q-D-S02-transfer-eq-tsCoord-bridge",
+            "legacyRecordId": "rec-D-S02-transfer-eq-tsCoord-bridge"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-HB-03",
+          "pairId": "P-Hammond-BEP",
+          "title": "BEP observable window slope is the Hammond Leffler secant",
+          "chemicalQuestion": "Is the BEP observable slope over a driving-force window observationally the Hammond Leffler secant over the same window?",
+          "chemicalRationale": "The BEP secant slope is a finite difference of the barrier over [x, x+h]; the Hammond Leffler secant is the finite-difference Brønsted coefficient over the same pair of driving forces. Equality of the two observables means the BEP slope measurement and the Hammond Leffler coefficient are the same experimental quantity.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-secSlope",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.secSlope",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 65,
+              "version": "1.0.0",
+              "signatureSha256": "923ed3bc2d88d7c790169f8aa0412240e2e74085e9d3c3f52a1f79baab4119ff",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-lefflerSecant",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.lefflerSecant",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 48,
+              "version": "1.0.0",
+              "signatureSha256": "2f663ebde74ac1345473026959f6713ce0afc0799da6d5cbcf030efe060c9c89",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ"
+            ],
+            "physicalReading": "Curvature of the step; the driving-force window (x, h) is the observation-channel input.",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#SlopeCtx",
+            "id": "SlopeCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : SlopeCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : SlopeCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : SlopeCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [
+            {
+              "id": "window-secant-slope",
+              "observedValueType": "ℝ",
+              "inputDomain": "(x, h) : ℝ × ℝ (window origin and width)",
+              "domainNonempty": true,
+              "leftObs": "fun δ p => BEP.secSlope δ.lam p.1 p.2",
+              "rightObs": "fun δ p => Hammond.lefflerSecant δ.lam p.1 (p.1 + p.2)"
+            }
+          ],
+          "scope": {
+            "description": "BEP observable-slope / Hammond Leffler-secant scope.",
+            "domain": "all lam and all driving-force windows (x, h) in ℝ².",
+            "id": "scope-WPS01-slope",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Equality of the declared window-slope channel at every window in its domain.",
+          "falsificationCondition": "A context lam and a window (x, h) at which the two observed slopes differ would refute the observational equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S02-secSlope-eq-lefflerSecant",
+              "kind": "observationalEquivalence",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.observationalEquivalence",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge = RelationKind.observationalEquivalence := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S02-secSlope-eq-lefflerSecant",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.secSlopeLefflerSecantBridge",
+            "legacyQueryId": "q-D-S02-secSlope-eq-lefflerSecant",
+            "legacyRecordId": "rec-D-S02-secSlope-eq-lefflerSecant"
+          }
+        },
+        {
+          "queryId": "Q-WPS01-HB-04",
+          "pairId": "P-Hammond-BEP",
+          "title": "BEP window conformance entails the Hammond structural descriptor",
+          "chemicalQuestion": "Does BEP line-law conformance on a declared driving-force window entail Hammond’s structural descriptor?",
+          "chemicalRationale": "BEP conformance on a window carries a positive-curvature conjunct; that positivity is exactly what the structural Hammond descriptor needs. The implication is one-way and the tolerance bound itself is not consumed, so the query records the precise logical road between the two predicates rather than a deeper equivalence.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-EPConformsOnWindow",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.EPConformsOnWindow",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 89,
+              "version": "1.0.0",
+              "signatureSha256": "bed1e94add1c26b163a2b2a217bc6d7602cdf588f0de037bb0815e8a35f74b98",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-HammondDescriptor",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.HammondDescriptor",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 66,
+              "version": "1.0.0",
+              "signatureSha256": "707ce81dff785e0f60e4299b115608a76f7a8425e8040020c6a878ec939dd314",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "tol : ℝ",
+              "a : ℝ",
+              "b : ℝ"
+            ],
+            "physicalReading": "BEP conformance window: curvature, tolerance, and the two window endpoints in driving force.",
+            "provenance": "PhotoLean/RelationAudit/Full/Sections01_05.lean#WindowCtx",
+            "id": "WindowCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : WindowCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : WindowCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : WindowCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "BEP window-conformance scope.",
+            "domain": "all (lam, tol, a, b) in ℝ⁴.",
+            "id": "scope-WPS01-window",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "A one-way entailment through the positivity conjunct of BEP.EPConformsOnWindow; the converse is not claimed.",
+          "falsificationCondition": "A context (lam, tol, a, b) satisfying BEP.EPConformsOnWindow but falsifying Hammond.HammondDescriptor would refute the implication.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "legacy-certificate",
+              "certificateId": "cert-D-S03-hammondDescriptor-of-epConformsOnWindow",
+              "kind": "implication",
+              "lean": {
+                "declaration": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+                "module": "PhotoLean.RelationAudit.Full.Sections01_05",
+                "constructor": "PhotoLean.RelationAudit.RelationKind.implication",
+                "kindFunction": "PhotoLean.RelationAudit.certificateKind",
+                "kindCheck": "example : certificateKind PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication = RelationKind.implication := rfl"
+              },
+              "source": {
+                "path": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+                "sha256": "51ba0d1fe7055f40cc90a524ae5dad735beea2bb437b5c84a224ac42cc6b201d"
+              },
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "reuseAudit": {
+                "declarationExistsInDeliveredSource": true,
+                "sourceHashMatchesAcceptedRegistry": true,
+                "axiomAuditLog": "bounded_audit/wp-surface-01/evidence/legacy-axioms.log",
+                "axiomAuditResult": "PASS (only propext, Classical.choice, Quot.sound)"
+              }
+            }
+          },
+          "provenance": {
+            "kind": "legacy-certificate",
+            "certificateId": "cert-D-S03-hammondDescriptor-of-epConformsOnWindow",
+            "sourceArtifact": "PhotoLean/RelationAudit/Full/Sections01_05.lean",
+            "locator": "PhotoLean.RelationAudit.Full.Sections01_05.windowConformanceDescriptorImplication",
+            "legacyQueryId": "q-D-S03-hammondDescriptor-of-epConformsOnWindow",
+            "legacyRecordId": "rec-D-S03-hammondDescriptor-of-epConformsOnWindow"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-Sabatier",
+      "theories": [
+        "Hammond",
+        "Sabatier"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-HS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-HS-01",
+          "pairId": "P-Hammond-Sabatier",
+          "title": "Hammond structural descriptor versus Sabatier volcano descriptor",
+          "chemicalQuestion": "Does Hammond’s structural descriptor entail the Sabatier volcano descriptor when the Sabatier descriptor profile is instantiated on the same two-parabola barrier?",
+          "chemicalRationale": "Both theories describe a single optimum on a one-dimensional energy coordinate: Hammond’s transition state sits at the crossing, while Sabatier’s volcano apex is the unique minimiser of the effective barrier. A bridge would identify the Sabatier descriptor axis with the Hammond driving force and transfer the uniqueness statement. The pair is registered as a no-edge in the legacy registry; the candidate bridge is recorded here but not certified.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-HammondDescriptor",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.HammondDescriptor",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 66,
+              "version": "1.0.0",
+              "signatureSha256": "707ce81dff785e0f60e4299b115608a76f7a8425e8040020c6a878ec939dd314",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Sabatier-PhotoLean-Sabatier-VolcanoDescriptor",
+              "theory": "Sabatier",
+              "declaration": "PhotoLean.Sabatier.VolcanoDescriptor",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+              "sourceLine": 64,
+              "version": "1.0.0",
+              "signatureSha256": "5a05777c88fa063ce1eb25dd62d912c6daa621f0a59a72c2847172c0f0c1a890",
+              "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the Hammond curvature/driving-force pair, with the Sabatier descriptor profile instantiated on the Hammond barrier. The translation is a candidate only; no delivered statement-level bridge realizes it.",
+            "provenance": "candidate context declared in this R2 package",
+            "translationStatus": "candidate-not-total",
+            "id": "HammondSabatierCandidateCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": null,
+              "reason": "No delivered total translation exists for this comparison; see the search log.",
+              "requirement": "A total translation into the left statement context is not declared by the delivered theories."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": null,
+              "reason": "No delivered total translation exists for this comparison; see the search log.",
+              "requirement": "A total translation into the right statement context is not declared by the delivered theories."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : HammondSabatierCandidateCtx => 0 < δ.lam",
+            "premiseIds": [
+              "barrier.positiveCurvature"
+            ],
+            "definitions": [
+              {
+                "id": "barrier.positiveCurvature",
+                "predicate": "fun δ : HammondSabatierCandidateCtx => 0 < δ.lam",
+                "statement": "The curvature is positive.",
+                "loadBearing": "The candidate bridge needs the positive-curvature kernel model."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Candidate bridge scope for a comparison whose translation is not declared by the delivered theories.",
+            "domain": "candidate contexts only; no total delivered translation.",
+            "id": "scope-WPS01-candidate-bridge",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "A one-way implication from the structural descriptor to the volcano descriptor under a candidate instantiation.",
+          "falsificationCondition": "A context satisfying Hammond.HammondDescriptor but falsifying the instantiated VolcanoDescriptor would refute the implication.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A candidate bridge was identified, but no certificate of the requested kind has been constructed or checked in this snapshot.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-WPS01-HS-01",
+              "candidateSummary": "Candidate: Sabatier.parabolicBarrier unfolds to the maximum of the two Hammond gapReactant terms; the descriptor-level implication is not certified."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "searchLogRef": "SL-WPS01-HS-01",
+            "sourceArtifact": "bounded_audit/wp-surface-01/search-log.json",
+            "locator": "SL-WPS01-HS-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Hammond-SymmetryFactor",
+      "theories": [
+        "Hammond",
+        "SymmetryFactor"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-HF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-HF-01",
+          "pairId": "P-Hammond-SymmetryFactor",
+          "title": "Equal-curvature symmetry-factor coordinate is the Hammond thermoneutral coordinate",
+          "chemicalQuestion": "At equal force constants, is the SymmetryFactor thermoneutral transition-state coordinate observationally the Hammond transition-state coordinate at thermoneutrality?",
+          "chemicalRationale": "The SymmetryFactor model generalises the kernel to unequal curvatures. On the equal-curvature diagonal its closed-form thermoneutral coordinate reduces to 1/2, which is exactly the Hammond/kernel coordinate at x = 0. The bridge identifies the seventh theory’s structural coordinate with the Hammond structural reading in the kernel limit.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+              "theory": "Hammond",
+              "declaration": "PhotoLean.Hammond.tsCoord",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+              "sourceLine": 37,
+              "version": "1.0.0",
+              "signatureSha256": "f3321a0b50ef99958bad361d208e44b62092baf8a2b4e64c0c78cfe0747981a0",
+              "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ"
+            ],
+            "physicalReading": "Equal-curvature diagonal of the SymmetryFactor model, identified with the Hammond/Marcus kernel curvature lam.",
+            "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#SymFactorHammondCtx",
+            "id": "SymFactorHammondCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : SymFactorHammondCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : SymFactorHammondCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : SymFactorHammondCtx => 0 < δ.lam",
+            "premiseIds": [
+              "symmetryFactor.lamPositive"
+            ],
+            "definitions": [
+              {
+                "id": "symmetryFactor.lamPositive",
+                "predicate": "fun δ : SymFactorHammondCtx => 0 < δ.lam",
+                "statement": "The equal-curvature diagonal requires a positive curvature.",
+                "loadBearing": "Keeps the two totalized divisions and the sign comparison meaningful."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "thermoneutral-transition-state-coordinate",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the diagonal fixes both force constants to lam)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => SymmetryFactor.tsCoordZero δ.lam δ.lam",
+              "rightObs": "fun δ _ => Hammond.tsCoord δ.lam 0"
+            }
+          ],
+          "scope": {
+            "description": "Equal-curvature diagonal of the SymmetryFactor model.",
+            "domain": "all lam > 0 on the diagonal kr = kp = lam.",
+            "id": "scope-WPS01-equal-curvature",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Equality of the declared thermoneutral-coordinate channel on the equal-curvature diagonal under lam > 0.",
+          "falsificationCondition": "A context lam > 0 at which the two observed thermoneutral coordinates differ would refute the observational equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "r2-probe-certificate",
+              "certificateId": "QP-symmetryFactorHammondThermoneutralBridge",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "sha256": "db1975be8ebe38d20b05252a9443faf0dcebd7803d97c90cca5d2ca942ba755c",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorHammondThermoneutralBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorHammondThermoneutralBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "log": "bounded_audit/wp-surface-01/evidence/surface-probe.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.SymmetryFactor.tsCoordZero_eq_kernel_thermoneutral",
+                  "sourceArtifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+                  "sourceLine": 112,
+                  "role": "delivered equal-curvature tie-back to the kernel coordinate"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.kernel_tsCoord_eq_hammond",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 119,
+                  "role": "delivered kernel/Hammond definitional pin"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The R1 source manifest freezes the PhotoLean/**/*.lean file set; adding a delivered module would break validate_boundary.py. The certificate is checked as a compiled probe under bounded_audit/ and cites the delivered tie-back theorems."
+            }
+          },
+          "provenance": {
+            "kind": "r2-probe-certificate",
+            "certificateId": "QP-symmetryFactorHammondThermoneutralBridge",
+            "sourceArtifact": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorHammondThermoneutralBridge"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-Sabatier",
+      "theories": [
+        "BEP",
+        "Sabatier"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-BS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-BS-01",
+          "pairId": "P-BEP-Sabatier",
+          "title": "Linear volcano is the maximum of the two BEP tangent lines",
+          "chemicalQuestion": "Is the Sabatier linear volcano exactly the pointwise maximum of the two BEP tangent lines of the parabolic branches?",
+          "chemicalRationale": "Sabatier’s description layer writes the effective barrier as the maximum of two affine BEP branches. At the parameter choice alphaA = alphaB = 1/2, betaA = lam1/4, betaB = lam2/4, that maximum is exactly the BEP tangent-line construction. The identity is the exact link between the literature’s linear volcano and the repository’s BEP linear-response model.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Sabatier-PhotoLean-Sabatier-volcanoBarrier",
+              "theory": "Sabatier",
+              "declaration": "PhotoLean.Sabatier.volcanoBarrier",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+              "sourceLine": 49,
+              "version": "1.0.0",
+              "signatureSha256": "cb43a1a41a83d1ea081c0e1e1680e680d292d4fcfbee9953da47d3020da7d2b2",
+              "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-bepLine",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.bepLine",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 53,
+              "version": "1.0.0",
+              "signatureSha256": "451811e26d5ace1e1e88ecd4aec1e6c65bc4fa58eb23cecd6530bd04697c3eb2",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam1 : ℝ",
+              "lam2 : ℝ"
+            ],
+            "physicalReading": "Two branch curvatures of the two-parabola volcano; the descriptor dE is the observation-channel input.",
+            "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#BepSabatierCtx",
+            "id": "BepSabatierCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : BepSabatierCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : BepSabatierCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : BepSabatierCtx => True",
+            "premiseIds": [],
+            "definitions": []
+          },
+          "observationChannels": [
+            {
+              "id": "descriptor-axis-barrier",
+              "observedValueType": "ℝ",
+              "inputDomain": "dE : ℝ (Sabatier descriptor / binding energy)",
+              "domainNonempty": true,
+              "leftObs": "fun δ dE => Sabatier.volcanoBarrier (1/2) (δ.lam1/4) (1/2) (δ.lam2/4) dE",
+              "rightObs": "fun δ dE => max (BEP.bepLine δ.lam1 (-dE)) (BEP.bepLine δ.lam2 dE)"
+            }
+          ],
+          "scope": {
+            "description": "Sabatier descriptor-axis scope over the branch curvatures.",
+            "domain": "all (lam1, lam2, dE) in ℝ³.",
+            "id": "scope-WPS01-descriptor-axis",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Equality of the descriptor-axis barrier channel at every descriptor value, with no premise because the delivered theorem is unconditional.",
+          "falsificationCondition": "A context (lam1, lam2) and a descriptor dE at which the two observed barriers differ would refute the observational equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "r2-probe-certificate",
+              "certificateId": "QP-bepSabatierLinearVolcanoBridge",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "sha256": "db1975be8ebe38d20b05252a9443faf0dcebd7803d97c90cca5d2ca942ba755c",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.Surface.bepSabatierLinearVolcanoBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.Surface.bepSabatierLinearVolcanoBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "log": "bounded_audit/wp-surface-01/evidence/surface-probe.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Sabatier.linearVolcano_eq_bepTangent",
+                  "sourceArtifact": "PhotoLean/Sabatier/Compose.lean",
+                  "sourceLine": 103,
+                  "role": "delivered §8 identity consumed by the probe wrapper"
+                },
+                {
+                  "declaration": "PhotoLean.Relations.linearVolcano_eq_bepTangent",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 402,
+                  "role": "delivered cross-theory re-export"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The R1 source manifest freezes the PhotoLean/**/*.lean file set; adding a delivered module would break validate_boundary.py. The certificate is checked as a compiled probe under bounded_audit/ and cites the delivered identity theorem."
+            }
+          },
+          "provenance": {
+            "kind": "r2-probe-certificate",
+            "certificateId": "QP-bepSabatierLinearVolcanoBridge",
+            "sourceArtifact": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.Surface.bepSabatierLinearVolcanoBridge"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-BEP-SymmetryFactor",
+      "theories": [
+        "BEP",
+        "SymmetryFactor"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-BF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-BF-01",
+          "pairId": "P-BEP-SymmetryFactor",
+          "title": "Equal-curvature symmetry-factor coordinate is the BEP thermoneutral transfer coefficient",
+          "chemicalQuestion": "At equal force constants, is the SymmetryFactor thermoneutral transition-state coordinate observationally the BEP transfer coefficient at thermoneutrality?",
+          "chemicalRationale": "On the equal-curvature diagonal the SymmetryFactor closed form reduces to the BEP linear-response coefficient at x = 0. The bridge extends the BEP transfer/structural coordinate chain to the seventh theory and identifies the shared thermoneutral value.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-BEP-PhotoLean-BEP-transfer",
+              "theory": "BEP",
+              "declaration": "PhotoLean.BEP.transfer",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+              "sourceLine": 59,
+              "version": "1.0.0",
+              "signatureSha256": "5db0ca641b7a930664fddc5f9f204f9f3dc2b7fed0eb16a6f2b7748041352997",
+              "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam : ℝ"
+            ],
+            "physicalReading": "Equal-curvature diagonal of the SymmetryFactor model, identified with the BEP kernel curvature lam.",
+            "provenance": "bounded_audit/wp-surface-01/probes/Surface-probe.lean#SymFactorBepCtx",
+            "id": "SymFactorBepCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ : SymFactorBepCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ : SymFactorBepCtx => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total on the declared domain."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : SymFactorBepCtx => 0 < δ.lam",
+            "premiseIds": [
+              "symmetryFactor.lamPositive"
+            ],
+            "definitions": [
+              {
+                "id": "symmetryFactor.lamPositive",
+                "predicate": "fun δ : SymFactorBepCtx => 0 < δ.lam",
+                "statement": "The equal-curvature diagonal requires a positive curvature.",
+                "loadBearing": "Keeps the two totalized divisions and the sign comparison meaningful."
+              }
+            ]
+          },
+          "observationChannels": [
+            {
+              "id": "thermoneutral-transfer-coefficient",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the diagonal fixes both force constants to lam)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => SymmetryFactor.tsCoordZero δ.lam δ.lam",
+              "rightObs": "fun δ _ => BEP.transfer δ.lam 0"
+            }
+          ],
+          "scope": {
+            "description": "Equal-curvature diagonal of the SymmetryFactor model.",
+            "domain": "all lam > 0 on the diagonal kr = kp = lam.",
+            "id": "scope-WPS01-equal-curvature",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Equality of the declared thermoneutral transfer-coefficient channel on the equal-curvature diagonal under lam > 0.",
+          "falsificationCondition": "A context lam > 0 at which the two observed coefficients differ would refute the observational equivalence.",
+          "outcome": {
+            "status": "certified",
+            "rationale": "The query is answered by the checked certificate of the declared kind.",
+            "evidence": {
+              "type": "r2-probe-certificate",
+              "certificateId": "QP-symmetryFactorBepThermoneutralBridge",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "sha256": "db1975be8ebe38d20b05252a9443faf0dcebd7803d97c90cca5d2ca942ba755c",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorBepThermoneutralBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorBepThermoneutralBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+                "log": "bounded_audit/wp-surface-01/evidence/surface-probe.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.SymmetryFactor.betaHalf_eq_transfer_thermoneutral",
+                  "sourceArtifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+                  "sourceLine": 133,
+                  "role": "delivered equal-curvature tie-back to BEP.transfer"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The R1 source manifest freezes the PhotoLean/**/*.lean file set; adding a delivered module would break validate_boundary.py. The certificate is checked as a compiled probe under bounded_audit/ and cites the delivered tie-back theorem."
+            }
+          },
+          "provenance": {
+            "kind": "r2-probe-certificate",
+            "certificateId": "QP-symmetryFactorBepThermoneutralBridge",
+            "sourceArtifact": "bounded_audit/wp-surface-01/probes/Surface-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.Surface.symmetryFactorBepThermoneutralBridge"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Kasha-Sabatier",
+      "theories": [
+        "Kasha",
+        "Sabatier"
+      ],
+      "primaryCluster": "cross-domain-screening",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-KS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-KS-01",
+          "pairId": "P-Kasha-Sabatier",
+          "title": "Kasha rule versus Sabatier volcano condition on the energy-gap axis",
+          "chemicalQuestion": "Does Kasha’s rule — no emission from upper excited states — correspond to a Sabatier optimal or volcano condition on the same energy-gap axis?",
+          "chemicalRationale": "Kasha’s rule is a statement about the branching ratios of a ladder of excited states; the Sabatier condition is a statement about the unique optimum of a barrier profile along a descriptor axis. A bridge would need a declared map from the ladder’s energy gap and yield ratios to the descriptor-axis barrier. The theories share the Arrhenius rate template but not a delivered statement linking the two predicates.",
+          "endpoints": {
+            "source": {
+              "statementId": "kasha.kashaRule",
+              "theory": "Kasha",
+              "declaration": "PhotoLean.Kasha.KashaRule",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+              "sourceLine": 119,
+              "version": "1.0.0",
+              "signatureSha256": "8b50262c9cb18796fb440dd797799877caa142143a5cca1ac616460cc38aa2da",
+              "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Sabatier-PhotoLean-Sabatier-VolcanoDescriptor",
+              "theory": "Sabatier",
+              "declaration": "PhotoLean.Sabatier.VolcanoDescriptor",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+              "sourceLine": 64,
+              "version": "1.0.0",
+              "signatureSha256": "5a05777c88fa063ce1eb25dd62d912c6daa621f0a59a72c2847172c0f0c1a890",
+              "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "x : ℝ",
+              "A : ℝ",
+              "kB : ℝ",
+              "T : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the Kasha energy gap/Marcus rate parameters, with the Sabatier descriptor axis read as the same gap. The translation is a candidate only; the two theories declare different target quantities (ladder yield vs volcano barrier).",
+            "provenance": "candidate context declared in this R2 package",
+            "translationStatus": "candidate-not-total",
+            "id": "KashaSabatierCandidateCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": null,
+              "reason": "No delivered total translation exists for this comparison; see the search log.",
+              "requirement": "A total translation into the left statement context is not declared by the delivered theories."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": null,
+              "reason": "No delivered total translation exists for this comparison; see the search log.",
+              "requirement": "A total translation into the right statement context is not declared by the delivered theories."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : KashaSabatierCandidateCtx => 0 < δ.kB * δ.T",
+            "premiseIds": [
+              "thermalEnergyPositive"
+            ],
+            "definitions": [
+              {
+                "id": "thermalEnergyPositive",
+                "predicate": "fun δ : KashaSabatierCandidateCtx => 0 < δ.kB * δ.T",
+                "statement": "The thermal energy is positive.",
+                "loadBearing": "Both rate languages divide by kB*T."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Candidate bridge scope for a comparison whose translation is not declared by the delivered theories.",
+            "domain": "candidate contexts only; no total delivered translation.",
+            "id": "scope-WPS01-candidate-bridge",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "An equivalence between the Kasha-rule predicate and the instantiated volcano descriptor.",
+          "falsificationCondition": "A context where the Kasha rule holds and the volcano descriptor fails, or conversely, would refute the equivalence.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A candidate bridge was identified, but no certificate of the requested kind has been constructed or checked in this snapshot.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-WPS01-KS-01",
+              "candidateSummary": "Candidate: Kasha.marcusIC and Sabatier.activity share the Arrhenius template; the rule-versus-volcano predicate bridge is not certified."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "searchLogRef": "SL-WPS01-KS-01",
+            "sourceArtifact": "bounded_audit/wp-surface-01/search-log.json",
+            "locator": "SL-WPS01-KS-01"
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-Sabatier-SymmetryFactor",
+      "theories": [
+        "Sabatier",
+        "SymmetryFactor"
+      ],
+      "primaryCluster": "surface-free-energy",
+      "r1QueueLegacyStatus": "covered",
+      "queryIds": [
+        "Q-WPS01-SF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-WPS01-SF-01",
+          "pairId": "P-Sabatier-SymmetryFactor",
+          "title": "Sabatier volcano apex versus SymmetryFactor thermoneutral coordinate",
+          "chemicalQuestion": "Do Sabatier’s volcano apex and SymmetryFactor’s thermoneutral crossing coordinate identify the same structural optimum when the two branch curvatures are read as the two force constants?",
+          "chemicalRationale": "Both quantities are closed-form optima of an unequal-curvature two-parabola model, but they live on different axes: Sabatier’s apexPar is a descriptor-axis value, while SymmetryFactor’s tsCoordZero is a reaction-coordinate crossing. A candidate algebraic relation exists (apexPar = sqrt(lam1*lam2) * (2*tsCoordZero - 1)), but no delivered statement identifies the two physical coordinates.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Sabatier-PhotoLean-Sabatier-apexPar",
+              "theory": "Sabatier",
+              "declaration": "PhotoLean.Sabatier.apexPar",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Sabatier/Compose.lean",
+              "sourceLine": 83,
+              "version": "1.0.0",
+              "signatureSha256": "ebadb89a437aa872faeeae51d39a8625f877b53c271d17c3aa861805e4c3994c",
+              "sourceArtifactSha256": "4d794458c878b538601706386ee5b54f605d75578623935bebfb03dc842e3300",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+              "theory": "SymmetryFactor",
+              "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+              "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "fields": [
+              "lam1 : ℝ",
+              "lam2 : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the two branch curvatures, read both as Sabatier descriptor-axis parameters and as SymmetryFactor force constants. The translation is a candidate only; the descriptor axis and the reaction coordinate are different physical coordinates.",
+            "provenance": "candidate context declared in this R2 package",
+            "translationStatus": "candidate-not-total",
+            "id": "SabatierSymmetryCandidateCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": null,
+              "reason": "No delivered total translation exists for this comparison; see the search log.",
+              "requirement": "A total translation into the left statement context is not declared by the delivered theories."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": null,
+              "reason": "No delivered total translation exists for this comparison; see the search log.",
+              "requirement": "A total translation into the right statement context is not declared by the delivered theories."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : SabatierSymmetryCandidateCtx => 0 < δ.lam1 ∧ 0 < δ.lam2",
+            "premiseIds": [
+              "sabatier.positiveCurvatures"
+            ],
+            "definitions": [
+              {
+                "id": "sabatier.positiveCurvatures",
+                "predicate": "fun δ : SabatierSymmetryCandidateCtx => 0 < δ.lam1 ∧ 0 < δ.lam2",
+                "statement": "Both branch curvatures are positive.",
+                "loadBearing": "Both closed forms require positive curvatures."
+              }
+            ]
+          },
+          "observationChannels": [],
+          "scope": {
+            "description": "Candidate bridge scope for a comparison whose translation is not declared by the delivered theories.",
+            "domain": "candidate contexts only; no total delivered translation.",
+            "id": "scope-WPS01-candidate-bridge",
+            "snapshot": "snap-bounded-audit-2026-11-04"
+          },
+          "expectedKind": "equivalence",
+          "expectedKindRationale": "An equivalence between the two optimum predicates under the candidate coordinate identification.",
+          "falsificationCondition": "A context where one optimum predicate holds and the other fails would refute the equivalence.",
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "A candidate bridge was identified, but no certificate of the requested kind has been constructed or checked in this snapshot.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-WPS01-SF-01",
+              "candidateSummary": "Candidate: apexPar = sqrt(lam1*lam2) * (2*tsCoordZero - 1) is an algebraic relation; the physical coordinate identification is not certified."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "searchLogRef": "SL-WPS01-SF-01",
+            "sourceArtifact": "bounded_audit/wp-surface-01/search-log.json",
+            "locator": "SL-WPS01-SF-01"
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "pairs": 10,
+    "queries": 19,
+    "byStatus": {
+      "certified": 16,
+      "unresolved": 3
+    },
+    "byExpectedKind": {
+      "definitionalIdentity": 4,
+      "equivalence": 6,
+      "conditionalComposition": 1,
+      "implication": 3,
+      "observationalEquivalence": 5
+    },
+    "certified": 16,
+    "refuted": 0,
+    "unresolved": 3,
+    "notEstablished": 0,
+    "outOfScope": 0
+  },
+  "nonClaims": [
+    "This package is not a completeness claim about any pair.",
+    "A certified row is a checked relation under its declared context, premises and snapshot; it is not a claim of physical universality.",
+    "An unresolved row is not a negative claim and is not a refutation.",
+    "No pair was forced into a relation to increase edge count.",
+    "The two no-edge pairs carried over from the R1 registry (Hammond-Sabatier and Kasha-Sabatier) and the Sabatier-SymmetryFactor pair remain unresolved; the legacy no-edge registrations are not silently overturned."
+  ]
+}

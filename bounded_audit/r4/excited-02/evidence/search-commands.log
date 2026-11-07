@@ -1,0 +1,320 @@
+$ grep -rn 'Forster' PhotoLean/BEP --include='*.lean'
+[exit=1]
+
+$ grep -rn 'BEP' PhotoLean/Forster --include='*.lean'
+PhotoLean/Forster/RatModel.lean:27:`python3 theories/BEP/probes/bep-fidelity.py --theory Forster`.
+PhotoLean/Forster/Instances.lean:23:`python3 theories/BEP/probes/bep-fidelity.py --theory Forster`.
+PhotoLean/Forster/Basic.lean:35:`python3 theories/BEP/probes/bep-fidelity.py --theory Forster`.
+[exit=0]
+
+$ grep -rn 'Einstein' PhotoLean/BEP --include='*.lean'
+[exit=1]
+
+$ grep -rn 'BEP' PhotoLean/Einstein --include='*.lean'
+PhotoLean/Einstein/Basic.lean:26:`python3 theories/BEP/probes/bep-fidelity.py --theory Einstein`). There is no unproved placeholder
+[exit=0]
+
+$ grep -rn 'SymmetryFactor' PhotoLean/Kasha --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Kasha' PhotoLean/SymmetryFactor --include='*.lean'
+PhotoLean/SymmetryFactor/Basic.lean:21:  force) is deliberately out of scope — the same documented-negative discipline as Kasha's K4b
+[exit=0]
+
+$ grep -rn 'SymmetryFactor' PhotoLean/KashaVavilov --include='*.lean'
+[exit=1]
+
+$ grep -rn 'KashaVavilov' PhotoLean/SymmetryFactor --include='*.lean'
+[exit=1]
+
+$ grep -rn 'SymmetryFactor' PhotoLean/SternVolmer --include='*.lean'
+[exit=1]
+
+$ grep -rn 'SternVolmer' PhotoLean/SymmetryFactor --include='*.lean'
+[exit=1]
+
+$ grep -rn 'SymmetryFactor' PhotoLean/QuantumYield --include='*.lean'
+[exit=1]
+
+$ grep -rn 'QuantumYield' PhotoLean/SymmetryFactor --include='*.lean'
+[exit=1]
+
+$ grep -rn 'SymmetryFactor' PhotoLean/FluorPhos --include='*.lean'
+[exit=1]
+
+$ grep -rn 'FluorPhos' PhotoLean/SymmetryFactor --include='*.lean'
+[exit=1]
+
+$ grep -rn 'SymmetryFactor' PhotoLean/Forster --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Forster' PhotoLean/SymmetryFactor --include='*.lean'
+[exit=1]
+
+$ grep -rn 'SymmetryFactor' PhotoLean/Einstein --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Einstein' PhotoLean/SymmetryFactor --include='*.lean'
+[exit=1]
+
+$ grep -h '^import' PhotoLean/BEP/*.lean | sort -u
+import Mathlib
+import PhotoLean.BEP.Basic
+import PhotoLean.BEP.RatModel
+import PhotoLean.Hammond.Basic
+import PhotoLean.Marcus.Basic
+[exit=0]
+
+$ grep -h '^import' PhotoLean/Forster/*.lean | sort -u
+import Mathlib
+import PhotoLean.Forster.Basic
+import PhotoLean.Forster.Criterion
+import PhotoLean.Forster.RatModel
+[exit=0]
+
+$ grep -h '^import' PhotoLean/Einstein/*.lean | sort -u
+import Mathlib
+import PhotoLean.Einstein.Basic
+import PhotoLean.Einstein.Criterion
+import PhotoLean.Einstein.RatModel
+[exit=0]
+
+$ grep -h '^import' PhotoLean/Kasha/*.lean | sort -u
+import Mathlib
+import PhotoLean.Kasha.Basic
+import PhotoLean.Kasha.Criterion
+import PhotoLean.Kasha.RatModel
+import PhotoLean.Marcus.Basic
+imports `Mathlib` only — no `PhotoLean.Marcus`, no other `PhotoLean` module: the description
+imports `PhotoLean.Kasha.Basic` and `PhotoLean.Marcus.Basic` only — the sharp layer
+[exit=0]
+
+$ grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u
+import Mathlib
+import PhotoLean.BEP.Criterion
+import PhotoLean.Kernel
+import PhotoLean.SymmetryFactor.Basic
+import PhotoLean.SymmetryFactor.Criterion
+import PhotoLean.SymmetryFactor.RatModel
+import PhotoLean.SymmetryFactor.Sharp
+[exit=0]
+
+$ grep -h '^import' PhotoLean/KashaVavilov/*.lean | sort -u
+import Mathlib
+import PhotoLean.Kasha.Basic
+import PhotoLean.Kasha.Criterion
+import PhotoLean.KashaVavilov.Basic
+import PhotoLean.KashaVavilov.Criterion
+[exit=0]
+
+$ grep -h '^import' PhotoLean/SternVolmer/*.lean | sort -u
+import Mathlib
+import PhotoLean.SternVolmer.Basic
+import PhotoLean.SternVolmer.Criterion
+import PhotoLean.SternVolmer.RatModel
+[exit=0]
+
+$ grep -h '^import' PhotoLean/QuantumYield/*.lean | sort -u
+import Mathlib
+import PhotoLean.QuantumYield.Basic
+import PhotoLean.QuantumYield.RatModel
+[exit=0]
+
+$ grep -h '^import' PhotoLean/FluorPhos/*.lean | sort -u
+import Mathlib
+import PhotoLean.FluorPhos.Basic
+import PhotoLean.FluorPhos.Criterion
+import PhotoLean.FluorPhos.RatModel
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-BEP-Forster
+pair: P-BEP-Forster
+theories: ['BEP', 'Forster']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-BEP-Forster: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-BEP-Einstein
+pair: P-BEP-Einstein
+theories: ['BEP', 'Einstein']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-BEP-Einstein: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Kasha-SymmetryFactor
+pair: P-Kasha-SymmetryFactor
+theories: ['Kasha', 'SymmetryFactor']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Kasha-SymmetryFactor: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-KashaVavilov
+pair: P-SymmetryFactor-KashaVavilov
+theories: ['SymmetryFactor', 'KashaVavilov']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SymmetryFactor-KashaVavilov: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-SternVolmer
+pair: P-SymmetryFactor-SternVolmer
+theories: ['SymmetryFactor', 'SternVolmer']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SymmetryFactor-SternVolmer: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-QuantumYield
+pair: P-SymmetryFactor-QuantumYield
+theories: ['SymmetryFactor', 'QuantumYield']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SymmetryFactor-QuantumYield: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-FluorPhos
+pair: P-SymmetryFactor-FluorPhos
+theories: ['SymmetryFactor', 'FluorPhos']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SymmetryFactor-FluorPhos: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-Forster
+pair: P-SymmetryFactor-Forster
+theories: ['SymmetryFactor', 'Forster']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SymmetryFactor-Forster: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-Einstein
+pair: P-SymmetryFactor-Einstein
+theories: ['SymmetryFactor', 'Einstein']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SymmetryFactor-Einstein: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ grep -n 'theorem' PhotoLean/Relations.lean | grep -iE 'forster|bep'
+109:theorem kernel_barrier_eq_bep (lam x : ℝ) :
+124:theorem kernel_transfer_eq_bep (lam x : ℝ) :
+140:This is a genuine theorem about the linear-response body `1/2 - x/(2*lam)` of `BEP.transfer`
+245:theorem bep_eact_eq_marcus_barrier (lam x : ℝ) :
+251:theorem bep_rate_eq_exp_neg_eact (A lam kB T x : ℝ) :
+281:theorem hammond_trend_exact_bep_law_inexact {lam : ℝ} (hlam : lam ≠ 0) :
+402:theorem linearVolcano_eq_bepTangent (lam1 lam2 dE : ℝ) :
+409:theorem bepLine_le_eact {lam : ℝ} (hlam : 0 < lam) (x : ℝ) :
+638:theorem symmetryFactor_tsCoordZero_eq_bepTransfer {lam : ℝ} (hlam : 0 < lam) :
+[exit=0]
+
+$ grep -n 'theorem' PhotoLean/Relations.lean | grep -iE 'symmetryfactor'
+632:theorem symmetryFactor_tsCoordZero_eq_kernel {lam : ℝ} (hlam : 0 < lam) :
+638:theorem symmetryFactor_tsCoordZero_eq_bepTransfer {lam : ℝ} (hlam : 0 < lam) :
+643:theorem symmetryFactor_betaHalf_iff {kr kp : ℝ} (hkr : 0 < kr) (hkp : 0 < kp) :
+650:theorem symmetryFactor_conflation_falsified_and_holds_in_kernel :
+[exit=0]
+
+$ grep -n 'theorem' PhotoLean/Relations.lean | grep -iE 'stokes|icvscic|energygap|eg_'
+170:theorem lefflerSecant_neg_iff_inverted {lam x₁ x₂ : ℝ} (hlam : 0 < lam) (h : x₁ ≠ x₂) :
+251:theorem bep_rate_eq_exp_neg_eact (A lam kB T x : ℝ) :
+669:theorem eg_barrier_eq_kernel (lam x : ℝ) : EnergyGapLaw.nrBarrier lam x = Kernel.barrier lam x :=
+673:theorem eg_rate_eq_marcus (A lam kB T x : ℝ) :
+678:theorem eg_invertedGap_iff_marcus (lam x : ℝ) :
+693:theorem icvscic_barrier_eq_kernel (lam x : ℝ) :
+698:theorem icvscic_icRate_eq_marcus (AI lamI kB T xI : ℝ) :
+889:theorem icvscic_icRate_eq_eg_nrRate (A lam kB T x : ℝ) :
+920:theorem eg_boundary_eq_tsCoord_zero {lam : ℝ} (hlam : lam ≠ 0) (x : ℝ) :
+958:  Einstein mirror-symmetry look-alike is a shape note in the StokesShift plan §10, no theorem
+990:  barrier to its logarithm (`theories/EnergyGapLaw/plan.md` §10). No theorem transfers.
+[exit=0]
+
+$ grep -n 'theorem eact_at_zero' PhotoLean/BEP/Basic.lean
+137:theorem eact_at_zero {lam : ℝ} (hlam : lam ≠ 0) : eact lam 0 = lam / 4 := by
+[exit=0]
+
+$ grep -n 'theorem stokesShift_eq_two_lam' PhotoLean/StokesShift/Criterion.lean
+60:theorem stokesShift_eq_two_lam (lam e00 : ℝ) : stokesShift lam e00 = 2 * lam := by
+[exit=0]
+
+$ grep -n 'theorem bep_eact_eq_marcus_barrier' PhotoLean/Relations.lean
+245:theorem bep_eact_eq_marcus_barrier (lam x : ℝ) :
+[exit=0]
+
+$ grep -n 'theorem icvscic_barrier_eq_kernel' PhotoLean/Relations.lean
+693:theorem icvscic_barrier_eq_kernel (lam x : ℝ) :
+[exit=0]
+
+$ grep -n 'theorem ss_s0Surface_eq_kernel' PhotoLean/Relations.lean
+683:theorem ss_s0Surface_eq_kernel (lam q : ℝ) :
+[exit=0]
+
+$ grep -n 'theorem ss_s1Surface_eq_kernel' PhotoLean/Relations.lean
+688:theorem ss_s1Surface_eq_kernel (lam e00 q : ℝ) :
+[exit=0]
+
+$ grep -n 'theorem eg_barrier_eq_kernel' PhotoLean/Relations.lean
+669:theorem eg_barrier_eq_kernel (lam x : ℝ) : EnergyGapLaw.nrBarrier lam x = Kernel.barrier lam x :=
+[exit=0]
+
+$ grep -n 'theorem betaHalf_holds_in_kernel' PhotoLean/SymmetryFactor/Sharp.lean
+128:theorem betaHalf_holds_in_kernel {lam : ℝ} (hlam : 0 < lam) : BetaHalfReading lam lam :=
+[exit=0]
+

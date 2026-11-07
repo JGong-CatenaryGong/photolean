@@ -1,0 +1,90 @@
+# R4 E1 gate log
+# date: 2026-11-04
+# root: .
+
+## R1 boundary validator
+$ python3 audit_boundary/validate_boundary.py
+  boundary.md: present
+  theories: 17
+  pairs: 136
+  statement rows: 1154 (authority 1153, shared 1, eligible 1134)
+  unique pairs: 136
+  clusters: 6
+  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0
+RESULT: PASS (all boundary checks passed)
+exit=0
+
+## R2 screening validator
+$ python3 bounded_audit/validate_screening.py
+R2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all bounded-screening checks passed)
+exit=0
+
+## R3 screening validator
+$ python3 bounded_audit/validate_r3.py
+R3 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all R3 bounded-screening checks passed)
+exit=0
+
+## R4 E1 package validator
+$ python3 bounded_audit/r4/excited-01/validate.py
+R4 E1 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all R4 E1 bounded-screening checks passed)
+exit=0
+
+## strict build and scan
+$ proofs/scripts/check.sh --strict
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.
+==> sorry / custom axiom scan (PhotoLean/**/*.lean)
+clean
+==> summary
+build: OK
+allowed axioms: propext Classical.choice Quot.sound
+verdict: PASS
+exit=0
+
+## R4 E1 probe compile/axiom gate
+$ proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepKashaTransferZeroEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondStokesAbsorptionBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+exit=0
+
+## R4 E1 mutation tests
+$ python3 bounded_audit/r4/excited-01/evidence/mutation_tests.py
+duplicate pair row                                         exit=1 fails=13
+pair with no query row                                     exit=1 fails=11
+certified query with a corrupted probe hash                exit=1 fails=2
+endpoint signature hash drift                              exit=1 fails=2
+missing search-log entry for an unresolved query           exit=1 fails=7
+certified query relabelled unresolved without evidence     exit=1 fails=10
+mutations=6 survived=0
+exit=0
+
+## hashes
+3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947  audit_boundary/statement-inventory.json
+8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504  audit_boundary/pair-queue.json
+ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24  audit_boundary/cluster-plan.json
+ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3  audit_boundary/BOUNDARY.md
+25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0  relation_audit/registry.json
+a584d38e9318704e3cfa5ea482da09aaa88edaa066e61084dfbd834d502e09fd  bounded_audit/coverage.json
+9a096648063cda57f484f0ecddb802ebf6aa34fb115b26c31e187e75941ef60b  bounded_audit/r4/excited-01/screening.json
+1a18a2a3bc5d23e62622dd87aa4cd76da4d9edfa98f64a137f0af786645d08f7  bounded_audit/r4/excited-01/search-log.json
+ae20cedb9cef742e9cfc8e242a5b268f5d770098d781105535aa4cad8e9793cd  bounded_audit/r4/excited-01/coverage-fragment.json
+b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2  bounded_audit/r4/excited-01/probes/E1-probe.lean
+a0cc305dee96530b25c65b062bbf812d386297bfa9cf1e92f0823993d5b4d47c  bounded_audit/r4/excited-01/validate.py
+
+## delivered Lean file count
+102

@@ -1,0 +1,167 @@
+# RAD2 real search commands (grep) ===== 2026-11-04T03:01:49+08:00
+## modules KashaVavilov vs ICvsISC, pattern 'icRate|fcBarrier|FCData'
+### CMD: grep -rnE icRate|fcBarrier|FCData PhotoLean/KashaVavilov --include=*.lean
+(no output; exit 1)
+
+## modules ICvsISC vs KashaVavilov, pattern 'SpecSame|KashaRule|vavilov'
+### CMD: grep -rnE SpecSame|KashaRule|vavilov PhotoLean/ICvsISC --include=*.lean
+(no output; exit 1)
+
+## modules KashaVavilov vs Einstein, pattern 'Einstein|aOfB|tauR|radFactor'
+### CMD: grep -rnE Einstein|aOfB|tauR|radFactor PhotoLean/KashaVavilov --include=*.lean
+(no output; exit 1)
+
+## modules Einstein vs KashaVavilov, pattern 'SpecSame|KashaRule|vavilov'
+### CMD: grep -rnE SpecSame|KashaRule|vavilov PhotoLean/Einstein --include=*.lean
+(no output; exit 1)
+
+## modules SternVolmer vs EnergyGapLaw, pattern 'nrRate|nrBarrier|EnergyGap'
+### CMD: grep -rnE nrRate|nrBarrier|EnergyGap PhotoLean/SternVolmer --include=*.lean
+(no output; exit 1)
+
+## modules EnergyGapLaw vs SternVolmer, pattern 'SternVolmer|svRatio|KSV'
+### CMD: grep -rnE SternVolmer|svRatio|KSV PhotoLean/EnergyGapLaw --include=*.lean
+PhotoLean/EnergyGapLaw/RatModel.lean:29:vacuous identity `↑x = ↑x` (the cross-cutting pitfall found in the SternVolmer batch, SV-R1).
+
+## modules SternVolmer vs ICvsISC, pattern 'icRate|iscRate|fcBarrier'
+### CMD: grep -rnE icRate|iscRate|fcBarrier PhotoLean/SternVolmer --include=*.lean
+(no output; exit 1)
+
+## modules ICvsISC vs SternVolmer, pattern 'SternVolmer|svRatio|KSV'
+### CMD: grep -rnE SternVolmer|svRatio|KSV PhotoLean/ICvsISC --include=*.lean
+PhotoLean/ICvsISC/RatModel.lean:23:SternVolmer batch of this sweep). A declaration whose name carries a namespace prefix
+
+## modules SternVolmer vs Einstein, pattern 'tauR|aOfB|radFactor|Einstein'
+### CMD: grep -rnE tauR|aOfB|radFactor|Einstein PhotoLean/SternVolmer --include=*.lean
+PhotoLean/SternVolmer/RatModel.lean:55:def Rat.tauRatioDyn (k0 kq q : ℚ) : ℚ := (k0 + kq * q) / k0
+PhotoLean/SternVolmer/RatModel.lean:61:def Rat.tauRatioStat (Ka q : ℚ) : ℚ := 1
+PhotoLean/SternVolmer/RatModel.lean:83:theorem Rat.tauRatioDyn_cast (a b q : ℚ) :
+PhotoLean/SternVolmer/RatModel.lean:84:    (Rat.tauRatioDyn a b q : ℝ) = PhotoLean.SternVolmer.tauRatioDyn (a : ℝ) (b : ℝ) (q : ℝ) := by
+PhotoLean/SternVolmer/RatModel.lean:85:  unfold PhotoLean.SternVolmer.Rat.tauRatioDyn
+PhotoLean/SternVolmer/RatModel.lean:86:  unfold PhotoLean.SternVolmer.tauRatioDyn
+PhotoLean/SternVolmer/RatModel.lean:102:theorem Rat.tauRatioStat_cast (a q : ℚ) :
+PhotoLean/SternVolmer/RatModel.lean:103:    (Rat.tauRatioStat a q : ℝ) = PhotoLean.SternVolmer.tauRatioStat (a : ℝ) (q : ℝ) := by
+PhotoLean/SternVolmer/RatModel.lean:104:  unfold PhotoLean.SternVolmer.Rat.tauRatioStat
+PhotoLean/SternVolmer/RatModel.lean:105:  unfold PhotoLean.SternVolmer.tauRatioStat
+PhotoLean/SternVolmer/Basic.lean:14:mechanism tag `Mech` of the two-mechanism model space. The `tauRatioDyn` body is deliberately
+PhotoLean/SternVolmer/Basic.lean:56:noncomputable def tauRatioDyn (k0 kq q : ℝ) : ℝ := dynDecay k0 kq q / k0
+PhotoLean/SternVolmer/Basic.lean:65:noncomputable def tauRatioStat (Ka q : ℝ) : ℝ := 1
+PhotoLean/SternVolmer/Basic.lean:86:noncomputable def tauRatioOf (m : Mech) (k0 kq Ka q : ℝ) : ℝ :=
+PhotoLean/SternVolmer/Basic.lean:88:  | Mech.dyn => tauRatioDyn k0 kq q
+PhotoLean/SternVolmer/Basic.lean:89:  | Mech.stat => tauRatioStat Ka q
+PhotoLean/SternVolmer/Basic.lean:94:  ∀ q, 0 < q → tauRatioOf m k0 kq Ka q = svRatioOf m k0 kq Ka q
+PhotoLean/SternVolmer/Criterion.lean:52:    ∀ q, tauRatioDyn k0 kq q = svRatioDyn k0 kq q := by
+PhotoLean/SternVolmer/Criterion.lean:58:theorem stat_lifetime_flat (Ka : ℝ) : ∀ q, tauRatioStat Ka q = 1 := by
+PhotoLean/SternVolmer/Criterion.lean:64:Proof route: `tauRatioStat` unfolds to `1`; `1 ≠ 1 + Ka·q` from `0 < Ka·q` (`mul_pos`). -/
+
+## modules Einstein vs SternVolmer, pattern 'SternVolmer|svRatio|KSV'
+### CMD: grep -rnE SternVolmer|svRatio|KSV PhotoLean/Einstein --include=*.lean
+(no output; exit 1)
+
+## modules FluorPhos vs EnergyGapLaw, pattern 'nrRate|nrBarrier|EnergyGap'
+### CMD: grep -rnE nrRate|nrBarrier|EnergyGap PhotoLean/FluorPhos --include=*.lean
+(no output; exit 1)
+
+## modules EnergyGapLaw vs FluorPhos, pattern 'FluorPhos|phiF|kIC'
+### CMD: grep -rnE FluorPhos|phiF|kIC PhotoLean/EnergyGapLaw --include=*.lean
+(no output; exit 1)
+
+## modules KashaVavilov vs StokesShift, pattern 'StokesShift|emEnergy|absEnergy|stokesShift'
+### CMD: grep -rnE StokesShift|emEnergy|absEnergy|stokesShift PhotoLean/KashaVavilov --include=*.lean
+(no output; exit 1)
+
+## modules StokesShift vs KashaVavilov, pattern 'SpecSame|specFrac|KashaRule'
+### CMD: grep -rnE SpecSame|specFrac|KashaRule PhotoLean/StokesShift --include=*.lean
+(no output; exit 1)
+
+## modules KashaVavilov vs Forster, pattern 'Forster|fretRate|kappaSq'
+### CMD: grep -rnE Forster|fretRate|kappaSq PhotoLean/KashaVavilov --include=*.lean
+(no output; exit 1)
+
+## modules Forster vs KashaVavilov, pattern 'SpecSame|specFrac'
+### CMD: grep -rnE SpecSame|specFrac PhotoLean/Forster --include=*.lean
+(no output; exit 1)
+
+## modules SternVolmer vs StokesShift, pattern 'StokesShift|emEnergy|absEnergy'
+### CMD: grep -rnE StokesShift|emEnergy|absEnergy PhotoLean/SternVolmer --include=*.lean
+(no output; exit 1)
+
+## modules StokesShift vs SternVolmer, pattern 'SternVolmer|svRatio|KSV'
+### CMD: grep -rnE SternVolmer|svRatio|KSV PhotoLean/StokesShift --include=*.lean
+(no output; exit 1)
+
+## modules SternVolmer vs Forster, pattern 'Forster|fret|kappa'
+### CMD: grep -rnE Forster|fret|kappa PhotoLean/SternVolmer --include=*.lean
+(no output; exit 1)
+
+## modules Forster vs SternVolmer, pattern 'SternVolmer|svRatio|KSV'
+### CMD: grep -rnE SternVolmer|svRatio|KSV PhotoLean/Forster --include=*.lean
+(no output; exit 1)
+
+## modules QuantumYield vs StokesShift, pattern 'StokesShift|emEnergy|absEnergy'
+### CMD: grep -rnE StokesShift|emEnergy|absEnergy PhotoLean/QuantumYield --include=*.lean
+(no output; exit 1)
+
+## modules StokesShift vs QuantumYield, pattern 'yieldOf|QuantumYield'
+### CMD: grep -rnE yieldOf|QuantumYield PhotoLean/StokesShift --include=*.lean
+(no output; exit 1)
+
+## modules FluorPhos vs StokesShift, pattern 'StokesShift|emEnergy|absEnergy'
+### CMD: grep -rnE StokesShift|emEnergy|absEnergy PhotoLean/FluorPhos --include=*.lean
+(no output; exit 1)
+
+## modules StokesShift vs FluorPhos, pattern 'FluorPhos|phiF'
+### CMD: grep -rnE FluorPhos|phiF PhotoLean/StokesShift --include=*.lean
+(no output; exit 1)
+
+### CMD: imports per theory
+## KashaVavilov
+import Mathlib
+import PhotoLean.Kasha.Basic
+import PhotoLean.Kasha.Criterion
+import PhotoLean.KashaVavilov.Basic
+import PhotoLean.KashaVavilov.Criterion
+## SternVolmer
+import Mathlib
+import PhotoLean.SternVolmer.Basic
+import PhotoLean.SternVolmer.Criterion
+import PhotoLean.SternVolmer.RatModel
+## QuantumYield
+import Mathlib
+import PhotoLean.QuantumYield.Basic
+import PhotoLean.QuantumYield.RatModel
+## FluorPhos
+import Mathlib
+import PhotoLean.FluorPhos.Basic
+import PhotoLean.FluorPhos.Criterion
+import PhotoLean.FluorPhos.RatModel
+## EnergyGapLaw
+import Mathlib
+import PhotoLean.EnergyGapLaw.Basic
+import PhotoLean.EnergyGapLaw.Criterion
+import PhotoLean.EnergyGapLaw.RatModel
+import PhotoLean.EnergyGapLaw.Sharp
+import PhotoLean.Kernel
+import PhotoLean.Marcus.Basic
+## StokesShift
+import Mathlib
+import PhotoLean.Kernel
+import PhotoLean.Marcus.Basic
+import PhotoLean.StokesShift.Basic
+import PhotoLean.StokesShift.RatModel
+## ICvsISC
+import Mathlib
+import PhotoLean.ICvsISC.Basic
+import PhotoLean.ICvsISC.RatModel
+import PhotoLean.Kernel
+import PhotoLean.Marcus.Basic
+## Forster
+import Mathlib
+import PhotoLean.Forster.Basic
+import PhotoLean.Forster.Criterion
+import PhotoLean.Forster.RatModel
+## Einstein
+import Mathlib
+import PhotoLean.Einstein.Basic
+import PhotoLean.Einstein.Criterion
+import PhotoLean.Einstein.RatModel

@@ -1,0 +1,5 @@
+R2 probe discipline scan
+command: grep -nE "sorry|admit|^[[:space:]]*(private[[:space:]]+|protected[[:space:]]+)?(axiom|constant)([[:space:]]|$)" bounded_audit/wp-surface-01/probes/Surface-probe.lean
+result: clean
+command: proofs/scripts/lake env lean bounded_audit/wp-surface-01/probes/Surface-probe.lean
+exit: 0

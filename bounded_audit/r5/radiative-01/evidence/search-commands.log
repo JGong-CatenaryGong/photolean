@@ -1,0 +1,122 @@
+$ grep -rn 'StokesShift' PhotoLean/Kasha --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Kasha' PhotoLean/StokesShift --include='*.lean'
+[exit=1]
+
+$ grep -h '^import' PhotoLean/StokesShift/*.lean | sort -u
+import Mathlib
+import PhotoLean.Kernel
+import PhotoLean.Marcus.Basic
+import PhotoLean.StokesShift.Basic
+import PhotoLean.StokesShift.RatModel
+[exit=0]
+
+$ grep -rn 'Forster' PhotoLean/Kasha --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Kasha' PhotoLean/Forster --include='*.lean'
+[exit=1]
+
+$ grep -h '^import' PhotoLean/Forster/*.lean | sort -u
+import Mathlib
+import PhotoLean.Forster.Basic
+import PhotoLean.Forster.Criterion
+import PhotoLean.Forster.RatModel
+[exit=0]
+
+$ grep -rn 'Forster' PhotoLean/Marcus --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Marcus' PhotoLean/Forster --include='*.lean'
+[exit=1]
+
+$ grep -rh '^import' PhotoLean/Marcus/*.lean PhotoLean/Forster/*.lean | sort -u | head -30
+import Mathlib
+import PhotoLean.Forster.Basic
+import PhotoLean.Forster.Criterion
+import PhotoLean.Forster.RatModel
+import PhotoLean.Marcus.Barrier
+import PhotoLean.Marcus.Basic
+import PhotoLean.Marcus.Rate
+import PhotoLean.Marcus.RatModel
+import PhotoLean.Marcus.Reorg
+import PhotoLean.Marcus.Sharp
+[exit=0]
+
+$ grep -rn 'Einstein' PhotoLean/Marcus --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Marcus' PhotoLean/Einstein --include='*.lean'
+PhotoLean/Einstein/RatModel.lean:22:`norm_num [Rat.…]` instead — the same boundary already recorded for `Marcus.RatModel` and Forster's
+[exit=0]
+
+$ grep -rh '^import' PhotoLean/Einstein/*.lean | sort -u | head -20
+import Mathlib
+import PhotoLean.Einstein.Basic
+import PhotoLean.Einstein.Criterion
+import PhotoLean.Einstein.RatModel
+[exit=0]
+
+$ grep -rn 'ICvsISC' PhotoLean/Kasha --include='*.lean'
+[exit=1]
+
+$ grep -rn 'Kasha' PhotoLean/ICvsISC --include='*.lean'
+[exit=1]
+
+$ grep -n 'icRate\|fcBarrier\|cert_icRate' PhotoLean/ICvsISC/Basic.lean
+14:* FC-B1 `fcBarrier` + `cert_fcBarrier` — the channel Franck–Condon barrier IS
+16:* FC-B2 `icRate` + `cert_icRate` — the IC rate IS `PhotoLean.Marcus.rate`;
+61:own copy of the kernel barrier (plan §1.2, hard constraint 1), pinned by `cert_fcBarrier`.
+63:noncomputable def fcBarrier (lam x : ℝ) : ℝ := (lam - x) ^ 2 / (4 * lam)
+67:theorem cert_fcBarrier {lam x : ℝ} : fcBarrier lam x = PhotoLean.Kernel.barrier lam x := by
+72:noncomputable def icRate (AI lamI kB T xI : ℝ) : ℝ :=
+73:  AI * Real.exp (-(fcBarrier lamI xI) / (kB * T))
+77:theorem cert_icRate {AI lamI kB T xI : ℝ} :
+78:    icRate AI lamI kB T xI = PhotoLean.Marcus.rate AI lamI kB T xI := by
+79:  unfold icRate PhotoLean.Marcus.rate PhotoLean.Marcus.barrier
+86:  HSO ^ 2 * AS * Real.exp (-(fcBarrier lamS xS) / (kB * T))
+[exit=0]
+
+$ grep -n 'marcusIC\|ic 1' PhotoLean/Kasha/Compose.lean | head -20
+98:noncomputable def marcusIC (A lam kB T x : ℝ) : ℝ :=
+282:theorem ladderRatio_one {rad ic : ℕ → ℝ} (h : decay rad ic 1 ≠ 0) :
+283:    ladderRatio rad ic 1 = funnelRatio rad ic := by
+284:  have hC : cascade rad ic 0 1 = icBranch rad ic 1 := by
+291:  have hU : upperYield rad ic 1 = radBranch rad ic 1 := by
+294:    exact emitYield_self rad ic 1
+318:theorem kashaWithin_one_marcus {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (h : RateData rad ic 1)
+320:    (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x) :
+340:  have hC : cascade rad ic 0 1 = icBranch rad ic 1 := by
+347:  have hU : upperYield rad ic 1 = radBranch rad ic 1 := by
+350:    exact emitYield_self rad ic 1
+351:  have hfluo : fluoYield rad ic 1 = radBranch rad ic 0 * icBranch rad ic 1 + radBranch rad ic 1 := by
+352:    have hsplit : fluoYield rad ic 1 = emitYield rad ic 0 1 + upperYield rad ic 1 := by
+364:  have hd1 : 0 < decay rad ic 1 := h.decay_pos 1 le_rfl
+366:      rad 1 * decay rad ic 0 * (1 - tol) ≤ tol * (rad 0 * ic 1) := by
+389:  rw [hrate, hic, marcusIC, hstep1, log_recip_le_iff hKpos,
+411:theorem not_kashaWithin_of_gap_far {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (h : RateData rad ic 1)
+413:    (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x)
+423:theorem kashaWindow_halfWidth {rad ic : ℕ → ℝ} {A lam kB T x tol : ℝ} (h : RateData rad ic 1)
+425:    (hr0 : 0 < rad 0) (hr1 : 0 < rad 1) (hic : ic 1 = marcusIC A lam kB T x)
+[exit=0]
+
+$ grep -rn 'EnergyGapLaw' PhotoLean/KashaVavilov --include='*.lean'
+[exit=1]
+
+$ grep -rn 'KashaVavilov' PhotoLean/EnergyGapLaw --include='*.lean'
+[exit=1]
+
+$ grep -rn 'marcusIC' PhotoLean/EnergyGapLaw PhotoLean/KashaVavilov --include='*.lean'
+[exit=1]
+
+$ grep -h '^import' PhotoLean/EnergyGapLaw/*.lean | sort -u
+import Mathlib
+import PhotoLean.EnergyGapLaw.Basic
+import PhotoLean.EnergyGapLaw.Criterion
+import PhotoLean.EnergyGapLaw.RatModel
+import PhotoLean.EnergyGapLaw.Sharp
+import PhotoLean.Kernel
+import PhotoLean.Marcus.Basic
+[exit=0]
+

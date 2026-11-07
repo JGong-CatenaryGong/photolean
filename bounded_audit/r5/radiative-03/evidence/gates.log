@@ -1,0 +1,124 @@
+RAD3 gate log — 2026-11-03T19:12:46Z
+
+### python3 audit_boundary/validate_boundary.py
+Bounded relation-audit boundary validation
+  root: .
+  boundary.md: present
+  theories: 17
+  pairs: 136
+  statement rows: 1154 (authority 1153, shared 1, eligible 1134)
+  unique pairs: 136
+  clusters: 6
+  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0
+RESULT: PASS (all boundary checks passed)
+exit=0
+
+### python3 bounded_audit/validate_screening.py
+R2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all bounded-screening checks passed)
+exit=0
+
+### python3 bounded_audit/r4/validate_r3_content.py
+R3 bounded screening content validation (derived)
+  root: .
+  excluded current-ledger freshness checks: 7
+EXCLUDED [snapshot.coverageLedgerSha256] current-ledger hash pin on bounded_audit/coverage.json (accepted pin a584d38e9318704e3cfa5ea482da09aaa88edaa066e61084dfbd834d502e09fd, current d1e44bf7bbb5e81c7b85f610d6ffc1d4d3fed0fcde5cd1ab3202fb23ca6c32fa; owned by r4/validate_coverage.py)
+EXCLUDED [coverage.round] current-ledger round: accepted package pinned R3, current 'R4' (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.cumulative] current-ledger cumulative screened count: pinned 21, current 67 (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.remaining] current-ledger cumulative remaining count: pinned 115, current 69 (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.byRound] current-ledger by-round counts: pinned {'R2': 10, 'R3': 11}, current {'R2': 10, 'R3': 11, 'R4': 46} (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.remainingCount] current-ledger remaining list length: pinned 115, current 69 (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.remainingSet] current-ledger remaining list contents: pinned queue-minus-screened (115), current 69 (owned by r4/validate_coverage.py)
+  checks failed: 0
+RESULT: PASS (all R3 package-content checks passed; 7 current-ledger freshness checks excluded)
+exit=0
+
+### python3 bounded_audit/r4/validate_coverage.py --coverage bounded_audit/r4/coverage-accepted.json
+R4 cumulative coverage validation
+  root: .
+  ledger: bounded_audit/r4/coverage-accepted.json
+  accepted pairs: 21
+  submitted R4 pairs: 46
+  R4 named queries: 46
+  R4 query outcomes: {"certified": 19, "notEstablished": 1, "outOfScope": 7, "unresolved": 19}
+  cumulative: 67/136 screened, 69 remaining
+  checks passed: 846
+  checks failed: 0
+RESULT: PASS (all R4 coverage checks passed)
+exit=0
+
+### python3 bounded_audit/r4/excited-01/validate.py
+R4 E1 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all R4 E1 bounded-screening checks passed)
+exit=0
+
+### python3 bounded_audit/r4/excited-02/validate.py
+R4 E2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all E2 bounded-screening checks passed)
+exit=0
+
+### python3 bounded_audit/r4/conical-01/validate.py
+R4 WP-conical-intersection-01 validation
+  root: .
+  package: bounded_audit/r4/conical-01
+  checks failed: 0
+RESULT: PASS (all conical-intersection package checks passed)
+exit=0
+
+### python3 bounded_audit/r5/radiative-03/validate.py
+R5 WP-radiative-energy-transfer-03 validation
+  root: .
+  package: bounded_audit/r5/radiative-03
+  checks failed: 0
+RESULT: PASS (all WP-radiative-energy-transfer-03 package checks passed)
+exit=0
+
+### proofs/scripts/check.sh --strict
+==> [PhotoLean] leaf data plane
+==> per-theory leaf data plane (theories/*/ : plan.md TASKS.md LITERATURE.md RESULTS.md probes/)
+   OK      theories/BEP (5/5)
+   OK      theories/Einstein (5/5)
+   OK      theories/EnergyGapLaw (5/5)
+   OK      theories/FluorPhos (5/5)
+   OK      theories/Forster (5/5)
+   OK      theories/goldschmidt (5/5)
+   OK      theories/hammond (5/5)
+   OK      theories/ICvsISC (5/5)
+   OK      theories/kasha (5/5)
+   OK      theories/KashaVavilov (5/5)
+   OK      theories/Marcus (5/5)
+   OK      theories/QuantumYield (5/5)
+   OK      theories/RACI (5/5)
+   OK      theories/Sabatier (5/5)
+   OK      theories/SternVolmer (5/5)
+   OK      theories/StokesShift (5/5)
+   OK      theories/SymmetryFactor (5/5)
+==> lake build all
+⚠ [6345/6409] Replayed PhotoLean.SternVolmer.Basic
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:32: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:35: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6384/6409] Replayed PhotoLean.SternVolmer.RatModel
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:22: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:25: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6395/6409] Replayed PhotoLean.FluorPhos.RatModel
+warning: ././././PhotoLean/FluorPhos/RatModel.lean:89:21: unused variable `kIC`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.
+==> sorry / custom axiom scan (PhotoLean/**/*.lean)
+clean
+==> summary
+build: OK
+allowed axioms: propext Classical.choice Quot.sound
+verdict: PASS
+exit=0
+

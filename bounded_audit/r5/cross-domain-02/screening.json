@@ -1,0 +1,1658 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-screening-package",
+ "round": "R5",
+ "generatedOn": "2026-11-04",
+ "workPackage": {
+  "id": "WP-cross-domain-screening-02",
+  "title": "Cross-domain screening of the nine remaining Goldschmidt pairs",
+  "source": "loop/计划.md R5, Package XD2",
+  "pairIds": [
+   "P-Goldschmidt-KashaVavilov",
+   "P-Goldschmidt-SternVolmer",
+   "P-Goldschmidt-QuantumYield",
+   "P-Goldschmidt-FluorPhos",
+   "P-Goldschmidt-EnergyGapLaw",
+   "P-Goldschmidt-StokesShift",
+   "P-Goldschmidt-ICvsISC",
+   "P-Goldschmidt-Forster",
+   "P-Goldschmidt-Einstein"
+  ],
+  "pairCount": 9,
+  "note": "Exactly the nine R1 WP-cross-domain-screening-02 pairs, which are also the nine remaining Goldschmidt-partner pairs. No accepted R2/R3/R4 pair is rescreened, no pair outside the nine is touched, and P-Kasha-Sabatier is not duplicated."
+ },
+ "statusVocabulary": [
+  "certified",
+  "refuted",
+  "unresolved",
+  "notEstablished",
+  "outOfScope"
+ ],
+ "kindVocabulary": [
+  "definitionalIdentity",
+  "implication",
+  "equivalence",
+  "conditionalComposition",
+  "observationalEquivalence",
+  "distinguishability",
+  "refutation"
+ ],
+ "allowedAxioms": [
+  "propext",
+  "Classical.choice",
+  "Quot.sound"
+ ],
+ "snapshot": {
+  "id": "snap-bounded-audit-2026-11-04",
+  "date": "2026-11-04",
+  "round": "R5",
+  "inventory": "audit_boundary/statement-inventory.json",
+  "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+  "pairQueue": "audit_boundary/pair-queue.json",
+  "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+  "clusterPlan": "audit_boundary/cluster-plan.json",
+  "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+  "boundary": "audit_boundary/BOUNDARY.md",
+  "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+  "legacyRegistry": "relation_audit/registry.json",
+  "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+  "leanToolchain": "leanprover/lean4:v4.17.0",
+  "deliveredLeanFileCount": 102
+ },
+ "inventoryReference": {
+  "path": "audit_boundary/statement-inventory.json",
+  "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+  "statementRows": 1154,
+  "screeningEligibleRows": 1134
+ },
+ "legacyRegistryReference": {
+  "path": "relation_audit/registry.json",
+  "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+  "certificateCount": 38
+ },
+ "coverageReference": {
+  "path": "bounded_audit/r5/cross-domain-02/coverage-fragment.json",
+  "acceptedScreenedPairCount": 67,
+  "pin": "not-pinned",
+  "note": "The prior-coverage count is derived by the validator from the five accepted screening packages (wp-surface-01, r3, r4/excited-01, r4/excited-02, r4/conical-01). This package never reads and never pins the mutable R5 cumulative ledger bounded_audit/coverage.json."
+ },
+ "searchLogReference": {
+  "path": "bounded_audit/r5/cross-domain-02/search-log.json",
+  "sha256": "391d616e18dd355272eab65eb8adbeae330a25ea33b1246b0764789161dbfcb6",
+  "entryCount": 11
+ },
+ "certificateReference": {
+  "path": null,
+  "declarationCount": 0,
+  "note": "This package claims no certified and no refuted outcome, so it introduces no Lean certificate and no probe. No `sorry`, no custom axiom and no untested proof is involved: the package makes no positive claim and therefore no falsification target. The delivered Lean tree is unchanged (102 files, checked by the validator and by the strict build/scan gate)."
+ },
+ "aliasResolutions": [
+  {
+   "statementId": "goldschmidt.conformance",
+   "declaration": "PhotoLean.Goldschmidt.GoldschmidtConforms",
+   "note": "The inventory id for GoldschmidtConforms is the legacy-friendly `goldschmidt.conformance`; it resolves to a delivered declaration at PhotoLean/Goldschmidt/Basic.lean:64 and is not a dangling legacy alias."
+  }
+ ],
+ "contextLibrary": {
+  "GdKvCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "rad : ℕ → ℝ",
+    "ic : ℕ → ℝ",
+    "n : ℕ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite A/B/O radii of the tolerance factor plus a Kasha-Vavilov ladder of per-level radiative rates rad n and internal-conversion rates ic n. It is the smallest context that would contain both statements. No delivered statement relates its radius part to its ladder part, so it is a candidate context, not a shared context: the Goldschmidt authority has no ladder term and the KashaVavilov authority has no radius term.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdKvCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdSvCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "lo : ℝ",
+    "hi : ℝ",
+    "slopeI : ℚ",
+    "slopeTau : ℚ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii with the band edges (lo, hi) and the Stern-Volmer measured slope pair (slopeI, slopeTau) of the intensity and lifetime responses. A verdict equivalence would have to live here. The radius triple fixes a lattice contact ratio; the slope pair is a concentration-response datum with no ionic-radius component, and no delivered statement maps one part onto the other.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdSvCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdQyCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "lo : ℝ",
+    "hi : ℝ",
+    "k : Fin n → ℝ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii with band edges plus a finite vector of channel rates k. The Goldschmidt side decides a band membership on a length ratio; the QuantumYield side decides the share of one channel in the total rate. A shared context would need a delivered statement identifying a radius ratio with a rate share, and none exists.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdQyCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdFpCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "lo : ℝ",
+    "hi : ℝ",
+    "kF : ℚ",
+    "kISC : ℚ",
+    "kIC : ℚ",
+    "kP : ℚ",
+    "kNR : ℚ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii with band edges plus the five FluorPhos channel rates. Both endpoints are three-way classifiers, so the candidate context is the only place a verdict equivalence could live; but the decision functions read a single real radius ratio on one side and two rational products on the other, and no delivered statement maps the two input families.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdFpCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdEgCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "lam : ℝ",
+    "x : ℝ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii plus the energy-gap-law reorganization energy and gap coordinate (lam, x). The Goldschmidt statements read lengths only; lam and x are energies, and the only delivered occurrence of a Marcus barrier in the corpus is the Kernel copy that EnergyGapLaw pins. No delivered statement sends a radius to an energy.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdEgCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdSsCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "lam : ℝ",
+    "e00 : ℝ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii plus the StokesShift surfaces (lam, e00). The Stokes statements are differences of electronic energies on two harmonic surfaces; the Goldschmidt statements are ratios of ionic contact lengths. The context is a union of two vocabularies, not a shared observable.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdSsCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdIcCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "lamI : ℝ",
+    "xI : ℝ",
+    "HSO : ℝ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii plus an IC barrier coordinate (lamI, xI) and a spin-orbit coupling HSO. The ICvsISC statement orders two Franck-Condon barriers; the Goldschmidt statement orders a radius ratio against a band. No delivered statement carries a spin-orbit coupling into the lattice vocabulary or a radius into the rate vocabulary.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdIcCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdFrCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "R0 : ℝ",
+    "R : ℝ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii plus a Forster radius and a donor-acceptor separation (R0, R). Both endpoints are geometric threshold criteria, which is why the legacy register calls the pair a look-alike. The lengths are nevertheless different objects: R is an intermolecular separation in solution, R0 is a spectroscopic length built from the overlap integral and the orientation factor, and rA/rB/rO are ionic contact radii in a crystal. No delivered statement maps one family onto the other.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdFrCandidateCtx (candidate context; no Lean structure)"
+  },
+  "GdEiCandidateCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ",
+    "A : ℝ"
+   ],
+   "physicalReading": "Candidate shared context: the perovskite radii plus an Einstein A coefficient. The shared symbol tau is the only link the names offer: on the Goldschmidt side tauGoldschmidt is the dimensionless 3/20 of the radius rule, on the Einstein side tauR is the radiative lifetime 1/A. A lifetime is not a radius tolerance, and no delivered statement maps a radius to a rate.",
+   "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdEiCandidateCtx (candidate context; no Lean structure)"
+  }
+ },
+ "scopeLibrary": {
+  "scope-XD2-KV-jurisdiction": {
+   "id": "scope-XD2-KV-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x KashaVavilov pair: a lattice length ratio against a ladder of per-level rates.",
+   "domain": "the Goldschmidt tolerance-factor/band statements and the KashaVavilov ladder statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-SV-jurisdiction": {
+   "id": "scope-XD2-SV-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x SternVolmer pair: a radius-ratio classifier against a slope-pair classifier.",
+   "domain": "the Goldschmidt zone-classifier statements and the SternVolmer zone/slope statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-QY-jurisdiction": {
+   "id": "scope-XD2-QY-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x QuantumYield pair: a band membership on a length ratio against a channel share of a rate total.",
+   "domain": "the Goldschmidt band statements and the QuantumYield rate/yield algebra of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-FP-jurisdiction": {
+   "id": "scope-XD2-FP-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x FluorPhos pair: a radius-ratio classifier against a five-rate competition classifier.",
+   "domain": "the Goldschmidt zone-classifier statements and the FluorPhos competition-zone statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-EG-jurisdiction": {
+   "id": "scope-XD2-EG-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x EnergyGapLaw pair: a geometric rattling length against a Marcus crossing energy.",
+   "domain": "the Goldschmidt gap/band statements and the EnergyGapLaw barrier/rate/zone statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-SS-jurisdiction": {
+   "id": "scope-XD2-SS-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x StokesShift pair: a dimensionless packing ratio against an emission energy.",
+   "domain": "the Goldschmidt tolerance-factor statements and the StokesShift surface/energy statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-IC-jurisdiction": {
+   "id": "scope-XD2-IC-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x ICvsISC pair: a band verdict against a barrier-ordering theorem with a spin-orbit premise.",
+   "domain": "the Goldschmidt band statements and the ICvsISC barrier/rate statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-FR-jurisdiction": {
+   "id": "scope-XD2-FR-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x Forster pair: two geometric threshold criteria over unrelated lengths (legacy look-alike).",
+   "domain": "the Goldschmidt contact/tolerance statements and the Forster geometry/threshold statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  },
+  "scope-XD2-EI-jurisdiction": {
+   "id": "scope-XD2-EI-jurisdiction",
+   "description": "Statement-level jurisdiction registration for the Goldschmidt x Einstein pair: a dimensionless radius-rule constant against a radiative lifetime.",
+   "domain": "the Goldschmidt radius-rule statements and the Einstein coefficient/lifetime statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+   "snapshot": "snap-bounded-audit-2026-11-04"
+  }
+ },
+ "jurisdictionEvidence": {
+  "method": "For each pair the validator re-derives three statement-level facts from the frozen artifacts: (1) a signature scan over every declaration signature of both authorities, which must find zero shared identifiers; (2) the two import closures, which must not intersect outside Mathlib; (3) the legacy registry disposition, which must be a pair-level notEstablished anchor with no kind and no certificate. The token sets below are the scan vocabulary.",
+  "goldschmidtTokens": [
+   "tolFac",
+   "latticeOf",
+   "idealAO",
+   "idealA",
+   "rAMin",
+   "rAMax",
+   "InBand",
+   "GoldschmidtConforms",
+   "goldschmidtZone",
+   "GoldschmidtZone",
+   "gapA",
+   "classicLo",
+   "classicHi",
+   "tetragonalHi",
+   "tauGoldschmidt",
+   "RadiusMatch",
+   "chiTol",
+   "Substitutable",
+   "ChargeBalanced",
+   "isovalent"
+  ],
+  "partnerTokens": {
+   "KashaVavilov": [
+    "SpecSame",
+    "fluoYield",
+    "emitYield",
+    "upperYield",
+    "rateData",
+    "specFrac",
+    "kashaRule",
+    "vavilovAt",
+    "VavilovAt",
+    "VavilovUpTo",
+    "lossless",
+    "KashaRule",
+    "radBranch",
+    "icBranch",
+    "cascade"
+   ],
+   "SternVolmer": [
+    "dynDecay",
+    "svRatioDyn",
+    "tauRatioDyn",
+    "svRatioStat",
+    "tauRatioStat",
+    "KSV",
+    "svRatioBoth",
+    "svRatioOf",
+    "tauRatioOf",
+    "LifetimeTracks",
+    "svZoneQ",
+    "SVZone",
+    "Mech"
+   ],
+   "QuantumYield": [
+    "totalRate",
+    "yieldOf",
+    "tauOf",
+    "QYData",
+    "sum_yieldOf_eq_one"
+   ],
+   "FluorPhos": [
+    "s1Decay",
+    "phiF",
+    "iscBranch",
+    "t1BranchP",
+    "phiP",
+    "FPZone",
+    "fpZoneQ",
+    "FPData",
+    "crossover_isc"
+   ],
+   "EnergyGapLaw": [
+    "nrBarrier",
+    "nrRate",
+    "InvertedGap",
+    "lnRate",
+    "eglTangent",
+    "egZoneQ",
+    "EGZone",
+    "aromaticSeries",
+    "secant_slope"
+   ],
+   "StokesShift": [
+    "s0Surface",
+    "s1Surface",
+    "absEnergy",
+    "emEnergy",
+    "stokesShift",
+    "SSZone",
+    "ssZoneQ",
+    "mirror_midpoint",
+    "emission_window"
+   ],
+   "ICvsISC": [
+    "fcBarrier",
+    "icRate",
+    "iscRate",
+    "rate_ratio_eq",
+    "log_rate_ratio",
+    "isc_dominates_iff",
+    "spin_discount",
+    "FCData",
+    "hso_zero_isc_absent",
+    "barrier_diff"
+   ],
+   "Forster": [
+    "kappaSq",
+    "fretRate",
+    "fretEff6",
+    "fretEff",
+    "r0six",
+    "kappaConvention",
+    "fret_blind_spot"
+   ],
+   "Einstein": [
+    "radFactor",
+    "aOfB",
+    "b12OfB21",
+    "fOfA",
+    "aOfInt",
+    "tauR",
+    "detailed_balance",
+    "degeneracy_roundtrip",
+    "af_roundtrip"
+   ]
+  },
+  "pairs": [
+   {
+    "pairId": "P-Goldschmidt-KashaVavilov",
+    "partnerTheory": "KashaVavilov",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 29,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-KashaVavilov",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-SternVolmer",
+    "partnerTheory": "SternVolmer",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 46,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-SternVolmer",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-QuantumYield",
+    "partnerTheory": "QuantumYield",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 29,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-QuantumYield",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-FluorPhos",
+    "partnerTheory": "FluorPhos",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 30,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-FluorPhos",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-EnergyGapLaw",
+    "partnerTheory": "EnergyGapLaw",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 26,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-EnergyGapLaw",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-StokesShift",
+    "partnerTheory": "StokesShift",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 36,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-StokesShift",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-ICvsISC",
+    "partnerTheory": "ICvsISC",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 20,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-ICvsISC",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-Forster",
+    "partnerTheory": "Forster",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 32,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-Forster",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   },
+   {
+    "pairId": "P-Goldschmidt-Einstein",
+    "partnerTheory": "Einstein",
+    "goldschmidtStatementRows": 139,
+    "partnerStatementRows": 33,
+    "goldschmidtTokensInPartnerSignatures": [],
+    "partnerTokensInGoldschmidtSignatures": [],
+    "importClosureIntersection": [],
+    "legacyRecordId": "rec-notestablished-P-Goldschmidt-Einstein",
+    "legacyStatus": "notEstablished",
+    "legacyKind": null,
+    "legacyCertificate": null
+   }
+  ]
+ },
+ "pairs": [
+  {
+   "pairId": "P-Goldschmidt-KashaVavilov",
+   "theories": [
+    "Goldschmidt",
+    "KashaVavilov"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-KV-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-KV-01",
+     "pairId": "P-Goldschmidt-KashaVavilov",
+     "title": "Is the tolerance-factor band verdict a property of the Kasha-Vavilov ladder?",
+     "chemicalQuestion": "Does the Goldschmidt band verdict `GoldschmidtConforms lo hi rA rB rO` - a statement about the A-O contact distance in a cubic ABO3 perovskite - constrain the lossless Kasha/Vavilov separation `lossless_separates_kasha_vavilov`, whose witness is a ladder of radiative and internal-conversion rates?",
+     "chemicalRationale": "Goldschmidt measures a ratio of ionic contact lengths, t = (rA + rO) / (sqrt 2 * (rB + rO)), and the band verdict tests that ratio against edges (lo, hi). The Kasha-Vavilov statement is a separation theorem about a ladder of per-level radiative rates rad n and internal-conversion rates ic n; its witness is rad = 1 with ic 0 = 0, where Kasha holds and Vavilov fails. A relation would need a shared quantity: an excited-state branching fraction on one side and a lattice length ratio on the other. Neither statement measures the other's quantity. The only similarity is that both decide a two-way split (in-band/out-of-band versus Kasha/Vavilov), which is a statement shape, not a shared observable.",
+     "endpoints": {
+      "source": {
+       "statementId": "goldschmidt.conformance",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.GoldschmidtConforms",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 64,
+       "version": "1.0.0",
+       "signatureSha256": "dd9caf5dc6c3e0bec52f5493bcb761684f4e75e07af69417c566483edca7f14c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-lossless_separates_kasha_vavilov",
+       "theory": "KashaVavilov",
+       "declaration": "PhotoLean.KashaVavilov.lossless_separates_kasha_vavilov",
+       "declarationKind": "theorem",
+       "sourceArtifact": "PhotoLean/KashaVavilov/Criterion.lean",
+       "sourceLine": 154,
+       "version": "1.0.0",
+       "signatureSha256": "13305cb031d8a1147cb3dee9054d1c5744ee47b52481e9c1b8010196ae60907d",
+       "sourceArtifactSha256": "6530629bf4365c550d4c1e26953ebd550c499dc5f70057904eb35f4cb9b2e566",
+       "endpointForm": "theorem"
+      }
+     },
+     "sharedContext": {
+      "id": "GdKvCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "rad : ℕ → ℝ",
+       "ic : ℕ → ℝ",
+       "n : ℕ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite A/B/O radii of the tolerance factor plus a Kasha-Vavilov ladder of per-level radiative rates rad n and internal-conversion rates ic n. It is the smallest context that would contain both statements. No delivered statement relates its radius part to its ladder part, so it is a candidate context, not a shared context: the Goldschmidt authority has no ladder term and the KashaVavilov authority has no radius term.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdKvCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a ladder of per-level rates (rad, ic) at level n, so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the KashaVavilov statement context is declared: the KashaVavilov authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdKvCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-KV-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x KashaVavilov pair: a lattice length ratio against a ladder of per-level rates.",
+      "domain": "the Goldschmidt tolerance-factor/band statements and the KashaVavilov ladder statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "Even the weakest admissible link is a one-way implication from a band verdict to a ladder property. That already requires a shared scalar; the two endpoints measure a length ratio and a family of per-level rates, so no implication of the declared form can be stated without inventing a translation.",
+     "falsificationCondition": "The counterexample shape is `exists d, Pi d and P d and not Q d`: a perovskite triple (rA, rB, rO) inside the band whose lossless ladder witness fails the separation. A delivered statement mapping an ionic radius to a ladder rate would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. The Goldschmidt endpoint decides a band membership on a radius ratio and the KashaVavilov endpoint decides a separation of two ladder predicates; the two statement authorities share no identifier, no observable and no import path. This is a statement-level jurisdiction registration, not a claim that no relation could ever be written; the legacy census registers the same absence (Relations.lean section 16 line 942).",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-KV-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. The Goldschmidt endpoint decides a band membership on a radius ratio and the KashaVavilov endpoint decides a separation of two ladder predicates; the two statement authorities share no identifier, no observable and no import path. This is a statement-level jurisdiction registration, not a claim that no relation could ever be written; the legacy census registers the same absence (Relations.lean section 16 line 942).",
+       "statementLevelReason": "Statement-level jurisdiction reason: the Goldschmidt side is `GoldschmidtConforms lo hi rA rB rO` (a band predicate on the radius ratio computed by `tolFac`), and the KashaVavilov side is `lossless_separates_kasha_vavilov` (an existential witness over rate ladders `rad`, `ic` with `ic 0 = 0`, `Kasha.VavilovUpTo` and not `Kasha.KashaRule`). No Goldschmidt statement contains a rate, a level index or a branching fraction; no KashaVavilov statement contains an ionic radius or a tolerance factor. The signature scan over all 139 Goldschmidt and all 29 KashaVavilov declaration signatures finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-KV-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-KashaVavilov (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 942 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-SternVolmer",
+   "theories": [
+    "Goldschmidt",
+    "SternVolmer"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-SV-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-SV-01",
+     "pairId": "P-Goldschmidt-SternVolmer",
+     "title": "Do the Goldschmidt zone classifier and the Stern-Volmer zone classifier decide the same classification?",
+     "chemicalQuestion": "Does the three-way Goldschmidt classifier `goldschmidtZone lo hi t`, which compares one real tolerance factor against a band, coincide with the four-way Stern-Volmer classifier `svZoneQ slopeI slopeTau`, which reads a pair of rational slopes?",
+     "chemicalRationale": "Both endpoints are data classifiers of a measured scalar against a band, so a verdict equivalence is the natural query. Goldschmidt classifies the radius ratio t into tooSmall/ideal/tooLarge by testing t < lo and then t <= hi. Stern-Volmer classifies a measured slope pair into dynLike/statLike/mixedLike/inconsistent by comparing slopeI and slopeTau; it has four verdicts, not three, and its input is a pair of rational concentration-response slopes, not one real length ratio. A verdict equivalence would need a total translation from (slopeI, slopeTau) to (lo, hi, t) that preserves the decision boundaries. No delivered statement provides one, and the translation would have to identify a photophysical response slope with a lattice length ratio.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-goldschmidtZone",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.goldschmidtZone",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 75,
+       "version": "1.0.0",
+       "signatureSha256": "f2e080a673dacdba8b0b662f6bc64627fa7eae697f299aa0d3d73e4e4845c18c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-SternVolmer-PhotoLean-SternVolmer-svZoneQ",
+       "theory": "SternVolmer",
+       "declaration": "PhotoLean.SternVolmer.svZoneQ",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/SternVolmer/RatModel.lean",
+       "sourceLine": 119,
+       "version": "1.0.0",
+       "signatureSha256": "e7246f3b4cf52023befde4509bb8b516d4b2ff5d62d1688a39ca9ef17f4947b2",
+       "sourceArtifactSha256": "e91120e8687f57985c741430e1ff23476958d8ec768f0828872943bc6a6c6610",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdSvCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "lo : ℝ",
+       "hi : ℝ",
+       "slopeI : ℚ",
+       "slopeTau : ℚ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii with the band edges (lo, hi) and the Stern-Volmer measured slope pair (slopeI, slopeTau) of the intensity and lifetime responses. A verdict equivalence would have to live here. The radius triple fixes a lattice contact ratio; the slope pair is a concentration-response datum with no ionic-radius component, and no delivered statement maps one part onto the other.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdSvCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a measured intensity/lifetime slope pair (slopeI, slopeTau), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the SternVolmer statement context is declared: the SternVolmer authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdSvCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-SV-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x SternVolmer pair: a radius-ratio classifier against a slope-pair classifier.",
+      "domain": "the Goldschmidt zone-classifier statements and the SternVolmer zone/slope statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "equivalence",
+     "expectedKindRationale": "The question is a verdict equivalence: the two classifiers agree on every input under the declared translation. It is the strongest form the shared classifier shape could support, and it fails at the input and arity level before any proof is attempted.",
+     "falsificationCondition": "The refutation shape is one input with `P d` and `not Q d` (or the converse): a slope pair whose Stern-Volmer verdict differs from the Goldschmidt verdict of its translated triple. A delivered statement that maps a slope pair to a radius triple would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. The shared classifier shape is not a shared context: the inputs are a radius ratio and a slope pair, the verdict types are `GoldschmidtZone` (three constructors) and `SVZone` (four constructors), and no delivered translation exists between them. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-SV-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. The shared classifier shape is not a shared context: the inputs are a radius ratio and a slope pair, the verdict types are `GoldschmidtZone` (three constructors) and `SVZone` (four constructors), and no delivered translation exists between them. The registration is a jurisdiction record, not a claim of logical absence.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `goldschmidtZone lo hi t : GoldschmidtZone` tests a real t against (lo, hi); `svZoneQ slopeI slopeTau : SVZone` tests rational slopes against each other and returns a four-constructor verdict. The arities, the input types (`Real` versus `Rat`) and the verdict types already differ, and no delivered statement in either authority mentions the other's input. The signature scan over all 139 Goldschmidt and all 46 SternVolmer declaration signatures finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-SV-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-SternVolmer (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 945 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-QuantumYield",
+   "theories": [
+    "Goldschmidt",
+    "QuantumYield"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-QY-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-QY-01",
+     "pairId": "P-Goldschmidt-QuantumYield",
+     "title": "Is the in-band predicate on the tolerance factor a quantum-yield statement?",
+     "chemicalQuestion": "Is the band membership `InBand lo hi t` on the tolerance factor the same kind of statement as the channel yield `yieldOf k i`, the share of channel i in the total rate?",
+     "chemicalRationale": "Both endpoints are ratios with a \"part of a whole\" reading: `InBand` tests a length ratio against two edges, and `yieldOf k i = k i / totalRate k` is the share of one decay channel in the total decay. The similarity is arithmetic, not physical. A quantum yield is an excited-state branching probability that sums to one over the channels; a band membership is a geometric packing verdict with no normalisation. Goldschmidt has no rate parameter and QuantumYield has no radius or length; the candidate bridge would have to read a radius ratio as a rate share.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-InBand",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.InBand",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 59,
+       "version": "1.0.0",
+       "signatureSha256": "bbac58a3cad059da19c1b8b233be83554a08869f860095f5f45558e338814179",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+       "theory": "QuantumYield",
+       "declaration": "PhotoLean.QuantumYield.yieldOf",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+       "sourceLine": 44,
+       "version": "1.0.0",
+       "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+       "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdQyCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "lo : ℝ",
+       "hi : ℝ",
+       "k : Fin n → ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii with band edges plus a finite vector of channel rates k. The Goldschmidt side decides a band membership on a length ratio; the QuantumYield side decides the share of one channel in the total rate. A shared context would need a delivered statement identifying a radius ratio with a rate share, and none exists.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdQyCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a channel vector k and a channel index i, so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the QuantumYield statement context is declared: the QuantumYield authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdQyCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-QY-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x QuantumYield pair: a band membership on a length ratio against a channel share of a rate total.",
+      "domain": "the Goldschmidt band statements and the QuantumYield rate/yield algebra of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest admissible link is a one-way implication from band membership to a channel share. A part-of-whole shape does not supply the shared scalar such an implication needs.",
+     "falsificationCondition": "The counterexample shape is `exists d, Pi d and P d and not Q d`: a band triple whose yield-side predicate fails. A delivered statement that reads a radius as a rate share would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. The unnormalised band membership on a length ratio and the normalised channel share of a rate total are different observables; the part-over-whole resemblance is a statement shape, not a shared context, and no translation is delivered.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-QY-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. The unnormalised band membership on a length ratio and the normalised channel share of a rate total are different observables; the part-over-whole resemblance is a statement shape, not a shared context, and no translation is delivered.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `InBand lo hi t := lo <= t and t <= hi` is a predicate on one real ratio with no rate; `yieldOf k i = k i / totalRate k` divides a channel rate by a sum of rates. No Goldschmidt statement in the 139-row authority contains a rate or a channel; no QuantumYield statement in the 29-row authority contains a radius, a band or a tolerance factor. The signature scan finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-QY-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-QuantumYield (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 948 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-FluorPhos",
+   "theories": [
+    "Goldschmidt",
+    "FluorPhos"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-FP-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-FP-01",
+     "pairId": "P-Goldschmidt-FluorPhos",
+     "title": "Does the Goldschmidt zone verdict coincide with the FluorPhos competition verdict?",
+     "chemicalQuestion": "Does the Goldschmidt band classifier `goldschmidtZone lo hi t` coincide with the FluorPhos competition classifier `fpZoneQ kF kISC kIC kP kNR`, which decides between fluorescence-dominant, balanced and phosphorescence-dominant decay?",
+     "chemicalRationale": "Both endpoints are three-way classifiers, so a verdict correspondence is the natural query. The decision functions differ: Goldschmidt tests one real t against (lo, hi), while FluorPhos compares kISC * kP with kF * (kP + kNR) over the rationals. The FluorPhos classifier takes five channel rates as arguments, and its own docstring and the build linter record that kIC is not consumed by the decision body, so even the partner classifier does not decide an internal-conversion rate. A verdict correspondence would need a translation from the five rates to (lo, hi, t); none is delivered, and it would have to read a competition between radiative and intersystem-crossing channels as a lattice contact ratio.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-goldschmidtZone",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.goldschmidtZone",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 75,
+       "version": "1.0.0",
+       "signatureSha256": "f2e080a673dacdba8b0b662f6bc64627fa7eae697f299aa0d3d73e4e4845c18c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-fpZoneQ",
+       "theory": "FluorPhos",
+       "declaration": "PhotoLean.FluorPhos.fpZoneQ",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/FluorPhos/RatModel.lean",
+       "sourceLine": 89,
+       "version": "1.0.0",
+       "signatureSha256": "8d05572ae80b3f9acdcb44388f4ac12d73fe26190d5683065fe7495d1853a0ec",
+       "sourceArtifactSha256": "cc14d516b986d2727124e9ba36189047ce9a285b17811989595a866df743394e",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdFpCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "lo : ℝ",
+       "hi : ℝ",
+       "kF : ℚ",
+       "kISC : ℚ",
+       "kIC : ℚ",
+       "kP : ℚ",
+       "kNR : ℚ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii with band edges plus the five FluorPhos channel rates. Both endpoints are three-way classifiers, so the candidate context is the only place a verdict equivalence could live; but the decision functions read a single real radius ratio on one side and two rational products on the other, and no delivered statement maps the two input families.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdFpCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for the five S1/T1 channel rates (kF, kISC, kIC, kP, kNR), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the FluorPhos statement context is declared: the FluorPhos authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdFpCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-FP-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x FluorPhos pair: a radius-ratio classifier against a five-rate competition classifier.",
+      "domain": "the Goldschmidt zone-classifier statements and the FluorPhos competition-zone statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "equivalence",
+     "expectedKindRationale": "The query asks for a verdict equivalence of the two three-way classifiers. The three-verdict shape is the strongest thing the pair offers; the input families and the decision functions are unrelated.",
+     "falsificationCondition": "The refutation shape is one input whose two verdicts differ under the declared translation. A delivered statement mapping the five channel rates to a radius triple would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. A shared three-verdict shape is not a shared context: the inputs are five rational rate parameters versus one real radius ratio, and no translation is delivered in either direction.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-FP-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. A shared three-verdict shape is not a shared context: the inputs are five rational rate parameters versus one real radius ratio, and no translation is delivered in either direction.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `goldschmidtZone lo hi t` compares a real t with two band edges, while `fpZoneQ kF kISC kIC kP kNR` compares the rational products `kISC * kP` and `kF * (kP + kNR)`. The FluorPhos signature carries five rates and the Goldschmidt signature carries radii; the two authorities share no identifier in the signature scan (139 Goldschmidt rows versus 30 FluorPhos rows, zero intersections)."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-FP-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-FluorPhos (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 952 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-EnergyGapLaw",
+   "theories": [
+    "Goldschmidt",
+    "EnergyGapLaw"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-EG-01",
+    "Q-XD2-EG-02"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-EG-01",
+     "pairId": "P-Goldschmidt-EnergyGapLaw",
+     "title": "Is the A-O rattling gap the nonradiative barrier?",
+     "chemicalQuestion": "Is the Goldschmidt A-O rattling gap `gapA rA rB rO`, a signed length, the same object as the energy-gap-law nonradiative barrier `nrBarrier lam x`, an energy?",
+     "chemicalRationale": "The names invite the identification: one is a \"gap\" and the other a \"barrier\". The objects do not match. `gapA rA rB rO = idealAO rB rO - (rA + rO)` is a length in angstrom, linear in the radii and antisymmetric under exchanging the actual and ideal A-O contact. `nrBarrier lam x = (lam - x)^2 / (4 lam)` is an energy, quadratic in (lam - x) and singular at lam = 0. Their dimensions, their dependence on their arguments and their physical readings all differ; the only overlap is the English word \"gap\". No delivered statement maps a radius triple to (lam, x).",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-gapA",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.gapA",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 81,
+       "version": "1.0.0",
+       "signatureSha256": "0cecb5ef2f1a724181d0ae16842cf5affb29ebaabb06f77585a4b83a28d42d70",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+       "theory": "EnergyGapLaw",
+       "declaration": "PhotoLean.EnergyGapLaw.nrBarrier",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+       "sourceLine": 62,
+       "version": "1.0.0",
+       "signatureSha256": "1eb0a487e369bf0639bba0a13210dc26b4dc493803852a4098991d3774fe2259",
+       "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdEgCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "lam : ℝ",
+       "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii plus the energy-gap-law reorganization energy and gap coordinate (lam, x). The Goldschmidt statements read lengths only; lam and x are energies, and the only delivered occurrence of a Marcus barrier in the corpus is the Kernel copy that EnergyGapLaw pins. No delivered statement sends a radius to an energy.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdEgCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a reorganization energy and gap coordinate (lam, x), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the EnergyGapLaw statement context is declared: the EnergyGapLaw authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdEgCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-EG-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x EnergyGapLaw pair: a geometric rattling length against a Marcus crossing energy.",
+      "domain": "the Goldschmidt gap/band statements and the EnergyGapLaw barrier/rate/zone statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "definitionalIdentity",
+     "expectedKindRationale": "The query tests the strongest possible identification, a kernel `rfl` after a translation, because a naming resemblance is the only evidence for identity. The strongest test is the honest one here: if the two were the same object, `rfl` would settle it.",
+     "falsificationCondition": "The definitional identity fails if no translation makes the two terms definitionally equal; the falsification condition is a delivered translation whose kernel `rfl` check fails, or, semantically, any radius triple with `gapA` positive while the translated `nrBarrier` is negative or undefined.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. `gapA` is a length and `nrBarrier` is an energy; a definitional identity between them would need a translation that is not merely undelivered but dimensionally ill-typed. Registering the naming collision is the honest move: it is a name, not an object.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-EG-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. `gapA` is a length and `nrBarrier` is an energy; a definitional identity between them would need a translation that is not merely undelivered but dimensionally ill-typed. Registering the naming collision is the honest move: it is a name, not an object.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `gapA (rA rB rO : Real) : Real` returns a signed contact-length excess; `nrBarrier (lam x : Real) : Real` returns the Marcus crossing energy `(lam - x)^2 / (4 * lam)`. The Goldschmidt authority has no energy statement and the EnergyGapLaw authority has no length statement; the signature scan over 139 Goldschmidt and 26 EnergyGapLaw signatures finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-EG-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-EnergyGapLaw (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 991 registers the absence."
+     }
+    },
+    {
+     "queryId": "Q-XD2-EG-02",
+     "pairId": "P-Goldschmidt-EnergyGapLaw",
+     "title": "Do the Goldschmidt band verdict and the energy-gap zone verdict agree?",
+     "chemicalQuestion": "Does the Goldschmidt band verdict `goldschmidtZone lo hi t` agree with the energy-gap-law verdict `egZoneQ lam x`, which classifies a reorganization energy and a gap coordinate against the Marcus normal/inverted boundary?",
+     "chemicalRationale": "Both endpoints are three-way classifiers, so the verdict correspondence is the natural query and it is the reason the pair is in the cross-domain batch at all. The decision functions differ: Goldschmidt tests a real t against two parameter edges; EnergyGapLaw compares a rational gap coordinate x with the reorganization energy lam. The inputs are a radius ratio versus an energy pair. A verdict correspondence would need a total translation (lam, x) -> (lo, hi, t) preserving the decision boundaries; none is delivered, and it would identify an energy gap with a lattice contact ratio.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-goldschmidtZone",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.goldschmidtZone",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 75,
+       "version": "1.0.0",
+       "signatureSha256": "f2e080a673dacdba8b0b662f6bc64627fa7eae697f299aa0d3d73e4e4845c18c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-egZoneQ",
+       "theory": "EnergyGapLaw",
+       "declaration": "PhotoLean.EnergyGapLaw.egZoneQ",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/EnergyGapLaw/RatModel.lean",
+       "sourceLine": 86,
+       "version": "1.0.0",
+       "signatureSha256": "a16164c6dafcd20f480de345a8e28ce9f848fddd12cd6b2d27cf50131b172ae2",
+       "sourceArtifactSha256": "5a887969241f55856215701e7679f94b3e0933ce634408932ddc6c63c7f54b2e",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdEgCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "lam : ℝ",
+       "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii plus the energy-gap-law reorganization energy and gap coordinate (lam, x). The Goldschmidt statements read lengths only; lam and x are energies, and the only delivered occurrence of a Marcus barrier in the corpus is the Kernel copy that EnergyGapLaw pins. No delivered statement sends a radius to an energy.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdEgCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a reorganization energy and gap coordinate (lam, x), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the EnergyGapLaw statement context is declared: the EnergyGapLaw authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdEgCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-EG-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x EnergyGapLaw pair: a geometric rattling length against a Marcus crossing energy.",
+      "domain": "the Goldschmidt gap/band statements and the EnergyGapLaw barrier/rate/zone statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "equivalence",
+     "expectedKindRationale": "The query asks for a verdict equivalence of two three-way classifiers. The classifier shape is the only formal contact, and the equivalence is the strongest claim that shape could support.",
+     "falsificationCondition": "The refutation shape is one input whose two verdicts differ under the declared translation. A delivered statement mapping (lam, x) to a radius triple would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. The two classifiers decide over different input families (an energy pair versus a radius ratio) and no translation is delivered; the shared verdict arity is a shape, not a shared scalar.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-EG-02",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. The two classifiers decide over different input families (an energy pair versus a radius ratio) and no translation is delivered; the shared verdict arity is a shape, not a shared scalar.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `goldschmidtZone lo hi t` reads one real t against band edges; `egZoneQ lam x` reads two rational energies against the normal/inverted boundary. No Goldschmidt statement in the 139-row authority carries an energy or a reorganization energy, and no EnergyGapLaw statement in the 26-row authority carries a radius or a tolerance factor; the signature scan finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-EG-02",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-EnergyGapLaw (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 991 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-StokesShift",
+   "theories": [
+    "Goldschmidt",
+    "StokesShift"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-SS-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-SS-01",
+     "pairId": "P-Goldschmidt-StokesShift",
+     "title": "Is the tolerance factor a Stokes-shifted emission energy?",
+     "chemicalQuestion": "Does the dimensionless tolerance factor `tolFac rA rB rO` carry the same physical content as the vertical emission energy `emEnergy lam e00` of the Stokes-shift surfaces?",
+     "chemicalRationale": "`tolFac rA rB rO = (rA + rO) / (sqrt 2 * (rB + rO))` is a dimensionless ratio of two ionic contact lengths; `emEnergy lam e00 = s1Surface lam e00 1 - s0Surface lam 1` is an energy, the vertical emission gap of two harmonic surfaces. A Stokes shift is a difference of electronic energies whose size is set by the reorganization energy; the tolerance factor is a packing ratio whose size is set by the ionic radii. Both are scalars in the real numbers, but no delivered statement maps (rA, rB, rO) to (lam, e00), and the physical readings (crystal contact geometry versus excited-state relaxation) are disjoint.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.tolFac",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 39,
+       "version": "1.0.0",
+       "signatureSha256": "eb824cbea36453a672c60c0d0ebe62b9a8b447c000db76598905f4bb55e07dc3",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+       "theory": "StokesShift",
+       "declaration": "PhotoLean.StokesShift.emEnergy",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+       "sourceLine": 80,
+       "version": "1.0.0",
+       "signatureSha256": "31c4f14c2cfab83174ed72561ae8fc8e67b82fa5d06549ab95e511ba1108f504",
+       "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdSsCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "lam : ℝ",
+       "e00 : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii plus the StokesShift surfaces (lam, e00). The Stokes statements are differences of electronic energies on two harmonic surfaces; the Goldschmidt statements are ratios of ionic contact lengths. The context is a union of two vocabularies, not a shared observable.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdSsCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a reorganization energy and 0-0 energy (lam, e00), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the StokesShift statement context is declared: the StokesShift authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdSsCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-SS-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x StokesShift pair: a dimensionless packing ratio against an emission energy.",
+      "domain": "the Goldschmidt tolerance-factor statements and the StokesShift surface/energy statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest admissible link is a one-way implication from a geometric ratio to a spectral energy. A shared scalar type (the reals) does not supply a shared observable, so no implication of the declared form can be stated.",
+     "falsificationCondition": "The counterexample shape is `exists d, Pi d and P d and not Q d`: a radius triple whose translated emission energy fails the claimed spectral property. A delivered statement mapping radii to (lam, e00) would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. A dimensionless packing ratio and a vertical emission energy are different observables; no translation is delivered and the legacy register records the absence as a band-position versus geometry boundary.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-SS-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. A dimensionless packing ratio and a vertical emission energy are different observables; no translation is delivered and the legacy register records the absence as a band-position versus geometry boundary.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `tolFac` is dimensionless and reads radii; `emEnergy` is an energy and reads the reorganization energy and the 0-0 energy. The Goldschmidt authority has no spectral statement and the StokesShift authority has no radius or lattice statement; the signature scan over 139 Goldschmidt and 36 StokesShift signatures finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-SS-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-StokesShift (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 998 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-ICvsISC",
+   "theories": [
+    "Goldschmidt",
+    "ICvsISC"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-IC-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-IC-01",
+     "pairId": "P-Goldschmidt-ICvsISC",
+     "title": "Does the tolerance-factor band verdict constrain the spin-discount IC/ISC competition?",
+     "chemicalQuestion": "Does the Goldschmidt band verdict `GoldschmidtConforms lo hi rA rB rO` constrain the ICvsISC spin-discount theorem `spin_discount`, which orders two Franck-Condon barriers under a spin-orbit premise and an ISC rate win?",
+     "chemicalRationale": "`spin_discount` concludes `fcBarrier lamS xS < fcBarrier lamI xI` from an ISC rate win, equal prefactors and a sub-unit spin-orbit coupling; every object it mentions is an energy or a coupling. `GoldschmidtConforms` asserts that a radius ratio lies in a band; every object it mentions is a length. A relation would need a shared energy or rate quantity, and Goldschmidt has none at all. The spin-orbit coupling is the clearest separator: no Goldschmidt statement carries an electronic coupling, and no ICvsISC statement carries an ionic radius.",
+     "endpoints": {
+      "source": {
+       "statementId": "goldschmidt.conformance",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.GoldschmidtConforms",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 64,
+       "version": "1.0.0",
+       "signatureSha256": "dd9caf5dc6c3e0bec52f5493bcb761684f4e75e07af69417c566483edca7f14c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-spin_discount",
+       "theory": "ICvsISC",
+       "declaration": "PhotoLean.ICvsISC.spin_discount",
+       "declarationKind": "theorem",
+       "sourceArtifact": "PhotoLean/ICvsISC/Criterion.lean",
+       "sourceLine": 164,
+       "version": "1.0.0",
+       "signatureSha256": "8f9b5b9a6c933e7bfec07cc399e1b6fcbf570b364c7420c80d59185644cd91d1",
+       "sourceArtifactSha256": "5ee8d024880f2825ced3bd8d0d02d309a8c0f04c1037a382c56e957a4b60b773",
+       "endpointForm": "theorem"
+      }
+     },
+     "sharedContext": {
+      "id": "GdIcCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "lamI : ℝ",
+       "xI : ℝ",
+       "HSO : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii plus an IC barrier coordinate (lamI, xI) and a spin-orbit coupling HSO. The ICvsISC statement orders two Franck-Condon barriers; the Goldschmidt statement orders a radius ratio against a band. No delivered statement carries a spin-orbit coupling into the lattice vocabulary or a radius into the rate vocabulary.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdIcCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for an IC/ISC barrier pair and a spin-orbit coupling (lamI, xI, HSO), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the ICvsISC statement context is declared: the ICvsISC authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdIcCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-IC-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x ICvsISC pair: a band verdict against a barrier-ordering theorem with a spin-orbit premise.",
+      "domain": "the Goldschmidt band statements and the ICvsISC barrier/rate statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest admissible link is a one-way implication from the band verdict to the barrier ordering. That requires a shared energy scale, which the Goldschmidt authority does not have.",
+     "falsificationCondition": "The counterexample shape is `exists d, Pi d and P d and not Q d`: a band triple whose translated barrier ordering fails. A delivered statement carrying a radius into the barrier vocabulary or a barrier into the Goldschmidt vocabulary would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. The ICvsISC theorem orders two energies under a spin-orbit premise; the Goldschmidt predicate orders a radius ratio against a band. The two authorities share no observable and no import path.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-IC-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. The ICvsISC theorem orders two energies under a spin-orbit premise; the Goldschmidt predicate orders a radius ratio against a band. The two authorities share no observable and no import path.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `GoldschmidtConforms lo hi rA rB rO` is a band predicate on radii; `spin_discount` carries the premises `FCData`, `0 < HSO`, `HSO < 1`, `AI = AS` and a strict `icRate`/`iscRate` inequality, and concludes a strict `fcBarrier` ordering. No Goldschmidt statement contains a rate, a barrier or a coupling; no ICvsISC statement contains a radius or a tolerance factor. The signature scan over 139 Goldschmidt and 20 ICvsISC signatures finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-IC-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-ICvsISC (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 1002 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-Forster",
+   "theories": [
+    "Goldschmidt",
+    "Forster"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-FR-01",
+    "Q-XD2-FR-02"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-FR-01",
+     "pairId": "P-Goldschmidt-Forster",
+     "title": "Do the Goldschmidt contact threshold and the Forster half-efficiency threshold identify?",
+     "chemicalQuestion": "Do the two geometric thresholds - Goldschmidt's `t = 1` if and only if the A-O contact holds, and Forster's efficiency `1/2` at `R = R0` - identify under one shared length translation?",
+     "chemicalRationale": "`contact_iff_tolFac_one` states that the A-O contact equation `rA + rO = idealAO rB rO` is equivalent to `tolFac rA rB rO = 1`; `fretEff_self` states that the transfer efficiency at separation `R = R0` is `1/2`. The legacy register calls this pair a look-alike for exactly this reason: two purely geometric threshold criteria. The thresholds are 1 and 1/2, over a radius ratio and a distance ratio respectively, and the lengths are different objects - an ionic contact distance inside a crystal versus an intermolecular donor-acceptor separation in solution. An equivalence of the two threshold criteria would need a total translation (rA, rB, rO) -> (R0, R) that no delivered statement provides.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-contact_iff_tolFac_one",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.contact_iff_tolFac_one",
+       "declarationKind": "theorem",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 128,
+       "version": "1.0.0",
+       "signatureSha256": "d8ae8f60164576a5b508fcadd7d34876715887d033598e97068082b38d587157",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "theorem"
+      },
+      "target": {
+       "statementId": "stmt-Forster-PhotoLean-Forster-fretEff_self",
+       "theory": "Forster",
+       "declaration": "PhotoLean.Forster.fretEff_self",
+       "declarationKind": "theorem",
+       "sourceArtifact": "PhotoLean/Forster/Criterion.lean",
+       "sourceLine": 146,
+       "version": "1.0.0",
+       "signatureSha256": "1b9662bb9d4f7ae373ad2356f7ae42bd9daccd135070d726dbcdee9b4eb30ac9",
+       "sourceArtifactSha256": "20e6e3e09f72a443412bb440bdb68abc9bc782c74bfbc1dc0d0aa5d95ec696d4",
+       "endpointForm": "theorem"
+      }
+     },
+     "sharedContext": {
+      "id": "GdFrCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "R0 : ℝ",
+       "R : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii plus a Forster radius and a donor-acceptor separation (R0, R). Both endpoints are geometric threshold criteria, which is why the legacy register calls the pair a look-alike. The lengths are nevertheless different objects: R is an intermolecular separation in solution, R0 is a spectroscopic length built from the overlap integral and the orientation factor, and rA/rB/rO are ionic contact radii in a crystal. No delivered statement maps one family onto the other.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdFrCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a donor-acceptor separation and a Forster radius (R, R0), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Forster statement context is declared: the Forster authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdFrCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-FR-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x Forster pair: two geometric threshold criteria over unrelated lengths (legacy look-alike).",
+      "domain": "the Goldschmidt contact/tolerance statements and the Forster geometry/threshold statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "equivalence",
+     "expectedKindRationale": "The query asks for an equivalence of the two threshold criteria under one translation, which is the strongest statement the look-alike shape could support.",
+     "falsificationCondition": "The refutation shape is one input where one threshold holds and the other fails under the declared translation. A delivered statement identifying the A-O contact distance with the donor-acceptor separation would also remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. Two threshold criteria over unrelated lengths share a statement shape, not a length: `t = 1` certifies an ionic contact inside a perovskite, and `R = R0` certifies half transfer between two chromophores. No translation is delivered in either direction.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-FR-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. Two threshold criteria over unrelated lengths share a statement shape, not a length: `t = 1` certifies an ionic contact inside a perovskite, and `R = R0` certifies half transfer between two chromophores. No translation is delivered in either direction.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `contact_iff_tolFac_one` is about the A-O contact equation over ionic radii with the explicit premise `0 < rB + rO`; `fretEff_self` is about `fretEff R0 R0 = 1/2` over a Forster radius and a separation. The two authorities share no identifier in the signature scan (139 Goldschmidt rows versus 32 Forster rows, zero intersections), and the twelve occurrences of the plain word `transfer` in Goldschmidt docstrings never appear in a declaration signature."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-FR-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-Forster (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 1021 registers the absence."
+     }
+    },
+    {
+     "queryId": "Q-XD2-FR-02",
+     "pairId": "P-Goldschmidt-Forster",
+     "title": "Is the Goldschmidt lattice parameter the Forster radius?",
+     "chemicalQuestion": "Is the Goldschmidt cubic lattice parameter `latticeOf rB rO`, a length fixed by the B-O contact, the same quantity as the Forster radius sixth power `r0six C kappasq J n`, a spectroscopic length scale?",
+     "chemicalRationale": "`latticeOf rB rO = 2 * (rB + rO)` is a lattice length in angstrom fixed by the B-O contact; `r0six C kappasq Phi J n = C * kappasq * Phi * J / n^4` is the sixth power of the Forster radius in angstrom^6, built from the orientation factor, the donor quantum yield, the spectral overlap integral and the refractive index. The dimensions differ (length versus length to the sixth), the dependence differs (a linear ionic radius sum versus a product of spectroscopic factors), and no delivered statement maps an ionic radius to the overlap integral or the orientation factor. A definitional identity is therefore not merely unproved; it is not well-typed without inventing a map.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-latticeOf",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.latticeOf",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 42,
+       "version": "1.0.0",
+       "signatureSha256": "3f485a41378e332f6304fef490bc9401a08708954305eb4fc4d5ce8d2c00a2eb",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-Forster-PhotoLean-Forster-r0six",
+       "theory": "Forster",
+       "declaration": "PhotoLean.Forster.r0six",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+       "sourceLine": 65,
+       "version": "1.0.0",
+       "signatureSha256": "84d1486fd63184370b07492a0f7bcbe3253aa14e1f749c4beacd09d0fcc8b46b",
+       "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdFrCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "R0 : ℝ",
+       "R : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii plus a Forster radius and a donor-acceptor separation (R0, R). Both endpoints are geometric threshold criteria, which is why the legacy register calls the pair a look-alike. The lengths are nevertheless different objects: R is an intermolecular separation in solution, R0 is a spectroscopic length built from the overlap integral and the orientation factor, and rA/rB/rO are ionic contact radii in a crystal. No delivered statement maps one family onto the other.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdFrCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for a donor-acceptor separation and a Forster radius (R, R0), so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Forster statement context is declared: the Forster authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdFrCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-FR-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x Forster pair: two geometric threshold criteria over unrelated lengths (legacy look-alike).",
+      "domain": "the Goldschmidt contact/tolerance statements and the Forster geometry/threshold statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "definitionalIdentity",
+     "expectedKindRationale": "The query tests whether the two length scales are the same object, which is the strongest available identification (a kernel `rfl` after translation). The dimensional mismatch (angstrom versus angstrom^6) is decisive.",
+     "falsificationCondition": "The identity fails unless a delivered translation makes the two terms definitionally equal; the falsification condition is a translation whose kernel `rfl` check fails, or any radius pair whose translated Forster sixth power is not the sixth power of the lattice parameter.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. The lattice parameter is a geometric contact length and the Forster radius is a spectroscopic length assembled from the overlap integral; they are not the same object and no translation is delivered.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-FR-02",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. The lattice parameter is a geometric contact length and the Forster radius is a spectroscopic length assembled from the overlap integral; they are not the same object and no translation is delivered.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `latticeOf (rB rO : Real) : Real` is a linear ionic radius sum; `r0six (C kappasq Phi J n : Real) : Real` is a sixth power built from `kappasq`, `Phi`, `J` and `n`. The signatures share no argument and no identifier; the Goldschmidt authority has no overlap integral or orientation factor, and the Forster authority has no ionic radius."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-FR-02",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-Forster (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 1021 registers the absence."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-Einstein",
+   "theories": [
+    "Goldschmidt",
+    "Einstein"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD2-EI-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD2-EI-01",
+     "pairId": "P-Goldschmidt-Einstein",
+     "title": "Is Goldschmidt tau the Einstein radiative lifetime?",
+     "chemicalQuestion": "Is the Goldschmidt constant `tauGoldschmidt`, the printed 15 percent of the radius-substitution rule, the Einstein radiative lifetime `tauR A`?",
+     "chemicalRationale": "The shared symbol tau is the only link the names offer. `tauGoldschmidt : Real := 3 / 20` is a dimensionless fraction: the printed 15 percent tolerance of Goldschmidt's radius rule, consumed by the radius-match rows. `tauR A = 1 / A` is a radiative lifetime whose inverse is the Einstein A coefficient. One is a tolerance on an ionic radius, the other a time. A definitional identity would require `3 / 20 = 1 / A`, an arithmetic coincidence at `A = 20 / 3` that no delivered statement asserts and that would not be a statement-level relation even if it held. The naming similarity is exactly the kind of evidence the boundary contract forbids.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-tauGoldschmidt",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.tauGoldschmidt",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 95,
+       "version": "1.0.0",
+       "signatureSha256": "3f51f0ecedc99a65a0e79dfba9f692ff3214546bef09512ed09c2f8ecde6e9ae",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-Einstein-PhotoLean-Einstein-tauR",
+       "theory": "Einstein",
+       "declaration": "PhotoLean.Einstein.tauR",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+       "sourceLine": 65,
+       "version": "1.0.0",
+       "signatureSha256": "b515d1f09b47e8e4a348a64dd5f6444338fb4f77939b88a5b4fc1921d549f98f",
+       "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GdEiCandidateCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ",
+       "A : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the perovskite radii plus an Einstein A coefficient. The shared symbol tau is the only link the names offer: on the Goldschmidt side tauGoldschmidt is the dimensionless 3/20 of the radius rule, on the Einstein side tauR is the radiative lifetime 1/A. A lifetime is not a radius tolerance, and no delivered statement maps a radius to a rate.",
+      "provenance": "bounded_audit/r5/cross-domain-02/screening.json#GdEiCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Goldschmidt statement context is declared: the Goldschmidt authority has no term for an Einstein A coefficient, so the inclusion of that part of the candidate context has no image."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "none-declared",
+       "reason": "No total translation out of the candidate context into the Einstein statement context is declared: the Einstein authority has no term for an ionic radius, a lattice length or a tolerance band, so the Goldschmidt part of the candidate context has no image."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GdEiCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD2-EI-jurisdiction",
+      "description": "Statement-level jurisdiction registration for the Goldschmidt x Einstein pair: a dimensionless radius-rule constant against a radiative lifetime.",
+      "domain": "the Goldschmidt radius-rule statements and the Einstein coefficient/lifetime statements of the frozen snapshot; no claim outside the named jurisdiction reason.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "definitionalIdentity",
+     "expectedKindRationale": "The query tests the strongest possible identification of the two tau-named constants, a kernel `rfl` after a translation. A dimensionless tolerance cannot be definitionally equal to a lifetime.",
+     "falsificationCondition": "The identity fails unless a delivered translation makes the two terms definitionally equal; the falsification condition is a translation whose kernel `rfl` check fails, or any A where the translated tau values differ.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "The pair is outside the declared audit jurisdiction. A dimensionless radius-rule constant and a radiative lifetime are different objects with different dimensions; the shared symbol is notation, not a shared quantity, and no translation is delivered.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD2-EI-01",
+       "jurisdictionRationale": "The pair is outside the declared audit jurisdiction. A dimensionless radius-rule constant and a radiative lifetime are different objects with different dimensions; the shared symbol is notation, not a shared quantity, and no translation is delivered.",
+       "statementLevelReason": "Statement-level jurisdiction reason: `tauGoldschmidt : Real` is the constant `3 / 20` of the radius rule; `tauR (A : Real) : Real` is `1 / A`, the radiative lifetime. The Goldschmidt authority has no rate or lifetime statement and the Einstein authority has no radius or tolerance statement; the signature scan over 139 Goldschmidt and 33 Einstein signatures finds zero shared identifiers."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-02/search-log.json",
+      "locator": "SL-XD2-EI-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-Einstein (pair-level anchor, status notEstablished, no kind, no certificate); PhotoLean/Relations.lean §16 line 969 registers the absence."
+     }
+    }
+   ]
+  }
+ ],
+ "counts": {
+  "pairs": 9,
+  "queries": 11,
+  "byStatus": {
+   "outOfScope": 11
+  },
+  "byExpectedKind": {
+   "implication": 4,
+   "equivalence": 4,
+   "definitionalIdentity": 3
+  },
+  "certified": 0,
+  "refuted": 0,
+  "unresolved": 0,
+  "notEstablished": 0,
+  "outOfScope": 11,
+  "pairsWithAtLeastOneQuery": 9,
+  "pairsWithoutNamedQuery": 0
+ },
+ "nonClaims": [
+  "This package screens nine pairs; it is not a completeness theorem for the corpus and not a claim that no Goldschmidt-partner relation could be written outside the frozen inventory.",
+  "Every outOfScope record is a scoped jurisdiction registration with a statement-level reason; it is not a claim of logical non-existence and not a negative verdict on the chemistry of perovskites or of photophysics.",
+  "No relation is certified, refuted or forced in this package; the zero counts for certified/refuted are a property of the frozen statement authorities, not an achievement target.",
+  "The legacy census label (registered absence, or look-alike for Forster) is coverage history and is not used as evidence for any outcome.",
+  "The mutable R5 cumulative ledger is outside this package; prior coverage is derived from the five accepted screening packages."
+ ]
+}

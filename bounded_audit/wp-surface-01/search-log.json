@@ -1,0 +1,310 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-search-log",
+  "round": "R2",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-SURFACE-01",
+  "snapshot": "snap-bounded-audit-2026-11-04",
+  "entries": [
+    {
+      "searchId": "SL-WPS01-HS-01",
+      "queryId": "Q-WPS01-HS-01",
+      "pairId": "P-Hammond-Sabatier",
+      "status": "unresolved",
+      "scope": "scope-WPS01-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Hammond-PhotoLean-Hammond-HammondDescriptor",
+        "stmt-Sabatier-PhotoLean-Sabatier-VolcanoDescriptor",
+        "stmt-Sabatier-PhotoLean-Sabatier-parabolicBarrier",
+        "stmt-Sabatier-PhotoLean-Sabatier-apexPar"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "HammondSabatierCandidateCtx (lam, x) with the Sabatier profile instantiated on the Hammond barrier"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§10 no-edge registry, Sabatier ↔ Hammond",
+          "finding": "The accepted registry states there is no edge: Sabatier consumes PhotoLean.BEP.Basic only and never the structural reading."
+        },
+        {
+          "artifact": "PhotoLean/Sabatier/Basic.lean",
+          "locator": "VolcanoDescriptor, branchUp, branchDown, volcanoBarrier, activity",
+          "finding": "The Sabatier predicate is a higher-order property of a barrier profile on a descriptor axis; it has no structural-coordinate argument."
+        },
+        {
+          "artifact": "PhotoLean/Hammond/Basic.lean",
+          "locator": "HammondDescriptor, ReactionRegion, gapReactant, tsCoord",
+          "finding": "The Hammond predicate is a property of the curvature lam only; the structural coordinate is a function of (lam, x)."
+        },
+        {
+          "artifact": "PhotoLean/Sabatier/Compose.lean",
+          "locator": "parabolicBarrier, parabolaUp, parabolaDown",
+          "finding": "The two-parabola Sabatier barrier unfolds to BEP.eact at ±dE, which is definitionally the kernel/Hammond barrier. A term-level identity is available, but it does not by itself transfer the descriptor predicate."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn '^import' PhotoLean/Sabatier",
+          "purpose": "Measure the module dependency fact.",
+          "result": "Sabatier/Compose imports PhotoLean.BEP.Basic and PhotoLean.Sabatier.Basic; no Hammond/Kasha/SymmetryFactor import."
+        },
+        {
+          "command": "grep -rn '^import' PhotoLean/Hammond",
+          "purpose": "Measure the module dependency fact.",
+          "result": "Hammond imports Marcus modules only; no Sabatier import."
+        },
+        {
+          "command": "grep -rn 'Sabatier' PhotoLean/Hammond PhotoLean/Kasha PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search for a delivered cross-theory statement.",
+          "result": "No matches."
+        },
+        {
+          "command": "grep -rn 'Hammond\\|Kasha\\|SymmetryFactor' PhotoLean/Sabatier --include='*.lean'",
+          "purpose": "Search for a delivered cross-theory statement from the Sabatier side.",
+          "result": "No matches."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Sabatier",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False; registry record rec-notestablished-P-Hammond-Sabatier status='notEstablished', certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search the legacy registry for a certificate between the two predicates.",
+          "outcome": "None; the pair has only a pair-level notEstablished record."
+        },
+        {
+          "strategy": "Search the delivered cross-theory modules for a theorem whose type mentions both predicates.",
+          "outcome": "None."
+        },
+        {
+          "strategy": "Instantiate Sabatier.VolcanoDescriptor on the Hammond/kernel barrier and try to reuse a delivered monotonicity lemma.",
+          "outcome": "The candidate implication appears provable, but no delivered statement-level bridge or typed certificate exists; building it would require a new uniqueness proof and a declared translation of the descriptor axis. Not attempted in this round."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "term-level identity",
+          "statement": "Sabatier.parabolicBarrier lam1 lam2 dE = max (Hammond.gapReactant lam1 (-dE)) (Hammond.gapReactant lam2 dE)",
+          "status": "candidate; not certified, because the query asks about the descriptor predicate, not the barrier term."
+        }
+      ],
+      "remainingGap": "A checked implication from Hammond.HammondDescriptor to the instantiated Sabatier.VolcanoDescriptor, together with a declared total translation of the descriptor axis to the Hammond driving force, is missing.",
+      "recomputeCommands": [
+        "grep -rn '^import' PhotoLean/Sabatier",
+        "grep -rn '^import' PhotoLean/Hammond",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Hammond-Sabatier"
+      ],
+      "rationale": "The pair is a registered no-edge in the legacy registry. A term-level barrier identity exists, but the descriptor-level comparison is not settled; recording it as unresolved avoids both a forced edge and an unsupported negative claim."
+    },
+    {
+      "searchId": "SL-WPS01-KS-01",
+      "queryId": "Q-WPS01-KS-01",
+      "pairId": "P-Kasha-Sabatier",
+      "status": "unresolved",
+      "scope": "scope-WPS01-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "kasha.kashaRule",
+        "stmt-Sabatier-PhotoLean-Sabatier-VolcanoDescriptor",
+        "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+        "stmt-Sabatier-PhotoLean-Sabatier-activity"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "KashaSabatierCandidateCtx (x, A, kB, T) with the Sabatier descriptor axis read as the Kasha energy gap"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§10 no-edge registry, Sabatier ↔ Kasha",
+          "finding": "The accepted registry states the two second-batch theories share no module and no object: one is a descriptor-axis optimisation, the other an excited-state cascade."
+        },
+        {
+          "artifact": "PhotoLean/Kasha/Basic.lean",
+          "locator": "KashaRule, KashaWithin, upperYield, cascade",
+          "finding": "The Kasha rule is a branching-ratio predicate on a ladder of rates; it has no descriptor-axis barrier argument."
+        },
+        {
+          "artifact": "PhotoLean/Kasha/Compose.lean",
+          "locator": "marcusIC",
+          "finding": "Kasha.marcusIC is an Arrhenius rate with the Marcus barrier; it shares the rate template with Sabatier.activity but not the volcano predicate."
+        },
+        {
+          "artifact": "PhotoLean/Sabatier/Basic.lean",
+          "locator": "VolcanoDescriptor, activity",
+          "finding": "The Sabatier activity is a functional of a barrier profile; the volcano descriptor is a uniqueness predicate on that profile."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn '^import' PhotoLean/Kasha",
+          "purpose": "Measure the module dependency fact.",
+          "result": "Kasha imports PhotoLean.Marcus.Basic in Compose; no Sabatier import."
+        },
+        {
+          "command": "grep -rn '^import' PhotoLean/Sabatier",
+          "purpose": "Measure the module dependency fact.",
+          "result": "Sabatier imports BEP.Basic and its own modules; no Kasha import."
+        },
+        {
+          "command": "grep -rn 'Sabatier' PhotoLean/Kasha --include='*.lean'",
+          "purpose": "Search for a delivered cross-theory statement.",
+          "result": "No matches."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-Sabatier",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False; registry record rec-notestablished-P-Kasha-Sabatier status='notEstablished', certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a legacy named query or certificate linking the Kasha rule to a Sabatier optimum.",
+          "outcome": "None; only a pair-level notEstablished record."
+        },
+        {
+          "strategy": "Try the shared Arrhenius rate template (Kasha.marcusIC versus Sabatier.activity) as a bridge.",
+          "outcome": "The rate terms share a template, but the Kasha rule is a ladder predicate and the Sabatier descriptor is a barrier-profile predicate; the template does not transfer either predicate."
+        },
+        {
+          "strategy": "Read the Kasha window result (kashaWithin_one_marcus) as a candidate tolerance condition and compare it with Sabatier.NearOptimal.",
+          "outcome": "The two tolerance predicates constrain different quantities (yield ratio versus descriptor distance); no total translation is delivered."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "shared Arrhenius template",
+          "statement": "Kasha.marcusIC A lam kB T x = A * Sabatier.activity (fun y => Kernel.barrier lam y) kB T x",
+          "status": "candidate term-level identity; it does not answer the rule-versus-volcano query."
+        }
+      ],
+      "remainingGap": "A declared map from the ladder energy gap and yield ratios to the Sabatier descriptor axis, plus a checked equivalence between KashaRule and the instantiated volcano/optimality predicate, is missing.",
+      "recomputeCommands": [
+        "grep -rn '^import' PhotoLean/Kasha",
+        "grep -rn '^import' PhotoLean/Sabatier",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-Sabatier"
+      ],
+      "rationale": "The pair is a registered no-edge. The only visible bridge is the shared Arrhenius template, which does not relate the two predicates. The predicate-level question is left unresolved rather than forced."
+    },
+    {
+      "searchId": "SL-WPS01-SF-01",
+      "queryId": "Q-WPS01-SF-01",
+      "pairId": "P-Sabatier-SymmetryFactor",
+      "status": "unresolved",
+      "scope": "scope-WPS01-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04",
+      "searchedStatements": [
+        "stmt-Sabatier-PhotoLean-Sabatier-apexPar",
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-Sabatier-PhotoLean-Sabatier-parabolicBarrier",
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-asymReactantSurface",
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-asymProductSurface"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "SabatierSymmetryCandidateCtx (lam1, lam2) read both as branch curvatures and as force constants"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "§10 no-edge registry, SymmetryFactor ↔ Sabatier",
+          "finding": "The accepted registry states the curvature-pair scalar (kr, kp) shares no object with the volcano descriptor axis; no module is imported across the pair."
+        },
+        {
+          "artifact": "PhotoLean/Sabatier/Compose.lean",
+          "locator": "apexPar, parabolicBarrier, parabolaUp, parabolaDown",
+          "finding": "The Sabatier apex is a descriptor-axis closed form (lam2*sqrt(lam1) - lam1*sqrt(lam2))/(sqrt(lam1)+sqrt(lam2))."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "tsCoordZero, asymReactantSurface, asymProductSurface",
+          "finding": "The SymmetryFactor coordinate is a reaction-coordinate crossing sqrt(kp)/(sqrt(kr)+sqrt(kp)); the two quantities are different coordinates of the two-parabola model."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Sharp.lean",
+          "locator": "tsCoordZero_eq_kernel_thermoneutral, betaHalf_eq_transfer_thermoneutral",
+          "finding": "The delivered tie-backs go to Kernel.tsCoord and BEP.transfer, not to Sabatier.apexPar."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn '^import' PhotoLean/SymmetryFactor",
+          "purpose": "Measure the module dependency fact.",
+          "result": "SymmetryFactor imports Kernel and BEP.Criterion; no Sabatier import."
+        },
+        {
+          "command": "grep -rn '^import' PhotoLean/Sabatier",
+          "purpose": "Measure the module dependency fact.",
+          "result": "Sabatier imports BEP.Basic and its own modules; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/Sabatier --include='*.lean'",
+          "purpose": "Search for a delivered cross-theory statement.",
+          "result": "No matches."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-SymmetryFactor",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False; registry record rec-notestablished-P-Sabatier-SymmetryFactor status='notEstablished', certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a legacy or delivered statement linking the two closed forms.",
+          "outcome": "None."
+        },
+        {
+          "strategy": "Check whether the two formulas are the same expression after substitution.",
+          "outcome": "They are not: apexPar is a descriptor-axis value and tsCoordZero is a reaction-coordinate ratio."
+        },
+        {
+          "strategy": "Look for an algebraic bridge of the form apexPar = sqrt(lam1*lam2) * (2*tsCoordZero - 1).",
+          "outcome": "The identity is a plausible algebraic candidate, but it is not delivered and it still does not identify the two physical coordinates. Not attempted in this round."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "algebraic candidate",
+          "statement": "apexPar lam1 lam2 = sqrt(lam1*lam2) * (2*tsCoordZero lam1 lam2 - 1)",
+          "status": "candidate; not checked in Lean and not a physical coordinate identification."
+        }
+      ],
+      "remainingGap": "A checked algebraic relation and a declared physical coordinate identification between the Sabatier descriptor axis and the SymmetryFactor reaction coordinate are missing.",
+      "recomputeCommands": [
+        "grep -rn '^import' PhotoLean/SymmetryFactor",
+        "grep -rn '^import' PhotoLean/Sabatier",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Sabatier-SymmetryFactor"
+      ],
+      "rationale": "The pair is a registered no-edge. The two optimum formulas live on different axes; a candidate algebraic relation is recorded, but no physical-coordinate identification is delivered. The query remains unresolved rather than being forced into an equivalence."
+    }
+  ],
+  "counts": {
+    "entries": 3,
+    "byStatus": {
+      "unresolved": 3
+    }
+  }
+}

@@ -1,0 +1,16 @@
+M0   exit=0  (no failure line)
+M1   exit=1  FAIL [pairs.coverage] screening pair set is not exactly the assigned thirteen
+M2   exit=1  FAIL [pair.queryIds] pair 'P-FluorPhos-ICvsISC' queryIds do not match its query rows
+M3   exit=1  FAIL [pairs.coverage] screening pair set is not exactly the assigned thirteen
+M4   exit=1  FAIL [evidence.probeDeclMissing] query 'Q-RAD3-FI-01' probe declaration is not in the probe source
+M5   exit=1  FAIL [endpoint.signatureSha256] query 'Q-RAD3-FI-01' source endpoint field signatureSha256 drifts from the inventory
+M6   exit=1  FAIL [evidence.kindPin] query 'Q-RAD3-FF-01' screening kind 'equivalence' does not match the probe kind pin 'observationalEquivalence'
+M7   exit=1  FAIL [translation.reason] query 'Q-RAD3-EF-01' left translation 'none-declared' has no reason
+M8   exit=1  FAIL [probe.declarationCoverage] probe axiom declarations ['PhotoLean.RelationAudit.BoundedAudit.Rad3.eiCrossoverComposition', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiRateDefinition', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.esBarrierEmissionBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.esZeroBarrierBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.ffTransferBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiBranchBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiElSayedBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.foEinBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.fpEinsBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.siSurfaceBridge'] do not match the certified query declarations ['PhotoLean.RelationAudit.BoundedAudit.Rad3.eiCrossoverComposition', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiRateDefinition', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.esBarrierEmissionBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.esZeroBarrierBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.ffTransferBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiElSayedBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.foEinBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.fpEinsBridge', 'PhotoLean.RelationAudit.BoundedAudit.Rad3.siSurfaceBridge']
+M9   exit=1  FAIL [search.missing] query 'Q-RAD3-EF-01' status outOfScope has no search-log entry 'SL-RAD3-EF-01'
+M10  exit=1  FAIL [snapshot.coveragePinned] the snapshot pins the mutable R5 coverage ledger
+M11  exit=1  FAIL [fragment.counts.delta] coverage fragment screened delta drift
+M12  exit=1  FAIL [evidence.premiseMatch] query 'Q-RAD3-FF-01' declared premiseIds ['RAD3-FF-tauD-nonzero-X', 'RAD3-FF-R-nonzero'] do not match the probe witness ['RAD3-FF-tauD-nonzero', 'RAD3-FF-R-nonzero']
+M13  exit=1  FAIL [evidence.parentWitness] query 'Q-RAD3-EI-02' composition parent ids do not match the probe witness
+M14  exit=1  FAIL [snapshot.inventorySha256] audit_boundary/statement-inventory.json hash drift: 0000000000000000000000000000000000000000000000000000000000000000 != 3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947
+M15  exit=1  FAIL [premise.defIds] query 'Q-RAD3-FI-02' premiseIds and definitions do not match

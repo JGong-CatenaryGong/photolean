@@ -1,0 +1,147 @@
+### M0 baseline (unmutated copies)
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/screening.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=0
+  checks failed: 0
+RESULT: PASS (all conical-intersection package checks passed)
+
+### M1 drop one assigned pair
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s1.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 13
+FAIL [pairs.coverage] screening pair set is not exactly the approved sixteen
+FAIL [pairs.count] screening pair count is not sixteen
+FAIL [queries.count] query count is 15, expected 16
+FAIL [search.queryMissing] search entry 'SL-CI-FO-01' points to unknown query 'Q-CI-FO-01'
+FAIL [counts.queries] query count drift
+FAIL [counts.byStatus] status counts drift: {'certified': 8, 'unresolved': 6, 'notEstablished': 1, 'outOfScope': 1} != {'certified': 8, 'unresolved': 5, 'outOfScope': 1, 'notEstablished': 1}
+FAIL [counts.byExpectedKind] kind counts drift: {'observationalEquivalence': 8, 'definitionalIdentity': 1, 'implication': 4, 'equivalence': 2, 'conditionalComposition': 1} != {'observationalEquivalence': 8, 'implication': 4, 'definitionalIdentity': 1, 'equivalence': 2}
+FAIL [counts.unresolved] declared unresolved count drift
+FAIL [fragment.sha] coverage fragment screening hash drift
+FAIL [fragment.pairs] coverage fragment pairs do not match the screening pairs
+FAIL [fragment.counts.pairs] coverage fragment pair count drift
+FAIL [fragment.counts.queries] coverage fragment query count drift
+FAIL [fragment.counts.byStatus] coverage fragment status counts drift
+RESULT: FAIL (13 failed checks)
+
+### M2 duplicate a query id
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s2.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 2
+FAIL [queries.duplicate] duplicate query id in screening package
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+### M3 add an accepted R2 pair
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s3.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 16
+FAIL [pairs.coverage] screening pair set is not exactly the approved sixteen
+FAIL [pairs.count] screening pair count is not sixteen
+FAIL [pairs.acceptedOverlap] screening pairs overlap the accepted R2/R3 pairs
+FAIL [pair.theories] pair 'P-Marcus-Kasha' theories do not match the R1 queue
+FAIL [pair.cluster] pair 'P-Marcus-Kasha' primary cluster does not match the R1 queue
+FAIL [queries.duplicate] duplicate query id in screening package
+FAIL [queries.count] query count is 17, expected 16
+FAIL [counts.queries] query count drift
+FAIL [counts.byStatus] status counts drift: {'certified': 8, 'unresolved': 6, 'notEstablished': 1, 'outOfScope': 1} != {'certified': 9, 'unresolved': 6, 'outOfScope': 1, 'notEstablished': 1}
+FAIL [counts.byExpectedKind] kind counts drift: {'observationalEquivalence': 8, 'definitionalIdentity': 1, 'implication': 4, 'equivalence': 2, 'conditionalComposition': 1} != {'observationalEquivalence': 9, 'implication': 4, 'definitionalIdentity': 1, 'equivalence': 2, 'conditionalComposition': 1}
+FAIL [counts.certified] declared certified count drift
+FAIL [fragment.sha] coverage fragment screening hash drift
+FAIL [fragment.pairs] coverage fragment pairs do not match the screening pairs
+FAIL [fragment.counts.pairs] coverage fragment pair count drift
+FAIL [fragment.counts.queries] coverage fragment query count drift
+FAIL [fragment.counts.byStatus] coverage fragment status counts drift
+RESULT: FAIL (16 failed checks)
+
+### M4 forge a certificate
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s4.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 15
+FAIL [evidence.probeHash] query 'Q-CI-HM-01' probe source hash drift
+FAIL [evidence.probeDeclMissing] query 'Q-CI-HM-01' probe declaration is not in the probe source
+FAIL [evidence.probeKindMissing] query 'Q-CI-HM-01' probe kind-check theorem is missing
+FAIL [evidence.probeAxiomLog] query 'Q-CI-HM-01' probe declaration has no axiom print-out
+FAIL [evidence.underlying] query 'Q-CI-HM-01' probe evidence cites no underlying theorem
+FAIL [probe.declarationCoverage] probe axiom declarations ['PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin', 'PhotoLean.RelationAudit.BoundedAudit.CI.marcusRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge'] do not match the certified query declarations ['PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.forged', 'PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin', 'PhotoLean.RelationAudit.BoundedAudit.CI.marcusRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge']
+FAIL [search.status] search entry 'SL-CI-HM-01' status does not match its query
+FAIL [search.backref] query 'Q-CI-HM-01' does not point back to search entry 'SL-CI-HM-01'
+FAIL [search.certifiedEntry] certified query 'Q-CI-HM-01' has a search-log entry
+FAIL [counts.byStatus] status counts drift: {'certified': 8, 'unresolved': 6, 'notEstablished': 1, 'outOfScope': 1} != {'certified': 9, 'unresolved': 5, 'outOfScope': 1, 'notEstablished': 1}
+FAIL [counts.certified] declared certified count drift
+FAIL [counts.unresolved] declared unresolved count drift
+FAIL [fragment.sha] coverage fragment screening hash drift
+FAIL [fragment.byStatus] coverage fragment status counts for 'P-Hammond-RACI' drift
+FAIL [fragment.counts.byStatus] coverage fragment status counts drift
+RESULT: FAIL (15 failed checks)
+
+### M5 tamper an endpoint signature hash
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s5.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 2
+FAIL [endpoint.signatureSha256] query 'Q-CI-MR-01' source endpoint field signatureSha256 drifts from the inventory
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+### M6 mislabel a certificate kind
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s6.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 2
+FAIL [evidence.kindMatch] query 'Q-CI-MR-01' evidence kind 'equivalence' does not match expectedKind 'observationalEquivalence'
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+### M7 strip an outOfScope translation reason
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s7.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 2
+FAIL [translation.reason] query 'Q-CI-GS-01' left translation 'none-declared' has no reason
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+### M8 swap a certificate for another probe declaration
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s8.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 2
+FAIL [probe.declarationCoverage] probe axiom declarations ['PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin', 'PhotoLean.RelationAudit.BoundedAudit.CI.marcusRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge'] do not match the certified query declarations ['PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin', 'PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge', 'PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge']
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+### M9 delete a search-log entry
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/screening.json --search-log /tmp/ci-mut3/l9.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 4
+FAIL [searchLogReference.sha256] search-log hash drift
+FAIL [search.missing] query 'Q-CI-GS-01' status outOfScope has no search-log entry 'SL-CI-GS-01'
+FAIL [searchLogReference.entryCount] search-log reference entry count drift
+FAIL [counts.searchEntries] search-log entry count drift
+RESULT: FAIL (4 failed checks)
+
+### M10 pin the mutable cumulative ledger
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/s10.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/coverage-fragment.json
+exit=1
+  checks failed: 2
+FAIL [snapshot.coveragePinned] the snapshot pins the mutable R4 coverage ledger
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+### M11 drift the coverage fragment
+$ python3 ./bounded_audit/r4/conical-01/validate.py --screening /tmp/ci-mut3/screening.json --search-log /tmp/ci-mut3/search-log.json --fragment /tmp/ci-mut3/f11.json
+exit=1
+  checks failed: 1
+FAIL [fragment.counts.delta] coverage fragment screened delta drift
+RESULT: FAIL (1 failed checks)
+
+SUMMARY
+mutation                                                exit     verdict
+M0 baseline (unmutated copies)                          0        PASS
+M1 drop one assigned pair                               1        FAIL-CLOSED
+M2 duplicate a query id                                 1        FAIL-CLOSED
+M3 add an accepted R2 pair                              1        FAIL-CLOSED
+M4 forge a certificate                                  1        FAIL-CLOSED
+M5 tamper an endpoint signature hash                    1        FAIL-CLOSED
+M6 mislabel a certificate kind                          1        FAIL-CLOSED
+M7 strip an outOfScope translation reason               1        FAIL-CLOSED
+M8 swap a certificate for another probe declaration     1        FAIL-CLOSED
+M9 delete a search-log entry                            1        FAIL-CLOSED
+M10 pin the mutable cumulative ledger                   1        FAIL-CLOSED
+M11 drift the coverage fragment                         1        FAIL-CLOSED

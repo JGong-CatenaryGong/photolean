@@ -1,0 +1,50 @@
+R5 XD1 cross-domain-01 - /tmp mutation evidence
+generated: 2026-11-04
+Each mutation runs the package validator on a copied artifact; all must exit 1.
+
+== M1 pair-id-excluded exit=1
+FAIL [pairs.coverage] screening pair set is not exactly the approved fifteen
+FAIL [pairs.acceptedOverlap] screening pairs overlap the accepted R2/R3/R4 pairs
+FAIL [pairs.excluded] the accepted P-Kasha-Sabatier pair is present
+FAIL [pair.theories] pair 'P-Kasha-Sabatier' theories do not match the R1 queue
+FAIL [search.pairId] search entry 'SL-XD1-MG-01' pairId drift
+FAIL [fragment.sha] coverage fragment screening hash drift
+FAIL [fragment.pairs] coverage fragment pairs do not match the screening pairs
+RESULT: FAIL (7 failed checks)
+
+== M2 endpoint-missing exit=1
+FAIL [endpoint.missing] query 'Q-XD1-MG-01' source endpoint 'not-an-inventory-statement' is not an inventory statement
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+== M3 status-certified-no-proof exit=1
+FAIL [evidence.type] query 'Q-XD1-MG-01' certified evidence has unsupported type 'jurisdiction'
+FAIL [evidence.kindMatch] query 'Q-XD1-MG-01' evidence kind None does not match expectedKind 'implication'
+FAIL [evidence.allowedAxioms] query 'Q-XD1-MG-01' evidence allowed-axiom list drift
+FAIL [evidence.probePath] query 'Q-XD1-MG-01' probe path drift
+FAIL [evidence.probeHash] query 'Q-XD1-MG-01' probe source hash drift
+FAIL [evidence.probeDecl] query 'Q-XD1-MG-01' probe declaration is outside the XD1 namespace
+FAIL [evidence.kindCheckName] query 'Q-XD1-MG-01' kind-check theorem is not <declaration>_kind
+FAIL [evidence.probeBuild] query 'Q-XD1-MG-01' probe build command drift
+
+== M4 context-field-drift exit=1
+FAIL [context.fieldsMatch] query 'Q-XD1-MG-01' shared-context fields drift from the library
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+
+== M5 search-entry-missing exit=1
+FAIL [searchLogReference.sha256] search-log hash drift
+FAIL [search.missing] query 'Q-XD1-GSF-01' status outOfScope has no search-log entry 'SL-XD1-GSF-01'
+FAIL [searchLogReference.entryCount] search-log reference entry count drift
+FAIL [counts.searchEntries] search-log entry count drift
+RESULT: FAIL (4 failed checks)
+
+== M6 fragment-hash-drift exit=1
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (1 failed checks)
+
+== M7 scope-description-drift exit=1
+FAIL [scope.descriptionMatch] query 'Q-XD1-MG-01' scope description drifts from the library
+FAIL [fragment.sha] coverage fragment screening hash drift
+RESULT: FAIL (2 failed checks)
+

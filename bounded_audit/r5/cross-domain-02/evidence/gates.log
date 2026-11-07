@@ -1,0 +1,240 @@
+# R5 XD2 evidence gates - 2026-11-04T03:04:47+08:00
+# repository root: .
+
+$ python3 audit_boundary/validate_boundary.py
+Bounded relation-audit boundary validation
+  root: .
+  boundary.md: present
+  theories: 17
+  pairs: 136
+  statement rows: 1154 (authority 1153, shared 1, eligible 1134)
+  unique pairs: 136
+  clusters: 6
+  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0
+RESULT: PASS (all boundary checks passed)
+[exit=0]
+
+$ python3 bounded_audit/validate_screening.py
+R2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all bounded-screening checks passed)
+[exit=0]
+
+$ python3 bounded_audit/r4/validate_r3_content.py
+R3 bounded screening content validation (derived)
+  root: .
+  excluded current-ledger freshness checks: 7
+EXCLUDED [snapshot.coverageLedgerSha256] current-ledger hash pin on bounded_audit/coverage.json (accepted pin a584d38e9318704e3cfa5ea482da09aaa88edaa066e61084dfbd834d502e09fd, current d1e44bf7bbb5e81c7b85f610d6ffc1d4d3fed0fcde5cd1ab3202fb23ca6c32fa; owned by r4/validate_coverage.py)
+EXCLUDED [coverage.round] current-ledger round: accepted package pinned R3, current 'R4' (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.cumulative] current-ledger cumulative screened count: pinned 21, current 67 (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.remaining] current-ledger cumulative remaining count: pinned 115, current 69 (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.byRound] current-ledger by-round counts: pinned {'R2': 10, 'R3': 11}, current {'R2': 10, 'R3': 11, 'R4': 46} (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.remainingCount] current-ledger remaining list length: pinned 115, current 69 (owned by r4/validate_coverage.py)
+EXCLUDED [coverage.remainingSet] current-ledger remaining list contents: pinned queue-minus-screened (115), current 69 (owned by r4/validate_coverage.py)
+  checks failed: 0
+RESULT: PASS (all R3 package-content checks passed; 7 current-ledger freshness checks excluded)
+[exit=0]
+
+$ python3 bounded_audit/r4/validate_coverage.py --coverage bounded_audit/r4/coverage-accepted.json
+R4 cumulative coverage validation
+  root: .
+  ledger: bounded_audit/r4/coverage-accepted.json
+  accepted pairs: 21
+  submitted R4 pairs: 46
+  R4 named queries: 46
+  R4 query outcomes: {"certified": 19, "notEstablished": 1, "outOfScope": 7, "unresolved": 19}
+  cumulative: 67/136 screened, 69 remaining
+  checks passed: 846
+  checks failed: 0
+RESULT: PASS (all R4 coverage checks passed)
+[exit=0]
+
+$ proofs/scripts/check.sh --strict
+==> [PhotoLean] leaf data plane
+==> per-theory leaf data plane (theories/*/ : plan.md TASKS.md LITERATURE.md RESULTS.md probes/)
+   OK      theories/BEP (5/5)
+   OK      theories/Einstein (5/5)
+   OK      theories/EnergyGapLaw (5/5)
+   OK      theories/FluorPhos (5/5)
+   OK      theories/Forster (5/5)
+   OK      theories/goldschmidt (5/5)
+   OK      theories/hammond (5/5)
+   OK      theories/ICvsISC (5/5)
+   OK      theories/kasha (5/5)
+   OK      theories/KashaVavilov (5/5)
+   OK      theories/Marcus (5/5)
+   OK      theories/QuantumYield (5/5)
+   OK      theories/RACI (5/5)
+   OK      theories/Sabatier (5/5)
+   OK      theories/SternVolmer (5/5)
+   OK      theories/StokesShift (5/5)
+   OK      theories/SymmetryFactor (5/5)
+==> lake build all
+⚠ [6345/6409] Replayed PhotoLean.SternVolmer.Basic
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:32: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:35: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6384/6409] Replayed PhotoLean.SternVolmer.RatModel
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:22: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:25: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6395/6409] Replayed PhotoLean.FluorPhos.RatModel
+warning: ././././PhotoLean/FluorPhos/RatModel.lean:89:21: unused variable `kIC`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.
+==> sorry / custom axiom scan (PhotoLean/**/*.lean)
+clean
+==> summary
+build: OK
+allowed axioms: propext Classical.choice Quot.sound
+verdict: PASS
+[exit=0]
+
+$ find bounded_audit/r5/cross-domain-02 -name "*.lean" | wc -l
+0
+[exit=0]
+
+# No local probe: the package claims no certified and no refuted outcome, so no Lean
+# certificate is introduced. Probe compilation and per-declaration axiom audits are therefore
+# not applicable; the delivered tree is instead covered by the strict build/scan gate above.
+
+$ sha256sum relation_audit/registry.json
+25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0  relation_audit/registry.json
+[exit=0]
+
+$ find PhotoLean -name "*.lean" | wc -l
+102
+[exit=0]
+
+$ git status --porcelain
+ M lakefile.toml
+ M proofs/EXPERIENCE.md
+?? PhotoLean/RelationAudit.lean
+?? PhotoLean/RelationAudit/
+?? audit_boundary/
+?? bounded_audit/
+?? docs/RELATION-AUDIT-CONTRACT.md
+?? docs/RELATION-AUDIT.md
+?? relation_audit/
+?? tests/
+?? tools/relation_audit.py
+?? tools/relation_audit/
+?? tools/relation_audit_inventory.py
+?? tools/relation_audit_migration.py
+?? tools/relation_audit_registry.py
+[exit=0]
+
+$ git diff --stat
+ lakefile.toml        |  3 ++-
+ proofs/EXPERIENCE.md | 49 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 51 insertions(+), 1 deletion(-)
+[exit=0]
+
+$ ls -l --time-style=long-iso lakefile.toml proofs/EXPERIENCE.md
+-rw-r--r-- 1 jgong jgong   5122 2026-10-31 02:09 lakefile.toml
+-rw-r--r-- 1 jgong jgong 405608 2026-10-31 03:40 proofs/EXPERIENCE.md
+[exit=0]
+
+# The two tracked modifications shown by git diff are pre-existing (mtime 2026-10-31, before
+# this R5 session started at 2026-11-04T02:57) and are outside this package write scope.
+
+$ sha256sum <accepted frozen artifacts>
+d1e44bf7bbb5e81c7b85f610d6ffc1d4d3fed0fcde5cd1ab3202fb23ca6c32fa  bounded_audit/r4/coverage-accepted.json
+f368b9b1f1ded5800419a5283b541363e83f37c4b8ef54aa641890cb54615487  bounded_audit/r4/conical-01/screening.json
+2b349272ad948309909bc8022f488147730104e02b21fa792b9aaa23f29d6b53  bounded_audit/r4/conical-01/search-log.json
+0efa855f60b26452a4daf0c0e6ed48cc31f9f1c826a80c0cab5a17e1605d379b  bounded_audit/r4/conical-01/coverage-fragment.json
+5a258939048a3d8890449712b7c084e003224ecb8dce8ff90920faee8a5876cf  bounded_audit/r4/conical-01/validate.py
+33cf7fe66d3c3cee3431f9ace125259bca3c36ef798d9f5324154b817ce80572  bounded_audit/r4/conical-01/probes/R4-CI-probe.lean
+b2c702d21d96d03b664700fe7c18282b4b989bd9052cca031e357fb5b29cb0e2  bounded_audit/r4/excited-01/probes/E1-probe.lean
+69a7889f458558c78701883774c22fe4868fdca48626c3e846d1427457524c11  bounded_audit/r4/excited-02/probes/E2-probe.lean
+16d5b8424d17e1e608c9780a0e6fbebb5838a80e59fb57b6d52fe3e70e7fb368  bounded_audit/r3/probes/R3-probe.lean
+25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0  relation_audit/registry.json
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/mutation_tests.py
+(full transcript in evidence/mutation-tests.log; summary:)
+SUMMARY
+case  mutation                                             exit   verdict
+M0    baseline (unmutated copies) - must PASS              0      PASS
+M1    drop one assigned pair                               1      FAIL-CLOSED
+M2    add an accepted R2 pair                              1      FAIL-CLOSED
+M3    duplicate a query id                                 1      FAIL-CLOSED
+M4    forge a certified outcome                            1      FAIL-CLOSED
+M5    tamper an endpoint signature hash                    1      FAIL-CLOSED
+M6    mislabel an expected kind                            1      FAIL-CLOSED
+M7    strip an outOfScope translation reason               1      FAIL-CLOSED
+M8    delete a search-log entry                            1      FAIL-CLOSED
+M9    pin the mutable R5 ledger in the snapshot            1      FAIL-CLOSED
+M10   drift the coverage fragment                          1      FAIL-CLOSED
+M11   replace a statement-level reason with a theory-name  1      FAIL-CLOSED
+
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/validate.py
+R5 WP-cross-domain-screening-02 validation
+  root: .
+  package: bounded_audit/r5/cross-domain-02
+  checks failed: 0
+RESULT: PASS (all cross-domain-02 package checks passed)
+[exit=0]
+
+# Final re-run in the shared tree (sibling R5 packages now present; this validator does not read them):
+$ python3 audit_boundary/validate_boundary.py
+  clusters: 6
+  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0
+RESULT: PASS (all boundary checks passed)
+[exit=0]
+
+$ python3 bounded_audit/validate_screening.py
+  root: .
+  checks failed: 0
+RESULT: PASS (all bounded-screening checks passed)
+[exit=0]
+
+$ python3 bounded_audit/r4/validate_r3_content.py
+EXCLUDED [coverage.remainingSet] current-ledger remaining list contents: pinned queue-minus-screened (115), current 69 (owned by r4/validate_coverage.py)
+  checks failed: 0
+RESULT: PASS (all R3 package-content checks passed; 7 current-ledger freshness checks excluded)
+[exit=0]
+
+$ python3 bounded_audit/r4/validate_coverage.py --coverage bounded_audit/r4/coverage-accepted.json
+  checks passed: 846
+  checks failed: 0
+RESULT: PASS (all R4 coverage checks passed)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/validate.py
+  package: bounded_audit/r5/cross-domain-02
+  checks failed: 0
+RESULT: PASS (all cross-domain-02 package checks passed)
+[exit=0]
+
+# Re-run after the final rebuild (strategy-text polish; no change to any outcome):
+$ python3 bounded_audit/r5/cross-domain-02/evidence/mutation_tests.py
+SUMMARY
+case  mutation                                             exit   verdict
+M0    baseline (unmutated copies) - must PASS              0      PASS
+M1    drop one assigned pair                               1      FAIL-CLOSED
+M2    add an accepted R2 pair                              1      FAIL-CLOSED
+M3    duplicate a query id                                 1      FAIL-CLOSED
+M4    forge a certified outcome                            1      FAIL-CLOSED
+M5    tamper an endpoint signature hash                    1      FAIL-CLOSED
+M6    mislabel an expected kind                            1      FAIL-CLOSED
+M7    strip an outOfScope translation reason               1      FAIL-CLOSED
+M8    delete a search-log entry                            1      FAIL-CLOSED
+M9    pin the mutable R5 ledger in the snapshot            1      FAIL-CLOSED
+M10   drift the coverage fragment                          1      FAIL-CLOSED
+M11   replace a statement-level reason with a theory-name  1      FAIL-CLOSED
+
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/validate.py
+R5 WP-cross-domain-screening-02 validation
+  root: .
+  package: bounded_audit/r5/cross-domain-02
+  checks failed: 0
+RESULT: PASS (all cross-domain-02 package checks passed)
+[exit=0]

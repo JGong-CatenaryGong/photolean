@@ -1,0 +1,1828 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-screening-package",
+ "round": "R5",
+ "generatedOn": "2026-11-04",
+ "workPackage": {
+  "id": "XD1-CROSS-DOMAIN-01",
+  "title": "Cross-domain screening: R1 WP-cross-domain-screening-01 minus the accepted P-Kasha-Sabatier pair",
+  "source": "loop/计划.md R5, Package XD1",
+  "pairIds": [
+   "P-Marcus-Goldschmidt",
+   "P-Hammond-Goldschmidt",
+   "P-BEP-Goldschmidt",
+   "P-Kasha-Goldschmidt",
+   "P-Sabatier-Goldschmidt",
+   "P-Sabatier-KashaVavilov",
+   "P-Sabatier-SternVolmer",
+   "P-Sabatier-QuantumYield",
+   "P-Sabatier-FluorPhos",
+   "P-Sabatier-EnergyGapLaw",
+   "P-Sabatier-StokesShift",
+   "P-Sabatier-ICvsISC",
+   "P-Sabatier-Forster",
+   "P-Sabatier-Einstein",
+   "P-Goldschmidt-SymmetryFactor"
+  ],
+  "pairCount": 15,
+  "r1WorkPackage": {
+   "id": "WP-cross-domain-screening-01",
+   "pairIds": [
+    "P-Marcus-Goldschmidt",
+    "P-Hammond-Goldschmidt",
+    "P-BEP-Goldschmidt",
+    "P-Kasha-Sabatier",
+    "P-Kasha-Goldschmidt",
+    "P-Sabatier-Goldschmidt",
+    "P-Sabatier-KashaVavilov",
+    "P-Sabatier-SternVolmer",
+    "P-Sabatier-QuantumYield",
+    "P-Sabatier-FluorPhos",
+    "P-Sabatier-EnergyGapLaw",
+    "P-Sabatier-StokesShift",
+    "P-Sabatier-ICvsISC",
+    "P-Sabatier-Forster",
+    "P-Sabatier-Einstein",
+    "P-Goldschmidt-SymmetryFactor"
+   ],
+   "pairCount": 16,
+   "excludedAcceptedPair": "P-Kasha-Sabatier",
+   "difference": {
+    "removed": [
+     "P-Kasha-Sabatier"
+    ],
+    "reason": "P-Kasha-Sabatier was screened and accepted in R2 (query Q-WPS01-KS-01); R5 does not rescreen an accepted pair."
+   }
+  }
+ },
+ "statusVocabulary": [
+  "certified",
+  "refuted",
+  "unresolved",
+  "notEstablished",
+  "outOfScope"
+ ],
+ "kindVocabulary": [
+  "definitionalIdentity",
+  "implication",
+  "equivalence",
+  "conditionalComposition",
+  "observationalEquivalence",
+  "distinguishability",
+  "refutation"
+ ],
+ "allowedAxioms": [
+  "propext",
+  "Classical.choice",
+  "Quot.sound"
+ ],
+ "snapshot": {
+  "id": "snap-bounded-audit-2026-11-04",
+  "date": "2026-11-04",
+  "round": "R5",
+  "inventory": "audit_boundary/statement-inventory.json",
+  "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+  "pairQueue": "audit_boundary/pair-queue.json",
+  "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+  "clusterPlan": "audit_boundary/cluster-plan.json",
+  "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+  "boundary": "audit_boundary/BOUNDARY.md",
+  "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+  "legacyRegistry": "relation_audit/registry.json",
+  "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+  "deliveredLeanFileCount": 102,
+  "priorPackages": [
+   {
+    "round": "R2",
+    "path": "bounded_audit/wp-surface-01/screening.json",
+    "pairCount": 10,
+    "sha256": "2a98dac9d75d76782a307bd6903dd6adec6dcc946f09e186c07895e3bee1b49c"
+   },
+   {
+    "round": "R3",
+    "path": "bounded_audit/r3/screening.json",
+    "pairCount": 11,
+    "sha256": "452d213c5a142b4910f7adcf1e4efd433d02be83f538510992a2dfe758ed262c"
+   },
+   {
+    "round": "R4",
+    "path": "bounded_audit/r4/excited-01/screening.json",
+    "pairCount": 16,
+    "sha256": "9a096648063cda57f484f0ecddb802ebf6aa34fb115b26c31e187e75941ef60b"
+   },
+   {
+    "round": "R4",
+    "path": "bounded_audit/r4/excited-02/screening.json",
+    "pairCount": 14,
+    "sha256": "5ceee13be0629cd93b912d68e0a44751e1906c7acfd823cc9297af0a61c94af6"
+   },
+   {
+    "round": "R4",
+    "path": "bounded_audit/r4/conical-01/screening.json",
+    "pairCount": 16,
+    "sha256": "f368b9b1f1ded5800419a5283b541363e83f37c4b8ef54aa641890cb54615487"
+   }
+  ],
+  "priorAcceptedPairCount": 67,
+  "priorCoverageSource": "The accepted R2/R3/R4 screening packages listed above; the mutable R5 cumulative ledger is neither read nor pinned."
+ },
+ "inventoryReference": {
+  "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+  "statementRows": 1154,
+  "screeningEligibleRows": 1134
+ },
+ "legacyRegistryReference": {
+  "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+  "certificateCount": 38
+ },
+ "searchLogReference": {
+  "path": "bounded_audit/r5/cross-domain-01/search-log.json",
+  "sha256": "0bf725db10525b5a519e696845a0f2bcf40185fe81f9e34c7df708531d5c26d7",
+  "entryCount": 15
+ },
+ "probeReference": {
+  "path": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+  "sha256": "f5668397e57c44266dc70fc0195061f780b5171bf860cd533986e9c57d1f07f1",
+  "log": "bounded_audit/r5/cross-domain-01/probes/compile.log",
+  "declarationCount": 3,
+  "role": "candidate-evidence",
+  "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+  "declarations": [
+   "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierStrongBranch_eq_eglBarrier",
+   "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierSymmetricApex_eq_stokesEighth",
+   "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierActivity_eq_icRate"
+  ]
+ },
+ "contextLibrary": {
+  "GoldschmidtLatticeCtx": {
+   "fields": [
+    "rA : ℝ",
+    "rB : ℝ",
+    "rO : ℝ"
+   ],
+   "physicalReading": "The Goldschmidt ionic-radius context: three lengths rA, rB, rO fixing the tolerance factor t = (rA + rO) / (sqrt 2 * (rB + rO)), the ideal A-site radius idealA rB rO, and the band/substitution predicates. There is no energy, rate, yield, ladder, concentration, curvature or radiative observable in this context.",
+   "provenance": "bounded_audit/r5/cross-domain-01/screening.json#GoldschmidtLatticeCtx (jurisdiction record; no Lean structure)"
+  },
+  "SabatierDescriptorCtx": {
+   "fields": [
+    "alphaA : ℝ",
+    "betaA : ℝ",
+    "alphaB : ℝ",
+    "betaB : ℝ",
+    "dE : ℝ"
+   ],
+   "physicalReading": "The Sabatier catalytic context: a two-step cycle on one binding-energy descriptor dE, with affine Brønsted-Evans-Polanyi branches branchUp and branchDown and the effective barrier max(branchUp, branchDown). There is no ladder index, quencher concentration, finite channel set, donor-acceptor separation or radiative lifetime in this context.",
+   "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierDescriptorCtx (jurisdiction record; no Lean structure)"
+  },
+  "SabatierEglCandidateCtx": {
+   "fields": [
+    "lam1 : ℝ",
+    "lam2 : ℝ",
+    "dE : ℝ"
+   ],
+   "physicalReading": "Candidate shared two-parabola context: two reorganization energies lam1, lam2 and one reaction energy dE. The Sabatier two-parabola volcano reads dE as a catalytic descriptor; the energy-gap law reads the same real coordinate as an optical gap x. The joint reading is a candidate, not a delivered identification.",
+   "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierEglCandidateCtx (candidate context; no Lean structure)"
+  },
+  "SabatierStokesCandidateCtx": {
+   "fields": [
+    "lam : ℝ",
+    "e00 : ℝ"
+   ],
+   "physicalReading": "Candidate shared displaced-harmonic context: one reorganization energy lam and one 0-0 energy e00. The Sabatier symmetric cycle and the StokesShift two-surface model both use a reorganization energy, but the optical lam and the catalytic lam are not identified by any delivered statement.",
+   "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierStokesCandidateCtx (candidate context; no Lean structure)"
+  },
+  "SabatierIcCandidateCtx": {
+   "fields": [
+    "A : ℝ",
+    "lam : ℝ",
+    "kB : ℝ",
+    "T : ℝ",
+    "x : ℝ"
+   ],
+   "physicalReading": "Candidate shared barrier-controlled rate context: prefactor A, reorganization energy lam, thermal energy kB*T and coordinate x. The Sabatier activity and the ICvsISC internal-conversion rate both have the Arrhenius form; no delivered statement identifies the catalytic step with the IC channel.",
+   "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierIcCandidateCtx (candidate context; no Lean structure)"
+  }
+ },
+ "scopeLibrary": {
+  "scope-XD1-goldschmidt-jurisdiction": {
+   "description": "Statement-level jurisdiction over the six Goldschmidt pairs: the Goldschmidt authority is a geometric tolerance-factor and ionic-substitution calculus over three ionic radii, while the partner authorities are energy, rate, ladder, yield or curvature calculi.",
+   "domain": "The six Goldschmidt pairs and the named endpoint statements; no claim outside those statements and their source artifacts."
+  },
+  "scope-XD1-sabatier-jurisdiction": {
+   "description": "Statement-level jurisdiction over the six Sabatier pairs whose partner authority has no declared catalytic descriptor: ladder, quencher-concentration, finite channel-set, donor-acceptor distance or radiative-lifetime calculi.",
+   "domain": "The six Sabatier outOfScope pairs and the named endpoint statements; no claim outside those statements and their source artifacts."
+  },
+  "scope-XD1-sabatier-egl-candidate": {
+   "description": "Bounded search for a bridge between the Sabatier two-parabola effective barrier and the energy-gap-law nonradiative barrier.",
+   "domain": "The Sabatier/EnergyGapLaw endpoint statements, the shared kernel barrier and the candidate probe declaration; no claim outside that bounded comparison."
+  },
+  "scope-XD1-sabatier-stokes-candidate": {
+   "description": "Bounded search for a reorganization-energy bridge between the Sabatier symmetric apex barrier and the optical Stokes shift.",
+   "domain": "The Sabatier/StokesShift endpoint statements, the displaced-harmonic surfaces and the candidate probe declaration; no claim outside that bounded comparison."
+  },
+  "scope-XD1-sabatier-ic-candidate": {
+   "description": "Bounded search for a rate-law bridge between the Sabatier activity functional and the ICvsISC internal-conversion rate at the Franck-Condon barrier.",
+   "domain": "The Sabatier/ICvsISC endpoint statements, the kernel barrier and the candidate probe declaration; no claim outside that bounded comparison."
+  }
+ },
+ "pairs": [
+  {
+   "pairId": "P-Marcus-Goldschmidt",
+   "theories": [
+    "Marcus",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-MG-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-MG-01",
+     "pairId": "P-Marcus-Goldschmidt",
+     "title": "Is the Marcus inverted-region boundary the Goldschmidt tolerance-factor boundary?",
+     "chemicalQuestion": "Marcus divides the driving-force axis at x = lam: the normal region is x < lam and the inverted region is x > lam. Goldschmidt divides the tolerance factor at t = 1: the ideal cubic packing is t = 1, and the classic cubic band is [0.8, 1]. Is the Marcus boundary lam the Goldschmidt tolerance boundary 1, i.e. does the tolerance factor measure a Marcus driving force?",
+     "chemicalRationale": "Marcus boundary lam = x is an equality between an energy (the reorganization energy) and a driving force; Goldschmidt t is a dimensionless ratio of ionic radii. A relation would need a total map from (rA, rB, rO) to (lam, x) and a statement that the boundary values coincide for all perovskites. No delivered statement provides such a map; the only shared word is \"boundary\".",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Marcus-PhotoLean-Marcus-InvertedRegion",
+       "theory": "Marcus",
+       "declaration": "PhotoLean.Marcus.InvertedRegion",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Marcus/Basic.lean",
+       "sourceLine": 60,
+       "version": "1.0.0",
+       "signatureSha256": "6970c5b1e6e982d966af182a2f8063f67d952fafa3b06573f0721ce83fb250fb",
+       "sourceArtifactSha256": "0872be50d54a87bbb7c2ff25b68b400fda784e842b93ae93c100e4b2a52014d6",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.tolFac",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 39,
+       "version": "1.0.0",
+       "signatureSha256": "eb824cbea36453a672c60c0d0ebe62b9a8b447c000db76598905f4bb55e07dc3",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GoldschmidtLatticeCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ"
+      ],
+      "physicalReading": "The Goldschmidt ionic-radius context: three lengths rA, rB, rO fixing the tolerance factor t = (rA + rO) / (sqrt 2 * (rB + rO)), the ideal A-site radius idealA rB rO, and the band/substitution predicates. There is no energy, rate, yield, ladder, concentration, curvature or radiative observable in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#GoldschmidtLatticeCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Marcus statement context is declared: the candidate context carries only the ionic radii (rA, rB, rO), while Marcus.InvertedRegion consumes a reorganization energy lam and a driving force x. No delivered statement maps radii to the energy pair."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Goldschmidt statement context is declared: no delivered statement maps the Goldschmidt radius triple to the Marcus energy pair; the tolerance factor is a dimensionless length ratio."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GoldschmidtLatticeCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-goldschmidt-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Goldschmidt pairs: the Goldschmidt authority is a geometric tolerance-factor and ionic-substitution calculus over three ionic radii, while the partner authorities are energy, rate, ladder, yield or curvature calculi.",
+      "domain": "The six Goldschmidt pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Marcus statement exposing an ionic-radius or lattice observable, or a Goldschmidt statement exposing a reorganization energy or a driving force, would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context, no declared translation and no shared observable. The legacy census agrees (energies vs ionic radii: no object in common). The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-MG-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: Marcus.InvertedRegion lam x : Prop := lam < x consumes two energies; Goldschmidt.tolFac rA rB rO : ℝ := (rA + rO) / (sqrt 2 * (rB + rO)) consumes three lengths and is dimensionless. No declaration in either authority mentions the other variable set, and the delivered imports are disjoint (Marcus imports Mathlib plus Marcus; Goldschmidt imports Mathlib plus Goldschmidt). A radius ratio cannot be compared with an energy equality without a dimensioned conversion, which no statement supplies.",
+       "statementLevelReason": "Statement-level jurisdiction: Marcus.InvertedRegion lam x : Prop := lam < x consumes two energies; Goldschmidt.tolFac rA rB rO : ℝ := (rA + rO) / (sqrt 2 * (rB + rO)) consumes three lengths and is dimensionless. No declaration in either authority mentions the other variable set, and the delivered imports are disjoint (Marcus imports Mathlib plus Marcus; Goldschmidt imports Mathlib plus Goldschmidt). A radius ratio cannot be compared with an energy equality without a dimensioned conversion, which no statement supplies."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-MG-01",
+      "legacyDisposition": "rec-goldschmidt-marcus-noedge (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §10 line 568 registers \"Goldschmidt <-> all six - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Hammond-Goldschmidt",
+   "theories": [
+    "Hammond",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-HG-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-HG-01",
+     "pairId": "P-Hammond-Goldschmidt",
+     "title": "Is the Hammond transition-state coordinate the Goldschmidt tolerance factor?",
+     "chemicalQuestion": "Both Hammond.tsCoord lam x = (lam - x) / (2 * lam) and Goldschmidt.tolFac rA rB rO are dimensionless numbers used as structural coordinates. Is the Hammond reactant/product-side coordinate the Goldschmidt tolerance factor? At thermoneutrality tsCoord = 1/2 and the ideal perovskite has t = 1; is there a delivered map between these two structural fractions?",
+     "chemicalRationale": "Both are dimensionless fractions, but one is the normalized position of a crossing on a reaction coordinate built from two energies, and the other is the ratio of an A-O contact length to the ideal cuboctahedral distance. A relation would need a total map from (rA, rB, rO) to (lam, x) preserving the fractional reading. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Hammond-PhotoLean-Hammond-tsCoord",
+       "theory": "Hammond",
+       "declaration": "PhotoLean.Hammond.tsCoord",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Hammond/Basic.lean",
+       "sourceLine": 37,
+       "version": "1.0.0",
+       "signatureSha256": "f3321a0b50ef99958bad361d208e44b62092baf8a2b4e64c0c78cfe0747981a0",
+       "sourceArtifactSha256": "b079bdb97054a327987ea27d2d6601de2e6c75c737402fe65e3efc9e93db9c23",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.tolFac",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 39,
+       "version": "1.0.0",
+       "signatureSha256": "eb824cbea36453a672c60c0d0ebe62b9a8b447c000db76598905f4bb55e07dc3",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GoldschmidtLatticeCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ"
+      ],
+      "physicalReading": "The Goldschmidt ionic-radius context: three lengths rA, rB, rO fixing the tolerance factor t = (rA + rO) / (sqrt 2 * (rB + rO)), the ideal A-site radius idealA rB rO, and the band/substitution predicates. There is no energy, rate, yield, ladder, concentration, curvature or radiative observable in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#GoldschmidtLatticeCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Hammond statement context is declared: the candidate context carries only the ionic radii, while Hammond.tsCoord consumes a reorganization energy and a driving force. No delivered statement maps radii to the energy pair."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Goldschmidt statement context is declared: no delivered statement maps the Hammond energy pair to the Goldschmidt radius triple; the two dimensionless fractions are built from different quantities."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GoldschmidtLatticeCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-goldschmidt-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Goldschmidt pairs: the Goldschmidt authority is a geometric tolerance-factor and ionic-substitution calculus over three ionic radii, while the partner authorities are energy, rate, ladder, yield or curvature calculi.",
+      "domain": "The six Goldschmidt pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Hammond statement exposing an ionic-radius or lattice observable, or a Goldschmidt statement exposing a driving force or a reorganization energy, would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The legacy census agrees (a reaction-coordinate fraction vs a lattice-length ratio). The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-HG-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: Hammond.tsCoord is a function of two energies (lam, x); Goldschmidt.tolFac is a function of three lengths. No declaration in Hammond mentions a radius or a lattice, and no Goldschmidt declaration mentions a driving force or a reorganization energy. The dimensionless coincidence 1/2 versus 1 is a numerical analogy, not a shared context.",
+       "statementLevelReason": "Statement-level jurisdiction: Hammond.tsCoord is a function of two energies (lam, x); Goldschmidt.tolFac is a function of three lengths. No declaration in Hammond mentions a radius or a lattice, and no Goldschmidt declaration mentions a driving force or a reorganization energy. The dimensionless coincidence 1/2 versus 1 is a numerical analogy, not a shared context."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-HG-01",
+      "legacyDisposition": "rec-notestablished-P-Hammond-Goldschmidt (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §10 line 568 registers \"Goldschmidt <-> all six - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-BEP-Goldschmidt",
+   "theories": [
+    "BEP",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-BG-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-BG-01",
+     "pairId": "P-BEP-Goldschmidt",
+     "title": "Is the BEP tolerance radius the Goldschmidt tolerance band?",
+     "chemicalQuestion": "BEP defines bepRadius lam tol = 2 * sqrt(lam * tol), the half-width of the driving-force window on which the linear BEP law holds within tol. Goldschmidt defines a tolerance band on the dimensionless factor t. Is the BEP window radius the Goldschmidt tolerance band, i.e. does the BEP tolerance parameter measure the same acceptance interval as Goldschmidt's band?",
+     "chemicalRationale": "Both are called tolerance and both define an acceptance interval, but bepRadius has the dimension of a driving force (energy) and GoldschmidtConforms acts on a dimensionless length ratio. A relation would need a dimensioned conversion and a map from (lam, tol) to (lo, hi, rA, rB, rO). No delivered statement supplies either.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-BEP-PhotoLean-BEP-bepRadius",
+       "theory": "BEP",
+       "declaration": "PhotoLean.BEP.bepRadius",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/BEP/Basic.lean",
+       "sourceLine": 70,
+       "version": "1.0.0",
+       "signatureSha256": "f72b4363c940b2b0619187c31321e91941729eb4cfa1fd109f095a3a371f7750",
+       "sourceArtifactSha256": "19133be2cdc40f84cbe7767923e8a6f0c329aa627592684f9d76cf4a413073a2",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "goldschmidt.conformance",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.GoldschmidtConforms",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 64,
+       "version": "1.0.0",
+       "signatureSha256": "dd9caf5dc6c3e0bec52f5493bcb761684f4e75e07af69417c566483edca7f14c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GoldschmidtLatticeCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ"
+      ],
+      "physicalReading": "The Goldschmidt ionic-radius context: three lengths rA, rB, rO fixing the tolerance factor t = (rA + rO) / (sqrt 2 * (rB + rO)), the ideal A-site radius idealA rB rO, and the band/substitution predicates. There is no energy, rate, yield, ladder, concentration, curvature or radiative observable in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#GoldschmidtLatticeCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the BEP statement context is declared: the candidate context carries only ionic radii, while BEP.bepRadius consumes a reorganization energy and a tolerance in driving-force units. No delivered statement maps radii to that pair."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Goldschmidt statement context is declared: no delivered statement maps a driving-force window half-width to a dimensionless tolerance band on ionic radii."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GoldschmidtLatticeCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-goldschmidt-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Goldschmidt pairs: the Goldschmidt authority is a geometric tolerance-factor and ionic-substitution calculus over three ionic radii, while the partner authorities are energy, rate, ladder, yield or curvature calculi.",
+      "domain": "The six Goldschmidt pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A BEP statement exposing an ionic radius or lattice observable, or a Goldschmidt statement exposing a driving-force window or a line-law defect, would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-BG-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: BEP.bepRadius lam tol has driving-force units and is a window half-width; goldschmidt.conformance (GoldschmidtConforms lo hi rA rB rO) is a dimensionless band predicate on a radius ratio. No BEP declaration mentions a lattice or an ionic radius; no Goldschmidt declaration mentions a driving force or a line-law window. The shared word \"tolerance\" is not a shared quantity.",
+       "statementLevelReason": "Statement-level jurisdiction: BEP.bepRadius lam tol has driving-force units and is a window half-width; goldschmidt.conformance (GoldschmidtConforms lo hi rA rB rO) is a dimensionless band predicate on a radius ratio. No BEP declaration mentions a lattice or an ionic radius; no Goldschmidt declaration mentions a driving force or a line-law window. The shared word \"tolerance\" is not a shared quantity."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-BG-01",
+      "legacyDisposition": "rec-notestablished-P-BEP-Goldschmidt (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §10 line 568 registers \"Goldschmidt <-> all six - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Kasha-Goldschmidt",
+   "theories": [
+    "Kasha",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-KG-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-KG-01",
+     "pairId": "P-Kasha-Goldschmidt",
+     "title": "Is Kasha's rule a Goldschmidt tolerance-band condition?",
+     "chemicalQuestion": "Kasha's rule says the emission comes from the lowest excited state of a ladder; Goldschmidt's band says the tolerance factor lies in an interval. Is the Kasha rule the Goldschmidt band condition on the same scalar?",
+     "chemicalRationale": "Kasha's rule is a statement about a rate ladder indexed by the natural numbers (rad, ic sequences); Goldschmidt's band is a statement about a triple of ionic radii. A relation would need a map from the ladder to the radius triple. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "kasha.kashaRule",
+       "theory": "Kasha",
+       "declaration": "PhotoLean.Kasha.KashaRule",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Kasha/Basic.lean",
+       "sourceLine": 119,
+       "version": "1.0.0",
+       "signatureSha256": "8b50262c9cb18796fb440dd797799877caa142143a5cca1ac616460cc38aa2da",
+       "sourceArtifactSha256": "b5496a2c2207466f60b76bb196eb253514467b1c6f8aeb0874d2d527acb72e00",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "goldschmidt.conformance",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.GoldschmidtConforms",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 64,
+       "version": "1.0.0",
+       "signatureSha256": "dd9caf5dc6c3e0bec52f5493bcb761684f4e75e07af69417c566483edca7f14c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GoldschmidtLatticeCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ"
+      ],
+      "physicalReading": "The Goldschmidt ionic-radius context: three lengths rA, rB, rO fixing the tolerance factor t = (rA + rO) / (sqrt 2 * (rB + rO)), the ideal A-site radius idealA rB rO, and the band/substitution predicates. There is no energy, rate, yield, ladder, concentration, curvature or radiative observable in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#GoldschmidtLatticeCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Kasha statement context is declared: the candidate context carries only ionic radii, while KashaRule consumes two rate sequences indexed by a ladder level. No delivered statement maps radii to a ladder."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Goldschmidt statement context is declared: no delivered statement maps a Kasha rate ladder to a dimensionless radius band."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GoldschmidtLatticeCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-goldschmidt-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Goldschmidt pairs: the Goldschmidt authority is a geometric tolerance-factor and ionic-substitution calculus over three ionic radii, while the partner authorities are energy, rate, ladder, yield or curvature calculi.",
+      "domain": "The six Goldschmidt pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Kasha statement exposing an ionic radius or lattice observable, or a Goldschmidt statement exposing a ladder rate sequence, would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-KG-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: Kasha.KashaRule rad ic N quantifies over two functions ℕ -> ℝ and a ladder bound N; goldschmidt.conformance (GoldschmidtConforms lo hi rA rB rO) quantifies over three real radii and two band edges. The types and variable sets do not meet, and no declaration in either authority mentions the other object.",
+       "statementLevelReason": "Statement-level jurisdiction: Kasha.KashaRule rad ic N quantifies over two functions ℕ -> ℝ and a ladder bound N; goldschmidt.conformance (GoldschmidtConforms lo hi rA rB rO) quantifies over three real radii and two band edges. The types and variable sets do not meet, and no declaration in either authority mentions the other object."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-KG-01",
+      "legacyDisposition": "rec-notestablished-P-Kasha-Goldschmidt (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §10 line 568 registers \"Goldschmidt <-> all six - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-Goldschmidt",
+   "theories": [
+    "Sabatier",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SG-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SG-01",
+     "pairId": "P-Sabatier-Goldschmidt",
+     "title": "Is the Sabatier near-optimal band the Goldschmidt tolerance band?",
+     "chemicalQuestion": "Sabatier's NearOptimal tol apexD dE := |dE - apexD| <= tol and Goldschmidt's GoldschmidtConforms (1 - delta) (1 + delta) rA rB rO are both symmetric acceptance bands around an ideal value. Is the Sabatier within-tolerance optimum the Goldschmidt tolerance band, i.e. is the catalytic descriptor dE the perovskite tolerance factor t?",
+     "chemicalRationale": "The band shapes coincide: a symmetric interval about an ideal value is an absolute-deviation bound. But the scalars are a binding energy (dE) and a dimensionless radius ratio (t). The legacy §10 row registers exactly this as a look-alike of shape with no edge; Goldschmidt's window equivalence is exact for every band, while Sabatier's sharp condition carries the product condition 0 < alphaA * alphaB. A relation would need a total map between the two scalars, which no statement supplies.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-NearOptimal",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.NearOptimal",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 98,
+       "version": "1.0.0",
+       "signatureSha256": "5532ff9f642740ee65a6f9ea106283f9b202986906a8c477449ef6ae810d5176",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "goldschmidt.conformance",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.GoldschmidtConforms",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 64,
+       "version": "1.0.0",
+       "signatureSha256": "dd9caf5dc6c3e0bec52f5493bcb761684f4e75e07af69417c566483edca7f14c",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GoldschmidtLatticeCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ"
+      ],
+      "physicalReading": "The Goldschmidt ionic-radius context: three lengths rA, rB, rO fixing the tolerance factor t = (rA + rO) / (sqrt 2 * (rB + rO)), the ideal A-site radius idealA rB rO, and the band/substitution predicates. There is no energy, rate, yield, ladder, concentration, curvature or radiative observable in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#GoldschmidtLatticeCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Sabatier statement context is declared: the candidate context carries only ionic radii, while NearOptimal consumes a binding-energy descriptor, an apex and a tolerance. No delivered statement maps radii to that descriptor axis."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Goldschmidt statement context is declared: no delivered statement maps the catalytic descriptor dE to the perovskite tolerance factor t."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GoldschmidtLatticeCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-goldschmidt-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Goldschmidt pairs: the Goldschmidt authority is a geometric tolerance-factor and ionic-substitution calculus over three ionic radii, while the partner authorities are energy, rate, ladder, yield or curvature calculi.",
+      "domain": "The six Goldschmidt pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Sabatier statement exposing an ionic radius or a Goldschmidt statement exposing a binding energy or catalytic descriptor would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The legacy §10 row already registers the band shape coincidence as a look-alike with no edge. Registering the coincidence is honest; treating it as an edge would be a shape-only identity.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-SG-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: NearOptimal consumes a dimensionless tolerance and an energy descriptor; GoldschmidtConforms consumes a dimensionless band and three lengths. No Sabatier declaration mentions a radius or a lattice; no Goldschmidt declaration mentions a binding energy or a catalytic branch. The interval identity NearOptimal tol apex dE <-> Goldschmidt.InBand (apex - tol) (apex + tol) dE is a shape identity on a real scalar, not a shared physical context.",
+       "statementLevelReason": "Statement-level jurisdiction: NearOptimal consumes a dimensionless tolerance and an energy descriptor; GoldschmidtConforms consumes a dimensionless band and three lengths. No Sabatier declaration mentions a radius or a lattice; no Goldschmidt declaration mentions a binding energy or a catalytic branch. The interval identity NearOptimal tol apex dE <-> Goldschmidt.InBand (apex - tol) (apex + tol) dE is a shape identity on a real scalar, not a shared physical context."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SG-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-Goldschmidt (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §10 line 583 registers \"Goldschmidt <-> Sabatier - a look-alike of shape, with no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-KashaVavilov",
+   "theories": [
+    "Sabatier",
+    "KashaVavilov"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SKV-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SKV-01",
+     "pairId": "P-Sabatier-KashaVavilov",
+     "title": "Does the Sabatier activity profile predict the Kasha-Vavilov spectral ladder?",
+     "chemicalQuestion": "Sabatier's activity is the Arrhenius turnover proxy exp(-Ea(dE)/(kB*T)) along a catalytic descriptor. Kasha-Vavilov's SpecSame rad ic M N says two ladder levels have the same spectral fraction. Is the Sabatier activity the Kasha-Vavilov spectral-same predicate on the same energy axis?",
+     "chemicalRationale": "Kasha-Vavilov speaks about sequences rad, ic : ℕ -> ℝ indexed by a ladder level; Sabatier speaks about a real descriptor dE and a barrier profile. A relation would need a map from the ladder index to dE and a statement that the activity controls the spectral fractions. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.activity",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 78,
+       "version": "1.0.0",
+       "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+       "theory": "KashaVavilov",
+       "declaration": "PhotoLean.KashaVavilov.SpecSame",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+       "sourceLine": 72,
+       "version": "1.0.0",
+       "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+       "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierDescriptorCtx",
+      "fields": [
+       "alphaA : ℝ",
+       "betaA : ℝ",
+       "alphaB : ℝ",
+       "betaB : ℝ",
+       "dE : ℝ"
+      ],
+      "physicalReading": "The Sabatier catalytic context: a two-step cycle on one binding-energy descriptor dE, with affine Brønsted-Evans-Polanyi branches branchUp and branchDown and the effective barrier max(branchUp, branchDown). There is no ladder index, quencher concentration, finite channel set, donor-acceptor separation or radiative lifetime in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierDescriptorCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Sabatier statement context is declared: the candidate context carries only the catalytic descriptor parameters, while the Kasha-Vavilov spectral predicate consumes two ladder rate sequences. No delivered statement maps the ladder to dE."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Kasha-Vavilov statement context is declared: no delivered statement maps the catalytic descriptor axis to a ladder index or a spectral fraction."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierDescriptorCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Sabatier pairs whose partner authority has no declared catalytic descriptor: ladder, quencher-concentration, finite channel-set, donor-acceptor distance or radiative-lifetime calculi.",
+      "domain": "The six Sabatier outOfScope pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Sabatier statement exposing a ladder index or spectral fraction, or a Kasha-Vavilov statement exposing a catalytic descriptor, would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-SKV-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: Sabatier.activity is a real function of a real descriptor; KashaVavilov.SpecSame is a predicate on two ℕ-indexed rate sequences. The types do not meet, and no declaration in either authority mentions the other object. The shared Arrhenius exponential in Kasha.marcusIC is a different statement and is not an endpoint of this pair.",
+       "statementLevelReason": "Statement-level jurisdiction: Sabatier.activity is a real function of a real descriptor; KashaVavilov.SpecSame is a predicate on two ℕ-indexed rate sequences. The types do not meet, and no declaration in either authority mentions the other object. The shared Arrhenius exponential in Kasha.marcusIC is a different statement and is not an endpoint of this pair."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SKV-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-KashaVavilov (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 942 registers \"KashaVavilov <-> Sabatier / Goldschmidt / SymmetryFactor - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-SternVolmer",
+   "theories": [
+    "Sabatier",
+    "SternVolmer"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SSV-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SSV-01",
+     "pairId": "P-Sabatier-SternVolmer",
+     "title": "Is the Sabatier activity the Stern-Volmer intensity ratio?",
+     "chemicalQuestion": "Stern-Volmer's dynamic ratio is svRatioDyn k0 kq q = (k0 + kq * q) / k0, linear in quencher concentration q. Sabatier's activity is an Arrhenius function of a catalytic descriptor dE. Is the Sabatier activity the Stern-Volmer ratio, i.e. is the descriptor the quencher concentration?",
+     "chemicalRationale": "One function is linear in a concentration; the other is exponential in a binding energy. A relation would need a map q <-> dE and an identification of the Stern-Volmer slope kq/k0 with the volcano slope. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.activity",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 78,
+       "version": "1.0.0",
+       "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "sternvolmer.intensityDyn",
+       "theory": "SternVolmer",
+       "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+       "sourceLine": 51,
+       "version": "1.0.0",
+       "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+       "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierDescriptorCtx",
+      "fields": [
+       "alphaA : ℝ",
+       "betaA : ℝ",
+       "alphaB : ℝ",
+       "betaB : ℝ",
+       "dE : ℝ"
+      ],
+      "physicalReading": "The Sabatier catalytic context: a two-step cycle on one binding-energy descriptor dE, with affine Brønsted-Evans-Polanyi branches branchUp and branchDown and the effective barrier max(branchUp, branchDown). There is no ladder index, quencher concentration, finite channel set, donor-acceptor separation or radiative lifetime in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierDescriptorCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Sabatier statement context is declared: the candidate context carries only the catalytic descriptor parameters, while the Stern-Volmer ratio consumes a quencher concentration and two rate constants."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Stern-Volmer statement context is declared: no delivered statement maps the catalytic descriptor axis to a quencher concentration or to the Stern-Volmer rate parameters."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierDescriptorCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Sabatier pairs whose partner authority has no declared catalytic descriptor: ladder, quencher-concentration, finite channel-set, donor-acceptor distance or radiative-lifetime calculi.",
+      "domain": "The six Sabatier outOfScope pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Sabatier statement exposing a quencher concentration or a Stern-Volmer statement exposing a catalytic descriptor would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-SSV-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: svRatioDyn consumes a concentration q and rate constants k0, kq; activity consumes a barrier profile and kB, T. No SternVolmer declaration mentions a catalytic descriptor; no Sabatier declaration mentions a quencher concentration. The linear-in-q and exponential-in-dE forms are different laws, not two readings of one quantity.",
+       "statementLevelReason": "Statement-level jurisdiction: svRatioDyn consumes a concentration q and rate constants k0, kq; activity consumes a barrier profile and kB, T. No SternVolmer declaration mentions a catalytic descriptor; no Sabatier declaration mentions a quencher concentration. The linear-in-q and exponential-in-dE forms are different laws, not two readings of one quantity."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SSV-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-SternVolmer (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 945 registers \"SternVolmer <-> Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-QuantumYield",
+   "theories": [
+    "Sabatier",
+    "QuantumYield"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SQY-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SQY-01",
+     "pairId": "P-Sabatier-QuantumYield",
+     "title": "Is the Sabatier activity the quantum yield of a decay channel?",
+     "chemicalQuestion": "QuantumYield's yield is a branching ratio k i / sum(k) over a finite channel set. Sabatier's activity is an Arrhenius rate along a descriptor. Is the Sabatier activity the quantum yield of the catalytic channel?",
+     "chemicalRationale": "A yield is a normalized branching ratio over a channel set; an activity is an unnormalized rate. A relation would need a declared channel set and a statement that the activity is the numerator of the yield. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.activity",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 78,
+       "version": "1.0.0",
+       "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+       "theory": "QuantumYield",
+       "declaration": "PhotoLean.QuantumYield.yieldOf",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+       "sourceLine": 44,
+       "version": "1.0.0",
+       "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+       "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierDescriptorCtx",
+      "fields": [
+       "alphaA : ℝ",
+       "betaA : ℝ",
+       "alphaB : ℝ",
+       "betaB : ℝ",
+       "dE : ℝ"
+      ],
+      "physicalReading": "The Sabatier catalytic context: a two-step cycle on one binding-energy descriptor dE, with affine Brønsted-Evans-Polanyi branches branchUp and branchDown and the effective barrier max(branchUp, branchDown). There is no ladder index, quencher concentration, finite channel set, donor-acceptor separation or radiative lifetime in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierDescriptorCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Sabatier statement context is declared: the candidate context carries only the catalytic descriptor parameters, while yieldOf consumes a finite channel vector."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the QuantumYield statement context is declared: no delivered statement maps the catalytic descriptor axis to a finite channel index."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierDescriptorCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Sabatier pairs whose partner authority has no declared catalytic descriptor: ladder, quencher-concentration, finite channel-set, donor-acceptor distance or radiative-lifetime calculi.",
+      "domain": "The six Sabatier outOfScope pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Sabatier statement exposing a finite channel set or a QuantumYield statement exposing a catalytic descriptor would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-SQY-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: yieldOf is a ratio over Fin n channels; activity is a real function of a descriptor with no channel index or normalization. No QuantumYield declaration mentions a catalytic descriptor; no Sabatier declaration mentions a finite channel set. A branching ratio and an unnormalized rate are different observables.",
+       "statementLevelReason": "Statement-level jurisdiction: yieldOf is a ratio over Fin n channels; activity is a real function of a descriptor with no channel index or normalization. No QuantumYield declaration mentions a catalytic descriptor; no Sabatier declaration mentions a finite channel set. A branching ratio and an unnormalized rate are different observables."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SQY-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-QuantumYield (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 948 registers \"QuantumYield <-> Marcus / Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-FluorPhos",
+   "theories": [
+    "Sabatier",
+    "FluorPhos"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SFP-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SFP-01",
+     "pairId": "P-Sabatier-FluorPhos",
+     "title": "Is the Sabatier activity the fluorescence quantum yield?",
+     "chemicalQuestion": "FluorPhos's phiF kF kISC kIC = kF / (kF + kISC + kIC) is a three-channel fluorescence yield. Sabatier's activity is an Arrhenius rate along a catalytic descriptor. Is the Sabatier activity the fluorescence yield, i.e. is the catalytic rate the radiative channel?",
+     "chemicalRationale": "The fluorescence yield is a normalized branch probability; the activity is an unnormalized rate. A relation would need a declared channel set containing the catalytic step and a statement that the activity is the radiative numerator. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.activity",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 78,
+       "version": "1.0.0",
+       "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+       "theory": "FluorPhos",
+       "declaration": "PhotoLean.FluorPhos.phiF",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+       "sourceLine": 51,
+       "version": "1.0.0",
+       "signatureSha256": "902b6639757e5df14a909a3d57e43fa7e5806dcf7ee7caba25a0b290ddfb8208",
+       "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierDescriptorCtx",
+      "fields": [
+       "alphaA : ℝ",
+       "betaA : ℝ",
+       "alphaB : ℝ",
+       "betaB : ℝ",
+       "dE : ℝ"
+      ],
+      "physicalReading": "The Sabatier catalytic context: a two-step cycle on one binding-energy descriptor dE, with affine Brønsted-Evans-Polanyi branches branchUp and branchDown and the effective barrier max(branchUp, branchDown). There is no ladder index, quencher concentration, finite channel set, donor-acceptor separation or radiative lifetime in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierDescriptorCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Sabatier statement context is declared: the candidate context carries only the catalytic descriptor parameters, while phiF consumes three photophysical rate constants."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the FluorPhos statement context is declared: no delivered statement maps the catalytic descriptor axis to a radiative/ISC/IC channel set."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierDescriptorCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Sabatier pairs whose partner authority has no declared catalytic descriptor: ladder, quencher-concentration, finite channel-set, donor-acceptor distance or radiative-lifetime calculi.",
+      "domain": "The six Sabatier outOfScope pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Sabatier statement exposing a photophysical channel set or a FluorPhos statement exposing a catalytic descriptor would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-SFP-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: phiF is a ratio of three rate constants; activity is a real function of a barrier profile. No FluorPhos declaration mentions a catalytic descriptor; no Sabatier declaration mentions a radiative, ISC or IC channel. The branch probability and the turnover rate are different observables.",
+       "statementLevelReason": "Statement-level jurisdiction: phiF is a ratio of three rate constants; activity is a real function of a barrier profile. No FluorPhos declaration mentions a catalytic descriptor; no Sabatier declaration mentions a radiative, ISC or IC channel. The branch probability and the turnover rate are different observables."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SFP-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-FluorPhos (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 952 registers \"FluorPhos <-> ... - no edge except through QuantumYield\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-EnergyGapLaw",
+   "theories": [
+    "Sabatier",
+    "EnergyGapLaw"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SEG-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SEG-01",
+     "pairId": "P-Sabatier-EnergyGapLaw",
+     "title": "Is the Sabatier two-parabola volcano barrier the energy-gap-law nonradiative barrier?",
+     "chemicalQuestion": "Sabatier's microscopic volcano is parabolicBarrier lam1 lam2 dE = max(BEP.eact lam1 (-dE), BEP.eact lam2 dE). The energy-gap law's nonradiative barrier is nrBarrier lam x = (lam - x)^2 / (4 * lam). On the strong-binding side the descending Sabatier branch is BEP.eact lam2 dE, which is the same kernel barrier as nrBarrier lam2 dE. Is the volcano's effective barrier therefore the energy-gap-law barrier?",
+     "chemicalRationale": "The two theories share the kernel two-parabola barrier: the descending branch of the volcano is the reverse-step barrier (lam2 - dE)^2 / (4 * lam2), and the energy-gap law is the same barrier at gap x. The candidate branch identity is a kernel rfl, but the full query is about the effective barrier (a maximum of two branches) and about identifying the catalytic descriptor dE with the optical gap x. The legacy §16 row registers EnergyGapLaw <-> Sabatier as a shape edge with no theorem transfer; the only shared object is the kernel barrier, not the two processes.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-parabolicBarrier",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.parabolicBarrier",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Compose.lean",
+       "sourceLine": 75,
+       "version": "1.0.0",
+       "signatureSha256": "3f067e94790c2b0c6ab6457dfc4c43fe85ac897e319f11b6fe824a2037eaf9c8",
+       "sourceArtifactSha256": "4d794458c878b538601706386ee5b54f605d75578623935bebfb03dc842e3300",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier",
+       "theory": "EnergyGapLaw",
+       "declaration": "PhotoLean.EnergyGapLaw.nrBarrier",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+       "sourceLine": 62,
+       "version": "1.0.0",
+       "signatureSha256": "1eb0a487e369bf0639bba0a13210dc26b4dc493803852a4098991d3774fe2259",
+       "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierEglCandidateCtx",
+      "fields": [
+       "lam1 : ℝ",
+       "lam2 : ℝ",
+       "dE : ℝ"
+      ],
+      "physicalReading": "Candidate shared two-parabola context: two reorganization energies lam1, lam2 and one reaction energy dE. The Sabatier two-parabola volcano reads dE as a catalytic descriptor; the energy-gap law reads the same real coordinate as an optical gap x. The joint reading is a candidate, not a delivered identification.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierEglCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "candidate-not-total",
+       "term": "",
+       "requirement": "Candidate translation only; not total on the declared domain.",
+       "reason": "Candidate translation only: the context (lam1, lam2, dE) maps to the Sabatier two-parabola barrier, but the map is not total on the optical side because no delivered statement identifies dE with the energy gap x."
+      },
+      "right": {
+       "id": "candidate-not-total",
+       "term": "",
+       "requirement": "Candidate translation only; not total on the declared domain.",
+       "reason": "Candidate translation only: (lam2, dE) maps to the energy-gap barrier nrBarrier lam2 dE, but the map is not total on the catalytic side because no delivered statement identifies the catalytic descriptor with the optical gap."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierEglCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-egl-candidate",
+      "description": "Bounded search for a bridge between the Sabatier two-parabola effective barrier and the energy-gap-law nonradiative barrier.",
+      "domain": "The Sabatier/EnergyGapLaw endpoint statements, the shared kernel barrier and the candidate probe declaration; no claim outside that bounded comparison.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A context with lam1, lam2 > 0 and dE <= apexPar lam1 lam2 at which parabolicBarrier lam1 lam2 dE != nrBarrier lam2 dE would refute the full implication; the branch identity alone does not establish it because the branch-dominance side condition and the identification of dE with the optical gap are not delivered.",
+     "outcome": {
+      "status": "unresolved",
+      "rationale": "No delivered statement identifies the catalytic descriptor dE with the energy-gap x, and the legacy §16 row registers EnergyGapLaw <-> Sabatier as a shape edge with no theorem transfer. The kernel branch identity is checked in the candidate probe, but it is a formula identity of one branch, not a statement-level identification of the two processes. The full effective-barrier query remains open; it is not certified and not refuted.",
+      "evidence": {
+       "type": "scoped-search",
+       "searchLogRef": "SL-XD1-SEG-01",
+       "candidateSummary": "Branch-level kernel identity: parabolaDown lam2 dE = nrBarrier lam2 dE (probe declaration sabatierStrongBranch_eq_eglBarrier). Missing: the branch-dominance side condition for the full parabolicBarrier and a delivered statement identifying the catalytic descriptor with the optical gap.",
+       "candidateProbe": {
+        "path": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+        "sha256": "f5668397e57c44266dc70fc0195061f780b5171bf860cd533986e9c57d1f07f1",
+        "declaration": "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierStrongBranch_eq_eglBarrier",
+        "axiomFootprint": [
+         "propext",
+         "Classical.choice",
+         "Quot.sound"
+        ],
+        "allowedAxioms": [
+         "propext",
+         "Classical.choice",
+         "Quot.sound"
+        ],
+        "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+        "log": "bounded_audit/r5/cross-domain-01/probes/compile.log"
+       }
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SEG-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-EnergyGapLaw (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 991 registers \"EnergyGapLaw <-> Sabatier / ... - no edge\" and records the shared kernel barrier as a shape edge."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-StokesShift",
+   "theories": [
+    "Sabatier",
+    "StokesShift"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SSS-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SSS-01",
+     "pairId": "P-Sabatier-StokesShift",
+     "title": "Does the optical Stokes shift fix the Sabatier apex barrier through the shared reorganization energy?",
+     "chemicalQuestion": "StokesShift defines stokesShift lam e00 = 2 * lam for the displaced harmonic surfaces. Sabatier's symmetric two-parabola volcano at thermoneutrality has parabolicBarrier lam lam 0 = lam / 4. Is the Sabatier apex barrier therefore one eighth of the Stokes shift, i.e. does the optical reorganization energy fix the catalytic barrier?",
+     "chemicalRationale": "Both theories use a reorganization energy lam and a two-surface crossing. The candidate identity parabolicBarrier lam lam 0 = stokesShift lam e00 / 8 is a kernel calculation, but it requires identifying the optical reorganization energy with the catalytic reorganization energy and the thermoneutral descriptor with the optical crossing. The legacy §16 row registers StokesShift <-> Sabatier as no edge because no rate, descriptor or curvature pair occurs in a StokesShift row; the shared lam is a symbol, not a delivered identification.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-parabolicBarrier",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.parabolicBarrier",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Compose.lean",
+       "sourceLine": 75,
+       "version": "1.0.0",
+       "signatureSha256": "3f067e94790c2b0c6ab6457dfc4c43fe85ac897e319f11b6fe824a2037eaf9c8",
+       "sourceArtifactSha256": "4d794458c878b538601706386ee5b54f605d75578623935bebfb03dc842e3300",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-StokesShift-PhotoLean-StokesShift-stokesShift",
+       "theory": "StokesShift",
+       "declaration": "PhotoLean.StokesShift.stokesShift",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+       "sourceLine": 83,
+       "version": "1.0.0",
+       "signatureSha256": "79b2d2370cf7d1787574a8cf03830d19021beea1b6700e37b88ea61059126aae",
+       "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierStokesCandidateCtx",
+      "fields": [
+       "lam : ℝ",
+       "e00 : ℝ"
+      ],
+      "physicalReading": "Candidate shared displaced-harmonic context: one reorganization energy lam and one 0-0 energy e00. The Sabatier symmetric cycle and the StokesShift two-surface model both use a reorganization energy, but the optical lam and the catalytic lam are not identified by any delivered statement.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierStokesCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "candidate-not-total",
+       "term": "",
+       "requirement": "Candidate translation only; not total on the declared domain.",
+       "reason": "Candidate translation only: (lam, e00) maps to the symmetric Sabatier apex barrier parabolicBarrier lam lam 0, but the map is not total on the catalytic side because the optical lam and the catalytic lam are not identified by any delivered statement."
+      },
+      "right": {
+       "id": "candidate-not-total",
+       "term": "",
+       "requirement": "Candidate translation only; not total on the declared domain.",
+       "reason": "Candidate translation only: (lam, e00) maps to the Stokes shift 2 * lam, but the map is not total on the optical side because no delivered statement identifies the catalytic reorganization energy with the optical one."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierStokesCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-stokes-candidate",
+      "description": "Bounded search for a reorganization-energy bridge between the Sabatier symmetric apex barrier and the optical Stokes shift.",
+      "domain": "The Sabatier/StokesShift endpoint statements, the displaced-harmonic surfaces and the candidate probe declaration; no claim outside that bounded comparison.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A context in which the optical lam is identified with the catalytic lam and the symmetric apex barrier is not one eighth of the Stokes shift would refute the candidate; the probe checks the formula, the identification is undelivered.",
+     "outcome": {
+      "status": "unresolved",
+      "rationale": "The one-eighth identity is checked in the candidate probe, but it is a formula identity under a symmetric specialization. No delivered statement identifies the optical reorganization energy with the catalytic one; the legacy §16 row registers StokesShift <-> Sabatier as no edge. The chemical query remains open; it is not certified and not refuted.",
+      "evidence": {
+       "type": "scoped-search",
+       "searchLogRef": "SL-XD1-SSS-01",
+       "candidateSummary": "Symmetric-apex identity: parabolicBarrier lam lam 0 = stokesShift lam e00 / 8 (probe declaration sabatierSymmetricApex_eq_stokesEighth). Missing: a delivered identification of the optical lam with the catalytic lam and of the thermoneutral descriptor with the optical crossing.",
+       "candidateProbe": {
+        "path": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+        "sha256": "f5668397e57c44266dc70fc0195061f780b5171bf860cd533986e9c57d1f07f1",
+        "declaration": "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierSymmetricApex_eq_stokesEighth",
+        "axiomFootprint": [
+         "propext",
+         "Classical.choice",
+         "Quot.sound"
+        ],
+        "allowedAxioms": [
+         "propext",
+         "Classical.choice",
+         "Quot.sound"
+        ],
+        "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+        "log": "bounded_audit/r5/cross-domain-01/probes/compile.log"
+       }
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SSS-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-StokesShift (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 996 registers \"StokesShift <-> Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-ICvsISC",
+   "theories": [
+    "Sabatier",
+    "ICvsISC"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SIC-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SIC-01",
+     "pairId": "P-Sabatier-ICvsISC",
+     "title": "Is the Sabatier activity the internal-conversion rate at the Franck-Condon barrier?",
+     "chemicalQuestion": "ICvsISC's internal-conversion rate is icRate AI lamI kB T xI = AI * exp(-fcBarrier(lamI, xI)/(kB*T)), an Arrhenius rate over the FC barrier. Sabatier's activity is exp(-Ea(dE)/(kB*T)). At Ea = fcBarrier(lamI, xI) and with the prefactor AI, is the Sabatier activity the IC rate?",
+     "chemicalRationale": "The two rate laws share the Arrhenius template and the kernel barrier: icRate AI lamI kB T xI = AI * Sabatier.activity (fun y => fcBarrier lamI y) kB T xI. The candidate identity is checked in the probe, but it is a rate-law substitution: it does not identify the IC channel with the catalytic step or the FC barrier with the volcano barrier. The legacy §16 row registers ICvsISC <-> Sabatier as no edge because the FC-barrier/spin-discount content names no catalytic scalar.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.activity",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 78,
+       "version": "1.0.0",
+       "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+       "theory": "ICvsISC",
+       "declaration": "PhotoLean.ICvsISC.icRate",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+       "sourceLine": 72,
+       "version": "1.0.0",
+       "signatureSha256": "2ba39280d9bad8ff65662aa1c72d3c0a0427d5a3568b27b23a5a4f0e7b1bdf68",
+       "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierIcCandidateCtx",
+      "fields": [
+       "A : ℝ",
+       "lam : ℝ",
+       "kB : ℝ",
+       "T : ℝ",
+       "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared barrier-controlled rate context: prefactor A, reorganization energy lam, thermal energy kB*T and coordinate x. The Sabatier activity and the ICvsISC internal-conversion rate both have the Arrhenius form; no delivered statement identifies the catalytic step with the IC channel.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierIcCandidateCtx (candidate context; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "candidate-not-total",
+       "term": "",
+       "requirement": "Candidate translation only; not total on the declared domain.",
+       "reason": "Candidate translation only: (A, lam, kB, T, x) maps to the Sabatier activity functional at the FC barrier, but the map is not total on the chemical side because no delivered statement identifies the catalytic step with the IC channel."
+      },
+      "right": {
+       "id": "candidate-not-total",
+       "term": "",
+       "requirement": "Candidate translation only; not total on the declared domain.",
+       "reason": "Candidate translation only: (A, lam, kB, T, x) maps to the ICvsISC rate, but the map is not total on the chemical side because no delivered statement identifies the IC channel with the catalytic step."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierIcCandidateCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-ic-candidate",
+      "description": "Bounded search for a rate-law bridge between the Sabatier activity functional and the ICvsISC internal-conversion rate at the Franck-Condon barrier.",
+      "domain": "The Sabatier/ICvsISC endpoint statements, the kernel barrier and the candidate probe declaration; no claim outside that bounded comparison.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A context in which the IC channel is identified with the catalytic step and the activity is not the IC rate would refute the candidate; the identity itself is checked, the process identification is not delivered.",
+     "outcome": {
+      "status": "unresolved",
+      "rationale": "The rate-law identity is checked in the candidate probe, but it is a substitution of the FC barrier into the activity functional. It does not identify the IC channel with the catalytic step, and an Arrhenius shape alone does not identify a reaction barrier with an optical/IC parameter. The legacy §16 row registers ICvsISC <-> Sabatier as no edge. The chemical query remains open; it is not certified and not refuted.",
+      "evidence": {
+       "type": "scoped-search",
+       "searchLogRef": "SL-XD1-SIC-01",
+       "candidateSummary": "Rate-law identity: icRate A lam kB T x = A * Sabatier.activity (fun y => fcBarrier lam y) kB T x (probe declaration sabatierActivity_eq_icRate). Missing: a delivered statement identifying the IC channel with the catalytic step; the Arrhenius shape alone is not a chemical relation.",
+       "candidateProbe": {
+        "path": "bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+        "sha256": "f5668397e57c44266dc70fc0195061f780b5171bf860cd533986e9c57d1f07f1",
+        "declaration": "PhotoLean.RelationAudit.BoundedAudit.XD1.sabatierActivity_eq_icRate",
+        "axiomFootprint": [
+         "propext",
+         "Classical.choice",
+         "Quot.sound"
+        ],
+        "allowedAxioms": [
+         "propext",
+         "Classical.choice",
+         "Quot.sound"
+        ],
+        "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/cross-domain-01/probes/XD1-probe.lean",
+        "log": "bounded_audit/r5/cross-domain-01/probes/compile.log"
+       }
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SIC-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-ICvsISC (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 1001 registers \"ICvsISC <-> Hammond / BEP / Sabatier / Goldschmidt / SymmetryFactor - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-Forster",
+   "theories": [
+    "Sabatier",
+    "Forster"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SF-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SF-01",
+     "pairId": "P-Sabatier-Forster",
+     "title": "Is the Sabatier activity the Forster transfer rate?",
+     "chemicalQuestion": "Forster's transfer rate is fretRate tauD r6 R = (1/tauD) * (r6 / R^6), a distance-dependent transfer law. Sabatier's activity is an Arrhenius function of a binding energy. Is the Sabatier activity the Forster rate, i.e. is the catalytic descriptor a donor-acceptor separation?",
+     "chemicalRationale": "One law is inverse-sixth-power in a distance; the other is exponential in an energy. A relation would need a map from R to dE and a statement that the transfer rate is the catalytic turnover. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.activity",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 78,
+       "version": "1.0.0",
+       "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-Forster-PhotoLean-Forster-fretRate",
+       "theory": "Forster",
+       "declaration": "PhotoLean.Forster.fretRate",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+       "sourceLine": 54,
+       "version": "1.0.0",
+       "signatureSha256": "22e3fe56a137bbdd1e71e417edcaf8a83f45cd1dbc08672e98ec5631f15c2a8c",
+       "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierDescriptorCtx",
+      "fields": [
+       "alphaA : ℝ",
+       "betaA : ℝ",
+       "alphaB : ℝ",
+       "betaB : ℝ",
+       "dE : ℝ"
+      ],
+      "physicalReading": "The Sabatier catalytic context: a two-step cycle on one binding-energy descriptor dE, with affine Brønsted-Evans-Polanyi branches branchUp and branchDown and the effective barrier max(branchUp, branchDown). There is no ladder index, quencher concentration, finite channel set, donor-acceptor separation or radiative lifetime in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierDescriptorCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Sabatier statement context is declared: the candidate context carries only the catalytic descriptor parameters, while fretRate consumes a lifetime, an R0^6 and a separation."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Forster statement context is declared: no delivered statement maps the catalytic descriptor axis to a donor-acceptor separation."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierDescriptorCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Sabatier pairs whose partner authority has no declared catalytic descriptor: ladder, quencher-concentration, finite channel-set, donor-acceptor distance or radiative-lifetime calculi.",
+      "domain": "The six Sabatier outOfScope pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Sabatier statement exposing a donor-acceptor separation or a Forster statement exposing a catalytic descriptor would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-SF-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: fretRate consumes a lifetime, an R0^6 and a separation R; activity consumes a barrier profile and kB, T. No Forster declaration mentions a catalytic descriptor; no Sabatier declaration mentions a separation or a transfer efficiency. The inverse-sixth-power law and the Arrhenius law are different observables, not two readings of one quantity.",
+       "statementLevelReason": "Statement-level jurisdiction: fretRate consumes a lifetime, an R0^6 and a separation R; activity consumes a barrier profile and kB, T. No Forster declaration mentions a catalytic descriptor; no Sabatier declaration mentions a separation or a transfer efficiency. The inverse-sixth-power law and the Arrhenius law are different observables, not two readings of one quantity."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SF-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-Forster (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 964 registers \"Forster <-> Marcus / ... / Sabatier / ... - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Sabatier-Einstein",
+   "theories": [
+    "Sabatier",
+    "Einstein"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-SE-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-SE-01",
+     "pairId": "P-Sabatier-Einstein",
+     "title": "Is the Sabatier activity the Einstein radiative lifetime?",
+     "chemicalQuestion": "Einstein's tauR A = 1 / A is a radiative lifetime. Sabatier's activity is an Arrhenius turnover proxy. Is the Sabatier activity the Einstein radiative lifetime, i.e. is the catalytic rate the Einstein A coefficient?",
+     "chemicalRationale": "A lifetime is the reciprocal of a radiative rate; an activity is an exponential of a barrier. A relation would need a map from A to the volcano barrier and a statement that the catalytic turnover is the radiative rate. No delivered statement supplies it.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Sabatier-PhotoLean-Sabatier-activity",
+       "theory": "Sabatier",
+       "declaration": "PhotoLean.Sabatier.activity",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Sabatier/Basic.lean",
+       "sourceLine": 78,
+       "version": "1.0.0",
+       "signatureSha256": "b8b5a65b0f1dce2e333f8aa31d15956cdec760b23ef92fa13cbcf7ce8e153549",
+       "sourceArtifactSha256": "1cf0561e1ed493fed5b3588651805a1faab251e203d6c9f00cbb00a3453dba64",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-Einstein-PhotoLean-Einstein-tauR",
+       "theory": "Einstein",
+       "declaration": "PhotoLean.Einstein.tauR",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+       "sourceLine": 65,
+       "version": "1.0.0",
+       "signatureSha256": "b515d1f09b47e8e4a348a64dd5f6444338fb4f77939b88a5b4fc1921d549f98f",
+       "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "SabatierDescriptorCtx",
+      "fields": [
+       "alphaA : ℝ",
+       "betaA : ℝ",
+       "alphaB : ℝ",
+       "betaB : ℝ",
+       "dE : ℝ"
+      ],
+      "physicalReading": "The Sabatier catalytic context: a two-step cycle on one binding-energy descriptor dE, with affine Brønsted-Evans-Polanyi branches branchUp and branchDown and the effective barrier max(branchUp, branchDown). There is no ladder index, quencher concentration, finite channel set, donor-acceptor separation or radiative lifetime in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#SabatierDescriptorCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Sabatier statement context is declared: the candidate context carries only the catalytic descriptor parameters, while tauR consumes the Einstein A coefficient."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the Einstein statement context is declared: no delivered statement maps the catalytic descriptor axis to a radiative coefficient or a lifetime."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : SabatierDescriptorCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-sabatier-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Sabatier pairs whose partner authority has no declared catalytic descriptor: ladder, quencher-concentration, finite channel-set, donor-acceptor distance or radiative-lifetime calculi.",
+      "domain": "The six Sabatier outOfScope pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Sabatier statement exposing a radiative coefficient or lifetime, or an Einstein statement exposing a catalytic descriptor or barrier profile, would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-SE-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: tauR consumes the Einstein A coefficient; activity consumes a barrier profile. No Einstein declaration mentions a catalytic descriptor or a barrier profile; no Sabatier declaration mentions a radiative coefficient or a lifetime. A reciprocal radiative rate and an Arrhenius turnover are different observables.",
+       "statementLevelReason": "Statement-level jurisdiction: tauR consumes the Einstein A coefficient; activity consumes a barrier profile. No Einstein declaration mentions a catalytic descriptor or a barrier profile; no Sabatier declaration mentions a radiative coefficient or a lifetime. A reciprocal radiative rate and an Arrhenius turnover are different observables."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-SE-01",
+      "legacyDisposition": "rec-notestablished-P-Sabatier-Einstein (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §16 line 969 registers \"Einstein <-> Marcus / ... / Sabatier / ... - no edge\"."
+     }
+    }
+   ]
+  },
+  {
+   "pairId": "P-Goldschmidt-SymmetryFactor",
+   "theories": [
+    "Goldschmidt",
+    "SymmetryFactor"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryIds": [
+    "Q-XD1-GSF-01"
+   ],
+   "queries": [
+    {
+     "queryId": "Q-XD1-GSF-01",
+     "pairId": "P-Goldschmidt-SymmetryFactor",
+     "title": "Is the Goldschmidt tolerance factor the unequal-curvature transition-state coordinate?",
+     "chemicalQuestion": "Goldschmidt's tolFac = (rA + rO) / (sqrt 2 * (rB + rO)) and SymmetryFactor's tsCoordZero = sqrt kp / (sqrt kr + sqrt kp) are both geometric ratios built from square roots. Is the Goldschmidt tolerance factor the unequal-curvature crossing coordinate, i.e. do the ionic radii play the role of the curvature pair (kr, kp)?",
+     "chemicalRationale": "Both are dimensionless ratios with a square-root structure, but one is built from three ionic radii and the other from two potential curvatures. A relation would need a total map from (rA, rB, rO) to (kr, kp) preserving the crossing-coordinate reading. No delivered statement supplies it; the only textual contact is a comment in SymmetryFactor/RatModel.lean noting the shared rational-square pattern.",
+     "endpoints": {
+      "source": {
+       "statementId": "stmt-Goldschmidt-PhotoLean-Goldschmidt-tolFac",
+       "theory": "Goldschmidt",
+       "declaration": "PhotoLean.Goldschmidt.tolFac",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/Goldschmidt/Basic.lean",
+       "sourceLine": 39,
+       "version": "1.0.0",
+       "signatureSha256": "eb824cbea36453a672c60c0d0ebe62b9a8b447c000db76598905f4bb55e07dc3",
+       "sourceArtifactSha256": "0abc2557e01c17aff788e894c466aadd7f0f8e90aac05524e668a6f8cb14634d",
+       "endpointForm": "definition"
+      },
+      "target": {
+       "statementId": "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+       "theory": "SymmetryFactor",
+       "declaration": "PhotoLean.SymmetryFactor.tsCoordZero",
+       "declarationKind": "def",
+       "sourceArtifact": "PhotoLean/SymmetryFactor/Basic.lean",
+       "sourceLine": 57,
+       "version": "1.0.0",
+       "signatureSha256": "531c8ee91b2705430635b54fa10068f1120dc92f576e98c2b14839bcc82ec2aa",
+       "sourceArtifactSha256": "24a92a4cf99694d8d57a23d3504142f8b41e079413b5f8177f2ab718b89887dc",
+       "endpointForm": "definition"
+      }
+     },
+     "sharedContext": {
+      "id": "GoldschmidtLatticeCtx",
+      "fields": [
+       "rA : ℝ",
+       "rB : ℝ",
+       "rO : ℝ"
+      ],
+      "physicalReading": "The Goldschmidt ionic-radius context: three lengths rA, rB, rO fixing the tolerance factor t = (rA + rO) / (sqrt 2 * (rB + rO)), the ideal A-site radius idealA rB rO, and the band/substitution predicates. There is no energy, rate, yield, ladder, concentration, curvature or radiative observable in this context.",
+      "provenance": "bounded_audit/r5/cross-domain-01/screening.json#GoldschmidtLatticeCtx (jurisdiction record; no Lean structure)"
+     },
+     "translations": {
+      "left": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the source statement context is declared.",
+       "reason": "No total translation into the Goldschmidt statement context is declared: the candidate context carries only ionic radii, while tsCoordZero consumes two curvature parameters. No delivered statement maps curvatures to radii."
+      },
+      "right": {
+       "id": "none-declared",
+       "term": "",
+       "requirement": "No total translation into the target statement context is declared.",
+       "reason": "No total translation into the SymmetryFactor statement context is declared: no delivered statement maps the Goldschmidt radius triple to the curvature pair (kr, kp)."
+      }
+     },
+     "premises": {
+      "predicate": "fun _ : GoldschmidtLatticeCtx => True",
+      "premiseIds": [],
+      "definitions": []
+     },
+     "observationChannels": [],
+     "scope": {
+      "id": "scope-XD1-goldschmidt-jurisdiction",
+      "description": "Statement-level jurisdiction over the six Goldschmidt pairs: the Goldschmidt authority is a geometric tolerance-factor and ionic-substitution calculus over three ionic radii, while the partner authorities are energy, rate, ladder, yield or curvature calculi.",
+      "domain": "The six Goldschmidt pairs and the named endpoint statements; no claim outside those statements and their source artifacts.",
+      "snapshot": "snap-bounded-audit-2026-11-04"
+     },
+     "expectedKind": "implication",
+     "expectedKindRationale": "The weakest composable link would be a one-way implication from the source statement context to the target statement context; the expected kind records what a relation would have to be, not a claim that one exists.",
+     "falsificationCondition": "A Goldschmidt statement exposing a potential curvature or a SymmetryFactor statement exposing an ionic radius or tolerance factor would remove the jurisdiction reason.",
+     "outcome": {
+      "status": "outOfScope",
+      "rationale": "This pair is outside the declared audit jurisdiction: the two statement authorities have no shared context or declared translation. The registration is a jurisdiction record, not a claim of logical absence.",
+      "evidence": {
+       "type": "jurisdiction",
+       "searchLogRef": "SL-XD1-GSF-01",
+       "jurisdictionRationale": "Statement-level jurisdiction: tolFac consumes three lengths; tsCoordZero consumes two curvature parameters. No Goldschmidt declaration mentions a potential curvature; no SymmetryFactor declaration mentions an ionic radius or a tolerance factor. The square-root shape is an algebraic analogy, not a shared context.",
+       "statementLevelReason": "Statement-level jurisdiction: tolFac consumes three lengths; tsCoordZero consumes two curvature parameters. No Goldschmidt declaration mentions a potential curvature; no SymmetryFactor declaration mentions an ionic radius or a tolerance factor. The square-root shape is an algebraic analogy, not a shared context."
+      }
+     },
+     "provenance": {
+      "kind": "scoped-search",
+      "sourceArtifact": "bounded_audit/r5/cross-domain-01/search-log.json",
+      "locator": "SL-XD1-GSF-01",
+      "legacyDisposition": "rec-notestablished-P-Goldschmidt-SymmetryFactor (pair-level notEstablished anchor, not a named query); PhotoLean/Relations.lean §10 line 603 registers \"SymmetryFactor <-> Kasha, Sabatier, Goldschmidt - no edge\"."
+     }
+    }
+   ]
+  }
+ ],
+ "counts": {
+  "pairs": 15,
+  "queries": 15,
+  "byStatus": {
+   "outOfScope": 12,
+   "unresolved": 3
+  },
+  "byExpectedKind": {
+   "implication": 15
+  },
+  "certified": 0,
+  "refuted": 0,
+  "unresolved": 3,
+  "notEstablished": 0,
+  "outOfScope": 12
+ },
+ "nonClaims": [
+  "This package screens exactly the fifteen assigned pairs; it is not a completeness claim over the corpus.",
+  "A certified record is a checked relation under its declared context; no pair is forced to improve coverage.",
+  "The mutable R5 cumulative ledger is not read or pinned; prior coverage is derived from accepted packages.",
+  "The local probe carries candidate identities, not certified outcomes; the three unresolved pairs remain open."
+ ]
+}

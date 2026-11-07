@@ -1,0 +1,21 @@
+duplicate-pair         exit=1 target=pairs.duplicate              present=True
+  codes: pairs.duplicate,pairs.count,queries.duplicate,counts.pairs,counts.queries,counts.byStatus,counts.byExpectedKind,counts.certified
+delete-query           exit=1 target=pair.noQuery                 present=True
+  codes: pair.noQuery,pair.noQueryRow,probe.declarationCoverage,counts.queries,counts.byStatus,counts.byExpectedKind,counts.certified,fragment.screeningSha
+bad-endpoint-hash      exit=1 target=endpoint.sourceArtifactSha256 present=True
+  codes: endpoint.sourceArtifactSha256,fragment.screeningSha
+bad-status             exit=1 target=outcome.status               present=True
+  codes: outcome.status,probe.declarationCoverage,counts.byStatus,counts.certified,fragment.screeningSha,fragment.byStatus,fragment.byStatusPair
+kind-refuted           exit=1 target=query.kindRefuted            present=True
+  codes: query.kind,query.kindRefuted,evidence.kindMatch,counts.byExpectedKind,fragment.screeningSha,fragment.byExpectedKind
+bad-probe-hash         exit=1 target=evidence.probeHash           present=True
+  codes: evidence.probeHash,fragment.screeningSha
+delete-pair            exit=1 target=pairs.count                  present=True
+  codes: pairs.count,pairs.coverage,probe.declarationCoverage,counts.pairs,counts.queries,counts.byStatus,counts.byExpectedKind,counts.certified
+bad-fragment-count     exit=1 target=fragment.pairCount           present=True
+  codes: fragment.pairCount
+bad-search-status      exit=1 target=search.status                present=True
+  codes: searchLogReference.sha256,search.status
+missing-rationale      exit=1 target=query.chemicalRationale      present=True
+  codes: query.chemicalRationale,fragment.screeningSha
+SCREENING_MUTATIONS PASS

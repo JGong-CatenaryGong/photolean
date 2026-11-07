@@ -1,0 +1,526 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-cluster-plan",
+  "round": "R1",
+  "description": "Disjoint chemical work packages for the 136 unordered pairs of the fixed seventeen-theory inventory.",
+  "theoryInventory": [
+    "Marcus",
+    "Hammond",
+    "BEP",
+    "Kasha",
+    "Sabatier",
+    "Goldschmidt",
+    "SymmetryFactor",
+    "KashaVavilov",
+    "SternVolmer",
+    "QuantumYield",
+    "FluorPhos",
+    "EnergyGapLaw",
+    "StokesShift",
+    "ICvsISC",
+    "Forster",
+    "Einstein",
+    "RACI"
+  ],
+  "clusterVocabulary": [
+    "surface-free-energy",
+    "excited-state-kinetics",
+    "quenching-quantum-yield",
+    "radiative-energy-transfer",
+    "conical-intersection",
+    "cross-domain-screening"
+  ],
+  "assignmentPolicy": {
+    "priority": [
+      "conical-intersection",
+      "surface-free-energy",
+      "quenching-quantum-yield",
+      "radiative-energy-transfer",
+      "excited-state-kinetics"
+    ],
+    "forcedClusterByTheory": {
+      "RACI": "conical-intersection"
+    },
+    "fallbackCluster": "cross-domain-screening",
+    "sharedThemeRule": "A pair is assigned to the first cluster in priority order that appears in both theories' theme-affinity sets; a forced theory overrides the shared-theme rule; a pair with no shared theme falls back to cross-domain-screening.",
+    "workPackageMaxPairs": 16,
+    "workPackageRule": "Work packages are execution batches inside one primary cluster; every pair belongs to exactly one primary cluster and exactly one work package."
+  },
+  "theoryAffinity": {
+    "Marcus": [
+      "surface-free-energy",
+      "quenching-quantum-yield",
+      "radiative-energy-transfer",
+      "excited-state-kinetics"
+    ],
+    "Hammond": [
+      "surface-free-energy",
+      "excited-state-kinetics"
+    ],
+    "BEP": [
+      "surface-free-energy",
+      "excited-state-kinetics"
+    ],
+    "Sabatier": [
+      "surface-free-energy"
+    ],
+    "SymmetryFactor": [
+      "surface-free-energy",
+      "excited-state-kinetics"
+    ],
+    "Kasha": [
+      "excited-state-kinetics",
+      "quenching-quantum-yield",
+      "radiative-energy-transfer"
+    ],
+    "KashaVavilov": [
+      "excited-state-kinetics",
+      "radiative-energy-transfer"
+    ],
+    "SternVolmer": [
+      "quenching-quantum-yield",
+      "excited-state-kinetics",
+      "radiative-energy-transfer"
+    ],
+    "QuantumYield": [
+      "quenching-quantum-yield",
+      "radiative-energy-transfer",
+      "excited-state-kinetics"
+    ],
+    "FluorPhos": [
+      "radiative-energy-transfer",
+      "quenching-quantum-yield",
+      "excited-state-kinetics"
+    ],
+    "EnergyGapLaw": [
+      "excited-state-kinetics",
+      "radiative-energy-transfer"
+    ],
+    "StokesShift": [
+      "radiative-energy-transfer",
+      "excited-state-kinetics"
+    ],
+    "ICvsISC": [
+      "excited-state-kinetics",
+      "radiative-energy-transfer"
+    ],
+    "Forster": [
+      "radiative-energy-transfer",
+      "excited-state-kinetics"
+    ],
+    "Einstein": [
+      "radiative-energy-transfer",
+      "excited-state-kinetics"
+    ],
+    "RACI": [
+      "conical-intersection"
+    ],
+    "Goldschmidt": []
+  },
+  "clusters": [
+    {
+      "id": "surface-free-energy",
+      "title": "Surface and free-energy relations",
+      "chemicalTheme": "Potential-energy surfaces, barrier heights, reaction free energies, volcano/linear free-energy relations, and transition-state position.",
+      "pairIds": [
+        "P-Marcus-Hammond",
+        "P-Marcus-BEP",
+        "P-Marcus-Sabatier",
+        "P-Marcus-SymmetryFactor",
+        "P-Hammond-BEP",
+        "P-Hammond-Sabatier",
+        "P-Hammond-SymmetryFactor",
+        "P-BEP-Sabatier",
+        "P-BEP-SymmetryFactor",
+        "P-Sabatier-SymmetryFactor"
+      ],
+      "pairCount": 10,
+      "workPackages": [
+        {
+          "id": "WP-surface-free-energy-01",
+          "pairIds": [
+            "P-Marcus-Hammond",
+            "P-Marcus-BEP",
+            "P-Marcus-Sabatier",
+            "P-Marcus-SymmetryFactor",
+            "P-Hammond-BEP",
+            "P-Hammond-Sabatier",
+            "P-Hammond-SymmetryFactor",
+            "P-BEP-Sabatier",
+            "P-BEP-SymmetryFactor",
+            "P-Sabatier-SymmetryFactor"
+          ],
+          "pairCount": 10
+        }
+      ]
+    },
+    {
+      "id": "excited-state-kinetics",
+      "title": "Excited-state kinetics",
+      "chemicalTheme": "Radiationless and radiation-inclusive rate cascades, ladder kinetics, energy-gap controlled decay, and internal conversion versus intersystem crossing.",
+      "pairIds": [
+        "P-Hammond-Kasha",
+        "P-Hammond-KashaVavilov",
+        "P-Hammond-SternVolmer",
+        "P-Hammond-QuantumYield",
+        "P-Hammond-FluorPhos",
+        "P-Hammond-EnergyGapLaw",
+        "P-Hammond-StokesShift",
+        "P-Hammond-ICvsISC",
+        "P-Hammond-Forster",
+        "P-Hammond-Einstein",
+        "P-BEP-Kasha",
+        "P-BEP-KashaVavilov",
+        "P-BEP-SternVolmer",
+        "P-BEP-QuantumYield",
+        "P-BEP-FluorPhos",
+        "P-BEP-EnergyGapLaw",
+        "P-BEP-StokesShift",
+        "P-BEP-ICvsISC",
+        "P-BEP-Forster",
+        "P-BEP-Einstein",
+        "P-Kasha-SymmetryFactor",
+        "P-SymmetryFactor-KashaVavilov",
+        "P-SymmetryFactor-SternVolmer",
+        "P-SymmetryFactor-QuantumYield",
+        "P-SymmetryFactor-FluorPhos",
+        "P-SymmetryFactor-EnergyGapLaw",
+        "P-SymmetryFactor-StokesShift",
+        "P-SymmetryFactor-ICvsISC",
+        "P-SymmetryFactor-Forster",
+        "P-SymmetryFactor-Einstein"
+      ],
+      "pairCount": 30,
+      "workPackages": [
+        {
+          "id": "WP-excited-state-kinetics-01",
+          "pairIds": [
+            "P-Hammond-Kasha",
+            "P-Hammond-KashaVavilov",
+            "P-Hammond-SternVolmer",
+            "P-Hammond-QuantumYield",
+            "P-Hammond-FluorPhos",
+            "P-Hammond-EnergyGapLaw",
+            "P-Hammond-StokesShift",
+            "P-Hammond-ICvsISC",
+            "P-Hammond-Forster",
+            "P-Hammond-Einstein",
+            "P-BEP-Kasha",
+            "P-BEP-KashaVavilov",
+            "P-BEP-SternVolmer",
+            "P-BEP-QuantumYield",
+            "P-BEP-FluorPhos",
+            "P-BEP-EnergyGapLaw"
+          ],
+          "pairCount": 16
+        },
+        {
+          "id": "WP-excited-state-kinetics-02",
+          "pairIds": [
+            "P-BEP-StokesShift",
+            "P-BEP-ICvsISC",
+            "P-BEP-Forster",
+            "P-BEP-Einstein",
+            "P-Kasha-SymmetryFactor",
+            "P-SymmetryFactor-KashaVavilov",
+            "P-SymmetryFactor-SternVolmer",
+            "P-SymmetryFactor-QuantumYield",
+            "P-SymmetryFactor-FluorPhos",
+            "P-SymmetryFactor-EnergyGapLaw",
+            "P-SymmetryFactor-StokesShift",
+            "P-SymmetryFactor-ICvsISC",
+            "P-SymmetryFactor-Forster",
+            "P-SymmetryFactor-Einstein"
+          ],
+          "pairCount": 14
+        }
+      ]
+    },
+    {
+      "id": "quenching-quantum-yield",
+      "title": "Quenching and quantum yield",
+      "chemicalTheme": "Stern-Volmer quenching, fluorescence/phosphorescence quantum yields, and the competition between radiative and non-radiative channels.",
+      "pairIds": [
+        "P-Marcus-Kasha",
+        "P-Marcus-SternVolmer",
+        "P-Marcus-QuantumYield",
+        "P-Marcus-FluorPhos",
+        "P-Kasha-SternVolmer",
+        "P-Kasha-QuantumYield",
+        "P-Kasha-FluorPhos",
+        "P-SternVolmer-QuantumYield",
+        "P-SternVolmer-FluorPhos",
+        "P-QuantumYield-FluorPhos"
+      ],
+      "pairCount": 10,
+      "workPackages": [
+        {
+          "id": "WP-quenching-quantum-yield-01",
+          "pairIds": [
+            "P-Marcus-Kasha",
+            "P-Marcus-SternVolmer",
+            "P-Marcus-QuantumYield",
+            "P-Marcus-FluorPhos",
+            "P-Kasha-SternVolmer",
+            "P-Kasha-QuantumYield",
+            "P-Kasha-FluorPhos",
+            "P-SternVolmer-QuantumYield",
+            "P-SternVolmer-FluorPhos",
+            "P-QuantumYield-FluorPhos"
+          ],
+          "pairCount": 10
+        }
+      ]
+    },
+    {
+      "id": "radiative-energy-transfer",
+      "title": "Radiative and energy-transfer relations",
+      "chemicalTheme": "Spontaneous emission, oscillator strength/Einstein coefficients, Stokes-shifted emission, and Forster resonance energy transfer.",
+      "pairIds": [
+        "P-Marcus-KashaVavilov",
+        "P-Marcus-EnergyGapLaw",
+        "P-Marcus-StokesShift",
+        "P-Marcus-ICvsISC",
+        "P-Marcus-Forster",
+        "P-Marcus-Einstein",
+        "P-Kasha-KashaVavilov",
+        "P-Kasha-EnergyGapLaw",
+        "P-Kasha-StokesShift",
+        "P-Kasha-ICvsISC",
+        "P-Kasha-Forster",
+        "P-Kasha-Einstein",
+        "P-KashaVavilov-SternVolmer",
+        "P-KashaVavilov-QuantumYield",
+        "P-KashaVavilov-FluorPhos",
+        "P-KashaVavilov-EnergyGapLaw",
+        "P-KashaVavilov-StokesShift",
+        "P-KashaVavilov-ICvsISC",
+        "P-KashaVavilov-Forster",
+        "P-KashaVavilov-Einstein",
+        "P-SternVolmer-EnergyGapLaw",
+        "P-SternVolmer-StokesShift",
+        "P-SternVolmer-ICvsISC",
+        "P-SternVolmer-Forster",
+        "P-SternVolmer-Einstein",
+        "P-QuantumYield-EnergyGapLaw",
+        "P-QuantumYield-StokesShift",
+        "P-QuantumYield-ICvsISC",
+        "P-QuantumYield-Forster",
+        "P-QuantumYield-Einstein",
+        "P-FluorPhos-EnergyGapLaw",
+        "P-FluorPhos-StokesShift",
+        "P-FluorPhos-ICvsISC",
+        "P-FluorPhos-Forster",
+        "P-FluorPhos-Einstein",
+        "P-EnergyGapLaw-StokesShift",
+        "P-EnergyGapLaw-ICvsISC",
+        "P-EnergyGapLaw-Forster",
+        "P-EnergyGapLaw-Einstein",
+        "P-StokesShift-ICvsISC",
+        "P-StokesShift-Forster",
+        "P-StokesShift-Einstein",
+        "P-ICvsISC-Forster",
+        "P-ICvsISC-Einstein",
+        "P-Forster-Einstein"
+      ],
+      "pairCount": 45,
+      "workPackages": [
+        {
+          "id": "WP-radiative-energy-transfer-01",
+          "pairIds": [
+            "P-Marcus-KashaVavilov",
+            "P-Marcus-EnergyGapLaw",
+            "P-Marcus-StokesShift",
+            "P-Marcus-ICvsISC",
+            "P-Marcus-Forster",
+            "P-Marcus-Einstein",
+            "P-Kasha-KashaVavilov",
+            "P-Kasha-EnergyGapLaw",
+            "P-Kasha-StokesShift",
+            "P-Kasha-ICvsISC",
+            "P-Kasha-Forster",
+            "P-Kasha-Einstein",
+            "P-KashaVavilov-SternVolmer",
+            "P-KashaVavilov-QuantumYield",
+            "P-KashaVavilov-FluorPhos",
+            "P-KashaVavilov-EnergyGapLaw"
+          ],
+          "pairCount": 16
+        },
+        {
+          "id": "WP-radiative-energy-transfer-02",
+          "pairIds": [
+            "P-KashaVavilov-StokesShift",
+            "P-KashaVavilov-ICvsISC",
+            "P-KashaVavilov-Forster",
+            "P-KashaVavilov-Einstein",
+            "P-SternVolmer-EnergyGapLaw",
+            "P-SternVolmer-StokesShift",
+            "P-SternVolmer-ICvsISC",
+            "P-SternVolmer-Forster",
+            "P-SternVolmer-Einstein",
+            "P-QuantumYield-EnergyGapLaw",
+            "P-QuantumYield-StokesShift",
+            "P-QuantumYield-ICvsISC",
+            "P-QuantumYield-Forster",
+            "P-QuantumYield-Einstein",
+            "P-FluorPhos-EnergyGapLaw",
+            "P-FluorPhos-StokesShift"
+          ],
+          "pairCount": 16
+        },
+        {
+          "id": "WP-radiative-energy-transfer-03",
+          "pairIds": [
+            "P-FluorPhos-ICvsISC",
+            "P-FluorPhos-Forster",
+            "P-FluorPhos-Einstein",
+            "P-EnergyGapLaw-StokesShift",
+            "P-EnergyGapLaw-ICvsISC",
+            "P-EnergyGapLaw-Forster",
+            "P-EnergyGapLaw-Einstein",
+            "P-StokesShift-ICvsISC",
+            "P-StokesShift-Forster",
+            "P-StokesShift-Einstein",
+            "P-ICvsISC-Forster",
+            "P-ICvsISC-Einstein",
+            "P-Forster-Einstein"
+          ],
+          "pairCount": 13
+        }
+      ]
+    },
+    {
+      "id": "conical-intersection",
+      "title": "Conical-intersection screening",
+      "chemicalTheme": "Restricted conical-intersection access, the RACI mechanism, and its comparison with every other theory.",
+      "pairIds": [
+        "P-Marcus-RACI",
+        "P-Hammond-RACI",
+        "P-BEP-RACI",
+        "P-Kasha-RACI",
+        "P-Sabatier-RACI",
+        "P-Goldschmidt-RACI",
+        "P-SymmetryFactor-RACI",
+        "P-KashaVavilov-RACI",
+        "P-SternVolmer-RACI",
+        "P-QuantumYield-RACI",
+        "P-FluorPhos-RACI",
+        "P-EnergyGapLaw-RACI",
+        "P-StokesShift-RACI",
+        "P-ICvsISC-RACI",
+        "P-Forster-RACI",
+        "P-Einstein-RACI"
+      ],
+      "pairCount": 16,
+      "workPackages": [
+        {
+          "id": "WP-conical-intersection-01",
+          "pairIds": [
+            "P-Marcus-RACI",
+            "P-Hammond-RACI",
+            "P-BEP-RACI",
+            "P-Kasha-RACI",
+            "P-Sabatier-RACI",
+            "P-Goldschmidt-RACI",
+            "P-SymmetryFactor-RACI",
+            "P-KashaVavilov-RACI",
+            "P-SternVolmer-RACI",
+            "P-QuantumYield-RACI",
+            "P-FluorPhos-RACI",
+            "P-EnergyGapLaw-RACI",
+            "P-StokesShift-RACI",
+            "P-ICvsISC-RACI",
+            "P-Forster-RACI",
+            "P-Einstein-RACI"
+          ],
+          "pairCount": 16
+        }
+      ]
+    },
+    {
+      "id": "cross-domain-screening",
+      "title": "Cross-domain screening",
+      "chemicalTheme": "Pairs whose theories do not share a declared rate, surface, yield, transfer, or conical-intersection quantity; a statement-level outOfScope justification is expected unless a concrete translation is found.",
+      "pairIds": [
+        "P-Marcus-Goldschmidt",
+        "P-Hammond-Goldschmidt",
+        "P-BEP-Goldschmidt",
+        "P-Kasha-Sabatier",
+        "P-Kasha-Goldschmidt",
+        "P-Sabatier-Goldschmidt",
+        "P-Sabatier-KashaVavilov",
+        "P-Sabatier-SternVolmer",
+        "P-Sabatier-QuantumYield",
+        "P-Sabatier-FluorPhos",
+        "P-Sabatier-EnergyGapLaw",
+        "P-Sabatier-StokesShift",
+        "P-Sabatier-ICvsISC",
+        "P-Sabatier-Forster",
+        "P-Sabatier-Einstein",
+        "P-Goldschmidt-SymmetryFactor",
+        "P-Goldschmidt-KashaVavilov",
+        "P-Goldschmidt-SternVolmer",
+        "P-Goldschmidt-QuantumYield",
+        "P-Goldschmidt-FluorPhos",
+        "P-Goldschmidt-EnergyGapLaw",
+        "P-Goldschmidt-StokesShift",
+        "P-Goldschmidt-ICvsISC",
+        "P-Goldschmidt-Forster",
+        "P-Goldschmidt-Einstein"
+      ],
+      "pairCount": 25,
+      "workPackages": [
+        {
+          "id": "WP-cross-domain-screening-01",
+          "pairIds": [
+            "P-Marcus-Goldschmidt",
+            "P-Hammond-Goldschmidt",
+            "P-BEP-Goldschmidt",
+            "P-Kasha-Sabatier",
+            "P-Kasha-Goldschmidt",
+            "P-Sabatier-Goldschmidt",
+            "P-Sabatier-KashaVavilov",
+            "P-Sabatier-SternVolmer",
+            "P-Sabatier-QuantumYield",
+            "P-Sabatier-FluorPhos",
+            "P-Sabatier-EnergyGapLaw",
+            "P-Sabatier-StokesShift",
+            "P-Sabatier-ICvsISC",
+            "P-Sabatier-Forster",
+            "P-Sabatier-Einstein",
+            "P-Goldschmidt-SymmetryFactor"
+          ],
+          "pairCount": 16
+        },
+        {
+          "id": "WP-cross-domain-screening-02",
+          "pairIds": [
+            "P-Goldschmidt-KashaVavilov",
+            "P-Goldschmidt-SternVolmer",
+            "P-Goldschmidt-QuantumYield",
+            "P-Goldschmidt-FluorPhos",
+            "P-Goldschmidt-EnergyGapLaw",
+            "P-Goldschmidt-StokesShift",
+            "P-Goldschmidt-ICvsISC",
+            "P-Goldschmidt-Forster",
+            "P-Goldschmidt-Einstein"
+          ],
+          "pairCount": 9
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "pairCount": 136,
+    "assigned": 136,
+    "unassignedPairIds": [],
+    "duplicatePairIds": [],
+    "workPackageCount": 10
+  },
+  "nonClaims": [
+    "Cluster membership is a work-package assignment, not a chemical verdict and not an audit outcome.",
+    "A cross-domain pair is not thereby out of scope; it still requires a named query or a statement-level outOfScope justification.",
+    "The cluster plan does not assert that every pair has a relation."
+  ]
+}

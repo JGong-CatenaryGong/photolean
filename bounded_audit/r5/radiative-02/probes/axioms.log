@@ -1,0 +1,6 @@
+# RAD2 probe axiom audit — proofs/scripts/lake env lean bounded_audit/r5/radiative-02/probes/RAD2-probe.lean
+# exit 0; every certificate lists at most propext, Classical.choice, Quot.sound.
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEgBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyIcBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyFoBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEbBridge' depends on axioms: [propext, Classical.choice, Quot.sound]

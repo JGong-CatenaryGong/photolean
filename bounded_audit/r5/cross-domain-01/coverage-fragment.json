@@ -1,0 +1,221 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-coverage-fragment",
+ "round": "R5",
+ "generatedOn": "2026-11-04",
+ "workPackage": {
+  "id": "XD1-CROSS-DOMAIN-01",
+  "path": "bounded_audit/r5/cross-domain-01/screening.json",
+  "pairCount": 15,
+  "sha256": "fa096f5932a2871847cb67e0a94a7190516cd94f0bd7c7b57d329a34e24cdfd3",
+  "r1WorkPackage": "WP-cross-domain-screening-01",
+  "excludedAcceptedPair": "P-Kasha-Sabatier"
+ },
+ "packageState": "submitted-R5-pending-review",
+ "universe": {
+  "pairCount": 136,
+  "source": "audit_boundary/pair-queue.json",
+  "sourceSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504"
+ },
+ "pairs": [
+  {
+   "pairId": "P-Marcus-Goldschmidt",
+   "theories": [
+    "Marcus",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Hammond-Goldschmidt",
+   "theories": [
+    "Hammond",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-BEP-Goldschmidt",
+   "theories": [
+    "BEP",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Kasha-Goldschmidt",
+   "theories": [
+    "Kasha",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-Goldschmidt",
+   "theories": [
+    "Sabatier",
+    "Goldschmidt"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-KashaVavilov",
+   "theories": [
+    "Sabatier",
+    "KashaVavilov"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-SternVolmer",
+   "theories": [
+    "Sabatier",
+    "SternVolmer"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-QuantumYield",
+   "theories": [
+    "Sabatier",
+    "QuantumYield"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-FluorPhos",
+   "theories": [
+    "Sabatier",
+    "FluorPhos"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-EnergyGapLaw",
+   "theories": [
+    "Sabatier",
+    "EnergyGapLaw"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-StokesShift",
+   "theories": [
+    "Sabatier",
+    "StokesShift"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-ICvsISC",
+   "theories": [
+    "Sabatier",
+    "ICvsISC"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "unresolved": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-Forster",
+   "theories": [
+    "Sabatier",
+    "Forster"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Sabatier-Einstein",
+   "theories": [
+    "Sabatier",
+    "Einstein"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-SymmetryFactor",
+   "theories": [
+    "Goldschmidt",
+    "SymmetryFactor"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  }
+ ],
+ "counts": {
+  "pairs": 15,
+  "queries": 15,
+  "byStatus": {
+   "outOfScope": 12,
+   "unresolved": 3
+  },
+  "screenedDelta": 15
+ },
+ "overlapWithAccepted": {
+  "acceptedScreenedPairCount": 67,
+  "intersection": [],
+  "note": "The fragment is disjoint from the accepted 67 pairs, including the R2 P-Kasha-Sabatier pair; the accepted count is derived from the accepted R2/R3/R4 screening packages, not from the mutable R5 ledger."
+ },
+ "accumulationNote": "This fragment is not the cumulative ledger. The integration agent composes it with the accepted 67 pairs into the R5 ledger. This package does not write the ledger.",
+ "nonClaims": [
+  "A coverage fragment counts screened pairs; it is not a completeness claim.",
+  "The fragment does not assign acceptance; the package stays submitted-R5-pending-review until independent K3 review."
+ ]
+}

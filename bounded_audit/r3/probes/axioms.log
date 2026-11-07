@@ -1,0 +1,11 @@
+# R3 probe axiom audit
+# command: proofs/scripts/lake env lean bounded_audit/r3/probes/R3-probe.lean
+# exit: 0
+
+'PhotoLean.RelationAudit.BoundedAudit.R3.marcusSymFactorBarrierBridge' depends on axioms: [propext,
+'PhotoLean.RelationAudit.BoundedAudit.R3.marcusKashaWindowBridge' depends on axioms: [propext,
+'PhotoLean.RelationAudit.BoundedAudit.R3.kashaRadiativeBranchYieldBridge' depends on axioms: [propext,
+'PhotoLean.RelationAudit.BoundedAudit.R3.svQuenchDilutesYieldBridge' depends on axioms: [propext,
+'PhotoLean.RelationAudit.BoundedAudit.R3.fpRatioInvariantBridge' depends on axioms: [propext,
+'PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiFYieldBridge' depends on axioms: [propext,
+'PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiPYieldCascadeBridge' depends on axioms: [propext,

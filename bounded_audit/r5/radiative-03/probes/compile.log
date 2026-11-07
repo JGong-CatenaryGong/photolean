@@ -1,0 +1,16 @@
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiBranchBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiElSayedBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.ffTransferBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.fpEinsBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.esZeroBarrierBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.esBarrierEmissionBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiRateDefinition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiCrossoverComposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.siSurfaceBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.foEinBridge' depends on axioms: [propext, Classical.choice, Quot.sound]

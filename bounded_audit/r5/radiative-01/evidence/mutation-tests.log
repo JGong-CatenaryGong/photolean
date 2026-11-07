@@ -1,0 +1,19 @@
+# R7 RAD1 §4-comment repair — mutation tests (fail-closed evidence)
+$ python3 bounded_audit/r5/radiative-01/evidence/mutation_tests.py
+CONTROL unmutated copy: exit=0 PASS
+M1 duplicate pair id: exit=1 expected=['pairs.duplicate', 'pairs.coverage'] hit=['pairs.duplicate', 'pairs.coverage'] PASS
+M2 endpoint source line: exit=1 expected=['endpoint.sourceLine', 'endpoint.lineMatch'] hit=['endpoint.sourceLine'] PASS
+M3 certified relabelled unresolved: exit=1 expected=['evidence.searchType', 'search.missing'] hit=['evidence.searchType', 'search.missing'] PASS
+M4 empty jurisdiction rationale: exit=1 expected=['evidence.jurisdictionRationale'] hit=['evidence.jurisdictionRationale'] PASS
+M5 tampered probe hash: exit=1 expected=['evidence.probeHash'] hit=['evidence.probeHash'] PASS
+M6 tampered inventory snapshot hash: exit=1 expected=['snapshot.inventorySha256'] hit=['snapshot.inventorySha256'] PASS
+M7 expected-kind mismatch: exit=1 expected=['evidence.kindMatch'] hit=['evidence.kindMatch'] PASS
+M8 dropped query row: exit=1 expected=['pair.queryIds', 'pair.noQueryRow'] hit=['pair.noQueryRow'] PASS
+M9 reversed MSS question: exit=1 expected=['pin.mss.chemicalQuestion', 'pin.mss.predicateTokens'] hit=['pin.mss.chemicalQuestion', 'pin.mss.predicateTokens'] PASS
+M10 loosened MSS falsification: exit=1 expected=['pin.mss.falsificationCondition', 'pin.mss.exactlyOne'] hit=['pin.mss.falsificationCondition', 'pin.mss.exactlyOne'] PASS
+M11 Vavilov-leaking KKV rationale: exit=1 expected=['pin.kkv.expectedKindRationale', 'pin.kkv.independenceLeak'] hit=['pin.kkv.expectedKindRationale', 'pin.kkv.independenceLeak'] PASS
+M12 stale mkvCmp StatementRef: exit=1 expected=['pin.mkvCmp.statementRef', 'pin.mkvCmp.legacyRef', 'pin.mkvCmp.provenance'] hit=['pin.mkvCmp.statementRef', 'pin.mkvCmp.legacyRef', 'pin.mkvCmp.provenance'] PASS
+M13 reversed §4 probe comment: exit=1 expected=['pin.ssProbeComment.text', 'pin.ssProbeComment.reversed', 'pin.ssProbe.reversed', 'pin.ssProbeComment.inverted', 'pin.ssProbeComment.normal'] hit=['pin.ssProbeComment.text', 'pin.ssProbeComment.reversed', 'pin.ssProbe.reversed', 'pin.ssProbeComment.inverted', 'pin.ssProbeComment.normal'] PASS
+M14 §4 probe comment drops normal region: exit=1 expected=['pin.ssProbeComment.text', 'pin.ssProbeComment.normal'] hit=['pin.ssProbeComment.text', 'pin.ssProbeComment.normal'] PASS
+MUTATION RESULT: PASS (15/15: control passes, every mutation fails closed with the expected code)
+[exit=0]

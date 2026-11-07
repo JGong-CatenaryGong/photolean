@@ -1,0 +1,21 @@
+'PhotoLean.RelationAudit.BoundedAudit.R3.marcusSymFactorBarrierBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R3.marcusKashaWindowBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R3.kashaRadiativeBranchYieldBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R3.svQuenchDilutesYieldBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R3.fpRatioInvariantBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiFYieldBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R3.fluorPhosPhiPYieldCascadeBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

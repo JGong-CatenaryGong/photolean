@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-coverage-fragment",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "WP-radiative-energy-transfer-03",
+    "path": "bounded_audit/r5/radiative-03/screening.json",
+    "pairCount": 13,
+    "sha256": "34da3a2651d496885a5981569b64a2dd68738494e333e99dd56636a2d136c55b"
+  },
+  "packageState": "submitted-R5-pending-review",
+  "primaryCluster": "radiative-energy-transfer",
+  "universe": {
+    "pairCount": 136,
+    "source": "audit_boundary/pair-queue.json",
+    "sourceSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504"
+  },
+  "pairs": [
+    {
+      "pairId": "P-FluorPhos-ICvsISC",
+      "theories": [
+        "FluorPhos",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 2,
+      "byStatus": {
+        "certified": 2
+      }
+    },
+    {
+      "pairId": "P-FluorPhos-Forster",
+      "theories": [
+        "FluorPhos",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-FluorPhos-Einstein",
+      "theories": [
+        "FluorPhos",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-EnergyGapLaw-StokesShift",
+      "theories": [
+        "EnergyGapLaw",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 2,
+      "byStatus": {
+        "certified": 2
+      }
+    },
+    {
+      "pairId": "P-EnergyGapLaw-ICvsISC",
+      "theories": [
+        "EnergyGapLaw",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 2,
+      "byStatus": {
+        "certified": 2
+      }
+    },
+    {
+      "pairId": "P-EnergyGapLaw-Forster",
+      "theories": [
+        "EnergyGapLaw",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-EnergyGapLaw-Einstein",
+      "theories": [
+        "EnergyGapLaw",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-StokesShift-ICvsISC",
+      "theories": [
+        "StokesShift",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    },
+    {
+      "pairId": "P-StokesShift-Forster",
+      "theories": [
+        "StokesShift",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "notEstablished": 1
+      }
+    },
+    {
+      "pairId": "P-StokesShift-Einstein",
+      "theories": [
+        "StokesShift",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-ICvsISC-Forster",
+      "theories": [
+        "ICvsISC",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "unresolved": 1
+      }
+    },
+    {
+      "pairId": "P-ICvsISC-Einstein",
+      "theories": [
+        "ICvsISC",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "outOfScope": 1
+      }
+    },
+    {
+      "pairId": "P-Forster-Einstein",
+      "theories": [
+        "Forster",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryCount": 1,
+      "byStatus": {
+        "certified": 1
+      }
+    }
+  ],
+  "counts": {
+    "pairs": 13,
+    "queries": 16,
+    "byStatus": {
+      "certified": 10,
+      "outOfScope": 4,
+      "notEstablished": 1,
+      "unresolved": 1
+    },
+    "screenedDelta": 13
+  },
+  "overlapWithAccepted": {
+    "derivedFrom": [
+      "bounded_audit/wp-surface-01/screening.json",
+      "bounded_audit/r3/screening.json",
+      "bounded_audit/r4/excited-01/screening.json",
+      "bounded_audit/r4/excited-02/screening.json",
+      "bounded_audit/r4/conical-01/screening.json"
+    ],
+    "acceptedScreenedPairCount": 67,
+    "intersection": []
+  },
+  "nonClaims": [
+    "This fragment is an immutable submission snapshot, not the cumulative R5 ledger.",
+    "It lists only the thirteen RAD3 pairs and makes no claim about the other 123 pairs.",
+    "It does not pin or hash the mutable R5 cumulative ledger."
+  ]
+}

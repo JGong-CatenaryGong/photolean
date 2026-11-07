@@ -1,0 +1,49 @@
+RAD3 probe discipline scan — 2026-11-03T19:11:17Z
+
+## forbidden-token scan (sorry / admit / line-start axiom|constant)
+clean (0 hits; grep exit 1)
+
+## declared certificate kinds (probe kind pins)
+140:    certificateKind fiBranchBridge = RelationKind.observationalEquivalence := rfl
+264:    certificateKind fiElSayedBridge = RelationKind.equivalence := rfl
+352:    certificateKind ffTransferBridge = RelationKind.observationalEquivalence := rfl
+404:    certificateKind fpEinsBridge = RelationKind.observationalEquivalence := rfl
+476:    certificateKind esZeroBarrierBridge = RelationKind.equivalence := rfl
+516:    certificateKind esBarrierEmissionBridge = RelationKind.observationalEquivalence := rfl
+570:    certificateKind eiRateDefinition = RelationKind.definitionalIdentity := rfl
+696:    certificateKind eiCrossoverComposition = RelationKind.conditionalComposition := rfl
+747:    certificateKind siSurfaceBridge = RelationKind.observationalEquivalence := rfl
+800:    certificateKind foEinBridge = RelationKind.observationalEquivalence := rfl
+
+## per-declaration axiom audit (from probes/compile.log)
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiBranchBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.fiElSayedBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.ffTransferBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.fpEinsBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.esZeroBarrierBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.esBarrierEmissionBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiRateDefinition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.eiCrossoverComposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.siSurfaceBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.Rad3.foEinBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+## machine-checked premise/composition witnesses
+809:example : certificatePremiseIDs fiBranchBridge = [] := by decide
+810:example : certificatePremiseIDs fiElSayedBridge =
+813:example : certificatePremiseIDs ffTransferBridge =
+815:example : certificatePremiseIDs fpEinsBridge = [] := by decide
+816:example : certificatePremiseIDs esZeroBarrierBridge = ["RAD3-ES-lam-nonzero"] := by decide
+817:example : certificatePremiseIDs esBarrierEmissionBridge = ["RAD3-ES-lam-nonzero"] := by decide
+818:example : certificatePremiseIDs eiRateDefinition = [] := by decide
+819:example : certificatePremiseIDs eiCrossoverComposition =
+821:example : certificatePremiseIDs siSurfaceBridge = [] := by decide
+822:example : certificatePremiseIDs foEinBridge = [] := by decide
+824:example : (certificateComposition? eiCrossoverComposition).map (fun m => m.parentIDs) =
+826:example : (certificateComposition? eiCrossoverComposition).map (fun m => m.bridgeIDs) =
+828:example : (certificateComposition? eiCrossoverComposition).map (fun m => m.form) =

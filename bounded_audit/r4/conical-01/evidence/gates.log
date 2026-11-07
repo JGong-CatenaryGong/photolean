@@ -1,0 +1,112 @@
+# R4 CI evidence gates — 2026-11-04T02:17:17+08:00
+# repository root: .
+
+$ python3 bounded_audit/r4/conical-01/validate.py
+R4 WP-conical-intersection-01 validation
+  root: .
+  package: bounded_audit/r4/conical-01
+  checks failed: 0
+RESULT: PASS (all conical-intersection package checks passed)
+[exit=0]
+
+$ python3 audit_boundary/validate_boundary.py
+Bounded relation-audit boundary validation
+  root: .
+  boundary.md: present
+  theories: 17
+  pairs: 136
+  statement rows: 1154 (authority 1153, shared 1, eligible 1134)
+  unique pairs: 136
+  clusters: 6
+  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0
+RESULT: PASS (all boundary checks passed)
+[exit=0]
+
+$ python3 bounded_audit/validate_screening.py
+R2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all bounded-screening checks passed)
+[exit=0]
+
+$ python3 bounded_audit/validate_r3.py
+R3 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all R3 bounded-screening checks passed)
+[exit=0]
+
+$ proofs/scripts/lake env lean bounded_audit/r4/conical-01/probes/R4-CI-probe.lean
+'PhotoLean.RelationAudit.BoundedAudit.CI.marcusRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.kashaRadiativeBranchPin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.qyTwoChannelBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.fluorPhosS1Bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.svQuenchDilutionBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.eglRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.icRateBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.CI.einsteinYieldBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+[exit=0]
+
+$ proofs/scripts/check.sh --strict
+==> [PhotoLean] leaf data plane
+==> per-theory leaf data plane (theories/*/ : plan.md TASKS.md LITERATURE.md RESULTS.md probes/)
+   OK      theories/BEP (5/5)
+   OK      theories/Einstein (5/5)
+   OK      theories/EnergyGapLaw (5/5)
+   OK      theories/FluorPhos (5/5)
+   OK      theories/Forster (5/5)
+   OK      theories/goldschmidt (5/5)
+   OK      theories/hammond (5/5)
+   OK      theories/ICvsISC (5/5)
+   OK      theories/kasha (5/5)
+   OK      theories/KashaVavilov (5/5)
+   OK      theories/Marcus (5/5)
+   OK      theories/QuantumYield (5/5)
+   OK      theories/RACI (5/5)
+   OK      theories/Sabatier (5/5)
+   OK      theories/SternVolmer (5/5)
+   OK      theories/StokesShift (5/5)
+   OK      theories/SymmetryFactor (5/5)
+==> lake build all
+⚠ [6345/6409] Replayed PhotoLean.SternVolmer.Basic
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:32: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:35: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6384/6409] Replayed PhotoLean.SternVolmer.RatModel
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:22: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:25: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6395/6409] Replayed PhotoLean.FluorPhos.RatModel
+warning: ././././PhotoLean/FluorPhos/RatModel.lean:89:21: unused variable `kIC`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.
+==> sorry / custom axiom scan (PhotoLean/**/*.lean)
+clean
+==> summary
+build: OK
+allowed axioms: propext Classical.choice Quot.sound
+verdict: PASS
+[exit=0]
+
+$ sha256sum relation_audit/registry.json
+25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0  relation_audit/registry.json
+[exit=0]
+
+$ find PhotoLean -name '*.lean' | wc -l
+102
+[exit=0]
+
+$ grep -c 'depends on axioms' bounded_audit/r4/conical-01/probes/compile.log
+8
+[exit=0]
+
+$ grep -oE 'sorry|admit|^[[:space:]]*(private[[:space:]]+|protected[[:space:]]+)?(axiom|constant)([[:space:]]|$)' bounded_audit/r4/conical-01/probes/R4-CI-probe.lean | wc -l
+0
+[exit=0]
+

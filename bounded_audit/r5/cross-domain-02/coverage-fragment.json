@@ -1,0 +1,152 @@
+{
+ "schemaVersion": "1.0.0",
+ "artifactKind": "bounded-coverage-fragment",
+ "round": "R5",
+ "generatedOn": "2026-11-04",
+ "workPackage": {
+  "id": "WP-cross-domain-screening-02",
+  "path": "bounded_audit/r5/cross-domain-02/screening.json",
+  "pairCount": 9,
+  "sha256": "02456b78ee5852a306652901085e31a2387045faaf30f0b3566f2a6bac22c80f"
+ },
+ "packageState": "submitted-R5-pending-review",
+ "universe": {
+  "pairCount": 136,
+  "source": "audit_boundary/pair-queue.json",
+  "sourceSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504"
+ },
+ "pairs": [
+  {
+   "pairId": "P-Goldschmidt-KashaVavilov",
+   "theories": [
+    "Goldschmidt",
+    "KashaVavilov"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-SternVolmer",
+   "theories": [
+    "Goldschmidt",
+    "SternVolmer"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-QuantumYield",
+   "theories": [
+    "Goldschmidt",
+    "QuantumYield"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-FluorPhos",
+   "theories": [
+    "Goldschmidt",
+    "FluorPhos"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-EnergyGapLaw",
+   "theories": [
+    "Goldschmidt",
+    "EnergyGapLaw"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 2,
+   "byStatus": {
+    "outOfScope": 2
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-StokesShift",
+   "theories": [
+    "Goldschmidt",
+    "StokesShift"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-ICvsISC",
+   "theories": [
+    "Goldschmidt",
+    "ICvsISC"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-Forster",
+   "theories": [
+    "Goldschmidt",
+    "Forster"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 2,
+   "byStatus": {
+    "outOfScope": 2
+   }
+  },
+  {
+   "pairId": "P-Goldschmidt-Einstein",
+   "theories": [
+    "Goldschmidt",
+    "Einstein"
+   ],
+   "primaryCluster": "cross-domain-screening",
+   "queryCount": 1,
+   "byStatus": {
+    "outOfScope": 1
+   }
+  }
+ ],
+ "counts": {
+  "pairs": 9,
+  "queries": 11,
+  "byStatus": {
+   "outOfScope": 11
+  },
+  "screenedDelta": 9
+ },
+ "overlapWithAccepted": {
+  "acceptedScreenedPairCount": 67,
+  "acceptedPackages": [
+   "bounded_audit/wp-surface-01/screening.json",
+   "bounded_audit/r3/screening.json",
+   "bounded_audit/r4/excited-01/screening.json",
+   "bounded_audit/r4/excited-02/screening.json",
+   "bounded_audit/r4/conical-01/screening.json"
+  ],
+  "derivation": "The prior pair set is the union of the pair rows of the five accepted packages, not a hash-pinned ledger. The mutable R5 ledger is neither read nor pinned.",
+  "intersection": []
+ },
+ "nonClaims": [
+  "The fragment is a submission snapshot of this package only; it does not update, and must not be read as updating, the cumulative coverage ledger.",
+  "The acceptedScreenedPairCount is derived from the accepted packages by the validator and carries no ledger hash."
+ ]
+}

@@ -1,0 +1,385 @@
+### Goldschmidt x KashaVavilov
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/KashaVavilov/*.lean
+[exit=1]
+
+### Goldschmidt x SternVolmer
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/SternVolmer/*.lean
+[exit=1]
+
+### Goldschmidt x QuantumYield
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/QuantumYield/*.lean
+[exit=1]
+
+### Goldschmidt x FluorPhos
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/FluorPhos/*.lean
+[exit=1]
+
+### Goldschmidt x EnergyGapLaw
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/EnergyGapLaw/*.lean
+[exit=1]
+
+### Goldschmidt x StokesShift
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/StokesShift/*.lean
+[exit=1]
+
+### Goldschmidt x ICvsISC
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/ICvsISC/*.lean
+[exit=1]
+
+### Goldschmidt x Forster
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/Forster/*.lean
+[exit=1]
+
+### Goldschmidt x Einstein
+
+$ grep -rnE '<goldschmidt-tokens>' PhotoLean/Einstein/*.lean
+[exit=1]
+
+### Goldschmidt import closure
+
+$ grep -rn '^import' PhotoLean/Goldschmidt/
+PhotoLean/Goldschmidt/Instances.lean:47:import PhotoLean.Goldschmidt.Basic
+PhotoLean/Goldschmidt/Instances.lean:49:import PhotoLean.Goldschmidt.Rules
+PhotoLean/Goldschmidt/Instances.lean:51:import PhotoLean.Goldschmidt.Criterion
+PhotoLean/Goldschmidt/Instances.lean:53:import PhotoLean.Goldschmidt.RatModel
+PhotoLean/Goldschmidt/RatModel.lean:36:import PhotoLean.Goldschmidt.Basic
+PhotoLean/Goldschmidt/RatModel.lean:38:import PhotoLean.Goldschmidt.Criterion
+PhotoLean/Goldschmidt/RatModel.lean:40:import PhotoLean.Goldschmidt.Rules
+PhotoLean/Goldschmidt/Sharp.lean:41:import PhotoLean.Goldschmidt.Basic
+PhotoLean/Goldschmidt/Sharp.lean:42:import PhotoLean.Goldschmidt.Rules
+PhotoLean/Goldschmidt/Sharp.lean:43:import PhotoLean.Goldschmidt.Criterion
+PhotoLean/Goldschmidt/Rules.lean:43:import Mathlib
+PhotoLean/Goldschmidt/Criterion.lean:56:import PhotoLean.Goldschmidt.Basic
+PhotoLean/Goldschmidt/Basic.lean:25:import Mathlib
+[exit=0]
+
+### KashaVavilov import closure
+
+$ grep -rn '^import' PhotoLean/KashaVavilov/
+PhotoLean/KashaVavilov/Basic.lean:54:import Mathlib
+PhotoLean/KashaVavilov/Basic.lean:55:import PhotoLean.Kasha.Basic
+PhotoLean/KashaVavilov/Basic.lean:56:import PhotoLean.Kasha.Criterion
+PhotoLean/KashaVavilov/Criterion.lean:58:import PhotoLean.KashaVavilov.Basic
+PhotoLean/KashaVavilov/Criterion.lean:59:import Mathlib
+PhotoLean/KashaVavilov/Criterion.lean:60:import PhotoLean.Kasha.Basic
+PhotoLean/KashaVavilov/Criterion.lean:61:import PhotoLean.Kasha.Criterion
+PhotoLean/KashaVavilov/Instances.lean:56:import PhotoLean.KashaVavilov.Basic
+PhotoLean/KashaVavilov/Instances.lean:57:import PhotoLean.KashaVavilov.Criterion
+PhotoLean/KashaVavilov/Instances.lean:58:import Mathlib
+PhotoLean/KashaVavilov/Instances.lean:59:import PhotoLean.Kasha.Basic
+PhotoLean/KashaVavilov/Instances.lean:60:import PhotoLean.Kasha.Criterion
+[exit=0]
+
+### SternVolmer import closure
+
+$ grep -rn '^import' PhotoLean/SternVolmer/
+PhotoLean/SternVolmer/RatModel.lean:39:import PhotoLean.SternVolmer.Basic
+PhotoLean/SternVolmer/Basic.lean:35:import Mathlib
+PhotoLean/SternVolmer/Instances.lean:32:import PhotoLean.SternVolmer.RatModel
+PhotoLean/SternVolmer/Instances.lean:33:import PhotoLean.SternVolmer.Criterion
+PhotoLean/SternVolmer/Criterion.lean:38:import PhotoLean.SternVolmer.Basic
+[exit=0]
+
+### QuantumYield import closure
+
+$ grep -rn '^import' PhotoLean/QuantumYield/
+PhotoLean/QuantumYield/Basic.lean:26:import Mathlib
+PhotoLean/QuantumYield/Criterion.lean:38:import PhotoLean.QuantumYield.Basic
+PhotoLean/QuantumYield/Instances.lean:32:import PhotoLean.QuantumYield.RatModel
+PhotoLean/QuantumYield/RatModel.lean:35:import PhotoLean.QuantumYield.Basic
+[exit=0]
+
+### FluorPhos import closure
+
+$ grep -rn '^import' PhotoLean/FluorPhos/
+PhotoLean/FluorPhos/RatModel.lean:38:import PhotoLean.FluorPhos.Basic
+PhotoLean/FluorPhos/RatModel.lean:39:import PhotoLean.FluorPhos.Criterion
+PhotoLean/FluorPhos/Criterion.lean:66:import PhotoLean.FluorPhos.Basic
+PhotoLean/FluorPhos/Instances.lean:44:import PhotoLean.FluorPhos.Basic
+PhotoLean/FluorPhos/Instances.lean:45:import PhotoLean.FluorPhos.Criterion
+PhotoLean/FluorPhos/Instances.lean:46:import PhotoLean.FluorPhos.RatModel
+PhotoLean/FluorPhos/Basic.lean:36:import Mathlib
+[exit=0]
+
+### EnergyGapLaw import closure
+
+$ grep -rn '^import' PhotoLean/EnergyGapLaw/
+PhotoLean/EnergyGapLaw/RatModel.lean:54:import PhotoLean.EnergyGapLaw.Basic
+PhotoLean/EnergyGapLaw/Criterion.lean:53:import PhotoLean.EnergyGapLaw.Basic
+PhotoLean/EnergyGapLaw/Sharp.lean:55:import PhotoLean.EnergyGapLaw.Criterion
+PhotoLean/EnergyGapLaw/Basic.lean:47:import Mathlib
+PhotoLean/EnergyGapLaw/Basic.lean:48:import PhotoLean.Kernel
+PhotoLean/EnergyGapLaw/Basic.lean:49:import PhotoLean.Marcus.Basic
+PhotoLean/EnergyGapLaw/Instances.lean:55:import PhotoLean.EnergyGapLaw.RatModel
+PhotoLean/EnergyGapLaw/Instances.lean:56:import PhotoLean.EnergyGapLaw.Sharp
+[exit=0]
+
+### StokesShift import closure
+
+$ grep -rn '^import' PhotoLean/StokesShift/
+PhotoLean/StokesShift/Basic.lean:41:import Mathlib
+PhotoLean/StokesShift/Basic.lean:42:import PhotoLean.Kernel
+PhotoLean/StokesShift/Criterion.lean:35:import PhotoLean.StokesShift.Basic
+PhotoLean/StokesShift/Criterion.lean:36:import PhotoLean.Marcus.Basic
+PhotoLean/StokesShift/Instances.lean:38:import PhotoLean.StokesShift.RatModel
+PhotoLean/StokesShift/Instances.lean:39:import PhotoLean.Marcus.Basic
+PhotoLean/StokesShift/RatModel.lean:33:import PhotoLean.StokesShift.Basic
+[exit=0]
+
+### ICvsISC import closure
+
+$ grep -rn '^import' PhotoLean/ICvsISC/
+PhotoLean/ICvsISC/Instances.lean:57:import PhotoLean.ICvsISC.RatModel
+PhotoLean/ICvsISC/RatModel.lean:47:import PhotoLean.ICvsISC.Basic
+PhotoLean/ICvsISC/Basic.lean:48:import Mathlib
+PhotoLean/ICvsISC/Basic.lean:49:import PhotoLean.Kernel
+PhotoLean/ICvsISC/Basic.lean:50:import PhotoLean.Marcus.Basic
+PhotoLean/ICvsISC/Criterion.lean:67:import PhotoLean.ICvsISC.Basic
+[exit=0]
+
+### Forster import closure
+
+$ grep -rn '^import' PhotoLean/Forster/
+PhotoLean/Forster/Criterion.lean:40:import PhotoLean.Forster.Basic
+PhotoLean/Forster/RatModel.lean:29:import PhotoLean.Forster.Criterion
+PhotoLean/Forster/Instances.lean:25:import PhotoLean.Forster.RatModel
+PhotoLean/Forster/Basic.lean:37:import Mathlib
+[exit=0]
+
+### Einstein import closure
+
+$ grep -rn '^import' PhotoLean/Einstein/
+PhotoLean/Einstein/Criterion.lean:45:import PhotoLean.Einstein.Basic
+PhotoLean/Einstein/RatModel.lean:35:import PhotoLean.Einstein.Criterion
+PhotoLean/Einstein/Instances.lean:32:import PhotoLean.Einstein.RatModel
+PhotoLean/Einstein/Basic.lean:33:import Mathlib
+[exit=0]
+
+### legacy registry dispositions
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-KashaVavilov
+pair: P-Goldschmidt-KashaVavilov
+theories: ['Goldschmidt', 'KashaVavilov']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-KashaVavilov: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-SternVolmer
+pair: P-Goldschmidt-SternVolmer
+theories: ['Goldschmidt', 'SternVolmer']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-SternVolmer: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-QuantumYield
+pair: P-Goldschmidt-QuantumYield
+theories: ['Goldschmidt', 'QuantumYield']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-QuantumYield: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-FluorPhos
+pair: P-Goldschmidt-FluorPhos
+theories: ['Goldschmidt', 'FluorPhos']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-FluorPhos: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-EnergyGapLaw
+pair: P-Goldschmidt-EnergyGapLaw
+theories: ['Goldschmidt', 'EnergyGapLaw']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-EnergyGapLaw: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-StokesShift
+pair: P-Goldschmidt-StokesShift
+theories: ['Goldschmidt', 'StokesShift']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-StokesShift: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-ICvsISC
+pair: P-Goldschmidt-ICvsISC
+theories: ['Goldschmidt', 'ICvsISC']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-ICvsISC: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Forster
+pair: P-Goldschmidt-Forster
+theories: ['Goldschmidt', 'Forster']
+legacy: label='absence' subtype='look-alike'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-Forster: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+$ python3 tools/relation_audit_registry.py --explain-pair P-Goldschmidt-Einstein
+pair: P-Goldschmidt-Einstein
+theories: ['Goldschmidt', 'Einstein']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-Goldschmidt-Einstein: status='notEstablished' kind=None certificate=None
+[exit=0]
+
+### Signature scans over the frozen statement inventory
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py KashaVavilov
+signature scan: Goldschmidt x KashaVavilov
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  KashaVavilov statement rows: 29
+  Goldschmidt identifiers in KashaVavilov signatures: 0 []
+  KashaVavilov identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py SternVolmer
+signature scan: Goldschmidt x SternVolmer
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  SternVolmer statement rows: 46
+  Goldschmidt identifiers in SternVolmer signatures: 0 []
+  SternVolmer identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py QuantumYield
+signature scan: Goldschmidt x QuantumYield
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  QuantumYield statement rows: 29
+  Goldschmidt identifiers in QuantumYield signatures: 0 []
+  QuantumYield identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py FluorPhos
+signature scan: Goldschmidt x FluorPhos
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  FluorPhos statement rows: 30
+  Goldschmidt identifiers in FluorPhos signatures: 0 []
+  FluorPhos identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py EnergyGapLaw
+signature scan: Goldschmidt x EnergyGapLaw
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  EnergyGapLaw statement rows: 26
+  Goldschmidt identifiers in EnergyGapLaw signatures: 0 []
+  EnergyGapLaw identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py StokesShift
+signature scan: Goldschmidt x StokesShift
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  StokesShift statement rows: 36
+  Goldschmidt identifiers in StokesShift signatures: 0 []
+  StokesShift identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py ICvsISC
+signature scan: Goldschmidt x ICvsISC
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  ICvsISC statement rows: 20
+  Goldschmidt identifiers in ICvsISC signatures: 0 []
+  ICvsISC identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Forster
+signature scan: Goldschmidt x Forster
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  Forster statement rows: 32
+  Goldschmidt identifiers in Forster signatures: 0 []
+  Forster identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+
+$ python3 bounded_audit/r5/cross-domain-02/evidence/signature_scan.py Einstein
+signature scan: Goldschmidt x Einstein
+  signature source: audit_boundary/statement-inventory.json (sourceSignature column)
+  Goldschmidt statement rows: 139
+  Einstein statement rows: 33
+  Goldschmidt identifiers in Einstein signatures: 0 []
+  Einstein identifiers in Goldschmidt signatures: 0 []
+RESULT: PASS (no shared statement-level identifier)
+[exit=0]
+

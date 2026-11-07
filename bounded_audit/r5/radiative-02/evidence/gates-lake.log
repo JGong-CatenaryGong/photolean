@@ -1,0 +1,49 @@
+## 6. Local probe compile + axiom audit (Lake, serialized)
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEgBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyIcBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyFoBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEbBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+exit=0
+
+## 7. Strict build/scan
+==> [PhotoLean] leaf data plane
+==> per-theory leaf data plane (theories/*/ : plan.md TASKS.md LITERATURE.md RESULTS.md probes/)
+   OK      theories/BEP (5/5)
+   OK      theories/Einstein (5/5)
+   OK      theories/EnergyGapLaw (5/5)
+   OK      theories/FluorPhos (5/5)
+   OK      theories/Forster (5/5)
+   OK      theories/goldschmidt (5/5)
+   OK      theories/hammond (5/5)
+   OK      theories/ICvsISC (5/5)
+   OK      theories/kasha (5/5)
+   OK      theories/KashaVavilov (5/5)
+   OK      theories/Marcus (5/5)
+   OK      theories/QuantumYield (5/5)
+   OK      theories/RACI (5/5)
+   OK      theories/Sabatier (5/5)
+   OK      theories/SternVolmer (5/5)
+   OK      theories/StokesShift (5/5)
+   OK      theories/SymmetryFactor (5/5)
+==> lake build all
+⚠ [6345/6409] Replayed PhotoLean.SternVolmer.Basic
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:32: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/Basic.lean:65:35: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6384/6409] Replayed PhotoLean.SternVolmer.RatModel
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:22: unused variable `Ka`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././PhotoLean/SternVolmer/RatModel.lean:61:25: unused variable `q`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6395/6409] Replayed PhotoLean.FluorPhos.RatModel
+warning: ././././PhotoLean/FluorPhos/RatModel.lean:89:21: unused variable `kIC`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.
+==> sorry / custom axiom scan (PhotoLean/**/*.lean)
+clean
+==> summary
+build: OK
+allowed axioms: propext Classical.choice Quot.sound
+verdict: PASS
+exit=0

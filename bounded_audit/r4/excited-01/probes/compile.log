@@ -1,0 +1,21 @@
+# E1 probe compile and axiom gate
+# command: proofs/scripts/lake env lean bounded_audit/r4/excited-01/probes/E1-probe.lean
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondEnergyGapBarrierZeroEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepEnergyGapInvertedEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondKashaICMaxEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondICvsISCBarrierPin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.bepKashaTransferZeroEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.R4Excited01.hammondStokesAbsorptionBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+# exit: 0

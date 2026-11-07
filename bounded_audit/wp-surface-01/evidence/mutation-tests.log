@@ -1,0 +1,8 @@
+duplicate-query-id: exit=1; 1 FAIL line(s); first=FAIL [queries.duplicate] duplicate query id in screening package
+pair-without-query: exit=1; 7 FAIL line(s); first=FAIL [pair.noQuery] pair 'P-Hammond-Sabatier' has no named query
+fabricated-certificate: exit=1; 1 FAIL line(s); first=FAIL [evidence.certMissing] query 'Q-WPS01-MH-01' certificate 'cert-fabricated' is not in the legacy registry
+dangling-alias-endpoint: exit=1; 2 FAIL line(s); first=FAIL [endpoint.missing] query 'Q-WPS01-MH-01' source endpoint 'stmt-BEP-PhotoLean-BEP-rateViaEact' is not an inventory statement
+disallowed-axiom: exit=1; 1 FAIL line(s); first=FAIL [evidence.axioms] query 'Q-WPS01-MH-01' evidence footprint contains disallowed axioms: ['sorryAx']
+count-drift: exit=1; 1 FAIL line(s); first=FAIL [counts.queries] query count drift
+missing-search-log: exit=1; 2 FAIL line(s); first=FAIL [search.backref] query 'Q-WPS01-HS-01' does not point back to search entry 'SL-WPS01-HS-01'
+refuted-without-witness: exit=1; 6 FAIL line(s); first=FAIL [evidence.refutationType] query 'Q-WPS01-MH-01' refuted requires a refutation certificate

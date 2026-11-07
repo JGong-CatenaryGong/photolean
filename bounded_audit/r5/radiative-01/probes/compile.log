@@ -1,0 +1,24 @@
+# 2026-11-03T20:09:12Z probe compilation + per-declaration axiom audit
+$ proofs/scripts/lake env lean bounded_audit/r5/radiative-01/probes/RAD1-probe.lean
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglRateBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusEglZoneBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusICRateBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.marcusSSBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaVavBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEglRateBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.kashaEinsteinBridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.kvQyBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.kvFpBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.kvSvBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.RAD1.mkvBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+[exit=0]

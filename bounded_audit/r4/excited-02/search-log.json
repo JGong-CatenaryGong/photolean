@@ -1,0 +1,925 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-search-log",
+  "round": "R4",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-excited-state-kinetics-02",
+  "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+  "entries": [
+    {
+      "searchId": "SL-E2-KS-01",
+      "queryId": "Q-E2-KS-01",
+      "pairId": "P-Kasha-SymmetryFactor",
+      "status": "unresolved",
+      "scope": "scope-E2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-Kasha-PhotoLean-Kasha-funnelRatio",
+        "stmt-Kasha-PhotoLean-Kasha-decay",
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-asymReactantSurface"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "KashaScCandidateCtx (rad, ic, kr, kp): a ladder rate function and a curvature pair with no declared translation"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 603: SymmetryFactor vs Kasha no edge",
+          "finding": "The legacy register states that the curvature-pair scalar shares no object with the ladder branching rates."
+        },
+        {
+          "artifact": "PhotoLean/Kasha/Basic.lean",
+          "locator": "funnelRatio, decay, radBranch",
+          "finding": "The ladder leaves ic as an arbitrary rate function; there is no energy surface or barrier."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "asymReactantSurface, tsCoordZero",
+          "finding": "SymmetryFactor exposes surfaces and a crossing coordinate, not a rate law."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Kasha-SymmetryFactor",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named query."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/Kasha --include='*.lean'",
+          "purpose": "Search the Kasha modules for a delivered SymmetryFactor statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Kasha' PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search the SymmetryFactor modules for a delivered Kasha statement.",
+          "result": "One match, a docstring reference to Kasha K4b; no import or declaration."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Kasha/*.lean | sort -u",
+          "purpose": "Measure the Kasha module dependencies.",
+          "result": "Mathlib plus Kasha submodules and PhotoLean.Marcus.Basic; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u",
+          "purpose": "Measure the SymmetryFactor module dependencies.",
+          "result": "Mathlib plus Kernel and BEP.Criterion; no Kasha import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-SymmetryFactor",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-Kasha-SymmetryFactor status=notEstablished certificate=None; candidate=False."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read the ladder ic rate as a crossing-controlled rate at the SymmetryFactor barrier.",
+          "outcome": "No delivered rate law relates ic to a two-parabola surface."
+        },
+        {
+          "strategy": "Search for a composition row from Kasha funnelRatio to SymmetryFactor tsCoordZero.",
+          "outcome": "No typed parent chain or delivered theorem exists."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-versus-structure candidate",
+          "statement": "Kasha.funnelRatio = rad 0 * ic 1 / (rad 1 * decay 0) versus SymmetryFactor.tsCoordZero kr kp; a crossing-controlled IC rate would be the bridge.",
+          "status": "candidate only; no statement-level identification is delivered."
+        }
+      ],
+      "remainingGap": "A delivered identification of the ladder internal-conversion rate with a crossing-controlled rate at the SymmetryFactor barrier, plus a translation from the ladder rates to the curvature pair, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'SymmetryFactor' PhotoLean/Kasha --include='*.lean'",
+        "grep -rn 'Kasha' PhotoLean/SymmetryFactor --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-SymmetryFactor"
+      ],
+      "rationale": "The legacy register says no edge and no shared scalar. A kinetic candidate remains, so the honest status is unresolved, not refuted and not a forced edge."
+    },
+    {
+      "searchId": "SL-E2-SV-01",
+      "queryId": "Q-E2-SV-01",
+      "pairId": "P-SymmetryFactor-SternVolmer",
+      "status": "unresolved",
+      "scope": "scope-E2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-KSV",
+        "sternvolmer.intensityDyn"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "ScSvCandidateCtx (kr, kp, k0, kq, q): a crossing-controlled quench channel with no declared translation from [Q] to a driving force"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 945: SternVolmer vs SymmetryFactor no edge",
+          "finding": "The SV model has no energy surface and no geometry; its contacts run through QuantumYield."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "dynDecay, KSV, svRatioDyn",
+          "finding": "kq is a free concentration-channel parameter; no driving force or barrier is defined."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "tsCoordZero",
+          "finding": "The symmetry factor is a crossing coordinate, not a rate or a concentration response."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-SymmetryFactor-SternVolmer",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/SternVolmer --include='*.lean'",
+          "purpose": "Search the SV modules for a delivered SymmetryFactor statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'SternVolmer' PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search the SymmetryFactor modules for a delivered SV statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SternVolmer/*.lean | sort -u",
+          "purpose": "Measure the SV module dependencies.",
+          "result": "Mathlib plus SternVolmer submodules; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u",
+          "purpose": "Measure the SymmetryFactor module dependencies.",
+          "result": "Mathlib plus Kernel and BEP.Criterion; no SternVolmer import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-SternVolmer",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-SymmetryFactor-SternVolmer status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read kq as an activated crossing rate at the SymmetryFactor barrier.",
+          "outcome": "No rate law and no translation [Q] -> driving force are delivered."
+        },
+        {
+          "strategy": "Search for a composition row through QuantumYield.",
+          "outcome": "SV reaches the batch through QuantumYield only; no row reaches SymmetryFactor."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-versus-structure candidate",
+          "statement": "SternVolmer.KSV = kq / k0 versus SymmetryFactor.tsCoordZero; an electron-transfer quenching step would need a Marcus-type barrier and a crossing coordinate.",
+          "status": "candidate only; no statement-level identification is delivered."
+        }
+      ],
+      "remainingGap": "A delivered rate law for the SV quenching channel as a crossing-controlled process, plus a total translation from quencher concentration to the driving force, is missing.",
+      "recomputeCommands": [
+        "grep -rn 'SymmetryFactor' PhotoLean/SternVolmer --include='*.lean'",
+        "grep -rn 'SternVolmer' PhotoLean/SymmetryFactor --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-SternVolmer"
+      ],
+      "rationale": "The candidate bridge is chemically motivated but not delivered; the honest status is unresolved, not refuted and not a forced edge."
+    },
+    {
+      "searchId": "SL-E2-SQ-01",
+      "queryId": "Q-E2-SQ-01",
+      "pairId": "P-SymmetryFactor-QuantumYield",
+      "status": "unresolved",
+      "scope": "scope-E2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+        "stmt-QuantumYield-PhotoLean-QuantumYield-totalRate"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "ScQyCandidateCtx (kr, kp, k, i): one algebraic channel share with no delivered crossing-controlled rate instance"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 948: QuantumYield vs SymmetryFactor no edge",
+          "finding": "The parallel-channel calculus is purely algebraic; the energy-side theories enter only through specific rates."
+        },
+        {
+          "artifact": "PhotoLean/QuantumYield/Basic.lean",
+          "locator": "yieldOf, totalRate, QYData",
+          "finding": "The rate vector is arbitrary; no rate law or surface is defined."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "tsCoordZero",
+          "finding": "The symmetry factor is a crossing coordinate, not a channel rate."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-SymmetryFactor-QuantumYield",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/QuantumYield --include='*.lean'",
+          "purpose": "Search the QY modules for a delivered SymmetryFactor statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'QuantumYield' PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search the SymmetryFactor modules for a delivered QY statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/QuantumYield/*.lean | sort -u",
+          "purpose": "Measure the QY module dependencies.",
+          "result": "Mathlib plus QuantumYield submodules; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u",
+          "purpose": "Measure the SymmetryFactor module dependencies.",
+          "result": "Mathlib plus Kernel and BEP.Criterion; no QuantumYield import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-QuantumYield",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-SymmetryFactor-QuantumYield status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Fill one QY channel with a crossing-controlled rate at the SymmetryFactor barrier.",
+          "outcome": "No delivered instance fills an arbitrary channel with such a rate."
+        },
+        {
+          "strategy": "Search the delivered composition rows for a SymmetryFactor channel.",
+          "outcome": "The composition rows use Kasha, SV, FP, Einstein, Forster and RACI rates; none uses a SymmetryFactor surface."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-versus-share candidate",
+          "statement": "QuantumYield.yieldOf = k i / totalRate versus SymmetryFactor.tsCoordZero; a crossing-controlled channel would carry the two-parabola barrier.",
+          "status": "candidate only; no statement-level instance is delivered."
+        }
+      ],
+      "remainingGap": "A delivered instance that fills a QuantumYield channel with a crossing-controlled rate whose barrier is the SymmetryFactor thermoneutral crossing height is missing.",
+      "recomputeCommands": [
+        "grep -rn 'SymmetryFactor' PhotoLean/QuantumYield --include='*.lean'",
+        "grep -rn 'QuantumYield' PhotoLean/SymmetryFactor --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-QuantumYield"
+      ],
+      "rationale": "The QY calculus is algebraic and the symmetry factor is structural; a candidate bridge remains but is not delivered. Unresolved, not refuted."
+    },
+    {
+      "searchId": "SL-E2-SF-01",
+      "queryId": "Q-E2-SF-01",
+      "pairId": "P-SymmetryFactor-FluorPhos",
+      "status": "unresolved",
+      "scope": "scope-E2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-iscBranch",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-s1Decay"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "ScFpCandidateCtx (kr, kp, kF, kISC, kIC): rate parameters with no delivered crossing-controlled rate law"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "lines 952-953: FluorPhos vs SymmetryFactor no edge",
+          "finding": "The competition layer has branch probabilities and no energy surface; its contacts run through QuantumYield."
+        },
+        {
+          "artifact": "PhotoLean/FluorPhos/Basic.lean",
+          "locator": "iscBranch, s1Decay, phiF",
+          "finding": "kISC and kIC are free rate parameters; no barrier or surface is defined."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "tsCoordZero",
+          "finding": "The symmetry factor is a crossing coordinate, not a spin-orbit or rate object."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-SymmetryFactor-FluorPhos",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/FluorPhos --include='*.lean'",
+          "purpose": "Search the FluorPhos modules for a delivered SymmetryFactor statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'FluorPhos' PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search the SymmetryFactor modules for a delivered FluorPhos statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/FluorPhos/*.lean | sort -u",
+          "purpose": "Measure the FluorPhos module dependencies.",
+          "result": "Mathlib plus FluorPhos submodules; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u",
+          "purpose": "Measure the SymmetryFactor module dependencies.",
+          "result": "Mathlib plus Kernel and BEP.Criterion; no FluorPhos import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-FluorPhos",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-SymmetryFactor-FluorPhos status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read kISC or kIC as a crossing-controlled rate at the SymmetryFactor barrier.",
+          "outcome": "No delivered rate law or spin-orbit bridge exists."
+        },
+        {
+          "strategy": "Search the delivered FluorPhos rows for a surface or barrier.",
+          "outcome": "The model is a two-state rate-parameter competition with no surface."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "rate-versus-branch candidate",
+          "statement": "FluorPhos.iscBranch = kISC / s1Decay versus SymmetryFactor.tsCoordZero; a crossing-controlled ISC/IC channel would be the bridge.",
+          "status": "candidate only; no statement-level identification is delivered."
+        }
+      ],
+      "remainingGap": "A delivered rate law identifying the FluorPhos ISC or IC channel with a crossing-controlled rate at the SymmetryFactor barrier is missing.",
+      "recomputeCommands": [
+        "grep -rn 'SymmetryFactor' PhotoLean/FluorPhos --include='*.lean'",
+        "grep -rn 'FluorPhos' PhotoLean/SymmetryFactor --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-FluorPhos"
+      ],
+      "rationale": "The candidate bridge is chemically plausible but not delivered; the honest status is unresolved, not refuted and not a forced edge."
+    },
+    {
+      "searchId": "SL-E2-BF-01",
+      "queryId": "Q-E2-BF-01",
+      "pairId": "P-BEP-Forster",
+      "status": "outOfScope",
+      "scope": "scope-E2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-BEP-PhotoLean-BEP-eact",
+        "stmt-Forster-PhotoLean-Forster-fretRate",
+        "stmt-Forster-PhotoLean-Forster-r0six"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "BepForsterDisjointCtx (lam, x, tauD, r6, R): a barrier coordinate and a donor-acceptor distance law with no shared scalar"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "lines 964-965: Forster vs BEP no edge",
+          "finding": "The transfer geometry shares no scalar with the energy-surface family."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "fretRate, r0six",
+          "finding": "The FRET rate is (1/tauD)*(r6/R^6); there is no activation barrier or driving force."
+        },
+        {
+          "artifact": "PhotoLean/BEP/Basic.lean",
+          "locator": "eact",
+          "finding": "eact requires a scalar reaction coordinate and reorganization energy; there is no distance law."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-BEP-Forster",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Forster' PhotoLean/BEP --include='*.lean'",
+          "purpose": "Search the BEP modules for a delivered Forster statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'BEP' PhotoLean/Forster --include='*.lean'",
+          "purpose": "Search the Forster modules for a delivered BEP statement.",
+          "result": "Three matches, all docstring references to the fidelity script path theories/BEP/probes/bep-fidelity.py; no import or declaration."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/BEP/*.lean | sort -u",
+          "purpose": "Measure the BEP module dependencies.",
+          "result": "Mathlib plus BEP submodules, Hammond.Basic and Marcus.Basic; no Forster import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Forster/*.lean | sort -u",
+          "purpose": "Measure the Forster module dependencies.",
+          "result": "Mathlib plus Forster submodules; no BEP import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-Forster",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-BEP-Forster status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read the FRET R^-6 rate as an activated BEP rate at a fixed distance.",
+          "outcome": "The FRET rate has no barrier or driving force; the analogy is not a translation."
+        },
+        {
+          "strategy": "Search for a delivered theorem mentioning both BEP.eact and Forster.fretRate.",
+          "outcome": "No such theorem exists."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "no shared descriptor",
+          "statement": "BEP.eact is a function of (lam, x); Forster.fretRate is a function of (tauD, r6, R). No total map between the two parameter spaces is declared.",
+          "status": "outside jurisdiction; not a logical absence claim."
+        }
+      ],
+      "remainingGap": "Jurisdiction boundary: the two models share no scalar and no declared translation. This is not a claim that no physical relation exists, only that the frozen statement universe gives no context in which the question is well formed.",
+      "jurisdictionReason": "No shared context or declared translation exists between the activated two-parabola barrier and the R^-6 donor-acceptor transfer rate.",
+      "recomputeCommands": [
+        "grep -rn 'Forster' PhotoLean/BEP --include='*.lean'",
+        "grep -rn 'BEP' PhotoLean/Forster --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-BEP-Forster"
+      ],
+      "rationale": "The pair is outside the declared audit jurisdiction because the two statement contexts share no physical coordinate; the record does not assert logical non-existence."
+    },
+    {
+      "searchId": "SL-E2-BE-01",
+      "queryId": "Q-E2-BE-01",
+      "pairId": "P-BEP-Einstein",
+      "status": "outOfScope",
+      "scope": "scope-E2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-BEP-PhotoLean-BEP-eact",
+        "stmt-Einstein-PhotoLean-Einstein-radFactor",
+        "stmt-Einstein-PhotoLean-Einstein-tauR"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "BepEinsteinDisjointCtx (lam, x, h, c, nu): a reaction barrier and a radiative transition coefficient with no shared scalar"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "lines 969-970: Einstein vs BEP no edge",
+          "finding": "The radiative conversions have no reaction coordinate; their only machine contact is the QuantumYield anchor."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "radFactor, aOfB, tauR",
+          "finding": "The A/B coefficients are radiative transition quantities with a radiation-density factor; no barrier is defined."
+        },
+        {
+          "artifact": "PhotoLean/BEP/Basic.lean",
+          "locator": "eact",
+          "finding": "eact is an activated crossing energy; there is no radiative coefficient."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-BEP-Einstein",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Einstein' PhotoLean/BEP --include='*.lean'",
+          "purpose": "Search the BEP modules for a delivered Einstein statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'BEP' PhotoLean/Einstein --include='*.lean'",
+          "purpose": "Search the Einstein modules for a delivered BEP statement.",
+          "result": "One match, a docstring reference to the fidelity script path theories/BEP/probes/bep-fidelity.py; no import or declaration."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/BEP/*.lean | sort -u",
+          "purpose": "Measure the BEP module dependencies.",
+          "result": "Mathlib plus BEP submodules, Hammond.Basic and Marcus.Basic; no Einstein import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Einstein/*.lean | sort -u",
+          "purpose": "Measure the Einstein module dependencies.",
+          "result": "Mathlib plus Einstein submodules; no BEP import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-BEP-Einstein",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-BEP-Einstein status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read the BEP barrier as an Einstein coefficient constraint.",
+          "outcome": "The coefficient pair contains no barrier and the barrier contains no radiative rate."
+        },
+        {
+          "strategy": "Search for a delivered theorem mentioning both BEP.eact and Einstein.radFactor.",
+          "outcome": "No such theorem exists."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "no shared descriptor",
+          "statement": "BEP.eact is a function of (lam, x); Einstein.radFactor is a function of (h, c, nu). No total map between the two parameter spaces is declared.",
+          "status": "outside jurisdiction; not a logical absence claim."
+        }
+      ],
+      "remainingGap": "Jurisdiction boundary: the activated barrier and the radiative A/B coefficients share no scalar and no declared translation.",
+      "jurisdictionReason": "No shared context or declared translation exists between the activated two-parabola barrier and the radiative transition coefficients.",
+      "recomputeCommands": [
+        "grep -rn 'Einstein' PhotoLean/BEP --include='*.lean'",
+        "grep -rn 'BEP' PhotoLean/Einstein --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-BEP-Einstein"
+      ],
+      "rationale": "The pair is outside the declared audit jurisdiction because the two statement contexts share no physical coordinate; the record does not assert logical non-existence."
+    },
+    {
+      "searchId": "SL-E2-SK-01",
+      "queryId": "Q-E2-SK-01",
+      "pairId": "P-SymmetryFactor-KashaVavilov",
+      "status": "outOfScope",
+      "scope": "scope-E2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "symmetry.betaHalfReading",
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "ScKvDisjointCtx (kr, kp, rad, ic, M, N): a curvature pair and a normalized-spectrum predicate with no shared scalar"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 942: KashaVavilov vs SymmetryFactor no edge",
+          "finding": "No shared scalar: the D2 predicates speak about yields and ladders; the curvature pair shares none of them."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+          "locator": "SpecSame",
+          "finding": "SpecSame compares normalized spectra at two excitation levels; no surface or curvature enters."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "BetaHalfReading, tsCoordZero",
+          "finding": "The symmetry-factor reading is a crossing-coordinate proposition; no spectrum enters."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-SymmetryFactor-KashaVavilov",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/KashaVavilov --include='*.lean'",
+          "purpose": "Search the KashaVavilov modules for a delivered SymmetryFactor statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'KashaVavilov' PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search the SymmetryFactor modules for a delivered KashaVavilov statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/KashaVavilov/*.lean | sort -u",
+          "purpose": "Measure the KashaVavilov module dependencies.",
+          "result": "Mathlib plus Kasha and KashaVavilov submodules; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u",
+          "purpose": "Measure the SymmetryFactor module dependencies.",
+          "result": "Mathlib plus Kernel and BEP.Criterion; no KashaVavilov import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-KashaVavilov",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-SymmetryFactor-KashaVavilov status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Relate the crossing coordinate to the spectral-invariance predicate.",
+          "outcome": "No shared observable; a crossing coordinate does not enter a normalized spectrum."
+        },
+        {
+          "strategy": "Search for a delivered theorem mentioning both the curvature pair and SpecSame.",
+          "outcome": "No such theorem exists."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "no shared observable",
+          "statement": "SymmetryFactor.BetaHalfReading is a proposition about (kr, kp); KashaVavilov.SpecSame is a proposition about (rad, ic, M, N). No translation is declared.",
+          "status": "outside jurisdiction; not a logical absence claim."
+        }
+      ],
+      "remainingGap": "Jurisdiction boundary: the structural crossing coordinate and the normalized-spectrum predicate share no observable and no declared translation.",
+      "jurisdictionReason": "No shared context or declared translation exists between a two-parabola crossing coordinate and a normalized-spectrum predicate.",
+      "recomputeCommands": [
+        "grep -rn 'SymmetryFactor' PhotoLean/KashaVavilov --include='*.lean'",
+        "grep -rn 'KashaVavilov' PhotoLean/SymmetryFactor --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-KashaVavilov"
+      ],
+      "rationale": "The pair is outside the declared audit jurisdiction because the two statement contexts share no observable; the record does not assert logical non-existence."
+    },
+    {
+      "searchId": "SL-E2-SFo-01",
+      "queryId": "Q-E2-SFo-01",
+      "pairId": "P-SymmetryFactor-Forster",
+      "status": "outOfScope",
+      "scope": "scope-E2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-Forster-PhotoLean-Forster-kappaSq",
+        "stmt-Forster-PhotoLean-Forster-fretRate"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "ScForsterDisjointCtx (kr, kp, thetaD, thetaA, phi): a reaction-coordinate geometry and a donor-acceptor dipole geometry with no shared scalar"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "lines 964-965: Forster vs SymmetryFactor no edge",
+          "finding": "The transfer geometry shares no scalar with the energy-surface family."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "kappaSq, fretRate",
+          "finding": "kappa^2 is an orientation factor and fretRate an R^-6 distance law; no crossing coordinate."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "tsCoordZero",
+          "finding": "The symmetry factor is a reaction-coordinate crossing coordinate; no dipole geometry."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-SymmetryFactor-Forster",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/Forster --include='*.lean'",
+          "purpose": "Search the Forster modules for a delivered SymmetryFactor statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Forster' PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search the SymmetryFactor modules for a delivered Forster statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Forster/*.lean | sort -u",
+          "purpose": "Measure the Forster module dependencies.",
+          "result": "Mathlib plus Forster submodules; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u",
+          "purpose": "Measure the SymmetryFactor module dependencies.",
+          "result": "Mathlib plus Kernel and BEP.Criterion; no Forster import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-Forster",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-SymmetryFactor-Forster status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Relate the crossing coordinate to the orientation factor.",
+          "outcome": "Both are geometric but the geometries are different; no shared scalar."
+        },
+        {
+          "strategy": "Search for a delivered theorem mentioning both tsCoordZero and kappaSq.",
+          "outcome": "No such theorem exists."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "no shared scalar",
+          "statement": "SymmetryFactor.tsCoordZero depends on (kr, kp); Forster.kappaSq depends on (thetaD, thetaA, phi). No total map between the geometries is declared.",
+          "status": "outside jurisdiction; not a logical absence claim."
+        }
+      ],
+      "remainingGap": "Jurisdiction boundary: the two-parabola crossing geometry and the donor-acceptor orientation geometry share no scalar and no declared translation.",
+      "jurisdictionReason": "No shared context or declared translation exists between a reaction-coordinate crossing coordinate and a dipole orientation factor.",
+      "recomputeCommands": [
+        "grep -rn 'SymmetryFactor' PhotoLean/Forster --include='*.lean'",
+        "grep -rn 'Forster' PhotoLean/SymmetryFactor --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-Forster"
+      ],
+      "rationale": "The pair is outside the declared audit jurisdiction because the two statement contexts share no scalar; the record does not assert logical non-existence."
+    },
+    {
+      "searchId": "SL-E2-SEIn-01",
+      "queryId": "Q-E2-SEIn-01",
+      "pairId": "P-SymmetryFactor-Einstein",
+      "status": "outOfScope",
+      "scope": "scope-E2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r4e2",
+      "searchedStatements": [
+        "stmt-SymmetryFactor-PhotoLean-SymmetryFactor-tsCoordZero",
+        "stmt-Einstein-PhotoLean-Einstein-radFactor",
+        "stmt-Einstein-PhotoLean-Einstein-tauR"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "ScEinsteinDisjointCtx (kr, kp, h, c, nu): a crossing coordinate and a radiative coefficient with no shared scalar"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "lines 969-970: Einstein vs SymmetryFactor no edge",
+          "finding": "The radiative conversions have no reaction coordinate; their only machine contact is the QuantumYield anchor."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "radFactor, tauR",
+          "finding": "The A/B coefficients and the radiative lifetime are radiative transition quantities; no crossing coordinate."
+        },
+        {
+          "artifact": "PhotoLean/SymmetryFactor/Basic.lean",
+          "locator": "tsCoordZero",
+          "finding": "The symmetry factor is a structural crossing coordinate; no radiative rate."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-SymmetryFactor-Einstein",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'SymmetryFactor' PhotoLean/Einstein --include='*.lean'",
+          "purpose": "Search the Einstein modules for a delivered SymmetryFactor statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Einstein' PhotoLean/SymmetryFactor --include='*.lean'",
+          "purpose": "Search the SymmetryFactor modules for a delivered Einstein statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Einstein/*.lean | sort -u",
+          "purpose": "Measure the Einstein module dependencies.",
+          "result": "Mathlib plus Einstein submodules; no SymmetryFactor import."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/SymmetryFactor/*.lean | sort -u",
+          "purpose": "Measure the SymmetryFactor module dependencies.",
+          "result": "Mathlib plus Kernel and BEP.Criterion; no Einstein import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-Einstein",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label=absence subtype=registered-absence; rec-notestablished-P-SymmetryFactor-Einstein status=notEstablished certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Relate the crossing coordinate to the radiative A/B coefficients.",
+          "outcome": "No shared scalar; the radiative coefficients contain no crossing coordinate."
+        },
+        {
+          "strategy": "Search for a delivered theorem mentioning both tsCoordZero and radFactor.",
+          "outcome": "No such theorem exists."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "no shared scalar",
+          "statement": "SymmetryFactor.tsCoordZero depends on (kr, kp); Einstein.radFactor depends on (h, c, nu). No total map between the parameter spaces is declared.",
+          "status": "outside jurisdiction; not a logical absence claim."
+        }
+      ],
+      "remainingGap": "Jurisdiction boundary: the crossing coordinate and the radiative A/B coefficients share no scalar and no declared translation.",
+      "jurisdictionReason": "No shared context or declared translation exists between a two-parabola crossing coordinate and the radiative transition coefficients.",
+      "recomputeCommands": [
+        "grep -rn 'SymmetryFactor' PhotoLean/Einstein --include='*.lean'",
+        "grep -rn 'Einstein' PhotoLean/SymmetryFactor --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SymmetryFactor-Einstein"
+      ],
+      "rationale": "The pair is outside the declared audit jurisdiction because the two statement contexts share no scalar; the record does not assert logical non-existence."
+    }
+  ],
+  "counts": {
+    "entries": 9
+  },
+  "nonClaims": [
+    "A scoped search records what the named statements and contexts did not supply; it is not a completeness claim.",
+    "An outOfScope entry records jurisdiction, not logical non-existence.",
+    "An unresolved entry records a remaining candidate bridge, not a refutation.",
+    "No failed proof attempt is recorded as refuted evidence."
+  ]
+}

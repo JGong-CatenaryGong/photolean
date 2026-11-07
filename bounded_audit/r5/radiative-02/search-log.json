@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-search-log",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-radiative-energy-transfer-02",
+  "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+  "counts": {
+    "entries": 12,
+    "byStatus": {
+      "unresolved": 6,
+      "outOfScope": 6
+    }
+  },
+  "entries": [
+    {
+      "searchId": "SL-RAD2-KVS-01",
+      "queryId": "Q-RAD2-KVS-01",
+      "pairId": "P-KashaVavilov-StokesShift",
+      "status": "outOfScope",
+      "scope": "scope-RAD2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-specFrac_zero_of_kashaRule",
+        "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-absEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-stokesShift"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "KvSsDisjointCtx (rad, ic, M, N, lam, e00): a normalized spectral fraction on a level ladder versus a band-position energy on a surface pair; no total translation."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 956",
+          "finding": "StokesShift <-> Kasha / KashaVavilov / ... no edge (positions of band maxima vs rates/ladders/geometries)."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+          "locator": "PhotoLean/KashaVavilov/Basic.lean#SpecSame",
+          "finding": "SpecSame is a dimensionless normalized-spectrum predicate over ladder levels; it contains no energy coordinate."
+        },
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "PhotoLean/StokesShift/Basic.lean#emEnergy",
+          "finding": "emEnergy is a vertical-transition energy difference; it contains no level index or photon fraction."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-KashaVavilov-StokesShift",
+          "finding": "Pair-level notEstablished anchor only; no certificate and no named proposition-level query."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"StokesShift|emEnergy|absEnergy|stokesShift\" PhotoLean/KashaVavilov --include=*.lean",
+          "purpose": "Search the KashaVavilov modules for a delivered StokesShift/energy statement.",
+          "result": "No matches (exit 1): the KashaVavilov vocabulary contains no band-energy symbol."
+        },
+        {
+          "command": "grep -rnE \"SpecSame|specFrac|KashaRule\" PhotoLean/StokesShift --include=*.lean",
+          "purpose": "Search the StokesShift modules for a ladder/spectral-fraction statement.",
+          "result": "No matches (exit 1): the StokesShift vocabulary contains no ladder/spectral-fraction symbol."
+        },
+        {
+          "command": "grep -h \"^import\" PhotoLean/KashaVavilov/*.lean PhotoLean/StokesShift/*.lean | sort -u",
+          "purpose": "Measure the two dependency closures.",
+          "result": "KashaVavilov: Mathlib + Kasha.Basic/Criterion + its own modules. StokesShift: Mathlib + Kernel + Marcus.Basic + its own modules. Neither imports the other."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-StokesShift",
+          "purpose": "Recompute the accepted legacy disposition for the pair.",
+          "result": "label='absence' subtype='registered-absence'; record rec-notestablished-P-KashaVavilov-StokesShift status='notEstablished', kind=None, certificate=None."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered theorem deriving a band energy from a normalized spectral fraction.",
+          "outcome": "No match in either module."
+        },
+        {
+          "strategy": "Try the shared surface model: read the spectral fraction as an emission-energy weight.",
+          "outcome": "A normalized fraction is dimensionless and the band energy is an energy; the two are not in the same codomain, so no total translation is available."
+        },
+        {
+          "strategy": "Search the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate context",
+          "statement": "A hypothetical map from a ladder level to an emission energy would need a per-level energy table; no such table is declared.",
+          "status": "not delivered"
+        }
+      ],
+      "remainingGap": "No delivered statement maps a ladder level or a normalized spectral fraction to a band-position energy; the two descriptor sets are disjoint.",
+      "recomputeCommands": [
+        "grep -rnE \"StokesShift|emEnergy|absEnergy|stokesShift\" PhotoLean/KashaVavilov --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-StokesShift"
+      ],
+      "rationale": "The delivered register records no edge for positions vs ladders, and the two modules share no declaration. The honest status is outOfScope with a statement-level jurisdiction reason, not a negative claim.",
+      "jurisdictionReason": "No shared context or declared translation exists: a normalized spectral fraction over ladder levels cannot be mapped to a band-position energy of a surface pair."
+    },
+    {
+      "searchId": "SL-RAD2-KVI-01",
+      "queryId": "Q-RAD2-KVI-01",
+      "pairId": "P-KashaVavilov-ICvsISC",
+      "status": "unresolved",
+      "scope": "scope-RAD2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-d2_verdict",
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-rate_ratio_eq"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "KvIcCandidateCtx (rad, ic, N, AI, AS, lamI, lamS, kB, T, xI, xS, HSO): the ladder level-1 loss `ic 1` would be `icRate`; the ladder leaves `ic` free, so the translation is not total."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 960",
+          "finding": "ICvsISC <-> Kasha / KashaVavilov / ... no edge: the spin-discount competition contacts are the kernel/EG certificates and a premise-level link to FluorPhos kISC."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Criterion.lean",
+          "locator": "lines 58-61 (imports)",
+          "finding": "KashaVavilov imports only Mathlib, Kasha.Basic and Kasha.Criterion; it never imports Kasha.Compose where the Marcus-form marcusIC lives."
+        },
+        {
+          "artifact": "PhotoLean/ICvsISC/Criterion.lean",
+          "locator": "PhotoLean/ICvsISC/Criterion.lean#rate_ratio_eq",
+          "finding": "ICvsISC proves the spin x FC rate ratio, but no delivered statement instantiates a ladder level with icRate."
+        },
+        {
+          "artifact": "PhotoLean/Kasha/Compose.lean",
+          "locator": "PhotoLean/Kasha/Compose.lean#marcusIC",
+          "finding": "The Marcus-form IC rate exists on the Kasha side (and the Relations §7 hic premise), but KashaVavilov is not in its import closure."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"icRate|fcBarrier|FCData\" PhotoLean/KashaVavilov --include=*.lean",
+          "purpose": "Search the KashaVavilov modules for any ICvsISC rate/barrier symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rn \"marcusIC|kashaWithin_one_marcus|KashaWithin\" PhotoLean/KashaVavilov --include=*.lean",
+          "purpose": "Search the KashaVavilov modules for the Kasha-side Marcus-form IC bridge.",
+          "result": "No matches (exit 1): KashaVavilov cannot see marcusIC because it does not import Kasha.Compose."
+        },
+        {
+          "command": "grep -rnE \"SpecSame|KashaRule|vavilov\" PhotoLean/ICvsISC --include=*.lean",
+          "purpose": "Search the ICvsISC modules for a ladder/spectral predicate.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-ICvsISC",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered identification `ic 1 = icRate`.",
+          "outcome": "No match; the ladder rate is a free function."
+        },
+        {
+          "strategy": "Reuse the Kasha §7 `hic : ic 1 = Kasha.marcusIC` composition.",
+          "outcome": "The premise and composition live in Kasha.Compose/Relations §7, outside the KashaVavilov import closure, and target Kasha rather than the KashaVavilov D2 predicates."
+        },
+        {
+          "strategy": "Compose ICvsISC.rate_ratio_eq with the ladder D2 verdict.",
+          "outcome": "The D2 verdict uses only KashaRule/Vavilov predicates over the free `ic`; no delivered link carries the IC law into them."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Add `hic : ic 1 = ICvsISC.icRate AI lamI kB T xI` to the KashaVavilov D2 context; the ladder verdict would then carry the FC rate law.",
+          "status": "candidate only; no delivered composition"
+        }
+      ],
+      "remainingGap": "A delivered `hic : ic 1 = icRate` identification (or a conditional composition carrying the D2 verdict to the IC rate law) is missing; KashaVavilov has no import path to the Marcus-form IC rate.",
+      "recomputeCommands": [
+        "grep -rnE \"icRate|fcBarrier|FCData\" PhotoLean/KashaVavilov --include=*.lean",
+        "grep -rn \"marcusIC|kashaWithin_one_marcus|KashaWithin\" PhotoLean/KashaVavilov --include=*.lean"
+      ],
+      "rationale": "The two theories share the physical scalar \"internal-conversion rate\", so the pair is not outOfScope; the delivered declarations do not identify the ladder function with the ICvsISC rate law, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-RAD2-KVF-01",
+      "queryId": "Q-RAD2-KVF-01",
+      "pairId": "P-KashaVavilov-Forster",
+      "status": "outOfScope",
+      "scope": "scope-RAD2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+        "stmt-Forster-PhotoLean-Forster-fretRate",
+        "stmt-Forster-PhotoLean-Forster-fretEff6"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "KvFoDisjointCtx (rad, ic, M, N, tauD, r6, R, thetaD, thetaA, phi): a level-indexed spectral ladder versus a donor-acceptor distance/orientation geometry; no total translation."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 964",
+          "finding": "Forster <-> Marcus / ... / KashaVavilov / ... no edge: the transfer geometry shares no scalar with the energy-surface family."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+          "locator": "PhotoLean/KashaVavilov/Basic.lean#SpecSame",
+          "finding": "The ladder predicate is over a level index; it has no distance or orientation coordinate."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "PhotoLean/Forster/Basic.lean#fretRate",
+          "finding": "The Förster rate is a function of donor lifetime, sixth power and separation; it has no ladder index."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"Forster|fretRate|kappaSq\" PhotoLean/KashaVavilov --include=*.lean",
+          "purpose": "Search the KashaVavilov modules for a Förster symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"SpecSame|specFrac\" PhotoLean/Forster --include=*.lean",
+          "purpose": "Search the Förster modules for a ladder/spectral-fraction symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -h \"^import\" PhotoLean/KashaVavilov/*.lean PhotoLean/Forster/*.lean | sort -u",
+          "purpose": "Measure the two dependency closures.",
+          "result": "Neither closure imports the other; Forster imports Mathlib plus its own modules."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-Forster",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered map from a ladder level to a distance.",
+          "outcome": "No match; the codomains differ."
+        },
+        {
+          "strategy": "Read the Förster rate as a per-level radiative rate.",
+          "outcome": "FRET is an intermolecular transfer channel, not a per-level emitter decay rate; the identification would be a forced relation."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate context",
+          "statement": "A level-to-distance map would be needed; no delivered declaration supplies one.",
+          "status": "not delivered"
+        }
+      ],
+      "remainingGap": "No delivered statement maps a ladder level to a donor-acceptor distance or orientation angle.",
+      "recomputeCommands": [
+        "grep -rnE \"Forster|fretRate|kappaSq\" PhotoLean/KashaVavilov --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-Forster"
+      ],
+      "rationale": "The delivered register records no edge and the two modules share no coordinate. The finding is jurisdictional, not a negative claim.",
+      "jurisdictionReason": "No shared context or declared translation exists: a ladder level index cannot be mapped to a donor-acceptor distance or orientation angle."
+    },
+    {
+      "searchId": "SL-RAD2-KVE-01",
+      "queryId": "Q-RAD2-KVE-01",
+      "pairId": "P-KashaVavilov-Einstein",
+      "status": "unresolved",
+      "scope": "scope-RAD2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-d2_verdict",
+        "stmt-Einstein-PhotoLean-Einstein-aOfB",
+        "stmt-Einstein-PhotoLean-Einstein-tauR",
+        "stmt-Einstein-PhotoLean-Einstein-radFactor"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "KvEbCandidateCtx (rad, ic, M, N, K, B21): the ladder radiative rate `rad n` would be an Einstein coefficient; the ladder quantifies over an arbitrary function, so the translation is a candidate."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 969",
+          "finding": "Einstein <-> ... / KashaVavilov / ... no edge: the radiative conversions contact the graph only through the QuantumYield anchor."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Basic.lean",
+          "locator": "PhotoLean/KashaVavilov/Basic.lean#SpecSame",
+          "finding": "SpecSame is stated over an arbitrary `rad`; no Einstein coefficient occurs."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "PhotoLean/Einstein/Basic.lean#aOfB",
+          "finding": "aOfB is a radiative coefficient map; no ladder index occurs."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"Einstein|aOfB|tauR|radFactor\" PhotoLean/KashaVavilov --include=*.lean",
+          "purpose": "Search the KashaVavilov modules for an Einstein coefficient symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"SpecSame|KashaRule|vavilov\" PhotoLean/Einstein --include=*.lean",
+          "purpose": "Search the Einstein modules for a ladder/spectral predicate.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -n \"Einstein\" PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration.",
+          "result": "Line 969: Einstein <-> ... KashaVavilov ... no edge; only the QuantumYield anchor (line 826)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-Einstein",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered identification `rad n = aOfB K B21`.",
+          "outcome": "No match; the ladder rate is free."
+        },
+        {
+          "strategy": "Compose through QuantumYield (the delivered Einstein anchor).",
+          "outcome": "The delivered anchor `einstein_yield_via_qy` is QuantumYield <-> Einstein; no KashaVavilov endpoint occurs in it."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Identify `rad 0` with `aOfB K B21` and carry the KV spectral predicates; the identification is chemically natural but not delivered.",
+          "status": "candidate only"
+        }
+      ],
+      "remainingGap": "A delivered identification of the ladder radiative rate with an Einstein coefficient and a composition carrying it to SpecSame is missing.",
+      "recomputeCommands": [
+        "grep -rnE \"Einstein|aOfB|tauR|radFactor\" PhotoLean/KashaVavilov --include=*.lean",
+        "grep -n \"Einstein\" PhotoLean/Relations.lean"
+      ],
+      "rationale": "Both sides carry radiative rates, so the pair is not outOfScope; no delivered statement identifies the free ladder rate function with an Einstein coefficient, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-RAD2-SVE-01",
+      "queryId": "Q-RAD2-SVE-01",
+      "pairId": "P-SternVolmer-EnergyGapLaw",
+      "status": "unresolved",
+      "scope": "scope-RAD2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+        "sternvolmer.intensityDyn",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "SvEgCandidateCtx (k0, kq, q, A, lam, kB, T, x): the quencher channel `kq*q` would be `nrRate`; SV has no gap coordinate, EGL has no concentration axis."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 991",
+          "finding": "EnergyGapLaw <-> ... / SternVolmer / ... no edge: none of the partner scalars occurs in nrBarrier/nrRate/lnRate/egZoneQ."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "PhotoLean/SternVolmer/Basic.lean#dynDecay",
+          "finding": "The quencher channel is `k0 + kq*q`; kq is a free constant with no gap dependence."
+        },
+        {
+          "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+          "locator": "PhotoLean/EnergyGapLaw/Basic.lean#nrRate",
+          "finding": "The nonradiative rate is an Arrhenius exponential in nrBarrier; there is no concentration variable."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"nrRate|nrBarrier|EnergyGap\" PhotoLean/SternVolmer --include=*.lean",
+          "purpose": "Search the SternVolmer modules for an EGL symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"SternVolmer|svRatio|KSV\" PhotoLean/EnergyGapLaw --include=*.lean",
+          "purpose": "Search the EnergyGapLaw modules for a Stern-Volmer symbol.",
+          "result": "One prose mention only: EnergyGapLaw/RatModel.lean:29 cites the SternVolmer batch pitfall; no delivered declaration."
+        },
+        {
+          "command": "grep -n \"EnergyGapLaw\" PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration.",
+          "result": "Line 991: EnergyGapLaw <-> ... SternVolmer ... no edge."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-EnergyGapLaw",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered identification `kq*q = nrRate`.",
+          "outcome": "No match; SV has no gap coordinate."
+        },
+        {
+          "strategy": "Read the quencher channel as an EGL relaxation at a quencher-induced gap.",
+          "outcome": "A translation from concentration to a driving force would be needed; none is declared."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Equip `kq` with `nrRate A lam kB T x` at a declared quencher-induced gap x(q); no delivered statement does so.",
+          "status": "candidate only"
+        }
+      ],
+      "remainingGap": "A delivered identification of the quencher-added channel with an energy-gap-law rate at a declared gap is missing.",
+      "recomputeCommands": [
+        "grep -rnE \"nrRate|nrBarrier|EnergyGap\" PhotoLean/SternVolmer --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-EnergyGapLaw"
+      ],
+      "rationale": "Both sides are nonradiative decay rates, so the pair is not outOfScope; neither side declares the other coordinate, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-RAD2-SVS-01",
+      "queryId": "Q-RAD2-SVS-01",
+      "pairId": "P-SternVolmer-StokesShift",
+      "status": "outOfScope",
+      "scope": "scope-RAD2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "sternvolmer.intensityDyn",
+        "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-stokesShift"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "SvSsDisjointCtx (k0, kq, q, lam, e00): a dimensionless concentration-dependent ratio versus a band-position energy; no total translation."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 956",
+          "finding": "StokesShift <-> ... SternVolmer ... no edge (positions of band maxima vs rates/ladders/geometries)."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "PhotoLean/SternVolmer/Basic.lean#svRatioDyn",
+          "finding": "svRatioDyn is a dimensionless ratio of decay rates over a concentration axis."
+        },
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "PhotoLean/StokesShift/Basic.lean#emEnergy",
+          "finding": "emEnergy is a vertical-transition energy; it has no concentration variable."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"StokesShift|emEnergy|absEnergy\" PhotoLean/SternVolmer --include=*.lean",
+          "purpose": "Search the SternVolmer modules for a Stokes/energy symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"SternVolmer|svRatio|KSV\" PhotoLean/StokesShift --include=*.lean",
+          "purpose": "Search the StokesShift modules for a Stern-Volmer symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-StokesShift",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered implication from a Stern-Volmer ratio to a band energy.",
+          "outcome": "No match; the codomains differ (dimensionless vs energy)."
+        },
+        {
+          "strategy": "Read the concentration axis as a nuclear coordinate.",
+          "outcome": "No such translation is declared and the units differ."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate context",
+          "statement": "A concentration-to-coordinate map would be needed; none is declared.",
+          "status": "not delivered"
+        }
+      ],
+      "remainingGap": "No delivered statement maps a Stern-Volmer ratio to a band-position energy; the descriptor sets are disjoint.",
+      "recomputeCommands": [
+        "grep -rnE \"StokesShift|emEnergy|absEnergy\" PhotoLean/SternVolmer --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-StokesShift"
+      ],
+      "rationale": "The delivered register records no edge and the observables are dimensionally distinct. The finding is jurisdictional, not logical absence.",
+      "jurisdictionReason": "No shared context or declared translation exists: a dimensionless concentration-dependent ratio cannot be mapped to a band-position energy."
+    },
+    {
+      "searchId": "SL-RAD2-SVI-01",
+      "queryId": "Q-RAD2-SVI-01",
+      "pairId": "P-SternVolmer-ICvsISC",
+      "status": "unresolved",
+      "scope": "scope-RAD2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "sternvolmer.intensityDyn",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-iscRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-rate_ratio_eq"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "SvIcCandidateCtx (k0, kq, q, AI, AS, lamI, lamS, kB, T, xI, xS, HSO): the quencher channel would be an IC/ISC channel at the encounter geometry; neither side declares the other coordinate."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 960",
+          "finding": "ICvsISC <-> ... SternVolmer ... no edge: the competition contacts are the kernel/EG certificates and a FluorPhos premise."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "PhotoLean/SternVolmer/Basic.lean#dynDecay",
+          "finding": "The quencher channel is `kq*q`; no gap/spin coordinate occurs."
+        },
+        {
+          "artifact": "PhotoLean/ICvsISC/Criterion.lean",
+          "locator": "PhotoLean/ICvsISC/Criterion.lean#rate_ratio_eq",
+          "finding": "The IC/ISC competition law has no concentration axis."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"icRate|iscRate|fcBarrier\" PhotoLean/SternVolmer --include=*.lean",
+          "purpose": "Search the SternVolmer modules for an IC/ISC symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"SternVolmer|svRatio|KSV\" PhotoLean/ICvsISC --include=*.lean",
+          "purpose": "Search the ICvsISC modules for a Stern-Volmer symbol.",
+          "result": "One prose mention only: ICvsISC/RatModel.lean:23 cites the SternVolmer batch pitfall; no delivered declaration."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-ICvsISC",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered identification `kq*q = icRate` or `kq*q = iscRate`.",
+          "outcome": "No match; SV has no gap/spin coordinate."
+        },
+        {
+          "strategy": "Compose the ICvsISC rate ratio with the Stern-Volmer dilution law.",
+          "outcome": "No delivered statement links the two theories; the composition would need a concentration-to-gap translation."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Equip the quencher channel with the ICvsISC `icRate`/`iscRate` at a declared encounter geometry; no delivered statement does so.",
+          "status": "candidate only"
+        }
+      ],
+      "remainingGap": "A delivered identification of the quencher channel with an ICvsISC channel rate at a declared geometry is missing.",
+      "recomputeCommands": [
+        "grep -rnE \"icRate|iscRate|fcBarrier\" PhotoLean/SternVolmer --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-ICvsISC"
+      ],
+      "rationale": "Both sides are nonradiative decay channels, so the pair is not outOfScope; no delivered translation closes the concentration/gap gap, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-RAD2-SVF-01",
+      "queryId": "Q-RAD2-SVF-01",
+      "pairId": "P-SternVolmer-Forster",
+      "status": "outOfScope",
+      "scope": "scope-RAD2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "sternvolmer.intensityDyn",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-KSV",
+        "stmt-Forster-PhotoLean-Forster-fretEff6",
+        "stmt-Forster-PhotoLean-Forster-fretRate"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "SvFoShapeCtx (k0, kq, q, r6, R): the shared `1 + control` form is a shape between `KSV*q` and `R^6/r6`; the controls are physically and dimensionally different."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 908 (shape row) and line 966 (register)",
+          "finding": "theorem fretEff6_inv_eq_one_plus is a delivered shape row; §16 line 966 registers the SV look-alike as a shape registration, not an edge."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 964",
+          "finding": "Forster <-> ... SternVolmer ... no edge: the transfer geometry shares no scalar with the energy-surface family."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "D-S15-fretEff6_inv_eq_one_plus",
+          "finding": "The legacy disposition ledger records the pair as look-alike / shape-note (metadata-only), not an edge."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "PhotoLean/SternVolmer/Basic.lean#svRatioDyn",
+          "finding": "svRatioDyn = 1 + KSV*q: the control is concentration times a rate constant."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "PhotoLean/Forster/Basic.lean#fretEff6",
+          "finding": "The inverse efficiency control is R^6/r6: a sixth-power distance ratio."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -n \"fretEff6_inv_eq_one_plus\" PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered shape row.",
+          "result": "Line 908: theorem fretEff6_inv_eq_one_plus ... (1 + R^6/r6). Line 967 cites it as a shape registration."
+        },
+        {
+          "command": "grep -rnE \"Forster|fret|kappa\" PhotoLean/SternVolmer --include=*.lean",
+          "purpose": "Search the SternVolmer modules for a Förster symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"SternVolmer|svRatio|KSV\" PhotoLean/Forster --include=*.lean",
+          "purpose": "Search the Förster modules for a Stern-Volmer symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-Forster",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='look-alike'; disposition D-S15-fretEff6_inv_eq_one_plus role='shape-note' outcome='fragment'; record rec-notestablished-P-SternVolmer-Forster."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Test whether the two `1 + control` forms share a physical coordinate.",
+          "outcome": "They do not: one control is KSV*q (concentration), the other R^6/r6 (distance); only the functional shape coincides."
+        },
+        {
+          "strategy": "Treat the shape identity as an observational equivalence.",
+          "outcome": "Rejected: a shape-only identity is exactly the forced relation the audit forbids; no shared channel exists."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "shape note",
+          "statement": "The delivered row `fretEff6_inv_eq_one_plus` shows the shared algebraic form; it is a shape, not a physical identity.",
+          "status": "shape only; not a translation"
+        }
+      ],
+      "remainingGap": "No shared physical context or declared translation exists; the shared `1 + control` form is a shape coincidence between a concentration control and a distance control.",
+      "recomputeCommands": [
+        "grep -n \"fretEff6_inv_eq_one_plus\" PhotoLean/Relations.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-Forster"
+      ],
+      "rationale": "The legacy ledger itself classifies the pair as look-alike / shape-note, and the delivered register calls it a shape registration. The honest status is outOfScope, not a forced shape identity.",
+      "jurisdictionReason": "No shared context or declared translation exists: `KSV*q` and `R^6/r6` are different controls that only share the `1 + control` shape; the delivered shape row is not a physical identity."
+    },
+    {
+      "searchId": "SL-RAD2-SVEb-01",
+      "queryId": "Q-RAD2-SVEb-01",
+      "pairId": "P-SternVolmer-Einstein",
+      "status": "unresolved",
+      "scope": "scope-RAD2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "sternvolmer.intensityDyn",
+        "stmt-SternVolmer-PhotoLean-SternVolmer-KSV",
+        "stmt-Einstein-PhotoLean-Einstein-tauR",
+        "stmt-Einstein-PhotoLean-Einstein-aOfB"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "SvEbCandidateCtx (k0, kq, q, A, kNR): the intrinsic decay `k0` would split into `A + kNR`; SV keeps k0 whole."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 969",
+          "finding": "Einstein <-> ... SternVolmer — no edge: both reach the batch only through QuantumYield."
+        },
+        {
+          "artifact": "PhotoLean/SternVolmer/Basic.lean",
+          "locator": "PhotoLean/SternVolmer/Basic.lean#KSV",
+          "finding": "KSV = kq/k0 consumes k0 whole; there is no radiative/nonradiative split."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "PhotoLean/Einstein/Basic.lean#tauR",
+          "finding": "tauR A = 1/A is the radiative lifetime; no total decay k0 occurs."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"tauR|aOfB|radFactor|Einstein\" PhotoLean/SternVolmer --include=*.lean",
+          "purpose": "Search the SternVolmer modules for an Einstein symbol.",
+          "result": "Only the theory's own tauRatio* names match; no Einstein coefficient or tauR occurs."
+        },
+        {
+          "command": "grep -rnE \"SternVolmer|svRatio|KSV\" PhotoLean/Einstein --include=*.lean",
+          "purpose": "Search the Einstein modules for a Stern-Volmer symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-Einstein",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered split of k0.",
+          "outcome": "No match; k0 is a free parameter."
+        },
+        {
+          "strategy": "Compose through QuantumYield (the delivered Einstein anchor).",
+          "outcome": "The delivered anchor is QuantumYield <-> Einstein; no SternVolmer endpoint occurs in it."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Split `k0 = A + kNR` and identify the radiative part with `aOfB`; no delivered statement does so.",
+          "status": "candidate only"
+        }
+      ],
+      "remainingGap": "A delivered split of the Stern-Volmer intrinsic decay `k0` into a radiative Einstein coefficient and a nonradiative rate is missing.",
+      "recomputeCommands": [
+        "grep -rnE \"tauR|aOfB|radFactor|Einstein\" PhotoLean/SternVolmer --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-Einstein"
+      ],
+      "rationale": "Both sides carry decay rates, so the pair is not outOfScope; no delivered statement splits k0 or identifies its radiative part with an Einstein coefficient, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-RAD2-QYS-01",
+      "queryId": "Q-RAD2-QYS-01",
+      "pairId": "P-QuantumYield-StokesShift",
+      "status": "outOfScope",
+      "scope": "scope-RAD2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+        "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-stokesShift"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "QySsDisjointCtx (kr, knr, lam, e00): a dimensionless channel partition versus a band-position energy; no total translation."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 956",
+          "finding": "StokesShift <-> ... QuantumYield ... no edge (positions of band maxima vs rates/ladders/geometries)."
+        },
+        {
+          "artifact": "PhotoLean/QuantumYield/Basic.lean",
+          "locator": "PhotoLean/QuantumYield/Basic.lean#yieldOf",
+          "finding": "yieldOf is a dimensionless partition over decay rates; no energy coordinate."
+        },
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "PhotoLean/StokesShift/Basic.lean#emEnergy",
+          "finding": "emEnergy is a vertical-transition energy; no channel partition."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"StokesShift|emEnergy|absEnergy\" PhotoLean/QuantumYield --include=*.lean",
+          "purpose": "Search the QuantumYield modules for a Stokes/energy symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"yieldOf|QuantumYield\" PhotoLean/StokesShift --include=*.lean",
+          "purpose": "Search the StokesShift modules for a yield symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-QuantumYield-StokesShift",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered implication from a yield partition to a band energy.",
+          "outcome": "No match; the codomains differ (dimensionless vs energy)."
+        },
+        {
+          "strategy": "Read the emission energy as a yield weight.",
+          "outcome": "A weight is dimensionless and the energy is an energy; no total translation."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate context",
+          "statement": "A per-channel energy table would be needed; none is declared.",
+          "status": "not delivered"
+        }
+      ],
+      "remainingGap": "No delivered statement maps a channel partition to a band-position energy.",
+      "recomputeCommands": [
+        "grep -rnE \"StokesShift|emEnergy|absEnergy\" PhotoLean/QuantumYield --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-QuantumYield-StokesShift"
+      ],
+      "rationale": "The delivered register records no edge and the observables are dimensionally distinct. The finding is jurisdictional, not logical absence.",
+      "jurisdictionReason": "No shared context or declared translation exists: a dimensionless channel partition cannot be mapped to a band-position energy."
+    },
+    {
+      "searchId": "SL-RAD2-FPE-01",
+      "queryId": "Q-RAD2-FPE-01",
+      "pairId": "P-FluorPhos-EnergyGapLaw",
+      "status": "unresolved",
+      "scope": "scope-RAD2-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-FluorPhos-PhotoLean-FluorPhos-s1Decay",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrBarrier"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "FpEgCandidateCtx (kF, kISC, kIC, kP, kNR, A, lam, kB, T, x): the S1 internal-conversion rate kIC would be nrRate; FP has no barrier/gap premise."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 991",
+          "finding": "EnergyGapLaw <-> ... FluorPhos ... no edge: none of the partner scalars occurs in nrBarrier/nrRate/lnRate/egZoneQ."
+        },
+        {
+          "artifact": "PhotoLean/FluorPhos/Basic.lean",
+          "locator": "PhotoLean/FluorPhos/Basic.lean#s1Decay",
+          "finding": "s1Decay = kF + kISC + kIC leaves kIC a free rate."
+        },
+        {
+          "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+          "locator": "PhotoLean/EnergyGapLaw/Basic.lean#nrRate",
+          "finding": "nrRate is an Arrhenius exponential in nrBarrier; no branching model occurs."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"nrRate|nrBarrier|EnergyGap\" PhotoLean/FluorPhos --include=*.lean",
+          "purpose": "Search the FluorPhos modules for an EGL symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"FluorPhos|phiF|kIC\" PhotoLean/EnergyGapLaw --include=*.lean",
+          "purpose": "Search the EnergyGapLaw modules for a FluorPhos symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -n \"EnergyGapLaw\" PhotoLean/Relations.lean",
+          "purpose": "Locate the delivered no-edge registration.",
+          "result": "Line 991: EnergyGapLaw <-> ... FluorPhos ... no edge."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-FluorPhos-EnergyGapLaw",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered identification `kIC = nrRate`.",
+          "outcome": "No match; FP has no gap coordinate."
+        },
+        {
+          "strategy": "Compose the EGL rate into the FP S1 decay.",
+          "outcome": "A delivered link is required; none exists (the FP -> QY rows do not consume EGL)."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate composition",
+          "statement": "Set `kIC = nrRate A lam kB T x` at the S1->S0 gap; no delivered statement does so.",
+          "status": "candidate only"
+        }
+      ],
+      "remainingGap": "A delivered identification of the FluorPhos S1 internal-conversion rate with an energy-gap-law rate at the S1->S0 gap is missing.",
+      "recomputeCommands": [
+        "grep -rnE \"nrRate|nrBarrier|EnergyGap\" PhotoLean/FluorPhos --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-FluorPhos-EnergyGapLaw"
+      ],
+      "rationale": "Both sides are nonradiative decay rates, so the pair is not outOfScope; no delivered statement fills the FP internal-conversion channel with the EGL rate, so the honest status is unresolved."
+    },
+    {
+      "searchId": "SL-RAD2-FPS-01",
+      "queryId": "Q-RAD2-FPS-01",
+      "pairId": "P-FluorPhos-StokesShift",
+      "status": "outOfScope",
+      "scope": "scope-RAD2-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2",
+      "searchedStatements": [
+        "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+        "stmt-FluorPhos-PhotoLean-FluorPhos-s1Decay",
+        "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-stokesShift"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence"
+      ],
+      "contextsConsidered": [
+        "FpSsDisjointCtx (kF, kISC, kIC, kP, kNR, lam, e00): a branch-probability partition versus a band-position energy; no total translation."
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "PhotoLean/Relations.lean §16 extended no-edge register, line 952",
+          "finding": "FluorPhos <-> ... StokesShift ... no edge except through QuantumYield."
+        },
+        {
+          "artifact": "PhotoLean/FluorPhos/Basic.lean",
+          "locator": "PhotoLean/FluorPhos/Basic.lean#phiF",
+          "finding": "phiF is a dimensionless branch probability; no energy coordinate."
+        },
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "PhotoLean/StokesShift/Basic.lean#emEnergy",
+          "finding": "emEnergy is a vertical-transition energy; no branch probability."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rnE \"StokesShift|emEnergy|absEnergy\" PhotoLean/FluorPhos --include=*.lean",
+          "purpose": "Search the FluorPhos modules for a Stokes/energy symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "grep -rnE \"FluorPhos|phiF\" PhotoLean/StokesShift --include=*.lean",
+          "purpose": "Search the StokesShift modules for a FluorPhos symbol.",
+          "result": "No matches (exit 1)."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-FluorPhos-StokesShift",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; no named query or certificate."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Search for a delivered implication from a branch probability to a band energy.",
+          "outcome": "No match; the codomains differ (dimensionless vs energy)."
+        },
+        {
+          "strategy": "Read the Stokes shift as the S1/T1 branching weight.",
+          "outcome": "No such translation is declared."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "candidate context",
+          "statement": "A branch-to-energy map would be needed; none is declared.",
+          "status": "not delivered"
+        }
+      ],
+      "remainingGap": "No delivered statement maps a fluorescence/phosphorescence branch probability to a band-position energy.",
+      "recomputeCommands": [
+        "grep -rnE \"StokesShift|emEnergy|absEnergy\" PhotoLean/FluorPhos --include=*.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-FluorPhos-StokesShift"
+      ],
+      "rationale": "The delivered register records no edge and the observables are dimensionally distinct. The finding is jurisdictional, not logical absence.",
+      "jurisdictionReason": "No shared context or declared translation exists: a dimensionless branch probability cannot be mapped to a band-position energy."
+    }
+  ],
+  "nonClaims": [
+    "A search entry records a scoped, machine-recomputable search; it is not a negative claim outside the named statements, kinds, and contexts.",
+    "The outOfScope entries record jurisdiction, not logical absence.",
+    "No failed proof attempt is relabelled as a refutation."
+  ]
+}

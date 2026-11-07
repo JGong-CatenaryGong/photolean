@@ -1,0 +1,607 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-search-log",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": "WP-radiative-energy-transfer-01",
+  "snapshot": "snap-bounded-audit-2026-11-04-r5rad1",
+  "entries": [
+    {
+      "searchId": "SL-RAD1-MFO-01",
+      "queryId": "Q-RAD1-MFO-01",
+      "pairId": "P-Marcus-Forster",
+      "status": "outOfScope",
+      "scope": "scope-RAD1-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1",
+      "searchedStatements": [
+        "stmt-Marcus-PhotoLean-Marcus-rate",
+        "marcus.barrier",
+        "stmt-Forster-PhotoLean-Forster-fretRate",
+        "stmt-Forster-PhotoLean-Forster-fretEff6"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "MarcusForsterDisjointCtx (A, lam, kB, T, x | tauD, r6, R): two descriptor sets with no declared translation"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Marcus/Basic.lean",
+          "locator": "lines 50-55 (barrier, rate)",
+          "finding": "The Marcus descriptors are the reorganization energy, the thermal energy and the driving force; there is no distance or lifetime argument."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "lines 44-57 (kappaSq, fretRate, fretEff6)",
+          "finding": "The Förster descriptors are an orientation factor, a donor lifetime and an R^-6 separation; there is no barrier, driving force or reorganization energy argument."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 964: Forster / Marcus no edge",
+          "finding": "The delivered register states that the transfer geometry shares no scalar with the energy-surface family; the only Forster machine rows are the SV look-alike and the QuantumYield composition."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Marcus-Forster",
+          "finding": "The legacy record is a pair-level notEstablished anchor, not a named query."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Forster' PhotoLean/Marcus --include='*.lean'",
+          "purpose": "Search the Marcus modules for any delivered Förster statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Marcus' PhotoLean/Forster --include='*.lean'",
+          "purpose": "Search the Förster modules for any delivered Marcus statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rh '^import' PhotoLean/Marcus/*.lean PhotoLean/Forster/*.lean | sort -u",
+          "purpose": "Measure the module dependency closure of both sides.",
+          "result": "Mathlib plus each theory’s own modules only; no cross import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-Forster",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False; no disposition row."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read the Marcus rate as an activated transfer step by identifying the driving force with the donor-acceptor separation.",
+          "outcome": "The identification is a dimensional mismatch: a separation is not a driving force, and no delivered statement declares the map."
+        },
+        {
+          "strategy": "Look for a barrier or reorganization energy inside the Förster rate.",
+          "outcome": "The Förster rate has no barrier term; its gap dependence enters only through the spectral overlap, which the module collects into r0six."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "dipolar-transfer-versus-activated-step candidate",
+          "statement": "Marcus.rate A lam kB T x versus Forster.fretRate tauD r6 R; both are rate laws, so a rate-level comparison looks plausible.",
+          "status": "candidate rejected: the shared word “rate” is not a shared object, and the Arrhenius shape does not identify a barrier with a transfer geometry."
+        }
+      ],
+      "remainingGap": "A delivered statement that accepts both a Marcus descriptor and a Förster descriptor, or that derives a Marcus barrier from tauD, r6, R, is missing; until it exists the pair has no statement-level context to compare.",
+      "recomputeCommands": [
+        "grep -rn 'Forster' PhotoLean/Marcus --include='*.lean'",
+        "grep -rn 'Marcus' PhotoLean/Forster --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-Forster"
+      ],
+      "rationale": "The two models answer different questions and share no scalar. The honest status is outOfScope with a statement-level jurisdiction record, not refuted and not unresolved: there is no candidate bridge whose missing premise could be stated inside either theory.",
+      "jurisdictionReason": "PhotoLean.Marcus.rate (A, lam, kB, T, x) and PhotoLean.Forster.fretRate (tauD, r6, R) have disjoint descriptor sets; no inventory statement accepts both, and §16 line 964 registers the pair as no edge. A translation between a separation and a driving force is not a coordinate change of either delivered model."
+    },
+    {
+      "searchId": "SL-RAD1-MEB-01",
+      "queryId": "Q-RAD1-MEB-01",
+      "pairId": "P-Marcus-Einstein",
+      "status": "outOfScope",
+      "scope": "scope-RAD1-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1",
+      "searchedStatements": [
+        "stmt-Marcus-PhotoLean-Marcus-rate",
+        "stmt-Einstein-PhotoLean-Einstein-aOfB",
+        "stmt-Einstein-PhotoLean-Einstein-tauR",
+        "stmt-Einstein-PhotoLean-Einstein-radFactor"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "MarcusEinsteinDisjointCtx (A, lam, kB, T, x | h, c, nu, B21): the symbol A is a pre-exponential on one side and a spontaneous-emission coefficient on the other"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Marcus/Basic.lean",
+          "locator": "lines 50-55 (barrier, rate)",
+          "finding": "The Marcus rate is A * exp(-barrier/(kB*T)); its A is a free prefactor, not the Einstein A coefficient."
+        },
+        {
+          "artifact": "PhotoLean/Einstein/Basic.lean",
+          "locator": "lines 44-65 (radFactor, aOfB, tauR)",
+          "finding": "The Einstein rows build the spontaneous-emission coefficient from a radiation-density factor and a B coefficient; no thermal activation or driving force occurs."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 969: Einstein / Marcus no edge",
+          "finding": "The register states the only Einstein machine contact is the QuantumYield anchor (einstein_yield_via_qy), i.e. a different pair."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Marcus-Einstein",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Einstein' PhotoLean/Marcus --include='*.lean'",
+          "purpose": "Search the Marcus modules for any delivered Einstein statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Marcus' PhotoLean/Einstein --include='*.lean'",
+          "purpose": "Search the Einstein modules for any delivered Marcus statement.",
+          "result": "One docstring reference in RatModel.lean:22 (a norm_num remark); no declaration and no import."
+        },
+        {
+          "command": "grep -rh '^import' PhotoLean/Einstein/*.lean | sort -u",
+          "purpose": "Measure the Einstein module dependencies.",
+          "result": "Mathlib plus Einstein’s own modules only; no Marcus import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-Einstein",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False; no disposition row."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read the Marcus rate as the spontaneous-emission rate of the same transition (A_prefactor = A_Einstein).",
+          "outcome": "The two As have different roles: one is an overall prefactor of an activated rate, the other is the radiative decay coefficient built from a radiation-density factor. No delivered statement equates them."
+        },
+        {
+          "strategy": "Compose through QuantumYield (the Einstein yield anchor) and then to the Marcus rate as a channel rate.",
+          "outcome": "The composition exists for the Einstein-QuantumYield pair (einstein_yield_via_qy) and for the Marcus-QuantumYield pair, but that is a different edge; using it here would substitute a third theory for the pair’s own statements."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "radiative-versus-activated rate candidate",
+          "statement": "Marcus.rate and Einstein.aOfB are both real-valued rate-like laws, so a rate-level identity looks possible.",
+          "status": "candidate rejected: the shared codomain ℝ is not a shared observable; the radiation-density factor has no Marcus counterpart."
+        }
+      ],
+      "remainingGap": "A delivered statement that identifies the Marcus prefactor with the Einstein A coefficient, or that derives one from the other, is missing; the pair has no statement-level context.",
+      "recomputeCommands": [
+        "grep -rn 'Einstein' PhotoLean/Marcus --include='*.lean'",
+        "grep -rn 'Marcus' PhotoLean/Einstein --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Marcus-Einstein"
+      ],
+      "rationale": "No shared descriptor exists between the activated step and the radiative coefficients in the delivered statements; the correct status is outOfScope with a statement-level jurisdiction record.",
+      "jurisdictionReason": "PhotoLean.Marcus.rate (A, lam, kB, T, x) versus PhotoLean.Einstein.aOfB (K, B21) with K the radiation-density factor 8πhν³/c³: disjoint descriptor sets, no inventory statement accepting both, and §16 line 969 registers no edge. The single Einstein rate-level contact runs through QuantumYield and belongs to a different pair."
+    },
+    {
+      "searchId": "SL-RAD1-KSS-01",
+      "queryId": "Q-RAD1-KSS-01",
+      "pairId": "P-Kasha-StokesShift",
+      "status": "outOfScope",
+      "scope": "scope-RAD1-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1",
+      "searchedStatements": [
+        "stmt-Kasha-PhotoLean-Kasha-radBranch",
+        "stmt-Kasha-PhotoLean-Kasha-fluoYield",
+        "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+        "stmt-StokesShift-PhotoLean-StokesShift-stokesShift"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "KashaStokesDisjointCtx (rad, ic, N | lam, e00): rate arrays on one side, energy offsets on the other"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Kasha/Basic.lean",
+          "locator": "lines 76-115 (decay, branches, yields)",
+          "finding": "Every Kasha observable is built from rate arrays and level indices; no energy, wavelength or band position occurs in the module."
+        },
+        {
+          "artifact": "PhotoLean/StokesShift/Basic.lean",
+          "locator": "lines 55-83 (surfaces, absEnergy, emEnergy, stokesShift)",
+          "finding": "Every Stokes observable is built from (lam, e00); no rate array or level index occurs."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 956: StokesShift / Kasha no edge",
+          "finding": "The register states that band positions and ladder rates are different observables; the Stokes module’s only content edge is with Marcus."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Kasha-StokesShift",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'StokesShift' PhotoLean/Kasha --include='*.lean'",
+          "purpose": "Search the Kasha modules for any delivered Stokes statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Kasha' PhotoLean/StokesShift --include='*.lean'",
+          "purpose": "Search the Stokes modules for any delivered Kasha statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/StokesShift/*.lean | sort -u",
+          "purpose": "Measure the Stokes module dependencies.",
+          "result": "Mathlib, Kernel, Marcus.Basic and StokesShift’s own modules; no Kasha import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-StokesShift",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read the ladder’s emission spectrum energy as the Stokes band position.",
+          "outcome": "The ladder’s spectrum is normalized by photon counts (specFrac), not by energy; no delivered statement assigns an energy to a level."
+        },
+        {
+          "strategy": "Use the reorganization energy of the Stokes pair as the ladder’s nonradiative driving force.",
+          "outcome": "The ladder’s ic array is not a function of lam; the identification would be a new modelling premise, not a statement-level relation."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "position-versus-yield candidate",
+          "statement": "The ladder’s lowest-level emission could be read as the emission band position of the Stokes pair.",
+          "status": "candidate rejected: the two statements have different kinds of argument (rate array versus energy offset) and different codomains (yield versus energy)."
+        }
+      ],
+      "remainingGap": "A delivered statement that assigns band energies to ladder levels, or that computes a spectral position from rate arrays, is missing; the pair has no statement-level context.",
+      "recomputeCommands": [
+        "grep -rn 'StokesShift' PhotoLean/Kasha --include='*.lean'",
+        "grep -rn 'Kasha' PhotoLean/StokesShift --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-StokesShift"
+      ],
+      "rationale": "Band positions and ladder rates are different observables in the delivered statements; the honest status is outOfScope with a statement-level jurisdiction record rather than a forced identity.",
+      "jurisdictionReason": "PhotoLean.Kasha.radBranch (rate arrays, level index) versus PhotoLean.StokesShift.emEnergy (lam, e00): disjoint descriptor sets, no inventory statement accepting both, and §16 line 956 registers no edge. No coordinate change turns a rate array into a band position."
+    },
+    {
+      "searchId": "SL-RAD1-KIC-01",
+      "queryId": "Q-RAD1-KIC-01",
+      "pairId": "P-Kasha-ICvsISC",
+      "status": "unresolved",
+      "scope": "scope-RAD1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1",
+      "searchedStatements": [
+        "stmt-Kasha-PhotoLean-Kasha-icBranch",
+        "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-fcBarrier",
+        "stmt-ICvsISC-PhotoLean-ICvsISC-cert_icRate"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "KashaICCandidateCtx: the ladder’s free `ic` array versus the ICvsISC Arrhenius channel law at the step’s own (lam, x)"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Kasha/Basic.lean",
+          "locator": "lines 76-83 (decay, radBranch, icBranch)",
+          "finding": "The ladder stores the nonradiative channel as an arbitrary rate array; no law constrains ic n."
+        },
+        {
+          "artifact": "PhotoLean/Kasha/Compose.lean",
+          "locator": "lines 98-101 (marcusIC)",
+          "finding": "The only rate law attached to the ladder is the Kasha-side marcusIC; the window theorem takes `ic 1 = marcusIC …` as an explicit premise, i.e. the ladder’s own `ic` is never instantiated by a delivered statement."
+        },
+        {
+          "artifact": "PhotoLean/ICvsISC/Basic.lean",
+          "locator": "lines 63-79 (fcBarrier, icRate, cert_icRate)",
+          "finding": "The ICvsISC channel law is an Arrhenius rate over its own Franck–Condon barrier, with a delivered certificate to the Marcus rate."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Kasha-ICvsISC",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'ICvsISC' PhotoLean/Kasha --include='*.lean'",
+          "purpose": "Search the Kasha modules for any delivered ICvsISC statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Kasha' PhotoLean/ICvsISC --include='*.lean'",
+          "purpose": "Search the ICvsISC modules for any delivered Kasha statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -n 'marcusIC\\|ic 1' PhotoLean/Kasha/Compose.lean | head -20",
+          "purpose": "Locate the ladder’s only rate-law premise on `ic 1`.",
+          "result": "The premise `ic 1 = marcusIC A lam kB T x` appears in the window rows; no row instantiates `ic` with an external rate law."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-ICvsISC",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Fill the ladder’s `ic 1` with `ICvsISC.icRate` and reuse the delivered window row.",
+          "outcome": "The window row accepts `ic 1 = marcusIC …`; the ICvsISC certificate gives `icRate = Marcus.rate`, so the two are definitionally the same body. The remaining object is the channel assignment `ic 1 = icRate`, which no delivered statement states: the ladder’s `ic` is a free array, and the ICvsISC law is about its own molecule, not about a ladder level."
+        },
+        {
+          "strategy": "Read the ICvsISC S₁→S₀ channel as the ladder’s S₂→S₁ channel.",
+          "outcome": "This is exactly the modelling premise that would be needed; the delivered theories do not state it, and the package must not manufacture it."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "channel-assignment candidate",
+          "statement": "ic 1 = ICvsISC.icRate A lam kB T x, then the delivered Kasha window row (after `cert_icRate`).",
+          "status": "candidate only: the rate half is delivered, the channel assignment is not."
+        }
+      ],
+      "remainingGap": "The missing object is a delivered statement that instantiates the ladder’s `ic` array with a rate law (here the ICvsISC law). Once such a row exists, the composition with the Kasha window row closes mechanically; without it the bridge would be an invented premise.",
+      "recomputeCommands": [
+        "grep -rn 'ICvsISC' PhotoLean/Kasha --include='*.lean'",
+        "grep -rn 'Kasha' PhotoLean/ICvsISC --include='*.lean'",
+        "grep -n 'marcusIC\\|ic 1' PhotoLean/Kasha/Compose.lean",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-ICvsISC"
+      ],
+      "rationale": "Both theories model internal conversion, so the pair is in scope; the bridge needs the channel assignment as a modelling premise that no delivered statement carries. The honest status is unresolved with the exact missing parent recorded."
+    },
+    {
+      "searchId": "SL-RAD1-KFO-01",
+      "queryId": "Q-RAD1-KFO-01",
+      "pairId": "P-Kasha-Forster",
+      "status": "outOfScope",
+      "scope": "scope-RAD1-jurisdiction",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1",
+      "searchedStatements": [
+        "stmt-Kasha-PhotoLean-Kasha-emitYield",
+        "stmt-Kasha-PhotoLean-Kasha-cascade",
+        "stmt-Forster-PhotoLean-Forster-fretRate",
+        "stmt-Forster-PhotoLean-Forster-fretEff6"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "observationalEquivalence",
+        "conditionalComposition"
+      ],
+      "contextsConsidered": [
+        "KashaForsterDisjointCtx (rad, ic, N | tauD, r6, R): a single-molecule ladder versus a two-chromophore transfer geometry"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/Kasha/Basic.lean",
+          "locator": "lines 87-101 (cascade, emitYield, fluoYield)",
+          "finding": "The ladder has one molecule, one excitation level and no donor or acceptor; its arguments are rate arrays and indices."
+        },
+        {
+          "artifact": "PhotoLean/Forster/Basic.lean",
+          "locator": "lines 44-57 (kappaSq, fretRate, fretEff6)",
+          "finding": "The Förster model has two chromophores, an orientation factor, a donor lifetime and an R^-6 separation; no level structure."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "line 964: Forster / Kasha no edge",
+          "finding": "The register states the transfer geometry shares no scalar with the ladder."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-notestablished-P-Kasha-Forster",
+          "finding": "The legacy record is a pair-level notEstablished anchor."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'Forster' PhotoLean/Kasha --include='*.lean'",
+          "purpose": "Search the Kasha modules for any delivered Förster statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'Kasha' PhotoLean/Forster --include='*.lean'",
+          "purpose": "Search the Förster modules for any delivered Kasha statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/Forster/*.lean | sort -u",
+          "purpose": "Measure the Förster module dependencies.",
+          "result": "Mathlib plus Förster’s own modules only; no Kasha import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-Forster",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='registered-absence'; candidate=False."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Read the ladder’s inter-level cascade as excitation transfer between chromophores.",
+          "outcome": "The cascade is an intra-molecular internal-conversion chain; no second chromophore, no separation and no lifetime occur in its arguments."
+        },
+        {
+          "strategy": "Equate a level yield with a transfer efficiency.",
+          "outcome": "The transfer efficiency is R^-6-controlled and defined for a donor-acceptor pair; the ladder yield is a branching probability. No delivered statement relates them."
+        },
+        {
+          "strategy": "Check the legacy registry for a named query or certificate.",
+          "outcome": "Only a pair-level notEstablished anchor."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "yield-versus-transfer-efficiency candidate",
+          "statement": "Kasha.emitYield rad ic i N versus Forster.fretEff6 r6 R: both are dimensionless fractions of excitation.",
+          "status": "candidate rejected: the fractions describe different systems (one molecule versus a donor-acceptor pair)."
+        }
+      ],
+      "remainingGap": "A delivered statement that gives the ladder a donor-acceptor pair or a lifetime is missing; the pair has no statement-level context.",
+      "recomputeCommands": [
+        "grep -rn 'Forster' PhotoLean/Kasha --include='*.lean'",
+        "grep -rn 'Kasha' PhotoLean/Forster --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-Kasha-Forster"
+      ],
+      "rationale": "The ladder is a single-molecule branching model and the Förster rows are a two-chromophore transfer model; no statement-level translation exists. The status is outOfScope with a jurisdiction record.",
+      "jurisdictionReason": "PhotoLean.Kasha.emitYield (rate arrays, level indices) versus PhotoLean.Forster.fretRate or fretEff6 (tauD, r6, R): disjoint descriptor sets, no inventory statement accepting both, and §16 line 964 registers no edge. The ladder declares no donor-acceptor pair to translate into."
+    },
+    {
+      "searchId": "SL-RAD1-VEG-01",
+      "queryId": "Q-RAD1-VEG-01",
+      "pairId": "P-KashaVavilov-EnergyGapLaw",
+      "status": "unresolved",
+      "scope": "scope-RAD1-candidate-bridge",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad1",
+      "searchedStatements": [
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-antiKasha_observable_iff",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+        "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-lnRate",
+        "stmt-Kasha-PhotoLean-Kasha-marcusIC",
+        "stmt-KashaVavilov-PhotoLean-KashaVavilov-fluoYield_eq_emitYield_zero_add_upperYield"
+      ],
+      "searchedKinds": [
+        "definitionalIdentity",
+        "implication",
+        "equivalence",
+        "conditionalComposition",
+        "observationalEquivalence"
+      ],
+      "contextsConsidered": [
+        "KvEglCandidateCtx: the gap-law rate filling the ladder’s conversion channel, with the Vavilov predicate downstream"
+      ],
+      "dependenciesConsulted": [
+        {
+          "artifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+          "locator": "lines 62-100 (nrBarrier, nrRate, InvertedGap, lnRate)",
+          "finding": "The gap-law rows are the rate, its logarithm and the region predicate; none mentions a ladder, a level or a yield."
+        },
+        {
+          "artifact": "PhotoLean/KashaVavilov/Criterion.lean",
+          "locator": "line 333 (antiKasha_observable_iff)",
+          "finding": "The Vavilov-side predicate is stated in terms of the ladder’s upper yield; it carries no energy parameters."
+        },
+        {
+          "artifact": "PhotoLean/Relations.lean",
+          "locator": "lines 991-993 (EnergyGapLaw / KashaVavilov no edge)",
+          "finding": "The register states that KashaVavilov appears in the EnergyGapLaw plan only as an undelivered composition candidate."
+        },
+        {
+          "artifact": "relation_audit/registry.json",
+          "locator": "rec-candidate-P-KashaVavilov-EnergyGapLaw",
+          "finding": "The legacy record is a pair-level undelivered-candidate anchor with status unresolved."
+        }
+      ],
+      "commands": [
+        {
+          "command": "grep -rn 'EnergyGapLaw' PhotoLean/KashaVavilov --include='*.lean'",
+          "purpose": "Search the KashaVavilov modules for any delivered gap-law statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'KashaVavilov' PhotoLean/EnergyGapLaw --include='*.lean'",
+          "purpose": "Search the EnergyGapLaw modules for any delivered KashaVavilov statement.",
+          "result": "No matches (grep exit 1)."
+        },
+        {
+          "command": "grep -rn 'marcusIC' PhotoLean/EnergyGapLaw PhotoLean/KashaVavilov --include='*.lean'",
+          "purpose": "Check whether either side already carries the bridging rate object.",
+          "result": "No matches (grep exit 1): the window row that uses marcusIC lives in PhotoLean/Kasha/Compose.lean, not in either partner module."
+        },
+        {
+          "command": "grep -h '^import' PhotoLean/EnergyGapLaw/*.lean | sort -u",
+          "purpose": "Measure the EnergyGapLaw module dependencies.",
+          "result": "Mathlib, Kernel, Marcus.Basic and EnergyGapLaw’s own modules; no Kasha/KashaVavilov import."
+        },
+        {
+          "command": "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-EnergyGapLaw",
+          "purpose": "Recompute the accepted legacy disposition.",
+          "result": "label='absence' subtype='undelivered-candidate'; candidate=True."
+        }
+      ],
+      "strategiesAttempted": [
+        {
+          "strategy": "Compose gap-law rate → ladder channel → Kasha window → anti-Kasha.",
+          "outcome": "Every downstream piece exists except the ladder channel assignment: the window row takes `ic 1 = marcusIC`, the gap-law module never speaks about a ladder, and no statement identifies the two."
+        },
+        {
+          "strategy": "Use the delivered definitional identity nrRate = Marcus.rate to reach the window row’s marcusIC.",
+          "outcome": "The rate identity is delivered (cert_nrRate) and the bodies agree, but the ladder still needs the explicit premise `ic 1 = nrRate`; without a delivered statement carrying it, the composition would be the package’s invented premise, not a delivered row."
+        },
+        {
+          "strategy": "Look for a gap-law statement about yields or Vavilov invariance.",
+          "outcome": "The EnergyGapLaw rows are rates, logs and a region predicate; no yield or spectral row exists."
+        }
+      ],
+      "candidateEvidence": [
+        {
+          "kind": "gap-law-to-Vavilov composition candidate",
+          "statement": "ic 1 = EnergyGapLaw.nrRate A lam kB T x, then the Kasha window row, then antiKasha_observable_iff.",
+          "status": "candidate only: the gap-law rate and the Vavilov predicate are both delivered, but the ladder channel assignment between them is not."
+        }
+      ],
+      "remainingGap": "A delivered statement that fills the ladder’s conversion channel with the energy-gap-law rate — or that states the Vavilov predicate directly in terms of the gap-law rate — is missing. The nearest delivered rows are the Kasha window theorem (stated with the Kasha-side marcusIC) and the gap-law/Marcus rate identity.",
+      "recomputeCommands": [
+        "grep -rn 'EnergyGapLaw' PhotoLean/KashaVavilov --include='*.lean'",
+        "grep -rn 'KashaVavilov' PhotoLean/EnergyGapLaw --include='*.lean'",
+        "grep -rn 'marcusIC' PhotoLean/EnergyGapLaw PhotoLean/KashaVavilov --include='*.lean'",
+        "python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-EnergyGapLaw"
+      ],
+      "rationale": "The composition is chemically well posed and the legacy plan registers it as an undelivered candidate; the precise missing parent is the ladder channel assignment. The honest status is unresolved, not notEstablished (the search is bounded and names the missing row) and not certified (the premise is not delivered)."
+    }
+  ],
+  "counts": {
+    "entries": 6
+  },
+  "nonClaims": [
+    "Each entry records a bounded search inside the frozen inventory; it is not a claim that no relation exists outside the sixteen-theory delivered statements.",
+    "A failed search is not a refutation: no entry carries a negative existence claim.",
+    "The compatibility of the outOfScope entries is a jurisdiction judgment about statement-level vocabulary, not a claim that the physical processes are unrelated."
+  ]
+}

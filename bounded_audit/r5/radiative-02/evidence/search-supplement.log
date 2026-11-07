@@ -1,0 +1,255 @@
+# RAD2 supplementary search commands ===== 2026-11-04T03:01:56+08:00
+### CMD: grep -n ^import PhotoLean/KashaVavilov/Criterion.lean
+58:import PhotoLean.KashaVavilov.Basic
+59:import Mathlib
+60:import PhotoLean.Kasha.Basic
+61:import PhotoLean.Kasha.Criterion
+
+### CMD: grep -rn marcusIC\|kashaWithin_one_marcus\|KashaWithin PhotoLean/KashaVavilov --include=*.lean
+(no output; exit 1)
+
+### CMD: grep -n KashaVavilov PhotoLean/Relations.lean
+66:import PhotoLean.KashaVavilov.Basic
+67:import PhotoLean.KashaVavilov.Criterion
+68:import PhotoLean.KashaVavilov.Instances
+704:The eighth theory (`PhotoLean/KashaVavilov`) adjudicates the pair of rules the literature runs
+727:  KashaVavilov.d2_verdict
+733:  KashaVavilov.antiKasha_observable_iff h
+939:* **KashaVavilov ↔ Marcus / Hammond / BEP — no edge.** The D2 layer is about branching laws of
+942:* **KashaVavilov ↔ Sabatier / Goldschmidt / SymmetryFactor — no edge.** No shared scalar: the
+956:* **StokesShift ↔ Kasha / KashaVavilov / SternVolmer / QuantumYield / FluorPhos / ICvsISC /
+960:* **ICvsISC ↔ Kasha / KashaVavilov / SternVolmer / QuantumYield / Forster / Einstein — no edge.**
+964:* **Forster ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / SymmetryFactor /
+969:* **Einstein ↔ Marcus / Hammond / BEP / Kasha / KashaVavilov / Sabatier / Goldschmidt /
+991:* **EnergyGapLaw ↔ Sabatier / Goldschmidt / SymmetryFactor / KashaVavilov / SternVolmer /
+996:  `nrBarrier`/`nrRate`/`lnRate`/`egZoneQ`. Plan §10 carries the absence drafts (KashaVavilov
+1006:* **FluorPhos ↔ Kasha / KashaVavilov — no edge (undelivered candidate compositions).** The
+1012:* **KashaVavilov ↔ SternVolmer / QuantumYield — undelivered candidate compositions.** The
+1013:  KashaVavilov plan registers the SternVolmer quench as an added level-0 loss and `radBranch` as a
+1098:* **RACI ↔ Kasha / KashaVavilov — shape note (no machine row).** Both stories make the IC rate
+
+### CMD: grep -n SpecSame PhotoLean/Relations.lean
+(no output; exit 1)
+
+### CMD: grep -rn fretEff6_inv_eq_one_plus\|fretEff6_eq_one_sub_yieldOf\|einstein_yield_via_qy\|sv_quench_dilutes_yield PhotoLean/Relations.lean
+785:theorem sv_quench_dilutes_yield (kr knr kq q : ℝ) (hpos : 0 < kr + knr) (hq : 0 ≤ kq * q) :
+826:theorem einstein_yield_via_qy (A kNR : ℝ) :
+836:theorem fretEff6_eq_one_sub_yieldOf (kD r6 R : ℝ) (hkD : 0 < kD) (hr6 : 0 ≤ r6) (hR : R ≠ 0) :
+908:theorem fretEff6_inv_eq_one_plus {r6 R : ℝ} (hr6 : 0 < r6) (hR : R ≠ 0) :
+967:  (`fretEff6_inv_eq_one_plus`, §15) and the Goldschmidt look-alike (two geometric threshold
+
+### CMD: grep -rn yieldOf_div_yieldOf\|rate_ratio_eq PhotoLean/QuantumYield PhotoLean/ICvsISC --include=*.lean
+PhotoLean/QuantumYield/Criterion.lean:96:theorem yieldOf_div_yieldOf {n : ℕ} {k : Fin n → ℝ} (h : QYData k) {i j : Fin n} (hj : 0 < k j) :
+PhotoLean/ICvsISC/Criterion.lean:8:* FC-C1 `rate_ratio_eq` — **the factorization**: the rate ratio splits into the spin/prefactor
+PhotoLean/ICvsISC/Criterion.lean:80:theorem rate_ratio_eq {AI AS lamI lamS kB T : ℝ} (h : FCData AI AS lamI lamS kB T)
+PhotoLean/ICvsISC/Criterion.lean:118:  rw [rate_ratio_eq h xI xS HSO, Real.log_mul hf1 hf2, hlog1, Real.log_exp]
+
+### CMD: grep -n SV ↔ FO\|shape\|look-alike PhotoLean/Relations.lean
+24:* §6 **non-relations and shape differences** — the new mathematics of this module: the same model
+34:* §9 **Sabatier ↔ Marcus, look-alike but different**: the two theories share one "interior
+44:  tie-back certificates to `Kernel.tsCoord` and `BEP.transfer`. An N-row says "similar shape, no
+202:predicates are shaped differently (uniform error bound on a window vs. pointwise monotonicity) and
+267:/-! ## 6. Non-relations and shape differences (new theorems of this module) -/
+312:pin the physical model, while "the transition-state coordinate decreases" does — the shape
+459:half is new); `C3`–`C5` are non-relations, i.e. the checkable content of "look-alike but
+464:to the kernel barrier, scaled by the pre-exponential factor. This is what makes "same shape" a
+472:/-- **C2** — the same predicate, instantiated: the Marcus rate has the Sabatier volcano shape in
+583:* **Goldschmidt ↔ Sabatier — a look-alike of shape, with no edge.** Two shapes coincide: (i) a
+593:  honest move: it is a shape, not an edge.
+596:* **Marcus ↔ Sabatier — §9.** The look-alike pair: one shared functional form and predicate, three
+616:The first row of a new registration class. An N-row (§6, §9) says "similar shape, no edge"; an
+772:shape rows register the look-alikes with machine content: the SV/FO shared `1 + control` form and
+905:/-- SV ↔ FO look-alike, machine face: the FRET inverse-efficiency is a `1 + control` law with
+906:the sixth-power distance control, the same shape as the Stern–Volmer ratio's
+958:  Einstein mirror-symmetry look-alike is a shape note in the StokesShift plan §10, no theorem
+966:  the energy-surface family. Two shape registrations carry machine content: the SV look-alike
+967:  (`fretEff6_inv_eq_one_plus`, §15) and the Goldschmidt look-alike (two geometric threshold
+986:* **EnergyGapLaw ↔ BEP — no edge (a registered shape edge).** The barrier profile the two share
+989:  plan registers the relation as a *shape* — the same second-difference engine transplanted from the
+1021:* **Forster ↔ Goldschmidt — no edge (look-alike, no machine row).** Two purely geometric threshold
+1023:  registers the shape and `GRAPH-REPORT` §6.3 states the same as a look-alike without an edge.
+1039:composition note, and one look-alike, plus the no-edge registrations below. The integration's own
+1063:energy-gap law with slope `-β` (the EGL tangent shape; the Marcus-lnRate is quadratic and its
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-StokesShift
+pair: P-KashaVavilov-StokesShift
+theories: ['KashaVavilov', 'StokesShift']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-KashaVavilov-StokesShift: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-ICvsISC
+pair: P-KashaVavilov-ICvsISC
+theories: ['KashaVavilov', 'ICvsISC']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-KashaVavilov-ICvsISC: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-Forster
+pair: P-KashaVavilov-Forster
+theories: ['KashaVavilov', 'Forster']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-KashaVavilov-Forster: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-KashaVavilov-Einstein
+pair: P-KashaVavilov-Einstein
+theories: ['KashaVavilov', 'Einstein']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-KashaVavilov-Einstein: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-EnergyGapLaw
+pair: P-SternVolmer-EnergyGapLaw
+theories: ['SternVolmer', 'EnergyGapLaw']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SternVolmer-EnergyGapLaw: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-StokesShift
+pair: P-SternVolmer-StokesShift
+theories: ['SternVolmer', 'StokesShift']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SternVolmer-StokesShift: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-ICvsISC
+pair: P-SternVolmer-ICvsISC
+theories: ['SternVolmer', 'ICvsISC']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SternVolmer-ICvsISC: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-Forster
+pair: P-SternVolmer-Forster
+theories: ['SternVolmer', 'Forster']
+legacy: label='absence' subtype='look-alike'
+candidate: False
+ambiguous: False
+dispositions:
+  D-S15-fretEff6_inv_eq_one_plus: disposition='metadata-only' role='shape-note' outcome=fragment
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SternVolmer-Forster: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-SternVolmer-Einstein
+pair: P-SternVolmer-Einstein
+theories: ['SternVolmer', 'Einstein']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-SternVolmer-Einstein: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-QuantumYield-EnergyGapLaw
+pair: P-QuantumYield-EnergyGapLaw
+theories: ['QuantumYield', 'EnergyGapLaw']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-QuantumYield-EnergyGapLaw: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-QuantumYield-StokesShift
+pair: P-QuantumYield-StokesShift
+theories: ['QuantumYield', 'StokesShift']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-QuantumYield-StokesShift: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-QuantumYield-ICvsISC
+pair: P-QuantumYield-ICvsISC
+theories: ['QuantumYield', 'ICvsISC']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-QuantumYield-ICvsISC: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-FluorPhos-EnergyGapLaw
+pair: P-FluorPhos-EnergyGapLaw
+theories: ['FluorPhos', 'EnergyGapLaw']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-FluorPhos-EnergyGapLaw: status='notEstablished' kind=None certificate=None
+
+### CMD: python3 tools/relation_audit_registry.py --explain-pair P-FluorPhos-StokesShift
+pair: P-FluorPhos-StokesShift
+theories: ['FluorPhos', 'StokesShift']
+legacy: label='absence' subtype='registered-absence'
+candidate: False
+ambiguous: False
+dispositions:
+  (none; the pair is not named by the 78-row disposition ledger)
+fragments:
+  (none)
+registry records:
+  rec-notestablished-P-FluorPhos-StokesShift: status='notEstablished' kind=None certificate=None
+

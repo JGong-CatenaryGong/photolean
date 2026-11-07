@@ -1,0 +1,2361 @@
+{
+  "schemaVersion": "1.0.0",
+  "artifactKind": "bounded-screening-package",
+  "round": "R5",
+  "generatedOn": "2026-11-04",
+  "workPackage": {
+    "id": "WP-radiative-energy-transfer-02",
+    "title": "Radiative and energy-transfer relations, second block: Kasha-Vavilov, Stern-Volmer, quantum yield and fluorescence/phosphorescence bridges",
+    "source": "R5 plan file, Package RAD2",
+    "pairIds": [
+      "P-KashaVavilov-StokesShift",
+      "P-KashaVavilov-ICvsISC",
+      "P-KashaVavilov-Forster",
+      "P-KashaVavilov-Einstein",
+      "P-SternVolmer-EnergyGapLaw",
+      "P-SternVolmer-StokesShift",
+      "P-SternVolmer-ICvsISC",
+      "P-SternVolmer-Forster",
+      "P-SternVolmer-Einstein",
+      "P-QuantumYield-EnergyGapLaw",
+      "P-QuantumYield-StokesShift",
+      "P-QuantumYield-ICvsISC",
+      "P-QuantumYield-Forster",
+      "P-QuantumYield-Einstein",
+      "P-FluorPhos-EnergyGapLaw",
+      "P-FluorPhos-StokesShift"
+    ],
+    "pairCount": 16,
+    "note": "Exactly the sixteen pairs assigned by R1 WP-radiative-energy-transfer-02. No accepted R2/R3/R4 pair is rescreened."
+  },
+  "statusVocabulary": [
+    "certified",
+    "refuted",
+    "unresolved",
+    "notEstablished",
+    "outOfScope"
+  ],
+  "kindVocabulary": [
+    "definitionalIdentity",
+    "implication",
+    "equivalence",
+    "conditionalComposition",
+    "observationalEquivalence",
+    "distinguishability",
+    "refutation"
+  ],
+  "allowedAxioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "snapshot": {
+    "id": "snap-bounded-audit-2026-11-04-r5rad2",
+    "date": "2026-11-04",
+    "round": "R5",
+    "inventory": "audit_boundary/statement-inventory.json",
+    "inventorySha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "pairQueue": "audit_boundary/pair-queue.json",
+    "pairQueueSha256": "8357f61cfb54e056b72fb73a5fb08d450d29adb9a0e9c7956e04ebff8cb25504",
+    "clusterPlan": "audit_boundary/cluster-plan.json",
+    "clusterPlanSha256": "ded71097c3b7c336b290483272c5f49ec7e80fd7a9a7ec0223352a2186d04a24",
+    "boundary": "audit_boundary/BOUNDARY.md",
+    "boundarySha256": "ad4d88a0e1d91232ee4b8969dd0a67ef53210b937b2554fec58dfa5b862a95c3",
+    "legacyRegistry": "relation_audit/registry.json",
+    "legacyRegistrySha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "acceptedPackages": {
+      "R2": {
+        "path": "bounded_audit/wp-surface-01/screening.json",
+        "sha256": "2a98dac9d75d76782a307bd6903dd6adec6dcc946f09e186c07895e3bee1b49c"
+      },
+      "R3": {
+        "path": "bounded_audit/r3/screening.json",
+        "sha256": "452d213c5a142b4910f7adcf1e4efd433d02be83f538510992a2dfe758ed262c"
+      },
+      "R4-E1": {
+        "path": "bounded_audit/r4/excited-01/screening.json",
+        "sha256": "9a096648063cda57f484f0ecddb802ebf6aa34fb115b26c31e187e75941ef60b"
+      },
+      "R4-E2": {
+        "path": "bounded_audit/r4/excited-02/screening.json",
+        "sha256": "5ceee13be0629cd93b912d68e0a44751e1906c7acfd823cc9297af0a61c94af6"
+      },
+      "R4-CI": {
+        "path": "bounded_audit/r4/conical-01/screening.json",
+        "sha256": "f368b9b1f1ded5800419a5283b541363e83f37c4b8ef54aa641890cb54615487"
+      }
+    },
+    "leanToolchain": "leanprover/lean4:v4.17.0",
+    "deliveredLeanFileCount": 102,
+    "note": "The mutable R5 cumulative ledger is deliberately not pinned by this package; prior coverage is derived from the accepted screening packages themselves."
+  },
+  "inventoryReference": {
+    "path": "audit_boundary/statement-inventory.json",
+    "sha256": "3debf588b081b7a572487bffb78bccacd2e8c5ed327a6d6bfb655663fe1fa947",
+    "statementRows": 1154,
+    "screeningEligibleRows": 1134
+  },
+  "legacyRegistryReference": {
+    "path": "relation_audit/registry.json",
+    "sha256": "25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0",
+    "certificateCount": 38,
+    "queryCount": 151,
+    "recordCount": 151
+  },
+  "acceptedCoverageReference": {
+    "acceptedPairs": 67,
+    "sources": [
+      "bounded_audit/wp-surface-01/screening.json",
+      "bounded_audit/r3/screening.json",
+      "bounded_audit/r4/excited-01/screening.json",
+      "bounded_audit/r4/excited-02/screening.json",
+      "bounded_audit/r4/conical-01/screening.json"
+    ],
+    "sourceShas": {
+      "bounded_audit/wp-surface-01/screening.json": "2a98dac9d75d76782a307bd6903dd6adec6dcc946f09e186c07895e3bee1b49c",
+      "bounded_audit/r3/screening.json": "452d213c5a142b4910f7adcf1e4efd433d02be83f538510992a2dfe758ed262c",
+      "bounded_audit/r4/excited-01/screening.json": "9a096648063cda57f484f0ecddb802ebf6aa34fb115b26c31e187e75941ef60b",
+      "bounded_audit/r4/excited-02/screening.json": "5ceee13be0629cd93b912d68e0a44751e1906c7acfd823cc9297af0a61c94af6",
+      "bounded_audit/r4/conical-01/screening.json": "f368b9b1f1ded5800419a5283b541363e83f37c4b8ef54aa641890cb54615487"
+    },
+    "note": "Derived directly from the five accepted screening packages (R2, R3, R4-E1, R4-E2, R4-CI); the mutable R5 ledger is not read."
+  },
+  "searchLogReference": {
+    "path": "bounded_audit/r5/radiative-02/search-log.json",
+    "sha256": "9a28cd2df5e0ab0aa3863efaab1648279df76192929fbb4d9495ed7d9adf84e5",
+    "entryCount": 12
+  },
+  "probeReference": {
+    "path": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+    "sha256": "36a5ae42f68a6112f466f067a713d6b2a8f2e781bbc18bb735e8dc3ddabbef2b",
+    "declarationCount": 4,
+    "log": "bounded_audit/r5/radiative-02/probes/compile.log"
+  },
+  "contextLibrary": {
+    "KvSsDisjointCtx": {
+      "id": "KvSsDisjointCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "M : ℕ",
+        "N : ℕ",
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "Disjoint observables: KashaVavilov compares the normalized emission fraction of ladder levels across excitation levels (a dimensionless photon partition over electronic levels); StokesShift compares vertical absorption and emission energies of one displaced-parabola surface pair (band positions in energy). No total translation maps a ladder level index to a nuclear coordinate or a spectral fraction to an energy.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#KvSsDisjointCtx (candidate context; no Lean structure)"
+    },
+    "KvIcCandidateCtx": {
+      "id": "KvIcCandidateCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "N : ℕ",
+        "AI : ℝ",
+        "AS : ℝ",
+        "lamI : ℝ",
+        "lamS : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "xI : ℝ",
+        "xS : ℝ",
+        "HSO : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the ladder level-1 loss rate `ic 1` would be the ICvsISC internal-conversion channel `icRate AI lamI kB T xI` at the same gap. The ladder leaves `ic` a free rate function, so the identification is a candidate, not a total translation.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#KvIcCandidateCtx (candidate context; no Lean structure)"
+    },
+    "KvFoDisjointCtx": {
+      "id": "KvFoDisjointCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "M : ℕ",
+        "N : ℕ",
+        "tauD : ℝ",
+        "r6 : ℝ",
+        "R : ℝ",
+        "thetaD : ℝ",
+        "thetaA : ℝ",
+        "phi : ℝ"
+      ],
+      "physicalReading": "Disjoint coordinate sets: the ladder is indexed by an electronic level and partitioned over normalized spectra; Förster is indexed by a donor-acceptor separation and an orientation geometry (R^-6 rate, kappa^2). No total translation maps a level index to a distance or an orientation angle.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#KvFoDisjointCtx (candidate context; no Lean structure)"
+    },
+    "KvEbCandidateCtx": {
+      "id": "KvEbCandidateCtx",
+      "fields": [
+        "rad : ℕ → ℝ",
+        "ic : ℕ → ℝ",
+        "M : ℕ",
+        "N : ℕ",
+        "K : ℝ",
+        "B21 : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the ladder per-level radiative rate `rad n` would be the Einstein A coefficient `aOfB K B21` of the same transition. Both are radiative rates, so a scalar-level identification is expressible; the ladder quantifies over an arbitrary rate function, so no total translation is declared.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#KvEbCandidateCtx (candidate context; no Lean structure)"
+    },
+    "SvEgCandidateCtx": {
+      "id": "SvEgCandidateCtx",
+      "fields": [
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the Stern-Volmer quencher channel `kq * q` would be the energy-gap-law nonradiative rate `nrRate A lam kB T x` at a quencher-induced gap. SV carries no gap coordinate and EGL carries no concentration axis; the identification is a candidate.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#SvEgCandidateCtx (candidate context; no Lean structure)"
+    },
+    "SvSsDisjointCtx": {
+      "id": "SvSsDisjointCtx",
+      "fields": [
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ",
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "Disjoint observables: the Stern-Volmer ratio is a dimensionless intensity/lifetime ratio over a quencher-concentration axis; the Stokes shift is an energy difference between vertical absorption and emission over a nuclear-coordinate surface pair. No total translation exists.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#SvSsDisjointCtx (candidate context; no Lean structure)"
+    },
+    "SvIcCandidateCtx": {
+      "id": "SvIcCandidateCtx",
+      "fields": [
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ",
+        "AI : ℝ",
+        "AS : ℝ",
+        "lamI : ℝ",
+        "lamS : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "xI : ℝ",
+        "xS : ℝ",
+        "HSO : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the Stern-Volmer quencher channel `kq * q` would be an ICvsISC internal-conversion or intersystem-crossing channel at the encounter geometry. Both are nonradiative decay channels; SV has no gap/spin coordinate and ICvsISC has no concentration axis.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#SvIcCandidateCtx (candidate context; no Lean structure)"
+    },
+    "SvFoShapeCtx": {
+      "id": "SvFoShapeCtx",
+      "fields": [
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ",
+        "r6 : ℝ",
+        "R : ℝ"
+      ],
+      "physicalReading": "Shape-only context: the Stern-Volmer inverse ratio reads `1 + KSV*q` and the inverse Förster efficiency reads `1 + R^6/r6`; the two controls are a concentration times a rate constant and a sixth-power distance ratio. The shared `1 + control` form is a shape, not a shared physical coordinate.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#SvFoShapeCtx (candidate context; no Lean structure)"
+    },
+    "SvEbCandidateCtx": {
+      "id": "SvEbCandidateCtx",
+      "fields": [
+        "k0 : ℝ",
+        "kq : ℝ",
+        "q : ℝ",
+        "A : ℝ",
+        "kNR : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the Stern-Volmer intrinsic total decay `k0` would be split into a radiative Einstein coefficient `A` and a nonradiative rate `kNR` (k0 = A + kNR). SV keeps `k0` whole and never splits it; the identification is a candidate.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#SvEbCandidateCtx (candidate context; no Lean structure)"
+    },
+    "QyEgCtx": {
+      "id": "QyEgCtx",
+      "fields": [
+        "kr : ℝ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "One excited state with a radiative channel `kr` and an energy-gap-law nonradiative channel `nrRate A lam kB T x`; the quantum-yield partition of the two channels is compared with the EGL rate ratio written through `nrBarrier`.",
+      "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyEgCtx"
+    },
+    "QySsDisjointCtx": {
+      "id": "QySsDisjointCtx",
+      "fields": [
+        "kr : ℝ",
+        "knr : ℝ",
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "Disjoint observables: the quantum-yield partition is dimensionless over decay channels; the Stokes shift is an energy difference over a displaced-parabola surface pair. No channel rate is a band energy and no total translation exists.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#QySsDisjointCtx (candidate context; no Lean structure)"
+    },
+    "QyIcCtx": {
+      "id": "QyIcCtx",
+      "fields": [
+        "AI : ℝ",
+        "AS : ℝ",
+        "lamI : ℝ",
+        "lamS : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "xI : ℝ",
+        "xS : ℝ",
+        "HSO : ℝ"
+      ],
+      "physicalReading": "One excited state with an IC channel `icRate AI lamI kB T xI` and an ISC channel `iscRate HSO AS lamS kB T xS`; the quantum-yield ISC/IC partition is compared with the ICvsISC spin/prefactor times Franck-Condon rate ratio.",
+      "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyIcCtx"
+    },
+    "QyFoCtx": {
+      "id": "QyFoCtx",
+      "fields": [
+        "kD : ℝ",
+        "r6 : ℝ",
+        "R : ℝ"
+      ],
+      "physicalReading": "A donor with radiative rate `kD` and an added FRET channel `kD * (r6 / R^6)`; the transfer efficiency `fretEff6 r6 R` is compared with one minus the donor retained radiative yield.",
+      "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyFoCtx"
+    },
+    "QyEbCtx": {
+      "id": "QyEbCtx",
+      "fields": [
+        "A : ℝ",
+        "kNR : ℝ"
+      ],
+      "physicalReading": "One radiative channel `A` and one nonradiative channel `kNR`; the Einstein radiative fraction `A * tauR (A + kNR)` is compared with the two-channel quantum yield of the radiative channel.",
+      "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyEbCtx"
+    },
+    "FpEgCandidateCtx": {
+      "id": "FpEgCandidateCtx",
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ",
+        "kP : ℝ",
+        "kNR : ℝ",
+        "A : ℝ",
+        "lam : ℝ",
+        "kB : ℝ",
+        "T : ℝ",
+        "x : ℝ"
+      ],
+      "physicalReading": "Candidate shared context: the FluorPhos S1 internal-conversion rate `kIC` would be the energy-gap-law nonradiative rate `nrRate A lam kB T x` at the S1->S0 gap. FP leaves `kIC` a free rate; the identification is a candidate.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#FpEgCandidateCtx (candidate context; no Lean structure)"
+    },
+    "FpSsDisjointCtx": {
+      "id": "FpSsDisjointCtx",
+      "fields": [
+        "kF : ℝ",
+        "kISC : ℝ",
+        "kIC : ℝ",
+        "kP : ℝ",
+        "kNR : ℝ",
+        "lam : ℝ",
+        "e00 : ℝ"
+      ],
+      "physicalReading": "Disjoint observables: the fluorescence/phosphorescence competition is a partition of branch probabilities over decay channels; the Stokes shift is an energy difference over a displaced-parabola surface pair. No total translation exists.",
+      "provenance": "bounded_audit/r5/radiative-02/screening.json#FpSsDisjointCtx (candidate context; no Lean structure)"
+    }
+  },
+  "scopeLibrary": {
+    "scope-RAD2-qy-eg-branch": {
+      "id": "scope-RAD2-qy-eg-branch",
+      "description": "Two-channel quantum-yield branch ratio against the energy-gap-law nonradiative rate.",
+      "domain": "all (kr, A, lam, kB, T, x) in R^6 with kr > 0 and A > 0; the totalized division makes kB*T > 0 non-load-bearing for the identity.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+    },
+    "scope-RAD2-qy-ic-branch": {
+      "id": "scope-RAD2-qy-ic-branch",
+      "description": "Quantum-yield ISC/IC branch ratio against the ICvsISC spin/FC rate ratio.",
+      "domain": "all ICvsISC parameter tuples satisfying FCData with HSO > 0.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+    },
+    "scope-RAD2-qy-fo-efficiency": {
+      "id": "scope-RAD2-qy-fo-efficiency",
+      "description": "Förster transfer efficiency against one minus the donor retained radiative yield.",
+      "domain": "all (kD, r6, R) with kD > 0, r6 >= 0 and R != 0.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+    },
+    "scope-RAD2-qy-eb-radiative": {
+      "id": "scope-RAD2-qy-eb-radiative",
+      "description": "Einstein radiative fraction against the two-channel radiative quantum yield.",
+      "domain": "all (A, kNR) in R^2; the identity is totalized and carries no premise.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+    },
+    "scope-RAD2-candidate-bridge": {
+      "id": "scope-RAD2-candidate-bridge",
+      "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+      "domain": "the six named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+    },
+    "scope-RAD2-jurisdiction": {
+      "id": "scope-RAD2-jurisdiction",
+      "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+      "domain": "the six named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+      "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+    }
+  },
+  "aliasResolutions": [],
+  "pairs": [
+    {
+      "pairId": "P-KashaVavilov-StokesShift",
+      "theories": [
+        "KashaVavilov",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-KVS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-KVS-01",
+          "pairId": "P-KashaVavilov-StokesShift",
+          "title": "Does the Kasha-Vavilov spectral fraction determine the Stokes band separation?",
+          "chemicalQuestion": "Do the Kasha-Vavilov normalized spectral fractions, which partition the emitted photons over ladder levels, constrain the Stokes shift, the energy separation of the absorption and emission band maxima?",
+          "chemicalRationale": "SpecSame compares normalized emission fractions `specFrac` across excitation levels: a dimensionless photon partition over electronic levels. StokesShift compares vertical absorption and emission energies: dimensioned band positions of one displaced-parabola surface pair. A photon-count fraction and an energy are different observables; no declared translation maps a ladder level index to a nuclear coordinate or a fraction to an energy. The delivered extended no-edge register records \"StokesShift <-> Kasha / KashaVavilov ... no edge (positions of band maxima vs rates/ladders/geometries)\". The question is outside the declared jurisdiction, not logically false.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.SpecSame",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.emEnergy",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "31c4f14c2cfab83174ed72561ae8fc8e67b82fa5d06549ab95e511ba1108f504",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvSsDisjointCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "M : ℕ",
+              "N : ℕ",
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "Disjoint observables: KashaVavilov compares the normalized emission fraction of ladder levels across excitation levels (a dimensionless photon partition over electronic levels); StokesShift compares vertical absorption and emission energies of one displaced-parabola surface pair (band positions in energy). No total translation maps a ladder level index to a nuclear coordinate or a spectral fraction to an energy.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#KvSsDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "scope": {
+            "id": "scope-RAD2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the six named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a spectral-agreement premise to a band-position equality; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement deriving a band energy from a normalized spectral fraction would refute the jurisdiction boundary; none exists.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: KashaVavilov partitions normalized photon fractions over ladder levels, StokesShift compares band-position energies of one surface pair. The absence is jurisdictional, not a refutation or a logical non-existence claim.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD2-KVS-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: KashaVavilov partitions normalized photon fractions over ladder levels, StokesShift compares band-position energies of one surface pair. The absence is jurisdictional, not a refutation."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-KVS-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: KashaVavilov partitions normalized photon fractions over ladder levels, StokesShift compares band-position energies of one surface pair. The absence is jurisdictional, not a refutation.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor (or a shape-note disposition); it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-ICvsISC",
+      "theories": [
+        "KashaVavilov",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-KVI-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-KVI-01",
+          "pairId": "P-KashaVavilov-ICvsISC",
+          "title": "Is the ladder's upper-level IC loss the ICvsISC Franck-Condon rate at the same gap?",
+          "chemicalQuestion": "Is the internal-conversion rate that drives the Kasha-Vavilov ladder upper-level loss the ICvsISC channel rate `icRate` at the same reorganization energy and gap?",
+          "chemicalRationale": "KashaVavilov reuses Kasha's ladder (`rad`, `ic`), whose `ic` is an arbitrary rate function; its D2 adjudication quantifies over that function. ICvsISC supplies a concrete Franck-Condon-controlled IC rate `icRate = AI * exp(-fcBarrier/(kB*T))` and the competition law `rate_ratio_eq`. Chemically the ladder S2->S1 loss is the IC channel, so an \"internal-conversion rate\" scalar is shared; the question is whether the delivered declarations identify the two.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-d2_verdict",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.d2_verdict",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Criterion.lean",
+              "sourceLine": 194,
+              "version": "1.0.0",
+              "signatureSha256": "31aa43cc092cc6143d538a33a2a2e8fc4467f420525fe7e5291dd00fe61fc3af",
+              "sourceArtifactSha256": "6530629bf4365c550d4c1e26953ebd550c499dc5f70057904eb35f4cb9b2e566",
+              "endpointForm": "theorem"
+            },
+            "target": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.icRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "2ba39280d9bad8ff65662aa1c72d3c0a0427d5a3568b27b23a5a4f0e7b1bdf68",
+              "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvIcCandidateCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "N : ℕ",
+              "AI : ℝ",
+              "AS : ℝ",
+              "lamI : ℝ",
+              "lamS : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "xI : ℝ",
+              "xS : ℝ",
+              "HSO : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the ladder level-1 loss rate `ic 1` would be the ICvsISC internal-conversion channel `icRate AI lamI kB T xI` at the same gap. The ladder leaves `ic` a free rate function, so the identification is a candidate, not a total translation.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#KvIcCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the shared candidate context to this statement context is declared; the identification is a candidate."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the partner statement context to the shared candidate context is declared; the identification is a candidate."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate premise `hic : ic 1 = icRate ...` is not load-bearing for any delivered disposition."
+          },
+          "scope": {
+            "id": "scope-RAD2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the six named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate is a composition of the ladder verdict (KashaRule/Vavilov over the free `ic`) with the ICvsISC IC rate law through the missing `hic` identification.",
+          "falsificationCondition": "A delivered statement identifying the ladder `ic` with `icRate` (or a delivered conditional composition carrying the D2 verdict to the IC rate law) would move the row toward certified; a ladder and IC parameter set at which the two rates differ would refute the identification.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No disposition has been reached: the ladder IC channel and the ICvsISC FC rate law are chemically the same scalar, but no delivered statement identifies them and KashaVavilov has no import path to the Marcus-form IC rate.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD2-KVI-01",
+              "candidateSummary": "A delivered `hic : ic 1 = ICvsISC.icRate AI lamI kB T xI` identification (and a conditional composition carrying it to SpecSame/KashaRule) is missing. KashaVavilov imports only Kasha.Basic/Criterion, never Kasha.Compose where the Marcus-form IC rate lives; ICvsISC proves `rate_ratio_eq` but no delivered statement instantiates a ladder level with `icRate`."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-KVI-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-Forster",
+      "theories": [
+        "KashaVavilov",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-KVF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-KVF-01",
+          "pairId": "P-KashaVavilov-Forster",
+          "title": "Does the ladder spectral partition constrain the Förster transfer geometry?",
+          "chemicalQuestion": "Do the Kasha-Vavilov normalized spectral fractions constrain the Förster rate or efficiency of a donor-acceptor pair?",
+          "chemicalRationale": "SpecSame is an excitation-independence predicate over normalized spectra on a level ladder. Förster objects are functions of the donor-acceptor separation (R^-6) and the orientation geometry (kappa^2). A level index and a donor-acceptor distance are different coordinates; the delivered register records no edge and the two modules import disjoint vocabularies. No total translation exists.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.SpecSame",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-fretRate",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.fretRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 54,
+              "version": "1.0.0",
+              "signatureSha256": "22e3fe56a137bbdd1e71e417edcaf8a83f45cd1dbc08672e98ec5631f15c2a8c",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvFoDisjointCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "M : ℕ",
+              "N : ℕ",
+              "tauD : ℝ",
+              "r6 : ℝ",
+              "R : ℝ",
+              "thetaD : ℝ",
+              "thetaA : ℝ",
+              "phi : ℝ"
+            ],
+            "physicalReading": "Disjoint coordinate sets: the ladder is indexed by an electronic level and partitioned over normalized spectra; Förster is indexed by a donor-acceptor separation and an orientation geometry (R^-6 rate, kappa^2). No total translation maps a level index to a distance or an orientation angle.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#KvFoDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "scope": {
+            "id": "scope-RAD2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the six named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a spectral-agreement premise to a transfer-rate premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement mapping a ladder level to a donor-acceptor geometry would refute the jurisdiction boundary; none exists.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: the ladder is indexed by a level and partitioned over normalized spectra, Förster is indexed by a separation and an orientation geometry. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD2-KVF-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: a ladder level index cannot be mapped to a donor-acceptor distance or orientation angle, and no delivered declaration relates the two."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-KVF-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: a ladder level index cannot be mapped to a donor-acceptor distance or orientation angle, and no delivered declaration relates the two.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor (or a shape-note disposition); it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-KashaVavilov-Einstein",
+      "theories": [
+        "KashaVavilov",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-KVE-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-KVE-01",
+          "pairId": "P-KashaVavilov-Einstein",
+          "title": "Is the ladder's radiative branch the Einstein A coefficient?",
+          "chemicalQuestion": "Is the per-level radiative rate `rad` of the Kasha-Vavilov ladder the Einstein A coefficient of the same electronic transition?",
+          "chemicalRationale": "The ladder carries a free radiative rate function `rad : N -> R`; the Einstein theory supplies radiative conversion coefficients `aOfB`, `radFactor` and the radiative lifetime `tauR`. Both are radiative rates, so a scalar-level identification is expressible at a chosen transition; the question is whether any delivered declaration makes it and carries the KV spectral predicates to the Einstein coefficient.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-KashaVavilov-PhotoLean-KashaVavilov-SpecSame",
+              "theory": "KashaVavilov",
+              "declaration": "PhotoLean.KashaVavilov.SpecSame",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/KashaVavilov/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "71672d0876551ad8159e4964d70d474951362e8e9539434f141d76e2bdb18506",
+              "sourceArtifactSha256": "298bb9e7957e096657d54b01f2f7de462dd5d76f89fdf2bd0d4b28d4ae06f838",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-aOfB",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.aOfB",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+              "sourceLine": 49,
+              "version": "1.0.0",
+              "signatureSha256": "37ce2a4ce5f5292d4a34a51ad2c1bc4c30e269fcfccae4093d3bc91b5a7cd223",
+              "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "KvEbCandidateCtx",
+            "fields": [
+              "rad : ℕ → ℝ",
+              "ic : ℕ → ℝ",
+              "M : ℕ",
+              "N : ℕ",
+              "K : ℝ",
+              "B21 : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the ladder per-level radiative rate `rad n` would be the Einstein A coefficient `aOfB K B21` of the same transition. Both are radiative rates, so a scalar-level identification is expressible; the ladder quantifies over an arbitrary rate function, so no total translation is declared.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#KvEbCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the shared candidate context to this statement context is declared; the identification is a candidate."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the partner statement context to the shared candidate context is declared; the identification is a candidate."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate identification `rad 0 = aOfB K B21` is not load-bearing for any delivered disposition."
+          },
+          "scope": {
+            "id": "scope-RAD2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the six named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate composes the ladder spectral predicates with the Einstein coefficient through a missing `rad = A` identification.",
+          "falsificationCondition": "A delivered statement identifying a ladder radiative rate with an Einstein coefficient would move the row toward certified; a ladder and coefficient at which they differ would refute the identification.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No disposition has been reached: both sides carry radiative rates, but no delivered statement identifies the free ladder rate function with an Einstein coefficient.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD2-KVE-01",
+              "candidateSummary": "A delivered identification of the ladder radiative rate `rad n` with an Einstein coefficient (`aOfB K B21`) and a composition carrying it to SpecSame is missing; KashaVavilov quantifies over an arbitrary `rad` and never references the Einstein module."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-KVE-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SternVolmer-EnergyGapLaw",
+      "theories": [
+        "SternVolmer",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-SVE-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-SVE-01",
+          "pairId": "P-SternVolmer-EnergyGapLaw",
+          "title": "Is the Stern-Volmer quencher channel an energy-gap-law nonradiative channel?",
+          "chemicalQuestion": "Is the concentration-dependent Stern-Volmer channel `kq * q` the energy-gap-law nonradiative rate `nrRate` of the same excited state?",
+          "chemicalRationale": "SternVolmer models dynamic quenching as an added decay channel `kq * q`, linear in quencher concentration with a free rate constant `kq`. EnergyGapLaw gives a nonradiative rate exponential in the gap and barrier, `nrRate = A * exp(-nrBarrier/(kB*T))`. Both are nonradiative decay rates, but SternVolmer carries no gap coordinate and EnergyGapLaw carries no quencher concentration. A candidate bridge would equip `kq` with the EGL law at a quencher-induced gap; no delivered statement does so.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-SternVolmer-PhotoLean-SternVolmer-dynDecay",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.dynDecay",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 47,
+              "version": "1.0.0",
+              "signatureSha256": "300a9093783079efccbc86615861306e755d9c7024bbbcdf5e9068654d62a907",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 74,
+              "version": "1.0.0",
+              "signatureSha256": "987f56aec9bd86a4bf9b75615503ef3971f7ab605688cadba66688898258c12e",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "SvEgCandidateCtx",
+            "fields": [
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the Stern-Volmer quencher channel `kq * q` would be the energy-gap-law nonradiative rate `nrRate A lam kB T x` at a quencher-induced gap. SV carries no gap coordinate and EGL carries no concentration axis; the identification is a candidate.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#SvEgCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the shared candidate context to this statement context is declared; the identification is a candidate."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the partner statement context to the shared candidate context is declared; the identification is a candidate."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate `kq * q = nrRate ...` is not load-bearing for any delivered disposition."
+          },
+          "scope": {
+            "id": "scope-RAD2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the six named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate composes the Stern-Volmer decay law with the energy-gap-law rate through a missing concentration-to-gap translation.",
+          "falsificationCondition": "A delivered statement identifying `kq * q` with `nrRate` at a declared gap would move the row toward certified; a quencher channel and an EGL rate at which they differ would refute the identification.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No disposition has been reached: both sides are nonradiative decay rates, but no delivered translation connects the quencher concentration to a driving force or the EGL barrier to a concentration channel.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD2-SVE-01",
+              "candidateSummary": "A delivered identification of the Stern-Volmer channel `kq * q` with the energy-gap-law rate `nrRate A lam kB T x` at a declared quencher-induced gap is missing; SternVolmer has no gap coordinate and EnergyGapLaw has no concentration axis."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-SVE-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SternVolmer-StokesShift",
+      "theories": [
+        "SternVolmer",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-SVS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-SVS-01",
+          "pairId": "P-SternVolmer-StokesShift",
+          "title": "Does the Stern-Volmer intensity ratio constrain the Stokes band separation?",
+          "chemicalQuestion": "Does the Stern-Volmer intensity ratio, a function of quencher concentration, constrain the Stokes shift, the energy separation of the absorption and emission maxima?",
+          "chemicalRationale": "The Stern-Volmer observable is a dimensionless intensity/lifetime ratio over a concentration axis; the Stokes shift is an energy difference over a nuclear-coordinate surface pair. The two objects have different dimensions, axes and units, and no total translation exists. The delivered register records no edge.",
+          "endpoints": {
+            "source": {
+              "statementId": "sternvolmer.intensityDyn",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.emEnergy",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "31c4f14c2cfab83174ed72561ae8fc8e67b82fa5d06549ab95e511ba1108f504",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "SvSsDisjointCtx",
+            "fields": [
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ",
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "Disjoint observables: the Stern-Volmer ratio is a dimensionless intensity/lifetime ratio over a quencher-concentration axis; the Stokes shift is an energy difference between vertical absorption and emission over a nuclear-coordinate surface pair. No total translation exists.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#SvSsDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "scope": {
+            "id": "scope-RAD2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the six named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a Stern-Volmer ratio premise to a band-energy premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement deriving a band energy from a Stern-Volmer ratio would refute the jurisdiction boundary; none exists.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: a concentration-dependent dimensionless ratio and a band-position energy are different observables with no declared map. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD2-SVS-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: the Stern-Volmer ratio is a dimensionless function of quencher concentration, the Stokes shift an energy difference over a nuclear coordinate."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-SVS-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: the Stern-Volmer ratio is a dimensionless function of quencher concentration, the Stokes shift an energy difference over a nuclear coordinate.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor (or a shape-note disposition); it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SternVolmer-ICvsISC",
+      "theories": [
+        "SternVolmer",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-SVI-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-SVI-01",
+          "pairId": "P-SternVolmer-ICvsISC",
+          "title": "Is the quencher-added decay channel an IC or ISC channel?",
+          "chemicalQuestion": "Is the Stern-Volmer quencher channel `kq * q` an internal-conversion or intersystem-crossing channel of the ICvsISC competition at the same gap?",
+          "chemicalRationale": "Both theories add or compare nonradiative decay channels: SternVolmer adds `kq * q` to the excited-state decay, ICvsISC compares the FC-controlled `icRate` and the spin-controlled `iscRate`. A candidate translation equips the quencher channel with the ICvsISC rate law at the encounter geometry; SternVolmer keeps `kq` a free constant and ICvsISC has no concentration axis, so no delivered statement closes it.",
+          "endpoints": {
+            "source": {
+              "statementId": "sternvolmer.intensityDyn",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-icRate",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.icRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+              "sourceLine": 72,
+              "version": "1.0.0",
+              "signatureSha256": "2ba39280d9bad8ff65662aa1c72d3c0a0427d5a3568b27b23a5a4f0e7b1bdf68",
+              "sourceArtifactSha256": "b3b2ceb68a9fe4a7cff5afbea76d29297ea4c57c9398d8f4c73a1f54001684a6",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "SvIcCandidateCtx",
+            "fields": [
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ",
+              "AI : ℝ",
+              "AS : ℝ",
+              "lamI : ℝ",
+              "lamS : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "xI : ℝ",
+              "xS : ℝ",
+              "HSO : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the Stern-Volmer quencher channel `kq * q` would be an ICvsISC internal-conversion or intersystem-crossing channel at the encounter geometry. Both are nonradiative decay channels; SV has no gap/spin coordinate and ICvsISC has no concentration axis.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#SvIcCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the shared candidate context to this statement context is declared; the identification is a candidate."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the partner statement context to the shared candidate context is declared; the identification is a candidate."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate `kq * q = icRate ...` is not load-bearing for any delivered disposition."
+          },
+          "scope": {
+            "id": "scope-RAD2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the six named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate composes the Stern-Volmer decay law with the ICvsISC channel rate through a missing concentration-to-gap/spin translation.",
+          "falsificationCondition": "A delivered statement identifying `kq * q` with `icRate` or `iscRate` would move the row toward certified; a quencher channel and a channel rate at which they differ would refute the identification.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No disposition has been reached: both sides are nonradiative decay channels, but no delivered statement identifies the quencher channel with an ICvsISC IC/ISC channel at a declared geometry.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD2-SVI-01",
+              "candidateSummary": "A delivered identification of the Stern-Volmer channel `kq * q` with the ICvsISC `icRate`/`iscRate` at a declared encounter geometry is missing; SternVolmer has no gap or spin coordinate and ICvsISC has no concentration axis."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-SVI-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SternVolmer-Forster",
+      "theories": [
+        "SternVolmer",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-SVF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-SVF-01",
+          "pairId": "P-SternVolmer-Forster",
+          "title": "Is the apparent 1 + control identity a shared physical law or a shape coincidence?",
+          "chemicalQuestion": "Does the inverse Förster efficiency form `1 + R^6/r0^6` identify the Stern-Volmer concentration control `1 + KSV*[Q]` with a Förster distance control?",
+          "chemicalRationale": "The delivered shape row `fretEff6_inv_eq_one_plus` and the Stern-Volmer linear ratio both read `1 + control`, but the controls are physically and dimensionally different: quencher concentration times a rate constant versus a sixth-power distance ratio. The legacy registry classifies the pair as look-alike / shape-note (`D-S15-fretEff6_inv_eq_one_plus`), not an edge. A shape identity is not a shared physical coordinate; declaring one would be exactly the forced shape-only relation the audit forbids.",
+          "endpoints": {
+            "source": {
+              "statementId": "sternvolmer.intensityDyn",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-fretEff6",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.fretEff6",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "610f33f9e606af69c8f6979f12a55f5d4e50d471029bf1078d478d6e9f2123fa",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "SvFoShapeCtx",
+            "fields": [
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ",
+              "r6 : ℝ",
+              "R : ℝ"
+            ],
+            "physicalReading": "Shape-only context: the Stern-Volmer inverse ratio reads `1 + KSV*q` and the inverse Förster efficiency reads `1 + R^6/r6`; the two controls are a concentration times a rate constant and a sixth-power distance ratio. The shared `1 + control` form is a shape, not a shared physical coordinate.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#SvFoShapeCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "scope": {
+            "id": "scope-RAD2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the six named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication identifying the two `1 + control` curves; the jurisdiction record denies that the shared shape is a shared physical coordinate.",
+          "falsificationCondition": "A delivered statement translating quencher concentration into a donor-acceptor sixth-power ratio would refute the jurisdiction boundary; none exists.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared physical context or declared translation exists: the shared `1 + control` form is a shape coincidence between a concentration control and a distance control, and the legacy ledger itself records it as a shape note, not an edge. The finding is jurisdictional, not logical absence.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD2-SVF-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: `KSV*q` (concentration x rate constant) and `R^6/r6` (sixth-power distance ratio) are different controls that happen to share the `1 + control` shape; the delivered shape row is not a physical identity."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-SVF-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: `KSV*q` (concentration x rate constant) and `R^6/r6` (sixth-power distance ratio) are different controls that happen to share the `1 + control` shape; the delivered shape row is not a physical identity.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor (or a shape-note disposition); it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-SternVolmer-Einstein",
+      "theories": [
+        "SternVolmer",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-SVEb-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-SVEb-01",
+          "pairId": "P-SternVolmer-Einstein",
+          "title": "Is the intrinsic decay's radiative part the Einstein A coefficient?",
+          "chemicalQuestion": "Is the radiative part of the Stern-Volmer intrinsic decay `k0` the Einstein A coefficient of the same transition?",
+          "chemicalRationale": "SternVolmer keeps `k0` as the total intrinsic decay and `KSV = kq/k0`; it never splits `k0` into radiative and nonradiative parts. Einstein supplies the radiative coefficient `A` and the radiative lifetime `tauR A = 1/A`. Physically k0 = kr + knr with kr = A, but no delivered SternVolmer statement performs that split or identifies kr with A; the Stern-Volmer lifetime ratio uses k0 whole.",
+          "endpoints": {
+            "source": {
+              "statementId": "sternvolmer.intensityDyn",
+              "theory": "SternVolmer",
+              "declaration": "PhotoLean.SternVolmer.svRatioDyn",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/SternVolmer/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "bc9da01b575253bc6b17cf31aaeb0d6b89a2bf0f4d1c61b1e705fddd2d4181db",
+              "sourceArtifactSha256": "6cb638027b282b5c6d215285d940b5b7d3b9edfa4e94e81dea924ec0d81b5a28",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-tauR",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.tauR",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+              "sourceLine": 65,
+              "version": "1.0.0",
+              "signatureSha256": "b515d1f09b47e8e4a348a64dd5f6444338fb4f77939b88a5b4fc1921d549f98f",
+              "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "SvEbCandidateCtx",
+            "fields": [
+              "k0 : ℝ",
+              "kq : ℝ",
+              "q : ℝ",
+              "A : ℝ",
+              "kNR : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the Stern-Volmer intrinsic total decay `k0` would be split into a radiative Einstein coefficient `A` and a nonradiative rate `kNR` (k0 = A + kNR). SV keeps `k0` whole and never splits it; the identification is a candidate.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#SvEbCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the shared candidate context to this statement context is declared; the identification is a candidate."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the partner statement context to the shared candidate context is declared; the identification is a candidate."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate split `k0 = A + kNR` is not load-bearing for any delivered disposition."
+          },
+          "scope": {
+            "id": "scope-RAD2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the six named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate composes the Stern-Volmer decay ratio with the Einstein radiative rate through a missing split of `k0`.",
+          "falsificationCondition": "A delivered statement splitting `k0` into `A + kNR` and identifying the radiative part with an Einstein coefficient would move the row toward certified; a SternVolmer decay and an Einstein rate at which they differ would refute the identification.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No disposition has been reached: both sides carry decay rates, but no delivered statement splits the Stern-Volmer intrinsic decay into a radiative Einstein coefficient and a nonradiative rate.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD2-SVEb-01",
+              "candidateSummary": "A delivered split of the Stern-Volmer intrinsic decay `k0` into a radiative Einstein coefficient `A` and a nonradiative rate `kNR` is missing; SternVolmer treats `k0` as an indivisible free parameter."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-SVEb-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-QuantumYield-EnergyGapLaw",
+      "theories": [
+        "QuantumYield",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-QYE-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-QYE-01",
+          "pairId": "P-QuantumYield-EnergyGapLaw",
+          "title": "The radiative/nonradiative branching ratio is the energy-gap-law rate ratio",
+          "chemicalQuestion": "When the nonradiative channel of a two-channel excited state is governed by the energy-gap law, does the quantum-yield branching ratio of the radiative channel equal the EGL rate ratio written through its barrier?",
+          "chemicalRationale": "QuantumYield is the parallel-channel calculus: `yieldOf k i = k i / sum k`, and its relative-yield law `yieldOf_div_yieldOf` makes a branch ratio a rate ratio. EnergyGapLaw supplies the nonradiative rate `nrRate = A * exp(-nrBarrier/(kB*T))`. Composing them turns a spectroscopic branching observable into the EGL barrier exponential: the statement-level bridge between the yield algebra and the energy-gap law.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf_div_yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf_div_yieldOf",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/QuantumYield/Criterion.lean",
+              "sourceLine": 96,
+              "version": "1.0.0",
+              "signatureSha256": "5274307c6ed4471c91e752cff28d905eea2ba83e24ce9340b5de8a3747184985",
+              "sourceArtifactSha256": "1d97383c512d0871759037b1579fddb17872f864e7d4801af5607a5f62c1e43b",
+              "endpointForm": "theorem"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 74,
+              "version": "1.0.0",
+              "signatureSha256": "987f56aec9bd86a4bf9b75615503ef3971f7ab605688cadba66688898258c12e",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "QyEgCtx",
+            "fields": [
+              "kr : ℝ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "One excited state with a radiative channel `kr` and an energy-gap-law nonradiative channel `nrRate A lam kB T x`; the quantum-yield partition of the two channels is compared with the EGL rate ratio written through `nrBarrier`.",
+            "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyEgCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : QyEgCtx => 0 < δ.kr ∧ 0 < δ.A",
+            "premiseIds": [
+              "qyEg.krPositive",
+              "qyEg.preFactorPositive"
+            ],
+            "definitions": [
+              {
+                "id": "qyEg.krPositive",
+                "predicate": "fun δ => 0 < δ.kr",
+                "statement": "the radiative rate is positive",
+                "loadBearing": "the relative-yield law divides by the radiative channel and field_simp clears the 1/kr denominator"
+              },
+              {
+                "id": "qyEg.preFactorPositive",
+                "predicate": "fun δ => 0 < δ.A",
+                "statement": "the EGL pre-exponential factor is positive",
+                "loadBearing": "makes nrRate positive and clears the 1/A denominator in the barrier-exponential form"
+              }
+            ],
+            "note": "The totalized division makes kB*T > 0 non-load-bearing for this identity, so it is not declared."
+          },
+          "scope": {
+            "id": "scope-RAD2-qy-eg-branch",
+            "description": "Two-channel quantum-yield branch ratio against the energy-gap-law nonradiative rate.",
+            "domain": "all (kr, A, lam, kB, T, x) in R^6 with kr > 0 and A > 0; the totalized division makes kB*T > 0 non-load-bearing for the identity.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued observables on the shared context; the certificate is equality of the declared branch-ratio channel against the barrier-exponential channel.",
+          "falsificationCondition": "A context (kr, A, lam, kB, T, x) with kr > 0 and A > 0 at which the QY branch ratio differs from (kr/A)*exp(nrBarrier/(kB*T)) would refute the equality; the certificate covers every such context.",
+          "observationChannels": [
+            {
+              "id": "radiativeToNonradiativeBranchRatio",
+              "name": "radiativeToNonradiativeBranchRatio",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => QuantumYield.yieldOf ![δ.kr, EnergyGapLaw.nrRate δ.A δ.lam δ.kB δ.T δ.x] 0 / QuantumYield.yieldOf ![δ.kr, EnergyGapLaw.nrRate δ.A δ.lam δ.kB δ.T δ.x] 1",
+              "rightObs": "fun δ _ => (δ.kr / δ.A) * Real.exp (EnergyGapLaw.nrBarrier δ.lam δ.x / (δ.kB * δ.T))"
+            }
+          ],
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe theorem qyEgBranchRatio and the observational channel certificate qyEgBridge are checked; the equality holds for every kr > 0, A > 0 and every lam, kB, T, x.",
+            "evidence": {
+              "type": "rad2-probe-certificate",
+              "certificateId": "RAD2-QYE-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "sha256": "36a5ae42f68a6112f466f067a713d6b2a8f2e781bbc18bb735e8dc3ddabbef2b",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEgBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEgBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "log": "bounded_audit/r5/radiative-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.QuantumYield.yieldOf_div_yieldOf",
+                  "sourceArtifact": "PhotoLean/QuantumYield/Criterion.lean",
+                  "sourceLine": 96,
+                  "role": "relative-yield law: the branch ratio is the rate ratio"
+                },
+                {
+                  "declaration": "PhotoLean.EnergyGapLaw.cert_nrRate",
+                  "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+                  "sourceLine": 80,
+                  "role": "delivered EGL rate / Marcus rate pin"
+                },
+                {
+                  "declaration": "PhotoLean.EnergyGapLaw.cert_nrBarrier",
+                  "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+                  "sourceLine": 67,
+                  "role": "delivered EGL barrier / kernel barrier pin"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe composes the delivered relative-yield law with the delivered EGL rate law and rewrites the rate ratio through nrBarrier. It is not a pair-anchor reuse and not a shape identity: the two sides are the QY branch observable and the EGL barrier exponential."
+            }
+          },
+          "provenance": {
+            "kind": "rad2-probe-certificate",
+            "certificateId": "RAD2-QYE-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEgBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-QuantumYield-StokesShift",
+      "theories": [
+        "QuantumYield",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-QYS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-QYS-01",
+          "pairId": "P-QuantumYield-StokesShift",
+          "title": "Does the quantum-yield partition constrain the Stokes band separation?",
+          "chemicalQuestion": "Does the quantum-yield partition of an excited state constrain the Stokes shift of the same chromophore?",
+          "chemicalRationale": "QuantumYield is a dimensionless branching partition `k i / sum k` over decay channels. StokesShift is an energy difference between vertical absorption and emission on a displaced-parabola pair. The yield algebra contains no band energy and the surface model contains no channel partition; no total translation exists. The delivered register records no edge.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.emEnergy",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "31c4f14c2cfab83174ed72561ae8fc8e67b82fa5d06549ab95e511ba1108f504",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "QySsDisjointCtx",
+            "fields": [
+              "kr : ℝ",
+              "knr : ℝ",
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "Disjoint observables: the quantum-yield partition is dimensionless over decay channels; the Stokes shift is an energy difference over a displaced-parabola surface pair. No channel rate is a band energy and no total translation exists.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#QySsDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "scope": {
+            "id": "scope-RAD2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the six named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a yield-partition premise to a band-energy premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement deriving a band energy from a channel partition would refute the jurisdiction boundary; none exists.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: a dimensionless channel partition and a band-position energy are different observables. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD2-QYS-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: `yieldOf` is a dimensionless partition over decay rates, `emEnergy` is an energy difference over a nuclear coordinate."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-QYS-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: `yieldOf` is a dimensionless partition over decay rates, `emEnergy` is an energy difference over a nuclear coordinate.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor (or a shape-note disposition); it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-QuantumYield-ICvsISC",
+      "theories": [
+        "QuantumYield",
+        "ICvsISC"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-QYI-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-QYI-01",
+          "pairId": "P-QuantumYield-ICvsISC",
+          "title": "The ISC/IC branch ratio is the ICvsISC spin/FC rate ratio",
+          "chemicalQuestion": "Is the quantum-yield branching ratio of the intersystem-crossing channel over the internal-conversion channel the ICvsISC spin/prefactor times Franck-Condon rate ratio?",
+          "chemicalRationale": "The quantum-yield relative-yield law makes the ISC/IC branch ratio a rate ratio. ICvsISC rate_ratio_eq factors that ratio into `HSO^2 * AS / AI` times the Franck-Condon exponential. The composition is the statement-level bridge between the branching observable and the IC/ISC competition law; the spin-orbit coupling enters squared, exactly as the ICvsISC theory states.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf_div_yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf_div_yieldOf",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/QuantumYield/Criterion.lean",
+              "sourceLine": 96,
+              "version": "1.0.0",
+              "signatureSha256": "5274307c6ed4471c91e752cff28d905eea2ba83e24ce9340b5de8a3747184985",
+              "sourceArtifactSha256": "1d97383c512d0871759037b1579fddb17872f864e7d4801af5607a5f62c1e43b",
+              "endpointForm": "theorem"
+            },
+            "target": {
+              "statementId": "stmt-ICvsISC-PhotoLean-ICvsISC-rate_ratio_eq",
+              "theory": "ICvsISC",
+              "declaration": "PhotoLean.ICvsISC.rate_ratio_eq",
+              "declarationKind": "theorem",
+              "sourceArtifact": "PhotoLean/ICvsISC/Criterion.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "e772caf2ec0660a7c970e8bf7433630eb43f20ebda6d834d99d4bd9df65a3c6c",
+              "sourceArtifactSha256": "5ee8d024880f2825ced3bd8d0d02d309a8c0f04c1037a382c56e957a4b60b773",
+              "endpointForm": "theorem"
+            }
+          },
+          "sharedContext": {
+            "id": "QyIcCtx",
+            "fields": [
+              "AI : ℝ",
+              "AS : ℝ",
+              "lamI : ℝ",
+              "lamS : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "xI : ℝ",
+              "xS : ℝ",
+              "HSO : ℝ"
+            ],
+            "physicalReading": "One excited state with an IC channel `icRate AI lamI kB T xI` and an ISC channel `iscRate HSO AS lamS kB T xS`; the quantum-yield ISC/IC partition is compared with the ICvsISC spin/prefactor times Franck-Condon rate ratio.",
+            "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyIcCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : QyIcCtx => ICvsISC.FCData δ.AI δ.AS δ.lamI δ.lamS δ.kB δ.T ∧ 0 < δ.HSO",
+            "premiseIds": [
+              "qyIc.fcData",
+              "qyIc.hsoPositive"
+            ],
+            "definitions": [
+              {
+                "id": "qyIc.fcData",
+                "predicate": "fun δ => ICvsISC.FCData δ.AI δ.AS δ.lamI δ.lamS δ.kB δ.T",
+                "statement": "the ICvsISC premise bundle (positive prefactors, reorganization energies and kB*T)",
+                "loadBearing": "rate_ratio_eq consumes FCData to clear AI and the exponentials; positivity makes both channel rates positive"
+              },
+              {
+                "id": "qyIc.hsoPositive",
+                "predicate": "fun δ => 0 < δ.HSO",
+                "statement": "the spin-orbit coupling is positive",
+                "loadBearing": "makes the ISC rate `HSO^2 * AS * exp(...)` positive so the relative-yield law can divide by it"
+              }
+            ],
+            "note": "Both premises are consumed: FCData by rate_ratio_eq and by IC positivity, HSO > 0 by ISC positivity."
+          },
+          "scope": {
+            "id": "scope-RAD2-qy-ic-branch",
+            "description": "Quantum-yield ISC/IC branch ratio against the ICvsISC spin/FC rate ratio.",
+            "domain": "all ICvsISC parameter tuples satisfying FCData with HSO > 0.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued observables on the shared context; the certificate is equality of the QY branch-ratio channel against the ICvsISC spin/FC ratio channel.",
+          "falsificationCondition": "An ICvsISC parameter tuple satisfying FCData with HSO > 0 at which the QY ISC/IC branch ratio differs from `(HSO^2*AS/AI)*exp((fcBarrier_I - fcBarrier_S)/(kB*T))` would refute the equality; the certificate covers every such tuple.",
+          "observationChannels": [
+            {
+              "id": "iscToIcBranchRatio",
+              "name": "iscToIcBranchRatio",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => QuantumYield.yieldOf ![ICvsISC.icRate δ.AI δ.lamI δ.kB δ.T δ.xI, ICvsISC.iscRate δ.HSO δ.AS δ.lamS δ.kB δ.T δ.xS] 1 / QuantumYield.yieldOf ![ICvsISC.icRate δ.AI δ.lamI δ.kB δ.T δ.xI, ICvsISC.iscRate δ.HSO δ.AS δ.lamS δ.kB δ.T δ.xS] 0",
+              "rightObs": "fun δ _ => (δ.HSO ^ 2 * δ.AS / δ.AI) * Real.exp ((ICvsISC.fcBarrier δ.lamI δ.xI - ICvsISC.fcBarrier δ.lamS δ.xS) / (δ.kB * δ.T))"
+            }
+          ],
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe theorem qyIcBranchRatio and the observational channel certificate qyIcBridge are checked; the QY branch ratio equals the delivered ICvsISC rate_ratio_eq right-hand side for every FCData tuple with HSO > 0.",
+            "evidence": {
+              "type": "rad2-probe-certificate",
+              "certificateId": "RAD2-QYI-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "sha256": "36a5ae42f68a6112f466f067a713d6b2a8f2e781bbc18bb735e8dc3ddabbef2b",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyIcBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyIcBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "log": "bounded_audit/r5/radiative-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.QuantumYield.yieldOf_div_yieldOf",
+                  "sourceArtifact": "PhotoLean/QuantumYield/Criterion.lean",
+                  "sourceLine": 96,
+                  "role": "relative-yield law: the branch ratio is the rate ratio"
+                },
+                {
+                  "declaration": "PhotoLean.ICvsISC.rate_ratio_eq",
+                  "sourceArtifact": "PhotoLean/ICvsISC/Criterion.lean",
+                  "sourceLine": 80,
+                  "role": "delivered IC/ISC spin x FC competition law"
+                },
+                {
+                  "declaration": "PhotoLean.ICvsISC.icRate",
+                  "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+                  "sourceLine": 72,
+                  "role": "delivered IC channel rate (consumed by the QY vector)"
+                },
+                {
+                  "declaration": "PhotoLean.ICvsISC.iscRate",
+                  "sourceArtifact": "PhotoLean/ICvsISC/Basic.lean",
+                  "sourceLine": 85,
+                  "role": "delivered ISC channel rate with the explicit HSO^2 prefactor"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The probe composes the delivered relative-yield law with the delivered rate_ratio_eq. The result is a genuine branching-observable / competition-law bridge, not a renaming: the left side is the QY partition and the right side is the ICvsISC factorization."
+            }
+          },
+          "provenance": {
+            "kind": "rad2-probe-certificate",
+            "certificateId": "RAD2-QYI-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyIcBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-QuantumYield-Forster",
+      "theories": [
+        "QuantumYield",
+        "Forster"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-QYF-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-QYF-01",
+          "pairId": "P-QuantumYield-Forster",
+          "title": "The Förster transfer efficiency is one minus the donor's retained yield",
+          "chemicalQuestion": "Is the Förster transfer efficiency of a donor-acceptor pair one minus the donor's retained radiative quantum yield in the added-channel model?",
+          "chemicalRationale": "FRET is an added donor decay channel `kD * (r0^6/R^6)`. The quantum-yield algebra gives the donor retained radiative share in the enlarged channel vector. The delivered composition `fretEff6_eq_one_sub_yieldOf` states that the transfer efficiency is the complement; the certificate reads it as an equality of the transfer-efficiency observable and the retained-yield observable.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Forster-PhotoLean-Forster-fretEff6",
+              "theory": "Forster",
+              "declaration": "PhotoLean.Forster.fretEff6",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+              "sourceLine": 57,
+              "version": "1.0.0",
+              "signatureSha256": "610f33f9e606af69c8f6979f12a55f5d4e50d471029bf1078d478d6e9f2123fa",
+              "sourceArtifactSha256": "f592c768c11d29bf4e813f385eb5077a36ea941a35c898cf24f67eb14d75c298",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "QyFoCtx",
+            "fields": [
+              "kD : ℝ",
+              "r6 : ℝ",
+              "R : ℝ"
+            ],
+            "physicalReading": "A donor with radiative rate `kD` and an added FRET channel `kD * (r6 / R^6)`; the transfer efficiency `fretEff6 r6 R` is compared with one minus the donor retained radiative yield.",
+            "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyFoCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun δ : QyFoCtx => 0 < δ.kD ∧ 0 ≤ δ.r6 ∧ δ.R ≠ 0",
+            "premiseIds": [
+              "qyFo.donorRatePositive",
+              "qyFo.r6Nonnegative",
+              "qyFo.separationNonzero"
+            ],
+            "definitions": [
+              {
+                "id": "qyFo.donorRatePositive",
+                "predicate": "fun δ => 0 < δ.kD",
+                "statement": "the donor radiative rate is positive",
+                "loadBearing": "makes the donor total rate positive in the added-channel yield"
+              },
+              {
+                "id": "qyFo.r6Nonnegative",
+                "predicate": "fun δ => 0 ≤ δ.r6",
+                "statement": "the Förster sixth power is nonnegative",
+                "loadBearing": "makes the added FRET channel nonnegative so the denominator stays positive"
+              },
+              {
+                "id": "qyFo.separationNonzero",
+                "predicate": "fun δ => δ.R ≠ 0",
+                "statement": "the donor-acceptor separation is nonzero",
+                "loadBearing": "makes R^6 positive so the FRET channel is finite and the field_simp denominator is nonzero"
+              }
+            ],
+            "note": "These are exactly the premises of the delivered fretEff6_eq_one_sub_yieldOf row."
+          },
+          "scope": {
+            "id": "scope-RAD2-qy-fo-efficiency",
+            "description": "Förster transfer efficiency against one minus the donor retained radiative yield.",
+            "domain": "all (kD, r6, R) with kD > 0, r6 >= 0 and R != 0.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued observables on the shared context; the certificate is equality of the transfer-efficiency channel against the retained-yield channel.",
+          "falsificationCondition": "A context (kD, r6, R) with kD > 0, r6 >= 0 and R != 0 at which the Förster efficiency differs from one minus the donor retained yield would refute the equality; the certificate covers every such context.",
+          "observationChannels": [
+            {
+              "id": "transferEfficiencyVersusRetainedDonorYield",
+              "name": "transferEfficiencyVersusRetainedDonorYield",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => Forster.fretEff6 δ.r6 δ.R",
+              "rightObs": "fun δ _ => 1 - QuantumYield.yieldOf ![δ.kD, δ.kD * (δ.r6 / δ.R ^ 6)] 0"
+            }
+          ],
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe theorem qyFoEfficiency and the observational channel certificate qyFoBridge are checked; the equality is the delivered §15 composition `fretEff6_eq_one_sub_yieldOf` read as a channel equality.",
+            "evidence": {
+              "type": "rad2-probe-certificate",
+              "certificateId": "RAD2-QYF-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "sha256": "36a5ae42f68a6112f466f067a713d6b2a8f2e781bbc18bb735e8dc3ddabbef2b",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyFoBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyFoBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "log": "bounded_audit/r5/radiative-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.fretEff6_eq_one_sub_yieldOf",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 836,
+                  "role": "delivered composition row: FRET efficiency = 1 - donor yield"
+                },
+                {
+                  "declaration": "PhotoLean.Forster.fretEff6",
+                  "sourceArtifact": "PhotoLean/Forster/Basic.lean",
+                  "sourceLine": 57,
+                  "role": "delivered Förster efficiency definition"
+                },
+                {
+                  "declaration": "PhotoLean.QuantumYield.yieldOf",
+                  "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+                  "sourceLine": 44,
+                  "role": "delivered quantum-yield definition"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The certificate consumes the delivered cross-theory composition row verbatim; the probe is a channel-level restatement, not a new axiom or a pair anchor."
+            }
+          },
+          "provenance": {
+            "kind": "rad2-probe-certificate",
+            "certificateId": "RAD2-QYF-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyFoBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-QuantumYield-Einstein",
+      "theories": [
+        "QuantumYield",
+        "Einstein"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-QYEB-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-QYEB-01",
+          "pairId": "P-QuantumYield-Einstein",
+          "title": "The Einstein radiative fraction is the radiative quantum yield",
+          "chemicalQuestion": "Is the Einstein radiative fraction `A * tauR(A + kNR)` of a two-channel decay the quantum yield of the radiative channel?",
+          "chemicalRationale": "Einstein tauR A = 1/A is the radiative lifetime. In a two-channel decay with total rate A + kNR the observed lifetime is 1/(A + kNR), so the radiative fraction is A/(A + kNR); the quantum yield of the radiative channel is exactly that share. The delivered composition `einstein_yield_via_qy` makes the identification, and the certificate reads it as an equality of the radiative-fraction observable and the QY yield.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-Einstein-PhotoLean-Einstein-tauR",
+              "theory": "Einstein",
+              "declaration": "PhotoLean.Einstein.tauR",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+              "sourceLine": 65,
+              "version": "1.0.0",
+              "signatureSha256": "b515d1f09b47e8e4a348a64dd5f6444338fb4f77939b88a5b4fc1921d549f98f",
+              "sourceArtifactSha256": "8d75b7ede59925c348504b926d7b8044fe3dafe65ee7307c0e33db1ef75e6027",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-QuantumYield-PhotoLean-QuantumYield-yieldOf",
+              "theory": "QuantumYield",
+              "declaration": "PhotoLean.QuantumYield.yieldOf",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+              "sourceLine": 44,
+              "version": "1.0.0",
+              "signatureSha256": "f3a7e1f31ee09661703f9837e25860cd864488c8f3f9af3198e239d76cedffa5",
+              "sourceArtifactSha256": "2d77d61eb3cbfb894f2eda3e234efbf9affeabef9eb04935027ab5ae0d810b10",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "QyEbCtx",
+            "fields": [
+              "A : ℝ",
+              "kNR : ℝ"
+            ],
+            "physicalReading": "One radiative channel `A` and one nonradiative channel `kNR`; the Einstein radiative fraction `A * tauR (A + kNR)` is compared with the two-channel quantum yield of the radiative channel.",
+            "provenance": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean#QyEbCtx"
+          },
+          "translations": {
+            "left": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            },
+            "right": {
+              "id": "identity",
+              "term": "fun δ => δ",
+              "requirement": "Both statement contexts are the shared context; the translation is total."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "The delivered identity `A * tauR (A + kNR) = yieldOf ![A, kNR] 0` is totalized over R^2 and carries no premise, so none is declared."
+          },
+          "scope": {
+            "id": "scope-RAD2-qy-eb-radiative",
+            "description": "Einstein radiative fraction against the two-channel radiative quantum yield.",
+            "domain": "all (A, kNR) in R^2; the identity is totalized and carries no premise.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "observationalEquivalence",
+          "expectedKindRationale": "Both readings are real-valued observables on the shared context; the certificate is equality of the radiative-fraction channel and the radiative-yield channel.",
+          "falsificationCondition": "A context (A, kNR) at which the Einstein radiative fraction differs from the two-channel radiative yield would refute the equality; the totalized identity covers all of R^2.",
+          "observationChannels": [
+            {
+              "id": "radiativeFractionVersusRadiativeYield",
+              "name": "radiativeFractionVersusRadiativeYield",
+              "observedValueType": "ℝ",
+              "inputDomain": "Unit (the single declared configuration)",
+              "domainNonempty": true,
+              "leftObs": "fun δ _ => δ.A * Einstein.tauR (δ.A + δ.kNR)",
+              "rightObs": "fun δ _ => QuantumYield.yieldOf ![δ.A, δ.kNR] 0"
+            }
+          ],
+          "outcome": {
+            "status": "certified",
+            "rationale": "The probe theorem qyEbRadiativeYield and the observational channel certificate qyEbBridge are checked; the equality is the delivered §15 composition `einstein_yield_via_qy` read as a channel equality.",
+            "evidence": {
+              "type": "rad2-probe-certificate",
+              "certificateId": "RAD2-QYEB-01",
+              "kind": "observationalEquivalence",
+              "probe": {
+                "path": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "sha256": "36a5ae42f68a6112f466f067a713d6b2a8f2e781bbc18bb735e8dc3ddabbef2b",
+                "declaration": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEbBridge",
+                "kindCheckTheorem": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEbBridge_kind",
+                "buildCommand": "proofs/scripts/lake env lean bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+                "log": "bounded_audit/r5/radiative-02/probes/compile.log"
+              },
+              "underlyingTheorems": [
+                {
+                  "declaration": "PhotoLean.Relations.einstein_yield_via_qy",
+                  "sourceArtifact": "PhotoLean/Relations.lean",
+                  "sourceLine": 826,
+                  "role": "delivered composition row: radiative fraction = radiative quantum yield"
+                },
+                {
+                  "declaration": "PhotoLean.Einstein.tauR",
+                  "sourceArtifact": "PhotoLean/Einstein/Basic.lean",
+                  "sourceLine": 65,
+                  "role": "delivered radiative lifetime definition"
+                },
+                {
+                  "declaration": "PhotoLean.QuantumYield.yieldOf",
+                  "sourceArtifact": "PhotoLean/QuantumYield/Basic.lean",
+                  "sourceLine": 44,
+                  "role": "delivered quantum-yield definition"
+                }
+              ],
+              "axiomFootprint": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "allowedAxioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "justification": "The certificate consumes the delivered cross-theory composition row verbatim; the probe is a channel-level restatement, not a new axiom or a pair anchor."
+            }
+          },
+          "provenance": {
+            "kind": "rad2-probe-certificate",
+            "certificateId": "RAD2-QYEB-01",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/probes/RAD2-probe.lean",
+            "locator": "PhotoLean.RelationAudit.BoundedAudit.RAD2.qyEbBridge",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-FluorPhos-EnergyGapLaw",
+      "theories": [
+        "FluorPhos",
+        "EnergyGapLaw"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-FPE-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-FPE-01",
+          "pairId": "P-FluorPhos-EnergyGapLaw",
+          "title": "Is the S1 internal-conversion rate an energy-gap-law rate?",
+          "chemicalQuestion": "Is the FluorPhos S1 internal-conversion rate `kIC` the energy-gap-law nonradiative rate at the S1->S0 gap?",
+          "chemicalRationale": "FluorPhos leaves `kIC` a free rate in `phiF = kF/(kF + kISC + kIC)`. EnergyGapLaw supplies `nrRate = A * exp(-nrBarrier/(kB*T))` for a nonradiative electronic relaxation. Chemically the S1->S0 internal-conversion channel is exactly such a relaxation, so a candidate translation `kIC = nrRate` exists; no delivered statement instantiates it, and FluorPhos carries no barrier or gap premise.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-s1Decay",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.s1Decay",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 48,
+              "version": "1.0.0",
+              "signatureSha256": "51a19457144f691d5ec4c01e5a20bd1a2891ecf640560f79bf7853327e588a22",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-EnergyGapLaw-PhotoLean-EnergyGapLaw-nrRate",
+              "theory": "EnergyGapLaw",
+              "declaration": "PhotoLean.EnergyGapLaw.nrRate",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/EnergyGapLaw/Basic.lean",
+              "sourceLine": 74,
+              "version": "1.0.0",
+              "signatureSha256": "987f56aec9bd86a4bf9b75615503ef3971f7ab605688cadba66688898258c12e",
+              "sourceArtifactSha256": "52bbea1a05b930ce06772996d0cc076381db519e174838c207bff2ff161b37f7",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "FpEgCandidateCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ",
+              "kP : ℝ",
+              "kNR : ℝ",
+              "A : ℝ",
+              "lam : ℝ",
+              "kB : ℝ",
+              "T : ℝ",
+              "x : ℝ"
+            ],
+            "physicalReading": "Candidate shared context: the FluorPhos S1 internal-conversion rate `kIC` would be the energy-gap-law nonradiative rate `nrRate A lam kB T x` at the S1->S0 gap. FP leaves `kIC` a free rate; the identification is a candidate.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#FpEgCandidateCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the shared candidate context to this statement context is declared; the identification is a candidate."
+            },
+            "right": {
+              "id": "candidate-not-total",
+              "term": "",
+              "requirement": "candidate-not-total",
+              "reason": "No delivered total translation from the partner statement context to the shared candidate context is declared; the identification is a candidate."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the candidate `kIC = nrRate ...` is not load-bearing for any delivered disposition."
+          },
+          "scope": {
+            "id": "scope-RAD2-candidate-bridge",
+            "description": "Scoped search for a delivered statement-level bridge; no negative claim outside the named search.",
+            "domain": "the six named unresolved pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "conditionalComposition",
+          "expectedKindRationale": "The candidate composes the FluorPhos S1 decay law with the EGL rate through the missing `kIC = nrRate` identification.",
+          "falsificationCondition": "A delivered statement identifying `kIC` with `nrRate` at a declared S1->S0 gap would move the row toward certified; a FluorPhos rate vector and an EGL rate at which they differ would refute the identification.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "unresolved",
+            "rationale": "No disposition has been reached: the FluorPhos S1 internal-conversion rate is chemically a candidate for the EGL rate, but no delivered statement instantiates it.",
+            "evidence": {
+              "type": "scoped-search",
+              "searchLogRef": "SL-RAD2-FPE-01",
+              "candidateSummary": "A delivered identification of the FluorPhos S1 internal-conversion rate `kIC` with the energy-gap-law rate `nrRate A lam kB T x` at the S1->S0 gap is missing; FluorPhos treats `kIC` as a free rate and has no barrier/gap premise."
+            }
+          },
+          "provenance": {
+            "kind": "scoped-search",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-FPE-01",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor; it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    },
+    {
+      "pairId": "P-FluorPhos-StokesShift",
+      "theories": [
+        "FluorPhos",
+        "StokesShift"
+      ],
+      "primaryCluster": "radiative-energy-transfer",
+      "queryIds": [
+        "Q-RAD2-FPS-01"
+      ],
+      "queries": [
+        {
+          "queryId": "Q-RAD2-FPS-01",
+          "pairId": "P-FluorPhos-StokesShift",
+          "title": "Do the fluorescence/phosphorescence branch probabilities constrain the Stokes band separation?",
+          "chemicalQuestion": "Do the S1/T1 branch probabilities of the fluorescence-phosphorescence competition constrain the Stokes shift of the same chromophore?",
+          "chemicalRationale": "FluorPhos objects are branch probabilities over decay channels (`phiF`, `iscBranch`, `phiP`). StokesShift objects are band-position energies from a displaced-parabola surface pair. A probability partition and an energy difference share no scalar; the delivered register records no edge and no total translation exists.",
+          "endpoints": {
+            "source": {
+              "statementId": "stmt-FluorPhos-PhotoLean-FluorPhos-phiF",
+              "theory": "FluorPhos",
+              "declaration": "PhotoLean.FluorPhos.phiF",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/FluorPhos/Basic.lean",
+              "sourceLine": 51,
+              "version": "1.0.0",
+              "signatureSha256": "902b6639757e5df14a909a3d57e43fa7e5806dcf7ee7caba25a0b290ddfb8208",
+              "sourceArtifactSha256": "73002f326d44005b033ff26382b11e99ce848453538f4202e92ea1eb942edf1f",
+              "endpointForm": "definition"
+            },
+            "target": {
+              "statementId": "stmt-StokesShift-PhotoLean-StokesShift-emEnergy",
+              "theory": "StokesShift",
+              "declaration": "PhotoLean.StokesShift.emEnergy",
+              "declarationKind": "def",
+              "sourceArtifact": "PhotoLean/StokesShift/Basic.lean",
+              "sourceLine": 80,
+              "version": "1.0.0",
+              "signatureSha256": "31c4f14c2cfab83174ed72561ae8fc8e67b82fa5d06549ab95e511ba1108f504",
+              "sourceArtifactSha256": "9c1e7e4a1d36a0982e2f3b20f206f26b848f9a04fa072f25fead5f7e8e665ca0",
+              "endpointForm": "definition"
+            }
+          },
+          "sharedContext": {
+            "id": "FpSsDisjointCtx",
+            "fields": [
+              "kF : ℝ",
+              "kISC : ℝ",
+              "kIC : ℝ",
+              "kP : ℝ",
+              "kNR : ℝ",
+              "lam : ℝ",
+              "e00 : ℝ"
+            ],
+            "physicalReading": "Disjoint observables: the fluorescence/phosphorescence competition is a partition of branch probabilities over decay channels; the Stokes shift is an energy difference over a displaced-parabola surface pair. No total translation exists.",
+            "provenance": "bounded_audit/r5/radiative-02/screening.json#FpSsDisjointCtx (candidate context; no Lean structure)"
+          },
+          "translations": {
+            "left": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            },
+            "right": {
+              "id": "none-declared",
+              "term": "",
+              "requirement": "none-declared",
+              "reason": "No total translation between the two disjoint descriptor sets is declared."
+            }
+          },
+          "premises": {
+            "predicate": "fun _ : Δ => True",
+            "premiseIds": [],
+            "definitions": [],
+            "note": "No certificate is claimed; the jurisdiction record does not consume a premise."
+          },
+          "scope": {
+            "id": "scope-RAD2-jurisdiction",
+            "description": "Jurisdiction record for pairs with no shared context or declared translation.",
+            "domain": "the six named outOfScope pairs and the statements/kinds/contexts recorded in their search-log entries.",
+            "snapshot": "snap-bounded-audit-2026-11-04-r5rad2"
+          },
+          "expectedKind": "implication",
+          "expectedKindRationale": "The would-be form is an implication from a branch-probability premise to a band-energy premise; the jurisdiction record denies the shared translation.",
+          "falsificationCondition": "A delivered statement deriving a band energy from a branch probability would refute the jurisdiction boundary; none exists.",
+          "observationChannels": [],
+          "outcome": {
+            "status": "outOfScope",
+            "rationale": "No shared context or declared translation exists: FluorPhos partitions branch probabilities over decay channels, StokesShift compares band-position energies. The absence is jurisdictional, not a refutation.",
+            "evidence": {
+              "type": "jurisdiction",
+              "searchLogRef": "SL-RAD2-FPS-01",
+              "jurisdictionRationale": "No shared context or declared translation exists: a branch probability is a dimensionless partition over rates, a band position is an energy over a nuclear coordinate."
+            }
+          },
+          "provenance": {
+            "kind": "jurisdiction",
+            "sourceArtifact": "bounded_audit/r5/radiative-02/search-log.json",
+            "locator": "SL-RAD2-FPS-01",
+            "jurisdictionStatement": "No shared context or declared translation exists: a branch probability is a dimensionless partition over rates, a band position is an energy over a nuclear coordinate.",
+            "legacyDisposition": "The legacy record for this pair is a pair-level notEstablished anchor (or a shape-note disposition); it is coverage history, not an audit verdict, and is not cited as evidence."
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "pairs": 16,
+    "queries": 16,
+    "byStatus": {
+      "outOfScope": 6,
+      "unresolved": 6,
+      "certified": 4
+    },
+    "byExpectedKind": {
+      "implication": 6,
+      "conditionalComposition": 6,
+      "observationalEquivalence": 4
+    },
+    "certified": 4,
+    "refuted": 0,
+    "unresolved": 6,
+    "notEstablished": 0,
+    "outOfScope": 6
+  },
+  "nonClaims": [
+    "The package screens exactly the sixteen R1 WP-radiative-energy-transfer-02 pairs; it does not write the R5 cumulative ledger.",
+    "Screened is not the same as certified; a certified row is model-internal under its declared context and premises.",
+    "Unresolved rows are candidate registrations, not negative claims; outOfScope rows are jurisdiction findings, not logical absence.",
+    "The package makes no pair-count or edge-count target claim and no claim that one query per pair exhausts all conceivable relations."
+  ]
+}

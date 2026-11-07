@@ -1,0 +1,42 @@
+$ python3 audit_boundary/validate_boundary.py
+Bounded relation-audit boundary validation
+  root: .
+  boundary.md: present
+  theories: 17
+  pairs: 136
+  statement rows: 1154 (authority 1153, shared 1, eligible 1134)
+  unique pairs: 136
+  clusters: 6
+  legacy registry sha256: 25d38791ce86f9030598eb68b6894a886513164ddb9165e0fff371883c1ecbf0
+RESULT: PASS (all boundary checks passed)
+[exit=0]
+
+$ python3 bounded_audit/validate_screening.py
+R2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all bounded-screening checks passed)
+[exit=0]
+
+$ python3 bounded_audit/validate_r3.py
+R3 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all R3 bounded-screening checks passed)
+[exit=0]
+
+$ python3 bounded_audit/r4/excited-02/validate.py
+R4 E2 bounded screening validation
+  root: .
+  checks failed: 0
+RESULT: PASS (all E2 bounded-screening checks passed)
+[exit=0]
+
+$ proofs/scripts/lake env lean bounded_audit/r4/excited-02/probes/E2-probe.lean
+'PhotoLean.RelationAudit.BoundedAudit.E2.bepStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.bepICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scStokesBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scEgBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PhotoLean.RelationAudit.BoundedAudit.E2.scICBridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+[exit=0]
+

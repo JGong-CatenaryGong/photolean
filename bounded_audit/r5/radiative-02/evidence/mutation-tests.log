@@ -1,0 +1,12 @@
+# RAD2 /tmp mutation tests
+# tmp: /tmp/rad2-mut-jxby4kt_
+CONTROL unmutated copies: exit=0 PASS
+MUTATION 01 duplicate pair row                               exit=1 expected=['pairs.duplicate', 'pairs.count'] hit=['pairs.duplicate', 'pairs.count'] PASS
+MUTATION 02 pair with no query row                           exit=1 expected=['pair.noQuery'] hit=['pair.noQuery'] PASS
+MUTATION 03 certified probe hash corrupted                   exit=1 expected=['evidence.probeHash'] hit=['evidence.probeHash'] PASS
+MUTATION 04 endpoint signature hash drift                    exit=1 expected=['endpoint.signatureSha256'] hit=['endpoint.signatureSha256'] PASS
+MUTATION 05 missing search-log entry                         exit=1 expected=['search.missing', 'searchLogReference.sha256'] hit=['search.missing', 'searchLogReference.sha256'] PASS
+MUTATION 06 outOfScope relabelled certified without evidence exit=1 expected=['evidence.type', 'search.certifiedEntry'] hit=['evidence.type', 'search.certifiedEntry'] PASS
+MUTATION 07 coverage fragment pair count drift               exit=1 expected=['fragment.pairCount'] hit=['fragment.pairCount'] PASS
+# summary: control PASS; 7/7 mutations failed closed
+RESULT: PASS (7/7 mutations fail closed; control passes)
