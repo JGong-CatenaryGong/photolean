@@ -1,0 +1,40 @@
+Scoped angle-typed torsion variant — compile & audit evidence
+============================================================
+File: angle_variant/AngleTorsion.lean
+SHA-256: 16c1f4792d93bfd728f2c4bb4a3b32b766234c878f628cb0d125724958b9403d
+
+Intended repo location (reviewer-facing release): extensions/RACI/AngleTorsion.lean
+  - OUTSIDE the frozen PhotoLean/** manifest (102 files / 1,154 rows unchanged)
+  - OUTSIDE the pinned nine-probe validation set (9 probes / 58 declarations /
+    31,347 checks / 67 certified unchanged)
+  - Contributes ZERO active pair/query coverage (theory-level only).
+  - No reference to AngleTorsion / angle_variant / angle_blocks_ci appears in
+    esi/data/audit-summary.json, main.tex, or any probe (grep-verified empty).
+
+Compile environment (local, working):
+  Toolchain: leanprover/lean4:v4.33.1
+  mathlib rev: 0df444a360eaa60ab8c11dca51a86af692955474
+  Command: lake env lean angle_variant/AngleTorsion.lean
+  Result: EXIT 0, no errors, no warnings, no 'sorry'.
+
+Axiom audit (#print axioms):
+  AngleTorsion.angle_blocks_ci  -> [propext, Classical.choice, Quot.sound]
+  AngleTorsion.gap_continuous   -> [propext, Classical.choice, Quot.sound]
+  AngleTorsion.gap_ci           -> [propext, Classical.choice, Quot.sound]
+  No sorryAx, no custom axiom. Matches the accepted standard footprint.
+
+Cross-version compatibility (pinned release v4.17.0):
+  Every API used is confirmed present in the v4.17.0 mathlib SOURCE
+  (raci_lean/repo, manifest mathlib rev 5269898d6a51):
+    continuous_subtype_val   Topology/Constructions.lean:380
+    Continuous.dist          Topology/MetricSpace/Pseudo/Constructions.lean:232
+    continuous_dist          Topology/MetricSpace/Pseudo/Constructions.lean:229
+    intermediate_value_uIcc  Topology/Order/IntermediateValue.lean:597
+    Set.mem_uIcc             Order/Interval/Set/UnorderedInterval.lean:208
+  NOTE: a full pinned-toolchain (v4.17.0) rebuild was NOT run locally: this
+  machine has no GitHub network access, the v4.17.0 repo is missing 8 dependency
+  packages and its mathlib is checked out at a non-manifest rev. The module was
+  machine-checked under v4.33.1 and source-verified against v4.17.0. To produce a
+  pinned-toolchain compile log, run on a networked machine:
+    lake exe cache get && lake build   (in the v4.17.0 release repo)
+    lake env lean extensions/RACI/AngleTorsion.lean
